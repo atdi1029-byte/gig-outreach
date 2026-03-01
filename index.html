@@ -41,13 +41,13 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-    content: '';
+#bgLayer {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&q=80') center/cover no-repeat;
     filter: brightness(0.35) saturate(1.2);
     z-index: -1;
+    transition: opacity 0.4s ease;
 }
 
 .content {
@@ -652,6 +652,7 @@ body::before {
 </style>
 </head>
 <body>
+<div id="bgLayer"></div>
 <div class="content">
 
     <!-- HEADER -->
@@ -1019,6 +1020,7 @@ const STATE_IMAGES = {
 
 function renderBrowseStates() {
     browseLevel = 'states';
+    setBackground(DEFAULT_BG);
     const el = document.getElementById('browseContent');
     const bc = document.getElementById('browseBreadcrumb');
     bc.innerHTML = '';
@@ -1036,9 +1038,21 @@ function renderBrowseStates() {
     }).join('') + '</div>';
 }
 
+const DEFAULT_BG = 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&q=80';
+
+function setBackground(url) {
+    const bg = document.getElementById('bgLayer');
+    bg.style.opacity = '0';
+    setTimeout(() => {
+        bg.style.backgroundImage = `url('${url}')`;
+        bg.style.opacity = '1';
+    }, 300);
+}
+
 function browseIntoState(state) {
     browseState = state;
     browseLevel = 'categories';
+    if (STATE_IMAGES[state]) setBackground(STATE_IMAGES[state]);
     renderBrowseCategories();
 }
 

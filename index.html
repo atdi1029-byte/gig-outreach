@@ -162,14 +162,27 @@ body {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 0.75rem;
     margin-bottom: 0.5rem;
     transition: border-color 0.2s;
+    overflow: hidden;
 }
 .venue-card:hover { border-color: var(--border-light); }
 
 .venue-card[data-zone="green"] { border-left: 3px solid var(--zone-green); }
 .venue-card[data-zone="yellow"] { border-left: 3px solid var(--zone-yellow); }
+
+.venue-header {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.venue-header-left {
+    flex: 1;
+    min-width: 0;
+}
 
 .venue-top {
     display: flex;
@@ -184,6 +197,32 @@ body {
     font-size: 0.85rem;
     color: var(--text-bright);
 }
+
+.venue-action-count {
+    font-size: 0.6rem;
+    font-weight: 700;
+    background: var(--accent);
+    color: #000;
+    padding: 0.15rem 0.45rem;
+    border-radius: 10px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.venue-chevron {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    transition: transform 0.2s;
+    flex-shrink: 0;
+}
+.venue-card.expanded .venue-chevron { transform: rotate(90deg); }
+
+.venue-details {
+    display: none;
+    padding: 0 0.75rem 0.75rem;
+}
+.venue-card.expanded .venue-details { display: block; }
 
 .category-badge {
     font-size: 0.55rem;
@@ -212,7 +251,6 @@ body {
 .venue-city {
     font-size: 0.7rem;
     color: var(--text-dim);
-    margin-bottom: 0.5rem;
 }
 
 .action-row {
@@ -751,7 +789,16 @@ function renderVenueCard(item) {
     const pendingEmails = item.pendingEmails || [];
     const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
 
-    let html = `<div class="venue-card" data-zone="${v.zone_priority || 'default'}">`;
+    // Count pending actions
+    let actionCount = pendingEmails.length;
+    if (item.igPending && v.instagram) actionCount++;
+    if (item.fbPending && v.facebook) actionCount++;
+
+    let html = `<div class="venue-card" data-zone="${v.zone_priority || 'default'}" onclick="this.classList.toggle('expanded')">`;
+
+    // Collapsed header — always visible
+    html += `<div class="venue-header">`;
+    html += `<div class="venue-header-left">`;
     html += `<div class="venue-top">`;
     html += `<span class="venue-name">${esc(v.name)}</span>`;
     html += `<span class="category-badge ${cat}">${esc(v.category || 'Other').toUpperCase()}</span>`;
@@ -760,6 +807,15 @@ function renderVenueCard(item) {
     }
     html += `</div>`;
     html += `<div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}</div>`;
+    html += `</div>`;
+    if (actionCount > 0) {
+        html += `<span class="venue-action-count">${actionCount}</span>`;
+    }
+    html += `<span class="venue-chevron">&#9654;</span>`;
+    html += `</div>`;
+
+    // Expandable details
+    html += `<div class="venue-details" onclick="event.stopPropagation()">`;
 
     // Pending email contacts
     for (const c of pendingEmails) {
@@ -791,7 +847,8 @@ function renderVenueCard(item) {
         html += `</div>`;
     }
 
-    html += `</div>`;
+    html += `</div>`; // venue-details
+    html += `</div>`; // venue-card
     return html;
 }
 

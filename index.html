@@ -535,15 +535,6 @@ body {
         <div id="topPicksList"></div>
     </div>
 
-    <!-- ACTION NEEDED -->
-    <div class="section" id="actionSection">
-        <div class="section-header">
-            <span class="section-title">Action Needed</span>
-            <span class="section-badge" id="actionBadge">0</span>
-        </div>
-        <div id="actionList"></div>
-    </div>
-
     <!-- VENUE BROWSER -->
     <div class="section">
         <div class="section-header">
@@ -865,24 +856,6 @@ function renderTopPicks(picks) {
     el.innerHTML = top5.map(renderVenueCard).join('');
 }
 
-function renderActionNeeded(actions) {
-    const el = document.getElementById('actionList');
-    const badge = document.getElementById('actionBadge');
-    const items = actions || [];
-    badge.textContent = items.length;
-
-    if (items.length === 0) {
-        el.innerHTML = '<div class="empty-state">All caught up! No pending actions.</div>';
-        return;
-    }
-    // Skip first 5 (already in Top Picks)
-    const remaining = items.slice(5);
-    if (remaining.length === 0) {
-        el.innerHTML = '<div class="empty-state">All remaining are in Top Picks above.</div>';
-        return;
-    }
-    el.innerHTML = remaining.map(renderVenueCard).join('');
-}
 
 function renderVenueBrowser(data) {
     const venues = data.venues || [];
@@ -980,7 +953,6 @@ async function loadDashboard() {
         refreshEl.textContent = 'API not configured';
         renderStats({ totalVenues: 0, totalContacts: 0, emailsSent: 0, igDmsSent: 0, fbMsgsSent: 0, pendingEmails: 0, pendingVerify: 0, totalOutreach: 0 });
         renderTopPicks([]);
-        renderActionNeeded([]);
         renderVenueBrowser({ venues: [], stateBreakdown: {} });
         renderPokemon({ totalOutreach: 0 });
         return;
@@ -997,7 +969,6 @@ async function loadDashboard() {
 
         renderStats(data.stats);
         renderTopPicks(data.topPicks);
-        renderActionNeeded(data.actionNeeded);
         renderVenueBrowser(data);
         renderPokemon(data.stats);
 

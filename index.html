@@ -94,40 +94,117 @@ body {
     color: var(--text-dim);
 }
 
-/* === STATS BAR === */
-.stats-bar {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
+/* === VENUE DETAIL VIEW (full screen overlay) === */
+.venue-detail-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg-deep);
+    z-index: 100;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.venue-detail-overlay.open { display: block; }
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg-deep);
+    z-index: 10;
 }
 
-.stat-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem;
-    text-align: center;
-}
-
-.stat-label {
-    font-size: 0.6rem;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0.25rem;
-}
-
-.stat-value {
+.detail-back {
     font-size: 1.4rem;
-    font-weight: 700;
     color: var(--accent);
-    text-shadow: 0 0 20px rgba(240, 160, 48, 0.5), 0 0 40px rgba(240, 160, 48, 0.2);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.stat-value.green {
+.detail-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--text-bright);
+    flex: 1;
+}
+
+.detail-body {
+    padding: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.detail-meta {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.detail-section-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    color: var(--text-bright);
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border);
+    margin: 1.25rem 0 0.5rem;
+}
+
+.detail-website {
+    display: inline-block;
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.detail-action-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.detail-action-row:last-child { border-bottom: none; }
+
+.detail-email {
+    font-size: 0.8rem;
+    color: var(--accent);
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.detail-contact-name {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 0.2rem;
+}
+
+.detail-social-label {
+    font-size: 0.8rem;
+    color: var(--text);
+    flex: 1;
+}
+
+.detail-done {
+    font-size: 0.7rem;
     color: var(--green);
-    text-shadow: 0 0 20px rgba(38, 166, 154, 0.5), 0 0 40px rgba(38, 166, 154, 0.2);
+    font-weight: 700;
 }
 
 /* === SECTIONS === */
@@ -470,18 +547,79 @@ body {
 }
 
 /* === MOBILE === */
+/* === STATE CARDS GRID === */
+.state-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.state-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+.state-card:active { background: var(--bg-card-hover); border-color: var(--accent-dim); }
+
+.state-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text-bright);
+    margin-bottom: 0.25rem;
+}
+
+.state-card-count {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+}
+
+/* === CATEGORY LIST (inside state) === */
+.category-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.35rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.category-list-item:active { background: var(--bg-card-hover); }
+
+.category-list-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-bright);
+}
+
+.category-list-count {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+}
+
+/* === BREADCRUMB NAV === */
+.breadcrumb {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+}
+.breadcrumb-link {
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+}
+
 @media (max-width: 768px) {
     .content { padding: 0.5rem; }
     .header h1 { font-size: 1.4rem; }
-    .stats-bar { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
-    .stat-card { padding: 0.5rem; }
-    .stat-value { font-size: 1.1rem; }
-    .stat-label { font-size: 0.5rem; }
     .venue-name { font-size: 0.8rem; }
-}
-
-@media (max-width: 400px) {
-    .stats-bar { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -498,34 +636,6 @@ body {
         </div>
     </div>
 
-    <!-- STATS BAR -->
-    <div class="stats-bar" id="statsBar">
-        <div class="stat-card">
-            <div class="stat-label">Venues</div>
-            <div class="stat-value" id="statVenues">0</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Emails Sent</div>
-            <div class="stat-value green" id="statEmails">0</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Pending</div>
-            <div class="stat-value" id="statPending">0</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">IG DMs</div>
-            <div class="stat-value green" id="statIG">0</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">FB Msgs</div>
-            <div class="stat-value green" id="statFB">0</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-label">Total</div>
-            <div class="stat-value" id="statTotal">0</div>
-        </div>
-    </div>
-
     <!-- TOP PICKS -->
     <div class="section" id="topPicksSection">
         <div class="section-header">
@@ -538,11 +648,10 @@ body {
     <!-- VENUE BROWSER -->
     <div class="section">
         <div class="section-header">
-            <span class="section-title">Browse Venues</span>
+            <span class="section-title" id="browseTitle">Browse Venues</span>
         </div>
-        <div class="filter-row" id="stateFilters"></div>
-        <div class="filter-row" id="categoryFilters"></div>
-        <div id="venueList"></div>
+        <div id="browseBreadcrumb" class="breadcrumb"></div>
+        <div id="browseContent"></div>
     </div>
 
     <!-- POKEMON -->
@@ -553,6 +662,15 @@ body {
         <div id="pokemonCard"></div>
     </div>
 
+</div>
+
+<!-- VENUE DETAIL OVERLAY -->
+<div class="venue-detail-overlay" id="venueDetailOverlay">
+    <div class="detail-header">
+        <button class="detail-back" onclick="closeVenueDetail()">&larr;</button>
+        <span class="detail-title" id="detailTitle"></span>
+    </div>
+    <div class="detail-body" id="detailBody"></div>
 </div>
 
 <!-- TOAST -->
@@ -566,8 +684,6 @@ const REFRESH_INTERVAL = 60000;
 
 // === STATE ===
 let dashboardData = null;
-let currentState = 'ALL';
-let currentCategory = 'all';
 let refreshTimer = null;
 
 // === TEMPLATES ===
@@ -765,15 +881,6 @@ async function markFBSent(contactId, venueId) {
 
 // === RENDER FUNCTIONS ===
 
-function renderStats(stats) {
-    document.getElementById('statVenues').textContent = stats.totalVenues || 0;
-    document.getElementById('statEmails').textContent = stats.emailsSent || 0;
-    document.getElementById('statPending').textContent = stats.pendingEmails || 0;
-    document.getElementById('statIG').textContent = stats.igDmsSent || 0;
-    document.getElementById('statFB').textContent = stats.fbMsgsSent || 0;
-    document.getElementById('statTotal').textContent = stats.totalOutreach || 0;
-}
-
 function renderVenueCard(item) {
     const v = item.venue;
     const contacts = item.contacts || [];
@@ -857,60 +964,199 @@ function renderTopPicks(picks) {
 }
 
 
+// === BROWSE: State → Category → Venues → Detail ===
+const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants' };
+let browseLevel = 'states'; // states | categories | venues
+let browseState = '';
+let browseCategory = '';
+
 function renderVenueBrowser(data) {
-    const venues = data.venues || [];
-    const stateBreakdown = data.stateBreakdown || {};
+    if (browseLevel === 'categories') return renderBrowseCategories();
+    if (browseLevel === 'venues') return renderBrowseVenues();
+    renderBrowseStates();
+}
 
-    // State filters
-    const states = ['ALL', 'MD', 'VA', 'WV', 'PA', 'DE'];
-    const stateEl = document.getElementById('stateFilters');
-    stateEl.innerHTML = states.map(s => {
-        const count = s === 'ALL' ? venues.length : (stateBreakdown[s] ? stateBreakdown[s].total : 0);
-        const active = currentState === s ? 'active' : '';
-        return `<button class="filter-pill ${active}" onclick="setStateFilter('${s}')">${s} (${count})</button>`;
-    }).join('');
+function renderBrowseStates() {
+    browseLevel = 'states';
+    const el = document.getElementById('browseContent');
+    const bc = document.getElementById('browseBreadcrumb');
+    bc.innerHTML = '';
 
-    // Category filters
-    const categories = ['all', 'winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant'];
-    const catLabels = { all: 'All', winery: 'Winery', museum: 'Museum', hotel: 'Hotel', country_club: 'Club', event: 'Event', restaurant: 'Restaurant' };
-    const catEl = document.getElementById('categoryFilters');
-    catEl.innerHTML = categories.map(c => {
-        const active = currentCategory === c ? 'active' : '';
-        return `<button class="filter-pill ${active}" onclick="setCategoryFilter('${c}')">${catLabels[c] || c}</button>`;
-    }).join('');
+    const states = ['MD', 'VA', 'DC', 'WV', 'PA', 'DE'];
+    const venues = (dashboardData && dashboardData.venues) || [];
 
-    // Filtered venue list
-    let filtered = venues.filter(v => v.status !== 'contacted');
-    if (currentState !== 'ALL') filtered = filtered.filter(v => v.state === currentState);
-    if (currentCategory !== 'all') filtered = filtered.filter(v => (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === currentCategory);
+    el.innerHTML = '<div class="state-grid">' + states.map(s => {
+        const count = venues.filter(v => v.state === s).length;
+        return `<div class="state-card" onclick="browseIntoState('${s}')">
+            <div class="state-card-name">${STATE_NAMES[s] || s}</div>
+            <div class="state-card-count">${count} venue${count !== 1 ? 's' : ''}</div>
+        </div>`;
+    }).join('') + '</div>';
+}
 
-    const listEl = document.getElementById('venueList');
-    if (filtered.length === 0) {
-        listEl.innerHTML = '<div class="empty-state">No venues found for this filter.</div>';
+function browseIntoState(state) {
+    browseState = state;
+    browseLevel = 'categories';
+    renderBrowseCategories();
+}
+
+function renderBrowseCategories() {
+    const el = document.getElementById('browseContent');
+    const bc = document.getElementById('browseBreadcrumb');
+    bc.innerHTML = `<span class="breadcrumb-link" onclick="renderBrowseStates()">States</span> &rsaquo; ${STATE_NAMES[browseState] || browseState}`;
+
+    const venues = ((dashboardData && dashboardData.venues) || []).filter(v => v.state === browseState);
+    const catCounts = {};
+    venues.forEach(v => {
+        const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+        catCounts[cat] = (catCounts[cat] || 0) + 1;
+    });
+
+    const cats = Object.keys(catCounts).sort();
+    if (cats.length === 0) {
+        el.innerHTML = '<div class="empty-state">No venues yet in ' + (STATE_NAMES[browseState] || browseState) + '.</div>';
         return;
     }
 
-    listEl.innerHTML = filtered.map(v => {
-        const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+    el.innerHTML = cats.map(c => {
+        return `<div class="category-list-item" onclick="browseIntoCategory('${c}')">
+            <span class="category-list-name">${CATEGORY_LABELS[c] || c}</span>
+            <span class="category-list-count">${catCounts[c]}</span>
+        </div>`;
+    }).join('');
+}
+
+function browseIntoCategory(cat) {
+    browseCategory = cat;
+    browseLevel = 'venues';
+    renderBrowseVenues();
+}
+
+function renderBrowseVenues() {
+    const el = document.getElementById('browseContent');
+    const bc = document.getElementById('browseBreadcrumb');
+    bc.innerHTML = `<span class="breadcrumb-link" onclick="renderBrowseStates()">States</span> &rsaquo; <span class="breadcrumb-link" onclick="browseIntoState('${browseState}')">${STATE_NAMES[browseState] || browseState}</span> &rsaquo; ${CATEGORY_LABELS[browseCategory] || browseCategory}`;
+
+    const venues = ((dashboardData && dashboardData.venues) || []).filter(v =>
+        v.state === browseState && (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === browseCategory
+    );
+
+    if (venues.length === 0) {
+        el.innerHTML = '<div class="empty-state">No venues found.</div>';
+        return;
+    }
+
+    el.innerHTML = venues.map(v => {
         const statusClass = (v.status || 'untouched').replace(/\s/g, '_');
-        return `<div class="venue-list-item">
+        return `<div class="venue-list-item" onclick="openVenueDetail('${esc(v.venue_id)}')">
             <div>
                 <div class="venue-list-name">${esc(v.name)}</div>
-                <div class="venue-list-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')} &middot; <span class="category-badge ${cat}" style="font-size:0.5rem">${esc(v.category || '').toUpperCase()}</span></div>
+                <div class="venue-list-city">${esc(v.city || '')}</div>
             </div>
             <span class="status-pill ${statusClass}">${statusClass.replace('_', ' ')}</span>
         </div>`;
     }).join('');
 }
 
-function setStateFilter(state) {
-    currentState = state;
-    if (dashboardData) renderVenueBrowser(dashboardData);
+// === VENUE DETAIL VIEW ===
+function openVenueDetail(venueId) {
+    if (!dashboardData) return;
+    const venue = (dashboardData.venues || []).find(v => v.venue_id === venueId);
+    if (!venue) return;
+
+    const contacts = (dashboardData.contacts || []).filter(c => c.venue_id === venueId);
+    const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+
+    document.getElementById('detailTitle').textContent = venue.name;
+
+    let html = '';
+
+    // Meta info
+    html += `<div class="detail-meta">`;
+    html += `<span class="category-badge ${cat}">${esc(venue.category || '').toUpperCase()}</span>`;
+    html += `<span>${esc(venue.city || '')}${venue.city && venue.state ? ', ' : ''}${esc(venue.state || '')}</span>`;
+    if (venue.zone_priority === 'green' || venue.zone_priority === 'yellow') {
+        html += `<span class="zone-dot ${venue.zone_priority}"></span>`;
+    }
+    html += `</div>`;
+
+    // Website
+    if (venue.website) {
+        html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
+    }
+
+    // Emails
+    const emailContacts = contacts.filter(c => c.email);
+    if (emailContacts.length > 0) {
+        html += `<div class="detail-section-label">Emails</div>`;
+        for (const c of emailContacts) {
+            if (c.email_sent) {
+                html += `<div class="detail-action-row">`;
+                html += `<span class="detail-email" style="opacity:0.4">${esc(c.email)}</span>`;
+                html += `<span class="detail-done">Sent</span>`;
+                html += `</div>`;
+            } else if (c.verified === 'valid') {
+                html += `<div class="detail-action-row">`;
+                html += `<span class="detail-email">${esc(c.email)}</span>`;
+                html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
+                html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
+                html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}');this.textContent='Done';this.disabled=true">Sent</button>`;
+                html += `</div>`;
+                if (c.name || c.title) {
+                    html += `<div class="detail-contact-name">${esc(c.name || '')}${c.name && c.title ? ' — ' : ''}${esc(c.title || '')}</div>`;
+                }
+            } else {
+                html += `<div class="detail-action-row">`;
+                html += `<span class="detail-email" style="opacity:0.5">${esc(c.email)}</span>`;
+                html += `<span style="font-size:0.6rem;color:var(--text-dim)">${c.verified || 'unverified'}</span>`;
+                html += `</div>`;
+            }
+        }
+    }
+
+    // Instagram
+    html += `<div class="detail-section-label">Instagram</div>`;
+    if (venue.instagram) {
+        const igDone = contacts.some(c => c.ig_dm_sent);
+        if (igDone) {
+            html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span><span class="detail-done">Sent</span></div>`;
+        } else {
+            const firstContact = contacts[0] || { contact_id: '' };
+            html += `<div class="detail-action-row">`;
+            html += `<span class="detail-social-label">Instagram DM</span>`;
+            html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(venue.instagram)}','${cat}')">Open + Copy</button>`;
+            html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(firstContact.contact_id)}','${esc(venue.venue_id)}');this.textContent='Done';this.disabled=true">Sent</button>`;
+            html += `</div>`;
+        }
+    } else {
+        html += `<div class="detail-action-row"><span style="font-size:0.7rem;color:var(--text-dim)">No Instagram found</span></div>`;
+    }
+
+    // Facebook
+    html += `<div class="detail-section-label">Facebook</div>`;
+    if (venue.facebook) {
+        const fbDone = contacts.some(c => c.fb_msg_sent);
+        if (fbDone) {
+            html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span><span class="detail-done">Sent</span></div>`;
+        } else {
+            const firstContact = contacts[0] || { contact_id: '' };
+            html += `<div class="detail-action-row">`;
+            html += `<span class="detail-social-label">Facebook Message</span>`;
+            html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(venue.facebook)}','${cat}')">Open + Copy</button>`;
+            html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(firstContact.contact_id)}','${esc(venue.venue_id)}');this.textContent='Done';this.disabled=true">Sent</button>`;
+            html += `</div>`;
+        }
+    } else {
+        html += `<div class="detail-action-row"><span style="font-size:0.7rem;color:var(--text-dim)">No Facebook found</span></div>`;
+    }
+
+    document.getElementById('detailBody').innerHTML = html;
+    document.getElementById('venueDetailOverlay').classList.add('open');
 }
 
-function setCategoryFilter(cat) {
-    currentCategory = cat;
-    if (dashboardData) renderVenueBrowser(dashboardData);
+function closeVenueDetail() {
+    document.getElementById('venueDetailOverlay').classList.remove('open');
 }
 
 function renderPokemon(stats) {
@@ -951,7 +1197,6 @@ async function loadDashboard() {
         // Demo mode — show empty state
         dot.classList.remove('connected');
         refreshEl.textContent = 'API not configured';
-        renderStats({ totalVenues: 0, totalContacts: 0, emailsSent: 0, igDmsSent: 0, fbMsgsSent: 0, pendingEmails: 0, pendingVerify: 0, totalOutreach: 0 });
         renderTopPicks([]);
         renderVenueBrowser({ venues: [], stateBreakdown: {} });
         renderPokemon({ totalOutreach: 0 });
@@ -967,7 +1212,6 @@ async function loadDashboard() {
         dot.classList.add('connected');
         refreshEl.textContent = new Date().toLocaleTimeString();
 
-        renderStats(data.stats);
         renderTopPicks(data.topPicks);
         renderVenueBrowser(data);
         renderPokemon(data.stats);

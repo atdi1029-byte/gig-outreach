@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <title>Gig Outreach</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-deep: #000;
+    --bg-dark: #0a0a0a;
+    --bg-card: #111;
+    --bg-card-hover: #1a1a1a;
+    --border: #222;
+    --border-light: #333;
+    --text: #e0e0e0;
+    --text-dim: #888;
+    --text-bright: #fff;
+    --accent: #f0a030;
+    --accent-dim: #c08020;
+    --green: #26a69a;
+    --red: #ef5350;
+    --gold: #f0a030;
+    --zone-green: #26a69a;
+    --zone-yellow: #f0c030;
+    --zone-default: #666;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Lato', sans-serif;
+    background: var(--bg-deep);
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+.content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* === HEADER === */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+}
+
+.header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+}
+.status-dot.connected { background: var(--green); }
+
+.btn-refresh {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.75rem;
+}
+.btn-refresh:active { background: var(--border); }
+
+.last-refresh {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+}
+
+/* === STATS BAR === */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(240, 160, 48, 0.5), 0 0 40px rgba(240, 160, 48, 0.2);
+}
+
+.stat-value.green {
+    color: var(--green);
+    text-shadow: 0 0 20px rgba(38, 166, 154, 0.5), 0 0 40px rgba(38, 166, 154, 0.2);
+}
+
+/* === SECTIONS === */
+.section { margin-bottom: 1.5rem; }
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--text-bright);
+}
+
+.section-badge {
+    background: var(--accent);
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+}
+
+/* === VENUE CARDS === */
+.venue-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    transition: border-color 0.2s;
+}
+.venue-card:hover { border-color: var(--border-light); }
+
+.venue-card[data-zone="green"] { border-left: 3px solid var(--zone-green); }
+.venue-card[data-zone="yellow"] { border-left: 3px solid var(--zone-yellow); }
+
+.venue-top {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.venue-name {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-bright);
+}
+
+.category-badge {
+    font-size: 0.55rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    color: #000;
+}
+.category-badge.winery { background: #9b59b6; color: #fff; }
+.category-badge.museum { background: #3498db; color: #fff; }
+.category-badge.hotel { background: #e67e22; color: #fff; }
+.category-badge.country_club { background: #27ae60; color: #fff; }
+.category-badge.event { background: #e74c3c; color: #fff; }
+.category-badge.restaurant { background: #f39c12; color: #000; }
+
+.zone-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.zone-dot.green { background: var(--zone-green); }
+.zone-dot.yellow { background: var(--zone-yellow); }
+
+.venue-city {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+}
+
+.action-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+}
+
+.contact-email {
+    font-size: 0.7rem;
+    color: var(--accent);
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.social-label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    flex: 1;
+}
+
+.btn-action {
+    font-family: inherit;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.btn-copy {
+    background: var(--bg-card);
+    color: var(--accent);
+    border-color: var(--accent-dim);
+}
+.btn-copy:active { background: var(--accent); color: #000; }
+
+.btn-gmail {
+    display: inline-block;
+    background: var(--bg-card);
+    color: var(--green);
+    border: 1px solid var(--green);
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+}
+
+.btn-open {
+    background: var(--bg-card);
+    color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-sent {
+    background: var(--bg-card);
+    color: var(--green);
+    border-color: var(--green);
+}
+.btn-sent:active { background: var(--green); color: #000; }
+.btn-sent.done {
+    background: var(--green);
+    color: #000;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* === FILTER PILLS === */
+.filter-row {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.filter-pill {
+    font-family: inherit;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.3rem 0.65rem;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+.filter-pill.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+}
+
+/* === VENUE LIST (browser) === */
+.venue-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.35rem;
+    cursor: pointer;
+}
+.venue-list-item:active { background: var(--bg-card-hover); }
+
+.venue-list-name {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-bright);
+}
+
+.venue-list-city {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+}
+
+.status-pill {
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+.status-pill.untouched { background: #333; color: #888; }
+.status-pill.in_progress { background: #2a2a00; color: var(--gold); }
+.status-pill.contacted { background: #002a2a; color: var(--green); }
+
+/* === POKEMON === */
+.pokemon-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pokemon-sprite {
+    width: 80px;
+    height: 80px;
+    image-rendering: pixelated;
+}
+
+.pokemon-info { flex: 1; }
+
+.pokemon-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 0.25rem;
+}
+
+.pokemon-level {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+}
+
+/* === TOAST === */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    z-index: 999;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* === EMPTY STATE === */
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+
+/* === MOBILE === */
+@media (max-width: 768px) {
+    .content { padding: 0.5rem; }
+    .header h1 { font-size: 1.4rem; }
+    .stats-bar { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
+    .stat-card { padding: 0.5rem; }
+    .stat-value { font-size: 1.1rem; }
+    .stat-label { font-size: 0.5rem; }
+    .venue-name { font-size: 0.8rem; }
+}
+
+@media (max-width: 400px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="content">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Gig Outreach</h1>
+        <div class="header-right">
+            <span class="last-refresh" id="lastRefresh"></span>
+            <div class="status-dot" id="statusDot"></div>
+            <button class="btn-refresh" onclick="loadDashboard()">Refresh</button>
+        </div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar" id="statsBar">
+        <div class="stat-card">
+            <div class="stat-label">Venues</div>
+            <div class="stat-value" id="statVenues">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Emails Sent</div>
+            <div class="stat-value green" id="statEmails">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Pending</div>
+            <div class="stat-value" id="statPending">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">IG DMs</div>
+            <div class="stat-value green" id="statIG">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">FB Msgs</div>
+            <div class="stat-value green" id="statFB">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Total</div>
+            <div class="stat-value" id="statTotal">0</div>
+        </div>
+    </div>
+
+    <!-- TOP PICKS -->
+    <div class="section" id="topPicksSection">
+        <div class="section-header">
+            <span class="section-title">Top Picks</span>
+            <span class="section-badge" id="topPicksBadge">0</span>
+        </div>
+        <div id="topPicksList"></div>
+    </div>
+
+    <!-- ACTION NEEDED -->
+    <div class="section" id="actionSection">
+        <div class="section-header">
+            <span class="section-title">Action Needed</span>
+            <span class="section-badge" id="actionBadge">0</span>
+        </div>
+        <div id="actionList"></div>
+    </div>
+
+    <!-- VENUE BROWSER -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-title">Browse Venues</span>
+        </div>
+        <div class="filter-row" id="stateFilters"></div>
+        <div class="filter-row" id="categoryFilters"></div>
+        <div id="venueList"></div>
+    </div>
+
+    <!-- POKEMON -->
+    <div class="section">
+        <div class="section-header">
+            <span class="section-title">Trainer Level</span>
+        </div>
+        <div id="pokemonCard"></div>
+    </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// === CONFIG ===
+const API_URL = 'https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec?action=dashboard';
+const BASE_URL = 'https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec';
+const REFRESH_INTERVAL = 60000;
+
+// === STATE ===
+let dashboardData = null;
+let currentState = 'ALL';
+let currentCategory = 'all';
+let refreshTimer = null;
+
+// === TEMPLATES ===
+const DEFAULT_BODY = "Hi I'm a Baltimore based Classical Guitarist and I want to perform at your VENUE_TYPE!\n\nI have performed around the World at\n- The Copacabana Palace(Brazil)\n- Cadogan Hotel (London)\n- The Lake of Meneith Hotel (Scotland)\n- National Museum (Colombia)\n\nAnd Locally at\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- The Maryland Club\n- The Army Navy Country Club\n- The River Bend Country Club\n\nhttps://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH\n\nYou can reach me at alexbarnettclassical@gmail.com or 410-794-6204\n\nI look forward to hearing from you!\n\nBest,\nAlexander Barnett";
+
+const TEMPLATES = {
+    winery:      { subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Winery!", label: "Winery" },
+    museum:      { subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Museum!", label: "Museum" },
+    hotel:       { subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Hotel!", label: "Hotel" },
+    country_club:{ subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Club!", label: "Country Club" },
+    event:       { subject: "Classical Guitarist (Spanish/Brazilian Music) for your Events!", label: "Event" },
+    restaurant:  { subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Restaurant!", label: "Restaurant" }
+};
+
+function getTemplate(category) {
+    const t = TEMPLATES[category] || TEMPLATES.winery;
+    const venueType = t.label || 'Venue';
+    return {
+        subject: t.subject,
+        body: DEFAULT_BODY.replace('VENUE_TYPE', venueType)
+    };
+}
+
+// === POKEMON LEVELS ===
+const POKEMON_LEVELS = [
+    { min: 0, pokemon: 'Bulbasaur', pokeId: 1 },
+    { min: 5, pokemon: 'Ivysaur', pokeId: 2 },
+    { min: 12, pokemon: 'Venusaur', pokeId: 3 },
+    { min: 20, pokemon: 'Charmander', pokeId: 4 },
+    { min: 30, pokemon: 'Charmeleon', pokeId: 5 },
+    { min: 45, pokemon: 'Charizard', pokeId: 6 },
+    { min: 60, pokemon: 'Squirtle', pokeId: 7 },
+    { min: 80, pokemon: 'Wartortle', pokeId: 8 },
+    { min: 100, pokemon: 'Blastoise', pokeId: 9 },
+    { min: 125, pokemon: 'Caterpie', pokeId: 10 },
+    { min: 150, pokemon: 'Metapod', pokeId: 11 },
+    { min: 180, pokemon: 'Butterfree', pokeId: 12 },
+    { min: 215, pokemon: 'Weedle', pokeId: 13 },
+    { min: 250, pokemon: 'Kakuna', pokeId: 14 },
+    { min: 300, pokemon: 'Beedrill', pokeId: 15 },
+    { min: 350, pokemon: 'Pidgey', pokeId: 16 },
+    { min: 410, pokemon: 'Pidgeotto', pokeId: 17 },
+    { min: 480, pokemon: 'Pidgeot', pokeId: 18 },
+    { min: 550, pokemon: 'Rattata', pokeId: 19 },
+    { min: 630, pokemon: 'Raticate', pokeId: 20 },
+    { min: 720, pokemon: 'Spearow', pokeId: 21 },
+    { min: 820, pokemon: 'Fearow', pokeId: 22 },
+    { min: 930, pokemon: 'Ekans', pokeId: 23 },
+    { min: 1050, pokemon: 'Arbok', pokeId: 24 },
+    { min: 1180, pokemon: 'Pikachu', pokeId: 25 },
+    { min: 1320, pokemon: 'Raichu', pokeId: 26 },
+    { min: 1480, pokemon: 'Sandshrew', pokeId: 27 },
+    { min: 1650, pokemon: 'Sandslash', pokeId: 28 },
+    { min: 1830, pokemon: 'Nidoran F', pokeId: 29 },
+    { min: 2020, pokemon: 'Nidorina', pokeId: 30 },
+    { min: 2220, pokemon: 'Nidoqueen', pokeId: 31 },
+    { min: 2440, pokemon: 'Nidoran M', pokeId: 32 },
+    { min: 2680, pokemon: 'Nidorino', pokeId: 33 },
+    { min: 2940, pokemon: 'Nidoking', pokeId: 34 },
+    { min: 3200, pokemon: 'Clefairy', pokeId: 35 },
+    { min: 3500, pokemon: 'Clefable', pokeId: 36 },
+    { min: 3800, pokemon: 'Vulpix', pokeId: 37 },
+    { min: 4100, pokemon: 'Ninetales', pokeId: 38 },
+    { min: 4500, pokemon: 'Mewtwo', pokeId: 150 },
+    { min: 5000, pokemon: 'Mew', pokeId: 151 }
+];
+
+function getPokemonLevel(count) {
+    let level = POKEMON_LEVELS[0];
+    for (const l of POKEMON_LEVELS) {
+        if (count >= l.min) level = l;
+    }
+    return level;
+}
+
+function getNextLevel(count) {
+    for (const l of POKEMON_LEVELS) {
+        if (l.min > count) return l;
+    }
+    return null;
+}
+
+// === API HELPERS ===
+async function fireGet(url) {
+    try {
+        const resp = await fetch(url);
+        const data = await resp.json();
+        if (data.status === 'error') { showToast('Error: ' + data.message); }
+        return data;
+    } catch(e) {
+        showToast('Network error');
+        return { status: 'error', message: e.message };
+    }
+}
+
+function buildUrl(params) {
+    if (!BASE_URL) return '';
+    const url = new URL(BASE_URL);
+    for (const [k, v] of Object.entries(params)) {
+        if (v !== '' && v != null) url.searchParams.set(k, v);
+    }
+    return url.toString();
+}
+
+// === CLIPBOARD + TOAST ===
+function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showToast('Copied!');
+    }).catch(() => {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('Copied!');
+    });
+}
+
+let toastTimer = null;
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 1500);
+}
+
+// === GMAIL LINK ===
+function buildGmailLink(email, category) {
+    const t = getTemplate(category);
+    const subject = encodeURIComponent(t.subject);
+    const body = encodeURIComponent(t.body);
+    return `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(email)}&su=${subject}&body=${body}`;
+}
+
+// === SOCIAL ACTIONS ===
+function openIGWithTemplate(igUrl, category) {
+    const t = getTemplate(category);
+    copyText(t.body);
+    window.open(igUrl, '_blank');
+}
+
+function openFBWithTemplate(fbUrl, category) {
+    const t = getTemplate(category);
+    copyText(t.body);
+    window.open(fbUrl, '_blank');
+}
+
+// === MARK ACTIONS ===
+async function markEmailSent(contactId, venueId, category) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    const btn = event.target;
+    btn.textContent = '...';
+
+    await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'true' }));
+    await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }));
+
+    btn.textContent = 'Done';
+    btn.classList.add('done');
+    showToast('Marked as sent!');
+
+    // Refresh after short delay
+    setTimeout(loadDashboard, 1500);
+}
+
+async function markIGSent(contactId, venueId) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    const btn = event.target;
+    btn.textContent = '...';
+
+    await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'true' }));
+    await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'instagram' }));
+
+    btn.textContent = 'Done';
+    btn.classList.add('done');
+    showToast('IG DM marked!');
+    setTimeout(loadDashboard, 1500);
+}
+
+async function markFBSent(contactId, venueId) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    const btn = event.target;
+    btn.textContent = '...';
+
+    await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'true' }));
+    await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'facebook' }));
+
+    btn.textContent = 'Done';
+    btn.classList.add('done');
+    showToast('FB msg marked!');
+    setTimeout(loadDashboard, 1500);
+}
+
+// === RENDER FUNCTIONS ===
+
+function renderStats(stats) {
+    document.getElementById('statVenues').textContent = stats.totalVenues || 0;
+    document.getElementById('statEmails').textContent = stats.emailsSent || 0;
+    document.getElementById('statPending').textContent = stats.pendingEmails || 0;
+    document.getElementById('statIG').textContent = stats.igDmsSent || 0;
+    document.getElementById('statFB').textContent = stats.fbMsgsSent || 0;
+    document.getElementById('statTotal').textContent = stats.totalOutreach || 0;
+}
+
+function renderVenueCard(item) {
+    const v = item.venue;
+    const contacts = item.contacts || [];
+    const pendingEmails = item.pendingEmails || [];
+    const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+
+    let html = `<div class="venue-card" data-zone="${v.zone_priority || 'default'}">`;
+    html += `<div class="venue-top">`;
+    html += `<span class="venue-name">${esc(v.name)}</span>`;
+    html += `<span class="category-badge ${cat}">${esc(v.category || 'Other').toUpperCase()}</span>`;
+    if (v.zone_priority === 'green' || v.zone_priority === 'yellow') {
+        html += `<span class="zone-dot ${v.zone_priority}"></span>`;
+    }
+    html += `</div>`;
+    html += `<div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}</div>`;
+
+    // Pending email contacts
+    for (const c of pendingEmails) {
+        html += `<div class="action-row">`;
+        html += `<span class="contact-email">${esc(c.email)}</span>`;
+        html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
+        html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
+        html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}')">Sent</button>`;
+        html += `</div>`;
+    }
+
+    // IG button
+    if (item.igPending && v.instagram) {
+        const firstContact = contacts[0] || { contact_id: '' };
+        html += `<div class="action-row">`;
+        html += `<span class="social-label">Instagram</span>`;
+        html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(v.instagram)}','${cat}')">Open + Copy</button>`;
+        html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(firstContact.contact_id)}','${esc(v.venue_id)}')">Sent</button>`;
+        html += `</div>`;
+    }
+
+    // FB button
+    if (item.fbPending && v.facebook) {
+        const firstContact = contacts[0] || { contact_id: '' };
+        html += `<div class="action-row">`;
+        html += `<span class="social-label">Facebook</span>`;
+        html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(v.facebook)}','${cat}')">Open + Copy</button>`;
+        html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(firstContact.contact_id)}','${esc(v.venue_id)}')">Sent</button>`;
+        html += `</div>`;
+    }
+
+    html += `</div>`;
+    return html;
+}
+
+function renderTopPicks(picks) {
+    const el = document.getElementById('topPicksList');
+    const badge = document.getElementById('topPicksBadge');
+    const top5 = (picks || []).slice(0, 5);
+    badge.textContent = top5.length;
+
+    if (top5.length === 0) {
+        el.innerHTML = '<div class="empty-state">No top picks yet. Run the scraper to find venues!</div>';
+        return;
+    }
+    el.innerHTML = top5.map(renderVenueCard).join('');
+}
+
+function renderActionNeeded(actions) {
+    const el = document.getElementById('actionList');
+    const badge = document.getElementById('actionBadge');
+    const items = actions || [];
+    badge.textContent = items.length;
+
+    if (items.length === 0) {
+        el.innerHTML = '<div class="empty-state">All caught up! No pending actions.</div>';
+        return;
+    }
+    // Skip first 5 (already in Top Picks)
+    const remaining = items.slice(5);
+    if (remaining.length === 0) {
+        el.innerHTML = '<div class="empty-state">All remaining are in Top Picks above.</div>';
+        return;
+    }
+    el.innerHTML = remaining.map(renderVenueCard).join('');
+}
+
+function renderVenueBrowser(data) {
+    const venues = data.venues || [];
+    const stateBreakdown = data.stateBreakdown || {};
+
+    // State filters
+    const states = ['ALL', 'MD', 'VA', 'WV', 'PA', 'DE'];
+    const stateEl = document.getElementById('stateFilters');
+    stateEl.innerHTML = states.map(s => {
+        const count = s === 'ALL' ? venues.length : (stateBreakdown[s] ? stateBreakdown[s].total : 0);
+        const active = currentState === s ? 'active' : '';
+        return `<button class="filter-pill ${active}" onclick="setStateFilter('${s}')">${s} (${count})</button>`;
+    }).join('');
+
+    // Category filters
+    const categories = ['all', 'winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant'];
+    const catLabels = { all: 'All', winery: 'Winery', museum: 'Museum', hotel: 'Hotel', country_club: 'Club', event: 'Event', restaurant: 'Restaurant' };
+    const catEl = document.getElementById('categoryFilters');
+    catEl.innerHTML = categories.map(c => {
+        const active = currentCategory === c ? 'active' : '';
+        return `<button class="filter-pill ${active}" onclick="setCategoryFilter('${c}')">${catLabels[c] || c}</button>`;
+    }).join('');
+
+    // Filtered venue list
+    let filtered = venues.filter(v => v.status !== 'contacted');
+    if (currentState !== 'ALL') filtered = filtered.filter(v => v.state === currentState);
+    if (currentCategory !== 'all') filtered = filtered.filter(v => (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === currentCategory);
+
+    const listEl = document.getElementById('venueList');
+    if (filtered.length === 0) {
+        listEl.innerHTML = '<div class="empty-state">No venues found for this filter.</div>';
+        return;
+    }
+
+    listEl.innerHTML = filtered.map(v => {
+        const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+        const statusClass = (v.status || 'untouched').replace(/\s/g, '_');
+        return `<div class="venue-list-item">
+            <div>
+                <div class="venue-list-name">${esc(v.name)}</div>
+                <div class="venue-list-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')} &middot; <span class="category-badge ${cat}" style="font-size:0.5rem">${esc(v.category || '').toUpperCase()}</span></div>
+            </div>
+            <span class="status-pill ${statusClass}">${statusClass.replace('_', ' ')}</span>
+        </div>`;
+    }).join('');
+}
+
+function setStateFilter(state) {
+    currentState = state;
+    if (dashboardData) renderVenueBrowser(dashboardData);
+}
+
+function setCategoryFilter(cat) {
+    currentCategory = cat;
+    if (dashboardData) renderVenueBrowser(dashboardData);
+}
+
+function renderPokemon(stats) {
+    const count = (stats ? stats.totalOutreach : 0) || 0;
+    const level = getPokemonLevel(count);
+    const next = getNextLevel(count);
+    const levelIdx = POKEMON_LEVELS.indexOf(level) + 1;
+
+    let progress = 100;
+    let progressText = 'MAX LEVEL!';
+    if (next) {
+        const range = next.min - level.min;
+        const current = count - level.min;
+        progress = Math.min(100, Math.round((current / range) * 100));
+        progressText = `${count - level.min} / ${range} to ${next.pokemon}`;
+    }
+
+    const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${level.pokeId}.png`;
+
+    document.getElementById('pokemonCard').innerHTML = `
+        <div class="pokemon-card">
+            <img class="pokemon-sprite" src="${spriteUrl}" alt="${level.pokemon}">
+            <div class="pokemon-info">
+                <div class="pokemon-name">${level.pokemon}</div>
+                <div class="pokemon-level">Level ${levelIdx} &middot; ${count} outreach total</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+                <div class="progress-text">${progressText}</div>
+            </div>
+        </div>`;
+}
+
+// === MAIN LOAD ===
+async function loadDashboard() {
+    const dot = document.getElementById('statusDot');
+    const refreshEl = document.getElementById('lastRefresh');
+
+    if (!API_URL) {
+        // Demo mode — show empty state
+        dot.classList.remove('connected');
+        refreshEl.textContent = 'API not configured';
+        renderStats({ totalVenues: 0, totalContacts: 0, emailsSent: 0, igDmsSent: 0, fbMsgsSent: 0, pendingEmails: 0, pendingVerify: 0, totalOutreach: 0 });
+        renderTopPicks([]);
+        renderActionNeeded([]);
+        renderVenueBrowser({ venues: [], stateBreakdown: {} });
+        renderPokemon({ totalOutreach: 0 });
+        return;
+    }
+
+    try {
+        const resp = await fetch(API_URL);
+        const data = await resp.json();
+        if (data.status !== 'ok') throw new Error(data.message || 'API error');
+
+        dashboardData = data;
+        dot.classList.add('connected');
+        refreshEl.textContent = new Date().toLocaleTimeString();
+
+        renderStats(data.stats);
+        renderTopPicks(data.topPicks);
+        renderActionNeeded(data.actionNeeded);
+        renderVenueBrowser(data);
+        renderPokemon(data.stats);
+
+    } catch(e) {
+        dot.classList.remove('connected');
+        refreshEl.textContent = 'Error: ' + e.message;
+        console.error('Dashboard load error:', e);
+    }
+
+    // Schedule next refresh
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
+}
+
+// === HELPERS ===
+function esc(s) {
+    if (!s) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => {
+    loadDashboard();
+});
+
+// === SERVICE WORKER ===
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW registration failed:', err));
+}
+</script>
+</body>
+</html>

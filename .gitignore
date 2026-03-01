@@ -1,0 +1,6 @@
+# Don't push files with API keys
+scraper.py
+apps_script.gs
+notes.md
+__pycache__/
+*.pyc

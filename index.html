@@ -520,6 +520,11 @@ body {
     margin-top: 0.25rem;
 }
 
+.collapsed { display: none; }
+.section-chevron { display: inline-block; }
+.section-chevron.open { transform: rotate(0deg); }
+.section-chevron:not(.open) { transform: rotate(-90deg); }
+
 /* === TOAST === */
 .toast {
     position: fixed;
@@ -652,9 +657,12 @@ body {
 
     <!-- TOP PICKS -->
     <div class="section" id="topPicksSection">
-        <div class="section-header">
+        <div class="section-header" onclick="document.getElementById('topPicksList').classList.toggle('collapsed');this.querySelector('.section-chevron').classList.toggle('open')" style="cursor:pointer;-webkit-tap-highlight-color:transparent">
             <span class="section-title">Top Picks</span>
-            <span class="section-badge" id="topPicksBadge">0</span>
+            <div style="display:flex;align-items:center;gap:0.5rem">
+                <span class="section-badge" id="topPicksBadge">0</span>
+                <span class="section-chevron open" style="color:var(--text-dim);font-size:0.7rem;transition:transform 0.2s">&#9660;</span>
+            </div>
         </div>
         <div id="topPicksList"></div>
     </div>
@@ -993,8 +1001,8 @@ function renderVenueBrowser(data) {
 
 const STATE_IMAGES = {
     MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
-    VA: 'https://images.unsplash.com/photo-1617581629397-a72507c3f6df?w=400&q=80',
-    DC: 'https://images.unsplash.com/photo-1617581629397-a72507c3f6df?w=400&q=80',
+    VA: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400&q=80',
+    DC: 'https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=400&q=80',
     WV: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=80',
     PA: 'https://images.unsplash.com/photo-1569974507005-6dc61f97fb5c?w=400&q=80',
     DE: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80'

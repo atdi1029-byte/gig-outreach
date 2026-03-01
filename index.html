@@ -555,27 +555,41 @@ body {
 }
 
 .state-card {
-    background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 1rem;
+    padding: 2.5rem 1rem 1rem;
     text-align: center;
     cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
 }
-.state-card:active { background: var(--bg-card-hover); border-color: var(--accent-dim); }
+.state-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%);
+    border-radius: 10px;
+}
+.state-card:active { border-color: var(--accent-dim); }
 
 .state-card-name {
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-bright);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.2rem;
+    position: relative;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
 }
 
 .state-card-count {
     font-size: 0.65rem;
-    color: var(--text-dim);
+    color: #ccc;
+    position: relative;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
 }
 
 /* === CATEGORY LIST (inside state) === */
@@ -977,6 +991,15 @@ function renderVenueBrowser(data) {
     renderBrowseStates();
 }
 
+const STATE_IMAGES = {
+    MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
+    VA: 'https://images.unsplash.com/photo-1617581629397-a72507c3f6df?w=400&q=80',
+    DC: 'https://images.unsplash.com/photo-1617581629397-a72507c3f6df?w=400&q=80',
+    WV: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=80',
+    PA: 'https://images.unsplash.com/photo-1569974507005-6dc61f97fb5c?w=400&q=80',
+    DE: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80'
+};
+
 function renderBrowseStates() {
     browseLevel = 'states';
     const el = document.getElementById('browseContent');
@@ -988,7 +1011,8 @@ function renderBrowseStates() {
 
     el.innerHTML = '<div class="state-grid">' + states.map(s => {
         const count = venues.filter(v => v.state === s).length;
-        return `<div class="state-card" onclick="browseIntoState('${s}')">
+        const img = STATE_IMAGES[s] || '';
+        return `<div class="state-card" style="background-image:url('${img}')" onclick="browseIntoState('${s}')">
             <div class="state-card-name">${STATE_NAMES[s] || s}</div>
             <div class="state-card-count">${count} venue${count !== 1 ? 's' : ''}</div>
         </div>`;

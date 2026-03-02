@@ -1,9 +1,9 @@
-const CACHE_NAME = 'outreach-v26';
+const CACHE_NAME = 'outreach-v27';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap'
+  'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap'
 ];
 
 self.addEventListener('install', e => {

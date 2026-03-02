@@ -9,7 +9,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icon-192.png">
     <title>Gig Outreach</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root {
     --bg-deep: transparent;
@@ -67,10 +67,13 @@ body {
 }
 
 .header h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cinzel', serif;
     font-size: 1.8rem;
+    font-weight: 700;
     color: var(--accent);
-    letter-spacing: 1px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(240,160,48,0.4), 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .header-right {
@@ -671,13 +674,10 @@ body {
 <div class="content">
 
     <!-- HEADER -->
-    <div class="header">
+    <div class="header" style="justify-content:center">
         <h1>Gig Outreach</h1>
-        <div class="header-right">
-            <div class="status-dot" id="statusDot"></div>
-            <button class="btn-refresh" onclick="loadDashboard()">Refresh</button>
-        </div>
     </div>
+    <div style="display:none"><div class="status-dot" id="statusDot"></div></div>
 
     <!-- TOP PICKS -->
     <div class="section" id="topPicksSection">
@@ -1301,12 +1301,10 @@ function renderPokemon(stats) {
 // === MAIN LOAD ===
 async function loadDashboard() {
     const dot = document.getElementById('statusDot');
-    const refreshEl = document.getElementById('lastRefresh');
 
     if (!API_URL) {
         // Demo mode — show empty state
-        dot.classList.remove('connected');
-        refreshEl.textContent = 'API not configured';
+        if (dot) dot.classList.remove('connected');
         renderTopPicks([]);
         renderVenueBrowser({ venues: [], stateBreakdown: {} });
         renderPokemon({ totalOutreach: 0 });
@@ -1319,16 +1317,14 @@ async function loadDashboard() {
         if (data.status !== 'ok') throw new Error(data.message || 'API error');
 
         dashboardData = data;
-        dot.classList.add('connected');
-        refreshEl.textContent = new Date().toLocaleTimeString();
+        if (dot) dot.classList.add('connected');
 
         renderTopPicks(data.topPicks);
         renderVenueBrowser(data);
         renderPokemon(data.stats);
 
     } catch(e) {
-        dot.classList.remove('connected');
-        refreshEl.textContent = 'Error: ' + e.message;
+        if (dot) dot.classList.remove('connected');
         console.error('Dashboard load error:', e);
     }
 

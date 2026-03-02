@@ -122,14 +122,7 @@ body {
     z-index: 100;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background: url('4angel.jpg') center/cover no-repeat fixed;
-}
-.overlay::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.55);
-    z-index: -1;
+    background: transparent;
 }
 .overlay.open { display: block; }
 
@@ -165,9 +158,13 @@ body {
 
 .overlay-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
     color: var(--text-bright);
     flex: 1;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
 .overlay-body {
@@ -632,30 +629,50 @@ body {
     text-shadow: 0 1px 4px rgba(0,0,0,0.7);
 }
 
-/* === CATEGORY LIST (inside state) === */
-.category-list-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.65rem 0.75rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    margin-bottom: 0.35rem;
+/* === CATEGORY CARDS (inside state) === */
+.category-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+.category-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
     cursor: pointer;
+    height: 120px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
     -webkit-tap-highlight-color: transparent;
 }
-.category-list-item:active { background: var(--bg-card-hover); }
-
-.category-list-name {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-bright);
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 60%);
 }
-
-.category-list-count {
+.category-card:active::before { background: rgba(0,0,0,0.5); }
+.category-card-name {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    padding: 0.75rem;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+}
+.category-card-count {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--accent);
+    color: #000;
     font-size: 0.65rem;
-    color: var(--text-dim);
+    font-weight: 700;
+    padding: 0.15rem 0.4rem;
+    border-radius: 10px;
 }
 
 /* === BREADCRUMB NAV === */
@@ -1044,6 +1061,14 @@ function renderTopPicks(picks) {
 // === BROWSE: State → Category → Venues → Detail ===
 const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
 const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants' };
+const CATEGORY_IMAGES = {
+    winery: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=250&fit=crop',
+    restaurant: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop',
+    hotel: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
+    museum: 'https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=400&h=250&fit=crop',
+    country_club: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=250&fit=crop',
+    event: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=250&fit=crop'
+};
 let browseLevel = 'states'; // states | categories | venues
 let browseState = '';
 let browseCategory = '';
@@ -1109,12 +1134,13 @@ function renderBrowseCategories() {
         return;
     }
 
-    el.innerHTML = cats.map(c => {
-        return `<div class="category-list-item" onclick="browseIntoCategory('${c}')">
-            <span class="category-list-name">${CATEGORY_LABELS[c] || c}</span>
-            <span class="category-list-count">${catCounts[c]}</span>
+    el.innerHTML = '<div class="category-grid">' + cats.map(c => {
+        const img = CATEGORY_IMAGES[c] || '';
+        return `<div class="category-card" style="background-image:url('${img}')" onclick="browseIntoCategory('${c}')">
+            <span class="category-card-count">${catCounts[c]}</span>
+            <span class="category-card-name">${CATEGORY_LABELS[c] || c}</span>
         </div>`;
-    }).join('');
+    }).join('') + '</div>';
 }
 
 function browseIntoCategory(cat) {

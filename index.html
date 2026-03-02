@@ -67,12 +67,21 @@ body {
 }
 
 .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(240,160,48,0.4), 0 2px 4px rgba(0,0,0,0.5);
+}
+.header h1 .drop-cap {
     font-family: 'Great Vibes', cursive;
     font-size: 3.2rem;
     font-weight: 400;
-    color: var(--accent);
-    letter-spacing: 2px;
-    text-shadow: 0 0 20px rgba(240,160,48,0.4), 0 2px 4px rgba(0,0,0,0.5);
+    text-transform: none;
+    line-height: 0.8;
+    margin-right: -2px;
 }
 
 .header-right {
@@ -663,7 +672,8 @@ body {
 
 @media (max-width: 768px) {
     .content { padding: 0.5rem; }
-    .header h1 { font-size: 2.4rem; letter-spacing: 1px; }
+    .header h1 { font-size: 1.4rem; letter-spacing: 3px; }
+    .header h1 .drop-cap { font-size: 2.6rem; }
     .venue-name { font-size: 0.8rem; }
 }
 </style>
@@ -674,7 +684,7 @@ body {
 
     <!-- HEADER -->
     <div class="header" style="justify-content:center">
-        <h1>Gig Outreach</h1>
+        <h1><span class="drop-cap">G</span>ig <span class="drop-cap">O</span>utreach</h1>
     </div>
     <div style="display:none"><div class="status-dot" id="statusDot"></div></div>
 

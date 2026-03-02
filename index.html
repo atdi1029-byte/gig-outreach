@@ -111,31 +111,35 @@ body {
     z-index: 100;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    background: #000;
+    background: url('4angel.jpg') center/cover no-repeat fixed;
 }
-.overlay.open { display: block; }
-
-.overlay-bg {
+.overlay::before {
+    content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.4) saturate(1.2);
+    background: rgba(0,0,0,0.4);
     z-index: -1;
 }
+.overlay.open { display: block; }
 
 .overlay-header {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
     border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    background: rgba(0,0,0,0.7);
+    position: relative;
     z-index: 10;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+.overlay-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);
+    z-index: -1;
 }
 
 .overlay-back {
@@ -708,7 +712,6 @@ body {
 
 <!-- BROWSE STATE OVERLAY -->
 <div class="overlay" id="browseOverlay">
-    <div class="overlay-bg" id="browseBg"></div>
     <div class="overlay-header">
         <button class="overlay-back" id="browseBackBtn" onclick="browseBack()">&larr;</button>
         <span class="overlay-title" id="browseOverlayTitle"></span>
@@ -718,7 +721,6 @@ body {
 
 <!-- VENUE DETAIL OVERLAY -->
 <div class="overlay" id="venueDetailOverlay">
-    <div class="overlay-bg" id="detailBg"></div>
     <div class="overlay-header">
         <button class="overlay-back" onclick="closeVenueDetail()">&larr;</button>
         <span class="overlay-title" id="detailTitle"></span>
@@ -1058,10 +1060,9 @@ function browseIntoState(state) {
     browseState = state;
     browseLevel = 'categories';
 
-    // Open overlay with state bg
     const overlay = document.getElementById('browseOverlay');
-    const bg = document.getElementById('browseBg');
-    bg.style.backgroundImage = `url('${STATE_IMAGES[state] || ''}')`;
+    const header = overlay.querySelector('.overlay-header');
+    header.style.backgroundImage = `url('${STATE_IMAGES[state] || ''}')`;
     document.getElementById('browseOverlayTitle').textContent = STATE_NAMES[state] || state;
     overlay.classList.add('open');
 
@@ -1144,8 +1145,6 @@ function openVenueDetail(venueId) {
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
 
     document.getElementById('detailTitle').textContent = venue.name;
-    const detailBg = document.getElementById('detailBg');
-    detailBg.style.backgroundImage = `url('${STATE_IMAGES[venue.state] || STATE_IMAGES.MD}')`;
 
 
     let html = '';

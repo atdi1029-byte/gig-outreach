@@ -686,10 +686,10 @@ body {
             <span class="section-title">Top Picks</span>
             <div style="display:flex;align-items:center;gap:0.5rem">
                 <span class="section-badge" id="topPicksBadge">0</span>
-                <span class="section-chevron open" style="color:var(--text-dim);font-size:0.7rem;transition:transform 0.2s">&#9660;</span>
+                <span class="section-chevron" style="color:var(--text-dim);font-size:0.7rem;transition:transform 0.2s">&#9660;</span>
             </div>
         </div>
-        <div id="topPicksList"></div>
+        <div id="topPicksList" class="collapsed"></div>
     </div>
 
     <!-- VENUE BROWSER -->
@@ -700,8 +700,8 @@ body {
         <div id="browseContent"></div>
     </div>
 
-    <!-- POKEMON -->
-    <div class="section">
+    <!-- POKEMON (hidden for now) -->
+    <div class="section" style="display:none">
         <div class="section-header">
             <span class="section-title">Trainer Level</span>
         </div>
@@ -1059,6 +1059,7 @@ function renderBrowseStates() {
 function browseIntoState(state) {
     browseState = state;
     browseLevel = 'categories';
+    history.pushState({ view: 'categories', state: state }, '');
 
     const overlay = document.getElementById('browseOverlay');
     const header = overlay.querySelector('.overlay-header');
@@ -1097,6 +1098,7 @@ function renderBrowseCategories() {
 function browseIntoCategory(cat) {
     browseCategory = cat;
     browseLevel = 'venues';
+    history.pushState({ view: 'venues', state: browseState, category: cat }, '');
     renderBrowseVenues();
 }
 
@@ -1145,7 +1147,7 @@ function openVenueDetail(venueId) {
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
 
     document.getElementById('detailTitle').textContent = venue.name;
-
+    history.pushState({ view: 'detail', venueId: venueId }, '');
 
     let html = '';
 
@@ -1235,6 +1237,24 @@ function openVenueDetail(venueId) {
 function closeVenueDetail() {
     document.getElementById('venueDetailOverlay').classList.remove('open');
 }
+
+// === BACK BUTTON SUPPORT ===
+window.addEventListener('popstate', function(e) {
+    const detailOpen = document.getElementById('venueDetailOverlay').classList.contains('open');
+    const browseOpen = document.getElementById('browseOverlay').classList.contains('open');
+
+    if (detailOpen) {
+        document.getElementById('venueDetailOverlay').classList.remove('open');
+    } else if (browseOpen) {
+        if (browseLevel === 'venues') {
+            browseLevel = 'categories';
+            renderBrowseCategories();
+        } else {
+            document.getElementById('browseOverlay').classList.remove('open');
+            browseLevel = 'states';
+        }
+    }
+});
 
 function renderPokemon(stats) {
     const count = (stats ? stats.totalOutreach : 0) || 0;

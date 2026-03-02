@@ -103,19 +103,27 @@ body {
     color: var(--text-dim);
 }
 
-/* === VENUE DETAIL VIEW (full screen overlay) === */
-.venue-detail-overlay {
+/* === FULL SCREEN OVERLAYS === */
+.overlay {
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: var(--bg-deep);
     z-index: 100;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
-.venue-detail-overlay.open { display: block; }
+.overlay.open { display: block; }
 
-.detail-header {
+.overlay-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3) saturate(1.2);
+    z-index: -1;
+}
+
+.overlay-header {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -123,11 +131,13 @@ body {
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
-    background: var(--bg-deep);
+    background: rgba(0,0,0,0.85);
     z-index: 10;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-.detail-back {
+.overlay-back {
     font-size: 1.4rem;
     color: var(--accent);
     cursor: pointer;
@@ -137,14 +147,14 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-.detail-title {
+.overlay-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.2rem;
     color: var(--text-bright);
     flex: 1;
 }
 
-.detail-body {
+.overlay-body {
     padding: 1rem;
     max-width: 600px;
     margin: 0 auto;
@@ -680,9 +690,8 @@ body {
     <!-- VENUE BROWSER -->
     <div class="section">
         <div class="section-header">
-            <span class="section-title" id="browseTitle">Browse Venues</span>
+            <span class="section-title">Browse Venues</span>
         </div>
-        <div id="browseBreadcrumb" class="breadcrumb"></div>
         <div id="browseContent"></div>
     </div>
 
@@ -696,13 +705,24 @@ body {
 
 </div>
 
-<!-- VENUE DETAIL OVERLAY -->
-<div class="venue-detail-overlay" id="venueDetailOverlay">
-    <div class="detail-header">
-        <button class="detail-back" onclick="closeVenueDetail()">&larr;</button>
-        <span class="detail-title" id="detailTitle"></span>
+<!-- BROWSE STATE OVERLAY -->
+<div class="overlay" id="browseOverlay">
+    <div class="overlay-bg" id="browseBg"></div>
+    <div class="overlay-header">
+        <button class="overlay-back" id="browseBackBtn" onclick="browseBack()">&larr;</button>
+        <span class="overlay-title" id="browseOverlayTitle"></span>
     </div>
-    <div class="detail-body" id="detailBody"></div>
+    <div class="overlay-body" id="browseOverlayBody"></div>
+</div>
+
+<!-- VENUE DETAIL OVERLAY -->
+<div class="overlay" id="venueDetailOverlay">
+    <div class="overlay-bg" id="detailBg"></div>
+    <div class="overlay-header">
+        <button class="overlay-back" onclick="closeVenueDetail()">&larr;</button>
+        <span class="overlay-title" id="detailTitle"></span>
+    </div>
+    <div class="overlay-body" id="detailBody"></div>
 </div>
 
 <!-- TOAST -->
@@ -1004,8 +1024,6 @@ let browseState = '';
 let browseCategory = '';
 
 function renderVenueBrowser(data) {
-    if (browseLevel === 'categories') return renderBrowseCategories();
-    if (browseLevel === 'venues') return renderBrowseVenues();
     renderBrowseStates();
 }
 
@@ -1020,10 +1038,7 @@ const STATE_IMAGES = {
 
 function renderBrowseStates() {
     browseLevel = 'states';
-    setBackground(DEFAULT_BG);
     const el = document.getElementById('browseContent');
-    const bc = document.getElementById('browseBreadcrumb');
-    bc.innerHTML = '';
 
     const states = ['MD', 'VA', 'DC', 'WV', 'PA', 'DE'];
     const venues = (dashboardData && dashboardData.venues) || [];
@@ -1038,28 +1053,23 @@ function renderBrowseStates() {
     }).join('') + '</div>';
 }
 
-const DEFAULT_BG = 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=800&q=80';
-
-function setBackground(url) {
-    const bg = document.getElementById('bgLayer');
-    bg.style.opacity = '0';
-    setTimeout(() => {
-        bg.style.backgroundImage = `url('${url}')`;
-        bg.style.opacity = '1';
-    }, 300);
-}
-
 function browseIntoState(state) {
     browseState = state;
     browseLevel = 'categories';
-    if (STATE_IMAGES[state]) setBackground(STATE_IMAGES[state]);
+
+    // Open overlay with state bg
+    const overlay = document.getElementById('browseOverlay');
+    const bg = document.getElementById('browseBg');
+    bg.style.backgroundImage = `url('${STATE_IMAGES[state] || ''}')`;
+    document.getElementById('browseOverlayTitle').textContent = STATE_NAMES[state] || state;
+    overlay.classList.add('open');
+
     renderBrowseCategories();
 }
 
 function renderBrowseCategories() {
-    const el = document.getElementById('browseContent');
-    const bc = document.getElementById('browseBreadcrumb');
-    bc.innerHTML = `<span class="breadcrumb-link" onclick="renderBrowseStates()">States</span> &rsaquo; ${STATE_NAMES[browseState] || browseState}`;
+    const el = document.getElementById('browseOverlayBody');
+    document.getElementById('browseOverlayTitle').textContent = STATE_NAMES[browseState] || browseState;
 
     const venues = ((dashboardData && dashboardData.venues) || []).filter(v => v.state === browseState);
     const catCounts = {};
@@ -1089,9 +1099,8 @@ function browseIntoCategory(cat) {
 }
 
 function renderBrowseVenues() {
-    const el = document.getElementById('browseContent');
-    const bc = document.getElementById('browseBreadcrumb');
-    bc.innerHTML = `<span class="breadcrumb-link" onclick="renderBrowseStates()">States</span> &rsaquo; <span class="breadcrumb-link" onclick="browseIntoState('${browseState}')">${STATE_NAMES[browseState] || browseState}</span> &rsaquo; ${CATEGORY_LABELS[browseCategory] || browseCategory}`;
+    const el = document.getElementById('browseOverlayBody');
+    document.getElementById('browseOverlayTitle').textContent = (CATEGORY_LABELS[browseCategory] || browseCategory) + ' — ' + (STATE_NAMES[browseState] || browseState);
 
     const venues = ((dashboardData && dashboardData.venues) || []).filter(v =>
         v.state === browseState && (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === browseCategory
@@ -1114,6 +1123,16 @@ function renderBrowseVenues() {
     }).join('');
 }
 
+function browseBack() {
+    if (browseLevel === 'venues') {
+        browseLevel = 'categories';
+        renderBrowseCategories();
+    } else {
+        document.getElementById('browseOverlay').classList.remove('open');
+        browseLevel = 'states';
+    }
+}
+
 // === VENUE DETAIL VIEW ===
 function openVenueDetail(venueId) {
     if (!dashboardData) return;
@@ -1124,6 +1143,9 @@ function openVenueDetail(venueId) {
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
 
     document.getElementById('detailTitle').textContent = venue.name;
+    const detailBg = document.getElementById('detailBg');
+    detailBg.style.backgroundImage = `url('${STATE_IMAGES[venue.state] || STATE_IMAGES.MD}')`;
+
 
     let html = '';
 

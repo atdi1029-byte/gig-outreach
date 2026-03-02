@@ -682,7 +682,7 @@ body {
 
     <!-- TOP PICKS -->
     <div class="section" id="topPicksSection">
-        <div class="section-header" onclick="document.getElementById('topPicksList').classList.toggle('collapsed');this.querySelector('.section-chevron').classList.toggle('open')" style="cursor:pointer;-webkit-tap-highlight-color:transparent">
+        <div class="section-header" onclick="toggleTopPicks(this)" style="cursor:pointer;-webkit-tap-highlight-color:transparent">
             <span class="section-title">Top Picks</span>
             <div style="display:flex;align-items:center;gap:0.5rem">
                 <span class="section-badge" id="topPicksBadge">0</span>
@@ -693,7 +693,7 @@ body {
     </div>
 
     <!-- VENUE BROWSER -->
-    <div class="section" style="margin-top:35vh">
+    <div class="section" id="browseSection" style="margin-top:35vh">
         <div class="section-header">
             <span class="section-title">Browse Venues</span>
         </div>
@@ -1003,6 +1003,20 @@ function renderVenueCard(item) {
     html += `</div>`; // venue-details
     html += `</div>`; // venue-card
     return html;
+}
+
+function toggleTopPicks(headerEl) {
+    const list = document.getElementById('topPicksList');
+    const browse = document.getElementById('browseSection');
+    const chevron = headerEl.querySelector('.section-chevron');
+    list.classList.toggle('collapsed');
+    chevron.classList.toggle('open');
+    // Hide browse when top picks is open
+    if (list.classList.contains('collapsed')) {
+        browse.style.display = '';
+    } else {
+        browse.style.display = 'none';
+    }
 }
 
 function renderTopPicks(picks) {

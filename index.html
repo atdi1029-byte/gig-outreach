@@ -633,7 +633,7 @@ function renderTopPicks(picks) {
 function renderVenueCard(item) {
     const v = item.venue;
     const contacts = item.contacts || [];
-    const pendingEmails = item.pendingEmails || [];
+    const pendingEmails = (item.pendingEmails || []).filter(c => c.verified !== 'abuse' && c.verified !== 'invalid');
     const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
 
     let actionCount = pendingEmails.length;
@@ -767,7 +767,7 @@ function openVenueDetail(venueId) {
     if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
 
     // Emails
-    const emailContacts = contacts.filter(c => c.email);
+    const emailContacts = contacts.filter(c => c.email && c.verified !== 'abuse' && c.verified !== 'invalid');
     if (emailContacts.length > 0) {
         html += `<div class="detail-section-label">Emails</div>`;
         for (const c of emailContacts) {

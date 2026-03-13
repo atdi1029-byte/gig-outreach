@@ -403,7 +403,7 @@ body {
                 <span class="section-title">Top Picks</span>
                 <span class="section-badge" id="topPicksBadge">0</span>
             </div>
-            <div id="topPicksList" class="collapsed"></div>
+            <div id="topPicksList"></div>
         </div>
 
         <!-- BROWSE VENUES -->
@@ -616,9 +616,7 @@ async function markFBSent(contactId, venueId, btn) {
 // === RENDER: HOME — Top Picks ===
 function toggleTopPicks() {
     const list = document.getElementById('topPicksList');
-    const browse = document.getElementById('browseSection');
     list.classList.toggle('collapsed');
-    browse.style.display = list.classList.contains('collapsed') ? '' : 'none';
 }
 
 function renderTopPicks(picks) {

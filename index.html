@@ -700,19 +700,17 @@ function openState(state) {
         catCounts[cat] = (catCounts[cat] || 0) + 1;
     });
 
-    const cats = Object.keys(catCounts).sort();
+    // Always show all 6 categories
+    const allCats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant'];
     const el = document.getElementById('stateBody');
 
-    if (cats.length === 0) {
-        el.innerHTML = '<div class="empty-state">No venues yet in ' + (STATE_NAMES[state] || state) + '. Run the scraper!</div>';
-    } else {
-        el.innerHTML = '<div class="category-grid">' + cats.map(c => {
-            return `<div class="category-card" style="background-image:url('${CATEGORY_IMAGES[c] || ''}')" onclick="openCategory('${c}')">
-                <span class="category-card-count">${catCounts[c]}</span>
-                <span class="category-card-name">${CATEGORY_LABELS[c] || c}</span>
-            </div>`;
-        }).join('') + '</div>';
-    }
+    el.innerHTML = '<div class="category-grid">' + allCats.map(c => {
+        const count = catCounts[c] || 0;
+        return `<div class="category-card" style="background-image:url('${CATEGORY_IMAGES[c] || ''}')" onclick="openCategory('${c}')">
+            ${count > 0 ? `<span class="category-card-count">${count}</span>` : ''}
+            <span class="category-card-name">${CATEGORY_LABELS[c] || c}</span>
+        </div>`;
+    }).join('') + '</div>';
 
     navigateTo('viewState');
 }

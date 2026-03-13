@@ -751,6 +751,8 @@ function openVenueDetail(venueId) {
 
     const contacts = (dashboardData.contacts || []).filter(c => c.venue_id === venueId);
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+    const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12' };
+    const catColor = CAT_COLORS[cat] || 'var(--text-bright)';
 
     document.getElementById('detailTitleText').textContent = venue.name;
 
@@ -769,7 +771,7 @@ function openVenueDetail(venueId) {
     // Emails
     const emailContacts = contacts.filter(c => c.email && c.verified !== 'abuse' && c.verified !== 'invalid');
     if (emailContacts.length > 0) {
-        html += `<div class="detail-section-label">Emails</div>`;
+        html += `<div class="detail-section-label" style="color:${catColor}">Emails</div>`;
         for (const c of emailContacts) {
             if (c.email_sent) {
                 html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">Sent</span></div>`;
@@ -787,7 +789,7 @@ function openVenueDetail(venueId) {
     }
 
     // Instagram
-    html += `<div class="detail-section-label">Instagram</div>`;
+    html += `<div class="detail-section-label" style="color:${catColor}">Instagram</div>`;
     if (venue.instagram) {
         const igDone = contacts.some(c => c.ig_dm_sent);
         if (igDone) {
@@ -803,7 +805,7 @@ function openVenueDetail(venueId) {
     }
 
     // Facebook
-    html += `<div class="detail-section-label">Facebook</div>`;
+    html += `<div class="detail-section-label" style="color:${catColor}">Facebook</div>`;
     if (venue.facebook) {
         const fbDone = contacts.some(c => c.fb_msg_sent);
         if (fbDone) {

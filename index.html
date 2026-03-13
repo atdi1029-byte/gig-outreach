@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg-deep: transparent;
     --bg-dark: rgba(10,10,10,0.85);
     --bg-card: rgba(17,17,17,0.9);
     --bg-card-hover: rgba(26,26,26,0.9);
@@ -35,7 +34,7 @@
 
 body {
     font-family: 'Lato', sans-serif;
-    background: var(--bg-deep);
+    background: #000;
     color: var(--text);
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
@@ -47,26 +46,69 @@ body {
     background: url('4angel.jpg') center/cover no-repeat;
     filter: brightness(0.85) saturate(1.3);
     z-index: -1;
-    transition: opacity 0.4s ease;
 }
 
-.content {
-    max-width: 900px;
+/* === VIEW SYSTEM === */
+.view {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1;
+}
+.view.active { display: block; }
+
+.view-inner {
+    max-width: 600px;
     margin: 0 auto;
     padding: 1rem;
 }
 
-/* === HEADER === */
-.header {
+/* === VIEW HEADER (back + title) === */
+.view-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,10,10,0.9);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.view-back {
+    font-size: 1.4rem;
+    color: var(--accent);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+}
+
+.view-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    flex: 1;
+    letter-spacing: 1px;
+}
+
+/* === HOME HEADER === */
+.home-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 1rem 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 1rem;
 }
 
-.header h1 {
+.home-header h1 {
     font-family: 'Cinzel', serif;
     font-size: 1.8rem;
     font-weight: 700;
@@ -75,168 +117,13 @@ body {
     text-transform: uppercase;
     text-shadow: 0 0 20px rgba(240,160,48,0.4), 0 2px 4px rgba(0,0,0,0.5);
 }
-.header h1 .drop-cap {
+.home-header h1 .drop-cap {
     font-family: 'Great Vibes', cursive;
     font-size: 3.2rem;
     font-weight: 400;
     text-transform: none;
     line-height: 0.8;
     margin-right: -2px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-.status-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--red);
-}
-.status-dot.connected { background: var(--green); }
-
-.btn-refresh {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 0.4rem 0.75rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.75rem;
-}
-.btn-refresh:active { background: var(--border); }
-
-.last-refresh {
-    font-size: 0.65rem;
-    color: var(--text-dim);
-}
-
-/* === FULL SCREEN OVERLAYS === */
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 100;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    background: rgba(10,10,10,0.93);
-}
-.overlay.open { display: block; }
-
-.overlay-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-    z-index: 10;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-}
-.overlay-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.15) 100%);
-    z-index: -1;
-}
-
-.overlay-back {
-    font-size: 1.4rem;
-    color: var(--accent);
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0.25rem;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.overlay-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text-bright);
-    flex: 1;
-    text-align: center;
-    letter-spacing: 1px;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-}
-
-.overlay-body {
-    padding: 1rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.detail-meta {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-}
-
-.detail-section-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.85rem;
-    color: var(--text-bright);
-    padding-bottom: 0.35rem;
-    border-bottom: 1px solid var(--border);
-    margin: 1.25rem 0 0.5rem;
-}
-
-.detail-website {
-    display: inline-block;
-    font-size: 0.7rem;
-    color: var(--accent);
-    text-decoration: none;
-    word-break: break-all;
-}
-
-.detail-action-row {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-}
-
-.detail-action-row:last-child { border-bottom: none; }
-
-.detail-email {
-    font-size: 0.8rem;
-    color: var(--accent);
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.detail-contact-name {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    margin-bottom: 0.2rem;
-}
-
-.detail-social-label {
-    font-size: 0.8rem;
-    color: var(--text);
-    flex: 1;
-}
-
-.detail-done {
-    font-size: 0.7rem;
-    color: var(--green);
-    font-weight: 700;
 }
 
 /* === SECTIONS === */
@@ -249,6 +136,8 @@ body {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
     margin-bottom: 0.75rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .section-title {
@@ -266,16 +155,14 @@ body {
     border-radius: 10px;
 }
 
-/* === VENUE CARDS === */
+/* === VENUE CARDS (Top Picks) === */
 .venue-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 10px;
     margin-bottom: 0.5rem;
-    transition: border-color 0.2s;
     overflow: hidden;
 }
-.venue-card:hover { border-color: var(--border-light); }
 
 .venue-card[data-zone="green"] { border-left: 3px solid var(--zone-green); }
 .venue-card[data-zone="yellow"] { border-left: 3px solid var(--zone-yellow); }
@@ -288,10 +175,7 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-.venue-header-left {
-    flex: 1;
-    min-width: 0;
-}
+.venue-header-left { flex: 1; min-width: 0; }
 
 .venue-top {
     display: flex;
@@ -301,46 +185,30 @@ body {
     flex-wrap: wrap;
 }
 
-.venue-name {
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--text-bright);
-}
+.venue-name { font-weight: 700; font-size: 0.85rem; color: var(--text-bright); }
 
 .venue-action-count {
-    font-size: 0.6rem;
-    font-weight: 700;
-    background: var(--accent);
-    color: #000;
-    padding: 0.15rem 0.45rem;
-    border-radius: 10px;
-    margin-left: auto;
-    flex-shrink: 0;
+    font-size: 0.6rem; font-weight: 700;
+    background: var(--accent); color: #000;
+    padding: 0.15rem 0.45rem; border-radius: 10px;
+    margin-left: auto; flex-shrink: 0;
 }
 
 .venue-chevron {
-    color: var(--text-dim);
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
-    transition: transform 0.2s;
-    flex-shrink: 0;
+    color: var(--text-dim); font-size: 0.8rem;
+    margin-left: 0.5rem; transition: transform 0.2s; flex-shrink: 0;
 }
 .venue-card.expanded .venue-chevron { transform: rotate(90deg); }
 
-.venue-details {
-    display: none;
-    padding: 0 0.75rem 0.75rem;
-}
+.venue-details { display: none; padding: 0 0.75rem 0.75rem; }
 .venue-card.expanded .venue-details { display: block; }
 
+.venue-city { font-size: 0.7rem; color: var(--text-dim); }
+
+/* === BADGES === */
 .category-badge {
-    font-size: 0.55rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-    color: #000;
+    font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; padding: 0.1rem 0.4rem; border-radius: 4px; color: #000;
 }
 .category-badge.winery { background: #9b59b6; color: #fff; }
 .category-badge.museum { background: #3498db; color: #fff; }
@@ -349,408 +217,226 @@ body {
 .category-badge.event { background: #e74c3c; color: #fff; }
 .category-badge.restaurant { background: #f39c12; color: #000; }
 
-.zone-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-}
+.zone-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .zone-dot.green { background: var(--zone-green); }
 .zone-dot.yellow { background: var(--zone-yellow); }
 
-.venue-city {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-}
-
+/* === ACTION ROWS === */
 .action-row {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.35rem 0;
-    border-top: 1px solid var(--border);
-    flex-wrap: wrap;
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.35rem 0; border-top: 1px solid var(--border); flex-wrap: wrap;
 }
 
 .contact-email {
-    font-size: 0.7rem;
-    color: var(--accent);
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: 0.7rem; color: var(--accent); flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
-.social-label {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    flex: 1;
-}
+.social-label { font-size: 0.7rem; color: var(--text-dim); flex: 1; }
 
 .btn-action {
-    font-family: inherit;
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: all 0.15s;
+    font-family: inherit; font-size: 0.6rem; font-weight: 700;
+    padding: 0.25rem 0.5rem; border-radius: 5px;
+    border: 1px solid var(--border); cursor: pointer; transition: all 0.15s;
 }
 
-.btn-copy {
-    background: var(--bg-card);
-    color: var(--accent);
-    border-color: var(--accent-dim);
-}
+.btn-copy { background: var(--bg-card); color: var(--accent); border-color: var(--accent-dim); }
 .btn-copy:active { background: var(--accent); color: #000; }
 
 .btn-gmail {
-    display: inline-block;
-    background: var(--bg-card);
-    color: var(--green);
-    border: 1px solid var(--green);
-    text-decoration: none;
-    font-family: inherit;
-    font-size: 0.6rem;
-    font-weight: 700;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
+    display: inline-block; background: var(--bg-card); color: var(--green);
+    border: 1px solid var(--green); text-decoration: none;
+    font-family: inherit; font-size: 0.6rem; font-weight: 700;
+    padding: 0.25rem 0.5rem; border-radius: 5px;
 }
 
-.btn-open {
-    background: var(--bg-card);
-    color: #3498db;
-    border-color: #3498db;
-}
+.btn-open { background: var(--bg-card); color: #3498db; border-color: #3498db; }
 
-.btn-sent {
-    background: var(--bg-card);
-    color: var(--green);
-    border-color: var(--green);
-}
+.btn-sent { background: var(--bg-card); color: var(--green); border-color: var(--green); }
 .btn-sent:active { background: var(--green); color: #000; }
-.btn-sent.done {
-    background: var(--green);
-    color: #000;
-    opacity: 0.5;
-    pointer-events: none;
+.btn-sent.done { background: var(--green); color: #000; opacity: 0.5; pointer-events: none; }
+
+/* === DETAIL VIEW === */
+.detail-meta {
+    font-size: 0.75rem; color: var(--text-dim); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
 }
 
-/* === FILTER PILLS === */
-.filter-row {
-    display: flex;
-    gap: 0.35rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.75rem;
+.detail-section-label {
+    font-family: 'Playfair Display', serif; font-size: 0.85rem;
+    color: var(--text-bright); padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--border); margin: 1.25rem 0 0.5rem;
 }
 
-.filter-pill {
-    font-family: inherit;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 0.3rem 0.65rem;
-    border-radius: 15px;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    color: var(--text-dim);
-    cursor: pointer;
-    transition: all 0.15s;
-}
-.filter-pill.active {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
+.detail-website {
+    display: inline-block; font-size: 0.7rem; color: var(--accent);
+    text-decoration: none; word-break: break-all;
 }
 
-/* === VENUE LIST (browser) === */
-.venue-list-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 0.75rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    margin-bottom: 0.35rem;
-    cursor: pointer;
+.detail-action-row {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0.6rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
 }
-.venue-list-item:active { background: var(--bg-card-hover); }
+.detail-action-row:last-child { border-bottom: none; }
 
-.venue-list-name {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-bright);
+.detail-email {
+    font-size: 0.8rem; color: var(--accent); flex: 1; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
-.venue-list-city {
-    font-size: 0.65rem;
-    color: var(--text-dim);
-}
+.detail-contact-name { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 0.2rem; }
+.detail-social-label { font-size: 0.8rem; color: var(--text); flex: 1; }
+.detail-done { font-size: 0.7rem; color: var(--green); font-weight: 700; }
 
-.status-pill {
-    font-size: 0.55rem;
-    font-weight: 700;
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
-    text-transform: uppercase;
-}
-.status-pill.untouched { background: #333; color: #888; }
-.status-pill.in_progress { background: #2a2a00; color: var(--gold); }
-.status-pill.contacted { background: #002a2a; color: var(--green); }
-
-/* === POKEMON === */
-.pokemon-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.pokemon-sprite {
-    width: 80px;
-    height: 80px;
-    image-rendering: pixelated;
-}
-
-.pokemon-info { flex: 1; }
-
-.pokemon-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--accent);
-    margin-bottom: 0.25rem;
-}
-
-.pokemon-level {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 6px;
-    background: var(--border);
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--accent);
-    border-radius: 3px;
-    transition: width 0.5s ease;
-}
-
-.progress-text {
-    font-size: 0.6rem;
-    color: var(--text-dim);
-    margin-top: 0.25rem;
-}
-
-.collapsed { display: none; }
-.section-chevron { display: inline-block; }
-.section-chevron.open { transform: rotate(0deg); }
-.section-chevron:not(.open) { transform: rotate(-90deg); }
-
-/* === TOAST === */
-.toast {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--accent);
-    color: #000;
-    font-weight: 700;
-    font-size: 0.75rem;
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    z-index: 999;
-    transition: transform 0.3s ease;
-    pointer-events: none;
-}
-.toast.show { transform: translateX(-50%) translateY(0); }
-
-/* === EMPTY STATE === */
-.empty-state {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-dim);
-    font-size: 0.8rem;
-}
-
-/* === MOBILE === */
 /* === STATE CARDS GRID === */
-.state-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-}
+.state-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
 
 .state-card {
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 2.5rem 1rem 1rem;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.2s;
-    -webkit-tap-highlight-color: transparent;
-    position: relative;
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 2.5rem 1rem 1rem; text-align: center; cursor: pointer;
+    -webkit-tap-highlight-color: transparent; position: relative;
+    overflow: hidden; background-size: cover; background-position: center;
 }
 .state-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%);
     border-radius: 10px;
 }
 .state-card:active { border-color: var(--accent-dim); }
 
 .state-card-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    color: var(--text-bright);
-    margin-bottom: 0.2rem;
-    position: relative;
+    font-family: 'Playfair Display', serif; font-size: 1.2rem;
+    color: var(--text-bright); margin-bottom: 0.2rem; position: relative;
     text-shadow: 0 2px 8px rgba(0,0,0,0.7);
 }
 
 .state-card-count {
-    font-size: 0.65rem;
-    color: #ccc;
-    position: relative;
+    font-size: 0.65rem; color: #ccc; position: relative;
     text-shadow: 0 1px 4px rgba(0,0,0,0.7);
 }
 
-/* === CATEGORY CARDS (inside state) === */
-.category-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-}
+/* === CATEGORY CARDS === */
+.category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
 .category-card {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    height: 120px;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: flex-end;
-    -webkit-tap-highlight-color: transparent;
+    position: relative; border-radius: 12px; overflow: hidden; cursor: pointer;
+    height: 120px; background-size: cover; background-position: center;
+    display: flex; align-items: flex-end; -webkit-tap-highlight-color: transparent;
 }
 .category-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 60%);
 }
 .category-card:active::before { background: rgba(0,0,0,0.5); }
+
 .category-card-name {
-    position: relative;
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #fff;
-    padding: 0.75rem;
+    position: relative; font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: #fff; padding: 0.75rem;
     text-shadow: 0 1px 4px rgba(0,0,0,0.7);
 }
+
 .category-card-count {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: var(--accent);
-    color: #000;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 0.15rem 0.4rem;
-    border-radius: 10px;
+    position: absolute; top: 0.5rem; right: 0.5rem;
+    background: var(--accent); color: #000; font-size: 0.65rem;
+    font-weight: 700; padding: 0.15rem 0.4rem; border-radius: 10px;
 }
 
-/* === BREADCRUMB NAV === */
-.breadcrumb {
-    font-size: 0.7rem;
-    color: var(--text-dim);
-    margin-bottom: 0.75rem;
+/* === VENUE LIST ITEMS === */
+.venue-list-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.75rem; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 0.5rem; cursor: pointer;
 }
-.breadcrumb-link {
-    color: var(--accent);
-    cursor: pointer;
-    text-decoration: none;
+.venue-list-item:active { background: var(--bg-card-hover); }
+
+.venue-list-name { font-size: 0.8rem; font-weight: 700; color: var(--text-bright); }
+.venue-list-city { font-size: 0.65rem; color: var(--text-dim); }
+
+.status-pill {
+    font-size: 0.55rem; font-weight: 700; padding: 0.15rem 0.4rem;
+    border-radius: 4px; text-transform: uppercase;
 }
+.status-pill.untouched { background: #333; color: #888; }
+.status-pill.in_progress { background: #2a2a00; color: var(--gold); }
+.status-pill.contacted { background: #002a2a; color: var(--green); }
+
+/* === TOAST === */
+.toast {
+    position: fixed; bottom: 2rem; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--accent); color: #000; font-weight: 700;
+    font-size: 0.75rem; padding: 0.5rem 1.5rem; border-radius: 20px;
+    z-index: 999; transition: transform 0.3s ease; pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* === EMPTY STATE === */
+.empty-state { text-align: center; padding: 2rem; color: var(--text-dim); font-size: 0.8rem; }
+
+.collapsed { display: none; }
 
 @media (max-width: 768px) {
-    .content { padding: 0.5rem; }
-    .header h1 { font-size: 1.4rem; letter-spacing: 3px; }
-    .header h1 .drop-cap { font-size: 2.6rem; }
+    .view-inner { padding: 0.75rem; }
+    .home-header h1 { font-size: 1.4rem; letter-spacing: 3px; }
+    .home-header h1 .drop-cap { font-size: 2.6rem; }
     .venue-name { font-size: 0.8rem; }
 }
 </style>
 </head>
 <body>
 <div id="bgLayer"></div>
-<div class="content">
 
-    <!-- HEADER -->
-    <div class="header" style="justify-content:center">
-        <h1><span class="drop-cap">G</span>ig <span class="drop-cap">O</span>utreach</h1>
-    </div>
-    <div style="display:none"><div class="status-dot" id="statusDot"></div></div>
+<!-- ============ VIEW: HOME ============ -->
+<div class="view active" id="viewHome">
+    <div class="view-inner">
+        <div class="home-header">
+            <h1><span class="drop-cap">G</span>ig <span class="drop-cap">O</span>utreach</h1>
+        </div>
 
-    <!-- TOP PICKS -->
-    <div class="section" id="topPicksSection">
-        <div class="section-header" onclick="toggleTopPicks(this)" style="cursor:pointer;-webkit-tap-highlight-color:transparent">
-            <span class="section-title">Top Picks</span>
-            <div style="display:flex;align-items:center;gap:0.5rem">
+        <!-- TOP PICKS -->
+        <div class="section">
+            <div class="section-header" onclick="toggleTopPicks()">
+                <span class="section-title">Top Picks</span>
                 <span class="section-badge" id="topPicksBadge">0</span>
-                <span class="section-chevron" style="color:var(--text-dim);font-size:0.7rem;transition:transform 0.2s">&#9660;</span>
             </div>
+            <div id="topPicksList" class="collapsed"></div>
         </div>
-        <div id="topPicksList" class="collapsed"></div>
-    </div>
 
-    <!-- VENUE BROWSER -->
-    <div class="section" id="browseSection" style="margin-top:35vh">
-        <div class="section-header">
-            <span class="section-title">Browse Venues</span>
+        <!-- BROWSE VENUES -->
+        <div class="section" id="browseSection">
+            <div class="section-header" style="cursor:default">
+                <span class="section-title">Browse Venues</span>
+            </div>
+            <div id="stateGrid"></div>
         </div>
-        <div id="browseContent"></div>
     </div>
-
-    <!-- POKEMON (hidden for now) -->
-    <div class="section" style="display:none">
-        <div class="section-header">
-            <span class="section-title">Trainer Level</span>
-        </div>
-        <div id="pokemonCard"></div>
-    </div>
-
 </div>
 
-<!-- BROWSE STATE OVERLAY -->
-<div class="overlay" id="browseOverlay">
-    <div class="overlay-header">
-        <button class="overlay-back" id="browseBackBtn" onclick="browseBack()">&larr;</button>
-        <span class="overlay-title" id="browseOverlayTitle"></span>
+<!-- ============ VIEW: STATE (categories) ============ -->
+<div class="view" id="viewState">
+    <div class="view-header">
+        <button class="view-back" onclick="goBack()">&larr;</button>
+        <span class="view-title" id="stateTitleText"></span>
     </div>
-    <div class="overlay-body" id="browseOverlayBody"></div>
+    <div class="view-inner" id="stateBody"></div>
 </div>
 
-<!-- VENUE DETAIL OVERLAY -->
-<div class="overlay" id="venueDetailOverlay">
-    <div class="overlay-header">
-        <button class="overlay-back" onclick="closeVenueDetail()">&larr;</button>
-        <span class="overlay-title" id="detailTitle"></span>
+<!-- ============ VIEW: CATEGORY (venue list) ============ -->
+<div class="view" id="viewCategory">
+    <div class="view-header">
+        <button class="view-back" onclick="goBack()">&larr;</button>
+        <span class="view-title" id="categoryTitleText"></span>
     </div>
-    <div class="overlay-body" id="detailBody"></div>
+    <div class="view-inner" id="categoryBody"></div>
+</div>
+
+<!-- ============ VIEW: VENUE DETAIL ============ -->
+<div class="view" id="viewDetail">
+    <div class="view-header">
+        <button class="view-back" onclick="goBack()">&larr;</button>
+        <span class="view-title" id="detailTitleText"></span>
+    </div>
+    <div class="view-inner" id="detailBody"></div>
 </div>
 
 <!-- TOAST -->
@@ -765,6 +451,37 @@ const REFRESH_INTERVAL = 60000;
 // === STATE ===
 let dashboardData = null;
 let refreshTimer = null;
+let navStack = ['viewHome'];
+let currentState = '';
+let currentCategory = '';
+
+// === NAVIGATION ===
+function showView(viewId) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.getElementById(viewId).classList.add('active');
+    // Scroll to top
+    document.getElementById(viewId).scrollTop = 0;
+}
+
+function navigateTo(viewId) {
+    navStack.push(viewId);
+    showView(viewId);
+    history.pushState({ stack: [...navStack] }, '');
+}
+
+function goBack() {
+    if (navStack.length <= 1) return;
+    navStack.pop();
+    showView(navStack[navStack.length - 1]);
+    history.pushState({ stack: [...navStack] }, '');
+}
+
+window.addEventListener('popstate', function(e) {
+    if (navStack.length > 1) {
+        navStack.pop();
+        showView(navStack[navStack.length - 1]);
+    }
+});
 
 // === TEMPLATES ===
 const DEFAULT_BODY = "Hi I'm a Baltimore based Classical Guitarist and I want to perform at your VENUE_TYPE!\n\nI have performed around the World at\n- The Copacabana Palace(Brazil)\n- Cadogan Hotel (London)\n- The Lake of Meneith Hotel (Scotland)\n- National Museum (Colombia)\n\nAnd Locally at\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- The Maryland Club\n- The Army Navy Country Club\n- The River Bend Country Club\n\nhttps://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH\n\nYou can reach me at alexbarnettclassical@gmail.com or 410-794-6204\n\nI look forward to hearing from you!\n\nBest,\nAlexander Barnett";
@@ -780,71 +497,30 @@ const TEMPLATES = {
 
 function getTemplate(category) {
     const t = TEMPLATES[category] || TEMPLATES.winery;
-    const venueType = t.label || 'Venue';
-    return {
-        subject: t.subject,
-        body: DEFAULT_BODY.replace('VENUE_TYPE', venueType)
-    };
+    return { subject: t.subject, body: DEFAULT_BODY.replace('VENUE_TYPE', t.label || 'Venue') };
 }
 
-// === POKEMON LEVELS ===
-const POKEMON_LEVELS = [
-    { min: 0, pokemon: 'Bulbasaur', pokeId: 1 },
-    { min: 5, pokemon: 'Ivysaur', pokeId: 2 },
-    { min: 12, pokemon: 'Venusaur', pokeId: 3 },
-    { min: 20, pokemon: 'Charmander', pokeId: 4 },
-    { min: 30, pokemon: 'Charmeleon', pokeId: 5 },
-    { min: 45, pokemon: 'Charizard', pokeId: 6 },
-    { min: 60, pokemon: 'Squirtle', pokeId: 7 },
-    { min: 80, pokemon: 'Wartortle', pokeId: 8 },
-    { min: 100, pokemon: 'Blastoise', pokeId: 9 },
-    { min: 125, pokemon: 'Caterpie', pokeId: 10 },
-    { min: 150, pokemon: 'Metapod', pokeId: 11 },
-    { min: 180, pokemon: 'Butterfree', pokeId: 12 },
-    { min: 215, pokemon: 'Weedle', pokeId: 13 },
-    { min: 250, pokemon: 'Kakuna', pokeId: 14 },
-    { min: 300, pokemon: 'Beedrill', pokeId: 15 },
-    { min: 350, pokemon: 'Pidgey', pokeId: 16 },
-    { min: 410, pokemon: 'Pidgeotto', pokeId: 17 },
-    { min: 480, pokemon: 'Pidgeot', pokeId: 18 },
-    { min: 550, pokemon: 'Rattata', pokeId: 19 },
-    { min: 630, pokemon: 'Raticate', pokeId: 20 },
-    { min: 720, pokemon: 'Spearow', pokeId: 21 },
-    { min: 820, pokemon: 'Fearow', pokeId: 22 },
-    { min: 930, pokemon: 'Ekans', pokeId: 23 },
-    { min: 1050, pokemon: 'Arbok', pokeId: 24 },
-    { min: 1180, pokemon: 'Pikachu', pokeId: 25 },
-    { min: 1320, pokemon: 'Raichu', pokeId: 26 },
-    { min: 1480, pokemon: 'Sandshrew', pokeId: 27 },
-    { min: 1650, pokemon: 'Sandslash', pokeId: 28 },
-    { min: 1830, pokemon: 'Nidoran F', pokeId: 29 },
-    { min: 2020, pokemon: 'Nidorina', pokeId: 30 },
-    { min: 2220, pokemon: 'Nidoqueen', pokeId: 31 },
-    { min: 2440, pokemon: 'Nidoran M', pokeId: 32 },
-    { min: 2680, pokemon: 'Nidorino', pokeId: 33 },
-    { min: 2940, pokemon: 'Nidoking', pokeId: 34 },
-    { min: 3200, pokemon: 'Clefairy', pokeId: 35 },
-    { min: 3500, pokemon: 'Clefable', pokeId: 36 },
-    { min: 3800, pokemon: 'Vulpix', pokeId: 37 },
-    { min: 4100, pokemon: 'Ninetales', pokeId: 38 },
-    { min: 4500, pokemon: 'Mewtwo', pokeId: 150 },
-    { min: 5000, pokemon: 'Mew', pokeId: 151 }
-];
+// === CONSTANTS ===
+const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants' };
 
-function getPokemonLevel(count) {
-    let level = POKEMON_LEVELS[0];
-    for (const l of POKEMON_LEVELS) {
-        if (count >= l.min) level = l;
-    }
-    return level;
-}
+const STATE_IMAGES = {
+    MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
+    VA: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400&q=80',
+    DC: 'https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=400&q=80',
+    WV: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=80',
+    PA: 'https://images.unsplash.com/photo-1569974507005-6dc61f97fb5c?w=400&q=80',
+    DE: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80'
+};
 
-function getNextLevel(count) {
-    for (const l of POKEMON_LEVELS) {
-        if (l.min > count) return l;
-    }
-    return null;
-}
+const CATEGORY_IMAGES = {
+    winery: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=250&fit=crop',
+    restaurant: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop',
+    hotel: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
+    museum: 'https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=400&h=250&fit=crop',
+    country_club: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=250&fit=crop',
+    event: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=250&fit=crop'
+};
 
 // === API HELPERS ===
 async function fireGet(url) {
@@ -870,25 +546,17 @@ function buildUrl(params) {
 
 // === CLIPBOARD + TOAST ===
 function copyText(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        showToast('Copied!');
-    }).catch(() => {
-        // Fallback
+    navigator.clipboard.writeText(text).then(() => showToast('Copied!')).catch(() => {
         const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        showToast('Copied!');
+        ta.value = text; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta); showToast('Copied!');
     });
 }
 
 let toastTimer = null;
 function showToast(msg) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
+    t.textContent = msg; t.classList.add('show');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => t.classList.remove('show'), 1500);
 }
@@ -896,152 +564,57 @@ function showToast(msg) {
 // === GMAIL LINK ===
 function buildGmailLink(email, category) {
     const t = getTemplate(category);
-    const subject = encodeURIComponent(t.subject);
-    const body = encodeURIComponent(t.body);
-    return `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(email)}&su=${subject}&body=${body}`;
+    return `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
 }
 
 // === SOCIAL ACTIONS ===
 function openIGWithTemplate(igUrl, category) {
-    const t = getTemplate(category);
-    copyText(t.body);
+    copyText(getTemplate(category).body);
     window.open(igUrl, '_blank');
 }
 
 function openFBWithTemplate(fbUrl, category) {
-    const t = getTemplate(category);
-    copyText(t.body);
+    copyText(getTemplate(category).body);
     window.open(fbUrl, '_blank');
 }
 
 // === MARK ACTIONS ===
-async function markEmailSent(contactId, venueId, category) {
+async function markEmailSent(contactId, venueId, category, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    const btn = event.target;
     btn.textContent = '...';
-
     await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'true' }));
     await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }));
-
-    btn.textContent = 'Done';
-    btn.classList.add('done');
+    btn.textContent = 'Done'; btn.classList.add('done');
     showToast('Marked as sent!');
-
-    // Refresh after short delay
     setTimeout(loadDashboard, 1500);
 }
 
-async function markIGSent(contactId, venueId) {
+async function markIGSent(contactId, venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    const btn = event.target;
     btn.textContent = '...';
-
     await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'true' }));
     await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'instagram' }));
-
-    btn.textContent = 'Done';
-    btn.classList.add('done');
+    btn.textContent = 'Done'; btn.classList.add('done');
     showToast('IG DM marked!');
     setTimeout(loadDashboard, 1500);
 }
 
-async function markFBSent(contactId, venueId) {
+async function markFBSent(contactId, venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    const btn = event.target;
     btn.textContent = '...';
-
     await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'true' }));
     await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'facebook' }));
-
-    btn.textContent = 'Done';
-    btn.classList.add('done');
+    btn.textContent = 'Done'; btn.classList.add('done');
     showToast('FB msg marked!');
     setTimeout(loadDashboard, 1500);
 }
 
-// === RENDER FUNCTIONS ===
-
-function renderVenueCard(item) {
-    const v = item.venue;
-    const contacts = item.contacts || [];
-    const pendingEmails = item.pendingEmails || [];
-    const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
-
-    // Count pending actions
-    let actionCount = pendingEmails.length;
-    if (item.igPending && v.instagram) actionCount++;
-    if (item.fbPending && v.facebook) actionCount++;
-
-    let html = `<div class="venue-card" data-zone="${v.zone_priority || 'default'}" onclick="this.classList.toggle('expanded')">`;
-
-    // Collapsed header — always visible
-    html += `<div class="venue-header">`;
-    html += `<div class="venue-header-left">`;
-    html += `<div class="venue-top">`;
-    html += `<span class="venue-name">${esc(v.name)}</span>`;
-    html += `<span class="category-badge ${cat}">${esc(v.category || 'Other').toUpperCase()}</span>`;
-    if (v.zone_priority === 'green' || v.zone_priority === 'yellow') {
-        html += `<span class="zone-dot ${v.zone_priority}"></span>`;
-    }
-    html += `</div>`;
-    html += `<div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}</div>`;
-    html += `</div>`;
-    if (actionCount > 0) {
-        html += `<span class="venue-action-count">${actionCount}</span>`;
-    }
-    html += `<span class="venue-chevron">&#9654;</span>`;
-    html += `</div>`;
-
-    // Expandable details
-    html += `<div class="venue-details" onclick="event.stopPropagation()">`;
-
-    // Pending email contacts
-    for (const c of pendingEmails) {
-        html += `<div class="action-row">`;
-        html += `<span class="contact-email">${esc(c.email)}</span>`;
-        html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
-        html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
-        html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}')">Sent</button>`;
-        html += `</div>`;
-    }
-
-    // IG button
-    if (item.igPending && v.instagram) {
-        const firstContact = contacts[0] || { contact_id: '' };
-        html += `<div class="action-row">`;
-        html += `<span class="social-label">Instagram</span>`;
-        html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(v.instagram)}','${cat}')">Open + Copy</button>`;
-        html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(firstContact.contact_id)}','${esc(v.venue_id)}')">Sent</button>`;
-        html += `</div>`;
-    }
-
-    // FB button
-    if (item.fbPending && v.facebook) {
-        const firstContact = contacts[0] || { contact_id: '' };
-        html += `<div class="action-row">`;
-        html += `<span class="social-label">Facebook</span>`;
-        html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(v.facebook)}','${cat}')">Open + Copy</button>`;
-        html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(firstContact.contact_id)}','${esc(v.venue_id)}')">Sent</button>`;
-        html += `</div>`;
-    }
-
-    html += `</div>`; // venue-details
-    html += `</div>`; // venue-card
-    return html;
-}
-
-function toggleTopPicks(headerEl) {
+// === RENDER: HOME — Top Picks ===
+function toggleTopPicks() {
     const list = document.getElementById('topPicksList');
     const browse = document.getElementById('browseSection');
-    const chevron = headerEl.querySelector('.section-chevron');
     list.classList.toggle('collapsed');
-    chevron.classList.toggle('open');
-    // Hide browse when top picks is open
-    if (list.classList.contains('collapsed')) {
-        browse.style.display = '';
-    } else {
-        browse.style.display = 'none';
-    }
+    browse.style.display = list.classList.contains('collapsed') ? '' : 'none';
 }
 
 function renderTopPicks(picks) {
@@ -1057,71 +630,70 @@ function renderTopPicks(picks) {
     el.innerHTML = top5.map(renderVenueCard).join('');
 }
 
+function renderVenueCard(item) {
+    const v = item.venue;
+    const contacts = item.contacts || [];
+    const pendingEmails = item.pendingEmails || [];
+    const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
 
-// === BROWSE: State → Category → Venues → Detail ===
-const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
-const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants' };
-const CATEGORY_IMAGES = {
-    winery: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&h=250&fit=crop',
-    restaurant: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=250&fit=crop',
-    hotel: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop',
-    museum: 'https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=400&h=250&fit=crop',
-    country_club: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=250&fit=crop',
-    event: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=250&fit=crop'
-};
-let browseLevel = 'states'; // states | categories | venues
-let browseState = '';
-let browseCategory = '';
+    let actionCount = pendingEmails.length;
+    if (item.igPending && v.instagram) actionCount++;
+    if (item.fbPending && v.facebook) actionCount++;
 
-function renderVenueBrowser(data) {
-    renderBrowseStates();
+    let html = `<div class="venue-card" data-zone="${v.zone_priority || 'default'}" onclick="this.classList.toggle('expanded')">`;
+    html += `<div class="venue-header"><div class="venue-header-left">`;
+    html += `<div class="venue-top"><span class="venue-name">${esc(v.name)}</span>`;
+    html += `<span class="category-badge ${cat}">${esc(v.category || 'Other').toUpperCase()}</span>`;
+    if (v.zone_priority === 'green' || v.zone_priority === 'yellow') html += `<span class="zone-dot ${v.zone_priority}"></span>`;
+    html += `</div><div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}</div>`;
+    html += `</div>`;
+    if (actionCount > 0) html += `<span class="venue-action-count">${actionCount}</span>`;
+    html += `<span class="venue-chevron">&#9654;</span></div>`;
+
+    html += `<div class="venue-details" onclick="event.stopPropagation()">`;
+    for (const c of pendingEmails) {
+        html += `<div class="action-row"><span class="contact-email">${esc(c.email)}</span>`;
+        html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
+        html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
+        html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}',this)">Sent</button></div>`;
+    }
+    if (item.igPending && v.instagram) {
+        const fc = contacts[0] || { contact_id: '' };
+        html += `<div class="action-row"><span class="social-label">Instagram</span>`;
+        html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(v.instagram)}','${cat}')">Open + Copy</button>`;
+        html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(v.venue_id)}',this)">Sent</button></div>`;
+    }
+    if (item.fbPending && v.facebook) {
+        const fc = contacts[0] || { contact_id: '' };
+        html += `<div class="action-row"><span class="social-label">Facebook</span>`;
+        html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(v.facebook)}','${cat}')">Open + Copy</button>`;
+        html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(v.venue_id)}',this)">Sent</button></div>`;
+    }
+    html += `</div></div>`;
+    return html;
 }
 
-const STATE_IMAGES = {
-    MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
-    VA: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400&q=80',
-    DC: 'https://images.unsplash.com/photo-1501466044931-62695aada8e9?w=400&q=80',
-    WV: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=80',
-    PA: 'https://images.unsplash.com/photo-1569974507005-6dc61f97fb5c?w=400&q=80',
-    DE: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80'
-};
-
-function renderBrowseStates() {
-    browseLevel = 'states';
-    const el = document.getElementById('browseContent');
-
+// === RENDER: HOME — State Grid ===
+function renderStateGrid() {
+    const el = document.getElementById('stateGrid');
     const states = ['MD', 'VA', 'DC', 'WV', 'PA', 'DE'];
     const venues = (dashboardData && dashboardData.venues) || [];
 
     el.innerHTML = '<div class="state-grid">' + states.map(s => {
         const count = venues.filter(v => v.state === s).length;
-        const img = STATE_IMAGES[s] || '';
-        return `<div class="state-card" style="background-image:url('${img}')" onclick="browseIntoState('${s}')">
+        return `<div class="state-card" style="background-image:url('${STATE_IMAGES[s] || ''}')" onclick="openState('${s}')">
             <div class="state-card-name">${STATE_NAMES[s] || s}</div>
             <div class="state-card-count">${count} venue${count !== 1 ? 's' : ''}</div>
         </div>`;
     }).join('') + '</div>';
 }
 
-function browseIntoState(state) {
-    browseState = state;
-    browseLevel = 'categories';
-    history.pushState({ view: 'categories', state: state }, '');
+// === VIEW: STATE (categories) ===
+function openState(state) {
+    currentState = state;
+    document.getElementById('stateTitleText').textContent = STATE_NAMES[state] || state;
 
-    const overlay = document.getElementById('browseOverlay');
-    const header = overlay.querySelector('.overlay-header');
-    header.style.backgroundImage = `url('${STATE_IMAGES[state] || ''}')`;
-    document.getElementById('browseOverlayTitle').textContent = STATE_NAMES[state] || state;
-    overlay.classList.add('open');
-
-    renderBrowseCategories();
-}
-
-function renderBrowseCategories() {
-    const el = document.getElementById('browseOverlayBody');
-    document.getElementById('browseOverlayTitle').textContent = STATE_NAMES[browseState] || browseState;
-
-    const venues = ((dashboardData && dashboardData.venues) || []).filter(v => v.state === browseState);
+    const venues = ((dashboardData && dashboardData.venues) || []).filter(v => v.state === state);
     const catCounts = {};
     venues.forEach(v => {
         const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
@@ -1129,63 +701,51 @@ function renderBrowseCategories() {
     });
 
     const cats = Object.keys(catCounts).sort();
+    const el = document.getElementById('stateBody');
+
     if (cats.length === 0) {
-        el.innerHTML = '<div class="empty-state">No venues yet in ' + (STATE_NAMES[browseState] || browseState) + '.</div>';
-        return;
+        el.innerHTML = '<div class="empty-state">No venues yet in ' + (STATE_NAMES[state] || state) + '. Run the scraper!</div>';
+    } else {
+        el.innerHTML = '<div class="category-grid">' + cats.map(c => {
+            return `<div class="category-card" style="background-image:url('${CATEGORY_IMAGES[c] || ''}')" onclick="openCategory('${c}')">
+                <span class="category-card-count">${catCounts[c]}</span>
+                <span class="category-card-name">${CATEGORY_LABELS[c] || c}</span>
+            </div>`;
+        }).join('') + '</div>';
     }
 
-    el.innerHTML = '<div class="category-grid">' + cats.map(c => {
-        const img = CATEGORY_IMAGES[c] || '';
-        return `<div class="category-card" style="background-image:url('${img}')" onclick="browseIntoCategory('${c}')">
-            <span class="category-card-count">${catCounts[c]}</span>
-            <span class="category-card-name">${CATEGORY_LABELS[c] || c}</span>
-        </div>`;
-    }).join('') + '</div>';
+    navigateTo('viewState');
 }
 
-function browseIntoCategory(cat) {
-    browseCategory = cat;
-    browseLevel = 'venues';
-    history.pushState({ view: 'venues', state: browseState, category: cat }, '');
-    renderBrowseVenues();
-}
-
-function renderBrowseVenues() {
-    const el = document.getElementById('browseOverlayBody');
-    document.getElementById('browseOverlayTitle').textContent = (CATEGORY_LABELS[browseCategory] || browseCategory) + ' — ' + (STATE_NAMES[browseState] || browseState);
+// === VIEW: CATEGORY (venue list) ===
+function openCategory(cat) {
+    currentCategory = cat;
+    document.getElementById('categoryTitleText').textContent = (CATEGORY_LABELS[cat] || cat) + ' — ' + (STATE_NAMES[currentState] || currentState);
 
     const venues = ((dashboardData && dashboardData.venues) || []).filter(v =>
-        v.state === browseState && (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === browseCategory
+        v.state === currentState && (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === cat
     );
 
+    const el = document.getElementById('categoryBody');
     if (venues.length === 0) {
         el.innerHTML = '<div class="empty-state">No venues found.</div>';
-        return;
-    }
-
-    el.innerHTML = venues.map(v => {
-        const statusClass = (v.status || 'untouched').replace(/\s/g, '_');
-        return `<div class="venue-list-item" onclick="openVenueDetail('${esc(v.venue_id)}')">
-            <div>
-                <div class="venue-list-name">${esc(v.name)}</div>
-                <div class="venue-list-city">${esc(v.city || '')}</div>
-            </div>
-            <span class="status-pill ${statusClass}">${statusClass.replace('_', ' ')}</span>
-        </div>`;
-    }).join('');
-}
-
-function browseBack() {
-    if (browseLevel === 'venues') {
-        browseLevel = 'categories';
-        renderBrowseCategories();
     } else {
-        document.getElementById('browseOverlay').classList.remove('open');
-        browseLevel = 'states';
+        el.innerHTML = venues.map(v => {
+            const statusClass = (v.status || 'untouched').replace(/\s/g, '_');
+            return `<div class="venue-list-item" onclick="openVenueDetail('${esc(v.venue_id)}')">
+                <div>
+                    <div class="venue-list-name">${esc(v.name)}</div>
+                    <div class="venue-list-city">${esc(v.city || '')}</div>
+                </div>
+                <span class="status-pill ${statusClass}">${statusClass.replace('_', ' ')}</span>
+            </div>`;
+        }).join('');
     }
+
+    navigateTo('viewCategory');
 }
 
-// === VENUE DETAIL VIEW ===
+// === VIEW: VENUE DETAIL ===
 function openVenueDetail(venueId) {
     if (!dashboardData) return;
     const venue = (dashboardData.venues || []).find(v => v.venue_id === venueId);
@@ -1194,24 +754,19 @@ function openVenueDetail(venueId) {
     const contacts = (dashboardData.contacts || []).filter(c => c.venue_id === venueId);
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
 
-    document.getElementById('detailTitle').textContent = venue.name;
-    history.pushState({ view: 'detail', venueId: venueId }, '');
+    document.getElementById('detailTitleText').textContent = venue.name;
 
     let html = '';
 
-    // Meta info
+    // Meta
     html += `<div class="detail-meta">`;
     html += `<span class="category-badge ${cat}">${esc(venue.category || '').toUpperCase()}</span>`;
     html += `<span>${esc(venue.city || '')}${venue.city && venue.state ? ', ' : ''}${esc(venue.state || '')}</span>`;
-    if (venue.zone_priority === 'green' || venue.zone_priority === 'yellow') {
-        html += `<span class="zone-dot ${venue.zone_priority}"></span>`;
-    }
+    if (venue.zone_priority === 'green' || venue.zone_priority === 'yellow') html += `<span class="zone-dot ${venue.zone_priority}"></span>`;
     html += `</div>`;
 
     // Website
-    if (venue.website) {
-        html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
-    }
+    if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
 
     // Emails
     const emailContacts = contacts.filter(c => c.email);
@@ -1219,25 +774,16 @@ function openVenueDetail(venueId) {
         html += `<div class="detail-section-label">Emails</div>`;
         for (const c of emailContacts) {
             if (c.email_sent) {
-                html += `<div class="detail-action-row">`;
-                html += `<span class="detail-email" style="opacity:0.4">${esc(c.email)}</span>`;
-                html += `<span class="detail-done">Sent</span>`;
-                html += `</div>`;
+                html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">Sent</span></div>`;
             } else if (c.verified === 'valid') {
-                html += `<div class="detail-action-row">`;
-                html += `<span class="detail-email">${esc(c.email)}</span>`;
+                html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
                 html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
-                html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}');this.textContent='Done';this.disabled=true">Sent</button>`;
-                html += `</div>`;
-                if (c.name || c.title) {
-                    html += `<div class="detail-contact-name">${esc(c.name || '')}${c.name && c.title ? ' — ' : ''}${esc(c.title || '')}</div>`;
-                }
+                html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button></div>`;
+                if (c.name || c.title) html += `<div class="detail-contact-name">${esc(c.name || '')}${c.name && c.title ? ' — ' : ''}${esc(c.title || '')}</div>`;
             } else {
-                html += `<div class="detail-action-row">`;
-                html += `<span class="detail-email" style="opacity:0.5">${esc(c.email)}</span>`;
-                html += `<span style="font-size:0.6rem;color:var(--text-dim)">${c.verified || 'unverified'}</span>`;
-                html += `</div>`;
+                html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.5">${esc(c.email)}</span>`;
+                html += `<span style="font-size:0.6rem;color:var(--text-dim)">${c.verified || 'unverified'}</span></div>`;
             }
         }
     }
@@ -1249,12 +795,10 @@ function openVenueDetail(venueId) {
         if (igDone) {
             html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span><span class="detail-done">Sent</span></div>`;
         } else {
-            const firstContact = contacts[0] || { contact_id: '' };
-            html += `<div class="detail-action-row">`;
-            html += `<span class="detail-social-label">Instagram DM</span>`;
+            const fc = contacts[0] || { contact_id: '' };
+            html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
             html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(venue.instagram)}','${cat}')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(firstContact.contact_id)}','${esc(venue.venue_id)}');this.textContent='Done';this.disabled=true">Sent</button>`;
-            html += `</div>`;
+            html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
         }
     } else {
         html += `<div class="detail-action-row"><span style="font-size:0.7rem;color:var(--text-dim)">No Instagram found</span></div>`;
@@ -1267,105 +811,17 @@ function openVenueDetail(venueId) {
         if (fbDone) {
             html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span><span class="detail-done">Sent</span></div>`;
         } else {
-            const firstContact = contacts[0] || { contact_id: '' };
-            html += `<div class="detail-action-row">`;
-            html += `<span class="detail-social-label">Facebook Message</span>`;
+            const fc = contacts[0] || { contact_id: '' };
+            html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
             html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(venue.facebook)}','${cat}')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(firstContact.contact_id)}','${esc(venue.venue_id)}');this.textContent='Done';this.disabled=true">Sent</button>`;
-            html += `</div>`;
+            html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
         }
     } else {
         html += `<div class="detail-action-row"><span style="font-size:0.7rem;color:var(--text-dim)">No Facebook found</span></div>`;
     }
 
     document.getElementById('detailBody').innerHTML = html;
-    document.getElementById('venueDetailOverlay').classList.add('open');
-}
-
-function closeVenueDetail() {
-    document.getElementById('venueDetailOverlay').classList.remove('open');
-}
-
-// === BACK BUTTON SUPPORT ===
-window.addEventListener('popstate', function(e) {
-    const detailOpen = document.getElementById('venueDetailOverlay').classList.contains('open');
-    const browseOpen = document.getElementById('browseOverlay').classList.contains('open');
-
-    if (detailOpen) {
-        document.getElementById('venueDetailOverlay').classList.remove('open');
-    } else if (browseOpen) {
-        if (browseLevel === 'venues') {
-            browseLevel = 'categories';
-            renderBrowseCategories();
-        } else {
-            document.getElementById('browseOverlay').classList.remove('open');
-            browseLevel = 'states';
-        }
-    }
-});
-
-function renderPokemon(stats) {
-    const count = (stats ? stats.totalOutreach : 0) || 0;
-    const level = getPokemonLevel(count);
-    const next = getNextLevel(count);
-    const levelIdx = POKEMON_LEVELS.indexOf(level) + 1;
-
-    let progress = 100;
-    let progressText = 'MAX LEVEL!';
-    if (next) {
-        const range = next.min - level.min;
-        const current = count - level.min;
-        progress = Math.min(100, Math.round((current / range) * 100));
-        progressText = `${count - level.min} / ${range} to ${next.pokemon}`;
-    }
-
-    const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${level.pokeId}.png`;
-
-    document.getElementById('pokemonCard').innerHTML = `
-        <div class="pokemon-card">
-            <img class="pokemon-sprite" src="${spriteUrl}" alt="${level.pokemon}">
-            <div class="pokemon-info">
-                <div class="pokemon-name">${level.pokemon}</div>
-                <div class="pokemon-level">Level ${levelIdx} &middot; ${count} outreach total</div>
-                <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
-                <div class="progress-text">${progressText}</div>
-            </div>
-        </div>`;
-}
-
-// === MAIN LOAD ===
-async function loadDashboard() {
-    const dot = document.getElementById('statusDot');
-
-    if (!API_URL) {
-        // Demo mode — show empty state
-        if (dot) dot.classList.remove('connected');
-        renderTopPicks([]);
-        renderVenueBrowser({ venues: [], stateBreakdown: {} });
-        renderPokemon({ totalOutreach: 0 });
-        return;
-    }
-
-    try {
-        const resp = await fetch(API_URL);
-        const data = await resp.json();
-        if (data.status !== 'ok') throw new Error(data.message || 'API error');
-
-        dashboardData = data;
-        if (dot) dot.classList.add('connected');
-
-        renderTopPicks(data.topPicks);
-        renderVenueBrowser(data);
-        renderPokemon(data.stats);
-
-    } catch(e) {
-        if (dot) dot.classList.remove('connected');
-        console.error('Dashboard load error:', e);
-    }
-
-    // Schedule next refresh
-    clearTimeout(refreshTimer);
-    refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
+    navigateTo('viewDetail');
 }
 
 // === HELPERS ===
@@ -1374,14 +830,31 @@ function esc(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
-// === INIT ===
-document.addEventListener('DOMContentLoaded', () => {
-    loadDashboard();
-});
+// === MAIN LOAD ===
+async function loadDashboard() {
+    if (!API_URL) { renderTopPicks([]); renderStateGrid(); return; }
 
-// === SERVICE WORKER ===
+    try {
+        const resp = await fetch(API_URL);
+        const data = await resp.json();
+        if (data.status !== 'ok') throw new Error(data.message || 'API error');
+
+        dashboardData = data;
+        renderTopPicks(data.topPicks);
+        renderStateGrid();
+    } catch(e) {
+        console.error('Dashboard load error:', e);
+    }
+
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
+}
+
+// === INIT ===
+document.addEventListener('DOMContentLoaded', () => { loadDashboard(); });
+
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW registration failed:', err));
+    navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW:', err));
 }
 </script>
 </body>

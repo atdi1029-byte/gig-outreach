@@ -96,6 +96,8 @@ body {
     color: var(--text-bright);
     flex: 1;
     letter-spacing: 1px;
+    text-align: center;
+    padding-right: 2rem;
 }
 
 /* === HOME HEADER === */
@@ -259,22 +261,23 @@ body {
 /* === DETAIL VIEW === */
 .detail-meta {
     font-size: 0.75rem; color: var(--text-dim); margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap;
 }
 
 .detail-section-label {
     font-family: 'Playfair Display', serif; font-size: 0.85rem;
     color: var(--text-bright); padding-bottom: 0.35rem;
     border-bottom: 1px solid var(--border); margin: 1.25rem 0 0.5rem;
+    text-align: center;
 }
 
 .detail-website {
-    display: inline-block; font-size: 0.7rem; color: var(--accent);
-    text-decoration: none; word-break: break-all;
+    display: block; font-size: 0.7rem; color: var(--accent);
+    text-decoration: none; word-break: break-all; text-align: center;
 }
 
 .detail-action-row {
-    display: flex; align-items: center; gap: 0.4rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.4rem;
     padding: 0.6rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
 }
 .detail-action-row:last-child { border-bottom: none; }

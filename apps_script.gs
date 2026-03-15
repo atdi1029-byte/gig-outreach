@@ -12,6 +12,7 @@ var OUTREACH    = 'Outreach Log';
 var CONFIG      = 'Config';
 var TEMPLATES   = 'Templates';
 var PROGRESS    = 'Progress';
+var PAST_GIGS   = 'Past Gigs';
 
 // ---------------------------------------------------------------
 // doGet — Main API router
@@ -37,6 +38,10 @@ function doGet(e) {
   if (action === 'stats')           return serveStats_();
   if (action === 'config')          return serveConfig_();
   if (action === 'calc_distances')  return calcDistances_();
+  if (action === 'add_gig')         return addGig_(e.parameter);
+  if (action === 'update_gig')      return updateGig_(e.parameter);
+  if (action === 'get_gigs')        return getGigs_();
+  if (action === 'get_recommendations') return getRecommendations_();
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -225,6 +230,29 @@ function serveDashboardJSON_() {
   }
   recentOutreach.reverse();
 
+  // Load past gigs for dashboard
+  var gigSheet = ss.getSheetByName(PAST_GIGS);
+  var gigs = [];
+  if (gigSheet) {
+    var gData = gigSheet.getDataRange().getValues();
+    for (var gi = 1; gi < gData.length; gi++) {
+      if (!gData[gi][0]) continue;
+      gigs.push({
+        gig_id: String(gData[gi][0]),
+        venue_id: String(gData[gi][1]),
+        venue_name: String(gData[gi][2]),
+        date: String(gData[gi][3]),
+        category: String(gData[gi][4]),
+        rating_tips: Number(gData[gi][5]),
+        rating_rebooked: Number(gData[gi][6]),
+        rating_audience: Number(gData[gi][7]),
+        rating_venue_quality: Number(gData[gi][8]),
+        overall_score: Number(gData[gi][9]),
+        notes: String(gData[gi][10] || '')
+      });
+    }
+  }
+
   return jsonResponse_({
     status: 'ok',
     stats: {
@@ -241,6 +269,7 @@ function serveDashboardJSON_() {
     actionNeeded: actionNeeded,
     venues: venues,
     contacts: contacts,
+    gigs: gigs,
     recentOutreach: recentOutreach,
     stateBreakdown: stateBreakdown,
     categoryBreakdown: categoryBreakdown
@@ -820,6 +849,312 @@ function keepAlive() {
 }
 
 // ---------------------------------------------------------------
+// addGig_ — Add a past gig with ratings
+// Params: venue_name, date, category, rating_tips, rating_rebooked,
+//         rating_audience, rating_venue_quality, notes, venue_id (optional)
+// ---------------------------------------------------------------
+function addGig_(params) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(PAST_GIGS);
+  if (!sheet) return jsonResponse_({ status: 'error', message: 'Past Gigs sheet not found. Run setupSheets().' });
+
+  // Generate gig_id
+  var data = sheet.getDataRange().getValues();
+  var maxId = 0;
+  for (var i = 1; i < data.length; i++) {
+    var id = String(data[i][0]).replace('G-', '');
+    var num = parseInt(id, 10);
+    if (num > maxId) maxId = num;
+  }
+  var gigId = 'G-' + String(maxId + 1).padStart(3, '0');
+
+  var tips = Number(params.rating_tips) || 5;
+  var rebooked = Number(params.rating_rebooked) || 5;
+  var audience = Number(params.rating_audience) || 5;
+  var quality = Number(params.rating_venue_quality) || 5;
+  var overall = Math.round(((tips + rebooked + audience + quality) / 4) * 10) / 10;
+
+  var newRow = sheet.getLastRow() + 1;
+  sheet.getRange(newRow, 1, 1, 12).setValues([[
+    gigId,
+    params.venue_id || '',
+    params.venue_name || '',
+    params.date || new Date().toISOString().split('T')[0],
+    params.category || '',
+    tips,
+    rebooked,
+    audience,
+    quality,
+    overall,
+    params.notes || '',
+    ''  // distance_miles (calculated later)
+  ]]);
+
+  // Calculate distance if we have a venue_id
+  if (params.venue_id) {
+    var vSheet = ss.getSheetByName(VENUES);
+    var vData = vSheet.getDataRange().getValues();
+    for (var v = 1; v < vData.length; v++) {
+      if (String(vData[v][0]) === params.venue_id && vData[v][16]) {
+        sheet.getRange(newRow, 12).setValue(Number(vData[v][16]));
+        break;
+      }
+    }
+  }
+
+  return jsonResponse_({ status: 'ok', gig_id: gigId, overall_score: overall });
+}
+
+// ---------------------------------------------------------------
+// updateGig_ — Update a past gig's ratings or notes
+// Params: gig_id (required), plus any fields to update
+// ---------------------------------------------------------------
+function updateGig_(params) {
+  var gigId = params.gig_id || '';
+  if (!gigId) return jsonResponse_({ status: 'error', message: 'gig_id required' });
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(PAST_GIGS);
+  if (!sheet) return jsonResponse_({ status: 'error', message: 'Past Gigs sheet not found' });
+
+  var data = sheet.getDataRange().getValues();
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]) === gigId) {
+      var row = i + 1;
+      if (params.venue_name) sheet.getRange(row, 3).setValue(params.venue_name);
+      if (params.date) sheet.getRange(row, 4).setValue(params.date);
+      if (params.category) sheet.getRange(row, 5).setValue(params.category);
+      if (params.rating_tips) sheet.getRange(row, 6).setValue(Number(params.rating_tips));
+      if (params.rating_rebooked) sheet.getRange(row, 7).setValue(Number(params.rating_rebooked));
+      if (params.rating_audience) sheet.getRange(row, 8).setValue(Number(params.rating_audience));
+      if (params.rating_venue_quality) sheet.getRange(row, 9).setValue(Number(params.rating_venue_quality));
+      if (params.notes) sheet.getRange(row, 11).setValue(params.notes);
+
+      // Recalculate overall
+      var tips = Number(sheet.getRange(row, 6).getValue());
+      var reb = Number(sheet.getRange(row, 7).getValue());
+      var aud = Number(sheet.getRange(row, 8).getValue());
+      var qual = Number(sheet.getRange(row, 9).getValue());
+      var overall = Math.round(((tips + reb + aud + qual) / 4) * 10) / 10;
+      sheet.getRange(row, 10).setValue(overall);
+
+      return jsonResponse_({ status: 'ok', gig_id: gigId, overall_score: overall });
+    }
+  }
+  return jsonResponse_({ status: 'error', message: 'Gig not found' });
+}
+
+// ---------------------------------------------------------------
+// getGigs_ — Return all past gigs
+// ---------------------------------------------------------------
+function getGigs_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(PAST_GIGS);
+  if (!sheet) return jsonResponse_({ status: 'ok', gigs: [] });
+
+  var data = sheet.getDataRange().getValues();
+  var gigs = [];
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    if (!row[0]) continue;
+    gigs.push({
+      gig_id: String(row[0]),
+      venue_id: String(row[1]),
+      venue_name: String(row[2]),
+      date: String(row[3]),
+      category: String(row[4]),
+      rating_tips: Number(row[5]),
+      rating_rebooked: Number(row[6]),
+      rating_audience: Number(row[7]),
+      rating_venue_quality: Number(row[8]),
+      overall_score: Number(row[9]),
+      notes: String(row[10] || ''),
+      distance_miles: row[11] ? Number(row[11]) : null
+    });
+  }
+  return jsonResponse_({ status: 'ok', gigs: gigs });
+}
+
+// ---------------------------------------------------------------
+// getRecommendations_ — Score venues based on past gig profile
+// Returns venues sorted by recommendation_score (0-100)
+// ---------------------------------------------------------------
+function getRecommendations_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  // Load past gigs
+  var gigSheet = ss.getSheetByName(PAST_GIGS);
+  var gigs = [];
+  if (gigSheet) {
+    var gData = gigSheet.getDataRange().getValues();
+    for (var g = 1; g < gData.length; g++) {
+      if (!gData[g][0]) continue;
+      gigs.push({
+        category: String(gData[g][4]).toLowerCase(),
+        overall: Number(gData[g][9]),
+        distance: gData[g][11] ? Number(gData[g][11]) : null,
+        upscale: Number(gData[g][8]) || 3  // venue_quality as upscale proxy
+      });
+    }
+  }
+
+  if (gigs.length === 0) {
+    return jsonResponse_({ status: 'ok', recommendations: [], message: 'No past gigs to build profile from. Add gigs first.' });
+  }
+
+  // Build profile from past gigs
+  // Category scores: average overall rating per category
+  var catScores = {};
+  var catCounts = {};
+  var distances = [];
+  var upscales = [];
+  var totalAvg = 0;
+
+  for (var p = 0; p < gigs.length; p++) {
+    var cat = gigs[p].category;
+    if (!catScores[cat]) { catScores[cat] = 0; catCounts[cat] = 0; }
+    catScores[cat] += gigs[p].overall;
+    catCounts[cat]++;
+    if (gigs[p].distance !== null) distances.push(gigs[p].distance);
+    upscales.push(gigs[p].upscale);
+    totalAvg += gigs[p].overall;
+  }
+  totalAvg /= gigs.length;
+
+  // Average per category
+  for (var cc in catScores) {
+    catScores[cc] = catScores[cc] / catCounts[cc];
+  }
+
+  // Distance sweet spot: median of past gig distances
+  distances.sort(function(a, b) { return a - b; });
+  var medianDist = distances.length > 0 ? distances[Math.floor(distances.length / 2)] : 50;
+  var distSpread = distances.length > 1 ? (distances[distances.length - 1] - distances[0]) / 2 : 30;
+  if (distSpread < 15) distSpread = 15;
+
+  // Upscale sweet spot: average
+  var avgUpscale = 0;
+  for (var u = 0; u < upscales.length; u++) avgUpscale += upscales[u];
+  avgUpscale /= upscales.length;
+
+  // Load venues
+  var vSheet = ss.getSheetByName(VENUES);
+  var vData = vSheet.getDataRange().getValues();
+
+  // Load contacts for quality scoring
+  var cSheet = ss.getSheetByName(CONTACTS);
+  var cData = cSheet.getDataRange().getValues();
+  var contactsByVenue = {};
+  for (var ci = 1; ci < cData.length; ci++) {
+    var vid = String(cData[ci][1]);
+    if (!contactsByVenue[vid]) contactsByVenue[vid] = [];
+    contactsByVenue[vid].push({
+      email: String(cData[ci][4]),
+      verified: String(cData[ci][6]),
+      title: String(cData[ci][3]).toLowerCase(),
+      email_sent: String(cData[ci][8]).toLowerCase() === 'true'
+    });
+  }
+
+  // Score each venue
+  var recommendations = [];
+  var zonePts = { green: 10, yellow: 5, 'default': 0 };
+  var goodTitles = ['event', 'manager', 'director', 'coordinator', 'owner', 'general manager', 'marketing', 'hospitality'];
+
+  for (var vi = 1; vi < vData.length; vi++) {
+    var row = vData[vi];
+    if (!row[0]) continue;
+    var venueId = String(row[0]);
+    var vCat = String(row[2]).toLowerCase();
+    var vUpscale = Number(row[10]) || 3;
+    var vZone = String(row[11]) || 'default';
+    var vStatus = String(row[12]) || 'untouched';
+    var vDist = row[16] ? Number(row[16]) : null;
+
+    // --- CATEGORY MATCH (0-30 pts) ---
+    var catPts = 0;
+    if (catScores[vCat] !== undefined) {
+      // Scale: category avg score (1-10) maps to 0-30 pts
+      catPts = Math.round((catScores[vCat] / 10) * 30);
+    } else {
+      // Unknown category: give neutral score based on overall average
+      catPts = Math.round((totalAvg / 10) * 15);  // half weight for unknown
+    }
+
+    // --- DISTANCE MATCH (0-25 pts) ---
+    var distPts = 0;
+    if (vDist !== null && distances.length > 0) {
+      var distDiff = Math.abs(vDist - medianDist);
+      // Closer to median = more points. Falls off with distSpread
+      distPts = Math.round(Math.max(0, 25 * (1 - distDiff / (distSpread * 2))));
+    } else {
+      distPts = 10; // neutral if no distance data
+    }
+
+    // --- UPSCALE MATCH (0-25 pts) ---
+    var upscaleDiff = Math.abs(vUpscale - avgUpscale);
+    var upscalePts = Math.round(Math.max(0, 25 * (1 - upscaleDiff / 5)));
+
+    // --- ZONE BONUS (0-10 pts) ---
+    var zPts = zonePts[vZone] || 0;
+
+    // --- CONTACT QUALITY (0-10 pts) ---
+    var cqPts = 0;
+    var vContacts = contactsByVenue[venueId] || [];
+    if (vContacts.length > 0) {
+      cqPts += 3; // has contacts
+      var hasVerified = false, hasGoodTitle = false;
+      for (var cx = 0; cx < vContacts.length; cx++) {
+        if (vContacts[cx].verified === 'valid') hasVerified = true;
+        for (var gt = 0; gt < goodTitles.length; gt++) {
+          if (vContacts[cx].title.indexOf(goodTitles[gt]) > -1) { hasGoodTitle = true; break; }
+        }
+      }
+      if (hasVerified) cqPts += 4;
+      if (hasGoodTitle) cqPts += 3;
+    }
+
+    var totalScore = Math.min(100, catPts + distPts + upscalePts + zPts + cqPts);
+
+    recommendations.push({
+      venue_id: venueId,
+      name: String(row[1]),
+      category: String(row[2]),
+      city: String(row[4]),
+      state: String(row[6]),
+      upscale_score: vUpscale,
+      zone_priority: vZone,
+      status: vStatus,
+      distance_miles: vDist,
+      recommendation_score: totalScore,
+      score_breakdown: {
+        category: catPts,
+        distance: distPts,
+        upscale: upscalePts,
+        zone: zPts,
+        contact_quality: cqPts
+      },
+      contact_count: vContacts.length
+    });
+  }
+
+  // Sort by recommendation score descending
+  recommendations.sort(function(a, b) { return b.recommendation_score - a.recommendation_score; });
+
+  return jsonResponse_({
+    status: 'ok',
+    recommendations: recommendations,
+    profile: {
+      gig_count: gigs.length,
+      best_category: Object.keys(catScores).sort(function(a, b) { return catScores[b] - catScores[a]; })[0] || 'none',
+      avg_overall: Math.round(totalAvg * 10) / 10,
+      median_distance: Math.round(medianDist),
+      avg_upscale: Math.round(avgUpscale * 10) / 10
+    }
+  });
+}
+
+// ---------------------------------------------------------------
 // setupSheets — Run ONCE to create all required tabs + headers
 // Go to Apps Script editor → Run → setupSheets
 // ---------------------------------------------------------------
@@ -832,7 +1167,8 @@ function setupSheets() {
     'Outreach Log': ['timestamp', 'venue_id', 'contact_id', 'channel', 'template_used'],
     'Config': ['key', 'value'],
     'Templates': ['category', 'subject', 'body'],
-    'Progress': ['state', 'category', 'last_scraped', 'venues_found', 'status']
+    'Progress': ['state', 'category', 'last_scraped', 'venues_found', 'status'],
+    'Past Gigs': ['gig_id', 'venue_id', 'venue_name', 'date', 'category', 'rating_tips', 'rating_rebooked', 'rating_audience', 'rating_venue_quality', 'overall_score', 'notes', 'distance_miles']
   };
 
   for (var name in tabs) {

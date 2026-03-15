@@ -564,6 +564,120 @@ body {
 }
 .monthly-add:active { color: var(--text-bright); }
 
+/* === PAST GIGS === */
+.gigs-pill-row { text-align: center; margin: 0.75rem 0; }
+.gigs-pill {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--bg-card); border: 1px solid var(--gold);
+    color: var(--gold); font-family: 'Playfair Display', serif;
+    font-size: 0.85rem; padding: 0.5rem 1.2rem; border-radius: 20px;
+    cursor: pointer;
+}
+.gigs-pill:active { background: rgba(240,160,48,0.15); }
+.gigs-pill-icon { font-size: 1rem; }
+.gigs-pill-count {
+    background: var(--gold); color: #000; font-size: 0.65rem;
+    font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+}
+.gig-add-btn {
+    background: var(--gold); color: #000; border: none;
+    padding: 0.3rem 0.7rem; border-radius: 12px; font-size: 0.7rem;
+    font-weight: 700; cursor: pointer; margin-left: auto;
+}
+.gig-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.75rem; margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.gig-card:active { background: var(--bg-card-hover); }
+.gig-card-top { display: flex; justify-content: space-between; align-items: center; }
+.gig-card-name { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--text-bright); }
+.gig-card-date { font-size: 0.65rem; color: var(--text-dim); }
+.gig-card-score {
+    font-size: 1.4rem; font-weight: 700; font-family: 'Cinzel', serif;
+}
+.gig-card-ratings { display: flex; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap; }
+.gig-rating-pill {
+    font-size: 0.6rem; padding: 0.15rem 0.4rem; border-radius: 6px;
+    background: rgba(255,255,255,0.05); color: var(--text-dim);
+}
+.gig-card-notes { font-size: 0.65rem; color: var(--text-dim); margin-top: 0.3rem; font-style: italic; }
+/* Rating dots */
+.rating-row { display: flex; align-items: center; gap: 0.5rem; margin: 0.6rem 0; }
+.rating-label { font-size: 0.75rem; color: var(--text); width: 100px; font-family: 'Playfair Display', serif; }
+.rating-dots { display: flex; gap: 3px; }
+.rating-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--border-light); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.55rem; color: var(--text-dim);
+    transition: all 0.15s;
+}
+.rating-dot.active { border-color: var(--gold); background: var(--gold); color: #000; font-weight: 700; }
+.rating-dot:active { transform: scale(1.2); }
+.rating-overall {
+    text-align: center; font-size: 2rem; font-weight: 700;
+    font-family: 'Cinzel', serif; margin: 0.5rem 0;
+}
+.gig-form-field {
+    margin: 0.6rem 0;
+}
+.gig-form-field label {
+    display: block; font-size: 0.7rem; color: var(--text-dim);
+    margin-bottom: 0.2rem; font-family: 'Playfair Display', serif;
+}
+.gig-form-field input, .gig-form-field textarea, .gig-form-field select {
+    width: 100%; padding: 0.5rem; background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-light); border-radius: 6px;
+    color: var(--text-bright); font-size: 0.8rem;
+    font-family: 'Lato', sans-serif;
+}
+.gig-form-field textarea { height: 60px; resize: vertical; }
+.gig-save-btn {
+    width: 100%; padding: 0.7rem; background: var(--gold); color: #000;
+    border: none; border-radius: 8px; font-size: 0.85rem;
+    font-weight: 700; font-family: 'Cinzel', serif;
+    cursor: pointer; margin-top: 0.75rem;
+}
+.gig-save-btn:active { opacity: 0.8; }
+/* Recommendation score badge */
+.rec-badge {
+    display: inline-block; font-size: 0.6rem; font-weight: 700;
+    padding: 0.1rem 0.35rem; border-radius: 4px;
+    font-family: 'Lato', sans-serif;
+}
+.rec-high { background: var(--gold); color: #000; }
+.rec-med { background: rgba(240,160,48,0.3); color: var(--gold); }
+.rec-low { background: rgba(255,255,255,0.08); color: var(--text-dim); }
+.smart-pick-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.75rem; margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+.smart-pick-card:active { background: var(--bg-card-hover); }
+.smart-pick-top { display: flex; align-items: center; gap: 0.5rem; }
+.smart-pick-score {
+    font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700;
+    min-width: 36px; text-align: center;
+}
+.smart-pick-info { flex: 1; min-width: 0; }
+.smart-pick-name { font-weight: 700; font-size: 0.85rem; color: var(--text-bright); }
+.smart-pick-meta { font-size: 0.65rem; color: var(--text-dim); }
+.smart-pick-reason {
+    font-size: 0.65rem; color: var(--gold); font-style: italic;
+    margin-top: 0.3rem; padding-left: 42px;
+}
+.gig-delete-btn {
+    font-size: 0.6rem; color: var(--red); background: none; border: 1px solid var(--red);
+    border-radius: 6px; padding: 0.2rem 0.5rem; cursor: pointer; margin-left: 0.5rem;
+}
+.gig-delete-btn:active { background: var(--red); color: #fff; }
+.gig-empty { text-align: center; color: var(--text-dim); padding: 2rem; font-style: italic; font-size: 0.85rem; }
+.gig-profile { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; margin-bottom: 1rem; }
+.gig-profile-title { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--gold); margin-bottom: 0.4rem; }
+.gig-profile-stat { font-size: 0.7rem; color: var(--text); margin: 0.15rem 0; }
+
 @media (max-width: 768px) {
     .view-inner { padding: 0.75rem; }
     .home-header h1 { font-size: 1.4rem; letter-spacing: 3px; }
@@ -586,6 +700,24 @@ body {
 
         <!-- MONTHLY TASKS (desktop only, hidden on mobile via CSS) -->
         <div class="monthly-section" id="monthlySection"></div>
+
+        <!-- PAST GIGS BUTTON -->
+        <div class="gigs-pill-row">
+            <button class="gigs-pill" onclick="openGigsView()">
+                <span class="gigs-pill-icon">&#9834;</span>
+                <span>Past Gigs</span>
+                <span class="gigs-pill-count" id="gigsCount">0</span>
+            </button>
+        </div>
+
+        <!-- SMART PICKS (recommendation engine) -->
+        <div class="section" id="smartPicksSection" style="display:none">
+            <div class="section-header" onclick="toggleSmartPicks()">
+                <span class="section-title">Smart Picks</span>
+                <span class="section-badge" id="smartPicksBadge" style="background:var(--gold)">0</span>
+            </div>
+            <div id="smartPicksList" class="collapsed"></div>
+        </div>
 
         <!-- TOP PICKS -->
         <div class="section">
@@ -631,6 +763,25 @@ body {
         <span class="view-title" id="detailTitleText"></span>
     </div>
     <div class="view-inner" id="detailBody"></div>
+</div>
+
+<!-- ============ VIEW: PAST GIGS ============ -->
+<div class="view" id="viewGigs">
+    <div class="view-header">
+        <button class="view-back" onclick="goBack()">&larr;</button>
+        <span class="view-title">Past Gigs</span>
+        <button class="gig-add-btn" onclick="showAddGigForm()">+ Add</button>
+    </div>
+    <div class="view-inner" id="gigsBody"></div>
+</div>
+
+<!-- ============ VIEW: ADD/EDIT GIG ============ -->
+<div class="view" id="viewGigForm">
+    <div class="view-header">
+        <button class="view-back" onclick="goBack()">&larr;</button>
+        <span class="view-title" id="gigFormTitle">Add Past Gig</span>
+    </div>
+    <div class="view-inner" id="gigFormBody"></div>
 </div>
 
 <!-- TOAST -->
@@ -1159,6 +1310,8 @@ function loadDashboard() {
             dashboardData = data;
             renderTopPicks(data.topPicks);
             renderStateGrid();
+            updateGigsCount();
+            loadSmartPicks();
         } else {
             console.error('Dashboard load error:', err);
         }
@@ -1275,6 +1428,314 @@ function scrollToTasks() {
     } else {
         showToast('All tasks done this month!');
     }
+}
+
+// === PAST GIGS ===
+let gigsData = []; // Cached from dashboard
+
+function openGigsView() {
+    const body = document.getElementById('gigsBody');
+    gigsData = (dashboardData && dashboardData.gigs) || [];
+
+    if (gigsData.length === 0) {
+        body.innerHTML = '<div class="gig-empty">No past gigs yet.<br>Tap "+ Add" to log your first gig!</div>';
+    } else {
+        // Sort by date descending (most recent first)
+        const sorted = [...gigsData].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        body.innerHTML = sorted.map(g => renderGigCard(g)).join('');
+    }
+    navigateTo('viewGigs');
+}
+
+function renderGigCard(g) {
+    const scoreColor = g.overall_score >= 8 ? 'var(--green)' : g.overall_score >= 5 ? 'var(--gold)' : 'var(--red)';
+    const cat = (g.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+    const dateStr = g.date ? new Date(g.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+    let html = `<div class="gig-card" onclick="showEditGigForm('${esc(g.gig_id)}')">`;
+    html += `<div class="gig-card-top">`;
+    html += `<div><div class="gig-card-name">${esc(g.venue_name)}</div>`;
+    html += `<div class="gig-card-date">${dateStr}${g.category ? ' · ' : ''}<span class="category-badge ${cat}">${esc((g.category || '').toUpperCase())}</span></div></div>`;
+    html += `<div class="gig-card-score" style="color:${scoreColor}">${g.overall_score.toFixed(1)}</div>`;
+    html += `</div>`;
+    html += `<div class="gig-card-ratings">`;
+    html += `<span class="gig-rating-pill">Tips ${g.rating_tips}</span>`;
+    html += `<span class="gig-rating-pill">Rebooked ${g.rating_rebooked}</span>`;
+    html += `<span class="gig-rating-pill">Audience ${g.rating_audience}</span>`;
+    html += `<span class="gig-rating-pill">Quality ${g.rating_venue_quality}</span>`;
+    html += `</div>`;
+    if (g.notes) html += `<div class="gig-card-notes">${esc(g.notes)}</div>`;
+    html += `</div>`;
+    return html;
+}
+
+function showAddGigForm() {
+    renderGigForm(null);
+    navigateTo('viewGigForm');
+}
+
+function showEditGigForm(gigId) {
+    const gig = gigsData.find(g => g.gig_id === gigId);
+    if (!gig) return;
+    renderGigForm(gig);
+    navigateTo('viewGigForm');
+}
+
+function renderGigForm(gig) {
+    const isEdit = !!gig;
+    document.getElementById('gigFormTitle').textContent = isEdit ? 'Edit Gig' : 'Add Past Gig';
+    const body = document.getElementById('gigFormBody');
+
+    // Build venue dropdown from dashboard venues
+    const venues = (dashboardData && dashboardData.venues) || [];
+    let venueOpts = '<option value="">— Not in system —</option>';
+    venues.forEach(v => {
+        const sel = (gig && gig.venue_id === v.venue_id) ? ' selected' : '';
+        venueOpts += `<option value="${esc(v.venue_id)}" data-cat="${esc(v.category || '')}" data-name="${esc(v.name)}"${sel}>${esc(v.name)} (${esc(v.state || '')})</option>`;
+    });
+
+    // Build category dropdown
+    const cats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant'];
+    let catOpts = cats.map(c => `<option value="${c}"${gig && gig.category === c ? ' selected' : ''}>${CATEGORY_LABELS[c] || c}</option>`).join('');
+
+    let html = '';
+    // Venue select
+    html += `<div class="gig-form-field"><label>Venue</label>`;
+    html += `<select id="gigVenueSelect" onchange="onGigVenueChange()">`;
+    html += venueOpts;
+    html += `</select></div>`;
+
+    // Venue name (for venues not in system)
+    html += `<div class="gig-form-field" id="gigNameRow"${gig && gig.venue_id ? ' style="display:none"' : ''}>`;
+    html += `<label>Venue Name</label>`;
+    html += `<input type="text" id="gigVenueName" value="${esc(gig ? gig.venue_name : '')}" placeholder="e.g. The Inn at Perry Cabin"></div>`;
+
+    // Date
+    html += `<div class="gig-form-field"><label>Date</label>`;
+    html += `<input type="date" id="gigDate" value="${gig ? gig.date : new Date().toISOString().split('T')[0]}"></div>`;
+
+    // Category
+    html += `<div class="gig-form-field"><label>Category</label>`;
+    html += `<select id="gigCategory">${catOpts}</select></div>`;
+
+    // Rating dots
+    const ratingFields = [
+        { key: 'tips', label: 'Tips / Pay', val: gig ? gig.rating_tips : 5 },
+        { key: 'rebooked', label: 'Rebooked', val: gig ? gig.rating_rebooked : 5 },
+        { key: 'audience', label: 'Audience', val: gig ? gig.rating_audience : 5 },
+        { key: 'quality', label: 'Quality', val: gig ? gig.rating_venue_quality : 5 }
+    ];
+
+    for (const rf of ratingFields) {
+        html += `<div class="rating-row">`;
+        html += `<span class="rating-label">${rf.label}</span>`;
+        html += `<div class="rating-dots" id="dots_${rf.key}">`;
+        for (let i = 1; i <= 10; i++) {
+            html += `<div class="rating-dot${i <= rf.val ? ' active' : ''}" data-rating="${rf.key}" data-val="${i}" onclick="setRating('${rf.key}',${i})">${i}</div>`;
+        }
+        html += `</div></div>`;
+    }
+
+    // Overall score display
+    const overall = gig ? gig.overall_score : 5;
+    const overallColor = overall >= 8 ? 'var(--green)' : overall >= 5 ? 'var(--gold)' : 'var(--red)';
+    html += `<div class="rating-overall" id="gigOverall" style="color:${overallColor}">${overall.toFixed(1)}</div>`;
+
+    // Notes
+    html += `<div class="gig-form-field"><label>Notes</label>`;
+    html += `<textarea id="gigNotes" placeholder="What made it good/bad?">${esc(gig ? gig.notes : '')}</textarea></div>`;
+
+    // Save button
+    html += `<button class="gig-save-btn" onclick="saveGig('${isEdit ? esc(gig.gig_id) : ''}')">${isEdit ? 'Update Gig' : 'Save Gig'}</button>`;
+
+    // Delete button (edit only)
+    if (isEdit) {
+        html += `<div style="text-align:center;margin-top:0.75rem">`;
+        html += `<button class="gig-delete-btn" onclick="deleteGig('${esc(gig.gig_id)}')">Delete Gig</button>`;
+        html += `</div>`;
+    }
+
+    body.innerHTML = html;
+}
+
+function onGigVenueChange() {
+    const sel = document.getElementById('gigVenueSelect');
+    const nameRow = document.getElementById('gigNameRow');
+    const opt = sel.options[sel.selectedIndex];
+    if (sel.value) {
+        nameRow.style.display = 'none';
+        document.getElementById('gigVenueName').value = opt.getAttribute('data-name') || '';
+        // Auto-set category from venue
+        const vCat = (opt.getAttribute('data-cat') || '').toLowerCase().replace(/[\s\/]/g, '_');
+        if (vCat) document.getElementById('gigCategory').value = vCat;
+    } else {
+        nameRow.style.display = '';
+    }
+}
+
+function setRating(key, val) {
+    const dots = document.querySelectorAll(`#dots_${key} .rating-dot`);
+    dots.forEach(d => {
+        const dv = parseInt(d.getAttribute('data-val'));
+        if (dv <= val) d.classList.add('active');
+        else d.classList.remove('active');
+    });
+    updateOverall();
+}
+
+function getRating(key) {
+    const dots = document.querySelectorAll(`#dots_${key} .rating-dot.active`);
+    return dots.length || 5;
+}
+
+function updateOverall() {
+    const tips = getRating('tips');
+    const rebooked = getRating('rebooked');
+    const audience = getRating('audience');
+    const quality = getRating('quality');
+    const avg = (tips + rebooked + audience + quality) / 4;
+    const el = document.getElementById('gigOverall');
+    if (el) {
+        el.textContent = avg.toFixed(1);
+        el.style.color = avg >= 8 ? 'var(--green)' : avg >= 5 ? 'var(--gold)' : 'var(--red)';
+    }
+}
+
+function saveGig(gigId) {
+    const venueId = document.getElementById('gigVenueSelect').value || '';
+    const venueName = venueId ? document.getElementById('gigVenueSelect').options[document.getElementById('gigVenueSelect').selectedIndex].getAttribute('data-name') : document.getElementById('gigVenueName').value.trim();
+    const date = document.getElementById('gigDate').value;
+    const category = document.getElementById('gigCategory').value;
+    const notes = document.getElementById('gigNotes').value.trim();
+    const tips = getRating('tips');
+    const rebooked = getRating('rebooked');
+    const audience = getRating('audience');
+    const quality = getRating('quality');
+
+    if (!venueName) { showToast('Enter a venue name'); return; }
+
+    const params = {
+        action: gigId ? 'update_gig' : 'add_gig',
+        venue_name: venueName,
+        venue_id: venueId,
+        date: date,
+        category: category,
+        rating_tips: tips,
+        rating_rebooked: rebooked,
+        rating_audience: audience,
+        rating_venue_quality: quality,
+        notes: notes
+    };
+    if (gigId) params.gig_id = gigId;
+
+    showToast('Saving...');
+    fireGet(buildUrl(params), function(resp) {
+        if (resp.status === 'ok') {
+            showToast(gigId ? 'Gig updated!' : 'Gig saved!');
+            goBack();
+            setTimeout(loadDashboard, 500);
+        } else {
+            showToast('Error: ' + (resp.message || 'Unknown'));
+        }
+    });
+}
+
+function deleteGig(gigId) {
+    if (!confirm('Delete this gig?')) return;
+    // Use update_gig with a special flag — or we add a delete_gig action
+    // For now, just mark as deleted by clearing the venue_name
+    showToast('Deleting...');
+    fireGet(buildUrl({ action: 'update_gig', gig_id: gigId, venue_name: '(DELETED)' }), function(resp) {
+        showToast('Deleted');
+        goBack();
+        setTimeout(loadDashboard, 500);
+    });
+}
+
+// === SMART PICKS (Recommendation Engine) ===
+let smartPicksData = null;
+
+function toggleSmartPicks() {
+    const list = document.getElementById('smartPicksList');
+    list.classList.toggle('collapsed');
+}
+
+function loadSmartPicks() {
+    // Only load if we have past gigs
+    const gigs = (dashboardData && dashboardData.gigs) || [];
+    if (gigs.length === 0) {
+        document.getElementById('smartPicksSection').style.display = 'none';
+        return;
+    }
+
+    jsonpFetch(buildUrl({ action: 'get_recommendations' }), function(err, data) {
+        if (err || !data || data.status !== 'ok') return;
+        smartPicksData = data;
+        renderSmartPicks(data.recommendations || [], data.profile || {});
+    });
+}
+
+function renderSmartPicks(recs, profile) {
+    const section = document.getElementById('smartPicksSection');
+    const list = document.getElementById('smartPicksList');
+    const badge = document.getElementById('smartPicksBadge');
+
+    // Show top 8 recommendations that are untouched/in_progress (not fully contacted)
+    const filtered = recs.filter(r => r.status !== 'contacted').slice(0, 8);
+
+    if (filtered.length === 0) {
+        section.style.display = 'none';
+        return;
+    }
+
+    section.style.display = '';
+    badge.textContent = filtered.length;
+
+    // Build "why" reason for each pick
+    const gigs = (dashboardData && dashboardData.gigs) || [];
+    const bestCat = profile.best_category || '';
+
+    list.innerHTML = filtered.map(r => {
+        const score = r.recommendation_score;
+        const scoreColor = score >= 70 ? 'var(--gold)' : score >= 40 ? 'var(--text)' : 'var(--text-dim)';
+        const cat = (r.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+        const bd = r.score_breakdown || {};
+
+        // Build reason string
+        let reasons = [];
+        if (bd.category >= 20 && bestCat) {
+            // Find best gig in this category
+            const catGigs = gigs.filter(g => g.category.toLowerCase() === r.category.toLowerCase());
+            if (catGigs.length > 0) {
+                const best = catGigs.reduce((a, b) => a.overall_score > b.overall_score ? a : b);
+                reasons.push(`${CATEGORY_LABELS[cat] || r.category} scored ${best.overall_score.toFixed(1)}/10 at ${best.venue_name}`);
+            } else {
+                reasons.push(`Similar to your top category: ${bestCat}`);
+            }
+        }
+        if (bd.zone >= 7) reasons.push('Great zone');
+        if (bd.distance >= 18) reasons.push('Ideal distance');
+        if (bd.contact_quality >= 7) reasons.push('Good contacts');
+
+        let html = `<div class="smart-pick-card" onclick="openVenueDetail('${esc(r.venue_id)}')">`;
+        html += `<div class="smart-pick-top">`;
+        html += `<div class="smart-pick-score" style="color:${scoreColor}">${score}</div>`;
+        html += `<div class="smart-pick-info">`;
+        html += `<div class="smart-pick-name">${esc(r.name)}</div>`;
+        html += `<div class="smart-pick-meta"><span class="category-badge ${cat}">${esc((r.category || '').toUpperCase())}</span> ${esc(r.city || '')}${r.state ? ', ' + esc(r.state) : ''}${r.distance_miles ? ' · ' + r.distance_miles + ' mi' : ''}</div>`;
+        html += `</div></div>`;
+        if (reasons.length > 0) {
+            html += `<div class="smart-pick-reason">${esc(reasons[0])}</div>`;
+        }
+        html += `</div>`;
+        return html;
+    }).join('');
+}
+
+function updateGigsCount() {
+    const gigs = (dashboardData && dashboardData.gigs) || [];
+    // Filter out deleted gigs
+    const active = gigs.filter(g => g.venue_name !== '(DELETED)');
+    document.getElementById('gigsCount').textContent = active.length;
 }
 
 // === INIT ===

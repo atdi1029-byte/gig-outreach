@@ -576,6 +576,8 @@ body {
     margin-top: 0.25rem;
 }
 .monthly-add:active { color: var(--text-bright); }
+.monthly-edit-defaults { color: var(--text-dim); font-size: 0.6rem; opacity: 0.6; }
+.monthly-edit-defaults:active { color: var(--accent); opacity: 1; }
 
 /* === PAST GIGS === */
 .gigs-pill-row { text-align: center; margin: 0.75rem 0; }
@@ -1356,14 +1358,24 @@ function loadDashboard() {
 
 // === MONTHLY TASKS ===
 const MONTHLY_KEY = 'outreach_monthly_tasks';
-const DEFAULT_MONTHLY_TASKS = [
-    'Send 20 outreach emails',
-    'Scrape 5 new venues',
-    'Follow up with 3 past contacts',
-    'Run Apollo on 3 venues',
+const MONTHLY_DEFAULTS_KEY = 'outreach_monthly_defaults';
+const BUILTIN_DEFAULTS = [
+    'Send 20 Outreach Emails',
+    'Scrape 5 New Venues',
+    'Follow Up With 3 Past Contacts',
+    'Run Apollo On 3 Venues',
     'Send 10 Instagram DMs',
-    'Send 10 Facebook messages'
+    'Send 10 Facebook Messages'
 ];
+
+function titleCase(s) { return s.replace(/\b\w/g, c => c.toUpperCase()); }
+
+function getMonthlyDefaults() {
+    const stored = localStorage.getItem(MONTHLY_DEFAULTS_KEY);
+    if (stored) return JSON.parse(stored);
+    return BUILTIN_DEFAULTS;
+}
+function saveMonthlyDefaults(arr) { localStorage.setItem(MONTHLY_DEFAULTS_KEY, JSON.stringify(arr)); }
 
 function getMonthKey() {
     const d = new Date();
@@ -1374,8 +1386,9 @@ function getMonthlyTasks() {
     const data = JSON.parse(localStorage.getItem(MONTHLY_KEY) || '{}');
     const currentMonth = getMonthKey();
     if (data.month !== currentMonth) {
-        // New month — reset tasks
-        const tasks = DEFAULT_MONTHLY_TASKS.map((t, i) => ({ id: i, text: t, done: false }));
+        // New month — use saved defaults
+        const defaults = getMonthlyDefaults();
+        const tasks = defaults.map((t, i) => ({ id: i, text: t, done: false }));
         const fresh = { month: currentMonth, tasks: tasks };
         localStorage.setItem(MONTHLY_KEY, JSON.stringify(fresh));
         return fresh;
@@ -1400,7 +1413,7 @@ function addMonthlyTask() {
     if (!text || !text.trim()) return;
     const data = getMonthlyTasks();
     const maxId = data.tasks.reduce((m, t) => Math.max(m, t.id), 0);
-    data.tasks.push({ id: maxId + 1, text: text.trim(), done: false });
+    data.tasks.push({ id: maxId + 1, text: titleCase(text.trim()), done: false });
     saveMonthlyTasks(data);
     renderMonthlyTasks();
 }
@@ -1415,7 +1428,7 @@ function editMonthlyTask(id) {
         // Delete
         data.tasks = data.tasks.filter(t => t.id !== id);
     } else {
-        task.text = choice.trim();
+        task.text = titleCase(choice.trim());
     }
     saveMonthlyTasks(data);
     renderMonthlyTasks();
@@ -1467,6 +1480,7 @@ function renderMonthlyTasks() {
         html += `</div>`;
     }
     html += `<div class="monthly-add" onclick="event.stopPropagation();addMonthlyTask()">+ Add task</div>`;
+    html += `<div class="monthly-add monthly-edit-defaults" onclick="event.stopPropagation();openDefaultsEditor()">&#9881; Edit Monthly Defaults</div>`;
     html += `</div>`;
     section.innerHTML = html;
 }
@@ -1475,6 +1489,56 @@ function toggleMonthlyBody() {
     const body = document.querySelector('.monthly-body');
     const header = document.querySelector('.monthly-header');
     if (body) { body.classList.toggle('open'); header.classList.toggle('open'); }
+}
+
+function openDefaultsEditor() {
+    const defaults = getMonthlyDefaults();
+    const section = document.getElementById('monthlySection');
+    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const monthLabel = monthNames[new Date().getMonth()] + ' ' + new Date().getFullYear();
+    let html = `<div class="monthly-header open" onclick="toggleMonthlyBody()">`;
+    html += `<span class="monthly-title">${monthLabel} Tasks</span>`;
+    html += `<span class="monthly-progress">Editing Defaults</span>`;
+    html += `</div>`;
+    html += `<div class="monthly-body open">`;
+    html += `<div style="padding:0.3rem 0.5rem;font-size:0.75rem;color:var(--text-dim);margin-bottom:0.3rem">These tasks reset every month. Tap &#9998; to edit, &#10005; to remove.</div>`;
+    for (let i = 0; i < defaults.length; i++) {
+        html += `<div class="monthly-task">`;
+        html += `<span class="monthly-task-text" style="flex:1">${esc(defaults[i])}</span>`;
+        html += `<span class="monthly-edit" onclick="event.stopPropagation();editDefault(${i})">&#9998;</span>`;
+        html += `<span class="monthly-edit" onclick="event.stopPropagation();removeDefault(${i})" style="color:var(--red)">&#10005;</span>`;
+        html += `</div>`;
+    }
+    html += `<div class="monthly-add" onclick="event.stopPropagation();addDefault()">+ Add Default Task</div>`;
+    html += `<div class="monthly-add" onclick="event.stopPropagation();renderMonthlyTasks()" style="color:var(--gold)">&#10003; Done</div>`;
+    html += `</div>`;
+    section.innerHTML = html;
+}
+
+function editDefault(idx) {
+    const defaults = getMonthlyDefaults();
+    const choice = prompt('Edit default task:', defaults[idx]);
+    if (choice === null) return;
+    if (choice.trim() === '') { defaults.splice(idx, 1); }
+    else { defaults[idx] = titleCase(choice.trim()); }
+    saveMonthlyDefaults(defaults);
+    openDefaultsEditor();
+}
+
+function removeDefault(idx) {
+    const defaults = getMonthlyDefaults();
+    defaults.splice(idx, 1);
+    saveMonthlyDefaults(defaults);
+    openDefaultsEditor();
+}
+
+function addDefault() {
+    const text = prompt('New default task:');
+    if (!text || !text.trim()) return;
+    const defaults = getMonthlyDefaults();
+    defaults.push(titleCase(text.trim()));
+    saveMonthlyDefaults(defaults);
+    openDefaultsEditor();
 }
 
 function scrollToTasks() {

@@ -403,12 +403,17 @@ Step 8: Push valid emails to Google Sheet
 - [x] Skip/star word filter in app (tap title words to filter contacts)
 - [x] Auto distance calculation on add_venue/add_contact
 - [x] Top Picks collapsed by default
+- [x] LinkedIn → Apollo enrichment (scripts built + tested)
+- [x] Build "Add Past Gig" feature — rating UI with 4 categories (1-10)
+- [x] Google Maps discovery scraper (`discover.sh`) — "People also search for" + "Similar nearby" + "View more"
+- [x] Recommendation engine — scores venues 0-100 based on past gig similarity
+- [x] Smart Picks + Top Picks on home screen
+- [x] Monthly tasks (collapsible, resets monthly)
 
 **NEXT:**
-1. Finish LinkedIn → Apollo enrichment (find emails for LinkedIn-only people)
-2. Build "Add Past Gig" feature — feed in venues you've played
-3. Google Places enrichment for past gigs (profile builder, "people also visit")
-4. Live run-through — full pipeline on a real venue, user watching
+1. Add full past gig history — rate ALL venues played (not just 3)
+2. Live run-through — full pipeline on a real venue, user watching
+3. Rate limits research (see below)
 
 **PIPELINE (per venue, in order):**
 1. Website scrape — hit venue website + /contact page, grab emails + Instagram + Facebook links
@@ -418,17 +423,16 @@ Step 8: Push valid emails to Google Sheet
 - Each step checks the sheet first, skips duplicates, only spends credits on new people
 
 **RESEARCH NEEDED:**
-- [ ] Rate limits deep research: Google Places API daily/monthly caps, Instagram scraping limits, Facebook scraping limits, LinkedIn scraping limits (connection requests, page views, searches), Apollo free tier limits (100 email reveals/month, 120 lead credits), ZeroBounce free tier (100 validations?), Gmail sending limits (500/day personal, 2000/day workspace)
-- [ ] Google Places "find similar" — test with a past gig, see if "people also visit" returns useful similar venues
+- [ ] Rate limits: Gmail sending limits (how many before getting banned?), Instagram DM limits, Facebook Messenger limits, LinkedIn limits (connection requests, page views, searches), Apollo free tier limits (100 email reveals/month), ZeroBounce credits
+- [ ] Best practices for cold outreach volume — avoid spam flags, warm up email, etc.
 
 **LATER:**
-5. Build full overnight automation script (loop through venue list, all 4 steps)
-6. Build Rating Hub (past gig rating, winner profile, lead scoring)
-7. Expand scraper beyond MD wineries (all 6 states, all categories)
-8. Build manual email inbox ("Add Email" button, unverified queue, batch verify)
-9. Expand + improve email templates (A/B test, personalize per venue type)
-10. Pay for Apollo month → run hard → collect contacts → cancel
-11. Start sending outreach
+1. Full overnight automation script (loop through venue list, all 4 steps)
+2. Expand scraper to all 6 states + ALL categories (way more than current 6 — add breweries, wedding venues, yacht clubs, churches, botanical gardens, senior living, embassies, etc.)
+3. More email templates (per venue type — winery, hotel, restaurant, country club, museum, event)
+4. Pay for Apollo month → run hard → collect contacts → cancel
+5. Pokemon leveling (gamification for outreach grind)
+6. Start sending outreach
 
 ### TODO (saved from session 1)
 1. ~~Angel background darkening fix~~ DONE

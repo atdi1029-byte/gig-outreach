@@ -578,6 +578,42 @@ body {
 .monthly-add:active { color: var(--text-bright); }
 .monthly-edit-defaults { color: var(--text-dim); font-size: 0.6rem; opacity: 0.6; }
 .monthly-edit-defaults:active { color: var(--accent); opacity: 1; }
+.monthly-subtask {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0 0.3rem 1.8rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    border-top: 1px solid rgba(34,34,34,0.5);
+}
+.monthly-subtask .monthly-check {
+    width: 14px;
+    height: 14px;
+    font-size: 0.55rem;
+}
+.monthly-subtask .monthly-task-text {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+}
+.monthly-subtask.done .monthly-task-text {
+    text-decoration: line-through;
+    color: #555;
+}
+.monthly-subtask.done .monthly-check {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+}
+.monthly-add-sub {
+    font-size: 0.58rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 0.15rem 0.4rem;
+    opacity: 0.4;
+    transition: opacity 0.15s;
+}
+.monthly-add-sub:hover, .monthly-add-sub:active { opacity: 1; color: var(--accent); }
 
 /* === PAST GIGS === */
 .gigs-pill-row { text-align: center; margin: 0.75rem 0; }
@@ -1403,7 +1439,58 @@ function saveMonthlyTasks(data) {
 function toggleMonthlyTask(id) {
     const data = getMonthlyTasks();
     const task = data.tasks.find(t => t.id === id);
-    if (task) task.done = !task.done;
+    if (!task) return;
+    task.done = !task.done;
+    // If parent has subtasks, toggle all subtasks too
+    if (task.subtasks && task.subtasks.length > 0) {
+        task.subtasks.forEach(s => s.done = task.done);
+    }
+    saveMonthlyTasks(data);
+    renderMonthlyTasks();
+}
+
+function toggleMonthlySubtask(parentId, subId) {
+    const data = getMonthlyTasks();
+    const task = data.tasks.find(t => t.id === parentId);
+    if (!task || !task.subtasks) return;
+    const sub = task.subtasks.find(s => s.id === subId);
+    if (sub) sub.done = !sub.done;
+    // Auto-complete parent if all subtasks done
+    const allDone = task.subtasks.every(s => s.done);
+    const anyDone = task.subtasks.some(s => s.done);
+    if (allDone) task.done = true;
+    else if (!anyDone) task.done = false;
+    else task.done = false;
+    saveMonthlyTasks(data);
+    renderMonthlyTasks();
+}
+
+function addMonthlySubtask(parentId) {
+    const text = prompt('New subtask:');
+    if (!text || !text.trim()) return;
+    const data = getMonthlyTasks();
+    const task = data.tasks.find(t => t.id === parentId);
+    if (!task) return;
+    if (!task.subtasks) task.subtasks = [];
+    const maxSubId = task.subtasks.reduce((m, s) => Math.max(m, s.id), 0);
+    task.subtasks.push({ id: maxSubId + 1, text: titleCase(text.trim()), done: false });
+    saveMonthlyTasks(data);
+    renderMonthlyTasks();
+}
+
+function editMonthlySubtask(parentId, subId) {
+    const data = getMonthlyTasks();
+    const task = data.tasks.find(t => t.id === parentId);
+    if (!task || !task.subtasks) return;
+    const sub = task.subtasks.find(s => s.id === subId);
+    if (!sub) return;
+    const choice = prompt('Edit subtask (clear to delete):', sub.text);
+    if (choice === null) return;
+    if (choice.trim() === '') {
+        task.subtasks = task.subtasks.filter(s => s.id !== subId);
+    } else {
+        sub.text = titleCase(choice.trim());
+    }
     saveMonthlyTasks(data);
     renderMonthlyTasks();
 }
@@ -1441,12 +1528,26 @@ function removeMonthlyTask(id) {
     renderMonthlyTasks();
 }
 
+function countMonthlyItems(tasks) {
+    let total = 0, done = 0;
+    for (const t of tasks) {
+        if (t.subtasks && t.subtasks.length > 0) {
+            total += t.subtasks.length;
+            done += t.subtasks.filter(s => s.done).length;
+        } else {
+            total++;
+            if (t.done) done++;
+        }
+    }
+    return { total, done };
+}
+
 function renderMonthlyTasks() {
     // Monthly tasks enabled
     const data = getMonthlyTasks();
     const tasks = data.tasks || [];
-    const doneCount = tasks.filter(t => t.done).length;
-    const remaining = tasks.length - doneCount;
+    const { total, done: doneCount } = countMonthlyItems(tasks);
+    const remaining = total - doneCount;
     const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const monthLabel = monthNames[new Date().getMonth()] + ' ' + new Date().getFullYear();
 
@@ -1476,8 +1577,18 @@ function renderMonthlyTasks() {
         html += `<div class="monthly-task${t.done ? ' done' : ''}" onclick="toggleMonthlyTask(${t.id})">`;
         html += `<span class="monthly-check">${t.done ? '&#10003;' : ''}</span>`;
         html += `<span class="monthly-task-text">${esc(t.text)}</span>`;
+        html += `<span class="monthly-add-sub" onclick="event.stopPropagation();addMonthlySubtask(${t.id})" title="Add subtask">+</span>`;
         html += `<span class="monthly-edit" onclick="event.stopPropagation();editMonthlyTask(${t.id})">&#9998;</span>`;
         html += `</div>`;
+        if (t.subtasks && t.subtasks.length > 0) {
+            for (const s of t.subtasks) {
+                html += `<div class="monthly-subtask${s.done ? ' done' : ''}" onclick="toggleMonthlySubtask(${t.id},${s.id})">`;
+                html += `<span class="monthly-check">${s.done ? '&#10003;' : ''}</span>`;
+                html += `<span class="monthly-task-text">${esc(s.text)}</span>`;
+                html += `<span class="monthly-edit" onclick="event.stopPropagation();editMonthlySubtask(${t.id},${s.id})">&#9998;</span>`;
+                html += `</div>`;
+            }
+        }
     }
     html += `<div class="monthly-add" onclick="event.stopPropagation();addMonthlyTask()">+ Add task</div>`;
     html += `<div class="monthly-add monthly-edit-defaults" onclick="event.stopPropagation();openDefaultsEditor()">&#9881; Edit Monthly Defaults</div>`;
@@ -1542,11 +1653,10 @@ function addDefault() {
 }
 
 function scrollToTasks() {
-    // On mobile, show a quick toast with remaining count
     const data = getMonthlyTasks();
-    const remaining = data.tasks.filter(t => !t.done).length;
+    const { total, done } = countMonthlyItems(data.tasks || []);
+    const remaining = total - done;
     if (remaining > 0) {
-        const names = data.tasks.filter(t => !t.done).map(t => t.text).join('\n');
         showToast(remaining + ' task' + (remaining !== 1 ? 's' : '') + ' remaining');
     } else {
         showToast('All tasks done this month!');

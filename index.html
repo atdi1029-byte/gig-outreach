@@ -1263,36 +1263,40 @@ function openVenueDetail(venueId) {
         }
     }
 
-    // Instagram
-    html += `<div class="detail-section-label" style="background:${catColor}">Instagram</div>`;
+    // Instagram (only show if we have it AND not yet sent)
     if (venue.instagram) {
         const igDone = contacts.some(c => c.ig_dm_sent);
-        if (igDone) {
-            html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span><span class="detail-done">Sent</span></div>`;
-        } else {
+        if (!igDone) {
+            html += `<div class="detail-section-label" style="background:${catColor}">Instagram</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
             html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(venue.instagram)}','${cat}')">Open + Copy</button>`;
             html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
         }
-    } else {
-        html += `<div class="detail-action-row"><span style="font-size:0.7rem;color:var(--text-dim)">No Instagram found</span></div>`;
     }
 
-    // Facebook
-    html += `<div class="detail-section-label" style="background:${catColor}">Facebook</div>`;
+    // Facebook (only show if we have it AND not yet sent)
     if (venue.facebook) {
         const fbDone = contacts.some(c => c.fb_msg_sent);
-        if (fbDone) {
-            html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span><span class="detail-done">Sent</span></div>`;
-        } else {
+        if (!fbDone) {
+            html += `<div class="detail-section-label" style="background:${catColor}">Facebook</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
             html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(venue.facebook)}','${cat}')">Open + Copy</button>`;
             html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
         }
-    } else {
-        html += `<div class="detail-action-row"><span style="font-size:0.7rem;color:var(--text-dim)">No Facebook found</span></div>`;
+    }
+
+    // If nothing actionable, show a message
+    const hasUnsent = emailContacts.some(c => !c.email_sent);
+    const igPending = venue.instagram && !contacts.some(c => c.ig_dm_sent);
+    const fbPending = venue.facebook && !contacts.some(c => c.fb_msg_sent);
+    if (!hasUnsent && !igPending && !fbPending) {
+        if (emailContacts.length === 0 && !venue.instagram && !venue.facebook) {
+            html += `<div style="text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:0.8rem">Needs pipeline — no contacts scraped yet</div>`;
+        } else {
+            html += `<div style="text-align:center;padding:2rem 1rem;color:var(--green);font-size:0.8rem">All outreach complete</div>`;
+        }
     }
 
     document.getElementById('detailBody').innerHTML = html;

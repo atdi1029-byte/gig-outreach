@@ -202,6 +202,13 @@ for p in new_people:
         print(f"  [ERROR] {p['name']}: {e}")
 
 print(f"\n  Total added to sheet: {added}")
+
+# Save new people to JSON for Apollo enrichment
+enrich_file = '/Users/alexbarnett/Documents/Code/Claude/Email/linkedin_new_people.json'
+import json as j2
+with open(enrich_file, 'w') as f:
+    j2.dump(new_people, f, indent=2)
+print(f"\n  Saved {len(new_people)} new people to: {enrich_file}")
 PYEOF
 )
 
@@ -209,3 +216,18 @@ echo "$CONFIRMED"
 echo ""
 echo "=== LinkedIn cleanup complete ==="
 echo "Raw results: $OUTPUT_FILE"
+
+# --- Apollo enrichment for new people ---
+ENRICH_FILE="/Users/alexbarnett/Documents/Code/Claude/Email/linkedin_new_people.json"
+ENRICH_COUNT=$(python3 -c "import json; print(len(json.load(open('$ENRICH_FILE'))))" 2>/dev/null || echo "0")
+
+if [ "$ENRICH_COUNT" -gt 0 ]; then
+    echo ""
+    echo "=== Starting Apollo enrichment for $ENRICH_COUNT new people ==="
+    echo "(This will take ~5-6 min per person with green email icons)"
+    echo ""
+    /Users/alexbarnett/Documents/Code/Claude/Email/apollo_enrich_linkedin.sh "$VENUE" "$VENUE_ID" "$ENRICH_FILE"
+else
+    echo ""
+    echo "No new people to enrich via Apollo."
+fi

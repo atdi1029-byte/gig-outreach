@@ -32,6 +32,7 @@ function doGet(e) {
   if (action === 'log_outreach')    return logOutreach_(e.parameter);
   if (action === 'add_venue')       return addVenue_(e.parameter);
   if (action === 'add_contact')     return addContact_(e.parameter);
+  if (action === 'update_contact_email') return updateContactEmail_(e.parameter);
   if (action === 'templates')       return serveTemplates_();
   if (action === 'stats')           return serveStats_();
   if (action === 'config')          return serveConfig_();
@@ -514,6 +515,51 @@ function updateContact_(params) {
   }
 
   return jsonResponse_({ status: 'error', message: 'Contact not found: ' + contactId });
+}
+
+// ---------------------------------------------------------------
+// updateContactEmail_ — Update email for a contact matched by name + venue_id
+// Used by Apollo enrichment to add emails to LinkedIn-discovered contacts
+// Params: venue_id, name, email, verified, source
+// ---------------------------------------------------------------
+function updateContactEmail_(params) {
+  var venueId = params.venue_id || '';
+  var name = params.name || '';
+  var email = params.email || '';
+  if (!venueId || !name) return jsonResponse_({ status: 'error', message: 'venue_id and name required' });
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(CONTACTS);
+  var data = sheet.getDataRange().getValues();
+
+  // Find contact by name + venue_id (case-insensitive name match)
+  var nameLower = name.toLowerCase().trim();
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][1]) !== venueId) continue;
+    if (String(data[i][2]).toLowerCase().trim() !== nameLower) continue;
+
+    // Update email
+    if (email) sheet.getRange(i + 1, 5).setValue(email);
+    // Update source if provided
+    if (params.source) sheet.getRange(i + 1, 6).setValue(params.source);
+    // Update verified status
+    if (params.verified) {
+      sheet.getRange(i + 1, 7).setValue(params.verified);
+      sheet.getRange(i + 1, 8).setValue(new Date());
+    }
+
+    return jsonResponse_({ status: 'ok', contact_id: String(data[i][0]), email: email, updated: true });
+  }
+
+  // If not found by name, create a new contact
+  var contactId = 'C-' + String(data.length).padStart(3, '0');
+  sheet.appendRow([
+    contactId, venueId, name, params.title || '', email,
+    params.source || 'apollo+linkedin', params.verified || 'pending',
+    params.verified ? new Date() : '', false, '', false, false
+  ]);
+
+  return jsonResponse_({ status: 'ok', contact_id: contactId, email: email, created: true });
 }
 
 // ---------------------------------------------------------------

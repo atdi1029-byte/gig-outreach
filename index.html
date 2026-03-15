@@ -468,11 +468,108 @@ body {
 .word-popup .wp-skip { color: var(--red); }
 .word-popup .wp-skip:active { background: rgba(239,83,80,0.3); }
 
+/* === MONTHLY TASKS === */
+.monthly-tasks-pill {
+    background: #fff;
+    color: #000;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    border: 2px solid var(--gold);
+    cursor: pointer;
+    animation: taskPulse 1.5s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+}
+.monthly-tasks-pill.all-done {
+    animation: none;
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+    opacity: 0.6;
+}
+@keyframes taskPulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 4px rgba(240,160,48,0.3); }
+    50% { opacity: 0.7; box-shadow: 0 0 12px rgba(240,160,48,0.6); }
+}
+
+.monthly-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+.monthly-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+.monthly-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: var(--text-bright);
+}
+.monthly-progress {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+}
+.monthly-task {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--border);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.monthly-task:first-of-type { border-top: none; }
+.monthly-check {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border-light);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: transparent;
+    transition: all 0.15s;
+}
+.monthly-task.done .monthly-check {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+}
+.monthly-task-text {
+    font-size: 0.75rem;
+    color: var(--text);
+    flex: 1;
+}
+.monthly-task.done .monthly-task-text {
+    text-decoration: line-through;
+    color: var(--text-dim);
+}
+.monthly-add {
+    font-size: 0.65rem;
+    color: var(--accent);
+    cursor: pointer;
+    padding: 0.4rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 0.25rem;
+}
+.monthly-add:active { color: var(--text-bright); }
+
 @media (max-width: 768px) {
     .view-inner { padding: 0.75rem; }
     .home-header h1 { font-size: 1.4rem; letter-spacing: 3px; }
     .home-header h1 .drop-cap { font-size: 2.6rem; }
     .venue-name { font-size: 0.8rem; }
+    .monthly-section { display: none; }
 }
 </style>
 </head>
@@ -484,7 +581,11 @@ body {
     <div class="view-inner">
         <div class="home-header">
             <h1><span class="drop-cap">G</span>ig <span class="drop-cap">O</span>utreach</h1>
+            <span class="monthly-tasks-pill" id="monthlyPill" onclick="scrollToTasks()" style="display:none"></span>
         </div>
+
+        <!-- MONTHLY TASKS (desktop only, hidden on mobile via CSS) -->
+        <div class="monthly-section" id="monthlySection"></div>
 
         <!-- TOP PICKS -->
         <div class="section">
@@ -1066,8 +1167,117 @@ function loadDashboard() {
     });
 }
 
+// === MONTHLY TASKS ===
+const MONTHLY_KEY = 'outreach_monthly_tasks';
+const DEFAULT_MONTHLY_TASKS = [
+    'Send 20 outreach emails',
+    'Scrape 5 new venues',
+    'Follow up with 3 past contacts',
+    'Run Apollo on 3 venues',
+    'Send 10 Instagram DMs',
+    'Send 10 Facebook messages'
+];
+
+function getMonthKey() {
+    const d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+}
+
+function getMonthlyTasks() {
+    const data = JSON.parse(localStorage.getItem(MONTHLY_KEY) || '{}');
+    const currentMonth = getMonthKey();
+    if (data.month !== currentMonth) {
+        // New month — reset tasks
+        const tasks = DEFAULT_MONTHLY_TASKS.map((t, i) => ({ id: i, text: t, done: false }));
+        const fresh = { month: currentMonth, tasks: tasks };
+        localStorage.setItem(MONTHLY_KEY, JSON.stringify(fresh));
+        return fresh;
+    }
+    return data;
+}
+
+function saveMonthlyTasks(data) {
+    localStorage.setItem(MONTHLY_KEY, JSON.stringify(data));
+}
+
+function toggleMonthlyTask(id) {
+    const data = getMonthlyTasks();
+    const task = data.tasks.find(t => t.id === id);
+    if (task) task.done = !task.done;
+    saveMonthlyTasks(data);
+    renderMonthlyTasks();
+}
+
+function addMonthlyTask() {
+    const text = prompt('New task:');
+    if (!text || !text.trim()) return;
+    const data = getMonthlyTasks();
+    const maxId = data.tasks.reduce((m, t) => Math.max(m, t.id), 0);
+    data.tasks.push({ id: maxId + 1, text: text.trim(), done: false });
+    saveMonthlyTasks(data);
+    renderMonthlyTasks();
+}
+
+function removeMonthlyTask(id) {
+    const data = getMonthlyTasks();
+    data.tasks = data.tasks.filter(t => t.id !== id);
+    saveMonthlyTasks(data);
+    renderMonthlyTasks();
+}
+
+function renderMonthlyTasks() {
+    const data = getMonthlyTasks();
+    const tasks = data.tasks || [];
+    const doneCount = tasks.filter(t => t.done).length;
+    const remaining = tasks.length - doneCount;
+    const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const monthLabel = monthNames[new Date().getMonth()] + ' ' + new Date().getFullYear();
+
+    // Flashing pill (shows on mobile, also visible on desktop)
+    const pill = document.getElementById('monthlyPill');
+    if (remaining > 0) {
+        pill.textContent = remaining + ' task' + (remaining !== 1 ? 's' : '');
+        pill.style.display = '';
+        pill.classList.remove('all-done');
+    } else if (tasks.length > 0) {
+        pill.textContent = 'All done!';
+        pill.style.display = '';
+        pill.classList.add('all-done');
+    } else {
+        pill.style.display = 'none';
+    }
+
+    // Full task list (desktop only — hidden on mobile via CSS)
+    const section = document.getElementById('monthlySection');
+    let html = `<div class="monthly-header">`;
+    html += `<span class="monthly-title">${monthLabel} Tasks</span>`;
+    html += `<span class="monthly-progress">${doneCount}/${tasks.length}</span>`;
+    html += `</div>`;
+
+    for (const t of tasks) {
+        html += `<div class="monthly-task${t.done ? ' done' : ''}" onclick="toggleMonthlyTask(${t.id})">`;
+        html += `<span class="monthly-check">${t.done ? '&#10003;' : ''}</span>`;
+        html += `<span class="monthly-task-text">${esc(t.text)}</span>`;
+        html += `</div>`;
+    }
+    html += `<div class="monthly-add" onclick="event.stopPropagation();addMonthlyTask()">+ Add task</div>`;
+    section.innerHTML = html;
+}
+
+function scrollToTasks() {
+    // On mobile, show a quick toast with remaining count
+    const data = getMonthlyTasks();
+    const remaining = data.tasks.filter(t => !t.done).length;
+    if (remaining > 0) {
+        const names = data.tasks.filter(t => !t.done).map(t => t.text).join('\n');
+        showToast(remaining + ' task' + (remaining !== 1 ? 's' : '') + ' remaining');
+    } else {
+        showToast('All tasks done this month!');
+    }
+}
+
 // === INIT ===
-document.addEventListener('DOMContentLoaded', () => { loadDashboard(); });
+document.addEventListener('DOMContentLoaded', () => { renderMonthlyTasks(); loadDashboard(); });
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW:', err));

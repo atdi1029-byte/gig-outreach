@@ -505,8 +505,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
+.monthly-header.open { margin-bottom: 0.5rem; }
+.monthly-body { display: none; }
+.monthly-body.open { display: block; }
 .monthly-title {
     font-family: 'Playfair Display', serif;
     font-size: 0.9rem;
@@ -1401,13 +1405,14 @@ function renderMonthlyTasks() {
         pill.style.display = 'none';
     }
 
-    // Full task list (desktop only — hidden on mobile via CSS)
+    // Full task list (collapsible, starts collapsed)
     const section = document.getElementById('monthlySection');
-    let html = `<div class="monthly-header">`;
+    const wasOpen = section.querySelector('.monthly-body.open') !== null;
+    let html = `<div class="monthly-header${wasOpen ? ' open' : ''}" onclick="toggleMonthlyBody()">`;
     html += `<span class="monthly-title">${monthLabel} Tasks</span>`;
     html += `<span class="monthly-progress">${doneCount}/${tasks.length}</span>`;
     html += `</div>`;
-
+    html += `<div class="monthly-body${wasOpen ? ' open' : ''}">`;
     for (const t of tasks) {
         html += `<div class="monthly-task${t.done ? ' done' : ''}" onclick="toggleMonthlyTask(${t.id})">`;
         html += `<span class="monthly-check">${t.done ? '&#10003;' : ''}</span>`;
@@ -1415,7 +1420,14 @@ function renderMonthlyTasks() {
         html += `</div>`;
     }
     html += `<div class="monthly-add" onclick="event.stopPropagation();addMonthlyTask()">+ Add task</div>`;
+    html += `</div>`;
     section.innerHTML = html;
+}
+
+function toggleMonthlyBody() {
+    const body = document.querySelector('.monthly-body');
+    const header = document.querySelector('.monthly-header');
+    if (body) { body.classList.toggle('open'); header.classList.toggle('open'); }
 }
 
 function scrollToTasks() {

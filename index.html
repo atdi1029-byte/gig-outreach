@@ -1131,7 +1131,7 @@ function renderStateGrid() {
     const venues = (dashboardData && dashboardData.venues) || [];
 
     el.innerHTML = '<div class="state-grid">' + states.map(s => {
-        const count = venues.filter(v => v.state === s).length;
+        const count = venues.filter(v => v.state === s && venueHasPending(v.venue_id)).length;
         return `<div class="state-card" style="background-image:url('${STATE_IMAGES[s] || ''}')" onclick="openState('${s}')">
             <div class="state-card-name">${STATE_NAMES[s] || s}</div>
             <div class="state-card-count">${count} venue${count !== 1 ? 's' : ''}</div>
@@ -1144,7 +1144,7 @@ function openState(state) {
     currentState = state;
     document.getElementById('stateTitleText').textContent = STATE_NAMES[state] || state;
 
-    const venues = ((dashboardData && dashboardData.venues) || []).filter(v => v.state === state);
+    const venues = ((dashboardData && dashboardData.venues) || []).filter(v => v.state === state && venueHasPending(v.venue_id));
     const catCounts = {};
     venues.forEach(v => {
         const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
@@ -1172,7 +1172,7 @@ function openCategory(cat) {
     document.getElementById('categoryTitleText').textContent = (CATEGORY_LABELS[cat] || cat) + ' — ' + (STATE_NAMES[currentState] || currentState);
 
     const venues = ((dashboardData && dashboardData.venues) || []).filter(v =>
-        v.state === currentState && (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === cat
+        v.state === currentState && (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === cat && venueHasPending(v.venue_id)
     );
 
     const el = document.getElementById('categoryBody');
@@ -1305,6 +1305,23 @@ function openVenueDetail(venueId) {
 }
 
 // === HELPERS ===
+function venueHasPending(venueId) {
+    const contacts = ((dashboardData && dashboardData.contacts) || []).filter(c => c.venue_id === venueId);
+    const venue = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === venueId);
+    if (!venue) return false;
+    // Has unsent verified emails?
+    if (contacts.some(c => c.email && c.verified === 'valid' && !c.email_sent)) return true;
+    // Has Instagram not yet DM'd?
+    if (venue.instagram && !contacts.some(c => c.ig_dm_sent)) return true;
+    // Has Facebook not yet messaged?
+    if (venue.facebook && !contacts.some(c => c.fb_msg_sent)) return true;
+    // No contacts at all = needs pipeline
+    if (contacts.length === 0 && !venue.instagram && !venue.facebook && !venue.website) return false;
+    // Has website but no contacts yet = needs pipeline (still actionable)
+    if (venue.website && contacts.length === 0) return true;
+    return false;
+}
+
 function formatDrive(mins) {
     if (!mins) return '';
     if (mins < 60) return mins + ' min';

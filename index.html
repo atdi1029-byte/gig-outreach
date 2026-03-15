@@ -1058,14 +1058,14 @@ function toggleTopPicks() {
 function renderTopPicks(picks) {
     const el = document.getElementById('topPicksList');
     const badge = document.getElementById('topPicksBadge');
-    const top5 = (picks || []).slice(0, 5);
-    badge.textContent = top5.length;
+    const all = picks || [];
+    badge.textContent = all.length;
 
-    if (top5.length === 0) {
+    if (all.length === 0) {
         el.innerHTML = '<div class="empty-state">No top picks yet. Run the scraper to find venues!</div>';
         return;
     }
-    el.innerHTML = top5.map(renderVenueCard).join('');
+    el.innerHTML = all.map(renderVenueCard).join('');
 }
 
 function renderVenueCard(item) {
@@ -1440,8 +1440,8 @@ function openGigsView() {
     if (gigsData.length === 0) {
         body.innerHTML = '<div class="gig-empty">No past gigs yet.<br>Tap "+ Add" to log your first gig!</div>';
     } else {
-        // Sort by date descending (most recent first)
-        const sorted = [...gigsData].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        // Sort by overall score descending (best gigs first)
+        const sorted = [...gigsData].sort((a, b) => (b.overall_score || 0) - (a.overall_score || 0));
         body.innerHTML = sorted.map(g => renderGigCard(g)).join('');
     }
     navigateTo('viewGigs');

@@ -17,8 +17,12 @@ var PROGRESS    = 'Progress';
 // doGet — Main API router
 // All actions via GET query params: ?action=dashboard&...
 // ---------------------------------------------------------------
+// Global callback for JSONP support — set by doGet, used by jsonResponse_
+var _jsonpCallback = '';
+
 function doGet(e) {
   var action = (e && e.parameter && e.parameter.action) || '';
+  _jsonpCallback = (e && e.parameter && e.parameter.callback) || '';
 
   if (action === 'dashboard')       return serveDashboardJSON_();
   if (action === 'venues')          return serveVenuesJSON_(e.parameter);
@@ -41,8 +45,12 @@ function doGet(e) {
 // JSON response helper
 // ---------------------------------------------------------------
 function jsonResponse_(obj) {
-  return ContentService
-    .createTextOutput(JSON.stringify(obj))
+  var json = JSON.stringify(obj);
+  if (_jsonpCallback) {
+    return ContentService.createTextOutput(_jsonpCallback + '(' + json + ')')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(json)
     .setMimeType(ContentService.MimeType.JSON);
 }
 
@@ -362,6 +370,27 @@ function addVenue_(params) {
     params.notes || ''
   ]);
 
+  // Auto-calculate distance for new venue
+  var newRow = sheet.getLastRow();
+  var dest = params.address || '';
+  if (!dest) dest = (params.city || '') + ', ' + (params.state || '');
+  if (dest && dest !== ', ') {
+    try {
+      var directions = Maps.newDirectionFinder()
+        .setOrigin(HOME_ADDRESS)
+        .setDestination(dest)
+        .setMode(Maps.DirectionFinder.Mode.DRIVING)
+        .getDirections();
+      if (directions.routes && directions.routes.length > 0) {
+        var leg = directions.routes[0].legs[0];
+        var miles = Math.round(leg.distance.value / 1609.34 * 10) / 10;
+        var mins = Math.round(leg.duration.value / 60);
+        sheet.getRange(newRow, 17).setValue(miles);
+        sheet.getRange(newRow, 18).setValue(mins);
+      }
+    } catch(e) { /* Distance calc failed — run calc_distances later */ }
+  }
+
   return jsonResponse_({ status: 'ok', venue_id: venueId, name: params.name });
 }
 
@@ -398,6 +427,9 @@ function addContact_(params) {
     false,  // ig_dm_sent
     false   // fb_msg_sent
   ]);
+
+  // Auto-calculate distance if venue is missing it
+  calcDistanceForVenue_(params.venue_id || '');
 
   return jsonResponse_({ status: 'ok', contact_id: contactId, email: params.email });
 }
@@ -636,6 +668,44 @@ function setConfig_(label, value) {
     }
   }
   sheet.appendRow([label, value]);
+}
+
+// ---------------------------------------------------------------
+// calcDistanceForVenue_ — Calculate distance for a single venue if missing
+// Called automatically by addContact_ as a safety net
+// ---------------------------------------------------------------
+function calcDistanceForVenue_(venueId) {
+  if (!venueId) return;
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(VENUES);
+  var data = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]) !== venueId) continue;
+    if (data[i][16]) return; // already has distance
+
+    var dest = String(data[i][7] || '');
+    if (!dest || dest === 'undefined') {
+      dest = String(data[i][4] || '') + ', ' + String(data[i][6] || '');
+    }
+    if (!dest || dest === ', ') return;
+
+    try {
+      var directions = Maps.newDirectionFinder()
+        .setOrigin(HOME_ADDRESS)
+        .setDestination(dest)
+        .setMode(Maps.DirectionFinder.Mode.DRIVING)
+        .getDirections();
+      if (directions.routes && directions.routes.length > 0) {
+        var leg = directions.routes[0].legs[0];
+        var miles = Math.round(leg.distance.value / 1609.34 * 10) / 10;
+        var mins = Math.round(leg.duration.value / 60);
+        sheet.getRange(i + 1, 17).setValue(miles);
+        sheet.getRange(i + 1, 18).setValue(mins);
+      }
+    } catch(e) { /* silent fail */ }
+    return;
+  }
 }
 
 // ---------------------------------------------------------------

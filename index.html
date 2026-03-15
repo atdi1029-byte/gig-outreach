@@ -1379,7 +1379,7 @@ function removeMonthlyTask(id) {
 }
 
 function renderMonthlyTasks() {
-    return; // TODO: hidden for now — add real tasks later
+    // Monthly tasks enabled
     const data = getMonthlyTasks();
     const tasks = data.tasks || [];
     const doneCount = tasks.filter(t => t.done).length;

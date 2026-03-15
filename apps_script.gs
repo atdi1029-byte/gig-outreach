@@ -887,11 +887,11 @@ function addGig_(params) {
     quality,
     overall,
     params.notes || '',
-    ''  // distance_miles (calculated later)
+    params.distance_miles ? Number(params.distance_miles) : ''
   ]]);
 
-  // Calculate distance if we have a venue_id
-  if (params.venue_id) {
+  // Calculate distance if we have a venue_id (and no manual distance)
+  if (params.venue_id && !params.distance_miles) {
     var vSheet = ss.getSheetByName(VENUES);
     var vData = vSheet.getDataRange().getValues();
     for (var v = 1; v < vData.length; v++) {
@@ -929,6 +929,7 @@ function updateGig_(params) {
       if (params.rating_audience) sheet.getRange(row, 8).setValue(Number(params.rating_audience));
       if (params.rating_venue_quality) sheet.getRange(row, 9).setValue(Number(params.rating_venue_quality));
       if (params.notes) sheet.getRange(row, 11).setValue(params.notes);
+      if (params.distance_miles) sheet.getRange(row, 12).setValue(Number(params.distance_miles));
 
       // Recalculate overall
       var tips = Number(sheet.getRange(row, 6).getValue());

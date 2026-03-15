@@ -24,6 +24,8 @@ ZEROBOUNCE_KEY="7a47396026644791a236621ebe3d2584"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="${SCRIPT_DIR}/pipeline.log"
 JUNK_DOMAINS="wix.com|wordpress|sentry.io|cloudflare|example.com|squarespace|shopify|mailchimp|googleapis|google.com|gstatic|facebook|instagram|twitter|hubspot|sendgrid|zendesk"
+MAX_APOLLO_CLICKS="${MAX_APOLLO_CLICKS:-999}"  # Set to 1 for testing: MAX_APOLLO_CLICKS=1 ./pipeline.sh ...
+APOLLO_CLICKS_USED=0
 
 rand_delay() {
     local min=$1 max=$2
@@ -153,7 +155,7 @@ emails = set()
 for e in re.findall(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', all_text):
     el = e.lower()
     if any(j in el for j in junk): continue
-    if el.startswith('info@'): continue
+    if any(el.startswith(p) for p in ['info@','reservations@','noreply@','no-reply@','support@','admin@','webmaster@','sales@','contact@','hello@','office@']): continue
     if len(e) > 60: continue
     emails.add(e)
 
@@ -248,22 +250,27 @@ step3_apollo() {
     log ""
     log "========== STEP 3: Apollo Scrape =========="
 
-    osascript -e 'tell application "Google Chrome" to activate'
-    rand_delay 1 2
-
     # Navigate to Apollo home
     osascript -e 'tell application "Google Chrome" to set URL of active tab of front window to "https://app.apollo.io/#/home"'
-    rand_delay 4 7
+    sleep 5
 
-    # Search for venue
+    # Search for venue — single osascript block so terminal can't steal focus
     log "  Searching for: $venue"
-    osascript -e 'tell application "System Events" to keystroke "k" using command down'
-    rand_delay 1 2
     echo -n "$venue" | pbcopy
-    osascript -e 'tell application "System Events" to keystroke "v" using command down'
+    osascript << 'SEARCHEOF'
+tell application "Google Chrome" to activate
+delay 1
+tell application "System Events"
+    keystroke "k" using command down
+end tell
+delay 2
+tell application "System Events"
+    keystroke "v" using command down
+end tell
+SEARCHEOF
     rand_delay 4 7
 
-    # Click company in search results
+    # Click company in search results (ONLY companies, not people)
     local click_result
     click_result=$(osascript << CLICKEOF
 tell application "Google Chrome"
@@ -271,21 +278,25 @@ tell application "Google Chrome"
 (function(){
 var m=document.querySelector('[data-testid=omni-search-modal]');
 if(!m) return 'no modal';
-var divs=m.querySelectorAll('div');
+/* Look for links that go to /accounts/ (company pages), not /contacts/ (people) */
+var links=m.querySelectorAll('a[href*=\"/accounts/\"]');
 var best=null, bestLen=99999;
-for(var i=0;i<divs.length;i++){
-    var t=divs[i].textContent;
-    if(t.indexOf('$venue')>-1 && t.indexOf('Hospitality')>-1 && t.length<bestLen && t.length>0 && divs[i].childElementCount>0){
+for(var i=0;i<links.length;i++){
+    var t=links[i].textContent;
+    if(t.length>0 && t.length<bestLen){
         bestLen=t.length;
-        best=divs[i];
+        best=links[i];
     }
 }
+/* Fallback: look for items with company indicators (employee count, industry) */
 if(!best){
-    for(var i=0;i<divs.length;i++){
-        var t=divs[i].textContent;
-        if(t.indexOf('$venue')>-1 && t.length<bestLen && t.length>0 && divs[i].childElementCount>0){
+    var items=m.querySelectorAll('[role=option], [role=listitem]');
+    for(var i=0;i<items.length;i++){
+        var t=items[i].textContent;
+        var hasCompanyHint=(/\\d+\\s*(employee|people)/i.test(t) || /Hospitality|Hotel|Restaurant|Winery|Museum|Country Club/i.test(t));
+        if(hasCompanyHint && t.length<bestLen && t.length>0){
             bestLen=t.length;
-            best=divs[i];
+            best=items[i];
         }
     }
 }
@@ -296,15 +307,12 @@ end tell
 CLICKEOF
     )
     log "  Company click: $click_result"
-    if [ "$click_result" != "CLICKED" ]; then
-        log "  [ERROR] Could not find company on Apollo. Skipping step 3."
-        return
-    fi
-    rand_delay 2 5
+    if [ "$click_result" = "CLICKED" ]; then
+        rand_delay 2 5
 
-    # Click People tab
-    local people_result
-    people_result=$(osascript << 'EOF'
+        # Click People tab
+        local people_result
+        people_result=$(osascript << 'EOF'
 tell application "Google Chrome"
     execute active tab of front window javascript "
 (function(){
@@ -319,13 +327,32 @@ return 'not found';
 })()"
 end tell
 EOF
-    )
-    log "  People tab: $people_result"
-    if [ "$people_result" != "CLICKED" ]; then
-        log "  [ERROR] Could not find People tab. Skipping."
-        return
+        )
+        log "  People tab: $people_result"
+        if [ "$people_result" != "CLICKED" ]; then
+            log "  [ERROR] Could not find People tab. Skipping."
+            return
+        fi
+        rand_delay 2 4
+    else
+        # No company page — fallback to people search
+        log "  [FALLBACK] No company page — searching Apollo people directly"
+        # Close the search modal
+        osascript -e '
+tell application "Google Chrome" to activate
+delay 0.5
+tell application "System Events" to key code 53'
+        sleep 1
+        # Note in sheet
+        local note_encoded
+        note_encoded=$(python3 -c "import urllib.parse; print(urllib.parse.urlencode({'action':'update_venue','venue_id':'$venue_id','field':'notes','value':'No Apollo company page - used people search fallback'}))")
+        curl -sL "${APPS_SCRIPT_URL}?${note_encoded}" > /dev/null
+        # Navigate to Apollo people search with venue name
+        local ENCODED_SEARCH
+        ENCODED_SEARCH=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$venue'))")
+        osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://app.apollo.io/#/people?qKeywords=${ENCODED_SEARCH}\""
+        rand_delay 5 8
     fi
-    rand_delay 2 4
 
     # Loop through pages
     local TOTAL_CLICKED=0 TOTAL_SKIPPED=0 PAGE=1 FIRST_CLICK=true
@@ -386,6 +413,12 @@ EOF
                     log "  [SKIP] $GNAME — already in sheet"
                     TOTAL_SKIPPED=$((TOTAL_SKIPPED + 1))
                     continue
+                fi
+
+                # Check Apollo click limit
+                if [ "$APOLLO_CLICKS_USED" -ge "$MAX_APOLLO_CLICKS" ]; then
+                    log "  [LIMIT] Max Apollo clicks ($MAX_APOLLO_CLICKS) reached — skipping rest"
+                    break 2
                 fi
 
                 # Wait 5-6 min between clicks (skip for first)
@@ -452,6 +485,7 @@ READEOF
                     log "  >>> $GNAME: $EEMAIL"
                     verify_and_push "$EEMAIL" "$venue_id" "$GNAME" "$GTITLE" "apollo"
                     TOTAL_CLICKED=$((TOTAL_CLICKED + 1))
+                    APOLLO_CLICKS_USED=$((APOLLO_CLICKS_USED + 1))
                 else
                     log "  [WARN] Could not read revealed email"
                 fi
@@ -684,13 +718,21 @@ for p in json.loads(sys.stdin.read()):
 
             # Navigate to Apollo home
             osascript -e 'tell application "Google Chrome" to set URL of active tab of front window to "https://app.apollo.io/#/home"'
-            rand_delay 3 5
+            sleep 5
 
-            # Search by name
-            osascript -e 'tell application "System Events" to keystroke "k" using command down'
-            rand_delay 1 2
+            # Search by name — single osascript block so terminal can't steal focus
             echo -n "$PNAME" | pbcopy
-            osascript -e 'tell application "System Events" to keystroke "v" using command down'
+            osascript << 'ESEARCHEOF'
+tell application "Google Chrome" to activate
+delay 1
+tell application "System Events"
+    keystroke "k" using command down
+end tell
+delay 2
+tell application "System Events"
+    keystroke "v" using command down
+end tell
+ESEARCHEOF
             rand_delay 4 7
 
             # Click first People result
@@ -701,11 +743,18 @@ tell application "Google Chrome"
 (function(){
 var m = document.querySelector('[data-testid=omni-search-modal]');
 if(!m) return 'NO_MODAL';
+var venue = '$venue'.toLowerCase();
+var skip = ['the','at','in','of','and','for','a','an','by','on','to'];
+var venueWords = venue.split(/\\s+/).filter(function(w){ return skip.indexOf(w) === -1 && w.length > 2; });
 var items = m.querySelectorAll('[role=option], [role=listitem], a, div[class]');
 var best = null, bestLen = 99999;
 for(var i = 0; i < items.length; i++){
     var t = items[i].textContent;
-    if(t.indexOf('$PNAME') > -1 && t.length < bestLen && t.length > 0 && items[i].childElementCount > 0){
+    var tLower = t.toLowerCase();
+    /* Must contain the person's name AND at least one venue keyword */
+    var hasName = t.indexOf('$PNAME') > -1;
+    var hasVenue = venueWords.some(function(w){ return tLower.indexOf(w) > -1; });
+    if(hasName && hasVenue && t.length < bestLen && t.length > 0 && items[i].childElementCount > 0){
         bestLen = t.length;
         best = items[i];
     }
@@ -773,6 +822,12 @@ print(urllib.parse.urlencode({
 }))")
                 curl -sL "${APPS_SCRIPT_URL}?${upd_encoded}" > /dev/null
             elif [ "$EMAIL_STATUS" = "GREEN" ]; then
+                # Check Apollo click limit
+                if [ "$APOLLO_CLICKS_USED" -ge "$MAX_APOLLO_CLICKS" ]; then
+                    log "    [LIMIT] Max Apollo clicks ($MAX_APOLLO_CLICKS) reached — skipping"
+                    continue
+                fi
+
                 # Delay between clicks
                 if [ "$ENRICH_FIRST" = true ]; then
                     ENRICH_FIRST=false
@@ -827,6 +882,7 @@ print(urllib.parse.urlencode({
     'source': 'apollo+linkedin'
 }))")
                     curl -sL "${APPS_SCRIPT_URL}?${upd_encoded2}" > /dev/null
+                    APOLLO_CLICKS_USED=$((APOLLO_CLICKS_USED + 1))
                 fi
             elif [ "$EMAIL_STATUS" = "RED" ]; then
                 log "    [SKIP] Red icon — bad email"

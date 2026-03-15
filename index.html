@@ -378,7 +378,7 @@ body {
 
 .collapsed { display: none; }
 
-/* === SKIP WORDS === */
+/* === TITLE WORD FILTER === */
 .title-word {
     cursor: pointer;
     padding: 0.1rem 0.3rem;
@@ -386,13 +386,22 @@ body {
     color: var(--text-dim);
     font-size: 0.65rem;
     transition: background 0.2s;
+    position: relative;
 }
-.title-word:hover, .title-word:active {
-    background: var(--red);
-    color: #fff;
+.title-word:active {
+    background: #333;
+}
+.title-word.starred {
+    color: var(--gold);
+    font-weight: 700;
 }
 .contact-skipped {
     display: none;
+}
+.contact-starred .detail-action-row,
+.contact-starred .detail-contact-name {
+    border-left: 3px solid var(--gold);
+    padding-left: 0.5rem;
 }
 .hidden-count {
     font-size: 0.6rem;
@@ -418,10 +427,46 @@ body {
     cursor: pointer;
     border: 1px solid var(--red);
 }
-.skip-pill:hover, .skip-pill:active {
+.skip-pill:active {
     background: var(--red);
     color: #fff;
 }
+.star-pill {
+    background: rgba(240,160,48,0.2);
+    color: var(--gold);
+    font-size: 0.6rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--gold);
+}
+.star-pill:active {
+    background: var(--gold);
+    color: #000;
+}
+.word-popup {
+    position: fixed;
+    z-index: 100;
+    display: flex;
+    gap: 0.25rem;
+    background: rgba(20,20,20,0.95);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 0.3rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.word-popup button {
+    font-size: 1.1rem;
+    padding: 0.3rem 0.6rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: none;
+}
+.word-popup .wp-star { color: var(--gold); }
+.word-popup .wp-star:active { background: rgba(240,160,48,0.3); }
+.word-popup .wp-skip { color: var(--red); }
+.word-popup .wp-skip:active { background: rgba(239,83,80,0.3); }
 
 @media (max-width: 768px) {
     .view-inner { padding: 0.75rem; }
@@ -503,36 +548,84 @@ let navStack = ['viewHome'];
 let currentState = '';
 let currentCategory = '';
 
-// === SKIP WORDS (title filter) ===
+// === TITLE WORD FILTER (skip + star) ===
 function getSkipWords() { return JSON.parse(localStorage.getItem('outreach_skip_words') || '[]'); }
 function saveSkipWords(words) { localStorage.setItem('outreach_skip_words', JSON.stringify(words)); }
+function getStarWords() { return JSON.parse(localStorage.getItem('outreach_star_words') || '[]'); }
+function saveStarWords(words) { localStorage.setItem('outreach_star_words', JSON.stringify(words)); }
+
 function addSkipWord(word) {
     word = word.toLowerCase().trim();
     if (!word || word.length < 2) return;
+    // Remove from stars if it was there
+    saveStarWords(getStarWords().filter(w => w !== word));
     const words = getSkipWords();
     if (!words.includes(word)) { words.push(word); saveSkipWords(words); }
+    closeWordPopup();
     showToast('Skipping "' + word + '"');
-    // Re-render current venue detail
     if (navStack[navStack.length - 1] === 'viewDetail' && window._currentVenueId) openVenueDetail(window._currentVenueId);
 }
 function removeSkipWord(word) {
-    const words = getSkipWords().filter(w => w !== word.toLowerCase().trim());
-    saveSkipWords(words);
+    saveSkipWords(getSkipWords().filter(w => w !== word.toLowerCase().trim()));
     showToast('Removed "' + word + '"');
+}
+function addStarWord(word) {
+    word = word.toLowerCase().trim();
+    if (!word || word.length < 2) return;
+    // Remove from skips if it was there
+    saveSkipWords(getSkipWords().filter(w => w !== word));
+    const words = getStarWords();
+    if (!words.includes(word)) { words.push(word); saveStarWords(words); }
+    closeWordPopup();
+    showToast('Starred "' + word + '"');
+    if (navStack[navStack.length - 1] === 'viewDetail' && window._currentVenueId) openVenueDetail(window._currentVenueId);
+}
+function removeStarWord(word) {
+    saveStarWords(getStarWords().filter(w => w !== word.toLowerCase().trim()));
+    showToast('Unstarred "' + word + '"');
 }
 function shouldSkipContact(title) {
     if (!title) return false;
-    const words = getSkipWords();
     const lower = title.toLowerCase();
-    return words.some(w => lower.includes(w));
+    return getSkipWords().some(w => lower.includes(w));
 }
+function isStarredContact(title) {
+    if (!title) return false;
+    const lower = title.toLowerCase();
+    return getStarWords().some(w => lower.includes(w));
+}
+
+// Word popup — tap a word, choose ⭐ or ✕
+function showWordPopup(word, el) {
+    closeWordPopup();
+    const rect = el.getBoundingClientRect();
+    const popup = document.createElement('div');
+    popup.className = 'word-popup';
+    popup.id = 'wordPopup';
+    popup.innerHTML = `<button class="wp-star" onclick="addStarWord('${esc(word)}')">⭐</button><button class="wp-skip" onclick="addSkipWord('${esc(word)}')">✕</button>`;
+    document.body.appendChild(popup);
+    // Position above the word
+    popup.style.left = Math.min(rect.left, window.innerWidth - 100) + 'px';
+    popup.style.top = (rect.top - 44) + 'px';
+    // Close on tap elsewhere
+    setTimeout(() => document.addEventListener('click', closeWordPopup, { once: true }), 10);
+}
+function closeWordPopup() {
+    const p = document.getElementById('wordPopup');
+    if (p) p.remove();
+}
+
 function renderTitleWords(name, title) {
     let html = '';
     if (name) html += `<span style="color:var(--text)">${esc(name)}</span>`;
     if (name && title) html += ' — ';
     if (title) {
+        const stars = getStarWords();
         const parts = title.split(/[\s,]+/).filter(w => w.length > 1);
-        html += parts.map(w => `<span class="title-word" onclick="addSkipWord('${esc(w)}')">${esc(w)}</span>`).join(' ');
+        html += parts.map(w => {
+            const isStarred = stars.includes(w.toLowerCase());
+            return `<span class="title-word${isStarred ? ' starred' : ''}" onclick="event.stopPropagation();showWordPopup('${esc(w.toLowerCase())}',this)">${esc(w)}</span>`;
+        }).join(' ');
     }
     return html;
 }
@@ -871,23 +964,33 @@ function openVenueDetail(venueId) {
         html += `<div class="detail-section-label" style="background:${catColor}">Emails</div>`;
         for (const c of emailContacts) {
             const skipped = shouldSkipContact(c.title);
+            const starred = isStarredContact(c.title);
             if (skipped) hiddenCount++;
             if (c.email_sent) {
                 html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">Sent</span></div>`;
             } else if (c.verified === 'valid') {
-                html += `<div class="detail-action-row${skipped ? ' contact-skipped' : ''}"><span class="detail-email">${esc(c.email)}</span>`;
+                html += `<div class="${skipped ? 'contact-skipped' : ''}${starred ? ' contact-starred' : ''}">`;
+                html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
                 html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
                 html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button></div>`;
-                if (c.name || c.title) html += `<div class="detail-contact-name${skipped ? ' contact-skipped' : ''}">${renderTitleWords(c.name, c.title)}</div>`;
+                if (c.name || c.title) html += `<div class="detail-contact-name">${renderTitleWords(c.name, c.title)}</div>`;
+                html += `</div>`;
             } else {
                 html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.5">${esc(c.email)}</span>`;
                 html += `<span style="font-size:0.6rem;color:var(--text-dim)">${c.verified || 'unverified'}</span></div>`;
             }
         }
-        if (hiddenCount > 0) {
-            html += `<div class="hidden-count" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='flex'?'none':'flex'">${hiddenCount} hidden by filters</div>`;
+        const starWords = getStarWords();
+        if (hiddenCount > 0 || starWords.length > 0) {
+            const parts = [];
+            if (hiddenCount > 0) parts.push(hiddenCount + ' hidden');
+            if (starWords.length > 0) parts.push(starWords.length + ' starred');
+            html += `<div class="hidden-count" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='flex'?'none':'flex'">${parts.join(', ')} — manage filters</div>`;
             html += `<div class="skip-words-bar" style="display:none">`;
+            for (const w of starWords) {
+                html += `<span class="star-pill" onclick="removeStarWord('${esc(w)}');openVenueDetail('${esc(venueId)}')">⭐ ${esc(w)} ✕</span>`;
+            }
             for (const w of skipWords) {
                 html += `<span class="skip-pill" onclick="removeSkipWord('${esc(w)}');openVenueDetail('${esc(venueId)}')">${esc(w)} ✕</span>`;
             }

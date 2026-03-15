@@ -1396,20 +1396,24 @@ function loadDashboard() {
 const MONTHLY_KEY = 'outreach_monthly_tasks';
 const MONTHLY_DEFAULTS_KEY = 'outreach_monthly_defaults';
 const BUILTIN_DEFAULTS = [
-    'Send 20 Outreach Emails',
-    'Scrape 5 New Venues',
-    'Follow Up With 3 Past Contacts',
-    'Run Apollo On 3 Venues',
-    'Send 10 Instagram DMs',
-    'Send 10 Facebook Messages'
+    { text: 'Send 20 Outreach Emails' },
+    { text: 'Scrape 5 New Venues' },
+    { text: 'Follow Up With 3 Past Contacts' },
+    { text: 'Run Apollo On 3 Venues' },
+    { text: 'Send 10 Instagram DMs' },
+    { text: 'Send 10 Facebook Messages' }
 ];
 
 function titleCase(s) { return s.replace(/\b\w/g, c => c.toUpperCase()); }
 
 function getMonthlyDefaults() {
     const stored = localStorage.getItem(MONTHLY_DEFAULTS_KEY);
-    if (stored) return JSON.parse(stored);
-    return BUILTIN_DEFAULTS;
+    if (stored) {
+        const parsed = JSON.parse(stored);
+        // Migrate old string format to object format
+        return parsed.map(d => typeof d === 'string' ? { text: d } : d);
+    }
+    return BUILTIN_DEFAULTS.map(d => ({ ...d }));
 }
 function saveMonthlyDefaults(arr) { localStorage.setItem(MONTHLY_DEFAULTS_KEY, JSON.stringify(arr)); }
 
@@ -1424,7 +1428,13 @@ function getMonthlyTasks() {
     if (data.month !== currentMonth) {
         // New month — use saved defaults
         const defaults = getMonthlyDefaults();
-        const tasks = defaults.map((t, i) => ({ id: i, text: t, done: false }));
+        const tasks = defaults.map((d, i) => {
+            const task = { id: i, text: d.text, done: false };
+            if (d.subtasks && d.subtasks.length > 0) {
+                task.subtasks = d.subtasks.map((s, j) => ({ id: j + 1, text: s, done: false }));
+            }
+            return task;
+        });
         const fresh = { month: currentMonth, tasks: tasks };
         localStorage.setItem(MONTHLY_KEY, JSON.stringify(fresh));
         return fresh;
@@ -1614,11 +1624,22 @@ function openDefaultsEditor() {
     html += `<div class="monthly-body open">`;
     html += `<div style="padding:0.3rem 0.5rem;font-size:0.75rem;color:var(--text-dim);margin-bottom:0.3rem">These tasks reset every month. Tap &#9998; to edit, &#10005; to remove.</div>`;
     for (let i = 0; i < defaults.length; i++) {
+        const d = defaults[i];
         html += `<div class="monthly-task">`;
-        html += `<span class="monthly-task-text" style="flex:1">${esc(defaults[i])}</span>`;
+        html += `<span class="monthly-task-text" style="flex:1">${esc(d.text)}</span>`;
+        html += `<span class="monthly-add-sub" onclick="event.stopPropagation();addDefaultSubtask(${i})">+</span>`;
         html += `<span class="monthly-edit" onclick="event.stopPropagation();editDefault(${i})">&#9998;</span>`;
         html += `<span class="monthly-edit" onclick="event.stopPropagation();removeDefault(${i})" style="color:var(--red)">&#10005;</span>`;
         html += `</div>`;
+        if (d.subtasks && d.subtasks.length > 0) {
+            for (let j = 0; j < d.subtasks.length; j++) {
+                html += `<div class="monthly-subtask">`;
+                html += `<span class="monthly-task-text" style="flex:1">${esc(d.subtasks[j])}</span>`;
+                html += `<span class="monthly-edit" onclick="event.stopPropagation();editDefaultSubtask(${i},${j})">&#9998;</span>`;
+                html += `<span class="monthly-edit" onclick="event.stopPropagation();removeDefaultSubtask(${i},${j})" style="color:var(--red)">&#10005;</span>`;
+                html += `</div>`;
+            }
+        }
     }
     html += `<div class="monthly-add" onclick="event.stopPropagation();addDefault()">+ Add Default Task</div>`;
     html += `<div class="monthly-add" onclick="event.stopPropagation();renderMonthlyTasks()" style="color:var(--gold)">&#10003; Done</div>`;
@@ -1628,10 +1649,10 @@ function openDefaultsEditor() {
 
 function editDefault(idx) {
     const defaults = getMonthlyDefaults();
-    const choice = prompt('Edit default task:', defaults[idx]);
+    const choice = prompt('Edit default task:', defaults[idx].text);
     if (choice === null) return;
     if (choice.trim() === '') { defaults.splice(idx, 1); }
-    else { defaults[idx] = titleCase(choice.trim()); }
+    else { defaults[idx].text = titleCase(choice.trim()); }
     saveMonthlyDefaults(defaults);
     openDefaultsEditor();
 }
@@ -1647,7 +1668,34 @@ function addDefault() {
     const text = prompt('New default task:');
     if (!text || !text.trim()) return;
     const defaults = getMonthlyDefaults();
-    defaults.push(titleCase(text.trim()));
+    defaults.push({ text: titleCase(text.trim()) });
+    saveMonthlyDefaults(defaults);
+    openDefaultsEditor();
+}
+
+function addDefaultSubtask(idx) {
+    const text = prompt('New default subtask:');
+    if (!text || !text.trim()) return;
+    const defaults = getMonthlyDefaults();
+    if (!defaults[idx].subtasks) defaults[idx].subtasks = [];
+    defaults[idx].subtasks.push(titleCase(text.trim()));
+    saveMonthlyDefaults(defaults);
+    openDefaultsEditor();
+}
+
+function editDefaultSubtask(idx, subIdx) {
+    const defaults = getMonthlyDefaults();
+    const choice = prompt('Edit default subtask (clear to delete):', defaults[idx].subtasks[subIdx]);
+    if (choice === null) return;
+    if (choice.trim() === '') { defaults[idx].subtasks.splice(subIdx, 1); }
+    else { defaults[idx].subtasks[subIdx] = titleCase(choice.trim()); }
+    saveMonthlyDefaults(defaults);
+    openDefaultsEditor();
+}
+
+function removeDefaultSubtask(idx, subIdx) {
+    const defaults = getMonthlyDefaults();
+    defaults[idx].subtasks.splice(subIdx, 1);
     saveMonthlyDefaults(defaults);
     openDefaultsEditor();
 }

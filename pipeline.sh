@@ -666,8 +666,8 @@ PYEOF
     local NEW_COUNT
     NEW_COUNT=$(echo "$NEW_JSON" | python3 -c "import json,sys; print(len(json.loads(sys.stdin.read())))" 2>/dev/null || echo "0")
 
-    # Print the status lines (everything except last line)
-    echo "$NEW_PEOPLE" | head -n -1
+    # Print the status lines (everything except last line — BSD-compatible)
+    echo "$NEW_PEOPLE" | sed '$d'
 
     if [ "$NEW_COUNT" = "0" ] || [ -z "$NEW_COUNT" ]; then
         log "  No new people to add from LinkedIn."

@@ -557,6 +557,15 @@ body {
     text-decoration: line-through;
     color: var(--text-dim);
 }
+.monthly-edit {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    opacity: 0.4;
+    transition: opacity 0.15s;
+}
+.monthly-edit:hover { opacity: 1; color: var(--accent); }
 .monthly-add {
     font-size: 0.65rem;
     color: var(--accent);
@@ -1375,6 +1384,22 @@ function addMonthlyTask() {
     renderMonthlyTasks();
 }
 
+function editMonthlyTask(id) {
+    const data = getMonthlyTasks();
+    const task = data.tasks.find(t => t.id === id);
+    if (!task) return;
+    const choice = prompt('Edit task (clear to delete):', task.text);
+    if (choice === null) return; // cancelled
+    if (choice.trim() === '') {
+        // Delete
+        data.tasks = data.tasks.filter(t => t.id !== id);
+    } else {
+        task.text = choice.trim();
+    }
+    saveMonthlyTasks(data);
+    renderMonthlyTasks();
+}
+
 function removeMonthlyTask(id) {
     const data = getMonthlyTasks();
     data.tasks = data.tasks.filter(t => t.id !== id);
@@ -1417,6 +1442,7 @@ function renderMonthlyTasks() {
         html += `<div class="monthly-task${t.done ? ' done' : ''}" onclick="toggleMonthlyTask(${t.id})">`;
         html += `<span class="monthly-check">${t.done ? '&#10003;' : ''}</span>`;
         html += `<span class="monthly-task-text">${esc(t.text)}</span>`;
+        html += `<span class="monthly-edit" onclick="event.stopPropagation();editMonthlyTask(${t.id})">&#9998;</span>`;
         html += `</div>`;
     }
     html += `<div class="monthly-add" onclick="event.stopPropagation();addMonthlyTask()">+ Add task</div>`;

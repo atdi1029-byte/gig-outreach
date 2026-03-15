@@ -392,8 +392,16 @@ body {
     color: #fff;
 }
 .contact-skipped {
-    opacity: 0.25;
-    text-decoration: line-through;
+    display: none;
+}
+.hidden-count {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    padding: 0.4rem 0;
+    cursor: pointer;
+}
+.hidden-count:active {
+    color: var(--accent);
 }
 .skip-words-bar {
     display: flex;
@@ -855,23 +863,15 @@ function openVenueDetail(venueId) {
     // Website
     if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
 
-    // Skip words bar
-    const skipWords = getSkipWords();
-    if (skipWords.length > 0) {
-        html += `<div class="skip-words-bar">`;
-        html += `<span style="font-size:0.6rem;color:var(--text-dim);margin-right:0.3rem">Filtering:</span>`;
-        for (const w of skipWords) {
-            html += `<span class="skip-pill" onclick="removeSkipWord('${esc(w)}');openVenueDetail('${esc(venueId)}')">${esc(w)} ✕</span>`;
-        }
-        html += `</div>`;
-    }
-
     // Emails
+    const skipWords = getSkipWords();
     const emailContacts = contacts.filter(c => c.email && c.verified === 'valid');
+    let hiddenCount = 0;
     if (emailContacts.length > 0) {
         html += `<div class="detail-section-label" style="background:${catColor}">Emails</div>`;
         for (const c of emailContacts) {
             const skipped = shouldSkipContact(c.title);
+            if (skipped) hiddenCount++;
             if (c.email_sent) {
                 html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">Sent</span></div>`;
             } else if (c.verified === 'valid') {
@@ -884,6 +884,14 @@ function openVenueDetail(venueId) {
                 html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.5">${esc(c.email)}</span>`;
                 html += `<span style="font-size:0.6rem;color:var(--text-dim)">${c.verified || 'unverified'}</span></div>`;
             }
+        }
+        if (hiddenCount > 0) {
+            html += `<div class="hidden-count" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='flex'?'none':'flex'">${hiddenCount} hidden by filters</div>`;
+            html += `<div class="skip-words-bar" style="display:none">`;
+            for (const w of skipWords) {
+                html += `<span class="skip-pill" onclick="removeSkipWord('${esc(w)}');openVenueDetail('${esc(venueId)}')">${esc(w)} ✕</span>`;
+            }
+            html += `</div>`;
         }
     }
 

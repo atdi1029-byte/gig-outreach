@@ -378,6 +378,43 @@ body {
 
 .collapsed { display: none; }
 
+/* === SKIP WORDS === */
+.title-word {
+    cursor: pointer;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    color: var(--text-dim);
+    font-size: 0.65rem;
+    transition: background 0.2s;
+}
+.title-word:hover, .title-word:active {
+    background: var(--red);
+    color: #fff;
+}
+.contact-skipped {
+    opacity: 0.25;
+    text-decoration: line-through;
+}
+.skip-words-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    padding: 0.5rem 0;
+}
+.skip-pill {
+    background: rgba(239,83,80,0.2);
+    color: var(--red);
+    font-size: 0.6rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid var(--red);
+}
+.skip-pill:hover, .skip-pill:active {
+    background: var(--red);
+    color: #fff;
+}
+
 @media (max-width: 768px) {
     .view-inner { padding: 0.75rem; }
     .home-header h1 { font-size: 1.4rem; letter-spacing: 3px; }
@@ -402,7 +439,7 @@ body {
                 <span class="section-title">Top Picks</span>
                 <span class="section-badge" id="topPicksBadge">0</span>
             </div>
-            <div id="topPicksList"></div>
+            <div id="topPicksList" class="collapsed"></div>
         </div>
 
         <!-- BROWSE VENUES -->
@@ -457,6 +494,40 @@ let refreshTimer = null;
 let navStack = ['viewHome'];
 let currentState = '';
 let currentCategory = '';
+
+// === SKIP WORDS (title filter) ===
+function getSkipWords() { return JSON.parse(localStorage.getItem('outreach_skip_words') || '[]'); }
+function saveSkipWords(words) { localStorage.setItem('outreach_skip_words', JSON.stringify(words)); }
+function addSkipWord(word) {
+    word = word.toLowerCase().trim();
+    if (!word || word.length < 2) return;
+    const words = getSkipWords();
+    if (!words.includes(word)) { words.push(word); saveSkipWords(words); }
+    showToast('Skipping "' + word + '"');
+    // Re-render current venue detail
+    if (navStack[navStack.length - 1] === 'viewDetail' && window._currentVenueId) openVenueDetail(window._currentVenueId);
+}
+function removeSkipWord(word) {
+    const words = getSkipWords().filter(w => w !== word.toLowerCase().trim());
+    saveSkipWords(words);
+    showToast('Removed "' + word + '"');
+}
+function shouldSkipContact(title) {
+    if (!title) return false;
+    const words = getSkipWords();
+    const lower = title.toLowerCase();
+    return words.some(w => lower.includes(w));
+}
+function renderTitleWords(name, title) {
+    let html = '';
+    if (name) html += `<span style="color:var(--text)">${esc(name)}</span>`;
+    if (name && title) html += ' — ';
+    if (title) {
+        const parts = title.split(/[\s,]+/).filter(w => w.length > 1);
+        html += parts.map(w => `<span class="title-word" onclick="addSkipWord('${esc(w)}')">${esc(w)}</span>`).join(' ');
+    }
+    return html;
+}
 
 // === NAVIGATION ===
 function showView(viewId) {
@@ -784,19 +855,31 @@ function openVenueDetail(venueId) {
     // Website
     if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
 
+    // Skip words bar
+    const skipWords = getSkipWords();
+    if (skipWords.length > 0) {
+        html += `<div class="skip-words-bar">`;
+        html += `<span style="font-size:0.6rem;color:var(--text-dim);margin-right:0.3rem">Filtering:</span>`;
+        for (const w of skipWords) {
+            html += `<span class="skip-pill" onclick="removeSkipWord('${esc(w)}');openVenueDetail('${esc(venueId)}')">${esc(w)} ✕</span>`;
+        }
+        html += `</div>`;
+    }
+
     // Emails
     const emailContacts = contacts.filter(c => c.email && c.verified === 'valid');
     if (emailContacts.length > 0) {
         html += `<div class="detail-section-label" style="background:${catColor}">Emails</div>`;
         for (const c of emailContacts) {
+            const skipped = shouldSkipContact(c.title);
             if (c.email_sent) {
                 html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">Sent</span></div>`;
             } else if (c.verified === 'valid') {
-                html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
+                html += `<div class="detail-action-row${skipped ? ' contact-skipped' : ''}"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
                 html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
                 html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button></div>`;
-                if (c.name || c.title) html += `<div class="detail-contact-name">${esc(c.name || '')}${c.name && c.title ? ' — ' : ''}${esc(c.title || '')}</div>`;
+                if (c.name || c.title) html += `<div class="detail-contact-name${skipped ? ' contact-skipped' : ''}">${renderTitleWords(c.name, c.title)}</div>`;
             } else {
                 html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.5">${esc(c.email)}</span>`;
                 html += `<span style="font-size:0.6rem;color:var(--text-dim)">${c.verified || 'unverified'}</span></div>`;
@@ -837,7 +920,8 @@ function openVenueDetail(venueId) {
     }
 
     document.getElementById('detailBody').innerHTML = html;
-    navigateTo('viewDetail');
+    window._currentVenueId = venueId;
+    if (navStack[navStack.length - 1] !== 'viewDetail') navigateTo('viewDetail');
 }
 
 // === HELPERS ===

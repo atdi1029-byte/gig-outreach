@@ -526,16 +526,23 @@ const CATEGORY_IMAGES = {
 };
 
 // === API HELPERS ===
-async function fireGet(url) {
-    try {
-        const resp = await fetch(url);
-        const data = await resp.json();
-        if (data.status === 'error') { showToast('Error: ' + data.message); }
-        return data;
-    } catch(e) {
-        showToast('Network error');
-        return { status: 'error', message: e.message };
-    }
+function jsonpFetch(url, cb) {
+    var cbName = '_goCb_' + Date.now() + '_' + Math.random().toString(36).substr(2,5);
+    var script = document.createElement('script');
+    var done = false;
+    window[cbName] = function(resp) { done=true; delete window[cbName]; script.remove(); cb(null, resp); };
+    script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;
+    script.onerror = function() { if(!done) { delete window[cbName]; script.remove(); cb('Failed'); } };
+    setTimeout(function() { if(!done) { delete window[cbName]; script.remove(); cb('Timeout'); } }, 15000);
+    document.head.appendChild(script);
+}
+
+function fireGet(url, cb) {
+    jsonpFetch(url, function(err, data) {
+        if (err) { showToast('Network error'); cb({ status: 'error', message: err }); return; }
+        if (data && data.status === 'error') showToast('Error: ' + data.message);
+        cb(data || { status: 'error' });
+    });
 }
 
 function buildUrl(params) {
@@ -582,34 +589,40 @@ function openFBWithTemplate(fbUrl, category) {
 }
 
 // === MARK ACTIONS ===
-async function markEmailSent(contactId, venueId, category, btn) {
+function markEmailSent(contactId, venueId, category, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'true' }));
-    await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }));
-    btn.textContent = 'Done'; btn.classList.add('done');
-    showToast('Marked as sent!');
-    setTimeout(loadDashboard, 1500);
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'true' }), function() {
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }), function() {
+            btn.textContent = 'Done'; btn.classList.add('done');
+            showToast('Marked as sent!');
+            setTimeout(loadDashboard, 1500);
+        });
+    });
 }
 
-async function markIGSent(contactId, venueId, btn) {
+function markIGSent(contactId, venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'true' }));
-    await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'instagram' }));
-    btn.textContent = 'Done'; btn.classList.add('done');
-    showToast('IG DM marked!');
-    setTimeout(loadDashboard, 1500);
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'true' }), function() {
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'instagram' }), function() {
+            btn.textContent = 'Done'; btn.classList.add('done');
+            showToast('IG DM marked!');
+            setTimeout(loadDashboard, 1500);
+        });
+    });
 }
 
-async function markFBSent(contactId, venueId, btn) {
+function markFBSent(contactId, venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    await fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'true' }));
-    await fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'facebook' }));
-    btn.textContent = 'Done'; btn.classList.add('done');
-    showToast('FB msg marked!');
-    setTimeout(loadDashboard, 1500);
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'true' }), function() {
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'facebook' }), function() {
+            btn.textContent = 'Done'; btn.classList.add('done');
+            showToast('FB msg marked!');
+            setTimeout(loadDashboard, 1500);
+        });
+    });
 }
 
 // === RENDER: HOME — Top Picks ===
@@ -842,23 +855,20 @@ function esc(s) {
 }
 
 // === MAIN LOAD ===
-async function loadDashboard() {
+function loadDashboard() {
     if (!API_URL) { renderTopPicks([]); renderStateGrid(); return; }
 
-    try {
-        const resp = await fetch(API_URL);
-        const data = await resp.json();
-        if (data.status !== 'ok') throw new Error(data.message || 'API error');
-
-        dashboardData = data;
-        renderTopPicks(data.topPicks);
-        renderStateGrid();
-    } catch(e) {
-        console.error('Dashboard load error:', e);
-    }
-
-    clearTimeout(refreshTimer);
-    refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
+    jsonpFetch(API_URL, function(err, data) {
+        if (!err && data && data.status === 'ok') {
+            dashboardData = data;
+            renderTopPicks(data.topPicks);
+            renderStateGrid();
+        } else {
+            console.error('Dashboard load error:', err);
+        }
+        clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
+    });
 }
 
 // === INIT ===

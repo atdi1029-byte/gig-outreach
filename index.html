@@ -2021,8 +2021,8 @@ function renderSmartPicks(recs, profile) {
     const list = document.getElementById('smartPicksList');
     const badge = document.getElementById('smartPicksBadge');
 
-    // Show top 8 recommendations that are untouched/in_progress (not fully contacted)
-    const filtered = recs.filter(r => r.status !== 'contacted').slice(0, 8);
+    // Show top 8 recommendations that have actionable items
+    const filtered = recs.filter(r => venueHasPending(r.venue_id)).slice(0, 8);
 
     if (filtered.length === 0) {
         section.style.display = 'none';

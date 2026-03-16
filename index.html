@@ -1722,7 +1722,7 @@ function openDefaultsEditor() {
         }
     }
     html += `<div class="monthly-add" onclick="event.stopPropagation();addDefault()">+ Add Default Task</div>`;
-    html += `<div class="monthly-add" onclick="event.stopPropagation();renderMonthlyTasks()" style="color:var(--gold)">&#10003; Done</div>`;
+    html += `<div class="monthly-add" onclick="event.stopPropagation();syncDefaultsToCurrent();renderMonthlyTasks()" style="color:var(--gold)">&#10003; Done</div>`;
     html += `</div>`;
     section.innerHTML = html;
 }
@@ -1778,6 +1778,30 @@ function removeDefaultSubtask(idx, subIdx) {
     defaults[idx].subtasks.splice(subIdx, 1);
     saveMonthlyDefaults(defaults);
     openDefaultsEditor();
+}
+
+function syncDefaultsToCurrent() {
+    const defaults = getMonthlyDefaults();
+    const data = getMonthlyTasks();
+    const tasks = data.tasks || [];
+    // Rebuild task list from defaults, preserving done state
+    const newTasks = defaults.map((d, i) => {
+        // Try to find matching existing task by text (case-insensitive)
+        const existing = tasks.find(t => t.text.toLowerCase() === d.text.toLowerCase());
+        const task = { id: i, text: d.text, done: existing ? existing.done : false };
+        if (d.subtasks && d.subtasks.length > 0) {
+            const oldSubs = (existing && existing.subtasks) || [];
+            task.subtasks = d.subtasks.map((s, j) => {
+                const oldSub = oldSubs.find(os => os.text.toLowerCase() === s.toLowerCase());
+                return { id: j + 1, text: s, done: oldSub ? oldSub.done : false };
+            });
+            // Auto-complete parent if all subtasks done
+            if (task.subtasks.length > 0 && task.subtasks.every(s => s.done)) task.done = true;
+        }
+        return task;
+    });
+    data.tasks = newTasks;
+    saveMonthlyTasks(data);
 }
 
 function scrollToTasks() {

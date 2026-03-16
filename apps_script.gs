@@ -105,7 +105,8 @@ function serveDashboardJSON_() {
       scraped_date:   row[14] ? new Date(row[14]).toISOString() : '',
       notes:          String(row[15] || ''),
       distance_miles: row[16] ? Number(row[16]) : null,
-      drive_minutes:  row[17] ? Number(row[17]) : null
+      drive_minutes:  row[17] ? Number(row[17]) : null,
+      contacted_date: row[18] ? new Date(row[18]).toISOString() : ''
     });
   }
 
@@ -495,6 +496,12 @@ function updateVenue_(params) {
   for (var i = 1; i < data.length; i++) {
     if (String(data[i][0]) === venueId) {
       sheet.getRange(i + 1, colIdx + 1).setValue(value);
+      // Stamp contacted_date when marking as contacted, clear when resetting
+      if (field === 'status' && value === 'contacted') {
+        sheet.getRange(i + 1, 19).setValue(new Date()); // Column S = contacted_date
+      } else if (field === 'status' && value === 'untouched') {
+        sheet.getRange(i + 1, 19).setValue(''); // Clear contacted_date on reset
+      }
       return jsonResponse_({ status: 'ok', venue_id: venueId, field: field, value: value });
     }
   }
@@ -620,8 +627,13 @@ function updateVenueStatus_(venueId) {
   var vData = venueSheet.getDataRange().getValues();
   for (var v = 1; v < vData.length; v++) {
     if (String(vData[v][0]) === venueId) {
+      var oldStatus = String(vData[v][12]);
       var newStatus = allEmailsSent && anyEmailSent ? 'contacted' : anyEmailSent ? 'in_progress' : 'untouched';
       venueSheet.getRange(v + 1, 13).setValue(newStatus); // Column M = status
+      // Stamp contacted_date when newly contacted
+      if (newStatus === 'contacted' && oldStatus !== 'contacted') {
+        venueSheet.getRange(v + 1, 19).setValue(new Date()); // Column S
+      }
       break;
     }
   }
@@ -1191,7 +1203,7 @@ function setupSheets() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
 
   var tabs = {
-    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes'],
+    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date'],
     'Contacts': ['contact_id', 'venue_id', 'name', 'title', 'email', 'source', 'verified', 'verified_date', 'email_sent', 'email_sent_date', 'ig_dm_sent', 'fb_msg_sent'],
     'Outreach Log': ['timestamp', 'venue_id', 'contact_id', 'channel', 'template_used'],
     'Config': ['key', 'value'],

@@ -2064,8 +2064,15 @@ function renderSmartPicks(recs, profile) {
     const list = document.getElementById('smartPicksList');
     const badge = document.getElementById('smartPicksBadge');
 
-    // Show top 8 recommendations that have actionable items
-    const filtered = recs.filter(r => venueHasPending(r.venue_id)).slice(0, 8);
+    // Exclude past gig venues — you already play there
+    const gigVenueIds = new Set(((dashboardData && dashboardData.gigs) || []).map(g => g.venue_id).filter(Boolean));
+    const gigNames = new Set(((dashboardData && dashboardData.gigs) || []).map(g => g.venue_name.toLowerCase().trim()).filter(Boolean));
+    // Show top 8 recommendations that have actionable items and aren't past gigs
+    const filtered = recs.filter(r => {
+        if (gigVenueIds.has(r.venue_id)) return false;
+        if (gigNames.has(r.name.toLowerCase().trim())) return false;
+        return venueHasPending(r.venue_id);
+    }).slice(0, 8);
 
     if (filtered.length === 0) {
         section.style.display = 'none';

@@ -1337,12 +1337,14 @@ function openVenueDetail(venueId) {
         }
     }
 
-    // Mark Done button — hide venue from all lists
+    // Mark Done / Reset buttons
+    html += `<div style="text-align:center;padding:1.5rem 1rem;display:flex;gap:0.75rem;justify-content:center">`;
     if (venue.status !== 'contacted') {
-        html += `<div style="text-align:center;padding:1.5rem 1rem">`;
-        html += `<button onclick="markVenueDone('${esc(venue.venue_id)}')" style="background:none;border:1px solid var(--green);color:var(--green);padding:0.6rem 1.5rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Mark Done — Hide Venue</button>`;
-        html += `</div>`;
+        html += `<button onclick="markVenueDone('${esc(venue.venue_id)}')" style="background:none;border:1px solid var(--green);color:var(--green);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Mark Done</button>`;
+    } else {
+        html += `<button onclick="resetVenue('${esc(venue.venue_id)}')" style="background:none;border:1px solid var(--accent);color:var(--accent);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Reset — Re-scrape</button>`;
     }
+    html += `</div>`;
 
     document.getElementById('detailBody').innerHTML = html;
     window._currentVenueId = venueId;
@@ -1495,7 +1497,17 @@ function loadMonthlyFromCloud(cb) {
     });
 }
 
-// === MARK VENUE DONE ===
+// === MARK VENUE DONE / RESET ===
+function resetVenue(venueId) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: 'untouched' }), function(data) {
+        if (data.status === 'ok') {
+            showToast('Venue reset — ready to re-scrape');
+            setTimeout(() => { loadDashboard(); openVenueDetail(venueId); }, 500);
+        }
+    });
+}
+
 function markVenueDone(venueId) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: 'contacted' }), function(data) {

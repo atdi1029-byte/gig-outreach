@@ -2066,12 +2066,15 @@ function renderSmartPicks(recs, profile) {
 
     // Exclude past gig venues — you already play there
     const gigVenueIds = new Set(((dashboardData && dashboardData.gigs) || []).map(g => g.venue_id).filter(Boolean));
-    const gigNames = new Set(((dashboardData && dashboardData.gigs) || []).map(g => g.venue_name.toLowerCase().trim()).filter(Boolean));
-    // Show top 8 recommendations that have actionable items and aren't past gigs
+    const stripThe = s => s.toLowerCase().trim().replace(/^the\s+/, '');
+    const gigNames = new Set(((dashboardData && dashboardData.gigs) || []).map(g => stripThe(g.venue_name)).filter(Boolean));
+    // Show top 8 recommendations that aren't past gigs or already contacted
     const filtered = recs.filter(r => {
         if (gigVenueIds.has(r.venue_id)) return false;
-        if (gigNames.has(r.name.toLowerCase().trim())) return false;
-        return venueHasPending(r.venue_id);
+        if (gigNames.has(stripThe(r.name))) return false;
+        const v = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
+        if (v && v.status === 'contacted') return false;
+        return true;
     }).slice(0, 8);
 
     if (filtered.length === 0) {

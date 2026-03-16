@@ -16,7 +16,10 @@
 
 APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+JS_DIR="${SCRIPT_DIR}/js"
 LOG_FILE="${SCRIPT_DIR}/discover.log"
+DISCOVERED_FILE="${SCRIPT_DIR}/discovered_gigs.txt"
+touch "$DISCOVERED_FILE"
 
 rand_delay() {
     local min=$1 max=$2
@@ -27,6 +30,15 @@ rand_delay() {
 
 log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
 
+# Helper: run JS from file in Chrome via AppleScript
+run_js_file() {
+    local js_file="$1"
+    osascript -e 'tell application "Google Chrome"' \
+              -e "set jsCode to read POSIX file \"${js_file}\"" \
+              -e 'execute active tab of front window javascript jsCode' \
+              -e 'end tell' 2>/dev/null
+}
+
 echo "" >> "$LOG_FILE"
 log "=== Venue Discovery Started ==="
 
@@ -34,11 +46,18 @@ log "=== Venue Discovery Started ==="
 log "Fetching past gigs..."
 GIGS_RAW=$(curl -sL "${APPS_SCRIPT_URL}?action=get_gigs")
 GIG_LIST=$(echo "$GIGS_RAW" | python3 -c "
-import json,sys
+import json,sys,re
 d=json.loads(sys.stdin.read())
 for g in d.get('gigs',[]):
     if g.get('venue_name','') != '(DELETED)':
-        print(g['venue_name'])
+        name = g['venue_name']
+        notes = g.get('notes','')
+        # Extract city/state from notes for better Google Maps search
+        loc = ''
+        m = re.search(r'(?:in |at )?([A-Z][a-z]+(?:\s[A-Z][a-z]+)*),?\s*(?:VA|MD|DC|PA)', notes)
+        if m:
+            loc = m.group(0).strip().lstrip('in ').lstrip('at ')
+        print(name + '\t' + loc)
 " 2>/dev/null)
 
 GIG_COUNT=$(echo "$GIG_LIST" | grep -c '[a-zA-Z]')
@@ -66,217 +85,93 @@ log "Existing venues: $EXISTING_COUNT"
 # --- Step 3: For each past gig, scrape Google Maps ---
 TOTAL_ADDED=0
 
-echo "$GIG_LIST" | while read -r VENUE_NAME; do
+echo "$GIG_LIST" | while IFS=$'\t' read -r VENUE_NAME VENUE_LOC; do
     [ -z "$VENUE_NAME" ] && continue
+
+    # Skip gigs already discovered
+    if grep -qFx "$VENUE_NAME" "$DISCOVERED_FILE" 2>/dev/null; then
+        log "  SKIP (already discovered): $VENUE_NAME"
+        continue
+    fi
+
     log ""
     log "=== Discovering from: $VENUE_NAME ==="
 
-    # URL-encode the venue name
-    ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$VENUE_NAME'''))")
+    # Build search query with location for specificity
+    SEARCH_QUERY="$VENUE_NAME"
+    if [ -n "$VENUE_LOC" ]; then
+        SEARCH_QUERY="$VENUE_NAME $VENUE_LOC"
+        log "  (searching: $SEARCH_QUERY)"
+    fi
+
+    # URL-encode the search query
+    ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$SEARCH_QUERY'''))")
 
     # Navigate to Google Maps
     MAPS_URL="https://www.google.com/maps/search/${ENCODED}"
-    osascript << NAVEOF
-tell application "Google Chrome" to activate
-delay 0.5
-tell application "Google Chrome" to set URL of active tab of front window to "${MAPS_URL}"
-NAVEOF
+    osascript -e "tell application \"Google Chrome\" to activate" \
+              -e "delay 0.5" \
+              -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${MAPS_URL}\""
     rand_delay 4 6
+
+    # If we landed on search results instead of venue page, click first result
+    CLICK_RESULT=$(run_js_file "${JS_DIR}/click_first_result.js")
+    if [ "$CLICK_RESULT" = "clicked" ]; then
+        log "  Clicked first search result..."
+        rand_delay 3 5
+    fi
 
     # Scroll down to load "People also search for" section
     log "  Scrolling to find recommendations..."
-    osascript << 'SCROLLEOF'
-tell application "Google Chrome"
-    execute active tab of front window javascript "
-        (function() {
-            var panels = document.querySelectorAll('.m6QErb');
-            var scrollable = null;
-            for (var p = 0; p < panels.length; p++) {
-                if (panels[p].scrollHeight > panels[p].clientHeight + 100) {
-                    scrollable = panels[p];
-                    break;
-                }
-            }
-            if (!scrollable) return 'no panel';
-            var i = 0;
-            var timer = setInterval(function() {
-                scrollable.scrollTop += 800;
-                i++;
-                if (i > 15) clearInterval(timer);
-            }, 200);
-            return 'scrolling';
-        })()
-    "
-end tell
-SCROLLEOF
+    run_js_file "${JS_DIR}/scroll_panel.js"
     rand_delay 5 7
 
-    # Extract "People also search for" cards using the working pattern
+    # Extract "People also search for" cards
     log "  Extracting cards..."
-    CARDS_JSON=$(osascript << 'EXTRACTEOF'
-tell application "Google Chrome"
-    execute active tab of front window javascript "
-        (function() {
-            var headers = document.querySelectorAll('h2');
-            var targetH2 = null;
-            for (var h = 0; h < headers.length; h++) {
-                if (headers[h].textContent.trim().toLowerCase().indexOf('people also search') > -1) {
-                    targetH2 = headers[h];
-                    break;
-                }
-            }
-            if (!targetH2) return '[]';
-            var section = targetH2.parentElement.parentElement;
-            var nameEls = section.querySelectorAll('span.GgK1If');
-            var names = [];
-            for (var n = 0; n < nameEls.length; n++) {
-                var nm = nameEls[n].textContent.trim();
-                if (nm && nm.length > 2) names.push(nm);
-            }
-            var fullText = section.textContent;
-            var results = [];
-            for (var i = 0; i < names.length; i++) {
-                var start = fullText.indexOf(names[i]);
-                if (start === -1) continue;
-                var after = start + names[i].length;
-                var end = (i < names.length - 1) ? fullText.indexOf(names[i+1], after) : fullText.length;
-                var chunk = fullText.substring(after, end);
-                var rating = '';
-                var reviews = '';
-                var category = '';
-                var rm = chunk.match(/([0-9]\.[0-9])/);
-                if (rm) rating = rm[1];
-                var revm = chunk.match(/\(([0-9,]+)\)/);
-                if (revm) reviews = revm[1].replace(/,/g,'');
-                var catMatch = chunk.match(/\)[\s]*([A-Za-z][A-Za-z ]+)/);
-                if (catMatch) category = catMatch[1].trim();
-                results.push(JSON.stringify({name:names[i], rating:rating, reviews:reviews, category:category}));
-            }
-            return '[' + results.join(',') + ']';
-        })()
-    "
-end tell
-EXTRACTEOF
-)
+    CARDS_JSON=$(run_js_file "${JS_DIR}/extract_cards.js")
 
     if [ -z "$CARDS_JSON" ] || [ "$CARDS_JSON" = "[]" ] || [ "$CARDS_JSON" = "missing value" ]; then
         log "  No 'People also search for' found"
+        CARDS_JSON="[]"
+    else
+        CARD_COUNT=$(echo "$CARDS_JSON" | python3 -c "import json,sys; print(len(json.loads(sys.stdin.read())))" 2>/dev/null || echo "0")
+        log "  Found $CARD_COUNT 'People also search for' results"
     fi
 
     # Also try to get "Similar hotels/places nearby" if present
-    SIMILAR_JSON=$(osascript << 'SIMEOF'
-tell application "Google Chrome"
-    execute active tab of front window javascript "
-        (function() {
-            var headers = document.querySelectorAll('h2');
-            var targetH2 = null;
-            for (var h = 0; h < headers.length; h++) {
-                var t = headers[h].textContent.trim().toLowerCase();
-                if (t.indexOf('similar') > -1 && (t.indexOf('hotel') > -1 || t.indexOf('nearby') > -1)) {
-                    targetH2 = headers[h];
-                    break;
-                }
-            }
-            if (!targetH2) return '[]';
-            var section = targetH2.parentElement.parentElement;
-            var nameEls = section.querySelectorAll('span.GgK1If');
-            var names = [];
-            for (var n = 0; n < nameEls.length; n++) {
-                var nm = nameEls[n].textContent.trim();
-                if (nm && nm.length > 2) names.push(nm);
-            }
-            var fullText = section.textContent;
-            var results = [];
-            for (var i = 0; i < names.length; i++) {
-                var start = fullText.indexOf(names[i]);
-                if (start === -1) continue;
-                var after = start + names[i].length;
-                var end = (i < names.length - 1) ? fullText.indexOf(names[i+1], after) : fullText.length;
-                var chunk = fullText.substring(after, end);
-                var rating = '';
-                var reviews = '';
-                var category = 'Hotel';
-                var rm = chunk.match(/([0-9]\.[0-9])/);
-                if (rm) rating = rm[1];
-                var revm = chunk.match(/\(([0-9,]+)\)/);
-                if (revm) reviews = revm[1].replace(/,/g,'');
-                results.push(JSON.stringify({name:names[i], rating:rating, reviews:reviews, category:category}));
-            }
-            return '[' + results.join(',') + ']';
-        })()
-    "
-end tell
-SIMEOF
-)
+    SIMILAR_JSON=$(run_js_file "${JS_DIR}/extract_similar.js")
+    if [ -z "$SIMILAR_JSON" ] || [ "$SIMILAR_JSON" = "missing value" ]; then
+        SIMILAR_JSON="[]"
+    fi
 
     # Try clicking "View more nearby hotels" to get expanded list
-    VIEW_MORE_CLICKED=$(osascript << 'VMEOF'
-tell application "Google Chrome"
-    execute active tab of front window javascript "
-        (function() {
-            var btns = document.querySelectorAll('button');
-            for (var i = 0; i < btns.length; i++) {
-                var t = btns[i].textContent.trim().toLowerCase();
-                if (t.indexOf('view more') > -1 && (t.indexOf('hotel') > -1 || t.indexOf('nearby') > -1)) {
-                    btns[i].click();
-                    return 'clicked';
-                }
-            }
-            return 'none';
-        })()
-    "
-end tell
-VMEOF
-)
+    VIEW_MORE_CLICKED=$(osascript -e 'tell application "Google Chrome"' \
+        -e 'execute active tab of front window javascript "
+(function() {
+    var btns = document.querySelectorAll('"'"'button'"'"');
+    for (var i = 0; i < btns.length; i++) {
+        var t = btns[i].textContent.trim().toLowerCase();
+        if (t.indexOf('"'"'view more'"'"') > -1) {
+            btns[i].click();
+            return '"'"'clicked'"'"';
+        }
+    }
+    return '"'"'none'"'"';
+})()"' \
+        -e 'end tell' 2>/dev/null)
+
     EXPANDED_JSON="[]"
     if [ "$VIEW_MORE_CLICKED" = "clicked" ]; then
         log "  Clicked 'View more' — loading expanded list..."
         rand_delay 4 6
-        EXPANDED_JSON=$(osascript << 'EXPEOF'
-tell application "Google Chrome"
-    execute active tab of front window javascript "
-        (function() {
-            var panels = document.querySelectorAll('.m6QErb');
-            var scrollable = null;
-            for (var p = 0; p < panels.length; p++) {
-                if (panels[p].scrollHeight > panels[p].clientHeight + 50) {
-                    scrollable = panels[p];
-                    break;
-                }
-            }
-            if (!scrollable) return '[]';
-            scrollable.scrollTop = scrollable.scrollHeight;
-            var cards = scrollable.querySelectorAll('[jsaction*=\"mouseover\"]');
-            var results = [];
-            var seen = {};
-            for (var c = 0; c < cards.length; c++) {
-                var text = cards[c].textContent;
-                var headline = cards[c].querySelector('.fontHeadlineSmall, .NrDZNb, .qBF1Pd');
-                if (!headline) continue;
-                var name = headline.textContent.trim();
-                if (!name || name.length < 3 || name.length > 60) continue;
-                if (seen[name]) continue;
-                seen[name] = true;
-                var rating = '';
-                var rm = text.match(/([0-9]\\.[0-9])/);
-                if (rm) rating = rm[1];
-                var reviews = '';
-                var revm = text.match(/\\(([0-9,]+)\\)/);
-                if (revm) reviews = revm[1].replace(/,/g,'');
-                results.push(JSON.stringify({name: name, rating: rating, reviews: reviews, category: 'Hotel'}));
-            }
-            return '[' + results.join(',') + ']';
-        })()
-    "
-end tell
-EXPEOF
-)
-        log "  Expanded list: found $(echo "$EXPANDED_JSON" | python3 -c "import json,sys; print(len(json.loads(sys.stdin.read())))" 2>/dev/null || echo 0) hotels"
+        EXPANDED_JSON=$(run_js_file "${JS_DIR}/extract_expanded.js")
+        if [ -z "$EXPANDED_JSON" ] || [ "$EXPANDED_JSON" = "missing value" ]; then
+            EXPANDED_JSON="[]"
+        fi
+        log "  Expanded list: found $(echo "$EXPANDED_JSON" | python3 -c "import json,sys; print(len(json.loads(sys.stdin.read())))" 2>/dev/null || echo 0) venues"
 
-        # Navigate back to the venue page for any further scraping
-        osascript << BACKEOF
-tell application "Google Chrome" to set URL of active tab of front window to "${MAPS_URL}"
-BACKEOF
+        # Navigate back to the venue page
+        osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${MAPS_URL}\""
         sleep 3
     fi
 
@@ -311,11 +206,11 @@ api = '$APPS_SCRIPT_URL'
 source_venue = '''$VENUE_NAME'''
 
 # Skip types - not useful for classical guitar gigs
-skip_cats = ['pub', 'irish pub', 'bar', 'sports bar', 'fast food', 'pizza',
+skip_cats = ['pub', 'irish pub', 'sports bar', 'fast food', 'pizza',
              'diner', 'gas station', 'grocery', 'pharmacy', 'convenience',
-             'coffee', 'cafe', 'bakery', 'deli', 'food truck', 'taco',
-             'burger', 'sandwich', 'chicken', 'sushi', 'ramen', 'noodle',
-             'ice cream', 'donut', 'bagel', 'juice']
+             'deli', 'food truck', 'taco',
+             'burger', 'sandwich', 'chicken', 'ramen', 'noodle',
+             'donut', 'bagel', 'juice']
 
 added = 0
 for card in cards:
@@ -409,6 +304,9 @@ PYEOF
     BATCH_ADDED=$(echo "$ADDED" | grep "ADDED_COUNT:" | sed 's/ADDED_COUNT://')
     TOTAL_ADDED=$((TOTAL_ADDED + BATCH_ADDED))
     log "  Added $BATCH_ADDED new venues from $VENUE_NAME"
+
+    # Mark this gig as discovered so we skip it next time
+    echo "$VENUE_NAME" >> "$DISCOVERED_FILE"
 
     rand_delay 3 5
 done

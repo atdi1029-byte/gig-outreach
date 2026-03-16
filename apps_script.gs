@@ -42,6 +42,8 @@ function doGet(e) {
   if (action === 'update_gig')      return updateGig_(e.parameter);
   if (action === 'get_gigs')        return getGigs_();
   if (action === 'get_recommendations') return getRecommendations_();
+  if (action === 'save_monthly')     return saveMonthly_(e.parameter);
+  if (action === 'load_monthly')     return loadMonthly_();
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -1152,6 +1154,32 @@ function getRecommendations_() {
       median_distance: Math.round(medianDist),
       avg_upscale: Math.round(avgUpscale * 10) / 10
     }
+  });
+}
+
+// ---------------------------------------------------------------
+// saveMonthly_ — Save monthly tasks + defaults to Config tab
+// Params: tasks (JSON string), defaults (JSON string)
+// ---------------------------------------------------------------
+function saveMonthly_(params) {
+  if (params.tasks) setConfig_('monthly_tasks', params.tasks);
+  if (params.defaults) setConfig_('monthly_defaults', params.defaults);
+  setConfig_('monthly_updated', new Date().toISOString());
+  return jsonResponse_({ status: 'ok', saved: true });
+}
+
+// ---------------------------------------------------------------
+// loadMonthly_ — Load monthly tasks + defaults from Config tab
+// ---------------------------------------------------------------
+function loadMonthly_() {
+  var tasks = getConfig_('monthly_tasks');
+  var defaults = getConfig_('monthly_defaults');
+  var updated = getConfig_('monthly_updated');
+  return jsonResponse_({
+    status: 'ok',
+    tasks: tasks ? tasks : null,
+    defaults: defaults ? defaults : null,
+    updated: updated ? String(updated) : null
   });
 }
 

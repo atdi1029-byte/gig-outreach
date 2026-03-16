@@ -1337,6 +1337,13 @@ function openVenueDetail(venueId) {
         }
     }
 
+    // Mark Done button — hide venue from all lists
+    if (venue.status !== 'contacted') {
+        html += `<div style="text-align:center;padding:1.5rem 1rem">`;
+        html += `<button onclick="markVenueDone('${esc(venue.venue_id)}')" style="background:none;border:1px solid var(--green);color:var(--green);padding:0.6rem 1.5rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Mark Done — Hide Venue</button>`;
+        html += `</div>`;
+    }
+
     document.getElementById('detailBody').innerHTML = html;
     window._currentVenueId = venueId;
     if (navStack[navStack.length - 1] !== 'viewDetail') navigateTo('viewDetail');
@@ -1347,16 +1354,13 @@ function venueHasPending(venueId) {
     const contacts = ((dashboardData && dashboardData.contacts) || []).filter(c => c.venue_id === venueId);
     const venue = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === venueId);
     if (!venue) return false;
+    if (venue.status === 'contacted') return false;
     // Has unsent verified emails?
     if (contacts.some(c => c.email && c.verified === 'valid' && !c.email_sent)) return true;
     // Has Instagram not yet DM'd?
-    if (venue.instagram && !contacts.some(c => c.ig_dm_sent)) return true;
+    if (venue.instagram && venue.instagram.length > 5 && !contacts.some(c => c.ig_dm_sent)) return true;
     // Has Facebook not yet messaged?
-    if (venue.facebook && !contacts.some(c => c.fb_msg_sent)) return true;
-    // No contacts at all = needs pipeline
-    if (contacts.length === 0 && !venue.instagram && !venue.facebook && !venue.website) return false;
-    // Has website but no contacts yet = needs pipeline (still actionable)
-    if (venue.website && contacts.length === 0) return true;
+    if (venue.facebook && venue.facebook.length > 5 && !contacts.some(c => c.fb_msg_sent)) return true;
     return false;
 }
 
@@ -1415,8 +1419,6 @@ function getMonthlyDefaults() {
     }
     return BUILTIN_DEFAULTS.map(d => ({ ...d }));
 }
-function saveMonthlyDefaults(arr) { localStorage.setItem(MONTHLY_DEFAULTS_KEY, JSON.stringify(arr)); }
-
 function getMonthKey() {
     const d = new Date();
     return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
@@ -1444,6 +1446,65 @@ function getMonthlyTasks() {
 
 function saveMonthlyTasks(data) {
     localStorage.setItem(MONTHLY_KEY, JSON.stringify(data));
+    syncMonthlyToCloud();
+}
+
+function saveMonthlyDefaults(arr) { localStorage.setItem(MONTHLY_DEFAULTS_KEY, JSON.stringify(arr)); syncMonthlyToCloud(); }
+
+let _syncTimer = null;
+function syncMonthlyToCloud() {
+    // Debounce — wait 2s after last change before pushing
+    clearTimeout(_syncTimer);
+    _syncTimer = setTimeout(() => {
+        const tasks = localStorage.getItem(MONTHLY_KEY) || '{}';
+        const defaults = localStorage.getItem(MONTHLY_DEFAULTS_KEY) || '[]';
+        const url = buildUrl({
+            action: 'save_monthly',
+            tasks: tasks,
+            defaults: defaults
+        });
+        if (url) jsonpFetch(url, () => {});
+    }, 2000);
+}
+
+function loadMonthlyFromCloud(cb) {
+    const url = buildUrl({ action: 'load_monthly' });
+    if (!url) { if (cb) cb(); return; }
+    jsonpFetch(url, function(err, data) {
+        if (err || !data || data.status !== 'ok') { if (cb) cb(); return; }
+        if (data.tasks) {
+            try {
+                const cloud = JSON.parse(data.tasks);
+                const local = JSON.parse(localStorage.getItem(MONTHLY_KEY) || '{}');
+                // Cloud wins — overwrite local
+                if (cloud.month) {
+                    localStorage.setItem(MONTHLY_KEY, data.tasks);
+                }
+            } catch(e) {}
+        }
+        if (data.defaults) {
+            try {
+                const cloudDef = JSON.parse(data.defaults);
+                if (Array.isArray(cloudDef) && cloudDef.length > 0) {
+                    localStorage.setItem(MONTHLY_DEFAULTS_KEY, data.defaults);
+                }
+            } catch(e) {}
+        }
+        renderMonthlyTasks();
+        if (cb) cb();
+    });
+}
+
+// === MARK VENUE DONE ===
+function markVenueDone(venueId) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: 'contacted' }), function(data) {
+        if (data.status === 'ok') {
+            showToast('Venue hidden!');
+            navigateBack();
+            setTimeout(loadDashboard, 500);
+        }
+    });
 }
 
 function toggleMonthlyTask(id) {
@@ -2020,7 +2081,11 @@ function updateGigsCount() {
 }
 
 // === INIT ===
-document.addEventListener('DOMContentLoaded', () => { renderMonthlyTasks(); loadDashboard(); });
+document.addEventListener('DOMContentLoaded', () => {
+    renderMonthlyTasks(); // Show local immediately
+    loadMonthlyFromCloud(); // Then overwrite with cloud
+    loadDashboard();
+});
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW:', err));

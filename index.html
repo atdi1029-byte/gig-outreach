@@ -1377,6 +1377,13 @@ function venueHasPending(venueId) {
         }
         return false;
     }
+    // "researched" = pipeline ran, no emails. Still show if there's FB/IG/contact form to use
+    if (venue.status === 'researched') {
+        if (venue.instagram && venue.instagram.length > 5) return true;
+        if (venue.facebook && venue.facebook.length > 5) return true;
+        if (venue.contact_form && venue.contact_form.length > 5) return true;
+        return false;
+    }
     // Has unsent verified emails?
     if (contacts.some(c => c.email && c.verified === 'valid' || c.verified === 'catch-all' && !c.email_sent)) return true;
     // Has Instagram not yet DM'd?
@@ -2102,7 +2109,7 @@ function renderSmartPicks(recs, profile) {
         if (gigVenueIds.has(r.venue_id)) return false;
         if (gigNames.has(stripThe(r.name))) return false;
         const v = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
-        if (v && v.status === 'contacted') return false;
+        if (v && (v.status === 'contacted' || v.status === 'researched')) return false;
         return true;
     }).slice(0, 8);
 

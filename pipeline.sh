@@ -912,7 +912,7 @@ run_venue() {
         log "  Marked as LinkedIn pending"
     fi
 
-    # Only mark as contacted if we actually found new contacts
+    # Pipeline ran = venue is done. "contacted" if we found people, "researched" if not
     local PIPELINE_CONTACTS_FOUND=0
     if [ -f /tmp/pipeline_contacts_count ]; then
         PIPELINE_CONTACTS_FOUND=$(wc -l < /tmp/pipeline_contacts_count | tr -d ' ')
@@ -921,7 +921,8 @@ run_venue() {
         log "  Found $PIPELINE_CONTACTS_FOUND new contact(s) — marking as contacted"
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=contacted" > /dev/null
     else
-        log "  No new contacts found — leaving venue as untouched"
+        log "  No contacts found — marking as researched"
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=researched" > /dev/null
     fi
 
     local end_time elapsed

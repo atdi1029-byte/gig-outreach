@@ -1109,6 +1109,9 @@ function getRecommendations_() {
     var vStatus = String(row[12]) || 'untouched';
     var vDist = row[16] ? Number(row[16]) : null;
 
+    // Hard cutoff: skip venues beyond 120 miles
+    if (vDist !== null && vDist > 120) continue;
+
     // --- CATEGORY MATCH (0-30 pts) ---
     var catPts = 0;
     if (catScores[vCat] !== undefined) {
@@ -1120,11 +1123,10 @@ function getRecommendations_() {
     }
 
     // --- DISTANCE MATCH (0-25 pts) ---
+    // Closer = better, linear falloff from 0-120 miles
     var distPts = 0;
-    if (vDist !== null && distances.length > 0) {
-      var distDiff = Math.abs(vDist - medianDist);
-      // Closer to median = more points. Falls off with distSpread
-      distPts = Math.round(Math.max(0, 25 * (1 - distDiff / (distSpread * 2))));
+    if (vDist !== null) {
+      distPts = Math.round(Math.max(0, 25 * (1 - vDist / 120)));
     } else {
       distPts = 10; // neutral if no distance data
     }

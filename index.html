@@ -1369,14 +1369,8 @@ function venueHasPending(venueId) {
     const contacts = ((dashboardData && dashboardData.contacts) || []).filter(c => c.venue_id === venueId);
     const venue = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === venueId);
     if (!venue) return false;
-    if (venue.status === 'contacted') {
-        // Auto-reset after 2.5 years (912 days)
-        if (venue.contacted_date) {
-            const age = (Date.now() - new Date(venue.contacted_date).getTime()) / (1000*60*60*24);
-            if (age > 912) return true; // 2.5 years — show again
-        }
-        return false;
-    }
+    // "contacted" venues still show if they have pending actions (unsent emails, FB, IG)
+    // Only fully hide after all outreach is done
     // "researched" = pipeline ran, no emails. Still show if there's FB/IG/contact form to use
     if (venue.status === 'researched') {
         if (venue.instagram && venue.instagram.length > 5) return true;

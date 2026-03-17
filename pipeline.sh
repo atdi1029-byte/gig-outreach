@@ -110,7 +110,8 @@ print(urllib.parse.urlencode({
 }))")
         curl -sL "${APPS_SCRIPT_URL}?${encoded}" > /dev/null
         log "  ✓ Added: ${name:-$email} <$email>"
-        PIPELINE_CONTACTS_FOUND=$(( PIPELINE_CONTACTS_FOUND + 1 ))
+        # Use file counter to survive subshell pipes
+        echo "1" >> /tmp/pipeline_contacts_count
         KNOWN_EMAILS="${KNOWN_EMAILS}|||$(echo "$email" | tr '[:upper:]' '[:lower:]')"
         if [ -n "$name" ]; then
             KNOWN_NAMES="${KNOWN_NAMES}|||$(echo "$name" | tr '[:upper:]' '[:lower:]')"
@@ -413,7 +414,7 @@ import requests, json
 all_people = []
 page = 1
 while True:
-    resp = requests.post("${APOLLO_API_BASE}/mixed_people/search",
+    resp = requests.post("${APOLLO_API_BASE}/mixed_people/api_search",
         headers={"Content-Type": "application/json", "x-api-key": "${APOLLO_API_KEY}"},
         json={"q_organization_domains_list": ["$DOMAIN"], "per_page": 100, "page": page})
     data = resp.json()
@@ -428,16 +429,17 @@ while True:
             "title": p.get("title", ""),
             "has_email": p.get("has_email", False)
         })
-    total = data.get("pagination", {}).get("total_entries", 0) if "pagination" in data else data.get("total_entries", 0)
-    if page * 100 >= total:
+    if len(people) < 100:
         break
     page += 1
+    if page > 5:
+        break
 print(json.dumps(all_people))
 PYEOF
     )
 
     local PEOPLE_COUNT
-    PEOPLE_COUNT=$(echo "$PEOPLE_JSON" | python3 -c "import json,sys; d=json.loads(sys.stdin.read()) if sys.stdin.read else []; print(len(d))" 2>/dev/null || echo "0")
+    PEOPLE_COUNT=$(echo "$PEOPLE_JSON" | python3 -c "import json,sys; print(len(json.loads(sys.stdin.read())))" 2>/dev/null || echo "0")
     if [ -z "$PEOPLE_COUNT" ]; then PEOPLE_COUNT=0; fi
     log "  Found $PEOPLE_COUNT people total"
     if [ "$PEOPLE_COUNT" = "0" ]; then
@@ -446,29 +448,29 @@ PYEOF
     fi
 
     # C. Filter: skip known names, only keep has_email=true
+    # Write people JSON to temp file to avoid stdin/heredoc conflict
+    echo "$PEOPLE_JSON" > /tmp/pipeline_people.json
     local TO_ENRICH
-    TO_ENRICH=$(echo "$PEOPLE_JSON" | python3 << PYEOF
-import json, sys
+    TO_ENRICH=$(KNAMES="$KNOWN_NAMES" python3 << 'PYEOF'
+import json, os
 
-people = json.loads(sys.stdin.read())
-known_raw = '''$KNOWN_NAMES'''
+with open('/tmp/pipeline_people.json') as f:
+    people = json.load(f)
+known_raw = os.environ.get('KNAMES', '')
 known = set(n.strip().lower() for n in known_raw.split('|||') if n.strip())
 
 to_enrich = []
 for p in people:
-    # Build partial name for dedup (last name is obfuscated in search)
-    first = p.get("first_name", "").strip()
+    first = p.get('first_name', '').strip()
     if not first:
         continue
-    # Check if first name + title combo is already known
     name_lower = first.lower()
     if any(name_lower in k for k in known):
         continue
-    if not p.get("has_email", False):
+    if not p.get('has_email', False):
         continue
     to_enrich.append(p)
 
-# Output as lines: id:::first_name:::title
 for p in to_enrich:
     print(f"{p['id']}:::{p['first_name']}:::{p['title']}")
 PYEOF
@@ -892,8 +894,8 @@ run_venue() {
     log " Started: $(date '+%Y-%m-%d %H:%M:%S')"
     log "============================================================"
 
-    # Track how many new contacts we find
-    PIPELINE_CONTACTS_FOUND=0
+    # Track how many new contacts we find (file-based to survive subshells)
+    rm -f /tmp/pipeline_contacts_count
 
     # Load existing contacts once
     load_existing "$venue_id"
@@ -903,9 +905,21 @@ run_venue() {
     step1_website "$venue" "$venue_id" "$website"
     step2_social "$venue" "$venue_id"
     step3_apollo_api "$venue" "$venue_id"
-    step4_linkedin "$venue" "$venue_id"
+    # LinkedIn quota resets in April — skip until then
+    if [ "$(date +%m)" -ge 4 ] 2>/dev/null; then
+        step4_linkedin "$venue" "$venue_id"
+    else
+        log ""
+        log "========== STEP 4: LinkedIn (SKIPPED — quota reset in April) =========="
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=notes&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('LinkedIn pending'))")" > /dev/null
+        log "  Marked as LinkedIn pending"
+    fi
 
     # Only mark as contacted if we actually found new contacts
+    local PIPELINE_CONTACTS_FOUND=0
+    if [ -f /tmp/pipeline_contacts_count ]; then
+        PIPELINE_CONTACTS_FOUND=$(wc -l < /tmp/pipeline_contacts_count | tr -d ' ')
+    fi
     if [ "$PIPELINE_CONTACTS_FOUND" -gt 0 ]; then
         log "  Found $PIPELINE_CONTACTS_FOUND new contact(s) — marking as contacted"
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=contacted" > /dev/null
@@ -961,6 +975,31 @@ print(v.get('website', ''))
         if [ "$IDX" -lt "$((SP_COUNT - 1))" ]; then sleep 30; fi
     done
     log "=== SMART PICKS COMPLETE ==="
+
+elif [ "$1" = "--linkedin-retry" ]; then
+    # Re-run Step 4 (LinkedIn) on venues marked "LinkedIn pending"
+    log "LINKEDIN RETRY MODE: Finding venues with LinkedIn pending..."
+    LR_JSON=$(curl -sL "${APPS_SCRIPT_URL}?action=dashboard" 2>/dev/null)
+    echo "$LR_JSON" | python3 -c "
+import sys, json
+data = json.load(sys.stdin)
+for v in data.get('venues', []):
+    notes = v.get('notes', '')
+    if 'LinkedIn pending' in notes:
+        print(f\"{v['venue_id']}|||{v['name']}|||{v.get('website','')}\")
+" 2>/dev/null | while IFS='|||' read -r VID NAME WEB; do
+        log ""
+        log "########## LINKEDIN RETRY: $NAME ($VID) ##########"
+        load_existing "$VID"
+        # Get domain from website
+        APOLLO_DOMAIN=$(echo "$WEB" | python3 -c "import sys,re; m=re.search(r'https?://(?:www\.)?([^/]+)',sys.stdin.read()); print(m.group(1) if m else '')" 2>/dev/null)
+        step4_linkedin "$NAME" "$VID"
+        # Clear the pending note
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=notes&value=" > /dev/null
+        log "  Cleared LinkedIn pending note"
+        sleep 10
+    done
+    log "=== LINKEDIN RETRY COMPLETE ==="
 
 elif [ "$1" = "--batch" ]; then
     BATCH_FILE="${2:?Usage: $0 --batch venues.json}"

@@ -761,6 +761,12 @@ body {
             </button>
         </div>
 
+        <!-- LINKEDIN RETRY REMINDER (shows in April+) -->
+        <div id="linkedinReminder" style="display:none;background:#2d1f3d;border:1px solid #9b59b6;border-radius:10px;padding:0.8rem 1rem;margin:0.5rem 0;cursor:pointer" onclick="alert('Run this in terminal:\\n\\n./pipeline.sh --linkedin-retry\\n\\nThis will re-run LinkedIn on all venues that were skipped.')">
+            <div style="font-size:0.85rem;color:#d4a5ff;font-weight:600">LinkedIn Quota Reset</div>
+            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.2rem"><span id="linkedinPendingCount">0</span> venues need LinkedIn scraping — tap for instructions</div>
+        </div>
+
         <!-- SMART PICKS (recommendation engine) -->
         <div class="section" id="smartPicksSection" style="display:none">
             <div class="section-header" onclick="toggleSmartPicks()">
@@ -1406,12 +1412,26 @@ function loadDashboard() {
             renderStateGrid();
             updateGigsCount();
             loadSmartPicks();
+            checkLinkedInReminder();
         } else {
             console.error('Dashboard load error:', err);
         }
         clearTimeout(refreshTimer);
         refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
     });
+}
+
+// === LINKEDIN REMINDER ===
+function checkLinkedInReminder() {
+    const venues = (dashboardData && dashboardData.venues) || [];
+    const pending = venues.filter(v => (v.notes || '').includes('LinkedIn pending'));
+    const el = document.getElementById('linkedinReminder');
+    if (pending.length > 0 && new Date().getMonth() >= 3) { // April = month 3
+        el.style.display = '';
+        document.getElementById('linkedinPendingCount').textContent = pending.length;
+    } else {
+        el.style.display = 'none';
+    }
 }
 
 // === MONTHLY TASKS ===

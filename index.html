@@ -1325,12 +1325,19 @@ function openVenueDetail(venueId) {
         }
     }
 
+    // Contact Form (if available)
+    if (venue.contact_form) {
+        html += `<div class="detail-section-label" style="background:${catColor}">Contact Form</div>`;
+        html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
+        html += `<button class="btn-action btn-open" onclick="window.open('${esc(venue.contact_form)}','_blank')">Open</button></div>`;
+    }
+
     // If nothing actionable, show a message
     const hasUnsent = emailContacts.some(c => !c.email_sent);
     const igPending = venue.instagram && !contacts.some(c => c.ig_dm_sent);
     const fbPending = venue.facebook && !contacts.some(c => c.fb_msg_sent);
     if (!hasUnsent && !igPending && !fbPending) {
-        if (emailContacts.length === 0 && !venue.instagram && !venue.facebook) {
+        if (emailContacts.length === 0 && !venue.instagram && !venue.facebook && !venue.contact_form) {
             html += `<div style="text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:0.8rem">Needs pipeline — no contacts scraped yet</div>`;
         } else {
             html += `<div style="text-align:center;padding:2rem 1rem;color:var(--green);font-size:0.8rem">All outreach complete</div>`;
@@ -1370,6 +1377,8 @@ function venueHasPending(venueId) {
     if (venue.instagram && venue.instagram.length > 5 && !contacts.some(c => c.ig_dm_sent)) return true;
     // Has Facebook not yet messaged?
     if (venue.facebook && venue.facebook.length > 5 && !contacts.some(c => c.fb_msg_sent)) return true;
+    // Has contact form?
+    if (venue.contact_form && venue.contact_form.length > 5) return true;
     return false;
 }
 

@@ -106,7 +106,8 @@ function serveDashboardJSON_() {
       notes:          String(row[15] || ''),
       distance_miles: row[16] ? Number(row[16]) : null,
       drive_minutes:  row[17] ? Number(row[17]) : null,
-      contacted_date: row[18] ? new Date(row[18]).toISOString() : ''
+      contacted_date: row[18] ? new Date(row[18]).toISOString() : '',
+      contact_form:   String(row[19] || '')
     });
   }
 
@@ -155,11 +156,22 @@ function serveDashboardJSON_() {
 
   var totalOutreach = emailsSent + igDmsSent + fbMsgsSent;
 
+  // Build set of past-gig venue IDs so we exclude them from Top Picks
+  var gigSheet2 = ss.getSheetByName(PAST_GIGS);
+  var pastGigVenueIds = {};
+  if (gigSheet2) {
+    var gd = gigSheet2.getDataRange().getValues();
+    for (var pg = 1; pg < gd.length; pg++) {
+      if (gd[pg][1]) pastGigVenueIds[String(gd[pg][1])] = true;
+    }
+  }
+
   // Build action needed — venues with pending actions
   var actionNeeded = [];
   for (var v = 0; v < venues.length; v++) {
     var venue = venues[v];
     if (venue.status === 'contacted') continue; // skip fully done
+    if (pastGigVenueIds[venue.venue_id]) continue; // skip past gigs
     var vc = contactsByVenue[venue.venue_id] || [];
     var pendingEmailContacts = [];
     var hasIg = venue.instagram && venue.instagram.length > 5;
@@ -307,7 +319,7 @@ function serveVenuesJSON_(params) {
       website: String(row[3]), city: String(row[4]), county: String(row[5]),
       state: String(row[6]), facebook: String(row[8]), instagram: String(row[9]),
       upscale_score: Number(row[10]) || 3, zone_priority: String(row[11]) || 'default',
-      status: String(row[12]) || 'untouched'
+      status: String(row[12]) || 'untouched', contact_form: String(row[19] || '')
     });
   }
 
@@ -336,7 +348,8 @@ function serveVenueDetail_(params) {
         state: String(row[6]), address: String(row[7]), facebook: String(row[8]),
         instagram: String(row[9]), upscale_score: Number(row[10]) || 3,
         zone_priority: String(row[11]) || 'default', status: String(row[12]) || 'untouched',
-        source: String(row[13]), notes: String(row[15] || '')
+        source: String(row[13]), notes: String(row[15] || ''),
+        contact_form: String(row[19] || '')
       };
       break;
     }
@@ -1071,6 +1084,15 @@ function getRecommendations_() {
     });
   }
 
+  // Build set of past-gig venue IDs to exclude from recommendations
+  var pastGigVids = {};
+  if (gigSheet) {
+    var pgData = gigSheet.getDataRange().getValues();
+    for (var pg = 1; pg < pgData.length; pg++) {
+      if (pgData[pg][1]) pastGigVids[String(pgData[pg][1])] = true;
+    }
+  }
+
   // Score each venue
   var recommendations = [];
   var zonePts = { green: 10, yellow: 5, 'default': 0 };
@@ -1080,6 +1102,7 @@ function getRecommendations_() {
     var row = vData[vi];
     if (!row[0]) continue;
     var venueId = String(row[0]);
+    if (pastGigVids[venueId]) continue; // skip past gigs
     var vCat = String(row[2]).toLowerCase();
     var vUpscale = Number(row[10]) || 3;
     var vZone = String(row[11]) || 'default';
@@ -1203,7 +1226,7 @@ function setupSheets() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
 
   var tabs = {
-    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date'],
+    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date', 'contact_form'],
     'Contacts': ['contact_id', 'venue_id', 'name', 'title', 'email', 'source', 'verified', 'verified_date', 'email_sent', 'email_sent_date', 'ig_dm_sent', 'fb_msg_sent'],
     'Outreach Log': ['timestamp', 'venue_id', 'contact_id', 'channel', 'template_used'],
     'Config': ['key', 'value'],

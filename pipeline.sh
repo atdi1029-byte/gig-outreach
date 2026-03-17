@@ -95,7 +95,7 @@ verify_and_push() {
     zb_status=$(curl -s "https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_KEY&email=$email" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('status','unknown'))" 2>/dev/null)
     log "  $email → $zb_status"
 
-    if [ "$zb_status" = "valid" ]; then
+    if [ "$zb_status" = "valid" ] || [ "$zb_status" = "invalid" ] || [ "$zb_status" = "catch-all" ]; then
         local encoded
         encoded=$(python3 -c "
 import urllib.parse
@@ -106,11 +106,14 @@ print(urllib.parse.urlencode({
     'title': '''$title''',
     'email': '$email',
     'source': '$source',
-    'verified': 'valid'
+    'verified': '$zb_status'
 }))")
         curl -sL "${APPS_SCRIPT_URL}?${encoded}" > /dev/null
-        log "  ✓ Added: ${name:-$email} <$email>"
-        # Use file counter to survive subshell pipes
+        if [ "$zb_status" = "valid" ]; then
+            log "  ✓ Added: ${name:-$email} <$email>"
+        else
+            log "  ⚠ Added (${zb_status}): ${name:-$email} <$email>"
+        fi
         echo "1" >> /tmp/pipeline_contacts_count
         KNOWN_EMAILS="${KNOWN_EMAILS}|||$(echo "$email" | tr '[:upper:]' '[:lower:]')"
         if [ -n "$name" ]; then
@@ -447,11 +450,10 @@ PYEOF
         return
     fi
 
-    # C. Filter: skip known names, only keep has_email=true
-    # Write people JSON to temp file to avoid stdin/heredoc conflict
+    # C. Filter: only skip people whose full name is already known
     echo "$PEOPLE_JSON" > /tmp/pipeline_people.json
     local TO_ENRICH
-    TO_ENRICH=$(KNAMES="$KNOWN_NAMES" python3 << 'PYEOF'
+    TO_ENRICH=$(KNAMES="$KNOWN_NAMES" KEMAILS="$KNOWN_EMAILS" python3 << 'PYEOF'
 import json, os
 
 with open('/tmp/pipeline_people.json') as f:
@@ -463,11 +465,6 @@ to_enrich = []
 for p in people:
     first = p.get('first_name', '').strip()
     if not first:
-        continue
-    name_lower = first.lower()
-    if any(name_lower in k for k in known):
-        continue
-    if not p.get('has_email', False):
         continue
     to_enrich.append(p)
 

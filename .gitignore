@@ -1,6 +1,11 @@
 # Don't push files with API keys
+.env
 scraper.py
 apps_script.gs
 notes.md
+pipeline.sh
+apollo_scrape.sh
+apollo_enrich_linkedin.sh
+linkedin_scrape.sh
 __pycache__/
 *.pyc

@@ -1128,7 +1128,7 @@ function renderTopPicks(picks) {
 function renderVenueCard(item) {
     const v = item.venue;
     const contacts = item.contacts || [];
-    const pendingEmails = (item.pendingEmails || []).filter(c => c.verified === 'valid' || c.verified === 'catch-all');
+    const pendingEmails = (item.pendingEmails || []).filter(c => (c.verified === 'valid' || c.verified === 'catch-all'));
     const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
 
     let actionCount = pendingEmails.length;
@@ -1267,7 +1267,7 @@ function openVenueDetail(venueId) {
 
     // Emails
     const skipWords = getSkipWords();
-    const emailContacts = contacts.filter(c => c.email && c.verified === 'valid' || c.verified === 'catch-all');
+    const emailContacts = contacts.filter(c => c.email && (c.verified === 'valid' || c.verified === 'catch-all'));
     let hiddenCount = 0;
     if (emailContacts.length > 0) {
         html += `<div class="detail-section-label" style="background:${catColor}">Emails</div>`;
@@ -1379,7 +1379,7 @@ function venueHasPending(venueId) {
         return false;
     }
     // Has unsent verified emails?
-    if (contacts.some(c => c.email && c.verified === 'valid' || c.verified === 'catch-all' && !c.email_sent)) return true;
+    if (contacts.some(c => c.email && (c.verified === 'valid' || c.verified === 'catch-all') && !c.email_sent)) return true;
     // Has Instagram not yet DM'd?
     if (venue.instagram && venue.instagram.length > 5 && !contacts.some(c => c.ig_dm_sent)) return true;
     // Has Facebook not yet messaged?
@@ -1550,7 +1550,7 @@ function markVenueDone(venueId) {
     fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: 'contacted' }), function(data) {
         if (data.status === 'ok') {
             showToast('Venue hidden!');
-            navigateBack();
+            goBack();
             setTimeout(loadDashboard, 500);
         }
     });

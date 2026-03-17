@@ -232,6 +232,7 @@ body {
 .category-badge.spa { background: #76c7c0; color: #000; }
 .category-badge.private_club { background: #b45f06; color: #fff; }
 .category-badge.church { background: #674ea7; color: #fff; }
+.category-badge.luxury_retail { background: #c9a227; color: #000; }
 
 .zone-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .zone-dot.green { background: var(--zone-green); }
@@ -1000,7 +1001,7 @@ function getTemplate(category) {
 
 // === CONSTANTS ===
 const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
-const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches' };
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail' };
 
 const STATE_IMAGES = {
     MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
@@ -1031,7 +1032,8 @@ const CATEGORY_IMAGES = {
     corporate: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop',
     spa: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=250&fit=crop',
     private_club: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=250&fit=crop',
-    church: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?w=400&h=250&fit=crop'
+    church: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?w=400&h=250&fit=crop',
+    luxury_retail: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=250&fit=crop'
 };
 
 // === API HELPERS ===
@@ -1224,7 +1226,7 @@ function openState(state) {
     });
 
     // Only show categories that have pending venues
-    const allCats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church'];
+    const allCats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail'];
     const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0);
     const el = document.getElementById('stateBody');
 
@@ -1938,7 +1940,7 @@ function renderGigForm(gig) {
     });
 
     // Build category dropdown
-    const cats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church'];
+    const cats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail'];
     let catOpts = cats.map(c => `<option value="${c}"${gig && gig.category === c ? ' selected' : ''}>${CATEGORY_LABELS[c] || c}</option>`).join('');
 
     let html = '';

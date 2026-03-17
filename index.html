@@ -1195,14 +1195,15 @@ function openState(state) {
         catCounts[cat] = (catCounts[cat] || 0) + 1;
     });
 
-    // Always show all 6 categories
+    // Only show categories that have pending venues
     const allCats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant'];
+    const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0);
     const el = document.getElementById('stateBody');
 
-    el.innerHTML = '<div class="category-grid">' + allCats.map(c => {
-        const count = catCounts[c] || 0;
+    el.innerHTML = '<div class="category-grid">' + activeCats.map(c => {
+        const count = catCounts[c];
         return `<div class="category-card" style="background-image:url('${CATEGORY_IMAGES[c] || ''}')" onclick="openCategory('${c}')">
-            ${count > 0 ? `<span class="category-card-count">${count}</span>` : ''}
+            <span class="category-card-count">${count}</span>
             <span class="category-card-name">${CATEGORY_LABELS[c] || c}</span>
         </div>`;
     }).join('') + '</div>';

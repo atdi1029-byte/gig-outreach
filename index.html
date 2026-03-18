@@ -277,6 +277,8 @@ body {
 .btn-sent { background: var(--bg-card); color: var(--green); border-color: var(--green); }
 .btn-sent:active { background: var(--green); color: #000; }
 .btn-sent.done { background: var(--green); color: #000; opacity: 0.5; pointer-events: none; }
+.btn-del { background: var(--bg-card); color: #e74c3c; border-color: #e74c3c; min-width: 28px; padding: 4px 6px; font-size: 0.7rem; }
+.btn-del:active { background: #e74c3c; color: #fff; }
 
 /* === DETAIL VIEW === */
 .detail-meta {
@@ -1104,6 +1106,19 @@ function openFBWithTemplate(fbUrl, category) {
     window.open(fbUrl, '_blank');
 }
 
+// === DELETE CONTACT ===
+function deleteContact(contactId, el) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    if (!confirm('Delete this contact?')) return;
+    el.textContent = '...';
+    fireGet(buildUrl({ action: 'delete_contact', contact_id: contactId }), function() {
+        const row = el.closest('.detail-action-row, .action-row');
+        if (row && row.parentElement) row.parentElement.remove();
+        else if (row) row.remove();
+        showToast('Contact deleted');
+    });
+}
+
 // === MARK ACTIONS ===
 function markEmailSent(contactId, venueId, category, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
@@ -1185,7 +1200,8 @@ function renderVenueCard(item) {
         html += `<div class="action-row"><span class="contact-email">${esc(c.email)}</span>`;
         html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
         html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
-        html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}',this)">Sent</button></div>`;
+        html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}',this)">Sent</button>`;
+        html += `<button class="btn-action btn-del" onclick="deleteContact('${esc(c.contact_id)}',this)">✕</button></div>`;
     }
     if (item.igPending && v.instagram) {
         const fc = contacts[0] || { contact_id: '' };
@@ -1318,7 +1334,8 @@ function openVenueDetail(venueId) {
                 html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
                 html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
-                html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button></div>`;
+                html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button>`;
+                html += `<button class="btn-action btn-del" onclick="deleteContact('${esc(c.contact_id)}',this)">✕</button></div>`;
                 if (c.name || c.title) html += `<div class="detail-contact-name">${renderTitleWords(c.name, c.title)}</div>`;
                 html += `</div>`;
             } else {

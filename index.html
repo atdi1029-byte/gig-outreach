@@ -279,6 +279,14 @@ body {
 .btn-sent.done { background: var(--green); color: #000; opacity: 0.5; pointer-events: none; }
 .btn-del { background: var(--bg-card); color: #e74c3c; border-color: #e74c3c; min-width: 28px; padding: 4px 6px; font-size: 0.7rem; }
 .btn-del:active { background: #e74c3c; color: #fff; }
+.venue-vote-row { display: flex; align-items: center; gap: 10px; margin: 10px 0 4px; }
+.vote-btn { font-size: 1.4rem; background: none; border: 2px solid transparent; border-radius: 8px; padding: 4px 10px; cursor: pointer; opacity: 0.5; transition: all 0.2s; }
+.vote-btn:active, .vote-btn.vote-active-up, .vote-btn.vote-active-down { opacity: 1; }
+.vote-active-up { border-color: var(--green); background: rgba(46,204,113,0.15); }
+.vote-active-down { border-color: #e74c3c; background: rgba(231,76,60,0.15); }
+.vote-feedback-preview { font-size: 0.75rem; color: var(--text-dim); font-style: italic; cursor: pointer; flex: 1; }
+.vote-feedback-box { margin: 0 0 10px; }
+.vote-feedback-box textarea { width: 100%; background: var(--bg-card); color: var(--text-bright); border: 1px solid var(--border); border-radius: 6px; padding: 8px; font-size: 0.8rem; font-family: inherit; resize: vertical; }
 
 /* === DETAIL VIEW === */
 .detail-meta {
@@ -1106,6 +1114,38 @@ function openFBWithTemplate(fbUrl, category) {
     window.open(fbUrl, '_blank');
 }
 
+// === VENUE VOTE ===
+function voteVenue(venueId, vote, btn) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    // Toggle: if already this vote, clear it
+    const row = btn.parentElement;
+    const wasActive = btn.classList.contains('vote-active-up') || btn.classList.contains('vote-active-down');
+    const finalVote = wasActive ? '' : vote;
+    row.querySelectorAll('.vote-btn').forEach(b => { b.classList.remove('vote-active-up','vote-active-down'); });
+    if (finalVote) btn.classList.add(finalVote === 'up' ? 'vote-active-up' : 'vote-active-down');
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_vote', value: finalVote }), function() {
+        showToast(finalVote ? (finalVote === 'up' ? 'Thumbs up!' : 'Thumbs down') : 'Vote cleared');
+    });
+    // Show feedback box
+    if (finalVote) toggleFeedbackBox(venueId, finalVote);
+    else document.getElementById('voteFeedbackBox').style.display = 'none';
+}
+
+function toggleFeedbackBox(venueId, vote) {
+    const box = document.getElementById('voteFeedbackBox');
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
+    if (box.style.display === 'block') document.getElementById('voteFeedbackText').focus();
+}
+
+function saveFeedback(venueId) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    const text = document.getElementById('voteFeedbackText').value.trim();
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_feedback', value: text }), function() {
+        document.getElementById('voteFeedbackBox').style.display = 'none';
+        showToast('Feedback saved');
+    });
+}
+
 // === SKIP CONTACT ===
 function skipContact(contactId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
@@ -1314,6 +1354,19 @@ function openVenueDetail(venueId) {
 
     // Website
     if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
+
+    // Venue vote (thumbs up/down + feedback)
+    const curVote = venue.venue_vote || '';
+    const curFeedback = venue.venue_feedback || '';
+    html += `<div class="venue-vote-row" id="venueVoteRow">`;
+    html += `<button class="vote-btn ${curVote === 'up' ? 'vote-active-up' : ''}" onclick="voteVenue('${esc(venueId)}','up',this)">&#x1F44D;</button>`;
+    html += `<button class="vote-btn ${curVote === 'down' ? 'vote-active-down' : ''}" onclick="voteVenue('${esc(venueId)}','down',this)">&#x1F44E;</button>`;
+    if (curVote && curFeedback) html += `<span class="vote-feedback-preview" onclick="toggleFeedbackBox('${esc(venueId)}','${esc(curVote)}')">${esc(curFeedback)}</span>`;
+    html += `</div>`;
+    html += `<div class="vote-feedback-box" id="voteFeedbackBox" style="display:none">`;
+    html += `<textarea id="voteFeedbackText" placeholder="Why? (e.g. upscale patio, hosts private events, wrong vibe...)" rows="2">${esc(curFeedback)}</textarea>`;
+    html += `<button class="btn-action" style="background:var(--accent);color:#000;margin-top:4px" onclick="saveFeedback('${esc(venueId)}')">Save</button>`;
+    html += `</div>`;
 
     // Emails
     const skipWords = getSkipWords();
@@ -2156,7 +2209,7 @@ function renderSmartPicks(recs, profile) {
         if (gigVenueIds.has(r.venue_id)) return false;
         if (gigNames.has(stripThe(r.name))) return false;
         const v = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
-        if (v && ['contacted','researched','done','pipelined'].includes(v.status)) return false;
+        if (v && ['pipelined','contacted'].includes(v.status)) return false;
         return true;
     });
     const filtered = allFiltered.slice(0, 8);

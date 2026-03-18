@@ -66,11 +66,8 @@ What works for Alex as a classical guitarist, learned from 18 past gigs and venu
 - Contact form mentions "private events" or "live entertainment"
 
 **Red flags:**
-- Under 50 Google reviews (too small/unknown)
-- "Casual dining", "sports bar", "pub" vibes
-- Located in non-affluent area
+- "Sports bar", "pub" vibes
 - No social media presence (not invested in experience)
-- Owner-operated tiny venues (hit or miss on rebooking)
 
 ## Review Notes (from venue review queue)
 *Updated as Alex reviews venues*

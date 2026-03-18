@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report — March 18, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    background: #0c1a22;
+    color: #e0e0e0;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #6ecfcf;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #6ecfcf;
+    padding-bottom: 10px;
+  }
+  .date { color: #999; margin-bottom: 30px; font-size: 0.95rem; }
+  h2 {
+    color: #e8944c;
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+    border-left: 4px solid #e8944c;
+    padding-left: 12px;
+  }
+  h3 {
+    color: #6ecfcf;
+    font-size: 1.1rem;
+    margin: 20px 0 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #1a2e3a;
+  }
+  tr:hover { background: rgba(110, 207, 207, 0.05); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+  }
+  .stat-box {
+    background: #1a2e3a;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6ecfcf;
+  }
+  .stat-box .label {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 4px;
+  }
+  .flag {
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .flag strong { color: #e85050; }
+  .contact-name { color: #6ecfcf; }
+  .valid { color: #4caf50; }
+  .unknown { color: #ff9800; }
+  .score {
+    display: inline-block;
+    background: #e8944c;
+    color: #0c1a22;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+  .category-pill {
+    display: inline-block;
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  @media print {
+    body { background: #fff; color: #222; padding: 20px; }
+    h1 { color: #1a5c5c; border-color: #1a5c5c; }
+    h2 { color: #b06a2a; border-color: #b06a2a; }
+    h3 { color: #1a5c5c; }
+    th { background: #eee; color: #333; }
+    td { border-color: #ddd; }
+    .stat-box { background: #f5f5f5; border: 1px solid #ddd; }
+    .stat-box .num { color: #1a5c5c; }
+    .flag { background: #fff0f0; border-color: #cc3333; }
+    .flag strong { color: #cc3333; }
+    .contact-name { color: #1a5c5c; }
+    .score { background: #e8944c; }
+    .category-pill { background: #eee; color: #333; }
+    tr:hover { background: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">March 18, 2026 &bull; Runtime: ~8 minutes</div>
+
+<h2>Flagged for Review</h2>
+
+<div class="flag">
+  <strong>Bad Website Lookup:</strong> Bearing Gifts &rarr; dictionary.com (wrong site found by Google search)
+</div>
+<div class="flag">
+  <strong>Bad Website Lookup:</strong> Tree of Kings &rarr; fandom wiki (wrong site found by Google search)
+</div>
+<div class="flag">
+  <strong>Duplicate:</strong> Good Spirit Farm &mdash; already exists as "Good Spirit Farm Winery"
+</div>
+<div class="flag">
+  <strong>Apollo Mismatch:</strong> Georgetown Club matched "P&aacute;del Club Georgetown" instead. Emails came from website scrape only &mdash; no names/titles attached.
+</div>
+<div class="flag">
+  <strong>Missing Distances:</strong> All 9 new venues have no distance data. Apps Script fix deployed but calc_distances still returning 0. Needs investigation.
+</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">9</div>
+    <div class="label">Venues Discovered</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">13</div>
+    <div class="label">Verified Emails</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">14</div>
+    <div class="label">Apollo Credits Used</div>
+  </div>
+</div>
+
+<h2>Discovery (3 Seeds)</h2>
+
+<table>
+  <thead>
+    <tr><th>Seed Venue</th><th>New Venue</th><th>Category</th><th>Rating</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5"><strong>Savage Mill Mall</strong></td>
+      <td>The Antique Center at Historic Savage Mill</td>
+      <td><span class="category-pill">restaurant</span></td>
+      <td>4.4&#9733; (188)</td>
+    </tr>
+    <tr>
+      <td>Historic Savage Mill Company Store Building</td>
+      <td><span class="category-pill">restaurant</span></td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td>Dive Bar and Grille (Savage Mill)</td>
+      <td><span class="category-pill">restaurant</span></td>
+      <td>4.3&#9733; (807)</td>
+    </tr>
+    <tr>
+      <td>Roggenart European Bakery, Bistro &amp; Cafe</td>
+      <td><span class="category-pill">restaurant</span></td>
+      <td>4.3&#9733; (218)</td>
+    </tr>
+    <tr>
+      <td>Bearing Gifts</td>
+      <td><span class="category-pill">restaurant</span></td>
+      <td>4.0&#9733; (26)</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><strong>Trueman Vineyards</strong></td>
+      <td>Two Lions Vineyards</td>
+      <td><span class="category-pill">winery</span></td>
+      <td>4.8&#9733; (257)</td>
+    </tr>
+    <tr>
+      <td>Tree of Kings</td>
+      <td><span class="category-pill">winery</span></td>
+      <td>5.0&#9733; (3)</td>
+    </tr>
+    <tr>
+      <td rowspan="2"><strong>Williams Gap Vineyard</strong></td>
+      <td>Good Spirit Farm</td>
+      <td><span class="category-pill">winery</span></td>
+      <td>4.9&#9733; (53)</td>
+    </tr>
+    <tr>
+      <td>Hillsborough Vineyards &amp; Brewery</td>
+      <td><span class="category-pill">winery</span></td>
+      <td>4.5&#9733; (369)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Pipeline (3 Smart Picks)</h2>
+
+<h3>1. Sulgrave Club <span class="score">Score: 70</span></h3>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="contact-name">Bob Francis</td><td>General Manager / COO</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Elizabeth Jones</td><td>Director of Catering &amp; Membership</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Margaux Beuscher</td><td>Assistant General Manager</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Oksana Gallardo</td><td>Membership Manager</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Timothy Loveland</td><td>Executive Chef</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Juan Andrade</td><td>Executive Sous Chef</td><td class="unknown">? unknown</td></tr>
+    <tr><td class="contact-name">Josh Short</td><td>Pastry Chef</td><td class="unknown">? unknown</td></tr>
+    <tr><td class="contact-name">Natasha Walker</td><td>Operations Manager</td><td class="unknown">? unknown</td></tr>
+    <tr><td class="contact-name">Kathleen Malecki</td><td>Sous Chef</td><td class="unknown">? unknown</td></tr>
+    <tr><td class="contact-name">Linus Gomes</td><td>Server</td><td class="unknown">? unknown</td></tr>
+    <tr><td class="contact-name">Monica Sheehy</td><td>Asst. Controller</td><td class="unknown">? unknown</td></tr>
+    <tr><td class="contact-name">Karen Reilly</td><td>Assistant Controller</td><td class="unknown">? unknown</td></tr>
+    <tr><td class="contact-name">Virendar Sood</td><td>Night Auditor</td><td class="unknown">? unknown</td></tr>
+    <tr><td class="contact-name">Maurice Barnes</td><td>Dining Room Manager</td><td class="unknown">? unknown</td></tr>
+  </tbody>
+</table>
+
+<h3>2. The GeorgeTown Club <span class="score">Score: 70</span></h3>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Email</th><th>Email Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="contact-name">(no name)</td><td>tom.roche@georgetownclub.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td>stole.micov@georgetownclub.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td>anousorn.phomsavath@georgetownclub.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td>nahaman.hernandez@georgetownclub.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td>jaqueline.martinez@georgetownclub.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td>miguel.ventura@georgetownclub.org</td><td class="valid">&#10003; valid</td></tr>
+  </tbody>
+</table>
+
+<h3>3. Two Lions Vineyards <span class="score">Score: 66</span></h3>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Email</th><th>Email Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="contact-name">(no name)</td><td>callie@twolionswine.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td>shannon@twolionswine.com</td><td class="valid">&#10003; valid</td></tr>
+  </tbody>
+</table>
+
+</body>
+</html>

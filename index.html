@@ -238,6 +238,7 @@ body {
 .category-badge.private_club { background: #b45f06; color: #fff; }
 .category-badge.church { background: #674ea7; color: #fff; }
 .category-badge.luxury_retail { background: #c9a227; color: #000; }
+.category-badge.mall { background: #e88b4d; color: #fff; }
 
 .zone-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .zone-dot.green { background: var(--zone-green); }
@@ -759,6 +760,107 @@ body {
 .gig-profile-title { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--gold); margin-bottom: 0.4rem; }
 .gig-profile-stat { font-size: 0.7rem; color: var(--text); margin: 0.15rem 0; }
 
+/* === REVIEW QUEUE === */
+.review-section { margin: 0.75rem 0; }
+.review-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.5rem 0; margin-bottom: 0.5rem;
+}
+.review-title {
+    font-family: 'Playfair Display', serif; font-size: 1rem;
+    color: var(--gold); font-weight: 700;
+}
+.review-counter {
+    font-size: 0.75rem; color: var(--text-dim);
+    font-family: 'Lato', sans-serif;
+}
+.review-stack {
+    position: relative; height: 200px;
+    perspective: 600px; touch-action: none;
+}
+.review-card {
+    position: absolute; top: 0; left: 0; right: 0;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.2rem;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    cursor: grab; user-select: none;
+}
+.review-card.behind-1 {
+    transform: scale(0.95) translateY(8px);
+    opacity: 0.5; pointer-events: none;
+}
+.review-card.behind-2 {
+    transform: scale(0.90) translateY(16px);
+    opacity: 0.3; pointer-events: none;
+}
+.review-card.swiping { transition: none; }
+.review-card.swipe-right {
+    transform: translateX(120%) rotate(15deg);
+    opacity: 0; transition: transform 0.4s ease, opacity 0.3s ease;
+}
+.review-card.swipe-left {
+    transform: translateX(-120%) rotate(-15deg);
+    opacity: 0; transition: transform 0.4s ease, opacity 0.3s ease;
+}
+.review-venue-name {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem;
+    color: var(--text-bright); margin-bottom: 0.5rem;
+}
+.review-meta {
+    display: flex; gap: 0.5rem; align-items: center;
+    flex-wrap: wrap; margin-bottom: 0.6rem;
+}
+.review-meta .category-badge {
+    font-size: 0.65rem; padding: 0.15rem 0.5rem;
+}
+.review-stars { color: var(--gold); font-size: 0.8rem; }
+.review-distance { font-size: 0.75rem; color: var(--text-dim); }
+.review-notes {
+    font-size: 0.7rem; color: var(--text-dim);
+    margin-top: 0.3rem; line-height: 1.4;
+    max-height: 2.8em; overflow: hidden;
+}
+.review-actions {
+    display: flex; justify-content: center;
+    gap: 2rem; margin-top: 0.8rem;
+}
+.review-btn {
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; cursor: pointer; border: 2px solid;
+    background: transparent; transition: all 0.15s;
+}
+.review-btn.reject {
+    color: var(--red); border-color: var(--red);
+}
+.review-btn.reject:active {
+    background: rgba(239,83,80,0.2);
+}
+.review-btn.approve {
+    color: var(--green); border-color: var(--green);
+}
+.review-btn.approve:active {
+    background: rgba(38,166,154,0.2);
+}
+.review-btn.delete-venue {
+    color: #888; border-color: #555; font-size: 0.8rem;
+}
+.review-btn.delete-venue:active {
+    background: rgba(136,136,136,0.2);
+}
+.review-done {
+    text-align: center; padding: 1.5rem;
+    color: var(--green); font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+}
+.review-swipe-hint {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    font-size: 2rem; font-weight: 900; opacity: 0;
+    transition: opacity 0.1s; pointer-events: none;
+}
+.review-swipe-hint.left { left: 1rem; color: var(--red); }
+.review-swipe-hint.right { right: 1rem; color: var(--green); }
+
 @media (max-width: 768px) {
     .view-inner { padding: 0.75rem; }
     .home-header h1 { font-size: 1.4rem; letter-spacing: 3px; }
@@ -782,12 +884,16 @@ body {
         <!-- MONTHLY TASKS (desktop only, hidden on mobile via CSS) -->
         <div class="monthly-section" id="monthlySection"></div>
 
-        <!-- PAST GIGS BUTTON -->
+        <!-- PAST GIGS + REPORTS BUTTONS -->
         <div class="gigs-pill-row">
             <button class="gigs-pill" onclick="openGigsView()">
                 <span class="gigs-pill-icon">&#9834;</span>
                 <span>Past Gigs</span>
                 <span class="gigs-pill-count" id="gigsCount">0</span>
+            </button>
+            <button class="gigs-pill" onclick="openReportsView()">
+                <span class="gigs-pill-icon">&#9776;</span>
+                <span>Reports</span>
             </button>
         </div>
 
@@ -795,6 +901,15 @@ body {
         <div id="linkedinReminder" style="display:none;background:#2d1f3d;border:1px solid #9b59b6;border-radius:10px;padding:0.8rem 1rem;margin:0.5rem 0;cursor:pointer" onclick="alert('Run this in terminal:\\n\\n./pipeline.sh --linkedin-retry\\n\\nThis will re-run LinkedIn on all venues that were skipped.')">
             <div style="font-size:0.85rem;color:#d4a5ff;font-weight:600">LinkedIn Quota Reset</div>
             <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.2rem"><span id="linkedinPendingCount">0</span> venues need LinkedIn scraping — tap for instructions</div>
+        </div>
+
+        <!-- REVIEW QUEUE -->
+        <div class="review-section" id="reviewSection" style="display:none">
+            <div class="review-header">
+                <span class="review-title">Review New Venues</span>
+                <span class="review-counter" id="reviewCounter"></span>
+            </div>
+            <div class="review-stack" id="reviewStack"></div>
         </div>
 
         <!-- SMART PICKS (recommendation engine) -->
@@ -869,6 +984,15 @@ body {
         <span class="view-title" id="gigFormTitle">Add Past Gig</span>
     </div>
     <div class="view-inner" id="gigFormBody"></div>
+</div>
+
+<!-- ============ VIEW: REPORTS ============ -->
+<div class="view" id="viewReports">
+    <div class="view-header">
+        <button class="view-back" onclick="goBack()">&larr;</button>
+        <span class="view-title">Reports</span>
+    </div>
+    <div class="view-inner" id="reportsBody"></div>
 </div>
 
 <!-- TOAST -->
@@ -1016,7 +1140,7 @@ function getTemplate(category) {
 
 // === CONSTANTS ===
 const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
-const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail' };
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls' };
 
 const STATE_IMAGES = {
     MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
@@ -1048,7 +1172,8 @@ const CATEGORY_IMAGES = {
     spa: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=250&fit=crop',
     private_club: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=250&fit=crop',
     church: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?w=400&h=250&fit=crop',
-    luxury_retail: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=250&fit=crop'
+    luxury_retail: 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=400&h=250&fit=crop',
+    mall: 'https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=400&h=250&fit=crop'
 };
 
 // === API HELPERS ===
@@ -1285,7 +1410,7 @@ function openState(state) {
     });
 
     // Only show categories that have pending venues
-    const allCats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail'];
+    const allCats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
     const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0);
     const el = document.getElementById('stateBody');
 
@@ -1514,6 +1639,7 @@ function loadDashboard() {
     jsonpFetch(API_URL, function(err, data) {
         if (!err && data && data.status === 'ok') {
             dashboardData = data;
+            renderReviewQueue();
             renderTopPicks(data.topPicks);
             renderStateGrid();
             updateGigsCount();
@@ -1525,6 +1651,297 @@ function loadDashboard() {
         clearTimeout(refreshTimer);
         refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
     });
+}
+
+// === REVIEW QUEUE (Swipe Cards) ===
+let reviewQueue = [];
+let reviewIndex = 0;
+let reviewTotal = 0;
+let reviewDragState = null;
+
+function renderReviewQueue() {
+    const venues = (dashboardData && dashboardData.venues) || [];
+    reviewQueue = venues.filter(v =>
+        (!v.venue_vote || v.venue_vote === '') &&
+        (v.status === 'untouched' || v.status === 'pipelined')
+    );
+    reviewIndex = 0;
+    reviewTotal = reviewQueue.length;
+    const section = document.getElementById('reviewSection');
+    if (reviewQueue.length === 0) {
+        section.style.display = 'none';
+        return;
+    }
+    section.style.display = '';
+    renderReviewCards();
+}
+
+function renderReviewCards() {
+    const stack = document.getElementById('reviewStack');
+    const counter = document.getElementById('reviewCounter');
+    const remaining = reviewQueue.length - reviewIndex;
+    counter.textContent = remaining + ' to review';
+
+    if (reviewIndex >= reviewQueue.length) {
+        stack.innerHTML = '<div class="review-done">All caught up!</div>';
+        setTimeout(() => {
+            document.getElementById('reviewSection').style.display = 'none';
+        }, 2000);
+        return;
+    }
+
+    let html = '';
+    for (let i = Math.min(reviewIndex + 2, reviewQueue.length - 1); i >= reviewIndex; i--) {
+        const v = reviewQueue[i];
+        const offset = i - reviewIndex;
+        const cls = offset === 0 ? '' : offset === 1 ? 'behind-1' : 'behind-2';
+        const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+        const stars = v.notes ? (v.notes.match(/([\d.]+)★/) || [])[1] || '' : '';
+        const reviews = v.notes ? (v.notes.match(/\((\d+) reviews\)/) || [])[1] || '' : '';
+        const dist = v.distance_miles != null
+            ? Math.round(v.distance_miles) + ' mi'
+            : 'distance unknown';
+        const drive = v.drive_minutes != null
+            ? ' · ' + Math.round(v.drive_minutes) + ' min'
+            : '';
+        const notesTxt = (v.notes || '').replace(/Google Maps '[^']*'\.\s*/, '').replace(/[\d.]+★ \(\d+ reviews\)\.\s*/, '').replace(/Discovered from:.*/, '').trim();
+
+        html += `<div class="review-card ${cls}" data-idx="${i}" id="reviewCard${i}">
+            <span class="review-swipe-hint left">&#10007;</span>
+            <span class="review-swipe-hint right">&#10003;</span>
+            <div class="review-venue-name">${v.name}</div>
+            <div class="review-meta">
+                <span class="category-badge ${cat}">${cat.replace(/_/g, ' ')}</span>
+                ${stars ? `<span class="review-stars">${stars}&#9733; (${reviews})</span>` : ''}
+                <span class="review-distance">${dist}${drive}</span>
+            </div>
+            ${notesTxt ? `<div class="review-notes">${notesTxt}</div>` : ''}
+            <div style="display:flex;gap:0.4rem;margin-top:0.5rem;flex-wrap:wrap">
+                ${v.website && v.website !== 'undefined' ? `<a href="${v.website}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:var(--gold);background:rgba(240,160,48,0.1);border:1px solid rgba(240,160,48,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Website</a>` : ''}
+                ${v.instagram ? `<a href="${v.instagram}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#e1306c;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Instagram</a>` : ''}
+                ${v.facebook ? `<a href="${v.facebook}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#4267b2;background:rgba(66,103,178,0.1);border:1px solid rgba(66,103,178,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Facebook</a>` : ''}
+                <a href="https://www.google.com/maps/search/${encodeURIComponent(v.name + ' ' + (v.city || '') + ' ' + (v.state || ''))}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:var(--green);background:rgba(38,166,154,0.1);border:1px solid rgba(38,166,154,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Maps</a>
+            </div>
+            <div style="margin-top:0.6rem">
+                <input type="text" id="reviewNote${i}" placeholder="Quick note (optional)..."
+                    style="width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);
+                    border-radius:6px;padding:0.4rem 0.6rem;color:var(--text);font-size:0.8rem;
+                    font-family:'Lato',sans-serif;outline:none"
+                    onfocus="this.parentElement.parentElement.style.cursor='default'"
+                    onclick="event.stopPropagation()">
+            </div>
+            <div class="review-actions">
+                <button class="review-btn reject" onclick="reviewVote('down',${i})" title="Skip">&#10007;</button>
+                <button class="review-btn delete-venue" onclick="reviewDelete(${i})" title="Delete">DEL</button>
+                <button class="review-btn approve" onclick="reviewVote('up',${i})" title="Approve">&#10003;</button>
+            </div>
+        </div>`;
+    }
+    stack.innerHTML = html;
+
+    // Attach touch/drag to top card
+    const topCard = document.getElementById('reviewCard' + reviewIndex);
+    if (topCard) initReviewDrag(topCard, reviewIndex);
+}
+
+function initReviewDrag(card, idx) {
+    let startX = 0, currentX = 0, dragging = false;
+    const hintL = card.querySelector('.review-swipe-hint.left');
+    const hintR = card.querySelector('.review-swipe-hint.right');
+
+    function onStart(e) {
+        if (e.target.tagName === 'INPUT') return;
+        const t = e.touches ? e.touches[0] : e;
+        startX = t.clientX;
+        dragging = true;
+        card.classList.add('swiping');
+    }
+    function onMove(e) {
+        if (!dragging) return;
+        const t = e.touches ? e.touches[0] : e;
+        currentX = t.clientX - startX;
+        card.style.transform = `translateX(${currentX}px) rotate(${currentX * 0.08}deg)`;
+        if (hintL) hintL.style.opacity = currentX < -30 ? Math.min(1, (-currentX - 30) / 50) : 0;
+        if (hintR) hintR.style.opacity = currentX > 30 ? Math.min(1, (currentX - 30) / 50) : 0;
+    }
+    function onEnd() {
+        if (!dragging) return;
+        dragging = false;
+        card.classList.remove('swiping');
+        if (hintL) hintL.style.opacity = 0;
+        if (hintR) hintR.style.opacity = 0;
+        if (currentX > 80) {
+            reviewVote('up', idx);
+        } else if (currentX < -80) {
+            reviewVote('down', idx);
+        } else {
+            card.style.transform = '';
+        }
+        currentX = 0;
+    }
+
+    card.addEventListener('touchstart', onStart, { passive: true });
+    card.addEventListener('touchmove', onMove, { passive: true });
+    card.addEventListener('touchend', onEnd);
+    card.addEventListener('mousedown', onStart);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+}
+
+function reviewVote(vote, idx) {
+    const v = reviewQueue[idx];
+    if (!v) return;
+    const card = document.getElementById('reviewCard' + idx);
+    // Save note if provided
+    const noteInput = document.getElementById('reviewNote' + idx);
+    const note = noteInput ? noteInput.value.trim() : '';
+    if (card) {
+        card.classList.add(vote === 'up' ? 'swipe-right' : 'swipe-left');
+    }
+    // Save vote
+    fireGet(API_URL + '?action=update_venue&venue_id=' +
+        encodeURIComponent(v.venue_id) +
+        '&field=venue_vote&value=' + vote);
+    // Save feedback note
+    if (note) {
+        fireGet(API_URL + '?action=update_venue&venue_id=' +
+            encodeURIComponent(v.venue_id) +
+            '&field=venue_feedback&value=' + encodeURIComponent(note));
+    }
+    // Update local data
+    if (dashboardData) {
+        const dv = dashboardData.venues.find(x => x.venue_id === v.venue_id);
+        if (dv) { dv.venue_vote = vote; if (note) dv.venue_feedback = note; }
+    }
+    setTimeout(() => {
+        reviewIndex++;
+        renderReviewCards();
+    }, 400);
+}
+
+function reviewDelete(idx) {
+    const v = reviewQueue[idx];
+    if (!v) return;
+    if (!confirm('Delete ' + v.name + '?')) return;
+    const card = document.getElementById('reviewCard' + idx);
+    if (card) card.classList.add('swipe-left');
+    fireGet(API_URL + '?action=delete_venue&venue_id=' +
+        encodeURIComponent(v.venue_id));
+    // Remove from local data
+    if (dashboardData) {
+        dashboardData.venues = dashboardData.venues.filter(
+            x => x.venue_id !== v.venue_id
+        );
+    }
+    setTimeout(() => {
+        reviewIndex++;
+        renderReviewCards();
+    }, 400);
+}
+
+// === REPORTS VIEW ===
+function openReportsView() {
+    const body = document.getElementById('reportsBody');
+    const venues = (dashboardData && dashboardData.venues) || [];
+    const contacts = (dashboardData && dashboardData.contacts) || [];
+    const gigs = (dashboardData && dashboardData.gigs) || [];
+
+    // Stats
+    const totalVenues = venues.length;
+    const pipelined = venues.filter(v => v.status === 'pipelined').length;
+    const contacted = venues.filter(v => v.status === 'contacted').length;
+    const untouched = venues.filter(v => v.status === 'untouched').length;
+    const totalContacts = contacts.length;
+    const validEmails = contacts.filter(c => c.verified === 'valid').length;
+    const emailsSent = contacts.filter(c => c.email_sent === 'true' || c.email_sent === true).length;
+    const pendingReview = venues.filter(v =>
+        (!v.venue_vote || v.venue_vote === '') &&
+        (v.status === 'untouched' || v.status === 'pipelined')
+    ).length;
+
+    // Venues missing data
+    const noDistance = venues.filter(v => v.distance_miles == null);
+    const noWebsite = venues.filter(v =>
+        !v.website || v.website === '' || v.website === 'undefined'
+    );
+    const noContacts = venues.filter(v => {
+        const vc = contacts.filter(c => c.venue_id === v.venue_id);
+        return vc.length === 0 && v.status === 'pipelined';
+    });
+
+    // Categories breakdown
+    const catCounts = {};
+    venues.forEach(v => {
+        const cat = (v.category || 'other').toLowerCase();
+        catCounts[cat] = (catCounts[cat] || 0) + 1;
+    });
+    const catSorted = Object.entries(catCounts).sort((a, b) => b[1] - a[1]);
+
+    let html = '';
+
+    // Stat boxes
+    html += `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1rem">
+        <div style="background:var(--bg-card);border-radius:8px;padding:0.8rem;text-align:center">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--gold)">${totalVenues}</div>
+            <div style="font-size:0.7rem;color:var(--text-dim)">Venues</div>
+        </div>
+        <div style="background:var(--bg-card);border-radius:8px;padding:0.8rem;text-align:center">
+            <div style="font-size:1.5rem;font-weight:700;color:var(--green)">${validEmails}</div>
+            <div style="font-size:0.7rem;color:var(--text-dim)">Valid Emails</div>
+        </div>
+        <div style="background:var(--bg-card);border-radius:8px;padding:0.8rem;text-align:center">
+            <div style="font-size:1.5rem;font-weight:700;color:#9b59b6">${emailsSent}</div>
+            <div style="font-size:0.7rem;color:var(--text-dim)">Emails Sent</div>
+        </div>
+    </div>`;
+
+    // Pipeline status
+    html += `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem;margin-bottom:0.75rem">
+        <div style="font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--gold);margin-bottom:0.5rem">Pipeline Status</div>
+        <div style="font-size:0.8rem;color:var(--text);line-height:1.8">
+            ${pendingReview > 0 ? `<div><span style="color:var(--gold)">&#9679;</span> ${pendingReview} awaiting review</div>` : ''}
+            <div><span style="color:var(--text-dim)">&#9679;</span> ${untouched} untouched</div>
+            <div><span style="color:#3498db">&#9679;</span> ${pipelined} pipelined</div>
+            <div><span style="color:var(--green)">&#9679;</span> ${contacted} contacted</div>
+        </div>
+    </div>`;
+
+    // Flagged items
+    let flags = [];
+    if (noDistance.length > 0) {
+        flags.push(`<strong>${noDistance.length} venues</strong> missing distance data`);
+    }
+    if (noContacts.length > 0) {
+        flags.push(`<strong>${noContacts.length} pipelined venues</strong> have no contacts`);
+    }
+    if (noWebsite.length > 0) {
+        flags.push(`<strong>${noWebsite.length} venues</strong> have no website`);
+    }
+
+    if (flags.length > 0) {
+        html += `<div style="background:rgba(239,83,80,0.1);border:1px solid rgba(239,83,80,0.3);border-radius:8px;padding:0.8rem;margin-bottom:0.75rem">
+            <div style="font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--red);margin-bottom:0.5rem">Flagged for Review</div>
+            ${flags.map(f => `<div style="font-size:0.8rem;color:var(--text);margin:0.3rem 0;padding-left:0.8rem;border-left:3px solid var(--red)">${f}</div>`).join('')}
+        </div>`;
+    }
+
+    // Categories breakdown
+    html += `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem;margin-bottom:0.75rem">
+        <div style="font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--gold);margin-bottom:0.5rem">By Category</div>
+        ${catSorted.map(([cat, count]) => {
+            const pct = Math.round(count / totalVenues * 100);
+            return `<div style="display:flex;align-items:center;gap:0.5rem;margin:0.25rem 0">
+                <span style="font-size:0.75rem;color:var(--text);width:90px">${cat.replace(/_/g, ' ')}</span>
+                <div style="flex:1;height:6px;background:#222;border-radius:3px;overflow:hidden">
+                    <div style="width:${pct}%;height:100%;background:var(--gold);border-radius:3px"></div>
+                </div>
+                <span style="font-size:0.7rem;color:var(--text-dim);width:25px;text-align:right">${count}</span>
+            </div>`;
+        }).join('')}
+    </div>`;
+
+    body.innerHTML = html;
+    navigateTo('viewReports');
 }
 
 // === LINKEDIN REMINDER ===
@@ -2014,7 +2431,7 @@ function renderGigForm(gig) {
     });
 
     // Build category dropdown
-    const cats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail'];
+    const cats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
     let catOpts = cats.map(c => `<option value="${c}"${gig && gig.category === c ? ' selected' : ''}>${CATEGORY_LABELS[c] || c}</option>`).join('');
 
     let html = '';

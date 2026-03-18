@@ -2131,15 +2131,14 @@ function renderSmartPicks(recs, profile) {
     const stripThe = s => s.toLowerCase().trim().replace(/^the\s+/, '');
     const gigNames = new Set(((dashboardData && dashboardData.gigs) || []).map(g => stripThe(g.venue_name)).filter(Boolean));
     // Show top 8 recommendations that aren't past gigs or already contacted
-    const filtered = recs.filter(r => {
+    const allFiltered = recs.filter(r => {
         if (gigVenueIds.has(r.venue_id)) return false;
         if (gigNames.has(stripThe(r.name))) return false;
         const v = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
         if (v && ['contacted','researched','done','pipelined'].includes(v.status)) return false;
         return true;
     });
-    const allFiltered = filtered;
-    filtered = filtered.slice(0, 8);
+    const filtered = allFiltered.slice(0, 8);
 
     if (allFiltered.length === 0) {
         section.style.display = 'none';

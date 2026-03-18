@@ -84,9 +84,17 @@ log "Existing venues: $EXISTING_COUNT"
 
 # --- Step 3: For each past gig, scrape Google Maps ---
 TOTAL_ADDED=0
+MAX_GIGS=${MAX_GIGS:-0}  # 0 = unlimited; set MAX_GIGS=2 to limit
+GIGS_PROCESSED=0
 
-echo "$GIG_LIST" | while IFS=$'\t' read -r VENUE_NAME VENUE_LOC; do
+while IFS=$'\t' read -r VENUE_NAME VENUE_LOC; do
     [ -z "$VENUE_NAME" ] && continue
+
+    # Limit check (0 = unlimited)
+    if [ "$MAX_GIGS" -gt 0 ] && [ "$GIGS_PROCESSED" -ge "$MAX_GIGS" ]; then
+        log "  MAX_GIGS=$MAX_GIGS reached — stopping."
+        break
+    fi
 
     # Skip gigs already discovered
     if grep -qFx "$VENUE_NAME" "$DISCOVERED_FILE" 2>/dev/null; then
@@ -273,11 +281,30 @@ for card in cards:
 
     notes = f"Google Maps '{cat}'. {rating}★ ({reviews} reviews). Discovered from: {source_venue}"
 
+    # Parse location into city/state/address
+    import re
+    location = card.get('location', '').strip()
+    city = ''
+    state = ''
+    address = location if location else f"{name}, {state}" if state else name  # fallback to venue name for geocoding
+    state_match = re.search(r'\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)\b', location)
+    if state_match:
+        state = state_match.group(1)
+        # Extract city: text before state, after last comma or start
+        before = location[:state_match.start()].rstrip(', ')
+        parts = before.split(',')
+        city = parts[-1].strip() if parts else ''
+        # If city looks like a street number, try the part before it
+        if city and city[0].isdigit() and len(parts) > 1:
+            city = ''
+
     params = {
         'action': 'add_venue',
         'name': name,
         'category': our_cat,
-        'state': '',
+        'city': city,
+        'state': state,
+        'address': address,
         'upscale_score': str(upscale),
         'source': f'gmaps:{source_venue}',
         'notes': notes
@@ -290,7 +317,10 @@ for card in cards:
         if result.get('status') == 'ok' and 'Duplicate' not in result.get('message', ''):
             added += 1
             existing.add(name.lower().strip())
+            vid = result.get('venue_id', '')
             print(f"  ADDED: {name} ({our_cat}, {rating}★, {reviews} reviews)")
+            # Save venue_id for website lookup after Python exits
+            print(f"  WEBSITE_LOOKUP:{vid}:{name}:{state}")
         else:
             print(f"  SKIP: {name} -- {result.get('message', 'duplicate')}")
     except Exception as e:
@@ -305,11 +335,78 @@ PYEOF
     TOTAL_ADDED=$((TOTAL_ADDED + BATCH_ADDED))
     log "  Added $BATCH_ADDED new venues from $VENUE_NAME"
 
+    # Look up websites for newly added venues via Chrome Google search
+    echo "$ADDED" | grep "WEBSITE_LOOKUP:" | while IFS=':' read -r _ VID VNAME VSTATE; do
+        log "  [WEBSITE] Looking up: $VNAME"
+        SEARCH_Q=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$VNAME $VSTATE'))")
+        osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_Q}\""
+        sleep 3
+        FOUND_WEB=
+        FOUND_WEB=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
+        if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
+            log "    Website: $FOUND_WEB"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
+        else
+            log "    No website found"
+        fi
+        sleep 1
+    done
+
     # Mark this gig as discovered so we skip it next time
     echo "$VENUE_NAME" >> "$DISCOVERED_FILE"
+    GIGS_PROCESSED=$((GIGS_PROCESSED + 1))
 
     rand_delay 3 5
-done
+done <<< "$GIG_LIST"
+
+# --- Cleanup: remove discovered entries already in the app ---
+log "Cleaning up discovered_gigs.txt..."
+CLEANUP_VENUES=$(curl -sL "${APPS_SCRIPT_URL}?action=venues")
+CLEANUP_GIGS=$(curl -sL "${APPS_SCRIPT_URL}?action=get_gigs")
+echo "$CLEANUP_VENUES" > /tmp/discover_cleanup_venues.json
+echo "$CLEANUP_GIGS" > /tmp/discover_cleanup_gigs.json
+python3 - "$DISCOVERED_FILE" << 'CLEANEOF'
+import json, sys
+
+disc_file = sys.argv[1]
+
+# Load venue names from app
+names = set()
+try:
+    with open('/tmp/discover_cleanup_venues.json') as f:
+        for v in json.load(f).get('venues', []):
+            names.add(v.get('name', '').lower().strip())
+except: pass
+
+# Load past gig names from app
+gig_names = set()
+try:
+    with open('/tmp/discover_cleanup_gigs.json') as f:
+        for g in json.load(f).get('gigs', []):
+            gig_names.add(g.get('venue_name', '').lower().strip())
+except: pass
+
+# Keep only entries not yet in venues AND not a past gig (past gigs are seeds, not todos)
+kept = []
+removed = 0
+with open(disc_file, 'r') as f:
+    for line in f:
+        name = line.strip()
+        if not name:
+            continue
+        low = name.lower()
+        if low not in gig_names and low in names:
+            print(f"  CLEANUP: removed '{name}'")
+            removed += 1
+        else:
+            kept.append(name)
+
+with open(disc_file, 'w') as f:
+    for name in kept:
+        f.write(name + '\n')
+
+print(f"  Cleanup done: removed {removed}, kept {len(kept)}")
+CLEANEOF
 
 log ""
 log "=== Discovery Complete — Total new venues: $TOTAL_ADDED ==="

@@ -2099,6 +2099,7 @@ function deleteGig(gigId) {
 
 // === SMART PICKS (Recommendation Engine) ===
 let smartPicksData = null;
+let allSmartPicks = [];
 
 function toggleSmartPicks() {
     const list = document.getElementById('smartPicksList');
@@ -2134,17 +2135,20 @@ function renderSmartPicks(recs, profile) {
         if (gigVenueIds.has(r.venue_id)) return false;
         if (gigNames.has(stripThe(r.name))) return false;
         const v = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
-        if (v && (v.status === 'contacted' || v.status === 'researched')) return false;
+        if (v && ['contacted','researched','done','pipelined'].includes(v.status)) return false;
         return true;
-    }).slice(0, 8);
+    });
+    const allFiltered = filtered;
+    filtered = filtered.slice(0, 8);
 
-    if (filtered.length === 0) {
+    if (allFiltered.length === 0) {
         section.style.display = 'none';
         return;
     }
 
     section.style.display = '';
-    badge.textContent = filtered.length;
+    badge.textContent = allFiltered.length;
+    allSmartPicks = allFiltered;
 
     // Build "why" reason for each pick
     const gigs = (dashboardData && dashboardData.gigs) || [];
@@ -2185,6 +2189,53 @@ function renderSmartPicks(recs, profile) {
         html += `</div>`;
         return html;
     }).join('');
+    if (allFiltered.length > 8) {
+        list.innerHTML += `<div style="text-align:center;margin:0.5rem 0"><button onclick="openAllSmartPicks()" style="background:var(--gold);color:#111;border:none;border-radius:6px;padding:0.4rem 1.2rem;font-family:'Lato',sans-serif;font-weight:700;font-size:0.75rem;cursor:pointer">View All ${allFiltered.length} Picks</button></div>`;
+    }
+}
+
+function openAllSmartPicks() {
+    const gigs = (dashboardData && dashboardData.gigs) || [];
+    const profile = (smartPicksData && smartPicksData.profile) || {};
+    const bestCat = profile.best_category || '';
+    let rows = allSmartPicks.map((r, i) => {
+        const score = r.recommendation_score;
+        const cat = (r.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+        const bd = r.score_breakdown || {};
+        let reason = '';
+        if (bd.category >= 20 && bestCat) {
+            const catGigs = gigs.filter(g => g.category.toLowerCase() === r.category.toLowerCase());
+            if (catGigs.length > 0) {
+                const best = catGigs.reduce((a, b) => a.overall_score > b.overall_score ? a : b);
+                reason = `${CATEGORY_LABELS[cat] || r.category} scored ${best.overall_score.toFixed(1)}/10 at ${best.venue_name}`;
+            }
+        }
+        const scoreColor = score >= 70 ? '#f0a030' : score >= 40 ? '#e0e0e0' : '#888';
+        const catColors = {winery:'#9b59b6',museum:'#3498db',hotel:'#e67e22',country_club:'#27ae60',event:'#e74c3c',restaurant:'#f39c12'};
+        const catColor = catColors[cat] || '#666';
+        return `<tr>
+            <td style="color:${scoreColor};font-weight:700;font-size:1.1rem;text-align:center">${score}</td>
+            <td><strong>${r.name}</strong><br><span style="font-size:0.7rem;background:${catColor};padding:1px 6px;border-radius:3px;color:#fff">${(r.category||'').toUpperCase()}</span> <span style="color:#888;font-size:0.75rem">${r.city||''}${r.state?', '+r.state:''}</span></td>
+            <td style="text-align:center;color:#888">${r.distance_miles ? r.distance_miles+' mi' : '—'}</td>
+            <td style="text-align:center">${r.contact_count||0}</td>
+            <td style="color:#f0a030;font-size:0.7rem;font-style:italic">${reason}</td>
+        </tr>`;
+    }).join('');
+    const w = window.open('', '_blank');
+    w.document.write(`<!DOCTYPE html><html><head><title>All Smart Picks</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+body{background:#0a0a0a;color:#e0e0e0;font-family:'Lato',sans-serif;padding:1.5rem;margin:0}
+h1{font-family:'Cinzel',serif;color:#f0a030;margin-bottom:1rem;font-size:1.4rem}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:0.5rem;border-bottom:2px solid #333;color:#888;font-size:0.7rem;text-transform:uppercase}
+td{padding:0.5rem;border-bottom:1px solid #1a1a1a;vertical-align:top}
+tr:hover{background:rgba(240,160,48,0.05)}
+</style></head><body>
+<h1>Smart Picks — All ${allSmartPicks.length} Venues</h1>
+<table><thead><tr><th>Score</th><th>Venue</th><th>Distance</th><th>Contacts</th><th>Why</th></tr></thead>
+<tbody>${rows}</tbody></table></body></html>`);
+    w.document.close();
 }
 
 function updateGigsCount() {

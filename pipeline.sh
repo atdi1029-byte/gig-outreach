@@ -143,7 +143,7 @@ step1_website() {
     cat > /tmp/pipeline_website_scrape.js << 'JSEOF'
 (function(){
 var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk','fontawesome.io'];
-var generic = ['info@','reservations@','noreply@','no-reply@','support@','admin@','webmaster@','sales@','contact@','hello@','office@','membership@','billing@','reception@'];
+var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@'];
 var contacts = {};
 
 function titleCase(s){
@@ -190,7 +190,26 @@ for(var i=0;i<mailtoLinks.length;i++){
     }
 }
 
-// 2. Emails from visible text (no name/title available)
+// 2. Cloudflare email-protected addresses (XOR cipher decode)
+var cfProtected = document.querySelectorAll('[data-cfemail]');
+for(var i=0;i<cfProtected.length;i++){
+    var enc = cfProtected[i].getAttribute('data-cfemail');
+    if(!enc) continue;
+    var key = parseInt(enc.substr(0,2),16);
+    var decoded = '';
+    for(var j=2;j<enc.length;j+=2){
+        decoded += String.fromCharCode(parseInt(enc.substr(j,2),16)^key);
+    }
+    decoded = decoded.toLowerCase().trim();
+    if(decoded.indexOf('@')>0 && !isJunk(decoded) && !contacts[decoded]){
+        var parent = cfProtected[i].closest('tr') || cfProtected[i].closest('li') || cfProtected[i].closest('div') || cfProtected[i].parentElement;
+        var ctx = parent ? parent.innerText.trim().substring(0,300) : '';
+        var parsed = parseContext(ctx, decoded);
+        contacts[decoded] = {email:decoded, name:parsed.name, title:parsed.title};
+    }
+}
+
+// 3. Emails from visible text (no name/title available)
 var text = document.body.innerText || '';
 var textMatches = text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || [];
 textMatches.forEach(function(e){
@@ -198,7 +217,7 @@ textMatches.forEach(function(e){
     if(!isJunk(el) && !contacts[el]) contacts[el] = {email:el, name:'', title:''};
 });
 
-// 3. Emails from all href attributes
+// 4. Emails from all href attributes
 var allLinks = document.querySelectorAll('a[href]');
 for(var i=0;i<allLinks.length;i++){
     var h = allLinks[i].getAttribute('href') || '';
@@ -207,6 +226,18 @@ for(var i=0;i<allLinks.length;i++){
         var el = m[0].toLowerCase();
         if(!isJunk(el) && !contacts[el]) contacts[el] = {email:el, name:'', title:''};
     }
+}
+
+// 5. Emails from schema.org structured data
+var schemas = document.querySelectorAll('script[type="application/ld+json"]');
+for(var i=0;i<schemas.length;i++){
+    try {
+        var sd = JSON.parse(schemas[i].textContent);
+        var schemaEmail = (sd.email || '').toLowerCase().replace('mailto:','').trim();
+        if(schemaEmail && schemaEmail.indexOf('@')>0 && !isJunk(schemaEmail) && !contacts[schemaEmail]){
+            contacts[schemaEmail] = {email:schemaEmail, name:'', title:''};
+        }
+    } catch(e){}
 }
 
 var contactList = Object.keys(contacts).map(function(k){return contacts[k];});
@@ -1138,18 +1169,17 @@ run_venue() {
     # LinkedIn quota resets in April 2026 — skip until then
     if [ "$(date +%Y%m)" -ge 202604 ] 2>/dev/null; then
         step4_linkedin "$venue" "$venue_id"
-        # Mark linkedin_pending=false after successful run
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
-        log "  Marking venue as done"
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=done" > /dev/null
     else
         log ""
         log "========== STEP 4: LinkedIn (SKIPPED — quota reset in April) =========="
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
         log "  Marked linkedin_pending=true"
-        log "  Marking venue as pipelined (LinkedIn pending)"
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=pipelined" > /dev/null
     fi
+
+    # Always set status to pipelined when pipeline completes
+    log "  Setting status → pipelined"
+    curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=pipelined" > /dev/null
 
     local end_time elapsed
     end_time=$(date +%s)
@@ -1178,7 +1208,7 @@ if [ "$1" = "--smart-picks" ]; then
 import json
 with open('$SP_FILE') as f:
     recs = json.load(f).get('recommendations', [])
-filtered = [r for r in recs if r.get('status','') not in ('contacted','researched','done','pipelined')]
+filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
 print(len(filtered))
 " 2>/dev/null)
     MAX_SP=${MAX_SP:-0}  # 0 = unlimited; set MAX_SP=2 to limit
@@ -1192,7 +1222,7 @@ print(len(filtered))
 import json, os
 with open('$SP_FILE') as f:
     recs = json.load(f).get('recommendations', [])
-filtered = [r for r in recs if r.get('status','') not in ('contacted','researched','done','pipelined')]
+filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
 max_sp = int(os.environ.get('MAX_SP', '0'))
 if max_sp > 0: filtered = filtered[:max_sp]
 for i, r in enumerate(filtered):
@@ -1236,10 +1266,9 @@ for v in data.get('venues', []):
         # Get domain from website
         APOLLO_DOMAIN=$(echo "$WEB" | python3 -c "import sys,re; m=re.search(r'https?://(?:www\.)?([^/]+)',sys.stdin.read()); print(m.group(1) if m else '')" 2>/dev/null)
         step4_linkedin "$NAME" "$VID"
-        # Clear linkedin_pending and mark done
+        # Clear linkedin_pending — status stays pipelined
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=linkedin_pending&value=false" > /dev/null
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=status&value=done" > /dev/null
-        log "  Marked as done (linkedin_pending=false)"
+        log "  Cleared linkedin_pending"
         sleep 10
     done
     log "=== LINKEDIN RETRY COMPLETE ==="

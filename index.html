@@ -1106,16 +1106,15 @@ function openFBWithTemplate(fbUrl, category) {
     window.open(fbUrl, '_blank');
 }
 
-// === DELETE CONTACT ===
-function deleteContact(contactId, el) {
+// === SKIP CONTACT ===
+function skipContact(contactId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    if (!confirm('Delete this contact?')) return;
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'delete_contact', contact_id: contactId }), function() {
-        const row = el.closest('.detail-action-row, .action-row');
-        if (row && row.parentElement) row.parentElement.remove();
-        else if (row) row.remove();
-        showToast('Contact deleted');
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'skipped' }), function() {
+        const wrapper = el.closest('.detail-action-row').parentElement;
+        if (wrapper.querySelector('.detail-contact-name')) wrapper.remove();
+        else el.closest('.detail-action-row').remove();
+        showToast('Skipped');
     });
 }
 
@@ -1327,14 +1326,15 @@ function openVenueDetail(venueId) {
             const starred = isStarredContact(c.title);
             if (skipped) hiddenCount++;
             if (c.email_sent) {
-                html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">Sent</span></div>`;
+                const doneLabel = c.email_sent === 'skipped' ? 'Skipped' : 'Sent';
+                html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">${doneLabel}</span></div>`;
             } else if (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown') {
                 html += `<div class="${skipped ? 'contact-skipped' : ''}${starred ? ' contact-starred' : ''}">`;
                 html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
                 html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
                 html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button>`;
-                html += `<button class="btn-action btn-del" onclick="deleteContact('${esc(c.contact_id)}',this)">✕</button></div>`;
+                html += `<button class="btn-action btn-del" onclick="skipContact('${esc(c.contact_id)}',this)">✕</button></div>`;
                 if (c.name || c.title) html += `<div class="detail-contact-name">${renderTitleWords(c.name, c.title)}</div>`;
                 html += `</div>`;
             } else {

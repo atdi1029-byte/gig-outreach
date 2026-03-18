@@ -803,6 +803,10 @@ body {
     transform: translateX(-120%) rotate(-15deg);
     opacity: 0; transition: transform 0.4s ease, opacity 0.3s ease;
 }
+.review-card.swipe-up {
+    transform: translateY(-100%) scale(0.9);
+    opacity: 0; transition: transform 0.35s ease, opacity 0.3s ease;
+}
 .review-venue-name {
     font-family: 'Playfair Display', serif; font-size: 1.1rem;
     color: var(--text-bright); margin-bottom: 0.5rem;
@@ -843,12 +847,20 @@ body {
 .review-btn.approve:active {
     background: rgba(38,166,154,0.2);
 }
-.review-btn.delete-venue {
-    color: #888; border-color: #555; font-size: 0.8rem;
+.review-btn.neutral {
+    color: #e8944c; border-color: #e8944c; font-size: 1.2rem;
 }
-.review-btn.delete-venue:active {
-    background: rgba(136,136,136,0.2);
+.review-btn.neutral:active {
+    background: rgba(232,148,76,0.2);
 }
+.review-delete-link {
+    text-align: center; margin-top: 0.4rem;
+}
+.review-delete-link a {
+    color: #555; font-size: 0.7rem; text-decoration: none;
+    font-family: 'Lato',sans-serif;
+}
+.review-delete-link a:hover { color: #888; }
 .review-done {
     text-align: center; padding: 1.5rem;
     color: var(--green); font-family: 'Playfair Display', serif;
@@ -1732,10 +1744,11 @@ function renderReviewCards() {
                     onclick="event.stopPropagation()">
             </div>
             <div class="review-actions">
-                <button class="review-btn reject" onclick="reviewVote('down',${i})" title="Skip">&#10007;</button>
-                <button class="review-btn delete-venue" onclick="reviewDelete(${i})" title="Delete">DEL</button>
+                <button class="review-btn reject" onclick="reviewVote('down',${i})" title="Reject">&#10007;</button>
+                <button class="review-btn neutral" onclick="reviewVote('neutral',${i})" title="Indifferent">&mdash;</button>
                 <button class="review-btn approve" onclick="reviewVote('up',${i})" title="Approve">&#10003;</button>
             </div>
+            <div class="review-delete-link"><a href="#" onclick="event.preventDefault();reviewDelete(${i})">delete venue</a></div>
         </div>`;
     }
     stack.innerHTML = html;
@@ -1797,7 +1810,8 @@ function reviewVote(vote, idx) {
     const noteInput = document.getElementById('reviewNote' + idx);
     const note = noteInput ? noteInput.value.trim() : '';
     if (card) {
-        card.classList.add(vote === 'up' ? 'swipe-right' : 'swipe-left');
+        const anim = vote === 'up' ? 'swipe-right' : vote === 'neutral' ? 'swipe-up' : 'swipe-left';
+        card.classList.add(anim);
     }
     // Save vote
     fireGet(API_URL + '?action=update_venue&venue_id=' +

@@ -853,14 +853,6 @@ body {
 .review-btn.neutral:active {
     background: rgba(232,148,76,0.2);
 }
-.review-delete-link {
-    text-align: center; margin-top: 0.4rem;
-}
-.review-delete-link a {
-    color: #555; font-size: 0.7rem; text-decoration: none;
-    font-family: 'Lato',sans-serif;
-}
-.review-delete-link a:hover { color: #888; }
 .review-done {
     text-align: center; padding: 1.5rem;
     color: var(--green); font-family: 'Playfair Display', serif;
@@ -1744,11 +1736,10 @@ function renderReviewCards() {
                     onclick="event.stopPropagation()">
             </div>
             <div class="review-actions">
-                <button class="review-btn reject" onclick="reviewVote('down',${i})" title="Reject">&#10007;</button>
+                <button class="review-btn reject" onclick="reviewDelete(${i})" title="Reject">&#10007;</button>
                 <button class="review-btn neutral" onclick="reviewVote('neutral',${i})" title="Indifferent">&mdash;</button>
                 <button class="review-btn approve" onclick="reviewVote('up',${i})" title="Approve">&#10003;</button>
             </div>
-            <div class="review-delete-link"><a href="#" onclick="event.preventDefault();reviewDelete(${i})">delete venue</a></div>
         </div>`;
     }
     stack.innerHTML = html;
@@ -1787,7 +1778,7 @@ function initReviewDrag(card, idx) {
         if (currentX > 80) {
             reviewVote('up', idx);
         } else if (currentX < -80) {
-            reviewVote('down', idx);
+            reviewDelete(idx, true);
         } else {
             card.style.transform = '';
         }
@@ -1834,12 +1825,12 @@ function reviewVote(vote, idx) {
     }, 400);
 }
 
-function reviewDelete(idx) {
+function reviewDelete(idx, swiped) {
     const v = reviewQueue[idx];
     if (!v) return;
-    if (!confirm('Delete ' + v.name + '?')) return;
+    if (!swiped && !confirm('Delete ' + v.name + '?')) return;
     const card = document.getElementById('reviewCard' + idx);
-    if (card) card.classList.add('swipe-left');
+    if (card && !swiped) card.classList.add('swipe-left');
     fireGet(API_URL + '?action=delete_venue&venue_id=' +
         encodeURIComponent(v.venue_id));
     // Remove from local data

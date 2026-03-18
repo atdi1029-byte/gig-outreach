@@ -29,7 +29,7 @@ APOLLO_API_BASE="https://api.apollo.io/api/v1"
 APOLLO_CREDITS_USED=0
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="${SCRIPT_DIR}/pipeline.log"
-JUNK_DOMAINS="wix.com|wordpress|sentry.io|cloudflare|example.com|squarespace|shopify|mailchimp|googleapis|google.com|gstatic|facebook|instagram|twitter|hubspot|sendgrid|zendesk"
+JUNK_DOMAINS="wix.com|wordpress|sentry.io|cloudflare|example.com|squarespace|shopify|mailchimp|googleapis|google.com|gstatic|facebook|instagram|twitter|hubspot|sendgrid|zendesk|fontawesome.io"
 
 rand_delay() {
     local min=$1 max=$2
@@ -125,7 +125,7 @@ print(urllib.parse.urlencode({
 }
 
 # =================================================================
-# STEP 1: WEBSITE SCRAPE
+# STEP 1: WEBSITE SCRAPE (Chrome-based for JS-rendered sites)
 # =================================================================
 step1_website() {
     local venue="$1" venue_id="$2" website="$3"
@@ -139,81 +139,205 @@ step1_website() {
 
     log "  URL: $website"
 
-    local scrape_file="/tmp/pipeline_scrape.json"
-    python3 << PYEOF > "$scrape_file"
-import requests, re, json, sys
+    # JS to extract emails with names/titles (from mailto hrefs + body text), social links, and internal page links
+    cat > /tmp/pipeline_website_scrape.js << 'JSEOF'
+(function(){
+var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk','fontawesome.io'];
+var generic = ['info@','reservations@','noreply@','no-reply@','support@','admin@','webmaster@','sales@','contact@','hello@','office@','membership@','billing@','reception@'];
+var contacts = {};
 
-url = '''$website'''
-if not url.startswith('http'): url = 'https://' + url
+function titleCase(s){
+    return s.toLowerCase().replace(/(?:^|\s)\S/g, function(a){return a.toUpperCase();});
+}
 
-headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
-junk = '''$JUNK_DOMAINS'''.split('|')
+// Extract name+title from context text around a mailto link
+function parseContext(ctx, email){
+    var lines = ctx.split('\n').map(function(l){return l.trim();}).filter(function(l){return l.length > 0;});
+    var name = '', title = '';
+    for(var i=0;i<lines.length;i++){
+        var line = lines[i];
+        if(line.toLowerCase().indexOf('@') > -1) continue;
+        if(line.match(/^\d/) || line.match(/^[\(\+]/)) continue;
+        if(line.match(/^(CONTACT|MAIN PHONE|RECIPROCAL|CLUB MANAGEMENT|PLEASE)/i)) continue;
+        if(!name){
+            if(line.length > 2 && line.length < 50) name = titleCase(line);
+        } else if(!title){
+            if(line.length > 2 && line.length < 80) title = titleCase(line);
+            break;
+        }
+    }
+    return {name:name, title:title};
+}
 
-all_text = ''
-try:
-    homepage = requests.get(url, headers=headers, timeout=15)
-    all_text = homepage.text
-except Exception as e:
-    print(json.dumps({'emails':[],'facebook':'','instagram':''}))
-    sys.exit(0)
+function isJunk(e){
+    for(var j=0;j<junk.length;j++){ if(e.indexOf(junk[j])>-1) return true; }
+    for(var g=0;g<generic.length;g++){ if(e.indexOf(generic[g])===0) return true; }
+    return e.length > 60;
+}
 
-# Crawl all internal links from the homepage instead of guessing paths
-from urllib.parse import urljoin, urlparse
-base_domain = urlparse(url).netloc.replace('www.','')
-visited = {url.rstrip('/')}
-internal_links = set()
-for href in re.findall(r'href=["\\x27]([^"\\x27]+)["\\x27]', all_text):
-    full = urljoin(url, href).split('#')[0].split('?')[0].rstrip('/')
-    domain = urlparse(full).netloc.replace('www.','')
-    if domain == base_domain and full not in visited:
-        internal_links.add(full)
+// 1. Emails from mailto: hrefs — with name/title from surrounding context
+var mailtoLinks = document.querySelectorAll('a[href^="mailto:"]');
+for(var i=0;i<mailtoLinks.length;i++){
+    var a = mailtoLinks[i];
+    var href = a.getAttribute('href') || '';
+    var addr = href.replace('mailto:','').split('?')[0].trim().toLowerCase();
+    if(addr.indexOf('@') < 1 || isJunk(addr)) continue;
+    if(!contacts[addr]){
+        var parent = a.closest('tr') || a.closest('li') || a.closest('div') || a.parentElement;
+        var ctx = parent ? parent.innerText.trim().substring(0,300) : '';
+        var parsed = parseContext(ctx, addr);
+        contacts[addr] = {email:addr, name:parsed.name, title:parsed.title};
+    }
+}
 
-for link in sorted(internal_links):
-    try:
-        r = requests.get(link, headers=headers, timeout=10)
-        if r.status_code == 200:
-            all_text += r.text
-            visited.add(link)
-    except: pass
-    if len(visited) > 25: break  # cap at 25 pages to avoid huge sites
+// 2. Emails from visible text (no name/title available)
+var text = document.body.innerText || '';
+var textMatches = text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || [];
+textMatches.forEach(function(e){
+    var el = e.toLowerCase();
+    if(!isJunk(el) && !contacts[el]) contacts[el] = {email:el, name:'', title:''};
+});
 
-emails = set()
-for e in re.findall(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', all_text):
-    el = e.lower()
-    if any(j in el for j in junk): continue
-    if any(el.startswith(p) for p in ['info@','reservations@','noreply@','no-reply@','support@','admin@','webmaster@','sales@','contact@','hello@','office@']): continue
-    if len(e) > 60: continue
-    emails.add(e)
+// 3. Emails from all href attributes
+var allLinks = document.querySelectorAll('a[href]');
+for(var i=0;i<allLinks.length;i++){
+    var h = allLinks[i].getAttribute('href') || '';
+    var m = h.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/);
+    if(m){
+        var el = m[0].toLowerCase();
+        if(!isJunk(el) && !contacts[el]) contacts[el] = {email:el, name:'', title:''};
+    }
+}
 
-fb, ig, contact_form = '', '', ''
-for f in re.findall(r'https?://(?:www\.)?facebook\.com/[a-zA-Z0-9._/-]+', all_text):
-    fp = f.split('?')[0].rstrip('/')
-    slug = fp.split('facebook.com/')[-1]
-    if slug in ('tr','pixel','plugins','sharer','share','login','dialog'): continue
-    if 'sharer' in f or 'share' in f: continue
-    if len(slug) < 3: continue
-    fb = fp; break
-for i in re.findall(r'https?://(?:www\.)?instagram\.com/[a-zA-Z0-9._/-]+', all_text):
-    if 'share' not in i: ig = i.split('?')[0]; break
+var contactList = Object.keys(contacts).map(function(k){return contacts[k];});
 
-# Detect contact form pages — look for "contact" in URL paths
-contact_keywords = ['contact', 'get-in-touch', 'reach-us', 'inquiry', 'enquiry']
-for page_url in sorted(visited | internal_links):
-    path = urlparse(page_url).path.lower()
-    if any(kw in path for kw in contact_keywords):
-        contact_form = page_url
-        break
+// Facebook URL
+var fb = '';
+var fbLinks = document.querySelectorAll('a[href*="facebook.com"]');
+for(var i=0;i<fbLinks.length;i++){
+    var u = fbLinks[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
+    var slug = u.split('facebook.com/')[1] || '';
+    if(['tr','pixel','plugins','sharer','share','login','dialog'].indexOf(slug) > -1) continue;
+    if(u.indexOf('sharer') > -1 || u.indexOf('share') > -1) continue;
+    if(slug.length >= 3){ fb = u; break; }
+}
 
-print(json.dumps({'emails': sorted(emails), 'facebook': fb, 'instagram': ig, 'contact_form': contact_form}))
-PYEOF
+// Instagram URL
+var ig = '';
+var igLinks = document.querySelectorAll('a[href*="instagram.com"]');
+for(var i=0;i<igLinks.length;i++){
+    var u = igLinks[i].getAttribute('href').split('?')[0];
+    if(u.indexOf('share') === -1){ ig = u; break; }
+}
 
+// Internal links with event/contact keywords for subpage crawling
+var keywords = ['event','private','wedding','cater','contact','about','entertain','music','banquet','dining','party','book'];
+var base = location.origin;
+var subpages = [];
+var seen = {};
+var allAnchors = document.querySelectorAll('a[href]');
+for(var i=0;i<allAnchors.length;i++){
+    var h = allAnchors[i].getAttribute('href') || '';
+    if(h.startsWith('mailto:') || h.startsWith('tel:')) continue;
+    var full;
+    try { full = new URL(h, base).href.split('#')[0].split('?')[0].replace(/\/$/,''); } catch(e){ continue; }
+    if(full.indexOf(base) !== 0) continue;
+    if(seen[full]) continue;
+    seen[full] = true;
+    var path = full.toLowerCase();
+    for(var k=0;k<keywords.length;k++){
+        if(path.indexOf(keywords[k]) > -1){ subpages.push(full); break; }
+    }
+}
+
+// Contact form URL
+var contactKw = ['contact','get-in-touch','reach-us','inquiry','enquiry'];
+var contactForm = '';
+Object.keys(seen).forEach(function(url){
+    var p = url.toLowerCase();
+    for(var c=0;c<contactKw.length;c++){
+        if(p.indexOf(contactKw[c]) > -1){ contactForm = url; return; }
+    }
+});
+
+return JSON.stringify({contacts:contactList, facebook:fb, instagram:ig, contact_form:contactForm, subpages:subpages});
+})()
+JSEOF
+
+    # Open website in Chrome and scrape
+    log "  Opening in Chrome: $website"
+    osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${website}\""
+    sleep 6
+
+    local scrape_result
+    scrape_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
+
+    if [ -z "$scrape_result" ] || [ "$scrape_result" = "missing value" ]; then
+        log "  [WARN] Chrome scrape returned empty — trying with longer wait"
+        sleep 5
+        scrape_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
+    fi
+
+    if [ -z "$scrape_result" ] || [ "$scrape_result" = "missing value" ]; then
+        log "  [ERROR] Chrome scrape failed. Skipping website."
+        return
+    fi
+
+    echo "$scrape_result" > /tmp/pipeline_scrape.json
+
+    # Save scrape result to file for reliable parsing
+    echo "$scrape_result" > /tmp/pipeline_scrape.json
+
+    # Parse main page results
     local email_count fb ig contact_form
-    email_count=$(python3 -c "import json; print(len(json.load(open('$scrape_file'))['emails']))")
-    fb=$(python3 -c "import json; print(json.load(open('$scrape_file'))['facebook'])")
-    ig=$(python3 -c "import json; print(json.load(open('$scrape_file'))['instagram'])")
-    contact_form=$(python3 -c "import json; print(json.load(open('$scrape_file')).get('contact_form',''))")
+    email_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_scrape.json')); print(len(d.get('contacts',d.get('emails',[]))))" 2>/dev/null || echo "0")
+    fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['facebook'])" 2>/dev/null)
+    ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['instagram'])" 2>/dev/null)
+    contact_form=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('contact_form',''))" 2>/dev/null)
 
     log "  Emails: $email_count | FB: ${fb:-none} | IG: ${ig:-none} | Contact Form: ${contact_form:-none}"
+
+    # Collect all contacts (email|name|title) from main page + subpages
+    # Format: email|||name|||title per line
+    python3 -c "
+import json
+d = json.load(open('/tmp/pipeline_scrape.json'))
+for c in d.get('contacts', []):
+    print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
+" 2>/dev/null > /tmp/pipeline_all_contacts.txt
+
+    # Crawl subpages (event/contact/private dining pages) — cap at 10
+    local subpages
+    subpages=$(python3 -c "import json; print('\n'.join(json.load(open('/tmp/pipeline_scrape.json')).get('subpages',[])[:10]))" 2>/dev/null)
+
+    if [ -n "$subpages" ]; then
+        local page_count=0
+        while IFS= read -r subpage; do
+            [ -z "$subpage" ] && continue
+            page_count=$((page_count + 1))
+            log "  Crawling subpage ($page_count): $subpage"
+            osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${subpage}\""
+            sleep 4
+            local sub_result
+            sub_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
+            if [ -n "$sub_result" ] && [ "$sub_result" != "missing value" ]; then
+                echo "$sub_result" > /tmp/pipeline_sub_scrape.json
+                local sub_count
+                sub_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(len(d.get('contacts',[])))" 2>/dev/null || echo "0")
+                if [ "$sub_count" != "0" ]; then
+                    local sub_emails
+                    sub_emails=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(', '.join(c['email'] for c in d.get('contacts',[])))" 2>/dev/null)
+                    log "  Found on subpage: $sub_emails"
+                    python3 -c "
+import json
+d = json.load(open('/tmp/pipeline_sub_scrape.json'))
+for c in d.get('contacts', []):
+    print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
+" 2>/dev/null >> /tmp/pipeline_all_contacts.txt
+                fi
+            fi
+        done <<< "$subpages"
+    fi
 
     # Update social links
     if [ -n "$fb" ] && [ "$fb" != "None" ] && [ "$fb" != "" ]; then
@@ -227,12 +351,24 @@ PYEOF
         log "  ✓ Contact form URL saved"
     fi
 
-    # Verify + push emails
+    # Dedupe by email and verify+push each contact with name/title
     python3 -c "
-import json
-for e in json.load(open('$scrape_file'))['emails']: print(e)
-" | while read -r email; do
-        verify_and_push "$email" "$venue_id" "" "" "website"
+seen = set()
+results = []
+for line in open('/tmp/pipeline_all_contacts.txt'):
+    parts = line.strip().split('|||')
+    if len(parts) < 3: continue
+    email, name, title = parts[0], parts[1], parts[2]
+    if email not in seen:
+        seen.add(email)
+        # Prefer entries with name over those without
+        results.append((email, name, title))
+    elif name and not any(r[1] for r in results if r[0] == email):
+        results = [(e,n,t) if e != email else (email,name,title) for e,n,t in results]
+for email, name, title in sorted(results):
+    print(f'{email}|||{name}|||{title}')
+" 2>/dev/null | while IFS='|||' read -r email name title; do
+        [ -n "$email" ] && verify_and_push "$email" "$venue_id" "$name" "$title" "website"
     done
 }
 

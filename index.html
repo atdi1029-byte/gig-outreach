@@ -1666,9 +1666,15 @@ let reviewDragState = null;
 
 function renderReviewQueue() {
     const venues = (dashboardData && dashboardData.venues) || [];
+    const gigs = (dashboardData && dashboardData.gigs) || [];
+    const gigVenueIds = new Set(gigs.map(g => g.venue_id).filter(Boolean));
+    const stripThe = s => (s||'').toLowerCase().trim().replace(/^the\s+/, '');
+    const gigNames = new Set(gigs.map(g => stripThe(g.venue_name)).filter(Boolean));
     reviewQueue = venues.filter(v =>
         (!v.venue_vote || v.venue_vote === '') &&
-        v.status === 'untouched'
+        v.status === 'untouched' &&
+        !gigVenueIds.has(v.venue_id) &&
+        !gigNames.has(stripThe(v.name))
     );
     reviewIndex = 0;
     reviewTotal = reviewQueue.length;

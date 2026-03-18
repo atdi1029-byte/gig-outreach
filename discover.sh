@@ -408,6 +408,13 @@ with open(disc_file, 'w') as f:
 print(f"  Cleanup done: removed {removed}, kept {len(kept)}")
 CLEANEOF
 
+if [ "$TOTAL_ADDED" -gt 0 ]; then
+    log "Calculating distances for new venues..."
+    curl -sL "${APPS_SCRIPT_URL}?action=calc_distances" -o /tmp/discover_distances.json
+    DIST_COUNT=$(python3 -c "import json; print(json.load(open('/tmp/discover_distances.json')).get('calculated',0))" 2>/dev/null)
+    log "  Distances calculated: $DIST_COUNT"
+fi
+
 log ""
 log "=== Discovery Complete — Total new venues: $TOTAL_ADDED ==="
 echo ""

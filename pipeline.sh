@@ -96,7 +96,7 @@ verify_and_push() {
     zb_status=$(curl -s "https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_KEY&email=$email" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('status','unknown'))" 2>/dev/null)
     log "  $email → $zb_status"
 
-    if [ "$zb_status" = "valid" ] || [ "$zb_status" = "invalid" ] || [ "$zb_status" = "catch-all" ]; then
+    if [ "$zb_status" = "valid" ] || [ "$zb_status" = "invalid" ] || [ "$zb_status" = "catch-all" ] || [ "$zb_status" = "unknown" ]; then
         local encoded
         encoded=$(python3 -c "
 import urllib.parse

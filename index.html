@@ -780,18 +780,19 @@ body {
 }
 .review-card {
     position: absolute; top: 0; left: 0; right: 0;
-    background: var(--bg-card); border: 1px solid var(--border);
+    background: rgba(17,17,17,0.95); border: 1px solid var(--border);
     border-radius: 12px; padding: 1.2rem;
     transition: transform 0.3s ease, opacity 0.3s ease;
     cursor: grab; user-select: none;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
 .review-card.behind-1 {
     transform: scale(0.95) translateY(8px);
-    opacity: 0.5; pointer-events: none;
+    opacity: 0.4; pointer-events: none;
 }
 .review-card.behind-2 {
     transform: scale(0.90) translateY(16px);
-    opacity: 0.3; pointer-events: none;
+    opacity: 0.15; pointer-events: none;
 }
 .review-card.swiping { transition: none; }
 .review-card.swipe-right {

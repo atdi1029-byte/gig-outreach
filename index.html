@@ -1701,6 +1701,29 @@ function renderReviewCards() {
         return;
     }
 
+    // Quick client-side score estimate (mirrors server logic roughly)
+    function quickScore(v) {
+        let pts = 0;
+        // Category: wineries/country clubs/private clubs score higher
+        const topCats = ['winery','country_club','private_club','golf_club','yacht_club','resort','hotel'];
+        const midCats = ['restaurant','wine_bar','event','wedding_venue','museum','art_gallery'];
+        const cat = (v.category || '').toLowerCase().replace(/[\s\/]/g, '_');
+        if (topCats.includes(cat)) pts += 25;
+        else if (midCats.includes(cat)) pts += 18;
+        else pts += 10;
+        // Distance: closer is better (0-35 pts)
+        const d = v.distance_miles != null ? Number(v.distance_miles) : null;
+        if (d !== null) {
+            if (d <= 50) pts += 35;
+            else if (d <= 80) pts += Math.round(35 * (1 - (d - 50) / 70));
+            else if (d <= 120) pts += Math.round(10 * (1 - (d - 80) / 40));
+        } else { pts += 14; }
+        // Upscale (0-25 pts) — assume 5 is ideal
+        const up = Number(v.upscale_score) || 3;
+        pts += Math.round(Math.max(0, 25 * (1 - Math.abs(up - 5) / 5)));
+        return Math.min(100, Math.max(0, pts));
+    }
+
     let html = '';
     for (let i = Math.min(reviewIndex + 2, reviewQueue.length - 1); i >= reviewIndex; i--) {
         const v = reviewQueue[i];
@@ -1716,11 +1739,16 @@ function renderReviewCards() {
             ? ' · ' + Math.round(v.drive_minutes) + ' min'
             : '';
         const notesTxt = (v.notes || '').replace(/Google Maps '[^']*'\.\s*/, '').replace(/[\d.]+★ \(\d+ reviews\)\.\s*/, '').replace(/Discovered from:.*/, '').trim();
+        const score = quickScore(v);
+        const scoreColor = score >= 60 ? 'var(--gold)' : score >= 40 ? 'var(--green)' : 'var(--text-dim)';
 
         html += `<div class="review-card ${cls}" data-idx="${i}" id="reviewCard${i}">
             <span class="review-swipe-hint left">&#10007;</span>
             <span class="review-swipe-hint right">&#10003;</span>
-            <div class="review-venue-name">${v.name}</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+                <div class="review-venue-name" style="margin-bottom:0">${v.name}</div>
+                <span style="font-size:0.85rem;font-weight:bold;color:${scoreColor}">${score}</span>
+            </div>
             <div class="review-meta">
                 <span class="category-badge ${cat}">${cat.replace(/_/g, ' ')}</span>
                 ${stars ? `<span class="review-stars">${stars}&#9733; (${reviews})</span>` : ''}

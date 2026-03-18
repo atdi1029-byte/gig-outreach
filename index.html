@@ -1840,105 +1840,28 @@ function reviewDelete(idx) {
 }
 
 // === REPORTS VIEW ===
+// Report dates are registered here after each run
+const REPORT_LIST = [
+    { date: '2026-03-18', title: 'March 18, 2026', summary: '9 venues discovered, 3 pipelined, 13 verified emails' }
+];
+
 function openReportsView() {
     const body = document.getElementById('reportsBody');
-    const venues = (dashboardData && dashboardData.venues) || [];
-    const contacts = (dashboardData && dashboardData.contacts) || [];
-    const gigs = (dashboardData && dashboardData.gigs) || [];
+    const baseUrl = 'https://atdi1029-byte.github.io/gig-outreach/reports/';
 
-    // Stats
-    const totalVenues = venues.length;
-    const pipelined = venues.filter(v => v.status === 'pipelined').length;
-    const contacted = venues.filter(v => v.status === 'contacted').length;
-    const untouched = venues.filter(v => v.status === 'untouched').length;
-    const totalContacts = contacts.length;
-    const validEmails = contacts.filter(c => c.verified === 'valid').length;
-    const emailsSent = contacts.filter(c => c.email_sent === 'true' || c.email_sent === true).length;
-    const pendingReview = venues.filter(v =>
-        (!v.venue_vote || v.venue_vote === '') &&
-        (v.status === 'untouched' || v.status === 'pipelined')
-    ).length;
-
-    // Venues missing data
-    const noDistance = venues.filter(v => v.distance_miles == null);
-    const noWebsite = venues.filter(v =>
-        !v.website || v.website === '' || v.website === 'undefined'
-    );
-    const noContacts = venues.filter(v => {
-        const vc = contacts.filter(c => c.venue_id === v.venue_id);
-        return vc.length === 0 && v.status === 'pipelined';
-    });
-
-    // Categories breakdown
-    const catCounts = {};
-    venues.forEach(v => {
-        const cat = (v.category || 'other').toLowerCase();
-        catCounts[cat] = (catCounts[cat] || 0) + 1;
-    });
-    const catSorted = Object.entries(catCounts).sort((a, b) => b[1] - a[1]);
+    if (REPORT_LIST.length === 0) {
+        body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-dim);font-family:Playfair Display,serif">No reports yet. Run outreach to generate one.</div>';
+        navigateTo('viewReports');
+        return;
+    }
 
     let html = '';
-
-    // Stat boxes
-    html += `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1rem">
-        <div style="background:var(--bg-card);border-radius:8px;padding:0.8rem;text-align:center">
-            <div style="font-size:1.5rem;font-weight:700;color:var(--gold)">${totalVenues}</div>
-            <div style="font-size:0.7rem;color:var(--text-dim)">Venues</div>
-        </div>
-        <div style="background:var(--bg-card);border-radius:8px;padding:0.8rem;text-align:center">
-            <div style="font-size:1.5rem;font-weight:700;color:var(--green)">${validEmails}</div>
-            <div style="font-size:0.7rem;color:var(--text-dim)">Valid Emails</div>
-        </div>
-        <div style="background:var(--bg-card);border-radius:8px;padding:0.8rem;text-align:center">
-            <div style="font-size:1.5rem;font-weight:700;color:#9b59b6">${emailsSent}</div>
-            <div style="font-size:0.7rem;color:var(--text-dim)">Emails Sent</div>
-        </div>
-    </div>`;
-
-    // Pipeline status
-    html += `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem;margin-bottom:0.75rem">
-        <div style="font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--gold);margin-bottom:0.5rem">Pipeline Status</div>
-        <div style="font-size:0.8rem;color:var(--text);line-height:1.8">
-            ${pendingReview > 0 ? `<div><span style="color:var(--gold)">&#9679;</span> ${pendingReview} awaiting review</div>` : ''}
-            <div><span style="color:var(--text-dim)">&#9679;</span> ${untouched} untouched</div>
-            <div><span style="color:#3498db">&#9679;</span> ${pipelined} pipelined</div>
-            <div><span style="color:var(--green)">&#9679;</span> ${contacted} contacted</div>
-        </div>
-    </div>`;
-
-    // Flagged items
-    let flags = [];
-    if (noDistance.length > 0) {
-        flags.push(`<strong>${noDistance.length} venues</strong> missing distance data`);
+    for (const r of REPORT_LIST) {
+        html += `<a href="${baseUrl}${r.date}.html" target="_blank" style="display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem;margin-bottom:0.5rem">
+            <div style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--gold)">${r.title}</div>
+            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem">${r.summary}</div>
+        </a>`;
     }
-    if (noContacts.length > 0) {
-        flags.push(`<strong>${noContacts.length} pipelined venues</strong> have no contacts`);
-    }
-    if (noWebsite.length > 0) {
-        flags.push(`<strong>${noWebsite.length} venues</strong> have no website`);
-    }
-
-    if (flags.length > 0) {
-        html += `<div style="background:rgba(239,83,80,0.1);border:1px solid rgba(239,83,80,0.3);border-radius:8px;padding:0.8rem;margin-bottom:0.75rem">
-            <div style="font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--red);margin-bottom:0.5rem">Flagged for Review</div>
-            ${flags.map(f => `<div style="font-size:0.8rem;color:var(--text);margin:0.3rem 0;padding-left:0.8rem;border-left:3px solid var(--red)">${f}</div>`).join('')}
-        </div>`;
-    }
-
-    // Categories breakdown
-    html += `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem;margin-bottom:0.75rem">
-        <div style="font-family:'Playfair Display',serif;font-size:0.9rem;color:var(--gold);margin-bottom:0.5rem">By Category</div>
-        ${catSorted.map(([cat, count]) => {
-            const pct = Math.round(count / totalVenues * 100);
-            return `<div style="display:flex;align-items:center;gap:0.5rem;margin:0.25rem 0">
-                <span style="font-size:0.75rem;color:var(--text);width:90px">${cat.replace(/_/g, ' ')}</span>
-                <div style="flex:1;height:6px;background:#222;border-radius:3px;overflow:hidden">
-                    <div style="width:${pct}%;height:100%;background:var(--gold);border-radius:3px"></div>
-                </div>
-                <span style="font-size:0.7rem;color:var(--text-dim);width:25px;text-align:right">${count}</span>
-            </div>`;
-        }).join('')}
-    </div>`;
 
     body.innerHTML = html;
     navigateTo('viewReports');

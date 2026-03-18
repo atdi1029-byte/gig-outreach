@@ -1845,26 +1845,131 @@ const REPORT_LIST = [
     { date: '2026-03-18', title: 'March 18, 2026', summary: '9 venues discovered, 3 pipelined, 13 verified emails' }
 ];
 
+// Flagged items from runs — each has id, type, message, date
+const REPORT_FLAGS = [
+    { id: 'f1', type: 'Bad Website', msg: 'Bearing Gifts → dictionary.com (wrong site)', date: '2026-03-18' },
+    { id: 'f2', type: 'Bad Website', msg: 'Tree of Kings → fandom wiki (wrong site)', date: '2026-03-18' },
+    { id: 'f3', type: 'Duplicate', msg: 'Good Spirit Farm — already exists as "Good Spirit Farm Winery"', date: '2026-03-18' },
+    { id: 'f4', type: 'Apollo Mismatch', msg: 'Georgetown Club matched "Pádel Club Georgetown" — emails from website only, no names/titles', date: '2026-03-18' },
+    { id: 'f5', type: 'Missing Data', msg: 'Distance fix deployed — all venues now have distances', date: '2026-03-18' }
+];
+
+function getDismissedFlags() {
+    try { return JSON.parse(localStorage.getItem('outreach_dismissed_flags') || '[]'); }
+    catch(e) { return []; }
+}
+function dismissFlag(id) {
+    const dismissed = getDismissedFlags();
+    if (!dismissed.includes(id)) dismissed.push(id);
+    localStorage.setItem('outreach_dismissed_flags', JSON.stringify(dismissed));
+}
+
 function openReportsView() {
     const body = document.getElementById('reportsBody');
     const baseUrl = 'https://atdi1029-byte.github.io/gig-outreach/reports/';
-
-    if (REPORT_LIST.length === 0) {
-        body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-dim);font-family:Playfair Display,serif">No reports yet. Run outreach to generate one.</div>';
-        navigateTo('viewReports');
-        return;
-    }
+    const dismissed = getDismissedFlags();
+    const activeFlags = REPORT_FLAGS.filter(f => !dismissed.includes(f.id));
 
     let html = '';
-    for (const r of REPORT_LIST) {
-        html += `<a href="${baseUrl}${r.date}.html" target="_blank" style="display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem;margin-bottom:0.5rem">
-            <div style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--gold)">${r.title}</div>
-            <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem">${r.summary}</div>
-        </a>`;
+
+    // Flagged items as swipeable cards
+    if (activeFlags.length > 0) {
+        html += `<div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--red);margin-bottom:0.5rem">
+            Flagged for Review <span style="font-size:0.75rem;color:var(--text-dim);font-family:Lato,sans-serif">${activeFlags.length} items</span>
+        </div>`;
+        for (const f of activeFlags) {
+            const typeColor = f.type === 'Bad Website' ? '#e67e22'
+                : f.type === 'Duplicate' ? '#9b59b6'
+                : f.type === 'Apollo Mismatch' ? '#3498db'
+                : '#ef5350';
+            html += `<div class="flag-card" id="flag-${f.id}" style="position:relative;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.7rem;margin-bottom:0.4rem;overflow:hidden;touch-action:pan-y">
+                <div style="display:flex;align-items:start;gap:0.6rem">
+                    <div style="flex:1">
+                        <span style="font-size:0.65rem;background:${typeColor};color:#fff;padding:0.1rem 0.4rem;border-radius:8px">${f.type}</span>
+                        <span style="font-size:0.65rem;color:var(--text-dim);margin-left:0.3rem">${f.date}</span>
+                        <div style="font-size:0.8rem;color:var(--text);margin-top:0.3rem;line-height:1.4">${f.msg}</div>
+                    </div>
+                    <button onclick="swipeDismissFlag('${f.id}')" style="background:none;border:none;color:var(--text-dim);font-size:1.2rem;cursor:pointer;padding:0.2rem;flex-shrink:0">&#10005;</button>
+                </div>
+            </div>`;
+        }
+        html += '<div style="height:0.5rem"></div>';
+    } else if (REPORT_FLAGS.length > 0) {
+        html += `<div style="text-align:center;padding:0.8rem;color:var(--green);font-family:'Playfair Display',serif;font-size:0.85rem;margin-bottom:0.5rem">All flags resolved</div>`;
+    }
+
+    // Report links
+    html += `<div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);margin-bottom:0.5rem">Run Reports</div>`;
+    if (REPORT_LIST.length === 0) {
+        html += '<div style="text-align:center;padding:1rem;color:var(--text-dim);font-size:0.85rem">No reports yet.</div>';
+    } else {
+        for (const r of REPORT_LIST) {
+            html += `<a href="${baseUrl}${r.date}.html" target="_blank" style="display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem;margin-bottom:0.5rem">
+                <div style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--gold)">${r.title}</div>
+                <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem">${r.summary}</div>
+            </a>`;
+        }
     }
 
     body.innerHTML = html;
+
+    // Init swipe on flag cards
+    activeFlags.forEach(f => {
+        const card = document.getElementById('flag-' + f.id);
+        if (card) initFlagSwipe(card, f.id);
+    });
+
     navigateTo('viewReports');
+}
+
+function initFlagSwipe(card, flagId) {
+    let startX = 0, currentX = 0, dragging = false;
+    function onStart(e) {
+        if (e.target.tagName === 'BUTTON') return;
+        const t = e.touches ? e.touches[0] : e;
+        startX = t.clientX; dragging = true;
+    }
+    function onMove(e) {
+        if (!dragging) return;
+        const t = e.touches ? e.touches[0] : e;
+        currentX = t.clientX - startX;
+        if (currentX < 0) {
+            card.style.transform = `translateX(${currentX}px)`;
+            card.style.opacity = Math.max(0.3, 1 + currentX / 200);
+        }
+    }
+    function onEnd() {
+        if (!dragging) return; dragging = false;
+        if (currentX < -100) {
+            swipeDismissFlag(flagId);
+        } else {
+            card.style.transform = ''; card.style.opacity = '';
+        }
+        currentX = 0;
+    }
+    card.addEventListener('touchstart', onStart, { passive: true });
+    card.addEventListener('touchmove', onMove, { passive: true });
+    card.addEventListener('touchend', onEnd);
+    card.addEventListener('mousedown', onStart);
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onEnd);
+}
+
+function swipeDismissFlag(flagId) {
+    const card = document.getElementById('flag-' + flagId);
+    if (card) {
+        card.style.transform = 'translateX(-120%)';
+        card.style.opacity = '0';
+        card.style.transition = 'transform 0.3s ease, opacity 0.2s ease';
+    }
+    dismissFlag(flagId);
+    setTimeout(() => {
+        if (card) card.style.display = 'none';
+        // Update count
+        const dismissed = getDismissedFlags();
+        const remaining = REPORT_FLAGS.filter(f => !dismissed.includes(f.id)).length;
+        if (remaining === 0) openReportsView();
+    }, 300);
 }
 
 // === LINKEDIN REMINDER ===

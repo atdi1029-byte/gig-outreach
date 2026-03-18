@@ -1485,18 +1485,17 @@ function openVenueDetail(venueId) {
     // Website
     if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
 
-    // Venue vote (thumbs up/down + feedback)
+    // Show vote status + feedback if exists (read-only, voting happens in review queue)
     const curVote = venue.venue_vote || '';
     const curFeedback = venue.venue_feedback || '';
-    html += `<div class="venue-vote-row" id="venueVoteRow">`;
-    html += `<button class="vote-btn ${curVote === 'up' ? 'vote-active-up' : ''}" onclick="voteVenue('${esc(venueId)}','up',this)">&#x1F44D;</button>`;
-    html += `<button class="vote-btn ${curVote === 'down' ? 'vote-active-down' : ''}" onclick="voteVenue('${esc(venueId)}','down',this)">&#x1F44E;</button>`;
-    if (curVote && curFeedback) html += `<span class="vote-feedback-preview" onclick="toggleFeedbackBox('${esc(venueId)}','${esc(curVote)}')">${esc(curFeedback)}</span>`;
-    html += `</div>`;
-    html += `<div class="vote-feedback-box" id="voteFeedbackBox" style="display:none">`;
-    html += `<textarea id="voteFeedbackText" placeholder="Why? (e.g. upscale patio, hosts private events, wrong vibe...)" rows="2">${esc(curFeedback)}</textarea>`;
-    html += `<button class="btn-action" style="background:var(--accent);color:#000;margin-top:4px" onclick="saveFeedback('${esc(venueId)}')">Save</button>`;
-    html += `</div>`;
+    if (curVote || curFeedback) {
+        html += `<div style="margin:0.5rem 0;font-size:0.85rem;color:var(--text-dim)">`;
+        if (curVote === 'up') html += `<span style="color:var(--green)">&#10003; Approved</span>`;
+        else if (curVote === 'neutral') html += `<span style="color:var(--gold)">&#8212; Neutral</span>`;
+        else if (curVote === 'down') html += `<span style="color:var(--red)">&#10007; Rejected</span>`;
+        if (curFeedback) html += ` &mdash; ${esc(curFeedback)}`;
+        html += `</div>`;
+    }
 
     // Emails
     const skipWords = getSkipWords();
@@ -1842,12 +1841,12 @@ function reviewVote(vote, idx) {
         card.classList.add(anim);
     }
     // Save vote
-    fireGet(API_URL + '?action=update_venue&venue_id=' +
+    fireGet(BASE_URL + '?action=update_venue&venue_id=' +
         encodeURIComponent(v.venue_id) +
         '&field=venue_vote&value=' + vote);
     // Save feedback note
     if (note) {
-        fireGet(API_URL + '?action=update_venue&venue_id=' +
+        fireGet(BASE_URL + '?action=update_venue&venue_id=' +
             encodeURIComponent(v.venue_id) +
             '&field=venue_feedback&value=' + encodeURIComponent(note));
     }
@@ -1868,7 +1867,7 @@ function reviewDelete(idx, swiped) {
     if (!swiped && !confirm('Delete ' + v.name + '?')) return;
     const card = document.getElementById('reviewCard' + idx);
     if (card && !swiped) card.classList.add('swipe-left');
-    fireGet(API_URL + '?action=delete_venue&venue_id=' +
+    fireGet(BASE_URL + '?action=delete_venue&venue_id=' +
         encodeURIComponent(v.venue_id));
     // Remove from local data
     if (dashboardData) {
@@ -1887,9 +1886,9 @@ function reviewContacted(idx) {
     if (!v) return;
     const card = document.getElementById('reviewCard' + idx);
     if (card) card.classList.add('swipe-up');
-    fireGet(API_URL + '?action=update_venue&venue_id=' +
+    fireGet(BASE_URL + '?action=update_venue&venue_id=' +
         encodeURIComponent(v.venue_id) + '&field=status&value=contacted');
-    fireGet(API_URL + '?action=update_venue&venue_id=' +
+    fireGet(BASE_URL + '?action=update_venue&venue_id=' +
         encodeURIComponent(v.venue_id) + '&field=venue_vote&value=up');
     if (dashboardData) {
         const dv = dashboardData.venues.find(x => x.venue_id === v.venue_id);

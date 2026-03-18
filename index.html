@@ -1668,7 +1668,7 @@ function renderReviewQueue() {
     const venues = (dashboardData && dashboardData.venues) || [];
     reviewQueue = venues.filter(v =>
         (!v.venue_vote || v.venue_vote === '') &&
-        (v.status === 'untouched' || v.status === 'pipelined')
+        v.status === 'untouched'
     );
     reviewIndex = 0;
     reviewTotal = reviewQueue.length;
@@ -1739,6 +1739,9 @@ function renderReviewCards() {
                 <button class="review-btn reject" onclick="reviewDelete(${i})" title="Reject">&#10007;</button>
                 <button class="review-btn neutral" onclick="reviewVote('neutral',${i})" title="Indifferent">&mdash;</button>
                 <button class="review-btn approve" onclick="reviewVote('up',${i})" title="Approve">&#10003;</button>
+            </div>
+            <div style="text-align:center;margin-top:0.3rem">
+                <a href="#" onclick="event.preventDefault();reviewContacted(${i})" style="color:#888;font-size:0.7rem;font-family:'Lato',sans-serif;text-decoration:none">already contacted</a>
             </div>
         </div>`;
     }
@@ -1838,6 +1841,25 @@ function reviewDelete(idx, swiped) {
         dashboardData.venues = dashboardData.venues.filter(
             x => x.venue_id !== v.venue_id
         );
+    }
+    setTimeout(() => {
+        reviewIndex++;
+        renderReviewCards();
+    }, 400);
+}
+
+function reviewContacted(idx) {
+    const v = reviewQueue[idx];
+    if (!v) return;
+    const card = document.getElementById('reviewCard' + idx);
+    if (card) card.classList.add('swipe-up');
+    fireGet(API_URL + '?action=update_venue&venue_id=' +
+        encodeURIComponent(v.venue_id) + '&field=status&value=contacted');
+    fireGet(API_URL + '?action=update_venue&venue_id=' +
+        encodeURIComponent(v.venue_id) + '&field=venue_vote&value=up');
+    if (dashboardData) {
+        const dv = dashboardData.venues.find(x => x.venue_id === v.venue_id);
+        if (dv) { dv.status = 'contacted'; dv.venue_vote = 'up'; }
     }
     setTimeout(() => {
         reviewIndex++;

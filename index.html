@@ -910,11 +910,11 @@ body {
 
         <!-- REVIEW QUEUE -->
         <div class="review-section" id="reviewSection" style="display:none">
-            <div class="review-header">
+            <div class="review-header" onclick="toggleReviewQueue()" style="cursor:pointer">
                 <span class="review-title">Review New Venues</span>
                 <span class="review-counter" id="reviewCounter"></span>
             </div>
-            <div class="review-stack" id="reviewStack"></div>
+            <div class="review-stack" id="reviewStack" style="display:none"></div>
         </div>
 
         <!-- SMART PICKS (recommendation engine) -->
@@ -1683,7 +1683,17 @@ function renderReviewQueue() {
         return;
     }
     section.style.display = '';
-    renderReviewCards();
+    document.getElementById('reviewCounter').textContent = reviewQueue.length + ' to review';
+}
+
+function toggleReviewQueue() {
+    const stack = document.getElementById('reviewStack');
+    if (stack.style.display === 'none') {
+        stack.style.display = '';
+        renderReviewCards();
+    } else {
+        stack.style.display = 'none';
+    }
 }
 
 function renderReviewCards() {

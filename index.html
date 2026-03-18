@@ -1884,12 +1884,18 @@ function reviewDelete(idx, swiped) {
 function reviewContacted(idx) {
     const v = reviewQueue[idx];
     if (!v) return;
+    const noteInput = document.getElementById('reviewNote' + idx);
+    const note = noteInput ? noteInput.value.trim() : '';
     const card = document.getElementById('reviewCard' + idx);
     if (card) card.classList.add('swipe-up');
     fireGet(BASE_URL + '?action=update_venue&venue_id=' +
         encodeURIComponent(v.venue_id) + '&field=status&value=contacted');
     fireGet(BASE_URL + '?action=update_venue&venue_id=' +
         encodeURIComponent(v.venue_id) + '&field=venue_vote&value=up');
+    if (note) {
+        fireGet(BASE_URL + '?action=update_venue&venue_id=' +
+            encodeURIComponent(v.venue_id) + '&field=venue_feedback&value=' + encodeURIComponent(note));
+    }
     if (dashboardData) {
         const dv = dashboardData.venues.find(x => x.venue_id === v.venue_id);
         if (dv) { dv.status = 'contacted'; dv.venue_vote = 'up'; }

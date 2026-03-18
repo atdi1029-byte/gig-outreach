@@ -1200,8 +1200,7 @@ function renderVenueCard(item) {
         html += `<div class="action-row"><span class="contact-email">${esc(c.email)}</span>`;
         html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
         html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
-        html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}',this)">Sent</button>`;
-        html += `<button class="btn-action btn-del" onclick="deleteContact('${esc(c.contact_id)}',this)">✕</button></div>`;
+        html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}',this)">Sent</button></div>`;
     }
     if (item.igPending && v.instagram) {
         const fc = contacts[0] || { contact_id: '' };

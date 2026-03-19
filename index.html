@@ -1923,17 +1923,21 @@ let currentDetailCat = '';
 function openComposeForContact(contactId, email, contactName, channel) {
     if (!currentDetailVenue) return;
     const v = currentDetailVenue;
-    openCompose({
-        channel: channel,
-        venueName: v.name,
-        venueId: v.venue_id,
-        contactName: contactName || '',
-        contactId: contactId,
-        contactEmail: email || '',
-        category: currentDetailCat,
-        igUrl: v.instagram || '',
-        fbUrl: v.facebook || ''
-    });
+    const cat = currentDetailCat;
+    const tmpl = getEnhancedTemplate(channel, v.name, contactName || '', cat);
+    if (channel === 'email' && email) {
+        // Copy body, open Gmail with to/subject/body
+        navigator.clipboard.writeText(tmpl.body).catch(() => {});
+        const url = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`;
+        openExternal(url);
+        showToast('Copied & opening Gmail');
+    } else if (channel === 'ig' && v.instagram) {
+        copyText(tmpl.body);
+        openExternal(v.instagram);
+    } else if (channel === 'fb' && v.facebook) {
+        copyText(tmpl.body);
+        openExternal(v.facebook);
+    }
 }
 
 function openVenueDetail(venueId) {
@@ -1997,7 +2001,7 @@ function openVenueDetail(venueId) {
                 html += `<div class="${skipped ? 'contact-skipped' : ''}${starred ? ' contact-starred' : ''}">`;
                 html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
-                html += `<button class="btn-action btn-gmail" onclick="openComposeForContact('${esc(c.contact_id)}','${esc(c.email)}','${esc(c.name || '')}','email')">Compose</button>`;
+                html += `<button class="btn-action btn-gmail" onclick="openComposeForContact('${esc(c.contact_id)}','${esc(c.email)}','${esc(c.name || '')}','email')">Gmail</button>`;
                 html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button>`;
                 html += `<button class="btn-action btn-del" onclick="skipContact('${esc(c.contact_id)}',this)">✕</button></div>`;
                 if (c.name || c.title) html += `<div class="detail-contact-name">${renderTitleWords(c.name, c.title)}</div>`;
@@ -2031,7 +2035,7 @@ function openVenueDetail(venueId) {
             html += `<div class="detail-section-label" style="background:${catColor}">Instagram</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
-            html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','ig')">Compose</button>`;
+            html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','ig')">Open + Copy</button>`;
             html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
         }
     }
@@ -2043,7 +2047,7 @@ function openVenueDetail(venueId) {
             html += `<div class="detail-section-label" style="background:${catColor}">Facebook</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
-            html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','fb')">Compose</button>`;
+            html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','fb')">Open + Copy</button>`;
             html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
         }
     }

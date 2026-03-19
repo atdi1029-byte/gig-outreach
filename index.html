@@ -866,6 +866,138 @@ body {
 .review-swipe-hint.left { left: 1rem; color: var(--red); }
 .review-swipe-hint.right { right: 1rem; color: var(--green); }
 
+/* === COMPOSE VIEW === */
+.compose-venue {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--text-bright);
+    margin-bottom: 0.2rem;
+}
+.compose-contact {
+    font-size: 0.8rem; color: var(--text-dim);
+    margin-bottom: 1rem;
+}
+.compose-tabs {
+    display: flex; gap: 0;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+}
+.compose-tab {
+    flex: 1; text-align: center;
+    padding: 0.6rem 0;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    color: var(--text-dim); background: none;
+    border: none; cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    -webkit-tap-highlight-color: transparent;
+}
+.compose-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+.compose-subject {
+    font-size: 0.75rem; color: var(--gold);
+    margin-bottom: 0.4rem; font-weight: 700;
+}
+.compose-subject span { color: var(--text-dim); font-weight: 400; }
+.compose-body {
+    width: 100%; min-height: 220px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border-light);
+    border-radius: 8px; color: var(--text);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem; line-height: 1.5;
+    padding: 0.8rem; resize: none;
+    -webkit-appearance: none;
+}
+.compose-actions {
+    display: flex; gap: 0.5rem;
+    margin-top: 0.75rem; flex-wrap: wrap;
+}
+.compose-btn {
+    flex: 1; min-width: 0;
+    padding: 0.7rem 0.5rem; border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    cursor: pointer; border: none;
+    -webkit-tap-highlight-color: transparent;
+    text-align: center;
+}
+.compose-btn-regen {
+    background: rgba(255,255,255,0.08);
+    color: var(--text);
+    border: 1px solid var(--border-light);
+    flex: 0 0 auto; padding: 0.7rem;
+    font-size: 1rem;
+}
+.compose-btn-copy { background: var(--accent); color: #000; }
+.compose-btn-open { background: var(--green); color: #000; }
+.compose-btn-sent {
+    display: block; width: 100%;
+    margin-top: 0.75rem; padding: 0.8rem;
+    background: none;
+    border: 2px solid var(--green);
+    color: var(--green); border-radius: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem; font-weight: 700;
+    cursor: pointer;
+}
+.compose-btn-sent:active { background: var(--green); color: #000; }
+.compose-btn-sent.done {
+    background: var(--green); color: #000;
+    opacity: 0.5; pointer-events: none;
+}
+.compose-followup {
+    margin-top: 0.5rem; text-align: center;
+}
+.compose-followup-btn {
+    background: none; border: 1px solid var(--accent-dim);
+    color: var(--accent-dim); padding: 0.4rem 0.8rem;
+    border-radius: 6px; font-size: 0.7rem;
+    cursor: pointer; font-family: 'Lato', sans-serif;
+}
+
+/* === WEEKLY GOALS === */
+.weekly-goals {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+.weekly-goals-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem; color: var(--text-bright);
+    margin-bottom: 0.6rem;
+    display: flex; justify-content: space-between;
+    align-items: center;
+}
+.weekly-goal-row {
+    display: flex; align-items: center;
+    gap: 0.5rem; margin-bottom: 0.5rem;
+}
+.weekly-goal-row:last-child { margin-bottom: 0; }
+.weekly-goal-label {
+    font-size: 0.7rem; color: var(--text-dim);
+    width: 42px; flex-shrink: 0;
+}
+.weekly-goal-bar {
+    flex: 1; height: 14px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 7px; overflow: hidden;
+}
+.weekly-goal-fill {
+    height: 100%; border-radius: 7px;
+    transition: width 0.5s ease; min-width: 2px;
+}
+.weekly-goal-fill.email { background: var(--accent); }
+.weekly-goal-fill.ig { background: #E4405F; }
+.weekly-goal-fill.fb { background: #1877F2; }
+.weekly-goal-count {
+    font-size: 0.65rem; color: var(--text-dim);
+    width: 50px; text-align: right; flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
     .view-inner { padding: 0.75rem; }
     .home-header h1 { font-size: 1.4rem; letter-spacing: 3px; }
@@ -901,6 +1033,9 @@ body {
                 <span>Reports</span>
             </button>
         </div>
+
+        <!-- WEEKLY GOALS -->
+        <div class="weekly-goals" id="weeklyGoals" style="display:none"></div>
 
         <!-- LINKEDIN RETRY REMINDER (shows in April+) -->
         <div id="linkedinReminder" style="display:none;background:#2d1f3d;border:1px solid #9b59b6;border-radius:10px;padding:0.8rem 1rem;margin:0.5rem 0;cursor:pointer" onclick="alert('Run this in terminal:\\n\\n./pipeline.sh --linkedin-retry\\n\\nThis will re-run LinkedIn on all venues that were skipped.')">
@@ -970,6 +1105,15 @@ body {
         <span class="view-title" id="detailTitleText"></span>
     </div>
     <div class="view-inner" id="detailBody"></div>
+</div>
+
+<!-- ============ VIEW: COMPOSE ============ -->
+<div class="view" id="viewCompose">
+    <div class="view-header">
+        <button class="view-back" onclick="goBack()">&larr;</button>
+        <span class="view-title" id="composeTitleText">Compose</span>
+    </div>
+    <div class="view-inner" id="composeBody"></div>
 </div>
 
 <!-- ============ VIEW: PAST GIGS ============ -->
@@ -1135,20 +1279,169 @@ window.addEventListener('popstate', function(e) {
 });
 
 // === TEMPLATES ===
-const DEFAULT_BODY = "Hi I'm a Baltimore based Classical Guitarist and I want to perform at your VENUE_TYPE!\n\nI have performed around the World at\n- The Copacabana Palace(Brazil)\n- Cadogan Hotel (London)\n- The Lake of Meneith Hotel (Scotland)\n- National Museum (Colombia)\n\nAnd Locally at\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- The Maryland Club\n- The Army Navy Country Club\n- The River Bend Country Club\n\nhttps://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH\n\nYou can reach me at alexbarnettclassical@gmail.com or 410-794-6204\n\nI look forward to hearing from you!\n\nBest,\nAlexander Barnett";
-
 const TEMPLATES = {
-    winery:      { subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Winery!", label: "Winery" },
-    museum:      { subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Museum!", label: "Museum" },
-    hotel:       { subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Hotel!", label: "Hotel" },
-    country_club:{ subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Club!", label: "Country Club" },
-    event:       { subject: "Classical Guitarist (Spanish/Brazilian Music) for your Events!", label: "Event" },
-    restaurant:  { subject: "Classical Guitarist (Spanish/Brazilian Music) to Perform at your Restaurant!", label: "Restaurant" }
+    winery:       { subject: "Live Classical Guitar for {venue}", label: "Winery" },
+    museum:       { subject: "Live Classical Guitar for {venue}", label: "Museum" },
+    hotel:        { subject: "Live Classical Guitar for {venue}", label: "Hotel" },
+    country_club: { subject: "Live Classical Guitar for {venue}", label: "Country Club" },
+    event:        { subject: "Classical Guitar for Your Events", label: "Event" },
+    restaurant:   { subject: "Live Classical Guitar for {venue}", label: "Restaurant" },
+    wine_bar:     { subject: "Live Classical Guitar for {venue}", label: "Wine Bar" },
+    resort:       { subject: "Live Classical Guitar for {venue}", label: "Resort" },
+    private_club: { subject: "Live Classical Guitar for {venue}", label: "Private Club" },
+    golf_club:    { subject: "Live Classical Guitar for {venue}", label: "Golf Club" },
+    yacht_club:   { subject: "Live Classical Guitar for {venue}", label: "Yacht Club" },
+    senior_living:{ subject: "Live Classical Guitar for {venue}", label: "Senior Living" },
+    wedding_venue:{ subject: "Live Classical Guitar for {venue}", label: "Wedding Venue" },
+    art_gallery:  { subject: "Live Classical Guitar for {venue}", label: "Art Gallery" },
+    corporate:    { subject: "Live Classical Guitar for Your Events", label: "Corporate" },
+    spa:          { subject: "Live Classical Guitar for {venue}", label: "Spa" }
 };
+const YOUTUBE_LINK = 'https://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH';
+const CONTACT_LINE = 'alexbarnettclassical@gmail.com | 410-794-6204';
 
+function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+const GREETINGS = ['Hi {name}', 'Hello {name}', 'Good morning {name}'];
+const INTEREST = [
+    "I'd love to", "I'd be thrilled to",
+    "I think it would be wonderful to",
+    "I'd be honored to"
+];
+const INTEREST2 = [
+    "I'd love to", "I'd be happy to",
+    "I'd welcome the chance to",
+    "it would be great to"
+];
+const SIGNOFFS = [
+    'Looking forward to hearing from you!',
+    'Would love to hear your thoughts!',
+    'Hope to connect soon!'
+];
+
+const EMAIL_BODIES = [
+    // A: Standard pitch
+    function(v, interest, interest2) {
+        return [
+            `I'm a Baltimore-based classical guitarist specializing in Spanish and Brazilian music, and ${interest} bring live music to ${v}.`,
+            '',
+            "I've performed internationally at The Copacabana Palace (Rio de Janeiro), Cadogan Hotel (London), The Lake of Menteith Hotel (Scotland), and the National Museum of Colombia.",
+            '',
+            "Locally, I've played at L'Auberge Chez Francois, The Inn at Perry Cabin, The Maryland Club, Army Navy Country Club, and River Bend Country Club."
+        ].join('\n');
+    },
+    // B: Atmosphere-focused
+    function(v, interest, interest2) {
+        return [
+            `I'm a classical guitarist based in Baltimore — I play Spanish, Brazilian, and classical repertoire that creates an elegant, memorable atmosphere. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v}.`,
+            '',
+            "I've had the privilege of performing at The Copacabana Palace in Rio, Cadogan Hotel in London, and closer to home at The Inn at Perry Cabin and L'Auberge Chez Francois."
+        ].join('\n');
+    },
+    // C: Short and direct
+    function(v, interest, interest2) {
+        return [
+            `I'm a classical guitarist who specializes in Spanish and Brazilian music. I've performed everywhere from the Copacabana Palace in Rio to L'Auberge Chez Francois here in the DC area.`,
+            '',
+            `${v} caught my eye as a place where live guitar would really shine.`
+        ].join('\n');
+    },
+    // D: Event-focused
+    function(v, interest, interest2) {
+        return [
+            `I specialize in live Spanish and Brazilian classical guitar for events, dinners, and private gatherings. I've been performing professionally at venues across the US and internationally.`,
+            '',
+            `Past venues include The Copacabana Palace (Brazil), Cadogan Hotel (London), The Inn at Perry Cabin, and L'Auberge Chez Francois.`,
+            '',
+            `Whether it's a wine dinner, private event, or regular weekend music, ${interest} bring something special to ${v}.`
+        ].join('\n');
+    }
+];
+
+const EMAIL_CLOSINGS = [
+    "I'd love to chat about how live guitar could enhance the atmosphere.",
+    "Would love to discuss what this could look like.",
+    "If you ever feature live music for events or regular entertainment, I'd welcome the chance to connect."
+];
+
+function generateEmail(venueName, contactName, category) {
+    const name = contactName || 'there';
+    const interest = pick(INTEREST);
+    const interest2 = pick(INTEREST2);
+    const bodyFn = pick(EMAIL_BODIES);
+    const body = bodyFn(venueName, interest, interest2);
+    const closing = pick(EMAIL_CLOSINGS);
+    const signoff = pick(SIGNOFFS);
+
+    return [
+        pick(GREETINGS).replace('{name}', name) + ',',
+        '',
+        body,
+        '',
+        closing,
+        '',
+        YOUTUBE_LINK,
+        '',
+        'You can reach me at ' + CONTACT_LINE,
+        '',
+        signoff,
+        'Alexander Barnett'
+    ].join('\n');
+}
+
+const IG_BODIES = [
+    function(v, label) {
+        return `I'm a classical guitarist based in Baltimore — I play Spanish and Brazilian music at venues like ${label.toLowerCase()}s, country clubs, and hotels. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. ${v} looks like a beautiful spot for live guitar. Would love to chat if you ever feature live music!`;
+    },
+    function(v, label) {
+        return `Love what you're doing at ${v}! I'm a classical guitarist specializing in Spanish and Brazilian music — I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to talk about bringing live music to your space.`;
+    }
+];
+
+const FB_BODIES = [
+    function(v, label) {
+        return `I'm a Baltimore-based classical guitarist and I play Spanish and Brazilian music at venues around the region — wineries, hotels, country clubs, restaurants. ${v} looks like it could be a great fit for live guitar. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to connect if you ever feature live entertainment!`;
+    },
+    function(v, label) {
+        return `I came across ${v} and thought it might be a wonderful setting for live classical guitar! I specialize in Spanish and Brazilian music and have performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club and Army Navy Country Club. Would love to chat!`;
+    }
+];
+
+const IG_FOLLOWUP = `Thanks so much for getting back to me! Here's a playlist of my performances so you can get a feel for the sound:\n\n${YOUTUBE_LINK}\n\nYou can also reach me at ${CONTACT_LINE}\n\nLooking forward to connecting!`;
+
+function generateIG(venueName, contactName, category) {
+    const label = (TEMPLATES[category] || { label: 'Venue' }).label;
+    const name = contactName || 'there';
+    const greeting = pick(['Hi', 'Hello', 'Hey']) + ' ' + name + '!';
+    const body = pick(IG_BODIES)(venueName, label);
+    return greeting + '\n\n' + body + '\n\n' +
+        pick(['Best, Alexander', '— Alexander Barnett']);
+}
+
+function generateFB(venueName, contactName, category) {
+    const label = (TEMPLATES[category] || { label: 'Venue' }).label;
+    const name = contactName || 'there';
+    const greeting = pick(['Hi', 'Hello', 'Hey']) + ' ' + name + '!';
+    const body = pick(FB_BODIES)(venueName, label);
+    return greeting + '\n\n' + body + '\n\n' +
+        pick(['Best, Alexander Barnett', '— Alexander']);
+}
+
+function getEnhancedTemplate(channel, venueName, contactName, category) {
+    if (channel === 'ig') return { subject: '', body: generateIG(venueName, contactName, category) };
+    if (channel === 'ig_followup') return { subject: '', body: IG_FOLLOWUP };
+    if (channel === 'fb') return { subject: '', body: generateFB(venueName, contactName, category) };
+    const t = TEMPLATES[category] || TEMPLATES.winery;
+    return {
+        subject: t.subject.replace('{venue}', venueName),
+        body: generateEmail(venueName, contactName, category)
+    };
+}
+
+// Legacy compat
 function getTemplate(category) {
     const t = TEMPLATES[category] || TEMPLATES.winery;
-    return { subject: t.subject, body: DEFAULT_BODY.replace('VENUE_TYPE', t.label || 'Venue') };
+    return { subject: t.subject, body: generateEmail('your venue', '', category) };
 }
 
 // === CONSTANTS ===
@@ -1262,6 +1555,150 @@ function openIGWithTemplate(igUrl, category) {
 function openFBWithTemplate(fbUrl, category) {
     copyText(getTemplate(category).body);
     openExternal(fbUrl);
+}
+
+// === COMPOSE VIEW ===
+let composeState = {
+    channel: 'email', venueName: '', venueId: '',
+    contactName: '', contactId: '', contactEmail: '',
+    category: '', igUrl: '', fbUrl: '',
+    currentBody: '', currentSubject: ''
+};
+
+function openCompose(opts) {
+    Object.assign(composeState, opts);
+    composeState.channel = opts.channel || 'email';
+    renderCompose();
+    navigateTo('viewCompose');
+}
+
+function renderCompose() {
+    const s = composeState;
+    const cat = s.category;
+    const label = (TEMPLATES[cat] || { label: 'Venue' }).label;
+    const tmpl = getEnhancedTemplate(s.channel, s.venueName, s.contactName, cat);
+    s.currentBody = tmpl.body;
+    s.currentSubject = tmpl.subject;
+    document.getElementById('composeTitleText').textContent = 'Compose';
+
+    let html = '';
+    html += `<div class="compose-venue">${esc(s.venueName)}</div>`;
+    html += `<div class="compose-contact">`;
+    html += `<span class="category-badge ${esc(cat)}">${esc(label).toUpperCase()}</span>`;
+    if (s.contactName) html += ` &mdash; ${esc(s.contactName)}`;
+    if (s.contactEmail && s.channel === 'email') html += ` <span style="color:var(--text-dim);font-size:0.7rem">(${esc(s.contactEmail)})</span>`;
+    html += `</div>`;
+
+    // Channel tabs
+    const channels = [];
+    if (s.contactEmail) channels.push({ id: 'email', label: 'Email' });
+    if (s.igUrl) channels.push({ id: 'ig', label: 'IG DM' });
+    if (s.fbUrl) channels.push({ id: 'fb', label: 'FB Msg' });
+    if (channels.length === 0) channels.push({
+        id: s.channel,
+        label: s.channel === 'ig' ? 'IG DM' : s.channel === 'fb' ? 'FB Msg' : 'Email'
+    });
+    if (channels.length > 1) {
+        html += `<div class="compose-tabs">`;
+        for (const ch of channels) {
+            html += `<button class="compose-tab${ch.id === s.channel ? ' active' : ''}" onclick="switchComposeChannel('${ch.id}')">${ch.label}</button>`;
+        }
+        html += `</div>`;
+    }
+
+    // Subject line (email only)
+    if (s.channel === 'email' && s.currentSubject) {
+        html += `<div class="compose-subject"><span>Subject: </span>${esc(s.currentSubject)}</div>`;
+    }
+
+    // Message body
+    html += `<textarea class="compose-body" id="composeText" readonly>${esc(s.currentBody)}</textarea>`;
+
+    // Action buttons
+    html += `<div class="compose-actions">`;
+    html += `<button class="compose-btn compose-btn-regen" onclick="regenerateCompose()" title="New variation">&#8635;</button>`;
+    html += `<button class="compose-btn compose-btn-copy" onclick="copyCompose()">Copy</button>`;
+    if (s.channel === 'email' && s.contactEmail) {
+        html += `<button class="compose-btn compose-btn-open" onclick="copyAndOpenGmail()">Copy & Gmail</button>`;
+    } else if (s.channel === 'ig' && s.igUrl) {
+        html += `<button class="compose-btn compose-btn-open" onclick="copyAndOpenIG()">Copy & Open IG</button>`;
+    } else if (s.channel === 'fb' && s.fbUrl) {
+        html += `<button class="compose-btn compose-btn-open" onclick="copyAndOpenFB()">Copy & Open FB</button>`;
+    }
+    html += `</div>`;
+
+    // Mark Sent
+    html += `<button class="compose-btn-sent" id="composeSentBtn" onclick="composeSent()">Mark Sent</button>`;
+
+    // IG follow-up (show only for IG channel)
+    if (s.channel === 'ig') {
+        html += `<div class="compose-followup">`;
+        html += `<button class="compose-followup-btn" onclick="showIGFollowup()">Send Follow-Up (with video link)</button>`;
+        html += `</div>`;
+    }
+
+    document.getElementById('composeBody').innerHTML = html;
+}
+
+function switchComposeChannel(ch) {
+    composeState.channel = ch;
+    renderCompose();
+}
+
+function regenerateCompose() {
+    renderCompose();
+    showToast('New variation!');
+}
+
+function copyCompose() {
+    const text = document.getElementById('composeText').value;
+    copyText(text);
+}
+
+function copyAndOpenGmail() {
+    const s = composeState;
+    const body = document.getElementById('composeText').value;
+    navigator.clipboard.writeText(body).catch(() => {});
+    const url = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(s.contactEmail)}&su=${encodeURIComponent(s.currentSubject)}&body=${encodeURIComponent(body)}`;
+    openExternal(url);
+    showToast('Copied & opening Gmail');
+}
+
+function copyAndOpenIG() {
+    const text = document.getElementById('composeText').value;
+    navigator.clipboard.writeText(text).then(
+        () => showToast('Copied! Opening IG...')
+    ).catch(() => showToast('Opening IG...'));
+    openExternal(composeState.igUrl);
+}
+
+function copyAndOpenFB() {
+    const text = document.getElementById('composeText').value;
+    navigator.clipboard.writeText(text).then(
+        () => showToast('Copied! Opening FB...')
+    ).catch(() => showToast('Opening FB...'));
+    openExternal(composeState.fbUrl);
+}
+
+function composeSent() {
+    const s = composeState;
+    const btn = document.getElementById('composeSentBtn');
+    if (s.channel === 'email') {
+        markEmailSent(s.contactId, s.venueId, s.category, btn);
+    } else if (s.channel === 'ig') {
+        markIGSent(s.contactId, s.venueId, btn);
+    } else if (s.channel === 'fb') {
+        markFBSent(s.contactId, s.venueId, btn);
+    }
+}
+
+function showIGFollowup() {
+    composeState.channel = 'ig_followup';
+    const tmpl = getEnhancedTemplate('ig_followup', composeState.venueName, composeState.contactName, composeState.category);
+    composeState.currentBody = tmpl.body;
+    const ta = document.getElementById('composeText');
+    ta.value = tmpl.body;
+    showToast('Follow-up template loaded (with link)');
 }
 
 // === VENUE VOTE ===
@@ -1480,6 +1917,25 @@ function openCategory(cat) {
 }
 
 // === VIEW: VENUE DETAIL ===
+let currentDetailVenue = null;
+let currentDetailCat = '';
+
+function openComposeForContact(contactId, email, contactName, channel) {
+    if (!currentDetailVenue) return;
+    const v = currentDetailVenue;
+    openCompose({
+        channel: channel,
+        venueName: v.name,
+        venueId: v.venue_id,
+        contactName: contactName || '',
+        contactId: contactId,
+        contactEmail: email || '',
+        category: currentDetailCat,
+        igUrl: v.instagram || '',
+        fbUrl: v.facebook || ''
+    });
+}
+
 function openVenueDetail(venueId) {
     if (!dashboardData) return;
     const venue = (dashboardData.venues || []).find(v => v.venue_id === venueId);
@@ -1487,6 +1943,8 @@ function openVenueDetail(venueId) {
 
     const contacts = (dashboardData.contacts || []).filter(c => c.venue_id === venueId);
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+    currentDetailVenue = venue;
+    currentDetailCat = cat;
     const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12' };
     const catColor = CAT_COLORS[cat] || 'var(--text-bright)';
 
@@ -1539,7 +1997,7 @@ function openVenueDetail(venueId) {
                 html += `<div class="${skipped ? 'contact-skipped' : ''}${starred ? ' contact-starred' : ''}">`;
                 html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
-                html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank" rel="noopener noreferrer">Gmail</a>`;
+                html += `<button class="btn-action btn-gmail" onclick="openComposeForContact('${esc(c.contact_id)}','${esc(c.email)}','${esc(c.name || '')}','email')">Compose</button>`;
                 html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button>`;
                 html += `<button class="btn-action btn-del" onclick="skipContact('${esc(c.contact_id)}',this)">✕</button></div>`;
                 if (c.name || c.title) html += `<div class="detail-contact-name">${renderTitleWords(c.name, c.title)}</div>`;
@@ -1573,7 +2031,7 @@ function openVenueDetail(venueId) {
             html += `<div class="detail-section-label" style="background:${catColor}">Instagram</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
-            html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(venue.instagram)}','${cat}')">Open + Copy</button>`;
+            html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','ig')">Compose</button>`;
             html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
         }
     }
@@ -1585,7 +2043,7 @@ function openVenueDetail(venueId) {
             html += `<div class="detail-section-label" style="background:${catColor}">Facebook</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
-            html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(venue.facebook)}','${cat}')">Open + Copy</button>`;
+            html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','fb')">Compose</button>`;
             html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
         }
     }
@@ -1661,6 +2119,77 @@ function esc(s) {
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
+// === WEEKLY + DAILY GOALS ===
+function getWeekNumber() {
+    const now = new Date();
+    const day = now.getDay();
+    const diff = now.getDate() - day + (day === 0 ? -6 : 1);
+    const monday = new Date(now.getFullYear(), now.getMonth(), diff);
+    // Week 1 = first Monday after start (~March 17 2026)
+    const origin = new Date(2026, 2, 17);
+    const weeks = Math.floor((monday - origin) / (7 * 86400000));
+    return Math.max(1, weeks + 1);
+}
+
+function getGoals() {
+    const w = getWeekNumber();
+    // Ramp: wk1-2 lower, wk3-4 medium, wk5+ full
+    if (w <= 2) return {
+        weekly: { email: 100, ig: 20, fb: 10 },
+        daily: { email: 25, ig: 5, fb: 3 }
+    };
+    if (w <= 4) return {
+        weekly: { email: 150, ig: 30, fb: 15 },
+        daily: { email: 40, ig: 8, fb: 5 }
+    };
+    return {
+        weekly: { email: 225, ig: 45, fb: 23 },
+        daily: { email: 50, ig: 10, fb: 5 }
+    };
+}
+
+function renderWeeklyGoals() {
+    if (!dashboardData) return;
+    const el = document.getElementById('weeklyGoals');
+    const goals = getGoals();
+    const week = getWeekNumber();
+    const wc = dashboardData.weeklyCounts || { email: 0, ig: 0, fb: 0 };
+    const dc = dashboardData.dailyCounts || { email: 0, ig: 0, fb: 0 };
+
+    el.style.display = '';
+    const bars = [
+        { label: 'Email', daily: dc.email, dGoal: goals.daily.email,
+          weekly: wc.email, wGoal: goals.weekly.email, cls: 'email' },
+        { label: 'IG', daily: dc.ig, dGoal: goals.daily.ig,
+          weekly: wc.ig, wGoal: goals.weekly.ig, cls: 'ig' },
+        { label: 'FB', daily: dc.fb, dGoal: goals.daily.fb,
+          weekly: wc.fb, wGoal: goals.weekly.fb, cls: 'fb' }
+    ];
+
+    let html = `<div class="weekly-goals-title">`;
+    html += `<span>Week ${week} Outreach</span>`;
+    const totalDaily = dc.email + dc.ig + dc.fb;
+    const totalWeekly = wc.email + wc.ig + wc.fb;
+    html += `<span style="font-size:0.7rem;color:var(--text-dim)">Today: ${totalDaily} · Week: ${totalWeekly}</span>`;
+    html += `</div>`;
+
+    for (const b of bars) {
+        const wPct = Math.min(100, Math.round((b.weekly / b.wGoal) * 100));
+        const wDone = b.weekly >= b.wGoal;
+        const dDone = b.daily >= b.dGoal;
+        const dayText = dDone
+            ? `<span style="color:var(--green)">${b.daily}/${b.dGoal}</span>`
+            : `${b.daily}/${b.dGoal}`;
+        html += `<div class="weekly-goal-row">`;
+        html += `<span class="weekly-goal-label">${b.label}</span>`;
+        html += `<div class="weekly-goal-bar"><div class="weekly-goal-fill ${b.cls}" style="width:${wPct}%${wDone ? ';opacity:0.7' : ''}"></div></div>`;
+        html += `<span class="weekly-goal-count" style="${wDone ? 'color:var(--green)' : ''}">${b.weekly}/${b.wGoal}</span>`;
+        html += `<span class="weekly-goal-count" style="width:35px;font-size:0.6rem">${dayText}</span>`;
+        html += `</div>`;
+    }
+    el.innerHTML = html;
+}
+
 // === MAIN LOAD ===
 function loadDashboard() {
     if (!API_URL) { renderTopPicks([]); renderStateGrid(); return; }
@@ -1673,6 +2202,7 @@ function loadDashboard() {
             renderStateGrid();
             updateGigsCount();
             loadSmartPicks();
+            renderWeeklyGoals();
             checkLinkedInReminder();
             // Deep link: ?venue=VENUE_ID opens detail page
             const urlVenue = new URLSearchParams(window.location.search).get('venue');

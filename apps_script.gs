@@ -277,6 +277,31 @@ function serveDashboardJSON_() {
     }
   }
 
+  // Weekly + daily outreach counts
+  var now = new Date();
+  var dayOfWeek = now.getDay();
+  var mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+  var weekStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() + mondayOffset);
+  var todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var weeklyCounts = { email: 0, ig: 0, fb: 0 };
+  var dailyCounts = { email: 0, ig: 0, fb: 0 };
+  for (var oi = 1; oi < outreachData.length; oi++) {
+    var oRow = outreachData[oi];
+    if (!oRow[0]) continue;
+    var oDate = new Date(oRow[0]);
+    var oChan = String(oRow[3]);
+    if (oDate >= weekStart) {
+      if (oChan === 'email') weeklyCounts.email++;
+      else if (oChan === 'instagram') weeklyCounts.ig++;
+      else if (oChan === 'facebook') weeklyCounts.fb++;
+    }
+    if (oDate >= todayStart) {
+      if (oChan === 'email') dailyCounts.email++;
+      else if (oChan === 'instagram') dailyCounts.ig++;
+      else if (oChan === 'facebook') dailyCounts.fb++;
+    }
+  }
+
   return jsonResponse_({
     status: 'ok',
     stats: {
@@ -289,6 +314,8 @@ function serveDashboardJSON_() {
       pendingVerify: pendingVerify,
       totalOutreach: totalOutreach
     },
+    weeklyCounts: weeklyCounts,
+    dailyCounts: dailyCounts,
     topPicks: topPicks,
     actionNeeded: actionNeeded,
     venues: venues,
@@ -1186,41 +1213,32 @@ function getRecommendations_() {
     var vZone = String(row[11]) || 'default';
     var vDist = row[16] ? Number(row[16]) : null;
 
-    // Hard cutoff: skip venues beyond 120 miles
-    if (vDist !== null && vDist > 120) continue;
+    // Hard cutoff: skip venues beyond 150 miles (~2 hours highway)
+    if (vDist !== null && vDist > 150) continue;
 
-    // --- CATEGORY MATCH (0-30 pts) ---
+    // --- CATEGORY MATCH (0-40 pts) — most important factor ---
     var catPts = 0;
     if (catScores[vCat] !== undefined) {
-      // Scale: category avg score (1-10) maps to 0-30 pts
-      catPts = Math.round((catScores[vCat] / 10) * 30);
+      catPts = Math.round((catScores[vCat] / 10) * 40);
     } else {
-      // Unknown category: give neutral score based on overall average
-      catPts = Math.round((totalAvg / 10) * 15);  // half weight for unknown
+      catPts = Math.round((totalAvg / 10) * 20);  // half weight for unknown
     }
 
-    // --- DISTANCE + ZONE (0-35 pts) ---
-    // Green zones (rich areas) get generous distance — worth the drive
-    // Default zones penalized more — not worth a long drive to a non-rich area
-    var distPts = 0;
-    var flatMiles = vZone === 'green' ? 80 : vZone === 'yellow' ? 60 : 40;
-    var maxDist = 120;
-    if (vDist !== null) {
-      if (vDist <= flatMiles) {
-        distPts = 35;
-      } else {
-        distPts = Math.round(Math.max(0, 35 * (1 - (vDist - flatMiles) / (maxDist - flatMiles))));
-      }
-    } else {
-      distPts = 14; // neutral if no distance data
-    }
-
-    // --- UPSCALE MATCH (0-25 pts) ---
+    // --- UPSCALE MATCH (0-30 pts) — quality matters ---
     var upscaleDiff = Math.abs(vUpscale - avgUpscale);
-    var upscalePts = Math.round(Math.max(0, 25 * (1 - upscaleDiff / 5)));
+    var upscalePts = Math.round(Math.max(0, 30 * (1 - upscaleDiff / 5)));
 
-    // Zone bonus folded into distance scoring above
-    var zPts = 0;
+    // --- ZONE (0-10 pts) ---
+    var zPts = zonePts[vZone] || 0;
+
+    // --- DISTANCE (0-10 pts) — just a tiebreaker, will drive for great gigs ---
+    var distPts = 0;
+    if (vDist !== null) {
+      if (vDist <= 80) distPts = 10;
+      else distPts = Math.round(Math.max(0, 10 * (1 - (vDist - 80) / 70)));
+    } else {
+      distPts = 5; // neutral if no distance data
+    }
 
     // --- CONTACT QUALITY (0-10 pts) ---
     var cqPts = 0;

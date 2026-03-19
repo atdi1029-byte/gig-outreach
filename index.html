@@ -1656,7 +1656,7 @@ function loadDashboard() {
             checkLinkedInReminder();
             // Deep link: ?venue=VENUE_ID opens detail page
             const urlVenue = new URLSearchParams(window.location.search).get('venue');
-            if (urlVenue) { showVenueDetail(urlVenue); history.replaceState(null, '', window.location.pathname); }
+            if (urlVenue) { openVenueDetail(urlVenue); history.replaceState(null, '', window.location.pathname); }
         } else {
             console.error('Dashboard load error:', err);
         }

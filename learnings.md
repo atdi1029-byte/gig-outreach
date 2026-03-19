@@ -14,7 +14,12 @@ What works for Alex as a classical guitarist, learned from 18 past gigs and venu
 - **Inn at Perry Cabin (9.5)**: Very upscale hotel restaurant. Great pay, great tips, amazing clientele.
 - **L'Auberge Chez Francois (9.3)**: Perfect match. Educated wealthy audience. Top tier but doesn't hire as much anymore.
 - **Big Cork Vineyards (9.3)**: Beautiful mountain winery, great architecture, wonderful audience, very good pay/tips, rebooked monthly.
+- **Belle Haven Country Club (9.0)**: Great country club in Alexandria VA.
 - **Good Spirit Farm Winery (9.0)**: Great pay/tips, rebooked monthly, lovely smart engaged audience, beautiful mountain setting.
+- **Cosmos Club DC (9.0)**: Elite DC private club. Ideal venue.
+- **The Milton Inn (9.0)**: Historic fine dining, classy upscale crowd, beautiful setting. THE template for what to find — hidden gems like this are the goal.
+- **Conrad Washington DC (9.0)**: Luxury hotel, amazing venue, fits perfectly. Great pay, very upscale audience. Find more luxury hotels like this.
+- **Bistrot Lepic (9.0)**: Dark French restaurant in Georgetown. Amazing tips, super smart rich cultured audience. THE template for restaurant gigs — find more intimate French/European fine dining spots.
 
 ### Pattern: 9+ gigs share these traits
 1. Audience is educated/cultured/wealthy
@@ -44,10 +49,13 @@ What works for Alex as a classical guitarist, learned from 18 past gigs and venu
 4. "Hit or miss" audience = inconsistent venue
 
 ## Category Insights
-- **Wineries**: Best category overall. 7 out of 18 gigs. Range from 6.0 to 9.3. Mountain wineries with good architecture score highest. Small/unknown wineries can be duds.
+- **Wine Bars**: HIGH PRIORITY target. Wine dinners at Army Navy CC were a dream gig for 8 years. Wine bars attract the exact right crowd — educated, cultured, appreciate the atmosphere. Focus discovery on wine bars across all 6 states.
+- **Wineries**: Best category overall. Many gigs. Range from 3.0 to 9.3. Mountain wineries with good architecture score highest. Small/unknown wineries can be duds.
 - **Restaurants**: Work great IF the neighborhood is wealthy/educated (Alexandria, Bethesda area). Casual restaurants in wrong areas = bad audience. Fine dining = good.
 - **Country/Private Clubs**: Highest floor — audience is always cultured. Tips may be limited by club policy. Risk: losing contact after manager changes.
 - **Hotels**: Only one data point (Inn at Perry Cabin = 9.5) but upscale hotels with restaurants seem ideal.
+- **Corporate Events / Law Firms**: Played a corporate law event — wants more of these. Educated wealthy audience, good fit for classical guitar. Target: DC/Bethesda/Tysons law firms, corporate event planners, holiday parties.
+- **Senior Living**: Not exciting but reliable income. No tips, ok pay, easy gigs. Good for filling calendar gaps. Worth targeting for steady bookings.
 - **Malls**: Savage Mill worked because it's historic with good acoustics. Probably wouldn't generalize to generic malls.
 
 ## Geographic Insights
@@ -55,6 +63,15 @@ What works for Alex as a classical guitarist, learned from 18 past gigs and venu
 - DC (University Club, Maryland Club) = dream territory for private clubs
 - Mountain wineries (Big Cork, Good Spirit Farm) = best winery experiences
 - Eastern Shore MD (Inn at Perry Cabin) = upscale hotel territory
+- St Michaels MD = amazing, very upscale and classy people (Maritime Museum)
+- Great Falls VA = great area, affluent neighborhood, private party territory
+- Reston VA = great rich area, smart cultured crowd (Lake Anne Coffee House)
+- Woodberry/Hampden Baltimore = nice area, educated crowd (Woodberry Kitchen)
+- Clarksville/Columbia MD (Howard County) = very nice area, educated crowd (Great Sage). Farm-to-table/vegan restaurants do well here.
+- Loudoun County VA = very nice area, great for wineries and country clubs
+- Annapolis MD = great area, affluent and historic
+- Arlington VA = hit or miss despite being rich area, be selective
+- Ellicott City MD = great area, historic and affluent
 
 ## Key Signals When Evaluating a New Venue
 **Green flags:**

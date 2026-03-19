@@ -128,7 +128,7 @@ print(urllib.parse.urlencode({
 # STEP 1: WEBSITE SCRAPE (Chrome-based for JS-rendered sites)
 # =================================================================
 step1_website() {
-    local venue="$1" venue_id="$2" website="$3"
+    local venue="$1" venue_id="$2" website="$3" city="$4"
     log ""
     log "========== STEP 1: Website Scrape =========="
 
@@ -327,6 +327,70 @@ JSEOF
     contact_form=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('contact_form',''))" 2>/dev/null)
 
     log "  Emails: $email_count | FB: ${fb:-none} | IG: ${ig:-none} | Contact Form: ${contact_form:-none}"
+
+    # --- Location-page detection for multi-location/chain venues ---
+    # If we got 0 emails and the venue has a city, try to find the location-specific page
+    if [ "$email_count" = "0" ] && [ -n "$city" ] && [ "$city" != "None" ]; then
+        log "  [LOCATION] Checking for location-specific page (city: $city)..."
+        local city_slug
+        city_slug=$(python3 -c "print('${city}'.lower().replace(' ','-').replace('.',''))" 2>/dev/null)
+        local base_domain
+        base_domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${website}').scheme + '://' + urlparse('${website}').netloc)" 2>/dev/null)
+
+        # Try common location URL patterns
+        local loc_found=""
+        for pattern in "/${city_slug}/" "/locations/${city_slug}/" "/locations/${city_slug}" "/${city_slug}"; do
+            local try_url="${base_domain}${pattern}"
+            local http_code
+            http_code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 5 "$try_url" 2>/dev/null)
+            if [ "$http_code" = "200" ]; then
+                log "  [LOCATION] Found: $try_url"
+                loc_found="$try_url"
+                break
+            fi
+        done
+
+        # If URL patterns didn't work, scan page links for city name
+        if [ -z "$loc_found" ]; then
+            loc_found=$(python3 -c "
+import json
+city = '${city}'.lower()
+d = json.load(open('/tmp/pipeline_scrape.json'))
+for url in d.get('subpages', []):
+    if city.replace(' ','-') in url.lower() or city.replace(' ','') in url.lower():
+        print(url)
+        break
+# Also check all links on the page
+import re
+for url in list(set(re.findall(r'https?://[^\s\"<>]+', json.dumps(d)))):
+    if city.replace(' ','-') in url.lower() and url.startswith('${base_domain}'):
+        print(url)
+        break
+" 2>/dev/null | head -1)
+        fi
+
+        if [ -n "$loc_found" ]; then
+            log "  [LOCATION] Re-scraping location page: $loc_found"
+            # Update venue website to location-specific URL
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$loc_found'''))")" > /dev/null
+            website="$loc_found"
+
+            # Re-scrape the location page
+            osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${loc_found}\""
+            sleep 6
+            scrape_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
+            if [ -n "$scrape_result" ] && [ "$scrape_result" != "missing value" ]; then
+                echo "$scrape_result" > /tmp/pipeline_scrape.json
+                email_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_scrape.json')); print(len(d.get('contacts',d.get('emails',[]))))" 2>/dev/null || echo "0")
+                fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['facebook'])" 2>/dev/null)
+                ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['instagram'])" 2>/dev/null)
+                contact_form=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('contact_form',''))" 2>/dev/null)
+                log "  [LOCATION] Re-scraped: Emails: $email_count | FB: ${fb:-none} | IG: ${ig:-none} | Contact Form: ${contact_form:-none}"
+            fi
+        else
+            log "  [LOCATION] No location-specific page found"
+        fi
+    fi
 
     # Collect all contacts (email|name|title) from main page + subpages
     # Format: email|||name|||title per line
@@ -1710,7 +1774,7 @@ PYEOF
 # MAIN RUNNER
 # =================================================================
 run_venue() {
-    local venue="$1" venue_id="$2" website="$3"
+    local venue="$1" venue_id="$2" website="$3" city="$4"
     local start_time
     start_time=$(date +%s)
 
@@ -1746,7 +1810,7 @@ run_venue() {
     log "  Known emails: $(echo "$KNOWN_EMAILS" | tr '|||' '\n' | grep -c .)"
     log "  Known names: $(echo "$KNOWN_NAMES" | tr '|||' '\n' | grep -c .)"
 
-    step1_website "$venue" "$venue_id" "$website"
+    step1_website "$venue" "$venue_id" "$website" "$city"
     step1b_ig_search "$venue" "$venue_id"
     step2_social "$venue" "$venue_id"
     step3_apollo_api "$venue" "$venue_id"
@@ -1818,10 +1882,11 @@ for i, r in enumerate(filtered):
 " 2>/dev/null | while IFS='|' read -r IDX NAME VID SCORE; do
         log ""
         log "########## SMART PICK #$((IDX+1)) (score $SCORE): $NAME ($VID) ##########"
-        # Fetch website from venue detail
+        # Fetch website + city from venue detail
         curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${VID}" -o /tmp/pipeline_sp_detail.json
         WEB=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('website',''))" 2>/dev/null)
-        run_venue "$NAME" "$VID" "$WEB"
+        CITY=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('city',''))" 2>/dev/null)
+        run_venue "$NAME" "$VID" "$WEB" "$CITY"
         if [ "$IDX" -lt "$((SP_COUNT - 1))" ]; then sleep 30; fi
     done
     # End-of-run report: skipped venues
@@ -1880,13 +1945,15 @@ v = json.load(open('$BATCH_FILE'))[$i]
 print(v.get('name',''))
 print(v.get('venue_id',''))
 print(v.get('website',''))
+print(v.get('city',''))
 ")
-        NAME=$(echo "$INFO" | head -1)
-        VID=$(echo "$INFO" | head -2 | tail -1)
-        WEB=$(echo "$INFO" | tail -1)
+        NAME=$(echo "$INFO" | sed -n '1p')
+        VID=$(echo "$INFO" | sed -n '2p')
+        WEB=$(echo "$INFO" | sed -n '3p')
+        CITY=$(echo "$INFO" | sed -n '4p')
         log ""
         log "########## VENUE [$((i+1))/$TOTAL]: $NAME ##########"
-        run_venue "$NAME" "$VID" "$WEB"
+        run_venue "$NAME" "$VID" "$WEB" "$CITY"
         if [ "$i" -lt "$((TOTAL - 1))" ]; then sleep 30; fi
     done
     if [ -f "$SKIPPED_VENUES_FILE" ] && [ -s "$SKIPPED_VENUES_FILE" ]; then
@@ -1921,7 +1988,8 @@ for v in data.get('venues', []):
     if name == target:
         vid = venue.get('venue_id', '')
         web = venue.get('website', '')
-        print(f'{vid}|||{web}')
+        cty = venue.get('city', '')
+        print(f'{vid}|||{web}|||{cty}')
         sys.exit(0)
 # Fuzzy: check if all words match
 target_words = set(w for w in target.split() if len(w) > 2 and w not in {'the','at','in','of','and','for'})
@@ -1931,7 +1999,8 @@ for v in data.get('venues', []):
     if all(w in name for w in target_words):
         vid = venue.get('venue_id', '')
         web = venue.get('website', '')
-        print(f'{vid}|||{web}')
+        cty = venue.get('city', '')
+        print(f'{vid}|||{web}|||{cty}')
         sys.exit(0)
 print('NOT_FOUND')
 " 2>/dev/null)
@@ -1943,11 +2012,13 @@ print('NOT_FOUND')
 
         VENUE_ID=$(echo "$VENUE_LOOKUP" | awk -F'|||' '{print $1}')
         WEBSITE=$(echo "$VENUE_LOOKUP" | awk -F'|||' '{print $2}')
-        log "  Found: $VENUE_ID (website: ${WEBSITE:-none})"
+        CITY=$(echo "$VENUE_LOOKUP" | awk -F'|||' '{print $3}')
+        log "  Found: $VENUE_ID (website: ${WEBSITE:-none}, city: ${CITY:-unknown})"
     else
         VENUE_ID="$2"
         WEBSITE="${3:-}"
+        CITY="${4:-}"
     fi
 
-    run_venue "$VENUE" "$VENUE_ID" "$WEBSITE"
+    run_venue "$VENUE" "$VENUE_ID" "$WEBSITE" "$CITY"
 fi

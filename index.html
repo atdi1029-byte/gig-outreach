@@ -393,6 +393,11 @@ body {
 .status-pill.untouched { background: #333; color: #888; }
 .status-pill.in_progress { background: #2a2a00; color: var(--gold); }
 .status-pill.contacted { background: #002a2a; color: var(--green); }
+.status-pill.resurfaced { background: #2a1a00; color: #e8944c; }
+.recontact-badge {
+    font-size: 0.55rem; color: #e8944c; font-style: italic;
+    margin-left: 0.3rem;
+}
 
 /* === TOAST === */
 .toast {
@@ -1280,28 +1285,72 @@ window.addEventListener('popstate', function(e) {
 
 // === TEMPLATES ===
 const TEMPLATES = {
-    winery:       { subject: "Classical guitar for wine tastings at {venue}", label: "Winery" },
-    museum:       { subject: "Classical guitar for events at {venue}", label: "Museum" },
-    hotel:        { subject: "Live guitar for lobby & events at {venue}", label: "Hotel" },
-    country_club: { subject: "Classical guitar for member events at {venue}", label: "Country Club" },
-    event:        { subject: "Classical guitarist for your upcoming events", label: "Event" },
-    restaurant:   { subject: "Live dinner music for {venue}", label: "Restaurant" },
-    wine_bar:     { subject: "Classical guitar for wine evenings at {venue}", label: "Wine Bar" },
-    resort:       { subject: "Classical guitar for guest experiences at {venue}", label: "Resort" },
-    private_club: { subject: "Live music for private events at {venue}", label: "Private Club" },
-    golf_club:    { subject: "Classical guitar for events at {venue}", label: "Golf Club" },
-    yacht_club:   { subject: "Classical guitar for events at {venue}", label: "Yacht Club" },
-    senior_living:{ subject: "Classical guitar performances for {venue} residents", label: "Senior Living" },
-    wedding_venue:{ subject: "Classical guitarist for weddings at {venue}", label: "Wedding Venue" },
-    art_gallery:  { subject: "Live classical guitar for gallery events at {venue}", label: "Art Gallery" },
-    corporate:    { subject: "Classical guitarist for corporate events", label: "Corporate" },
-    spa:          { subject: "Live guitar for relaxation & events at {venue}", label: "Spa" },
-    event_planner:{ subject: "Classical guitarist for your events", label: "Event Planner" },
-    luxury_apts:  { subject: "Live classical guitar for resident events at {venue}", label: "Luxury Apartments" },
-    grocery_market:{ subject: "Live classical guitar for {venue}", label: "Market" },
-    church:       { subject: "Classical guitar for services & events at {venue}", label: "Church" },
-    luxury_retail:{ subject: "Live classical guitar for {venue}", label: "Luxury Retail" },
-    mall:         { subject: "Live classical guitar for {venue}", label: "Mall" }
+    winery: { subject: "Classical guitar for wine tastings at {venue}", label: "Winery",
+        pitch: ["wine tastings and dinner pairings", "tastings, harvest events, and wine dinners", "vineyard events and wine-pairing dinners"],
+        setting: "over a glass of wine" },
+    museum: { subject: "Classical guitar for events at {venue}", label: "Museum",
+        pitch: ["exhibition openings and special events", "gallery galas and private receptions", "evening events and fundraisers"],
+        setting: "among the exhibits" },
+    hotel: { subject: "Live guitar for lobby & events at {venue}", label: "Hotel",
+        pitch: ["lobby ambiance, cocktail hours, and private events", "guest experiences, afternoon tea, and evening events", "lobby music and special occasions"],
+        setting: "in your lobby or event spaces" },
+    country_club: { subject: "Classical guitar for member events at {venue}", label: "Country Club",
+        pitch: ["member dinners, holiday parties, and poolside events", "clubhouse wine dinners and member gatherings", "brunch, cocktail hours, and formal dinners"],
+        setting: "for your members" },
+    event: { subject: "Classical guitarist for your upcoming events", label: "Event",
+        pitch: ["private events, galas, and corporate gatherings", "cocktail receptions, dinners, and celebrations"],
+        setting: "at your events" },
+    restaurant: { subject: "Live dinner music for {venue}", label: "Restaurant",
+        pitch: ["dinner service and weekend brunch", "evening ambiance and special dining events", "dinner music and private dining nights"],
+        setting: "while guests dine" },
+    wine_bar: { subject: "Classical guitar for wine evenings at {venue}", label: "Wine Bar",
+        pitch: ["evening ambiance and tasting events", "wine flights, tasting nights, and weekend evenings", "intimate wine evenings and special tastings"],
+        setting: "over wine" },
+    resort: { subject: "Classical guitar for guest experiences at {venue}", label: "Resort",
+        pitch: ["poolside music, evening events, and guest lounges", "dining terraces, spa lounges, and sunset events", "guest experiences and special occasion evenings"],
+        setting: "for your guests" },
+    private_club: { subject: "Live music for private events at {venue}", label: "Private Club",
+        pitch: ["member dinners, cocktail hours, and formal events", "private gatherings, holiday events, and evening receptions"],
+        setting: "for your members" },
+    golf_club: { subject: "Classical guitar for events at {venue}", label: "Golf Club",
+        pitch: ["clubhouse dinners, tournament banquets, and member events", "post-round cocktails, member dinners, and holiday gatherings"],
+        setting: "at the clubhouse" },
+    yacht_club: { subject: "Classical guitar for events at {venue}", label: "Yacht Club",
+        pitch: ["dockside events, member dinners, and evening receptions", "waterfront cocktail hours and summer gatherings"],
+        setting: "on the water" },
+    senior_living: { subject: "Classical guitar performances for {venue} residents", label: "Senior Living",
+        pitch: ["afternoon concerts and holiday events", "resident gatherings and seasonal celebrations"],
+        setting: "for your residents" },
+    wedding_venue: { subject: "Classical guitarist for weddings at {venue}", label: "Wedding Venue",
+        pitch: ["ceremonies, cocktail hours, and dinner receptions", "wedding ceremonies and reception entertainment"],
+        setting: "on the big day" },
+    art_gallery: { subject: "Live classical guitar for gallery events at {venue}", label: "Art Gallery",
+        pitch: ["exhibition openings, artist receptions, and private viewings", "gallery openings and evening art walks"],
+        setting: "among the artwork" },
+    corporate: { subject: "Classical guitarist for corporate events", label: "Corporate",
+        pitch: ["client events, holiday parties, and executive dinners", "networking receptions and corporate galas"],
+        setting: "at your events" },
+    spa: { subject: "Live guitar for relaxation & events at {venue}", label: "Spa",
+        pitch: ["relaxation lounges and wellness events", "spa lounges, afternoon retreats, and guest experiences"],
+        setting: "in your lounge" },
+    event_planner: { subject: "Classical guitarist for your events", label: "Event Planner",
+        pitch: ["weddings, galas, corporate events, and private parties", "client events, cocktail hours, and formal gatherings"],
+        setting: "at your events" },
+    luxury_apts: { subject: "Live classical guitar for resident events at {venue}", label: "Luxury Apartments",
+        pitch: ["resident appreciation events and rooftop gatherings", "community events, holiday parties, and amenity space entertainment"],
+        setting: "for your residents" },
+    grocery_market: { subject: "Live classical guitar for {venue}", label: "Market",
+        pitch: ["weekend shopping ambiance and tasting events", "in-store events and holiday shopping"],
+        setting: "while customers shop" },
+    church: { subject: "Classical guitar for services & events at {venue}", label: "Church",
+        pitch: ["worship services, weddings, and seasonal concerts", "services, holiday programs, and community events"],
+        setting: "in your sanctuary" },
+    luxury_retail: { subject: "Live classical guitar for {venue}", label: "Luxury Retail",
+        pitch: ["VIP shopping events and holiday ambiance", "private shopping events and trunk shows"],
+        setting: "in your store" },
+    mall: { subject: "Live classical guitar for {venue}", label: "Mall",
+        pitch: ["common area entertainment and holiday events", "seasonal events and weekend ambiance"],
+        setting: "for shoppers" }
 };
 const YOUTUBE_LINK = 'https://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH';
 const CONTACT_LINE = 'alexbarnettclassical@gmail.com | 410-794-6204';
@@ -1327,9 +1376,9 @@ const SIGNOFFS = [
 
 const EMAIL_BODIES = [
     // A: Standard pitch
-    function(v, interest, interest2) {
+    function(v, interest, interest2, pitch) {
         return [
-            `I'm a Baltimore-based classical guitarist specializing in Spanish and Brazilian music, and ${interest} bring live music to ${v}.`,
+            `I'm a Baltimore-based classical guitarist specializing in Spanish and Brazilian music, and ${interest} play for ${pitch} at ${v}.`,
             '',
             "I've performed internationally at The Copacabana Palace (Rio de Janeiro), Cadogan Hotel (London), The Lake of Menteith Hotel (Scotland), and the National Museum of Colombia.",
             '',
@@ -1337,29 +1386,29 @@ const EMAIL_BODIES = [
         ].join('\n');
     },
     // B: Atmosphere-focused
-    function(v, interest, interest2) {
+    function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based in Baltimore — I play Spanish, Brazilian, and classical repertoire that creates an elegant, memorable atmosphere. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v}.`,
+            `I'm a classical guitarist based in Baltimore — I play Spanish, Brazilian, and classical repertoire that creates an elegant, memorable atmosphere. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v} for ${pitch}.`,
             '',
             "I've had the privilege of performing at The Copacabana Palace in Rio, Cadogan Hotel in London, and closer to home at The Inn at Perry Cabin and L'Auberge Chez Francois."
         ].join('\n');
     },
     // C: Short and direct
-    function(v, interest, interest2) {
+    function(v, interest, interest2, pitch) {
         return [
             `I'm a classical guitarist who specializes in Spanish and Brazilian music. I've performed everywhere from the Copacabana Palace in Rio to L'Auberge Chez Francois here in the DC area.`,
             '',
-            `${v} caught my eye as a place where live guitar would really shine.`
+            `${v} caught my eye — I think live guitar would be a perfect fit for ${pitch}.`
         ].join('\n');
     },
     // D: Event-focused
-    function(v, interest, interest2) {
+    function(v, interest, interest2, pitch) {
         return [
-            `I specialize in live Spanish and Brazilian classical guitar for events, dinners, and private gatherings. I've been performing professionally at venues across the US and internationally.`,
+            `I specialize in live Spanish and Brazilian classical guitar — think warm, elegant music that's perfect for ${pitch}.`,
             '',
             `Past venues include The Copacabana Palace (Brazil), Cadogan Hotel (London), The Inn at Perry Cabin, and L'Auberge Chez Francois.`,
             '',
-            `Whether it's a wine dinner, private event, or regular weekend music, ${interest} bring something special to ${v}.`
+            `${interest} bring something special to ${v}.`
         ].join('\n');
     }
 ];
@@ -1372,10 +1421,12 @@ const EMAIL_CLOSINGS = [
 
 function generateEmail(venueName, contactName, category) {
     const name = contactName || 'there';
+    const t = TEMPLATES[category] || TEMPLATES.winery;
+    const pitch = pick(t.pitch);
     const interest = pick(INTEREST);
     const interest2 = pick(INTEREST2);
     const bodyFn = pick(EMAIL_BODIES);
-    const body = bodyFn(venueName, interest, interest2);
+    const body = bodyFn(venueName, interest, interest2, pitch);
     const closing = pick(EMAIL_CLOSINGS);
     const signoff = pick(SIGNOFFS);
 
@@ -1401,39 +1452,41 @@ function generateEmail(venueName, contactName, category) {
 }
 
 const IG_BODIES = [
-    function(v, label) {
-        return `I'm a classical guitarist based in Baltimore — I play Spanish and Brazilian music at venues like ${label.toLowerCase()}s, country clubs, and hotels. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. ${v} looks like a beautiful spot for live guitar. Would love to chat if you ever feature live music!`;
+    function(v, label, pitch) {
+        return `I'm a classical guitarist based in Baltimore — I play Spanish and Brazilian music at venues around the region. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. I think live guitar would be a great fit for ${pitch} at ${v}. Would love to chat if you ever feature live music!`;
     },
-    function(v, label) {
-        return `Love what you're doing at ${v}! I'm a classical guitarist specializing in Spanish and Brazilian music — I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to talk about bringing live music to your space.`;
+    function(v, label, pitch) {
+        return `Love what you're doing at ${v}! I'm a classical guitarist specializing in Spanish and Brazilian music — I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to talk about bringing live guitar for ${pitch}.`;
     }
 ];
 
 const FB_BODIES = [
-    function(v, label) {
-        return `I'm a Baltimore-based classical guitarist and I play Spanish and Brazilian music at venues around the region — wineries, hotels, country clubs, restaurants. ${v} looks like it could be a great fit for live guitar. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to connect if you ever feature live entertainment!`;
+    function(v, label, pitch) {
+        return `I'm a Baltimore-based classical guitarist and I play Spanish and Brazilian music at venues around the region. ${v} looks like it could be a great fit for live guitar — especially for ${pitch}. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to connect if you ever feature live entertainment!`;
     },
-    function(v, label) {
-        return `I came across ${v} and thought it might be a wonderful setting for live classical guitar! I specialize in Spanish and Brazilian music and have performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club and Army Navy Country Club. Would love to chat!`;
+    function(v, label, pitch) {
+        return `I came across ${v} and thought it might be a wonderful setting for live classical guitar! I specialize in Spanish and Brazilian music — perfect for ${pitch}. I've performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club and Army Navy Country Club. Would love to chat!`;
     }
 ];
 
 const IG_FOLLOWUP = `Thanks so much for getting back to me! Here's a playlist of my performances so you can get a feel for the sound:\n\n${YOUTUBE_LINK}\n\nYou can also reach me at ${CONTACT_LINE}\n\nLooking forward to connecting!`;
 
 function generateIG(venueName, contactName, category) {
-    const label = (TEMPLATES[category] || { label: 'Venue' }).label;
+    const t = TEMPLATES[category] || TEMPLATES.winery;
+    const pitch = pick(t.pitch);
     const name = contactName || 'there';
     const greeting = pick(['Hi', 'Hello', 'Hey']) + ' ' + name + '!';
-    const body = pick(IG_BODIES)(venueName, label);
+    const body = pick(IG_BODIES)(venueName, t.label, pitch);
     return greeting + '\n\n' + body + '\n\n' +
         pick(['Best, Alexander', '— Alexander Barnett']);
 }
 
 function generateFB(venueName, contactName, category) {
-    const label = (TEMPLATES[category] || { label: 'Venue' }).label;
+    const t = TEMPLATES[category] || TEMPLATES.winery;
+    const pitch = pick(t.pitch);
     const name = contactName || 'there';
     const greeting = pick(['Hi', 'Hello', 'Hey']) + ' ' + name + '!';
-    const body = pick(FB_BODIES)(venueName, label);
+    const body = pick(FB_BODIES)(venueName, t.label, pitch);
     return greeting + '\n\n' + body + '\n\n' +
         pick(['Best, Alexander Barnett', '— Alexander']);
 }
@@ -1827,7 +1880,9 @@ function renderVenueCard(item) {
     html += `<div class="venue-top"><span class="venue-name">${esc(v.name)}</span>`;
     html += `<span class="category-badge ${cat}">${esc(v.category || 'Other').toUpperCase()}</span>`;
     if (v.zone_priority === 'green' || v.zone_priority === 'yellow') html += `<span class="zone-dot ${v.zone_priority}"></span>`;
-    html += `</div><div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}</div>`;
+    html += `</div><div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}`;
+    if (isResurfaced(v)) html += `<span class="recontact-badge">${esc(resurfaceLabel(v))}</span>`;
+    html += `</div>`;
     html += `</div>`;
     if (actionCount > 0) html += `<span class="venue-action-count">${actionCount}</span>`;
     html += `<span class="venue-chevron">&#9654;</span></div>`;
@@ -1912,14 +1967,16 @@ function openCategory(cat) {
         el.innerHTML = '<div class="empty-state">No venues found.</div>';
     } else {
         el.innerHTML = venues.map(v => {
-            const statusClass = (v.status || 'untouched').replace(/\s/g, '_');
+            const resurfaced = isResurfaced(v);
+            const statusClass = resurfaced ? 'resurfaced' : (v.status || 'untouched').replace(/\s/g, '_');
+            const statusText = resurfaced ? 'Re-contact' : statusClass.replace('_', ' ');
             const dist = v.distance_miles ? `${v.distance_miles} mi · ${formatDrive(v.drive_minutes)}` : '';
             return `<div class="venue-list-item" onclick="openVenueDetail('${esc(v.venue_id)}')">
                 <div>
                     <div class="venue-list-name">${esc(v.name)}</div>
-                    <div class="venue-list-city">${esc(v.city || '')}${dist ? ' · ' + dist : ''}</div>
+                    <div class="venue-list-city">${esc(v.city || '')}${dist ? ' · ' + dist : ''}${resurfaced ? ' · <span class="recontact-badge">' + esc(resurfaceLabel(v)) + '</span>' : ''}</div>
                 </div>
-                <span class="status-pill ${statusClass}">${statusClass.replace('_', ' ')}</span>
+                <span class="status-pill ${statusClass}">${statusText}</span>
             </div>`;
         }).join('');
     }
@@ -1973,6 +2030,7 @@ function openVenueDetail(venueId) {
     html += `<span>${esc(venue.city || '')}${venue.city && venue.state ? ', ' : ''}${esc(venue.state || '')}</span>`;
     if (venue.zone_priority === 'green' || venue.zone_priority === 'yellow') html += `<span class="zone-dot ${venue.zone_priority}"></span>`;
     if (venue.distance_miles) html += `<span style="color:var(--accent)">${venue.distance_miles} mi · ${formatDrive(venue.drive_minutes)}</span>`;
+    if (isResurfaced(venue)) html += `<span class="recontact-badge" style="font-size:0.7rem">${esc(resurfaceLabel(venue))}</span>`;
     html += `</div>`;
 
     // Website
@@ -2084,7 +2142,7 @@ function openVenueDetail(venueId) {
 
     // Mark Done / Reset buttons
     html += `<div style="text-align:center;padding:1.5rem 1rem;display:flex;gap:0.75rem;justify-content:center">`;
-    if (venue.status !== 'contacted') {
+    if (venue.status !== 'contacted' || isResurfaced(venue)) {
         html += `<button onclick="markVenueDone('${esc(venue.venue_id)}')" style="background:none;border:1px solid var(--green);color:var(--green);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Mark Done</button>`;
     } else {
         html += `<button onclick="resetVenue('${esc(venue.venue_id)}')" style="background:none;border:1px solid var(--accent);color:var(--accent);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Reset — Re-scrape</button>`;
@@ -2097,10 +2155,30 @@ function openVenueDetail(venueId) {
 }
 
 // === HELPERS ===
+const RESURFACE_DAYS = 912; // 2.5 years
+function isResurfaced(venue) {
+    if (venue.status !== 'contacted' || !venue.contacted_date) return false;
+    const contacted = new Date(venue.contacted_date);
+    if (isNaN(contacted.getTime())) return false;
+    const daysSince = (Date.now() - contacted.getTime()) / (1000 * 60 * 60 * 24);
+    return daysSince >= RESURFACE_DAYS;
+}
+function resurfaceLabel(venue) {
+    if (!venue.contacted_date) return '';
+    const contacted = new Date(venue.contacted_date);
+    if (isNaN(contacted.getTime())) return '';
+    const years = ((Date.now() - contacted.getTime()) / (1000 * 60 * 60 * 24 * 365.25));
+    if (years >= 2) return 'Last contacted ' + Math.round(years) + ' years ago';
+    const months = Math.round(years * 12);
+    return 'Last contacted ' + months + ' months ago';
+}
+
 function venueHasPending(venueId) {
     const contacts = ((dashboardData && dashboardData.contacts) || []).filter(c => c.venue_id === venueId);
     const venue = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === venueId);
     if (!venue) return false;
+    // Resurfaced venues (contacted 2.5+ years ago) are treated as untouched
+    if (isResurfaced(venue)) return true;
     // "contacted" venues still show if they have pending actions (unsent emails, FB, IG)
     // Only fully hide after all outreach is done
     // "researched" = pipeline ran, no emails. Still show if there's FB/IG/contact form to use
@@ -2205,8 +2283,8 @@ function renderWeeklyGoals() {
         html += `<div class="weekly-goal-row">`;
         html += `<span class="weekly-goal-label">${b.label}</span>`;
         html += `<div class="weekly-goal-bar"><div class="weekly-goal-fill ${b.cls}" style="width:${wPct}%${wDone ? ';opacity:0.7' : ''}"></div></div>`;
-        html += `<span class="weekly-goal-count" style="${wDone ? 'color:var(--green)' : ''}">${b.weekly}/${b.wGoal}</span>`;
         html += `<span class="weekly-goal-count" style="width:35px;font-size:0.6rem">${dayText}</span>`;
+        html += `<span class="weekly-goal-count" style="${wDone ? 'color:var(--green)' : ''}">${b.weekly}/${b.wGoal}</span>`;
         html += `</div>`;
     }
     el.innerHTML = html;
@@ -3229,7 +3307,8 @@ function renderSmartPicks(recs, profile) {
         if (gigVenueIds.has(r.venue_id)) return false;
         if (gigNames.has(stripThe(r.name))) return false;
         const v = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
-        if (v && ['pipelined','contacted'].includes(v.status)) return false;
+        if (v && v.status === 'pipelined') return false;
+        if (v && v.status === 'contacted' && !isResurfaced(v)) return false;
         return true;
     });
     const filtered = allFiltered.slice(0, 8);
@@ -3276,7 +3355,10 @@ function renderSmartPicks(recs, profile) {
         html += `<div class="smart-pick-name">${esc(r.name)}</div>`;
         html += `<div class="smart-pick-meta"><span class="category-badge ${cat}">${esc((r.category || '').toUpperCase())}</span> ${esc(r.city || '')}${r.state ? ', ' + esc(r.state) : ''}${r.distance_miles ? ' · ' + r.distance_miles + ' mi' : ''}</div>`;
         html += `</div></div>`;
-        if (reasons.length > 0) {
+        const spVenue = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
+        if (spVenue && isResurfaced(spVenue)) {
+            html += `<div class="smart-pick-reason" style="color:#e8944c">${esc(resurfaceLabel(spVenue))}</div>`;
+        } else if (reasons.length > 0) {
             html += `<div class="smart-pick-reason">${esc(reasons[0])}</div>`;
         }
         html += `</div>`;

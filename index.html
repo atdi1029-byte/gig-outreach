@@ -1331,7 +1331,7 @@ const TEMPLATES = {
         pitch: ["member dinners, holiday parties, and poolside events", "clubhouse wine dinners and member gatherings", "brunch, cocktail hours, and formal dinners"],
         setting: "for your members" },
     event: { subject: "Classical guitarist for your upcoming events", label: "Event",
-        pitch: ["private events, galas, and corporate gatherings", "cocktail receptions, dinners, and celebrations"],
+        pitch: ["private events, galas, and corporate gatherings", "cocktail receptions, dinners, and celebrations", "special occasions and milestone events"],
         setting: "at your events" },
     restaurant: { subject: "Live dinner music for {venue}", label: "Restaurant",
         pitch: ["dinner service and weekend brunch", "evening ambiance and special dining events", "dinner music and private dining nights"],
@@ -1343,13 +1343,13 @@ const TEMPLATES = {
         pitch: ["poolside music, evening events, and guest lounges", "dining terraces, spa lounges, and sunset events", "guest experiences and special occasion evenings"],
         setting: "for your guests" },
     private_club: { subject: "Live music for private events at {venue}", label: "Private Club",
-        pitch: ["member dinners, cocktail hours, and formal events", "private gatherings, holiday events, and evening receptions"],
+        pitch: ["member dinners, cocktail hours, and formal events", "private gatherings, holiday events, and evening receptions", "intimate dinners and exclusive club evenings"],
         setting: "for your members" },
     golf_club: { subject: "Classical guitar for events at {venue}", label: "Golf Club",
-        pitch: ["clubhouse dinners, tournament banquets, and member events", "post-round cocktails, member dinners, and holiday gatherings"],
+        pitch: ["clubhouse dinners, tournament banquets, and member events", "post-round cocktails, member dinners, and holiday gatherings", "awards dinners and seasonal celebrations"],
         setting: "at the clubhouse" },
     yacht_club: { subject: "Classical guitar for events at {venue}", label: "Yacht Club",
-        pitch: ["dockside events, member dinners, and evening receptions", "waterfront cocktail hours and summer gatherings"],
+        pitch: ["dockside events, member dinners, and evening receptions", "waterfront cocktail hours and summer gatherings", "sunset cruises and harbor-side dinners"],
         setting: "on the water" },
     senior_living: { subject: "Classical guitar performances for {venue} residents", label: "Senior Living",
         pitch: ["afternoon concerts and holiday events", "resident gatherings and seasonal celebrations"],
@@ -1390,11 +1390,10 @@ const CONTACT_LINE = 'alexbarnettclassical@gmail.com | 410-794-6204';
 
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-const GREETINGS = ['Hi {name}', 'Hello {name}', 'Good morning {name}'];
+const GREETINGS = ['Hi {name}!', 'Hello {name}!', 'Hey {name}!'];
 const INTEREST = [
     "I'd love to", "I'd be thrilled to",
-    "I think it would be wonderful to",
-    "I'd be honored to"
+    "I think it would be wonderful to"
 ];
 const INTEREST2 = [
     "I'd love to", "I'd be happy to",

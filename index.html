@@ -1485,17 +1485,22 @@ function openVenueDetail(venueId) {
     // Website
     if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
 
-    // Show vote status + feedback if exists (read-only, voting happens in review queue)
+    // Show vote status
     const curVote = venue.venue_vote || '';
     const curFeedback = venue.venue_feedback || '';
-    if (curVote || curFeedback) {
+    if (curVote) {
         html += `<div style="margin:0.5rem 0;font-size:0.85rem;color:var(--text-dim)">`;
         if (curVote === 'up') html += `<span style="color:var(--green)">&#10003; Approved</span>`;
         else if (curVote === 'neutral') html += `<span style="color:var(--gold)">&#8212; Neutral</span>`;
         else if (curVote === 'down') html += `<span style="color:var(--red)">&#10007; Rejected</span>`;
-        if (curFeedback) html += ` &mdash; ${esc(curFeedback)}`;
         html += `</div>`;
     }
+
+    // Notes input — editable feedback for learnings
+    html += `<div style="margin:0.8rem 0">`;
+    html += `<textarea id="detailNote" placeholder="Notes — why is this a good or bad fit?" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#e0e0e0;border-radius:8px;padding:0.6rem;font-size:0.85rem;font-family:inherit;resize:vertical;min-height:2.5rem;max-height:8rem">${esc(curFeedback)}</textarea>`;
+    html += `<button onclick="saveDetailNote('${esc(venue.venue_id)}')" style="margin-top:0.4rem;background:none;border:1px solid var(--accent);color:var(--accent);padding:0.3rem 0.8rem;border-radius:6px;font-size:0.75rem;cursor:pointer">Save Note</button>`;
+    html += `</div>`;
 
     // Emails
     const skipWords = getSkipWords();
@@ -1919,7 +1924,8 @@ function reviewContacted(idx) {
 // === REPORTS VIEW ===
 // Report dates are registered here after each run
 const REPORT_LIST = [
-    { date: '2026-03-18', title: 'March 18, 2026', summary: '9 venues discovered, 3 pipelined, 13 verified emails' }
+    { date: '2026-03-18_run2', title: 'March 18, 2026 (Run 2)', summary: '28 discovered, 5 pipelined, 30 verified emails, 33 Apollo credits' },
+    { date: '2026-03-18', title: 'March 18, 2026 (Run 1)', summary: '9 discovered, 3 pipelined, 13 verified emails' }
 ];
 
 function openReportsView() {
@@ -2065,6 +2071,16 @@ function resetVenue(venueId) {
             showToast('Venue reset — ready to re-scrape');
             setTimeout(() => { loadDashboard(); openVenueDetail(venueId); }, 500);
         }
+    });
+}
+
+function saveDetailNote(venueId) {
+    const note = (document.getElementById('detailNote') || {}).value || '';
+    if (!note.trim()) { showToast('Nothing to save'); return; }
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_feedback', value: note.trim() }), function() {
+        showToast('Note saved');
+        const dv = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === venueId);
+        if (dv) dv.venue_feedback = note.trim();
     });
 }
 

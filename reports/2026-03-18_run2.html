@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report — March 18, 2026 (Run 2)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    background: #0c1a22;
+    color: #e0e0e0;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #6ecfcf;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #6ecfcf;
+    padding-bottom: 10px;
+  }
+  .date { color: #999; margin-bottom: 30px; font-size: 0.95rem; }
+  h2 {
+    color: #e8944c;
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+    border-left: 4px solid #e8944c;
+    padding-left: 12px;
+  }
+  h3 {
+    color: #6ecfcf;
+    font-size: 1.1rem;
+    margin: 20px 0 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #1a2e3a;
+  }
+  tr:hover { background: rgba(110, 207, 207, 0.05); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+  }
+  .stat-box {
+    background: #1a2e3a;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6ecfcf;
+  }
+  .stat-box .label {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 4px;
+  }
+  .flag {
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .flag strong { color: #e85050; }
+  .contact-name { color: #6ecfcf; }
+  .valid { color: #4caf50; }
+  .unknown { color: #ff9800; }
+  .do-not-mail { color: #e85050; }
+  .score {
+    display: inline-block;
+    background: #e8944c;
+    color: #0c1a22;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+  .category-pill {
+    display: inline-block;
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  .found { color: #4caf50; font-size: 0.85rem; }
+  .not-found { color: #666; font-size: 0.85rem; }
+  @media print {
+    body { background: #fff; color: #222; padding: 20px; }
+    h1 { color: #1a5c5c; border-color: #1a5c5c; }
+    h2 { color: #b06a2a; border-color: #b06a2a; }
+    h3 { color: #1a5c5c; }
+    th { background: #eee; color: #333; }
+    td { border-color: #ddd; }
+    .stat-box { background: #f5f5f5; border: 1px solid #ddd; }
+    .stat-box .num { color: #1a5c5c; }
+    .flag { background: #fff0f0; border-color: #cc3333; }
+    .flag strong { color: #cc3333; }
+    .contact-name { color: #1a5c5c; }
+    .score { background: #e8944c; }
+    .category-pill { background: #eee; color: #333; }
+    tr:hover { background: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report (Run 2)</h1>
+<div class="date">March 18, 2026 &bull; Runtime: ~12 minutes</div>
+
+<h2>Flagged for Review</h2>
+
+<div class="flag">
+  <strong>Apollo Mismatch:</strong> Mount Vernon Club (Baltimore, MD) &rarr; Apollo matched "Mount Vernon Country Club" (domain: mountvernoncc.org) which is actually in Alexandria, VA. Contacts have mountvernoncc.org emails &mdash; they belong to the Alexandria club, not the Baltimore one.
+</div>
+<div class="flag">
+  <strong>Apollo Mismatch:</strong> Summer House Santa Monica &rarr; Apollo matched "Summer House Coffee" (same domain). 0 people found.
+</div>
+<div class="flag">
+  <strong>Dead End:</strong> Rathskeller &mdash; only email found was info@rathskellermd.com (do_not_mail). Apollo matched wrong "Rathskeller Restaurant" (rathskeller.com). No contacts.
+</div>
+<div class="flag">
+  <strong>Missing Distances:</strong> New venues from discovery still have no distance data. calc_distances returned 0.
+</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">5</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">30</div>
+    <div class="label">Verified Emails</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">33</div>
+    <div class="label">Apollo Credits Used</div>
+  </div>
+</div>
+
+<h2>Discovery (5 Seeds)</h2>
+
+<table>
+  <thead>
+    <tr><th>Seed Venue</th><th>New Venues Found</th><th>Count</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Hello Betty Bethesda</td><td>5 venues</td><td>5</td></tr>
+    <tr><td>The Madison Hotel</td><td>15 venues (hotels near DC)</td><td>15</td></tr>
+    <tr><td>Belle Haven Country Club</td><td>Mount Vernon CC, Army Navy CC, Washington Golf &amp; CC, Pohick Bay</td><td>4</td></tr>
+    <tr><td>Casanel Vineyards</td><td>Stone Tower Winery, Hidden Brook, Fabbioli Cellars, Cana Vineyards</td><td>4</td></tr>
+    <tr><td colspan="2"><strong>Total new venues discovered</strong></td><td><strong>28</strong></td></tr>
+  </tbody>
+</table>
+
+<h2>Pipeline Results (5 Smart Picks)</h2>
+
+<h3>1. Linganore Winecellars <span class="score">Score: 82</span></h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="not-found">&#10007; Contact Form</span>
+</p>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="contact-name">Dan Mason</td><td></td><td>dan@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Dena Purvis</td><td></td><td>dena@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Joanne Aellen</td><td></td><td>joanne@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Ashley Fields</td><td></td><td>ashley@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Anthony Aellen</td><td></td><td>anthony@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Eric Aellen</td><td></td><td>eric@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Steven Garcia</td><td></td><td>steven@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Chaz Stitely</td><td></td><td>chaz@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td></td><td>wineclub@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+  </tbody>
+</table>
+
+<h3>2. Summer House Santa Monica <span class="score">Score: 76</span></h3>
+<p>
+  <span class="not-found">&#10007; Website emails</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="not-found">&#10007; Contact Form</span>
+</p>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="contact-name">(no name)</td><td>Marketing (LEYE group)</td><td>meersmarketing@leye.com</td><td class="valid">&#10003; valid</td></tr>
+  </tbody>
+</table>
+
+<h3>3. Mount Vernon Club <span class="score">Score: 75</span></h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="not-found">&#10007; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="found">&#10003; Contact Form</span>
+</p>
+<div class="flag">
+  <strong>Note:</strong> This is the Mount Vernon Club in Baltimore (MD-COUN-015). Apollo matched "Mount Vernon Country Club" in Alexandria, VA (mountvernoncc.org). The 18 contacts below are from the Alexandria club, not Baltimore.
+</div>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="contact-name">Taylor Babcock</td><td>tbabcock@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Charles Loomis</td><td>cloomis@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Tad Peel</td><td>tad@mountvernonclub.net</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Bryan Murphy</td><td>bmurphy@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Bonnie Jones</td><td>bjones@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Hank Bukowski</td><td>hbukowski@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Christian Thon</td><td>cthon@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Larry Fontaine</td><td>lfontaine@mtvcountryclub.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Jeff Shelton</td><td>jshelton@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Max Kirske</td><td>mkirske@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Stephen Downs</td><td>sdowns@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Devin Quilty</td><td>dquilty@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Nolan Stylski</td><td>nstylski@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Michaela Niles</td><td>mniles@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Fany Aguilar</td><td>faguilar@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Pamela Merino</td><td>pmerino@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Bryan Armstrong</td><td>barmstrong@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Taylor Morris</td><td>tmorris@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+  </tbody>
+</table>
+
+<h3>4. Loew Vineyards <span class="score">Score: 67</span></h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="not-found">&#10007; Contact Form</span>
+</p>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="contact-name">(no name)</td><td></td><td>rachel@loewvineyards.net</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td></td><td>info@loewvineyards.net</td><td class="do-not-mail">&#10007; do_not_mail</td></tr>
+  </tbody>
+</table>
+
+<h3>5. Rathskeller <span class="score">Score: 67</span></h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="not-found">&#10007; Contact Form</span>
+</p>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="contact-name">(no name)</td><td></td><td>info@rathskellermd.com</td><td class="do-not-mail">&#10007; do_not_mail</td></tr>
+  </tbody>
+</table>
+<p class="not-found">No actionable contacts found. Dead end.</p>
+
+</body>
+</html>

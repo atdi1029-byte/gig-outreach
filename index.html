@@ -1227,6 +1227,18 @@ function showToast(msg) {
     toastTimer = setTimeout(() => t.classList.remove('show'), 1500);
 }
 
+// === OPEN EXTERNAL APP (forces Android to leave PWA) ===
+function openExternal(url) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => a.remove(), 100);
+}
+
 // === GMAIL LINK ===
 function buildGmailLink(email, category) {
     const t = getTemplate(category);
@@ -1236,12 +1248,12 @@ function buildGmailLink(email, category) {
 // === SOCIAL ACTIONS ===
 function openIGWithTemplate(igUrl, category) {
     copyText(getTemplate(category).body);
-    window.open(igUrl, '_blank');
+    openExternal(igUrl);
 }
 
 function openFBWithTemplate(fbUrl, category) {
     copyText(getTemplate(category).body);
-    window.open(fbUrl, '_blank');
+    openExternal(fbUrl);
 }
 
 // === VENUE VOTE ===
@@ -1368,7 +1380,7 @@ function renderVenueCard(item) {
     for (const c of pendingEmails) {
         html += `<div class="action-row"><span class="contact-email">${esc(c.email)}</span>`;
         html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
-        html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
+        html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank" rel="noopener noreferrer">Gmail</a>`;
         html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}',this)">Sent</button></div>`;
     }
     if (item.igPending && v.instagram) {
@@ -1519,7 +1531,7 @@ function openVenueDetail(venueId) {
                 html += `<div class="${skipped ? 'contact-skipped' : ''}${starred ? ' contact-starred' : ''}">`;
                 html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
-                html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank">Gmail</a>`;
+                html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank" rel="noopener noreferrer">Gmail</a>`;
                 html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button>`;
                 html += `<button class="btn-action btn-del" onclick="skipContact('${esc(c.contact_id)}',this)">✕</button></div>`;
                 if (c.name || c.title) html += `<div class="detail-contact-name">${renderTitleWords(c.name, c.title)}</div>`;
@@ -1774,8 +1786,8 @@ function renderReviewCards() {
             ${notesTxt ? `<div class="review-notes">${notesTxt}</div>` : ''}
             <div style="display:flex;gap:0.4rem;margin-top:0.5rem;flex-wrap:wrap">
                 ${v.website && v.website !== 'undefined' ? `<a href="${v.website}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:var(--gold);background:rgba(240,160,48,0.1);border:1px solid rgba(240,160,48,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Website</a>` : ''}
-                ${v.instagram ? `<a href="${v.instagram}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#e1306c;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Instagram</a>` : ''}
-                ${v.facebook ? `<a href="${v.facebook}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#4267b2;background:rgba(66,103,178,0.1);border:1px solid rgba(66,103,178,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Facebook</a>` : ''}
+                ${v.instagram ? `<a href="${v.instagram}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#e1306c;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Instagram</a>` : ''}
+                ${v.facebook ? `<a href="${v.facebook}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#4267b2;background:rgba(66,103,178,0.1);border:1px solid rgba(66,103,178,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Facebook</a>` : ''}
                 <a href="https://www.google.com/maps/search/${encodeURIComponent(v.name + ' ' + (v.city || '') + ' ' + (v.state || ''))}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:var(--green);background:rgba(38,166,154,0.1);border:1px solid rgba(38,166,154,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Maps</a>
             </div>
             <div style="margin-top:0.6rem">

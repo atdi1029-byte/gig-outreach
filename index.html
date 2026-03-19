@@ -1390,7 +1390,7 @@ const CONTACT_LINE = 'alexbarnettclassical@gmail.com | 410-794-6204';
 
 function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-const GREETINGS = ['Hi {name}!', 'Hello {name}!', 'Hey {name}!'];
+const GREETINGS = ['Hi {name}!', 'Hey {name}!'];
 const INTEREST = [
     "I'd love to", "I'd be thrilled to",
     "I think it would be wonderful to"
@@ -1410,7 +1410,7 @@ const EMAIL_BODIES = [
     // A: Standard pitch
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a Baltimore-based classical guitarist specializing in Spanish and Brazilian music, and ${interest} play for ${pitch} at ${v}.`,
+            `I'm an Annapolis-based classical guitarist — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern instrumental arrangements of pop songs. ${interest} play for ${pitch} at ${v}.`,
             '',
             "I've performed internationally at The Copacabana Palace (Rio de Janeiro), Cadogan Hotel (London), The Lake of Menteith Hotel (Scotland), and the National Museum of Colombia.",
             '',
@@ -1420,7 +1420,7 @@ const EMAIL_BODIES = [
     // B: Atmosphere-focused
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based in Baltimore — I play Spanish, Brazilian, and classical repertoire that creates an elegant, memorable atmosphere. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v} for ${pitch}.`,
+            `I'm a classical guitarist based in Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern instrumental arrangements of pop songs. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v} for ${pitch}.`,
             '',
             "I've had the privilege of performing at The Copacabana Palace in Rio, Cadogan Hotel in London, and closer to home at The Inn at Perry Cabin and L'Auberge Chez Francois."
         ].join('\n');
@@ -1428,7 +1428,7 @@ const EMAIL_BODIES = [
     // C: Short and direct
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist who specializes in Spanish and Brazilian music. I've performed everywhere from the Copacabana Palace in Rio to L'Auberge Chez Francois here in the DC area.`,
+            `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. I've performed everywhere from the Copacabana Palace in Rio to L'Auberge Chez Francois here in the DC area.`,
             '',
             `${v} caught my eye — I think live guitar would be a perfect fit for ${pitch}.`
         ].join('\n');
@@ -1436,7 +1436,7 @@ const EMAIL_BODIES = [
     // D: Event-focused
     function(v, interest, interest2, pitch) {
         return [
-            `I specialize in live Spanish and Brazilian classical guitar — think warm, elegant music that's perfect for ${pitch}.`,
+            `I specialize in live classical guitar — Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. Think warm, elegant music that's perfect for ${pitch}.`,
             '',
             `Past venues include The Copacabana Palace (Brazil), Cadogan Hotel (London), The Inn at Perry Cabin, and L'Auberge Chez Francois.`,
             '',
@@ -1459,15 +1459,12 @@ function generateEmail(venueName, contactName, category) {
     const interest2 = pick(INTEREST2);
     const bodyFn = pick(EMAIL_BODIES);
     const body = bodyFn(venueName, interest, interest2, pitch);
-    const closing = pick(EMAIL_CLOSINGS);
     const signoff = pick(SIGNOFFS);
 
     return [
         pick(GREETINGS).replace('{name}', name) + ',',
         '',
         body,
-        '',
-        closing,
         '',
         YOUTUBE_LINK,
         '',
@@ -1485,19 +1482,19 @@ function generateEmail(venueName, contactName, category) {
 
 const IG_BODIES = [
     function(v, label, pitch) {
-        return `I'm a classical guitarist based in Baltimore — I play Spanish and Brazilian music at venues around the region. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. I think live guitar would be a great fit for ${pitch} at ${v}. Would love to chat if you ever feature live music!`;
+        return `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. I think live guitar would be a great fit for ${pitch} at ${v}. Would love to chat if you ever feature live music!`;
     },
     function(v, label, pitch) {
-        return `Love what you're doing at ${v}! I'm a classical guitarist specializing in Spanish and Brazilian music — I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to talk about bringing live guitar for ${pitch}.`;
+        return `Love what you're doing at ${v}! I'm a classical guitarist — I play Latin styles, classical repertoire, and modern pop arrangements. I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to talk about bringing live guitar for ${pitch}.`;
     }
 ];
 
 const FB_BODIES = [
     function(v, label, pitch) {
-        return `I'm a Baltimore-based classical guitarist and I play Spanish and Brazilian music at venues around the region. ${v} looks like it could be a great fit for live guitar — especially for ${pitch}. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to connect if you ever feature live entertainment!`;
+        return `I'm an Annapolis-based classical guitarist — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. ${v} looks like it could be a great fit for live guitar — especially for ${pitch}. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to connect if you ever feature live entertainment!`;
     },
     function(v, label, pitch) {
-        return `I came across ${v} and thought it might be a wonderful setting for live classical guitar! I specialize in Spanish and Brazilian music — perfect for ${pitch}. I've performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club and Army Navy Country Club. Would love to chat!`;
+        return `I came across ${v} and thought it might be a wonderful setting for live classical guitar! I play Latin styles, classical repertoire, and modern pop arrangements — perfect for ${pitch}. I've performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club and Army Navy Country Club. Would love to chat!`;
     }
 ];
 

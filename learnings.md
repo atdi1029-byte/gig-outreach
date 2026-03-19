@@ -69,6 +69,23 @@ What works for Alex as a classical guitarist, learned from 18 past gigs and venu
 - "Sports bar", "pub" vibes
 - No social media presence (not invested in experience)
 
+## TODO: Targeted Hunting Mode
+Build a discovery mode that searches by area + category based on learnings profile. Instead of "find similar to this gig," search affluent areas directly for venue types that work.
+
+**Priority search combos (category + geography):**
+- Private clubs: DC, Georgetown, Bethesda, Potomac
+- Fine dining restaurants: Alexandria Old Town, Bethesda, Potomac, Georgetown
+- Upscale wineries: Loudoun County VA, Frederick County MD, Middleburg VA
+- Upscale hotels with restaurants: Eastern Shore MD, DC, Annapolis
+- Country clubs: Montgomery County MD, Fairfax County VA, Howard County MD
+- Wedding/event venues: affluent suburbs across MD/VA/DC
+
+**How it works:**
+1. Google Maps search for category + area (e.g. "fine dining Bethesda MD")
+2. Filter: 4.5+ stars, 100+ reviews, upscale vibes
+3. Pre-score against learnings profile before adding to sheet
+4. Add qualifying venues directly — no seed gig needed
+
 ## Review Notes (from venue review queue)
 *Updated as Alex reviews venues*
 

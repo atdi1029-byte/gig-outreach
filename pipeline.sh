@@ -1123,6 +1123,590 @@ print(urllib.parse.urlencode({
 }
 
 # =================================================================
+# REPORT GENERATION — produces HTML report from pipeline.log
+# =================================================================
+generate_report() {
+    local RUN_START_LINE="$1"  # Line number in log where this run started
+    local REPORT_DIR="${SCRIPT_DIR}/reports"
+    local REPORT_TS=$(date '+%Y-%m-%d_%H-%M')
+    local REPORT_DATE=$(date '+%Y-%m-%d')
+    local REPORT_TITLE=$(date '+%B %d, %Y at %H:%M')
+    local REPORT_FILE="${REPORT_DIR}/${REPORT_TS}.html"
+    local MANIFEST_FILE="${REPORT_DIR}/manifest.json"
+
+    mkdir -p "$REPORT_DIR"
+
+    log ""
+    log "Generating report: $REPORT_FILE"
+
+    # Extract this run's log section (from RUN_START_LINE to end)
+    local RUN_LOG="/tmp/pipeline_run_log.txt"
+    tail -n "+${RUN_START_LINE}" "$LOG_FILE" > "$RUN_LOG"
+
+    # Parse log data with Python
+    python3 << 'PYEOF' "$RUN_LOG" "$REPORT_FILE" "$REPORT_TITLE" "$REPORT_DATE" "$REPORT_TS" "$MANIFEST_FILE" "$REPORT_DIR"
+import sys, re, os, json, glob
+from datetime import datetime
+
+run_log_path = sys.argv[1]
+report_file = sys.argv[2]
+report_title = sys.argv[3]
+report_date = sys.argv[4]
+report_ts = sys.argv[5]
+manifest_file = sys.argv[6]
+report_dir = sys.argv[7]
+
+with open(run_log_path) as f:
+    lines = f.readlines()
+
+# --- Parse venues from log ---
+venues = []
+current_venue = None
+total_credits = 0
+flags = []
+
+for line in lines:
+    line = line.rstrip('\n')
+    text = line[9:] if len(line) > 9 else line  # strip timestamp
+
+    # Smart Pick header
+    m = re.search(r'SMART PICK #(\d+) \(score (\d+)\): (.+?) \(([^)]+)\)', text)
+    if m:
+        if current_venue:
+            venues.append(current_venue)
+        current_venue = {
+            'pick_num': int(m.group(1)),
+            'score': int(m.group(2)),
+            'name': m.group(3),
+            'venue_id': m.group(4),
+            'website': '',
+            'facebook': '',
+            'instagram': '',
+            'contact_form': '',
+            'contacts': [],
+            'apollo_credits': 0,
+            'elapsed_min': 0,
+            'flags': [],
+            'category': ''
+        }
+        # Derive category from venue_id (e.g. MD-WINE-020 -> winery)
+        cat_map = {
+            'WINE': 'winery', 'HOTE': 'hotel', 'COUN': 'country_club',
+            'REST': 'restaurant', 'EVEN': 'event', 'MUSE': 'museum',
+            'RESO': 'resort', 'SENI': 'senior_living', 'GOLF': 'golf_club',
+            'YACH': 'yacht_club', 'ARTG': 'art_gallery', 'LUXU': 'luxury_apts',
+            'WEDD': 'wedding_venue', 'CORP': 'corporate', 'SPAA': 'spa',
+            'PRIV': 'private_club', 'CHUR': 'church', 'MALL': 'mall',
+            'WINE': 'winery', 'GROC': 'grocery_market',
+        }
+        parts = current_venue['venue_id'].split('-')
+        if len(parts) >= 2:
+            current_venue['category'] = cat_map.get(parts[1], parts[1].lower())
+        continue
+
+    if not current_venue:
+        continue
+
+    # Website
+    m = re.match(r'\s*Website:\s*(.+)', text)
+    if m:
+        current_venue['website'] = m.group(1).strip()
+
+    # Emails/FB/IG from Step 1
+    m = re.search(r'Emails: \d+ \| FB: (\S+) \| IG: (\S+)', text)
+    if m:
+        fb_val = m.group(1)
+        ig_val = m.group(2)
+        if fb_val != 'none' and not current_venue['facebook']:
+            current_venue['facebook'] = fb_val
+        if ig_val != 'none' and not current_venue['instagram']:
+            current_venue['instagram'] = ig_val
+
+    # Contact form
+    m = re.search(r'Contact Form: (\S+)', text)
+    if m and m.group(1) != 'none':
+        current_venue['contact_form'] = m.group(1)
+
+    # IG search result
+    m = re.search(r'\[IG SEARCH\] Found: (\S+)', text)
+    if m and not current_venue['instagram']:
+        current_venue['instagram'] = m.group(1)
+
+    # FB/IG from Step 2 (format: "  FB: URL | IG: URL")
+    m = re.match(r'\s*FB: (\S+) \| IG: (\S+)', text)
+    if m:
+        if m.group(1) != 'none' and not current_venue['facebook']:
+            current_venue['facebook'] = m.group(1)
+        if m.group(2) != 'none' and not current_venue['instagram']:
+            current_venue['instagram'] = m.group(2)
+
+    # Contact added with valid status: "Added: Name <email>"
+    m = re.search(r'Added(?:\s+\([^)]+\))?: (.+?) <(.+?)>', text)
+    if m:
+        cname = m.group(1).strip()
+        cemail = m.group(2).strip()
+        # Determine status from context
+        cstatus = 'valid'
+        if 'invalid' in text:
+            cstatus = 'invalid'
+        elif 'catch-all' in text:
+            cstatus = 'catch-all'
+        elif 'unknown' in text:
+            cstatus = 'unknown'
+        elif 'do_not_mail' in text:
+            cstatus = 'do_not_mail'
+        # Find title from preceding >>> line
+        ctitle = ''
+        current_venue['contacts'].append({
+            'name': cname,
+            'email': cemail,
+            'status': cstatus,
+            'title': ctitle
+        })
+
+    # Apollo enriched contact with title: ">>> Name (Title): email [status]"
+    m = re.search(r'>>> (.+?) \((.+?)\): (\S+@\S+) \[(\w+)\]', text)
+    if m:
+        aname = m.group(1).strip()
+        atitle = m.group(2).strip()
+        if atitle == 'None':
+            atitle = ''
+        aemail = m.group(3).strip()
+        astatus = m.group(4).strip()
+        # Store title for the contact that will be added next
+        for c in reversed(current_venue['contacts']):
+            if c['email'] == aemail:
+                c['title'] = atitle
+                break
+        else:
+            # Not yet added (will be on next line), store for lookup
+            current_venue['_pending_title'] = {aemail: atitle}
+
+    # Contact with no email: "--- Name (Title): no email"
+    m = re.search(r'--- (.+?) \((.+?)\): no email', text)
+    if m:
+        current_venue['contacts'].append({
+            'name': m.group(1).strip(),
+            'email': '',
+            'status': 'no_email',
+            'title': m.group(2).strip() if m.group(2) != 'None' else ''
+        })
+
+    # Apollo credits
+    m = re.search(r'Apollo API done: (\d+) credits', text)
+    if m:
+        current_venue['apollo_credits'] = int(m.group(1))
+        total_credits += int(m.group(1))
+
+    # Done line with elapsed time
+    m = re.search(r'DONE: .+ \| (\d+) min \|', text)
+    if m:
+        current_venue['elapsed_min'] = int(m.group(1))
+
+    # Bad lookup
+    m = re.search(r'\[LOOKUP\] Found: (.+)', text)
+    if m:
+        url = m.group(1).strip()
+        # Flag suspicious lookups
+        bad_domains = ['dictionary.com', 'fandom', 'wikipedia', 'yelp.com', 'tripadvisor']
+        for bd in bad_domains:
+            if bd in url.lower():
+                current_venue['flags'].append(
+                    f'Bad Website Lookup: Google found {url}')
+
+    # Apollo mismatch warnings
+    m = re.search(r'\[WARN\] .+', text)
+    if m:
+        warn_text = m.group(0)
+        if 'empty domain' in warn_text or 'suspicious' in warn_text:
+            current_venue['flags'].append(warn_text)
+
+    # No website found
+    if '[LOOKUP] No website found via Google' in text:
+        current_venue['flags'].append('No website found via Google search')
+
+    # Skipped venues
+    if 'SKIPPED VENUES' in text:
+        pass  # Handled separately
+
+    # SKIP already in sheet
+    m = re.search(r'\[SKIP\] (.+?) — already in sheet', text)
+    if m:
+        pass  # Known duplicate, not a flag
+
+# Backfill titles from >>> lines into contacts
+for v in venues + ([current_venue] if current_venue else []):
+    if not v:
+        continue
+    pending = v.pop('_pending_title', {})
+    for email, title in pending.items():
+        for c in v['contacts']:
+            if c['email'] == email and not c['title']:
+                c['title'] = title
+
+if current_venue:
+    venues.append(current_venue)
+
+# Also do a second pass to attach titles from >>> lines
+# Re-read log and build email->title map per venue
+venue_idx = -1
+title_map = {}
+for line in lines:
+    text = line.rstrip('\n')
+    t = text[9:] if len(text) > 9 else text
+    if 'SMART PICK #' in t:
+        venue_idx += 1
+        title_map = {}
+    if venue_idx < 0 or venue_idx >= len(venues):
+        continue
+    m = re.search(r'>>> (.+?) \((.+?)\): (\S+@\S+)', t)
+    if m:
+        title_map[m.group(3).strip()] = m.group(2).strip()
+    # Apply to contacts
+    for c in venues[venue_idx]['contacts']:
+        if c['email'] in title_map and not c['title']:
+            ttl = title_map[c['email']]
+            c['title'] = '' if ttl == 'None' else ttl
+
+# --- Compute stats ---
+total_venues = len(venues)
+total_verified = sum(
+    1 for v in venues for c in v['contacts'] if c['status'] == 'valid')
+total_contacts = sum(len(v['contacts']) for v in venues)
+
+# Compute runtime from first PIPELINE start to last DONE
+run_start = None
+run_end = None
+for line in lines:
+    m = re.search(r'(\d{2}:\d{2}:\d{2})\s+Pipeline started', line)
+    if m and not run_start:
+        run_start = m.group(1)
+    m = re.search(r'(\d{2}:\d{2}:\d{2})\s+DONE:', line)
+    if m:
+        run_end = m.group(1)
+    m = re.search(r'(\d{2}:\d{2}:\d{2})\s+=== SMART PICKS COMPLETE', line)
+    if m:
+        run_end = m.group(1)
+
+if run_start and run_end:
+    try:
+        t1 = datetime.strptime(run_start, '%H:%M:%S')
+        t2 = datetime.strptime(run_end, '%H:%M:%S')
+        diff = (t2 - t1).total_seconds() / 60
+        runtime_str = f'~{int(diff)} minutes'
+    except:
+        runtime_str = 'unknown'
+else:
+    runtime_str = 'unknown'
+
+# Parse skipped venues from log
+skipped = []
+in_skipped = False
+for line in lines:
+    text = line.rstrip('\n')
+    t = text[9:] if len(text) > 9 else text
+    if 'SKIPPED VENUES' in t:
+        in_skipped = True
+        continue
+    if in_skipped and '=====' in t:
+        in_skipped = False
+        continue
+    if in_skipped:
+        m = re.search(r'(.+?) \(([^)]+)\) — (.+)', t.strip())
+        if m:
+            skipped.append({
+                'name': m.group(1).replace('✗ ', ''),
+                'venue_id': m.group(2),
+                'reason': m.group(3)
+            })
+
+# --- Build HTML ---
+def esc(s):
+    return (s or '').replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
+
+def status_html(s):
+    if s == 'valid':
+        return '<span class="valid">&#10003; valid</span>'
+    elif s == 'invalid':
+        return '<span style="color:#e85050">&#10007; invalid</span>'
+    elif s == 'catch-all':
+        return '<span class="unknown">&#8776; catch-all</span>'
+    elif s == 'unknown':
+        return '<span class="unknown">? unknown</span>'
+    elif s == 'do_not_mail':
+        return '<span style="color:#e85050">&#10007; do_not_mail</span>'
+    elif s == 'no_email':
+        return '<span style="color:#666">no email</span>'
+    else:
+        return f'<span style="color:#999">{esc(s)}</span>'
+
+html = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; {esc(report_title)}</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{
+    font-family: 'Georgia', serif;
+    background: #0c1a22;
+    color: #e0e0e0;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }}
+  h1 {{
+    color: #6ecfcf;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #6ecfcf;
+    padding-bottom: 10px;
+  }}
+  .date {{ color: #999; margin-bottom: 30px; font-size: 0.95rem; }}
+  h2 {{
+    color: #e8944c;
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+    border-left: 4px solid #e8944c;
+    padding-left: 12px;
+  }}
+  h3 {{
+    color: #6ecfcf;
+    font-size: 1.1rem;
+    margin: 20px 0 10px;
+  }}
+  table {{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+  }}
+  th {{
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }}
+  td {{
+    padding: 8px 12px;
+    border-bottom: 1px solid #1a2e3a;
+  }}
+  tr:hover {{ background: rgba(110, 207, 207, 0.05); }}
+  .stat-grid {{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+  }}
+  .stat-box {{
+    background: #1a2e3a;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }}
+  .stat-box .num {{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6ecfcf;
+  }}
+  .stat-box .label {{
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 4px;
+  }}
+  .flag {{
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }}
+  .flag strong {{ color: #e85050; }}
+  .contact-name {{ color: #6ecfcf; }}
+  .valid {{ color: #4caf50; }}
+  .unknown {{ color: #ff9800; }}
+  .score {{
+    display: inline-block;
+    background: #e8944c;
+    color: #0c1a22;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }}
+  .category-pill {{
+    display: inline-block;
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }}
+  .social-links {{
+    font-size: 0.85rem;
+    color: #999;
+    margin: 5px 0 10px;
+  }}
+  .social-links a {{
+    color: #6ecfcf;
+    text-decoration: none;
+  }}
+  .social-links a:hover {{
+    text-decoration: underline;
+  }}
+  @media print {{
+    body {{ background: #fff; color: #222; padding: 20px; }}
+    h1 {{ color: #1a5c5c; border-color: #1a5c5c; }}
+    h2 {{ color: #b06a2a; border-color: #b06a2a; }}
+    h3 {{ color: #1a5c5c; }}
+    th {{ background: #eee; color: #333; }}
+    td {{ border-color: #ddd; }}
+    .stat-box {{ background: #f5f5f5; border: 1px solid #ddd; }}
+    .stat-box .num {{ color: #1a5c5c; }}
+    .flag {{ background: #fff0f0; border-color: #cc3333; }}
+    .flag strong {{ color: #cc3333; }}
+    .contact-name {{ color: #1a5c5c; }}
+    .score {{ background: #e8944c; }}
+    .category-pill {{ background: #eee; color: #333; }}
+    tr:hover {{ background: none; }}
+  }}
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">{esc(report_title)} &bull; Runtime: {runtime_str}</div>
+'''
+
+# Flags section
+all_flags = []
+for v in venues:
+    for fl in v.get('flags', []):
+        all_flags.append(f'{v["name"]}: {fl}')
+for s in skipped:
+    all_flags.append(
+        f'Skipped: {s["name"]} ({s["venue_id"]}) &mdash; {s["reason"]}')
+
+if all_flags:
+    html += '<h2>Flagged for Review</h2>\n'
+    for fl in all_flags:
+        html += f'<div class="flag"><strong>Flag:</strong> {esc(fl)}</div>\n'
+
+# Stat boxes
+html += f'''
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">{total_venues}</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">{total_verified}</div>
+    <div class="label">Verified Emails</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">{total_credits}</div>
+    <div class="label">Apollo Credits Used</div>
+  </div>
+</div>
+'''
+
+# Per-venue sections
+html += '<h2>Pipeline Results</h2>\n'
+
+for v in venues:
+    cat_html = f' <span class="category-pill">{esc(v["category"])}</span>' if v['category'] else ''
+    html += f'<h3>{v["pick_num"]}. {esc(v["name"])} <span class="score">Score: {v["score"]}</span>{cat_html}</h3>\n'
+
+    # Social/website links
+    links = []
+    if v['website']:
+        links.append(f'<a href="{esc(v["website"])}">Website</a>')
+    if v['facebook']:
+        links.append(f'<a href="{esc(v["facebook"])}">Facebook</a>')
+    if v['instagram']:
+        links.append(f'<a href="{esc(v["instagram"])}">Instagram</a>')
+    if v['contact_form']:
+        links.append(f'<a href="{esc(v["contact_form"])}">Contact Form</a>')
+    if links:
+        html += f'<div class="social-links">{" &bull; ".join(links)}</div>\n'
+
+    if not v['contacts']:
+        html += '<div style="color:#999;font-size:0.9rem;margin:10px 0">No contacts found.</div>\n'
+    else:
+        # Determine if contacts have titles (Apollo) or just emails (website)
+        has_titles = any(c['title'] for c in v['contacts'])
+        if has_titles:
+            html += '<table>\n<thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>\n<tbody>\n'
+            for c in v['contacts']:
+                name_display = esc(c['name']) if c['name'] else '(no name)'
+                email_display = esc(c['email']) if c['email'] else '&mdash;'
+                html += f'<tr><td class="contact-name">{name_display}</td><td>{esc(c["title"])}</td><td>{email_display}</td><td>{status_html(c["status"])}</td></tr>\n'
+        else:
+            html += '<table>\n<thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>\n<tbody>\n'
+            for c in v['contacts']:
+                name_display = esc(c['name']) if c['name'] else '(no name)'
+                email_display = esc(c['email']) if c['email'] else '&mdash;'
+                html += f'<tr><td class="contact-name">{name_display}</td><td>{email_display}</td><td>{status_html(c["status"])}</td></tr>\n'
+        html += '</tbody>\n</table>\n'
+
+    # Venue stats
+    elapsed_str = f'{v["elapsed_min"]} min' if v['elapsed_min'] else '<1 min'
+    credits_str = f'{v["apollo_credits"]} credits' if v['apollo_credits'] else 'none'
+    html += f'<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: {elapsed_str} | Apollo credits: {credits_str}</div>\n'
+
+html += '''
+</body>
+</html>
+'''
+
+# Write report
+with open(report_file, 'w') as f:
+    f.write(html)
+
+# Build summary for manifest
+summary_parts = []
+summary_parts.append(f'{total_venues} venues pipelined')
+summary_parts.append(f'{total_verified} verified emails')
+if total_credits:
+    summary_parts.append(f'{total_credits} Apollo credits')
+summary_text = ', '.join(summary_parts)
+
+# Update manifest.json — read existing, prepend new entry, write back
+manifest = []
+if os.path.exists(manifest_file):
+    try:
+        with open(manifest_file) as f:
+            manifest = json.load(f)
+    except:
+        manifest = []
+
+# Add new report entry (prepend so newest is first)
+new_entry = {
+    'file': f'{report_ts}.html',
+    'date': report_date,
+    'title': report_title,
+    'summary': summary_text,
+    'venues': total_venues,
+    'verified_emails': total_verified,
+    'apollo_credits': total_credits
+}
+manifest.insert(0, new_entry)
+
+with open(manifest_file, 'w') as f:
+    json.dump(manifest, f, indent=2)
+
+print(f'Report generated: {report_file}')
+print(f'Manifest updated: {len(manifest)} reports')
+PYEOF
+
+    log "Report saved: $REPORT_FILE"
+}
+
+# =================================================================
 # MAIN RUNNER
 # =================================================================
 run_venue() {
@@ -1200,6 +1784,10 @@ echo "" >> "$LOG_FILE"
 log "=== Pipeline started $(date '+%Y-%m-%d %H:%M:%S') ==="
 
 if [ "$1" = "--smart-picks" ]; then
+    # Track start line for report generation
+    RUN_START_LINE=$(wc -l < "$LOG_FILE")
+    RUN_START_LINE=$((RUN_START_LINE + 1))
+
     # Pull Smart Picks from API in rank order (highest score first)
     log "SMART PICKS MODE: Fetching ranked venues..."
     SP_FILE="/tmp/pipeline_smart_picks.json"
@@ -1249,6 +1837,9 @@ for i, r in enumerate(filtered):
     fi
     log "=== SMART PICKS COMPLETE ==="
 
+    # Generate HTML report
+    generate_report "$RUN_START_LINE"
+
 elif [ "$1" = "--linkedin-retry" ]; then
     # Re-run Step 4 (LinkedIn) on venues with linkedin_pending=true
     log "LINKEDIN RETRY MODE: Finding venues with linkedin_pending=true..."
@@ -1274,6 +1865,9 @@ for v in data.get('venues', []):
     log "=== LINKEDIN RETRY COMPLETE ==="
 
 elif [ "$1" = "--batch" ]; then
+    RUN_START_LINE=$(wc -l < "$LOG_FILE")
+    RUN_START_LINE=$((RUN_START_LINE + 1))
+
     BATCH_FILE="${2:?Usage: $0 --batch venues.json}"
     if [ ! -f "$BATCH_FILE" ]; then echo "[ERROR] File not found: $BATCH_FILE"; exit 1; fi
     TOTAL=$(python3 -c "import json; print(len(json.load(open('$BATCH_FILE'))))")
@@ -1306,6 +1900,10 @@ print(v.get('website',''))
         log "============================================================"
     fi
     log "=== BATCH COMPLETE ==="
+
+    # Generate HTML report
+    generate_report "$RUN_START_LINE"
+
 else
     VENUE="${1:?Usage: $0 \"Venue Name\"}"
 

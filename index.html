@@ -1119,10 +1119,18 @@ function goBack() {
     history.pushState({ stack: [...navStack] }, '');
 }
 
+// Seed initial history entry so back button never exits the app
+history.replaceState({ stack: ['viewHome'] }, '');
+
 window.addEventListener('popstate', function(e) {
     if (navStack.length > 1) {
         navStack.pop();
         showView(navStack[navStack.length - 1]);
+        // Re-push state so there's always a history entry to absorb the next back press
+        history.pushState({ stack: [...navStack] }, '');
+    } else {
+        // At home screen — push state again to prevent app from closing
+        history.pushState({ stack: [...navStack] }, '');
     }
 });
 

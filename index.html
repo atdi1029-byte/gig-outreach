@@ -409,6 +409,10 @@ body {
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
+/* === TEMPLATE PREVIEWER === */
+.tpl-ch-btn { flex:1; padding:0.5rem; background:var(--bg-card); color:var(--text-dim); border:1px solid var(--border-light); border-radius:8px; font-size:0.8rem; cursor:pointer; }
+.tpl-ch-btn.active { color:var(--accent); border-color:var(--accent); background:rgba(240,160,48,0.1); }
+
 /* === EMPTY STATE === */
 .empty-state { text-align: center; padding: 2rem; color: var(--text-dim); font-size: 0.8rem; }
 
@@ -1037,6 +1041,10 @@ body {
                 <span class="gigs-pill-icon">&#9776;</span>
                 <span>Reports</span>
             </button>
+            <button class="gigs-pill" onclick="openTemplatePreviewer()" style="border-color:#f0a030">
+                <span class="gigs-pill-icon">&#9998;</span>
+                <span>Templates</span>
+            </button>
         </div>
 
         <!-- WEEKLY GOALS -->
@@ -1147,6 +1155,31 @@ body {
         <span class="view-title">Reports</span>
     </div>
     <div class="view-inner" id="reportsBody"></div>
+</div>
+
+<!-- TEMPLATE PREVIEWER (temporary) -->
+<div class="view" id="viewTemplates">
+    <div class="view-header">
+        <button class="view-back" onclick="goBack()">&larr;</button>
+        <span class="view-title">Template Previewer</span>
+        <span id="tplProgress" style="font-size:0.7rem;color:var(--text-dim);margin-left:auto">0/22</span>
+    </div>
+    <div class="view-inner" style="padding-top:0.5rem">
+        <select id="tplCategory" onchange="renderTemplatePreview()" style="width:100%;padding:0.6rem;background:var(--bg-card);color:var(--text);border:1px solid var(--border-light);border-radius:8px;font-size:0.95rem;margin-bottom:0.5rem"></select>
+        <div style="display:flex;gap:0.5rem;margin-bottom:0.75rem">
+            <button class="tpl-ch-btn active" data-ch="email" onclick="switchTplChannel('email')">Email</button>
+            <button class="tpl-ch-btn" data-ch="ig" onclick="switchTplChannel('ig')">IG</button>
+            <button class="tpl-ch-btn" data-ch="fb" onclick="switchTplChannel('fb')">FB</button>
+        </div>
+        <div id="tplSubject" style="font-size:0.75rem;color:var(--accent);margin-bottom:0.4rem;display:none"></div>
+        <pre id="tplBody" style="white-space:pre-wrap;font-family:'Lato',sans-serif;font-size:0.85rem;line-height:1.5;background:rgba(0,0,0,0.4);border:1px solid var(--border-light);border-radius:8px;padding:0.75rem;max-height:55vh;overflow-y:auto"></pre>
+        <div style="display:flex;gap:0.5rem;margin-top:0.75rem">
+            <button onclick="renderTemplatePreview()" style="flex:1;padding:0.6rem;background:var(--bg-card);color:var(--text);border:1px solid var(--border-light);border-radius:8px;font-size:0.85rem">&#8635; Regenerate</button>
+            <button onclick="approveTpl()" id="tplApproveBtn" style="flex:1;padding:0.6rem;background:rgba(38,166,154,0.2);color:var(--green);border:1px solid var(--green);border-radius:8px;font-size:0.85rem">&#10003; Approve</button>
+            <button onclick="nextTplCategory()" style="flex:1;padding:0.6rem;background:rgba(240,160,48,0.2);color:var(--accent);border:1px solid var(--accent);border-radius:8px;font-size:0.85rem">Next &rarr;</button>
+        </div>
+        <div id="tplApproved" style="margin-top:0.75rem;font-size:0.75rem;color:var(--text-dim)"></div>
+    </div>
 </div>
 
 <!-- TOAST -->
@@ -2587,6 +2620,83 @@ async function loadReportManifest() {
         reportManifest = [];
     }
     return reportManifest;
+}
+
+// === TEMPLATE PREVIEWER (temporary) ===
+let tplChannel = 'email';
+let tplApproved = JSON.parse(localStorage.getItem('tpl_approved') || '{}');
+
+function openTemplatePreviewer() {
+    const sel = document.getElementById('tplCategory');
+    const cats = Object.keys(TEMPLATES);
+    sel.innerHTML = cats.map(c => {
+        const check = tplApproved[c] ? ' \u2713' : '';
+        return `<option value="${c}">${TEMPLATES[c].label}${check}</option>`;
+    }).join('');
+    tplChannel = 'email';
+    document.querySelectorAll('.tpl-ch-btn').forEach(b => b.classList.toggle('active', b.dataset.ch === 'email'));
+    renderTemplatePreview();
+    navigateTo('viewTemplates');
+}
+
+function switchTplChannel(ch) {
+    tplChannel = ch;
+    document.querySelectorAll('.tpl-ch-btn').forEach(b => b.classList.toggle('active', b.dataset.ch === ch));
+    renderTemplatePreview();
+}
+
+function renderTemplatePreview() {
+    const cat = document.getElementById('tplCategory').value;
+    const tmpl = getEnhancedTemplate(tplChannel, 'Sample Venue Name', 'John', cat);
+    const subEl = document.getElementById('tplSubject');
+    if (tplChannel === 'email') {
+        subEl.style.display = '';
+        subEl.textContent = 'Subject: ' + tmpl.subject;
+    } else {
+        subEl.style.display = 'none';
+    }
+    document.getElementById('tplBody').textContent = tmpl.body;
+    const approved = tplApproved[cat];
+    const btn = document.getElementById('tplApproveBtn');
+    btn.innerHTML = approved ? '&#10003; Approved' : '&#10003; Approve';
+    btn.style.opacity = approved ? '0.5' : '1';
+    updateTplProgress();
+}
+
+function approveTpl() {
+    const cat = document.getElementById('tplCategory').value;
+    tplApproved[cat] = !tplApproved[cat];
+    localStorage.setItem('tpl_approved', JSON.stringify(tplApproved));
+    // Update dropdown label
+    const sel = document.getElementById('tplCategory');
+    const opt = sel.querySelector(`option[value="${cat}"]`);
+    if (opt) opt.textContent = TEMPLATES[cat].label + (tplApproved[cat] ? ' \u2713' : '');
+    renderTemplatePreview();
+    updateTplProgress();
+    if (tplApproved[cat]) showToast(TEMPLATES[cat].label + ' approved!');
+}
+
+function nextTplCategory() {
+    const sel = document.getElementById('tplCategory');
+    if (sel.selectedIndex < sel.options.length - 1) {
+        sel.selectedIndex++;
+        renderTemplatePreview();
+    } else {
+        showToast('Last category!');
+    }
+}
+
+function updateTplProgress() {
+    const total = Object.keys(TEMPLATES).length;
+    const done = Object.keys(tplApproved).filter(k => tplApproved[k]).length;
+    document.getElementById('tplProgress').textContent = done + '/' + total;
+    const list = document.getElementById('tplApproved');
+    if (list) {
+        list.innerHTML = Object.keys(TEMPLATES).map(c => {
+            const ok = tplApproved[c];
+            return `<span style="display:inline-block;margin:2px 4px;padding:2px 8px;border-radius:12px;font-size:0.7rem;border:1px solid ${ok ? 'var(--green)' : 'var(--border-light)'};color:${ok ? 'var(--green)' : 'var(--text-dim)'}">${TEMPLATES[c].label}${ok ? ' \u2713' : ''}</span>`;
+        }).join('');
+    }
 }
 
 async function openReportsView() {

@@ -1280,22 +1280,28 @@ window.addEventListener('popstate', function(e) {
 
 // === TEMPLATES ===
 const TEMPLATES = {
-    winery:       { subject: "Live Classical Guitar for {venue}", label: "Winery" },
-    museum:       { subject: "Live Classical Guitar for {venue}", label: "Museum" },
-    hotel:        { subject: "Live Classical Guitar for {venue}", label: "Hotel" },
-    country_club: { subject: "Live Classical Guitar for {venue}", label: "Country Club" },
-    event:        { subject: "Classical Guitar for Your Events", label: "Event" },
-    restaurant:   { subject: "Live Classical Guitar for {venue}", label: "Restaurant" },
-    wine_bar:     { subject: "Live Classical Guitar for {venue}", label: "Wine Bar" },
-    resort:       { subject: "Live Classical Guitar for {venue}", label: "Resort" },
-    private_club: { subject: "Live Classical Guitar for {venue}", label: "Private Club" },
-    golf_club:    { subject: "Live Classical Guitar for {venue}", label: "Golf Club" },
-    yacht_club:   { subject: "Live Classical Guitar for {venue}", label: "Yacht Club" },
-    senior_living:{ subject: "Live Classical Guitar for {venue}", label: "Senior Living" },
-    wedding_venue:{ subject: "Live Classical Guitar for {venue}", label: "Wedding Venue" },
-    art_gallery:  { subject: "Live Classical Guitar for {venue}", label: "Art Gallery" },
-    corporate:    { subject: "Live Classical Guitar for Your Events", label: "Corporate" },
-    spa:          { subject: "Live Classical Guitar for {venue}", label: "Spa" }
+    winery:       { subject: "Classical guitar for wine tastings at {venue}", label: "Winery" },
+    museum:       { subject: "Classical guitar for events at {venue}", label: "Museum" },
+    hotel:        { subject: "Live guitar for lobby & events at {venue}", label: "Hotel" },
+    country_club: { subject: "Classical guitar for member events at {venue}", label: "Country Club" },
+    event:        { subject: "Classical guitarist for your upcoming events", label: "Event" },
+    restaurant:   { subject: "Live dinner music for {venue}", label: "Restaurant" },
+    wine_bar:     { subject: "Classical guitar for wine evenings at {venue}", label: "Wine Bar" },
+    resort:       { subject: "Classical guitar for guest experiences at {venue}", label: "Resort" },
+    private_club: { subject: "Live music for private events at {venue}", label: "Private Club" },
+    golf_club:    { subject: "Classical guitar for events at {venue}", label: "Golf Club" },
+    yacht_club:   { subject: "Classical guitar for events at {venue}", label: "Yacht Club" },
+    senior_living:{ subject: "Classical guitar performances for {venue} residents", label: "Senior Living" },
+    wedding_venue:{ subject: "Classical guitarist for weddings at {venue}", label: "Wedding Venue" },
+    art_gallery:  { subject: "Live classical guitar for gallery events at {venue}", label: "Art Gallery" },
+    corporate:    { subject: "Classical guitarist for corporate events", label: "Corporate" },
+    spa:          { subject: "Live guitar for relaxation & events at {venue}", label: "Spa" },
+    event_planner:{ subject: "Classical guitarist for your events", label: "Event Planner" },
+    luxury_apts:  { subject: "Live classical guitar for resident events at {venue}", label: "Luxury Apartments" },
+    grocery_market:{ subject: "Live classical guitar for {venue}", label: "Market" },
+    church:       { subject: "Classical guitar for services & events at {venue}", label: "Church" },
+    luxury_retail:{ subject: "Live classical guitar for {venue}", label: "Luxury Retail" },
+    mall:         { subject: "Live classical guitar for {venue}", label: "Mall" }
 };
 const YOUTUBE_LINK = 'https://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH';
 const CONTACT_LINE = 'alexbarnettclassical@gmail.com | 410-794-6204';
@@ -1385,7 +1391,12 @@ function generateEmail(venueName, contactName, category) {
         'You can reach me at ' + CONTACT_LINE,
         '',
         signoff,
-        'Alexander Barnett'
+        'Alexander Barnett',
+        '',
+        '—',
+        'Alex Barnett | Classical Guitar',
+        'Pasadena, MD 21122',
+        "Don't need live music? Just reply \"no thanks\" and I'll remove you."
     ].join('\n');
 }
 

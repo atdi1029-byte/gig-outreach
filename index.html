@@ -1370,13 +1370,12 @@ function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
 const GREETINGS = ['Hi {name}!', 'Hey {name}!'];
 const INTEREST = [
-    "I'd love to", "I'd be thrilled to",
-    "I think it would be wonderful to"
+    "I'd love to", "I think it would be wonderful to",
+    "I think it would be great to"
 ];
 const INTEREST2 = [
-    "I'd love to", "I'd be happy to",
-    "I'd welcome the chance to",
-    "it would be great to"
+    "I'd love to", "I think it would be wonderful to",
+    "I think it would be great to"
 ];
 const SIGNOFFS = [
     'Looking forward to hearing from you!',
@@ -1403,7 +1402,7 @@ const EMAIL_BODIES = [
     // B: Atmosphere — full list, atmosphere framing
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements that create an elegant, memorable atmosphere. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v}${pitch ? ' for ' + pitch : ''}.`,
+            `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements that create an elegant, memorable atmosphere. ${pick(INTEREST)} bring that experience to ${v}${pitch ? ' for ' + pitch : ''}.`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1429,15 +1428,13 @@ const EMAIL_BODIES = [
     // D: Event-focused — full list, specialize framing
     function(v, interest, interest2, pitch) {
         return [
-            `I specialize in live classical guitar — Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements.${pitch ? ' Think warm, elegant music that\'s perfect for ' + pitch + '.' : ''}`,
+            `I'm a classical guitarist that specializes in Latin music like Brazilian and Spanish, classical, and I do modern instrumental versions of pop songs. ${interest} play${pitch ? ' for ' + pitch : ''} at ${v}.`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
             '',
             'And locally at:',
-            VENUES_LOCAL,
-            '',
-            `${interest} bring something special to ${v}.`
+            VENUES_LOCAL
         ].join('\n');
     }
 ];
@@ -1458,11 +1455,18 @@ function generateEmail(venueName, contactName, category) {
     const body = bodyFn(venueName, interest, interest2, pitch);
     const signoff = pick(SIGNOFFS);
 
+    const optOut = pick([
+        "If you're not interested no worries, just let me know and I'll remove you from my list!",
+        "No worries at all if it's not a fit — just let me know and I'll take you off my list!",
+        "If this isn't a good fit, no worries — just let me know and I'll remove you from my list!"
+    ]);
+
     return [
-        pick(GREETINGS).replace('{name}', name) + ',',
+        pick(GREETINGS).replace('{name}', name),
         '',
         body,
         '',
+        "Here's a link to hear me play:",
         YOUTUBE_LINK,
         '',
         'You can reach me at ' + CONTACT_LINE,
@@ -1470,10 +1474,7 @@ function generateEmail(venueName, contactName, category) {
         signoff,
         'Alexander Barnett',
         '',
-        '—',
-        'Alex Barnett | Classical Guitar',
-        'Pasadena, MD 21122',
-        "If you're not interested no worries, just let me know and I'll remove you from my list!"
+        optOut
     ].join('\n');
 }
 

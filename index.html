@@ -1406,39 +1406,58 @@ const SIGNOFFS = [
     'Hope to connect soon!'
 ];
 
+const VENUES_INTL = '- The Copacabana Palace (Brazil)\n- Cadogan Hotel (London)\n- The Lake of Menteith Hotel (Scotland)\n- National Museum of Colombia';
+const VENUES_LOCAL = "- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- The Maryland Club\n- Army Navy Country Club\n- River Bend Country Club";
+
 const EMAIL_BODIES = [
-    // A: Standard pitch
+    // A: Standard — full list, pitch in intro
     function(v, interest, interest2, pitch) {
         return [
-            `I'm an Annapolis-based classical guitarist — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern instrumental arrangements of pop songs. ${interest} play for ${pitch} at ${v}.`,
+            `I'm a classical guitarist based near Annapolis and I do a mixture of Latin styles like Brazilian and Spanish music, classical repertoire, and modern instrumental arrangements of pop songs. ${interest} play for ${pitch} at ${v}.`,
             '',
-            "I've performed internationally at The Copacabana Palace (Rio de Janeiro), Cadogan Hotel (London), The Lake of Menteith Hotel (Scotland), and the National Museum of Colombia.",
+            "I've performed at venues around the world like:",
+            VENUES_INTL,
             '',
-            "Locally, I've played at L'Auberge Chez Francois, The Inn at Perry Cabin, The Maryland Club, Army Navy Country Club, and River Bend Country Club."
+            'And locally at:',
+            VENUES_LOCAL
         ].join('\n');
     },
-    // B: Atmosphere-focused
+    // B: Atmosphere — full list, atmosphere framing
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based in Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern instrumental arrangements of pop songs. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v} for ${pitch}.`,
+            `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements that create an elegant, memorable atmosphere. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v} for ${pitch}.`,
             '',
-            "I've had the privilege of performing at The Copacabana Palace in Rio, Cadogan Hotel in London, and closer to home at The Inn at Perry Cabin and L'Auberge Chez Francois."
+            "I've performed at venues around the world like:",
+            VENUES_INTL,
+            '',
+            'And locally at:',
+            VENUES_LOCAL
         ].join('\n');
     },
-    // C: Short and direct
+    // C: Short — full list, "caught my eye" at end
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. I've performed everywhere from the Copacabana Palace in Rio to L'Auberge Chez Francois here in the DC area.`,
+            "I'm a classical guitarist based near Annapolis and I do a mixture of Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements.",
+            '',
+            "I've performed at venues around the world like:",
+            VENUES_INTL,
+            '',
+            'And locally at:',
+            VENUES_LOCAL,
             '',
             `${v} caught my eye — I think live guitar would be a perfect fit for ${pitch}.`
         ].join('\n');
     },
-    // D: Event-focused
+    // D: Event-focused — full list, specialize framing
     function(v, interest, interest2, pitch) {
         return [
             `I specialize in live classical guitar — Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. Think warm, elegant music that's perfect for ${pitch}.`,
             '',
-            `Past venues include The Copacabana Palace (Brazil), Cadogan Hotel (London), The Inn at Perry Cabin, and L'Auberge Chez Francois.`,
+            "I've performed at venues around the world like:",
+            VENUES_INTL,
+            '',
+            'And locally at:',
+            VENUES_LOCAL,
             '',
             `${interest} bring something special to ${v}.`
         ].join('\n');

@@ -1319,71 +1319,49 @@ window.addEventListener('popstate', function(e) {
 // === TEMPLATES ===
 const TEMPLATES = {
     winery: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Winery!", "Classical Guitarist (Latin & Pop Arrangements) to Perform at your Winery!", "Classical Guitarist — Spanish, Brazilian & Pop — to Perform at your Winery!"], label: "Winery",
-        pitch: ["wine tastings and dinner pairings", "tastings, harvest events, and wine dinners", "vineyard events and wine-pairing dinners"],
-        setting: "over a glass of wine" },
+        pitch: [], setting: "over a glass of wine" },
     restaurant: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Restaurant!", "Classical Guitarist (Latin & Pop Arrangements) to Perform at your Restaurant!", "Classical Guitarist — Spanish, Brazilian & Pop — to Perform at your Restaurant!"], label: "Restaurant",
-        pitch: ["dinner service and weekend brunch", "evening ambiance and special dining events", "dinner music and private dining nights"],
-        setting: "while guests dine" },
+        pitch: [], setting: "while guests dine" },
     hotel: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Hotel!", "Live guitar for lobby & events at {venue}"], label: "Hotel",
-        pitch: ["lobby ambiance, cocktail hours, and private events", "guest experiences, afternoon tea, and evening events", "lobby music and special occasions"],
-        setting: "in your lobby or event spaces" },
+        pitch: [], setting: "in your lobby or event spaces" },
     country_club: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Country Club!", "Classical guitar for member events at {venue}", "Live guitar for dinners & events at {venue}", "Classical guitarist for {venue} events"], label: "Country Club",
-        pitch: ["member dinners, holiday parties, and poolside events", "clubhouse wine dinners and member gatherings", "brunch, cocktail hours, and formal dinners"],
-        setting: "for your members" },
+        pitch: ["member dinners", "clubhouse wine dinners and member gatherings"], setting: "for your members" },
     wine_bar: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Wine Bar!", "Classical Guitarist (Latin & Pop Arrangements) to Perform at your Wine Bar!", "Classical Guitarist — Spanish, Brazilian & Pop — to Perform at your Wine Bar!"], label: "Wine Bar",
-        pitch: ["evening ambiance and tasting events", "wine flights, tasting nights, and weekend evenings", "intimate wine evenings and special tastings"],
-        setting: "over wine" },
+        pitch: [], setting: "over wine" },
     resort: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Resort!", "Live guitar for events at {venue}", "Classical guitarist for dining & events at {venue}"], label: "Resort",
-        pitch: ["poolside music, evening events, and guest lounges", "dining terraces, spa lounges, and sunset events", "guest experiences and special occasion evenings"],
-        setting: "for your guests" },
+        pitch: [], setting: "for your guests" },
     private_club: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Club!", "Classical Guitarist (Latin & Pop Arrangements) to Perform at your Club!", "Classical Guitarist — Spanish, Brazilian & Pop — to Perform at your Club!"], label: "Private Club",
-        pitch: ["member dinners, cocktail hours, and formal events", "private gatherings, holiday events, and evening receptions", "intimate dinners and exclusive club evenings"],
-        setting: "for your members" },
+        pitch: ["member dinners", "clubhouse wine dinners and member gatherings"], setting: "for your members" },
     wedding_venue: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Venue!", "Classical guitarist for weddings at {venue}", "Live guitar for ceremonies & receptions at {venue}", "Classical guitar for weddings & events at {venue}"], label: "Wedding Venue",
-        pitch: ["ceremonies, cocktail hours, and dinner receptions", "wedding ceremonies and reception entertainment"],
-        setting: "on the big day" },
+        pitch: ["wedding ceremonies and receptions"], setting: "on the big day" },
     senior_living: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform for your Residents!", "Classical guitar performances for {venue} residents", "Live guitar for resident events at {venue}", "Classical guitarist for events at {venue}"], label: "Senior Living",
-        pitch: ["afternoon concerts and holiday events", "resident gatherings and seasonal celebrations"],
-        setting: "for your residents" },
+        pitch: [], setting: "for your residents" },
     art_gallery: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Gallery!", "Live classical guitar for gallery events at {venue}", "Classical guitar for exhibition openings at {venue}", "Live guitar for events at {venue}"], label: "Art Gallery",
-        pitch: ["exhibition openings, artist receptions, and private viewings", "gallery openings and evening art walks"],
-        setting: "among the artwork" },
+        pitch: ["artist receptions", "gallery openings"], setting: "among the artwork" },
     museum: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Museum!", "Classical guitar for events at {venue}", "Live guitar for exhibitions & galas at {venue}", "Classical guitarist for special events at {venue}"], label: "Museum",
-        pitch: ["exhibition openings and special events", "gallery galas and private receptions", "evening events and fundraisers"],
-        setting: "among the exhibits" },
+        pitch: [], setting: "among the exhibits" },
     golf_club: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Golf Club!", "Classical guitar for events at {venue}", "Live guitar for clubhouse dinners at {venue}", "Classical guitarist for member events at {venue}"], label: "Golf Club",
-        pitch: ["clubhouse dinners, tournament banquets, and member events", "post-round cocktails, member dinners, and holiday gatherings", "awards dinners and seasonal celebrations"],
-        setting: "at the clubhouse" },
+        pitch: [], setting: "at the clubhouse" },
     yacht_club: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Yacht Club!", "Classical guitar for events at {venue}", "Live guitar for waterfront events at {venue}", "Classical guitarist for member dinners at {venue}"], label: "Yacht Club",
-        pitch: ["dockside events, member dinners, and evening receptions", "waterfront cocktail hours and summer gatherings", "sunset cruises and harbor-side dinners"],
-        setting: "on the water" },
+        pitch: [], setting: "on the water" },
     corporate: { subject: ["Classical Guitarist (Spanish/Brazilian Music) for your Corporate Event!", "Classical guitarist for corporate events", "Live guitar for client events & dinners", "Classical guitar for your upcoming event"], label: "Corporate",
-        pitch: ["client events, holiday parties, and executive dinners", "networking receptions and corporate galas"],
-        setting: "at your events" },
+        pitch: ["holiday parties"], setting: "at your events" },
     spa: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Spa!", "Live guitar for relaxation & events at {venue}", "Live music for wellness events at {venue}"], label: "Spa",
-        pitch: ["relaxation lounges and wellness events", "spa lounges, afternoon retreats, and guest experiences"],
-        setting: "in your lounge" },
+        pitch: [], setting: "in your lounge" },
     event: { subject: ["Classical Guitarist (Spanish/Brazilian Music) for your Event!", "Classical guitarist for your upcoming events", "Live guitar for your next event", "Classical guitarist available for private events"], label: "Event",
-        pitch: ["private events, galas, and corporate gatherings", "cocktail receptions, dinners, and celebrations", "special occasions and milestone events"],
-        setting: "at your events" },
+        pitch: [], setting: "at your events" },
     event_planner: { subject: ["Classical Guitarist (Spanish/Brazilian Music) for your Events!", "Classical guitarist for your events", "Live guitar for your clients' events", "Classical guitarist available for bookings"], label: "Event Planner",
-        pitch: ["weddings, galas, corporate events, and private parties", "client events, cocktail hours, and formal gatherings"],
-        setting: "at your events" },
+        pitch: ["weddings, galas, corporate events, and private parties"], setting: "at your events" },
     luxury_apts: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform for your Residents!", "Live classical guitar for resident events at {venue}", "Classical guitar for community events at {venue}", "Live guitar for resident gatherings at {venue}"], label: "Luxury Apartments",
-        pitch: ["resident appreciation events and rooftop gatherings", "community events, holiday parties, and amenity space entertainment"],
-        setting: "for your residents" },
+        pitch: [], setting: "for your residents" },
     church: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Church!", "Classical guitar for services & events at {venue}", "Classical guitarist for worship & weddings at {venue}", "Live guitar for services at {venue}"], label: "Church",
-        pitch: ["worship services, weddings, and seasonal concerts", "services, holiday programs, and community events"],
-        setting: "in your sanctuary" },
+        pitch: [], setting: "in your sanctuary" },
     grocery_market: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Market!", "Live classical guitar for {venue}", "Classical guitar for in-store events at {venue}", "Live guitar for shopping events at {venue}"], label: "Market",
-        pitch: ["weekend shopping ambiance and tasting events", "in-store events and holiday shopping"],
-        setting: "while customers shop" },
+        pitch: [], setting: "while customers shop" },
     luxury_retail: { subject: ["Classical Guitarist (Spanish/Brazilian Music) to Perform at your Store!", "Live classical guitar for {venue}", "Live guitar for shopping events at {venue}"], label: "Luxury Retail",
-        pitch: ["VIP shopping events and holiday ambiance", "private shopping events and trunk shows"],
-        setting: "in your store" },
+        pitch: [], setting: "in your store" },
     mall: { subject: ["Classical Guitarist (Spanish/Brazilian Music) for Holiday Events at your Mall!", "Live guitar for holiday events at {venue}"], label: "Mall",
-        pitch: ["common area entertainment and holiday events", "seasonal events and weekend ambiance"],
-        setting: "for shoppers" }
+        pitch: [], setting: "for shoppers" }
 };
 const YOUTUBE_LINK = 'https://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH';
 const CONTACT_LINE = 'alexbarnettclassical@gmail.com | 410-794-6204';
@@ -1413,7 +1391,7 @@ const EMAIL_BODIES = [
     // A: Standard — full list, pitch in intro
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based near Annapolis and I do a mixture of Latin styles like Brazilian and Spanish music, classical repertoire, and modern instrumental arrangements of pop songs. ${interest} play for ${pitch} at ${v}.`,
+            `I'm a classical guitarist based near Annapolis and I do a mixture of Latin styles like Brazilian and Spanish music, classical repertoire, and modern instrumental arrangements of pop songs. ${interest} play${pitch ? ' for ' + pitch : ''} at ${v}.`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1425,7 +1403,7 @@ const EMAIL_BODIES = [
     // B: Atmosphere — full list, atmosphere framing
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements that create an elegant, memorable atmosphere. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v} for ${pitch}.`,
+            `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements that create an elegant, memorable atmosphere. ${pick(["I'd love to","I think it would be great to"])} bring that experience to ${v}${pitch ? ' for ' + pitch : ''}.`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1445,13 +1423,13 @@ const EMAIL_BODIES = [
             'And locally at:',
             VENUES_LOCAL,
             '',
-            `${v} caught my eye — I think live guitar would be a perfect fit for ${pitch}.`
+            `${v} caught my eye${pitch ? ' — I think live guitar would be a perfect fit for ' + pitch + '.' : ' — I think live guitar would be a perfect fit.'}`
         ].join('\n');
     },
     // D: Event-focused — full list, specialize framing
     function(v, interest, interest2, pitch) {
         return [
-            `I specialize in live classical guitar — Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. Think warm, elegant music that's perfect for ${pitch}.`,
+            `I specialize in live classical guitar — Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements.${pitch ? ' Think warm, elegant music that\'s perfect for ' + pitch + '.' : ''}`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1473,7 +1451,7 @@ const EMAIL_CLOSINGS = [
 function generateEmail(venueName, contactName, category) {
     const name = contactName || 'there';
     const t = TEMPLATES[category] || TEMPLATES.winery;
-    const pitch = pick(t.pitch);
+    const pitch = t.pitch.length ? pick(t.pitch) : null;
     const interest = pick(INTEREST);
     const interest2 = pick(INTEREST2);
     const bodyFn = pick(EMAIL_BODIES);
@@ -1501,19 +1479,19 @@ function generateEmail(venueName, contactName, category) {
 
 const IG_BODIES = [
     function(v, label, pitch) {
-        return `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. I think live guitar would be a great fit for ${pitch} at ${v}. Would love to chat if you ever feature live music!`;
+        return `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. I think live guitar would be a great fit${pitch ? ' for ' + pitch : ''} at ${v}. Would love to chat if you ever feature live music!`;
     },
     function(v, label, pitch) {
-        return `Love what you're doing at ${v}! I'm a classical guitarist — I play Latin styles, classical repertoire, and modern pop arrangements. I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to talk about bringing live guitar for ${pitch}.`;
+        return `Love what you're doing at ${v}! I'm a classical guitarist — I play Latin styles, classical repertoire, and modern pop arrangements. I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to talk about bringing live guitar${pitch ? ' for ' + pitch : ''}.`;
     }
 ];
 
 const FB_BODIES = [
     function(v, label, pitch) {
-        return `I'm an Annapolis-based classical guitarist — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. ${v} looks like it could be a great fit for live guitar — especially for ${pitch}. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to connect if you ever feature live entertainment!`;
+        return `I'm an Annapolis-based classical guitarist — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. ${v} looks like it could be a great fit for live guitar${pitch ? ' — especially for ' + pitch : ''}. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to connect if you ever feature live entertainment!`;
     },
     function(v, label, pitch) {
-        return `I came across ${v} and thought it might be a wonderful setting for live classical guitar! I play Latin styles, classical repertoire, and modern pop arrangements — perfect for ${pitch}. I've performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club and Army Navy Country Club. Would love to chat!`;
+        return `I came across ${v} and thought it might be a wonderful setting for live classical guitar! I play Latin styles, classical repertoire, and modern pop arrangements${pitch ? ' — perfect for ' + pitch : ''}. I've performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club and Army Navy Country Club. Would love to chat!`;
     }
 ];
 
@@ -1521,7 +1499,7 @@ const IG_FOLLOWUP = `Thanks so much for getting back to me! Here's a playlist of
 
 function generateIG(venueName, contactName, category) {
     const t = TEMPLATES[category] || TEMPLATES.winery;
-    const pitch = pick(t.pitch);
+    const pitch = t.pitch.length ? pick(t.pitch) : null;
     const name = contactName || 'there';
     const greeting = pick(['Hi', 'Hello', 'Hey']) + ' ' + name + '!';
     const body = pick(IG_BODIES)(venueName, t.label, pitch);
@@ -1531,7 +1509,7 @@ function generateIG(venueName, contactName, category) {
 
 function generateFB(venueName, contactName, category) {
     const t = TEMPLATES[category] || TEMPLATES.winery;
-    const pitch = pick(t.pitch);
+    const pitch = t.pitch.length ? pick(t.pitch) : null;
     const name = contactName || 'there';
     const greeting = pick(['Hi', 'Hello', 'Hey']) + ' ' + name + '!';
     const body = pick(FB_BODIES)(venueName, t.label, pitch);

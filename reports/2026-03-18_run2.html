@@ -88,6 +88,8 @@
   .valid { color: #4caf50; }
   .unknown { color: #ff9800; }
   .do-not-mail { color: #e85050; }
+  td a { color: #6ecfcf; text-decoration: none; }
+  td a:hover { text-decoration: underline; }
   .score {
     display: inline-block;
     background: #e8944c;
@@ -133,13 +135,13 @@
 <h2>Flagged for Review</h2>
 
 <div class="flag">
-  <strong>Apollo Mismatch:</strong> Mount Vernon Club (Baltimore, MD) &rarr; Apollo matched "Mount Vernon Country Club" (domain: mountvernoncc.org) which is actually in Alexandria, VA. Contacts have mountvernoncc.org emails &mdash; they belong to the Alexandria club, not the Baltimore one.
+  <strong>Apollo Mismatch:</strong> <a href="https://www.mountvernonclub.net" target="_blank" style="color:#6ecfcf">Mount Vernon Club</a> (Baltimore, MD) &rarr; Apollo matched "Mount Vernon Country Club" (domain: <a href="https://mountvernoncc.org" target="_blank" style="color:#6ecfcf">mountvernoncc.org</a>) which is actually in Alexandria, VA. Contacts have mountvernoncc.org emails &mdash; they belong to the Alexandria club, not the Baltimore one.
 </div>
 <div class="flag">
-  <strong>Apollo Mismatch:</strong> Summer House Santa Monica &rarr; Apollo matched "Summer House Coffee" (same domain). 0 people found.
+  <strong>Apollo Mismatch:</strong> <a href="https://www.summerhouserestaurants.com/" target="_blank" style="color:#6ecfcf">Summer House Santa Monica</a> &rarr; Apollo matched "Summer House Coffee" (same domain). 0 people found.
 </div>
 <div class="flag">
-  <strong>Dead End:</strong> Rathskeller &mdash; only email found was info@rathskellermd.com (do_not_mail). Apollo matched wrong "Rathskeller Restaurant" (rathskeller.com). No contacts.
+  <strong>Dead End:</strong> <a href="https://www.rathskellermd.com" target="_blank" style="color:#6ecfcf">Rathskeller</a> &mdash; only email found was info@rathskellermd.com (do_not_mail). Apollo matched wrong "Rathskeller Restaurant" (rathskeller.com). No contacts.
 </div>
 <div class="flag">
   <strong>Missing Distances:</strong> New venues from discovery still have no distance data. calc_distances returned 0.
@@ -177,7 +179,7 @@
 
 <h2>Pipeline Results (5 Smart Picks)</h2>
 
-<h3>1. Linganore Winecellars <span class="score">Score: 82</span></h3>
+<h3>1. <a href="https://linganorewines.com" target="_blank" style="color:#6ecfcf;text-decoration:none">Linganore Winecellars</a> <span class="score">Score: 82</span></h3>
 <p>
   <span class="found">&#10003; Website</span> &bull;
   <span class="found">&#10003; Facebook</span> &bull;
@@ -189,19 +191,19 @@
     <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
   </thead>
   <tbody>
-    <tr><td class="contact-name">Dan Mason</td><td></td><td>dan@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Dena Purvis</td><td></td><td>dena@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Joanne Aellen</td><td></td><td>joanne@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Ashley Fields</td><td></td><td>ashley@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Anthony Aellen</td><td></td><td>anthony@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Eric Aellen</td><td></td><td>eric@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Steven Garcia</td><td></td><td>steven@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Chaz Stitely</td><td></td><td>chaz@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">(no name)</td><td></td><td>wineclub@linganorewines.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Dan Mason</td><td></td><td><a href="mailto:dan@linganorewines.com">dan@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Dena Purvis</td><td></td><td><a href="mailto:dena@linganorewines.com">dena@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Joanne Aellen</td><td></td><td><a href="mailto:joanne@linganorewines.com">joanne@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Ashley Fields</td><td></td><td><a href="mailto:ashley@linganorewines.com">ashley@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Anthony Aellen</td><td></td><td><a href="mailto:anthony@linganorewines.com">anthony@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Eric Aellen</td><td></td><td><a href="mailto:eric@linganorewines.com">eric@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Steven Garcia</td><td></td><td><a href="mailto:steven@linganorewines.com">steven@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Chaz Stitely</td><td></td><td><a href="mailto:chaz@linganorewines.com">chaz@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td></td><td><a href="mailto:wineclub@linganorewines.com">wineclub@linganorewines.com</a></td><td class="valid">&#10003; valid</td></tr>
   </tbody>
 </table>
 
-<h3>2. Summer House Santa Monica <span class="score">Score: 76</span></h3>
+<h3>2. <a href="https://www.summerhouserestaurants.com/" target="_blank" style="color:#6ecfcf;text-decoration:none">Summer House Santa Monica</a> <span class="score">Score: 76</span></h3>
 <p>
   <span class="not-found">&#10007; Website emails</span> &bull;
   <span class="found">&#10003; Facebook</span> &bull;
@@ -213,11 +215,11 @@
     <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
   </thead>
   <tbody>
-    <tr><td class="contact-name">(no name)</td><td>Marketing (LEYE group)</td><td>meersmarketing@leye.com</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td>Marketing (LEYE group)</td><td><a href="mailto:meersmarketing@leye.com">meersmarketing@leye.com</a></td><td class="valid">&#10003; valid</td></tr>
   </tbody>
 </table>
 
-<h3>3. Mount Vernon Club <span class="score">Score: 75</span></h3>
+<h3>3. <a href="https://www.mountvernonclub.net" target="_blank" style="color:#6ecfcf;text-decoration:none">Mount Vernon Club</a> <span class="score">Score: 75</span></h3>
 <p>
   <span class="found">&#10003; Website</span> &bull;
   <span class="not-found">&#10007; Facebook</span> &bull;
@@ -232,28 +234,28 @@
     <tr><th>Contact</th><th>Email</th><th>Status</th></tr>
   </thead>
   <tbody>
-    <tr><td class="contact-name">Taylor Babcock</td><td>tbabcock@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Charles Loomis</td><td>cloomis@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Tad Peel</td><td>tad@mountvernonclub.net</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Bryan Murphy</td><td>bmurphy@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Bonnie Jones</td><td>bjones@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Hank Bukowski</td><td>hbukowski@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Christian Thon</td><td>cthon@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Larry Fontaine</td><td>lfontaine@mtvcountryclub.com</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Jeff Shelton</td><td>jshelton@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Max Kirske</td><td>mkirske@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Stephen Downs</td><td>sdowns@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Devin Quilty</td><td>dquilty@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Nolan Stylski</td><td>nstylski@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Michaela Niles</td><td>mniles@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Fany Aguilar</td><td>faguilar@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Pamela Merino</td><td>pmerino@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Bryan Armstrong</td><td>barmstrong@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">Taylor Morris</td><td>tmorris@mountvernoncc.org</td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Taylor Babcock</td><td><a href="mailto:tbabcock@mountvernoncc.org">tbabcock@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Charles Loomis</td><td><a href="mailto:cloomis@mountvernoncc.org">cloomis@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Tad Peel</td><td><a href="mailto:tad@mountvernonclub.net">tad@mountvernonclub.net</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Bryan Murphy</td><td><a href="mailto:bmurphy@mountvernoncc.org">bmurphy@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Bonnie Jones</td><td><a href="mailto:bjones@mountvernoncc.org">bjones@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Hank Bukowski</td><td><a href="mailto:hbukowski@mountvernoncc.org">hbukowski@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Christian Thon</td><td><a href="mailto:cthon@mountvernoncc.org">cthon@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Larry Fontaine</td><td><a href="mailto:lfontaine@mtvcountryclub.com">lfontaine@mtvcountryclub.com</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Jeff Shelton</td><td><a href="mailto:jshelton@mountvernoncc.org">jshelton@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Max Kirske</td><td><a href="mailto:mkirske@mountvernoncc.org">mkirske@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Stephen Downs</td><td><a href="mailto:sdowns@mountvernoncc.org">sdowns@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Devin Quilty</td><td><a href="mailto:dquilty@mountvernoncc.org">dquilty@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Nolan Stylski</td><td><a href="mailto:nstylski@mountvernoncc.org">nstylski@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Michaela Niles</td><td><a href="mailto:mniles@mountvernoncc.org">mniles@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Fany Aguilar</td><td><a href="mailto:faguilar@mountvernoncc.org">faguilar@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Pamela Merino</td><td><a href="mailto:pmerino@mountvernoncc.org">pmerino@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Bryan Armstrong</td><td><a href="mailto:barmstrong@mountvernoncc.org">barmstrong@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">Taylor Morris</td><td><a href="mailto:tmorris@mountvernoncc.org">tmorris@mountvernoncc.org</a></td><td class="valid">&#10003; valid</td></tr>
   </tbody>
 </table>
 
-<h3>4. Loew Vineyards <span class="score">Score: 67</span></h3>
+<h3>4. <a href="https://loewvineyards.net" target="_blank" style="color:#6ecfcf;text-decoration:none">Loew Vineyards</a> <span class="score">Score: 67</span></h3>
 <p>
   <span class="found">&#10003; Website</span> &bull;
   <span class="found">&#10003; Facebook</span> &bull;
@@ -265,12 +267,12 @@
     <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
   </thead>
   <tbody>
-    <tr><td class="contact-name">(no name)</td><td></td><td>rachel@loewvineyards.net</td><td class="valid">&#10003; valid</td></tr>
-    <tr><td class="contact-name">(no name)</td><td></td><td>info@loewvineyards.net</td><td class="do-not-mail">&#10007; do_not_mail</td></tr>
+    <tr><td class="contact-name">(no name)</td><td></td><td><a href="mailto:rachel@loewvineyards.net">rachel@loewvineyards.net</a></td><td class="valid">&#10003; valid</td></tr>
+    <tr><td class="contact-name">(no name)</td><td></td><td><a href="mailto:info@loewvineyards.net">info@loewvineyards.net</a></td><td class="do-not-mail">&#10007; do_not_mail</td></tr>
   </tbody>
 </table>
 
-<h3>5. Rathskeller <span class="score">Score: 67</span></h3>
+<h3>5. <a href="https://www.rathskellermd.com" target="_blank" style="color:#6ecfcf;text-decoration:none">Rathskeller</a> <span class="score">Score: 67</span></h3>
 <p>
   <span class="found">&#10003; Website</span> &bull;
   <span class="found">&#10003; Facebook</span> &bull;
@@ -282,7 +284,7 @@
     <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
   </thead>
   <tbody>
-    <tr><td class="contact-name">(no name)</td><td></td><td>info@rathskellermd.com</td><td class="do-not-mail">&#10007; do_not_mail</td></tr>
+    <tr><td class="contact-name">(no name)</td><td></td><td><a href="mailto:info@rathskellermd.com">info@rathskellermd.com</a></td><td class="do-not-mail">&#10007; do_not_mail</td></tr>
   </tbody>
 </table>
 <p class="not-found">No actionable contacts found. Dead end.</p>

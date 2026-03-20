@@ -1414,7 +1414,7 @@ const EMAIL_BODIES = [
     // C: Short — full list, "came across" after intro
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I think it'd be great to come play there${pitch ? ' for ' + pitch : ''}.`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and ${pick(["I'd love to come play there","I think it'd be awesome to come play there"])}${pitch ? ' for ' + pitch : ''}.`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1473,7 +1473,7 @@ const IG_BODIES = [
         return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I'd love to come play there${pitch ? ' for ' + pitch : ''}.\n\nI've performed at places like:\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- Army Navy Country Club\n\nIf you guys are interested let me know!\n\n— Alexander Barnett`;
     },
     function(v, label, pitch) {
-        return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I think it'd be great to come play there${pitch ? ' for ' + pitch : ''}.\n\nI've performed at places like:\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- Army Navy Country Club\n\nIf you guys are interested let me know!\n\n— Alexander Barnett`;
+        return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I think it'd be awesome to come play there${pitch ? ' for ' + pitch : ''}.\n\nI've performed at places like:\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- Army Navy Country Club\n\nIf you guys are interested let me know!\n\n— Alexander Barnett`;
     }
 ];
 
@@ -1482,7 +1482,7 @@ const FB_BODIES = [
         return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I'd love to come play there${pitch ? ' for ' + pitch : ''}.\n\nI've performed at places like:\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- Army Navy Country Club\n\nIf you guys are interested let me know!\n\n— Alexander Barnett`;
     },
     function(v, label, pitch) {
-        return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I think it'd be great to come play there${pitch ? ' for ' + pitch : ''}.\n\nI've performed at places like:\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- Army Navy Country Club\n\nIf you guys are interested let me know!\n\n— Alexander Barnett`;
+        return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I think it'd be awesome to come play there${pitch ? ' for ' + pitch : ''}.\n\nI've performed at places like:\n- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- Army Navy Country Club\n\nIf you guys are interested let me know!\n\n— Alexander Barnett`;
     }
 ];
 

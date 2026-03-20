@@ -1411,7 +1411,7 @@ const EMAIL_BODIES = [
             VENUES_LOCAL
         ].join('\n');
     },
-    // C: Short — full list, "caught my eye" at end
+    // C: Short — full list, "came across" at end
     function(v, interest, interest2, pitch) {
         return [
             "I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements.",
@@ -1422,7 +1422,7 @@ const EMAIL_BODIES = [
             'And locally at:',
             VENUES_LOCAL,
             '',
-            `${v} caught my eye${pitch ? ' — I think live guitar would be a perfect fit for ' + pitch + '.' : ' — I think live guitar would be a perfect fit.'}`
+            `I came across ${v} and I think live guitar would be a great fit${pitch ? ' for ' + pitch : ''}.`
         ].join('\n');
     },
     // D: Event-focused — full list, specialize framing
@@ -1455,17 +1455,12 @@ function generateEmail(venueName, contactName, category) {
     const body = bodyFn(venueName, interest, interest2, pitch);
     const signoff = pick(SIGNOFFS);
 
-    const optOut = pick([
-        "If you're not interested no worries, just let me know and I'll remove you from my list!",
-        "And if you're not interested no worries, just let me know and I'll remove you from my list!"
-    ]);
-
     return [
         pick(GREETINGS).replace('{name}', name),
         '',
         body,
         '',
-        "Here's a link to hear me play:",
+        "Here's a link to hear my playing:",
         YOUTUBE_LINK,
         '',
         'You can reach me at ' + CONTACT_LINE,
@@ -1473,7 +1468,7 @@ function generateEmail(venueName, contactName, category) {
         signoff,
         'Alexander Barnett',
         '',
-        optOut
+        "If you're not interested no worries, just let me know and I'll remove you from my list!"
     ].join('\n');
 }
 

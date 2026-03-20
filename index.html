@@ -1497,8 +1497,7 @@ const IG_FOLLOWUP = `Thanks so much for getting back to me! Here's a playlist of
 function generateIG(venueName, contactName, category) {
     const t = TEMPLATES[category] || TEMPLATES.winery;
     const pitch = t.pitch.length ? pick(t.pitch) : null;
-    const name = contactName || 'there';
-    const greeting = pick(['Hi', 'Hey']) + ' ' + name + '!';
+    const greeting = pick(['Hi!', 'Hey!']);
     const body = pick(IG_BODIES)(venueName, t.label, pitch);
     return greeting + '\n\n' + body;
 }
@@ -1506,8 +1505,7 @@ function generateIG(venueName, contactName, category) {
 function generateFB(venueName, contactName, category) {
     const t = TEMPLATES[category] || TEMPLATES.winery;
     const pitch = t.pitch.length ? pick(t.pitch) : null;
-    const name = contactName || 'there';
-    const greeting = pick(['Hi', 'Hey']) + ' ' + name + '!';
+    const greeting = pick(['Hi!', 'Hey!']);
     const body = pick(FB_BODIES)(venueName, t.label, pitch);
     return greeting + '\n\n' + body;
 }

@@ -1396,7 +1396,7 @@ const EMAIL_BODIES = [
     // A: Standard — full list, pitch in intro
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} play${pitch ? ' for ' + pitch : ''} at ${v}.`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''} at ${v}.`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1408,7 +1408,7 @@ const EMAIL_BODIES = [
     // B: Atmosphere — full list, atmosphere framing
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${pick(INTEREST)} play${pitch ? ' for ' + pitch : ''} at ${v}.`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${pick(INTEREST)} come play${pitch ? ' for ' + pitch : ''} at ${v}.`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1432,7 +1432,7 @@ const EMAIL_BODIES = [
     // D: Event-focused — full list, specialize framing
     function(v, interest, interest2, pitch) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} play${pitch ? ' for ' + pitch : ''} at ${v}.`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''} at ${v}.`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,

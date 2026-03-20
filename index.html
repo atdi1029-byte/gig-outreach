@@ -1464,27 +1464,25 @@ function generateEmail(venueName, contactName, category) {
         'You can reach me at ' + CONTACT_LINE,
         '',
         signoff,
-        'Alexander Barnett',
-        '',
-        "If you're not interested no worries, just let me know and I'll remove you from my list!"
+        'Alexander Barnett'
     ].join('\n');
 }
 
 const IG_BODIES = [
     function(v, label, pitch) {
-        return `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. I think live guitar would be a great fit${pitch ? ' for ' + pitch : ''} at ${v}. Would love to chat if you ever feature live music!`;
+        return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I'd love to come play there${pitch ? ' for ' + pitch : ''}. I've performed at places like The Inn at Perry Cabin and L'Auberge Chez Francois. Would love to chat if you ever feature live music!`;
     },
     function(v, label, pitch) {
-        return `Love what you're doing at ${v}! I'm a classical guitarist — I play Latin styles, classical repertoire, and modern pop arrangements. I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to talk about bringing live guitar${pitch ? ' for ' + pitch : ''}.`;
+        return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I think it'd be great to come play there${pitch ? ' for ' + pitch : ''}. I've played everywhere from the Copacabana Palace in Rio to local gems like The Maryland Club. Would love to chat!`;
     }
 ];
 
 const FB_BODIES = [
     function(v, label, pitch) {
-        return `I'm an Annapolis-based classical guitarist — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements. ${v} looks like it could be a great fit for live guitar${pitch ? ' — especially for ' + pitch : ''}. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to connect if you ever feature live entertainment!`;
+        return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I'd love to come play there${pitch ? ' for ' + pitch : ''}. I've performed at places like The Inn at Perry Cabin, L'Auberge Chez Francois, and internationally. Would love to chat if you ever feature live music!`;
     },
     function(v, label, pitch) {
-        return `I came across ${v} and thought it might be a wonderful setting for live classical guitar! I play Latin styles, classical repertoire, and modern pop arrangements${pitch ? ' — perfect for ' + pitch : ''}. I've performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club and Army Navy Country Club. Would love to chat!`;
+        return `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements. I came across ${v} and I think it'd be great to come play there${pitch ? ' for ' + pitch : ''}. I've performed at venues like the Copacabana Palace, Cadogan Hotel in London, and locally at The Maryland Club. Would love to chat!`;
     }
 ];
 

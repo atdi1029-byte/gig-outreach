@@ -1498,20 +1498,18 @@ function generateIG(venueName, contactName, category) {
     const t = TEMPLATES[category] || TEMPLATES.winery;
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const name = contactName || 'there';
-    const greeting = pick(['Hi', 'Hello', 'Hey']) + ' ' + name + '!';
+    const greeting = pick(['Hi', 'Hey']) + ' ' + name + '!';
     const body = pick(IG_BODIES)(venueName, t.label, pitch);
-    return greeting + '\n\n' + body + '\n\n' +
-        pick(['Best, Alexander', '— Alexander Barnett']);
+    return greeting + '\n\n' + body;
 }
 
 function generateFB(venueName, contactName, category) {
     const t = TEMPLATES[category] || TEMPLATES.winery;
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const name = contactName || 'there';
-    const greeting = pick(['Hi', 'Hello', 'Hey']) + ' ' + name + '!';
+    const greeting = pick(['Hi', 'Hey']) + ' ' + name + '!';
     const body = pick(FB_BODIES)(venueName, t.label, pitch);
-    return greeting + '\n\n' + body + '\n\n' +
-        pick(['Best, Alexander Barnett', '— Alexander']);
+    return greeting + '\n\n' + body;
 }
 
 function getEnhancedTemplate(channel, venueName, contactName, category) {

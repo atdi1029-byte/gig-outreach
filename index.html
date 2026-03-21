@@ -2685,6 +2685,16 @@ function updateTplProgress() {
     }
 }
 
+function getReviewedReports() {
+    try { return JSON.parse(localStorage.getItem('outreach_reviewed_reports') || '{}'); } catch(e) { return {}; }
+}
+function setReportReviewed(file, reviewed) {
+    const data = getReviewedReports();
+    if (reviewed) data[file] = Date.now();
+    else delete data[file];
+    localStorage.setItem('outreach_reviewed_reports', JSON.stringify(data));
+}
+
 async function openReportsView() {
     const body = document.getElementById('reportsBody');
     const baseUrl = 'https://atdi1029-byte.github.io/gig-outreach/reports/';
@@ -2693,22 +2703,41 @@ async function openReportsView() {
     navigateTo('viewReports');
 
     const reports = await loadReportManifest();
+    const reviewed = getReviewedReports();
 
     let html = '';
     html += `<div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);margin-bottom:0.5rem">Run Reports</div>`;
     if (!reports || reports.length === 0) {
         html += '<div style="text-align:center;padding:1rem;color:var(--text-dim);font-size:0.85rem">No reports yet.</div>';
     } else {
+        const unread = reports.filter(r => !reviewed[r.file]).length;
+        if (unread > 0) {
+            html += `<div style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.8rem">${unread} unreviewed</div>`;
+        }
         for (const r of reports) {
             const fileUrl = `${baseUrl}${r.file}`;
-            html += `<a href="${fileUrl}" target="_blank" style="display:block;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:0.8rem;margin-bottom:0.5rem">
-                <div style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--gold)">${r.title}</div>
-                <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem">${r.summary}</div>
-            </a>`;
+            const isReviewed = !!reviewed[r.file];
+            const opacity = isReviewed ? '0.5' : '1';
+            const badge = isReviewed
+                ? '<span style="color:#4caf50;font-size:0.75rem;margin-left:0.4rem">Reviewed</span>'
+                : '<span style="color:var(--gold);font-size:0.75rem;font-weight:700;margin-left:0.4rem">NEW</span>';
+            html += `<div style="display:flex;align-items:stretch;margin-bottom:0.5rem;opacity:${opacity}">
+                <a href="${fileUrl}" target="_blank" style="flex:1;text-decoration:none;background:var(--bg-card);border:1px solid var(--border);border-radius:8px 0 0 8px;padding:0.8rem">
+                    <div style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--gold)">${esc(r.title)}${badge}</div>
+                    <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem">${esc(r.summary)}</div>
+                </a>
+                <button onclick="toggleReportReviewed('${esc(r.file)}')" style="background:${isReviewed ? '#1a2e1a' : 'var(--bg-card)'};border:1px solid var(--border);border-left:none;border-radius:0 8px 8px 0;padding:0 0.8rem;cursor:pointer;font-size:1.1rem;color:${isReviewed ? '#4caf50' : '#555'}" title="${isReviewed ? 'Mark as unreviewed' : 'Mark as reviewed'}">${isReviewed ? '&#10003;' : '&#9675;'}</button>
+            </div>`;
         }
     }
 
     body.innerHTML = html;
+}
+
+function toggleReportReviewed(file) {
+    const reviewed = getReviewedReports();
+    setReportReviewed(file, !reviewed[file]);
+    openReportsView();
 }
 
 // === LINKEDIN REMINDER ===

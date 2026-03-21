@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report — March 20, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    background: #0c1a22;
+    color: #e0e0e0;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #6ecfcf;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #6ecfcf;
+    padding-bottom: 10px;
+  }
+  .date { color: #999; margin-bottom: 30px; font-size: 0.95rem; }
+  h2 {
+    color: #e8944c;
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+    border-left: 4px solid #e8944c;
+    padding-left: 12px;
+  }
+  h3 {
+    color: #6ecfcf;
+    font-size: 1.1rem;
+    margin: 20px 0 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #1a2e3a;
+  }
+  tr:hover { background: rgba(110, 207, 207, 0.05); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+  }
+  .stat-box {
+    background: #1a2e3a;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6ecfcf;
+  }
+  .stat-box .label {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 4px;
+  }
+  .flag {
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .flag strong { color: #e85050; }
+  .flag.info {
+    background: #1a2a1a;
+    border-left-color: #e8944c;
+  }
+  .flag.info strong { color: #e8944c; }
+  .contact-name { color: #6ecfcf; }
+  .valid { color: #4caf50; }
+  .unknown { color: #ff9800; }
+  .do-not-mail { color: #e85050; }
+  td a { color: #6ecfcf; text-decoration: none; }
+  td a:hover { text-decoration: underline; }
+  .category-pill {
+    display: inline-block;
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  .found { color: #4caf50; font-size: 0.85rem; }
+  .not-found { color: #666; font-size: 0.85rem; }
+  @media print {
+    body { background: #fff; color: #222; padding: 20px; }
+    h1 { color: #1a5c5c; border-color: #1a5c5c; }
+    h2 { color: #b06a2a; border-color: #b06a2a; }
+    h3 { color: #1a5c5c; }
+    th { background: #eee; color: #333; }
+    td { border-color: #ddd; }
+    .stat-box { background: #f5f5f5; border: 1px solid #ddd; }
+    .stat-box .num { color: #1a5c5c; }
+    .flag { background: #fff0f0; border-color: #cc3333; }
+    .flag strong { color: #cc3333; }
+    .contact-name { color: #1a5c5c; }
+    .category-pill { background: #eee; color: #333; }
+    tr:hover { background: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">March 20, 2026 &bull; Runtime: ~8 minutes &bull; Untouched venues not in Smart Picks</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">4</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">6</div>
+    <div class="label">Verified Emails</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">3</div>
+    <div class="label">Apollo Credits Used</div>
+  </div>
+</div>
+
+<h2>Flagged for Review</h2>
+
+<div class="flag info">
+  <strong>Apollo Mismatch:</strong> <a href="https://www.cafenormandie.com" target="_blank" style="color:#6ecfcf">Cafe Normandie</a> (Annapolis, MD) &rarr; Apollo matched "Cafe Normandie" but returned domain cnnaples.com (Naples, FL location). 0 people found &mdash; wrong location.
+</div>
+<div class="flag info">
+  <strong>No Apollo Match:</strong> <a href="https://www.ameliedc.com" target="_blank" style="color:#6ecfcf">Amelie DC</a> &mdash; company not found in Apollo database at all.
+</div>
+<div class="flag info">
+  <strong>LinkedIn Skipped:</strong> All 4 venues have linkedin_pending=true. Quota resets in April.
+</div>
+
+<h2>Pipeline Results (4 Untouched Venues)</h2>
+
+<h3>1. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-125" target="_blank" style="color:#6ecfcf;text-decoration:none">Sotto Sopra</a> <span class="category-pill">Restaurant</span> &bull; Baltimore, MD</h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="not-found">&#10007; Contact Form</span>
+</p>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="contact-name">(no name)</td>
+      <td></td>
+      <td><a href="mailto:sottosoprainc@gmail.com">sottosoprainc@gmail.com</a></td>
+      <td class="valid">&#10003; valid</td>
+    </tr>
+  </tbody>
+</table>
+<p class="not-found">Apollo found 14 people but none had emails on file. Generic Gmail only.</p>
+
+<h3>2. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-WINE-129" target="_blank" style="color:#6ecfcf;text-decoration:none">Amelie DC</a> <span class="category-pill">Wine Bar</span> &bull; Washington, DC</h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="not-found">&#10007; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="found">&#10003; Contact Form</span>
+</p>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="contact-name">(no name)</td>
+      <td></td>
+      <td><a href="mailto:dc@ameliewinebar.com">dc@ameliewinebar.com</a></td>
+      <td class="valid">&#10003; valid</td>
+    </tr>
+  </tbody>
+</table>
+<p class="not-found">Email found on events-packages subpage. Company not in Apollo.</p>
+
+<h3>3. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-127" target="_blank" style="color:#6ecfcf;text-decoration:none">Cafe Normandie</a> <span class="category-pill">Restaurant</span> &bull; Annapolis, MD</h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="found">&#10003; Contact Form</span>
+</p>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="contact-name">(no name)</td>
+      <td></td>
+      <td><a href="mailto:cafenormandie@gmail.com">cafenormandie@gmail.com</a></td>
+      <td class="valid">&#10003; valid</td>
+    </tr>
+  </tbody>
+</table>
+<p class="not-found">Apollo matched wrong location (Naples, FL). Generic Gmail only.</p>
+
+<h3>4. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-128" target="_blank" style="color:#6ecfcf;text-decoration:none">Iron Bridge Wine Company</a> <span class="category-pill">Wine Bar</span> &bull; Columbia, MD</h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span> &bull;
+  <span class="found">&#10003; Contact Form</span>
+</p>
+<table>
+  <thead>
+    <tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="contact-name">(no name)</td>
+      <td></td>
+      <td><a href="mailto:rob@ironbridgewines.com">rob@ironbridgewines.com</a></td>
+      <td class="valid">&#10003; valid</td>
+    </tr>
+    <tr>
+      <td class="contact-name">Jeanine Pleszkoch</td>
+      <td>Director of Operations</td>
+      <td><a href="mailto:jeanine@ironbridgewines.com">jeanine@ironbridgewines.com</a></td>
+      <td class="valid">&#10003; valid</td>
+    </tr>
+    <tr>
+      <td class="contact-name">Steve Wecker</td>
+      <td>Business Owner</td>
+      <td><a href="mailto:steve@ironbridgewines.com">steve@ironbridgewines.com</a></td>
+      <td class="valid">&#10003; valid</td>
+    </tr>
+  </tbody>
+</table>
+<p class="found">Best result &mdash; 3 valid emails including the owner and director of operations. sales@ bounced (do_not_mail).</p>
+
+<h2>Summary</h2>
+<table>
+  <thead>
+    <tr><th>Venue</th><th>Type</th><th>Location</th><th>Valid Emails</th><th>Named Contacts</th><th>Apollo Credits</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Sotto Sopra</td><td>Restaurant</td><td>Baltimore, MD</td><td>1</td><td>0</td><td>0</td></tr>
+    <tr><td>Amelie DC</td><td>Wine Bar</td><td>Washington, DC</td><td>1</td><td>0</td><td>0</td></tr>
+    <tr><td>Cafe Normandie</td><td>Restaurant</td><td>Annapolis, MD</td><td>1</td><td>0</td><td>0</td></tr>
+    <tr><td>Iron Bridge Wine Company</td><td>Wine Bar</td><td>Columbia, MD</td><td>3</td><td>2</td><td>3</td></tr>
+    <tr style="font-weight:bold;border-top:2px solid #6ecfcf">
+      <td colspan="3">Totals</td><td>6</td><td>2</td><td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

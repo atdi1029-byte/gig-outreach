@@ -83,6 +83,27 @@ name_known() {
     echo "$KNOWN_NAMES" | tr '|||' '\n' | grep -qi "^${name_lower}$" 2>/dev/null
 }
 
+ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_exhausted"
+rm -f "$ZB_EXHAUSTED_FLAG"
+
+check_zb_credits() {
+    if [ -z "$ZEROBOUNCE_KEY" ]; then return 0; fi
+    if [ -f "$ZB_EXHAUSTED_FLAG" ]; then return 1; fi
+    local credits
+    credits=$(curl -s --max-time 10 "https://api.zerobounce.net/v2/getcredits?api_key=$ZEROBOUNCE_KEY" | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('Credits',-1))" 2>/dev/null)
+    if [ "$credits" = "-1" ] || [ -z "$credits" ]; then
+        log "  [WARN] Could not check ZeroBounce credits"
+        return 0
+    fi
+    log "  [ZB] Credits remaining: $credits"
+    if [ "$credits" -lt 5 ] 2>/dev/null; then
+        log "  [STOP] ZeroBounce credits exhausted ($credits remaining). Stopping pipeline."
+        echo "exhausted" > "$ZB_EXHAUSTED_FLAG"
+        return 1
+    fi
+    return 0
+}
+
 verify_and_push() {
     local email="$1" venue_id="$2" name="$3" title="$4" source="$5"
     if [ -z "$email" ]; then return; fi
@@ -92,8 +113,14 @@ verify_and_push() {
         return
     fi
 
+    if [ -f "$ZB_EXHAUSTED_FLAG" ]; then
+        log "  [SKIP] $email — ZeroBounce credits exhausted"
+        return
+    fi
+
     local zb_status
-    zb_status=$(curl -s "https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_KEY&email=$email" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('status','unknown'))" 2>/dev/null)
+    zb_status=$(curl -s --max-time 15 "https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_KEY&email=$email" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('status','unknown'))" 2>/dev/null)
+    if [ -z "$zb_status" ]; then zb_status="unknown"; fi
     log "  $email → $zb_status"
 
     if [ "$zb_status" = "valid" ] || [ "$zb_status" = "invalid" ] || [ "$zb_status" = "catch-all" ] || [ "$zb_status" = "unknown" ]; then
@@ -1805,6 +1832,12 @@ run_venue() {
     # Track how many new contacts we find (file-based to survive subshells)
     rm -f /tmp/pipeline_contacts_count
 
+    # Check ZeroBounce credits before spending time on this venue
+    if ! check_zb_credits; then
+        log "  [ABORT] Skipping $venue — ZeroBounce credits too low"
+        return
+    fi
+
     # Load existing contacts once
     load_existing "$venue_id"
     log "  Known emails: $(echo "$KNOWN_EMAILS" | tr '|||' '\n' | grep -c .)"
@@ -1852,6 +1885,67 @@ if [ "$1" = "--smart-picks" ]; then
     RUN_START_LINE=$(wc -l < "$LOG_FILE")
     RUN_START_LINE=$((RUN_START_LINE + 1))
 
+    # --- Phase 1: Process UNTOUCHED venues first ---
+    log "UNTOUCHED PHASE: Fetching all venues..."
+    UT_FILE="/tmp/pipeline_untouched.json"
+    curl -sL "${APPS_SCRIPT_URL}?action=dashboard" -o "$UT_FILE"
+    UT_COUNT=$(python3 -c "
+import json
+with open('$UT_FILE') as f: data = json.load(f)
+untouched = [v for v in data.get('venues', [])
+             if (v.get('venue', v)).get('status','') == 'untouched']
+print(len(untouched))
+" 2>/dev/null)
+    MAX_UT=${MAX_UT:-0}  # 0 = unlimited; set MAX_UT=2 to limit
+    if [ "$UT_COUNT" -gt 0 ]; then
+        if [ "$MAX_UT" -gt 0 ]; then
+            log "UNTOUCHED: $UT_COUNT found, LIMITED to $MAX_UT"
+        else
+            log "UNTOUCHED: $UT_COUNT venues to process"
+        fi
+        python3 -c "
+import json, os
+with open('$UT_FILE') as f: data = json.load(f)
+untouched = []
+for v in data.get('venues', []):
+    venue = v.get('venue', v)
+    if venue.get('status','') == 'untouched':
+        untouched.append(venue)
+# Sort: actionable venues first (have instagram, website, contact_form, state/city)
+def action_score(v):
+    score = 0
+    if v.get('instagram','') and len(v.get('instagram','')) > 5: score += 3
+    if v.get('website','') and len(v.get('website','')) > 5: score += 2
+    if v.get('contact_form','') and len(v.get('contact_form','')) > 5: score += 2
+    if v.get('state','').strip(): score += 1
+    if v.get('city','').strip(): score += 1
+    return score
+untouched.sort(key=action_score, reverse=True)
+max_ut = int(os.environ.get('MAX_UT', '0'))
+if max_ut > 0: untouched = untouched[:max_ut]
+for i, venue in enumerate(untouched):
+    vid = venue.get('venue_id', '')
+    name = venue.get('name', '')
+    web = venue.get('website', '')
+    city = venue.get('city', '')
+    print(f'{i}|{name}|{vid}|{web}|{city}')
+" 2>/dev/null | while IFS='|' read -r IDX NAME VID WEB CITY; do
+            if [ -f "$ZB_EXHAUSTED_FLAG" ]; then
+                log "[STOP] ZeroBounce exhausted — skipping remaining untouched venues"
+                break
+            fi
+            log ""
+            log "########## UNTOUCHED #$((IDX+1)): $NAME ($VID) ##########"
+            run_venue "$NAME" "$VID" "$WEB" "$CITY"
+            sleep 30
+        done
+        log "=== UNTOUCHED PHASE COMPLETE ==="
+        log ""
+    else
+        log "UNTOUCHED: none found — skipping"
+    fi
+
+    # --- Phase 2: Smart Picks ---
     # Pull Smart Picks from API in rank order (highest score first)
     log "SMART PICKS MODE: Fetching ranked venues..."
     SP_FILE="/tmp/pipeline_smart_picks.json"
@@ -1880,6 +1974,10 @@ if max_sp > 0: filtered = filtered[:max_sp]
 for i, r in enumerate(filtered):
     print(f\"{i}|{r['name']}|{r['venue_id']}|{r.get('recommendation_score',0)}\")
 " 2>/dev/null | while IFS='|' read -r IDX NAME VID SCORE; do
+        if [ -f "$ZB_EXHAUSTED_FLAG" ]; then
+            log "[STOP] ZeroBounce exhausted — skipping remaining smart picks"
+            break
+        fi
         log ""
         log "########## SMART PICK #$((IDX+1)) (score $SCORE): $NAME ($VID) ##########"
         # Fetch website + city from venue detail

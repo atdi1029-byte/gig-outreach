@@ -84,7 +84,21 @@ name_known() {
 }
 
 ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_exhausted"
-rm -f "$ZB_EXHAUSTED_FLAG"
+APOLLO_EXHAUSTED_FLAG="/tmp/pipeline_apollo_exhausted"
+MAX_APOLLO=${MAX_APOLLO:-300}  # Max Apollo credits per run (default 300, set MAX_APOLLO=N to override)
+rm -f "$ZB_EXHAUSTED_FLAG" "$APOLLO_EXHAUSTED_FLAG"
+
+check_apollo_credits() {
+    if [ -z "$APOLLO_API_KEY" ]; then return 0; fi
+    if [ -f "$APOLLO_EXHAUSTED_FLAG" ]; then return 1; fi
+    if [ "$APOLLO_CREDITS_USED" -ge "$MAX_APOLLO" ] 2>/dev/null; then
+        log "  [STOP] Apollo credit cap reached ($APOLLO_CREDITS_USED / $MAX_APOLLO used this run). Skipping Apollo."
+        echo "exhausted" > "$APOLLO_EXHAUSTED_FLAG"
+        return 1
+    fi
+    log "  [APOLLO] Credits used this run: $APOLLO_CREDITS_USED / $MAX_APOLLO"
+    return 0
+}
 
 check_zb_credits() {
     if [ -z "$ZEROBOUNCE_KEY" ]; then return 0; fi
@@ -1846,7 +1860,12 @@ run_venue() {
     step1_website "$venue" "$venue_id" "$website" "$city"
     step1b_ig_search "$venue" "$venue_id"
     step2_social "$venue" "$venue_id"
-    step3_apollo_api "$venue" "$venue_id"
+    # Check Apollo credits before the expensive API step
+    if ! check_apollo_credits; then
+        log "  [SKIP] Apollo step — credits too low"
+    else
+        step3_apollo_api "$venue" "$venue_id"
+    fi
     # LinkedIn quota resets in April 2026 — skip until then
     if [ "$(date +%Y%m)" -ge 202604 ] 2>/dev/null; then
         step4_linkedin "$venue" "$venue_id"
@@ -1930,8 +1949,8 @@ for i, venue in enumerate(untouched):
     city = venue.get('city', '')
     print(f'{i}|{name}|{vid}|{web}|{city}')
 " 2>/dev/null | while IFS='|' read -r IDX NAME VID WEB CITY; do
-            if [ -f "$ZB_EXHAUSTED_FLAG" ]; then
-                log "[STOP] ZeroBounce exhausted — skipping remaining untouched venues"
+            if [ -f "$ZB_EXHAUSTED_FLAG" ] && [ -f "$APOLLO_EXHAUSTED_FLAG" ]; then
+                log "[STOP] Both ZeroBounce and Apollo exhausted — skipping remaining untouched venues"
                 break
             fi
             log ""
@@ -1974,8 +1993,8 @@ if max_sp > 0: filtered = filtered[:max_sp]
 for i, r in enumerate(filtered):
     print(f\"{i}|{r['name']}|{r['venue_id']}|{r.get('recommendation_score',0)}\")
 " 2>/dev/null | while IFS='|' read -r IDX NAME VID SCORE; do
-        if [ -f "$ZB_EXHAUSTED_FLAG" ]; then
-            log "[STOP] ZeroBounce exhausted — skipping remaining smart picks"
+        if [ -f "$ZB_EXHAUSTED_FLAG" ] && [ -f "$APOLLO_EXHAUSTED_FLAG" ]; then
+            log "[STOP] Both ZeroBounce and Apollo exhausted — skipping remaining smart picks"
             break
         fi
         log ""

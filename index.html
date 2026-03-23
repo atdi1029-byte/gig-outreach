@@ -2118,6 +2118,12 @@ function openVenueDetail(venueId) {
         }
     }
 
+    // LinkedIn pending (show above Instagram so it's visible)
+    if (venue.linkedin_pending) {
+        html += `<div class="detail-section-label" style="background:#9b59b6">LinkedIn</div>`;
+        html += `<div class="detail-action-row"><span class="detail-social-label" style="color:#d4a5ff">LinkedIn pending — needs scrape</span></div>`;
+    }
+
     // Instagram (only show if we have it AND not yet sent)
     if (venue.instagram) {
         const igDone = contacts.some(c => c.ig_dm_sent);

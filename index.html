@@ -2036,7 +2036,7 @@ function openVenueDetail(venueId) {
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
     currentDetailVenue = venue;
     currentDetailCat = cat;
-    const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12' };
+    const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#a64d79', mall:'#cc0000' };
     const catColor = CAT_COLORS[cat] || 'var(--text-bright)';
 
     document.getElementById('detailTitleText').textContent = venue.name;
@@ -3511,7 +3511,7 @@ function openAllSmartPicks() {
             }
         }
         const scoreColor = score >= 70 ? '#f0a030' : score >= 40 ? '#e0e0e0' : '#888';
-        const catColors = {winery:'#9b59b6',museum:'#3498db',hotel:'#e67e22',country_club:'#27ae60',event:'#e74c3c',restaurant:'#f39c12'};
+        const catColors = {winery:'#9b59b6',museum:'#3498db',hotel:'#e67e22',country_club:'#27ae60',event:'#e74c3c',restaurant:'#f39c12',wine_bar:'#8e44ad',resort:'#16a085',senior_living:'#2980b9',event_planner:'#c0392b',golf_club:'#2ecc71',yacht_club:'#1abc9c',art_gallery:'#e056a0',luxury_apts:'#8e7cc3',grocery_market:'#6aa84f',wedding_venue:'#d4a5a5',corporate:'#4a86c8',spa:'#76c7c0',private_club:'#b45f06',church:'#674ea7',luxury_retail:'#a64d79',mall:'#cc0000'};
         const catColor = catColors[cat] || '#666';
         return `<tr>
             <td style="color:${scoreColor};font-weight:700;font-size:1.1rem;text-align:center">${score}</td>

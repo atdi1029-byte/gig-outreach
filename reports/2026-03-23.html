@@ -95,14 +95,20 @@
   }
   .flag.info strong { color: #e8944c; }
   .flag.fix {
-    background: #1a2a1a;
+    background: #1a2a2a;
     border-left-color: #4caf50;
   }
   .flag.fix strong { color: #4caf50; }
   .contact-name { color: #6ecfcf; }
   .valid { color: #4caf50; }
   .unknown { color: #ff9800; }
+  .catch-all { color: #90caf9; }
   .do-not-mail { color: #e85050; }
+  .score {
+    font-size: 0.85rem;
+    color: #999;
+    margin-left: 8px;
+  }
   td a { color: #6ecfcf; text-decoration: none; }
   td a:hover { text-decoration: underline; }
   .category-pill {
@@ -113,17 +119,61 @@
     border-radius: 12px;
     font-size: 0.8rem;
   }
+  .found { color: #4caf50; font-size: 0.85rem; }
+  .not-found { color: #666; font-size: 0.85rem; }
   p { margin: 8px 0; font-size: 0.9rem; }
   @media (max-width: 600px) {
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
     body { padding: 20px; }
+  }
+  @media print {
+    body { background: #fff; color: #222; padding: 20px; }
+    h1 { color: #1a5c5c; border-color: #1a5c5c; }
+    h2 { color: #b06a2a; border-color: #b06a2a; }
+    h3 { color: #1a5c5c; }
+    th { background: #eee; color: #333; }
+    td { border-color: #ddd; }
+    .stat-box { background: #f5f5f5; border: 1px solid #ddd; }
+    .stat-box .num { color: #1a5c5c; }
+    .flag { background: #fff0f0; border-color: #cc3333; }
+    .flag strong { color: #cc3333; }
+    .contact-name { color: #1a5c5c; }
+    .category-pill { background: #eee; color: #333; }
+    tr:hover { background: none; }
   }
 </style>
 </head>
 <body>
 
 <h1>Outreach Run Report</h1>
-<div class="date">March 23, 2026 &bull; Runtime: ~10 hours (manually stopped) &bull; Discovery + Full Pipeline</div>
+<div class="date">March 23, 2026 &bull; Runtime: ~10 hours (manually stopped) &bull; Discovery + Full Pipeline &bull; ZeroBounce re-verified same day</div>
+
+<h2>Flagged for Review</h2>
+
+<div class="flag">
+  <strong>Apollo Mismatch:</strong> <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-148" target="_blank" style="color:#6ecfcf">Ritz-Carlton Georgetown</a> &rarr; Apollo matched global Ritz-Carlton (ritzcarlton.com), NOT the Georgetown property. 50 contacts returned but most are international GMs, chefs in Saudi Arabia, Australia, etc. Only a few might be DC-relevant. 50 Apollo credits burned.
+</div>
+<div class="flag">
+  <strong>Apollo Mismatch:</strong> <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-PRIV-107" target="_blank" style="color:#6ecfcf">Army Navy Club</a> (DC private club) &rarr; Apollo matched Army Navy Country Club (ancc.org) in Arlington, VA. Different venue. 43 Apollo credits burned. Contacts may still be useful if you want to reach the country club.
+</div>
+<div class="flag">
+  <strong>Apollo Mismatch:</strong> <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-EVEN-144" target="_blank" style="color:#6ecfcf">Camp Wharf</a> &rarr; Apollo matched The Wharf parent company (wharfdc.com). 20 credits, some relevant contacts (events, operations) but also random Wharf properties in NJ, Australia.
+</div>
+<div class="flag info">
+  <strong>Apollo Mismatch (minor):</strong> Iron Gate &rarr; Swedish company. La Chaumi&egrave;re &rarr; Swiss restaurant. Hamilton Hotel &rarr; Bermuda hotel. Cedar Knoll &rarr; wrong match. Chef Tony's &rarr; matched OpenTable. Bar &agrave; Vin &rarr; wrong match. All got 0 useful contacts.
+</div>
+<div class="flag">
+  <strong>Dead End:</strong> Le Cavalier at Hotel du Pont, Vandiver Inn, L'Avant-Garde, Royal Restaurant, King &amp; Rye, Bourbon &amp; Fig, La Fiamma, La Casa, Antietam Creek, Seasons 52 &mdash; no useful contacts found anywhere (Apollo, website, social). Only generic info@ or nothing.
+</div>
+<div class="flag warn">
+  <strong>Pipeline Overrun:</strong> Intended ~8 venues but <code>MAX_SP</code> doesn't limit the UNTOUCHED phase. All 139 untouched venues were processed instead. Fixed: use <code>MAX_UT=N</code> going forward.
+</div>
+<div class="flag warn">
+  <strong>ZeroBounce Ran Out Mid-Run:</strong> 290 emails initially got "unknown" status. Re-verified same day after refilling credits. Results: 150+ now valid, ~50 catch-all, ~30 invalid, ~50 do_not_mail, only 3 still unknown.
+</div>
+<div class="flag fix">
+  <strong>Safeguards Added:</strong> ZeroBounce credit check (stops pipeline if &lt; 5 credits, 15s curl timeout). Apollo credit cap (<code>MAX_APOLLO=300</code> per run). Both live in pipeline.sh.
+</div>
 
 <div class="stat-grid">
   <div class="stat-box">
@@ -139,28 +189,12 @@
     <div class="label">Apollo Credits Used</div>
   </div>
   <div class="stat-box">
-    <div class="num">40</div>
-    <div class="label">Valid Emails</div>
+    <div class="num">187</div>
+    <div class="label">Verified Emails</div>
   </div>
 </div>
 
-<h2>Issues &amp; Fixes</h2>
-
-<div class="flag">
-  <strong>ZeroBounce Ran Out:</strong> Credits exhausted mid-run. 290 emails got "unknown" status instead of proper verification. Later venues stalled 90-164 min each as the API hung instead of failing.
-</div>
-<div class="flag warn">
-  <strong>Overran Intended Limit:</strong> Intended to process ~8 venues, but <code>MAX_SP</code> doesn't limit the UNTOUCHED phase. All 139 untouched venues were processed. Correct command: <code>MAX_UT=8 MAX_SP=8</code>.
-</div>
-<div class="flag fix">
-  <strong>Fixed:</strong> Added ZeroBounce credit check before each venue &mdash; pipeline now stops cleanly when credits &lt; 5. Added 15s curl timeout so API can't hang. Added Apollo credit cap (<code>MAX_APOLLO=300</code>) per run.
-</div>
-<div class="flag fix">
-  <strong>Fixed:</strong> Created <code>reverify.sh</code> to re-verify all 290 "unknown" emails once ZeroBounce credits are refilled.
-</div>
-
-<h2>Discovery Results (20 new venues)</h2>
-<p>From 7 seed gigs, discovered 20 new venues via Google Maps "People also search for":</p>
+<h2>Discovery (7 Seeds &rarr; 20 New Venues)</h2>
 <table>
   <thead>
     <tr><th>Venue</th><th>Type</th><th>Rating</th><th>Reviews</th></tr>
@@ -176,100 +210,108 @@
     <tr><td>Ristorante Bonaroti</td><td><span class="category-pill">restaurant</span></td><td>4.6</td><td>622</td></tr>
     <tr><td>Roberto's Ristorante Italiano</td><td><span class="category-pill">restaurant</span></td><td>4.5</td><td>238</td></tr>
     <tr><td>North Italia</td><td><span class="category-pill">restaurant</span></td><td>4.3</td><td>1224</td></tr>
-    <tr><td>Eagletree Farm Winery &amp; Restaurant</td><td><span class="category-pill">restaurant</span></td><td>4.6</td><td>210</td></tr>
-    <tr><td>Casanel Vineyards &amp; Winery</td><td><span class="category-pill">winery</span></td><td>4.8</td><td>223</td></tr>
+    <tr><td>Eagletree Farm Winery</td><td><span class="category-pill">restaurant</span></td><td>4.6</td><td>210</td></tr>
+    <tr><td>Casanel Vineyards</td><td><span class="category-pill">winery</span></td><td>4.8</td><td>223</td></tr>
     <tr><td>The Tasting Room</td><td><span class="category-pill">restaurant</span></td><td>4.6</td><td>1159</td></tr>
-    <tr><td>the Wine Kitchen on the Creek</td><td><span class="category-pill">restaurant</span></td><td>4.6</td><td>1433</td></tr>
-    <tr><td>Spin the Bottle Wine Company</td><td><span class="category-pill">restaurant</span></td><td>4.8</td><td>60</td></tr>
+    <tr><td>Wine Kitchen on the Creek</td><td><span class="category-pill">restaurant</span></td><td>4.6</td><td>1433</td></tr>
+    <tr><td>Spin the Bottle Wine Co</td><td><span class="category-pill">restaurant</span></td><td>4.8</td><td>60</td></tr>
     <tr><td>New Market Plains Vineyards</td><td><span class="category-pill">winery</span></td><td>4.7</td><td>47</td></tr>
     <tr><td>Victory Assisted Living</td><td><span class="category-pill">senior_living</span></td><td>5.0</td><td>1</td></tr>
     <tr><td>Brightwood</td><td><span class="category-pill">senior_living</span></td><td>4.8</td><td>52</td></tr>
     <tr><td>Charter Senior Living</td><td><span class="category-pill">senior_living</span></td><td>&mdash;</td><td>&mdash;</td></tr>
-    <tr><td>Ma Maison Senior Assisted Living III</td><td><span class="category-pill">senior_living</span></td><td>5.0</td><td>1</td></tr>
+    <tr><td>Ma Maison Senior Living</td><td><span class="category-pill">senior_living</span></td><td>5.0</td><td>1</td></tr>
   </tbody>
 </table>
 
-<h2>Strong Results (venues with named contacts + valid emails)</h2>
+<h2>Big Wins (best results from this run)</h2>
 
 <h3>Antrim 1844 <span class="category-pill">hotel</span> &bull; MD &bull; 16 Apollo contacts</h3>
-<table>
-  <thead><tr><th>Contact</th><th>Title</th><th>Email Status</th></tr></thead>
-  <tbody>
-    <tr><td class="contact-name">Katie Coon</td><td>Special Events Manager</td><td class="valid">valid</td></tr>
-    <tr><td class="contact-name">Casey Bassler</td><td>Corporate Sales Manager</td><td class="valid">valid</td></tr>
-    <tr><td class="contact-name">Sarah Marwijk</td><td>Marketing Director</td><td class="valid">valid</td></tr>
-    <tr><td class="contact-name">Jill Dyson</td><td>Special Events Manager</td><td class="valid">valid</td></tr>
-    <tr><td class="contact-name">Kaitlynn Campbell</td><td>Catering and Sales Manager</td><td class="valid">valid</td></tr>
-    <tr><td class="contact-name">David Schilb</td><td>Executive Sous Chef</td><td class="valid">valid</td></tr>
-    <tr><td colspan="3" style="color:#666">+ 10 more (catch-all/unknown emails)</td></tr>
-  </tbody>
-</table>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span>
+</p>
+<p>6 named contacts with valid emails: Special Events Manager, Corporate Sales Manager, Marketing Director, Catering and Sales Manager. Best hotel result of the run.</p>
 
 <h3>Strathmore Mansion <span class="category-pill">art center</span> &bull; MD &bull; 45 Apollo contacts</h3>
-<table>
-  <thead><tr><th>Contact</th><th>Title</th><th>Email Status</th></tr></thead>
-  <tbody>
-    <tr><td class="contact-name">Monica Hazangeles</td><td>President and CEO</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Kady Chambers</td><td>Sr. Director, Venue Rentals &amp; Operations</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Thea Torek</td><td>Private Events Manager</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Sarah Farmer</td><td>Sr. Director of Programming</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Alaina Goss</td><td>VP Communications &amp; Marketing</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Holly Filipiak</td><td>Director of Marketing</td><td class="unknown">unknown*</td></tr>
-    <tr><td colspan="3" style="color:#666">+ 39 more (all unknown* &mdash; needs re-verification)</td></tr>
-  </tbody>
-</table>
-
-<h3>Army Navy Country Club <span class="category-pill">country club</span> &bull; VA &bull; 43 Apollo contacts</h3>
-<table>
-  <thead><tr><th>Contact</th><th>Title</th><th>Email Status</th></tr></thead>
-  <tbody>
-    <tr><td class="contact-name">Patrick King</td><td>General Manager/COO</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Adam Lewis</td><td>Director of Food and Beverage</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Kelli Rieck</td><td>Director of Catering</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Ashley Hermsmeyer</td><td>Club Events Manager</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Diana Wang</td><td>AGM, Director of Marketing/Membership</td><td class="unknown">unknown*</td></tr>
-    <tr><td colspan="3" style="color:#666">+ 38 more (all unknown* &mdash; needs re-verification)</td></tr>
-  </tbody>
-</table>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span>
+</p>
+<p>Massive haul &mdash; Kady Chambers (Sr. Director Venue Rentals), Thea Torek (Private Events Manager), Sarah Farmer (Sr. Director Programming), Holly Filipiak (Director of Marketing), Annie Direnzo (Event Coordinator). Most emails verified valid after re-run. 45 Apollo credits.</p>
 
 <h3>Mount Vernon Country Club <span class="category-pill">country club</span> &bull; VA &bull; 21 Apollo contacts</h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span>
+</p>
+<p>Christian Thon (GM/COO), Charles Loomis (Executive Chef), Michaela Niles (Director of Catering), Bryan Murphy (Clubhouse Manager), Bonnie Jones (Membership Director). Most emails valid.</p>
+
+<h3>Sulgrave Club <span class="category-pill">private club</span> &bull; DC &bull; 9 Apollo contacts</h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="not-found">&#10007; Facebook</span> &bull;
+  <span class="not-found">&#10007; Instagram</span>
+</p>
+<p>Juan Andrade (Executive Sous Chef), Natasha Walker (Operations Manager), Maurice Barnes (Dining Room Manager), Monica Sheehy (Asst. Controller). 5 valid, 3 invalid.</p>
+
+<h3>Rehoboth Art League <span class="category-pill">art gallery</span> &bull; DE &bull; 8 Apollo + 12 web contacts</h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span>
+</p>
+<p>Sara Ganter (Executive Director), Paula Holloway (Education Programs Director), Rose Murray (Director Community Engagement). 12 valid emails from website + Apollo combined.</p>
+
+<h3>Maryland Hall <span class="category-pill">art center</span> &bull; MD &bull; 11 Apollo + 6 web contacts</h3>
+<p>
+  <span class="found">&#10003; Website</span> &bull;
+  <span class="found">&#10003; Facebook</span> &bull;
+  <span class="found">&#10003; Instagram</span>
+</p>
+<p>Austin Sposato (Director of Programming), Kelsea Guckin (Director of Development), Christopher Miller (Director of Finance), Adonia A (Director of Marketing). Many valid.</p>
+
+<h3>Other Solid Results</h3>
 <table>
-  <thead><tr><th>Contact</th><th>Title</th><th>Email Status</th></tr></thead>
+  <thead><tr><th>Venue</th><th>Type</th><th>Contacts</th><th>Best Contact</th></tr></thead>
   <tbody>
-    <tr><td class="contact-name">Christian Thon</td><td>General Manager/COO</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Charles Loomis</td><td>Executive Chef</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Michaela Niles</td><td>Director of Catering</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Bryan Murphy</td><td>Clubhouse Manager</td><td class="unknown">unknown*</td></tr>
-    <tr><td class="contact-name">Bonnie Jones</td><td>Membership &amp; Communications Director</td><td class="unknown">unknown*</td></tr>
-    <tr><td colspan="3" style="color:#666">+ 16 more (all unknown*)</td></tr>
+    <tr><td>Sugarloaf Mountain Vineyard</td><td>winery</td><td>12</td><td>Sophia Marlas &mdash; Marketing Director</td></tr>
+    <tr><td>Lone Oak Farm Brewing</td><td>winery</td><td>11</td><td>Ricky Hafer &mdash; Director of Off-Site Events</td></tr>
+    <tr><td>Black Ankle Vineyards</td><td>winery</td><td>9</td><td>Michelle Makowiecki &mdash; Music/Vendor Booking Manager</td></tr>
+    <tr><td>Torpedo Factory Art Center</td><td>art gallery</td><td>2</td><td>Deri Collingwood &mdash; Sr. Private Event Rental Manager</td></tr>
+    <tr><td>Tabard Inn</td><td>hotel</td><td>1</td><td>Davis Green &mdash; Restaurant GM</td></tr>
+    <tr><td>The Athenaeum NVFAA</td><td>art gallery</td><td>10</td><td>Leanne Fortney &mdash; Social Media Marketing Manager</td></tr>
+    <tr><td>600 T</td><td>restaurant</td><td>1</td><td>torrence@600tdc.com (valid)</td></tr>
   </tbody>
 </table>
 
-<h3>Other Strong Venues</h3>
+<h2>Dead Ends (0 useful contacts &mdash; need manual lookup or skip)</h2>
 <table>
-  <thead><tr><th>Venue</th><th>Apollo</th><th>Web</th><th>Best Contact</th></tr></thead>
+  <thead><tr><th>Venue</th><th>Problem</th></tr></thead>
   <tbody>
-    <tr><td>Rehoboth Art League</td><td>8</td><td>12</td><td>Sara Ganter &mdash; Executive Director</td></tr>
-    <tr><td>Camp Wharf</td><td>20</td><td>0</td><td>Andrew Son &mdash; CEO</td></tr>
-    <tr><td>Maryland Hall</td><td>11</td><td>6</td><td>Austin Sposato &mdash; Director of Programming</td></tr>
-    <tr><td>Sugarloaf Mountain Vineyard</td><td>10</td><td>2</td><td>Sophia Marlas &mdash; Marketing Director</td></tr>
-    <tr><td>Lone Oak Farm Brewing</td><td>8</td><td>3</td><td>Ricky Hafer &mdash; Director of Off-Site Events</td></tr>
-    <tr><td>Sulgrave Club</td><td>9</td><td>0</td><td>Natasha Walker &mdash; Operations Manager</td></tr>
+    <tr><td>Le Cavalier at Hotel du Pont</td><td>Not in Apollo, no emails on web or social</td></tr>
+    <tr><td>Vandiver Inn</td><td>Only frontdesk@ (do_not_mail), Apollo returned 0 emails</td></tr>
+    <tr><td>L'Avant-Garde</td><td>Only info@ (do_not_mail), Apollo returned 0 people</td></tr>
+    <tr><td>Cedar Knoll</td><td>Only generic@ (do_not_mail), Apollo matched wrong company</td></tr>
+    <tr><td>Royal Restaurant</td><td>Nothing found anywhere, Apollo matched Dubai restaurant</td></tr>
+    <tr><td>King &amp; Rye</td><td>Only info@ (do_not_mail), Apollo returned 0 people</td></tr>
+    <tr><td>Bourbon &amp; Fig</td><td>Only info@ (do_not_mail), Apollo returned 0 emails</td></tr>
+    <tr><td>La Fiamma Italian Kitchen</td><td>Only contact@ (do_not_mail), Apollo returned 0 emails</td></tr>
+    <tr><td>La Casa Restaurant</td><td>Nothing found, Apollo matched wrong company</td></tr>
+    <tr><td>Antietam Creek Vineyards</td><td>Nothing found, not in Apollo</td></tr>
+    <tr><td>Seasons 52</td><td>Chain restaurant, Apollo returned 0 people</td></tr>
+    <tr><td>Iron Gate</td><td>Apollo matched Swedish company, nothing local</td></tr>
+    <tr><td>La Chaumi&egrave;re</td><td>Apollo matched Swiss restaurant, only info@ and accounts@ (both do_not_mail)</td></tr>
+    <tr><td>Bar &agrave; Vin</td><td>Nothing found, Apollo matched wrong company</td></tr>
+    <tr><td>Alta Strada</td><td>Only info@ (invalid)</td></tr>
+    <tr><td>Alta Strada (Mosaic)</td><td>Only info@ (invalid)</td></tr>
+    <tr><td>Old Angler's Inn</td><td>Only info@ and events@ (both do_not_mail)</td></tr>
+    <tr><td>Amalfi Coast Italian</td><td>Only info@ (do_not_mail)</td></tr>
+    <tr><td>Hamilton Hotel</td><td>Only info@ (do_not_mail), Apollo matched Bermuda hotel</td></tr>
   </tbody>
 </table>
-
-<h2>Email Verification Summary</h2>
-<table>
-  <thead><tr><th>Status</th><th>Count</th><th>Meaning</th></tr></thead>
-  <tbody>
-    <tr><td class="valid">valid</td><td>40</td><td>Confirmed deliverable</td></tr>
-    <tr><td class="unknown">unknown</td><td>290</td><td>ZB credits ran out &mdash; needs re-verification</td></tr>
-    <tr><td>catch-all</td><td>9</td><td>Domain accepts all addresses</td></tr>
-    <tr><td class="do-not-mail">invalid</td><td>5</td><td>Confirmed undeliverable</td></tr>
-    <tr><td class="do-not-mail">do_not_mail</td><td>22</td><td>Generic/role addresses rejected</td></tr>
-  </tbody>
-</table>
-<p><em>* "unknown" emails = ZeroBounce credits ran out before these could be verified. Run <code>./reverify.sh</code> when credits refill.</em></p>
 
 <h2>Apollo Credit Usage</h2>
 <table>
@@ -282,7 +324,7 @@
     <tr><td>Elk Run Winery</td><td>1</td><td>27</td></tr>
     <tr><td>Sugarloaf Mountain</td><td>10</td><td>37</td></tr>
     <tr><td>Black Ankle Vineyards</td><td>5</td><td>42</td></tr>
-    <tr><td>Mount Vernon Country Club</td><td>21</td><td>63</td></tr>
+    <tr><td>Mount Vernon CC</td><td>21</td><td>63</td></tr>
     <tr><td>Army Navy Club</td><td>43</td><td>106</td></tr>
     <tr><td>Maryland Art Place</td><td>1</td><td>107</td></tr>
     <tr><td>Athenaeum NVFAA</td><td>2</td><td>109</td></tr>
@@ -292,25 +334,8 @@
     <tr><td>Camp Wharf</td><td>20</td><td>193</td></tr>
     <tr><td>Ritz-Carlton Georgetown</td><td>50</td><td>243</td></tr>
     <tr style="font-weight:bold;border-top:2px solid #6ecfcf">
-      <td>Total</td><td colspan="2">243 credits</td>
+      <td>Total</td><td colspan="2">243 credits (Top 3: Ritz-Carlton 50, Strathmore 45, Army Navy 43 = 57%)</td>
     </tr>
-  </tbody>
-</table>
-<p style="color:#999">Top 5 credit consumers: Ritz-Carlton (50), Strathmore (45), Army Navy (43), Mt Vernon CC (21), Camp Wharf (20) = 179 credits (74%)</p>
-
-<h2>Venues With Nothing (0 useful contacts)</h2>
-<table>
-  <thead><tr><th>Venue</th><th>Problem</th></tr></thead>
-  <tbody>
-    <tr><td>Le Cavalier at Hotel du Pont</td><td>Not in Apollo, no emails on web</td></tr>
-    <tr><td>Vandiver Inn</td><td>Only frontdesk@ (do_not_mail)</td></tr>
-    <tr><td>L'Avant-Garde</td><td>Only info@ (do_not_mail)</td></tr>
-    <tr><td>Cedar Knoll</td><td>Wrong Apollo match</td></tr>
-    <tr><td>Royal Restaurant</td><td>Nothing found, wrong Apollo match</td></tr>
-    <tr><td>Iron Gate</td><td>Apollo matched Swedish company</td></tr>
-    <tr><td>La Chaumiere</td><td>Apollo matched Swiss restaurant</td></tr>
-    <tr><td>Bar &agrave; Vin</td><td>Nothing found, wrong Apollo match</td></tr>
-    <tr><td>Seasons 52</td><td>Chain restaurant, no local contacts</td></tr>
   </tbody>
 </table>
 

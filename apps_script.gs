@@ -46,6 +46,7 @@ function doGet(e) {
   if (action === 'load_monthly')     return loadMonthly_();
   if (action === 'delete_contact')   return deleteContact_(e.parameter);
   if (action === 'delete_venue')     return deleteVenue_(e.parameter);
+  if (action === 'cleanup_generic')  return cleanupGenericEmails_();
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -630,6 +631,47 @@ function deleteContact_(params) {
   }
 
   return jsonResponse_({ status: 'error', message: 'Contact not found: ' + contactId });
+}
+
+// ---------------------------------------------------------------
+// cleanupGenericEmails_ — Delete all contacts with generic/role-based emails
+// ---------------------------------------------------------------
+function cleanupGenericEmails_() {
+  var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@',
+    'info@','hello@','contact@','sales@','events@','reservations@','booking@',
+    'enquiries@','inquiries@','office@','general@','frontdesk@','reception@',
+    'dataremoval@','privacy@','careers@','jobs@','hr@','marketing@','press@',
+    'media@','eat@','dine@','wine@','music@','art@','mail@'];
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(CONTACTS);
+  var data = sheet.getDataRange().getValues();
+  var deleted = [];
+  var affectedVenues = {};
+
+  // Iterate backwards to avoid row shift issues
+  for (var i = data.length - 1; i >= 1; i--) {
+    var email = String(data[i][4] || '').toLowerCase().trim();
+    if (!email) continue;
+    var isGeneric = false;
+    for (var g = 0; g < generic.length; g++) {
+      if (email.indexOf(generic[g]) === 0) { isGeneric = true; break; }
+    }
+    if (isGeneric) {
+      var venueId = String(data[i][1]);
+      deleted.push({ contact_id: String(data[i][0]), email: email, venue_id: venueId });
+      affectedVenues[venueId] = true;
+      sheet.deleteRow(i + 1);
+    }
+  }
+
+  // Update status for affected venues
+  var venueIds = Object.keys(affectedVenues);
+  for (var v = 0; v < venueIds.length; v++) {
+    updateVenueStatus_(venueIds[v]);
+  }
+
+  return jsonResponse_({ status: 'ok', deleted_count: deleted.length, deleted: deleted, venues_updated: venueIds.length });
 }
 
 // ---------------------------------------------------------------

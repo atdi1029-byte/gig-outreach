@@ -184,7 +184,7 @@ step1_website() {
     cat > /tmp/pipeline_website_scrape.js << 'JSEOF'
 (function(){
 var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk','fontawesome.io'];
-var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@'];
+var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','info@','hello@','contact@','sales@','events@','reservations@','booking@','enquiries@','inquiries@','office@','general@','frontdesk@','reception@'];
 var contacts = {};
 
 function titleCase(s){
@@ -443,8 +443,24 @@ for c in d.get('contacts', []):
 " 2>/dev/null > /tmp/pipeline_all_contacts.txt
 
     # Crawl subpages (event/contact/private dining pages) — cap at 10
+    # If venue URL has a path (e.g. chezbillysud.com/le-bar-vin), also inject
+    # root domain common pages so we don't miss emails on the parent site
     local subpages
-    subpages=$(python3 -c "import json; print('\n'.join(json.load(open('/tmp/pipeline_scrape.json')).get('subpages',[])[:10]))" 2>/dev/null)
+    subpages=$(python3 -c "
+import json
+from urllib.parse import urlparse
+d = json.load(open('/tmp/pipeline_scrape.json'))
+subs = d.get('subpages', [])[:10]
+url = '$website'
+parsed = urlparse(url)
+if parsed.path and parsed.path.rstrip('/') != '':
+    root = parsed.scheme + '://' + parsed.netloc
+    for p in ['/contact', '/about', '/events', '/private-events', '/entertainment']:
+        candidate = root + p
+        if candidate not in subs:
+            subs.append(candidate)
+print('\n'.join(subs[:15]))
+" 2>/dev/null)
 
     if [ -n "$subpages" ]; then
         local page_count=0
@@ -567,6 +583,7 @@ step2_social() {
     cat > /tmp/social_scrape_emails.js << 'JSEOF'
 (function(){
 var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk'];
+var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','info@','hello@','contact@','sales@','events@','reservations@','booking@','enquiries@','inquiries@','office@','general@','frontdesk@','reception@','dataremoval@','privacy@','careers@','jobs@','hr@','marketing@','press@','media@'];
 var text = document.body.innerText || '';
 var matches = text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || [];
 var emails = [];
@@ -574,6 +591,7 @@ for(var i=0;i<matches.length;i++){
     var e = matches[i].toLowerCase();
     var isJunk = false;
     for(var j=0;j<junk.length;j++){ if(e.indexOf(junk[j])>-1){isJunk=true;break;} }
+    if(!isJunk){for(var g=0;g<generic.length;g++){ if(e.indexOf(generic[g])===0){isJunk=true;break;} }}
     if(!isJunk && e.length<60) emails.push(e);
 }
 return emails.filter(function(v,i,a){return a.indexOf(v)===i;}).join('|');

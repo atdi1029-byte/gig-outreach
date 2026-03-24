@@ -13,9 +13,9 @@
             if (t.indexOf(skip[s]) > -1) { dominated = true; break; }
         }
         if (!dominated && t.indexOf(".") > -1) {
-            var url = t;
+            var url = t.split("›")[0].trim();
             if (!url.startsWith("http")) url = "https://" + url;
-            var m = url.match(/^(https?:\/\/[^\/]+)/);
+            var m = url.match(/^(https?:\/\/[^\/\s]+)/);
             return m ? m[1] : "";
         }
     }

@@ -302,11 +302,27 @@ for(var i=0;i<igLinks.length;i++){
     if(u.indexOf('share') === -1){ ig = u; break; }
 }
 
-// Internal links with event/contact keywords for subpage crawling
-var keywords = ['event','private','wedding','cater','contact','about','entertain','music','banquet','dining','party','book'];
+// Internal links — grab ALL nav/header links + keyword-matched body links
 var base = location.origin;
 var subpages = [];
 var seen = {};
+seen[location.href.split('#')[0].split('?')[0].replace(/\/$/,'')] = true;
+
+// 1. All internal links from nav, header, and top-level menus — crawl everything
+var navLinks = document.querySelectorAll('nav a[href], header a[href], [role="navigation"] a[href], .menu a[href], .nav a[href], #menu a[href], #nav a[href]');
+for(var i=0;i<navLinks.length;i++){
+    var h = navLinks[i].getAttribute('href') || '';
+    if(h.startsWith('mailto:') || h.startsWith('tel:') || h === '#') continue;
+    var full;
+    try { full = new URL(h, base).href.split('#')[0].split('?')[0].replace(/\/$/,''); } catch(e){ continue; }
+    if(full.indexOf(base) !== 0) continue;
+    if(seen[full]) continue;
+    seen[full] = true;
+    subpages.push(full);
+}
+
+// 2. Body links matching keywords (catches deep links not in nav)
+var keywords = ['event','private','wedding','cater','contact','about','entertain','music','banquet','dining','party','book','ticket','team','staff','press','news','media','rental','meeting','corporate'];
 var allAnchors = document.querySelectorAll('a[href]');
 for(var i=0;i<allAnchors.length;i++){
     var h = allAnchors[i].getAttribute('href') || '';
@@ -442,32 +458,13 @@ for c in d.get('contacts', []):
     print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
 " 2>/dev/null > /tmp/pipeline_all_contacts.txt
 
-    # Crawl subpages (event/contact/private dining pages) — cap at 15
-    # Always inject common fallback paths to catch emails on unlinked pages
+    # Crawl all subpages found by JS (nav/header links + keyword body links)
     local subpages
     subpages=$(python3 -c "
 import json
-from urllib.parse import urlparse
 d = json.load(open('/tmp/pipeline_scrape.json'))
-subs = d.get('subpages', [])[:10]
-url = '$website'
-parsed = urlparse(url)
-root = parsed.scheme + '://' + parsed.netloc
-# Always try common paths — deduped against what homepage already linked
-fallbacks = ['/contact', '/contact-us', '/about', '/about-us', '/team',
-    '/our-team', '/staff', '/events', '/private-events', '/private-dining',
-    '/entertainment', '/live-music', '/news', '/press', '/media', '/book']
-existing_paths = set()
-for s in subs:
-    try:
-        existing_paths.add(urlparse(s).path.rstrip('/').lower())
-    except: pass
-for p in fallbacks:
-    if p not in existing_paths:
-        candidate = root + p
-        if candidate not in subs:
-            subs.append(candidate)
-print('\n'.join(subs[:20]))
+subs = d.get('subpages', [])
+print('\n'.join(subs))
 " 2>/dev/null)
 
     if [ -n "$subpages" ]; then

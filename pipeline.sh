@@ -442,9 +442,8 @@ for c in d.get('contacts', []):
     print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
 " 2>/dev/null > /tmp/pipeline_all_contacts.txt
 
-    # Crawl subpages (event/contact/private dining pages) — cap at 10
-    # If venue URL has a path (e.g. chezbillysud.com/le-bar-vin), also inject
-    # root domain common pages so we don't miss emails on the parent site
+    # Crawl subpages (event/contact/private dining pages) — cap at 15
+    # Always inject common fallback paths to catch emails on unlinked pages
     local subpages
     subpages=$(python3 -c "
 import json
@@ -453,13 +452,22 @@ d = json.load(open('/tmp/pipeline_scrape.json'))
 subs = d.get('subpages', [])[:10]
 url = '$website'
 parsed = urlparse(url)
-if parsed.path and parsed.path.rstrip('/') != '':
-    root = parsed.scheme + '://' + parsed.netloc
-    for p in ['/contact', '/about', '/events', '/private-events', '/entertainment']:
+root = parsed.scheme + '://' + parsed.netloc
+# Always try common paths — deduped against what homepage already linked
+fallbacks = ['/contact', '/contact-us', '/about', '/about-us', '/team',
+    '/our-team', '/staff', '/events', '/private-events', '/private-dining',
+    '/entertainment', '/live-music', '/news', '/press', '/media', '/book']
+existing_paths = set()
+for s in subs:
+    try:
+        existing_paths.add(urlparse(s).path.rstrip('/').lower())
+    except: pass
+for p in fallbacks:
+    if p not in existing_paths:
         candidate = root + p
         if candidate not in subs:
             subs.append(candidate)
-print('\n'.join(subs[:15]))
+print('\n'.join(subs[:20]))
 " 2>/dev/null)
 
     if [ -n "$subpages" ]; then

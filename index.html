@@ -2050,8 +2050,6 @@ function openVenueDetail(venueId) {
     if (venue.zone_priority === 'green' || venue.zone_priority === 'yellow') html += `<span class="zone-dot ${venue.zone_priority}"></span>`;
     if (venue.distance_miles) html += `<span style="color:var(--accent)">${venue.distance_miles} mi · ${formatDrive(venue.drive_minutes)}</span>`;
     if (isResurfaced(venue)) html += `<span class="recontact-badge" style="font-size:0.7rem">${esc(resurfaceLabel(venue))}</span>`;
-    if (venue.linkedin_pending) html += `<span style="background:#2d1f3d;color:#d4a5ff;padding:2px 8px;border-radius:10px;font-size:0.65rem;border:1px solid #9b59b6">LinkedIn pending</span>`;
-    else if (venue.status === 'pipelined' || venue.status === 'contacted') html += `<span style="background:#1a2a1a;color:#4caf50;padding:2px 8px;border-radius:10px;font-size:0.65rem;border:1px solid #4caf50">LinkedIn ✓</span>`;
     html += `</div>`;
 
     // Website

@@ -373,15 +373,27 @@ JSEOF
 
     echo "$scrape_result" > /tmp/pipeline_scrape.json
 
-    # Save scrape result to file for reliable parsing
-    echo "$scrape_result" > /tmp/pipeline_scrape.json
-
     # Parse main page results
     local email_count fb ig contact_form
     email_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_scrape.json')); print(len(d.get('contacts',d.get('emails',[]))))" 2>/dev/null || echo "0")
     fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['facebook'])" 2>/dev/null)
     ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['instagram'])" 2>/dev/null)
     contact_form=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('contact_form',''))" 2>/dev/null)
+
+    # If page returned nothing useful, likely didn't render — retry with longer wait
+    if [ "$email_count" = "0" ] && [ -z "$fb" -o "$fb" = "None" -o "$fb" = "" ] && [ -z "$ig" -o "$ig" = "None" -o "$ig" = "" ]; then
+        log "  [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait..."
+        osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${website}\""
+        sleep 12
+        scrape_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
+        if [ -n "$scrape_result" ] && [ "$scrape_result" != "missing value" ]; then
+            echo "$scrape_result" > /tmp/pipeline_scrape.json
+            email_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_scrape.json')); print(len(d.get('contacts',d.get('emails',[]))))" 2>/dev/null || echo "0")
+            fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['facebook'])" 2>/dev/null)
+            ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['instagram'])" 2>/dev/null)
+            contact_form=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('contact_form',''))" 2>/dev/null)
+        fi
+    fi
 
     log "  Emails: $email_count | FB: ${fb:-none} | IG: ${ig:-none} | Contact Form: ${contact_form:-none}"
 

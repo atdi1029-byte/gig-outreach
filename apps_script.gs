@@ -90,7 +90,8 @@ function serveDashboardJSON_() {
   // Build set of venues with contact_form outreach logged
   var formSentVenues = {};
   for (var ol = 1; ol < outreachData.length; ol++) {
-    if (String(outreachData[ol][3]) === 'contact_form') {
+    var olChan = String(outreachData[ol][3]);
+    if (olChan === 'contact_form' || olChan === 'contact_form_skip') {
       formSentVenues[String(outreachData[ol][1])] = true;
     }
   }
@@ -303,12 +304,12 @@ function serveDashboardJSON_() {
     var oDate = new Date(oRow[0]);
     var oChan = String(oRow[3]);
     if (oDate >= weekStart) {
-      if (oChan === 'email') weeklyCounts.email++;
+      if (oChan === 'email' || oChan === 'contact_form') weeklyCounts.email++;
       else if (oChan === 'instagram') weeklyCounts.ig++;
       else if (oChan === 'facebook') weeklyCounts.fb++;
     }
     if (oDate >= todayStart) {
-      if (oChan === 'email') dailyCounts.email++;
+      if (oChan === 'email' || oChan === 'contact_form') dailyCounts.email++;
       else if (oChan === 'instagram') dailyCounts.ig++;
       else if (oChan === 'facebook') dailyCounts.fb++;
     }

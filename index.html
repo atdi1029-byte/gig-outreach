@@ -1932,7 +1932,23 @@ function markFormSent(venueId, btn) {
                 row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span>';
             }
             showToast('Contact form marked!');
-            // Update local cache
+            if (dashboardData) {
+                var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
+                if (dv) dv.contact_form_sent = true;
+            }
+        });
+    }
+}
+
+function skipForm(venueId, el) {
+    el.textContent = '...';
+    if (BASE_URL) {
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'contact_form_skip' }), function(res) {
+            var row = el.closest('.detail-action-row');
+            var label = row ? row.previousElementSibling : null;
+            if (label && label.classList.contains('detail-section-label')) label.remove();
+            if (row) row.remove();
+            showToast('Contact form skipped');
             if (dashboardData) {
                 var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
                 if (dv) dv.contact_form_sent = true;
@@ -2271,7 +2287,8 @@ function openVenueDetail(venueId) {
             html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
             html += `<button class="btn-action btn-copy" onclick="copyText(getTemplate(currentDetailCat).subject);showToast('Subject copied!')">Subject</button>`;
             html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Message copied!')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markFormSent('${esc(venue.venue_id)}',this)">Sent</button></div>`;
+            html += `<button class="btn-action btn-sent" onclick="markFormSent('${esc(venue.venue_id)}',this)">Sent</button>`;
+            html += `<button class="btn-action btn-del" onclick="skipForm('${esc(venue.venue_id)}',this)">✕</button></div>`;
         }
     }
 

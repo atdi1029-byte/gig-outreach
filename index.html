@@ -1847,9 +1847,13 @@ function skipContact(contactId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'skipped' }), function(res) {
-        if (res && res.status === 'error') { el.textContent = '✕'; return; }
-        const wrapper = el.closest('.detail-action-row').parentElement;
-        if (wrapper.querySelector('.detail-contact-name')) wrapper.remove();
+        if (res && res.status === 'error') {
+            el.textContent = '✕';
+            showToast('Skip failed: ' + (res.message || 'unknown error'));
+            return;
+        }
+        const wrapper = el.closest('.contact-wrapper');
+        if (wrapper) wrapper.remove();
         else el.closest('.detail-action-row').remove();
         showToast('Skipped');
     });
@@ -1919,15 +1923,21 @@ function skipFB(contactId, venueId, el) {
 
 function markFormSent(venueId, btn) {
     btn.textContent = '...';
-    var row = btn.closest('.detail-action-row');
-    var label = row.previousElementSibling;
-    if (label) label.remove();
-    row.remove();
-    showToast('Contact form marked!');
     if (BASE_URL) {
         var fc = (window._currentContacts || [])[0];
         var cid = fc ? fc.contact_id : '';
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: cid, channel: 'contact_form' }), function() {});
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: cid, channel: 'contact_form' }), function(res) {
+            var row = btn.closest('.detail-action-row');
+            if (row) {
+                row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span>';
+            }
+            showToast('Contact form marked!');
+            // Update local cache
+            if (dashboardData) {
+                var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
+                if (dv) dv.contact_form_sent = true;
+            }
+        });
     }
 }
 
@@ -2255,10 +2265,14 @@ function openVenueDetail(venueId) {
     // Contact Form (if available)
     if (venue.contact_form) {
         html += `<div class="detail-section-label" style="background:${catColor}">Contact Form</div>`;
-        html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
-        html += `<button class="btn-action btn-copy" onclick="copyText(getTemplate(currentDetailCat).subject);showToast('Subject copied!')">Subject</button>`;
-        html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Message copied!')">Open + Copy</button>`;
-        html += `<button class="btn-action btn-sent" onclick="markFormSent('${esc(venue.venue_id)}',this)">Sent</button></div>`;
+        if (venue.contact_form_sent) {
+            html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span></div>`;
+        } else {
+            html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
+            html += `<button class="btn-action btn-copy" onclick="copyText(getTemplate(currentDetailCat).subject);showToast('Subject copied!')">Subject</button>`;
+            html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Message copied!')">Open + Copy</button>`;
+            html += `<button class="btn-action btn-sent" onclick="markFormSent('${esc(venue.venue_id)}',this)">Sent</button></div>`;
+        }
     }
 
     // If nothing actionable, show a message
@@ -2318,7 +2332,7 @@ function venueHasPending(venueId) {
     if (venue.status === 'researched') {
         if (venue.instagram && venue.instagram.length > 5) return true;
         if (venue.facebook && venue.facebook.length > 5) return true;
-        if (venue.contact_form && venue.contact_form.length > 5) return true;
+        if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent) return true;
         return false;
     }
     // Has unsent verified emails?
@@ -2328,7 +2342,7 @@ function venueHasPending(venueId) {
     // Has Facebook not yet messaged?
     if (venue.facebook && venue.facebook.length > 5 && !contacts.some(c => c.fb_msg_sent)) return true;
     // Has contact form?
-    if (venue.contact_form && venue.contact_form.length > 5) return true;
+    if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent) return true;
     return false;
 }
 
@@ -2989,6 +3003,7 @@ function saveDetailNote(venueId) {
 
 function markVenueDone(venueId) {
     if (!BASE_URL) { showToast('API not configured'); return; }
+    if (!confirm('Mark this venue as contacted? It will be hidden from action lists.')) return;
     fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: 'contacted' }), function(data) {
         if (data.status === 'ok') {
             showToast('Venue hidden!');

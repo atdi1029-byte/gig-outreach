@@ -87,6 +87,14 @@ function serveDashboardJSON_() {
   var outreachSheet = ss.getSheetByName(OUTREACH);
   var outreachData = outreachSheet ? outreachSheet.getDataRange().getValues() : [[]];
 
+  // Build set of venues with contact_form outreach logged
+  var formSentVenues = {};
+  for (var ol = 1; ol < outreachData.length; ol++) {
+    if (String(outreachData[ol][3]) === 'contact_form') {
+      formSentVenues[String(outreachData[ol][1])] = true;
+    }
+  }
+
   // Build venues array
   var venues = [];
   for (var i = 1; i < venueData.length; i++) {
@@ -115,7 +123,8 @@ function serveDashboardJSON_() {
       contact_form:   String(row[19] || ''),
       linkedin_pending: String(row[20]).toLowerCase() === 'true',
       venue_vote:     String(row[21] || ''),
-      venue_feedback: String(row[22] || '')
+      venue_feedback: String(row[22] || ''),
+      contact_form_sent: !!formSentVenues[String(row[0])]
     });
   }
 

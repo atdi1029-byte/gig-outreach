@@ -410,6 +410,25 @@ JSEOF
   }
   return \"no\";
 })()"' 2>/dev/null)
+        # Always scrape the contact page for emails (even if no form found)
+        local cf_result
+        cf_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
+        if [ -n "$cf_result" ] && [ "$cf_result" != "missing value" ]; then
+            echo "$cf_result" > /tmp/pipeline_sub_scrape.json
+            local cf_email_count
+            cf_email_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(len(d.get('contacts',[])))" 2>/dev/null || echo "0")
+            if [ "$cf_email_count" != "0" ]; then
+                local cf_emails
+                cf_emails=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(', '.join(c['email'] for c in d.get('contacts',[])))" 2>/dev/null)
+                log "  Found on contact page: $cf_emails"
+                python3 -c "
+import json
+d = json.load(open('/tmp/pipeline_sub_scrape.json'))
+for c in d.get('contacts', []):
+    print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
+" 2>/dev/null >> /tmp/pipeline_all_contacts.txt
+            fi
+        fi
         if [ "$has_form" != "yes" ]; then
             log "  ✗ No submittable form found — clearing contact_form"
             contact_form=""

@@ -1545,6 +1545,38 @@ for line in lines:
             ttl = title_map[c['email']]
             c['title'] = '' if ttl == 'None' else ttl
 
+# --- Post-parse smart flags ---
+for v in venues:
+    # No contacts at all
+    if not v['contacts']:
+        v['flags'].append('No contacts found')
+    else:
+        # All emails are catch-all or worse (no verified)
+        statuses = [c['status'] for c in v['contacts']]
+        if 'valid' not in statuses:
+            v['flags'].append('No verified emails — only ' + ', '.join(set(statuses)))
+        # Email from a different domain (PR firm, generic platform)
+        vdomain = ''
+        if v['website']:
+            try:
+                vdomain = v['website'].split('//')[1].split('/')[0].replace('www.', '').lower()
+            except:
+                pass
+        if vdomain:
+            # Strip TLD for fuzzy matching (winelair.us == winelair.com)
+            vbase = vdomain.rsplit('.', 1)[0] if '.' in vdomain else vdomain
+            for c in v['contacts']:
+                edomain = c['email'].split('@')[1].lower() if '@' in c['email'] else ''
+                if edomain and edomain != vdomain:
+                    ebase = edomain.rsplit('.', 1)[0] if '.' in edomain else edomain
+                    # Skip if base domains match (same company, different TLD)
+                    if ebase == vbase:
+                        continue
+                    # Skip common email providers
+                    generic = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'aol.com']
+                    if edomain not in generic:
+                        v['flags'].append(f'Off-domain email: {c["email"]} (venue: {vdomain})')
+
 # --- Compute stats ---
 total_venues = len(venues)
 total_verified = sum(

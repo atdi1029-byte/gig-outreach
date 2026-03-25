@@ -1373,6 +1373,28 @@ function getRecommendations_() {
   // Sort by recommendation score descending
   recommendations.sort(function(a, b) { return b.recommendation_score - a.recommendation_score; });
 
+  // Build taste report: count how many venues got boosted/penalized
+  var tasteReport = {
+    active: Object.keys(categoryTiers).length > 0 || Object.keys(sweetSpotCities).length > 0,
+    tier_count: Object.keys(categoryTiers).length,
+    location_count: Object.keys(sweetSpotCities).length,
+    tier1_venues: 0, tier2_venues: 0, tier3_venues: 0, tier4_venues: 0,
+    location_matches: 0,
+    venues_with_feedback: 0
+  };
+  for (var ri = 0; ri < recommendations.length; ri++) {
+    var tbd = recommendations[ri].score_breakdown;
+    if (tbd.taste_tier >= 15) tasteReport.tier1_venues++;
+    else if (tbd.taste_tier >= 5) tasteReport.tier2_venues++;
+    else if (tbd.taste_tier <= -10) tasteReport.tier4_venues++;
+    else tasteReport.tier3_venues++;
+    if (tbd.location > 0) tasteReport.location_matches++;
+  }
+  // Count venues with feedback notes
+  for (var fi = 1; fi < vData.length; fi++) {
+    if (vData[fi][22] && String(vData[fi][22]).trim()) tasteReport.venues_with_feedback++;
+  }
+
   return jsonResponse_({
     status: 'ok',
     recommendations: recommendations,
@@ -1382,7 +1404,8 @@ function getRecommendations_() {
       avg_overall: Math.round(totalAvg * 10) / 10,
       median_distance: Math.round(medianDist),
       avg_upscale: Math.round(avgUpscale * 10) / 10
-    }
+    },
+    taste_report: tasteReport
   });
 }
 
@@ -1487,9 +1510,21 @@ function setupSheets() {
       ['tier', 'golf_club', '3'],
       ['tier', 'mall', '3'],
       ['tier', 'senior_living', '3'],
+      ['tier', 'yacht_club', '1'],
+      ['tier', 'resort', '2'],
+      ['tier', 'event', '2'],
+      ['tier', 'event_planner', '2'],
+      ['tier', 'art_gallery', '2'],
+      ['tier', 'spa', '2'],
+      ['tier', 'luxury_apts', '2'],
+      ['tier', 'wedding_venue', '3'],
+      ['tier', 'corporate', '3'],
+      ['tier', 'church', '3'],
+      ['tier', 'luxury_retail', '2'],
       ['tier', 'sports_bar', '4'],
       ['tier', 'chain', '4'],
       ['tier', 'bar', '4'],
+      ['tier', 'grocery_market', '4'],
       // Sweet spot locations — wealthy areas within 2hr radius
       ['location', 'Georgetown', 'DC'],
       ['location', 'Dupont Circle', 'DC'],

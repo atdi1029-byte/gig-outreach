@@ -1077,6 +1077,7 @@ body {
                 <span class="section-badge" id="smartPicksBadge" style="background:var(--gold)">0</span>
             </div>
             <div id="smartPicksList" class="collapsed"></div>
+            <div id="tasteReport" style="display:none"></div>
         </div>
 
         <!-- TOP PICKS -->
@@ -2129,6 +2130,45 @@ function openVenueDetail(venueId) {
     if (curVote === 'up') html += `<span style="font-size:0.85rem;color:var(--green)">Approved</span>`;
     else if (curVote === 'down') html += `<span style="font-size:0.85rem;color:var(--red)">Rejected</span>`;
     html += `</div>`;
+
+    // Smart Pick score breakdown (if available)
+    const spData = allSmartPicks.find(s => s.venue_id === venueId);
+    if (spData) {
+        const sc = spData.recommendation_score;
+        const bd = spData.score_breakdown || {};
+        const scColor = sc >= 70 ? 'var(--gold)' : sc >= 40 ? 'var(--text)' : 'var(--text-dim)';
+        const tierNames = { 1: 'Dream', 2: 'Good', 3: 'Neutral', 4: 'Skip' };
+        const tier = bd.taste_tier >= 15 ? 1 : bd.taste_tier >= 5 ? 2 : bd.taste_tier <= -10 ? 4 : 3;
+        html += `<div style="margin:0.6rem 0;padding:0.6rem;background:rgba(240,160,48,0.08);border:1px solid rgba(240,160,48,0.2);border-radius:8px">`;
+        html += `<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem">`;
+        html += `<span style="font-size:1.3rem;font-weight:700;color:${scColor}">${sc}</span>`;
+        html += `<span style="font-size:0.75rem;color:var(--text-dim)">Smart Pick Score</span>`;
+        html += `</div>`;
+        html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:0.2rem 0.8rem;font-size:0.7rem">`;
+        const bars = [
+            { label: 'Category', pts: bd.category, max: 40 },
+            { label: 'Upscale', pts: bd.upscale, max: 30 },
+            { label: 'Taste Tier', pts: bd.taste_tier, max: 20, note: tierNames[tier] },
+            { label: 'Location', pts: bd.location, max: 15, note: bd.location > 0 ? 'Sweet spot' : '' },
+            { label: 'Contacts', pts: bd.contact_quality, max: 10 },
+            { label: 'Zone', pts: bd.zone, max: 10 },
+            { label: 'Distance', pts: bd.distance, max: 10 },
+            { label: 'Vote', pts: bd.vote, max: 20 }
+        ];
+        for (const b of bars) {
+            if (b.pts === undefined) continue;
+            const pct = Math.max(0, Math.min(100, (b.pts / b.max) * 100));
+            const barColor = b.pts < 0 ? 'var(--red)' : b.pts > 0 ? 'var(--gold)' : '#555';
+            html += `<div style="display:flex;align-items:center;gap:0.3rem;padding:0.15rem 0">`;
+            html += `<span style="width:55px;color:var(--text-dim)">${b.label}</span>`;
+            html += `<div style="flex:1;height:6px;background:#222;border-radius:3px;overflow:hidden">`;
+            html += `<div style="width:${pct}%;height:100%;background:${barColor};border-radius:3px"></div></div>`;
+            html += `<span style="width:28px;text-align:right;color:${barColor}">${b.pts > 0 ? '+' : ''}${b.pts}</span>`;
+            if (b.note) html += `<span style="font-size:0.6rem;color:var(--gold)">${b.note}</span>`;
+            html += `</div>`;
+        }
+        html += `</div></div>`;
+    }
 
     // Notes input — editable feedback for learnings
     html += `<div style="margin:0.8rem 0">`;
@@ -3489,6 +3529,7 @@ function loadSmartPicks() {
         if (err || !data || data.status !== 'ok') return;
         smartPicksData = data;
         renderSmartPicks(data.recommendations || [], data.profile || {});
+        renderTasteReport(data.taste_report || null);
     });
 }
 
@@ -3571,6 +3612,25 @@ function renderSmartPicks(recs, profile) {
     }
 }
 
+function renderTasteReport(report) {
+    const el = document.getElementById('tasteReport');
+    if (!el || !report || !report.active) { if (el) el.style.display = 'none'; return; }
+    el.style.display = '';
+    const total = report.tier1_venues + report.tier2_venues + report.tier3_venues + report.tier4_venues;
+    el.innerHTML = `<div style="margin:0.4rem 0;padding:0.5rem 0.7rem;background:rgba(240,160,48,0.06);border:1px solid rgba(240,160,48,0.15);border-radius:8px;font-size:0.7rem;color:var(--text-dim)">
+        <div style="font-size:0.75rem;color:var(--gold);font-weight:700;margin-bottom:0.3rem">Taste Engine Active</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.15rem 0.6rem">
+        <span>Tier rules: <b style="color:var(--text)">${report.tier_count}</b> categories</span>
+        <span>Sweet spots: <b style="color:var(--text)">${report.location_count}</b> cities</span>
+        <span style="color:#4caf50">Dream tier: <b>${report.tier1_venues}</b> venues</span>
+        <span style="color:#4caf50">Good tier: <b>${report.tier2_venues}</b> venues</span>
+        <span style="color:#888">Neutral: <b>${report.tier3_venues}</b> venues</span>
+        <span style="color:#f44336">Skip tier: <b>${report.tier4_venues}</b> venues</span>
+        <span>Area matches: <b style="color:var(--gold)">${report.location_matches}</b> / ${total}</span>
+        <span>Notes left: <b style="color:var(--text)">${report.venues_with_feedback}</b> venues</span>
+        </div></div>`;
+}
+
 function openAllSmartPicks() {
     const gigs = (dashboardData && dashboardData.gigs) || [];
     const profile = (smartPicksData && smartPicksData.profile) || {};
@@ -3595,6 +3655,8 @@ function openAllSmartPicks() {
             <td><strong>${r.name}</strong><br><span style="font-size:0.7rem;background:${catColor};padding:1px 6px;border-radius:3px;color:#fff">${(r.category||'').toUpperCase()}</span> <span style="color:#888;font-size:0.75rem">${r.city||''}${r.state?', '+r.state:''}</span></td>
             <td style="text-align:center;color:#888">${r.distance_miles ? r.distance_miles+' mi' : '—'}</td>
             <td style="text-align:center">${r.contact_count||0}</td>
+            <td style="text-align:center;font-size:0.7rem;color:${bd.taste_tier>0?'#4caf50':bd.taste_tier<0?'#f44336':'#666'}">${bd.taste_tier!==undefined?(bd.taste_tier>0?'+':'')+bd.taste_tier:'—'}</td>
+            <td style="text-align:center;font-size:0.7rem;color:${bd.location>0?'#4caf50':'#666'}">${bd.location>0?'+'+bd.location:'—'}</td>
             <td style="color:#f0a030;font-size:0.7rem;font-style:italic">${reason}</td>
         </tr>`;
     }).join('');
@@ -3610,7 +3672,7 @@ td{padding:0.5rem;border-bottom:1px solid #1a1a1a;vertical-align:top}
 tr:hover{background:rgba(240,160,48,0.05)}
 </style></head><body>
 <h1>Smart Picks — All ${allSmartPicks.length} Venues</h1>
-<table><thead><tr><th>Score</th><th>Venue</th><th>Distance</th><th>Contacts</th><th>Why</th></tr></thead>
+<table><thead><tr><th>Score</th><th>Venue</th><th>Distance</th><th>Contacts</th><th>Taste</th><th>Area</th><th>Why</th></tr></thead>
 <tbody>${rows}</tbody></table></body></html>`);
     w.document.close();
 }

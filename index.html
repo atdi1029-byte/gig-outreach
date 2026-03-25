@@ -1825,7 +1825,8 @@ function saveFeedback(venueId) {
 function skipContact(contactId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'skipped' }), function() {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'skipped' }), function(res) {
+        if (res && res.status === 'error') { el.textContent = '✕'; return; }
         const wrapper = el.closest('.detail-action-row').parentElement;
         if (wrapper.querySelector('.detail-contact-name')) wrapper.remove();
         else el.closest('.detail-action-row').remove();
@@ -1837,7 +1838,8 @@ function skipContact(contactId, el) {
 function markEmailSent(contactId, venueId, category, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'true' }), function() {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'true' }), function(res) {
+        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
         fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }), function() {
             btn.textContent = 'Done'; btn.classList.add('done');
             showToast('Marked as sent!');
@@ -1849,7 +1851,8 @@ function markEmailSent(contactId, venueId, category, btn) {
 function markIGSent(contactId, venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'true' }), function() {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'true' }), function(res) {
+        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
         fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'instagram' }), function() {
             btn.textContent = 'Done'; btn.classList.add('done');
             showToast('IG DM marked!');
@@ -1861,7 +1864,8 @@ function markIGSent(contactId, venueId, btn) {
 function markFBSent(contactId, venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'true' }), function() {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'true' }), function(res) {
+        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
         fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'facebook' }), function() {
             btn.textContent = 'Done'; btn.classList.add('done');
             showToast('FB msg marked!');
@@ -1873,7 +1877,8 @@ function markFBSent(contactId, venueId, btn) {
 function skipIG(contactId, venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'skipped' }), function() {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'skipped' }), function(res) {
+        if (res && res.status === 'error') { el.textContent = '✕'; return; }
         el.closest('.detail-action-row').previousElementSibling.remove();
         el.closest('.detail-action-row').remove();
         showToast('IG skipped');
@@ -1884,7 +1889,8 @@ function skipIG(contactId, venueId, el) {
 function skipFB(contactId, venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'skipped' }), function() {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'skipped' }), function(res) {
+        if (res && res.status === 'error') { el.textContent = '✕'; return; }
         el.closest('.detail-action-row').previousElementSibling.remove();
         el.closest('.detail-action-row').remove();
         showToast('FB skipped');

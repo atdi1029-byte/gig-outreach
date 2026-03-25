@@ -1628,7 +1628,7 @@ function openExternal(url) {
 // === GMAIL LINK ===
 function buildGmailLink(email, category) {
     const t = getTemplate(category);
-    return `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
+    return `https://mail.google.com/mail/?authuser=alexbarnettclassical@gmail.com&view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
 }
 
 // === SOCIAL ACTIONS ===

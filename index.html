@@ -1870,6 +1870,28 @@ function markFBSent(contactId, venueId, btn) {
     });
 }
 
+function skipIG(contactId, venueId, el) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    el.textContent = '...';
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'skipped' }), function() {
+        el.closest('.detail-action-row').previousElementSibling.remove();
+        el.closest('.detail-action-row').remove();
+        showToast('IG skipped');
+        setTimeout(loadDashboard, 1500);
+    });
+}
+
+function skipFB(contactId, venueId, el) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    el.textContent = '...';
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'skipped' }), function() {
+        el.closest('.detail-action-row').previousElementSibling.remove();
+        el.closest('.detail-action-row').remove();
+        showToast('FB skipped');
+        setTimeout(loadDashboard, 1500);
+    });
+}
+
 // === RENDER: HOME — Top Picks ===
 function toggleTopPicks() {
     const list = document.getElementById('topPicksList');
@@ -2135,7 +2157,8 @@ function openVenueDetail(venueId) {
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
             html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','ig')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
+            html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button>`;
+            html += `<button class="btn-action btn-del" onclick="skipIG('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">✕</button></div>`;
         }
     }
 
@@ -2147,7 +2170,8 @@ function openVenueDetail(venueId) {
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
             html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','fb')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button></div>`;
+            html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button>`;
+            html += `<button class="btn-action btn-del" onclick="skipFB('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">✕</button></div>`;
         }
     }
 

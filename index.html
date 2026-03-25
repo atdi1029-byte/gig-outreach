@@ -1631,7 +1631,7 @@ function openExternal(url) {
 // === GMAIL LINK ===
 function buildGmailLink(email, category) {
     const t = getTemplate(category);
-    return `https://mail.google.com/mail/u/1/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
+    return `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
 }
 
 // === SOCIAL ACTIONS ===
@@ -1747,7 +1747,7 @@ function copyAndOpenGmail() {
     const s = composeState;
     const body = document.getElementById('composeText').value;
     navigator.clipboard.writeText(body).catch(() => {});
-    const url = `https://mail.google.com/mail/u/1/?view=cm&to=${encodeURIComponent(s.contactEmail)}&su=${encodeURIComponent(s.currentSubject)}&body=${encodeURIComponent(body)}`;
+    const url = `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(s.contactEmail)}&su=${encodeURIComponent(s.currentSubject)}&body=${encodeURIComponent(body)}`;
     openExternal(url);
     showToast('Copied & opening Gmail');
 }
@@ -2048,7 +2048,7 @@ function openComposeForContact(contactId, email, contactName, channel) {
     if (channel === 'email' && email) {
         // Copy body, open Gmail with to/subject/body
         navigator.clipboard.writeText(tmpl.body).catch(() => {});
-        const url = `https://mail.google.com/mail/u/1/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`;
+        const url = `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`;
         openExternal(url);
         showToast('Copied & opening Gmail');
     } else if (channel === 'ig' && v.instagram) {
@@ -2185,7 +2185,7 @@ function openVenueDetail(venueId) {
     if (venue.contact_form) {
         html += `<div class="detail-section-label" style="background:${catColor}">Contact Form</div>`;
         html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
-        html += `<button class="btn-action btn-open" onclick="window.open('${esc(venue.contact_form)}','_blank')">Open</button></div>`;
+        html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Template copied!')">Open + Copy</button></div>`;
     }
 
     // If nothing actionable, show a message

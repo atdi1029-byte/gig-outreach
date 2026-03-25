@@ -184,7 +184,7 @@ step1_website() {
     cat > /tmp/pipeline_website_scrape.js << 'JSEOF'
 (function(){
 var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk','fontawesome.io'];
-var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','info@','hello@','contact@','sales@','events@','reservations@','booking@','enquiries@','inquiries@','office@','general@','frontdesk@','reception@'];
+var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@'];
 var contacts = {};
 
 function titleCase(s){

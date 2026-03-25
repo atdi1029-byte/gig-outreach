@@ -3543,6 +3543,9 @@ function renderSmartPicks(recs, profile) {
                 reasons.push(`Similar to your top category: ${bestCat}`);
             }
         }
+        if (bd.taste_tier >= 15) reasons.push('Dream venue type');
+        else if (bd.taste_tier >= 5) reasons.push('Great venue type');
+        if (bd.location >= 10) reasons.push('Wealthy area');
         if (bd.zone >= 7) reasons.push('Great zone');
         if (bd.distance >= 18) reasons.push('Ideal distance');
         if (bd.contact_quality >= 7) reasons.push('Good contacts');

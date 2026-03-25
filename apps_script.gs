@@ -13,6 +13,7 @@ var CONFIG      = 'Config';
 var TEMPLATES   = 'Templates';
 var PROGRESS    = 'Progress';
 var PAST_GIGS   = 'Past Gigs';
+var TASTE       = 'Taste';
 
 // ---------------------------------------------------------------
 // doGet — Main API router
@@ -47,6 +48,7 @@ function doGet(e) {
   if (action === 'delete_contact')   return deleteContact_(e.parameter);
   if (action === 'delete_venue')     return deleteVenue_(e.parameter);
   if (action === 'cleanup_generic')  return cleanupGenericEmails_();
+  if (action === 'update_taste')     return updateTaste_(e.parameter);
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -407,9 +409,9 @@ function serveVenueDetail_(params) {
         contact_id: String(cData[j][0]), name: String(cData[j][2]),
         title: String(cData[j][3]), email: String(cData[j][4]),
         source: String(cData[j][5]), verified: String(cData[j][6]),
-        email_sent: String(cData[j][8]).toLowerCase() === 'true',
-        ig_dm_sent: String(cData[j][10]).toLowerCase() === 'true',
-        fb_msg_sent: String(cData[j][11]).toLowerCase() === 'true'
+        email_sent: (String(cData[j][8]).toLowerCase() === 'true' || String(cData[j][8]).toLowerCase() === 'skipped') ? String(cData[j][8]).toLowerCase() : false,
+        ig_dm_sent: (String(cData[j][10]).toLowerCase() === 'true' || String(cData[j][10]).toLowerCase() === 'skipped') ? String(cData[j][10]).toLowerCase() : false,
+        fb_msg_sent: (String(cData[j][11]).toLowerCase() === 'true' || String(cData[j][11]).toLowerCase() === 'skipped') ? String(cData[j][11]).toLowerCase() : false
       });
     }
   }
@@ -589,9 +591,13 @@ function updateContact_(params) {
 
   for (var i = 1; i < data.length; i++) {
     if (String(data[i][0]) === contactId) {
-      // Handle boolean fields
+      // Handle boolean/skipped fields
       if (field === 'email_sent' || field === 'ig_dm_sent' || field === 'fb_msg_sent') {
-        sheet.getRange(i + 1, colIdx + 1).setValue(value === 'true');
+        if (value === 'skipped') {
+          sheet.getRange(i + 1, colIdx + 1).setValue('skipped');
+        } else {
+          sheet.getRange(i + 1, colIdx + 1).setValue(value === 'true');
+        }
         // Also set date if marking as sent
         if (value === 'true' && field === 'email_sent') {
           sheet.getRange(i + 1, 10).setValue(new Date()); // email_sent_date
@@ -1223,8 +1229,26 @@ function getRecommendations_() {
       email: String(cData[ci][4]),
       verified: String(cData[ci][6]),
       title: String(cData[ci][3]).toLowerCase(),
-      email_sent: String(cData[ci][8]).toLowerCase() === 'true'
+      email_sent: (String(cData[ci][8]).toLowerCase() === 'true' || String(cData[ci][8]).toLowerCase() === 'skipped') ? String(cData[ci][8]).toLowerCase() : false
     });
+  }
+
+  // Load taste preferences (category tiers + sweet spot locations)
+  var tasteSheet = ss.getSheetByName(TASTE);
+  var categoryTiers = {};    // category → tier (1-4)
+  var sweetSpotCities = {};  // lowercase city name → true
+  if (tasteSheet) {
+    var tData = tasteSheet.getDataRange().getValues();
+    for (var ti = 1; ti < tData.length; ti++) {
+      var tType = String(tData[ti][0]).toLowerCase();
+      var tKey = String(tData[ti][1]).toLowerCase().trim();
+      var tVal = String(tData[ti][2]);
+      if (tType === 'tier') {
+        categoryTiers[tKey] = Number(tVal) || 3;
+      } else if (tType === 'location') {
+        sweetSpotCities[tKey] = true;
+      }
+    }
   }
 
   // Build set of past-gig venue IDs to exclude from recommendations
@@ -1303,7 +1327,22 @@ function getRecommendations_() {
     if (vVote === 'up') votePts = 20;
     else if (vVote === 'down') votePts = -30;
 
-    var totalScore = Math.max(0, Math.min(100, catPts + distPts + upscalePts + zPts + cqPts + votePts));
+    // --- TASTE TIER (-20 to +20 pts) ---
+    var tastePts = 0;
+    var tier = categoryTiers[vCat] || 3; // default tier 3 (neutral) if unknown
+    if (tier === 1) tastePts = 20;
+    else if (tier === 2) tastePts = 10;
+    else if (tier === 3) tastePts = 0;
+    else if (tier === 4) tastePts = -20;
+
+    // --- LOCATION SWEET SPOT (0-15 pts) ---
+    var locPts = 0;
+    var vCity = String(row[4]).toLowerCase().trim();
+    if (sweetSpotCities[vCity]) {
+      locPts = 15;
+    }
+
+    var totalScore = Math.max(0, Math.min(100, catPts + distPts + upscalePts + zPts + cqPts + votePts + tastePts + locPts));
 
     recommendations.push({
       venue_id: venueId,
@@ -1323,7 +1362,9 @@ function getRecommendations_() {
         upscale: upscalePts,
         zone: zPts,
         contact_quality: cqPts,
-        vote: votePts
+        vote: votePts,
+        taste_tier: tastePts,
+        location: locPts
       },
       contact_count: vContacts.length
     });
@@ -1385,7 +1426,8 @@ function setupSheets() {
     'Config': ['key', 'value'],
     'Templates': ['category', 'subject', 'body'],
     'Progress': ['state', 'category', 'last_scraped', 'venues_found', 'status'],
-    'Past Gigs': ['gig_id', 'venue_id', 'venue_name', 'date', 'category', 'rating_tips', 'rating_rebooked', 'rating_audience', 'rating_venue_quality', 'overall_score', 'notes', 'distance_miles']
+    'Past Gigs': ['gig_id', 'venue_id', 'venue_name', 'date', 'category', 'rating_tips', 'rating_rebooked', 'rating_audience', 'rating_venue_quality', 'overall_score', 'notes', 'distance_miles'],
+    'Taste': ['type', 'key', 'value']
   };
 
   for (var name in tabs) {
@@ -1429,6 +1471,73 @@ function setupSheets() {
     cSheet.getRange(2, 1, config.length, 2).setValues(config);
   }
 
+  // Seed Taste tab with category tiers + sweet spot locations
+  var tasteSheet = ss.getSheetByName('Taste');
+  if (tasteSheet && tasteSheet.getLastRow() <= 1) {
+    var tasteData = [
+      // Category tiers (1=dream, 2=good, 3=lower priority, 4=skip)
+      ['tier', 'country_club', '1'],
+      ['tier', 'private_club', '1'],
+      ['tier', 'restaurant', '2'],
+      ['tier', 'winery', '2'],
+      ['tier', 'hotel', '2'],
+      ['tier', 'wine_bar', '2'],
+      ['tier', 'museum', '2'],
+      ['tier', 'event_space', '2'],
+      ['tier', 'golf_club', '3'],
+      ['tier', 'mall', '3'],
+      ['tier', 'senior_living', '3'],
+      ['tier', 'sports_bar', '4'],
+      ['tier', 'chain', '4'],
+      ['tier', 'bar', '4'],
+      // Sweet spot locations — wealthy areas within 2hr radius
+      ['location', 'Georgetown', 'DC'],
+      ['location', 'Dupont Circle', 'DC'],
+      ['location', 'Kalorama', 'DC'],
+      ['location', 'Cleveland Park', 'DC'],
+      ['location', 'Woodley Park', 'DC'],
+      ['location', 'Spring Valley', 'DC'],
+      ['location', 'Washington', 'DC'],
+      ['location', 'Potomac', 'MD'],
+      ['location', 'Chevy Chase', 'MD'],
+      ['location', 'Bethesda', 'MD'],
+      ['location', 'Rockville', 'MD'],
+      ['location', 'Cabin John', 'MD'],
+      ['location', 'Roland Park', 'MD'],
+      ['location', 'Guilford', 'MD'],
+      ['location', 'Ruxton', 'MD'],
+      ['location', 'Lutherville', 'MD'],
+      ['location', 'Ellicott City', 'MD'],
+      ['location', 'Clarksville', 'MD'],
+      ['location', 'St. Michaels', 'MD'],
+      ['location', 'St Michaels', 'MD'],
+      ['location', 'Easton', 'MD'],
+      ['location', 'Oxford', 'MD'],
+      ['location', 'Annapolis', 'MD'],
+      ['location', 'Severna Park', 'MD'],
+      ['location', 'Great Falls', 'VA'],
+      ['location', 'McLean', 'VA'],
+      ['location', 'Alexandria', 'VA'],
+      ['location', 'Reston', 'VA'],
+      ['location', 'Vienna', 'VA'],
+      ['location', 'Middleburg', 'VA'],
+      ['location', 'Leesburg', 'VA'],
+      ['location', 'Purcellville', 'VA'],
+      ['location', 'Charlottesville', 'VA'],
+      ['location', 'Greenville', 'DE'],
+      ['location', 'Hockessin', 'DE'],
+      ['location', 'Wilmington', 'DE'],
+      ['location', 'Rehoboth Beach', 'DE'],
+      ['location', 'Gladwyne', 'PA'],
+      ['location', 'Bryn Mawr', 'PA'],
+      ['location', 'Devon', 'PA'],
+      ['location', 'Kennett Square', 'PA'],
+      ['location', 'Chadds Ford', 'PA'],
+      ['location', 'West Chester', 'PA']
+    ];
+    tasteSheet.getRange(2, 1, tasteData.length, 3).setValues(tasteData);
+  }
+
   // Delete default Sheet1 if it exists and has no data
   var sheet1 = ss.getSheetByName('Sheet1');
   if (sheet1 && sheet1.getLastRow() <= 1) {
@@ -1436,4 +1545,50 @@ function setupSheets() {
   }
 
   SpreadsheetApp.getUi().alert('Setup complete! All tabs created with headers.');
+}
+
+// ---------------------------------------------------------------
+// updateTaste_ — Update taste preferences (category tiers + locations)
+// Params: data (JSON string with array of [type, key, value] rows)
+// If mode=replace, clears and replaces all taste data
+// If mode=add, appends new rows
+// ---------------------------------------------------------------
+function updateTaste_(params) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(TASTE);
+  if (!sheet) {
+    sheet = ss.insertSheet(TASTE);
+    sheet.getRange(1, 1, 1, 3).setValues([['type', 'key', 'value']]);
+    sheet.getRange(1, 1, 1, 3).setFontWeight('bold');
+    sheet.setFrozenRows(1);
+  }
+
+  var mode = params.mode || 'replace';
+  var dataStr = params.data || '';
+  if (!dataStr) return jsonResponse_({ status: 'error', message: 'data parameter required (JSON array)' });
+
+  var rows;
+  try {
+    rows = JSON.parse(decodeURIComponent(dataStr));
+  } catch(e) {
+    return jsonResponse_({ status: 'error', message: 'Invalid JSON: ' + e.message });
+  }
+
+  if (!Array.isArray(rows) || rows.length === 0) {
+    return jsonResponse_({ status: 'error', message: 'data must be a non-empty array' });
+  }
+
+  if (mode === 'replace') {
+    // Clear everything except header
+    if (sheet.getLastRow() > 1) {
+      sheet.getRange(2, 1, sheet.getLastRow() - 1, 3).clearContent();
+    }
+    sheet.getRange(2, 1, rows.length, 3).setValues(rows);
+  } else {
+    // Append
+    var startRow = sheet.getLastRow() + 1;
+    sheet.getRange(startRow, 1, rows.length, 3).setValues(rows);
+  }
+
+  return jsonResponse_({ status: 'ok', mode: mode, rows_written: rows.length });
 }

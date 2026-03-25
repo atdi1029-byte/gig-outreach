@@ -1806,6 +1806,26 @@ function voteVenue(venueId, vote, btn) {
     else document.getElementById('voteFeedbackBox').style.display = 'none';
 }
 
+function voteVenueDetail(venueId, vote, btn) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    const row = btn.parentElement;
+    const wasActive = btn.classList.contains('vote-active-up') || btn.classList.contains('vote-active-down');
+    const finalVote = wasActive ? '' : vote;
+    row.querySelectorAll('.vote-btn').forEach(b => { b.classList.remove('vote-active-up','vote-active-down'); b.style.borderColor = 'transparent'; });
+    if (finalVote) {
+        btn.classList.add(finalVote === 'up' ? 'vote-active-up' : 'vote-active-down');
+        btn.style.borderColor = finalVote === 'up' ? 'var(--green)' : 'var(--red)';
+    }
+    // Remove old status text and add new
+    const oldStatus = row.querySelector('span');
+    if (oldStatus) oldStatus.remove();
+    if (finalVote === 'up') row.insertAdjacentHTML('beforeend', '<span style="font-size:0.85rem;color:var(--green)">Approved</span>');
+    else if (finalVote === 'down') row.insertAdjacentHTML('beforeend', '<span style="font-size:0.85rem;color:var(--red)">Rejected</span>');
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_vote', value: finalVote }), function() {
+        showToast(finalVote ? (finalVote === 'up' ? 'Thumbs up!' : 'Thumbs down') : 'Vote cleared');
+    });
+}
+
 function toggleFeedbackBox(venueId, vote) {
     const box = document.getElementById('voteFeedbackBox');
     box.style.display = box.style.display === 'none' ? 'block' : 'none';
@@ -2100,16 +2120,15 @@ function openVenueDetail(venueId) {
     // Website
     if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
 
-    // Show vote status
+    // Vote buttons
     const curVote = venue.venue_vote || '';
     const curFeedback = venue.venue_feedback || '';
-    if (curVote) {
-        html += `<div style="margin:0.5rem 0;font-size:0.85rem;color:var(--text-dim)">`;
-        if (curVote === 'up') html += `<span style="color:var(--green)">&#10003; Approved</span>`;
-        else if (curVote === 'neutral') html += `<span style="color:var(--gold)">&#8212; Neutral</span>`;
-        else if (curVote === 'down') html += `<span style="color:var(--red)">&#10007; Rejected</span>`;
-        html += `</div>`;
-    }
+    html += `<div style="margin:0.5rem 0;display:flex;align-items:center;gap:0.5rem">`;
+    html += `<button class="vote-btn${curVote === 'up' ? ' vote-active-up' : ''}" onclick="voteVenueDetail('${esc(venue.venue_id)}','up',this)" style="border-color:${curVote === 'up' ? 'var(--green)' : 'transparent'}">👍</button>`;
+    html += `<button class="vote-btn${curVote === 'down' ? ' vote-active-down' : ''}" onclick="voteVenueDetail('${esc(venue.venue_id)}','down',this)" style="border-color:${curVote === 'down' ? 'var(--red)' : 'transparent'}">👎</button>`;
+    if (curVote === 'up') html += `<span style="font-size:0.85rem;color:var(--green)">Approved</span>`;
+    else if (curVote === 'down') html += `<span style="font-size:0.85rem;color:var(--red)">Rejected</span>`;
+    html += `</div>`;
 
     // Notes input — editable feedback for learnings
     html += `<div style="margin:0.8rem 0">`;

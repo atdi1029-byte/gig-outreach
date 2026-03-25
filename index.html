@@ -311,15 +311,18 @@ body {
 
 .detail-action-row {
     display: flex; align-items: center; gap: 0.4rem;
-    padding: 0.6rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
+    padding: 0.6rem 0; flex-wrap: wrap;
 }
-.detail-action-row:last-child { border-bottom: none; }
 
 .detail-email {
     font-size: 0.8rem; color: var(--accent); flex: 1; min-width: 0;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
+.contact-wrapper { border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+.contact-wrapper:last-child { border-bottom: none; }
+.detail-action-row:not(.contact-wrapper .detail-action-row) { border-bottom: 1px solid var(--border); }
+.detail-action-row:last-child { border-bottom: none; }
 .detail-contact-name { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 0.2rem; }
 .detail-social-label { font-size: 0.8rem; color: var(--text); flex: 1; }
 .detail-done { font-size: 0.7rem; color: var(--green); font-weight: 700; }
@@ -2088,7 +2091,7 @@ function openVenueDetail(venueId) {
                 const doneLabel = c.email_sent === 'skipped' ? 'Skipped' : 'Sent';
                 html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">${doneLabel}</span></div>`;
             } else if (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown') {
-                html += `<div class="${skipped ? 'contact-skipped' : ''}${starred ? ' contact-starred' : ''}">`;
+                html += `<div class="contact-wrapper${skipped ? ' contact-skipped' : ''}${starred ? ' contact-starred' : ''}">`;
                 html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
                 html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
                 html += `<button class="btn-action btn-gmail" onclick="openComposeForContact('${esc(c.contact_id)}','${esc(c.email)}','${esc(c.name || '')}','email')">Gmail</button>`;

@@ -1334,14 +1334,28 @@ for line in lines:
 
     # Smart Pick header
     m = re.search(r'SMART PICK #(\d+) \(score (\d+)\): (.+?) \(([^)]+)\)', text)
-    if m:
+    # Untouched venue header
+    m2 = re.search(r'UNTOUCHED #(\d+): (.+?) \(([^)]+)\)', text) if not m else None
+    if m or m2:
         if current_venue:
             venues.append(current_venue)
-        current_venue = {
-            'pick_num': int(m.group(1)),
-            'score': int(m.group(2)),
-            'name': m.group(3),
-            'venue_id': m.group(4),
+        if m:
+            current_venue = {
+                'pick_num': int(m.group(1)),
+                'score': int(m.group(2)),
+                'name': m.group(3),
+                'venue_id': m.group(4),
+                'phase': 'smart_pick',
+            }
+        else:
+            current_venue = {
+                'pick_num': int(m2.group(1)),
+                'score': 0,
+                'name': m2.group(2),
+                'venue_id': m2.group(3),
+                'phase': 'untouched',
+            }
+        current_venue.update({
             'website': '',
             'facebook': '',
             'instagram': '',
@@ -1351,7 +1365,7 @@ for line in lines:
             'elapsed_min': 0,
             'flags': [],
             'category': ''
-        }
+        })
         # Derive category from venue_id (e.g. MD-WINE-020 -> winery)
         cat_map = {
             'WINE': 'winery', 'HOTE': 'hotel', 'COUN': 'country_club',
@@ -1517,7 +1531,7 @@ title_map = {}
 for line in lines:
     text = line.rstrip('\n')
     t = text[9:] if len(text) > 9 else text
-    if 'SMART PICK #' in t:
+    if 'SMART PICK #' in t or 'UNTOUCHED #' in t:
         venue_idx += 1
         title_map = {}
     if venue_idx < 0 or venue_idx >= len(venues):
@@ -1782,7 +1796,12 @@ html += '<h2>Pipeline Results</h2>\n'
 
 for v in venues:
     cat_html = f' <span class="category-pill">{esc(v["category"])}</span>' if v['category'] else ''
-    html += f'<h3>{v["pick_num"]}. {esc(v["name"])} <span class="score">Score: {v["score"]}</span>{cat_html}</h3>\n'
+    phase = v.get('phase', 'smart_pick')
+    if phase == 'untouched':
+        score_html = '<span class="score" style="background:#6ecfcf">Untouched</span>'
+    else:
+        score_html = f'<span class="score">Score: {v["score"]}</span>'
+    html += f'<h3>{v["pick_num"]}. {esc(v["name"])} {score_html}{cat_html}</h3>\n'
 
     # Social/website links
     links = []
@@ -1962,6 +1981,11 @@ if [ "$1" = "--smart-picks" ]; then
     RUN_START_LINE=$(wc -l < "$LOG_FILE")
     RUN_START_LINE=$((RUN_START_LINE + 1))
 
+    # --- Shared budget: MAX_SP controls total venues across both phases ---
+    MAX_SP=${MAX_SP:-0}  # 0 = unlimited
+    SHARED_COUNT_FILE="/tmp/pipeline_shared_count"
+    echo "0" > "$SHARED_COUNT_FILE"
+
     # --- Phase 1: Process UNTOUCHED venues first ---
     log "UNTOUCHED PHASE: Fetching all venues..."
     UT_FILE="/tmp/pipeline_untouched.json"
@@ -1973,10 +1997,9 @@ untouched = [v for v in data.get('venues', [])
              if (v.get('venue', v)).get('status','') == 'untouched']
 print(len(untouched))
 " 2>/dev/null)
-    MAX_UT=${MAX_UT:-0}  # 0 = unlimited; set MAX_UT=2 to limit
     if [ "$UT_COUNT" -gt 0 ]; then
-        if [ "$MAX_UT" -gt 0 ]; then
-            log "UNTOUCHED: $UT_COUNT found, LIMITED to $MAX_UT"
+        if [ "$MAX_SP" -gt 0 ]; then
+            log "UNTOUCHED: $UT_COUNT found (shared budget: $MAX_SP total)"
         else
             log "UNTOUCHED: $UT_COUNT venues to process"
         fi
@@ -1998,8 +2021,6 @@ def action_score(v):
     if v.get('city','').strip(): score += 1
     return score
 untouched.sort(key=action_score, reverse=True)
-max_ut = int(os.environ.get('MAX_UT', '0'))
-if max_ut > 0: untouched = untouched[:max_ut]
 for i, venue in enumerate(untouched):
     vid = venue.get('venue_id', '')
     name = venue.get('name', '')
@@ -2011,9 +2032,15 @@ for i, venue in enumerate(untouched):
                 log "[STOP] Both ZeroBounce and Apollo exhausted — skipping remaining untouched venues"
                 break
             fi
+            CURRENT=$(cat "$SHARED_COUNT_FILE")
+            if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
+                log "[BUDGET] Shared limit of $MAX_SP reached — stopping untouched phase"
+                break
+            fi
             log ""
             log "########## UNTOUCHED #$((IDX+1)): $NAME ($VID) ##########"
             run_venue "$NAME" "$VID" "$WEB" "$CITY"
+            echo "$((CURRENT + 1))" > "$SHARED_COUNT_FILE"
             sleep 30
         done
         log "=== UNTOUCHED PHASE COMPLETE ==="
@@ -2024,6 +2051,14 @@ for i, venue in enumerate(untouched):
 
     # --- Phase 2: Smart Picks ---
     # Pull Smart Picks from API in rank order (highest score first)
+    CURRENT=$(cat "$SHARED_COUNT_FILE")
+    if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
+        log "SMART PICKS: Skipping — shared budget of $MAX_SP already reached ($CURRENT processed)"
+    else
+    REMAINING=""
+    if [ "$MAX_SP" -gt 0 ]; then
+        REMAINING=$((MAX_SP - CURRENT))
+    fi
     log "SMART PICKS MODE: Fetching ranked venues..."
     SP_FILE="/tmp/pipeline_smart_picks.json"
     curl -sL "${APPS_SCRIPT_URL}?action=get_recommendations" -o "$SP_FILE"
@@ -2034,9 +2069,8 @@ with open('$SP_FILE') as f:
 filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
 print(len(filtered))
 " 2>/dev/null)
-    MAX_SP=${MAX_SP:-0}  # 0 = unlimited; set MAX_SP=2 to limit
-    if [ "$MAX_SP" -gt 0 ]; then
-        log "SMART PICKS: $SP_COUNT available, LIMITED to $MAX_SP"
+    if [ -n "$REMAINING" ]; then
+        log "SMART PICKS: $SP_COUNT available, budget remaining: $REMAINING"
     else
         log "SMART PICKS: $SP_COUNT venues to process"
     fi
@@ -2046,13 +2080,16 @@ import json, os
 with open('$SP_FILE') as f:
     recs = json.load(f).get('recommendations', [])
 filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
-max_sp = int(os.environ.get('MAX_SP', '0'))
-if max_sp > 0: filtered = filtered[:max_sp]
 for i, r in enumerate(filtered):
     print(f\"{i}|{r['name']}|{r['venue_id']}|{r.get('recommendation_score',0)}\")
 " 2>/dev/null | while IFS='|' read -r IDX NAME VID SCORE; do
         if [ -f "$ZB_EXHAUSTED_FLAG" ] && [ -f "$APOLLO_EXHAUSTED_FLAG" ]; then
             log "[STOP] Both ZeroBounce and Apollo exhausted — skipping remaining smart picks"
+            break
+        fi
+        CURRENT=$(cat "$SHARED_COUNT_FILE")
+        if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
+            log "[BUDGET] Shared limit of $MAX_SP reached — stopping smart picks"
             break
         fi
         log ""
@@ -2062,8 +2099,11 @@ for i, r in enumerate(filtered):
         WEB=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('website',''))" 2>/dev/null)
         CITY=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('city',''))" 2>/dev/null)
         run_venue "$NAME" "$VID" "$WEB" "$CITY"
+        CURRENT=$(cat "$SHARED_COUNT_FILE")
+        echo "$((CURRENT + 1))" > "$SHARED_COUNT_FILE"
         if [ "$IDX" -lt "$((SP_COUNT - 1))" ]; then sleep 30; fi
     done
+    fi  # end shared budget else block
     # End-of-run report: skipped venues
     if [ -f "$SKIPPED_VENUES_FILE" ] && [ -s "$SKIPPED_VENUES_FILE" ]; then
         log ""

@@ -352,6 +352,9 @@ return JSON.stringify({contacts:contactList, facebook:fb, instagram:ig, contact_
 })()
 JSEOF
 
+    # Clean up stale temp files from any previous venue
+    rm -f /tmp/pipeline_contact_page_scrape.json
+
     # Open website in Chrome and scrape
     log "  Opening in Chrome: $website"
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${website}\""

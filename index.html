@@ -193,6 +193,8 @@ body {
 }
 
 .venue-name { font-weight: 700; font-size: 0.85rem; color: var(--text-bright); }
+.venue-link { cursor: pointer; }
+.venue-link:hover { text-decoration: underline; }
 
 .venue-action-count {
     font-size: 0.6rem; font-weight: 700;
@@ -1896,7 +1898,7 @@ function renderVenueCard(item) {
 
     let html = `<div class="venue-card" data-zone="${v.zone_priority || 'default'}" onclick="this.classList.toggle('expanded')">`;
     html += `<div class="venue-header"><div class="venue-header-left">`;
-    html += `<div class="venue-top"><span class="venue-name">${esc(v.name)}</span>`;
+    html += `<div class="venue-top"><span class="venue-name venue-link" onclick="event.stopPropagation();openVenueDetail('${esc(v.venue_id)}')">${esc(v.name)}</span>`;
     html += `<span class="category-badge ${cat}">${esc(v.category || 'Other').toUpperCase()}</span>`;
     if (v.zone_priority === 'green' || v.zone_priority === 'yellow') html += `<span class="zone-dot ${v.zone_priority}"></span>`;
     html += `</div><div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}`;

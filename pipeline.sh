@@ -414,19 +414,13 @@ JSEOF
         local cf_result
         cf_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
         if [ -n "$cf_result" ] && [ "$cf_result" != "missing value" ]; then
-            echo "$cf_result" > /tmp/pipeline_sub_scrape.json
+            echo "$cf_result" > /tmp/pipeline_contact_page_scrape.json
             local cf_email_count
-            cf_email_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(len(d.get('contacts',[])))" 2>/dev/null || echo "0")
+            cf_email_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_contact_page_scrape.json')); print(len(d.get('contacts',[])))" 2>/dev/null || echo "0")
             if [ "$cf_email_count" != "0" ]; then
                 local cf_emails
-                cf_emails=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(', '.join(c['email'] for c in d.get('contacts',[])))" 2>/dev/null)
+                cf_emails=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_contact_page_scrape.json')); print(', '.join(c['email'] for c in d.get('contacts',[])))" 2>/dev/null)
                 log "  Found on contact page: $cf_emails"
-                python3 -c "
-import json
-d = json.load(open('/tmp/pipeline_sub_scrape.json'))
-for c in d.get('contacts', []):
-    print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
-" 2>/dev/null >> /tmp/pipeline_all_contacts.txt
             fi
         fi
         if [ "$has_form" != "yes" ]; then
@@ -511,6 +505,17 @@ d = json.load(open('/tmp/pipeline_scrape.json'))
 for c in d.get('contacts', []):
     print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
 " 2>/dev/null > /tmp/pipeline_all_contacts.txt
+
+    # Append contact page emails (scraped during form validation)
+    if [ -f /tmp/pipeline_contact_page_scrape.json ]; then
+        python3 -c "
+import json
+d = json.load(open('/tmp/pipeline_contact_page_scrape.json'))
+for c in d.get('contacts', []):
+    print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
+" 2>/dev/null >> /tmp/pipeline_all_contacts.txt
+        rm -f /tmp/pipeline_contact_page_scrape.json
+    fi
 
     # Crawl all subpages found by JS (nav/header links + keyword body links)
     local subpages

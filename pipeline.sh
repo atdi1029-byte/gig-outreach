@@ -613,7 +613,7 @@ step1b_ig_search() {
     log "  No Instagram found on website — Googling..."
 
     local SEARCH_ENCODED
-    SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"$venue\" instagram'))")
+    SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" instagram'))")
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
     sleep 4
 
@@ -650,7 +650,7 @@ step2_social() {
     cat > /tmp/social_scrape_emails.js << 'JSEOF'
 (function(){
 var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk'];
-var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','info@','hello@','contact@','sales@','events@','reservations@','booking@','enquiries@','inquiries@','office@','general@','frontdesk@','reception@','dataremoval@','privacy@','careers@','jobs@','hr@','marketing@','press@','media@'];
+var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','dataremoval@','privacy@','careers@','jobs@','hr@'];
 var text = document.body.innerText || '';
 var matches = text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || [];
 var emails = [];
@@ -1037,7 +1037,7 @@ step4_linkedin() {
 
     local MAX_PAGES=3
     local ENCODED_VENUE
-    ENCODED_VENUE=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$venue'))")
+    ENCODED_VENUE=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue'''))")
 
     # Use the domain found in Step 3, or fall back to website domain
     local DOMAIN="$APOLLO_DOMAIN"
@@ -1960,7 +1960,7 @@ run_venue() {
     if [ -z "$website" ] || [ "$website" = "None" ]; then
         log "  [LOOKUP] No website — Googling '$venue'..."
         local SEARCH_ENCODED
-        SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$venue'))")
+        SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue'''))")
         osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
         sleep 3
         website=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)

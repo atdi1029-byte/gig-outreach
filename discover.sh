@@ -338,7 +338,7 @@ PYEOF
     # Look up websites for newly added venues via Chrome Google search
     echo "$ADDED" | grep "WEBSITE_LOOKUP:" | while IFS=':' read -r _ VID VNAME VSTATE; do
         log "  [WEBSITE] Looking up: $VNAME"
-        SEARCH_Q=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$VNAME $VSTATE'))")
+        SEARCH_Q=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$VNAME''' + ' ' + '''$VSTATE'''))")
         osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_Q}\""
         sleep 3
         FOUND_WEB=

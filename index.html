@@ -1747,7 +1747,7 @@ function copyAndOpenGmail() {
     const s = composeState;
     const body = document.getElementById('composeText').value;
     navigator.clipboard.writeText(body).catch(() => {});
-    const url = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(s.contactEmail)}&su=${encodeURIComponent(s.currentSubject)}&body=${encodeURIComponent(body)}`;
+    const url = `https://mail.google.com/mail/u/1/?view=cm&to=${encodeURIComponent(s.contactEmail)}&su=${encodeURIComponent(s.currentSubject)}&body=${encodeURIComponent(body)}`;
     openExternal(url);
     showToast('Copied & opening Gmail');
 }
@@ -2020,7 +2020,7 @@ function openComposeForContact(contactId, email, contactName, channel) {
     if (channel === 'email' && email) {
         // Copy body, open Gmail with to/subject/body
         navigator.clipboard.writeText(tmpl.body).catch(() => {});
-        const url = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`;
+        const url = `https://mail.google.com/mail/u/1/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`;
         openExternal(url);
         showToast('Copied & opening Gmail');
     } else if (channel === 'ig' && v.instagram) {

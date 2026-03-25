@@ -1587,7 +1587,7 @@ total_contacts = sum(len(v['contacts']) for v in venues)
 run_start = None
 run_end = None
 for line in lines:
-    m = re.search(r'(\d{2}:\d{2}:\d{2})\s+Pipeline started', line)
+    m = re.search(r'(\d{2}:\d{2}:\d{2})\s+.*Pipeline started', line)
     if m and not run_start:
         run_start = m.group(1)
     m = re.search(r'(\d{2}:\d{2}:\d{2})\s+DONE:', line)
@@ -1833,7 +1833,8 @@ for v in venues:
         score_html = '<span class="score" style="background:#6ecfcf">Untouched</span>'
     else:
         score_html = f'<span class="score">Score: {v["score"]}</span>'
-    html += f'<h3>{v["pick_num"]}. {esc(v["name"])} {score_html}{cat_html}</h3>\n'
+    app_url = f'https://atdi1029-byte.github.io/gig-outreach/?venue={v["venue_id"]}'
+    html += f'<h3>{v["pick_num"]}. <a href="{app_url}" style="color:#6ecfcf;text-decoration:none">{esc(v["name"])}</a> {score_html}{cat_html}</h3>\n'
 
     # Social/website links
     links = []

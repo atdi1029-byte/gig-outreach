@@ -2185,7 +2185,8 @@ function openVenueDetail(venueId) {
     if (venue.contact_form) {
         html += `<div class="detail-section-label" style="background:${catColor}">Contact Form</div>`;
         html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
-        html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Template copied!')">Open + Copy</button></div>`;
+        html += `<button class="btn-action btn-copy" onclick="copyText(getTemplate(currentDetailCat).subject);showToast('Subject copied!')">Subject</button>`;
+        html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Message copied!')">Open + Copy</button></div>`;
     }
 
     // If nothing actionable, show a message

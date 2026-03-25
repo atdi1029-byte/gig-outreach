@@ -395,6 +395,29 @@ JSEOF
         fi
     fi
 
+    # Validate contact form — actually visit the page and check for a real <form> with <textarea> or message input
+    if [ -n "$contact_form" ] && [ "$contact_form" != "None" ] && [ "$contact_form" != "" ]; then
+        log "  Validating contact form URL: $contact_form"
+        osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${contact_form}\"" 2>/dev/null
+        sleep 4
+        local has_form
+        has_form=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "
+(function(){
+  var forms = document.querySelectorAll(\"form\");
+  for(var i=0;i<forms.length;i++){
+    var f=forms[i];
+    if(f.querySelector(\"textarea\") || f.querySelector(\"input[type=text][name*=message]\") || f.querySelector(\"input[type=text][name*=comment]\") || f.querySelector(\"input[type=text][name*=inquiry]\") || f.querySelector(\"input[type=text][name*=body]\")) return \"yes\";
+  }
+  return \"no\";
+})()"' 2>/dev/null)
+        if [ "$has_form" != "yes" ]; then
+            log "  ✗ No submittable form found — clearing contact_form"
+            contact_form=""
+        else
+            log "  ✓ Real contact form confirmed"
+        fi
+    fi
+
     log "  Emails: $email_count | FB: ${fb:-none} | IG: ${ig:-none} | Contact Form: ${contact_form:-none}"
 
     # --- Location-page detection for multi-location/chain venues ---

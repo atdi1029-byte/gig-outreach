@@ -1240,9 +1240,11 @@ function removeStarWord(word) {
     saveStarWords(getStarWords().filter(w => w !== word.toLowerCase().trim()));
     showToast('Unstarred "' + word + '"');
 }
+const SKIP_TITLES = ['chief business officer', 'rotating chef'];
 function shouldSkipContact(title) {
     if (!title) return false;
     const lower = title.toLowerCase();
+    if (SKIP_TITLES.some(t => lower.includes(t))) return true;
     return getSkipWords().some(w => lower.includes(w));
 }
 function isStarredContact(title) {

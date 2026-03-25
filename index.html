@@ -1840,11 +1840,11 @@ function markEmailSent(contactId, venueId, category, btn) {
     btn.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }), function() {
-            btn.textContent = 'Done'; btn.classList.add('done');
-            showToast('Marked as sent!');
-            setTimeout(loadDashboard, 1500);
-        });
+        var wrapper = btn.closest('.contact-wrapper');
+        if (wrapper) wrapper.remove();
+        else btn.closest('.detail-action-row').remove();
+        showToast('Marked as sent!');
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }), function() {});
     });
 }
 
@@ -1853,11 +1853,10 @@ function markIGSent(contactId, venueId, btn) {
     btn.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'instagram' }), function() {
-            btn.textContent = 'Done'; btn.classList.add('done');
-            showToast('IG DM marked!');
-            setTimeout(loadDashboard, 1500);
-        });
+        btn.closest('.detail-action-row').previousElementSibling.remove();
+        btn.closest('.detail-action-row').remove();
+        showToast('IG DM marked!');
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'instagram' }), function() {});
     });
 }
 
@@ -1866,11 +1865,10 @@ function markFBSent(contactId, venueId, btn) {
     btn.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'facebook' }), function() {
-            btn.textContent = 'Done'; btn.classList.add('done');
-            showToast('FB msg marked!');
-            setTimeout(loadDashboard, 1500);
-        });
+        btn.closest('.detail-action-row').previousElementSibling.remove();
+        btn.closest('.detail-action-row').remove();
+        showToast('FB msg marked!');
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'facebook' }), function() {});
     });
 }
 
@@ -1896,6 +1894,20 @@ function skipFB(contactId, venueId, el) {
         showToast('FB skipped');
         setTimeout(loadDashboard, 1500);
     });
+}
+
+function markFormSent(venueId, btn) {
+    btn.textContent = '...';
+    var row = btn.closest('.detail-action-row');
+    var label = row.previousElementSibling;
+    if (label) label.remove();
+    row.remove();
+    showToast('Contact form marked!');
+    if (BASE_URL) {
+        var fc = (window._currentContacts || [])[0];
+        var cid = fc ? fc.contact_id : '';
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: cid, channel: 'contact_form' }), function() {});
+    }
 }
 
 // === RENDER: HOME — Top Picks ===
@@ -2186,7 +2198,8 @@ function openVenueDetail(venueId) {
         html += `<div class="detail-section-label" style="background:${catColor}">Contact Form</div>`;
         html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
         html += `<button class="btn-action btn-copy" onclick="copyText(getTemplate(currentDetailCat).subject);showToast('Subject copied!')">Subject</button>`;
-        html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Message copied!')">Open + Copy</button></div>`;
+        html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Message copied!')">Open + Copy</button>`;
+        html += `<button class="btn-action btn-sent" onclick="markFormSent('${esc(venue.venue_id)}',this)">Sent</button></div>`;
     }
 
     // If nothing actionable, show a message

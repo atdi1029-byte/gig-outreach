@@ -1595,9 +1595,12 @@ const EMAIL_CLOSINGS = [
 
 function generateEmail(venueName, contactName, category) {
     const firstName = contactName ? contactName.split(/\s+/)[0] : '';
-    const skipWords = /^(le|la|the|at|du|de|el|los|las|hotel|cafe|bistro|bistrot|chez|inn|club|resort)$/i;
+    const skipWords = /^(le|la|the|at|du|de|el|los|las|hotel|cafe|bistro|bistrot|chez|inn|club|resort|bellhop)$/i;
+    const skipPhrases = /food runner|bell hop/i;
+    const fullName = (contactName || '').trim();
     const useName = firstName.length >= 3 && firstName.length <= 15
-        && /^[a-z]+$/i.test(firstName) && !skipWords.test(firstName);
+        && /^[a-z]+$/i.test(firstName) && !skipWords.test(firstName)
+        && !skipPhrases.test(fullName);
     const t = TEMPLATES[category] || TEMPLATES.winery;
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const interest = pick(INTEREST);

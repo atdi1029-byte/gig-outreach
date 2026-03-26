@@ -1621,6 +1621,9 @@ function showToast(msg) {
 
 // === OPEN EXTERNAL APP (forces Android to leave PWA) ===
 function openExternal(url) {
+    if (url && !url.startsWith('http') && !url.startsWith('mailto:')) {
+        url = 'https://' + url;
+    }
     if (isMobile) {
         window.open(url, '_blank');
     } else {

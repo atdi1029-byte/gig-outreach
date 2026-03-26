@@ -150,6 +150,11 @@ body {
     -webkit-tap-highlight-color: transparent;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
+.level-sprite {
+    width: 48px; height: 48px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 6px var(--accent));
+}
 .level-pokemon {
     font-family: 'Cinzel', serif;
     font-size: 0.7rem;
@@ -1146,6 +1151,7 @@ body {
     .home-header h1 .drop-cap { font-size: 2.6rem; }
     .venue-name { font-size: 0.8rem; }
     .monthly-section { /* visible on all screens — collapsible */ }
+    .reports-pill { display: none !important; }
 }
 </style>
 </head>
@@ -1170,7 +1176,7 @@ body {
                 <span>Past Gigs</span>
                 <span class="gigs-pill-count" id="gigsCount">0</span>
             </button>
-            <button class="gigs-pill" onclick="openReportsView()">
+            <button class="gigs-pill reports-pill" onclick="openReportsView()">
                 <span class="gigs-pill-icon">&#9776;</span>
                 <span>Reports</span>
             </button>
@@ -1218,6 +1224,7 @@ body {
         <!-- POKEMON LEVEL -->
         <div class="level-section" id="levelSection" style="display:none">
             <div class="level-header" id="levelHeader" onclick="toggleLevel()">
+                <img class="level-sprite" id="levelSprite" src="" alt="">
                 <div class="level-pokemon" id="levelPokemon"></div>
                 <div class="level-info">
                     <div class="level-num">
@@ -3917,9 +3924,9 @@ function getLevelInfo(emailCount) {
     var progress = next > current
         ? (emailCount - current) / (next - current) : 0;
     var stages = [
-        { max: 15, name: 'Charmander', stage: 1 },
-        { max: 35, name: 'Charmeleon', stage: 2 },
-        { max: Infinity, name: 'Charizard', stage: 3 }
+        { max: 15, name: 'Charmander', stage: 1, pokeId: 4 },
+        { max: 35, name: 'Charmeleon', stage: 2, pokeId: 5 },
+        { max: Infinity, name: 'Charizard', stage: 3, pokeId: 6 }
     ];
     var evo = stages.find(function(s) {
         return level <= s.max;
@@ -3928,7 +3935,7 @@ function getLevelInfo(emailCount) {
         level: level, emailCount: emailCount,
         current: current, next: next,
         progress: progress,
-        name: evo.name, stage: evo.stage
+        name: evo.name, stage: evo.stage, pokeId: evo.pokeId
     };
 }
 
@@ -3946,6 +3953,7 @@ function renderLevelBar() {
     var info = getLevelInfo(count);
     var pct = Math.min(100, Math.max(0, info.progress * 100));
     section.style.display = '';
+    document.getElementById('levelSprite').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + info.pokeId + '.png';
     document.getElementById('levelPokemon').textContent = info.name;
     document.getElementById('levelLabel').textContent =
         'Lv. ' + info.level;
@@ -3973,9 +3981,9 @@ function renderLevelBar() {
         ' emails</span></div>';
     h += '<div class="level-evo-row">';
     var stages = [
-        { name: 'Charmander', range: 'Lv. 1–15' },
-        { name: 'Charmeleon', range: 'Lv. 16–35' },
-        { name: 'Charizard', range: 'Lv. 36+' }
+        { name: 'Charmander', range: 'Lv. 1–15', pokeId: 4 },
+        { name: 'Charmeleon', range: 'Lv. 16–35', pokeId: 5 },
+        { name: 'Charizard', range: 'Lv. 36+', pokeId: 6 }
     ];
     for (var i = 0; i < stages.length; i++) {
         var s = stages[i];
@@ -3986,7 +3994,7 @@ function renderLevelBar() {
         })) cls += ' done';
         else cls += ' locked';
         h += '<div class="' + cls + '">';
-        h += '<span class="level-evo-dot"></span>';
+        h += '<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + s.pokeId + '.png" style="width:24px;height:24px;image-rendering:pixelated;vertical-align:middle;margin-right:4px">';
         h += '<span>' + s.name + '</span>';
         h += '<span style="margin-left:auto;font-size:0.6rem;' +
             'opacity:0.7">' + s.range + '</span>';

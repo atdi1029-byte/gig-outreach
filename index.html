@@ -1648,10 +1648,17 @@ function buildGmailLink(email, category) {
     return `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
 }
 
+// === SOCIAL URL NORMALIZER ===
+function normalizeIGUrl(url) {
+    if (!url) return '';
+    if (url.startsWith('http')) return url;
+    return 'https://www.instagram.com/' + url.replace(/^@/, '');
+}
+
 // === SOCIAL ACTIONS ===
 function openIGWithTemplate(igUrl, category) {
     copyText(getTemplate(category).body);
-    openExternal(igUrl);
+    openExternal(normalizeIGUrl(igUrl));
 }
 
 function openFBWithTemplate(fbUrl, category) {
@@ -2127,7 +2134,7 @@ function openComposeForContact(contactId, email, contactName, channel) {
         showToast('Copied & opening Gmail');
     } else if (channel === 'ig' && v.instagram) {
         copyText(tmpl.body);
-        openExternal(v.instagram);
+        openExternal(normalizeIGUrl(v.instagram));
     } else if (channel === 'fb' && v.facebook) {
         copyText(tmpl.body);
         openExternal(v.facebook);
@@ -2602,7 +2609,7 @@ function renderReviewCards() {
             ${notesTxt ? `<div class="review-notes">${notesTxt}</div>` : ''}
             <div style="display:flex;gap:0.4rem;margin-top:0.5rem;flex-wrap:wrap">
                 ${v.website && v.website !== 'undefined' ? `<a href="${v.website}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:var(--gold);background:rgba(240,160,48,0.1);border:1px solid rgba(240,160,48,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Website</a>` : ''}
-                ${v.instagram ? `<a href="${v.instagram}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#e1306c;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Instagram</a>` : ''}
+                ${v.instagram ? `<a href="${normalizeIGUrl(v.instagram)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#e1306c;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Instagram</a>` : ''}
                 ${v.facebook ? `<a href="${v.facebook}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#4267b2;background:rgba(66,103,178,0.1);border:1px solid rgba(66,103,178,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Facebook</a>` : ''}
                 <a href="https://www.google.com/maps/search/${encodeURIComponent(v.name + ' ' + (v.city || '') + ' ' + (v.state || ''))}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:var(--green);background:rgba(38,166,154,0.1);border:1px solid rgba(38,166,154,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Maps</a>
             </div>

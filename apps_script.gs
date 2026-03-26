@@ -582,6 +582,7 @@ function updateVenue_(params) {
 // ---------------------------------------------------------------
 function updateContact_(params) {
   var contactId = params.contact_id || '';
+  var venueId = params.venue_id || '';
   var field = params.field || '';
   var value = params.value || '';
   if (!contactId || !field) return jsonResponse_({ status: 'error', message: 'contact_id and field required' });
@@ -600,7 +601,7 @@ function updateContact_(params) {
   if (colIdx === undefined) return jsonResponse_({ status: 'error', message: 'Unknown field: ' + field });
 
   for (var i = 1; i < data.length; i++) {
-    if (String(data[i][0]) === contactId) {
+    if (String(data[i][0]) === contactId && (!venueId || String(data[i][1]) === venueId)) {
       // Handle boolean/skipped fields
       if (field === 'email_sent' || field === 'ig_dm_sent' || field === 'fb_msg_sent') {
         if (value === 'skipped') {

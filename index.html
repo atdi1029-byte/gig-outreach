@@ -1866,7 +1866,8 @@ function saveFeedback(venueId) {
 function skipContact(contactId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'skipped' }), function(res) {
+    const vid = currentDetailVenue ? currentDetailVenue.venue_id : '';
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: vid, field: 'email_sent', value: 'skipped' }), function(res) {
         if (res && res.status === 'error') {
             el.textContent = '✕';
             showToast('Skip failed: ' + (res.message || 'unknown error'));
@@ -1883,7 +1884,7 @@ function skipContact(contactId, el) {
 function markEmailSent(contactId, venueId, category, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'email_sent', value: 'true' }), function(res) {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'email_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
         var wrapper = btn.closest('.contact-wrapper');
         if (wrapper) wrapper.remove();
@@ -1896,7 +1897,7 @@ function markEmailSent(contactId, venueId, category, btn) {
 function markIGSent(contactId, venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'true' }), function(res) {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'ig_dm_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
         btn.closest('.detail-action-row').previousElementSibling.remove();
         btn.closest('.detail-action-row').remove();
@@ -1908,7 +1909,7 @@ function markIGSent(contactId, venueId, btn) {
 function markFBSent(contactId, venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'true' }), function(res) {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'fb_msg_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
         btn.closest('.detail-action-row').previousElementSibling.remove();
         btn.closest('.detail-action-row').remove();
@@ -1920,7 +1921,7 @@ function markFBSent(contactId, venueId, btn) {
 function skipIG(contactId, venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'ig_dm_sent', value: 'skipped' }), function(res) {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'ig_dm_sent', value: 'skipped' }), function(res) {
         if (res && res.status === 'error') { el.textContent = '✕'; return; }
         el.closest('.detail-action-row').previousElementSibling.remove();
         el.closest('.detail-action-row').remove();
@@ -1932,7 +1933,7 @@ function skipIG(contactId, venueId, el) {
 function skipFB(contactId, venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, field: 'fb_msg_sent', value: 'skipped' }), function(res) {
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'fb_msg_sent', value: 'skipped' }), function(res) {
         if (res && res.status === 'error') { el.textContent = '✕'; return; }
         el.closest('.detail-action-row').previousElementSibling.remove();
         el.closest('.detail-action-row').remove();

@@ -151,9 +151,9 @@ body {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 .level-sprite {
-    width: 48px; height: 48px;
+    width: 120px; height: 120px;
     image-rendering: pixelated;
-    filter: drop-shadow(0 0 6px var(--accent));
+    filter: drop-shadow(0 0 10px var(--accent));
 }
 .level-pokemon {
     font-family: 'Cinzel', serif;
@@ -182,15 +182,7 @@ body {
     height: 100%;
     border-radius: 3px;
     transition: width 0.5s ease;
-}
-.level-fill.stage1 {
     background: linear-gradient(90deg, #f06030, #f0a030);
-}
-.level-fill.stage2 {
-    background: linear-gradient(90deg, #e03020, #f06030);
-}
-.level-fill.stage3 {
-    background: linear-gradient(90deg, #f08020, #f0d030, #f08020);
 }
 .level-chevron {
     color: var(--text-dim);
@@ -3905,15 +3897,47 @@ function updateGigsCount() {
 }
 
 // === POKEMON LEVEL SYSTEM ===
+var POKEDEX = [
+    'Bulbasaur','Ivysaur','Venusaur','Charmander','Charmeleon',
+    'Charizard','Squirtle','Wartortle','Blastoise','Caterpie',
+    'Metapod','Butterfree','Weedle','Kakuna','Beedrill',
+    'Pidgey','Pidgeotto','Pidgeot','Rattata','Raticate',
+    'Spearow','Fearow','Ekans','Arbok','Pikachu',
+    'Raichu','Sandshrew','Sandslash','Nidoran♀','Nidorina',
+    'Nidoqueen','Nidoran♂','Nidorino','Nidoking','Clefairy',
+    'Clefable','Vulpix','Ninetales','Jigglypuff','Wigglytuff',
+    'Zubat','Golbat','Oddish','Gloom','Vileplume',
+    'Paras','Parasect','Venonat','Venomoth','Diglett',
+    'Dugtrio','Meowth','Persian','Psyduck','Golduck',
+    'Mankey','Primeape','Growlithe','Arcanine','Poliwag',
+    'Poliwhirl','Poliwrath','Abra','Kadabra','Alakazam',
+    'Machop','Machoke','Machamp','Bellsprout','Weepinbell',
+    'Victreebel','Tentacool','Tentacruel','Geodude','Graveler',
+    'Golem','Ponyta','Rapidash','Slowpoke','Slowbro',
+    'Magnemite','Magneton','Farfetch\'d','Doduo','Dodrio',
+    'Seel','Dewgong','Grimer','Muk','Shellder',
+    'Cloyster','Gastly','Haunter','Gengar','Onix',
+    'Drowzee','Hypno','Krabby','Kingler','Voltorb',
+    'Electrode','Exeggcute','Exeggutor','Cubone','Marowak',
+    'Hitmonlee','Hitmonchan','Lickitung','Koffing','Weezing',
+    'Rhyhorn','Rhydon','Chansey','Tangela','Kangaskhan',
+    'Horsea','Seadra','Goldeen','Seaking','Staryu',
+    'Starmie','Mr. Mime','Scyther','Jynx','Electabuzz',
+    'Magmar','Pinsir','Tauros','Magikarp','Gyarados',
+    'Lapras','Ditto','Eevee','Vaporeon','Jolteon',
+    'Flareon','Porygon','Omanyte','Omastar','Kabuto',
+    'Kabutops','Aerodactyl','Snorlax','Articuno','Zapdos',
+    'Moltres','Dratini','Dragonair','Dragonite','Mewtwo','Mew'
+];
+
 function emailsForLevel(level) {
-    // L1=0, L2=3, L5=24, L10=99, L20=399, L30=899
     if (level <= 1) return 0;
     return level * level - 1;
 }
 
 function getLevelFromEmails(count) {
     var level = 1;
-    while (emailsForLevel(level + 1) <= count) level++;
+    while (level < 151 && emailsForLevel(level + 1) <= count) level++;
     return level;
 }
 
@@ -3921,21 +3945,15 @@ function getLevelInfo(emailCount) {
     var level = getLevelFromEmails(emailCount);
     var current = emailsForLevel(level);
     var next = emailsForLevel(level + 1);
-    var progress = next > current
-        ? (emailCount - current) / (next - current) : 0;
-    var stages = [
-        { max: 15, name: 'Charmander', stage: 1, pokeId: 4 },
-        { max: 35, name: 'Charmeleon', stage: 2, pokeId: 5 },
-        { max: Infinity, name: 'Charizard', stage: 3, pokeId: 6 }
-    ];
-    var evo = stages.find(function(s) {
-        return level <= s.max;
-    });
+    var progress = (next > current)
+        ? (emailCount - current) / (next - current) : 1;
     return {
         level: level, emailCount: emailCount,
         current: current, next: next,
         progress: progress,
-        name: evo.name, stage: evo.stage, pokeId: evo.pokeId
+        name: POKEDEX[level - 1] || 'Mew',
+        pokeId: level,
+        isMax: level >= 151
     };
 }
 
@@ -3960,7 +3978,7 @@ function renderLevelBar() {
     document.getElementById('levelCount').textContent =
         count + ' / ' + info.next + ' emails';
     var fill = document.getElementById('levelFill');
-    fill.className = 'level-fill stage' + info.stage;
+    fill.className = 'level-fill';
     fill.style.width = pct + '%';
 
     // Build expanded details
@@ -3979,28 +3997,6 @@ function renderLevelBar() {
         ' cost</span>';
     h += '<span class="level-stat-val">' + gap +
         ' emails</span></div>';
-    h += '<div class="level-evo-row">';
-    var stages = [
-        { name: 'Charmander', range: 'Lv. 1–15', pokeId: 4 },
-        { name: 'Charmeleon', range: 'Lv. 16–35', pokeId: 5 },
-        { name: 'Charizard', range: 'Lv. 36+', pokeId: 6 }
-    ];
-    for (var i = 0; i < stages.length; i++) {
-        var s = stages[i];
-        var cls = 'level-evo-item';
-        if (s.name === info.name) cls += ' active';
-        else if (i < stages.findIndex(function(x) {
-            return x.name === info.name;
-        })) cls += ' done';
-        else cls += ' locked';
-        h += '<div class="' + cls + '">';
-        h += '<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + s.pokeId + '.png" style="width:24px;height:24px;image-rendering:pixelated;vertical-align:middle;margin-right:4px">';
-        h += '<span>' + s.name + '</span>';
-        h += '<span style="margin-left:auto;font-size:0.6rem;' +
-            'opacity:0.7">' + s.range + '</span>';
-        h += '</div>';
-    }
-    h += '</div>';
     details.innerHTML = h;
 
     // Level-up detection
@@ -4009,13 +4005,10 @@ function renderLevelBar() {
     );
     if (info.level > stored && stored > 0) {
         var header = document.getElementById('levelHeader');
-        var isEvolve = (info.level === 16 || info.level === 36);
-        header.classList.add(isEvolve ? 'evolve' : 'level-up');
-        showToast(isEvolve
-            ? info.name + ' evolved! Lv. ' + info.level
-            : 'Level up! Lv. ' + info.level);
+        header.classList.add('evolve');
+        showToast(info.name + '! Lv. ' + info.level);
         setTimeout(function() {
-            header.classList.remove('level-up', 'evolve');
+            header.classList.remove('evolve');
         }, 1500);
     }
     localStorage.setItem('outreach_level', String(info.level));

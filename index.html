@@ -1632,8 +1632,12 @@ function openExternal(url) {
 }
 
 // === GMAIL LINK ===
+const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
 function buildGmailLink(email, category) {
     const t = getTemplate(category);
+    if (isMobile) {
+        return `mailto:${email}?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
+    }
     return `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
 }
 
@@ -2109,7 +2113,9 @@ function openComposeForContact(contactId, email, contactName, channel) {
     if (channel === 'email' && email) {
         // Copy body, open Gmail with to/subject/body
         navigator.clipboard.writeText(tmpl.body).catch(() => {});
-        const url = `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`;
+        const url = isMobile
+            ? `mailto:${email}?subject=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`
+            : `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`;
         openExternal(url);
         showToast('Copied & opening Gmail');
     } else if (channel === 'ig' && v.instagram) {

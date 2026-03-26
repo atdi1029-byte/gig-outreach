@@ -1594,7 +1594,10 @@ const EMAIL_CLOSINGS = [
 ];
 
 function generateEmail(venueName, contactName, category) {
-    const name = contactName || 'there';
+    const firstName = contactName ? contactName.split(/\s+/)[0] : '';
+    const skipWords = /^(le|la|the|at|du|de|el|los|las|hotel|cafe|bistro|bistrot|chez|inn|club|resort)$/i;
+    const useName = firstName.length >= 3 && firstName.length <= 15
+        && /^[a-z]+$/i.test(firstName) && !skipWords.test(firstName);
     const t = TEMPLATES[category] || TEMPLATES.winery;
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const interest = pick(INTEREST);
@@ -1604,7 +1607,7 @@ function generateEmail(venueName, contactName, category) {
     const signoff = pick(SIGNOFFS);
 
     return [
-        pick(GREETINGS).replace('{name}', name),
+        useName ? pick(GREETINGS).replace('{name}', firstName) : pick(['Hi!', 'Hey!']),
         '',
         body,
         '',

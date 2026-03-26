@@ -659,6 +659,44 @@ step1b_ig_search() {
 }
 
 # =================================================================
+# STEP 1C: FACEBOOK GOOGLE SEARCH FALLBACK
+# If Step 1 didn't find a Facebook URL on the website, try Google.
+# =================================================================
+step1c_fb_search() {
+    local venue="$1" venue_id="$2"
+
+    # Check if FB already found (from Step 1 website scrape)
+    local current_fb
+    local fb_tmpf="/tmp/pipeline_fb_check.json"
+    curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" -o "$fb_tmpf" 2>/dev/null
+    current_fb=$(python3 -c "import json; print(json.load(open('$fb_tmpf')).get('venue',{}).get('facebook',''))" 2>/dev/null)
+
+    if [ -n "$current_fb" ] && [ "$current_fb" != "None" ] && [ ${#current_fb} -gt 5 ]; then
+        return  # Already has FB
+    fi
+
+    log ""
+    log "========== STEP 1C: Facebook Google Search =========="
+    log "  No Facebook found on website — Googling..."
+
+    local SEARCH_ENCODED
+    SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" facebook'))")
+    osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
+    sleep 4
+
+    local fb_url
+    fb_url=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_fb.js"'")' 2>/dev/null)
+
+    if [ -n "$fb_url" ] && [ "$fb_url" != "missing value" ] && [ "$fb_url" != "" ]; then
+        log "  [FB SEARCH] Found: $fb_url"
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$fb_url'''))")" > /dev/null
+        log "  ✓ Facebook URL saved"
+    else
+        log "  [FB SEARCH] No Facebook found via Google"
+    fi
+}
+
+# =================================================================
 # STEP 2: SOCIAL MEDIA SCRAPE
 # =================================================================
 step2_social() {
@@ -2059,6 +2097,7 @@ run_venue() {
 
     step1_website "$venue" "$venue_id" "$website" "$city"
     step1b_ig_search "$venue" "$venue_id"
+    step1c_fb_search "$venue" "$venue_id"
     step2_social "$venue" "$venue_id"
     # Check Apollo credits before the expensive API step
     if ! check_apollo_credits; then

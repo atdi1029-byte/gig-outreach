@@ -4026,6 +4026,11 @@ document.addEventListener('DOMContentLoaded', () => {
     loadDashboard();
 });
 
+// Refresh dashboard when app resumes from background
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') loadDashboard();
+});
+
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW:', err));
 }

@@ -133,6 +133,134 @@ body {
     margin-right: -2px;
 }
 
+/* === POKEMON LEVEL BAR === */
+.level-section {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+.level-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(10,10,10,0.7);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.level-pokemon {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.level-info { flex: 1; }
+.level-num {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    margin-bottom: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.level-progress {
+    height: 5px;
+    background: #222;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.level-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+.level-fill.stage1 {
+    background: linear-gradient(90deg, #f06030, #f0a030);
+}
+.level-fill.stage2 {
+    background: linear-gradient(90deg, #e03020, #f06030);
+}
+.level-fill.stage3 {
+    background: linear-gradient(90deg, #f08020, #f0d030, #f08020);
+}
+.level-chevron {
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+}
+.level-section.expanded .level-chevron {
+    transform: rotate(90deg);
+}
+.level-details {
+    display: none;
+    padding: 0.6rem 0.8rem;
+    background: rgba(10,10,10,0.5);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    font-size: 0.7rem;
+}
+.level-section.expanded .level-details {
+    display: block;
+}
+.level-section.expanded .level-header {
+    border-radius: 10px 10px 0 0;
+}
+.level-stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.level-stat-label { color: var(--text-dim); }
+.level-stat-val { color: var(--text-bright); font-weight: 700; }
+.level-evo-row {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+.level-evo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0;
+    font-size: 0.65rem;
+}
+.level-evo-item.active { color: var(--accent); font-weight: 700; }
+.level-evo-item.locked { color: var(--text-dim); opacity: 0.5; }
+.level-evo-item.done { color: var(--green); }
+.level-evo-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+}
+@keyframes levelUp {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.03); filter: brightness(1.6); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+.level-header.level-up {
+    animation: levelUp 0.8s ease;
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(240,160,48,0.4);
+}
+@keyframes evolve {
+    0% { transform: scale(1); filter: brightness(1) hue-rotate(0deg); }
+    30% { transform: scale(1.1); filter: brightness(2) hue-rotate(30deg); }
+    60% { transform: scale(0.95); filter: brightness(1.5) hue-rotate(-10deg); }
+    100% { transform: scale(1); filter: brightness(1) hue-rotate(0deg); }
+}
+.level-header.evolve {
+    animation: evolve 1.2s ease;
+    border-color: var(--accent);
+    box-shadow: 0 0 30px rgba(240,160,48,0.6);
+}
+
 /* === SECTIONS === */
 .section { margin-bottom: 1.5rem; }
 
@@ -1070,16 +1198,6 @@ body {
             <div class="review-stack" id="reviewStack" style="display:none"></div>
         </div>
 
-        <!-- SMART PICKS (recommendation engine) -->
-        <div class="section" id="smartPicksSection" style="display:none">
-            <div class="section-header" onclick="toggleSmartPicks()">
-                <span class="section-title">Smart Picks</span>
-                <span class="section-badge" id="smartPicksBadge" style="background:var(--gold)">0</span>
-            </div>
-            <div id="smartPicksList" class="collapsed"></div>
-            <div id="tasteReport" style="display:none"></div>
-        </div>
-
         <!-- TOP PICKS -->
         <div class="section">
             <div class="section-header" onclick="toggleTopPicks()">
@@ -1095,6 +1213,24 @@ body {
                 <span class="section-title">Browse Venues</span>
             </div>
             <div id="stateGrid"></div>
+        </div>
+
+        <!-- POKEMON LEVEL -->
+        <div class="level-section" id="levelSection" style="display:none">
+            <div class="level-header" id="levelHeader" onclick="toggleLevel()">
+                <div class="level-pokemon" id="levelPokemon"></div>
+                <div class="level-info">
+                    <div class="level-num">
+                        <span id="levelLabel"></span>
+                        <span id="levelCount"></span>
+                    </div>
+                    <div class="level-progress">
+                        <div class="level-fill" id="levelFill"></div>
+                    </div>
+                </div>
+                <span class="level-chevron">&#9654;</span>
+            </div>
+            <div class="level-details" id="levelDetails"></div>
         </div>
     </div>
 </div>
@@ -1901,6 +2037,7 @@ function markEmailSent(contactId, venueId, category, btn) {
         if (wrapper) wrapper.remove();
         else btn.closest('.detail-action-row').remove();
         showToast('Marked as sent!');
+        renderLevelBar();
         fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }), function() {});
     });
 }
@@ -2503,8 +2640,8 @@ function loadDashboard() {
             renderTopPicks(data.topPicks);
             renderStateGrid();
             updateGigsCount();
-            loadSmartPicks();
             renderWeeklyGoals();
+            renderLevelBar();
             checkLinkedInReminder();
             // Deep link: ?venue=VENUE_ID opens detail page
             const urlVenue = new URLSearchParams(window.location.search).get('venue');
@@ -3754,10 +3891,138 @@ function updateGigsCount() {
     document.getElementById('gigsCount').textContent = active.length;
 }
 
+// === POKEMON LEVEL SYSTEM ===
+function emailsForLevel(level) {
+    // L1=0, L2=3, L5=24, L10=99, L20=399, L30=899
+    if (level <= 1) return 0;
+    return level * level - 1;
+}
+
+function getLevelFromEmails(count) {
+    var level = 1;
+    while (emailsForLevel(level + 1) <= count) level++;
+    return level;
+}
+
+function getLevelInfo(emailCount) {
+    var level = getLevelFromEmails(emailCount);
+    var current = emailsForLevel(level);
+    var next = emailsForLevel(level + 1);
+    var progress = next > current
+        ? (emailCount - current) / (next - current) : 0;
+    var stages = [
+        { max: 15, name: 'Charmander', stage: 1 },
+        { max: 35, name: 'Charmeleon', stage: 2 },
+        { max: Infinity, name: 'Charizard', stage: 3 }
+    ];
+    var evo = stages.find(function(s) {
+        return level <= s.max;
+    });
+    return {
+        level: level, emailCount: emailCount,
+        current: current, next: next,
+        progress: progress,
+        name: evo.name, stage: evo.stage
+    };
+}
+
+function getEmailsSentCount() {
+    if (!dashboardData || !dashboardData.contacts) return 0;
+    return dashboardData.contacts.filter(function(c) {
+        return c.email_sent === 'true';
+    }).length;
+}
+
+function renderLevelBar() {
+    var section = document.getElementById('levelSection');
+    if (!section) return;
+    var count = getEmailsSentCount();
+    var info = getLevelInfo(count);
+    var pct = Math.min(100, Math.max(0, info.progress * 100));
+    section.style.display = '';
+    document.getElementById('levelPokemon').textContent = info.name;
+    document.getElementById('levelLabel').textContent =
+        'Lv. ' + info.level;
+    document.getElementById('levelCount').textContent =
+        count + ' / ' + info.next + ' emails';
+    var fill = document.getElementById('levelFill');
+    fill.className = 'level-fill stage' + info.stage;
+    fill.style.width = pct + '%';
+
+    // Build expanded details
+    var gap = info.next - info.current;
+    var left = info.next - count;
+    var details = document.getElementById('levelDetails');
+    var h = '';
+    h += '<div class="level-stat-row">';
+    h += '<span class="level-stat-label">Total emails sent</span>';
+    h += '<span class="level-stat-val">' + count + '</span></div>';
+    h += '<div class="level-stat-row">';
+    h += '<span class="level-stat-label">Emails to next level</span>';
+    h += '<span class="level-stat-val">' + left + '</span></div>';
+    h += '<div class="level-stat-row">';
+    h += '<span class="level-stat-label">Level ' + info.level +
+        ' cost</span>';
+    h += '<span class="level-stat-val">' + gap +
+        ' emails</span></div>';
+    h += '<div class="level-evo-row">';
+    var stages = [
+        { name: 'Charmander', range: 'Lv. 1–15' },
+        { name: 'Charmeleon', range: 'Lv. 16–35' },
+        { name: 'Charizard', range: 'Lv. 36+' }
+    ];
+    for (var i = 0; i < stages.length; i++) {
+        var s = stages[i];
+        var cls = 'level-evo-item';
+        if (s.name === info.name) cls += ' active';
+        else if (i < stages.findIndex(function(x) {
+            return x.name === info.name;
+        })) cls += ' done';
+        else cls += ' locked';
+        h += '<div class="' + cls + '">';
+        h += '<span class="level-evo-dot"></span>';
+        h += '<span>' + s.name + '</span>';
+        h += '<span style="margin-left:auto;font-size:0.6rem;' +
+            'opacity:0.7">' + s.range + '</span>';
+        h += '</div>';
+    }
+    h += '</div>';
+    details.innerHTML = h;
+
+    // Level-up detection
+    var stored = parseInt(
+        localStorage.getItem('outreach_level') || '0'
+    );
+    if (info.level > stored && stored > 0) {
+        var header = document.getElementById('levelHeader');
+        var isEvolve = (info.level === 16 || info.level === 36);
+        header.classList.add(isEvolve ? 'evolve' : 'level-up');
+        showToast(isEvolve
+            ? info.name + ' evolved! Lv. ' + info.level
+            : 'Level up! Lv. ' + info.level);
+        setTimeout(function() {
+            header.classList.remove('level-up', 'evolve');
+        }, 1500);
+    }
+    localStorage.setItem('outreach_level', String(info.level));
+}
+
+function toggleLevel() {
+    var section = document.getElementById('levelSection');
+    section.classList.toggle('expanded');
+    localStorage.setItem('outreach_level_expanded',
+        section.classList.contains('expanded') ? '1' : '0');
+}
+
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
     renderMonthlyTasks(); // Show local immediately
     loadMonthlyFromCloud(); // Then overwrite with cloud
+    // Restore level bar expanded state
+    if (localStorage.getItem('outreach_level_expanded') === '1') {
+        var ls = document.getElementById('levelSection');
+        if (ls) ls.classList.add('expanded');
+    }
     loadDashboard();
 });
 

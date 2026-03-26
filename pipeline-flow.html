@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gig Outreach — Pipeline Flow</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  padding: 40px 20px 80px;
+  min-height: 100vh;
+}
+h1 {
+  text-align: center;
+  font-size: 32px;
+  color: #f0a030;
+  margin-bottom: 6px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
+}
+.subtitle {
+  text-align: center;
+  color: #6e7681;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #8b949e;
+}
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+/* ─── TABS ─── */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+.tab {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background: #161b22;
+  color: #8b949e;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.tab:hover { border-color: #f0a030; color: #f0a030; }
+.tab.active {
+  background: #f0a03018;
+  border-color: #f0a030;
+  color: #f0a030;
+  font-weight: 600;
+}
+.view { display: none; }
+.view.active { display: block; }
+
+/* ─── SHARED CARD STYLES ─── */
+.flow {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+.phase-header {
+  text-align: center;
+  margin: 36px 0 18px;
+  position: relative;
+}
+.phase-header::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 1px;
+  background: #21262d;
+}
+.phase-header span {
+  position: relative;
+  background: #0d1117;
+  padding: 4px 20px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-radius: 20px;
+  border: 1px solid #30363d;
+}
+.phase-header.taste span { color: #ff79c6; border-color: #ff79c644; }
+.phase-header.discover span { color: #58a6ff; border-color: #58a6ff44; }
+.phase-header.pipeline span { color: #f0a030; border-color: #f0a03044; }
+.phase-header.step1 span { color: #79c0ff; border-color: #79c0ff44; }
+.phase-header.step2 span { color: #d2a8ff; border-color: #d2a8ff44; }
+.phase-header.step3 span { color: #7ee787; border-color: #7ee78744; }
+.phase-header.step4 span { color: #ffa657; border-color: #ffa65744; }
+.phase-header.output span { color: #f0a030; border-color: #f0a03044; }
+
+/* ─── SPINE ─── */
+.spine {
+  position: relative;
+  padding-left: 40px;
+}
+.spine::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #21262d;
+}
+
+/* ─── NODE (step card) ─── */
+.node {
+  position: relative;
+  margin-bottom: 16px;
+}
+.node::before {
+  content: '';
+  position: absolute;
+  left: -29px;
+  top: 18px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #30363d;
+  background: #0d1117;
+  z-index: 1;
+}
+.node.action::before { background: #58a6ff; border-color: #58a6ff; }
+.node.decision::before {
+  background: #f0a030;
+  border-color: #f0a030;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  width: 10px; height: 10px;
+  top: 19px; left: -28px;
+}
+.node.external::before { background: #d2a8ff; border-color: #d2a8ff; }
+.node.data::before { background: #7ee787; border-color: #7ee787; }
+.node.skip::before { background: #f85149; border-color: #f85149; }
+
+.card {
+  background: #161b22;
+  border: 1px solid #21262d;
+  border-radius: 10px;
+  padding: 14px 18px;
+  transition: all 0.2s;
+}
+.card:hover {
+  border-color: #30363d;
+  box-shadow: 0 4px 16px #00000044;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-title .badge {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.badge-chrome { background: #58a6ff22; color: #58a6ff; }
+.badge-api { background: #7ee78722; color: #7ee787; }
+.badge-script { background: #d2a8ff22; color: #d2a8ff; }
+.badge-decision { background: #f0a03022; color: #f0a030; }
+.badge-data { background: #ffa65722; color: #ffa657; }
+
+.card-desc {
+  font-size: 12px;
+  color: #8b949e;
+  line-height: 1.6;
+}
+.card-cmd {
+  display: inline-block;
+  background: #0d1117;
+  color: #79c0ff;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  margin-top: 6px;
+  border: 1px solid #21262d;
+}
+.card-branches {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.branch {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px dashed;
+}
+.branch-yes {
+  color: #7ee787;
+  border-color: #7ee78744;
+  background: #7ee78708;
+}
+.branch-no {
+  color: #f85149;
+  border-color: #f8514944;
+  background: #f8514908;
+}
+.branch-skip {
+  color: #8b949e;
+  border-color: #8b949e44;
+  background: #8b949e08;
+}
+
+/* ─── DETAIL ITEMS ─── */
+.details {
+  margin-top: 8px;
+  padding-left: 0;
+  list-style: none;
+}
+.details li {
+  font-size: 11px;
+  color: #6e7681;
+  padding: 2px 0 2px 14px;
+  position: relative;
+  line-height: 1.5;
+}
+.details li::before {
+  content: '›';
+  position: absolute;
+  left: 2px;
+  color: #30363d;
+}
+.details li code {
+  background: #0d1117;
+  color: #79c0ff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+.details li .hl {
+  color: #f0a030;
+}
+
+/* ─── CONNECTOR ARROWS ─── */
+.connector {
+  text-align: center;
+  color: #30363d;
+  font-size: 20px;
+  margin: 6px 0;
+  padding-left: 40px;
+}
+
+/* ─── SERVICES SIDEBAR ─── */
+.services {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0 10px;
+  flex-wrap: wrap;
+}
+.svc {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid #21262d;
+  background: #161b22;
+}
+.svc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.stat {
+  text-align: center;
+}
+.stat-val {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f0a030;
+}
+.stat-label {
+  font-size: 11px;
+  color: #6e7681;
+  margin-top: 2px;
+}
+
+/* ─── OVERVIEW DIAGRAM ─── */
+.overview-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin: 30px auto;
+  max-width: 900px;
+  flex-wrap: wrap;
+}
+.ov-box {
+  padding: 16px 22px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 130px;
+  border: 2px solid;
+  position: relative;
+}
+.ov-box .ov-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.ov-box .ov-sub {
+  font-size: 11px;
+  opacity: 0.7;
+}
+.ov-arrow {
+  font-size: 24px;
+  color: #30363d;
+  padding: 0 8px;
+}
+.ov-taste { background: #ff79c60d; border-color: #ff79c644; color: #ff79c6; }
+.ov-discover { background: #58a6ff0d; border-color: #58a6ff44; color: #58a6ff; }
+.ov-step1 { background: #79c0ff0d; border-color: #79c0ff44; color: #79c0ff; }
+.ov-step2 { background: #d2a8ff0d; border-color: #d2a8ff44; color: #d2a8ff; }
+.ov-step3 { background: #7ee7870d; border-color: #7ee78744; color: #7ee787; }
+.ov-step4 { background: #ffa6570d; border-color: #ffa65744; color: #ffa657; }
+.ov-output { background: #f0a0300d; border-color: #f0a03044; color: #f0a030; }
+
+/* ─── DATA FLOW TABLE ─── */
+.data-table {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-collapse: collapse;
+}
+.data-table th {
+  text-align: left;
+  font-size: 11px;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #21262d;
+}
+.data-table td {
+  font-size: 12px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #21262d08;
+  color: #c9d1d9;
+  vertical-align: top;
+}
+.data-table tr:hover td { background: #161b22; }
+.data-table .src { color: #79c0ff; }
+.data-table .transform { color: #d2a8ff; }
+.data-table .dest { color: #7ee787; }
+
+@media (max-width: 700px) {
+  .overview-flow { flex-direction: column; }
+  .ov-arrow { transform: rotate(90deg); }
+  .spine { padding-left: 30px; }
+  .node::before { left: -19px; }
+  .spine::before { left: 7px; }
+}
+</style>
+</head>
+<body>
+
+<h1>Gig Outreach Pipeline</h1>
+<p class="subtitle">
+  Complete system flow — discovery, enrichment, verification, and reporting
+</p>
+
+<div class="services">
+  <div class="svc"><div class="svc-dot" style="background:#58a6ff"></div> Chrome + JS Inject</div>
+  <div class="svc"><div class="svc-dot" style="background:#7ee787"></div> Apollo API</div>
+  <div class="svc"><div class="svc-dot" style="background:#d2a8ff"></div> Apps Script</div>
+  <div class="svc"><div class="svc-dot" style="background:#ffa657"></div> LinkedIn</div>
+  <div class="svc"><div class="svc-dot" style="background:#f85149"></div> ZeroBounce</div>
+  <div class="svc"><div class="svc-dot" style="background:#79c0ff"></div> Google Maps</div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showView('overview')">Overview</div>
+  <div class="tab" onclick="showView('discover')">Discovery</div>
+  <div class="tab" onclick="showView('pipeline')">Pipeline</div>
+  <div class="tab" onclick="showView('data')">Data Flow</div>
+  <div class="tab" onclick="showView('taste')">Taste</div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--              OVERVIEW TAB              -->
+<!-- ═══════════════════════════════════════ -->
+<div class="view active" id="view-overview">
+  <div class="overview-flow">
+    <div class="ov-box ov-taste">
+      <div class="ov-title">Taste</div>
+      <div class="ov-sub">learn + search</div>
+      <div class="ov-sub">--learn / --taste</div>
+    </div>
+    <div class="ov-arrow">→</div>
+    <div class="ov-box ov-discover">
+      <div class="ov-title">Discover</div>
+      <div class="ov-sub">past gig network</div>
+      <div class="ov-sub">discover.sh</div>
+    </div>
+    <div class="ov-arrow">→</div>
+    <div class="ov-box ov-step1">
+      <div class="ov-title">Step 1</div>
+      <div class="ov-sub">Website scrape</div>
+      <div class="ov-sub">emails + socials</div>
+    </div>
+    <div class="ov-arrow">→</div>
+    <div class="ov-box ov-step2">
+      <div class="ov-title">Step 2</div>
+      <div class="ov-sub">Social scrape</div>
+      <div class="ov-sub">FB + IG emails</div>
+    </div>
+    <div class="ov-arrow">→</div>
+    <div class="ov-box ov-step3">
+      <div class="ov-title">Step 3</div>
+      <div class="ov-sub">Apollo API</div>
+      <div class="ov-sub">company + people</div>
+    </div>
+    <div class="ov-arrow">→</div>
+    <div class="ov-box ov-step4">
+      <div class="ov-title">Step 4</div>
+      <div class="ov-sub">LinkedIn + Apollo</div>
+      <div class="ov-sub">enrich by name</div>
+    </div>
+    <div class="ov-arrow">→</div>
+    <div class="ov-box ov-output">
+      <div class="ov-title">Report</div>
+      <div class="ov-sub">HTML + status</div>
+      <div class="ov-sub">set "pipelined"</div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val">6</div><div class="stat-label">External services</div></div>
+    <div class="stat"><div class="stat-val">4</div><div class="stat-label">Pipeline steps</div></div>
+    <div class="stat"><div class="stat-val">15+</div><div class="stat-label">Decision points</div></div>
+    <div class="stat"><div class="stat-val">4</div><div class="stat-label">Email sources</div></div>
+    <div class="stat"><div class="stat-val">467</div><div class="stat-label">Taste queries</div></div>
+  </div>
+
+  <div class="flow">
+    <div class="phase-header pipeline"><span>How "Run Outreach" Works</span></div>
+    <div class="spine">
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">User says "run outreach"</div>
+          <div class="card-cmd">MAX_GIGS=1 ./discover.sh && MAX_SP=1 ./pipeline.sh --smart-picks</div>
+        </div>
+      </div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Phase 0: Taste Profile <span class="badge" style="background:#ff79c622;color:#ff79c6">Taste</span></div>
+          <div class="card-desc">
+            <strong>--learn:</strong> Visit your 23 favorite venues on Google Maps.
+            Scrape attributes (cozy, romantic, great wine list, private dining...).
+            Build keyword DNA in <code>taste_keywords.json</code>.
+          </div>
+          <div class="card-desc" style="margin-top:6px">
+            <strong>--taste:</strong> Generate 467+ search queries (9 venue types × 29 locations + keyword combos).
+            Search Google Maps, pre-score results (40+ threshold), add matches to sheet.
+            Picks up where it left off each run.
+          </div>
+          <ul class="details">
+            <li><code>alex_taste.md</code> — your taste in words (venue types + locations)</li>
+            <li><code>taste_venues.txt</code> — 23 venues to learn from</li>
+            <li><code>taste_keywords.json</code> — scraped keyword profile</li>
+            <li><code>taste_queries.txt</code> — completed query tracker</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Phase 1: Discovery <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            Fetch past gigs from Google Sheet. Open each on Google Maps.
+            Scrape "People also search for" recommendations. Filter, categorize,
+            score, add to sheet. Find websites via Google search.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Pipeline Mode? <span class="badge badge-decision">branch</span></div>
+          <div class="card-branches">
+            <span class="branch branch-yes">--smart-picks → actionable untouched first, then ranked picks</span>
+            <span class="branch branch-no">--untouched → only untouched venues</span>
+            <span class="branch branch-skip">--linkedin-retry → Step 4 only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Phase 2: For Each Venue → run_venue()</div>
+          <div class="card-desc">
+            Steps 1–4 execute sequentially per venue.
+            Each step adds contacts to the Google Sheet.
+            Every email is verified via ZeroBounce before saving.
+            Sleep 30s between venues.
+          </div>
+          <ul class="details">
+            <li>Step 1: Website scrape <span class="hl">(Chrome JS inject)</span></li>
+            <li>Step 1B: Instagram Google search fallback</li>
+            <li>Step 2: Facebook + Instagram email scrape <span class="hl">(Chrome)</span></li>
+            <li>Step 3: Apollo company search + people enrich <span class="hl">(API)</span></li>
+            <li>Step 4: LinkedIn search + Apollo enrich <span class="hl">(Chrome + API)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node data">
+        <div class="card">
+          <div class="card-title">Phase 3: Report + Status Update <span class="badge badge-data">output</span></div>
+          <div class="card-desc">
+            Generate HTML report (venues, contacts, flags, credits).
+            Set venue status to "pipelined". Log everything to pipeline.log.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--             DISCOVER TAB              -->
+<!-- ═══════════════════════════════════════ -->
+<div class="view" id="view-discover">
+  <div class="flow">
+
+    <!-- TASTE LEARN -->
+    <div class="phase-header taste"><span>Taste Learn — discover.sh --learn</span></div>
+    <div class="spine">
+
+      <div class="node data">
+        <div class="card">
+          <div class="card-title">Read Venue Whitelist <span class="badge badge-data">input</span></div>
+          <div class="card-desc">
+            Load <code>taste_venues.txt</code> — 23 curated venues you love.
+            Match against past gigs for location and score data.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">For Each Venue → Google Maps <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            Open venue on Google Maps. Click About tab. Scroll to load all content.
+            Extract attributes via <code>extract_venue_attributes.js</code>.
+          </div>
+          <ul class="details">
+            <li>3 extraction strategies: section headers, icon-row attributes, aria-labels</li>
+            <li>Filters navigation items (nearby restaurants, hotels, etc.)</li>
+            <li>Returns: category, price level, attribute list</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node data">
+        <div class="card">
+          <div class="card-title">Aggregate Keywords <span class="badge badge-data">output</span></div>
+          <div class="card-desc">
+            Count keyword frequency across all venues. Rank by how many venues share each trait.
+            Save top 30 to <code>taste_keywords.json</code>.
+          </div>
+          <ul class="details">
+            <li>Top keywords: cozy (9), romantic (7), upscale (6), great wine list (8)</li>
+            <li>Also tracks price levels and categories</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TASTE SEARCH -->
+    <div class="phase-header taste"><span>Taste Search — discover.sh --taste</span></div>
+    <div class="spine">
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Generate Search Queries <span class="badge badge-data">Python</span></div>
+          <div class="card-desc">
+            Combine venue types × locations into prioritized queries.
+            Skip already-completed queries (tracked in <code>taste_queries.txt</code>).
+          </div>
+          <ul class="details">
+            <li><span class="hl">P1:</span> Tier 1 types × Tier 1 locations (fine dining Georgetown DC)</li>
+            <li><span class="hl">P2:</span> Tier 1 types × Tier 2 locations (winery Charlottesville VA)</li>
+            <li><span class="hl">P3:</span> Tier 2 types × Tier 1 locations (boutique hotel Bethesda MD)</li>
+            <li><span class="hl">P4:</span> Keyword-enhanced (cozy French restaurant McLean VA)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">For Each Query → Google Maps <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            Search Google Maps. Scroll results. Extract venue cards via
+            <code>extract_search_results.js</code>. Capped at MAX_QUERIES per session.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Pre-Score Each Result <span class="badge badge-decision">filter</span></div>
+          <div class="card-desc">
+            Score 0-100 based on category tier, location, rating, reviews, state.
+          </div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Score ≥ 40 → add to sheet</span>
+            <span class="branch branch-no">Score &lt; 40 → skip</span>
+            <span class="branch branch-skip">Skip: pubs, fast food, vacation rentals</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Add + Website Lookup <span class="badge badge-script">Apps Script</span> <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            Add venue to sheet with <code>source="taste:query"</code>.
+            Google search for website URL. Calculate driving distance.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ORIGINAL DISCOVERY -->
+    <div class="phase-header discover"><span>Past Gig Network — discover.sh</span></div>
+    <div class="spine">
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Fetch Past Gigs <span class="badge badge-script">Apps Script</span></div>
+          <div class="card-desc">
+            GET request to Apps Script <code>action=get_gigs</code>.
+            Returns venue names + locations from the Google Sheet (past performances).
+          </div>
+        </div>
+      </div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Fetch Existing Venues <span class="badge badge-script">Apps Script</span></div>
+          <div class="card-desc">
+            GET <code>action=venues</code>. Build dedup list so we
+            don't re-add venues already in the database.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">For Each Past Gig <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            Build Google Maps search URL. Open in Chrome via
+            <code>osascript</code>. Wait 4-6s for page load.
+          </div>
+          <div class="card-branches">
+            <span class="branch branch-yes">MAX_GIGS cap → stop after N gigs</span>
+            <span class="branch branch-skip">Already in discovered_gigs.txt → skip</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Search results or venue page? <span class="badge badge-decision">branch</span></div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Search results → click first result</span>
+            <span class="branch branch-no">Direct venue page → continue</span>
+          </div>
+          <div class="card-cmd">click_first_result.js</div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Scroll + Extract Recommendations <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            Scroll panel to load recommendations. Extract from 3 sources,
+            merge and deduplicate.
+          </div>
+          <ul class="details">
+            <li><code>scroll_panel.js</code> — scroll to load lazy content</li>
+            <li><code>extract_cards.js</code> — "People also search for" cards</li>
+            <li><code>extract_similar.js</code> — "Similar nearby" section</li>
+            <li><code>extract_expanded.js</code> — "View more" expanded list</li>
+            <li>Each returns: name, category, rating, reviews, location</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Filter + Categorize <span class="badge badge-data">Python</span></div>
+          <div class="card-desc">
+            Python inline script filters and enriches raw venue data.
+          </div>
+          <ul class="details">
+            <li><span class="hl">Skip:</span> vacation rentals, Airbnbs, fast food, pubs</li>
+            <li><span class="hl">Categorize:</span> hotel, winery, country_club, restaurant, event, museum</li>
+            <li><span class="hl">Score:</span> upscale rating 1-5 (Google rating + review count)</li>
+            <li><span class="hl">Parse:</span> location into city + state</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Add to Google Sheet <span class="badge badge-script">Apps Script</span></div>
+          <div class="card-desc">
+            For each filtered venue: <code>action=add_venue</code> with
+            name, category, city, state, upscale_score, source.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Website Lookup <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            For each new venue: Google search for website URL.
+            Extract first valid domain via <code>extract_cite.js</code>.
+            Update venue record with website.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Calculate Distances <span class="badge badge-script">Apps Script</span></div>
+          <div class="card-desc">
+            <code>action=calc_distances</code> — compute driving
+            distance from home for each new venue.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node data">
+        <div class="card">
+          <div class="card-title">Cleanup <span class="badge badge-data">output</span></div>
+          <div class="card-desc">
+            Remove discovered entries that already exist in venues or
+            past gigs. Mark gig as processed in <code>discovered_gigs.txt</code>.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--             PIPELINE TAB              -->
+<!-- ═══════════════════════════════════════ -->
+<div class="view" id="view-pipeline">
+  <div class="flow">
+
+    <!-- MODE SELECTION -->
+    <div class="phase-header pipeline"><span>Pipeline Entry — pipeline.sh</span></div>
+    <div class="spine">
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Select Mode <span class="badge badge-decision">entry point</span></div>
+          <div class="card-branches">
+            <span class="branch branch-yes">--smart-picks (default)</span>
+            <span class="branch branch-no">--untouched</span>
+            <span class="branch branch-skip">--linkedin-retry</span>
+            <span class="branch branch-skip">--batch / single venue</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Smart Picks: Fetch + Rank <span class="badge badge-decision">ordering</span></div>
+          <div class="card-desc">
+            First process untouched venues, sorted by actionable score (most ready first).
+            Then fetch Smart Picks from Apps Script <code>action=get_recommendations</code>.
+            Filter out already pipelined/contacted.
+          </div>
+          <ul class="details">
+            <li><span class="hl">Phase 1 — Untouched:</span> Sorted by actionable score (IG +3, website +2, contact form +2, state +1, city +1)</li>
+            <li>Venues already visible in app state folders go first</li>
+            <li>Capped by MAX_UT env var</li>
+            <li><span class="hl">Phase 2 — Smart Picks:</span> Sort by recommendation_score DESC</li>
+            <li>Capped by MAX_SP env var</li>
+            <li>Sleep 30s between each venue</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="phase-header step1"><span>Step 1 — Website Scrape</span></div>
+    <div class="spine">
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Has website? <span class="badge badge-decision">gate</span></div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Yes → open in Chrome</span>
+            <span class="branch branch-no">No website → skip to Step 1B</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Chrome: Scrape Main Page <span class="badge badge-chrome">Chrome JS</span></div>
+          <div class="card-desc">
+            Inject JavaScript to extract emails, social links, and subpage URLs.
+          </div>
+          <ul class="details">
+            <li><code>mailto:</code> links — extract email + context (name/title)</li>
+            <li>Cloudflare protected emails — XOR decode <code>data-cfemail</code></li>
+            <li>Visible text regex — emails in page body</li>
+            <li>All <code>&lt;a href&gt;</code> attributes — embedded emails</li>
+            <li>Schema.org JSON-LD — structured email field</li>
+            <li>Social links: Facebook + Instagram URLs</li>
+            <li>Subpage links: event, wedding, contact, about, music, etc.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">0 emails + has city? <span class="badge badge-decision">fallback</span></div>
+          <div class="card-desc">
+            If no emails found on main page, try location-specific pages.
+          </div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Try: /city-slug/, /locations/city-slug/</span>
+            <span class="branch branch-no">No city → continue</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Crawl Subpages (max 10) <span class="badge badge-chrome">Chrome JS</span></div>
+          <div class="card-desc">
+            Open each keyword-matching subpage, extract emails.
+            Keywords: event, private, wedding, cater, contact, about,
+            entertain, music, banquet, dining, party, book.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Filter Junk Emails</div>
+          <div class="card-desc">
+            Remove noreply@, support@, admin@, and junk domains
+            (wix.com, wordpress, sentry.io, cloudflare, etc.).
+            Skip emails &gt; 60 chars.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Verify via ZeroBounce <span class="badge badge-api">API</span></div>
+          <div class="card-desc">
+            Each email verified individually. 1s rate limit between calls.
+          </div>
+          <div class="card-branches">
+            <span class="branch branch-yes">valid / catch-all → save</span>
+            <span class="branch branch-no">invalid / do_not_mail → discard</span>
+            <span class="branch branch-skip">unknown → save with status</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Push Contacts <span class="badge badge-script">Apps Script</span></div>
+          <div class="card-desc">
+            <code>action=add_contact</code> with name, title, email,
+            source="website", verified status.
+            Update venue social links (facebook, instagram, contact_form).
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STEP 1B -->
+    <div class="phase-header step1"><span>Step 1B — Instagram Fallback</span></div>
+    <div class="spine">
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Found Instagram in Step 1? <span class="badge badge-decision">gate</span></div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Already have IG → skip</span>
+            <span class="branch branch-no">No IG → Google search fallback</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Google: "Venue instagram" <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            Search Google for venue's Instagram profile.
+            Extract first instagram.com URL via <code>extract_ig.js</code>.
+            Save to venue record.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="phase-header step2"><span>Step 2 — Social Media Scrape</span></div>
+    <div class="spine">
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Has Facebook or Instagram? <span class="badge badge-decision">gate</span></div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Has FB/IG → open in Chrome</span>
+            <span class="branch branch-no">Neither → skip Step 2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Chrome: Scrape Social Pages <span class="badge badge-chrome">Chrome JS</span></div>
+          <div class="card-desc">
+            Open Facebook /about and /directory_contact_info pages.
+            Open Instagram main page. Inject JS to extract emails
+            from visible text. Filter junk domains.
+          </div>
+          <div class="card-cmd">social_scrape_emails.js</div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Verify + Push <span class="badge badge-api">ZeroBounce</span> <span class="badge badge-script">Apps Script</span></div>
+          <div class="card-desc">
+            Dedupe against known emails. Verify via ZeroBounce.
+            Push with source="social".
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="phase-header step3"><span>Step 3 — Apollo API</span></div>
+    <div class="spine">
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Has Apollo API key? <span class="badge badge-decision">gate</span></div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Key set → proceed</span>
+            <span class="branch branch-no">No key → skip Step 3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Company Search <span class="badge badge-api">Apollo</span></div>
+          <div class="card-desc">
+            Search by venue name. Fallback: search by website domain.
+            Verify match (substring or word overlap &ge;60%).
+            Extract organization_id + primary_domain.
+          </div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Match found → use Apollo domain</span>
+            <span class="branch branch-no">No match → use website domain</span>
+            <span class="branch branch-skip">No domain at all → skip people search</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">People Search <span class="badge badge-api">Apollo</span></div>
+          <div class="card-desc">
+            Search all people at company domain in region
+            (MD, VA, DC, WV, PA, DE). Max 50 people (2 pages).
+            Filter: only people with has_email=true.
+          </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Bulk Enrich (batches of 10) <span class="badge badge-api">Apollo</span></div>
+          <div class="card-desc">
+            <code>/people/bulk_match</code> — reveals email + status.
+            1 credit per person. Skip unavailable emails.
+          </div>
+          <ul class="details">
+            <li>Valid email → ZeroBounce verify → push (source="apollo")</li>
+            <li>No email → add as pending contact</li>
+            <li>Credits tracked in APOLLO_CREDITS_USED</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="phase-header step4"><span>Step 4 — LinkedIn + Apollo</span></div>
+    <div class="spine">
+
+      <div class="node decision">
+        <div class="card">
+          <div class="card-title">Has API key + domain? <span class="badge badge-decision">gate</span></div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Both → proceed</span>
+            <span class="branch branch-no">No key → skip</span>
+            <span class="branch branch-skip">No domain → add people as pending</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">LinkedIn Search (3 pages) <span class="badge badge-chrome">Chrome</span></div>
+          <div class="card-desc">
+            Search LinkedIn for venue name. Extract name, title,
+            connection degree from each result.
+          </div>
+          <ul class="details">
+            <li>Filter: current employees only (not "past:" or "former")</li>
+            <li>Filter: venue keyword must appear in title (&ge;1 word match)</li>
+            <li>Filter: skip already-known names</li>
+            <li>Retry up to 5x if page loads slowly</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node external">
+        <div class="card">
+          <div class="card-title">Apollo Enrich by Name <span class="badge badge-api">Apollo</span></div>
+          <div class="card-desc">
+            For each LinkedIn person: first_name + last_name + domain
+            → <code>/people/bulk_match</code> (batches of 10).
+            1 credit per person.
+          </div>
+          <div class="card-branches">
+            <span class="branch branch-yes">Email found → verify → push (source="linkedin+apollo")</span>
+            <span class="branch branch-no">No email → add as pending</span>
+            <span class="branch branch-skip">No Apollo match → add from LinkedIn only</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="phase-header output"><span>Output</span></div>
+    <div class="spine">
+
+      <div class="node data">
+        <div class="card">
+          <div class="card-title">Set Status = "pipelined" <span class="badge badge-script">Apps Script</span></div>
+          <div class="card-desc">
+            Update venue status. Log elapsed time and credits used.
+          </div>
+        </div>
+      </div>
+
+      <div class="node data">
+        <div class="card">
+          <div class="card-title">Generate HTML Report <span class="badge badge-data">output</span></div>
+          <div class="card-desc">
+            Parse pipeline.log. Build report with per-venue breakdown:
+            contacts found, verification results, Apollo credits,
+            flags (mismatches, bad lookups, skipped venues).
+          </div>
+          <div class="card-cmd">reports/YYYY-MM-DD_HH-MM.html</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--             DATA FLOW TAB             -->
+<!-- ═══════════════════════════════════════ -->
+<div class="view" id="view-data">
+  <div class="flow">
+
+    <div class="phase-header pipeline"><span>Email Sources → Contact</span></div>
+
+    <table class="data-table">
+      <tr>
+        <th>Source</th>
+        <th>How it's found</th>
+        <th>Verification</th>
+        <th>Label</th>
+      </tr>
+      <tr>
+        <td class="src">Website</td>
+        <td>mailto: links, Cloudflare decode, visible text regex, JSON-LD, subpage crawl</td>
+        <td>ZeroBounce</td>
+        <td>source="website"</td>
+      </tr>
+      <tr>
+        <td class="src">Social Media</td>
+        <td>Facebook /about + /contact_info, Instagram visible text</td>
+        <td>ZeroBounce</td>
+        <td>source="social"</td>
+      </tr>
+      <tr>
+        <td class="src">Apollo API</td>
+        <td>Company search → people search → bulk enrich (reveals email)</td>
+        <td>ZeroBounce + Apollo status</td>
+        <td>source="apollo"</td>
+      </tr>
+      <tr>
+        <td class="src">LinkedIn + Apollo</td>
+        <td>LinkedIn name search → Apollo enrich by first+last+domain</td>
+        <td>ZeroBounce + Apollo status</td>
+        <td>source="linkedin+apollo"</td>
+      </tr>
+    </table>
+
+    <div class="phase-header pipeline"><span>Decision Points</span></div>
+
+    <table class="data-table">
+      <tr>
+        <th>Condition</th>
+        <th>YES path</th>
+        <th>NO path</th>
+      </tr>
+      <tr>
+        <td>Has website?</td>
+        <td class="dest">Scrape main page + subpages</td>
+        <td class="transform">Skip Step 1</td>
+      </tr>
+      <tr>
+        <td>0 emails + has city?</td>
+        <td class="dest">Try location-specific URL patterns</td>
+        <td class="transform">Continue to Step 1B</td>
+      </tr>
+      <tr>
+        <td>Instagram found in Step 1?</td>
+        <td class="dest">Skip Step 1B</td>
+        <td class="transform">Google search fallback</td>
+      </tr>
+      <tr>
+        <td>Has Facebook or Instagram?</td>
+        <td class="dest">Scrape social pages</td>
+        <td class="transform">Skip Step 2</td>
+      </tr>
+      <tr>
+        <td>Apollo company found?</td>
+        <td class="dest">Use Apollo domain for people search</td>
+        <td class="transform">Use website domain as fallback</td>
+      </tr>
+      <tr>
+        <td>Any domain available?</td>
+        <td class="dest">People search + enrich</td>
+        <td class="transform">Skip people search entirely</td>
+      </tr>
+      <tr>
+        <td>Person has_email in Apollo?</td>
+        <td class="dest">Include in bulk enrich</td>
+        <td class="transform">Skip this person</td>
+      </tr>
+      <tr>
+        <td>ZeroBounce = valid?</td>
+        <td class="dest">Save contact with "valid"</td>
+        <td class="transform">Save with actual status (catch-all, unknown) or discard (invalid)</td>
+      </tr>
+      <tr>
+        <td>LinkedIn person is current employee?</td>
+        <td class="dest">Apollo enrich by name</td>
+        <td class="transform">Skip (past/former employees)</td>
+      </tr>
+      <tr>
+        <td>Apollo match for LinkedIn person?</td>
+        <td class="dest">Verify email → save</td>
+        <td class="transform">Add as pending (no email)</td>
+      </tr>
+    </table>
+
+    <div class="phase-header taste"><span>Taste Profile Data</span></div>
+
+    <table class="data-table">
+      <tr>
+        <th>File</th>
+        <th>Purpose</th>
+        <th>Updated by</th>
+      </tr>
+      <tr>
+        <td class="src">alex_taste.md</td>
+        <td>Qualitative taste profile — venue types, locations, what makes a good gig</td>
+        <td>Written manually</td>
+      </tr>
+      <tr>
+        <td class="src">taste_venues.txt</td>
+        <td>23 curated venues to learn from (whitelist)</td>
+        <td>Edited manually</td>
+      </tr>
+      <tr>
+        <td class="transform">taste_keywords.json</td>
+        <td>Data-driven keyword DNA — scraped from Google Maps attributes</td>
+        <td><code>--learn</code></td>
+      </tr>
+      <tr>
+        <td class="dest">taste_queries.txt</td>
+        <td>Completed query tracker — resumes where it left off</td>
+        <td><code>--taste</code></td>
+      </tr>
+    </table>
+
+    <div class="phase-header pipeline"><span>Venue Lifecycle</span></div>
+
+    <div style="max-width:600px;margin:20px auto;">
+      <div class="spine">
+        <div class="node action">
+          <div class="card">
+            <div class="card-title" style="color:#ff79c6">taste-discovered</div>
+            <div class="card-desc">Found by --taste via Google Maps search queries (source="taste:query")</div>
+          </div>
+        </div>
+        <div class="connector">↓</div>
+        <div class="node action">
+          <div class="card">
+            <div class="card-title" style="color:#58a6ff">discovered</div>
+            <div class="card-desc">Found by discover.sh from "People also search for" (source="discover:venue")</div>
+          </div>
+        </div>
+        <div class="connector">↓</div>
+        <div class="node action">
+          <div class="card">
+            <div class="card-title" style="color:#79c0ff">untouched</div>
+            <div class="card-desc">In database, not yet processed by pipeline. Smart Picks ranks these.</div>
+          </div>
+        </div>
+        <div class="connector">↓</div>
+        <div class="node action">
+          <div class="card">
+            <div class="card-title" style="color:#7ee787">pipelined</div>
+            <div class="card-desc">Steps 1-4 complete. Contacts extracted and verified. Ready for outreach.</div>
+          </div>
+        </div>
+        <div class="connector">↓</div>
+        <div class="node action">
+          <div class="card">
+            <div class="card-title" style="color:#f0a030">contacted</div>
+            <div class="card-desc">Outreach email sent to venue contacts.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!--              TASTE TAB               -->
+<!-- ═══════════════════════════════════════ -->
+<div class="view" id="view-taste">
+  <div class="flow">
+
+    <div class="phase-header taste"><span>Taste System — How It Thinks</span></div>
+
+    <div style="max-width:800px;margin:20px auto;">
+      <div class="spine">
+
+        <div class="node data">
+          <div class="card">
+            <div class="card-title" style="color:#ff79c6">Layer 1: alex_taste.md</div>
+            <div class="card-desc">
+              Your taste written in words. Describes dream venue types
+              (French bistros, luxury hotels, historic fine dining...),
+              sweet spot locations (Georgetown, Middleburg, Annapolis...),
+              and what makes a gig great (educated audience, upscale ambiance, wine culture).
+              This is the blueprint that defines the search space.
+            </div>
+            <div class="card-cmd">Written by hand — update anytime</div>
+          </div>
+        </div>
+
+        <div class="connector">↓</div>
+
+        <div class="node data">
+          <div class="card">
+            <div class="card-title" style="color:#ff79c6">Layer 2: taste_venues.txt</div>
+            <div class="card-desc">
+              23 venues you love, curated from your 70+ past gigs.
+              This controls which venues <code>--learn</code> studies.
+              Quality over quantity — only add venues you'd want more of.
+            </div>
+            <div class="card-cmd">Edit the list → re-run --learn</div>
+          </div>
+        </div>
+
+        <div class="connector">↓</div>
+
+        <div class="node action">
+          <div class="card">
+            <div class="card-title" style="color:#ff79c6">Layer 3: --learn → taste_keywords.json</div>
+            <div class="card-desc">
+              Visits each venue on Google Maps. Scrapes real attributes:
+              cozy, romantic, upscale, great wine list, private dining,
+              outdoor seating, fireplace, historic...
+              Counts how many of your favorites share each trait.
+              The data-driven refinement on top of the blueprint.
+            </div>
+            <ul class="details">
+              <li>30 keywords from 23 venues</li>
+              <li>Top: cozy (9), romantic (7), great wine list (8), upscale (6)</li>
+              <li><code>click_about_tab.js</code> → <code>extract_venue_attributes.js</code></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="connector">↓</div>
+
+        <div class="node action">
+          <div class="card">
+            <div class="card-title" style="color:#ff79c6">Layer 4: --taste → Search + Score + Add</div>
+            <div class="card-desc">
+              Combines all three layers into 467+ Google Maps search queries.
+              9 venue types × 29 locations across MD, VA, DC, PA, DE, WV.
+              Pre-scores every result (0-100) before adding to your sheet.
+            </div>
+            <ul class="details">
+              <li><span class="hl">9 venue types:</span> fine dining, French, European bistro, winery, country club, private club, wine bar, luxury hotel, historic fine dining</li>
+              <li><span class="hl">29 locations:</span> Georgetown, Bethesda, Potomac, Great Falls, McLean, Middleburg, Annapolis, St. Michaels, Roland Park, Charlottesville, Wilmington...</li>
+              <li><span class="hl">Scoring:</span> category tier (30pts), rating (20pts), location (10pts), sweet spot (10pts), state (10pts)</li>
+              <li><span class="hl">Threshold:</span> score ≥ 40 to add, skips pubs/fast food/rentals</li>
+              <li>Runs MAX_QUERIES per session (default 20), resumes next time</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:60px;color:#30363d;font-size:11px;">
+  Gig Outreach Pipeline &middot; 6 services &middot; 4 steps &middot; 15+ decisions &middot; 467 taste queries &middot; March 2026
+</div>
+
+<script>
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

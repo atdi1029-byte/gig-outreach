@@ -3958,10 +3958,19 @@ function getLevelInfo(emailCount) {
 }
 
 function getEmailsSentCount() {
-    if (!dashboardData || !dashboardData.contacts) return 0;
-    return dashboardData.contacts.filter(function(c) {
-        return c.email_sent === 'true';
-    }).length;
+    if (!dashboardData) return 0;
+    var count = 0;
+    var contacts = dashboardData.contacts || [];
+    for (var i = 0; i < contacts.length; i++) {
+        if (contacts[i].email_sent === 'true') count++;
+        if (contacts[i].ig_dm_sent) count++;
+        if (contacts[i].fb_msg_sent) count++;
+    }
+    var venues = dashboardData.venues || [];
+    for (var j = 0; j < venues.length; j++) {
+        if (venues[j].contact_form_sent) count++;
+    }
+    return count;
 }
 
 function renderLevelBar() {
@@ -3976,7 +3985,7 @@ function renderLevelBar() {
     document.getElementById('levelLabel').textContent =
         'Lv. ' + info.level;
     document.getElementById('levelCount').textContent =
-        count + ' / ' + info.next + ' emails';
+        count + ' / ' + info.next + ' sent';
     var fill = document.getElementById('levelFill');
     fill.className = 'level-fill';
     fill.style.width = pct + '%';
@@ -3987,16 +3996,16 @@ function renderLevelBar() {
     var details = document.getElementById('levelDetails');
     var h = '';
     h += '<div class="level-stat-row">';
-    h += '<span class="level-stat-label">Total emails sent</span>';
+    h += '<span class="level-stat-label">Total outreach sent</span>';
     h += '<span class="level-stat-val">' + count + '</span></div>';
     h += '<div class="level-stat-row">';
-    h += '<span class="level-stat-label">Emails to next level</span>';
+    h += '<span class="level-stat-label">To next level</span>';
     h += '<span class="level-stat-val">' + left + '</span></div>';
     h += '<div class="level-stat-row">';
     h += '<span class="level-stat-label">Level ' + info.level +
         ' cost</span>';
     h += '<span class="level-stat-val">' + gap +
-        ' emails</span></div>';
+        ' outreach</span></div>';
     details.innerHTML = h;
 
     // Level-up detection

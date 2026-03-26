@@ -178,6 +178,16 @@ step1_website() {
         return
     fi
 
+    # Skip corporate hotel domains — website crawl is useless, Apollo carries these
+    local corp_hotels="hilton.com marriott.com hyatt.com ihg.com fourseasons.com ritzcarlton.com starwoodhotels.com wyndhamhotels.com choicehotels.com bestwestern.com radissonhotels.com omnihotels.com loewshotels.com"
+    local site_domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${website}').netloc.replace('www.',''))" 2>/dev/null)
+    for corp in $corp_hotels; do
+        if [ "$site_domain" = "$corp" ]; then
+            log "  [SKIP] Corporate hotel domain ($corp) — skipping website crawl"
+            return
+        fi
+    done
+
     log "  URL: $website"
 
     # JS to extract emails with names/titles (from mailto hrefs + body text), social links, and internal page links
@@ -531,10 +541,17 @@ print('\n'.join(subs))
 
     if [ -n "$subpages" ]; then
         local page_count=0
+        local max_subpages=20
+        local last_emails=""
+        local dupe_streak=0
         while IFS= read -r subpage; do
             [ -z "$subpage" ] && continue
             page_count=$((page_count + 1))
-            log "  Crawling subpage ($page_count): $subpage"
+            if [ "$page_count" -gt "$max_subpages" ]; then
+                log "  Subpage cap ($max_subpages) reached — stopping"
+                break
+            fi
+            log "  Crawling subpage ($page_count/$max_subpages): $subpage"
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${subpage}\""
             sleep 4
             local sub_result
@@ -545,7 +562,18 @@ print('\n'.join(subs))
                 sub_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(len(d.get('contacts',[])))" 2>/dev/null || echo "0")
                 if [ "$sub_count" != "0" ]; then
                     local sub_emails
-                    sub_emails=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(', '.join(c['email'] for c in d.get('contacts',[])))" 2>/dev/null)
+                    sub_emails=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(', '.join(sorted(c['email'] for c in d.get('contacts',[]))))" 2>/dev/null)
+                    # Dupe detection: stop if same emails found 3 pages in a row
+                    if [ "$sub_emails" = "$last_emails" ]; then
+                        dupe_streak=$((dupe_streak + 1))
+                        if [ "$dupe_streak" -ge 3 ]; then
+                            log "  Same emails 3 pages in a row — stopping subpage crawl"
+                            break
+                        fi
+                    else
+                        dupe_streak=0
+                        last_emails="$sub_emails"
+                    fi
                     log "  Found on subpage: $sub_emails"
                     python3 -c "
 import json
@@ -803,7 +831,8 @@ PYEOF
     fi
     DOMAIN=$(python3 -c "import json; print(json.load(open('$apollo_co_tmpf'))['domain'])")
     ORG_NAME=$(python3 -c "import json; print(json.load(open('$apollo_co_tmpf'))['name'])")
-    log "  Found: $ORG_NAME (domain: $DOMAIN)"
+    local ORG_ID=$(python3 -c "import json; print(json.load(open('$apollo_co_tmpf'))['org_id'])")
+    log "  Found: $ORG_NAME (domain: $DOMAIN, org_id: $ORG_ID)"
 
     # CRITICAL: If Apollo returned empty domain, fall back to website domain
     if [ -z "$DOMAIN" ] || [ "$DOMAIN" = "None" ]; then
@@ -822,17 +851,23 @@ PYEOF
     APOLLO_DOMAIN="$DOMAIN"
 
     # B. Search for people at this company
-    log "  Searching for people at $DOMAIN..."
+    log "  Searching for people at $ORG_NAME (org_id: $ORG_ID)..."
     local people_tmpf="/tmp/pipeline_people.json"
     python3 << PYEOF > "$people_tmpf"
 import requests, json
 all_people = []
 page = 1
+org_id = "$ORG_ID"
 while True:
+    search_params = {"per_page": 25, "page": page,
+              "person_locations": ["Maryland", "Virginia", "Washington, DC", "West Virginia", "Pennsylvania", "Delaware"]}
+    if org_id and org_id != "None":
+        search_params["organization_ids"] = [org_id]
+    else:
+        search_params["q_organization_domains_list"] = ["$DOMAIN"]
     resp = requests.post("${APOLLO_API_BASE}/mixed_people/api_search",
         headers={"Content-Type": "application/json", "x-api-key": "${APOLLO_API_KEY}"},
-        json={"q_organization_domains_list": ["$DOMAIN"], "per_page": 25, "page": page,
-              "organization_locations": ["Maryland", "Virginia", "Washington, DC", "West Virginia", "Pennsylvania", "Delaware"]})
+        json=search_params)
     data = resp.json()
     people = data.get("people", [])
     if not people:

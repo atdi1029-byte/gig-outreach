@@ -915,6 +915,21 @@ known = set(n.strip().lower() for n in known_raw.split('|||') if n.strip())
 
 to_enrich = []
 skipped_no_email = 0
+skipped_bad_title = 0
+
+# Titles that will never book live music — skip to save Apollo credits
+bad_titles = ['housekeep', 'security', 'loss prevention', 'accounting', 'accountant',
+    'finance', 'payroll', 'laundry', 'steward', 'engineer', 'maintenance',
+    'it ', 'information technology', 'purchasing', 'procurement',
+    'human resource', ' hr ', 'recruiter', 'recruitment', 'talent acquisition']
+
+def title_is_relevant(title):
+    t = title.lower()
+    for bad in bad_titles:
+        if bad in t:
+            return False
+    return True
+
 for p in people:
     first = p.get('first_name', '').strip()
     if not first:
@@ -923,10 +938,17 @@ for p in people:
     if not p.get('has_email', False):
         skipped_no_email += 1
         continue
+    # Skip irrelevant job titles (housekeeping, IT, security, etc.)
+    title = p.get('title', '') or ''
+    if title and not title_is_relevant(title):
+        skipped_bad_title += 1
+        continue
     to_enrich.append(p)
 
 if skipped_no_email:
     print(f"SKIPPED_NO_EMAIL:{skipped_no_email}", flush=True)
+if skipped_bad_title:
+    print(f"SKIPPED_BAD_TITLE:{skipped_bad_title}", flush=True)
 
 for p in to_enrich:
     print(f"{p['id']}:::{p['first_name']}:::{p['title']}")
@@ -939,8 +961,14 @@ PYEOF
     if [ -n "$SKIP_COUNT" ] && [ "$SKIP_COUNT" -gt 0 ] 2>/dev/null; then
         log "  Skipped $SKIP_COUNT people with no email (red ? on Apollo)"
     fi
-    # Remove the SKIPPED line from TO_ENRICH
-    TO_ENRICH=$(echo "$TO_ENRICH" | grep -v "SKIPPED_NO_EMAIL:")
+    # Log skipped bad titles
+    local SKIP_TITLE_COUNT
+    SKIP_TITLE_COUNT=$(echo "$TO_ENRICH" | grep "SKIPPED_BAD_TITLE:" | sed 's/SKIPPED_BAD_TITLE://')
+    if [ -n "$SKIP_TITLE_COUNT" ] && [ "$SKIP_TITLE_COUNT" -gt 0 ] 2>/dev/null; then
+        log "  Skipped $SKIP_TITLE_COUNT people with irrelevant titles (housekeeping, IT, security, etc.)"
+    fi
+    # Remove the SKIPPED lines from TO_ENRICH
+    TO_ENRICH=$(echo "$TO_ENRICH" | grep -v "SKIPPED_NO_EMAIL:" | grep -v "SKIPPED_BAD_TITLE:")
 
     if [ -z "$TO_ENRICH" ]; then
         log "  No new people to enrich."

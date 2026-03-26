@@ -425,16 +425,16 @@ h1 {
 <!-- ═══════════════════════════════════════ -->
 <div class="view active" id="view-overview">
   <div class="overview-flow">
-    <div class="ov-box ov-taste">
-      <div class="ov-title">Taste</div>
-      <div class="ov-sub">learn + search</div>
-      <div class="ov-sub">--learn / --taste</div>
-    </div>
-    <div class="ov-arrow">→</div>
     <div class="ov-box ov-discover">
       <div class="ov-title">Discover</div>
       <div class="ov-sub">past gig network</div>
       <div class="ov-sub">discover.sh</div>
+    </div>
+    <div class="ov-arrow">→</div>
+    <div class="ov-box ov-taste">
+      <div class="ov-title">Taste</div>
+      <div class="ov-sub">broaden search</div>
+      <div class="ov-sub">--taste</div>
     </div>
     <div class="ov-arrow">→</div>
     <div class="ov-box ov-step1">
@@ -483,33 +483,9 @@ h1 {
       <div class="node action">
         <div class="card">
           <div class="card-title">User says "run outreach"</div>
-          <div class="card-cmd">MAX_GIGS=1 ./discover.sh && MAX_SP=1 ./pipeline.sh --smart-picks</div>
+          <div class="card-cmd">./discover.sh && ./discover.sh --taste && ./pipeline.sh --smart-picks</div>
         </div>
       </div>
-
-      <div class="node action">
-        <div class="card">
-          <div class="card-title">Phase 0: Taste Profile <span class="badge" style="background:#ff79c622;color:#ff79c6">Taste</span></div>
-          <div class="card-desc">
-            <strong>--learn:</strong> Visit your 23 favorite venues on Google Maps.
-            Scrape attributes (cozy, romantic, great wine list, private dining...).
-            Build keyword DNA in <code>taste_keywords.json</code>.
-          </div>
-          <div class="card-desc" style="margin-top:6px">
-            <strong>--taste:</strong> Generate 467+ search queries (9 venue types × 29 locations + keyword combos).
-            Search Google Maps, pre-score results (40+ threshold), add matches to sheet.
-            Picks up where it left off each run.
-          </div>
-          <ul class="details">
-            <li><code>alex_taste.md</code> — your taste in words (venue types + locations)</li>
-            <li><code>taste_venues.txt</code> — 23 venues to learn from</li>
-            <li><code>taste_keywords.json</code> — scraped keyword profile</li>
-            <li><code>taste_queries.txt</code> — completed query tracker</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="connector">↓</div>
 
       <div class="node action">
         <div class="card">
@@ -519,6 +495,26 @@ h1 {
             Scrape "People also search for" recommendations. Filter, categorize,
             score, add to sheet. Find websites via Google search.
           </div>
+        </div>
+      </div>
+
+      <div class="connector">↓</div>
+
+      <div class="node action">
+        <div class="card">
+          <div class="card-title">Phase 2: Taste Discovery <span class="badge" style="background:#ff79c622;color:#ff79c6">Taste</span></div>
+          <div class="card-desc">
+            Broaden the search beyond the past gig network.
+            467+ search queries (9 venue types × 29 locations + keyword combos).
+            Search Google Maps, pre-score results (40+ threshold), add matches to sheet.
+            Picks up where it left off each run.
+          </div>
+          <ul class="details">
+            <li><code>alex_taste.md</code> — your taste in words (venue types + locations)</li>
+            <li><code>taste_venues.txt</code> — 23 venues to learn from</li>
+            <li><code>taste_keywords.json</code> — scraped keyword profile (built by <code>--learn</code>)</li>
+            <li><code>taste_queries.txt</code> — completed query tracker</li>
+          </ul>
         </div>
       </div>
 

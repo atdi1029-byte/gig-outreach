@@ -1873,11 +1873,21 @@ function skipContact(contactId, el) {
             showToast('Skip failed: ' + (res.message || 'unknown error'));
             return;
         }
+        updateLocalContact(contactId, vid, 'email_sent', 'skipped');
         const wrapper = el.closest('.contact-wrapper');
         if (wrapper) wrapper.remove();
         else el.closest('.detail-action-row').remove();
         showToast('Skipped');
     });
+}
+
+// === UPDATE LOCAL DATA ===
+function updateLocalContact(contactId, venueId, field, value) {
+    if (!dashboardData) return;
+    const c = (dashboardData.contacts || []).find(
+        x => x.contact_id === contactId && x.venue_id === venueId
+    );
+    if (c) c[field] = value;
 }
 
 // === MARK ACTIONS ===
@@ -1886,6 +1896,7 @@ function markEmailSent(contactId, venueId, category, btn) {
     btn.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'email_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
+        updateLocalContact(contactId, venueId, 'email_sent', 'true');
         var wrapper = btn.closest('.contact-wrapper');
         if (wrapper) wrapper.remove();
         else btn.closest('.detail-action-row').remove();
@@ -1899,6 +1910,7 @@ function markIGSent(contactId, venueId, btn) {
     btn.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'ig_dm_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
+        updateLocalContact(contactId, venueId, 'ig_dm_sent', true);
         btn.closest('.detail-action-row').previousElementSibling.remove();
         btn.closest('.detail-action-row').remove();
         showToast('IG DM marked!');
@@ -1911,6 +1923,7 @@ function markFBSent(contactId, venueId, btn) {
     btn.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'fb_msg_sent', value: 'true' }), function(res) {
         if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
+        updateLocalContact(contactId, venueId, 'fb_msg_sent', true);
         btn.closest('.detail-action-row').previousElementSibling.remove();
         btn.closest('.detail-action-row').remove();
         showToast('FB msg marked!');
@@ -1923,6 +1936,7 @@ function skipIG(contactId, venueId, el) {
     el.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'ig_dm_sent', value: 'skipped' }), function(res) {
         if (res && res.status === 'error') { el.textContent = '✕'; return; }
+        updateLocalContact(contactId, venueId, 'ig_dm_sent', 'skipped');
         el.closest('.detail-action-row').previousElementSibling.remove();
         el.closest('.detail-action-row').remove();
         showToast('IG skipped');
@@ -1935,6 +1949,7 @@ function skipFB(contactId, venueId, el) {
     el.textContent = '...';
     fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'fb_msg_sent', value: 'skipped' }), function(res) {
         if (res && res.status === 'error') { el.textContent = '✕'; return; }
+        updateLocalContact(contactId, venueId, 'fb_msg_sent', 'skipped');
         el.closest('.detail-action-row').previousElementSibling.remove();
         el.closest('.detail-action-row').remove();
         showToast('FB skipped');

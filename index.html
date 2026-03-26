@@ -1621,14 +1621,18 @@ function showToast(msg) {
 
 // === OPEN EXTERNAL APP (forces Android to leave PWA) ===
 function openExternal(url) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => a.remove(), 100);
+    if (isMobile) {
+        window.open(url, '_blank');
+    } else {
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => a.remove(), 100);
+    }
 }
 
 // === GMAIL LINK ===

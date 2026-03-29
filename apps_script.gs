@@ -13,6 +13,19 @@ var CONFIG      = 'Config';
 var TEMPLATES   = 'Templates';
 var PROGRESS    = 'Progress';
 var PAST_GIGS   = 'Past Gigs';
+
+// Generate next unique contact ID by finding the max existing ID
+function nextContactId_(data) {
+  var max = 0;
+  for (var i = 1; i < data.length; i++) {
+    var id = String(data[i][0]);
+    if (id.startsWith('C-')) {
+      var num = parseInt(id.substring(2), 10);
+      if (!isNaN(num) && num > max) max = num;
+    }
+  }
+  return 'C-' + String(max + 1).padStart(3, '0');
+}
 var TASTE       = 'Taste';
 
 // ---------------------------------------------------------------
@@ -511,7 +524,7 @@ function addContact_(params) {
   }
 
   // Generate contact_id
-  var contactId = params.contact_id || 'C-' + String(data.length).padStart(3, '0');
+  var contactId = params.contact_id || nextContactId_(data);
 
   sheet.appendRow([
     contactId,
@@ -651,6 +664,49 @@ function deleteContact_(params) {
 }
 
 // ---------------------------------------------------------------
+// fixDuplicateContactIds_ — Re-number contacts with duplicate IDs
+// Run once to fix existing dupes, then remove. Safe: only changes
+// column A (contact_id), preserves all other data.
+// ---------------------------------------------------------------
+function fixDuplicateContactIds_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(CONTACTS);
+  var data = sheet.getDataRange().getValues();
+  var seen = {};
+  var fixed = 0;
+  var max = 0;
+
+  // First pass: find max ID and track which IDs exist
+  for (var i = 1; i < data.length; i++) {
+    var id = String(data[i][0]);
+    if (id.startsWith('C-')) {
+      var num = parseInt(id.substring(2), 10);
+      if (!isNaN(num) && num > max) max = num;
+      if (seen[id]) {
+        seen[id].push(i);
+      } else {
+        seen[id] = [i];
+      }
+    }
+  }
+
+  // Second pass: re-number duplicates
+  for (var id in seen) {
+    if (seen[id].length <= 1) continue;
+    // Keep the first occurrence, re-number the rest
+    for (var j = 1; j < seen[id].length; j++) {
+      max++;
+      var newId = 'C-' + String(max).padStart(3, '0');
+      var row = seen[id][j] + 1; // 1-indexed
+      sheet.getRange(row, 1).setValue(newId);
+      fixed++;
+    }
+  }
+
+  return jsonResponse_({ status: 'ok', fixed: fixed, new_max: max });
+}
+
+// ---------------------------------------------------------------
 // cleanupGenericEmails_ — Delete all contacts with generic/role-based emails
 // ---------------------------------------------------------------
 function cleanupGenericEmails_() {
@@ -759,7 +815,7 @@ function updateContactEmail_(params) {
   }
 
   // If not found by name, create a new contact
-  var contactId = 'C-' + String(data.length).padStart(3, '0');
+  var contactId = nextContactId_(data);
   sheet.appendRow([
     contactId, venueId, name, params.title || '', email,
     params.source || 'apollo+linkedin', params.verified || 'pending',
@@ -798,7 +854,8 @@ function updateVenueStatus_(venueId) {
       if (verified === 'valid' && !sent) allEmailsSent = false;
     }
 
-    if (allEmailsSent && anyEmailSent) {
+    var linkedinPending = String(vData[v][20]).toLowerCase() === 'true';
+    if (allEmailsSent && anyEmailSent && !linkedinPending) {
       venueSheet.getRange(v + 1, 13).setValue('contacted');
       venueSheet.getRange(v + 1, 19).setValue(new Date()); // contacted_date
     }

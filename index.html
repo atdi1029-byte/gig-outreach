@@ -2476,7 +2476,8 @@ function openVenueDetail(venueId) {
     const hasUnsent = emailContacts.some(c => !c.email_sent);
     const igPending = venue.instagram && !contacts.some(c => c.ig_dm_sent);
     const fbPending = venue.facebook && !contacts.some(c => c.fb_msg_sent);
-    if (!hasUnsent && !igPending && !fbPending) {
+    const liPending = venue.linkedin_pending;
+    if (!hasUnsent && !igPending && !fbPending && !liPending) {
         if (emailContacts.length === 0 && !venue.instagram && !venue.facebook && !venue.contact_form) {
             html += `<div style="text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:0.8rem">Needs pipeline — no contacts scraped yet</div>`;
         } else {
@@ -2540,6 +2541,8 @@ function venueHasPending(venueId) {
     if (venue.facebook && venue.facebook.length > 5 && !contacts.some(c => c.fb_msg_sent)) return true;
     // Has contact form?
     if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent) return true;
+    // Has LinkedIn pending?
+    if (venue.linkedin_pending) return true;
     return false;
 }
 

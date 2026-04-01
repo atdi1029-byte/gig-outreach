@@ -2084,7 +2084,10 @@ function markFBSent(venueId, btn) {
 function skipIG(venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
+    el.disabled = true;
+    // Write to outreach log AND update venue field for reliability
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'instagram_skip' }), function(res) {
+        if (res.status !== 'ok') { showToast('Failed to skip IG'); el.textContent = '✕'; el.disabled = false; return; }
         var row = el.closest('.detail-action-row');
         var label = row ? row.previousElementSibling : null;
         if (label && label.classList.contains('detail-section-label')) label.remove();
@@ -2100,7 +2103,9 @@ function skipIG(venueId, el) {
 function skipFB(venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
+    el.disabled = true;
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'facebook_skip' }), function(res) {
+        if (res.status !== 'ok') { showToast('Failed to skip FB'); el.textContent = '✕'; el.disabled = false; return; }
         var row = el.closest('.detail-action-row');
         var label = row ? row.previousElementSibling : null;
         if (label && label.classList.contains('detail-section-label')) label.remove();
@@ -2133,20 +2138,21 @@ function markFormSent(venueId, btn) {
 }
 
 function skipForm(venueId, el) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    if (BASE_URL) {
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'contact_form_skip' }), function(res) {
-            var row = el.closest('.detail-action-row');
-            var label = row ? row.previousElementSibling : null;
-            if (label && label.classList.contains('detail-section-label')) label.remove();
-            if (row) row.remove();
-            showToast('Contact form skipped');
-            if (dashboardData) {
-                var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-                if (dv) dv.contact_form_sent = true;
-            }
-        });
-    }
+    el.disabled = true;
+    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'contact_form_skip' }), function(res) {
+        if (res.status !== 'ok') { showToast('Failed to skip form'); el.textContent = '✕'; el.disabled = false; return; }
+        var row = el.closest('.detail-action-row');
+        var label = row ? row.previousElementSibling : null;
+        if (label && label.classList.contains('detail-section-label')) label.remove();
+        if (row) row.remove();
+        showToast('Contact form skipped');
+        if (dashboardData) {
+            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
+            if (dv) dv.contact_form_sent = true;
+        }
+    });
 }
 
 // === RENDER: HOME — Top Picks ===

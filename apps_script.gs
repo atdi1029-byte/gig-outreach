@@ -100,12 +100,21 @@ function serveDashboardJSON_() {
   var outreachSheet = ss.getSheetByName(OUTREACH);
   var outreachData = outreachSheet ? outreachSheet.getDataRange().getValues() : [[]];
 
-  // Build set of venues with contact_form outreach logged
+  // Build sets of venues with outreach logged (IG, FB, contact form)
   var formSentVenues = {};
+  var igSentVenues = {};
+  var fbSentVenues = {};
   for (var ol = 1; ol < outreachData.length; ol++) {
     var olChan = String(outreachData[ol][3]);
+    var olVid = String(outreachData[ol][1]);
     if (olChan === 'contact_form' || olChan === 'contact_form_skip') {
-      formSentVenues[String(outreachData[ol][1])] = true;
+      formSentVenues[olVid] = true;
+    }
+    if (olChan === 'instagram' || olChan === 'instagram_skip') {
+      igSentVenues[olVid] = true;
+    }
+    if (olChan === 'facebook' || olChan === 'facebook_skip') {
+      fbSentVenues[olVid] = true;
     }
   }
 
@@ -138,7 +147,9 @@ function serveDashboardJSON_() {
       linkedin_pending: String(row[20]).toLowerCase() === 'true',
       venue_vote:     String(row[21] || ''),
       venue_feedback: String(row[22] || ''),
-      contact_form_sent: !!formSentVenues[String(row[0])]
+      contact_form_sent: !!formSentVenues[String(row[0])],
+      ig_dm_sent: !!igSentVenues[String(row[0])],
+      fb_msg_sent: !!fbSentVenues[String(row[0])]
     });
   }
 
@@ -179,10 +190,12 @@ function serveDashboardJSON_() {
 
   for (var k = 0; k < contacts.length; k++) {
     if (contacts[k].email_sent) emailsSent++;
-    if (contacts[k].ig_dm_sent) igDmsSent++;
-    if (contacts[k].fb_msg_sent) fbMsgsSent++;
     if (contacts[k].verified === 'valid' && !contacts[k].email_sent) pendingEmails++;
     if (contacts[k].verified === 'pending') pendingVerify++;
+  }
+  for (var vv = 0; vv < venues.length; vv++) {
+    if (venues[vv].ig_dm_sent) igDmsSent++;
+    if (venues[vv].fb_msg_sent) fbMsgsSent++;
   }
 
   var totalOutreach = emailsSent + igDmsSent + fbMsgsSent;
@@ -207,14 +220,13 @@ function serveDashboardJSON_() {
     var pendingEmailContacts = [];
     var hasIg = venue.instagram && venue.instagram.length > 5;
     var hasFb = venue.facebook && venue.facebook.length > 5;
-    var igDone = false, fbDone = false;
+    var igDone = !!venue.ig_dm_sent;
+    var fbDone = !!venue.fb_msg_sent;
 
     for (var cc = 0; cc < vc.length; cc++) {
       if (vc[cc].verified === 'valid' && !vc[cc].email_sent) {
         pendingEmailContacts.push(vc[cc]);
       }
-      if (vc[cc].ig_dm_sent) igDone = true;
-      if (vc[cc].fb_msg_sent) fbDone = true;
     }
 
     var needsAction = pendingEmailContacts.length > 0 || (hasIg && !igDone) || (hasFb && !fbDone);
@@ -421,6 +433,18 @@ function serveVenueDetail_(params) {
     }
   }
   if (!venue) return jsonResponse_({ status: 'error', message: 'Venue not found' });
+
+  // Check outreach log for IG/FB/form sent status
+  var oSheet = ss.getSheetByName(OUTREACH);
+  var oData = oSheet ? oSheet.getDataRange().getValues() : [[]];
+  for (var ol = 1; ol < oData.length; ol++) {
+    if (String(oData[ol][1]) === venueId) {
+      var ch = String(oData[ol][3]);
+      if (ch === 'instagram' || ch === 'instagram_skip') venue.ig_dm_sent = true;
+      if (ch === 'facebook' || ch === 'facebook_skip') venue.fb_msg_sent = true;
+      if (ch === 'contact_form' || ch === 'contact_form_skip') venue.contact_form_sent = true;
+    }
+  }
 
   // Find contacts
   var cSheet = ss.getSheetByName(CONTACTS);

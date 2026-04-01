@@ -1936,9 +1936,9 @@ function composeSent() {
     if (s.channel === 'email') {
         markEmailSent(s.contactId, s.venueId, s.category, btn);
     } else if (s.channel === 'ig') {
-        markIGSent(s.contactId, s.venueId, btn);
+        markIGSent(s.venueId, btn);
     } else if (s.channel === 'fb') {
-        markFBSent(s.contactId, s.venueId, btn);
+        markFBSent(s.venueId, btn);
     }
 }
 
@@ -2047,55 +2047,69 @@ function markEmailSent(contactId, venueId, category, btn) {
     });
 }
 
-function markIGSent(contactId, venueId, btn) {
+function markIGSent(venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'ig_dm_sent', value: 'true' }), function(res) {
-        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
-        updateLocalContact(contactId, venueId, 'ig_dm_sent', true);
-        btn.closest('.detail-action-row').previousElementSibling.remove();
-        btn.closest('.detail-action-row').remove();
+    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'instagram' }), function(res) {
+        var row = btn.closest('.detail-action-row');
+        var label = row ? row.previousElementSibling : null;
+        if (label && label.classList.contains('detail-section-label')) label.remove();
+        if (row) row.remove();
         showToast('IG DM marked!');
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'instagram' }), function() {});
+        if (dashboardData) {
+            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
+            if (dv) dv.ig_dm_sent = true;
+        }
+        renderLevelBar();
     });
 }
 
-function markFBSent(contactId, venueId, btn) {
+function markFBSent(venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'fb_msg_sent', value: 'true' }), function(res) {
-        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
-        updateLocalContact(contactId, venueId, 'fb_msg_sent', true);
-        btn.closest('.detail-action-row').previousElementSibling.remove();
-        btn.closest('.detail-action-row').remove();
+    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'facebook' }), function(res) {
+        var row = btn.closest('.detail-action-row');
+        var label = row ? row.previousElementSibling : null;
+        if (label && label.classList.contains('detail-section-label')) label.remove();
+        if (row) row.remove();
         showToast('FB msg marked!');
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'facebook' }), function() {});
+        if (dashboardData) {
+            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
+            if (dv) dv.fb_msg_sent = true;
+        }
+        renderLevelBar();
     });
 }
 
-function skipIG(contactId, venueId, el) {
+function skipIG(venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'ig_dm_sent', value: 'skipped' }), function(res) {
-        if (res && res.status === 'error') { el.textContent = '✕'; return; }
-        updateLocalContact(contactId, venueId, 'ig_dm_sent', 'skipped');
-        el.closest('.detail-action-row').previousElementSibling.remove();
-        el.closest('.detail-action-row').remove();
+    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'instagram_skip' }), function(res) {
+        var row = el.closest('.detail-action-row');
+        var label = row ? row.previousElementSibling : null;
+        if (label && label.classList.contains('detail-section-label')) label.remove();
+        if (row) row.remove();
         showToast('IG skipped');
-        setTimeout(loadDashboard, 1500);
+        if (dashboardData) {
+            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
+            if (dv) dv.ig_dm_sent = true;
+        }
     });
 }
 
-function skipFB(contactId, venueId, el) {
+function skipFB(venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     el.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'fb_msg_sent', value: 'skipped' }), function(res) {
-        if (res && res.status === 'error') { el.textContent = '✕'; return; }
-        updateLocalContact(contactId, venueId, 'fb_msg_sent', 'skipped');
-        el.closest('.detail-action-row').previousElementSibling.remove();
-        el.closest('.detail-action-row').remove();
+    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'facebook_skip' }), function(res) {
+        var row = el.closest('.detail-action-row');
+        var label = row ? row.previousElementSibling : null;
+        if (label && label.classList.contains('detail-section-label')) label.remove();
+        if (row) row.remove();
         showToast('FB skipped');
-        setTimeout(loadDashboard, 1500);
+        if (dashboardData) {
+            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
+            if (dv) dv.fb_msg_sent = true;
+        }
     });
 }
 
@@ -2184,16 +2198,14 @@ function renderVenueCard(item) {
         html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}',this)">Sent</button></div>`;
     }
     if (item.igPending && v.instagram) {
-        const fc = contacts[0] || { contact_id: '' };
         html += `<div class="action-row"><span class="social-label">Instagram</span>`;
         html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(v.instagram)}','${cat}')">Open + Copy</button>`;
-        html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(v.venue_id)}',this)">Sent</button></div>`;
+        html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(v.venue_id)}',this)">Sent</button></div>`;
     }
     if (item.fbPending && v.facebook) {
-        const fc = contacts[0] || { contact_id: '' };
         html += `<div class="action-row"><span class="social-label">Facebook</span>`;
         html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(v.facebook)}','${cat}')">Open + Copy</button>`;
-        html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(v.venue_id)}',this)">Sent</button></div>`;
+        html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(v.venue_id)}',this)">Sent</button></div>`;
     }
     html += `</div></div>`;
     return html;
@@ -2434,27 +2446,25 @@ function openVenueDetail(venueId) {
 
     // Instagram (only show if we have it AND not yet sent)
     if (venue.instagram) {
-        const igDone = contacts.some(c => c.ig_dm_sent);
-        if (!igDone) {
+        if (!venue.ig_dm_sent) {
             html += `<div class="detail-section-label" style="background:${catColor}">Instagram</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
             html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','ig')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button>`;
-            html += `<button class="btn-action btn-del" onclick="skipIG('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">✕</button></div>`;
+            html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(venue.venue_id)}',this)">Sent</button>`;
+            html += `<button class="btn-action btn-del" onclick="skipIG('${esc(venue.venue_id)}',this)">✕</button></div>`;
         }
     }
 
     // Facebook (only show if we have it AND not yet sent)
     if (venue.facebook) {
-        const fbDone = contacts.some(c => c.fb_msg_sent);
-        if (!fbDone) {
+        if (!venue.fb_msg_sent) {
             html += `<div class="detail-section-label" style="background:${catColor}">Facebook</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
             html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','fb')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">Sent</button>`;
-            html += `<button class="btn-action btn-del" onclick="skipFB('${esc(fc.contact_id)}','${esc(venue.venue_id)}',this)">✕</button></div>`;
+            html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(venue.venue_id)}',this)">Sent</button>`;
+            html += `<button class="btn-action btn-del" onclick="skipFB('${esc(venue.venue_id)}',this)">✕</button></div>`;
         }
     }
 
@@ -2474,8 +2484,8 @@ function openVenueDetail(venueId) {
 
     // If nothing actionable, show a message
     const hasUnsent = emailContacts.some(c => !c.email_sent);
-    const igPending = venue.instagram && !contacts.some(c => c.ig_dm_sent);
-    const fbPending = venue.facebook && !contacts.some(c => c.fb_msg_sent);
+    const igPending = venue.instagram && !venue.ig_dm_sent;
+    const fbPending = venue.facebook && !venue.fb_msg_sent;
     const liPending = venue.linkedin_pending;
     if (!hasUnsent && !igPending && !fbPending && !liPending) {
         if (emailContacts.length === 0 && !venue.instagram && !venue.facebook && !venue.contact_form) {
@@ -2536,9 +2546,9 @@ function venueHasPending(venueId) {
     // Has unsent verified emails?
     if (contacts.some(c => c.email && (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown') && !c.email_sent)) return true;
     // Has Instagram not yet DM'd?
-    if (venue.instagram && venue.instagram.length > 5 && !contacts.some(c => c.ig_dm_sent)) return true;
+    if (venue.instagram && venue.instagram.length > 5 && !venue.ig_dm_sent) return true;
     // Has Facebook not yet messaged?
-    if (venue.facebook && venue.facebook.length > 5 && !contacts.some(c => c.fb_msg_sent)) return true;
+    if (venue.facebook && venue.facebook.length > 5 && !venue.fb_msg_sent) return true;
     // Has contact form?
     if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent) return true;
     // Has LinkedIn pending?
@@ -3966,12 +3976,12 @@ function getEmailsSentCount() {
     var contacts = dashboardData.contacts || [];
     for (var i = 0; i < contacts.length; i++) {
         if (contacts[i].email_sent === 'true') count++;
-        if (contacts[i].ig_dm_sent) count++;
-        if (contacts[i].fb_msg_sent) count++;
     }
     var venues = dashboardData.venues || [];
     for (var j = 0; j < venues.length; j++) {
         if (venues[j].contact_form_sent) count++;
+        if (venues[j].ig_dm_sent) count++;
+        if (venues[j].fb_msg_sent) count++;
     }
     return count;
 }

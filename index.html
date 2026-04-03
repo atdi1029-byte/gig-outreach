@@ -1341,7 +1341,11 @@ let currentCategory = '';
 
 // === TITLE WORD FILTER (skip + star) ===
 function getSkipWords() { return JSON.parse(localStorage.getItem('outreach_skip_words') || '[]'); }
-function saveSkipWords(words) { localStorage.setItem('outreach_skip_words', JSON.stringify(words)); }
+function saveSkipWords(words) {
+    localStorage.setItem('outreach_skip_words', JSON.stringify(words));
+    // Sync to sheet so pipeline.sh can read them
+    if (BASE_URL) fireGet(buildUrl({ action: 'save_skip_words', words: JSON.stringify(words) }));
+}
 function getStarWords() { return JSON.parse(localStorage.getItem('outreach_star_words') || '[]'); }
 function saveStarWords(words) { localStorage.setItem('outreach_star_words', JSON.stringify(words)); }
 
@@ -1459,6 +1463,14 @@ window.addEventListener('popstate', function(e) {
     }
 });
 
+// Intercept Backspace to navigate within app instead of leaving the page
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Backspace' && !e.target.matches('input, textarea, [contenteditable]')) {
+        e.preventDefault();
+        goBack();
+    }
+});
+
 // === TEMPLATES ===
 const TEMPLATES = {
     winery: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Winery!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Winery!"], label: "Winery",
@@ -1528,8 +1540,7 @@ const INTEREST2 = [
 ];
 const SIGNOFFS = [
     'Looking forward to hearing from you!',
-    'Would love to hear your thoughts!',
-    'Hope to connect soon!'
+    'I look forward to hearing from you!'
 ];
 
 const VENUES_INTL = '- The Copacabana Palace (Brazil)\n- Cadogan Hotel (London)\n- The Lake of Menteith Hotel (Scotland)\n- National Museum of Colombia';
@@ -1539,7 +1550,7 @@ const EMAIL_BODIES = [
     // A: Standard — full list, pitch in intro
     function(v, interest, interest2, pitch, cat) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}.`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}!`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1551,7 +1562,7 @@ const EMAIL_BODIES = [
     // B: Atmosphere — full list, atmosphere framing
     function(v, interest, interest2, pitch, cat) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${pick(INTEREST)} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}.`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${pick(INTEREST)} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}!`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1563,7 +1574,7 @@ const EMAIL_BODIES = [
     // C: Short — full list, "came across" after intro
     function(v, interest, interest2, pitch, cat) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. I came across your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()} and ${pick(INTEREST)} come play there${pitch ? ' for ' + pitch : ''}.`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. I came across your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()} and ${pick(INTEREST)} come play there${pitch ? ' for ' + pitch : ''}!`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1575,7 +1586,7 @@ const EMAIL_BODIES = [
     // D: Event-focused — full list, specialize framing
     function(v, interest, interest2, pitch, cat) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}.`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}!`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -2534,8 +2545,8 @@ function venueHasPending(venueId) {
     if (!venue) return false;
     // Resurfaced venues (contacted 2.5+ years ago) are treated as untouched
     if (isResurfaced(venue)) return true;
-    // "contacted" venues still show if they have pending actions (unsent emails, FB, IG)
-    // Only fully hide after all outreach is done
+    // "contacted" = user marked done — hide it
+    if (venue.status === 'contacted') return false;
     // "researched" = pipeline ran, no emails. Still show if there's FB/IG/contact form to use
     if (venue.status === 'researched') {
         if (venue.instagram && venue.instagram.length > 5) return true;

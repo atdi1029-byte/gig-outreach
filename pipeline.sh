@@ -943,7 +943,7 @@ PYEOF
 
     # C. Filter: only skip people whose full name is already known
     local TO_ENRICH
-    TO_ENRICH=$(KNAMES="$KNOWN_NAMES" KEMAILS="$KNOWN_EMAILS" python3 << 'PYEOF'
+    TO_ENRICH=$(KNAMES="$KNOWN_NAMES" KEMAILS="$KNOWN_EMAILS" APPS_SCRIPT_URL="$APPS_SCRIPT_URL" python3 << 'PYEOF'
 import json, os
 
 with open('/tmp/pipeline_people.json') as f:
@@ -959,7 +959,16 @@ skipped_bad_title = 0
 bad_titles = ['housekeep', 'security', 'loss prevention', 'accounting', 'accountant',
     'finance', 'payroll', 'laundry', 'steward', 'engineer', 'maintenance',
     'it ', 'information technology', 'purchasing', 'procurement',
-    'human resource', ' hr ', 'recruiter', 'recruitment', 'talent acquisition']
+    'human resource', ' hr ', 'recruiter', 'recruitment', 'talent acquisition',
+    'spa ', 'spa manager', 'spa director', 'esthetician', 'massage']
+
+# Merge user's skip words from the app (synced to sheet)
+import urllib.request
+try:
+    resp = urllib.request.urlopen(os.environ.get('APPS_SCRIPT_URL','') + '?action=get_skip_words', timeout=10)
+    user_skip = json.loads(resp.read()).get('words', [])
+    bad_titles.extend(w for w in user_skip if w not in bad_titles)
+except: pass
 
 def title_is_relevant(title):
     t = title.lower()

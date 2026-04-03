@@ -437,7 +437,7 @@ skip_cats = ['pub', 'irish pub', 'sports bar', 'fast food', 'pizza',
              'diner', 'gas station', 'grocery', 'pharmacy', 'convenience',
              'deli', 'food truck', 'taco', 'burger', 'sandwich',
              'chicken', 'ramen', 'noodle', 'donut', 'bagel', 'juice',
-             'bar & grill', 'hookah', 'karaoke', 'nightclub']
+             'bar & grill', 'hookah', 'karaoke', 'nightclub', 'spa']
 
 skip_names = ['cottage', 'apartment', 'vacation rental', 'retreat',
               'airbnb', 'vrbo', 'walk to', 'screened porch',
@@ -594,8 +594,14 @@ PYEOF2
             sleep 3
             FOUND_WEB=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${JS_DIR}/extract_cite.js"'")' 2>/dev/null)
             if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
-                log "    Website: $FOUND_WEB"
-                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
+                # Reject Airbnb/VRBO — these are vacation rentals, not venues
+                if echo "$FOUND_WEB" | grep -qiE 'airbnb\.com|vrbo\.com'; then
+                    log "    REJECTED (Airbnb/VRBO): $FOUND_WEB — deleting venue $VID"
+                    curl -sL "${APPS_SCRIPT_URL}?action=delete_venue&venue_id=${VID}" > /dev/null
+                else
+                    log "    Website: $FOUND_WEB"
+                    curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
+                fi
             else
                 log "    No website found"
             fi
@@ -847,6 +853,20 @@ for card in cards:
         print(f"  SKIP (type): {name} -- {cat}")
         continue
 
+    # Skip venues with NO rating AND NO reviews (no data = junk)
+    if (not rating or rating == '') and (not reviews or reviews == ''):
+        print(f"  SKIP (no data): {name}")
+        continue
+
+    # Skip out-of-area venues
+    import re
+    location = card.get('location', '').strip()
+    target_states = {'MD', 'VA', 'DC', 'WV', 'PA', 'DE'}
+    state_match_check = re.search(r'\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)\b', location)
+    if state_match_check and state_match_check.group(1) not in target_states:
+        print(f"  SKIP (out of area): {name} -- {state_match_check.group(1)}")
+        continue
+
     # Determine our category
     our_cat = 'restaurant'
     if any(t in cat_lower for t in ['hotel', 'inn', 'resort', 'lodge']):
@@ -936,8 +956,14 @@ PYEOF
         FOUND_WEB=
         FOUND_WEB=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
         if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
-            log "    Website: $FOUND_WEB"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
+            # Reject Airbnb/VRBO — these are vacation rentals, not venues
+            if echo "$FOUND_WEB" | grep -qiE 'airbnb\.com|vrbo\.com'; then
+                log "    REJECTED (Airbnb/VRBO): $FOUND_WEB — deleting venue $VID"
+                curl -sL "${APPS_SCRIPT_URL}?action=delete_venue&venue_id=${VID}" > /dev/null
+            else
+                log "    Website: $FOUND_WEB"
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
+            fi
         else
             log "    No website found"
         fi

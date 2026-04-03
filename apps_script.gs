@@ -54,6 +54,7 @@ function doGet(e) {
   if (action === 'calc_distances')  return calcDistances_();
   if (action === 'add_gig')         return addGig_(e.parameter);
   if (action === 'update_gig')      return updateGig_(e.parameter);
+  if (action === 'delete_gig')      return deleteGig_(e.parameter);
   if (action === 'get_gigs')        return getGigs_();
   if (action === 'get_recommendations') return getRecommendations_();
   if (action === 'save_monthly')     return saveMonthly_(e.parameter);
@@ -62,6 +63,8 @@ function doGet(e) {
   if (action === 'delete_venue')     return deleteVenue_(e.parameter);
   if (action === 'cleanup_generic')  return cleanupGenericEmails_();
   if (action === 'update_taste')     return updateTaste_(e.parameter);
+  if (action === 'save_skip_words')  return saveSkipWords_(e.parameter);
+  if (action === 'get_skip_words')   return getSkipWords_();
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -215,6 +218,7 @@ function serveDashboardJSON_() {
   for (var v = 0; v < venues.length; v++) {
     var venue = venues[v];
     if (venue.status === 'contacted') continue; // skip fully done
+    if (venue.status === 'untouched') continue; // top picks = pipelined only
     if (pastGigVenueIds[venue.venue_id]) continue; // skip past gigs
     var vc = contactsByVenue[venue.venue_id] || [];
     var pendingEmailContacts = [];
@@ -1008,6 +1012,23 @@ function setConfig_(label, value) {
 }
 
 // ---------------------------------------------------------------
+// saveSkipWords_ / getSkipWords_ — Sync title skip words from app
+// Stored as JSON array in Config tab under "skip_words"
+// ---------------------------------------------------------------
+function saveSkipWords_(params) {
+  var words = params.words || '[]';
+  setConfig_('skip_words', words);
+  return jsonResponse_({ status: 'ok' });
+}
+
+function getSkipWords_() {
+  var raw = getConfig_('skip_words');
+  var words = [];
+  try { words = JSON.parse(raw || '[]'); } catch(e) {}
+  return jsonResponse_({ status: 'ok', words: words });
+}
+
+// ---------------------------------------------------------------
 // calcDistanceForVenue_ — Calculate distance for a single venue if missing
 // Called automatically by addContact_ as a safety net
 // ---------------------------------------------------------------
@@ -1211,6 +1232,27 @@ function updateGig_(params) {
     }
   }
   return jsonResponse_({ status: 'error', message: 'Gig not found' });
+}
+
+// ---------------------------------------------------------------
+// deleteGig_ — Delete a past gig by gig_id
+// ---------------------------------------------------------------
+function deleteGig_(params) {
+  var gigId = params.gig_id || '';
+  if (!gigId) return jsonResponse_({ status: 'error', message: 'gig_id required' });
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(PAST_GIGS);
+  if (!sheet) return jsonResponse_({ status: 'error', message: 'Past Gigs sheet not found' });
+
+  var data = sheet.getDataRange().getValues();
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]) === gigId) {
+      sheet.deleteRow(i + 1);
+      return jsonResponse_({ status: 'ok', deleted: gigId });
+    }
+  }
+  return jsonResponse_({ status: 'error', message: 'Gig not found: ' + gigId });
 }
 
 // ---------------------------------------------------------------

@@ -1480,13 +1480,13 @@ const TEMPLATES = {
     hotel: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Hotel!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Hotel!", "Live guitar for lobby & events at {venue}"], label: "Hotel",
         pitch: [], setting: "in your lobby or event spaces" },
     country_club: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Country Club!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Country Club!", "Classical guitar for member events at {venue}", "Live guitar for dinners & events at {venue}"], label: "Country Club",
-        pitch: ["member dinners or any other events you guys have"], setting: "for your members" },
+        pitch: ["member dinners or any other events you guys have"], setting: "for your members", nolabel: true },
     wine_bar: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Wine Bar!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Wine Bar!"], label: "Wine Bar",
         pitch: [], setting: "over wine" },
     resort: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Resort!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Resort!", "Live guitar for events at {venue}"], label: "Resort",
         pitch: [], setting: "for your guests" },
     private_club: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Club!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Club!"], label: "Private Club",
-        pitch: ["member dinners or any other events you guys have"], setting: "for your members" },
+        pitch: ["member dinners or any other events you guys have"], setting: "for your members", nolabel: true },
     wedding_venue: { subject: ["Classical Guitarist for Weddings at {venue}!", "Classical guitarist for weddings at {venue}", "Live guitar for ceremonies & receptions at {venue}"], label: "Wedding Venue",
         pitch: ["wedding ceremonies and receptions"], setting: "on the big day" },
     senior_living: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform for your Residents!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform for your Residents!", "Classical guitar performances for {venue} residents"], label: "Senior Living",
@@ -1549,8 +1549,10 @@ const VENUES_LOCAL = "- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- The
 const EMAIL_BODIES = [
     // A: Standard — full list, pitch in intro
     function(v, interest, interest2, pitch, cat) {
+        const t = TEMPLATES[cat] || TEMPLATES.winery;
+        const suffix = (t.nolabel && pitch) ? '!' : ` at your ${t.label.toLowerCase()}!`;
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}!`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''}${suffix}`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1561,8 +1563,10 @@ const EMAIL_BODIES = [
     },
     // B: Atmosphere — full list, atmosphere framing
     function(v, interest, interest2, pitch, cat) {
+        const t = TEMPLATES[cat] || TEMPLATES.winery;
+        const suffix = (t.nolabel && pitch) ? '!' : ` at your ${t.label.toLowerCase()}!`;
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${pick(INTEREST)} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}!`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${pick(INTEREST)} come play${pitch ? ' for ' + pitch : ''}${suffix}`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1585,8 +1589,10 @@ const EMAIL_BODIES = [
     },
     // D: Event-focused — full list, specialize framing
     function(v, interest, interest2, pitch, cat) {
+        const t = TEMPLATES[cat] || TEMPLATES.winery;
+        const suffix = (t.nolabel && pitch) ? '!' : ` at your ${t.label.toLowerCase()}!`;
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''} at your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()}!`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''}${suffix}`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1798,7 +1804,14 @@ function buildGmailLink(email, category) {
 function normalizeIGUrl(url) {
     if (!url) return '';
     if (url.startsWith('http')) return url;
+    if (url.startsWith('//')) return 'https:' + url;
     return 'https://www.instagram.com/' + url.replace(/^@/, '');
+}
+function normalizeFBUrl(url) {
+    if (!url) return '';
+    if (url.startsWith('http')) return url;
+    if (url.startsWith('//')) return 'https:' + url;
+    return url;
 }
 
 // === SOCIAL ACTIONS ===
@@ -1809,7 +1822,7 @@ function openIGWithTemplate(igUrl, category) {
 
 function openFBWithTemplate(fbUrl, category) {
     copyText(getTemplate(category).body);
-    openExternal(fbUrl);
+    openExternal(normalizeFBUrl(fbUrl));
 }
 
 // === COMPOSE VIEW ===
@@ -2318,7 +2331,7 @@ function openComposeForContact(contactId, email, contactName, channel) {
         openExternal(normalizeIGUrl(v.instagram));
     } else if (channel === 'fb' && v.facebook) {
         copyText(tmpl.body);
-        openExternal(v.facebook);
+        openExternal(normalizeFBUrl(v.facebook));
     }
 }
 
@@ -2792,7 +2805,7 @@ function renderReviewCards() {
             <div style="display:flex;gap:0.4rem;margin-top:0.5rem;flex-wrap:wrap">
                 ${v.website && v.website !== 'undefined' ? `<a href="${v.website}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:var(--gold);background:rgba(240,160,48,0.1);border:1px solid rgba(240,160,48,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Website</a>` : ''}
                 ${v.instagram ? `<a href="${normalizeIGUrl(v.instagram)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#e1306c;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Instagram</a>` : ''}
-                ${v.facebook ? `<a href="${v.facebook}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#4267b2;background:rgba(66,103,178,0.1);border:1px solid rgba(66,103,178,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Facebook</a>` : ''}
+                ${v.facebook ? `<a href="${normalizeFBUrl(v.facebook)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" style="font-size:0.7rem;color:#4267b2;background:rgba(66,103,178,0.1);border:1px solid rgba(66,103,178,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Facebook</a>` : ''}
                 <a href="https://www.google.com/maps/search/${encodeURIComponent(v.name + ' ' + (v.city || '') + ' ' + (v.state || ''))}" target="_blank" onclick="event.stopPropagation()" style="font-size:0.7rem;color:var(--green);background:rgba(38,166,154,0.1);border:1px solid rgba(38,166,154,0.3);border-radius:12px;padding:0.2rem 0.6rem;text-decoration:none">Maps</a>
             </div>
             <div style="margin-top:0.6rem">

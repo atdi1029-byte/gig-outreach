@@ -298,6 +298,7 @@ var fb = '';
 var fbLinks = document.querySelectorAll('a[href*="facebook.com"]');
 for(var i=0;i<fbLinks.length;i++){
     var u = fbLinks[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
+    if(u.startsWith('//')) u = 'https:' + u;
     var slug = u.split('facebook.com/')[1] || '';
     if(['tr','pixel','plugins','sharer','share','login','dialog'].indexOf(slug) > -1) continue;
     if(u.indexOf('sharer') > -1 || u.indexOf('share') > -1) continue;
@@ -309,6 +310,7 @@ var ig = '';
 var igLinks = document.querySelectorAll('a[href*="instagram.com"]');
 for(var i=0;i<igLinks.length;i++){
     var u = igLinks[i].getAttribute('href').split('?')[0];
+    if(u.startsWith('//')) u = 'https:' + u;
     if(u.indexOf('share') === -1){ ig = u; break; }
 }
 

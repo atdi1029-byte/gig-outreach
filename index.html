@@ -1443,23 +1443,23 @@ function navigateTo(viewId) {
 
 function goBack() {
     if (navStack.length <= 1) return;
-    navStack.pop();
-    showView(navStack[navStack.length - 1]);
-    history.pushState({ stack: [...navStack] }, '');
+    history.back();
 }
 
-// Seed initial history entry so back button never exits the app
+// Seed history: root entry + guard so back from home never exits
 history.replaceState({ stack: ['viewHome'] }, '');
+history.pushState({ stack: ['viewHome'], guard: true }, '');
 
 window.addEventListener('popstate', function(e) {
-    if (navStack.length > 1) {
-        navStack.pop();
-        showView(navStack[navStack.length - 1]);
-        // Re-push state so there's always a history entry to absorb the next back press
-        history.pushState({ stack: [...navStack] }, '');
+    if (e.state && e.state.stack) {
+        navStack = [...e.state.stack];
     } else {
-        // At home screen — push state again to prevent app from closing
-        history.pushState({ stack: [...navStack] }, '');
+        navStack = ['viewHome'];
+    }
+    showView(navStack[navStack.length - 1]);
+    // At home — push guard so next back bounces instead of exiting
+    if (navStack.length <= 1) {
+        history.pushState({ stack: ['viewHome'], guard: true }, '');
     }
 });
 

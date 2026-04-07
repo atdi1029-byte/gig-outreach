@@ -1446,7 +1446,7 @@ generate_report() {
     tail -n "+${RUN_START_LINE}" "$LOG_FILE" > "$RUN_LOG"
 
     # Parse log data with Python
-    python3 << 'PYEOF' "$RUN_LOG" "$REPORT_FILE" "$REPORT_TITLE" "$REPORT_DATE" "$REPORT_TS" "$MANIFEST_FILE" "$REPORT_DIR"
+    python3 - "$RUN_LOG" "$REPORT_FILE" "$REPORT_TITLE" "$REPORT_DATE" "$REPORT_TS" "$MANIFEST_FILE" "$REPORT_DIR" << 'PYEOF'
 import sys, re, os, json, glob
 from datetime import datetime
 

@@ -344,6 +344,15 @@ body {
     font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 1px; padding: 0.1rem 0.4rem; border-radius: 4px; color: #000;
 }
+.category-select {
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 0.15rem 0.3rem; border-radius: 4px;
+    border: none; cursor: pointer; outline: none;
+    -webkit-appearance: none; appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%23fff'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 4px center;
+    padding-right: 14px;
+}
 .category-badge.winery { background: #9b59b6; color: #fff; }
 .category-badge.museum { background: #3498db; color: #fff; }
 .category-badge.hotel { background: #e67e22; color: #fff; }
@@ -1492,7 +1501,7 @@ const TEMPLATES = {
     senior_living: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform for your Residents!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform for your Residents!", "Classical guitar performances for {venue} residents"], label: "Senior Living",
         pitch: [], setting: "for your residents" },
     art_gallery: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Gallery!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Gallery!", "Live classical guitar for gallery events at {venue}"], label: "Art Gallery",
-        pitch: ["any openings or events you might have"], setting: "among the artwork" },
+        pitch: ["any openings or events you might have!"], setting: "among the artwork" },
     museum: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Museum!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Museum!", "Classical guitar for events at {venue}"], label: "Museum",
         pitch: [], setting: "among the exhibits" },
     golf_club: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Golf Club!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Golf Club!", "Classical guitar for events at {venue}"], label: "Golf Club",
@@ -2006,6 +2015,23 @@ function voteVenueDetail(venueId, vote, btn) {
     });
 }
 
+function changeVenueCategory(venueId, selectEl) {
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    const newCat = selectEl.value;
+    const CAT_COLORS_MAP = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#c9a227', mall:'#e88b4d' };
+    const bg = CAT_COLORS_MAP[newCat] || '#555';
+    const fg = ['restaurant','wedding_venue','spa','luxury_retail'].includes(newCat) ? '#000' : '#fff';
+    selectEl.style.backgroundColor = bg;
+    selectEl.style.color = fg;
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'category', value: newCat }), function(resp) {
+        if (resp.status === 'ok') {
+            showToast('Category updated to ' + (CATEGORY_LABELS[newCat] || newCat));
+            const v = (dashboardData.venues || []).find(v => v.venue_id === venueId);
+            if (v) v.category = newCat;
+        }
+    });
+}
+
 function toggleFeedbackBox(venueId, vote) {
     const box = document.getElementById('voteFeedbackBox');
     box.style.display = box.style.display === 'none' ? 'block' : 'none';
@@ -2353,7 +2379,15 @@ function openVenueDetail(venueId) {
 
     // Meta
     html += `<div class="detail-meta">`;
-    html += `<span class="category-badge ${cat}">${esc(venue.category || '').toUpperCase()}</span>`;
+    const allCats = Object.keys(CATEGORY_LABELS).sort();
+    const catBg = CAT_COLORS[cat] || '#555';
+    const catFg = ['restaurant','wedding_venue','spa','luxury_retail'].includes(cat) ? '#000' : '#fff';
+    let catSelect = `<select class="category-select" style="background-color:${catBg};color:${catFg}" onchange="changeVenueCategory('${esc(venue.venue_id)}',this)">`;
+    for (const c of allCats) {
+        catSelect += `<option value="${c}"${c === cat ? ' selected' : ''}>${(CATEGORY_LABELS[c] || c).toUpperCase()}</option>`;
+    }
+    catSelect += `</select>`;
+    html += catSelect;
     html += `<span>${esc(venue.city || '')}${venue.city && venue.state ? ', ' : ''}${esc(venue.state || '')}</span>`;
     if (venue.zone_priority === 'green' || venue.zone_priority === 'yellow') html += `<span class="zone-dot ${venue.zone_priority}"></span>`;
     if (venue.distance_miles) html += `<span style="color:var(--accent)">${venue.distance_miles} mi · ${formatDrive(venue.drive_minutes)}</span>`;

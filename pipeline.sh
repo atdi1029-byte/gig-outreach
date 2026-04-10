@@ -2203,13 +2203,8 @@ elif any(t in nl for t in yacht): print('yacht_club')
 else: print('')
 " 2>/dev/null)
     if [ -n "$CORRECT_CAT" ]; then
-        local CURRENT_CAT
-        CURRENT_CAT=$(echo "$venue_id" | grep -oP '(?<=-)[A-Z]+(?=-)')
-        CURRENT_CAT_LOWER=$(echo "$CURRENT_CAT" | tr '[:upper:]' '[:lower:]')
-        if [ "$CURRENT_CAT_LOWER" = "rest" ] && [ "$CORRECT_CAT" != "restaurant" ]; then
-            log "  [FIX] Recategorizing from restaurant → $CORRECT_CAT"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=category&value=${CORRECT_CAT}" > /dev/null
-        fi
+        log "  [FIX] Name-based category: $CORRECT_CAT — updating sheet"
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=category&value=${CORRECT_CAT}" > /dev/null
     fi
 
     log ""

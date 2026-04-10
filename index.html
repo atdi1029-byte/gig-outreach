@@ -2028,6 +2028,7 @@ function changeVenueCategory(venueId, selectEl) {
             showToast('Category updated to ' + (CATEGORY_LABELS[newCat] || newCat));
             const v = (dashboardData.venues || []).find(v => v.venue_id === venueId);
             if (v) v.category = newCat;
+            currentDetailCat = newCat;
         }
     });
 }

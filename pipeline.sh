@@ -809,6 +809,20 @@ website_domain = "$WEBSITE_DOMAIN"
 def normalize(s):
     return re.sub(r'[^a-z0-9]', '', s.lower())
 
+# Strip hotel brand suffixes that confuse Apollo search
+brand_suffixes = [
+    r'\s*-?\s*by\s+(ihg|hilton|marriott|hyatt|wyndham|accor|choice|best western|radisson)\b',
+    r'\s*-?\s*(vignette|curio|tapestry|tribute|autograph)\s+collection\b',
+    r'\s*-?\s*,?\s*(a|an)\s+(ihg|hilton|marriott|hyatt)\s+hotel\b',
+]
+
+def strip_brand(name):
+    """Remove hotel brand suffixes to get the core venue name"""
+    cleaned = name
+    for pat in brand_suffixes:
+        cleaned = re.sub(pat, '', cleaned, flags=re.IGNORECASE)
+    return cleaned.strip(' -,')
+
 def name_matches(result_name, target_name):
     """Check if Apollo result is a reasonable match for our venue"""
     rn = normalize(result_name)
@@ -816,38 +830,95 @@ def name_matches(result_name, target_name):
     # Exact or substring match
     if tn in rn or rn in tn:
         return True
-    # Check word overlap (at least 60% of target words present)
-    tw = set(re.sub(r'[^a-z\s]', '', target_name.lower()).split())
-    tw -= {'the', 'a', 'an', 'and', 'of', 'at', 'in'}
-    rw = set(re.sub(r'[^a-z\s]', '', result_name.lower()).split())
-    if tw and len(tw & rw) / len(tw) >= 0.6:
+    # Also try with brand suffixes stripped
+    tn_stripped = normalize(strip_brand(target_name))
+    rn_stripped = normalize(strip_brand(result_name))
+    if tn_stripped and rn_stripped and (tn_stripped in rn_stripped or rn_stripped in tn_stripped):
+        return True
+    # Check word overlap (at least 50% of target words present)
+    stopwords = {'the', 'a', 'an', 'and', 'of', 'at', 'in', 'by', 'hotel', 'collection'}
+    tw = set(re.sub(r'[^a-z\s]', '', target_name.lower()).split()) - stopwords
+    rw = set(re.sub(r'[^a-z\s]', '', result_name.lower()).split()) - stopwords
+    if tw and len(tw & rw) / len(tw) >= 0.5:
         return True
     return False
 
-best = None
+all_candidates = []
 
-# Try name search first
+# Strip brand suffix for a cleaner search query
+clean_name = strip_brand(venue_name)
+
+chain_keywords = ['intercontinental', 'ihg', 'hilton worldwide', 'marriott international',
+                  'hyatt hotels', 'wyndham', 'accor', 'choice hotels', 'best western',
+                  'radisson', 'aimbridge hospitality', 'highgate hotels']
+
+def is_chain(name):
+    return any(kw in name.lower() for kw in chain_keywords)
+
+def score_candidate(c):
+    """Higher score = better match. Prefer: has org_id, not a chain, has domain"""
+    s = 0
+    if c.get("organization_id"): s += 10
+    if c.get("primary_domain") or c.get("domain"): s += 5
+    if is_chain(c.get("name", "")): s -= 20
+    return s
+
+# 1. Search full venue name
 resp = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
     headers=headers,
     json={"q_organization_name": venue_name, "per_page": 5})
 data = resp.json()
-accounts = data.get("accounts", []) + data.get("organizations", [])
-
-# Only accept if the name actually matches
-for a in accounts:
+for a in (data.get("accounts", []) + data.get("organizations", [])):
     if name_matches(a.get("name", ""), venue_name):
-        best = a
-        break
+        all_candidates.append(a)
 
-# Always try domain search too (may find better match)
+# 2. Search cleaned name (brand suffixes stripped)
+if clean_name != venue_name:
+    resp1b = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
+        headers=headers,
+        json={"q_organization_name": clean_name, "per_page": 5})
+    data1b = resp1b.json()
+    seen_ids = {c.get("id") for c in all_candidates}
+    for a in (data1b.get("accounts", []) + data1b.get("organizations", [])):
+        if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
+            all_candidates.append(a)
+
+# 3. Domain search
 if website_domain:
     resp2 = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
         headers=headers,
         json={"q_organization_domains_list": [website_domain], "per_page": 5})
     data2 = resp2.json()
-    domain_accounts = data2.get("accounts", []) + data2.get("organizations", [])
-    if domain_accounts and not best:
-        best = domain_accounts[0]
+    seen_ids = {c.get("id") for c in all_candidates}
+    for a in (data2.get("accounts", []) + data2.get("organizations", [])):
+        if a.get("id") not in seen_ids and not is_chain(a.get("name", "")):
+            all_candidates.append(a)
+
+# 4. Short name fallback (first 3 distinctive words)
+words = [w for w in re.sub(r'[^a-z\s]', '', venue_name.lower()).split()
+         if w not in {'the', 'a', 'an', 'and', 'of', 'at', 'in', 'by', 'hotel'}]
+if len(words) >= 2:
+    short_name = ' '.join(words[:3])
+    resp3 = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
+        headers=headers,
+        json={"q_organization_name": short_name, "per_page": 5})
+    data3 = resp3.json()
+    seen_ids = {c.get("id") for c in all_candidates}
+    for a in (data3.get("accounts", []) + data3.get("organizations", [])):
+        if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
+            all_candidates.append(a)
+
+# Pick the best candidate by score
+best = None
+if all_candidates:
+    all_candidates.sort(key=score_candidate, reverse=True)
+    # Skip chains
+    for c in all_candidates:
+        if not is_chain(c.get("name", "")):
+            best = c
+            break
+    if not best:
+        best = all_candidates[0]  # last resort
 
 if not best:
     print(json.dumps({"found": False}))
@@ -896,35 +967,47 @@ PYEOF
     python3 << PYEOF > "$people_tmpf"
 import requests, json
 all_people = []
-page = 1
 org_id = "$ORG_ID"
-while True:
-    search_params = {"per_page": 25, "page": page,
-              "person_locations": ["Maryland", "Virginia", "Washington, DC", "West Virginia", "Pennsylvania", "Delaware"]}
-    if org_id and org_id != "None":
-        search_params["organization_ids"] = [org_id]
-    else:
-        search_params["q_organization_domains_list"] = ["$DOMAIN"]
-    resp = requests.post("${APOLLO_API_BASE}/mixed_people/api_search",
-        headers={"Content-Type": "application/json", "x-api-key": "${APOLLO_API_KEY}"},
-        json=search_params)
-    data = resp.json()
-    people = data.get("people", [])
-    if not people:
-        break
-    for p in people:
-        all_people.append({
-            "id": p.get("id", ""),
-            "first_name": p.get("first_name", ""),
-            "last_name_hint": p.get("last_name_obfuscated", ""),
-            "title": p.get("title", ""),
-            "has_email": p.get("has_email", False)
-        })
-    if len(people) < 25:
-        break
-    page += 1
-    if page > 2:
-        break
+locations_list = ["Maryland", "Virginia", "Washington, DC", "District of Columbia",
+                  "West Virginia", "Pennsylvania", "Delaware"]
+
+def search_people(use_locations=True):
+    results = []
+    page = 1
+    while True:
+        search_params = {"per_page": 25, "page": page}
+        if use_locations:
+            search_params["person_locations"] = locations_list
+        if org_id and org_id != "None":
+            search_params["organization_ids"] = [org_id]
+        else:
+            search_params["q_organization_domains_list"] = ["$DOMAIN"]
+        resp = requests.post("${APOLLO_API_BASE}/mixed_people/api_search",
+            headers={"Content-Type": "application/json", "x-api-key": "${APOLLO_API_KEY}"},
+            json=search_params)
+        data = resp.json()
+        people = data.get("people", [])
+        if not people:
+            break
+        for p in people:
+            results.append({
+                "id": p.get("id", ""),
+                "first_name": p.get("first_name", ""),
+                "last_name_hint": p.get("last_name_obfuscated", ""),
+                "title": p.get("title", ""),
+                "has_email": p.get("has_email", False)
+            })
+        if len(people) < 25:
+            break
+        page += 1
+        if page > 2:
+            break
+    return results
+
+# Try with location filter first, fall back to no filter
+all_people = search_people(use_locations=True)
+if not all_people:
+    all_people = search_people(use_locations=False)
 print(json.dumps(all_people))
 PYEOF
 
@@ -1518,6 +1601,18 @@ for line in lines:
         parts = current_venue['venue_id'].split('-')
         if len(parts) >= 2:
             current_venue['category'] = cat_map.get(parts[1], parts[1].lower())
+        # Name-based override: catch hotels misclassified as restaurants
+        if current_venue['category'] == 'restaurant':
+            nl = current_venue['name'].lower()
+            hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
+                           'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
+                           'the line ', 'the jefferson', 'yours truly',
+                           'ritz-carlton', 'four seasons', 'fairmont', 'mandarin',
+                           'st. regis', 'w hotel', 'westin', 'hyatt', 'marriott',
+                           'hilton', 'intercontinental', 'kimpton', 'rosewood',
+                           'peninsula', 'langham', 'omni', 'loews']
+            if any(t in nl for t in hotel_names):
+                current_venue['category'] = 'hotel'
         continue
 
     if not current_venue:
@@ -2082,6 +2177,38 @@ run_venue() {
         else
             log "  [LOOKUP] No website found via Google"
             website=""
+        fi
+    fi
+
+    # Re-check category by venue name (fixes old venues saved as 'restaurant')
+    local CORRECT_CAT
+    CORRECT_CAT=$(python3 -c "
+nl = '''$venue'''.lower()
+hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
+               'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
+               'the line ', 'the jefferson', 'yours truly',
+               'ritz-carlton', 'four seasons', 'fairmont', 'mandarin',
+               'st. regis', 'w hotel', 'westin', 'hyatt', 'marriott',
+               'hilton', 'intercontinental', 'kimpton', 'rosewood',
+               'peninsula', 'langham', 'omni', 'loews']
+winery = ['winery', 'vineyard']
+club = ['country club', 'golf club']
+museum = ['museum', 'gallery']
+yacht = ['yacht club', 'sailing club']
+if any(t in nl for t in hotel_names): print('hotel')
+elif any(t in nl for t in winery): print('winery')
+elif any(t in nl for t in club): print('country_club')
+elif any(t in nl for t in museum): print('museum')
+elif any(t in nl for t in yacht): print('yacht_club')
+else: print('')
+" 2>/dev/null)
+    if [ -n "$CORRECT_CAT" ]; then
+        local CURRENT_CAT
+        CURRENT_CAT=$(echo "$venue_id" | grep -oP '(?<=-)[A-Z]+(?=-)')
+        CURRENT_CAT_LOWER=$(echo "$CURRENT_CAT" | tr '[:upper:]' '[:lower:]')
+        if [ "$CURRENT_CAT_LOWER" = "rest" ] && [ "$CORRECT_CAT" != "restaurant" ]; then
+            log "  [FIX] Recategorizing from restaurant → $CORRECT_CAT"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=category&value=${CORRECT_CAT}" > /dev/null
         fi
     fi
 

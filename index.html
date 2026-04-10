@@ -2023,12 +2023,12 @@ function changeVenueCategory(venueId, selectEl) {
     const fg = ['restaurant','wedding_venue','spa','luxury_retail'].includes(newCat) ? '#000' : '#fff';
     selectEl.style.backgroundColor = bg;
     selectEl.style.color = fg;
+    currentDetailCat = newCat;
+    const v = (dashboardData.venues || []).find(v => v.venue_id === venueId);
+    if (v) v.category = newCat;
     fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'category', value: newCat }), function(resp) {
         if (resp.status === 'ok') {
             showToast('Category updated to ' + (CATEGORY_LABELS[newCat] || newCat));
-            const v = (dashboardData.venues || []).find(v => v.venue_id === venueId);
-            if (v) v.category = newCat;
-            currentDetailCat = newCat;
         }
     });
 }

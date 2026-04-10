@@ -4120,7 +4120,18 @@ document.addEventListener('visibilitychange', () => {
 });
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js').catch(err => console.log('SW:', err));
+    navigator.serviceWorker.register('service-worker.js').then(reg => {
+        // Check for updates on every load
+        reg.update();
+        // Auto-reload when new SW activates
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                window.location.reload();
+            }
+        });
+    }).catch(err => console.log('SW:', err));
 }
 </script>
 </body>

@@ -2180,9 +2180,13 @@ run_venue() {
         fi
     fi
 
-    # Re-check category by venue name (fixes old venues saved as 'restaurant')
-    local CORRECT_CAT
-    CORRECT_CAT=$(python3 -c "
+    # Re-check category by venue name — ONLY if current category is generic 'restaurant'
+    # Never overwrite intentional categories (art_gallery, museum, etc.)
+    local CURRENT_CAT
+    CURRENT_CAT=$(curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('category',''))" 2>/dev/null)
+    if [ "$CURRENT_CAT" = "restaurant" ]; then
+        local CORRECT_CAT
+        CORRECT_CAT=$(python3 -c "
 nl = '''$venue'''.lower()
 hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
                'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
@@ -2202,9 +2206,10 @@ elif any(t in nl for t in museum): print('museum')
 elif any(t in nl for t in yacht): print('yacht_club')
 else: print('')
 " 2>/dev/null)
-    if [ -n "$CORRECT_CAT" ]; then
-        log "  [FIX] Name-based category: $CORRECT_CAT — updating sheet"
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=category&value=${CORRECT_CAT}" > /dev/null
+        if [ -n "$CORRECT_CAT" ]; then
+            log "  [FIX] Name-based category: $CORRECT_CAT (was restaurant) — updating sheet"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=category&value=${CORRECT_CAT}" > /dev/null
+        fi
     fi
 
     log ""
@@ -2420,11 +2425,13 @@ elif [ "$1" = "--linkedin-retry" ]; then
     log "LINKEDIN RETRY MODE: Finding venues with linkedin_pending=true..."
     curl -sL "${APPS_SCRIPT_URL}?action=dashboard" -o /tmp/pipeline_linkedin_retry.json 2>/dev/null
     python3 -c "
-import json
+import json, os
 with open('/tmp/pipeline_linkedin_retry.json') as f: data = json.load(f)
+SKIP = set(filter(None, os.environ.get('SKIP_VENUES','').split(',')))
 for v in data.get('venues', []):
     if v.get('linkedin_pending') == True or str(v.get('linkedin_pending','')).lower() == 'true':
-        print(f\"{v['venue_id']}|||{v['name']}|||{v.get('website','')}\")
+        if v['venue_id'] not in SKIP:
+            print(f\"{v['venue_id']}|||{v['name']}|||{v.get('website','')}\")
 " 2>/dev/null | while IFS='|||' read -r VID NAME WEB; do
         log ""
         log "########## LINKEDIN RETRY: $NAME ($VID) ##########"

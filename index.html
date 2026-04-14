@@ -1525,7 +1525,9 @@ const TEMPLATES = {
     luxury_retail: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Store!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Store!", "Live classical guitar for {venue}"], label: "Luxury Retail",
         pitch: [], setting: "in your store" },
     mall: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) for Holiday Events at your Mall!", "Classical Guitarist (Latin, Classical & Modern Arrangements) for Holiday Events at your Mall!", "Live guitar for holiday events at {venue}"], label: "Mall",
-        pitch: [], setting: "for shoppers" }
+        pitch: [], setting: "for shoppers" },
+    agent: { subject: ["Classical Guitarist Available for Bookings — Latin, Classical & Modern Pop", "Live Classical Guitar — Looking to Connect with {venue}", "Classical Guitarist for Your Events Roster"], label: "Agency",
+        pitch: ["weddings, galas, corporate events, private parties, and venue entertainment"], setting: "at your clients' events", isAgent: true }
 };
 const YOUTUBE_LINK = 'https://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH';
 const CONTACT_LINE = 'alexbarnettclassical@gmail.com | 410-794-6204';
@@ -1618,7 +1620,22 @@ const EMAIL_CLOSINGS = [
     "If you ever feature live music for events or regular entertainment, I'd welcome the chance to connect."
 ];
 
+function generateAgentEmail(venueName, contactName) {
+    const firstName = contactName ? contactName.split(/\s+/)[0] : '';
+    const useName = firstName.length >= 3 && firstName.length <= 15 && /^[a-z]+$/i.test(firstName);
+    const greeting = useName ? pick(GREETINGS).replace('{name}', firstName) : pick(['Hi!', 'Hey!']);
+    const signoff = pick(SIGNOFFS);
+
+    const bodies = [
+        `I'm a classical guitarist based near Annapolis, and I'm reaching out to connect with agencies that book live entertainment for events and venues. I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements like ${pickArtists()}.\n\nI perform regularly at upscale venues throughout the Mid-Atlantic:\n${VENUES_LOCAL}\n\nAnd internationally at:\n${VENUES_INTL}\n\nI'm available for weddings, galas, corporate events, private parties, and ongoing venue entertainment. I'd love to be considered for your roster.`,
+        `I'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements like ${pickArtists()}. I came across your agency and would love to connect about potential bookings.\n\nI have a strong track record performing at upscale venues:\n${VENUES_LOCAL}\n\nAs well as internationally:\n${VENUES_INTL}\n\nI'm looking to expand my reach through agency partnerships and would welcome the chance to discuss how I might fit with your clients' needs.`
+    ];
+
+    return [greeting, '', pick(bodies), '', "Here's a link to hear my playing:", YOUTUBE_LINK, '', 'You can reach me at ' + CONTACT_LINE, '', signoff, 'Alexander Barnett'].join('\n');
+}
+
 function generateEmail(venueName, contactName, category) {
+    if (category === 'agent') return generateAgentEmail(venueName, contactName);
     const firstName = contactName ? contactName.split(/\s+/)[0] : '';
     const skipWords = /^(le|la|the|at|du|de|el|los|las|hotel|cafe|bistro|bistrot|chez|inn|club|resort|bellhop)$/i;
     const skipPhrases = /food runner|bell hop/i;
@@ -1664,6 +1681,7 @@ const FB_BODIES = [
 const IG_FOLLOWUP = `Thanks so much for getting back to me! Here's a playlist of my performances so you can get a feel for the sound:\n\n${YOUTUBE_LINK}\n\nYou can also reach me at ${CONTACT_LINE}\n\nLooking forward to connecting!`;
 
 function generateIG(venueName, contactName, category) {
+    if (category === 'agent') return pick(['Hi!', 'Hey!']) + `\n\nI'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements like ${pickArtists()}. I came across your agency and would love to connect about potential bookings.\n\nI perform regularly at places like L'Auberge Chez Francois, The Inn at Perry Cabin, and Army Navy Country Club.\n\nWould love to chat about being considered for your roster!\n\n— Alexander Barnett`;
     const t = TEMPLATES[category] || TEMPLATES.winery;
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const greeting = pick(['Hi!', 'Hey!']);
@@ -1672,6 +1690,7 @@ function generateIG(venueName, contactName, category) {
 }
 
 function generateFB(venueName, contactName, category) {
+    if (category === 'agent') return pick(['Hi!', 'Hey!']) + `\n\nI'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements like ${pickArtists()}. I came across your agency and would love to connect about potential bookings.\n\nI perform regularly at places like L'Auberge Chez Francois, The Inn at Perry Cabin, and Army Navy Country Club.\n\nWould love to chat about being considered for your roster!\n\n— Alexander Barnett`;
     const t = TEMPLATES[category] || TEMPLATES.winery;
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const greeting = pick(['Hi!', 'Hey!']);
@@ -1698,7 +1717,7 @@ function getTemplate(category) {
 
 // === CONSTANTS ===
 const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
-const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls' };
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents' };
 
 const STATE_IMAGES = {
     MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
@@ -1731,7 +1750,8 @@ const CATEGORY_IMAGES = {
     private_club: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=250&fit=crop',
     church: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?w=400&h=250&fit=crop',
     luxury_retail: 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=400&h=250&fit=crop',
-    mall: 'https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=400&h=250&fit=crop'
+    mall: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=250&fit=crop',
+    agent: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=250&fit=crop'
 };
 
 // === API HELPERS ===
@@ -2290,7 +2310,7 @@ function openState(state) {
     });
 
     // Only show categories that have pending venues
-    const allCats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
+    const allCats = ['agent', 'winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
     const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0);
     const el = document.getElementById('stateBody');
 
@@ -2371,7 +2391,7 @@ function openVenueDetail(venueId) {
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
     currentDetailVenue = venue;
     currentDetailCat = cat;
-    const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#a64d79', mall:'#cc0000' };
+    const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#a64d79', mall:'#cc0000', agent:'#d4a017' };
     const catColor = CAT_COLORS[cat] || 'var(--text-bright)';
 
     document.getElementById('detailTitleText').textContent = venue.name;
@@ -4121,15 +4141,16 @@ document.addEventListener('visibilitychange', () => {
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js').then(reg => {
-        // Check for updates on every load
         reg.update();
-        // Auto-reload when new SW activates
-        let refreshing = false;
+        // Show banner instead of force-reloading (don't nuke mid-session work)
         navigator.serviceWorker.addEventListener('controllerchange', () => {
-            if (!refreshing) {
-                refreshing = true;
-                window.location.reload();
-            }
+            if (document.querySelector('.sw-update-banner')) return;
+            const banner = document.createElement('div');
+            banner.className = 'sw-update-banner';
+            banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#e67e22;color:#fff;text-align:center;padding:10px 16px;font-size:14px;cursor:pointer;';
+            banner.innerHTML = 'Update available — <strong>tap to refresh</strong>';
+            banner.onclick = () => window.location.reload();
+            document.body.appendChild(banner);
         });
     }).catch(err => console.log('SW:', err));
 }

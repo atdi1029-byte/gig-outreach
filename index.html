@@ -2619,6 +2619,8 @@ function venueHasPending(venueId) {
     if (isResurfaced(venue)) return true;
     // "contacted" = user marked done — hide it
     if (venue.status === 'contacted') return false;
+    // "pipelined" = pipeline ran but user hasn't reviewed/acted yet — always show
+    if (venue.status === 'pipelined') return true;
     // "researched" = pipeline ran, no emails. Still show if there's FB/IG/contact form to use
     if (venue.status === 'researched') {
         if (venue.instagram && venue.instagram.length > 5) return true;

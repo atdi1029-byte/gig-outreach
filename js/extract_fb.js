@@ -8,7 +8,9 @@
             // Skip non-page links
             if (["login","help","policies","privacy","settings","groups",
                  "marketplace","watch","gaming","events","pages",
-                 "ads","business","sharer","sharer.php","share"].indexOf(page) > -1) continue;
+                 "ads","business","sharer","sharer.php","share",
+                 "policy.php","policy","terms","terms.php","about",
+                 "legal","cookies","r.php","recover","profile.php"].indexOf(page) > -1) continue;
             if (page.length < 2) continue;
             return "https://www.facebook.com/" + m[1] + "/";
         }

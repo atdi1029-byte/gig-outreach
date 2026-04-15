@@ -6,7 +6,8 @@
     "state": "MD",
     "description": "Full-service entertainment booking agency, 30+ years in DMV, books bands/DJs/soloists/ensembles for 2000+ events/year",
     "contacts": [],
-    "status": "done"
+    "status": "done",
+    "venue_id": "MD-AGEN-001"
   },
   {
     "name": "James Turner Productions",
@@ -15,7 +16,8 @@
     "state": "VA",
     "description": "Mid-Atlantic booking agency since 1976, represents rock/R&B/jazz/country/reggae/Top-40 bands for clubs, concerts, and corporate events",
     "contacts": [],
-    "status": "done"
+    "status": "done",
+    "venue_id": "VA-AGEN-001"
   },
   {
     "name": "EastCoast Entertainment",
@@ -41,7 +43,8 @@
       "John Wolfslayer",
       "Diane Labonte"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "VA-AGEN-002"
   },
   {
     "name": "Washington Talent Agency",
@@ -65,7 +68,8 @@
       "David Harris",
       "Jeff Schofield"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "MD-AGEN-002"
   },
   {
     "name": "Getting The Gig Entertainment",
@@ -77,7 +81,8 @@
       "Sy Seyler"
     ],
     "status": "done",
-    "email": "sy@gettingthegig.com"
+    "email": "sy@gettingthegig.com",
+    "venue_id": "MD-AGEN-003"
   },
   {
     "name": "Elan Artists",
@@ -94,7 +99,8 @@
       "Michelle Delgado",
       "Celaya Kirchner"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "MD-AGEN-004"
   },
   {
     "name": "Electric Events DC",
@@ -106,7 +112,8 @@
       "Brian Wasser",
       "Geoff Sockol"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "MD-AGEN-005"
   },
   {
     "name": "Extraordinary Entertainment",
@@ -125,7 +132,8 @@
       "Stefanie Canizares (Digital)"
     ],
     "email": "sales@bookextraordinary.com",
-    "status": "done"
+    "status": "done",
+    "venue_id": "MD-AGEN-006"
   },
   {
     "name": "The Headliner Group",
@@ -137,7 +145,8 @@
     "email": "bookings@theheadlinergroup.com",
     "phone": "240-606-8740",
     "note": "Only 1 person in Apollo (no email). Small company \u2014 bookings@ is the main contact.",
-    "status": "done"
+    "status": "done",
+    "venue_id": "DC-AGEN-001"
   },
   {
     "name": "Entertainment Exchange",
@@ -147,7 +156,8 @@
     "description": "Full-service talent agency for mid-Atlantic, books bands/DJs/jazz/string ensembles for DC/Baltimore/Annapolis/Eastern Shore, 20000+ events",
     "contacts": [],
     "note": "Website unreachable. Apollo matched wrong company (icrafters.com). May be defunct.",
-    "status": "done"
+    "status": "done",
+    "venue_id": "DC-AGEN-002"
   },
   {
     "name": "Washington's Entertainment Connection",
@@ -157,7 +167,8 @@
     "description": "Full-service music agency booking DJs and bands for weddings/socials/parties, 35+ years experience, also manages Bigshot Records artists",
     "contacts": [
       "Brian Choper"
-    ]
+    ],
+    "venue_id": "MD-AGEN-007"
   },
   {
     "name": "C&J Entertainment Agency",
@@ -167,7 +178,8 @@
     "description": "Entertainment agency since 1973, books bands/string ensembles/jazz groups/DJs for weddings across MD/DC/NoVA, 250+ weddings/year",
     "contacts": [
       "Christopher Temple"
-    ]
+    ],
+    "venue_id": "MD-AGEN-008"
   },
   {
     "name": "Dan Goldman Events",
@@ -177,7 +189,8 @@
     "description": "Full-service event entertainment company, books bands/musicians/DJs for weddings and corporate events across DC/MD/VA",
     "contacts": [
       "Dan Goldman"
-    ]
+    ],
+    "venue_id": "MD-AGEN-009"
   },
   {
     "name": "Dan McGuire Group",
@@ -187,7 +200,8 @@
     "description": "Live event entertainment group, books multiple bands/DJs/musicians for weddings and events across MD/DC/VA/PA",
     "contacts": [
       "Dan McGuire"
-    ]
+    ],
+    "venue_id": "MD-AGEN-010"
   },
   {
     "name": "Starleigh Entertainment",
@@ -200,7 +214,8 @@
       "Linda",
       "Kristy",
       "Dan"
-    ]
+    ],
+    "venue_id": "MD-AGEN-011"
   },
   {
     "name": "Baltimore Sound Entertainment",
@@ -217,7 +232,8 @@
       "Chelsea Wood (Asst Dir Operations)",
       "Nick Lindenstruth"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "MD-AGEN-012"
   },
   {
     "name": "Skylark Creative Entertainment & Events",
@@ -227,7 +243,8 @@
     "description": "Woman-owned entertainment and event production company, books bands/musicians/DJs/specialty acts for galas, conferences, weddings across DC/MD/VA",
     "contacts": [
       "Kate"
-    ]
+    ],
+    "venue_id": "DC-AGEN-003"
   },
   {
     "name": "Mark Sonder Productions",
@@ -237,7 +254,8 @@
     "description": "National entertainment booking agency since 1985, books headline entertainers/bands/comedians for corporate events, conventions, concerts",
     "contacts": [
       "Mark Sonder"
-    ]
+    ],
+    "venue_id": "VA-AGEN-003"
   },
   {
     "name": "Debonaire Entertainment",
@@ -247,7 +265,8 @@
     "description": "Family-owned entertainment company since 2015, books bands/DJs/classical ensembles for weddings and corporate events across DC/NoVA/Richmond",
     "contacts": [
       "Eric Cunningham"
-    ]
+    ],
+    "venue_id": "VA-AGEN-004"
   },
   {
     "name": "Sam Hill Entertainment",
@@ -266,7 +285,8 @@
       "Mike Jarvis",
       "Summer McGee"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "VA-AGEN-005"
   },
   {
     "name": "20 South Productions",
@@ -278,7 +298,8 @@
       "Chris Munson"
     ],
     "email": "chris@20south.net",
-    "status": "done"
+    "status": "done",
+    "venue_id": "VA-AGEN-006"
   },
   {
     "name": "Sound Entertainment Events",
@@ -288,7 +309,8 @@
     "description": "Entertainment agency since 1971, books live bands (jazz/dixieland/party)/musicians for weddings and events across Greater Richmond area",
     "contacts": [
       "Jonathan Greenberg"
-    ]
+    ],
+    "venue_id": "VA-AGEN-007"
   },
   {
     "name": "BVTLive! (Brandywine Valley Talent)",
@@ -298,7 +320,8 @@
     "description": "Philadelphia's leading live entertainment agency since 1999, exclusive roster of 12 dance bands plus DJs/specialty musicians for weddings and corporate events",
     "contacts": [
       "Kurt Titchenell"
-    ]
+    ],
+    "venue_id": "PA-AGEN-001"
   },
   {
     "name": "EBE Talent",
@@ -319,7 +342,8 @@
       "Lauren Figgett",
       "Caitlin Hoffman"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "PA-AGEN-002"
   },
   {
     "name": "CTO Music Artists",
@@ -329,7 +353,8 @@
     "description": "Renowned booking agency since 1987, books live bands/DJs/string/jazz ensembles for 10000+ events in Philadelphia and Tri-State area",
     "contacts": [
       "Carmen Tomesetti"
-    ]
+    ],
+    "venue_id": "PA-AGEN-003"
   },
   {
     "name": "Mole Street Artists",
@@ -340,7 +365,8 @@
     "contacts": [
       "Brian LaPann",
       "Brendan Walsh"
-    ]
+    ],
+    "venue_id": "PA-AGEN-004"
   },
   {
     "name": "Robin-Banks Entertainment",
@@ -351,7 +377,8 @@
     "contacts": [
       "Katie Robinette",
       "Amy Banks"
-    ]
+    ],
+    "venue_id": "PA-AGEN-005"
   },
   {
     "name": "Mastro Music",
@@ -364,7 +391,8 @@
     ],
     "email": "pmastromusic@gmail.com",
     "note": "Not in Apollo. Small operation \u2014 one person (Peter Mastropietro).",
-    "status": "done"
+    "status": "done",
+    "venue_id": "PA-AGEN-006"
   },
   {
     "name": "BRP Entertainment",
@@ -377,7 +405,8 @@
       "Sarah Marencic (COO)",
       "Rachel Rocks (Event Coordinator)"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "PA-AGEN-007"
   },
   {
     "name": "Media Five Entertainment",
@@ -389,7 +418,8 @@
       "David Sestak",
       "Patty Candiotti"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "PA-AGEN-008"
   },
   {
     "name": "Hank Lane Music",
@@ -410,7 +440,8 @@
       "Bobby Attiko (Music Dir)",
       "Jeff Lubin (Band Dir)"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "PA-AGEN-009"
   },
   {
     "name": "Bandwidth Entertainment",
@@ -421,7 +452,8 @@
     "contacts": [],
     "email": "info@bandwidthent.com",
     "note": "Not in Apollo. Generic info@ only. LinkedIn found Yaro Kolomiyets, Steve McIlwain.",
-    "status": "done"
+    "status": "done",
+    "venue_id": "NY-AGEN-001"
   },
   {
     "name": "107 Productions",
@@ -433,7 +465,8 @@
       "Scott Rush (Owner/CEO)",
       "Rafael Yeganeh (Marketing)"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "NJ-AGEN-001"
   },
   {
     "name": "Branded Music Group",
@@ -443,7 +476,8 @@
     "description": "Music booking agency connecting event planners with bands across genres for weddings/corporate/festivals in NJ/NY/DE/PA/MD/CT",
     "contacts": [
       "Jonathan Kumfert"
-    ]
+    ],
+    "venue_id": "NJ-AGEN-002"
   },
   {
     "name": "Louis Pettinelli Entertainment",
@@ -453,7 +487,8 @@
     "description": "Music entertainment agency booking premium live ensembles (strings/jazz/party bands/soloists) for weddings and events, serves 150-mile radius from Philadelphia/DC/Baltimore",
     "contacts": [
       "Louis Pettinelli"
-    ]
+    ],
+    "venue_id": "NJ-AGEN-003"
   },
   {
     "name": "JJ&T Entertainment",
@@ -465,7 +500,8 @@
       "Jessica Lynn"
     ],
     "email": "jjtentertainment@gmail.com",
-    "status": "done"
+    "status": "done",
+    "venue_id": "MD-AGEN-013"
   },
   {
     "name": "Watershed Entertainment",
@@ -475,7 +511,8 @@
     "description": "Boutique agency run by musicians that books live bands, DJs, duos, trios, and soloists for weddings and events in Maryland",
     "contacts": [
       "Andrew"
-    ]
+    ],
+    "venue_id": "MD-AGEN-014"
   },
   {
     "name": "NYX Entertainment & Events",
@@ -489,7 +526,8 @@
     ],
     "email": "info@nyxevents.com",
     "note": "4 people in Apollo but none with emails. LinkedIn found Howard Teger, Darienn Doby, Arissa Bright.",
-    "status": "done"
+    "status": "done",
+    "venue_id": "MD-AGEN-015"
   },
   {
     "name": "Let's Make It Entertainment",
@@ -499,7 +537,8 @@
     "description": "Books live music for parties, festivals, weddings, corporate events, and intimate gatherings, 25+ years experience",
     "contacts": [
       "KJ Sharpe"
-    ]
+    ],
+    "venue_id": "MD-AGEN-016"
   },
   {
     "name": "More Music Group",
@@ -516,7 +555,8 @@
       "Jon",
       "Matteo"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "VA-AGEN-008"
   },
   {
     "name": "Southern Entertainment of Virginia",
@@ -526,7 +566,8 @@
     "description": "Oldest booking agency in Virginia, books bands for every music style plus specialty acts (magicians, comedians, themed events)",
     "contacts": [],
     "status": "done",
-    "note": "Website didn't render. Not in Apollo."
+    "note": "Website didn't render. Not in Apollo.",
+    "venue_id": "VA-AGEN-009"
   },
   {
     "name": "Near Dark Entertainment",
@@ -541,7 +582,8 @@
       "Jason",
       "Lauren"
     ],
-    "status": "done"
+    "status": "done",
+    "venue_id": "NJ-AGEN-004"
   },
   {
     "name": "Horizon Event Group",
@@ -551,7 +593,8 @@
     "description": "Licensed NJ entertainment agency since 2007, books cover bands, acoustic acts, tribute bands, and DJs for bars, weddings, and events up the East Coast",
     "contacts": [
       "Henry Robinson"
-    ]
+    ],
+    "venue_id": "NJ-AGEN-005"
   },
   {
     "name": "SCE Event Group",
@@ -561,7 +604,8 @@
     "description": "NJ's most reviewed entertainment company, books DJs, live musicians, and bands for weddings and events across Jersey Shore, Philadelphia, NYC",
     "contacts": [
       "Jason Jani"
-    ]
+    ],
+    "venue_id": "NJ-AGEN-006"
   },
   {
     "name": "Kushner Entertainment",
@@ -571,7 +615,8 @@
     "description": "Award-winning booking and design company since 1998, represents SoundConnection, SoundNation, District Groove, The Wave, The Source, Rhythm6, PopCulture Strings, Dixon Hall for weddings and corporate events",
     "contacts": [
       "Andy Kushner"
-    ]
+    ],
+    "venue_id": "MD-AGEN-017"
   },
   {
     "name": "Lucy Black Entertainment",
@@ -581,7 +626,8 @@
     "description": "Women- and musician-owned boutique agency curating in-house acts (Lucy Black Luxe, House Band, Electric, DC String Machine) plus partner bands/DJs for luxury weddings and corporate events",
     "contacts": [],
     "status": "done",
-    "note": "No emails found. No Apollo match."
+    "note": "No emails found. No Apollo match.",
+    "venue_id": "DC-AGEN-004"
   },
   {
     "name": "Princeton Music Connection",
@@ -591,7 +637,8 @@
     "description": "Musical entertainment booking agency representing bands, jazz ensembles, string quartets, DJs spanning rock/jazz/blues/swing/Latin/Klezmer/Celtic/Bollywood for weddings and special events",
     "contacts": [],
     "status": "done",
-    "note": "No people in Apollo."
+    "note": "No people in Apollo.",
+    "venue_id": "NJ-AGEN-007"
   },
   {
     "name": "Great Party Bands",
@@ -601,6 +648,7 @@
     "description": "Booking agency representing Big Ray and the Kool Kats, Elegance, and Matt Lewis as Elvis for weddings, corporate events, conventions; bands from small combos to 10+ piece horn lineups",
     "contacts": [
       "Ray Caddell"
-    ]
+    ],
+    "venue_id": "VA-AGEN-010"
   }
 ]

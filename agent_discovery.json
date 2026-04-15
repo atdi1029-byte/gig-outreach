@@ -247,7 +247,8 @@
     "city": "Hershey",
     "state": "PA",
     "description": "Entertainment booking agency since 1962, books bands/musicians/speakers/specialty acts for corporate events, weddings, and community events",
-    "contacts": []
+    "contacts": ["Lisa Stokes (Owner)", "Sarah Marencic (COO)", "Rachel Rocks (Event Coordinator)"],
+    "status": "done"
   },
   {
     "name": "Media Five Entertainment",
@@ -255,7 +256,8 @@
     "city": "Bethlehem",
     "state": "PA",
     "description": "RIAA certified booking and management agency, 50+ years, books pop/rock/dance bands/DJs/tribute acts for weddings and events on East Coast",
-    "contacts": []
+    "contacts": ["David Sestak", "Patty Candiotti"],
+    "status": "done"
   },
   {
     "name": "Hank Lane Music",
@@ -263,7 +265,8 @@
     "city": "Philadelphia",
     "state": "PA",
     "description": "World-renowned entertainment agency since 1978, 20+ bands on staff, books bands/DJs/musicians for weddings and corporate events, Philadelphia office",
-    "contacts": []
+    "contacts": ["Harris Lane (President)", "Mike Herman (Owner)", "Donna Kerge (COO/CFO)", "Lori Roth (VP/GM)", "Ian Magid (Partner)", "Harlan Ellis (Sr Event Producer)", "Robert Ellis (Mgr Talent Ops)", "Alexandra Meotti (Event Producer)", "Ellie Creedon (Exec Asst)", "Bobby Attiko (Music Dir)", "Jeff Lubin (Band Dir)"],
+    "status": "done"
   },
   {
     "name": "Bandwidth Entertainment",
@@ -271,7 +274,10 @@
     "city": "West Harrison",
     "state": "NY",
     "description": "Band management and booking agency for Tri-State area, books elite wedding/corporate/charity event bands across Philadelphia/DC region",
-    "contacts": []
+    "contacts": [],
+    "email": "info@bandwidthent.com",
+    "note": "Not in Apollo. Generic info@ only. LinkedIn found Yaro Kolomiyets, Steve McIlwain.",
+    "status": "done"
   },
   {
     "name": "107 Productions",
@@ -279,7 +285,8 @@
     "city": "Clark",
     "state": "NJ",
     "description": "Licensed entertainment agency since 1998, 30000+ events, books bands/DJs for weddings/corporate/casinos across NJ/NY/PA/CT/DE/MA/MD",
-    "contacts": []
+    "contacts": ["Scott Rush (Owner/CEO)", "Rafael Yeganeh (Marketing)"],
+    "status": "done"
   },
   {
     "name": "Branded Music Group",
@@ -303,7 +310,9 @@
     "city": "DMV",
     "state": "MD",
     "description": "Books DJs, dance bands, jazz ensembles, string quartets, gospel choirs, soloists, and impersonators for weddings, corporate, and social events",
-    "contacts": []
+    "contacts": ["Jessica Lynn"],
+    "email": "jjtentertainment@gmail.com",
+    "status": "done"
   },
   {
     "name": "Watershed Entertainment",
@@ -319,7 +328,10 @@
     "city": "Rockville",
     "state": "MD",
     "description": "Represents 11+ exclusive event bands (Sound Connection, Millennium, Spectrum, Onyx, etc.) plus DJs for weddings, mitzvahs, corporate events",
-    "contacts": []
+    "contacts": ["Howard Teger", "Darienn Doby"],
+    "email": "info@nyxevents.com",
+    "note": "4 people in Apollo but none with emails. LinkedIn found Howard Teger, Darienn Doby, Arissa Bright.",
+    "status": "done"
   },
   {
     "name": "Let's Make It Entertainment",

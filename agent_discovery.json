@@ -135,7 +135,8 @@
     "city": "Baltimore",
     "state": "MD",
     "description": "Corporate entertainment booking agency, books live bands (rock to jazz)/DJs/musicians for weddings, brand activations, private events across Baltimore/DC/DMV",
-    "contacts": []
+    "contacts": ["Rachel Foster (Dir Business Dev)", "Jeff Lang (Owner)", "Eric Stevens (Owner)", "Josh Miller (Talent Manager)", "Alex Stevens (Event Specialist)", "Chelsea Wood (Asst Dir Operations)", "Nick Lindenstruth"],
+    "status": "done"
   },
   {
     "name": "Skylark Creative Entertainment & Events",
@@ -167,7 +168,8 @@
     "city": "Charlottesville",
     "state": "VA",
     "description": "Award-winning booking agency since 1995, represents bands for weddings/corporate/private parties across Mid-Atlantic and Southeast",
-    "contacts": []
+    "contacts": ["Katie Merritt (Chief Sales Officer)", "Madison Harper (Client Support)", "Charlie Sallwasser", "Dave Stipe", "Felicia Kettler", "Lauren Gaudet", "Meg Knutson", "Mike Jarvis", "Summer McGee"],
+    "status": "done"
   },
   {
     "name": "20 South Productions",
@@ -175,7 +177,9 @@
     "city": "Charlottesville",
     "state": "VA",
     "description": "Family-owned music and DJ booking agency, 25 years in Central Virginia, books bands/string ensembles/DJs for weddings and events",
-    "contacts": []
+    "contacts": ["Chris Munson"],
+    "email": "chris@20south.net",
+    "status": "done"
   },
   {
     "name": "Sound Entertainment Events",
@@ -199,7 +203,8 @@
     "city": "Philadelphia",
     "state": "PA",
     "description": "Award-winning full-service entertainment agency, 25+ years, books dance bands/DJs/ensembles for weddings and events across Northeast",
-    "contacts": []
+    "contacts": ["Tara Buchanan (Managing Partner)", "Jonathan Harwood (Dir Sales)", "Stephanie Fitzpatrick (Partner)", "Benjamin Ostroff (Entertainment Rep)", "Alison Ascareggi (Event Coordinator)", "Maggie Waldman (Production)", "Jacqueline Tomaszewski (Events)", "Carmen Laren", "Eric Henkels", "Lauren Figgett", "Caitlin Hoffman"],
+    "status": "done"
   },
   {
     "name": "CTO Music Artists",
@@ -231,7 +236,10 @@
     "city": "Lancaster",
     "state": "PA",
     "description": "Music entertainment booking agency, books diverse musical roster for festivals, concerts, corporate events, and weddings",
-    "contacts": []
+    "contacts": ["Peter Mastropietro"],
+    "email": "pmastromusic@gmail.com",
+    "note": "Not in Apollo. Small operation — one person (Peter Mastropietro).",
+    "status": "done"
   },
   {
     "name": "BRP Entertainment",

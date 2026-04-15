@@ -368,6 +368,7 @@ body {
 .category-badge.art_gallery { background: #e056a0; color: #fff; }
 .category-badge.luxury_apts { background: #8e7cc3; color: #fff; }
 .category-badge.grocery_market { background: #6aa84f; color: #fff; }
+.category-badge.farmers_market { background: #8bc34a; color: #fff; }
 .category-badge.wedding_venue { background: #d4a5a5; color: #000; }
 .category-badge.corporate { background: #4a86c8; color: #fff; }
 .category-badge.spa { background: #76c7c0; color: #000; }
@@ -1522,6 +1523,8 @@ const TEMPLATES = {
         pitch: [], setting: "in your sanctuary" },
     grocery_market: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Market!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Market!", "Live classical guitar for {venue}"], label: "Market",
         pitch: [], setting: "while customers shop" },
+    farmers_market: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Farmers Market!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Farmers Market!", "Live classical guitar for {venue}"], label: "Farmers Market",
+        pitch: [], setting: "while shoppers browse" },
     luxury_retail: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Store!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Store!", "Live classical guitar for {venue}"], label: "Luxury Retail",
         pitch: [], setting: "in your store" },
     mall: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) for Holiday Events at your Mall!", "Classical Guitarist (Latin, Classical & Modern Arrangements) for Holiday Events at your Mall!", "Live guitar for holiday events at {venue}"], label: "Mall",
@@ -1717,7 +1720,7 @@ function getTemplate(category) {
 
 // === CONSTANTS ===
 const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
-const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents' };
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', farmers_market: 'Farmers Markets', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents' };
 
 const STATE_IMAGES = {
     MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
@@ -1744,6 +1747,7 @@ const CATEGORY_IMAGES = {
     art_gallery: 'https://images.unsplash.com/photo-1531243269054-5ebf6f34081e?w=400&h=250&fit=crop',
     luxury_apts: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=250&fit=crop',
     grocery_market: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=250&fit=crop',
+    farmers_market: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=400&h=250&fit=crop',
     wedding_venue: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=400&h=250&fit=crop',
     corporate: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=250&fit=crop',
     spa: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=400&h=250&fit=crop',
@@ -2038,7 +2042,7 @@ function voteVenueDetail(venueId, vote, btn) {
 function changeVenueCategory(venueId, selectEl) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     const newCat = selectEl.value;
-    const CAT_COLORS_MAP = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#c9a227', mall:'#e88b4d' };
+    const CAT_COLORS_MAP = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', farmers_market:'#8bc34a', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#c9a227', mall:'#e88b4d' };
     const bg = CAT_COLORS_MAP[newCat] || '#555';
     const fg = ['restaurant','wedding_venue','spa','luxury_retail'].includes(newCat) ? '#000' : '#fff';
     selectEl.style.backgroundColor = bg;
@@ -2310,7 +2314,7 @@ function openState(state) {
     });
 
     // Only show categories that have pending venues
-    const allCats = ['agent', 'winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
+    const allCats = ['agent', 'winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'farmers_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
     const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0);
     const el = document.getElementById('stateBody');
 
@@ -2391,7 +2395,7 @@ function openVenueDetail(venueId) {
     const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
     currentDetailVenue = venue;
     currentDetailCat = cat;
-    const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#a64d79', mall:'#cc0000', agent:'#d4a017' };
+    const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', farmers_market:'#8bc34a', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#a64d79', mall:'#cc0000', agent:'#d4a017' };
     const catColor = CAT_COLORS[cat] || 'var(--text-bright)';
 
     document.getElementById('detailTitleText').textContent = venue.name;
@@ -3655,7 +3659,7 @@ function renderGigForm(gig) {
     });
 
     // Build category dropdown
-    const cats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
+    const cats = ['winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'farmers_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
     let catOpts = cats.map(c => `<option value="${c}"${gig && gig.category === c ? ' selected' : ''}>${CATEGORY_LABELS[c] || c}</option>`).join('');
 
     let html = '';
@@ -3952,7 +3956,7 @@ function openAllSmartPicks() {
             }
         }
         const scoreColor = score >= 70 ? '#f0a030' : score >= 40 ? '#e0e0e0' : '#888';
-        const catColors = {winery:'#9b59b6',museum:'#3498db',hotel:'#e67e22',country_club:'#27ae60',event:'#e74c3c',restaurant:'#f39c12',wine_bar:'#8e44ad',resort:'#16a085',senior_living:'#2980b9',event_planner:'#c0392b',golf_club:'#2ecc71',yacht_club:'#1abc9c',art_gallery:'#e056a0',luxury_apts:'#8e7cc3',grocery_market:'#6aa84f',wedding_venue:'#d4a5a5',corporate:'#4a86c8',spa:'#76c7c0',private_club:'#b45f06',church:'#674ea7',luxury_retail:'#a64d79',mall:'#cc0000'};
+        const catColors = {winery:'#9b59b6',museum:'#3498db',hotel:'#e67e22',country_club:'#27ae60',event:'#e74c3c',restaurant:'#f39c12',wine_bar:'#8e44ad',resort:'#16a085',senior_living:'#2980b9',event_planner:'#c0392b',golf_club:'#2ecc71',yacht_club:'#1abc9c',art_gallery:'#e056a0',luxury_apts:'#8e7cc3',grocery_market:'#6aa84f',farmers_market:'#8bc34a',wedding_venue:'#d4a5a5',corporate:'#4a86c8',spa:'#76c7c0',private_club:'#b45f06',church:'#674ea7',luxury_retail:'#a64d79',mall:'#cc0000'};
         const catColor = catColors[cat] || '#666';
         return `<tr>
             <td style="color:${scoreColor};font-weight:700;font-size:1.1rem;text-align:center">${score}</td>

@@ -447,7 +447,7 @@ skip_names = ['cottage', 'apartment', 'vacation rental', 'retreat',
 tier1_cats = ['country_club', 'private_club', 'yacht_club']
 tier2_cats = ['restaurant', 'winery', 'hotel', 'wine_bar', 'museum',
               'event', 'resort', 'art_gallery', 'spa']
-tier3_cats = ['golf_club', 'senior_living', 'wedding_venue', 'corporate']
+tier3_cats = ['golf_club', 'senior_living', 'wedding_venue', 'corporate', 'farmers_market']
 
 sweet_spots = set([
     'georgetown', 'dupont circle', 'kalorama', 'cleveland park',
@@ -464,8 +464,9 @@ sweet_spots = set([
 target_states = {'MD', 'VA', 'DC', 'PA', 'DE', 'WV'}
 state_re = re.compile(r'\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)\b')
 
-def map_category(cat):
+def map_category(cat, name=''):
     cl = cat.lower()
+    nl = name.lower()
     if any(t in cl for t in ['hotel', 'inn', 'resort', 'lodge']): return 'hotel'
     if any(t in cl for t in ['winery', 'vineyard']): return 'winery'
     if any(t in cl for t in ['country club', 'golf club']): return 'country_club'
@@ -475,12 +476,22 @@ def map_category(cat):
     if any(t in cl for t in ['yacht', 'sailing']): return 'yacht_club'
     if any(t in cl for t in ['private club', 'social club']): return 'private_club'
     if 'spa' in cl: return 'spa'
+    if any(t in cl for t in ['farmers market', 'farm stand', 'farmer']): return 'farmers_market'
+    # Name-based fallback: catch hotels Google Maps labels as restaurants
+    hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
+                   'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
+                   'the line ', 'the jefferson', 'yours truly',
+                   'ritz-carlton', 'four seasons', 'fairmont', 'mandarin',
+                   'st. regis', 'w hotel', 'westin', 'hyatt', 'marriott',
+                   'hilton', 'intercontinental', 'kimpton', 'rosewood',
+                   'peninsula', 'langham', 'omni', 'loews']
+    if any(t in nl for t in hotel_names): return 'hotel'
     return 'restaurant'
 
 def pre_score(venue):
     score = 0
     cat = venue.get('category', '')
-    our_cat = map_category(cat)
+    our_cat = map_category(cat, venue.get('name', ''))
     if our_cat in tier1_cats: score += 30
     elif our_cat in tier2_cats: score += 20
     elif our_cat in tier3_cats: score += 10
@@ -867,18 +878,8 @@ for card in cards:
         print(f"  SKIP (out of area): {name} -- {state_match_check.group(1)}")
         continue
 
-    # Determine our category
-    our_cat = 'restaurant'
-    if any(t in cat_lower for t in ['hotel', 'inn', 'resort', 'lodge']):
-        our_cat = 'hotel'
-    elif any(t in cat_lower for t in ['winery', 'vineyard']):
-        our_cat = 'winery'
-    elif any(t in cat_lower for t in ['country club', 'golf club', 'club']):
-        our_cat = 'country_club'
-    elif any(t in cat_lower for t in ['museum', 'gallery']):
-        our_cat = 'museum'
-    elif any(t in cat_lower for t in ['event', 'banquet', 'wedding']):
-        our_cat = 'event'
+    # Determine our category (use map_category with name fallback)
+    our_cat = map_category(cat, name)
 
     # Upscale score from rating + review count
     upscale = 3

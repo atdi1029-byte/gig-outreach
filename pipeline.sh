@@ -1567,7 +1567,9 @@ for line in lines:
     m = re.search(r'SMART PICK #(\d+) \(score (\d+)\): (.+?) \(([^)]+)\)', text)
     # Untouched venue header
     m2 = re.search(r'UNTOUCHED #(\d+): (.+?) \(([^)]+)\)', text) if not m else None
-    if m or m2:
+    # Batch/single venue header: " PIPELINE: Name (venue_id)"
+    m3 = re.search(r'PIPELINE: (.+?) \(([^)]+)\)', text) if not m and not m2 else None
+    if m or m2 or m3:
         if current_venue:
             venues.append(current_venue)
         if m:
@@ -1578,13 +1580,22 @@ for line in lines:
                 'venue_id': m.group(4),
                 'phase': 'smart_pick',
             }
-        else:
+        elif m2:
             current_venue = {
                 'pick_num': int(m2.group(1)),
                 'score': 0,
                 'name': m2.group(2),
                 'venue_id': m2.group(3),
                 'phase': 'untouched',
+            }
+        else:
+            batch_counter = len(venues) + 1
+            current_venue = {
+                'pick_num': batch_counter,
+                'score': 0,
+                'name': m3.group(1),
+                'venue_id': m3.group(2),
+                'phase': 'batch',
             }
         current_venue.update({
             'website': '',
@@ -1774,7 +1785,7 @@ title_map = {}
 for line in lines:
     text = line.rstrip('\n')
     t = text[9:] if len(text) > 9 else text
-    if 'SMART PICK #' in t or 'UNTOUCHED #' in t:
+    if 'SMART PICK #' in t or 'UNTOUCHED #' in t or re.search(r'PIPELINE: .+ \([^)]+\)', t):
         venue_idx += 1
         title_map = {}
     if venue_idx < 0 or venue_idx >= len(venues):

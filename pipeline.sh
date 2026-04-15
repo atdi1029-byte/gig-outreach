@@ -774,7 +774,7 @@ JSEOF
 # STEP 3: APOLLO API (search company → find people → enrich emails)
 # =================================================================
 step3_apollo_api() {
-    local venue="$1" venue_id="$2"
+    local venue="$1" venue_id="$2" website_url="$3"
     log ""
     log "========== STEP 3: Apollo API =========="
 
@@ -786,17 +786,22 @@ step3_apollo_api() {
     # A. Search for company by name, fallback to domain
     log "  Searching Apollo for company: $venue"
 
-    # Get website domain for fallback search
+    # Get website domain — first from passed URL, then fallback to sheet
     local WEBSITE_DOMAIN=""
-    local domain_tmpf="/tmp/pipeline_domain_lookup.json"
-    curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" -o "$domain_tmpf" 2>/dev/null
-    WEBSITE_DOMAIN=$(python3 -c "
+    if [ -n "$website_url" ]; then
+        WEBSITE_DOMAIN=$(echo "$website_url" | python3 -c "import sys,re; m=re.search(r'https?://(?:www\.)?([^/]+)',sys.stdin.read()); print(m.group(1) if m else '')" 2>/dev/null)
+    fi
+    if [ -z "$WEBSITE_DOMAIN" ]; then
+        local domain_tmpf="/tmp/pipeline_domain_lookup.json"
+        curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" -o "$domain_tmpf" 2>/dev/null
+        WEBSITE_DOMAIN=$(python3 -c "
 import json,re
 with open('$domain_tmpf') as f: d = json.load(f)
 w = d.get('venue',{}).get('website','')
 m = re.search(r'https?://(?:www\.)?([^/]+)', w)
 print(m.group(1) if m else '')
 " 2>/dev/null)
+    fi
 
     local apollo_co_tmpf="/tmp/pipeline_apollo_company.json"
     python3 << PYEOF > "$apollo_co_tmpf"
@@ -856,11 +861,15 @@ def is_chain(name):
     return any(kw in name.lower() for kw in chain_keywords)
 
 def score_candidate(c):
-    """Higher score = better match. Prefer: has org_id, not a chain, has domain"""
+    """Higher score = better match. Domain match is strongest signal."""
     s = 0
     if c.get("organization_id"): s += 10
     if c.get("primary_domain") or c.get("domain"): s += 5
     if is_chain(c.get("name", "")): s -= 20
+    # Exact domain match is the strongest signal — trumps everything
+    c_domain = (c.get("primary_domain") or c.get("domain") or "").lower().replace("www.", "")
+    if website_domain and c_domain == website_domain.lower().replace("www.", ""):
+        s += 50
     return s
 
 # 1. Search full venue name
@@ -2241,7 +2250,7 @@ else: print('')
     if ! check_apollo_credits; then
         log "  [SKIP] Apollo step — credits too low"
     else
-        step3_apollo_api "$venue" "$venue_id"
+        step3_apollo_api "$venue" "$venue_id" "$website"
     fi
     # LinkedIn quota resets in April 2026 — skip until then
     if [ "$(date +%Y%m)" -ge 202604 ] 2>/dev/null; then

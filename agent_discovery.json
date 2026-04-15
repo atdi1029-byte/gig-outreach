@@ -1,0 +1,396 @@
+[
+  {
+    "name": "Bialek's Music",
+    "website": "https://bialeksmusic.com",
+    "city": "Rockville",
+    "state": "MD",
+    "description": "Full-service entertainment booking agency, 30+ years in DMV, books bands/DJs/soloists/ensembles for 2000+ events/year",
+    "contacts": [],
+    "status": "done"
+  },
+  {
+    "name": "James Turner Productions",
+    "website": "https://www.jamesturnerproductions.com",
+    "city": "Alexandria",
+    "state": "VA",
+    "description": "Mid-Atlantic booking agency since 1976, represents rock/R&B/jazz/country/reggae/Top-40 bands for clubs, concerts, and corporate events",
+    "contacts": [],
+    "status": "done"
+  },
+  {
+    "name": "EastCoast Entertainment",
+    "website": "https://www.bookece.com",
+    "city": "Richmond",
+    "state": "VA",
+    "description": "Largest full-service entertainment agency in the US, since 1976, 8000+ entertainers, offices in DC/Philadelphia/Richmond, books bands/DJs/comedians/specialty acts",
+    "contacts": ["Brian McCall", "Alex Khan"]
+  },
+  {
+    "name": "Washington Talent Agency",
+    "website": "https://washingtontalent.com",
+    "city": "Rockville",
+    "state": "MD",
+    "description": "Premier entertainment agency for 50+ years, 20+ bands on roster, books live bands/DJs/musicians for weddings and corporate events",
+    "contacts": ["Robert Sherman", "Chuck Kahanov"]
+  },
+  {
+    "name": "Getting The Gig Entertainment",
+    "website": "https://www.gettingthegig.com",
+    "city": "Mount Airy",
+    "state": "MD",
+    "description": "Booking agency since 2011 for bands/DJs across MD/VA/PA/DC, all genres including rock/pop/country/tribute acts",
+    "contacts": ["Sy Seyler"]
+  },
+  {
+    "name": "Elan Artists",
+    "website": "https://elanartists.com",
+    "city": "Rockville",
+    "state": "MD",
+    "description": "Wedding and corporate entertainment agency, books dance bands/soloists/ensembles/DJs, cooperative of musicians with personalized approach",
+    "contacts": ["Gretchen"]
+  },
+  {
+    "name": "Electric Events DC",
+    "website": "https://electriceventsdc.com",
+    "city": "Gaithersburg",
+    "state": "MD",
+    "description": "Full-service entertainment agency for 25+ years, books live bands/DJs/MCs for mitzvahs, weddings, and corporate events across DMV",
+    "contacts": ["Brian Wasser", "Geoff Sockol"]
+  },
+  {
+    "name": "Extraordinary Entertainment",
+    "website": "https://bookextraordinary.com",
+    "city": "Gaithersburg",
+    "state": "MD",
+    "description": "Full-service entertainment and production agency, books bands/DJs/MCs/artists for weddings, corporate events, concerts across DC/MD/VA",
+    "contacts": ["Brad Herman (COO)", "Michael Winters (CCO)", "Lily Klopcic (Talent Manager)", "Douglas Burdette (Event Producer)", "Jace Miller (Talent Buyer)", "Josh Wilkins (VP)", "Brian Sun (Account Exec)", "Stefanie Canizares (Digital)"],
+    "email": "sales@bookextraordinary.com",
+    "status": "done"
+  },
+  {
+    "name": "The Headliner Group",
+    "website": "https://theheadlinergroup.com",
+    "city": "Washington",
+    "state": "DC",
+    "description": "DC-based music talent agency, books vetted DJs/solo musicians/live bands for weddings, corporate events, nightlife, and private celebrations",
+    "contacts": [],
+    "email": "bookings@theheadlinergroup.com",
+    "phone": "240-606-8740",
+    "note": "Only 1 person in Apollo (no email). Small company — bookings@ is the main contact.",
+    "status": "done"
+  },
+  {
+    "name": "Entertainment Exchange",
+    "website": "https://www.entertainmentexchange.com",
+    "city": "Washington",
+    "state": "DC",
+    "description": "Full-service talent agency for mid-Atlantic, books bands/DJs/jazz/string ensembles for DC/Baltimore/Annapolis/Eastern Shore, 20000+ events",
+    "contacts": [],
+    "note": "Website unreachable. Apollo matched wrong company (icrafters.com). May be defunct.",
+    "status": "done"
+  },
+  {
+    "name": "Washington's Entertainment Connection",
+    "website": "https://theweddingexpert.com/entertainment/washingtons-entertainment-connection",
+    "city": "Beltsville",
+    "state": "MD",
+    "description": "Full-service music agency booking DJs and bands for weddings/socials/parties, 35+ years experience, also manages Bigshot Records artists",
+    "contacts": ["Brian Choper"]
+  },
+  {
+    "name": "C&J Entertainment Agency",
+    "website": "https://candjentertainment.com",
+    "city": "Odenton",
+    "state": "MD",
+    "description": "Entertainment agency since 1973, books bands/string ensembles/jazz groups/DJs for weddings across MD/DC/NoVA, 250+ weddings/year",
+    "contacts": ["Christopher Temple"]
+  },
+  {
+    "name": "Dan Goldman Events",
+    "website": "https://dangoldmanevents.com",
+    "city": "Bethesda",
+    "state": "MD",
+    "description": "Full-service event entertainment company, books bands/musicians/DJs for weddings and corporate events across DC/MD/VA",
+    "contacts": ["Dan Goldman"]
+  },
+  {
+    "name": "Dan McGuire Group",
+    "website": "https://www.danmcguiregroup.com",
+    "city": "Frederick",
+    "state": "MD",
+    "description": "Live event entertainment group, books multiple bands/DJs/musicians for weddings and events across MD/DC/VA/PA",
+    "contacts": ["Dan McGuire"]
+  },
+  {
+    "name": "Starleigh Entertainment",
+    "website": "https://starleigh.com",
+    "city": "Baltimore",
+    "state": "MD",
+    "description": "Region's most diversified entertainment provider for decades, books bands/DJs/acts for clubs, weddings, corporate events, mitzvahs",
+    "contacts": ["Gary", "Linda", "Kristy", "Dan"]
+  },
+  {
+    "name": "Baltimore Sound Entertainment",
+    "website": "https://www.baltimoresound.net",
+    "city": "Baltimore",
+    "state": "MD",
+    "description": "Corporate entertainment booking agency, books live bands (rock to jazz)/DJs/musicians for weddings, brand activations, private events across Baltimore/DC/DMV",
+    "contacts": []
+  },
+  {
+    "name": "Skylark Creative Entertainment & Events",
+    "website": "https://www.scgentertainment.com",
+    "city": "Washington",
+    "state": "DC",
+    "description": "Woman-owned entertainment and event production company, books bands/musicians/DJs/specialty acts for galas, conferences, weddings across DC/MD/VA",
+    "contacts": ["Kate"]
+  },
+  {
+    "name": "Mark Sonder Productions",
+    "website": "https://www.marksonderproductions.com",
+    "city": "Linden",
+    "state": "VA",
+    "description": "National entertainment booking agency since 1985, books headline entertainers/bands/comedians for corporate events, conventions, concerts",
+    "contacts": ["Mark Sonder"]
+  },
+  {
+    "name": "Debonaire Entertainment",
+    "website": "https://www.debonaireentertainmentinc.com",
+    "city": "Chesterfield",
+    "state": "VA",
+    "description": "Family-owned entertainment company since 2015, books bands/DJs/classical ensembles for weddings and corporate events across DC/NoVA/Richmond",
+    "contacts": ["Eric Cunningham"]
+  },
+  {
+    "name": "Sam Hill Entertainment",
+    "website": "https://www.samhillbands.com",
+    "city": "Charlottesville",
+    "state": "VA",
+    "description": "Award-winning booking agency since 1995, represents bands for weddings/corporate/private parties across Mid-Atlantic and Southeast",
+    "contacts": []
+  },
+  {
+    "name": "20 South Productions",
+    "website": "https://www.20south.net",
+    "city": "Charlottesville",
+    "state": "VA",
+    "description": "Family-owned music and DJ booking agency, 25 years in Central Virginia, books bands/string ensembles/DJs for weddings and events",
+    "contacts": []
+  },
+  {
+    "name": "Sound Entertainment Events",
+    "website": "https://www.soundentertainmentevents.com",
+    "city": "Richmond",
+    "state": "VA",
+    "description": "Entertainment agency since 1971, books live bands (jazz/dixieland/party)/musicians for weddings and events across Greater Richmond area",
+    "contacts": ["Jonathan Greenberg"]
+  },
+  {
+    "name": "BVTLive! (Brandywine Valley Talent)",
+    "website": "https://www.bvtlive.com",
+    "city": "Chadds Ford",
+    "state": "PA",
+    "description": "Philadelphia's leading live entertainment agency since 1999, exclusive roster of 12 dance bands plus DJs/specialty musicians for weddings and corporate events",
+    "contacts": ["Kurt Titchenell"]
+  },
+  {
+    "name": "EBE Talent",
+    "website": "https://www.ebetalent.com",
+    "city": "Philadelphia",
+    "state": "PA",
+    "description": "Award-winning full-service entertainment agency, 25+ years, books dance bands/DJs/ensembles for weddings and events across Northeast",
+    "contacts": []
+  },
+  {
+    "name": "CTO Music Artists",
+    "website": "https://ctomusicartists.com",
+    "city": "Bala Cynwyd",
+    "state": "PA",
+    "description": "Renowned booking agency since 1987, books live bands/DJs/string/jazz ensembles for 10000+ events in Philadelphia and Tri-State area",
+    "contacts": ["Carmen Tomesetti"]
+  },
+  {
+    "name": "Mole Street Artists",
+    "website": "https://www.molestreetartists.com",
+    "city": "Philadelphia",
+    "state": "PA",
+    "description": "National music booking agency since 2011 for corporate events/private clubs/hotels, books bands for clients like GE/Deloitte/Comcast/Vanguard",
+    "contacts": ["Brian LaPann", "Brendan Walsh"]
+  },
+  {
+    "name": "Robin-Banks Entertainment",
+    "website": "https://www.rbelive.com",
+    "city": "York",
+    "state": "PA",
+    "description": "Woman-owned Mid-Atlantic live entertainment agency since 2016, books award-winning wedding bands across PA/MD/DE/NJ",
+    "contacts": ["Katie Robinette", "Amy Banks"]
+  },
+  {
+    "name": "Mastro Music",
+    "website": "https://pmastromusic.com",
+    "city": "Lancaster",
+    "state": "PA",
+    "description": "Music entertainment booking agency, books diverse musical roster for festivals, concerts, corporate events, and weddings",
+    "contacts": []
+  },
+  {
+    "name": "BRP Entertainment",
+    "website": "https://brpentertainment.com",
+    "city": "Hershey",
+    "state": "PA",
+    "description": "Entertainment booking agency since 1962, books bands/musicians/speakers/specialty acts for corporate events, weddings, and community events",
+    "contacts": []
+  },
+  {
+    "name": "Media Five Entertainment",
+    "website": "https://www.mediafiveent.com",
+    "city": "Bethlehem",
+    "state": "PA",
+    "description": "RIAA certified booking and management agency, 50+ years, books pop/rock/dance bands/DJs/tribute acts for weddings and events on East Coast",
+    "contacts": []
+  },
+  {
+    "name": "Hank Lane Music",
+    "website": "https://www.hanklane.com",
+    "city": "Philadelphia",
+    "state": "PA",
+    "description": "World-renowned entertainment agency since 1978, 20+ bands on staff, books bands/DJs/musicians for weddings and corporate events, Philadelphia office",
+    "contacts": []
+  },
+  {
+    "name": "Bandwidth Entertainment",
+    "website": "https://bandwidthent.com",
+    "city": "West Harrison",
+    "state": "NY",
+    "description": "Band management and booking agency for Tri-State area, books elite wedding/corporate/charity event bands across Philadelphia/DC region",
+    "contacts": []
+  },
+  {
+    "name": "107 Productions",
+    "website": "https://107productions.net",
+    "city": "Clark",
+    "state": "NJ",
+    "description": "Licensed entertainment agency since 1998, 30000+ events, books bands/DJs for weddings/corporate/casinos across NJ/NY/PA/CT/DE/MA/MD",
+    "contacts": []
+  },
+  {
+    "name": "Branded Music Group",
+    "website": "https://brandedmusicgroup.com",
+    "city": "Unknown",
+    "state": "NJ",
+    "description": "Music booking agency connecting event planners with bands across genres for weddings/corporate/festivals in NJ/NY/DE/PA/MD/CT",
+    "contacts": ["Jonathan Kumfert"]
+  },
+  {
+    "name": "Louis Pettinelli Entertainment",
+    "website": "https://louispettinellientertainment.com",
+    "city": "Phillipsburg",
+    "state": "NJ",
+    "description": "Music entertainment agency booking premium live ensembles (strings/jazz/party bands/soloists) for weddings and events, serves 150-mile radius from Philadelphia/DC/Baltimore",
+    "contacts": ["Louis Pettinelli"]
+  },
+  {
+    "name": "JJ&T Entertainment",
+    "website": "https://www.jjtentertainment.com",
+    "city": "DMV",
+    "state": "MD",
+    "description": "Books DJs, dance bands, jazz ensembles, string quartets, gospel choirs, soloists, and impersonators for weddings, corporate, and social events",
+    "contacts": []
+  },
+  {
+    "name": "Watershed Entertainment",
+    "website": "https://www.watershedentertainment.com",
+    "city": "Frederick",
+    "state": "MD",
+    "description": "Boutique agency run by musicians that books live bands, DJs, duos, trios, and soloists for weddings and events in Maryland",
+    "contacts": ["Andrew"]
+  },
+  {
+    "name": "NYX Entertainment & Events",
+    "website": "https://nyxevents.com",
+    "city": "Rockville",
+    "state": "MD",
+    "description": "Represents 11+ exclusive event bands (Sound Connection, Millennium, Spectrum, Onyx, etc.) plus DJs for weddings, mitzvahs, corporate events",
+    "contacts": []
+  },
+  {
+    "name": "Let's Make It Entertainment",
+    "website": "https://www.letsmakeitentertainment.com",
+    "city": "Elkton",
+    "state": "MD",
+    "description": "Books live music for parties, festivals, weddings, corporate events, and intimate gatherings, 25+ years experience",
+    "contacts": ["KJ Sharpe"]
+  },
+  {
+    "name": "More Music Group",
+    "website": "https://www.moremusicgroup.com",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "description": "East Coast booking agency since 1981 specializing in wedding entertainment, national acts, corporate events, and club bookings",
+    "contacts": []
+  },
+  {
+    "name": "Southern Entertainment of Virginia",
+    "website": "https://www.southernentertainmentofva.com",
+    "city": "Chesapeake",
+    "state": "VA",
+    "description": "Oldest booking agency in Virginia, books bands for every music style plus specialty acts (magicians, comedians, themed events)",
+    "contacts": []
+  },
+  {
+    "name": "Near Dark Entertainment",
+    "website": "https://neardarkent.com",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "description": "Full-service booking agency providing headliners, cover bands, tribute bands, DJs, solos/duos/trios, orchestras, and specialty acts, books 30+ venues monthly",
+    "contacts": []
+  },
+  {
+    "name": "Horizon Event Group",
+    "website": "https://www.horizoneventgroup.com",
+    "city": "Brick Township",
+    "state": "NJ",
+    "description": "Licensed NJ entertainment agency since 2007, books cover bands, acoustic acts, tribute bands, and DJs for bars, weddings, and events up the East Coast",
+    "contacts": ["Henry Robinson"]
+  },
+  {
+    "name": "SCE Event Group",
+    "website": "https://sceeventgroup.com",
+    "city": "Farmingdale",
+    "state": "NJ",
+    "description": "NJ's most reviewed entertainment company, books DJs, live musicians, and bands for weddings and events across Jersey Shore, Philadelphia, NYC",
+    "contacts": ["Jason Jani"]
+  },
+  {
+    "name": "Kushner Entertainment",
+    "website": "https://www.kushnerentertainment.com",
+    "city": "Rockville",
+    "state": "MD",
+    "description": "Award-winning booking and design company since 1998, represents SoundConnection, SoundNation, District Groove, The Wave, The Source, Rhythm6, PopCulture Strings, Dixon Hall for weddings and corporate events",
+    "contacts": ["Andy Kushner"]
+  },
+  {
+    "name": "Lucy Black Entertainment",
+    "website": "https://lucyblackentertainment.com",
+    "city": "Washington",
+    "state": "DC",
+    "description": "Women- and musician-owned boutique agency curating in-house acts (Lucy Black Luxe, House Band, Electric, DC String Machine) plus partner bands/DJs for luxury weddings and corporate events",
+    "contacts": []
+  },
+  {
+    "name": "Princeton Music Connection",
+    "website": "https://www.princetonmusic.com",
+    "city": "Princeton",
+    "state": "NJ",
+    "description": "Musical entertainment booking agency representing bands, jazz ensembles, string quartets, DJs spanning rock/jazz/blues/swing/Latin/Klezmer/Celtic/Bollywood for weddings and special events",
+    "contacts": []
+  },
+  {
+    "name": "Great Party Bands",
+    "website": "https://greatpartybands.com",
+    "city": "Charlottesville",
+    "state": "VA",
+    "description": "Booking agency representing Big Ray and the Kool Kats, Elegance, and Matt Lewis as Elvis for weddings, corporate events, conventions; bands from small combos to 10+ piece horn lineups",
+    "contacts": ["Ray Caddell"]
+  }
+]

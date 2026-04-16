@@ -65,6 +65,7 @@ function doGet(e) {
   if (action === 'update_taste')     return updateTaste_(e.parameter);
   if (action === 'save_skip_words')  return saveSkipWords_(e.parameter);
   if (action === 'get_skip_words')   return getSkipWords_();
+  if (action === 'remap_contact_venue') return remapContactVenue_(e.parameter);
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -634,7 +635,7 @@ function updateContact_(params) {
 
   // Column mapping
   var fieldMap = {
-    'email_sent': 8, 'email_sent_date': 9, 'ig_dm_sent': 10, 'fb_msg_sent': 11,
+    'venue_id': 1, 'email_sent': 8, 'email_sent_date': 9, 'ig_dm_sent': 10, 'fb_msg_sent': 11,
     'verified': 6, 'verified_date': 7, 'name': 2, 'title': 3, 'email': 4
   };
 
@@ -1760,4 +1761,29 @@ function updateTaste_(params) {
   }
 
   return jsonResponse_({ status: 'ok', mode: mode, rows_written: rows.length });
+}
+
+// ---------------------------------------------------------------
+// remapContactVenue_ — Change venue_id on contacts
+// Params: old_venue_id, new_venue_id
+// Updates all contacts where venue_id = old_venue_id
+// ---------------------------------------------------------------
+function remapContactVenue_(params) {
+  var oldId = params.old_venue_id || '';
+  var newId = params.new_venue_id || '';
+  if (!oldId || !newId) return jsonResponse_({ status: 'error', message: 'old_venue_id and new_venue_id required' });
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(CONTACTS);
+  var data = sheet.getDataRange().getValues();
+  var updated = 0;
+
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][1]) === oldId) {
+      sheet.getRange(i + 1, 2).setValue(newId);
+      updated++;
+    }
+  }
+
+  return jsonResponse_({ status: 'ok', updated: updated, old_venue_id: oldId, new_venue_id: newId });
 }

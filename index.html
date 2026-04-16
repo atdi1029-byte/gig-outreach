@@ -2736,6 +2736,15 @@ function renderWeeklyGoals() {
 function loadDashboard() {
     if (!API_URL) { renderTopPicks([]); renderStateGrid(); return; }
 
+    // Skip auto-refresh while viewing a venue detail — prevents the venue from vanishing mid-work
+    const onDetail = navStack[navStack.length - 1] === 'viewDetail';
+    if (onDetail && !window._forceRefresh) {
+        clearTimeout(refreshTimer);
+        refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
+        return;
+    }
+    window._forceRefresh = false;
+
     jsonpFetch(API_URL, function(err, data) {
         if (!err && data && data.status === 'ok') {
             dashboardData = data;
@@ -4142,7 +4151,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Refresh dashboard when app resumes from background
 document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') loadDashboard();
+    // Only refresh on tab-return if NOT viewing a venue detail
+    if (document.visibilityState === 'visible' && navStack[navStack.length - 1] !== 'viewDetail') loadDashboard();
 });
 
 if ('serviceWorker' in navigator) {

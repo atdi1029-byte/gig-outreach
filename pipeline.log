@@ -6412,3 +6412,473 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 16:36:09 
 16:36:09 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-16_16-36.html
 16:36:09 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-16_16-36.html
+
+14:46:39 === Pipeline started 2026-04-20 14:46:39 ===
+14:46:39 UNTOUCHED PHASE: Fetching all venues...
+14:46:43 UNTOUCHED: 187 found (shared budget: 5 total)
+14:46:43 
+14:46:43 ########## UNTOUCHED #1: Hamilton Street Club (MD-COUN-017) ##########
+14:46:46 
+14:46:46 ============================================================
+14:46:46  PIPELINE: Hamilton Street Club (MD-COUN-017)
+14:46:46  Website: https://hamiltonstclub.com
+14:46:46  Started: 2026-04-20 14:46:46
+14:46:46 ============================================================
+14:46:46   [ZB] Credits remaining: 4214
+14:46:50   Known emails: 1
+14:46:50   Known names: 0
+14:46:50 
+14:46:50 ========== STEP 1: Website Scrape ==========
+14:46:50   URL: https://hamiltonstclub.com
+14:46:50   Opening in Chrome: https://hamiltonstclub.com
+14:46:56   Validating contact form URL: https://hamiltonstclub.com/contact-us
+14:47:01   Found on contact page: manager@hamiltonstclub.com
+14:47:01   ✗ No submittable form found — clearing contact_form
+14:47:01   Emails: 1 | FB: none | IG: none | Contact Form: none
+14:47:01   Crawling subpage (1/20): https://hamiltonstclub.com/about-us
+14:47:05   Found on subpage: manager@hamiltonstclub.com
+14:47:05   Crawling subpage (2/20): https://hamiltonstclub.com/activities
+14:47:10   Found on subpage: manager@hamiltonstclub.com
+14:47:10   Crawling subpage (3/20): https://hamiltonstclub.com/upcoming-events
+14:47:14   Found on subpage: manager@hamiltonstclub.com
+14:47:14   Crawling subpage (4/20): https://hamiltonstclub.com/how-to-join
+14:47:18   Same emails 3 pages in a row — stopping subpage crawl
+14:47:18   [SKIP] manager@hamiltonstclub.com — already in sheet
+14:47:22 
+14:47:22 ========== STEP 1B: Instagram Google Search ==========
+14:47:22   No Instagram found on website — Googling...
+14:47:26   [IG SEARCH] Found: https://www.instagram.com/kevinalexandercross/
+14:47:29   ✓ Instagram URL saved
+14:47:31 
+14:47:31 ========== STEP 1C: Facebook Google Search ==========
+14:47:31   No Facebook found on website — Googling...
+14:47:36   [FB SEARCH] Found: https://www.facebook.com/YVTCTheatre/
+14:47:38   ✓ Facebook URL saved
+14:47:38 
+14:47:38 ========== STEP 2: Social Media Scrape ==========
+14:47:41   FB: https://www.facebook.com/YVTCTheatre/ | IG: https://www.instagram.com/kevinalexandercross/
+14:47:41   Opening FB: https://www.facebook.com/YVTCTheatre
+14:47:46   FB emails found: info@yvtc.org
+14:47:46   Opening FB: https://www.facebook.com/YVTCTheatre/about
+14:47:51   Opening FB: https://www.facebook.com/YVTCTheatre/directory_contact_info
+14:47:57   FB emails found: info@yvtc.org
+14:47:57   Opening IG: https://www.instagram.com/kevinalexandercross/
+14:48:03   info@yvtc.org → do_not_mail
+14:48:04   [APOLLO] Credits used this run: 0 / 300
+14:48:04 
+14:48:04 ========== STEP 3: Apollo API ==========
+14:48:04   Searching Apollo for company: Hamilton Street Club
+14:48:06   Found: HAMILTON STREET CLUB (domain: hamiltonstclub.com, org_id: 6741952eac8b2800013281a8)
+14:48:06   Searching for people at HAMILTON STREET CLUB (org_id: 6741952eac8b2800013281a8)...
+14:48:06   Found 1 people total
+14:48:07   Skipped 1 people with no email (red ? on Apollo)
+14:48:07   No new people to enrich.
+14:48:07 
+14:48:07 ========== STEP 4: LinkedIn + Apollo API ==========
+14:48:07   Using domain: hamiltonstclub.com
+14:48:09   LinkedIn page 1...
+14:48:14   Found 3 results
+14:48:14   Found: Peggy Sparr
+14:48:14   Found: Dawn Elardo
+14:48:14   Found: Charlotte Galley
+14:48:17   LinkedIn page 2...
+14:48:25   Found 3 results
+14:48:25   No new venue employees on this page.
+14:48:28   LinkedIn page 3...
+14:48:33   Found 3 results
+14:48:33   Found: RAJKUMAR GOSWAMI
+14:48:33 
+14:48:33   LinkedIn found 4 new people. Enriching via Apollo API...
+14:48:33   LinkedIn + Apollo API done. Credits used: 0
+14:48:35   Setting status → pipelined
+14:48:37 
+14:48:37 ============================================================
+14:48:37  DONE: Hamilton Street Club | 1 min | 14:48:37
+14:48:37 ============================================================
+14:49:07 
+14:49:07 ########## UNTOUCHED #2: Riggs Washington DC (DC-REST-226) ##########
+14:49:10 
+14:49:10 ============================================================
+14:49:10  PIPELINE: Riggs Washington DC (DC-REST-226)
+14:49:10  Website: https://www.riggsdc.com
+14:49:10  Started: 2026-04-20 14:49:10
+14:49:10 ============================================================
+14:49:10   [ZB] Credits remaining: 4213
+14:49:12   Known emails: 0
+14:49:12   Known names: 0
+14:49:12 
+14:49:12 ========== STEP 1: Website Scrape ==========
+14:49:12   URL: https://www.riggsdc.com
+14:49:12   Opening in Chrome: https://www.riggsdc.com
+14:49:19   Validating contact form URL: https://www.riggsdc.com/contact
+14:49:23   Found on contact page: reservations@riggsdc.com, media@riggsdc.com, sales@riggsdc.com
+14:49:23   ✓ Real contact form confirmed
+14:49:23   Emails: 3 | FB: none | IG: none | Contact Form: https://www.riggsdc.com/contact
+14:49:24   Crawling subpage (1/20): https://www.riggsdc.com/rooms-suites
+14:49:28   Found on subpage: media@riggsdc.com, reservations@riggsdc.com, sales@riggsdc.com
+14:49:28   Crawling subpage (2/20): https://www.riggsdc.com/rooms-suites/suites
+14:49:32   Found on subpage: media@riggsdc.com, reservations@riggsdc.com, sales@riggsdc.com
+14:49:32   Crawling subpage (3/20): https://www.riggsdc.com/rooms-suites/first-lady-suites
+14:49:37   Found on subpage: media@riggsdc.com, reservations@riggsdc.com, sales@riggsdc.com
+14:49:37   Crawling subpage (4/20): https://www.riggsdc.com/rooms-suites/rooms
+14:49:41   Same emails 3 pages in a row — stopping subpage crawl
+14:49:43   ✓ Contact form URL saved
+14:49:43   media@riggsdc.com → do_not_mail
+14:49:45   reservations@riggsdc.com → do_not_mail
+14:49:46   sales@riggsdc.com → do_not_mail
+14:49:51 
+14:49:51 ========== STEP 1B: Instagram Google Search ==========
+14:49:51   No Instagram found on website — Googling...
+14:49:55   [IG SEARCH] Found: https://www.instagram.com/riggshotel/
+14:50:00   ✓ Instagram URL saved
+14:50:02 
+14:50:02 ========== STEP 1C: Facebook Google Search ==========
+14:50:02   No Facebook found on website — Googling...
+14:50:06   [FB SEARCH] Found: https://www.facebook.com/TravelswithDarley/
+14:50:09   ✓ Facebook URL saved
+14:50:09 
+14:50:09 ========== STEP 2: Social Media Scrape ==========
+14:50:15   FB: https://www.facebook.com/TravelswithDarley/ | IG: https://www.instagram.com/riggshotel/
+14:50:15   Opening FB: https://www.facebook.com/TravelswithDarley
+14:50:20   Opening FB: https://www.facebook.com/TravelswithDarley/about
+14:50:25   Opening FB: https://www.facebook.com/TravelswithDarley/directory_contact_info
+14:50:31   Opening IG: https://www.instagram.com/riggshotel/
+14:50:36   [APOLLO] Credits used this run: 0 / 300
+14:50:36 
+14:50:36 ========== STEP 3: Apollo API ==========
+14:50:36   Searching Apollo for company: Riggs Washington DC
+14:50:37   Found: Riggs Washington DC (domain: riggsdc.com, org_id: 5d65759520771e0974a388fa)
+14:50:37   Searching for people at Riggs Washington DC (org_id: 5d65759520771e0974a388fa)...
+14:50:38   Found 16 people total
+14:50:38   Skipped 8 people with no email (red ? on Apollo)
+14:50:38   Skipped 1 people with irrelevant titles (housekeeping, IT, security, etc.)
+14:50:38   7 people to enrich (1 credit each)
+14:50:39   >>> Matthew Gilchrist (Hotel Manager): matthew.g@riggsdc.com [verified]
+14:50:39   matthew.g@riggsdc.com → valid
+14:50:41   ✓ Added: Matthew Gilchrist <matthew.g@riggsdc.com>
+14:50:42   >>> Diane Matlock (Reservations Manager): diane.m@riggsdc.com [verified]
+14:50:43   diane.m@riggsdc.com → valid
+14:50:46   ✓ Added: Diane Matlock <diane.m@riggsdc.com>
+14:50:47   >>> Alexandra Kovalova (Front Office Manager): alexandra.k@riggsdc.com [verified]
+14:50:47   alexandra.k@riggsdc.com → valid
+14:50:49   ✓ Added: Alexandra Kovalova <alexandra.k@riggsdc.com>
+14:50:50   >>> Alex Leidy (Assistant General Manager): alex.l@riggsdc.com [verified]
+14:50:50   alex.l@riggsdc.com → valid
+14:50:53   ✓ Added: Alex Leidy <alex.l@riggsdc.com>
+14:50:54   >>> Mario Corona (Chef): mario.c@riggsdc.com [verified]
+14:50:54   mario.c@riggsdc.com → valid
+14:50:57   ✓ Added: Mario Corona <mario.c@riggsdc.com>
+14:50:58   >>> Belen Lebeta (Guest Services Specialist): belen.l@riggsdc.com [verified]
+14:50:59   belen.l@riggsdc.com → valid
+14:51:02   ✓ Added: Belen Lebeta <belen.l@riggsdc.com>
+14:51:03   >>> Derwin Echevarria (Sous Chef): derwin.e@riggsdc.com [verified]
+14:51:04   derwin.e@riggsdc.com → invalid
+14:51:06   ⚠ Added (invalid): Derwin Echevarria <derwin.e@riggsdc.com>
+14:51:07   Apollo API done: 7 credits used this run
+14:51:07 
+14:51:07 ========== STEP 4: LinkedIn + Apollo API ==========
+14:51:07   Using domain: riggsdc.com
+14:51:09   LinkedIn page 1...
+14:51:16   Found 3 results
+14:51:16   No new venue employees on this page.
+14:51:19   LinkedIn page 2...
+14:51:26   Found 3 results
+14:51:26   No new venue employees on this page.
+14:51:31   LinkedIn page 3...
+14:51:37   Found 3 results
+14:51:38   Found: Susan Riggs
+14:51:38 
+14:51:38   LinkedIn found 1 new people. Enriching via Apollo API...
+14:51:38   LinkedIn + Apollo API done. Credits used: 7
+14:51:40   Setting status → pipelined
+14:51:43 
+14:51:43 ============================================================
+14:51:43  DONE: Riggs Washington DC | 2 min | 14:51:43
+14:51:43 ============================================================
+14:52:13 
+14:52:13 ########## UNTOUCHED #3: The Westin DC Downtown (DC-REST-227) ##########
+14:52:16 
+14:52:16 ============================================================
+14:52:16  PIPELINE: The Westin DC Downtown (DC-REST-227)
+14:52:16  Website: https://www.marriott.com
+14:52:16  Started: 2026-04-20 14:52:16
+14:52:16 ============================================================
+14:52:16   [ZB] Credits remaining: 4203
+14:52:19   Known emails: 0
+14:52:19   Known names: 0
+14:52:19 
+14:52:19 ========== STEP 1: Website Scrape ==========
+14:52:19   [SKIP] Corporate hotel domain (marriott.com) — skipping website crawl
+14:52:22 
+14:52:22 ========== STEP 1B: Instagram Google Search ==========
+14:52:22   No Instagram found on website — Googling...
+14:52:27   [IG SEARCH] Found: https://www.instagram.com/westindcdowntown/
+14:52:29   ✓ Instagram URL saved
+14:52:31 
+14:52:31 ========== STEP 1C: Facebook Google Search ==========
+14:52:31   No Facebook found on website — Googling...
+14:52:36   [FB SEARCH] Found: https://www.facebook.com/WestinDCDowntown/
+14:52:38   ✓ Facebook URL saved
+14:52:38 
+14:52:38 ========== STEP 2: Social Media Scrape ==========
+14:52:41   FB: https://www.facebook.com/WestinDCDowntown/ | IG: https://www.instagram.com/westindcdowntown/
+14:52:41   Opening FB: https://www.facebook.com/WestinDCDowntown
+14:52:47   Opening FB: https://www.facebook.com/WestinDCDowntown/about
+14:52:52   Opening FB: https://www.facebook.com/WestinDCDowntown/directory_contact_info
+14:52:57   Opening IG: https://www.instagram.com/westindcdowntown/
+14:53:02   [APOLLO] Credits used this run: 7 / 300
+14:53:02 
+14:53:02 ========== STEP 3: Apollo API ==========
+14:53:02   Searching Apollo for company: The Westin DC Downtown
+14:53:04   Found: JW Marriott (domain: marriott.com, org_id: 5569c3ca7369642531058e00)
+14:53:04   Searching for people at JW Marriott (org_id: 5569c3ca7369642531058e00)...
+14:53:05   Found 39 people total
+14:53:05   Skipped 25 people with no email (red ? on Apollo)
+14:53:05   Skipped 1 people with irrelevant titles (housekeeping, IT, security, etc.)
+14:53:05   13 people to enrich (1 credit each)
+14:53:07   >>> Marjorie Mitchell (Senior Administrative Assistant Event Planning): marjorie.mitchell@marriott.com [verified]
+14:53:07   marjorie.mitchell@marriott.com → valid
+14:53:11   ✓ Added: Marjorie Mitchell <marjorie.mitchell@marriott.com>
+14:53:12   >>> Johnson Barry (Asst. Director of Service): barry.johnson@marriott.com [verified]
+14:53:12   barry.johnson@marriott.com → valid
+14:53:15   ✓ Added: Johnson Barry <barry.johnson@marriott.com>
+14:53:16   >>> Charles Packan (Property Manager): charles.packan@marriott.com [verified]
+14:53:16   charles.packan@marriott.com → valid
+14:53:19   ✓ Added: Charles Packan <charles.packan@marriott.com>
+14:53:20   >>> Emeiye Tefera (Group Housing Coordinator): emeiye.tefera@marriott.com [verified]
+14:53:21   emeiye.tefera@marriott.com → valid
+14:53:23   ✓ Added: Emeiye Tefera <emeiye.tefera@marriott.com>
+14:53:24   >>> Andrea Sanchez (Senior Transient Sales Executive): andrea.rozo@marriott.com [verified]
+14:53:24   andrea.rozo@marriott.com → valid
+14:53:27   ✓ Added: Andrea Sanchez <andrea.rozo@marriott.com>
+14:53:28   >>> Oum Abdellaoui (Front Office Assistant): oum.abdellaoui@jwmarriott.com [verified]
+14:53:30   oum.abdellaoui@jwmarriott.com → catch-all
+14:53:33   ⚠ Added (catch-all): Oum Abdellaoui <oum.abdellaoui@jwmarriott.com>
+14:53:34   >>> Imran Haider (Senior F&B Operations Manager): imran.haider@marriott.com [verified]
+14:53:35   imran.haider@marriott.com → valid
+14:53:37   ✓ Added: Imran Haider <imran.haider@marriott.com>
+14:53:38   >>> Betsy Adams (Front Office Agent): betsy.adams@jwmarriott.com [verified]
+14:53:42   betsy.adams@jwmarriott.com → catch-all
+14:53:45   ⚠ Added (catch-all): Betsy Adams <betsy.adams@jwmarriott.com>
+14:53:46   >>> Ana Landig (Catering Sales): analiza.landig@marriott.com [verified]
+14:53:46   analiza.landig@marriott.com → valid
+14:53:49   ✓ Added: Ana Landig <analiza.landig@marriott.com>
+14:53:50   >>> India Pitt (Front Desk Agent): india@marriott.com [verified]
+14:53:50   india@marriott.com → valid
+14:53:54   ✓ Added: India Pitt <india@marriott.com>
+14:53:57   >>> Mylene Bitangcol (Front Desk Associate): mylene.bitangcol@marriott.com [verified]
+14:53:57   mylene.bitangcol@marriott.com → valid
+14:54:01   ✓ Added: Mylene Bitangcol <mylene.bitangcol@marriott.com>
+14:54:02   >>> Ignatius Ugbeka (Room Service Line Cook): ignatius.ugbeka@jwmarriott.com [verified]
+14:54:04   ignatius.ugbeka@jwmarriott.com → catch-all
+14:54:06   ⚠ Added (catch-all): Ignatius Ugbeka <ignatius.ugbeka@jwmarriott.com>
+14:54:07   >>> Desire Akpadja (Lead in Hospitality Business): desire.akpadja@jwmarriott.com [verified]
+14:54:09   desire.akpadja@jwmarriott.com → catch-all
+14:54:12   ⚠ Added (catch-all): Desire Akpadja <desire.akpadja@jwmarriott.com>
+14:54:13   Apollo API done: 20 credits used this run
+14:54:13 
+14:54:13 ========== STEP 4: LinkedIn + Apollo API ==========
+14:54:13   Using domain: marriott.com
+14:54:14   LinkedIn page 1...
+14:54:20   Found 3 results
+14:54:20   Found: Christina Phillips
+14:54:20   Found: Jenna Hinshaw
+14:54:25   LinkedIn page 2...
+14:54:33   Found 3 results
+14:54:33   Found: Todd Chapin
+14:54:33   Found: Quadir Azeez
+14:54:33   Found: Jair Wessely
+14:54:36   LinkedIn page 3...
+14:54:43   Found 3 results
+14:54:43   No new venue employees on this page.
+14:54:43 
+14:54:43   LinkedIn found 5 new people. Enriching via Apollo API...
+14:54:43   LinkedIn + Apollo API done. Credits used: 20
+14:54:46   Setting status → pipelined
+14:54:48 
+14:54:48 ============================================================
+14:54:48  DONE: The Westin DC Downtown | 2 min | 14:54:48
+14:54:48 ============================================================
+14:55:18 
+14:55:18 ########## UNTOUCHED #4: JW Marriott Washington, DC (DC-REST-228) ##########
+14:55:21 
+14:55:21 ============================================================
+14:55:21  PIPELINE: JW Marriott Washington, DC (DC-REST-228)
+14:55:21  Website: https://www.marriott.com
+14:55:21  Started: 2026-04-20 14:55:21
+14:55:21 ============================================================
+14:55:21   [ZB] Credits remaining: 4190
+14:55:25   Known emails: 0
+14:55:25   Known names: 0
+14:55:25 
+14:55:25 ========== STEP 1: Website Scrape ==========
+14:55:25   [SKIP] Corporate hotel domain (marriott.com) — skipping website crawl
+14:55:28 
+14:55:28 ========== STEP 1B: Instagram Google Search ==========
+14:55:28   No Instagram found on website — Googling...
+14:55:32   [IG SEARCH] Found: https://www.instagram.com/jwmarriottdc/
+14:55:34   ✓ Instagram URL saved
+14:55:38 
+14:55:38 ========== STEP 1C: Facebook Google Search ==========
+14:55:38   No Facebook found on website — Googling...
+14:55:42   [FB SEARCH] Found: https://www.facebook.com/JWMarriottWashingtonDC/
+14:55:44   ✓ Facebook URL saved
+14:55:44 
+14:55:44 ========== STEP 2: Social Media Scrape ==========
+14:55:47   FB: https://www.facebook.com/JWMarriottWashingtonDC/ | IG: https://www.instagram.com/jwmarriottdc/
+14:55:47   Opening FB: https://www.facebook.com/JWMarriottWashingtonDC
+14:55:52   Opening FB: https://www.facebook.com/JWMarriottWashingtonDC/about
+14:55:58   Opening FB: https://www.facebook.com/JWMarriottWashingtonDC/directory_contact_info
+14:56:03   Opening IG: https://www.instagram.com/jwmarriottdc/
+14:56:08   [APOLLO] Credits used this run: 20 / 300
+14:56:08 
+14:56:08 ========== STEP 3: Apollo API ==========
+14:56:08   Searching Apollo for company: JW Marriott Washington, DC
+14:56:09   Found: JW Marriott (domain: marriott.com, org_id: 5569c3ca7369642531058e00)
+14:56:09   Searching for people at JW Marriott (org_id: 5569c3ca7369642531058e00)...
+14:56:10   Found 39 people total
+14:56:10   Skipped 25 people with no email (red ? on Apollo)
+14:56:10   Skipped 1 people with irrelevant titles (housekeeping, IT, security, etc.)
+14:56:10   13 people to enrich (1 credit each)
+14:56:12   >>> Marjorie Mitchell (Senior Administrative Assistant Event Planning): marjorie.mitchell@marriott.com [verified]
+14:56:12   marjorie.mitchell@marriott.com → valid
+14:56:14   ✓ Added: Marjorie Mitchell <marjorie.mitchell@marriott.com>
+14:56:15   >>> Johnson Barry (Asst. Director of Service): barry.johnson@marriott.com [verified]
+14:56:15   barry.johnson@marriott.com → valid
+14:56:18   ✓ Added: Johnson Barry <barry.johnson@marriott.com>
+14:56:19   >>> Charles Packan (Property Manager): charles.packan@marriott.com [verified]
+14:56:19   charles.packan@marriott.com → valid
+14:56:22   ✓ Added: Charles Packan <charles.packan@marriott.com>
+14:56:23   >>> Emeiye Tefera (Group Housing Coordinator): emeiye.tefera@marriott.com [verified]
+14:56:23   emeiye.tefera@marriott.com → valid
+14:56:26   ✓ Added: Emeiye Tefera <emeiye.tefera@marriott.com>
+14:56:27   >>> Andrea Sanchez (Senior Transient Sales Executive): andrea.rozo@marriott.com [verified]
+14:56:27   andrea.rozo@marriott.com → valid
+14:56:30   ✓ Added: Andrea Sanchez <andrea.rozo@marriott.com>
+14:56:31   >>> Oum Abdellaoui (Front Office Assistant): oum.abdellaoui@jwmarriott.com [verified]
+14:56:31   oum.abdellaoui@jwmarriott.com → catch-all
+14:56:34   ⚠ Added (catch-all): Oum Abdellaoui <oum.abdellaoui@jwmarriott.com>
+14:56:35   >>> Imran Haider (Senior F&B Operations Manager): imran.haider@marriott.com [verified]
+14:56:35   imran.haider@marriott.com → valid
+14:56:38   ✓ Added: Imran Haider <imran.haider@marriott.com>
+14:56:39   >>> Betsy Adams (Front Office Agent): betsy.adams@jwmarriott.com [verified]
+14:56:39   betsy.adams@jwmarriott.com → catch-all
+14:56:41   ⚠ Added (catch-all): Betsy Adams <betsy.adams@jwmarriott.com>
+14:56:43   >>> Ana Landig (Catering Sales): analiza.landig@marriott.com [verified]
+14:56:43   analiza.landig@marriott.com → valid
+14:56:45   ✓ Added: Ana Landig <analiza.landig@marriott.com>
+14:56:46   >>> India Pitt (Front Desk Agent): india@marriott.com [verified]
+14:56:46   india@marriott.com → valid
+14:56:49   ✓ Added: India Pitt <india@marriott.com>
+14:56:52   >>> Mylene Bitangcol (Front Desk Associate): mylene.bitangcol@marriott.com [verified]
+14:56:52   mylene.bitangcol@marriott.com → valid
+14:56:56   ✓ Added: Mylene Bitangcol <mylene.bitangcol@marriott.com>
+14:56:57   >>> Ignatius Ugbeka (Room Service Line Cook): ignatius.ugbeka@jwmarriott.com [verified]
+14:56:57   ignatius.ugbeka@jwmarriott.com → catch-all
+14:57:00   ⚠ Added (catch-all): Ignatius Ugbeka <ignatius.ugbeka@jwmarriott.com>
+14:57:01   >>> Desire Akpadja (Lead in Hospitality Business): desire.akpadja@jwmarriott.com [verified]
+14:57:01   desire.akpadja@jwmarriott.com → catch-all
+14:57:04   ⚠ Added (catch-all): Desire Akpadja <desire.akpadja@jwmarriott.com>
+14:57:05   Apollo API done: 33 credits used this run
+14:57:05 
+14:57:05 ========== STEP 4: LinkedIn + Apollo API ==========
+14:57:05   Using domain: marriott.com
+14:57:06   LinkedIn page 1...
+14:57:14   Found 3 results
+14:57:14   Found: Jenny Prechowski
+14:57:14   Found: Angela Gopaul
+14:57:14   Found: Jessica Gross
+14:57:17   LinkedIn page 2...
+14:57:26   Found 3 results
+14:57:26   Found: Frank Zet
+14:57:26   Found: Avery Bell
+14:57:26   Found: Dakota Esmay
+14:57:31   LinkedIn page 3...
+14:57:39   Found 3 results
+14:57:39   Found: Ana Varela
+14:57:39   Found: Charlotte Dundon
+14:57:39   Found: Jasmine Green
+14:57:39 
+14:57:39   LinkedIn found 9 new people. Enriching via Apollo API...
+14:57:39   LinkedIn + Apollo API done. Credits used: 33
+14:57:42   Setting status → pipelined
+14:57:43 
+14:57:43 ============================================================
+14:57:43  DONE: JW Marriott Washington, DC | 2 min | 14:57:43
+14:57:43 ============================================================
+14:58:13 
+14:58:13 ########## UNTOUCHED #5: The Morrow Washington DC, Curio Collection by Hilton (DC-REST-229) ##########
+14:58:16 
+14:58:16 ============================================================
+14:58:16  PIPELINE: The Morrow Washington DC, Curio Collection by Hilton (DC-REST-229)
+14:58:16  Website: https://www.themorrowhotel.com
+14:58:16  Started: 2026-04-20 14:58:16
+14:58:16 ============================================================
+14:58:16   [ZB] Credits remaining: 4190
+14:58:19   Known emails: 0
+14:58:19   Known names: 0
+14:58:19 
+14:58:19 ========== STEP 1: Website Scrape ==========
+14:58:19   URL: https://www.themorrowhotel.com
+14:58:19   Opening in Chrome: https://www.themorrowhotel.com
+14:58:26   Validating contact form URL: https://www.themorrowhotel.com/contact-us
+14:58:30   Found on contact page: info@themorrowhotel.com
+14:58:30   ✗ No submittable form found — clearing contact_form
+14:58:30   Emails: 1 | FB: https://www.facebook.com/themorrowhotel | IG: https://www.instagram.com/themorrowhotel | Contact Form: none
+14:58:30   Crawling subpage (1/20): https://www.themorrowhotel.com/our-hotel
+14:58:35   Found on subpage: info@themorrowhotel.com
+14:58:35   Crawling subpage (2/20): https://www.themorrowhotel.com/our-hotel/amenities
+14:58:39   Found on subpage: info@themorrowhotel.com
+14:58:39   Crawling subpage (3/20): https://www.themorrowhotel.com/our-hotel/weekend-itinerary-washington-dc
+14:58:44   Found on subpage: info@themorrowhotel.com
+14:58:44   Crawling subpage (4/20): https://www.themorrowhotel.com/our-hotel/morrow-explorers
+14:58:48   Same emails 3 pages in a row — stopping subpage crawl
+14:58:53   info@themorrowhotel.com → do_not_mail
+14:59:00 
+14:59:00 ========== STEP 2: Social Media Scrape ==========
+14:59:03   FB: https://www.facebook.com/themorrowhotel | IG: https://www.instagram.com/themorrowhotel
+14:59:03   Opening FB: https://www.facebook.com/themorrowhotel
+14:59:08   Opening FB: https://www.facebook.com/themorrowhotel/about
+14:59:14   Opening FB: https://www.facebook.com/themorrowhotel/directory_contact_info
+14:59:19   Opening IG: https://www.instagram.com/themorrowhotel
+14:59:24   [APOLLO] Credits used this run: 33 / 300
+14:59:24 
+14:59:24 ========== STEP 3: Apollo API ==========
+14:59:24   Searching Apollo for company: The Morrow Washington DC, Curio Collection by Hilton
+14:59:26   Found: The Morrow Hotel Washington, DC Curio Collection by Hilton (domain: themorrowhotel.com, org_id: 619f5b7171a8cb00a4eca380)
+14:59:26   Searching for people at The Morrow Hotel Washington, DC Curio Collection by Hilton (org_id: 619f5b7171a8cb00a4eca380)...
+14:59:26   Found 7 people total
+14:59:26   Skipped 6 people with no email (red ? on Apollo)
+14:59:26   1 people to enrich (1 credit each)
+14:59:27   >>> Jale Hashimi (General Manager): jale.hashimi@themorrowhotel.com [verified]
+14:59:28   jale.hashimi@themorrowhotel.com → valid
+14:59:30   ✓ Added: Jale Hashimi <jale.hashimi@themorrowhotel.com>
+14:59:31   Apollo API done: 34 credits used this run
+14:59:31 
+14:59:32 ========== STEP 4: LinkedIn + Apollo API ==========
+14:59:32   Using domain: themorrowhotel.com
+14:59:34   LinkedIn page 1...
+14:59:45   Found 3 results
+14:59:46   Found: Anthony Forte
+14:59:51   LinkedIn page 2...
+14:59:56   Found 3 results
+14:59:56   No new venue employees on this page.
+15:00:00   LinkedIn page 3...
+15:00:08   Found 3 results
+15:00:08   No new venue employees on this page.
+15:00:08 
+15:00:08   LinkedIn found 1 new people. Enriching via Apollo API...
+15:00:09   LinkedIn + Apollo API done. Credits used: 34
+15:00:11   Setting status → pipelined
+15:00:13 
+15:00:13 ============================================================
+15:00:13  DONE: The Morrow Washington DC, Curio Collection by Hilton | 1 min | 15:00:13
+15:00:13 ============================================================
+15:00:43 [BUDGET] Shared limit of 5 reached — stopping untouched phase
+15:00:43 === UNTOUCHED PHASE COMPLETE ===
+15:00:43 
+15:00:43 SMART PICKS: Skipping — shared budget of 5 already reached (5 processed)
+15:00:43 === SMART PICKS COMPLETE ===
+15:00:43 
+15:00:43 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-20_15-00.html
+15:00:43 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-20_15-00.html

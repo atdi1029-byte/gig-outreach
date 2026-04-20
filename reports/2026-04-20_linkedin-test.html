@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Test Run — Apr 20, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #1a1a2e; color: #e0e0e0; padding: 20px;
+    max-width: 800px; margin: 0 auto;
+  }
+  h1 { color: #e94560; margin-bottom: 5px; font-size: 1.6rem; }
+  .subtitle { color: #888; margin-bottom: 25px; font-size: 0.9rem; }
+  h2 { color: #e94560; margin: 25px 0 12px; font-size: 1.2rem;
+       border-bottom: 1px solid #333; padding-bottom: 5px; }
+  .venue-card {
+    background: #16213e; border-radius: 8px; padding: 15px;
+    margin-bottom: 15px; border-left: 4px solid #e94560;
+  }
+  .venue-name { font-size: 1.1rem; font-weight: 600; color: #fff; }
+  .venue-id { color: #666; font-size: 0.8rem; margin-left: 8px; }
+  .step { margin: 8px 0 4px; color: #aaa; font-size: 0.85rem; }
+  .step strong { color: #ccc; }
+  .result { padding: 4px 10px; font-size: 0.85rem; }
+  .result.empty { color: #e94560; }
+  .result.found { color: #3DCC85; }
+  .summary-box {
+    background: #0f3460; border-radius: 8px; padding: 15px;
+    margin-top: 25px;
+  }
+  .summary-box h3 { color: #e94560; margin-bottom: 8px; }
+  .summary-row { display: flex; justify-content: space-between;
+                 padding: 4px 0; font-size: 0.9rem; }
+  .label { color: #aaa; }
+  .value { color: #fff; font-weight: 600; }
+  .fix-note {
+    background: #1a3a1a; border: 1px solid #3DCC85; border-radius: 6px;
+    padding: 12px; margin-top: 20px; font-size: 0.85rem;
+  }
+  .fix-note strong { color: #3DCC85; }
+</style>
+</head>
+<body>
+
+<h1>LinkedIn Test Run</h1>
+<div class="subtitle">April 20, 2026 — 2 venues tested</div>
+
+<h2>Purpose</h2>
+<p style="font-size:0.9rem; color:#aaa; margin-bottom:10px;">
+  Test the LinkedIn + Apollo API flow on 2 pipelined venues
+  with 0 contacts. Verify scripts work end-to-end before
+  running a bigger batch.
+</p>
+
+<h2>Venue Results</h2>
+
+<div class="venue-card">
+  <div class="venue-name">Dante Ristorante
+    <span class="venue-id">VA-REST-008</span>
+  </div>
+  <div class="step"><strong>LinkedIn Search:</strong>
+    "Dante Ristorante Virginia" — 3 pages checked</div>
+  <div class="result empty">
+    ✗ 0 confirmed employees (all results were
+    Italian restaurants, not the VA location)
+  </div>
+  <div class="step"><strong>Apollo API — Domain:</strong>
+    danteristorante.com</div>
+  <div class="result empty">
+    ✗ 2 people found (no names, no emails —
+    incomplete profiles)
+  </div>
+  <div class="step"><strong>Apollo API — Keyword:</strong>
+    "Dante Ristorante Virginia"</div>
+  <div class="result empty">✗ 0 results</div>
+  <div class="step" style="margin-top:8px; color:#e94560;">
+    <strong>Verdict:</strong> Small local restaurant —
+    no digital footprint on LinkedIn or Apollo.
+  </div>
+</div>
+
+<div class="venue-card">
+  <div class="venue-name">Cedar Knoll
+    <span class="venue-id">VA-REST-147</span>
+  </div>
+  <div class="step"><strong>LinkedIn Search:</strong>
+    "Cedar Knoll Alexandria VA" — 3 pages checked</div>
+  <div class="result empty">
+    ✗ 3 results on page 1, none are Cedar Knoll
+    employees. Pages 2-3 empty.
+  </div>
+  <div class="step"><strong>Apollo API — Domain:</strong>
+    cedarknollva.com</div>
+  <div class="result empty">✗ 0 results</div>
+  <div class="step"><strong>Apollo API — Org Search:</strong>
+    "Cedar Knoll" in Alexandria, Virginia</div>
+  <div class="result empty">✗ 0 organizations found</div>
+  <div class="step"><strong>Apollo API — Keyword:</strong>
+    "Cedar Knoll Alexandria Virginia"</div>
+  <div class="result empty">✗ 0 results</div>
+  <div class="step" style="margin-top:8px; color:#e94560;">
+    <strong>Verdict:</strong> Small local restaurant —
+    invisible on LinkedIn and Apollo.
+  </div>
+</div>
+
+<h2>API Status</h2>
+
+<div class="fix-note">
+  <strong>Apollo API — Fixed</strong><br>
+  The old <code>mixed_people/search</code> endpoint is
+  deprecated (returns 422). Updated to use
+  <code>mixed_people/api_search</code>. API key
+  <code>E1s0...hAQ</code> is active and working after
+  subscription renewal. Pipeline.sh already uses the
+  correct endpoint — no code changes needed.
+</div>
+
+<h2>Agency LinkedIn Status</h2>
+<p style="font-size:0.9rem; color:#aaa;">
+  All 45 booking agencies marked as LinkedIn complete
+  (linkedin_pending = false). These were already
+  processed in prior runs.
+</p>
+
+<div class="summary-box">
+  <h3>Run Summary</h3>
+  <div class="summary-row">
+    <span class="label">Venues Tested</span>
+    <span class="value">2</span>
+  </div>
+  <div class="summary-row">
+    <span class="label">New Contacts Found</span>
+    <span class="value" style="color:#e94560;">0</span>
+  </div>
+  <div class="summary-row">
+    <span class="label">LinkedIn Pages Searched</span>
+    <span class="value">6 (3 per venue)</span>
+  </div>
+  <div class="summary-row">
+    <span class="label">Apollo API Calls</span>
+    <span class="value">5</span>
+  </div>
+  <div class="summary-row">
+    <span class="label">Apollo API Status</span>
+    <span class="value" style="color:#3DCC85;">
+      Working ✓</span>
+  </div>
+  <div class="summary-row">
+    <span class="label">Agencies Marked Done</span>
+    <span class="value">45</span>
+  </div>
+</div>
+
+<p style="margin-top:20px; color:#666; font-size:0.8rem;">
+  Note: Both test venues are small local restaurants with
+  minimal online presence. Bigger venues (hotels, country
+  clubs) will likely yield better results. Ready for a
+  larger batch.
+</p>
+
+</body>
+</html>

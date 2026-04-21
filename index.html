@@ -2620,7 +2620,8 @@ function venueHasPending(venueId) {
     // "contacted" = user marked done — hide it
     if (venue.status === 'contacted') return false;
     // "pipelined" = pipeline ran but user hasn't reviewed/acted yet — always show
-    if (venue.status === 'pipelined') return true;
+    // "sent" = all emails sent but user hasn't clicked Mark Done yet — keep visible
+    if (venue.status === 'pipelined' || venue.status === 'sent') return true;
     // "researched" = pipeline ran, no emails. Still show if there's FB/IG/contact form to use
     // Also keep visible if user already sent on any channel (don't auto-hide before Mark Done)
     if (venue.status === 'researched') {

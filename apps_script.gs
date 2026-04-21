@@ -883,10 +883,11 @@ function updateVenueStatus_(venueId) {
       if (verified === 'valid' && !sent) allEmailsSent = false;
     }
 
+    // Don't auto-set to 'contacted' — that's reserved for user clicking "Mark Done".
+    // Set to 'sent' so the venue stays visible until the user dismisses it.
     var linkedinPending = String(vData[v][20]).toLowerCase() === 'true';
     if (allEmailsSent && anyEmailSent && !linkedinPending) {
-      venueSheet.getRange(v + 1, 13).setValue('contacted');
-      venueSheet.getRange(v + 1, 19).setValue(new Date()); // contacted_date
+      venueSheet.getRange(v + 1, 13).setValue('sent');
     }
     break;
   }

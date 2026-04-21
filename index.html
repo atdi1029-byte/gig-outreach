@@ -2622,10 +2622,12 @@ function venueHasPending(venueId) {
     // "pipelined" = pipeline ran but user hasn't reviewed/acted yet — always show
     if (venue.status === 'pipelined') return true;
     // "researched" = pipeline ran, no emails. Still show if there's FB/IG/contact form to use
+    // Also keep visible if user already sent on any channel (don't auto-hide before Mark Done)
     if (venue.status === 'researched') {
         if (venue.instagram && venue.instagram.length > 5) return true;
         if (venue.facebook && venue.facebook.length > 5) return true;
-        if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent) return true;
+        if (venue.contact_form && venue.contact_form.length > 5) return true;
+        if (venue.ig_dm_sent || venue.fb_msg_sent || venue.contact_form_sent) return true;
         return false;
     }
     // Has unsent verified emails?
@@ -2638,6 +2640,13 @@ function venueHasPending(venueId) {
     if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent) return true;
     // Has LinkedIn pending? (only if not already contacted)
     if (venue.linkedin_pending && venue.status !== 'contacted') return true;
+    // If venue was pipelined and user has sent ANY channel, keep it visible
+    // until they explicitly click "Mark Done" — don't auto-hide
+    if (venue.status === 'pipelined') {
+        const anySent = contacts.some(c => c.email_sent) ||
+            venue.ig_dm_sent || venue.fb_msg_sent || venue.contact_form_sent;
+        if (anySent) return true;
+    }
     return false;
 }
 

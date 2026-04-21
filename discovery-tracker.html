@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discovery Tracker</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+:root {
+  --bg: #0c1a22;
+  --card: #112028;
+  --border: #1a2e3a;
+  --text: #e0e0e0;
+  --muted: #888;
+  --teal: #6ecfcf;
+  --orange: #e8944c;
+  --green: #8bc34a;
+  --red: #ef5350;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+h1 {
+  color: var(--teal);
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+.subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+.stats-bar {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 20px;
+  text-align: center;
+  min-width: 120px;
+}
+.stat-num {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--teal);
+  display: block;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--green));
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+.controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.controls input {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+.controls input::placeholder { color: #555; }
+.filter-btn {
+  padding: 8px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--teal);
+  color: var(--bg);
+  border-color: var(--teal);
+}
+.region {
+  margin-bottom: 20px;
+}
+.region-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  user-select: none;
+}
+.region-header h2 {
+  color: var(--orange);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.region-progress {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.region-progress .done {
+  color: var(--green);
+  font-weight: 600;
+}
+.city-list {
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
+}
+.city-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.city-row:last-child { border-bottom: none; }
+.city-row:hover { background: #0f242e; }
+.city-row.swept { opacity: 0.6; }
+.city-row.swept .city-name {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+.city-cb {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--teal);
+  cursor: pointer;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.city-name {
+  flex: 1;
+  font-size: 0.95rem;
+}
+.city-tier {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+.tier-1 { background: #1a3a1a; color: #8bc34a; }
+.tier-2 { background: #1a2e3a; color: #4fc3f7; }
+.tier-3 { background: #2e2a1a; color: #ffd54f; }
+.city-note {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-left: 10px;
+  flex-shrink: 0;
+}
+.city-count {
+  font-size: 0.8rem;
+  color: var(--teal);
+  margin-left: 8px;
+  flex-shrink: 0;
+  min-width: 20px;
+  text-align: right;
+}
+.hidden { display: none; }
+@media (max-width: 600px) {
+  body { padding: 12px; }
+  h1 { font-size: 1.4rem; }
+  .stats-bar { gap: 8px; }
+  .stat { padding: 8px 12px; min-width: 80px; }
+  .stat-num { font-size: 1.4rem; }
+  .city-note { display: none; }
+}
+</style>
+</head>
+<body>
+
+<h1>Discovery Tracker</h1>
+<p class="subtitle">Every city in the 2-hour radius.
+Check off as you sweep each one for venues.</p>
+
+<div class="stats-bar">
+  <div class="stat">
+    <span class="stat-num" id="swept-count">0</span>
+    <span class="stat-label">Swept</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="total-count">0</span>
+    <span class="stat-label">Total Cities</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="pct">0%</span>
+    <span class="stat-label">Complete</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" id="venues-found">0</span>
+    <span class="stat-label">Venues Added</span>
+  </div>
+</div>
+
+<div class="progress-bar">
+  <div class="progress-fill" id="progress-fill"></div>
+</div>
+
+<div class="controls">
+  <input type="text" id="search" placeholder="Search cities...">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="remaining">Remaining</button>
+  <button class="filter-btn" data-filter="swept">Swept</button>
+</div>
+
+<div id="regions"></div>
+
+<script>
+const STORAGE_KEY = 'discovery_tracker_v1';
+const VENUES_KEY = 'discovery_tracker_venues';
+
+// ============================================================
+// MASTER CITY LIST — every city in the 2-hour radius
+// tier: 1 = actively hunt, 2 = good fillers, 3 = lower priority
+// ============================================================
+const REGIONS = [
+  {
+    name: "Washington DC",
+    cities: [
+      { name: "Georgetown", tier: 1, note: "Dupont Circle, Kalorama" },
+      { name: "Dupont Circle", tier: 1, note: "Embassy Row" },
+      { name: "Cleveland Park", tier: 1, note: "Woodley Park" },
+      { name: "Capitol Hill", tier: 2, note: "Nicer blocks" },
+      { name: "Logan Circle", tier: 2 },
+      { name: "Spring Valley", tier: 1 },
+      { name: "Foggy Bottom", tier: 2, note: "Kennedy Center area" },
+      { name: "Penn Quarter", tier: 2, note: "Hotel district" },
+      { name: "Adams Morgan", tier: 2 },
+      { name: "U Street / Shaw", tier: 2 },
+      { name: "Navy Yard / Wharf", tier: 2, note: "Waterfront venues" },
+      { name: "Cathedral Heights", tier: 2 },
+      { name: "Tenleytown / AU Park", tier: 3 },
+      { name: "Glover Park", tier: 2 },
+      { name: "Palisades", tier: 2 },
+    ]
+  },
+  {
+    name: "Maryland - DC Suburbs (Tier 1)",
+    cities: [
+      { name: "Potomac", tier: 1, note: "$212k median income" },
+      { name: "Chevy Chase", tier: 1 },
+      { name: "Bethesda", tier: 1 },
+      { name: "Martin's Additions", tier: 1, note: "$553k avg" },
+      { name: "Travilah", tier: 1 },
+      { name: "Rockville", tier: 2, note: "Nice parts" },
+      { name: "Cabin John", tier: 1 },
+      { name: "Glen Echo", tier: 2 },
+      { name: "Kensington", tier: 2 },
+      { name: "Silver Spring", tier: 3, note: "Downtown only" },
+      { name: "Garrett Park", tier: 2 },
+      { name: "Brookeville", tier: 2 },
+      { name: "Olney", tier: 2 },
+      { name: "Clarksburg", tier: 3 },
+      { name: "Germantown", tier: 3 },
+      { name: "Gaithersburg", tier: 3 },
+      { name: "Poolesville", tier: 3 },
+      { name: "Takoma Park", tier: 3 },
+      { name: "Bowie", tier: 3 },
+      { name: "College Park", tier: 3, note: "UMD area" },
+      { name: "Laurel", tier: 3 },
+      { name: "Greenbelt", tier: 3 },
+      { name: "Upper Marlboro", tier: 3 },
+      { name: "Brandywine", tier: 3, note: "Robin Hill area" },
+      { name: "Fort Washington", tier: 3 },
+      { name: "Oxon Hill / National Harbor", tier: 2, note: "MGM area" },
+    ]
+  },
+  {
+    name: "Maryland - Baltimore Area",
+    cities: [
+      { name: "Roland Park", tier: 1 },
+      { name: "Guilford", tier: 1 },
+      { name: "Homeland", tier: 1 },
+      { name: "Mt. Washington", tier: 1 },
+      { name: "Ruxton", tier: 1 },
+      { name: "Lutherville", tier: 2 },
+      { name: "Towson", tier: 2, note: "Nicer areas" },
+      { name: "Ellicott City", tier: 1, note: "Historic + affluent" },
+      { name: "Clarksville", tier: 1 },
+      { name: "Columbia", tier: 2, note: "Hickory Ridge" },
+      { name: "Woodberry / Hampden", tier: 2, note: "Woodberry Kitchen area" },
+      { name: "Fells Point", tier: 2 },
+      { name: "Harbor East", tier: 2 },
+      { name: "Inner Harbor", tier: 2 },
+      { name: "Federal Hill", tier: 2 },
+      { name: "Mt. Vernon (Baltimore)", tier: 2 },
+      { name: "Timonium", tier: 3 },
+      { name: "Hunt Valley", tier: 3 },
+      { name: "Pikesville", tier: 3 },
+      { name: "Owings Mills", tier: 3 },
+      { name: "Catonsville", tier: 3 },
+      { name: "Eldersburg", tier: 3 },
+      { name: "Westminster", tier: 3 },
+      { name: "Reisterstown", tier: 3 },
+      { name: "Sykesville", tier: 3, note: "Historic Main St" },
+    ]
+  },
+  {
+    name: "Maryland - Eastern Shore",
+    cities: [
+      { name: "St. Michaels", tier: 1, note: "Very upscale" },
+      { name: "Easton", tier: 1, note: "6th richest small town" },
+      { name: "Oxford", tier: 1 },
+      { name: "Tilghman Island", tier: 2, note: "Summer only" },
+      { name: "Kent Island", tier: 2 },
+      { name: "Centreville", tier: 2 },
+      { name: "Chestertown", tier: 2, note: "Washington College" },
+      { name: "Grasonville", tier: 3 },
+      { name: "Stevensville", tier: 3 },
+      { name: "Denton", tier: 3 },
+      { name: "Cambridge", tier: 3, note: "Hyatt Regency" },
+      { name: "Rock Hall", tier: 3 },
+      { name: "Queenstown", tier: 3 },
+      { name: "Galena", tier: 3 },
+      { name: "Betterton", tier: 3 },
+      { name: "Wye Mills", tier: 3 },
+    ]
+  },
+  {
+    name: "Maryland - Annapolis Area",
+    cities: [
+      { name: "Annapolis", tier: 1, note: "Downtown, Eastport, Naval Academy" },
+      { name: "Severna Park", tier: 2 },
+      { name: "Arnold", tier: 2 },
+      { name: "Edgewater", tier: 2 },
+      { name: "Crofton", tier: 2 },
+      { name: "Gambrills", tier: 3 },
+      { name: "Davidsonville", tier: 2 },
+      { name: "Gibson Island", tier: 1, note: "Ultra-exclusive" },
+      { name: "Mayo", tier: 3 },
+      { name: "Riva", tier: 3 },
+      { name: "Millersville", tier: 3 },
+      { name: "Pasadena", tier: 3 },
+      { name: "Deale", tier: 3, note: "Waterfront" },
+      { name: "Galesville", tier: 3, note: "Waterfront" },
+    ]
+  },
+  {
+    name: "Maryland - Southern MD / St. Mary's / Calvert",
+    cities: [
+      { name: "Leonardtown", tier: 1, note: "Arts district hub" },
+      { name: "Solomons Island", tier: 1, note: "Waterfront cluster" },
+      { name: "Chesapeake Beach", tier: 2, note: "Rod N Reel, Baia" },
+      { name: "North Beach", tier: 2, note: "Boardwalk, Hook & Vine" },
+      { name: "Prince Frederick", tier: 2, note: "Heritage 485, Brick" },
+      { name: "St. Mary's City", tier: 2, note: "Historic, college" },
+      { name: "Piney Point", tier: 2, note: "Pier450, lighthouse" },
+      { name: "Ridge", tier: 2, note: "SALT Kitchen" },
+      { name: "Tall Timbers", tier: 3, note: "Marina, Reluctant Navigator" },
+      { name: "Hollywood", tier: 3, note: "Sotterley, Bird Dog" },
+      { name: "California / Lexington Park", tier: 3, note: "Navy base area" },
+      { name: "Lusby", tier: 3, note: "Cove Point, Vera's" },
+      { name: "Dowell", tier: 3, note: "Ruddy Duck, Hidden Harbour" },
+      { name: "St. Inigoes", tier: 3, note: "Mary's Hope" },
+      { name: "Chaptico", tier: 3 },
+      { name: "Coltons Point", tier: 3, note: "St. Clement's" },
+      { name: "Mechanicsville", tier: 3 },
+      { name: "Huntingtown", tier: 3, note: "Hall at Huntingtown" },
+      { name: "Dunkirk", tier: 3 },
+      { name: "St. Leonard", tier: 3, note: "Jefferson Patterson" },
+      { name: "Broomes Island", tier: 3 },
+      { name: "Herrington Harbour", tier: 2, note: "Inn + Ketch 22" },
+      { name: "La Plata", tier: 3, note: "Hawthorne CC" },
+      { name: "Waldorf", tier: 3 },
+      { name: "Newburg", tier: 3, note: "Pavilion at Weatherly" },
+      { name: "Port Tobacco", tier: 3, note: "Historic village" },
+      { name: "Benedict", tier: 3 },
+      { name: "Owings", tier: 3 },
+    ]
+  },
+  {
+    name: "Maryland - Frederick / Western",
+    cities: [
+      { name: "Frederick", tier: 2, note: "Good downtown scene" },
+      { name: "Middletown", tier: 3 },
+      { name: "New Market", tier: 3, note: "Antique capital" },
+      { name: "Thurmont", tier: 3, note: "Near Camp David" },
+      { name: "Emmitsburg", tier: 3 },
+      { name: "Burkittsville", tier: 3 },
+      { name: "Myersville", tier: 3 },
+      { name: "Rohrersville", tier: 3, note: "Big Cork Vineyards" },
+    ]
+  },
+  {
+    name: "Virginia - NoVA Tier 1",
+    cities: [
+      { name: "Great Falls", tier: 1, note: "$353k mean income" },
+      { name: "McLean", tier: 1, note: "$200k median" },
+      { name: "Tysons Corner", tier: 1 },
+      { name: "Alexandria Old Town", tier: 1 },
+      { name: "Del Ray", tier: 1 },
+      { name: "Reston", tier: 1, note: "Lake Anne area" },
+      { name: "Vienna", tier: 2 },
+      { name: "Herndon", tier: 2, note: "Nicer parts" },
+      { name: "Fairfax", tier: 2 },
+      { name: "Falls Church", tier: 2 },
+      { name: "Oakton", tier: 2 },
+      { name: "Burke", tier: 3 },
+      { name: "Springfield", tier: 3 },
+      { name: "Annandale", tier: 3 },
+      { name: "Centreville", tier: 3 },
+      { name: "Chantilly", tier: 3 },
+      { name: "Manassas", tier: 3, note: "Historic downtown" },
+    ]
+  },
+  {
+    name: "Virginia - Loudoun County",
+    cities: [
+      { name: "Middleburg", tier: 1, note: "Horse country, very upscale" },
+      { name: "Leesburg", tier: 1 },
+      { name: "Purcellville", tier: 2 },
+      { name: "Ashburn", tier: 2, note: "Newer money" },
+      { name: "South Riding", tier: 3 },
+      { name: "Round Hill", tier: 3 },
+      { name: "Bluemont", tier: 3, note: "Winery circuit" },
+      { name: "Waterford", tier: 2, note: "Historic" },
+      { name: "Hamilton", tier: 3 },
+      { name: "Hillsboro", tier: 3 },
+      { name: "Lovettsville", tier: 3, note: "Winery area" },
+    ]
+  },
+  {
+    name: "Virginia - Other",
+    cities: [
+      { name: "Charlottesville", tier: 1, note: "UVA, cultured" },
+      { name: "Warrenton", tier: 2 },
+      { name: "Culpeper", tier: 3 },
+      { name: "Front Royal", tier: 3 },
+      { name: "Winchester", tier: 2, note: "Old Town" },
+      { name: "Fredericksburg", tier: 2, note: "Historic downtown" },
+      { name: "Staunton", tier: 3, note: "Arts scene" },
+      { name: "Lexington", tier: 3, note: "VMI / W&L" },
+      { name: "Orange", tier: 3, note: "Montpelier area" },
+      { name: "Sperryville", tier: 3, note: "Wine country" },
+      { name: "Little Washington", tier: 1, note: "Inn at Little Washington" },
+      { name: "Flint Hill", tier: 2, note: "Winery area" },
+      { name: "Delaplane", tier: 3 },
+      { name: "White Post", tier: 3, note: "L'Auberge Provencale" },
+      { name: "Bumpass", tier: 3, note: "Lake Anna wineries" },
+      { name: "Gordonsville", tier: 3 },
+      { name: "Stafford", tier: 3 },
+      { name: "Woodbridge", tier: 3 },
+    ]
+  },
+  {
+    name: "Delaware",
+    cities: [
+      { name: "Greenville", tier: 1, note: "$241k avg - wealthiest in DE" },
+      { name: "Hockessin", tier: 1 },
+      { name: "Centreville (DE)", tier: 1 },
+      { name: "Montchanin", tier: 1 },
+      { name: "Wilmington", tier: 1, note: "Chateau Country, Hotel du Pont" },
+      { name: "Rehoboth Beach", tier: 2, note: "Summer crowd" },
+      { name: "Lewes", tier: 2 },
+      { name: "Dewey Beach", tier: 3, note: "Summer only" },
+      { name: "Bethany Beach", tier: 3 },
+      { name: "Newark", tier: 3, note: "UD area" },
+      { name: "Middletown (DE)", tier: 3 },
+      { name: "Dover", tier: 3 },
+    ]
+  },
+  {
+    name: "Pennsylvania",
+    cities: [
+      { name: "Gladwyne", tier: 1, note: "Main Line" },
+      { name: "Bryn Mawr", tier: 1, note: "Main Line" },
+      { name: "Villanova", tier: 1, note: "Main Line" },
+      { name: "Haverford", tier: 1, note: "Main Line" },
+      { name: "Devon", tier: 1, note: "$221k mean" },
+      { name: "Wayne", tier: 1, note: "Main Line" },
+      { name: "Ardmore", tier: 2 },
+      { name: "Narberth", tier: 2 },
+      { name: "West Pikeland", tier: 1, note: "$262k mean" },
+      { name: "Kennett Square", tier: 1, note: "Mushroom capital" },
+      { name: "Unionville", tier: 1 },
+      { name: "Chadds Ford", tier: 1, note: "Brandywine Valley" },
+      { name: "West Chester", tier: 2 },
+      { name: "Newtown Square", tier: 2 },
+      { name: "Media", tier: 2 },
+      { name: "Lancaster", tier: 2, note: "Farm-to-table scene" },
+      { name: "Lititz", tier: 2, note: "Charming downtown" },
+      { name: "Strasburg", tier: 3 },
+      { name: "Phoenixville", tier: 2, note: "Revitalized downtown" },
+      { name: "Malvern", tier: 2 },
+      { name: "Exton", tier: 3 },
+      { name: "Downingtown", tier: 3 },
+      { name: "King of Prussia", tier: 3 },
+      { name: "Conshohocken", tier: 2 },
+      { name: "Philadelphia - Rittenhouse", tier: 1 },
+      { name: "Philadelphia - Old City", tier: 2 },
+      { name: "Philadelphia - Center City", tier: 2 },
+      { name: "Philadelphia - Chestnut Hill", tier: 2 },
+      { name: "Philadelphia - Manayunk", tier: 3 },
+    ]
+  },
+  {
+    name: "West Virginia",
+    cities: [
+      { name: "Shepherdstown", tier: 2, note: "College town" },
+      { name: "Charles Town", tier: 2, note: "Hollywood Casino area" },
+      { name: "Harpers Ferry", tier: 2, note: "Historic" },
+      { name: "Berkeley Springs", tier: 3, note: "Spa town" },
+      { name: "Martinsburg", tier: 3 },
+      { name: "Leetown", tier: 3 },
+    ]
+  }
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let swept = {};
+let venuesCounts = {};
+let filter = 'all';
+
+function load() {
+  try {
+    swept = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    venuesCounts = JSON.parse(
+      localStorage.getItem(VENUES_KEY)
+    ) || {};
+  } catch(e) {
+    swept = {};
+    venuesCounts = {};
+  }
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(swept));
+  localStorage.setItem(VENUES_KEY, JSON.stringify(venuesCounts));
+}
+
+function cityKey(region, city) {
+  return region + '::' + city;
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function render() {
+  const searchVal = document.getElementById('search')
+    .value.toLowerCase();
+  const container = document.getElementById('regions');
+  container.innerHTML = '';
+
+  let totalCities = 0;
+  let sweptCities = 0;
+  let totalVenues = 0;
+
+  REGIONS.forEach(region => {
+    const div = document.createElement('div');
+    div.className = 'region';
+
+    let regionTotal = 0;
+    let regionSwept = 0;
+    let visibleCities = [];
+
+    region.cities.forEach(city => {
+      const key = cityKey(region.name, city.name);
+      const isSw = !!swept[key];
+      totalCities++;
+      if (isSw) sweptCities++;
+      const vc = venuesCounts[key] || 0;
+      totalVenues += vc;
+      regionTotal++;
+      if (isSw) regionSwept++;
+
+      // Filter logic
+      if (filter === 'remaining' && isSw) return;
+      if (filter === 'swept' && !isSw) return;
+      if (searchVal && !city.name.toLowerCase()
+        .includes(searchVal)
+        && !(city.note || '').toLowerCase()
+        .includes(searchVal)
+        && !region.name.toLowerCase()
+        .includes(searchVal)) return;
+
+      visibleCities.push({ city, key, isSw, vc });
+    });
+
+    if (visibleCities.length === 0) return;
+
+    // Region header
+    const hdr = document.createElement('div');
+    hdr.className = 'region-header';
+    hdr.innerHTML = `
+      <h2>${region.name}</h2>
+      <span class="region-progress">
+        <span class="done">${regionSwept}</span>
+        / ${regionTotal}
+      </span>
+    `;
+    div.appendChild(hdr);
+
+    // City list
+    const list = document.createElement('div');
+    list.className = 'city-list';
+
+    visibleCities.forEach(({ city, key, isSw, vc }) => {
+      const row = document.createElement('div');
+      row.className = 'city-row' + (isSw ? ' swept' : '');
+
+      const tierClass = 'tier-' + city.tier;
+      const tierLabel = city.tier === 1 ? 'T1'
+        : city.tier === 2 ? 'T2' : 'T3';
+
+      row.innerHTML = `
+        <input type="checkbox" class="city-cb"
+          data-key="${key}"
+          ${isSw ? 'checked' : ''}>
+        <span class="city-name">${city.name}</span>
+        <span class="city-tier ${tierClass}">${tierLabel}</span>
+        ${city.note
+          ? `<span class="city-note">${city.note}</span>`
+          : ''}
+        <input type="number" class="city-count"
+          data-key="${key}" value="${vc}" min="0"
+          style="width:45px;background:var(--card);
+          border:1px solid var(--border);border-radius:4px;
+          color:var(--teal);text-align:center;font-size:0.8rem;
+          padding:2px;margin-left:8px;"
+          title="Venues found">
+      `;
+      list.appendChild(row);
+    });
+
+    div.appendChild(list);
+    container.appendChild(div);
+  });
+
+  // Update stats
+  document.getElementById('swept-count')
+    .textContent = sweptCities;
+  document.getElementById('total-count')
+    .textContent = totalCities;
+  const pctVal = totalCities
+    ? Math.round(sweptCities / totalCities * 100) : 0;
+  document.getElementById('pct').textContent = pctVal + '%';
+  document.getElementById('venues-found')
+    .textContent = totalVenues;
+  document.getElementById('progress-fill')
+    .style.width = pctVal + '%';
+}
+
+// ============================================================
+// EVENTS
+// ============================================================
+document.addEventListener('change', e => {
+  if (e.target.classList.contains('city-cb')) {
+    const key = e.target.dataset.key;
+    if (e.target.checked) {
+      swept[key] = Date.now();
+    } else {
+      delete swept[key];
+    }
+    save();
+    render();
+  }
+  if (e.target.classList.contains('city-count')) {
+    const key = e.target.dataset.key;
+    venuesCounts[key] = parseInt(e.target.value) || 0;
+    save();
+    render();
+  }
+});
+
+document.getElementById('search')
+  .addEventListener('input', render);
+
+document.querySelectorAll('.filter-btn')
+  .forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn')
+        .forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filter = btn.dataset.filter;
+      render();
+    });
+  });
+
+// ============================================================
+// INIT
+// ============================================================
+load();
+render();
+</script>
+</body>
+</html>

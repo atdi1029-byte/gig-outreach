@@ -1154,6 +1154,7 @@ body {
     .venue-name { font-size: 0.8rem; }
     .monthly-section { /* visible on all screens — collapsible */ }
     .reports-pill { display: none !important; }
+    .pill-past-gigs, .pill-discovery { display: none !important; }
 }
 </style>
 </head>
@@ -1173,7 +1174,7 @@ body {
 
         <!-- PAST GIGS + REPORTS BUTTONS -->
         <div class="gigs-pill-row">
-            <button class="gigs-pill" onclick="openGigsView()">
+            <button class="gigs-pill pill-past-gigs" onclick="openGigsView()">
                 <span class="gigs-pill-icon">&#9834;</span>
                 <span>Past Gigs</span>
                 <span class="gigs-pill-count" id="gigsCount">0</span>
@@ -1182,7 +1183,7 @@ body {
                 <span class="gigs-pill-icon">&#9776;</span>
                 <span>Reports</span>
             </button>
-            <button class="gigs-pill" onclick="window.open('discovery-tracker.html','_blank')">
+            <button class="gigs-pill pill-discovery" onclick="window.open('discovery-tracker.html','_blank')">
                 <span class="gigs-pill-icon">&#9737;</span>
                 <span>Discovery</span>
             </button>
@@ -2697,10 +2698,10 @@ function getGoals() {
             : { email: 30, ig: 7, fb: 7 }
     };
     return {
-        weekly: { email: 180, ig: 45, fb: 45 },
+        weekly: { email: 165, ig: 40, fb: 40 },
         daily: isFriday
-            ? { email: 20, ig: 5, fb: 5 }
-            : { email: 40, ig: 10, fb: 10 }
+            ? { email: 15, ig: 4, fb: 4 }
+            : { email: 30, ig: 8, fb: 8 }
     };
 }
 

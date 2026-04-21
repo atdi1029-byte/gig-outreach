@@ -6882,3 +6882,706 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 15:00:43 
 15:00:43 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-20_15-00.html
 15:00:43 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-20_15-00.html
+
+00:09:48 === Pipeline started 2026-04-21 00:09:48 ===
+00:09:48 UNTOUCHED PHASE: Fetching all venues...
+00:09:52 UNTOUCHED: 248 found (shared budget: 5 total)
+00:09:52 
+00:09:52 ########## UNTOUCHED #1: Kimpton Hotel Monaco Washington DC (DC-REST-230) ##########
+00:09:54 
+00:09:54 ============================================================
+00:09:54  PIPELINE: Kimpton Hotel Monaco Washington DC (DC-REST-230)
+00:09:54  Website: https://www.monaco-dc.com
+00:09:54  Started: 2026-04-21 00:09:54
+00:09:54 ============================================================
+00:09:55   [ZB] Credits remaining: 4188
+00:09:57   Known emails: 0
+00:09:57   Known names: 0
+00:09:57 
+00:09:57 ========== STEP 1: Website Scrape ==========
+00:09:57   URL: https://www.monaco-dc.com
+00:09:57   Opening in Chrome: https://www.monaco-dc.com
+00:10:04   Validating contact form URL: https://www.monaco-dc.com/contact
+00:10:08   Found on contact page: talktous@monaco-dc.com
+00:10:08   ✗ No submittable form found — clearing contact_form
+00:10:08   Emails: 0 | FB: http://www.facebook.com/MonacoDC | IG: https://www.instagram.com/monacodc/ | Contact Form: none
+00:10:08   [LOCATION] Checking for location-specific page (city: SponsoredKimpton Hotel Monaco Washington)...
+00:10:09   [LOCATION] No location-specific page found
+00:10:09   Crawling subpage (1/20): https://www.monaco-dc.com/downtown-dc-hotels/cherry-blossoms
+00:10:14   Crawling subpage (2/20): https://www.monaco-dc.com/downtown-dc-hotels/america-250
+00:10:18   Crawling subpage (3/20): https://www.monaco-dc.com/downtown-dc-hotels/things-to-do-dc/summer
+00:10:22   Crawling subpage (4/20): https://www.monaco-dc.com/hotels-in-downtown-washington-dc
+00:10:27   Crawling subpage (5/20): https://www.monaco-dc.com/boutique-washington-dc-hotels
+00:10:31   Crawling subpage (6/20): https://www.monaco-dc.com/downtown-washington-dc-hotel-amenities
+00:10:35   Crawling subpage (7/20): https://www.monaco-dc.com/downtown-washington-dc-hotel-amenities/family-friendly
+00:10:39   Crawling subpage (8/20): https://www.monaco-dc.com/downtown-washington-dc-hotel-amenities/pet-friendly
+00:10:44   Crawling subpage (9/20): https://www.monaco-dc.com/historic-hotels-washington-dc
+00:10:48   Crawling subpage (10/20): https://www.monaco-dc.com/hotels-in-downtown-washington-dc/sustainability
+00:10:52   Crawling subpage (11/20): https://www.monaco-dc.com/hotels-in-downtown-washington-dc/pride
+00:10:56   Crawling subpage (12/20): https://www.monaco-dc.com/faq
+00:11:01   Found on subpage: sales@monaco-dc.com, talktous@monaco-dc.com
+00:11:01   Crawling subpage (13/20): https://www.monaco-dc.com/washington-dc-hotel-deals
+00:11:05   Crawling subpage (14/20): https://www.monaco-dc.com/washington-dc-hotel-deals/aaa-hotels
+00:11:09   Crawling subpage (15/20): https://www.monaco-dc.com/washington-dc-hotel-deals/government-per-diem
+00:11:14   Crawling subpage (16/20): https://www.monaco-dc.com/washington-dc-hotel-deals/business-travel
+00:11:18   Found on subpage: sales@monaco-dc.com
+00:11:18   Crawling subpage (17/20): https://www.monaco-dc.com/washington-dc-hotel-deals/senior-discounts
+00:11:22   Crawling subpage (18/20): https://www.monaco-dc.com/washington-dc-boutique-hotel-photos
+00:11:27   Crawling subpage (19/20): https://www.monaco-dc.com/washington-dc-boutique-hotel-photos/virtual-tours
+00:11:31   Crawling subpage (20/20): https://www.monaco-dc.com/downtown-dc-restaurants
+00:11:35   Subpage cap (20) reached — stopping
+00:11:41   sales@monaco-dc.com → do_not_mail
+00:11:44   talktous@monaco-dc.com → catch-all
+00:11:48   ⚠ Added (catch-all): talktous@monaco-dc.com <talktous@monaco-dc.com>
+00:11:57 
+00:11:57 ========== STEP 2: Social Media Scrape ==========
+00:12:00   FB: http://www.facebook.com/MonacoDC | IG: https://www.instagram.com/monacodc/
+00:12:00   Opening FB: http://www.facebook.com/MonacoDC
+00:12:06   FB emails found: talktous@monaco-dc.com
+00:12:06   Opening FB: http://www.facebook.com/MonacoDC/about
+00:12:11   Opening FB: http://www.facebook.com/MonacoDC/directory_contact_info
+00:12:16   FB emails found: talktous@monaco-dc.com
+00:12:16   Opening IG: https://www.instagram.com/monacodc/
+00:12:21   talktous@monaco-dc.com → catch-all
+00:12:25   ⚠ Added (catch-all): talktous@monaco-dc.com <talktous@monaco-dc.com>
+00:12:26   [APOLLO] Credits used this run: 0 / 300
+00:12:26 
+00:12:26 ========== STEP 3: Apollo API ==========
+00:12:26   Searching Apollo for company: Kimpton Hotel Monaco Washington DC
+00:12:28   Found: Kimpton Hotel & Restaurant Group, LLC. (domain: monaco-dc.com, org_id: 6833a553fde63d0001cee5a4)
+00:12:28   Searching for people at Kimpton Hotel & Restaurant Group, LLC. (org_id: 6833a553fde63d0001cee5a4)...
+00:12:28   Found 0 people total
+00:12:28   No people in Apollo for this company.
+00:12:28 
+00:12:28 ========== STEP 4: LinkedIn + Apollo API ==========
+00:12:28   Using domain: monaco-dc.com
+00:12:30   LinkedIn page 1...
+00:12:38   Found 3 results
+00:12:39   Found: Jiaxin Zhang
+00:12:39   Found: Josh Petrillo
+00:12:42   LinkedIn page 2...
+00:12:50   Found 3 results
+00:12:50   Found: Lisa Bullock
+00:12:50   Found: Kelsey Jones
+00:12:54   LinkedIn page 3...
+00:12:59   Found 3 results
+00:12:59   Found: Mohamed elmadahi
+00:12:59   Found: Jordan Edenfield
+00:12:59   Found: Alvin Collins
+00:12:59 
+00:12:59   LinkedIn found 7 new people. Enriching via Apollo API...
+00:13:00   LinkedIn + Apollo API done. Credits used: 0
+00:13:02   Setting status → pipelined
+00:13:06 
+00:13:06 ============================================================
+00:13:06  DONE: Kimpton Hotel Monaco Washington DC | 3 min | 00:13:06
+00:13:06 ============================================================
+00:13:37 
+00:13:37 ########## UNTOUCHED #2: The Royal Sonesta Washington, DC Capitol Hill (DC-REST-231) ##########
+00:13:40 
+00:13:40 ============================================================
+00:13:40  PIPELINE: The Royal Sonesta Washington, DC Capitol Hill (DC-REST-231)
+00:13:40  Website: https://capitolhillroyal.sonesta.com
+00:13:40  Started: 2026-04-21 00:13:40
+00:13:40 ============================================================
+00:13:40   [ZB] Credits remaining: 4186
+
+00:13:45 === Pipeline started 2026-04-21 00:13:45 ===
+00:13:45 UNTOUCHED PHASE: Fetching all venues...
+00:13:47   Known emails: 0
+00:13:47   Known names: 0
+00:13:47 
+00:13:47 ========== STEP 1: Website Scrape ==========
+00:13:47   URL: https://capitolhillroyal.sonesta.com
+00:13:47   Opening in Chrome: https://capitolhillroyal.sonesta.com
+00:13:49 UNTOUCHED: 247 found (shared budget: 5 total)
+00:13:49 
+00:13:49 ########## UNTOUCHED #1: The Royal Sonesta Washington, DC Capitol Hill (DC-REST-231) ##########
+00:13:52 
+00:13:52 ============================================================
+00:13:52  PIPELINE: The Royal Sonesta Washington, DC Capitol Hill (DC-REST-231)
+00:13:52  Website: https://capitolhillroyal.sonesta.com
+00:13:52  Started: 2026-04-21 00:13:52
+00:13:52 ============================================================
+00:13:52   [ZB] Credits remaining: 4186
+00:13:53   Validating contact form URL: https://capitolhillroyal.sonesta.com/contact
+00:13:55   Known emails: 0
+00:13:55   Known names: 0
+00:13:55 
+00:13:55 ========== STEP 1: Website Scrape ==========
+00:13:55   URL: https://capitolhillroyal.sonesta.com
+00:13:55   Opening in Chrome: https://capitolhillroyal.sonesta.com
+00:13:57   ✗ No submittable form found — clearing contact_form
+00:13:57   Emails: 0 | FB: none | IG: https://www.instagram.com/reel/DWzFTREDLIn/ | Contact Form: none
+00:13:57   [LOCATION] Checking for location-specific page (city: The Royal Sonesta Washington)...
+00:13:59   [LOCATION] No location-specific page found
+00:14:00   Crawling subpage (1/20): https://capitolhillroyal.sonesta.com/contact
+00:14:02   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+00:14:04   Crawling subpage (2/20): https://capitolhillroyal.sonesta.com/our-hotel
+00:14:08   Crawling subpage (3/20): https://capitolhillroyal.sonesta.com/our-story
+00:14:12   Found on subpage: rscapitolhillfrontoffice@sonesta.com
+00:14:12   Crawling subpage (4/20): https://capitolhillroyal.sonesta.com/destination
+00:14:14   Validating contact form URL: https://capitolhillroyal.sonesta.com/contact
+00:14:17   Crawling subpage (5/20): https://capitolhillroyal.sonesta.com/rooms-suites
+00:14:21   Crawling subpage (6/20): https://capitolhillroyal.sonesta.com/meetings
+00:14:25   Crawling subpage (7/20): https://capitolhillroyal.sonesta.com/social-events
+00:14:29   Crawling subpage (8/20): https://capitolhillroyal.sonesta.com/weddings
+00:14:34   Crawling subpage (9/20): https://capitolhillroyal.sonesta.com/meet-celebrate
+00:14:38   Crawling subpage (10/20): https://capitolhillroyal.sonesta.com/dining
+00:14:42   Crawling subpage (11/20): https://capitolhillroyal.sonesta.com/gallery
+00:14:47   Crawling subpage (12/20): https://capitolhillroyal.sonesta.com/offers
+00:14:57   rscapitolhillfrontoffice@sonesta.com → catch-all
+00:15:02   ⚠ Added (catch-all): rscapitolhillfrontoffice@sonesta.com <rscapitolhillfrontoffice@sonesta.com>
+00:15:11 
+00:15:11 ========== STEP 1C: Facebook Google Search ==========
+00:15:11   No Facebook found on website — Googling...
+00:15:15   [FB SEARCH] Found: https://www.facebook.com/TheRoyalSonestaCapitolHill/
+00:15:18   ✓ Facebook URL saved
+00:15:18 
+00:15:18 ========== STEP 2: Social Media Scrape ==========
+00:15:22   FB: https://www.facebook.com/TheRoyalSonestaCapitolHill/ | IG: https://www.instagram.com/reel/DWzFTREDLIn/
+00:15:22   Opening FB: https://www.facebook.com/TheRoyalSonestaCapitolHill
+00:15:27   Opening FB: https://www.facebook.com/TheRoyalSonestaCapitolHill/about
+00:15:32   Opening FB: https://www.facebook.com/TheRoyalSonestaCapitolHill/directory_contact_info
+00:15:37   Opening IG: https://www.instagram.com/reel/DWzFTREDLIn/
+00:15:43   [APOLLO] Credits used this run: 0 / 300
+00:15:43 
+00:15:43 ========== STEP 3: Apollo API ==========
+00:15:43   Searching Apollo for company: The Royal Sonesta Washington, DC Capitol Hill
+00:15:45   Found: Royal Sonesta Dupont Circle (domain: sonesta.com, org_id: 559204cb73696418ae141f00)
+00:15:45   Searching for people at Royal Sonesta Dupont Circle (org_id: 559204cb73696418ae141f00)...
+00:15:46   Found 50 people total
+00:15:46   Skipped 10 people with no email (red ? on Apollo)
+00:15:46   Skipped 7 people with irrelevant titles (housekeeping, IT, security, etc.)
+00:15:46   33 people to enrich (1 credit each)
+00:15:47   >>> Pamela Parker (Director of Banquets The Royal Sonesta Capitol Hill DC): pamela.parker@sonesta.com [verified]
+00:15:48   pamela.parker@sonesta.com → catch-all
+00:15:51   ⚠ Added (catch-all): Pamela Parker <pamela.parker@sonesta.com>
+00:15:52   >>> Pegah Ghoushbeigui (Director of Sales & Marketing): pegah.ghoushbeigui@sonesta.com [verified]
+00:15:54   pegah.ghoushbeigui@sonesta.com → catch-all
+00:15:57   ⚠ Added (catch-all): Pegah Ghoushbeigui <pegah.ghoushbeigui@sonesta.com>
+00:15:58   >>> Cameron Nezam (Regional Account Director): cameron.nezam@sonesta.com [verified]
+00:16:00   cameron.nezam@sonesta.com → catch-all
+00:16:04   ⚠ Added (catch-all): Cameron Nezam <cameron.nezam@sonesta.com>
+00:16:05   >>> John Bottino (Brand Manager, Guest Experience & Service Culture): john.bottino@sonesta.com [verified]
+00:16:15   john.bottino@sonesta.com → unknown
+00:16:18   ⚠ Added (unknown): John Bottino <john.bottino@sonesta.com>
+00:16:19   >>> Mayte Escudero (Director of Sales at The Royal Sonesta Washington DC Capitol Hill): mayte.escudero@sonesta.com [verified]
+00:16:21   mayte.escudero@sonesta.com → catch-all
+00:16:24   ⚠ Added (catch-all): Mayte Escudero <mayte.escudero@sonesta.com>
+00:16:25   >>> Adrian Webb (Senior Convention Services Manager): adrian.webb@sonesta.com [verified]
+00:16:29   adrian.webb@sonesta.com → catch-all
+00:16:32   ⚠ Added (catch-all): Adrian Webb <adrian.webb@sonesta.com>
+00:16:33   >>> Rayshawn Price (Guest Service Agent): rprice@sonesta.com [verified]
+00:16:34   rprice@sonesta.com → catch-all
+00:16:37   ⚠ Added (catch-all): Rayshawn Price <rprice@sonesta.com>
+00:16:38   >>> Latoya Valentine (Director of Guest Services): latoya.valentine@sonesta.com [verified]
+00:16:39   latoya.valentine@sonesta.com → catch-all
+00:16:43   ⚠ Added (catch-all): Latoya Valentine <latoya.valentine@sonesta.com>
+00:16:44   >>> Anna Peretz (Director of Architecture Design & Construction): a.peretz@sonesta.com [verified]
+00:16:45   a.peretz@sonesta.com → catch-all
+00:16:48   ⚠ Added (catch-all): Anna Peretz <a.peretz@sonesta.com>
+00:16:49   >>> Derrick Carlo (Regional Account Director): dcarlo@sonesta.com [verified]
+00:16:51   dcarlo@sonesta.com → catch-all
+00:16:53   ⚠ Added (catch-all): Derrick Carlo <dcarlo@sonesta.com>
+00:16:56   >>> Meade Atkeson (Area General Manager): meade.atkeson@sonesta.com [verified]
+00:16:59   meade.atkeson@sonesta.com → catch-all
+00:17:03   ⚠ Added (catch-all): Meade Atkeson <meade.atkeson@sonesta.com>
+00:17:04   >>> Bernard Howe (Global Account Manager): bernard.howe@sonesta.com [verified]
+00:17:06   bernard.howe@sonesta.com → catch-all
+00:17:09   ⚠ Added (catch-all): Bernard Howe <bernard.howe@sonesta.com>
+00:17:10   >>> Peggy Godfrey (Area Director of Sales): margaret.godfrey@sonesta.com [verified]
+00:17:13   margaret.godfrey@sonesta.com → catch-all
+00:17:17   ⚠ Added (catch-all): Peggy Godfrey <margaret.godfrey@sonesta.com>
+00:17:18   >>> Sarah Betman (Director of Sales and Marketing, Royal Sonesta Washington DC Dupont Circle): sarah.betman@sonesta.com [verified]
+00:17:19   sarah.betman@sonesta.com → catch-all
+00:17:23   ⚠ Added (catch-all): Sarah Betman <sarah.betman@sonesta.com>
+00:17:24   >>> Michelle Steffens (Vice President of Full-Service Hotel Operations): s.michelle@sonesta.com [verified]
+00:17:25   s.michelle@sonesta.com → catch-all
+00:17:28   ⚠ Added (catch-all): Michelle Steffens <s.michelle@sonesta.com>
+00:17:29   >>> Sebastian Ploss (General Manager): sebastian.ploss@sonesta.com [verified]
+00:17:32   sebastian.ploss@sonesta.com → catch-all
+00:17:36   ⚠ Added (catch-all): Sebastian Ploss <sebastian.ploss@sonesta.com>
+00:17:37   >>> Justine Cali (Senior Design Manager): justine.cali@sonesta.com [verified]
+00:17:39   justine.cali@sonesta.com → catch-all
+00:17:43   ⚠ Added (catch-all): Justine Cali <justine.cali@sonesta.com>
+00:17:44   >>> Jonathan Esten (National Sales Manager): jesten@sonesta.com [verified]
+00:17:45   jesten@sonesta.com → catch-all
+00:17:48   ⚠ Added (catch-all): Jonathan Esten <jesten@sonesta.com>
+00:17:49   >>> Regina Richardson (Director, Franchise Revenue Development, New Hotels): regina.richardson@sonesta.com [verified]
+00:17:50   regina.richardson@sonesta.com → catch-all
+00:17:53   ⚠ Added (catch-all): Regina Richardson <regina.richardson@sonesta.com>
+00:17:54   >>> Marian Hrab (Director of Sales & Marketing): marian.hrab@sonesta.com [verified]
+00:18:05   marian.hrab@sonesta.com → unknown
+00:18:08   ⚠ Added (unknown): Marian Hrab <marian.hrab@sonesta.com>
+00:18:11   >>> Shirley Doud (Regional Director of Sales and Marketing): shirley.doud@sonesta.com [verified]
+00:18:13   shirley.doud@sonesta.com → catch-all
+00:18:16   ⚠ Added (catch-all): Shirley Doud <shirley.doud@sonesta.com>
+00:18:17   >>> Lyn Heister (Director of Catering and Events): lyn.heister@sonesta.com [verified]
+00:18:27   lyn.heister@sonesta.com → unknown
+00:18:30   ⚠ Added (unknown): Lyn Heister <lyn.heister@sonesta.com>
+00:18:31   >>> Nichole Kanauss (Senior Sales Manager): nstump@sonesta.com [verified]
+00:18:33   nstump@sonesta.com → catch-all
+00:18:37   ⚠ Added (catch-all): Nichole Kanauss <nstump@sonesta.com>
+00:18:38   >>> Jason Ducre (Area Director of Sales & Marketing): jason.ducre@sonesta.com [verified]
+00:18:39   jason.ducre@sonesta.com → catch-all
+00:18:42   ⚠ Added (catch-all): Jason Ducre <jason.ducre@sonesta.com>
+00:18:44   >>> Tracy Wyckoff (Director of Sales): tracy.wyckoff@sonesta.com [verified]
+00:18:45   tracy.wyckoff@sonesta.com → catch-all
+00:18:49   ⚠ Added (catch-all): Tracy Wyckoff <tracy.wyckoff@sonesta.com>
+00:18:50   >>> Yana Vavilina (Business Travel & Specialty Markets Manager @ Sonesta Hotels): yana.vavilina@sonesta.com [verified]
+00:18:50   yana.vavilina@sonesta.com → valid
+00:18:53   ✓ Added: Yana Vavilina <yana.vavilina@sonesta.com>
+00:18:54   >>> Jennifer Kempton (Director, OS&E Supply Chain): jennifer.kempton@sonesta.com [verified]
+00:18:56   jennifer.kempton@sonesta.com → catch-all
+00:18:59   ⚠ Added (catch-all): Jennifer Kempton <jennifer.kempton@sonesta.com>
+00:19:00   >>> Samena Islam (Reservations & Marketing Coordinator): samena.islam@sonesta.com [verified]
+00:19:02   samena.islam@sonesta.com → catch-all
+00:19:05   ⚠ Added (catch-all): Samena Islam <samena.islam@sonesta.com>
+00:19:06   >>> Fran Nachman (Lead Concierge): fnachman@sonesta.com [verified]
+00:19:16   fnachman@sonesta.com → unknown
+00:19:20   ⚠ Added (unknown): Fran Nachman <fnachman@sonesta.com>
+00:19:21   >>> Michele Simpson (Director, Sales & Marketing): msimpson@sonesta.com [verified]
+00:19:23   msimpson@sonesta.com → catch-all
+00:19:25   ⚠ Added (catch-all): Michele Simpson <msimpson@sonesta.com>
+00:19:28   >>> Patrice Miller (Market Director of Revenue Management - Focus Service - Southeast): patrice.miller@sonesta.com [verified]
+00:19:31   patrice.miller@sonesta.com → catch-all
+00:19:34   ⚠ Added (catch-all): Patrice Miller <patrice.miller@sonesta.com>
+00:19:35   >>> Sheryl Perkins (Global Account Manager, Leisure Sales): sheryl.perkins@sonesta.com [verified]
+00:19:37   sheryl.perkins@sonesta.com → catch-all
+00:19:40   ⚠ Added (catch-all): Sheryl Perkins <sheryl.perkins@sonesta.com>
+00:19:41   >>> Justin Biermann (Head of Loyalty, Sonesta Travel Pass): justin.biermann@sonesta.com [verified]
+00:19:44   justin.biermann@sonesta.com → catch-all
+00:19:49   ⚠ Added (catch-all): Justin Biermann <justin.biermann@sonesta.com>
+00:19:51   Apollo API done: 33 credits used this run
+00:19:51 
+00:19:51 ========== STEP 4: LinkedIn + Apollo API ==========
+00:19:51   Using domain: sonesta.com
+00:19:52   LinkedIn page 1...
+00:19:59   Found 3 results
+00:19:59   Found: Terrence Duvall
+00:19:59   Found: Pamela Parker
+00:20:03   LinkedIn page 2...
+00:20:08   Found 3 results
+00:20:09   Found: Stacy Yene Teck
+00:20:12   LinkedIn page 3...
+00:20:20   Found 3 results
+00:20:20   No new venue employees on this page.
+00:20:20 
+00:20:20   LinkedIn found 3 new people. Enriching via Apollo API...
+00:20:20   LinkedIn + Apollo API done. Credits used: 33
+00:20:22   Setting status → pipelined
+00:20:25 
+00:20:25 ============================================================
+00:20:25  DONE: The Royal Sonesta Washington, DC Capitol Hill | 6 min | 00:20:25
+00:20:25 ============================================================
+00:20:55 
+00:20:55 ########## UNTOUCHED #3: Eaton DC (DC-REST-232) ##########
+00:20:58 
+00:20:58 ============================================================
+00:20:58  PIPELINE: Eaton DC (DC-REST-232)
+00:20:58  Website: https://www.eaton.com
+00:20:58  Started: 2026-04-21 00:20:58
+00:20:58 ============================================================
+00:20:58   [ZB] Credits remaining: 4156
+00:21:03   Known emails: 0
+00:21:03   Known names: 0
+00:21:03 
+00:21:03 ========== STEP 1: Website Scrape ==========
+00:21:03   URL: https://www.eaton.com
+00:21:03   Opening in Chrome: https://www.eaton.com
+00:21:09   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+00:21:22   Emails: 0 | FB: none | IG: none | Contact Form: none
+00:21:22   [LOCATION] Checking for location-specific page (city: Eaton)...
+00:21:22   [LOCATION] No location-specific page found
+00:21:25 
+00:21:25 ========== STEP 1B: Instagram Google Search ==========
+00:21:25   No Instagram found on website — Googling...
+00:21:29   [IG SEARCH] Found: https://www.instagram.com/eatonhotel.dc/
+00:21:31   ✓ Instagram URL saved
+00:21:34 
+00:21:34 ========== STEP 1C: Facebook Google Search ==========
+00:21:34   No Facebook found on website — Googling...
+00:21:38   [FB SEARCH] Found: https://www.facebook.com/EatonDC/
+00:21:40   ✓ Facebook URL saved
+00:21:40 
+00:21:40 ========== STEP 2: Social Media Scrape ==========
+00:21:43   FB: https://www.facebook.com/EatonDC/ | IG: https://www.instagram.com/eatonhotel.dc/
+00:21:43   Opening FB: https://www.facebook.com/EatonDC
+00:21:48   FB emails found: eatondc@eatonworkshop.com
+00:21:48   Opening FB: https://www.facebook.com/EatonDC/about
+00:21:53   Opening FB: https://www.facebook.com/EatonDC/directory_contact_info
+00:21:59   FB emails found: eatondc@eatonworkshop.com
+00:21:59   Opening IG: https://www.instagram.com/eatonhotel.dc/
+00:22:04   eatondc@eatonworkshop.com → valid
+00:22:07   ✓ Added: eatondc@eatonworkshop.com <eatondc@eatonworkshop.com>
+00:22:08   [APOLLO] Credits used this run: 33 / 300
+00:22:08 
+00:22:08 ========== STEP 3: Apollo API ==========
+00:22:08   Searching Apollo for company: Eaton DC
+00:22:10   Found: Eaton (domain: eaton.com, org_id: 5592316a73696418a56bc100)
+00:22:10   Searching for people at Eaton (org_id: 5592316a73696418a56bc100)...
+00:22:11   Found 50 people total
+00:22:11   Skipped 5 people with no email (red ? on Apollo)
+00:22:11   Skipped 23 people with irrelevant titles (housekeeping, IT, security, etc.)
+00:22:11   22 people to enrich (1 credit each)
+00:22:12   >>> Shaunta Mason (Area Sales Manager): shauntadmason@eaton.com [verified]
+00:22:13   shauntadmason@eaton.com → catch-all
+00:22:16   ⚠ Added (catch-all): Shaunta Mason <shauntadmason@eaton.com>
+00:22:17   >>> Bashiri Wilson (Vice President, Global Competition & Regulatory Affairs at Eaton): bashiribwilson@eaton.com [verified]
+00:22:20   bashiribwilson@eaton.com → catch-all
+00:22:23   ⚠ Added (catch-all): Bashiri Wilson <bashiribwilson@eaton.com>
+00:22:24   >>> Bryan Welsh (Director - International Tax Strategy): bryanmwelsh@eaton.com [verified]
+00:22:26   bryanmwelsh@eaton.com → catch-all
+00:22:29   ⚠ Added (catch-all): Bryan Welsh <bryanmwelsh@eaton.com>
+00:22:30   >>> Jina Kang (Public Affairs Manager): jinakang@eaton.com [verified]
+00:22:32   jinakang@eaton.com → catch-all
+00:22:36   ⚠ Added (catch-all): Jina Kang <jinakang@eaton.com>
+00:22:37   >>> Antonia Wilson (Program Manager): antoniawilson@eaton.com [verified]
+00:22:38   antoniawilson@eaton.com → catch-all
+00:22:43   ⚠ Added (catch-all): Antonia Wilson <antoniawilson@eaton.com>
+00:22:44   >>> Joshua Buzzell (VP, Data Center Chief Architect): joshuambuzzell@eaton.com [verified]
+00:22:45   joshuambuzzell@eaton.com → catch-all
+00:22:49   ⚠ Added (catch-all): Joshua Buzzell <joshuambuzzell@eaton.com>
+00:22:50   >>> Mike Yelton (President): mikeyelton@eaton.com [verified]
+00:22:50   mikeyelton@eaton.com → catch-all
+00:22:52   ⚠ Added (catch-all): Mike Yelton <mikeyelton@eaton.com>
+00:22:53   >>> Salim Semssar (Senior Vice President Operations - ESA): salimsemssar@eaton.com [verified]
+00:22:55   salimsemssar@eaton.com → catch-all
+00:22:58   ⚠ Added (catch-all): Salim Semssar <salimsemssar@eaton.com>
+00:22:59   >>> Ernesto Lebron (Director of Operations - Mfg Readiness & ERP Transformation): ernestolebron@eaton.com [verified]
+00:23:01   ernestolebron@eaton.com → catch-all
+00:23:06   ⚠ Added (catch-all): Ernesto Lebron <ernestolebron@eaton.com>
+00:23:07   >>> Thomas Domitrovich (Director, Codes and Standards): thomasadomitrovich@eaton.com [verified]
+00:23:08   thomasadomitrovich@eaton.com → catch-all
+00:23:11   ⚠ Added (catch-all): Thomas Domitrovich <thomasadomitrovich@eaton.com>
+00:23:14   >>> Aamir Mahmood (Principal Architect - Electrical Sector America (Distributed IT)): aamirmahmood@eaton.com [verified]
+00:23:14   aamirmahmood@eaton.com → valid
+00:23:18   ✓ Added: Aamir Mahmood <aamirmahmood@eaton.com>
+00:23:19   >>> Brittany Ramos (Program Manager - Supply Chain Data Governance & Analytics): brittanynramos@eaton.com [verified]
+00:23:19   brittanynramos@eaton.com → valid
+00:23:22   ✓ Added: Brittany Ramos <brittanynramos@eaton.com>
+00:23:23   >>> John Russler (Senior Vice President - North American Sales): johnarussler@eaton.com [verified]
+00:23:23   johnarussler@eaton.com → catch-all
+00:23:26   ⚠ Added (catch-all): John Russler <johnarussler@eaton.com>
+00:23:27   >>> Rob Griffin (Sr Vice President and General Manager Residential and Wiring Devices): robertpgriffin@eaton.com [verified]
+00:23:27   robertpgriffin@eaton.com → valid
+00:23:30   ✓ Added: Rob Griffin <robertpgriffin@eaton.com>
+00:23:31   >>> Abhishek Sharma (Operations Manager): abhisheksharma@eaton.com [verified]
+00:23:31   abhisheksharma@eaton.com → valid
+00:23:35   ✓ Added: Abhishek Sharma <abhisheksharma@eaton.com>
+00:23:36   >>> Danielle Larson (Sales Leadership): daniellelarson@eaton.com [verified]
+00:23:39   daniellelarson@eaton.com → catch-all
+00:23:42   ⚠ Added (catch-all): Danielle Larson <daniellelarson@eaton.com>
+00:23:43   >>> Carly Young (Manager, Sales Engagement Programs): carlymyoung@eaton.com [verified]
+00:23:55   carlymyoung@eaton.com → unknown
+00:23:58   ⚠ Added (unknown): Carly Young <carlymyoung@eaton.com>
+00:23:59   >>> Bridget Gary (Distributor Sales Representative): bridgetwgary@eaton.com [verified]
+00:24:01   bridgetwgary@eaton.com → catch-all
+00:24:04   ⚠ Added (catch-all): Bridget Gary <bridgetwgary@eaton.com>
+00:24:05   >>> John White (Vice President Sales Operations): johnjwhite@eaton.com [verified]
+00:24:05   johnjwhite@eaton.com → valid
+00:24:08   ✓ Added: John White <johnjwhite@eaton.com>
+00:24:09   >>> Steve Harloff (Plant Manager): stevemharloff@eaton.com [verified]
+00:24:11   stevemharloff@eaton.com → catch-all
+00:24:15   ⚠ Added (catch-all): Steve Harloff <stevemharloff@eaton.com>
+00:24:17   >>> Michael Hibbs (Global Category Manager - Thermoset Resin & Molding): mikeehibbs@eaton.com [verified]
+00:24:19   mikeehibbs@eaton.com → catch-all
+00:24:23   ⚠ Added (catch-all): Michael Hibbs <mikeehibbs@eaton.com>
+00:24:24   >>> Onyeka Nwaogu (Program Manager): onyekanwaogu@eaton.com [verified]
+00:24:26   onyekanwaogu@eaton.com → catch-all
+00:24:28   ⚠ Added (catch-all): Onyeka Nwaogu <onyekanwaogu@eaton.com>
+00:24:29   Apollo API done: 55 credits used this run
+00:24:29 
+00:24:29 ========== STEP 4: LinkedIn + Apollo API ==========
+00:24:29   Using domain: eaton.com
+00:24:31   LinkedIn page 1...
+00:24:39   Found 3 results
+00:24:39   Found: Jill Brahimi
+00:24:39   Found: Bashiri Wilson
+00:24:43   LinkedIn page 2...
+00:24:50   Found 3 results
+00:24:50   Found: Greg Scarfe
+00:24:50   Found: Pete Danelski
+00:24:50   Found: Jennifer S. Oxilien, MBA, PMP
+00:24:53   LinkedIn page 3...
+00:25:01   Found 3 results
+00:25:01   Found: Kevin Alvarez
+00:25:01   Found: James Zawodny
+00:25:01 
+00:25:01   LinkedIn found 7 new people. Enriching via Apollo API...
+00:25:01   LinkedIn + Apollo API done. Credits used: 55
+00:25:04   Setting status → pipelined
+00:25:07 
+00:25:07 ============================================================
+00:25:07  DONE: Eaton DC | 4 min | 00:25:07
+00:25:07 ============================================================
+00:25:37 
+00:25:37 ########## UNTOUCHED #4: Marriott Marquis Washington, DC (DC-REST-233) ##########
+00:25:39 
+00:25:39 ============================================================
+00:25:39  PIPELINE: Marriott Marquis Washington, DC (DC-REST-233)
+00:25:39  Website: https://www.marriott.com
+00:25:39  Started: 2026-04-21 00:25:39
+00:25:39 ============================================================
+00:25:39   [ZB] Credits remaining: 4134
+00:25:43   Known emails: 0
+00:25:43   Known names: 0
+00:25:43 
+00:25:43 ========== STEP 1: Website Scrape ==========
+00:25:43   [SKIP] Corporate hotel domain (marriott.com) — skipping website crawl
+00:25:46 
+00:25:46 ========== STEP 1B: Instagram Google Search ==========
+00:25:46   No Instagram found on website — Googling...
+00:25:51   [IG SEARCH] Found: https://www.instagram.com/mhmarquiswdc/
+00:25:53   ✓ Instagram URL saved
+00:25:56 
+00:25:56 ========== STEP 1C: Facebook Google Search ==========
+00:25:56   No Facebook found on website — Googling...
+00:26:01   [FB SEARCH] Found: https://www.facebook.com/MarriottMarquisWashington/
+00:26:03   ✓ Facebook URL saved
+00:26:03 
+00:26:03 ========== STEP 2: Social Media Scrape ==========
+00:26:07   FB: https://www.facebook.com/MarriottMarquisWashington/ | IG: https://www.instagram.com/mhmarquiswdc/
+00:26:07   Opening FB: https://www.facebook.com/MarriottMarquisWashington
+00:26:12   Opening FB: https://www.facebook.com/MarriottMarquisWashington/about
+00:26:17   Opening FB: https://www.facebook.com/MarriottMarquisWashington/directory_contact_info
+00:26:22   Opening IG: https://www.instagram.com/mhmarquiswdc/
+00:26:28   [APOLLO] Credits used this run: 55 / 300
+00:26:28 
+00:26:28 ========== STEP 3: Apollo API ==========
+00:26:28   Searching Apollo for company: Marriott Marquis Washington, DC
+00:26:29   Found: JW Marriott (domain: marriott.com, org_id: 5569c3ca7369642531058e00)
+00:26:29   Searching for people at JW Marriott (org_id: 5569c3ca7369642531058e00)...
+00:26:30   Found 39 people total
+00:26:30   Skipped 25 people with no email (red ? on Apollo)
+00:26:30   Skipped 1 people with irrelevant titles (housekeeping, IT, security, etc.)
+00:26:30   13 people to enrich (1 credit each)
+00:26:31   >>> Marjorie Mitchell (Senior Administrative Assistant Event Planning): marjorie.mitchell@marriott.com [verified]
+00:26:31   marjorie.mitchell@marriott.com → valid
+00:26:34   ✓ Added: Marjorie Mitchell <marjorie.mitchell@marriott.com>
+00:26:35   >>> Johnson Barry (Asst. Director of Service): barry.johnson@marriott.com [verified]
+00:26:35   barry.johnson@marriott.com → valid
+00:26:39   ✓ Added: Johnson Barry <barry.johnson@marriott.com>
+00:26:40   >>> Charles Packan (Property Manager): charles.packan@marriott.com [verified]
+00:26:40   charles.packan@marriott.com → valid
+00:26:43   ✓ Added: Charles Packan <charles.packan@marriott.com>
+00:26:44   >>> Emeiye Tefera (Group Housing Coordinator): emeiye.tefera@marriott.com [verified]
+00:26:44   emeiye.tefera@marriott.com → valid
+00:26:47   ✓ Added: Emeiye Tefera <emeiye.tefera@marriott.com>
+00:26:49   >>> Andrea Sanchez (Senior Transient Sales Executive): andrea.rozo@marriott.com [verified]
+00:26:49   andrea.rozo@marriott.com → valid
+00:26:52   ✓ Added: Andrea Sanchez <andrea.rozo@marriott.com>
+00:26:53   >>> Oum Abdellaoui (Front Office Assistant): oum.abdellaoui@jwmarriott.com [verified]
+00:26:54   oum.abdellaoui@jwmarriott.com → catch-all
+00:26:57   ⚠ Added (catch-all): Oum Abdellaoui <oum.abdellaoui@jwmarriott.com>
+00:26:59   >>> Imran Haider (Senior F&B Operations Manager): imran.haider@marriott.com [verified]
+00:26:59   imran.haider@marriott.com → valid
+00:27:01   ✓ Added: Imran Haider <imran.haider@marriott.com>
+00:27:02   >>> Betsy Adams (Front Office Agent): betsy.adams@jwmarriott.com [verified]
+00:27:03   betsy.adams@jwmarriott.com → catch-all
+00:27:05   ⚠ Added (catch-all): Betsy Adams <betsy.adams@jwmarriott.com>
+00:27:06   >>> Ana Landig (Catering Sales): analiza.landig@marriott.com [verified]
+00:27:06   analiza.landig@marriott.com → valid
+00:27:09   ✓ Added: Ana Landig <analiza.landig@marriott.com>
+00:27:10   >>> India Pitt (Front Desk Agent): india@marriott.com [verified]
+00:27:10   india@marriott.com → valid
+00:27:13   ✓ Added: India Pitt <india@marriott.com>
+00:27:16   >>> Mylene Bitangcol (Front Desk Associate): mylene.bitangcol@marriott.com [verified]
+00:27:16   mylene.bitangcol@marriott.com → valid
+00:27:19   ✓ Added: Mylene Bitangcol <mylene.bitangcol@marriott.com>
+00:27:20   >>> Ignatius Ugbeka (Room Service Line Cook): ignatius.ugbeka@jwmarriott.com [verified]
+00:27:20   ignatius.ugbeka@jwmarriott.com → catch-all
+00:27:24   ⚠ Added (catch-all): Ignatius Ugbeka <ignatius.ugbeka@jwmarriott.com>
+00:27:25   >>> Desire Akpadja (Lead in Hospitality Business): desire.akpadja@jwmarriott.com [verified]
+00:27:25   desire.akpadja@jwmarriott.com → catch-all
+00:27:28   ⚠ Added (catch-all): Desire Akpadja <desire.akpadja@jwmarriott.com>
+00:27:29   Apollo API done: 68 credits used this run
+00:27:29 
+00:27:29 ========== STEP 4: LinkedIn + Apollo API ==========
+00:27:29   Using domain: marriott.com
+00:27:31   LinkedIn page 1...
+00:27:36   Found 3 results
+00:27:36   Found: Emily Welch
+00:27:36   Found: John Tiffey
+00:27:36   Found: Mitch Peck
+00:27:41   LinkedIn page 2...
+00:27:50   Found 3 results
+00:27:50   Found: Tyler G. Whitman
+00:27:50   Found: Collin Rowe
+00:27:54   LinkedIn page 3...
+00:28:01   Found 3 results
+00:28:01   Found: Chris Mackey
+00:28:01   Found: Mark Indre
+00:28:01 
+00:28:01   LinkedIn found 7 new people. Enriching via Apollo API...
+00:28:01   LinkedIn + Apollo API done. Credits used: 68
+00:28:04   Setting status → pipelined
+00:28:07 
+00:28:07 ============================================================
+00:28:07  DONE: Marriott Marquis Washington, DC | 2 min | 00:28:07
+00:28:07 ============================================================
+00:28:37 
+00:28:37 ########## UNTOUCHED #5: Holiday Inn Express Washington DC Downtown by IHG (DC-REST-234) ##########
+00:28:41 
+00:28:41 ============================================================
+00:28:41  PIPELINE: Holiday Inn Express Washington DC Downtown by IHG (DC-REST-234)
+00:28:41  Website: https://www.ihg.com
+00:28:41  Started: 2026-04-21 00:28:41
+00:28:41 ============================================================
+00:28:41   [ZB] Credits remaining: 4121
+00:28:45   Known emails: 0
+00:28:45   Known names: 0
+00:28:45 
+00:28:45 ========== STEP 1: Website Scrape ==========
+00:28:45   [SKIP] Corporate hotel domain (ihg.com) — skipping website crawl
+00:28:48 
+00:28:48 ========== STEP 1B: Instagram Google Search ==========
+00:28:48   No Instagram found on website — Googling...
+00:28:52   [IG SEARCH] Found: https://www.instagram.com/holidayinnexpress/
+00:28:55   ✓ Instagram URL saved
+00:28:59 
+00:28:59 ========== STEP 1C: Facebook Google Search ==========
+00:28:59   No Facebook found on website — Googling...
+00:29:03   [FB SEARCH] Found: https://www.facebook.com/61578681454867/
+00:29:06   ✓ Facebook URL saved
+00:29:06 
+00:29:06 ========== STEP 2: Social Media Scrape ==========
+00:29:09   FB: https://www.facebook.com/61578681454867/ | IG: https://www.instagram.com/holidayinnexpress/
+00:29:09   Opening FB: https://www.facebook.com/61578681454867
+00:29:15   FB emails found: dm8871990@gmail.com
+00:29:15   Opening FB: https://www.facebook.com/61578681454867/about
+00:29:20   Opening FB: https://www.facebook.com/61578681454867/directory_contact_info
+00:29:25   FB emails found: dm8871990@gmail.com
+00:29:25   Opening IG: https://www.instagram.com/holidayinnexpress/
+00:29:32   dm8871990@gmail.com → valid
+00:29:36   ✓ Added: dm8871990@gmail.com <dm8871990@gmail.com>
+00:29:37   [APOLLO] Credits used this run: 68 / 300
+00:29:37 
+00:29:37 ========== STEP 3: Apollo API ==========
+00:29:37   Searching Apollo for company: Holiday Inn Express Washington DC Downtown by IHG
+00:29:39   Found: Holiday Inn Express (domain: holidayinnexpress.com, org_id: 618af492fc08f20001a61499)
+00:29:39   Searching for people at Holiday Inn Express (org_id: 618af492fc08f20001a61499)...
+00:29:40   Found 50 people total
+00:29:40   Skipped 16 people with no email (red ? on Apollo)
+00:29:40   Skipped 4 people with irrelevant titles (housekeeping, IT, security, etc.)
+00:29:40   30 people to enrich (1 credit each)
+00:29:40   >>> Jajuan Mosby (General Manager): gm@hixfairfax.com [verified]
+00:29:55   gm@hixfairfax.com → unknown
+00:29:59   ⚠ Added (unknown): Jajuan Mosby <gm@hixfairfax.com>
+00:30:00   >>> Andrew Harris (General Manager): agmgr@hiepennslanding.com [verified]
+00:30:06   agmgr@hiepennslanding.com → valid
+00:30:10   ✓ Added: Andrew Harris <agmgr@hiepennslanding.com>
+00:30:11   >>> Jared Sefcik (Front Desk Representative): jared@hiwalnut.com [verified]
+00:30:11   jared@hiwalnut.com → invalid
+00:30:15   ⚠ Added (invalid): Jared Sefcik <jared@hiwalnut.com>
+00:30:16   >>> Holiday Express (Director of Sales): hexpress@hiewalnutcreekhotel.com [verified]
+00:30:16   hexpress@hiewalnutcreekhotel.com → invalid
+00:30:19   ⚠ Added (invalid): Holiday Express <hexpress@hiewalnutcreekhotel.com>
+00:30:20   >>> Jennifer Brew (Director of Sales): jennifer.brew@hiewalnutcreekhotel.com [verified]
+00:30:20   jennifer.brew@hiewalnutcreekhotel.com → invalid
+00:30:23   ⚠ Added (invalid): Jennifer Brew <jennifer.brew@hiewalnutcreekhotel.com>
+00:30:24   >>> Palmu Patel (General Manager): patelp@hiewalnutcreekhotel.com [verified]
+00:30:24   patelp@hiewalnutcreekhotel.com → invalid
+00:30:28   ⚠ Added (invalid): Palmu Patel <patelp@hiewalnutcreekhotel.com>
+00:30:29   >>> David Marsh (General Manager): davidmarsh@ihmproperties.com [verified]
+00:30:29   davidmarsh@ihmproperties.com → do_not_mail
+00:30:30   >>> Bonnie Patterson (General Manager): bonnie.patterson@hiewalnutcreekhotel.com [verified]
+00:30:30   bonnie.patterson@hiewalnutcreekhotel.com → invalid
+00:30:33   ⚠ Added (invalid): Bonnie Patterson <bonnie.patterson@hiewalnutcreekhotel.com>
+00:30:34   >>> Sarah Pedroso (General Manager): gm@hielititz.com [verified]
+00:30:37   gm@hielititz.com → do_not_mail
+00:30:38   >>> Taylor Dudding (General Manager): taylor.dudding@hiewalnutcreekhotel.com [verified]
+00:30:38   taylor.dudding@hiewalnutcreekhotel.com → invalid
+00:30:41   ⚠ Added (invalid): Taylor Dudding <taylor.dudding@hiewalnutcreekhotel.com>
+00:30:44   >>> Candice Doub (Sales Manager): candice.doub@hiewalnutcreekhotel.com [verified]
+00:30:44   candice.doub@hiewalnutcreekhotel.com → invalid
+00:30:48   ⚠ Added (invalid): Candice Doub <candice.doub@hiewalnutcreekhotel.com>
+00:30:49   >>> Donna Gordner (General Manager): dgordner@jdkhotels.com [verified]
+00:30:49   dgordner@jdkhotels.com → valid
+00:30:52   ✓ Added: Donna Gordner <dgordner@jdkhotels.com>
+00:30:53   >>> Jose Cerezo (Operation Manger at the Holiday inn Express): jose.cerezo@hilton.com [verified]
+00:30:53   jose.cerezo@hilton.com → valid
+00:30:56   ✓ Added: Jose Cerezo <jose.cerezo@hilton.com>
+00:30:57   >>> Adam Jackson (Assistant General Manager): ajackson@shanercorp.com [verified]
+00:30:57   ajackson@shanercorp.com → valid
+00:31:00   ✓ Added: Adam Jackson <ajackson@shanercorp.com>
+00:31:01   >>> Eric Corneilson (General Manager): eric@padutchhotels.com [verified]
+00:31:02   eric@padutchhotels.com → valid
+00:31:06   ✓ Added: Eric Corneilson <eric@padutchhotels.com>
+00:31:07   >>> Cuong Tran (Guest Service Agent): cuong@hiwalnut.com [verified]
+00:31:07   cuong@hiwalnut.com → invalid
+00:31:10   ⚠ Added (invalid): Cuong Tran <cuong@hiwalnut.com>
+00:31:11   >>> Kim Homer (Director of Sales): kim.homer@hiewalnutcreekhotel.com [verified]
+00:31:11   kim.homer@hiewalnutcreekhotel.com → invalid
+00:31:15   ⚠ Added (invalid): Kim Homer <kim.homer@hiewalnutcreekhotel.com>
+00:31:16   >>> Tammy Felton (Sales Manager): tammy.felton@hiewalnutcreekhotel.com [verified]
+00:31:16   tammy.felton@hiewalnutcreekhotel.com → invalid
+00:31:19   ⚠ Added (invalid): Tammy Felton <tammy.felton@hiewalnutcreekhotel.com>
+00:31:20   >>> Brandi Banks (Front Desk Agent): brandi@hiwalnut.com [verified]
+00:31:20   brandi@hiwalnut.com → invalid
+00:31:23   ⚠ Added (invalid): Brandi Banks <brandi@hiwalnut.com>
+00:31:24   >>> Nyheima Heard (Front Desk): nyheima@hiwalnut.com [verified]
+00:31:24   nyheima@hiwalnut.com → invalid
+00:31:27   ⚠ Added (invalid): Nyheima Heard <nyheima@hiwalnut.com>
+00:31:30   >>> Tonya Gonzalez (General Manager): fom@hiebensalem.com [verified]
+00:31:31   fom@hiebensalem.com → valid
+00:31:34   ✓ Added: Tonya Gonzalez <fom@hiebensalem.com>
+00:31:35   >>> Linda Coghlan (Sales): linda@hiwalnut.com [verified]
+00:31:35   linda@hiwalnut.com → invalid
+00:31:39   ⚠ Added (invalid): Linda Coghlan <linda@hiwalnut.com>
+00:31:40   >>> Lance Middlekamp (Sales Manager for Holiday Inn Express): lance@holidayinnexpresslaurel.com [verified]
+00:31:52   lance@holidayinnexpresslaurel.com → valid
+00:31:57   ✓ Added: Lance Middlekamp <lance@holidayinnexpresslaurel.com>
+00:31:58   >>> Heather Speelman (Front Desk Agent): hspeelman@students.pierpont.edu [verified]
+00:31:59   hspeelman@students.pierpont.edu → valid
+00:32:02   ✓ Added: Heather Speelman <hspeelman@students.pierpont.edu>
+00:32:03   >>> Kaity Ellis (Front Desk): kaity@hiwalnut.com [verified]
+00:32:03   kaity@hiwalnut.com → invalid
+00:32:07   ⚠ Added (invalid): Kaity Ellis <kaity@hiwalnut.com>
+00:32:08   >>> Ashley Wolbert (Front Office Manager): awolbert@hiewalnutcreekhotel.com [verified]
+00:32:08   awolbert@hiewalnutcreekhotel.com → invalid
+00:32:11   ⚠ Added (invalid): Ashley Wolbert <awolbert@hiewalnutcreekhotel.com>
+00:32:13   >>> Brittany Roby (Sales Manager): brittany.roby@hiewalnutcreekhotel.com [verified]
+00:32:13   brittany.roby@hiewalnutcreekhotel.com → invalid
+00:32:16   ⚠ Added (invalid): Brittany Roby <brittany.roby@hiewalnutcreekhotel.com>
+00:32:17   >>> Michelle F (Director of Sales): michelle.f@hiewalnutcreekhotel.com [verified]
+00:32:17   michelle.f@hiewalnutcreekhotel.com → invalid
+00:32:20   ⚠ Added (invalid): Michelle F <michelle.f@hiewalnutcreekhotel.com>
+00:32:21   >>> Frederick Green (Guest Services Manager): fgreen@hiewalnutcreekhotel.com [verified]
+00:32:21   fgreen@hiewalnutcreekhotel.com → invalid
+00:32:24   ⚠ Added (invalid): Frederick Green <fgreen@hiewalnutcreekhotel.com>
+00:32:26   >>> Jolita Branch (Front Desk Manager): jolita.branch@hiexwaikiki.com [verified]
+00:32:27   jolita.branch@hiexwaikiki.com → invalid
+00:32:30   ⚠ Added (invalid): Jolita Branch <jolita.branch@hiexwaikiki.com>
+00:32:32   Apollo API done: 98 credits used this run
+00:32:32 
+00:32:32 ========== STEP 4: LinkedIn + Apollo API ==========
+00:32:32   Using domain: holidayinnexpress.com
+00:32:33   LinkedIn page 1...
+00:32:41   Found 3 results
+00:32:41   Found: Kimberly Allen-Mills
+00:32:41   Found: Jennifer Montgomery
+00:32:45   LinkedIn page 2...
+00:32:50   Found 3 results
+00:32:51   Found: Shaun Mathewson
+00:32:55   LinkedIn page 3...
+00:33:02   Found 3 results
+00:33:02   Found: Eric Santiago
+00:33:02   Found: Zehra Yousofi
+00:33:02 
+00:33:02   LinkedIn found 5 new people. Enriching via Apollo API...
+00:33:02   LinkedIn + Apollo API done. Credits used: 98
+00:33:05   Setting status → pipelined
+00:33:08 
+00:33:08 ============================================================
+00:33:08  DONE: Holiday Inn Express Washington DC Downtown by IHG | 4 min | 00:33:08
+00:33:08 ============================================================
+00:33:38 [BUDGET] Shared limit of 5 reached — stopping untouched phase
+00:33:38 === UNTOUCHED PHASE COMPLETE ===
+00:33:38 
+00:33:38 SMART PICKS: Skipping — shared budget of 5 already reached (5 processed)
+00:33:38 === SMART PICKS COMPLETE ===
+00:33:38 
+00:33:38 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-21_00-33.html
+00:33:38 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-21_00-33.html

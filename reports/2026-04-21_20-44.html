@@ -84,6 +84,15 @@
     font-size: 0.9rem;
   }
   .flag strong { color: #e85050; }
+  .note {
+    background: #1a2a1a;
+    border-left: 4px solid #4caf50;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .note strong { color: #4caf50; }
   .contact-name { color: #6ecfcf; }
   .valid { color: #4caf50; }
   .unknown { color: #ff9800; }
@@ -127,6 +136,8 @@
     .stat-box .num { color: #1a5c5c; }
     .flag { background: #fff0f0; border-color: #cc3333; }
     .flag strong { color: #cc3333; }
+    .note { background: #f0fff0; border-color: #339933; }
+    .note strong { color: #339933; }
     .contact-name { color: #1a5c5c; }
     .score { background: #e8944c; }
     .category-pill { background: #eee; color: #333; }
@@ -137,31 +148,88 @@
 <body>
 
 <h1>Outreach Run Report</h1>
-<div class="date">April 21, 2026 at 20:44 &bull; Runtime: unknown</div>
-<h2>Flagged for Review</h2>
-<div class="flag"><strong>Flag:</strong> Annmarie Sculpture Garden &amp; Arts Center: No contacts found</div>
-<div class="flag"><strong>Flag:</strong> The Inn at Leonardtown: No contacts found</div>
-<div class="flag"><strong>Flag:</strong> The Inn at Leonardtown: Off-domain email: md248@stayatchoice.com (venue: choicehotels.com)</div>
+<div class="date">April 21, 2026 &bull; Discovery + Pipeline + Taste Review</div>
 
+<h2>Summary</h2>
 <div class="stat-grid">
   <div class="stat-box">
-    <div class="num">4</div>
+    <div class="num">6</div>
     <div class="label">Venues Pipelined</div>
   </div>
   <div class="stat-box">
-    <div class="num">2</div>
+    <div class="num">13</div>
     <div class="label">Verified Emails</div>
   </div>
   <div class="stat-box">
-    <div class="num">3</div>
+    <div class="num">11</div>
     <div class="label">Apollo Credits Used</div>
   </div>
 </div>
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">30</div>
+    <div class="label">Venues Discovered</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">20</div>
+    <div class="label">Taste Reviews</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">1</div>
+    <div class="label">Bug Fixed</div>
+  </div>
+</div>
+
+<div class="note"><strong>Note:</strong> LinkedIn skipped on all venues &mdash; credits exhausted for April. All 6 venues marked linkedin_pending for May.</div>
+<div class="note"><strong>Bug Fix:</strong> discover.sh map_category function was missing in default mode, causing 0 venues to be added on every discovery run. Fixed.</div>
+
 <h2>Pipeline Results</h2>
-<h3>1. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-MUSE-333" style="color:#6ecfcf;text-decoration:none">Annmarie Sculpture Garden &amp; Arts Center</a> <span class="score" style="background:#6ecfcf">Untouched</span> <span class="category-pill">museum</span></h3>
-<div style="color:#999;font-size:0.9rem;margin:10px 0">No contacts found.</div>
-<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: <1 min | Apollo credits: none</div>
-<h3>2. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-MUSE-333" style="color:#6ecfcf;text-decoration:none">Annmarie Sculpture Garden &amp; Arts Center</a> <span class="score">Score: 0</span> <span class="category-pill">museum</span></h3>
+
+<h3>1. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-PRIV-328" style="color:#6ecfcf;text-decoration:none">Maryland Club</a> <span class="score">Score: 9</span> <span class="category-pill">private_club</span></h3>
+<div class="social-links"><a href="https://www.marylandclub1857.org/">Website</a> &bull; <a href="https://www.facebook.com/TheMarylandClub1857/">Facebook</a></div>
+<div style="color:#999;font-size:0.85rem;margin-bottom:10px">Historic private club in Baltimore. Website + social links were pointing to wrong venue (UMD M Club) &mdash; fixed.</div>
+<table>
+<thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">Katherine Mandaro</td><td>General Manager</td><td>krmandaro@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Corinne Hart</td><td>Dir, Membership &amp; Marketing</td><td>chart@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Milton Franklin</td><td>Food &amp; Beverage Manager</td><td>milton@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Olivia</td><td>Events</td><td>olivia@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">John Podles</td><td>Communications Manager</td><td>john@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Andrew Cordova</td><td>Racquets Director</td><td>andrew@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Michael Stetka</td><td>Executive Chef</td><td>mike@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Isauro Lopez</td><td>Fitness Director</td><td>iglopez@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Matthew Smeal</td><td>Dir of Accounts &amp; Facilities</td><td>msmeal@marylandclub1857.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 3 min | Apollo credits: 8</div>
+
+<h3>2. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-330" style="color:#6ecfcf;text-decoration:none">Sweetbay Restaurant &amp; Bar</a> <span class="category-pill">restaurant</span></h3>
+<div class="social-links">Solomons, MD</div>
+<table>
+<thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">(general)</td><td>sweetbaymaryland@gmail.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 2 min | Apollo credits: 0</div>
+
+<h3>3. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-331" style="color:#6ecfcf;text-decoration:none">Solomons Victorian Inn</a> <span class="category-pill">hotel</span></h3>
+<div class="social-links">Solomons, MD</div>
+<div style="color:#999;font-size:0.9rem;margin:10px 0">No contacts found. Small B&amp;B.</div>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 1 min | Apollo credits: 0</div>
+
+<h3>4. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-332" style="color:#6ecfcf;text-decoration:none">Historic Sotterley</a> <span class="category-pill">event</span></h3>
+<div class="social-links">Hollywood, MD</div>
+<table>
+<thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">Executive Director</td><td>execdirector@sotterley.org</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 3 min | Apollo credits: 0</div>
+
+<h3>5. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-MUSE-333" style="color:#6ecfcf;text-decoration:none">Annmarie Sculpture Garden &amp; Arts Center</a> <span class="category-pill">museum</span></h3>
 <div class="social-links"><a href="https://www.annmariegarden.org">Website</a> &bull; <a href="https://www.facebook.com/annmariearts">Facebook</a> &bull; <a href="https://www.instagram.com/annmariearts/">Instagram</a></div>
 <table>
 <thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>
@@ -169,19 +237,69 @@
 <tr><td class="contact-name">K Glascock</td><td>Gift Shop Manager</td><td>giftshop@annmariegarden.org</td><td><span class="valid">&#10003; valid</span></td></tr>
 </tbody>
 </table>
-<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 1 min | Apollo credits: 3 credits</div>
-<h3>2. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-334" style="color:#6ecfcf;text-decoration:none">The Inn at Leonardtown</a> <span class="score" style="background:#6ecfcf">Untouched</span> <span class="category-pill">hotel</span></h3>
-<div style="color:#999;font-size:0.9rem;margin:10px 0">No contacts found.</div>
-<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: <1 min | Apollo credits: none</div>
-<h3>4. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-334" style="color:#6ecfcf;text-decoration:none">The Inn at Leonardtown</a> <span class="score">Score: 0</span> <span class="category-pill">hotel</span></h3>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 1 min | Apollo credits: 3</div>
+
+<h3>6. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-334" style="color:#6ecfcf;text-decoration:none">The Inn at Leonardtown</a> <span class="category-pill">hotel</span></h3>
 <div class="social-links"><a href="https://www.choicehotels.com">Website</a> &bull; <a href="https://www.facebook.com/The-Inn-at-Leonardtown-109383024015158/">Facebook</a> &bull; <a href="https://www.instagram.com/theinnatleonardtown/">Instagram</a></div>
 <table>
 <thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td class="contact-name">md248@stayatchoice.com</td><td>md248@stayatchoice.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">(general)</td><td>md248@stayatchoice.com</td><td><span class="valid">&#10003; valid</span></td></tr>
 </tbody>
 </table>
-<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 1 min | Apollo credits: none</div>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 1 min | Apollo credits: 0</div>
+
+<h2>Discovery Results (30 new venues)</h2>
+<table>
+<thead><tr><th>Seed Gig</th><th>Venues Added</th></tr></thead>
+<tbody>
+<tr><td>1757 Golf Club</td><td>Nearby country clubs + golf venues</td></tr>
+<tr><td>Holly Hills Country Club</td><td>Similar country clubs</td></tr>
+<tr><td>Conrad Washington DC</td><td>5 DC hotels (Yours Truly, Kimpton Banneker, etc.)</td></tr>
+<tr><td>Pirouette Restaurant &amp; Wine Shop</td><td>Brass Rabbit, Screwtop Wine Bar, Green Pig Bistro</td></tr>
+<tr><td>Le Meridien Arlington</td><td>Hyatt Centric, Hilton Garden Inn, Homewood Suites + more (1 Airbnb auto-rejected)</td></tr>
+<tr><td>Dulles Town Center</td><td>5 shopping centers (low quality &mdash; mall seed produces junk)</td></tr>
+</tbody>
+</table>
+
+<h2>Taste Review (20 new venue votes)</h2>
+<p style="color:#999;margin-bottom:15px">All 20 votes were positive. 19 added to taste_venues.txt.</p>
+<table>
+<thead><tr><th>Venue</th><th>Type</th><th>Feedback</th></tr></thead>
+<tbody>
+<tr><td>La Chaumiere</td><td>restaurant, DC</td><td>"Literally perfect! Fancy French restaurant!"</td></tr>
+<tr><td>The Jefferson</td><td>hotel, DC</td><td>"Very Fancy historic hotel in dc"</td></tr>
+<tr><td>Salamander DC</td><td>hotel, DC</td><td>"Fancy hotel, always a good fit"</td></tr>
+<tr><td>Pendry DC</td><td>hotel, DC</td><td>"Luxury hotel! Good fit"</td></tr>
+<tr><td>The Tabard Inn</td><td>hotel, DC</td><td>"Historic inns are always a great match!"</td></tr>
+<tr><td>Iron Gate</td><td>restaurant, DC</td><td>"Fancy restaurant! Upscale"</td></tr>
+<tr><td>Bastille Brasserie</td><td>restaurant, Alexandria</td><td>"French restaurant always a good fit"</td></tr>
+<tr><td>Addison Ripley Fine Art</td><td>gallery, DC</td><td>"Art galleries seem like a great fit!" (NEW CATEGORY)</td></tr>
+<tr><td>wineLAIR</td><td>wine_bar, DC</td><td>"Cozy wine bar, fancy upscale people"</td></tr>
+<tr><td>Bourbon &amp; Fig</td><td>restaurant, Woodbridge</td><td>"Classy, fine dining, quiet vibe"</td></tr>
+<tr><td>Alta Strada</td><td>restaurant, Fairfax</td><td>"Upscale Italian always a good fit"</td></tr>
+<tr><td>Brx American Bistro</td><td>restaurant, Flint Hill VA</td><td>"Fancy restaurant, I can tell it would be good"</td></tr>
+<tr><td colspan="3" style="color:#666">+ 8 more (Lyle DC, Conrad DC, Lulu's Winegarden, L'Avant-Garde, 600 T, Vandiver Inn, Wildset Hotel, Mt Vernon CC)</td></tr>
+</tbody>
+</table>
+
+<h2>Key Patterns Updated</h2>
+<ul style="margin:10px 0 0 20px;color:#ccc">
+<li><strong style="color:#6ecfcf">French/European restaurants = GOLD</strong> &mdash; strongest category signal</li>
+<li><strong style="color:#6ecfcf">DC luxury hotels</strong> &mdash; 5 positives in one batch, major hunting ground</li>
+<li><strong style="color:#6ecfcf">Art galleries = NEW category</strong> &mdash; add to discovery searches</li>
+<li><strong style="color:#6ecfcf">"Cozy" + "quiet"</strong> joining "historic" as top venue keywords</li>
+<li><strong style="color:#6ecfcf">Wine bars confirmed</strong> in DC</li>
+<li><strong style="color:#6ecfcf">Italian fine dining confirmed</strong> alongside French/European</li>
+</ul>
+
+<h2>Next Run</h2>
+<ul style="margin:10px 0 0 20px;color:#ccc">
+<li>Re-run LinkedIn on all 6 venues when credits refresh (May 2026)</li>
+<li>Continue discovery (~16 undiscovered past gig seeds remaining)</li>
+<li>Add art gallery searches to taste discovery queries</li>
+<li>Clean up Dulles Town Center junk venues (shopping centers)</li>
+</ul>
 
 </body>
 </html>

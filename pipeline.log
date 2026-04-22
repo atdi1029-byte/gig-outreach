@@ -7975,3 +7975,440 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 20:19:13 ============================================================
 20:19:13  DONE: Maryland Club | 3 min | 20:19:13
 20:19:13 ============================================================
+
+20:28:27 === Pipeline started 2026-04-21 20:28:27 ===
+20:28:27 UNTOUCHED PHASE: Fetching all venues...
+20:28:30 UNTOUCHED: 267 found (shared budget: 5 total)
+20:28:31 
+20:28:31 ########## UNTOUCHED #1: Sweetbay Restaurant & Bar (MD-REST-330) ##########
+20:28:33 
+20:28:33 ============================================================
+20:28:33  PIPELINE: Sweetbay Restaurant & Bar (MD-REST-330)
+20:28:33  Website: https://sweetbayrestaurant.com
+20:28:33  Started: 2026-04-21 20:28:33
+20:28:33 ============================================================
+20:28:33   [ZB] Credits remaining: 4066
+20:28:37   Known emails: 0
+20:28:37   Known names: 0
+20:28:37 
+20:28:37 ========== STEP 1: Website Scrape ==========
+20:28:37   URL: https://sweetbayrestaurant.com
+20:28:37   Opening in Chrome: https://sweetbayrestaurant.com
+20:28:43   [WARN] Chrome scrape returned empty — trying with longer wait
+20:28:48   [ERROR] Chrome scrape failed. Skipping website.
+20:28:51 
+20:28:51 ========== STEP 1B: Instagram Google Search ==========
+20:28:51   No Instagram found on website — Googling...
+20:28:55   [IG SEARCH] No Instagram found via Google
+20:28:59 
+20:28:59 ========== STEP 1C: Facebook Google Search ==========
+20:28:59   No Facebook found on website — Googling...
+20:29:03   [FB SEARCH] No Facebook found via Google
+20:29:03 
+20:29:03 ========== STEP 2: Social Media Scrape ==========
+20:29:06   FB: none | IG: none
+20:29:06   [APOLLO] Credits used this run: 0 / 300
+20:29:06 
+20:29:06 ========== STEP 3: Apollo API ==========
+20:29:06   Searching Apollo for company: Sweetbay Restaurant & Bar
+20:29:07   Found: Sweetbay Restaurant (domain: sweetbayrestaurant.com, org_id: 66f7fd44d3435c0001bf20bf)
+20:29:07   Searching for people at Sweetbay Restaurant (org_id: 66f7fd44d3435c0001bf20bf)...
+20:29:07   Found 1 people total
+20:29:07   Skipped 1 people with no email (red ? on Apollo)
+20:29:07   No new people to enrich.
+20:29:07 
+20:29:07 ========== STEP 4: LinkedIn + Apollo API ==========
+20:29:08   Using domain: sweetbayrestaurant.com
+20:29:09   LinkedIn page 1...
+
+20:29:29 === Pipeline started 2026-04-21 20:29:29 ===
+20:29:29 UNTOUCHED PHASE: Fetching all venues...
+20:29:32 UNTOUCHED: 267 found (shared budget: 5 total)
+20:29:33 
+20:29:33 ########## UNTOUCHED #1: Sweetbay Restaurant & Bar (MD-REST-330) ##########
+20:29:36 
+20:29:36 ============================================================
+20:29:36  PIPELINE: Sweetbay Restaurant & Bar (MD-REST-330)
+20:29:36  Website: https://sweetbayrestaurant.com
+20:29:36  Started: 2026-04-21 20:29:36
+20:29:36 ============================================================
+20:29:36   [ZB] Credits remaining: 4066
+20:29:40   Known emails: 0
+20:29:40   Known names: 0
+20:29:40 
+20:29:40 ========== STEP 1: Website Scrape ==========
+20:29:40   URL: https://sweetbayrestaurant.com
+20:29:40   Opening in Chrome: https://sweetbayrestaurant.com
+20:29:47   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+20:29:59   Validating contact form URL: https://sweetbayrestaurant.com/contact-us
+20:30:03   ✗ No submittable form found — clearing contact_form
+20:30:03   Emails: 0 | FB: none | IG: none | Contact Form: none
+20:30:03   [LOCATION] Checking for location-specific page (city: Leonardtown)...
+20:30:07   [LOCATION] No location-specific page found
+20:30:07   Crawling subpage (1/20): https://sweetbayrestaurant.com/brunch
+20:30:11   Crawling subpage (2/20): https://sweetbayrestaurant.com/dinner
+20:30:16   Crawling subpage (3/20): https://sweetbayrestaurant.com/lunch
+20:30:20   Crawling subpage (4/20): https://sweetbayrestaurant.com/menus/signature-cocktails
+20:30:24   Crawling subpage (5/20): https://sweetbayrestaurant.com/about-us
+20:30:28   Crawling subpage (6/20): https://sweetbayrestaurant.com/the-restaurant
+20:30:33   Crawling subpage (7/20): https://sweetbayrestaurant.com/contact-us
+20:30:41 
+20:30:41 ========== STEP 1B: Instagram Google Search ==========
+20:30:41   No Instagram found on website — Googling...
+20:30:45   [IG SEARCH] Found: https://www.instagram.com/sweetbaymd/
+20:30:47   ✓ Instagram URL saved
+20:30:51 
+20:30:51 ========== STEP 1C: Facebook Google Search ==========
+20:30:51   No Facebook found on website — Googling...
+20:30:55   [FB SEARCH] Found: https://www.facebook.com/SweetbayMD/
+20:30:58   ✓ Facebook URL saved
+20:30:58 
+20:30:58 ========== STEP 2: Social Media Scrape ==========
+20:31:02   FB: https://www.facebook.com/SweetbayMD/ | IG: https://www.instagram.com/sweetbaymd/
+20:31:02   Opening FB: https://www.facebook.com/SweetbayMD
+20:31:07   FB emails found: sweetbaymaryland@gmail.com
+20:31:07   Opening FB: https://www.facebook.com/SweetbayMD/about
+20:31:12   Opening FB: https://www.facebook.com/SweetbayMD/directory_contact_info
+20:31:17   FB emails found: sweetbaymaryland@gmail.com
+20:31:17   Opening IG: https://www.instagram.com/sweetbaymd/
+20:31:24   sweetbaymaryland@gmail.com → valid
+20:31:27   ✓ Added: sweetbaymaryland@gmail.com <sweetbaymaryland@gmail.com>
+20:31:28   [APOLLO] Credits used this run: 0 / 300
+20:31:28 
+20:31:28 ========== STEP 3: Apollo API ==========
+20:31:28   Searching Apollo for company: Sweetbay Restaurant & Bar
+20:31:30   Found: Sweetbay Restaurant (domain: sweetbayrestaurant.com, org_id: 66f7fd44d3435c0001bf20bf)
+20:31:30   Searching for people at Sweetbay Restaurant (org_id: 66f7fd44d3435c0001bf20bf)...
+20:31:30   Found 1 people total
+20:31:30   Skipped 1 people with no email (red ? on Apollo)
+20:31:30   No new people to enrich.
+20:31:30 
+20:31:30 ========== STEP 4: LinkedIn + Apollo API ==========
+20:31:30   Using domain: sweetbayrestaurant.com
+20:31:31   LinkedIn page 1...
+20:31:38   Found 3 results
+20:31:39   Found: Susan Dyer
+20:31:39   Found: John(Jack) Fleury
+20:31:43   LinkedIn page 2...
+20:31:50   Found 3 results
+20:31:50   Found: Brynn Lynn
+20:31:53   LinkedIn page 3...
+20:31:58   Found 3 results
+20:31:58   Found: Grant Budnik
+20:31:58 
+20:31:58   LinkedIn found 4 new people. Enriching via Apollo API...
+20:31:58   LinkedIn + Apollo API done. Credits used: 0
+20:32:01   Setting status → pipelined
+20:32:04 
+20:32:04 ============================================================
+20:32:04  DONE: Sweetbay Restaurant & Bar | 2 min | 20:32:04
+20:32:04 ============================================================
+20:32:34 
+20:32:34 ########## UNTOUCHED #2: Solomons Victorian Inn (MD-HOTE-331) ##########
+20:32:37 
+20:32:37 ============================================================
+20:32:37  PIPELINE: Solomons Victorian Inn (MD-HOTE-331)
+20:32:37  Website: https://solomonsvictorianinn.com
+20:32:37  Started: 2026-04-21 20:32:37
+20:32:37 ============================================================
+20:32:37   [ZB] Credits remaining: 4065
+20:32:43   Known emails: 0
+20:32:43   Known names: 0
+20:32:43 
+20:32:43 ========== STEP 1: Website Scrape ==========
+20:32:43   URL: https://solomonsvictorianinn.com
+20:32:43   Opening in Chrome: https://solomonsvictorianinn.com
+20:32:49   Emails: 1 | FB: none | IG: none | Contact Form: none
+20:32:49   Crawling subpage (1/20): https://solomonsvictorianinn.com/blog
+20:32:54   Found on subpage: info@solomonsvictorianinn.com
+20:32:54   Crawling subpage (2/20): https://solomonsvictorianinn.com/site-map
+20:32:58   Found on subpage: info@solomonsvictorianinn.com
+20:32:58   Crawling subpage (3/20): https://solomonsvictorianinn.com/photo-gallery
+20:33:02   Found on subpage: info@solomonsvictorianinn.com
+20:33:02   Crawling subpage (4/20): https://solomonsvictorianinn.com/rooms
+20:33:07   Same emails 3 pages in a row — stopping subpage crawl
+20:33:07   info@solomonsvictorianinn.com → do_not_mail
+20:33:10 
+20:33:10 ========== STEP 1B: Instagram Google Search ==========
+20:33:10   No Instagram found on website — Googling...
+20:33:15   [IG SEARCH] Found: https://www.instagram.com/solomonsvictorianinn/
+20:33:18   ✓ Instagram URL saved
+20:33:21 
+20:33:21 ========== STEP 1C: Facebook Google Search ==========
+20:33:21   No Facebook found on website — Googling...
+20:33:25   [FB SEARCH] Found: https://www.facebook.com/SolomonsVictorianinn/
+20:33:28   ✓ Facebook URL saved
+20:33:28 
+20:33:28 ========== STEP 2: Social Media Scrape ==========
+20:33:31   FB: https://www.facebook.com/SolomonsVictorianinn/ | IG: https://www.instagram.com/solomonsvictorianinn/
+20:33:31   Opening FB: https://www.facebook.com/SolomonsVictorianinn
+20:33:36   Opening FB: https://www.facebook.com/SolomonsVictorianinn/about
+20:33:42   Opening FB: https://www.facebook.com/SolomonsVictorianinn/directory_contact_info
+20:33:47   FB emails found: info@solomonsvictorianinn.com
+20:33:47   Opening IG: https://www.instagram.com/solomonsvictorianinn/
+20:33:52   info@solomonsvictorianinn.com → do_not_mail
+20:33:53   [APOLLO] Credits used this run: 0 / 300
+20:33:53 
+20:33:53 ========== STEP 3: Apollo API ==========
+20:33:53   Searching Apollo for company: Solomons Victorian Inn
+20:33:54   Found: Solomons Victorian Inn (domain: solomonsvictorianinn.com, org_id: 674d8bb10e9f1c00012cdf92)
+20:33:54   Searching for people at Solomons Victorian Inn (org_id: 674d8bb10e9f1c00012cdf92)...
+20:33:55   Found 0 people total
+20:33:55   No people in Apollo for this company.
+20:33:55 
+20:33:55 ========== STEP 4: LinkedIn + Apollo API ==========
+20:33:55   Using domain: solomonsvictorianinn.com
+20:33:57   LinkedIn page 1...
+20:34:03   Found 3 results
+20:34:03   No new venue employees on this page.
+20:34:08   LinkedIn page 2...
+20:34:24   No results on page 2 — stopping.
+20:34:24   No new people found on LinkedIn.
+20:34:28   Setting status → pipelined
+20:34:30 
+20:34:30 ============================================================
+20:34:30  DONE: Solomons Victorian Inn | 1 min | 20:34:30
+20:34:30 ============================================================
+20:35:00 
+20:35:00 ########## UNTOUCHED #3: Historic Sotterley (MD-EVEN-332) ##########
+20:35:02 
+20:35:02 ============================================================
+20:35:02  PIPELINE: Historic Sotterley (MD-EVEN-332)
+20:35:02  Website: https://sotterley.org
+20:35:02  Started: 2026-04-21 20:35:02
+20:35:02 ============================================================
+20:35:03   [ZB] Credits remaining: 4064
+20:35:06   Known emails: 0
+20:35:06   Known names: 0
+20:35:06 
+20:35:06 ========== STEP 1: Website Scrape ==========
+20:35:06   URL: https://sotterley.org
+20:35:06   Opening in Chrome: https://sotterley.org
+20:35:13   Validating contact form URL: https://sotterley.org/contact
+20:35:17   ✓ Real contact form confirmed
+20:35:17   Emails: 0 | FB: https://www.facebook.com/historic.sotterley | IG: https://www.instagram.com/historicsotterley/ | Contact Form: https://sotterley.org/contact
+20:35:17   [LOCATION] Checking for location-specific page (city: Hollywood)...
+20:35:21   [LOCATION] No location-specific page found
+20:35:21   Crawling subpage (1/20): https://sotterley.org/visitus
+20:35:26   Found on subpage: officemanager@sotterley.org
+20:35:26   Crawling subpage (2/20): https://sotterley.org/visiting-with-kids
+20:35:30   Crawling subpage (3/20): https://sotterley.org/accessibility-facilities
+20:35:34   Found on subpage: officemanager@sotterley.org
+20:35:34   Crawling subpage (4/20): https://sotterley.org/about
+20:35:39   Found on subpage: officemanager@sotterley.org
+20:35:39   Crawling subpage (5/20): https://sotterley.org/impact
+20:35:43   Crawling subpage (6/20): https://sotterley.org/our-history
+20:35:47   Crawling subpage (7/20): https://sotterley.org/education
+20:35:51   Found on subpage: edteam@sotterley.org
+20:35:52   Crawling subpage (8/20): https://sotterley.org/preservation
+20:35:56   Crawling subpage (9/20): https://sotterley.org/descendants
+20:36:00   Crawling subpage (10/20): https://sotterley.org/common-ground
+20:36:04   Crawling subpage (11/20): https://sotterley.org/growing-for-good
+20:36:09   Crawling subpage (12/20): https://sotterley.org/garden-guild
+20:36:13   Crawling subpage (13/20): https://sotterley.org/events
+20:36:17   Crawling subpage (14/20): https://sotterley.org/somd-heritage
+20:36:21   Crawling subpage (15/20): https://sotterley.org/day-of-unity-and-healing
+20:36:26   Crawling subpage (16/20): https://sotterley.org/sunset-at-sotterley
+20:36:30   Crawling subpage (17/20): https://sotterley.org/support
+20:36:34   Found on subpage: edteam@sotterley.org
+20:36:34   Crawling subpage (18/20): https://sotterley.org/membership
+20:36:39   Crawling subpage (19/20): https://sotterley.org/corporate-support
+20:36:43   Found on subpage: execdirector@sotterley.org
+20:36:43   Crawling subpage (20/20): https://sotterley.org/volunteer
+20:36:47   Subpage cap (20) reached — stopping
+20:36:54   ✓ Contact form URL saved
+20:36:58   edteam@sotterley.org → catch-all
+20:37:01   ⚠ Added (catch-all): edteam@sotterley.org <edteam@sotterley.org>
+20:37:04   execdirector@sotterley.org → valid
+20:37:06   ✓ Added: execdirector@sotterley.org <execdirector@sotterley.org>
+20:37:08   officemanager@sotterley.org → do_not_mail
+20:37:14 
+20:37:14 ========== STEP 2: Social Media Scrape ==========
+20:37:17   FB: https://www.facebook.com/historic.sotterley | IG: https://www.instagram.com/historicsotterley/
+20:37:17   Opening FB: https://www.facebook.com/historic.sotterley
+20:37:22   FB emails found: marketing@sotterley.org
+20:37:22   Opening FB: https://www.facebook.com/historic.sotterley/about
+20:37:28   FB emails found: marketing@sotterley.org
+20:37:28   Opening FB: https://www.facebook.com/historic.sotterley/directory_contact_info
+20:37:33   Opening IG: https://www.instagram.com/historicsotterley/
+20:37:39   marketing@sotterley.org → do_not_mail
+20:37:40   [APOLLO] Credits used this run: 0 / 300
+20:37:40 
+20:37:40 ========== STEP 3: Apollo API ==========
+20:37:40   Searching Apollo for company: Historic Sotterley
+20:37:41   Found: Historic Sotterley (domain: sotterley.org, org_id: 628d04f4c9117300a5b9043a)
+20:37:41   Searching for people at Historic Sotterley (org_id: 628d04f4c9117300a5b9043a)...
+20:37:42   Found 4 people total
+20:37:42   Skipped 4 people with no email (red ? on Apollo)
+20:37:42   No new people to enrich.
+20:37:42 
+20:37:42 ========== STEP 4: LinkedIn + Apollo API ==========
+20:37:42   Using domain: sotterley.org
+20:37:44   LinkedIn page 1...
+20:37:51   Found 3 results
+20:37:51   No new venue employees on this page.
+20:37:54   LinkedIn page 2...
+20:37:59   Found 3 results
+20:38:00   No new venue employees on this page.
+20:38:05   LinkedIn page 3...
+20:38:13   Found 3 results
+20:38:13   No new venue employees on this page.
+20:38:13   No new people found on LinkedIn.
+20:38:15   Setting status → pipelined
+20:38:18 
+20:38:18 ============================================================
+20:38:18  DONE: Historic Sotterley | 3 min | 20:38:18
+20:38:18 ============================================================
+20:38:48 
+20:38:48 ########## UNTOUCHED #4: Annmarie Sculpture Garden & Arts Center (MD-MUSE-333) ##########
+20:38:51 
+20:38:51 ============================================================
+20:38:51  PIPELINE: Annmarie Sculpture Garden & Arts Center (MD-MUSE-333)
+20:38:51  Website: https://www.annmariegarden.org
+20:38:51  Started: 2026-04-21 20:38:51
+20:38:51 ============================================================
+20:38:51   [ZB] Credits remaining: 4060
+20:38:53   Known emails: 0
+20:38:53   Known names: 0
+20:38:53 
+20:38:53 ========== STEP 1: Website Scrape ==========
+20:38:53   URL: https://www.annmariegarden.org
+20:38:53   Opening in Chrome: https://www.annmariegarden.org
+20:39:00   Emails: 1 | FB: https://www.facebook.com/annmariearts | IG: https://www.instagram.com/annmariearts/ | Contact Form: none
+20:39:00   Crawling subpage (1/20): https://www.annmariegarden.org/annmarie2/musical-moments
+20:39:04   Found on subpage: info@annmariegarden.org
+20:39:04   Crawling subpage (2/20): https://www.annmariegarden.org/annmarie2/content/snap-artsfest-tickets
+20:39:08   Crawling subpage (3/20): https://www.annmariegarden.org/annmarie2/content/mlk-days-3-day-community-art-event-0
+20:39:13   Found on subpage: donor@annmariegarden.org
+20:39:13   Crawling subpage (4/20): https://www.annmariegarden.org/annmarie2/content/closed-event-clean-7
+20:39:22   donor@annmariegarden.org → do_not_mail
+20:39:23   info@annmariegarden.org → do_not_mail
+20:39:35 
+20:39:35 ========== STEP 2: Social Media Scrape ==========
+20:39:39   FB: https://www.facebook.com/annmariearts | IG: https://www.instagram.com/annmariearts/
+20:39:39   Opening FB: https://www.facebook.com/annmariearts
+20:39:44   FB emails found: info@annmariegarden.org
+20:39:44   Opening FB: https://www.facebook.com/annmariearts/about
+20:39:49   Opening FB: https://www.facebook.com/annmariearts/directory_contact_info
+20:39:54   FB emails found: info@annmariegarden.org
+20:39:54   Opening IG: https://www.instagram.com/annmariearts/
+
+20:40:48 === Pipeline started 2026-04-21 20:40:48 ===
+20:40:48 UNTOUCHED PHASE: Fetching all venues...
+20:40:53 UNTOUCHED: 264 found (shared budget: 2 total)
+20:40:53 
+20:40:53 ########## UNTOUCHED #1: Annmarie Sculpture Garden & Arts Center (MD-MUSE-333) ##########
+20:40:55 
+20:40:55 ============================================================
+20:40:55  PIPELINE: Annmarie Sculpture Garden & Arts Center (MD-MUSE-333)
+20:40:55  Website: https://www.annmariegarden.org
+20:40:55  Started: 2026-04-21 20:40:55
+20:40:55 ============================================================
+20:40:55   [ZB] Credits remaining: 4058
+20:40:59   Known emails: 0
+20:40:59   Known names: 0
+20:40:59 
+20:40:59 ========== STEP 1: Website Scrape ==========
+20:40:59   URL: https://www.annmariegarden.org
+20:40:59   Opening in Chrome: https://www.annmariegarden.org
+20:41:05   Emails: 1 | FB: https://www.facebook.com/annmariearts | IG: https://www.instagram.com/annmariearts/ | Contact Form: none
+20:41:05   Crawling subpage (1/20): https://www.annmariegarden.org/annmarie2/musical-moments
+20:41:10   Crawling subpage (2/20): https://www.annmariegarden.org/annmarie2/content/snap-artsfest-tickets
+20:41:14   Crawling subpage (3/20): https://www.annmariegarden.org/annmarie2/content/mlk-days-3-day-community-art-event-0
+20:41:18   Found on subpage: donor@annmariegarden.org
+20:41:18   Crawling subpage (4/20): https://www.annmariegarden.org/annmarie2/content/closed-event-clean-7
+20:41:28   donor@annmariegarden.org → do_not_mail
+20:41:29   info@annmariegarden.org → do_not_mail
+20:41:35 
+20:41:35 ========== STEP 2: Social Media Scrape ==========
+20:41:39   FB: https://www.facebook.com/annmariearts | IG: https://www.instagram.com/annmariearts/
+20:41:39   Opening FB: https://www.facebook.com/annmariearts
+20:41:45   FB emails found: info@annmariegarden.org
+20:41:45   Opening FB: https://www.facebook.com/annmariearts/about
+20:41:50   Opening FB: https://www.facebook.com/annmariearts/directory_contact_info
+20:41:55   FB emails found: info@annmariegarden.org
+20:41:55   Opening IG: https://www.instagram.com/annmariearts/
+20:42:00   info@annmariegarden.org → do_not_mail
+20:42:01   [APOLLO] Credits used this run: 0 / 300
+20:42:01 
+20:42:01 ========== STEP 3: Apollo API ==========
+20:42:01   Searching Apollo for company: Annmarie Sculpture Garden & Arts Center
+20:42:03   Found: Annmarie Sculpture Garden & Arts Center (domain: annmariegarden.org, org_id: 5da3b475663329000175f2d6)
+20:42:03   Searching for people at Annmarie Sculpture Garden & Arts Center (org_id: 5da3b475663329000175f2d6)...
+20:42:03   Found 16 people total
+20:42:03   Skipped 12 people with no email (red ? on Apollo)
+20:42:03   Skipped 1 people with irrelevant titles (housekeeping, IT, security, etc.)
+20:42:03   3 people to enrich (1 credit each)
+20:42:04   >>> Jane Bachman (Development Director): donor@annmariegarden.org [verified]
+20:42:04   donor@annmariegarden.org → do_not_mail
+20:42:05   >>> Stacey Hann-Ruff (Executive Director): donor@annmariegarden.org [verified]
+20:42:05   donor@annmariegarden.org → do_not_mail
+20:42:06   >>> K Glascock (Gift Shop Manager): giftshop@annmariegarden.org [verified]
+20:42:07   giftshop@annmariegarden.org → valid
+20:42:10   ✓ Added: K Glascock <giftshop@annmariegarden.org>
+20:42:11   Apollo API done: 3 credits used this run
+20:42:11 
+20:42:11 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+20:42:14   Marked linkedin_pending=true
+20:42:14   Setting status → pipelined
+20:42:17 
+20:42:17 ============================================================
+20:42:17  DONE: Annmarie Sculpture Garden & Arts Center | 1 min | 20:42:17
+20:42:17 ============================================================
+20:42:47 
+20:42:47 ########## UNTOUCHED #2: The Inn at Leonardtown (MD-HOTE-334) ##########
+20:42:50 
+20:42:50 ============================================================
+20:42:50  PIPELINE: The Inn at Leonardtown (MD-HOTE-334)
+20:42:50  Website: https://www.choicehotels.com
+20:42:50  Started: 2026-04-21 20:42:50
+20:42:50 ============================================================
+20:42:50   [ZB] Credits remaining: 4057
+20:42:53   Known emails: 0
+20:42:53   Known names: 0
+20:42:53 
+20:42:53 ========== STEP 1: Website Scrape ==========
+20:42:53   [SKIP] Corporate hotel domain (choicehotels.com) — skipping website crawl
+20:42:56 
+20:42:56 ========== STEP 1B: Instagram Google Search ==========
+20:42:56   No Instagram found on website — Googling...
+20:43:00   [IG SEARCH] Found: https://www.instagram.com/theinnatleonardtown/
+20:43:02   ✓ Instagram URL saved
+20:43:06 
+20:43:06 ========== STEP 1C: Facebook Google Search ==========
+20:43:06   No Facebook found on website — Googling...
+20:43:10   [FB SEARCH] Found: https://www.facebook.com/The-Inn-at-Leonardtown-109383024015158/
+20:43:12   ✓ Facebook URL saved
+20:43:12 
+20:43:12 ========== STEP 2: Social Media Scrape ==========
+20:43:16   FB: https://www.facebook.com/The-Inn-at-Leonardtown-109383024015158/ | IG: https://www.instagram.com/theinnatleonardtown/
+20:43:16   Opening FB: https://www.facebook.com/The-Inn-at-Leonardtown-109383024015158
+20:43:21   FB emails found: md248@stayatchoice.com
+20:43:21   Opening FB: https://www.facebook.com/The-Inn-at-Leonardtown-109383024015158/about
+20:43:26   Opening FB: https://www.facebook.com/The-Inn-at-Leonardtown-109383024015158/directory_contact_info
+20:43:31   FB emails found: md248@stayatchoice.com
+20:43:31   Opening IG: https://www.instagram.com/theinnatleonardtown/
+20:43:37   md248@stayatchoice.com → valid
+20:43:40   ✓ Added: md248@stayatchoice.com <md248@stayatchoice.com>
+20:43:41   [APOLLO] Credits used this run: 3 / 300
+20:43:41 
+20:43:41 ========== STEP 3: Apollo API ==========
+20:43:41   Searching Apollo for company: The Inn at Leonardtown
+20:43:44   [WARN] No company found in Apollo for 'The Inn at Leonardtown' (tried name + domain)
+20:43:44   Using website domain for enrichment: choicehotels.com
+20:43:44 
+20:43:44 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+20:43:46   Marked linkedin_pending=true
+20:43:46   Setting status → pipelined
+20:43:48 
+20:43:48 ============================================================
+20:43:48  DONE: The Inn at Leonardtown | 1 min | 20:43:48
+20:43:48 ============================================================
+20:44:18 [BUDGET] Shared limit of 2 reached — stopping untouched phase
+20:44:18 === UNTOUCHED PHASE COMPLETE ===
+20:44:18 
+20:44:18 SMART PICKS: Skipping — shared budget of 2 already reached (2 processed)
+20:44:18 === SMART PICKS COMPLETE ===
+20:44:18 
+20:44:18 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-21_20-44.html
+20:44:18 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-21_20-44.html

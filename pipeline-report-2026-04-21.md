@@ -6,8 +6,8 @@
 |--------|-------|
 | **Discovery: new venues found** | 30 |
 | **Discovery: seed gigs used** | 6 |
-| **Pipeline: venues processed** | 1 (Maryland Club) |
-| **Apollo credits consumed** | 8 |
+| **Pipeline: venues processed** | 6 |
+| **Apollo credits consumed** | 11 |
 | **ZeroBounce credits remaining** | 4,076 |
 | **LinkedIn credits** | EXHAUSTED for the month |
 | **Taste reviews processed** | 20 new votes |
@@ -87,6 +87,32 @@
 - **Wine bars confirmed** in DC
 - **Italian fine dining confirmed** alongside French/European
 
+## Additional Pipeline Results (5 more venues)
+
+### Sweetbay Restaurant & Bar (MD-REST-330) — Solomons, MD
+- 1 contact: sweetbaymaryland@gmail.com (website)
+- LinkedIn: pending (credits exhausted)
+
+### Solomons Victorian Inn (MD-HOTE-331) — Solomons, MD
+- No named contacts found (small B&B)
+- LinkedIn: pending
+
+### Historic Sotterley (MD-EVEN-332) — Hollywood, MD
+- 1 contact: execdirector@sotterley.org (valid)
+- LinkedIn: pending
+
+### Annmarie Sculpture Garden & Arts Center (MD-MUSE-333) — Solomons, MD
+- 1 contact: K Glascock (Gift Shop Manager) — giftshop@annmariegarden.org
+- info@ and donor@ both do_not_mail
+- LinkedIn: pending
+
+### The Inn at Leonardtown (MD-HOTE-334) — Leonardtown, MD
+- 1 contact: md248@stayatchoice.com (from Facebook)
+- Corporate hotel (Choice Hotels) — Apollo had no results
+- LinkedIn: pending
+
+**Total this run: 6 venues pipelined, 13 valid contacts found**
+
 ## Files Changed
 - `discover.sh` — map_category bug fix
 - `discovered_gigs.txt` — 6 new seeds marked
@@ -95,8 +121,7 @@
 - `discover.log`, `pipeline.log` — session logs
 
 ## Next Run TODO
-- [ ] Re-run LinkedIn on Maryland Club when credits refresh
-- [ ] Run pipeline on remaining 5 smart picks (was MAX_SP=6, only 1 done)
+- [ ] Re-run LinkedIn on all 6 venues when credits refresh (May 2026)
 - [ ] Continue discovery (still ~16 undiscovered past gig seeds)
 - [ ] Add art gallery searches to taste discovery queries
 - [ ] Clean up Dulles Town Center junk venues (shopping centers)

@@ -2263,8 +2263,8 @@ else: print('')
     else
         step3_apollo_api "$venue" "$venue_id" "$website"
     fi
-    # LinkedIn quota resets in April 2026 — skip until then
-    if [ "$(date +%Y%m)" -ge 202604 ] 2>/dev/null; then
+    # LinkedIn — skip if SKIP_LINKEDIN=1 or credits exhausted (resets May 2026)
+    if [ "${SKIP_LINKEDIN:-0}" != "1" ] && [ "$(date +%Y%m)" -ge 202605 ] 2>/dev/null; then
         step4_linkedin "$venue" "$venue_id"
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
     else

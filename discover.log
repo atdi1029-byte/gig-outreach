@@ -1848,3 +1848,271 @@
 [22:42:34]   Distances calculated: 1
 [22:42:34] 
 [22:42:34] === Discovery Complete — Total new venues: 15 ===
+
+[19:52:07] === Venue Discovery Started ===
+[19:52:07] Fetching past gigs...
+[19:52:10] Found 69 past gigs
+[19:52:10] Fetching existing venues for dedup...
+[19:52:12] Existing venues: 400
+[19:52:12]   SKIP (already discovered): L'Auberge Chez Francois
+[19:52:12]   SKIP (already discovered): The Inn at Perry Cabin
+[19:52:12]   SKIP (already discovered): The Maryland Club
+[19:52:12]   SKIP (already discovered): Black Ankle Vineyards
+[19:52:12]   SKIP (already discovered): Royal Restaurant
+[19:52:12]   SKIP (already discovered): Good Spirit Farm Winery
+[19:52:12]   SKIP (already discovered): Chesapeake Manor Vineyard
+[19:52:12]   SKIP (already discovered): Elkridge Furnace Inn
+[19:52:12]   SKIP (already discovered): Xella Winery and Vineyard
+[19:52:12]   SKIP (already discovered): Twin Oaks Tavern Winery
+[19:52:12]   SKIP (already discovered): Windridge Vineyards
+[19:52:12]   SKIP (already discovered): University Club
+[19:52:12]   SKIP (already discovered): The Farmhouse Tuscan
+[19:52:12]   SKIP (already discovered): Big Cork Vineyards
+[19:52:12]   SKIP (already discovered): Savage Mill Mall
+[19:52:12]   SKIP (already discovered): Trueman Vineyards
+[19:52:13]   SKIP (already discovered): Williams Gap Vineyard
+[19:52:13]   SKIP (already discovered): Hello Betty Bethesda
+[19:52:13]   SKIP (already discovered): The Madison Hotel
+[19:52:13]   SKIP (already discovered): Belle Haven Country Club
+[19:52:13]   SKIP (already discovered): Casanel Vineyards & Winery
+[19:52:13]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[19:52:13]   SKIP (already discovered): Corteau Winery
+[19:52:13]   SKIP (already discovered): Penn Oaks Winery
+[19:52:13]   SKIP (already discovered): Pizza Pomodoro
+[19:52:13]   SKIP (already discovered): Hidden Brook Winery
+[19:52:13]   SKIP (already discovered): Simple Theory Wine Co
+[19:52:13]   SKIP (already discovered): Brightview Perry Hall
+[19:52:13]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[19:52:13]   SKIP (already discovered): Gaylord National Harbor
+[19:52:13]   SKIP (already discovered): Woodberry Kitchen
+[19:52:13]   SKIP (already discovered): Great Sage
+[19:52:13]   SKIP (already discovered): Cosmos Club DC
+[19:52:13]   SKIP (already discovered): Doukénie Winery
+[19:52:13]   SKIP (already discovered): State Plaza Hotel DC
+[19:52:13]   SKIP (already discovered): Hyatt Cambridge
+[19:52:13]   SKIP (already discovered): Greenhill Vineyards
+[19:52:13]   SKIP (already discovered): Loudoun Golf & Country Club
+[19:52:13]   SKIP (already discovered): Creek's Edge Winery
+[19:52:13]   SKIP (already discovered): The Milton Inn
+[19:52:13]   SKIP (already discovered): Country Club of Fairfax
+[19:52:13]   SKIP (already discovered): Century Club Hagerstown
+[19:52:13]   SKIP (already discovered): Rock Spring Farm
+[19:52:13]   SKIP (already discovered): Janemark Winery & Vineyard
+[19:52:13]   SKIP (already discovered): Alma Cocina Latina
+[19:52:13]   SKIP (already discovered): Omni Shoreham Hotel
+[19:52:13]   SKIP (already discovered): Knoxie's Table
+[19:52:13] 
+[19:52:13] === Discovering from: 1757 Golf Club ===
+[19:52:20]   Scrolling to find recommendations...
+[19:52:25]   Extracting cards...
+[19:52:25]   Found 5 'People also search for' results
+[19:52:25]   Found 5 total recommendations
+[19:52:25]   Added  new venues from 1757 Golf Club
+[19:52:28] 
+[19:52:28] === Discovering from: Holly Hills Country Club ===
+[19:52:33]   Scrolling to find recommendations...
+[19:52:38]   Extracting cards...
+[19:52:38]   Found 5 'People also search for' results
+[19:52:39]   Found 5 total recommendations
+[19:52:39]   Added  new venues from Holly Hills Country Club
+[19:52:43] 
+[19:52:43] === Discovering from: Conrad Washington DC ===
+[19:52:50]   Scrolling to find recommendations...
+[19:52:55]   Extracting cards...
+[19:52:55]   No 'People also search for' found
+[19:52:55]   Clicked 'View more' — loading expanded list...
+[19:53:01]   Expanded list: found 6 venues
+[19:53:05]   Found 21 total recommendations
+[19:53:05]   Added  new venues from Conrad Washington DC
+[19:53:08] 
+[19:53:08] === Discovering from: Pirouette Restaurant & Wine Shop ===
+[19:53:15]   Scrolling to find recommendations...
+[19:53:20]   Extracting cards...
+[19:53:20]   Found 4 'People also search for' results
+[19:53:20]   Found 4 total recommendations
+[19:53:20]   Added  new venues from Pirouette Restaurant & Wine Shop
+[19:53:25] 
+[19:53:25] === Discovering from: Le Méridien Arlington ===
+[19:53:32]   Scrolling to find recommendations...
+[19:53:37]   Extracting cards...
+[19:53:37]   No 'People also search for' found
+[19:53:37]   Clicked 'View more' — loading expanded list...
+[19:53:43]   Expanded list: found 6 venues
+[19:53:46]   Found 16 total recommendations
+[19:53:46]   Added  new venues from Le Méridien Arlington
+[19:53:49] 
+[19:53:49] === Discovering from: Dulles Town Center ===
+[19:53:54]   Scrolling to find recommendations...
+[19:54:00]   Extracting cards...
+[19:54:00]   Found 5 'People also search for' results
+[19:54:00]   Found 5 total recommendations
+[19:54:01]   Added  new venues from Dulles Town Center
+[19:54:04]   MAX_GIGS=6 reached — stopping.
+[19:54:04] Cleaning up discovered_gigs.txt...
+[19:54:09] 
+[19:54:09] === Discovery Complete — Total new venues: 0 ===
+
+[19:54:42] === Venue Discovery Started ===
+[19:54:42] Fetching past gigs...
+[19:54:45] Found 69 past gigs
+[19:54:45] Fetching existing venues for dedup...
+[19:54:48] Existing venues: 400
+[19:54:48]   SKIP (already discovered): L'Auberge Chez Francois
+[19:54:48]   SKIP (already discovered): The Inn at Perry Cabin
+[19:54:48]   SKIP (already discovered): The Maryland Club
+[19:54:48]   SKIP (already discovered): Black Ankle Vineyards
+[19:54:48]   SKIP (already discovered): Royal Restaurant
+[19:54:48]   SKIP (already discovered): Good Spirit Farm Winery
+[19:54:48]   SKIP (already discovered): Chesapeake Manor Vineyard
+[19:54:48]   SKIP (already discovered): Elkridge Furnace Inn
+[19:54:48]   SKIP (already discovered): Xella Winery and Vineyard
+[19:54:48]   SKIP (already discovered): Twin Oaks Tavern Winery
+[19:54:48]   SKIP (already discovered): Windridge Vineyards
+[19:54:48]   SKIP (already discovered): University Club
+[19:54:48]   SKIP (already discovered): The Farmhouse Tuscan
+[19:54:48]   SKIP (already discovered): Big Cork Vineyards
+[19:54:48]   SKIP (already discovered): Savage Mill Mall
+[19:54:48]   SKIP (already discovered): Trueman Vineyards
+[19:54:48]   SKIP (already discovered): Williams Gap Vineyard
+[19:54:48]   SKIP (already discovered): Hello Betty Bethesda
+[19:54:48]   SKIP (already discovered): The Madison Hotel
+[19:54:48]   SKIP (already discovered): Belle Haven Country Club
+[19:54:48]   SKIP (already discovered): Casanel Vineyards & Winery
+[19:54:48]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[19:54:48]   SKIP (already discovered): Corteau Winery
+[19:54:48]   SKIP (already discovered): Penn Oaks Winery
+[19:54:48]   SKIP (already discovered): Pizza Pomodoro
+[19:54:48]   SKIP (already discovered): Hidden Brook Winery
+[19:54:48]   SKIP (already discovered): Simple Theory Wine Co
+[19:54:48]   SKIP (already discovered): Brightview Perry Hall
+[19:54:48]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[19:54:48]   SKIP (already discovered): Gaylord National Harbor
+[19:54:48]   SKIP (already discovered): Woodberry Kitchen
+[19:54:48]   SKIP (already discovered): Great Sage
+[19:54:48]   SKIP (already discovered): Cosmos Club DC
+[19:54:48]   SKIP (already discovered): Doukénie Winery
+[19:54:48]   SKIP (already discovered): State Plaza Hotel DC
+[19:54:48]   SKIP (already discovered): Hyatt Cambridge
+[19:54:48]   SKIP (already discovered): Greenhill Vineyards
+[19:54:48]   SKIP (already discovered): Loudoun Golf & Country Club
+[19:54:48]   SKIP (already discovered): Creek's Edge Winery
+[19:54:48]   SKIP (already discovered): The Milton Inn
+[19:54:48]   SKIP (already discovered): Country Club of Fairfax
+[19:54:48]   SKIP (already discovered): Century Club Hagerstown
+[19:54:48]   SKIP (already discovered): Rock Spring Farm
+[19:54:48]   SKIP (already discovered): Janemark Winery & Vineyard
+[19:54:48]   SKIP (already discovered): Alma Cocina Latina
+[19:54:48]   SKIP (already discovered): Omni Shoreham Hotel
+[19:54:48]   SKIP (already discovered): Knoxie's Table
+[19:54:48] 
+[19:54:48] === Discovering from: 1757 Golf Club ===
+[19:54:55]   Scrolling to find recommendations...
+[19:55:02]   Extracting cards...
+[19:55:02]   Found 5 'People also search for' results
+[19:55:03]   Found 5 total recommendations
+[19:55:20]   Added 4 new venues from 1757 Golf Club
+[19:55:20]   [WEBSITE] Looking up: Titleist Fitting Studio at 1757 Golf Club
+[19:55:24]     Website: https://www.1757golfclub.com
+[19:55:28]   [WEBSITE] Looking up: Herndon Centennial Golf Course
+[19:55:31]     Website: https://www.herndongolf.com
+[19:55:35]   [WEBSITE] Looking up: Sterling Park Golf Club
+[19:55:38]     Website: https://playsterlinggolf.com
+[19:55:42]   [WEBSITE] Looking up: South Riding Golf Club
+[19:55:45]     Website: https://www.southridinggc.com
+[19:55:53] 
+[19:55:53] === Discovering from: Holly Hills Country Club ===
+[19:56:00]   Scrolling to find recommendations...
+[19:56:07]   Extracting cards...
+[19:56:07]   Found 5 'People also search for' results
+[19:56:07]   Found 5 total recommendations
+[19:56:17]   Added 3 new venues from Holly Hills Country Club
+[19:56:17]   [WEBSITE] Looking up: PB Dye Golf Club
+[19:56:21]     Website: https://pbdyegolf.com
+[19:56:24]   [WEBSITE] Looking up: Valley Springs Golf & Event Venue
+[19:56:27]     Website: https://valleyspringsgolf.com
+[19:56:31]   [WEBSITE] Looking up: Woodholme Country Club
+[19:56:34]     Website: https://www.woodholme.org
+[19:56:40] 
+[19:56:40] === Discovering from: Conrad Washington DC ===
+[19:56:47]   Scrolling to find recommendations...
+[19:56:54]   Extracting cards...
+[19:56:54]   No 'People also search for' found
+[19:56:55]   Clicked 'View more' — loading expanded list...
+[19:57:01]   Expanded list: found 6 venues
+[19:57:04]   Found 21 total recommendations
+[19:57:36]   Added 10 new venues from Conrad Washington DC
+[19:57:36]   [WEBSITE] Looking up: Moxy Washington, DC Downtown
+[19:57:39]     Website: https://www.marriott.com
+[19:57:44]   [WEBSITE] Looking up: The Henley Park Hotel
+[19:57:47]     Website: https://www.henleypark.com
+[19:57:50]   [WEBSITE] Looking up: Embassy Suites by Hilton Washington DC Convention Center
+[19:57:54]     Website: https://www.hilton.com
+[19:57:58]   [WEBSITE] Looking up: Courtyard by Marriott Washington Downtown/Convention Center
+[19:58:01]     Website: https://www.marriott.com
+[19:58:05]   [WEBSITE] Looking up: Grand Hyatt Washington
+[19:58:08]     Website: https://www.hyatt.com
+[19:58:12]   [WEBSITE] Looking up: Washington Marriott at Metro Center
+[19:58:15]     Website: https://www.marriott.com
+[19:58:19]   [WEBSITE] Looking up: Placemakr Dupont Circle
+[19:58:22]     Website: https://www.placemakr.com
+[19:58:25]   [WEBSITE] Looking up: Onsite Retail | Steps from Metro | District of Columbia
+[19:58:29]     REJECTED (Airbnb/VRBO): https://www.vrbo.com — deleting venue XX-HOTE-415
+[19:58:33]   [WEBSITE] Looking up: Sojourn on R in District of Columbia
+[19:58:36]     Website: https://www.sojourndc.com
+[19:58:40]   [WEBSITE] Looking up: YOTEL Washington DC
+[19:58:43]     Website: https://www.yotel.com
+[19:58:50] 
+[19:58:50] === Discovering from: Pirouette Restaurant & Wine Shop ===
+[19:58:56]   Scrolling to find recommendations...
+[19:59:01]   Extracting cards...
+[19:59:01]   Found 4 'People also search for' results
+[19:59:01]   Found 4 total recommendations
+[19:59:10]   Added 3 new venues from Pirouette Restaurant & Wine Shop
+[19:59:10]   [WEBSITE] Looking up: Brass Rabbit
+[19:59:13]     Website: https://www.thebrassrabbitpub.com
+[19:59:18]   [WEBSITE] Looking up: Screwtop Wine Bar
+[19:59:21]     Website: https://screwtopwinebar.com
+[19:59:24]   [WEBSITE] Looking up: Green Pig Bistro
+[19:59:27]     Website: https://greenpigbistro.com
+[19:59:34] 
+[19:59:34] === Discovering from: Le Méridien Arlington ===
+[19:59:39]   Scrolling to find recommendations...
+[19:59:45]   Extracting cards...
+[19:59:45]   No 'People also search for' found
+[19:59:45]   Clicked 'View more' — loading expanded list...
+[19:59:51]   Expanded list: found 6 venues
+[19:59:54]   Found 16 total recommendations
+[20:00:13]   Added 5 new venues from Le Méridien Arlington
+[20:00:13]   [WEBSITE] Looking up: Hyatt Centric Arlington
+[20:00:17]     Website: https://www.hyatt.com
+[20:00:20]   [WEBSITE] Looking up: Hilton Garden Inn Arlington/Courthouse Plaza
+[20:00:23]     Website: https://www.hilton.com
+[20:00:27]   [WEBSITE] Looking up: Homewood Suites by Hilton Arlington Rosslyn Key Bridge
+[20:00:31]     Website: https://www.hilton.com
+[20:00:34]   [WEBSITE] Looking up: Walk2Metro's,DCGem,Private,Wifi, FreeParking
+[20:00:37]     REJECTED (Airbnb/VRBO): https://www.airbnb.com — deleting venue XX-HOTE-423
+[20:00:41]   [WEBSITE] Looking up: Le Méridien Arlington
+[20:00:44]     Website: https://www.marriott.com
+[20:00:52] 
+[20:00:52] === Discovering from: Dulles Town Center ===
+[20:00:58]   Scrolling to find recommendations...
+[20:01:04]   Extracting cards...
+[20:01:04]   Found 5 'People also search for' results
+[20:01:04]   Found 5 total recommendations
+[20:01:24]   Added 5 new venues from Dulles Town Center
+[20:01:24]   [WEBSITE] Looking up: Dulles Town Crossing
+[20:01:28]     Website: https://www.kimcorealty.com
+[20:01:32]   [WEBSITE] Looking up: Dulles 28 Centre
+[20:01:35]     Website: https://dulles28centre.com
+[20:01:39]   [WEBSITE] Looking up: Town Center at Sterling
+[20:01:42]     Website: https://www.towncenteratsterling.com
+[20:01:46]   [WEBSITE] Looking up: Village Center at Dulles
+[20:01:49]     Website: https://www.regencycenters.com
+[20:01:53]   [WEBSITE] Looking up: Mall
+[20:01:56]     Website: https://www.shopmarleystationmall.com
+[20:02:03]   MAX_GIGS=6 reached — stopping.
+[20:02:03] Cleaning up discovered_gigs.txt...
+[20:02:08] Calculating distances for new venues...
+[20:02:12]   Distances calculated: 1
+[20:02:12] 
+[20:02:12] === Discovery Complete — Total new venues: 30 ===

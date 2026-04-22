@@ -124,3 +124,119 @@
 - **Intelligent/smart crowd keeps surfacing** — Black Ankle explicitly, others implied
 - **Gut feeling matters** — Burnt Hill "can't explain it but the vibe is perfect" = trust instinct on venue aesthetics
 - **Country clubs + private clubs still dominant** — Sulgrave is the 4th positive private club
+
+---
+
+## Apr 21, 2026 — Post-Pipeline Review (20 new votes)
+
+### Brx American Bistro (restaurant, Flint Hill VA) — POSITIVE
+> "Fanny restauruant. I can tell this one would be Good."
+- **Extracted:** fancy restaurant, gut instinct positive, Flint Hill VA (rural but upscale)
+- **Action:** Added to taste_venues.txt. Rural VA fine dining = viable target.
+
+### The Wildset Hotel (hotel, Saint Michaels MD) — POSITIVE (cautious)
+> "I think a good fit. But might be too small"
+- **Extracted:** good fit, Eastern Shore, size concern
+- **Action:** Added to taste_venues.txt. Small boutique hotels on Eastern Shore still worth pursuing.
+
+### Bourbon & Fig (restaurant, Woodbridge VA) — POSITIVE
+> "Amazing, looks like a classy, fine dining, with quiet vibe where I'd do well."
+- **Extracted:** classy, fine dining, quiet vibe — the "quiet" keyword is new and important
+- **Action:** Added to taste_venues.txt. Quiet fine dining = strong signal.
+
+### Mount Vernon Country Club (country_club, Alexandria VA) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Another Alexandria country club thumbs up
+- **Action:** Added to taste_venues.txt. Country clubs in Alexandria = reliable.
+
+### Addison Ripley Fine Art (art_gallery, Washington DC) — POSITIVE
+> "Fine art galleries and art museums seem like a great fit for what I do!"
+- **Extracted:** NEW CATEGORY SIGNAL — art galleries and museums explicitly called out as good fit
+- **Action:** Added to taste_venues.txt. Art galleries should move to Tier 1/2 target list.
+
+### Vandiver Inn (hotel, Havre de Grace MD) — POSITIVE
+> "It has a nice vibe, seems cozy."
+- **Extracted:** cozy vibe, Havre de Grace (northern MD waterfront)
+- **Action:** Added to taste_venues.txt. Havre de Grace added as potential sweet spot.
+
+### Alta Strada (Mosaic) (restaurant, Fairfax VA) — POSITIVE
+> "Upscale italian restaurant is always a good fit"
+- **Extracted:** upscale Italian = confirmed category. Fairfax/Mosaic District.
+- **Action:** Added to taste_venues.txt. Italian fine dining confirmed Tier 2+.
+
+### 600 T (restaurant, Washington DC) — POSITIVE
+> "Looks like a nice classy place where I'd do well"
+- **Extracted:** classy DC restaurant
+- **Action:** Added to taste_venues.txt.
+
+### L'Avant-Garde (restaurant, Washington DC) — POSITIVE
+> "I think I'd do well, looks like a fancy upscale restaurant"
+- **Extracted:** fancy upscale DC restaurant
+- **Action:** Added to taste_venues.txt.
+
+### La Chaumiere (restaurant, Washington DC) — POSITIVE
+> "Literally perfect! I would do amazing here, fancy French restaurant!"
+- **Extracted:** STRONGEST SIGNAL — "literally perfect" + French restaurant. Reinforces French dining as #1 category.
+- **Action:** Added to taste_venues.txt. French restaurants remain the gold standard.
+
+### Lulu's Winegarden (wine_bar, Washington DC) — POSITIVE
+> "Wine bars are great for me"
+- **Extracted:** wine bars confirmed as category. DC wine bars = sweet spot.
+- **Action:** Added to taste_venues.txt.
+
+### The Tabard Inn (hotel, Washington DC) — POSITIVE
+> "Historic inns are always a great match!"
+- **Extracted:** historic inn in DC — "always a great match" = strong category confirmation
+- **Action:** Added to taste_venues.txt. Historic inns = tier 1.
+
+### Iron Gate (restaurant, Washington DC) — POSITIVE
+> "Fancy restaurant! Looks like a good fit. Upscale"
+- **Extracted:** fancy, upscale DC restaurant
+- **Action:** Added to taste_venues.txt.
+
+### wineLAIR (wine_bar, Washington DC) — POSITIVE
+> "I've played here before, it's a nice cozy wine bar, attracts fancy Upscale people. Nice warm vibe"
+- **Extracted:** cozy wine bar, upscale clientele, warm vibe — past gig confirmation
+- **Action:** Added to taste_venues.txt. Wine bars with upscale crowd = verified.
+
+### Conrad Washington, DC (hotel, Washington DC) — POSITIVE
+> "I've played here before, it's amazing, very upscale very good vibes, very cozy and sophisticated"
+- **Extracted:** past gig reconfirmation — already a dream venue (9/10). Upscale, cozy, sophisticated.
+- **Action:** Already in taste_venues.txt.
+
+### Salamander Washington DC (hotel, Washington DC) — POSITIVE
+> "Fancy hotel, always a good fit"
+- **Extracted:** luxury hotel in DC
+- **Action:** Added to taste_venues.txt.
+
+### The Jefferson, Washington, DC (hotel, Washington DC) — POSITIVE
+> "Very Fancy historic hotel in dc, id do Great"
+- **Extracted:** fancy + historic + DC = triple hit. The Jefferson is legendary.
+- **Action:** Added to taste_venues.txt.
+
+### Lyle Washington DC (hotel, Washington DC) — POSITIVE
+> "Looks like an upscale hotel, I think I'd do nice"
+- **Extracted:** upscale DC hotel, positive instinct
+- **Action:** Added to taste_venues.txt.
+
+### Pendry Washington DC - The Wharf (hotel, Washington DC) — POSITIVE
+> "Luxury hotel! Good fit"
+- **Extracted:** luxury hotel at The Wharf
+- **Action:** Added to taste_venues.txt.
+
+### Bastille Brasserie & Bar (restaurant, Alexandria VA) — POSITIVE
+> "French restaurant is always a good fit. European in general"
+- **Extracted:** French/European restaurant in Alexandria — "European in general" expands the French preference
+- **Action:** Added to taste_venues.txt. European restaurants broadly = good fit.
+
+---
+
+## Updated Patterns (Apr 21)
+- **French/European restaurants = GOLD** — La Chaumiere "literally perfect", Bastille "always a good fit", L'Avant-Garde positive. This is the strongest single category signal.
+- **DC luxury hotels emerging as major category** — Jefferson, Salamander, Pendry, Lyle, Conrad all positive. 5 DC hotels in one batch = hunt more aggressively.
+- **"Cozy" + "quiet" joining "historic" as top keywords** — Bourbon & Fig (quiet), wineLAIR (cozy warm), Vandiver Inn (cozy), Conrad (cozy sophisticated). The ideal venue is cozy/intimate, not grand/cavernous.
+- **Art galleries = NEW tier 1/2 category** — Addison Ripley explicitly called out. Should add museum/gallery searches to discovery.
+- **Wine bars confirmed** — Lulu's + wineLAIR both positive in DC. Small, intimate, educated crowd.
+- **Italian fine dining confirmed** — Alta Strada positive. Italian joins French/European as target.
+- **Geographic expansion: DC dominates this batch** — 12 of 20 positives are DC venues. The city is the #1 market by far.
+- **Country clubs still solid** — Mount Vernon CC positive, no new negatives.
+- **Rural fine dining viable** — Brx American Bistro in Flint Hill VA shows that upscale restaurants in rural areas still work if the vibe is right.

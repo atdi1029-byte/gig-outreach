@@ -7585,3 +7585,264 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 00:33:38 
 00:33:38 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-21_00-33.html
 00:33:38 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-21_00-33.html
+
+20:05:58 === Pipeline started 2026-04-21 20:05:58 ===
+20:05:58 UNTOUCHED PHASE: Fetching all venues...
+20:06:02 UNTOUCHED: 271 found (shared budget: 6 total)
+20:06:02 
+20:06:02 ########## UNTOUCHED #1: Embassy Suites by Hilton Bethesda Washington DC (DC-REST-235) ##########
+20:06:05 
+20:06:05 ============================================================
+20:06:05  PIPELINE: Embassy Suites by Hilton Bethesda Washington DC (DC-REST-235)
+20:06:05  Website: https://www.hilton.com
+20:06:05  Started: 2026-04-21 20:06:05
+20:06:05 ============================================================
+20:06:05   [ZB] Credits remaining: 4090
+20:06:09   Known emails: 0
+20:06:09   Known names: 0
+20:06:09 
+20:06:09 ========== STEP 1: Website Scrape ==========
+20:06:09   [SKIP] Corporate hotel domain (hilton.com) — skipping website crawl
+20:06:11 
+20:06:11 ========== STEP 1B: Instagram Google Search ==========
+20:06:11   No Instagram found on website — Googling...
+20:06:15   [IG SEARCH] Found: https://www.instagram.com/popular/
+20:06:17   ✓ Instagram URL saved
+20:06:20 
+20:06:20 ========== STEP 1C: Facebook Google Search ==========
+20:06:20   No Facebook found on website — Googling...
+20:06:25   [FB SEARCH] Found: https://www.facebook.com/DoubleTree/
+20:06:27   ✓ Facebook URL saved
+20:06:27 
+20:06:27 ========== STEP 2: Social Media Scrape ==========
+20:06:30   FB: https://www.facebook.com/DoubleTree/ | IG: https://www.instagram.com/popular/
+20:06:30   Opening FB: https://www.facebook.com/DoubleTree
+20:06:35   Opening FB: https://www.facebook.com/DoubleTree/about
+20:06:40   Opening FB: https://www.facebook.com/DoubleTree/directory_contact_info
+20:06:45   FB emails found: hilton.commments@hilton.com
+20:06:45   Opening IG: https://www.instagram.com/popular/
+20:06:51   hilton.commments@hilton.com → valid
+20:06:55   ✓ Added: hilton.commments@hilton.com <hilton.commments@hilton.com>
+20:06:56   [APOLLO] Credits used this run: 0 / 300
+20:06:56 
+20:06:56 ========== STEP 3: Apollo API ==========
+20:06:56   Searching Apollo for company: Embassy Suites by Hilton Bethesda Washington DC
+20:06:58   Found: Hilton (domain: hilton.com, org_id: 5c27a9bff65125d1623eabf0)
+20:06:58   Searching for people at Hilton (org_id: 5c27a9bff65125d1623eabf0)...
+20:06:58   Found 0 people total
+20:06:58   No people in Apollo for this company.
+20:06:58 
+20:06:59 ========== STEP 4: LinkedIn + Apollo API ==========
+20:06:59   Using domain: hilton.com
+20:07:01   LinkedIn page 1...
+20:07:08   Found 3 results
+20:07:08   No new venue employees on this page.
+20:07:13   LinkedIn page 2...
+20:07:21   Found 3 results
+20:07:21   Found: Eddy Motta
+20:07:25   LinkedIn page 3...
+20:07:31   Found 3 results
+20:07:31   Found: Bob Moorman
+20:07:31 
+20:07:31   LinkedIn found 2 new people. Enriching via Apollo API...
+20:07:31   LinkedIn + Apollo API done. Credits used: 0
+20:07:33   Setting status → pipelined
+20:07:36 
+20:07:36 ============================================================
+20:07:36  DONE: Embassy Suites by Hilton Bethesda Washington DC | 1 min | 20:07:36
+20:07:36 ============================================================
+20:08:06 
+20:08:06 ########## UNTOUCHED #2: Canopy by Hilton Washington DC Bethesda North (DC-REST-236) ##########
+20:08:09 
+20:08:09 ============================================================
+20:08:09  PIPELINE: Canopy by Hilton Washington DC Bethesda North (DC-REST-236)
+20:08:09  Website: https://www.hilton.com
+20:08:09  Started: 2026-04-21 20:08:09
+20:08:09 ============================================================
+20:08:09   [ZB] Credits remaining: 4089
+20:08:12   Known emails: 0
+20:08:12   Known names: 0
+20:08:12 
+20:08:12 ========== STEP 1: Website Scrape ==========
+20:08:12   [SKIP] Corporate hotel domain (hilton.com) — skipping website crawl
+20:08:16 
+20:08:16 ========== STEP 1B: Instagram Google Search ==========
+20:08:16   No Instagram found on website — Googling...
+20:08:20   [IG SEARCH] Found: https://www.instagram.com/popular/
+20:08:24   ✓ Instagram URL saved
+20:08:26 
+20:08:26 ========== STEP 1C: Facebook Google Search ==========
+20:08:26   No Facebook found on website — Googling...
+20:08:31   [FB SEARCH] Found: https://www.facebook.com/1022002347948954/
+20:08:33   ✓ Facebook URL saved
+20:08:33 
+20:08:33 ========== STEP 2: Social Media Scrape ==========
+20:08:36   FB: https://www.facebook.com/1022002347948954/ | IG: https://www.instagram.com/popular/
+20:08:36   Opening FB: https://www.facebook.com/1022002347948954
+20:08:41   Opening FB: https://www.facebook.com/1022002347948954/about
+20:08:46   Opening FB: https://www.facebook.com/1022002347948954/directory_contact_info
+20:08:51   Opening IG: https://www.instagram.com/popular/
+20:08:56   [APOLLO] Credits used this run: 0 / 300
+20:08:56 
+20:08:56 ========== STEP 3: Apollo API ==========
+20:08:56   Searching Apollo for company: Canopy by Hilton Washington DC Bethesda North
+20:09:00   Found: Hilton (domain: hilton.com, org_id: 5c27a9bff65125d1623eabf0)
+20:09:00   Searching for people at Hilton (org_id: 5c27a9bff65125d1623eabf0)...
+20:09:00   Found 0 people total
+20:09:00   No people in Apollo for this company.
+20:09:00 
+20:09:00 ========== STEP 4: LinkedIn + Apollo API ==========
+20:09:00   Using domain: hilton.com
+20:09:01   LinkedIn page 1...
+20:09:10   Found 3 results
+20:09:10   Found: Jaycina Vaughn
+20:09:15   LinkedIn page 2...
+20:09:22   Found 3 results
+20:09:22   Found: John Gilligan
+20:09:26   LinkedIn page 3...
+20:09:33   Found 3 results
+20:09:34   No new venue employees on this page.
+20:09:34 
+20:09:34   LinkedIn found 2 new people. Enriching via Apollo API...
+20:09:34   LinkedIn + Apollo API done. Credits used: 0
+20:09:37   Setting status → pipelined
+20:09:40 
+20:09:40 ============================================================
+20:09:40  DONE: Canopy by Hilton Washington DC Bethesda North | 1 min | 20:09:40
+20:09:40 ============================================================
+20:10:10 
+20:10:10 ########## UNTOUCHED #3: Hilton Washington DC/Rockville Hotel & Executive Meeting Ctr (DC-REST-237) ##########
+20:10:13 
+20:10:13 ============================================================
+20:10:13  PIPELINE: Hilton Washington DC/Rockville Hotel & Executive Meeting Ctr (DC-REST-237)
+20:10:13  Website: https://www.hilton.com
+20:10:13  Started: 2026-04-21 20:10:13
+20:10:13 ============================================================
+20:10:13   [ZB] Credits remaining: 4089
+20:10:16   Known emails: 0
+20:10:16   Known names: 0
+20:10:16 
+20:10:16 ========== STEP 1: Website Scrape ==========
+20:10:16   [SKIP] Corporate hotel domain (hilton.com) — skipping website crawl
+20:10:20 
+20:10:20 ========== STEP 1B: Instagram Google Search ==========
+20:10:20   No Instagram found on website — Googling...
+20:10:24   [IG SEARCH] No Instagram found via Google
+20:10:27 
+20:10:27 ========== STEP 1C: Facebook Google Search ==========
+20:10:27   No Facebook found on website — Googling...
+20:10:31   [FB SEARCH] Found: https://www.facebook.com/FeisCulkin/
+20:10:35   ✓ Facebook URL saved
+20:10:35 
+20:10:35 ========== STEP 2: Social Media Scrape ==========
+20:10:38   FB: https://www.facebook.com/FeisCulkin/ | IG: none
+20:10:38   Opening FB: https://www.facebook.com/FeisCulkin
+20:10:43   Opening FB: https://www.facebook.com/FeisCulkin/about
+20:10:49   Opening FB: https://www.facebook.com/FeisCulkin/directory_contact_info
+20:10:54   [APOLLO] Credits used this run: 0 / 300
+20:10:54 
+20:10:54 ========== STEP 3: Apollo API ==========
+20:10:54   Searching Apollo for company: Hilton Washington DC/Rockville Hotel & Executive Meeting Ctr
+20:10:55   Found: Hilton (domain: hilton.com, org_id: 5c27a9bff65125d1623eabf0)
+20:10:55   Searching for people at Hilton (org_id: 5c27a9bff65125d1623eabf0)...
+20:10:56   Found 0 people total
+20:10:56   No people in Apollo for this company.
+20:10:56 
+20:10:56 ========== STEP 4: LinkedIn + Apollo API ==========
+20:10:56   Using domain: hilton.com
+20:10:57   LinkedIn page 1...
+20:11:02   Found 3 results
+20:11:03   No new venue employees on this page.
+20:11:07   LinkedIn page 2...
+20:11:15   Found 3 results
+20:11:15   Found: Imtiaz 'Adam' Ahmed
+20:11:15   Found: Donnamarie Stidum
+20:11:15   Found: Alexandra Kula
+20:11:18   LinkedIn page 3...
+20:11:25   Found 3 results
+20:11:25   Found: Tolleah Price
+20:11:25   Found: Andrea Tyler
+20:11:25 
+20:11:25   LinkedIn found 5 new people. Enriching via Apollo API...
+20:11:26   LinkedIn + Apollo API done. Credits used: 0
+20:11:28   Setting status → pipelined
+20:11:30 
+20:11:30 ============================================================
+20:11:30  DONE: Hilton Washington DC/Rockville Hotel & Executive Meeting Ctr | 1 min | 20:11:30
+20:11:30 ============================================================
+20:12:01 
+20:12:01 ########## UNTOUCHED #4: Maryland Club (MD-PRIV-328) ##########
+20:12:05 
+20:12:05 ============================================================
+20:12:05  PIPELINE: Maryland Club (MD-PRIV-328)
+20:12:05  Website: https://www.marylandclub.org
+20:12:05  Started: 2026-04-21 20:12:05
+20:12:05 ============================================================
+20:12:05   [ZB] Credits remaining: 4089
+20:12:08   Known emails: 0
+20:12:08   Known names: 0
+20:12:08 
+20:12:08 ========== STEP 1: Website Scrape ==========
+20:12:09   URL: https://www.marylandclub.org
+20:12:09   Opening in Chrome: https://www.marylandclub.org
+20:12:15   Emails: 0 | FB: https://www.facebook.com/MClubFoundation | IG: https://www.instagram.com/mclub_umd/ | Contact Form: none
+20:12:15   [LOCATION] Checking for location-specific page (city: Baltimore)...
+20:12:16   [LOCATION] No location-specific page found
+20:12:29 
+20:12:29 ========== STEP 2: Social Media Scrape ==========
+20:12:33   FB: https://www.facebook.com/MClubFoundation | IG: https://www.instagram.com/mclub_umd/
+20:12:33   Opening FB: https://www.facebook.com/MClubFoundation
+20:12:38   FB emails found: mclub@umd.edu
+20:12:38   Opening FB: https://www.facebook.com/MClubFoundation/about
+20:12:43   Opening FB: https://www.facebook.com/MClubFoundation/directory_contact_info
+20:12:49   FB emails found: mclub@umd.edu
+20:12:49   Opening IG: https://www.instagram.com/mclub_umd/
+20:12:55   mclub@umd.edu → catch-all
+20:12:59   ⚠ Added (catch-all): mclub@umd.edu <mclub@umd.edu>
+20:13:00   [APOLLO] Credits used this run: 0 / 300
+20:13:00 
+20:13:00 ========== STEP 3: Apollo API ==========
+20:13:00   Searching Apollo for company: Maryland Club
+20:13:01   Found: Maryland Jockey Club (domain: marylandjockeyclub.com, org_id: 54a11d1c69702d86b62ce000)
+20:13:01   Searching for people at Maryland Jockey Club (org_id: 54a11d1c69702d86b62ce000)...
+20:13:02   Found 50 people total
+20:13:02   Skipped 11 people with no email (red ? on Apollo)
+20:13:02   Skipped 7 people with irrelevant titles (housekeeping, IT, security, etc.)
+20:13:02   32 people to enrich (1 credit each)
+20:13:03   >>> Ruben Paredes (Director of Hospitality | Food & Beverage): ruben.paredes@marylandracing.com [verified]
+20:13:03   ruben.paredes@marylandracing.com → valid
+20:13:06   ✓ Added: Ruben Paredes <ruben.paredes@marylandracing.com>
+20:13:07   >>> Kerstin Rivkin (Director of Event & Catering Sales): kerstin.rivkin@marylandracing.com [verified]
+20:13:07   kerstin.rivkin@marylandracing.com → valid
+20:13:10   ✓ Added: Kerstin Rivkin <kerstin.rivkin@marylandracing.com>
+20:13:11   >>> Bill Knauf (President and General Manager): bill.knauf@marylandracing.com [verified]
+20:13:11   bill.knauf@marylandracing.com → valid
+20:13:14   ✓ Added: Bill Knauf <bill.knauf@marylandracing.com>
+20:13:15   >>> Maya Caceres (Manager, Ticket Operations): maya.caceres@marylandracing.com [verified]
+20:13:15   maya.caceres@marylandracing.com → valid
+20:13:18   ✓ Added: Maya Caceres <maya.caceres@marylandracing.com>
+20:13:19   >>> Kathleen Herron (Senior Graphic Designer): katie.herron@marylandracing.com [verified]
+20:13:20   katie.herron@marylandracing.com → valid
+20:13:22   ✓ Added: Kathleen Herron <katie.herron@marylandracing.com>
+20:13:23   >>> Jeff Kreimer (Director of Health and Safety): jkreimer@marylandracing.com [verified]
+20:13:24   jkreimer@marylandracing.com → valid
+20:13:26   ✓ Added: Jeff Kreimer <jkreimer@marylandracing.com>
+20:13:27   >>> Kelsey Spriggs (Event Sales Manager): kelsey.spriggs@marylandracing.com [verified]
+20:13:27   kelsey.spriggs@marylandracing.com → valid
+20:13:30   ✓ Added: Kelsey Spriggs <kelsey.spriggs@marylandracing.com>
+20:13:31   >>> Mark Euga (Racing Official): meuga@marylandracing.com [verified]
+20:13:31   meuga@marylandracing.com → invalid
+20:13:34   ⚠ Added (invalid): Mark Euga <meuga@marylandracing.com>
+20:13:35   >>> Timothy Luzius (Senior Vice President and Assistant General Manager): tluzius@marylandracing.com [verified]
+20:13:35   tluzius@marylandracing.com → valid
+20:13:38   ✓ Added: Timothy Luzius <tluzius@marylandracing.com>
+20:13:39   --- Damone Phillips (Supervisor): no email available
+20:13:46   >>> Jillian Tullock (Racing Secretary): jtullock@marylandracing.com [verified]
+20:13:47   jtullock@marylandracing.com → valid
+20:13:50   ✓ Added: Jillian Tullock <jtullock@marylandracing.com>
+20:13:51   >>> Karen Weiss (Director of Hospitality): karen.weiss@marylandracing.com [verified]
+20:13:51   karen.weiss@marylandracing.com → invalid
+20:13:54   ⚠ Added (invalid): Karen Weiss <karen.weiss@marylandracing.com>
+20:13:55   >>> Haley Keller (Assistant Horsemen's Bookkeeper): haley.keller@marylandracing.com [verified]
+20:13:56   haley.keller@marylandracing.com → valid
+20:13:58   ✓ Added: Haley Keller <haley.keller@marylandracing.com>

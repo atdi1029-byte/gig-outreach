@@ -822,6 +822,29 @@ existing_file.close()
 api = '$APPS_SCRIPT_URL'
 source_venue = '''$VENUE_NAME'''
 
+def map_category(cat, name=''):
+    cl = cat.lower()
+    nl = name.lower()
+    if any(t in cl for t in ['hotel', 'inn', 'resort', 'lodge']): return 'hotel'
+    if any(t in cl for t in ['winery', 'vineyard']): return 'winery'
+    if any(t in cl for t in ['country club', 'golf club']): return 'country_club'
+    if 'wine bar' in cl: return 'wine_bar'
+    if any(t in cl for t in ['museum', 'gallery']): return 'museum'
+    if any(t in cl for t in ['event', 'banquet', 'wedding']): return 'event'
+    if any(t in cl for t in ['yacht', 'sailing']): return 'yacht_club'
+    if any(t in cl for t in ['private club', 'social club']): return 'private_club'
+    if 'spa' in cl: return 'spa'
+    if any(t in cl for t in ['farmers market', 'farm stand', 'farmer']): return 'farmers_market'
+    hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
+                   'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
+                   'the line ', 'the jefferson', 'yours truly',
+                   'ritz-carlton', 'four seasons', 'fairmont', 'mandarin',
+                   'st. regis', 'w hotel', 'westin', 'hyatt', 'marriott',
+                   'hilton', 'intercontinental', 'kimpton', 'rosewood',
+                   'peninsula', 'langham', 'omni', 'loews']
+    if any(t in nl for t in hotel_names): return 'hotel'
+    return 'restaurant'
+
 # Skip types - not useful for classical guitar gigs
 skip_cats = ['pub', 'irish pub', 'sports bar', 'fast food', 'pizza',
              'diner', 'gas station', 'grocery', 'pharmacy', 'convenience',

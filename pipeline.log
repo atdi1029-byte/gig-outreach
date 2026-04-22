@@ -7846,3 +7846,132 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 20:13:55   >>> Haley Keller (Assistant Horsemen's Bookkeeper): haley.keller@marylandracing.com [verified]
 20:13:56   haley.keller@marylandracing.com → valid
 20:13:58   ✓ Added: Haley Keller <haley.keller@marylandracing.com>
+
+20:15:23 === Pipeline started 2026-04-21 20:15:23 ===
+20:15:26 
+20:15:26 ============================================================
+20:15:26  PIPELINE: Maryland Club (MD-PRIV-328)
+20:15:26  Website: https://www.marylandclub.org
+20:15:26  Started: 2026-04-21 20:15:26
+20:15:26 ============================================================
+20:15:26   [ZB] Credits remaining: 4076
+20:15:30   Known emails: 13
+20:15:30   Known names: 13
+20:15:30 
+20:15:30 ========== STEP 1: Website Scrape ==========
+20:15:30   URL: https://www.marylandclub.org
+20:15:30   Opening in Chrome: https://www.marylandclub.org
+
+20:16:10 === Pipeline started 2026-04-21 20:16:10 ===
+20:16:12 
+20:16:12 ============================================================
+20:16:12  PIPELINE: Maryland Club (MD-PRIV-328)
+20:16:12  Website: https://www.marylandclub1857.org/
+20:16:12  Started: 2026-04-21 20:16:12
+20:16:12 ============================================================
+20:16:12   [ZB] Credits remaining: 4076
+20:16:15   Known emails: 13
+20:16:15   Known names: 13
+20:16:15 
+20:16:15 ========== STEP 1: Website Scrape ==========
+20:16:15   URL: https://www.marylandclub1857.org/
+20:16:15   Opening in Chrome: https://www.marylandclub1857.org/
+20:16:22   Validating contact form URL: https://www.marylandclub1857.org/When_You_Visit/Directions_Contact_Us/Contact_Us
+20:16:26   Found on contact page: info@marylandclub1857.org
+20:16:26   ✗ No submittable form found — clearing contact_form
+20:16:26   Emails: 1 | FB: none | IG: none | Contact Form: none
+20:16:26   Crawling subpage (1/20): https://www.marylandclub1857.org/Home
+20:16:31   Found on subpage: info@marylandclub1857.org
+20:16:31   Crawling subpage (2/20): https://www.marylandclub1857.org/Weddings_Private_Parties
+20:16:35   Found on subpage: info@marylandclub1857.org, olivia@marylandclub1857.org
+20:16:35   Crawling subpage (3/20): https://www.marylandclub1857.org/Weddings_Private_Parties/Weddings
+20:16:39   Found on subpage: info@marylandclub1857.org, olivia@marylandclub1857.org
+20:16:39   Crawling subpage (4/20): https://www.marylandclub1857.org/Weddings_Private_Parties/Private_Parties
+20:16:44   Found on subpage: info@marylandclub1857.org, olivia@marylandclub1857.org
+20:16:44   Crawling subpage (5/20): https://www.marylandclub1857.org/Weddings_Private_Parties/Club_Function_Capacity_Brochure
+20:16:48   Found on subpage: info@marylandclub1857.org
+20:16:48   Crawling subpage (6/20): https://www.marylandclub1857.org/House_Rules
+20:16:53   Found on subpage: info@marylandclub1857.org
+20:16:53   Crawling subpage (7/20): https://www.marylandclub1857.org/History
+20:16:57   Found on subpage: info@marylandclub1857.org
+20:16:57   Crawling subpage (8/20): https://www.marylandclub1857.org/Club_Events/Calendar
+20:17:01   Same emails 3 pages in a row — stopping subpage crawl
+20:17:02   info@marylandclub1857.org → do_not_mail
+20:17:04   olivia@marylandclub1857.org → valid
+20:17:07   ✓ Added: olivia@marylandclub1857.org <olivia@marylandclub1857.org>
+20:17:11 
+20:17:11 ========== STEP 1B: Instagram Google Search ==========
+20:17:11   No Instagram found on website — Googling...
+20:17:16   [IG SEARCH] Found: https://www.instagram.com/themarylandclub/
+20:17:22   ✓ Instagram URL saved
+20:17:25 
+20:17:25 ========== STEP 1C: Facebook Google Search ==========
+20:17:25   No Facebook found on website — Googling...
+20:17:29   [FB SEARCH] Found: https://www.facebook.com/TheMarylandClub1857/
+20:17:31   ✓ Facebook URL saved
+20:17:31 
+20:17:31 ========== STEP 2: Social Media Scrape ==========
+20:17:35   FB: https://www.facebook.com/TheMarylandClub1857/ | IG: https://www.instagram.com/themarylandclub/
+20:17:35   Opening FB: https://www.facebook.com/TheMarylandClub1857
+20:17:40   Opening FB: https://www.facebook.com/TheMarylandClub1857/about
+20:17:45   Opening FB: https://www.facebook.com/TheMarylandClub1857/directory_contact_info
+20:17:51   Opening IG: https://www.instagram.com/themarylandclub/
+20:17:56   [APOLLO] Credits used this run: 0 / 300
+20:17:56 
+20:17:56 ========== STEP 3: Apollo API ==========
+20:17:56   Searching Apollo for company: Maryland Club
+20:17:57   Found: Maryland Club (domain: marylandclub1857.org, org_id: 55697d057369642555733d00)
+20:17:57   Searching for people at Maryland Club (org_id: 55697d057369642555733d00)...
+20:17:58   Found 14 people total
+20:17:58   Skipped 6 people with no email (red ? on Apollo)
+20:17:58   8 people to enrich (1 credit each)
+20:17:59   >>> Andrew Cordova (Racquets Director): andrew@marylandclub1857.org [verified]
+20:17:59   andrew@marylandclub1857.org → valid
+20:18:03   ✓ Added: Andrew Cordova <andrew@marylandclub1857.org>
+20:18:04   >>> Milton Franklin (Food and Beverage Manager): milton@marylandclub1857.org [verified]
+20:18:04   milton@marylandclub1857.org → valid
+20:18:08   ✓ Added: Milton Franklin <milton@marylandclub1857.org>
+20:18:09   >>> Michael Stetka (Executive Chef): mike@marylandclub1857.org [verified]
+20:18:10   mike@marylandclub1857.org → valid
+20:18:13   ✓ Added: Michael Stetka <mike@marylandclub1857.org>
+20:18:14   >>> Isauro Lopez (Fitness Director): iglopez@marylandclub1857.org [verified]
+20:18:15   iglopez@marylandclub1857.org → valid
+20:18:18   ✓ Added: Isauro Lopez <iglopez@marylandclub1857.org>
+20:18:19   >>> Corinne Hart (Director, Membership and Marketing): chart@marylandclub1857.org [verified]
+20:18:20   chart@marylandclub1857.org → valid
+20:18:23   ✓ Added: Corinne Hart <chart@marylandclub1857.org>
+20:18:24   >>> Katherine Mandaro (General Manager): krmandaro@marylandclub1857.org [verified]
+20:18:25   krmandaro@marylandclub1857.org → valid
+20:18:29   ✓ Added: Katherine Mandaro <krmandaro@marylandclub1857.org>
+20:18:30   >>> John Podles (Communications Manager): john@marylandclub1857.org [verified]
+20:18:31   john@marylandclub1857.org → valid
+20:18:35   ✓ Added: John Podles <john@marylandclub1857.org>
+20:18:36   >>> Matthew Smeal (Director of Accounts and Facilities): msmeal@marylandclub1857.org [verified]
+20:18:36   msmeal@marylandclub1857.org → valid
+20:18:40   ✓ Added: Matthew Smeal <msmeal@marylandclub1857.org>
+20:18:41   Apollo API done: 8 credits used this run
+20:18:41 
+20:18:41 ========== STEP 4: LinkedIn + Apollo API ==========
+20:18:41   Using domain: marylandclub1857.org
+20:18:43   LinkedIn page 1...
+20:18:49   Found 3 results
+20:18:49   Found: Boris Gradina,MCM,CCE
+20:18:49   Found: Katherine Mandaro
+20:18:49   Found: Michael Stetka, CEC
+20:18:52   LinkedIn page 2...
+20:18:59   Found 3 results
+20:18:59   Found: Noel Flournoy
+20:18:59   Found: Ryan Velasquez
+20:18:59   Found: Milton Franklin
+20:19:02   LinkedIn page 3...
+20:19:08   Found 3 results
+20:19:09   Found: Rebeka Shapiro
+20:19:09   Found: Georganne Hale
+20:19:09 
+20:19:09   LinkedIn found 8 new people. Enriching via Apollo API...
+20:19:09   LinkedIn + Apollo API done. Credits used: 8
+20:19:11   Setting status → pipelined
+20:19:13 
+20:19:13 ============================================================
+20:19:13  DONE: Maryland Club | 3 min | 20:19:13
+20:19:13 ============================================================

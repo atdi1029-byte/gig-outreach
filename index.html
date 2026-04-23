@@ -1419,8 +1419,10 @@ function showWordPopup(word, el) {
     // Position above the word
     popup.style.left = Math.min(rect.left, window.innerWidth - 100) + 'px';
     popup.style.top = (rect.top - 44) + 'px';
-    // Close on tap elsewhere
-    setTimeout(() => document.addEventListener('click', closeWordPopup, { once: true }), 10);
+    // Close on tap elsewhere — 400ms delay so the
+    // synthesized click from the same tap doesn't kill it
+    popup.addEventListener('click', e => e.stopPropagation());
+    setTimeout(() => document.addEventListener('click', closeWordPopup, { once: true }), 400);
 }
 function closeWordPopup() {
     const p = document.getElementById('wordPopup');

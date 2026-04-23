@@ -774,7 +774,7 @@ JSEOF
 # STEP 3: APOLLO API (search company → find people → enrich emails)
 # =================================================================
 step3_apollo_api() {
-    local venue="$1" venue_id="$2" website_url="$3"
+    local venue="$1" venue_id="$2" website_url="$3" city="$4"
     log ""
     log "========== STEP 3: Apollo API =========="
 
@@ -810,6 +810,12 @@ import requests, json, sys, re
 headers = {"Content-Type": "application/json", "x-api-key": "${APOLLO_API_KEY}"}
 venue_name = "$venue"
 website_domain = "$WEBSITE_DOMAIN"
+venue_city = "$city"
+
+# Build location filter from city (e.g. "Washington" -> "Washington, DC")
+org_locations = []
+if venue_city and venue_city != "None":
+    org_locations = [venue_city]
 
 def normalize(s):
     return re.sub(r'[^a-z0-9]', '', s.lower())
@@ -872,23 +878,33 @@ def score_candidate(c):
         s += 50
     return s
 
+# Helper: search companies with optional location filter
+def search_companies(params):
+    """Search with location filter first, fall back without if no matches."""
+    # Try with location filter
+    if org_locations:
+        loc_params = {**params, "organization_locations": org_locations}
+        resp = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
+            headers=headers, json=loc_params)
+        results = resp.json()
+        hits = results.get("accounts", []) + results.get("organizations", [])
+        if hits:
+            return hits
+    # Fall back: no location filter
+    resp = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
+        headers=headers, json=params)
+    data = resp.json()
+    return data.get("accounts", []) + data.get("organizations", [])
+
 # 1. Search full venue name
-resp = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
-    headers=headers,
-    json={"q_organization_name": venue_name, "per_page": 5})
-data = resp.json()
-for a in (data.get("accounts", []) + data.get("organizations", [])):
+for a in search_companies({"q_organization_name": venue_name, "per_page": 5}):
     if name_matches(a.get("name", ""), venue_name):
         all_candidates.append(a)
 
 # 2. Search cleaned name (brand suffixes stripped)
 if clean_name != venue_name:
-    resp1b = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
-        headers=headers,
-        json={"q_organization_name": clean_name, "per_page": 5})
-    data1b = resp1b.json()
     seen_ids = {c.get("id") for c in all_candidates}
-    for a in (data1b.get("accounts", []) + data1b.get("organizations", [])):
+    for a in search_companies({"q_organization_name": clean_name, "per_page": 5}):
         if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
             all_candidates.append(a)
 
@@ -908,12 +924,8 @@ words = [w for w in re.sub(r'[^a-z\s]', '', venue_name.lower()).split()
          if w not in {'the', 'a', 'an', 'and', 'of', 'at', 'in', 'by', 'hotel'}]
 if len(words) >= 2:
     short_name = ' '.join(words[:3])
-    resp3 = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
-        headers=headers,
-        json={"q_organization_name": short_name, "per_page": 5})
-    data3 = resp3.json()
     seen_ids = {c.get("id") for c in all_candidates}
-    for a in (data3.get("accounts", []) + data3.get("organizations", [])):
+    for a in search_companies({"q_organization_name": short_name, "per_page": 5}):
         if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
             all_candidates.append(a)
 
@@ -2261,7 +2273,7 @@ else: print('')
     if ! check_apollo_credits; then
         log "  [SKIP] Apollo step — credits too low"
     else
-        step3_apollo_api "$venue" "$venue_id" "$website"
+        step3_apollo_api "$venue" "$venue_id" "$website" "$city"
     fi
     # LinkedIn — skip if SKIP_LINKEDIN=1 or credits exhausted (resets May 2026)
     if [ "${SKIP_LINKEDIN:-0}" != "1" ] && [ "$(date +%Y%m)" -ge 202605 ] 2>/dev/null; then

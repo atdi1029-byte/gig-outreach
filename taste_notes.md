@@ -240,3 +240,19 @@
 - **Geographic expansion: DC dominates this batch** — 12 of 20 positives are DC venues. The city is the #1 market by far.
 - **Country clubs still solid** — Mount Vernon CC positive, no new negatives.
 - **Rural fine dining viable** — Brx American Bistro in Flint Hill VA shows that upscale restaurants in rural areas still work if the vibe is right.
+
+---
+
+## Apr 23, 2026 — Post-Pipeline Review (1 new vote)
+
+### Historic Sotterley (event, Hollywood MD) — NEGATIVE
+> "It's like a plantation museum"
+- **Extracted:** plantation museum — uncomfortable historical association, not the right vibe
+- **Action:** Not added to taste_venues.txt. Event venues at plantation/museum sites are a poor fit — the setting clashes with the cozy/upscale/sophisticated atmosphere the user thrives in.
+
+---
+
+## Updated Patterns (Apr 23)
+- **No major pattern shifts** — only 1 new vote this cycle (negative).
+- **Plantation/museum event venues = hard no** — Historic Sotterley rejected for uncomfortable plantation associations. Category "event" at historical sites needs vetting for vibe fit.
+- **All prior patterns hold** — French/European restaurants, DC luxury hotels, historic inns, country clubs, wine bars, art galleries remain the top categories.

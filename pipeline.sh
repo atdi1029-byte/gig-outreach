@@ -1045,11 +1045,11 @@ PYEOF
         log "  No people in Apollo for this company."
         return
     fi
-    # Sanity check: venues are small — cap at 50 people max
-    if [ "$PEOPLE_COUNT" -gt 50 ]; then
-        log "  [WARN] $PEOPLE_COUNT people is suspicious for a venue — capping at 50"
-        python3 -c "import json; json.dump(json.load(open('$people_tmpf'))[:50], open('$people_tmpf','w'))"
-        PEOPLE_COUNT=50
+    # Cap at 100 people max (hotels can have large staff)
+    if [ "$PEOPLE_COUNT" -gt 100 ]; then
+        log "  [WARN] $PEOPLE_COUNT people — capping at 100"
+        python3 -c "import json; json.dump(json.load(open('$people_tmpf'))[:100], open('$people_tmpf','w'))"
+        PEOPLE_COUNT=100
     fi
 
     # C. Filter: only skip people whose full name is already known

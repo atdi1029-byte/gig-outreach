@@ -1092,6 +1092,10 @@ for p in people:
     first = p.get('first_name', '').strip()
     if not first:
         continue
+    # Only enrich people who actually have an email (green check on Apollo)
+    if not p.get('has_email', False):
+        skipped_no_email += 1
+        continue
     # Skip irrelevant job titles (housekeeping, IT, security, etc.)
     title = p.get('title', '') or ''
     if title and not title_is_relevant(title):

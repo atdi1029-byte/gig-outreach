@@ -721,6 +721,11 @@ var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','square
 var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','dataremoval@','privacy@','careers@','jobs@','hr@'];
 var text = document.body.innerText || '';
 var matches = text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || [];
+var links = document.querySelectorAll('a[href^="mailto:"]');
+for(var k=0;k<links.length;k++){
+    var m = links[k].href.replace('mailto:','').split('?')[0].trim();
+    if(m && matches.indexOf(m)===-1) matches.push(m);
+}
 var emails = [];
 for(var i=0;i<matches.length;i++){
     var e = matches[i].toLowerCase();
@@ -1086,10 +1091,6 @@ def title_is_relevant(title):
 for p in people:
     first = p.get('first_name', '').strip()
     if not first:
-        continue
-    # Only enrich people who actually have an email (green check on Apollo)
-    if not p.get('has_email', False):
-        skipped_no_email += 1
         continue
     # Skip irrelevant job titles (housekeeping, IT, security, etc.)
     title = p.get('title', '') or ''

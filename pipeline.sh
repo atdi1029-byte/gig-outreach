@@ -86,7 +86,7 @@ name_known() {
 ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_exhausted"
 APOLLO_EXHAUSTED_FLAG="/tmp/pipeline_apollo_exhausted"
 MAX_APOLLO=${MAX_APOLLO:-300}  # Max Apollo credits per run (default 300, set MAX_APOLLO=N to override)
-rm -f "$ZB_EXHAUSTED_FLAG" "$APOLLO_EXHAUSTED_FLAG"
+rm -f "$ZB_EXHAUSTED_FLAG" "$APOLLO_EXHAUSTED_FLAG" /tmp/pipeline_step1_fb.txt /tmp/pipeline_step1_ig.txt
 
 check_apollo_credits() {
     if [ -z "$APOLLO_API_KEY" ]; then return 0; fi
@@ -312,6 +312,31 @@ for(var i=0;i<igLinks.length;i++){
     var u = igLinks[i].getAttribute('href').split('?')[0];
     if(u.startsWith('//')) u = 'https:' + u;
     if(u.indexOf('share') === -1){ ig = u; break; }
+}
+
+// Fallback: scan raw HTML for facebook/instagram URLs (catches Wix/JS-rendered links
+// where href is a redirect URL or set via data attributes / onclick handlers)
+var SKIP_FB_SLUGS = ['tr','pixel','plugins','sharer','share','login','dialog',
+    'policy.php','policy','terms','terms.php','about','legal','cookies',
+    'r.php','recover','profile.php','help','privacy','settings','pages','ads','business'];
+if(!fb){
+    var rawHtml = document.documentElement.outerHTML;
+    var fbRaw = rawHtml.match(/https?:\/\/(?:www\.)?facebook\.com\/[A-Za-z0-9._\-]+/g) || [];
+    for(var i=0;i<fbRaw.length;i++){
+        var u = fbRaw[i].split('?')[0].replace(/\/$/,'');
+        var slug = u.split('facebook.com/')[1] || '';
+        if(SKIP_FB_SLUGS.indexOf(slug) > -1) continue;
+        if(u.indexOf('sharer') > -1 || u.indexOf('share') > -1) continue;
+        if(slug.length >= 3){ fb = u; break; }
+    }
+}
+if(!ig){
+    var rawHtml2 = document.documentElement.outerHTML;
+    var igRaw = rawHtml2.match(/https?:\/\/(?:www\.)?instagram\.com\/[A-Za-z0-9._\-]+/g) || [];
+    for(var i=0;i<igRaw.length;i++){
+        var u = igRaw[i].split('?')[0].replace(/\/$/,'');
+        if(u.indexOf('share') === -1){ ig = u; break; }
+    }
 }
 
 // Internal links — grab ALL nav/header links + keyword-matched body links
@@ -588,12 +613,55 @@ for c in d.get('contacts', []):
         done <<< "$subpages"
     fi
 
-    # Update social links
+    # Proactive contact page check — for Wix/JS sites where nav links aren't real <a href>
+    # tags, the contact page never appears in subpages. Try common URL patterns explicitly.
+    local base_url
+    base_url=$(python3 -c "from urllib.parse import urlparse; u=urlparse('${website}'); print(u.scheme+'://'+u.netloc)" 2>/dev/null)
+    if [ -n "$base_url" ]; then
+        for contact_path in "/contact" "/contact-us" "/contact_us" "/get-in-touch" "/reach-us" "/inquiry" "/enquiry"; do
+            local try_contact="${base_url}${contact_path}"
+            local http_code
+            http_code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 5 "$try_contact" 2>/dev/null)
+            if [ "$http_code" = "200" ]; then
+                log "  [CONTACT] Probing $try_contact"
+                osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${try_contact}\"" 2>/dev/null
+                sleep 5
+                local pc_result
+                pc_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
+                if [ -n "$pc_result" ] && [ "$pc_result" != "missing value" ]; then
+                    echo "$pc_result" > /tmp/pipeline_contact_probe.json
+                    local pc_count
+                    pc_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_contact_probe.json')); print(len(d.get('contacts',[])))" 2>/dev/null || echo "0")
+                    if [ "$pc_count" != "0" ]; then
+                        log "  [CONTACT] Found emails on $try_contact"
+                        python3 -c "
+import json
+d = json.load(open('/tmp/pipeline_contact_probe.json'))
+for c in d.get('contacts', []):
+    print(c['email'] + '|||' + c.get('name','') + '|||' + c.get('title',''))
+" 2>/dev/null >> /tmp/pipeline_all_contacts.txt
+                    fi
+                    # Also grab social links if not found yet
+                    local pc_fb pc_ig
+                    pc_fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_contact_probe.json')).get('facebook',''))" 2>/dev/null)
+                    pc_ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_contact_probe.json')).get('instagram',''))" 2>/dev/null)
+                    if [ -z "$fb" ] || [ "$fb" = "None" ]; then fb="$pc_fb"; fi
+                    if [ -z "$ig" ] || [ "$ig" = "None" ]; then ig="$pc_ig"; fi
+                    rm -f /tmp/pipeline_contact_probe.json
+                fi
+                break  # Only need to find one valid contact page
+            fi
+        done
+    fi
+
+    # Update social links — also write to temp files so step1b/1c don't re-query the sheet
     if [ -n "$fb" ] && [ "$fb" != "None" ] && [ "$fb" != "" ]; then
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$fb'''))")" > /dev/null
+        echo "$fb" > /tmp/pipeline_step1_fb.txt
     fi
     if [ -n "$ig" ] && [ "$ig" != "None" ] && [ "$ig" != "" ]; then
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$ig'''))")" > /dev/null
+        echo "$ig" > /tmp/pipeline_step1_ig.txt
     fi
     if [ -n "$contact_form" ] && [ "$contact_form" != "None" ] && [ "$contact_form" != "" ]; then
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=contact_form&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$contact_form'''))")" > /dev/null
@@ -628,7 +696,16 @@ for email, name, title in sorted(results):
 step1b_ig_search() {
     local venue="$1" venue_id="$2"
 
-    # Check if IG already found (from Step 1 website scrape)
+    # Check temp file first (written by step1 when it finds IG directly)
+    if [ -f /tmp/pipeline_step1_ig.txt ]; then
+        local cached_ig
+        cached_ig=$(cat /tmp/pipeline_step1_ig.txt)
+        if [ -n "$cached_ig" ] && [ ${#cached_ig} -gt 5 ]; then
+            return  # Already found in step1
+        fi
+    fi
+
+    # Check if IG already found (from Step 1 website scrape saved to sheet)
     local current_ig
     local ig_tmpf="/tmp/pipeline_ig_check.json"
     curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" -o "$ig_tmpf" 2>/dev/null
@@ -667,7 +744,16 @@ step1b_ig_search() {
 step1c_fb_search() {
     local venue="$1" venue_id="$2"
 
-    # Check if FB already found (from Step 1 website scrape)
+    # Check temp file first (written by step1 when it finds FB directly)
+    if [ -f /tmp/pipeline_step1_fb.txt ]; then
+        local cached_fb
+        cached_fb=$(cat /tmp/pipeline_step1_fb.txt)
+        if [ -n "$cached_fb" ] && [ ${#cached_fb} -gt 5 ]; then
+            return  # Already found in step1
+        fi
+    fi
+
+    # Check if FB already found (from Step 1 website scrape saved to sheet)
     local current_fb
     local fb_tmpf="/tmp/pipeline_fb_check.json"
     curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" -o "$fb_tmpf" 2>/dev/null
@@ -711,6 +797,13 @@ step2_social() {
     curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" -o "$social_tmpf"
     fb=$(python3 -c "import json; print(json.load(open('$social_tmpf')).get('venue',{}).get('facebook',''))" 2>/dev/null)
     ig=$(python3 -c "import json; print(json.load(open('$social_tmpf')).get('venue',{}).get('instagram',''))" 2>/dev/null)
+    # Fall back to temp files written by step1 (catches case where update_venue failed)
+    if [ -z "$fb" ] || [ "$fb" = "None" ] || [ ${#fb} -le 5 ]; then
+        [ -f /tmp/pipeline_step1_fb.txt ] && fb=$(cat /tmp/pipeline_step1_fb.txt)
+    fi
+    if [ -z "$ig" ] || [ "$ig" = "None" ] || [ ${#ig} -le 5 ]; then
+        [ -f /tmp/pipeline_step1_ig.txt ] && ig=$(cat /tmp/pipeline_step1_ig.txt)
+    fi
 
     log "  FB: ${fb:-none} | IG: ${ig:-none}"
 

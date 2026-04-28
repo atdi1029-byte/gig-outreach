@@ -2336,9 +2336,9 @@ run_venue() {
         domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${website}').netloc.replace('www.',''))" 2>/dev/null)
         if [ -n "$domain" ]; then
             local lookup_resp
-            lookup_resp=$(curl -sL "${APPS_SCRIPT_URL}?action=add_venue&venue_id=${venue_id}&name=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue'''))")&website=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$website'''))")&category=restaurant&city=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''${city:-}'''))") &state=MD" 2>/dev/null)
+            lookup_resp=$(curl -sL "${APPS_SCRIPT_URL}?action=find_by_domain&domain=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$domain'))")" 2>/dev/null)
             local real_id
-            real_id=$(echo "$lookup_resp" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('venue_id',''))" 2>/dev/null)
+            real_id=$(echo "$lookup_resp" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('venue_id','')) if d.get('status')=='ok' else print('')" 2>/dev/null)
             if [ -n "$real_id" ] && [ "$real_id" != "$venue_id" ]; then
                 log "  [ID FIX] '$venue_id' not in sheet — using real ID '$real_id' (matched by domain: $domain)"
                 venue_id="$real_id"

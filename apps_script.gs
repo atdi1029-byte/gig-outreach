@@ -66,6 +66,7 @@ function doGet(e) {
   if (action === 'save_skip_words')  return saveSkipWords_(e.parameter);
   if (action === 'get_skip_words')   return getSkipWords_();
   if (action === 'remap_contact_venue') return remapContactVenue_(e.parameter);
+  if (action === 'find_by_domain')     return findByDomain_(e.parameter);
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -1787,4 +1788,27 @@ function remapContactVenue_(params) {
   }
 
   return jsonResponse_({ status: 'ok', updated: updated, old_venue_id: oldId, new_venue_id: newId });
+}
+
+// find_by_domain — look up a venue by its website domain
+// Returns {status:'ok', venue_id, name} or {status:'error', message}
+function findByDomain_(params) {
+  var raw = (params.domain || '').toLowerCase().replace(/^www\./, '').replace(/\/$/, '');
+  if (!raw) return jsonResponse_({ status: 'error', message: 'No domain provided' });
+
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(VENUES);
+  var data  = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < data.length; i++) {
+    var website = String(data[i][3]).trim();
+    if (!website) continue;
+    try {
+      var hostname = website.replace(/^https?:\/\//, '').split('/')[0]
+                            .toLowerCase().replace(/^www\./, '');
+      if (hostname === raw) {
+        return jsonResponse_({ status: 'ok', venue_id: String(data[i][0]), name: String(data[i][1]) });
+      }
+    } catch (e) {}
+  }
+  return jsonResponse_({ status: 'error', message: 'Not found' });
 }

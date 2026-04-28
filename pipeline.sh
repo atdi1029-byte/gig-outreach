@@ -834,6 +834,7 @@ JSEOF
     local SOCIAL_EMAILS=""
 
     # Facebook — try main page and /about
+    local fb_found_email=0
     if [ -n "$fb" ] && [ "$fb" != "None" ] && [ ${#fb} -gt 5 ]; then
         for fb_path in "" "/about" "/directory_contact_info"; do
             local fb_url="${fb%/}${fb_path}"
@@ -845,8 +846,25 @@ JSEOF
             if [ -n "$fb_emails" ]; then
                 log "  FB emails found: $fb_emails"
                 SOCIAL_EMAILS="${SOCIAL_EMAILS}|${fb_emails}"
+                fb_found_email=1
             fi
         done
+        if [ "$fb_found_email" = "0" ]; then
+            # Facebook DOM may not render email — fall back to Google snippet
+            log "  [FB] No email on page — trying Google snippet..."
+            local fb_search_encoded
+            fb_search_encoded=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" facebook'))")
+            osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${fb_search_encoded}\""
+            sleep 4
+            local fb_snippet_emails
+            fb_snippet_emails=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_email_from_snippet.js"'")')
+            if [ -n "$fb_snippet_emails" ] && [ "$fb_snippet_emails" != "missing value" ]; then
+                log "  [FB SNIPPET] Found: $fb_snippet_emails"
+                SOCIAL_EMAILS="${SOCIAL_EMAILS}|${fb_snippet_emails}"
+            else
+                log "  [FB SNIPPET] No email in Google snippet"
+            fi
+        fi
     fi
 
     # Instagram
@@ -859,6 +877,21 @@ JSEOF
         if [ -n "$ig_emails" ]; then
             log "  IG emails found: $ig_emails"
             SOCIAL_EMAILS="${SOCIAL_EMAILS}|${ig_emails}"
+        else
+            # Instagram DOM doesn't render bio emails — fall back to Google snippet
+            log "  [IG] No email on page — trying Google snippet..."
+            local ig_search_encoded
+            ig_search_encoded=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" instagram'))")
+            osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${ig_search_encoded}\""
+            sleep 4
+            local ig_snippet_emails
+            ig_snippet_emails=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_email_from_snippet.js"'")')
+            if [ -n "$ig_snippet_emails" ] && [ "$ig_snippet_emails" != "missing value" ]; then
+                log "  [IG SNIPPET] Found: $ig_snippet_emails"
+                SOCIAL_EMAILS="${SOCIAL_EMAILS}|${ig_snippet_emails}"
+            else
+                log "  [IG SNIPPET] No email in Google snippet"
+            fi
         fi
     fi
 
@@ -2292,6 +2325,26 @@ run_venue() {
     local venue="$1" venue_id="$2" website="$3" city="$4"
     local start_time
     start_time=$(date +%s)
+
+    # Resolve real venue ID — if the passed ID doesn't exist in the sheet,
+    # look it up by domain. Catches the case where discover.sh assigned a
+    # different ID than what was passed manually.
+    local id_check
+    id_check=$(curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('status',''))" 2>/dev/null)
+    if [ "$id_check" = "error" ] && [ -n "$website" ] && [ "$website" != "None" ]; then
+        local domain
+        domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${website}').netloc.replace('www.',''))" 2>/dev/null)
+        if [ -n "$domain" ]; then
+            local lookup_resp
+            lookup_resp=$(curl -sL "${APPS_SCRIPT_URL}?action=add_venue&venue_id=${venue_id}&name=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue'''))")&website=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$website'''))")&category=restaurant&city=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''${city:-}'''))") &state=MD" 2>/dev/null)
+            local real_id
+            real_id=$(echo "$lookup_resp" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('venue_id',''))" 2>/dev/null)
+            if [ -n "$real_id" ] && [ "$real_id" != "$venue_id" ]; then
+                log "  [ID FIX] '$venue_id' not in sheet — using real ID '$real_id' (matched by domain: $domain)"
+                venue_id="$real_id"
+            fi
+        fi
+    fi
 
     # If no website, Google it via Chrome
     if [ -z "$website" ] || [ "$website" = "None" ]; then

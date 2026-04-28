@@ -1351,6 +1351,9 @@ const REFRESH_INTERVAL = 60000;
 let dashboardData = null;
 let refreshTimer = null;
 let navStack = ['viewHome'];
+// Track locally-confirmed sent contacts so a loadDashboard overwrite
+// doesn't erase marks made during an in-flight refresh.
+const _localSentContacts = new Set(); // keys: "contactId|venueId"
 let currentState = '';
 let currentCategory = '';
 
@@ -2100,6 +2103,10 @@ function skipContact(contactId, el) {
 
 // === UPDATE LOCAL DATA ===
 function updateLocalContact(contactId, venueId, field, value) {
+    // Remember email_sent marks so loadDashboard overwrites don't lose them
+    if (field === 'email_sent' && value === 'true') {
+        _localSentContacts.add(contactId + '|' + venueId);
+    }
     if (!dashboardData) return;
     const c = (dashboardData.contacts || []).find(
         x => x.contact_id === contactId && x.venue_id === venueId
@@ -2763,6 +2770,15 @@ function loadDashboard() {
     jsonpFetch(API_URL, function(err, data) {
         if (!err && data && data.status === 'ok') {
             dashboardData = data;
+            // Re-apply any locally confirmed sent marks that arrived during
+            // this fetch (prevents race where marks are wiped by stale data)
+            if (_localSentContacts.size > 0) {
+                (dashboardData.contacts || []).forEach(function(c) {
+                    if (_localSentContacts.has(c.contact_id + '|' + c.venue_id)) {
+                        c.email_sent = 'true';
+                    }
+                });
+            }
             renderReviewQueue();
             renderTopPicks(data.topPicks);
             renderStateGrid();

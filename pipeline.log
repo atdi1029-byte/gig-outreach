@@ -8412,3 +8412,1156 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 20:44:18 
 20:44:18 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-21_20-44.html
 20:44:18 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-21_20-44.html
+
+23:20:12 === Pipeline started 2026-04-23 23:20:12 ===
+23:20:12 UNTOUCHED PHASE: Fetching all venues...
+23:20:15 UNTOUCHED: 370 found (shared budget: 7 total)
+23:20:15 
+23:20:15 ########## UNTOUCHED #1: Bistro St. Michaels (MD-REST-429) ##########
+23:20:18 
+23:20:18 ============================================================
+23:20:18  PIPELINE: Bistro St. Michaels (MD-REST-429)
+23:20:18  Website: https://www.bistrostmichaels.com/
+23:20:18  Started: 2026-04-23 23:20:18
+23:20:18 ============================================================
+23:20:18   [ZB] Credits remaining: 4049
+23:20:21   Known emails: 0
+23:20:21   Known names: 0
+23:20:21 
+23:20:21 ========== STEP 1: Website Scrape ==========
+23:20:21   URL: https://www.bistrostmichaels.com/
+23:20:21   Opening in Chrome: https://www.bistrostmichaels.com/
+23:20:27   Validating contact form URL: https://www.bistrostmichaels.com/contact-3
+23:20:32   Found on contact page: inquiries@bistrostmichaels.com
+23:20:32   ✓ Real contact form confirmed
+23:20:32   Emails: 1 | FB: https://www.facebook.com/BistroStMichaels | IG: https://www.instagram.com/bistrostmichaels | Contact Form: https://www.bistrostmichaels.com/contact-3
+23:20:32   Crawling subpage (1/20): https://www.bistrostmichaels.com/about
+23:20:36   Found on subpage: inquiries@bistrostmichaels.com
+23:20:36   Crawling subpage (2/20): https://www.bistrostmichaels.com/menu
+23:20:41   Found on subpage: inquiries@bistrostmichaels.com
+23:20:41   Crawling subpage (3/20): https://www.bistrostmichaels.com/copy-of-menu
+23:20:45   Found on subpage: inquiries@bistrostmichaels.com
+23:20:45   Crawling subpage (4/20): https://www.bistrostmichaels.com/copy-of-dinner
+23:20:49   Same emails 3 pages in a row — stopping subpage crawl
+23:20:56   ✓ Contact form URL saved
+23:20:58   inquiries@bistrostmichaels.com → do_not_mail
+23:21:04 
+23:21:04 ========== STEP 2: Social Media Scrape ==========
+23:21:07   FB: https://www.facebook.com/BistroStMichaels | IG: https://www.instagram.com/bistrostmichaels
+23:21:07   Opening FB: https://www.facebook.com/BistroStMichaels
+23:21:12   FB emails found: inquiries@bistrostmichaels.com
+23:21:12   Opening FB: https://www.facebook.com/BistroStMichaels/about
+23:21:17   Opening FB: https://www.facebook.com/BistroStMichaels/directory_contact_info
+23:21:22   FB emails found: inquiries@bistrostmichaels.com
+23:21:22   Opening IG: https://www.instagram.com/bistrostmichaels
+23:21:28   inquiries@bistrostmichaels.com → do_not_mail
+23:21:29   [APOLLO] Credits used this run: 0 / 300
+23:21:29 
+23:21:29 ========== STEP 3: Apollo API ==========
+23:21:29   Searching Apollo for company: Bistro St. Michaels
+23:21:32   Found: Bistro St Michaels (domain: bistrostmichaels.com, org_id: 55f6f0faf3e5bb1d0201c4d6)
+23:21:32   Searching for people at Bistro St Michaels (org_id: 55f6f0faf3e5bb1d0201c4d6)...
+23:21:32   Found 1 people total
+23:21:33   Skipped 1 people with no email (red ? on Apollo)
+23:21:33   No new people to enrich.
+23:21:33 
+23:21:33 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+23:21:35   Marked linkedin_pending=true
+23:21:35   Setting status → pipelined
+23:21:37 
+23:21:37 ============================================================
+23:21:37  DONE: Bistro St. Michaels | 1 min | 23:21:37
+23:21:37 ============================================================
+23:22:07 
+23:22:07 ########## UNTOUCHED #2: Plates at 208 (MD-REST-430) ##########
+23:22:10 
+23:22:10 ============================================================
+23:22:10  PIPELINE: Plates at 208 (MD-REST-430)
+23:22:10  Website: https://www.platesat208.com/
+23:22:10  Started: 2026-04-23 23:22:10
+23:22:10 ============================================================
+23:22:10   [ZB] Credits remaining: 4048
+23:22:12   Known emails: 0
+23:22:12   Known names: 0
+23:22:12 
+23:22:12 ========== STEP 1: Website Scrape ==========
+23:22:12   URL: https://www.platesat208.com/
+23:22:12   Opening in Chrome: https://www.platesat208.com/
+23:22:19   Emails: 1 | FB: https://www.facebook.com/208TalbotStreet | IG: https://www.instagram.com/platesat208/ | Contact Form: none
+23:22:19   Crawling subpage (1/20): https://www.platesat208.com/about
+23:22:23   Found on subpage: platesat208@gmail.com
+23:22:29   platesat208@gmail.com → valid
+23:22:31   ✓ Added: platesat208@gmail.com <platesat208@gmail.com>
+23:22:37 
+23:22:37 ========== STEP 2: Social Media Scrape ==========
+23:22:41   FB: https://www.facebook.com/208TalbotStreet | IG: https://www.instagram.com/platesat208/
+23:22:41   Opening FB: https://www.facebook.com/208TalbotStreet
+23:22:46   FB emails found: 208plates@gmail.com
+23:22:46   Opening FB: https://www.facebook.com/208TalbotStreet/about
+23:22:51   FB emails found: 208plates@gmail.com
+23:22:51   Opening FB: https://www.facebook.com/208TalbotStreet/directory_contact_info
+23:22:57   Opening IG: https://www.instagram.com/platesat208/
+23:23:03   208plates@gmail.com → valid
+23:23:06   ✓ Added: 208plates@gmail.com <208plates@gmail.com>
+23:23:07   [APOLLO] Credits used this run: 0 / 300
+23:23:07 
+23:23:07 ========== STEP 3: Apollo API ==========
+23:23:07   Searching Apollo for company: Plates at 208
+23:23:08   [WARN] No company found in Apollo for 'Plates at 208' (tried name + domain)
+23:23:08   Using website domain for enrichment: platesat208.com
+23:23:08 
+23:23:08 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+23:23:10   Marked linkedin_pending=true
+23:23:10   Setting status → pipelined
+23:23:12 
+23:23:12 ============================================================
+23:23:12  DONE: Plates at 208 | 1 min | 23:23:12
+23:23:12 ============================================================
+23:23:42 
+23:23:42 ########## UNTOUCHED #3: Ruse Restaurant (MD-REST-431) ##########
+23:23:45 
+23:23:45 ============================================================
+23:23:45  PIPELINE: Ruse Restaurant (MD-REST-431)
+23:23:45  Website: https://ruserestaurant.com/
+23:23:45  Started: 2026-04-23 23:23:45
+23:23:45 ============================================================
+23:23:45   [ZB] Credits remaining: 4046
+23:23:48   Known emails: 0
+23:23:48   Known names: 0
+23:23:48 
+23:23:48 ========== STEP 1: Website Scrape ==========
+23:23:48   URL: https://ruserestaurant.com/
+23:23:48   Opening in Chrome: https://ruserestaurant.com/
+23:23:54   Validating contact form URL: https://ruserestaurant.com/contact
+23:23:59   Found on contact page: reservations@ruserestaurant.com
+23:23:59   ✗ No submittable form found — clearing contact_form
+23:23:59   Emails: 1 | FB: none | IG: https://www.instagram.com/ruse_wildset/ | Contact Form: none
+23:23:59   Crawling subpage (1/20): https://ruserestaurant.com/events
+23:24:03   Found on subpage: reservations@ruserestaurant.com
+23:24:03   Crawling subpage (2/20): https://ruserestaurant.com/about
+23:24:08   Found on subpage: reservations@ruserestaurant.com
+23:24:08   Crawling subpage (3/20): https://ruserestaurant.com/contact
+23:24:12   Found on subpage: reservations@ruserestaurant.com
+23:24:17   reservations@ruserestaurant.com → do_not_mail
+23:24:23 
+23:24:23 ========== STEP 1C: Facebook Google Search ==========
+23:24:23   No Facebook found on website — Googling...
+23:24:28   [FB SEARCH] Found: https://www.facebook.com/ruserestaurant/
+23:24:30   ✓ Facebook URL saved
+23:24:30 
+23:24:30 ========== STEP 2: Social Media Scrape ==========
+23:24:33   FB: https://www.facebook.com/ruserestaurant/ | IG: https://www.instagram.com/ruse_wildset/
+23:24:33   Opening FB: https://www.facebook.com/ruserestaurant
+23:24:38   Opening FB: https://www.facebook.com/ruserestaurant/about
+23:24:44   FB emails found: reservations@ruserestaurant.com
+23:24:44   Opening FB: https://www.facebook.com/ruserestaurant/directory_contact_info
+23:24:49   Opening IG: https://www.instagram.com/ruse_wildset/
+23:24:54   reservations@ruserestaurant.com → do_not_mail
+23:24:55   [APOLLO] Credits used this run: 0 / 300
+23:24:55 
+23:24:55 ========== STEP 3: Apollo API ==========
+23:24:55   Searching Apollo for company: Ruse Restaurant
+23:24:57   [WARN] No company found in Apollo for 'Ruse Restaurant' (tried name + domain)
+23:24:57   Using website domain for enrichment: ruserestaurant.com
+23:24:57 
+23:24:57 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+23:25:00   Marked linkedin_pending=true
+23:25:00   Setting status → pipelined
+23:25:02 
+23:25:02 ============================================================
+23:25:02  DONE: Ruse Restaurant | 1 min | 23:25:02
+23:25:02 ============================================================
+23:25:32 
+23:25:32 ########## UNTOUCHED #4: Limoncello Italian Restaurant & Wine Bar (MD-REST-432) ##########
+23:25:35 
+23:25:35 ============================================================
+23:25:35  PIPELINE: Limoncello Italian Restaurant & Wine Bar (MD-REST-432)
+23:25:35  Website: http://limoncellostmichaels.com/
+23:25:35  Started: 2026-04-23 23:25:35
+23:25:35 ============================================================
+23:25:35   [ZB] Credits remaining: 4045
+23:25:39   Known emails: 0
+23:25:39   Known names: 0
+23:25:39 
+23:25:39 ========== STEP 1: Website Scrape ==========
+23:25:39   URL: http://limoncellostmichaels.com/
+23:25:39   Opening in Chrome: http://limoncellostmichaels.com/
+23:25:46   Emails: 1 | FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/ | Contact Form: none
+23:25:51   info@limoncellostmichaels.com → do_not_mail
+23:25:58 
+23:25:58 ========== STEP 2: Social Media Scrape ==========
+23:26:02   FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/
+23:26:02   Opening FB: https://www.facebook.com/limoncellostmichaels
+23:26:07   FB emails found: info@limoncellostmichaels.com
+23:26:07   Opening FB: https://www.facebook.com/limoncellostmichaels/about
+23:26:12   FB emails found: info@limoncellostmichaels.com
+23:26:12   Opening FB: https://www.facebook.com/limoncellostmichaels/directory_contact_info
+23:26:17   Opening IG: https://www.instagram.com/limoncellostmichaels/
+23:26:23   info@limoncellostmichaels.com → do_not_mail
+23:26:24   [APOLLO] Credits used this run: 0 / 300
+23:26:24 
+23:26:24 ========== STEP 3: Apollo API ==========
+23:26:24   Searching Apollo for company: Limoncello Italian Restaurant & Wine Bar
+23:26:26   Found: Limoncello Italian Restaurant & Wine Bar (domain: limoncellostmichaels.com, org_id: 670e27f7169c740001b3c21c)
+23:26:26   Searching for people at Limoncello Italian Restaurant & Wine Bar (org_id: 670e27f7169c740001b3c21c)...
+23:26:27   Found 0 people total
+23:26:27   No people in Apollo for this company.
+23:26:27 
+23:26:27 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+23:26:28   Marked linkedin_pending=true
+23:26:28   Setting status → pipelined
+23:26:30 
+23:26:30 ============================================================
+23:26:30  DONE: Limoncello Italian Restaurant & Wine Bar | 0 min | 23:26:30
+23:26:30 ============================================================
+23:27:00 
+23:27:00 ########## UNTOUCHED #5: Theo's Steaks Sides & Spirits (MD-REST-433) ##########
+23:27:03 
+23:27:03 ============================================================
+23:27:03  PIPELINE: Theo's Steaks Sides & Spirits (MD-REST-433)
+23:27:03  Website: https://www.theossteakhouse.com/
+23:27:03  Started: 2026-04-23 23:27:03
+23:27:03 ============================================================
+23:27:03   [ZB] Credits remaining: 4044
+23:27:06   Known emails: 0
+23:27:06   Known names: 0
+23:27:06 
+23:27:06 ========== STEP 1: Website Scrape ==========
+23:27:06   URL: https://www.theossteakhouse.com/
+23:27:06   Opening in Chrome: https://www.theossteakhouse.com/
+23:27:13   Emails: 0 | FB: https://www.facebook.com/theossteakhousestm | IG: https://www.instagram.com/theossteakhouse | Contact Form: none
+23:27:13   [LOCATION] Checking for location-specific page (city: St. Michaels)...
+23:27:13   [LOCATION] Found: https://www.theossteakhouse.com/st-michaels/
+23:27:13   [LOCATION] Re-scraping location page: https://www.theossteakhouse.com/st-michaels/
+23:27:22   [LOCATION] Re-scraped: Emails: 1 | FB: https://www.facebook.com/theossteakhousestm | IG: https://www.instagram.com/theossteakhouse | Contact Form: none
+23:27:22   Crawling subpage (1/20): https://theossteakhouse.com
+23:27:26   Crawling subpage (2/20): https://theossteakhouse.com/about
+23:27:31   Crawling subpage (3/20): https://theossteakhouse.com/rehoboth-beach
+23:27:35   Found on subpage: rehoboth@theossteakhouse.com
+23:27:35   Crawling subpage (4/20): https://theossteakhouse.com/rewards
+23:27:45   rehoboth@theossteakhouse.com → valid
+23:27:49   ✓ Added: rehoboth@theossteakhouse.com <rehoboth@theossteakhouse.com>
+23:27:51   stmichaels@theossteakhouse.com → valid
+23:27:54   ✓ Added: stmichaels@theossteakhouse.com <stmichaels@theossteakhouse.com>
+23:27:59 
+23:27:59 ========== STEP 2: Social Media Scrape ==========
+23:28:02   FB: https://www.facebook.com/theossteakhousestm | IG: https://www.instagram.com/theossteakhouse
+23:28:02   Opening FB: https://www.facebook.com/theossteakhousestm
+23:28:08   FB emails found: stmichaels@theossteakhouse.com
+23:28:08   Opening FB: https://www.facebook.com/theossteakhousestm/about
+23:28:13   Opening FB: https://www.facebook.com/theossteakhousestm/directory_contact_info
+23:28:18   FB emails found: stmichaels@theossteakhouse.com
+23:28:18   Opening IG: https://www.instagram.com/theossteakhouse
+23:28:23   stmichaels@theossteakhouse.com → valid
+23:28:26   ✓ Added: stmichaels@theossteakhouse.com <stmichaels@theossteakhouse.com>
+23:28:27   [APOLLO] Credits used this run: 0 / 300
+23:28:27 
+23:28:27 ========== STEP 3: Apollo API ==========
+23:28:27   Searching Apollo for company: Theo's Steaks Sides & Spirits
+23:28:29   Found: Theo's Steaks, Sides & Spirits (domain: theossteakhouse.com, org_id: 6739233ae6360e00017fa782)
+23:28:29   Searching for people at Theo's Steaks, Sides & Spirits (org_id: 6739233ae6360e00017fa782)...
+23:28:30   Found 4 people total
+23:28:30   Skipped 3 people with no email (red ? on Apollo)
+23:28:30   1 people to enrich (1 credit each)
+23:28:31   >>> Audrey Noyes (General Manager): anoyes@theossteakhouse.com [verified]
+23:28:31   anoyes@theossteakhouse.com → valid
+23:28:34   ✓ Added: Audrey Noyes <anoyes@theossteakhouse.com>
+23:28:36   Apollo API done: 1 credits used this run
+23:28:36 
+23:28:36 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+23:28:38   Marked linkedin_pending=true
+23:28:38   Setting status → pipelined
+23:28:40 
+23:28:40 ============================================================
+23:28:40  DONE: Theo's Steaks Sides & Spirits | 1 min | 23:28:40
+23:28:40 ============================================================
+23:29:10 
+23:29:10 ########## UNTOUCHED #6: The Fool's Lantern (MD-WINE-434) ##########
+23:29:13 
+23:29:13 ============================================================
+23:29:13  PIPELINE: The Fool's Lantern (MD-WINE-434)
+23:29:13  Website: https://thefoolslantern.com/
+23:29:13  Started: 2026-04-23 23:29:13
+23:29:13 ============================================================
+23:29:13   [ZB] Credits remaining: 4041
+23:29:16   Known emails: 0
+23:29:16   Known names: 0
+23:29:16 
+23:29:16 ========== STEP 1: Website Scrape ==========
+23:29:16   URL: https://thefoolslantern.com/
+23:29:16   Opening in Chrome: https://thefoolslantern.com/
+23:29:22   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:29:35   Validating contact form URL: https://thefoolslantern.com/contact-the-fools-lantern
+23:29:39   ✗ No submittable form found — clearing contact_form
+23:29:39   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:29:39   [LOCATION] Checking for location-specific page (city: St. Michaels)...
+23:29:42   [LOCATION] No location-specific page found
+23:29:42   Crawling subpage (1/20): https://thefoolslantern.com/food-and-drink/lunch-dinner-menu
+23:29:46   Crawling subpage (2/20): https://thefoolslantern.com/large-plates
+23:29:50   Crawling subpage (3/20): https://thefoolslantern.com/food-and-drink/cocktail-menu
+23:29:55   Crawling subpage (4/20): https://thefoolslantern.com/food-and-drink/wines-on-tap
+23:29:59   Crawling subpage (5/20): https://thefoolslantern.com/food-and-drink/beers-on-tap
+23:30:03   Crawling subpage (6/20): https://thefoolslantern.com/how-it-works
+23:30:07   Crawling subpage (7/20): https://thefoolslantern.com/customer-reviews
+23:30:12   Crawling subpage (8/20): https://thefoolslantern.com/upcoming-events
+23:30:16   Crawling subpage (9/20): https://thefoolslantern.com/host-your-next-private-event-at-the-fools-lantern
+23:30:20   Crawling subpage (10/20): https://thefoolslantern.com/join-our-team
+23:30:25   Found on subpage: thefoolslantern@gmail.com
+23:30:25   Crawling subpage (11/20): https://thefoolslantern.com/contact-the-fools-lantern
+23:30:31   thefoolslantern@gmail.com → valid
+23:30:34   ✓ Added: thefoolslantern@gmail.com <thefoolslantern@gmail.com>
+23:30:38 
+23:30:38 ========== STEP 1B: Instagram Google Search ==========
+23:30:38   No Instagram found on website — Googling...
+23:30:42   [IG SEARCH] Found: https://www.instagram.com/thefoolslantern/
+23:30:45   ✓ Instagram URL saved
+23:30:48 
+23:30:48 ========== STEP 1C: Facebook Google Search ==========
+23:30:48   No Facebook found on website — Googling...
+23:30:52   [FB SEARCH] Found: https://www.facebook.com/thefoolslantern/
+23:30:56   ✓ Facebook URL saved
+23:30:56 
+23:30:56 ========== STEP 2: Social Media Scrape ==========
+23:30:58   FB: https://www.facebook.com/thefoolslantern/ | IG: https://www.instagram.com/thefoolslantern/
+23:30:59   Opening FB: https://www.facebook.com/thefoolslantern
+23:31:04   Opening FB: https://www.facebook.com/thefoolslantern/about
+23:31:09   Opening FB: https://www.facebook.com/thefoolslantern/directory_contact_info
+23:31:14   FB emails found: thefoolslantern@gmail.com
+23:31:14   Opening IG: https://www.instagram.com/thefoolslantern/
+23:31:20   thefoolslantern@gmail.com → valid
+23:31:23   ✓ Added: thefoolslantern@gmail.com <thefoolslantern@gmail.com>
+23:31:24   [APOLLO] Credits used this run: 1 / 300
+23:31:24 
+23:31:24 ========== STEP 3: Apollo API ==========
+23:31:24   Searching Apollo for company: The Fool's Lantern
+23:31:26   Found: The Fool's Lantern (domain: thefoolslantern.com, org_id: 64169ae4fc56d20001c6f8a8)
+23:31:26   Searching for people at The Fool's Lantern (org_id: 64169ae4fc56d20001c6f8a8)...
+23:31:27   Found 0 people total
+23:31:27   No people in Apollo for this company.
+23:31:27 
+23:31:27 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+23:31:30   Marked linkedin_pending=true
+23:31:30   Setting status → pipelined
+23:31:33 
+23:31:33 ============================================================
+23:31:33  DONE: The Fool's Lantern | 2 min | 23:31:33
+23:31:33 ============================================================
+23:32:03 
+23:32:03 ########## UNTOUCHED #7: St. Michaels Winery (MD-WINE-435) ##########
+23:32:06 
+23:32:06 ============================================================
+23:32:06  PIPELINE: St. Michaels Winery (MD-WINE-435)
+23:32:06  Website: https://stmichaelswinery.com/
+23:32:06  Started: 2026-04-23 23:32:06
+23:32:06 ============================================================
+23:32:06   [ZB] Credits remaining: 4040
+23:32:11   Known emails: 0
+23:32:11   Known names: 0
+23:32:11 
+23:32:11 ========== STEP 1: Website Scrape ==========
+23:32:11   URL: https://stmichaelswinery.com/
+23:32:11   Opening in Chrome: https://stmichaelswinery.com/
+23:32:17   Emails: 0 | FB: none | IG: https://www.instagram.com/st.michaelswinery/ | Contact Form: none
+23:32:17   [LOCATION] Checking for location-specific page (city: St. Michaels)...
+23:32:22   [LOCATION] No location-specific page found
+23:32:31 
+23:32:31 ========== STEP 1C: Facebook Google Search ==========
+23:32:31   No Facebook found on website — Googling...
+23:32:36   [FB SEARCH] Found: https://www.facebook.com/SaintMichaelsWinery/
+23:32:38   ✓ Facebook URL saved
+23:32:38 
+23:32:38 ========== STEP 2: Social Media Scrape ==========
+23:32:41   FB: https://www.facebook.com/SaintMichaelsWinery/ | IG: https://www.instagram.com/st.michaelswinery/
+23:32:41   Opening FB: https://www.facebook.com/SaintMichaelsWinery
+23:32:46   FB emails found: info@st-michaels-winery.com
+23:32:46   Opening FB: https://www.facebook.com/SaintMichaelsWinery/about
+23:32:51   Opening FB: https://www.facebook.com/SaintMichaelsWinery/directory_contact_info
+23:32:57   FB emails found: info@st-michaels-winery.com
+23:32:57   Opening IG: https://www.instagram.com/st.michaelswinery/
+23:33:02   info@st-michaels-winery.com → invalid
+23:33:05   ⚠ Added (invalid): info@st-michaels-winery.com <info@st-michaels-winery.com>
+23:33:06   [APOLLO] Credits used this run: 1 / 300
+23:33:06 
+23:33:06 ========== STEP 3: Apollo API ==========
+23:33:06   Searching Apollo for company: St. Michaels Winery
+23:33:08   Found: St Michaels Winery (domain: stmichaelswinery.com, org_id: 55922d0b73696418df3db100)
+23:33:08   Searching for people at St Michaels Winery (org_id: 55922d0b73696418df3db100)...
+23:33:09   Found 0 people total
+23:33:09   No people in Apollo for this company.
+23:33:09 
+23:33:09 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+23:33:11   Marked linkedin_pending=true
+23:33:11   Setting status → pipelined
+23:33:13 
+23:33:13 ============================================================
+23:33:13  DONE: St. Michaels Winery | 1 min | 23:33:13
+23:33:13 ============================================================
+23:33:43 [BUDGET] Shared limit of 7 reached — stopping untouched phase
+23:33:43 === UNTOUCHED PHASE COMPLETE ===
+23:33:43 
+23:33:43 SMART PICKS: Skipping — shared budget of 7 already reached (7 processed)
+23:33:43 === SMART PICKS COMPLETE ===
+23:33:43 
+23:33:43 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-23_23-33.html
+23:33:44 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-23_23-33.html
+
+15:18:39 === Pipeline started 2026-04-28 15:18:39 ===
+15:18:41 
+15:18:41 ============================================================
+15:18:41  PIPELINE: Limoncellos (MD-REST-LEMON)
+15:18:41  Website: http://limoncellostmichaels.com/
+15:18:41  Started: 2026-04-28 15:18:41
+15:18:41 ============================================================
+15:18:41   [ZB] Credits remaining: 4036
+15:18:45   Known emails: 0
+15:18:45   Known names: 0
+15:18:45 
+15:18:45 ========== STEP 1: Website Scrape ==========
+15:18:46   URL: http://limoncellostmichaels.com/
+15:18:46   Opening in Chrome: http://limoncellostmichaels.com/
+15:18:52   Emails: 1 | FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/ | Contact Form: none
+15:18:58   info@limoncellostmichaels.com → do_not_mail
+15:19:03 
+15:19:03 ========== STEP 1B: Instagram Google Search ==========
+15:19:03   No Instagram found on website — Googling...
+15:19:08   [IG SEARCH] No Instagram found via Google
+15:19:10 
+15:19:10 ========== STEP 1C: Facebook Google Search ==========
+15:19:10   No Facebook found on website — Googling...
+15:19:14   [FB SEARCH] Found: https://www.facebook.com/LimoncellosItalianGrill/
+15:19:17   ✓ Facebook URL saved
+15:19:17 
+15:19:17 ========== STEP 2: Social Media Scrape ==========
+15:19:20   FB: none | IG: none
+15:19:20   [APOLLO] Credits used this run: 0 / 300
+15:19:20 
+15:19:20 ========== STEP 3: Apollo API ==========
+15:19:20   Searching Apollo for company: Limoncellos
+15:19:21   Found: Limoncello Italian Restaurant & Wine Bar (domain: limoncellostmichaels.com, org_id: 670e27f7169c740001b3c21c)
+15:19:21   Searching for people at Limoncello Italian Restaurant & Wine Bar (org_id: 670e27f7169c740001b3c21c)...
+15:19:22   Found 0 people total
+15:19:22   No people in Apollo for this company.
+15:19:22 
+15:19:22 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+15:19:24   Marked linkedin_pending=true
+15:19:24   Setting status → pipelined
+15:19:26 
+15:19:26 ============================================================
+15:19:26  DONE: Limoncellos | 0 min | 15:19:26
+15:19:26 ============================================================
+
+15:24:47 === Pipeline started 2026-04-28 15:24:47 ===
+15:24:49 
+15:24:49 ============================================================
+15:24:49  PIPELINE: Limoncellos (MD-REST-LEMON)
+15:24:49  Website: http://limoncellostmichaels.com/
+15:24:49  Started: 2026-04-28 15:24:49
+15:24:49 ============================================================
+15:24:49   [ZB] Credits remaining: 4035
+15:24:53   Known emails: 0
+15:24:53   Known names: 0
+15:24:53 
+15:24:53 ========== STEP 1: Website Scrape ==========
+15:24:53   URL: http://limoncellostmichaels.com/
+15:24:53   Opening in Chrome: http://limoncellostmichaels.com/
+15:24:59   Emails: 1 | FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/ | Contact Form: none
+15:25:21   info@limoncellostmichaels.com → do_not_mail
+15:25:24 
+15:25:24 ========== STEP 1B: Instagram Google Search ==========
+15:25:24   No Instagram found on website — Googling...
+15:25:28   [IG SEARCH] No Instagram found via Google
+15:25:30 
+15:25:30 ========== STEP 1C: Facebook Google Search ==========
+15:25:30   No Facebook found on website — Googling...
+15:25:34   [FB SEARCH] Found: https://www.facebook.com/LimoncellosItalianGrill/
+15:25:36   ✓ Facebook URL saved
+15:25:36 
+15:25:36 ========== STEP 2: Social Media Scrape ==========
+15:25:40   FB: none | IG: none
+15:25:40   [APOLLO] Credits used this run: 0 / 300
+15:25:40 
+15:25:40 ========== STEP 3: Apollo API ==========
+15:25:40   Searching Apollo for company: Limoncellos
+15:25:41   Found: Limoncello Italian Restaurant & Wine Bar (domain: limoncellostmichaels.com, org_id: 670e27f7169c740001b3c21c)
+15:25:41   Searching for people at Limoncello Italian Restaurant & Wine Bar (org_id: 670e27f7169c740001b3c21c)...
+15:25:41   Found 0 people total
+15:25:41   No people in Apollo for this company.
+15:25:41 
+15:25:41 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+15:25:45   Marked linkedin_pending=true
+15:25:45   Setting status → pipelined
+15:25:48 
+15:25:48 ============================================================
+15:25:48  DONE: Limoncellos | 1 min | 15:25:48
+15:25:48 ============================================================
+
+15:27:59 === Pipeline started 2026-04-28 15:27:59 ===
+15:28:02 
+15:28:02 ============================================================
+15:28:02  PIPELINE: Limoncellos (MD-REST-LEMON)
+15:28:02  Website: http://limoncellostmichaels.com/
+15:28:02  Started: 2026-04-28 15:28:02
+15:28:02 ============================================================
+15:28:02   [ZB] Credits remaining: 4035
+15:28:04   Known emails: 0
+15:28:04   Known names: 0
+15:28:04 
+15:28:04 ========== STEP 1: Website Scrape ==========
+15:28:04   URL: http://limoncellostmichaels.com/
+15:28:04   Opening in Chrome: http://limoncellostmichaels.com/
+15:28:11   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+15:28:23   Emails: 1 | FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/ | Contact Form: none
+15:28:29   info@limoncellostmichaels.com → do_not_mail
+15:28:30 
+15:28:30 ========== STEP 2: Social Media Scrape ==========
+15:28:32   FB: none | IG: none
+15:28:32   [APOLLO] Credits used this run: 0 / 300
+15:28:32 
+15:28:32 ========== STEP 3: Apollo API ==========
+15:28:32   Searching Apollo for company: Limoncellos
+15:28:34   Found: Limoncello Italian Restaurant & Wine Bar (domain: limoncellostmichaels.com, org_id: 670e27f7169c740001b3c21c)
+15:28:34   Searching for people at Limoncello Italian Restaurant & Wine Bar (org_id: 670e27f7169c740001b3c21c)...
+15:28:34   Found 0 people total
+15:28:34   No people in Apollo for this company.
+15:28:34 
+15:28:34 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+15:28:37   Marked linkedin_pending=true
+15:28:37   Setting status → pipelined
+15:28:38 
+15:28:38 ============================================================
+15:28:38  DONE: Limoncellos | 0 min | 15:28:38
+15:28:38 ============================================================
+
+15:28:58 === Pipeline started 2026-04-28 15:28:58 ===
+15:28:59 
+15:28:59 ============================================================
+15:28:59  PIPELINE: Limoncellos (MD-REST-LEMON)
+15:28:59  Website: http://limoncellostmichaels.com/
+15:28:59  Started: 2026-04-28 15:28:59
+15:29:00 ============================================================
+15:29:00   [ZB] Credits remaining: 4035
+15:29:02   Known emails: 0
+15:29:02   Known names: 0
+15:29:02 
+15:29:02 ========== STEP 1: Website Scrape ==========
+15:29:02   URL: http://limoncellostmichaels.com/
+15:29:02   Opening in Chrome: http://limoncellostmichaels.com/
+15:29:08   Emails: 1 | FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/ | Contact Form: none
+15:29:14   info@limoncellostmichaels.com → do_not_mail
+15:29:15 
+15:29:15 ========== STEP 2: Social Media Scrape ==========
+15:29:17   FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/
+15:29:17   Opening FB: https://www.facebook.com/limoncellostmichaels
+15:29:22   FB emails found: info@limoncellostmichaels.com
+15:29:22   Opening FB: https://www.facebook.com/limoncellostmichaels/about
+15:29:27   FB emails found: info@limoncellostmichaels.com
+15:29:27   Opening FB: https://www.facebook.com/limoncellostmichaels/directory_contact_info
+15:29:33   Opening IG: https://www.instagram.com/limoncellostmichaels/
+15:29:38   info@limoncellostmichaels.com → do_not_mail
+15:29:39   [APOLLO] Credits used this run: 0 / 300
+15:29:39 
+15:29:39 ========== STEP 3: Apollo API ==========
+15:29:39   Searching Apollo for company: Limoncellos
+15:29:40   Found: Limoncello Italian Restaurant & Wine Bar (domain: limoncellostmichaels.com, org_id: 670e27f7169c740001b3c21c)
+15:29:40   Searching for people at Limoncello Italian Restaurant & Wine Bar (org_id: 670e27f7169c740001b3c21c)...
+15:29:41   Found 0 people total
+15:29:41   No people in Apollo for this company.
+15:29:41 
+15:29:41 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+15:29:44   Marked linkedin_pending=true
+15:29:44   Setting status → pipelined
+15:29:46 
+15:29:46 ============================================================
+15:29:46  DONE: Limoncellos | 0 min | 15:29:46
+15:29:46 ============================================================
+
+15:37:15 === Pipeline started 2026-04-28 15:37:15 ===
+15:37:19 
+15:37:19 ============================================================
+15:37:19  PIPELINE: Limoncellos (MD-REST-LEMON)
+15:37:19  Website: http://limoncellostmichaels.com/
+15:37:19  Started: 2026-04-28 15:37:19
+15:37:19 ============================================================
+15:37:19   [ZB] Credits remaining: 4035
+15:37:21   Known emails: 0
+15:37:21   Known names: 0
+15:37:21 
+15:37:21 ========== STEP 1: Website Scrape ==========
+15:37:21   URL: http://limoncellostmichaels.com/
+15:37:21   Opening in Chrome: http://limoncellostmichaels.com/
+15:37:28   Emails: 1 | FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/ | Contact Form: none
+15:37:32   info@limoncellostmichaels.com → do_not_mail
+15:37:33 
+15:37:33 ========== STEP 2: Social Media Scrape ==========
+15:37:36   FB: https://www.facebook.com/limoncellostmichaels | IG: https://www.instagram.com/limoncellostmichaels/
+15:37:36   Opening FB: https://www.facebook.com/limoncellostmichaels
+15:37:41   FB emails found: info@limoncellostmichaels.com
+15:37:41   Opening FB: https://www.facebook.com/limoncellostmichaels/about
+15:37:46   FB emails found: info@limoncellostmichaels.com
+15:37:46   Opening FB: https://www.facebook.com/limoncellostmichaels/directory_contact_info
+15:37:51   Opening IG: https://www.instagram.com/limoncellostmichaels/
+15:37:57   info@limoncellostmichaels.com → do_not_mail
+15:37:58   [APOLLO] Credits used this run: 0 / 300
+15:37:58 
+15:37:58 ========== STEP 3: Apollo API ==========
+15:37:58   Searching Apollo for company: Limoncellos
+15:37:59   Found: Limoncello Italian Restaurant & Wine Bar (domain: limoncellostmichaels.com, org_id: 670e27f7169c740001b3c21c)
+15:37:59   Searching for people at Limoncello Italian Restaurant & Wine Bar (org_id: 670e27f7169c740001b3c21c)...
+15:38:00   Found 0 people total
+15:38:00   No people in Apollo for this company.
+15:38:00 
+15:38:00 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+15:38:02   Marked linkedin_pending=true
+15:38:02   Setting status → pipelined
+15:38:06 
+15:38:06 ============================================================
+15:38:06  DONE: Limoncellos | 0 min | 15:38:06
+15:38:06 ============================================================
+
+15:56:19 === Pipeline started 2026-04-28 15:56:19 ===
+15:56:19 UNTOUCHED PHASE: Fetching all venues...
+15:56:23 UNTOUCHED: 417 found (shared budget: 7 total)
+15:56:23 
+15:56:23 ########## UNTOUCHED #1: Bordeleau Winery (MD-WINE-436) ##########
+15:56:30 
+15:56:30 ============================================================
+15:56:30  PIPELINE: Bordeleau Winery (MD-WINE-436)
+15:56:30  Website: https://www.stmichaelsmd.org/list/member/bordeleau-winery-450.htm
+15:56:30  Started: 2026-04-28 15:56:30
+15:56:30 ============================================================
+15:56:30   [ZB] Credits remaining: 4035
+15:56:33   Known emails: 0
+15:56:33   Known names: 0
+15:56:33 
+15:56:33 ========== STEP 1: Website Scrape ==========
+15:56:33   URL: https://www.stmichaelsmd.org/list/member/bordeleau-winery-450.htm
+15:56:33   Opening in Chrome: https://www.stmichaelsmd.org/list/member/bordeleau-winery-450.htm
+15:56:40   Validating contact form URL: https://www.stmichaelsmd.org/contact
+15:56:44   Found on contact page: smbamd@gmail.com
+15:56:44   ✓ Real contact form confirmed
+15:56:44   Emails: 1 | FB: https://www.facebook.com/visitstmichaelsmd | IG: none | Contact Form: https://www.stmichaelsmd.org/contact
+15:56:44   Crawling subpage (1/20): https://www.stmichaelsmd.org/shop
+15:56:49   Found on subpage: smbamd@gmail.com
+15:56:49   Crawling subpage (2/20): https://www.stmichaelsmd.org/eat
+15:56:53   Found on subpage: smbamd@gmail.com
+15:56:53   Crawling subpage (3/20): https://www.stmichaelsmd.org/play
+15:56:58   Found on subpage: smbamd@gmail.com
+15:56:58   Crawling subpage (4/20): https://www.stmichaelsmd.org/list/cat/boating-fishing-historic-cruises.htm
+15:57:02   Same emails 3 pages in a row — stopping subpage crawl
+15:57:02   [CONTACT] Probing https://www.stmichaelsmd.org/contact
+15:57:08   [CONTACT] Found emails on https://www.stmichaelsmd.org/contact
+15:57:14   ✓ Contact form URL saved
+15:57:14   smbamd@gmail.com → valid
+15:57:18   ✓ Added: smbamd@gmail.com <smbamd@gmail.com>
+15:57:22 
+15:57:22 ========== STEP 1B: Instagram Google Search ==========
+15:57:22   No Instagram found on website — Googling...
+15:57:27   [IG SEARCH] Found: https://www.instagram.com/bordeleauwinery/
+15:57:31   ✓ Instagram URL saved
+15:57:31 
+15:57:31 ========== STEP 2: Social Media Scrape ==========
+15:57:49   FB: https://www.facebook.com/visitstmichaelsmd | IG: https://www.instagram.com/bordeleauwinery/
+15:57:49   Opening FB: https://www.facebook.com/visitstmichaelsmd
+15:57:54   FB emails found: info@stmichaelsmd.org
+15:57:54   Opening FB: https://www.facebook.com/visitstmichaelsmd/about
+15:57:59   Opening FB: https://www.facebook.com/visitstmichaelsmd/directory_contact_info
+15:58:05   FB emails found: info@stmichaelsmd.org
+15:58:05   Opening IG: https://www.instagram.com/bordeleauwinery/
+15:58:10   [IG] No email on page — trying Google snippet...
+15:58:14   [IG SNIPPET] No email in Google snippet
+15:58:15   info@stmichaelsmd.org → do_not_mail
+15:58:16   [APOLLO] Credits used this run: 0 / 300
+15:58:16 
+15:58:16 ========== STEP 3: Apollo API ==========
+15:58:16   Searching Apollo for company: Bordeleau Winery
+15:58:18   Found: Saint Michaels Business Assoc (domain: stmichaelsmd.org, org_id: 5592390a73696418f63bda00)
+15:58:18   Searching for people at Saint Michaels Business Assoc (org_id: 5592390a73696418f63bda00)...
+15:58:19   Found 0 people total
+15:58:19   No people in Apollo for this company.
+15:58:19 
+15:58:19 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+15:58:21   Marked linkedin_pending=true
+15:58:21   Setting status → pipelined
+15:58:24 
+15:58:24 ============================================================
+15:58:24  DONE: Bordeleau Winery | 2 min | 15:58:24
+15:58:24 ============================================================
+15:58:54 
+15:58:54 ########## UNTOUCHED #2: Ava's Pizzeria & Wine Bar (MD-WINE-437) ##########
+15:59:00 
+15:59:00 ============================================================
+15:59:00  PIPELINE: Ava's Pizzeria & Wine Bar (MD-WINE-437)
+15:59:00  Website: https://avaspizzeria.com/st-michaels-md
+15:59:00  Started: 2026-04-28 15:59:00
+15:59:00 ============================================================
+15:59:00   [ZB] Credits remaining: 4033
+15:59:04   Known emails: 0
+15:59:04   Known names: 0
+15:59:04 
+15:59:04 ========== STEP 1: Website Scrape ==========
+15:59:04   URL: https://avaspizzeria.com/st-michaels-md
+15:59:04   Opening in Chrome: https://avaspizzeria.com/st-michaels-md
+15:59:10   Emails: 1 | FB: https://www.facebook.com/avaspizzeria | IG: https://www.instagram.com/avaspizzeria | Contact Form: none
+15:59:10   Crawling subpage (1/20): https://avaspizzeria.com/home-1
+15:59:15   Crawling subpage (2/20): https://avaspizzeria.com/order-online
+15:59:19   Crawling subpage (3/20): https://avaspizzeria.com/cambridge-md
+15:59:23   Found on subpage: cambridge@avaspizzeria.com
+15:59:23   Crawling subpage (4/20): https://avaspizzeria.com/rehoboth-beach-de
+15:59:28   Found on subpage: rehoboth@avaspizzeria.com
+15:59:28   Crawling subpage (5/20): https://avaspizzeria.com/loyalty-rewards
+15:59:32   Crawling subpage (6/20): https://avaspizzeria.com/rehoboth-catering
+15:59:36   Found on subpage: rbcatering@avaspizzeria.com
+15:59:43   cambridge@avaspizzeria.com → valid
+15:59:45   ✓ Added: cambridge@avaspizzeria.com <cambridge@avaspizzeria.com>
+15:59:47   rbcatering@avaspizzeria.com → valid
+15:59:50   ✓ Added: rbcatering@avaspizzeria.com <rbcatering@avaspizzeria.com>
+15:59:52   rehoboth@avaspizzeria.com → valid
+15:59:55   ✓ Added: rehoboth@avaspizzeria.com <rehoboth@avaspizzeria.com>
+15:59:57   stmichaels@avaspizzeria.com → valid
+16:00:00   ✓ Added: stmichaels@avaspizzeria.com <stmichaels@avaspizzeria.com>
+16:00:01 
+16:00:01 ========== STEP 2: Social Media Scrape ==========
+16:00:05   FB: https://www.facebook.com/avaspizzeria | IG: https://www.instagram.com/avaspizzeria
+16:00:05   Opening FB: https://www.facebook.com/avaspizzeria
+16:00:10   FB emails found: stmichaels@avaspizzeria.com
+16:00:10   Opening FB: https://www.facebook.com/avaspizzeria/about
+16:00:15   Opening FB: https://www.facebook.com/avaspizzeria/directory_contact_info
+16:00:20   FB emails found: stmichaels@avaspizzeria.com
+16:00:20   Opening IG: https://www.instagram.com/avaspizzeria
+16:00:26   [IG] No email on page — trying Google snippet...
+16:00:30   [IG SNIPPET] No email in Google snippet
+16:00:30   stmichaels@avaspizzeria.com → valid
+16:00:33   ✓ Added: stmichaels@avaspizzeria.com <stmichaels@avaspizzeria.com>
+16:00:34   [APOLLO] Credits used this run: 0 / 300
+16:00:34 
+16:00:34 ========== STEP 3: Apollo API ==========
+16:00:34   Searching Apollo for company: Ava's Pizzeria & Wine Bar
+16:00:36   Found: Ava's Pizzeria & Wine Bar (domain: avaspizzeria.com, org_id: 67148a9f3c0cf800018e14dd)
+16:00:36   Searching for people at Ava's Pizzeria & Wine Bar (org_id: 67148a9f3c0cf800018e14dd)...
+16:00:36   Found 6 people total
+16:00:37   Skipped 5 people with no email (red ? on Apollo)
+16:00:37   1 people to enrich (1 credit each)
+16:00:37   >>> William Fleming (General): willf@avaspizzeria.com [verified]
+16:00:38   willf@avaspizzeria.com → valid
+16:00:42   ✓ Added: William Fleming <willf@avaspizzeria.com>
+16:00:43   Apollo API done: 1 credits used this run
+16:00:43 
+16:00:43 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+16:00:45   Marked linkedin_pending=true
+16:00:45   Setting status → pipelined
+16:00:47 
+16:00:47 ============================================================
+16:00:47  DONE: Ava's Pizzeria & Wine Bar | 1 min | 16:00:47
+16:00:47 ============================================================
+16:01:17 
+16:01:17 ########## UNTOUCHED #3: Harrison's Harbour Lights (MD-REST-438) ##########
+16:01:24 
+16:01:24 ============================================================
+16:01:24  PIPELINE: Harrison's Harbour Lights (MD-REST-438)
+16:01:24  Website: https://www.harrisonsharbourlights.com/
+16:01:24  Started: 2026-04-28 16:01:24
+16:01:24 ============================================================
+16:01:25   [ZB] Credits remaining: 4028
+16:01:28   Known emails: 0
+16:01:28   Known names: 0
+16:01:28 
+16:01:28 ========== STEP 1: Website Scrape ==========
+16:01:28   URL: https://www.harrisonsharbourlights.com/
+16:01:28   Opening in Chrome: https://www.harrisonsharbourlights.com/
+16:01:35   Validating contact form URL: https://www.harrisonsharbourlights.com/contact-us
+16:01:39   Found on contact page: levin.harrison58@gmail.com
+16:01:39   ✓ Real contact form confirmed
+16:01:39   Emails: 1 | FB: https://www.facebook.com/harrisonssaintmichaels | IG: none | Contact Form: https://www.harrisonsharbourlights.com/contact-us
+16:01:39   Crawling subpage (1/20): https://www.harrisonsharbourlights.com/home
+16:01:43   Found on subpage: levin.harrison58@gmail.com
+16:01:43   Crawling subpage (2/20): https://www.harrisonsharbourlights.com/our-history
+16:01:48   Found on subpage: levin.harrison58@gmail.com
+16:01:48   Crawling subpage (3/20): https://www.harrisonsharbourlights.com/menu
+16:01:52   Found on subpage: levin.harrison58@gmail.com
+16:01:52   Crawling subpage (4/20): https://www.harrisonsharbourlights.com/events-catering
+16:01:57   Same emails 3 pages in a row — stopping subpage crawl
+16:01:57   [CONTACT] Probing https://www.harrisonsharbourlights.com/contact
+16:02:08   ✓ Contact form URL saved
+16:02:09   levin.harrison58@gmail.com → valid
+16:02:11   ✓ Added: levin.harrison58@gmail.com <levin.harrison58@gmail.com>
+16:02:12 
+16:02:12 ========== STEP 2: Social Media Scrape ==========
+16:02:16   FB: https://www.facebook.com/harrisonssaintmichaels | IG: https://www.instagram.com/avaspizzeria
+16:02:16   Opening FB: https://www.facebook.com/harrisonssaintmichaels
+16:02:21   FB emails found: harrisonsharbourlights@gmail.com
+16:02:21   Opening FB: https://www.facebook.com/harrisonssaintmichaels/about
+16:02:26   FB emails found: harrisonsharbourlights@gmail.com
+16:02:26   Opening FB: https://www.facebook.com/harrisonssaintmichaels/directory_contact_info
+16:02:31   Opening IG: https://www.instagram.com/avaspizzeria
+16:02:37   [IG] No email on page — trying Google snippet...
+16:02:41   [IG SNIPPET] No email in Google snippet
+16:02:42   harrisonsharbourlights@gmail.com → valid
+16:02:45   ✓ Added: harrisonsharbourlights@gmail.com <harrisonsharbourlights@gmail.com>
+16:02:46   [APOLLO] Credits used this run: 1 / 300
+16:02:46 
+16:02:46 ========== STEP 3: Apollo API ==========
+16:02:46   Searching Apollo for company: Harrison's Harbour Lights
+16:02:48   [WARN] No company found in Apollo for 'Harrison's Harbour Lights' (tried name + domain)
+16:02:48   Using website domain for enrichment: harrisonsharbourlights.com
+16:02:48 
+16:02:48 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+16:02:50   Marked linkedin_pending=true
+16:02:50   Setting status → pipelined
+16:02:53 
+16:02:53 ============================================================
+16:02:53  DONE: Harrison's Harbour Lights | 1 min | 16:02:53
+16:02:53 ============================================================
+16:03:23 
+16:03:23 ########## UNTOUCHED #4: Old Brick Inn (MD-HOTE-440) ##########
+16:03:28 
+16:03:28 ============================================================
+16:03:28  PIPELINE: Old Brick Inn (MD-HOTE-440)
+16:03:28  Website: https://www.oldbrickinn.com
+16:03:28  Started: 2026-04-28 16:03:28
+16:03:28 ============================================================
+16:03:28   [ZB] Credits remaining: 4026
+16:03:30   Known emails: 0
+16:03:30   Known names: 0
+16:03:30 
+16:03:30 ========== STEP 1: Website Scrape ==========
+16:03:30   URL: https://www.oldbrickinn.com
+16:03:30   Opening in Chrome: https://www.oldbrickinn.com
+16:03:37   Emails: 1 | FB: https://www.facebook.com/oldbrickinn | IG: https://www.instagram.com/theoldbrickinn | Contact Form: none
+16:03:37   Crawling subpage (1/20): https://www.oldbrickinn.com/about
+16:03:41   Found on subpage: innkeepers@oldbrickinn.com
+16:03:41   Crawling subpage (2/20): https://www.oldbrickinn.com/frequentlyaskedquestions
+16:03:46   Found on subpage: innkeepers@oldbrickinn.com
+16:03:46   Crawling subpage (3/20): https://www.oldbrickinn.com/offers
+16:03:50   Found on subpage: innkeepers@oldbrickinn.com
+16:03:57   innkeepers@oldbrickinn.com → valid
+16:04:01   ✓ Added: innkeepers@oldbrickinn.com <innkeepers@oldbrickinn.com>
+16:04:02 
+16:04:02 ========== STEP 2: Social Media Scrape ==========
+16:04:06   FB: https://www.facebook.com/oldbrickinn | IG: https://www.instagram.com/theoldbrickinn
+16:04:06   Opening FB: https://www.facebook.com/oldbrickinn
+16:04:11   FB emails found: innkeepers@oldbrickinn.com
+16:04:11   Opening FB: https://www.facebook.com/oldbrickinn/about
+16:04:17   Opening FB: https://www.facebook.com/oldbrickinn/directory_contact_info
+16:04:22   FB emails found: innkeepers@oldbrickinn.com
+16:04:22   Opening IG: https://www.instagram.com/theoldbrickinn
+16:04:27   [IG] No email on page — trying Google snippet...
+16:04:31   [IG SNIPPET] No email in Google snippet
+16:04:31   innkeepers@oldbrickinn.com → valid
+16:04:33   ✓ Added: innkeepers@oldbrickinn.com <innkeepers@oldbrickinn.com>
+16:04:34   [APOLLO] Credits used this run: 1 / 300
+16:04:35 
+16:04:35 ========== STEP 3: Apollo API ==========
+16:04:35   Searching Apollo for company: Old Brick Inn
+16:04:37   Found: The Old Brick Inn (domain: oldbrickinn.com, org_id: 66f8651c35a76d0001cc2544)
+16:04:37   Searching for people at The Old Brick Inn (org_id: 66f8651c35a76d0001cc2544)...
+16:04:37   Found 2 people total
+16:04:37   Skipped 2 people with no email (red ? on Apollo)
+16:04:37   No new people to enrich.
+16:04:37 
+16:04:37 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+16:04:40   Marked linkedin_pending=true
+16:04:40   Setting status → pipelined
+16:04:41 
+16:04:41 ============================================================
+16:04:42  DONE: Old Brick Inn | 1 min | 16:04:42
+16:04:42 ============================================================
+16:05:12 
+16:05:12 ########## UNTOUCHED #5: Hambleton Inn Bed & Breakfast (MD-HOTE-441) ##########
+16:05:17 
+16:05:17 ============================================================
+16:05:17  PIPELINE: Hambleton Inn Bed & Breakfast (MD-HOTE-441)
+16:05:17  Website: https://www.hambletoninnbb.com/
+16:05:17  Started: 2026-04-28 16:05:17
+16:05:17 ============================================================
+16:05:17   [ZB] Credits remaining: 4025
+16:05:19   Known emails: 0
+16:05:19   Known names: 0
+16:05:19 
+16:05:19 ========== STEP 1: Website Scrape ==========
+16:05:19   URL: https://www.hambletoninnbb.com/
+16:05:19   Opening in Chrome: https://www.hambletoninnbb.com/
+16:05:26   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+16:05:38   Emails: 0 | FB: none | IG: none | Contact Form: none
+16:05:38   [LOCATION] Checking for location-specific page (city: St. Michaels)...
+16:05:38   [LOCATION] Found: https://www.hambletoninnbb.com/st-michaels/
+16:05:38   [LOCATION] Re-scraping location page: https://www.hambletoninnbb.com/st-michaels/
+16:05:47   [LOCATION] Re-scraped: Emails: 0 | FB: none | IG: none | Contact Form: none
+16:05:48   [CONTACT] Probing https://www.hambletoninnbb.com/contact
+16:05:54 
+16:05:54 ========== STEP 2: Social Media Scrape ==========
+16:05:57   FB: https://www.facebook.com/oldbrickinn | IG: https://www.instagram.com/theoldbrickinn
+16:05:57   Opening FB: https://www.facebook.com/oldbrickinn
+16:06:02   FB emails found: innkeepers@oldbrickinn.com
+16:06:02   Opening FB: https://www.facebook.com/oldbrickinn/about
+16:06:07   Opening FB: https://www.facebook.com/oldbrickinn/directory_contact_info
+16:06:12   FB emails found: innkeepers@oldbrickinn.com
+16:06:12   Opening IG: https://www.instagram.com/theoldbrickinn
+16:06:17   [IG] No email on page — trying Google snippet...
+16:06:22   [IG SNIPPET] No email in Google snippet
+16:06:22   innkeepers@oldbrickinn.com → valid
+
+16:06:24 === Pipeline started 2026-04-28 16:06:24 ===
+16:06:24 UNTOUCHED PHASE: Fetching all venues...
+16:06:25   ✓ Added: innkeepers@oldbrickinn.com <innkeepers@oldbrickinn.com>
+16:06:26   [APOLLO] Credits used this run: 1 / 300
+16:06:26 
+16:06:26 ========== STEP 3: Apollo API ==========
+16:06:26   Searching Apollo for company: Hambleton Inn Bed & Breakfast
+16:06:27 UNTOUCHED: 413 found (shared budget: 7 total)
+16:06:27 
+16:06:27 ########## UNTOUCHED #1: Hambleton Inn Bed & Breakfast (MD-HOTE-441) ##########
+16:06:28   Found: Hambleton Inn (domain: hambletoninnbb.com, org_id: 55f6bf0df3e5bb192c017199)
+16:06:28   Searching for people at Hambleton Inn (org_id: 55f6bf0df3e5bb192c017199)...
+16:06:29   Found 1 people total
+16:06:29   Skipped 1 people with no email (red ? on Apollo)
+16:06:29   No new people to enrich.
+16:06:29 
+16:06:29 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+16:06:32   Marked linkedin_pending=true
+16:06:32   Setting status → pipelined
+16:06:33 
+16:06:33 ============================================================
+16:06:33  PIPELINE: Hambleton Inn Bed & Breakfast (MD-HOTE-441)
+16:06:33  Website: https://www.hambletoninnbb.com/st-michaels/
+16:06:33  Started: 2026-04-28 16:06:33
+16:06:33 ============================================================
+16:06:33   [ZB] Credits remaining: 4025
+16:06:34 
+16:06:34 ============================================================
+16:06:35  DONE: Hambleton Inn Bed & Breakfast | 1 min | 16:06:34
+16:06:35 ============================================================
+16:06:37   Known emails: 1
+16:06:37   Known names: 0
+16:06:37 
+16:06:37 ========== STEP 1: Website Scrape ==========
+16:06:37   URL: https://www.hambletoninnbb.com/st-michaels/
+16:06:37   Opening in Chrome: https://www.hambletoninnbb.com/st-michaels/
+16:06:43   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+16:06:56   Emails: 0 | FB: none | IG: none | Contact Form: none
+16:06:56   [LOCATION] Checking for location-specific page (city: St. Michaels)...
+16:06:56   [LOCATION] Found: https://www.hambletoninnbb.com/st-michaels/
+16:06:56   [LOCATION] Re-scraping location page: https://www.hambletoninnbb.com/st-michaels/
+16:07:04   [LOCATION] Re-scraped: Emails: 0 | FB: none | IG: none | Contact Form: none
+16:07:05 
+16:07:05 ########## UNTOUCHED #6: Wades Point Inn on the Bay (MD-HOTE-442) ##########
+16:07:06   [CONTACT] Probing https://www.hambletoninnbb.com/contact
+16:07:09 
+16:07:09 ============================================================
+16:07:09  PIPELINE: Wades Point Inn on the Bay (MD-HOTE-442)
+16:07:09  Website: https://wadespoint.com/
+16:07:09  Started: 2026-04-28 16:07:09
+16:07:09 ============================================================
+16:07:10   [ZB] Credits remaining: 4025
+16:07:12   Known emails: 0
+16:07:12   Known names: 0
+16:07:12 
+16:07:12 ========== STEP 1: Website Scrape ==========
+16:07:12   URL: https://wadespoint.com/
+16:07:12   Opening in Chrome: https://wadespoint.com/
+16:07:14 
+16:07:14 ========== STEP 1B: Instagram Google Search ==========
+16:07:14   No Instagram found on website — Googling...
+16:07:18   [IG SEARCH] Found: https://www.instagram.com/hambletoninnbb/
+16:07:18   Emails: 0 | FB: https://www.facebook.com/thewildset/mentions | IG: https://www.instagram.com/hambletoninnbb/ | Contact Form: none
+16:07:18   [LOCATION] Checking for location-specific page (city: St. Michaels)...
+16:07:20   ✓ Instagram URL saved
+16:07:22 
+16:07:22 ========== STEP 1C: Facebook Google Search ==========
+16:07:22   No Facebook found on website — Googling...
+16:07:23   [LOCATION] No location-specific page found
+16:07:25   [CONTACT] Probing https://wadespoint.com/contact-us
+16:07:27   [FB SEARCH] Found: https://www.facebook.com/wadespointinn/
+16:07:30   [CONTACT] Found emails on https://wadespoint.com/contact-us
+16:07:31   ✓ Facebook URL saved
+16:07:31 
+16:07:31 ========== STEP 2: Social Media Scrape ==========
+16:07:34   FB: https://www.facebook.com/wadespointinn/ | IG: https://www.instagram.com/hambletoninnbb/
+16:07:34   Opening FB: https://www.facebook.com/wadespointinn
+16:07:36   wadesinn@wadespoint.com → valid
+16:07:39   ✓ Added: wadesinn@wadespoint.com <wadesinn@wadespoint.com>
+16:07:39   FB emails found: wadesinn@wadespoint.com
+16:07:39   Opening FB: https://www.facebook.com/wadespointinn/about
+16:07:40 
+16:07:40 ========== STEP 2: Social Media Scrape ==========
+16:07:43   FB: https://www.facebook.com/thewildset/mentions | IG: https://www.instagram.com/hambletoninnbb/
+16:07:43   Opening FB: https://www.facebook.com/thewildset/mentions
+16:07:45   Opening FB: https://www.facebook.com/wadespointinn/directory_contact_info
+16:07:48   FB emails found: wadesinn@wadespoint.com
+16:07:48   Opening FB: https://www.facebook.com/thewildset/mentions/about
+16:07:50   Opening IG: https://www.instagram.com/hambletoninnbb/
+16:07:53   Opening FB: https://www.facebook.com/thewildset/mentions/directory_contact_info
+16:07:55   [IG] No email on page — trying Google snippet...
+16:07:59   Opening IG: https://www.instagram.com/hambletoninnbb/
+16:08:00   [IG SNIPPET] No email in Google snippet
+16:08:00   wadesinn@wadespoint.com → valid
+16:08:02   ✓ Added: wadesinn@wadespoint.com <wadesinn@wadespoint.com>
+16:08:03   [APOLLO] Credits used this run: 0 / 300
+16:08:03 
+16:08:03 ========== STEP 3: Apollo API ==========
+16:08:03   Searching Apollo for company: Hambleton Inn Bed & Breakfast
+16:08:04   [IG] No email on page — trying Google snippet...
+16:08:06   Found: Hambleton Inn (domain: hambletoninnbb.com, org_id: 55f6bf0df3e5bb192c017199)
+16:08:06   Searching for people at Hambleton Inn (org_id: 55f6bf0df3e5bb192c017199)...
+16:08:06   Found 1 people total
+16:08:06   Skipped 1 people with no email (red ? on Apollo)
+16:08:06   No new people to enrich.
+16:08:06 
+16:08:06 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+16:08:08   [IG SNIPPET] No email in Google snippet
+16:08:08   wadesinn@wadespoint.com → valid
+16:08:09   Marked linkedin_pending=true
+16:08:09   Setting status → pipelined
+16:08:10   ✓ Added: wadesinn@wadespoint.com <wadesinn@wadespoint.com>
+16:08:11   [APOLLO] Credits used this run: 1 / 300
+16:08:11 
+16:08:11 ========== STEP 3: Apollo API ==========
+16:08:11   Searching Apollo for company: Wades Point Inn on the Bay
+16:08:12 
+16:08:12 ============================================================
+16:08:12  DONE: Hambleton Inn Bed & Breakfast | 1 min | 16:08:12
+16:08:12 ============================================================
+16:08:13   Found: Wades Point Inn On The Bay (domain: wadespoint.com, org_id: 66eea245e9b82400014972a1)
+16:08:13   Searching for people at Wades Point Inn On The Bay (org_id: 66eea245e9b82400014972a1)...
+16:08:13   Found 0 people total
+16:08:13   No people in Apollo for this company.
+16:08:13 
+16:08:13 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+16:08:15   Marked linkedin_pending=true
+16:08:15   Setting status → pipelined
+16:08:18 
+16:08:18 ============================================================
+16:08:18  DONE: Wades Point Inn on the Bay | 1 min | 16:08:18
+16:08:18 ============================================================
+16:08:42 
+16:08:42 ########## UNTOUCHED #2: Wades Point Inn on the Bay (MD-HOTE-442) ##########
+16:08:48 
+16:08:48 ########## UNTOUCHED #7: Parsonage Inn (MD-HOTE-443) ##########
+16:08:53 
+16:08:53 ============================================================
+16:08:53  PIPELINE: Parsonage Inn (MD-HOTE-443)
+16:08:53  Website: https://www.parsonage-inn.com/
+16:08:53  Started: 2026-04-28 16:08:53
+16:08:53 ============================================================
+16:08:54   [ZB] Credits remaining: 4024
+16:08:54 
+16:08:54 ============================================================
+16:08:54  PIPELINE: Wades Point Inn on the Bay (MD-HOTE-442)
+16:08:54  Website: https://wadespoint.com/
+16:08:54  Started: 2026-04-28 16:08:54
+16:08:54 ============================================================
+16:08:54   [ZB] Credits remaining: 4024
+16:08:57   Known emails: 0
+16:08:57   Known names: 0
+16:08:57 
+16:08:57 ========== STEP 1: Website Scrape ==========
+16:08:57   URL: https://www.parsonage-inn.com/
+16:08:57   Opening in Chrome: https://www.parsonage-inn.com/
+16:09:01   Known emails: 1
+16:09:01   Known names: 0
+16:09:01 
+16:09:01 ========== STEP 1: Website Scrape ==========
+16:09:01   URL: https://wadespoint.com/
+16:09:01   Opening in Chrome: https://wadespoint.com/
+16:09:04   Validating contact form URL: https://wadespoint.com/contact-us
+16:09:07   Validating contact form URL: https://wadespoint.com/contact-us
+16:09:08   ✗ No submittable form found — clearing contact_form
+16:09:08   Emails: 1 | FB: https://www.facebook.com/wadespointinn | IG: https://www.instagram.com/wadespointinn/ | Contact Form: none
+16:09:08   Crawling subpage (1/20): https://wadespoint.com/blog
+16:09:11   Found on contact page: wadesinn@wadespoint.com
+16:09:11   ✗ No submittable form found — clearing contact_form
+16:09:12   Emails: 1 | FB: https://www.facebook.com/wadespointinn | IG: https://www.instagram.com/wadespointinn/ | Contact Form: none
+16:09:12   Crawling subpage (1/20): https://wadespoint.com/blog
+16:09:12   Crawling subpage (2/20): https://wadespoint.com
+16:09:16   Found on subpage: wadesinn@wadespoint.com
+16:09:16   Crawling subpage (2/20): https://wadespoint.com
+16:09:17   Found on subpage: wadesinn@wadespoint.com
+16:09:17   Crawling subpage (3/20): https://wadespoint.com/all-accommodations
+16:09:20   Found on subpage: wadesinn@wadespoint.com
+16:09:20   Crawling subpage (3/20): https://wadespoint.com/all-accommodations
+16:09:21   Crawling subpage (4/20): https://wadespoint.com/1819-main-house
+16:09:25   Found on subpage: wadesinn@wadespoint.com
+16:09:25   Crawling subpage (4/20): https://wadespoint.com/1819-main-house
+16:09:25   Crawling subpage (5/20): https://wadespoint.com/1890-victorian-summer-wing
+16:09:29   Same emails 3 pages in a row — stopping subpage crawl
+16:09:29   Found on subpage: wadesinn@wadespoint.com
+16:09:29   Crawling subpage (6/20): https://wadespoint.com/1990-kemp-guest-house
+16:09:31   [CONTACT] Probing https://wadespoint.com/contact-us
+16:09:34   Found on subpage: wadesinn@wadespoint.com
+16:09:34   Crawling subpage (7/20): https://wadespoint.com/1920-farmhouse
+16:09:38   Same emails 3 pages in a row — stopping subpage crawl
+16:09:40   [SKIP] wadesinn@wadespoint.com — already in sheet
+16:09:40 
+16:09:40 ========== STEP 2: Social Media Scrape ==========
+16:09:44   FB: https://www.facebook.com/wadespointinn | IG: https://www.instagram.com/wadespointinn/
+16:09:44   Opening FB: https://www.facebook.com/wadespointinn
+16:09:45   wadesinn@wadespoint.com → valid
+16:09:47   ✓ Added: wadesinn@wadespoint.com <wadesinn@wadespoint.com>
+16:09:48 
+16:09:48 ========== STEP 2: Social Media Scrape ==========
+16:09:49   FB emails found: wadesinn@wadespoint.com
+16:09:49   Opening FB: https://www.facebook.com/wadespointinn/about
+16:09:51   FB: https://www.facebook.com/wadespointinn | IG: https://www.instagram.com/wadespointinn/
+16:09:51   Opening FB: https://www.facebook.com/wadespointinn
+16:09:54   FB emails found: wadesinn@wadespoint.com
+16:09:54   Opening FB: https://www.facebook.com/wadespointinn/directory_contact_info
+16:09:56   FB emails found: wadesinn@wadespoint.com
+16:09:56   Opening FB: https://www.facebook.com/wadespointinn/about
+16:10:00   Opening IG: https://www.instagram.com/wadespointinn/
+16:10:02   Opening FB: https://www.facebook.com/wadespointinn/directory_contact_info
+16:10:05   IG emails found: wadesinn@wadespoint.com
+16:10:05   [SKIP] wadesinn@wadespoint.com — already in sheet
+16:10:05   [APOLLO] Credits used this run: 0 / 300
+16:10:05 
+16:10:05 ========== STEP 3: Apollo API ==========
+16:10:05   Searching Apollo for company: Wades Point Inn on the Bay
+16:10:07   FB emails found: wadesinn@wadespoint.com
+16:10:07   Opening IG: https://www.instagram.com/wadespointinn/
+16:10:07   Found: Wades Point Inn On The Bay (domain: wadespoint.com, org_id: 66eea245e9b82400014972a1)
+16:10:07   Searching for people at Wades Point Inn On The Bay (org_id: 66eea245e9b82400014972a1)...
+16:10:08   Found 0 people total
+16:10:08   No people in Apollo for this company.
+16:10:08 
+16:10:08 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+16:10:11   Marked linkedin_pending=true
+16:10:11   Setting status → pipelined
+16:10:12   [IG] No email on page — trying Google snippet...
+16:10:13 
+16:10:13 ============================================================
+16:10:13  DONE: Wades Point Inn on the Bay | 1 min | 16:10:13
+16:10:13 ============================================================
+16:10:16   [IG SNIPPET] No email in Google snippet
+16:10:16   wadesinn@wadespoint.com → valid
+16:10:18   ✓ Added: wadesinn@wadespoint.com <wadesinn@wadespoint.com>
+16:10:19   [APOLLO] Credits used this run: 1 / 300
+16:10:19 
+16:10:19 ========== STEP 3: Apollo API ==========
+16:10:19   Searching Apollo for company: Parsonage Inn
+16:10:21   Found: Parsonage Inn (domain: parsonage-inn.com, org_id: 55f9f55df3e5bb720d000b74)
+16:10:21   Searching for people at Parsonage Inn (org_id: 55f9f55df3e5bb720d000b74)...
+16:10:22   Found 1 people total
+16:10:22   Skipped 1 people with no email (red ? on Apollo)
+16:10:22   No new people to enrich.
+16:10:22 
+16:10:22 ========== STEP 4: LinkedIn (SKIPPED — quota reset in April) ==========
+16:10:24   Marked linkedin_pending=true
+16:10:24   Setting status → pipelined
+16:10:27 
+16:10:27 ============================================================
+16:10:27  DONE: Parsonage Inn | 1 min | 16:10:27
+16:10:27 ============================================================
+16:10:43 [BUDGET] Shared limit of 7 reached — stopping untouched phase
+16:10:43 === UNTOUCHED PHASE COMPLETE ===
+16:10:43 
+16:10:43 SMART PICKS: Skipping — shared budget of 7 already reached (7 processed)
+16:10:43 === SMART PICKS COMPLETE ===
+16:10:43 
+16:10:43 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-28_16-10.html
+16:10:43 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-28_16-10.html
+16:10:57 [BUDGET] Shared limit of 7 reached — stopping untouched phase
+16:10:57 === UNTOUCHED PHASE COMPLETE ===
+16:10:57 
+16:10:57 SMART PICKS: Skipping — shared budget of 7 already reached (7 processed)
+16:10:57 === SMART PICKS COMPLETE ===
+16:10:57 
+16:10:57 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-28_16-10.html
+16:10:57 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-28_16-10.html

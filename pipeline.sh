@@ -2494,9 +2494,29 @@ for v in data.get('venues', []):
     venue = v.get('venue', v)
     if venue.get('status','') == 'untouched':
         untouched.append(venue)
-# Sort: actionable venues first (have instagram, website, contact_form, state/city)
+# Sort: venue quality first, then actionability (contact data available)
 def action_score(v):
     score = 0
+    # --- Quality tier (weighted heavily) ---
+    cat = v.get('category','').lower()
+    upscale = int(v.get('upscale_score', 0) or 0)
+    # Category tier
+    if cat in ('private_club', 'yacht_club'): score += 40
+    elif cat == 'country_club': score += 35
+    elif cat in ('wine_bar',): score += 20
+    elif cat in ('hotel', 'restaurant', 'winery', 'museum'): score += 15
+    # Upscale score
+    score += upscale * 8
+    # Sweet spot locations (DC, NoVA, Bethesda, etc.)
+    city = v.get('city','').lower()
+    state = v.get('state','').upper()
+    sweet = ['washington', 'georgetown', 'dupont', 'alexandria', 'mclean',
+             'great falls', 'bethesda', 'chevy chase', 'potomac', 'annapolis',
+             'easton', 'st. michaels', 'st michaels', 'charlottesville',
+             'middleburg', 'leesburg', 'wilmington', 'greenville']
+    if any(s in city for s in sweet): score += 10
+    if state == 'DC': score += 10
+    # --- Actionability (contact data already on file) ---
     if v.get('instagram','') and len(v.get('instagram','')) > 5: score += 3
     if v.get('website','') and len(v.get('website','')) > 5: score += 2
     if v.get('contact_form','') and len(v.get('contact_form','')) > 5: score += 2

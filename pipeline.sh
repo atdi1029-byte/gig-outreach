@@ -443,11 +443,23 @@ JSEOF
         local has_form
         has_form=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "
 (function(){
+  // 1. Look for any form with a textarea or email/text input (CF7, Formidable, Gravity, WPForms etc.)
   var forms = document.querySelectorAll(\"form\");
   for(var i=0;i<forms.length;i++){
     var f=forms[i];
-    if(f.querySelector(\"textarea\") || f.querySelector(\"input[type=text][name*=message]\") || f.querySelector(\"input[type=text][name*=comment]\") || f.querySelector(\"input[type=text][name*=inquiry]\") || f.querySelector(\"input[type=text][name*=body]\")) return \"yes\";
+    if(f.querySelector(\"textarea\") ||
+       f.querySelector(\"input[type=email]\") ||
+       f.querySelector(\"input[type=text]\") ||
+       f.querySelector(\"input[type=tel]\")) return \"yes\";
   }
+  // 2. Detect WordPress form plugin signatures in the DOM even if form not yet rendered
+  var src = document.documentElement.innerHTML;
+  if(src.indexOf(\"wpcf7\") > -1 ||
+     src.indexOf(\"formidable\") > -1 ||
+     src.indexOf(\"gform_\") > -1 ||
+     src.indexOf(\"wpforms\") > -1 ||
+     src.indexOf(\"ninja-forms\") > -1 ||
+     src.indexOf(\"fluentform\") > -1) return \"yes\";
   return \"no\";
 })()"' 2>/dev/null)
         # Always scrape the contact page for emails (even if no form found)

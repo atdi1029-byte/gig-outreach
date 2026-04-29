@@ -566,6 +566,22 @@ subs = d.get('subpages', [])
 print('\n'.join(subs))
 " 2>/dev/null)
 
+    # Determine city slug from the venue's location URL (e.g. /st-michaels-md → st-michaels)
+    # Used to skip subpages that belong to other locations of a chain
+    local location_slug
+    location_slug=$(python3 -c "
+from urllib.parse import urlparse
+import re, sys
+path = urlparse('${website}').path.lower()
+# Extract city-like slug from path (e.g. /st-michaels-md, /cambridge-md)
+m = re.search(r'/([a-z][a-z\-]+(?:-[a-z]{2})?)/?$', path)
+print(m.group(1) if m else '')
+" 2>/dev/null)
+
+    # Known location path patterns to skip when we know our target location
+    # These slugs appear in multi-location chain URLs
+    local US_STATE_SLUGS="-md|-va|-dc|-pa|-de|-wv|-ny|-ca|-fl|-tx|-nc|-sc|-ga|-oh|-il|-ma|-nj|-ct|-ri|-nh|-vt|-me|-mi|-wi|-mn|-ia|-mo|-ks|-ne|-sd|-nd|-mt|-wy|-co|-ut|-nv|-id|-or|-wa|-ak|-hi|-al|-ms|-tn|-ky|-in|-ar|-la|-ok|-nm|-az"
+
     if [ -n "$subpages" ]; then
         local page_count=0
         local max_subpages=20
@@ -573,6 +589,36 @@ print('\n'.join(subs))
         local dupe_streak=0
         while IFS= read -r subpage; do
             [ -z "$subpage" ] && continue
+
+            # Skip subpages that look like other city/location pages of a chain
+            if [ -n "$location_slug" ]; then
+                local sub_slug
+                sub_slug=$(python3 -c "
+from urllib.parse import urlparse
+import re
+path = urlparse('${subpage}').path.lower()
+m = re.search(r'/([a-z][a-z\-]+(?:-[a-z]{2})?)/?$', path)
+print(m.group(1) if m else '')
+" 2>/dev/null)
+                if [ -n "$sub_slug" ] && [ "$sub_slug" != "$location_slug" ]; then
+                    # Sub page has a different city slug — skip if it looks like a location page
+                    local is_other_location
+                    is_other_location=$(python3 -c "
+import re
+slug = '${sub_slug}'
+# Has a US state suffix = city-state slug = other location
+if re.search(r'-(md|va|dc|pa|de|wv|ny|ca|fl|tx|nc|sc|ga|oh|il|ma|nj|ct|ri|nh|vt|me|mi|wi|mn|ia|mo|ks|ne|sd|nd|mt|wy|co|ut|nv|id|or|wa|ak|hi|al|ms|tn|ky|in|ar|la|ok|nm|az)$', slug):
+    print('yes')
+else:
+    print('no')
+" 2>/dev/null)
+                    if [ "$is_other_location" = "yes" ]; then
+                        log "  SKIP (other location: $sub_slug ≠ $location_slug): $subpage"
+                        continue
+                    fi
+                fi
+            fi
+
             page_count=$((page_count + 1))
             if [ "$page_count" -gt "$max_subpages" ]; then
                 log "  Subpage cap ($max_subpages) reached — stopping"

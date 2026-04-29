@@ -2355,8 +2355,34 @@ run_venue() {
         sleep 3
         website=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
         if [ -n "$website" ] && [ "$website" != "None" ] && [ "$website" != "missing value" ] && [ "$website" != "" ]; then
-            log "  [LOOKUP] Found: $website"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$website'''))")" > /dev/null
+            # Domain relevance check — reject if venue name words don't appear in domain
+            DOMAIN_OK=$(python3 - "$venue" "$website" << 'PYEOF'
+import sys, re
+from urllib.parse import urlparse
+venue_name = sys.argv[1]
+url = sys.argv[2]
+domain = urlparse(url).netloc.lower().replace('www.','')
+# Extract meaningful words from venue name (skip stop words)
+stop = {'the','a','an','and','of','at','in','by','on','for','to',
+        'hotel','inn','resort','lodge','restaurant','winery','vineyard',
+        'club','country','golf','bar','bistro','cafe','tavern','grill',
+        'pub','lounge','spa','marina','museum','gallery','theater','theatre'}
+words = [w for w in re.sub(r'[^a-z\s]','',venue_name.lower()).split() if w not in stop and len(w) > 2]
+if not words:
+    print('ok')  # nothing to check, allow it
+elif any(w in domain for w in words):
+    print('ok')
+else:
+    print('reject')
+PYEOF
+)
+            if [ "$DOMAIN_OK" = "reject" ]; then
+                log "  [WARN] Website domain mismatch — '$website' doesn't match venue '$venue'. Discarding."
+                website=""
+            else
+                log "  [LOOKUP] Found: $website"
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$website'''))")" > /dev/null
+            fi
         else
             log "  [LOOKUP] No website found via Google"
             website=""

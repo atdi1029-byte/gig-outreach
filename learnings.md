@@ -86,6 +86,21 @@ What works for Alex as a classical guitarist, learned from 18 past gigs and venu
 - "Sports bar", "pub" vibes
 - No social media presence (not invested in experience)
 
+## Future Targeted Searches (when smart picks run dry)
+When the discovery pipeline runs out of smart picks from existing seeds, switch to targeted hunting for these categories:
+1. **Luxury hotels** — Ritz, Four Seasons, Waldorf, Conrad-style across all 6 states
+2. **Historic fine dining** — hidden Milton Inn-type gems, old inns with character
+3. **French/European bistros** — intimate, dark, romantic, educated clientele
+4. **Elite private clubs** — Cosmos Club, University Club type venues in every major city
+5. **Wine bars** — with educated crowds, not sports bars that serve wine
+6. **Upscale country clubs with wine dinners** — Belle Haven, River Bend style
+7. **Mountain wineries with great architecture** — Big Cork, Good Spirit Farm style
+8. **Corporate events / law firms** — DC/Bethesda/Tysons corridor
+9. **Upscale Latin/international restaurants** — Alma Cocina Latina type
+10. **Senior living facilities** — calendar fillers, reliable income
+
+**DO NOT use "live music" or "live entertainment" as search keywords** — search by venue type and quality instead. Venues CAN already have live music, just don't use it as a discovery filter.
+
 ## TODO: Targeted Hunting Mode
 Build a discovery mode that searches by area + category based on learnings profile. Instead of "find similar to this gig," search affluent areas directly for venue types that work.
 

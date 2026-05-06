@@ -86,7 +86,7 @@ name_known() {
 ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_exhausted"
 APOLLO_EXHAUSTED_FLAG="/tmp/pipeline_apollo_exhausted"
 MAX_APOLLO=${MAX_APOLLO:-300}  # Max Apollo credits per run (default 300, set MAX_APOLLO=N to override)
-rm -f "$ZB_EXHAUSTED_FLAG" "$APOLLO_EXHAUSTED_FLAG" /tmp/pipeline_step1_fb.txt /tmp/pipeline_step1_ig.txt
+rm -f "$ZB_EXHAUSTED_FLAG" "$APOLLO_EXHAUSTED_FLAG" /tmp/pipeline_step1_fb.txt /tmp/pipeline_step1_ig.txt /tmp/pipeline_seen_orgs
 
 check_apollo_credits() {
     if [ -z "$APOLLO_API_KEY" ]; then return 0; fi
@@ -1154,6 +1154,15 @@ PYEOF
     ORG_NAME=$(python3 -c "import json; print(json.load(open('$apollo_co_tmpf'))['name'])")
     local ORG_ID=$(python3 -c "import json; print(json.load(open('$apollo_co_tmpf'))['org_id'])")
     log "  Found: $ORG_NAME (domain: $DOMAIN, org_id: $ORG_ID)"
+
+    # Skip if this org was already processed this run (prevents duplicate contacts across venues)
+    local SEEN_ORGS_FILE="/tmp/pipeline_seen_orgs"
+    if [ -f "$SEEN_ORGS_FILE" ] && grep -qF "$ORG_ID" "$SEEN_ORGS_FILE" 2>/dev/null; then
+        log "  [SKIP] Org $ORG_ID already processed this run — skipping to avoid duplicates"
+        APOLLO_DOMAIN="$DOMAIN"
+        return
+    fi
+    echo "$ORG_ID" >> "$SEEN_ORGS_FILE"
 
     # CRITICAL: If Apollo returned empty domain, fall back to website domain
     if [ -z "$DOMAIN" ] || [ "$DOMAIN" = "None" ]; then

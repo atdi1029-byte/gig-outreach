@@ -605,7 +605,7 @@ print(m.group(1) if m else '')
 
     if [ -n "$subpages" ]; then
         local page_count=0
-        local max_subpages=60
+        local max_subpages=30
         local last_emails=""
         local dupe_streak=0
         while IFS= read -r subpage; do

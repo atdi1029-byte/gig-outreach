@@ -2516,9 +2516,15 @@ else: print('')
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
     else
         log ""
-        log "========== STEP 4: LinkedIn (SKIPPED — quota reset in April) =========="
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
-        log "  Marked linkedin_pending=true"
+        log "========== STEP 4: LinkedIn (SKIPPED — quota exhausted) =========="
+        # Only mark pending if no emails found yet — venues with emails don't need LinkedIn urgently
+        NEW_EMAIL_COUNT=$(cat /tmp/pipeline_contacts_count 2>/dev/null || echo 0)
+        if [ "$NEW_EMAIL_COUNT" -gt 0 ] || [ "$(echo "$KNOWN_EMAILS" | tr '|||' '\n' | grep -c .)" -gt 0 ]; then
+            log "  Emails already found — not marking linkedin_pending"
+        else
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
+            log "  Marked linkedin_pending=true (no emails found)"
+        fi
     fi
 
     # Always set status to pipelined when pipeline completes
@@ -2553,7 +2559,65 @@ if [ "$1" = "--smart-picks" ]; then
     SHARED_COUNT_FILE="/tmp/pipeline_shared_count"
     echo "0" > "$SHARED_COUNT_FILE"
 
-    # --- Phase 1: Process UNTOUCHED venues first ---
+    # --- Phase 1: Smart Picks (runs first to use budget on best venues) ---
+    # Pull Smart Picks from API in rank order (highest score first)
+    CURRENT=$(cat "$SHARED_COUNT_FILE")
+    if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
+        log "SMART PICKS: Skipping — shared budget of $MAX_SP already reached ($CURRENT processed)"
+    else
+    REMAINING=""
+    if [ "$MAX_SP" -gt 0 ]; then
+        REMAINING=$((MAX_SP - CURRENT))
+    fi
+    log "SMART PICKS MODE: Fetching ranked venues..."
+    SP_FILE="/tmp/pipeline_smart_picks.json"
+    curl -sL "${APPS_SCRIPT_URL}?action=get_recommendations" -o "$SP_FILE"
+    SP_COUNT=$(python3 -c "
+import json
+with open('$SP_FILE') as f:
+    recs = json.load(f).get('recommendations', [])
+filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
+print(len(filtered))
+" 2>/dev/null)
+    if [ -n "$REMAINING" ]; then
+        log "SMART PICKS: $SP_COUNT available, budget remaining: $REMAINING"
+    else
+        log "SMART PICKS: $SP_COUNT venues to process"
+    fi
+
+    python3 -c "
+import json, os
+with open('$SP_FILE') as f:
+    recs = json.load(f).get('recommendations', [])
+filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
+for i, r in enumerate(filtered):
+    print(f\"{i}|{r['name']}|{r['venue_id']}|{r.get('recommendation_score',0)}\")
+" 2>/dev/null | while IFS='|' read -r IDX NAME VID SCORE; do
+        if [ -f "$ZB_EXHAUSTED_FLAG" ] && [ -f "$APOLLO_EXHAUSTED_FLAG" ]; then
+            log "[STOP] Both ZeroBounce and Apollo exhausted — skipping remaining smart picks"
+            break
+        fi
+        CURRENT=$(cat "$SHARED_COUNT_FILE")
+        if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
+            log "[BUDGET] Shared limit of $MAX_SP reached — stopping smart picks"
+            break
+        fi
+        log ""
+        log "########## SMART PICK #$((IDX+1)) (score $SCORE): $NAME ($VID) ##########"
+        # Fetch website + city from venue detail
+        curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${VID}" -o /tmp/pipeline_sp_detail.json
+        WEB=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('website',''))" 2>/dev/null)
+        CITY=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('city',''))" 2>/dev/null)
+        run_venue "$NAME" "$VID" "$WEB" "$CITY"
+        CURRENT=$(cat "$SHARED_COUNT_FILE")
+        echo "$((CURRENT + 1))" > "$SHARED_COUNT_FILE"
+        if [ "$IDX" -lt "$((SP_COUNT - 1))" ]; then sleep 30; fi
+    done
+    fi  # end shared budget else block
+    log "=== SMART PICKS COMPLETE ==="
+    log ""
+
+    # --- Phase 2: Process UNTOUCHED venues with remaining budget ---
     log "UNTOUCHED PHASE: Fetching all venues..."
     UT_FILE="/tmp/pipeline_untouched.json"
     curl -sL "${APPS_SCRIPT_URL}?action=dashboard" -o "$UT_FILE"
@@ -2636,61 +2700,6 @@ for i, venue in enumerate(untouched):
         log "UNTOUCHED: none found — skipping"
     fi
 
-    # --- Phase 2: Smart Picks ---
-    # Pull Smart Picks from API in rank order (highest score first)
-    CURRENT=$(cat "$SHARED_COUNT_FILE")
-    if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
-        log "SMART PICKS: Skipping — shared budget of $MAX_SP already reached ($CURRENT processed)"
-    else
-    REMAINING=""
-    if [ "$MAX_SP" -gt 0 ]; then
-        REMAINING=$((MAX_SP - CURRENT))
-    fi
-    log "SMART PICKS MODE: Fetching ranked venues..."
-    SP_FILE="/tmp/pipeline_smart_picks.json"
-    curl -sL "${APPS_SCRIPT_URL}?action=get_recommendations" -o "$SP_FILE"
-    SP_COUNT=$(python3 -c "
-import json
-with open('$SP_FILE') as f:
-    recs = json.load(f).get('recommendations', [])
-filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
-print(len(filtered))
-" 2>/dev/null)
-    if [ -n "$REMAINING" ]; then
-        log "SMART PICKS: $SP_COUNT available, budget remaining: $REMAINING"
-    else
-        log "SMART PICKS: $SP_COUNT venues to process"
-    fi
-
-    python3 -c "
-import json, os
-with open('$SP_FILE') as f:
-    recs = json.load(f).get('recommendations', [])
-filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
-for i, r in enumerate(filtered):
-    print(f\"{i}|{r['name']}|{r['venue_id']}|{r.get('recommendation_score',0)}\")
-" 2>/dev/null | while IFS='|' read -r IDX NAME VID SCORE; do
-        if [ -f "$ZB_EXHAUSTED_FLAG" ] && [ -f "$APOLLO_EXHAUSTED_FLAG" ]; then
-            log "[STOP] Both ZeroBounce and Apollo exhausted — skipping remaining smart picks"
-            break
-        fi
-        CURRENT=$(cat "$SHARED_COUNT_FILE")
-        if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
-            log "[BUDGET] Shared limit of $MAX_SP reached — stopping smart picks"
-            break
-        fi
-        log ""
-        log "########## SMART PICK #$((IDX+1)) (score $SCORE): $NAME ($VID) ##########"
-        # Fetch website + city from venue detail
-        curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${VID}" -o /tmp/pipeline_sp_detail.json
-        WEB=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('website',''))" 2>/dev/null)
-        CITY=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('city',''))" 2>/dev/null)
-        run_venue "$NAME" "$VID" "$WEB" "$CITY"
-        CURRENT=$(cat "$SHARED_COUNT_FILE")
-        echo "$((CURRENT + 1))" > "$SHARED_COUNT_FILE"
-        if [ "$IDX" -lt "$((SP_COUNT - 1))" ]; then sleep 30; fi
-    done
-    fi  # end shared budget else block
     # End-of-run report: skipped venues
     if [ -f "$SKIPPED_VENUES_FILE" ] && [ -s "$SKIPPED_VENUES_FILE" ]; then
         log ""
@@ -2715,11 +2724,25 @@ elif [ "$1" = "--linkedin-retry" ]; then
 import json, os
 with open('/tmp/pipeline_linkedin_retry.json') as f: data = json.load(f)
 SKIP = set(filter(None, os.environ.get('SKIP_VENUES','').split(',')))
+# Build set of venue_ids that already have email contacts
+venues_with_email = set(
+    c['venue_id'] for c in data.get('contacts', [])
+    if c.get('email') and c.get('venue_id')
+)
 for v in data.get('venues', []):
     if v.get('linkedin_pending') == True or str(v.get('linkedin_pending','')).lower() == 'true':
         if v['venue_id'] not in SKIP:
-            print(f\"{v['venue_id']}|||{v['name']}|||{v.get('website','')}\")
-" 2>/dev/null | while IFS='|||' read -r VID NAME WEB; do
+            if v['venue_id'] in venues_with_email:
+                import sys; print(f\"CLEAR|||{v['venue_id']}|||{v['name']}\", file=sys.stderr)
+            else:
+                print(f\"{v['venue_id']}|||{v['name']}|||{v.get('website','')}\")
+" 2>&1 1>/tmp/pipeline_linkedin_queue.txt | while IFS='|||' read -r ACTION VID NAME; do
+        if [ "$ACTION" = "CLEAR" ]; then
+            log "  [SKIP] $NAME already has emails — clearing linkedin_pending"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=linkedin_pending&value=false" > /dev/null
+        fi
+    done
+    cat /tmp/pipeline_linkedin_queue.txt | while IFS='|||' read -r VID NAME WEB; do
         log ""
         log "########## LINKEDIN RETRY: $NAME ($VID) ##########"
         load_existing "$VID"

@@ -575,6 +575,15 @@ for c in d.get('contacts', []):
 import json
 d = json.load(open('/tmp/pipeline_scrape.json'))
 subs = d.get('subpages', [])
+# Sort: high-value pages first (contact, staff, wedding, event, banquet, team, about)
+priority = ['contact','staff','team','wedding','event','banquet','cater','entertain','music','party','book','rental','meeting','corporate','about','press','media']
+def page_score(url):
+    u = url.lower()
+    for i, kw in enumerate(priority):
+        if kw in u:
+            return i
+    return len(priority)
+subs.sort(key=page_score)
 print('\n'.join(subs))
 " 2>/dev/null)
 
@@ -596,7 +605,7 @@ print(m.group(1) if m else '')
 
     if [ -n "$subpages" ]; then
         local page_count=0
-        local max_subpages=20
+        local max_subpages=60
         local last_emails=""
         local dupe_streak=0
         while IFS= read -r subpage; do

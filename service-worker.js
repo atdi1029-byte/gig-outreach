@@ -1,4 +1,4 @@
-const CACHE_NAME = 'outreach-v204';
+const CACHE_NAME = 'outreach-v205';
 const ASSETS = [
   './',
   './index.html',

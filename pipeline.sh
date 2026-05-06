@@ -1769,13 +1769,14 @@ for line in lines:
     # Untouched venue header
     m2 = re.search(r'UNTOUCHED #(\d+): (.+?) \(([^)]+)\)', text) if not m else None
     # Batch/single venue header: " PIPELINE: Name (venue_id)"
-    m3 = re.search(r'PIPELINE: (.+?) \(([^)]+)\)', text) if not m and not m2 else None
+    # Only treat as new venue if no current_venue (standalone batch mode, not sub-header)
+    m3 = re.search(r'PIPELINE: (.+?) \(([^)]+)\)', text) if not m and not m2 and not current_venue else None
     if m or m2 or m3:
         if current_venue:
             venues.append(current_venue)
         if m:
             current_venue = {
-                'pick_num': int(m.group(1)),
+                'pick_num': 0,  # renumbered globally after parsing
                 'score': int(m.group(2)),
                 'name': m.group(3),
                 'venue_id': m.group(4),
@@ -1783,16 +1784,15 @@ for line in lines:
             }
         elif m2:
             current_venue = {
-                'pick_num': int(m2.group(1)),
+                'pick_num': 0,  # renumbered globally after parsing
                 'score': 0,
                 'name': m2.group(2),
                 'venue_id': m2.group(3),
                 'phase': 'untouched',
             }
         else:
-            batch_counter = len(venues) + 1
             current_venue = {
-                'pick_num': batch_counter,
+                'pick_num': 0,  # renumbered globally after parsing
                 'score': 0,
                 'name': m3.group(1),
                 'venue_id': m3.group(2),
@@ -2278,6 +2278,10 @@ html += f'''
 </div>
 '''
 
+# Renumber venues globally across all phases
+for i, v in enumerate(venues):
+    v['pick_num'] = i + 1
+
 # Per-venue sections
 html += '<h2>Pipeline Results</h2>\n'
 
@@ -2384,6 +2388,9 @@ run_venue() {
     local start_time
     start_time=$(date +%s)
 
+    # Clear per-venue temp files so previous venue's data doesn't bleed in
+    rm -f /tmp/pipeline_step1_fb.txt /tmp/pipeline_step1_ig.txt
+
     # Resolve real venue ID — if the passed ID doesn't exist in the sheet,
     # look it up by domain. Catches the case where discover.sh assigned a
     # different ID than what was passed manually.
@@ -2428,10 +2435,17 @@ stop = {'the','a','an','and','of','at','in','by','on','for','to',
 words = [w for w in re.sub(r'[^a-z\s]','',venue_name.lower()).split() if w not in stop and len(w) > 2]
 if not words:
     print('ok')  # nothing to check, allow it
-elif any(w in domain for w in words):
-    print('ok')
 else:
-    print('reject')
+    # Check full word OR any prefix of 5+ chars (catches metro→metropolitan, etc.)
+    def matches(w, domain):
+        if w in domain: return True
+        for n in range(5, len(w)+1):
+            if w[:n] in domain: return True
+        return False
+    if any(matches(w, domain) for w in words):
+        print('ok')
+    else:
+        print('reject')
 PYEOF
 )
             if [ "$DOMAIN_OK" = "reject" ]; then

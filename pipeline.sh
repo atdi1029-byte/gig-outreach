@@ -605,7 +605,6 @@ print(m.group(1) if m else '')
 
     if [ -n "$subpages" ]; then
         local page_count=0
-        local max_subpages=30
         local last_emails=""
         local dupe_streak=0
         while IFS= read -r subpage; do
@@ -641,11 +640,7 @@ else:
             fi
 
             page_count=$((page_count + 1))
-            if [ "$page_count" -gt "$max_subpages" ]; then
-                log "  Subpage cap ($max_subpages) reached — stopping"
-                break
-            fi
-            log "  Crawling subpage ($page_count/$max_subpages): $subpage"
+            log "  Crawling subpage ($page_count): $subpage"
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${subpage}\""
             sleep 4
             local sub_result

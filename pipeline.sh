@@ -1544,18 +1544,27 @@ end tell' 2>/dev/null)
 import json
 
 data = json.loads('''$PAGE_JSON''')
-venue = '''$venue'''.lower()
-
-skip = {'the','at','in','of','and','for','a','an','by','on','to','&'}
-venue_words = [w for w in venue.split() if w.lower() not in skip and len(w) > 2]
 
 known_names_raw = '''$KNOWN_NAMES'''
 known_names = set(n.strip() for n in known_names_raw.split('|||') if n.strip())
 
+# Keep people with decision-making or booking-relevant titles
+keep_words = {'owner','founder','president','partner','principal','director',
+    'manager','coordinator','executive','officer','ceo','coo','cfo','gm',
+    'general manager','events','event','entertainment','booking','hospitality',
+    'marketing','operations','membership','food','beverage','catering',
+    'sales','development','curator','artistic','program','sommelier',
+    'winemaker','viticulturist','head','chef','proprietor','managing'}
+# Skip roles that are clearly not relevant
+skip_words = {'intern','student','volunteer','accountant','attorney','lawyer',
+    'developer','engineer','software','designer','it ','data','analyst',
+    'junior','assistant brewer','busser','server','host','bartender','cook'}
+
 for p in data:
     if not p.get('current', True): continue
     title_lower = p['title'].lower()
-    if not any(w in title_lower for w in venue_words): continue
+    if any(s in title_lower for s in skip_words): continue
+    if not any(k in title_lower for k in keep_words): continue
     name = p['name'].strip()
     name_lower = name.lower()
     if name_lower in known_names or name_lower == '?': continue
@@ -2455,10 +2464,11 @@ else:
     # Check full word OR any prefix of 5+ chars (catches metro→metropolitan, etc.)
     def matches(w, domain):
         if w in domain: return True
-        for n in range(5, len(w)+1):
+        # prefix match 4+ chars (e.g. "zeph" from "zephaniah" matches "zephwine.com")
+        for n in range(4, len(w)+1):
             if w[:n] in domain: return True
         return False
-    # Also accept if domain starts with the venue acronym (e.g. tayc.com for Tred Avon Yacht Club)
+    # Also accept if domain base equals the venue acronym (e.g. tayc.com for Tred Avon Yacht Club)
     domain_base = domain.split('.')[0]
     if any(matches(w, domain) for w in words) or (len(acronym) >= 3 and domain_base == acronym):
         print('ok')

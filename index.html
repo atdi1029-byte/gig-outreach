@@ -2919,12 +2919,20 @@ function getMonthlyTasks() {
     return data;
 }
 
-function saveMonthlyTasks(data) {
-    localStorage.setItem(MONTHLY_KEY, JSON.stringify(data));
-    syncMonthlyToCloud();
+function safeLocalSave(key, payload) {
+    try { localStorage.setItem(key, payload); return true; }
+    catch(e) { console.error('[Email] localStorage QUOTA ERROR:', e); return false; }
 }
 
-function saveMonthlyDefaults(arr) { localStorage.setItem(MONTHLY_DEFAULTS_KEY, JSON.stringify(arr)); syncMonthlyToCloud(); }
+function saveMonthlyTasks(data) {
+    var ok = safeLocalSave(MONTHLY_KEY, JSON.stringify(data));
+    if (ok) syncMonthlyToCloud();
+}
+
+function saveMonthlyDefaults(arr) {
+    var ok = safeLocalSave(MONTHLY_DEFAULTS_KEY, JSON.stringify(arr));
+    if (ok) syncMonthlyToCloud();
+}
 
 let _syncTimer = null;
 function syncMonthlyToCloud() {

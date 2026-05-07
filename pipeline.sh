@@ -2445,7 +2445,10 @@ stop = {'the','a','an','and','of','at','in','by','on','for','to',
         'hotel','inn','resort','lodge','restaurant','winery','vineyard',
         'club','country','golf','bar','bistro','cafe','tavern','grill',
         'pub','lounge','spa','marina','museum','gallery','theater','theatre'}
-words = [w for w in re.sub(r'[^a-z\s]','',venue_name.lower()).split() if w not in stop and len(w) > 2]
+all_words = re.sub(r'[^a-z\s]','',venue_name.lower()).split()
+words = [w for w in all_words if w not in stop and len(w) > 2]
+# Build acronym from ALL words (including stop words) — catches TAYC, AAAS, etc.
+acronym = ''.join(w[0] for w in all_words if w)
 if not words:
     print('ok')  # nothing to check, allow it
 else:
@@ -2455,7 +2458,9 @@ else:
         for n in range(5, len(w)+1):
             if w[:n] in domain: return True
         return False
-    if any(matches(w, domain) for w in words):
+    # Also accept if domain starts with the venue acronym (e.g. tayc.com for Tred Avon Yacht Club)
+    domain_base = domain.split('.')[0]
+    if any(matches(w, domain) for w in words) or (len(acronym) >= 3 and domain_base == acronym):
         print('ok')
     else:
         print('reject')

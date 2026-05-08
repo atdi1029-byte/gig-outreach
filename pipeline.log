@@ -9565,3 +9565,2472 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 16:10:57 
 16:10:57 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-28_16-10.html
 16:10:57 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-04-28_16-10.html
+
+17:45:55 === Pipeline started 2026-05-06 17:45:55 ===
+17:45:55 UNTOUCHED PHASE: Fetching all venues...
+17:46:01 UNTOUCHED: 406 found (shared budget: 8 total)
+17:46:01 
+17:46:01 ########## UNTOUCHED #1: The Metropolitan Club (XX-COUN-053) ##########
+17:46:04   [LOOKUP] No website — Googling 'The Metropolitan Club'...
+17:46:07   [WARN] Website domain mismatch — 'https://www.metroclub.com' doesn't match venue 'The Metropolitan Club'. Discarding.
+17:46:11 
+17:46:11 ============================================================
+17:46:11  PIPELINE: The Metropolitan Club (XX-COUN-053)
+17:46:11  Website: 
+17:46:11  Started: 2026-05-06 17:46:11
+17:46:11 ============================================================
+17:46:11   [ZB] Credits remaining: 4007
+17:46:15   Known emails: 0
+17:46:15   Known names: 0
+17:46:15 
+17:46:15 ========== STEP 1: Website Scrape ==========
+17:46:15   [SKIP] No website URL
+17:46:18 
+17:46:18 ========== STEP 1B: Instagram Google Search ==========
+17:46:18   No Instagram found on website — Googling...
+17:46:23   [IG SEARCH] Found: https://www.instagram.com/themetropolitanclub/
+17:46:26   ✓ Instagram URL saved
+17:46:29 
+17:46:29 ========== STEP 1C: Facebook Google Search ==========
+17:46:29   No Facebook found on website — Googling...
+17:46:33   [FB SEARCH] Found: https://www.facebook.com/themetropolitanclub/
+17:46:35   ✓ Facebook URL saved
+17:46:35 
+17:46:35 ========== STEP 2: Social Media Scrape ==========
+17:46:39   FB: https://www.facebook.com/themetropolitanclub/ | IG: https://www.instagram.com/themetropolitanclub/
+17:46:39   Opening FB: https://www.facebook.com/themetropolitanclub
+17:46:44   Opening FB: https://www.facebook.com/themetropolitanclub/about
+17:46:50   FB emails found: sales@themetropolitanclub.net
+17:46:50   Opening FB: https://www.facebook.com/themetropolitanclub/directory_contact_info
+17:46:55   Opening IG: https://www.instagram.com/themetropolitanclub/
+17:47:00   [IG] No email on page — trying Google snippet...
+17:47:04   [IG SNIPPET] No email in Google snippet
+17:47:06   sales@themetropolitanclub.net → do_not_mail
+17:47:07   [APOLLO] Credits used this run: 0 / 300
+17:47:07 
+17:47:07 ========== STEP 3: Apollo API ==========
+17:47:07   Searching Apollo for company: The Metropolitan Club
+17:47:11   Found: THE METROPOLITAN CLUB OF THE CITY OF WASHINGTON (domain: metroclub.com, org_id: 670c237c2fa9f50001844594)
+17:47:11   Searching for people at THE METROPOLITAN CLUB OF THE CITY OF WASHINGTON (org_id: 670c237c2fa9f50001844594)...
+17:47:11   Found 12 people total
+17:47:12   Skipped 4 people with no email (red ? on Apollo)
+17:47:12   Skipped 2 people with irrelevant titles (housekeeping, IT, security, etc.)
+17:47:12   6 people to enrich (1 credit each)
+17:47:12   >>> Vincent Horville (Executive Chef The Metropolitan Club of The City of Washington): chef@metroclub.org [verified]
+17:47:13   chef@metroclub.org → do_not_mail
+17:47:14   >>> Moira McDonald (Director of Events): mguzi@metroclub.org [verified]
+17:47:14   mguzi@metroclub.org → valid
+17:47:20   ✓ Added: Moira McDonald <mguzi@metroclub.org>
+17:47:21   >>> Carmelo Gil (Executive Pastry Chef): cgil@metroclub.org [verified]
+17:47:21   cgil@metroclub.org → valid
+17:47:25   ✓ Added: Carmelo Gil <cgil@metroclub.org>
+17:47:26   >>> Zoey Downes (Membership Coordinator/Executive Assistant): zdownes@metroclub.org [verified]
+17:47:26   zdownes@metroclub.org → valid
+17:47:29   ✓ Added: Zoey Downes <zdownes@metroclub.org>
+17:47:30   >>> Emmet Gallagher (Assistant General Manager of The Metropolitan Club, City of Washington): egallagher@metroclub.org [verified]
+17:47:31   egallagher@metroclub.org → valid
+17:47:35   ✓ Added: Emmet Gallagher <egallagher@metroclub.org>
+17:47:36   >>> Molly Moore (Events Manager): mreynolds@metroclub.org [verified]
+17:47:36   mreynolds@metroclub.org → valid
+17:47:40   ✓ Added: Molly Moore <mreynolds@metroclub.org>
+17:47:41   Apollo API done: 6 credits used this run
+17:47:41 
+17:47:41 ========== STEP 4: LinkedIn + Apollo API ==========
+17:47:41   Using domain: metroclub.com
+17:47:42   LinkedIn page 1...
+17:47:49   Found 10 results
+17:47:49   Found: Leyre Garcia de Araoz Recondo
+17:47:49   Found: Tom Schunn, CCM, CCE
+17:47:49   Found: Michael Nicles
+17:47:49   Found: Karlie McCord
+17:47:49   Found: Michael Redmond
+17:47:49   Found: Vincent Horville
+17:47:49   Found: Gabriela Gupta
+17:47:52   LinkedIn page 2...
+17:47:58   Found 10 results
+17:47:58   Found: Emma Harrell
+17:47:58   Found: David Chase
+17:47:58   Found: Christopher Harrington
+17:47:58   Found: Bryson Follett
+17:47:58   Found: Trent Chadwick
+17:48:01   LinkedIn page 3...
+17:48:06   Found 10 results
+17:48:06   Found: Tony Testo
+17:48:06   Found: Ben Vetter
+17:48:06   Found: Kyle Baillargeon
+17:48:06   Found: Jason Kwintner
+17:48:06   Found: Molly Moore, CSW
+17:48:06   Found: Kelsey Lynch
+17:48:06   Found: Francisco Maestro
+17:48:06   Found: Elvira Nolasco
+17:48:06 
+17:48:06   LinkedIn found 20 new people. Enriching via Apollo API...
+17:48:06   LinkedIn + Apollo API done. Credits used: 6
+17:48:09   Setting status → pipelined
+17:48:19 
+17:48:19 ============================================================
+17:48:19  DONE: The Metropolitan Club | 2 min | 17:48:19
+17:48:19 ============================================================
+17:48:49 
+17:48:49 ########## UNTOUCHED #2: The City Club of Washington (XX-COUN-054) ##########
+17:48:53   [LOOKUP] No website — Googling 'The City Club of Washington'...
+17:48:56   [WARN] Website domain mismatch — 'https://www.eventective.com' doesn't match venue 'The City Club of Washington'. Discarding.
+17:48:59 
+17:48:59 ============================================================
+17:48:59  PIPELINE: The City Club of Washington (XX-COUN-054)
+17:48:59  Website: 
+17:48:59  Started: 2026-05-06 17:48:59
+17:48:59 ============================================================
+17:49:00   [ZB] Credits remaining: 4000
+17:49:03   Known emails: 0
+17:49:03   Known names: 0
+17:49:03 
+17:49:03 ========== STEP 1: Website Scrape ==========
+17:49:03   [SKIP] No website URL
+17:49:06 
+17:49:06 ========== STEP 1B: Instagram Google Search ==========
+17:49:06   No Instagram found on website — Googling...
+17:49:11   [IG SEARCH] Found: https://www.instagram.com/popular/
+17:49:13   ✓ Instagram URL saved
+17:49:17 
+17:49:17 ========== STEP 1C: Facebook Google Search ==========
+17:49:17   No Facebook found on website — Googling...
+17:49:21   [FB SEARCH] Found: https://www.facebook.com/CityClubEvents/
+17:49:23   ✓ Facebook URL saved
+17:49:23 
+17:49:23 ========== STEP 2: Social Media Scrape ==========
+17:49:26   FB: https://www.facebook.com/CityClubEvents/ | IG: https://www.instagram.com/popular/
+17:49:26   Opening FB: https://www.facebook.com/CityClubEvents
+17:49:31   Opening FB: https://www.facebook.com/CityClubEvents/about
+17:49:36   Opening FB: https://www.facebook.com/CityClubEvents/directory_contact_info
+17:49:41   [FB] No email on page — trying Google snippet...
+17:49:45   [FB SNIPPET] No email in Google snippet
+17:49:45   Opening IG: https://www.instagram.com/popular/
+17:49:51   [IG] No email on page — trying Google snippet...
+17:49:55   [IG SNIPPET] No email in Google snippet
+17:49:55   [APOLLO] Credits used this run: 6 / 300
+17:49:55 
+17:49:55 ========== STEP 3: Apollo API ==========
+17:49:55   Searching Apollo for company: The City Club of Washington
+17:49:59   Found: THE METROPOLITAN CLUB OF THE CITY OF WASHINGTON (domain: metroclub.com, org_id: 670c237c2fa9f50001844594)
+17:49:59   Searching for people at THE METROPOLITAN CLUB OF THE CITY OF WASHINGTON (org_id: 670c237c2fa9f50001844594)...
+17:50:00   Found 12 people total
+17:50:00   Skipped 4 people with no email (red ? on Apollo)
+17:50:00   Skipped 2 people with irrelevant titles (housekeeping, IT, security, etc.)
+17:50:00   6 people to enrich (1 credit each)
+17:50:01   >>> Vincent Horville (Executive Chef The Metropolitan Club of The City of Washington): chef@metroclub.org [verified]
+17:50:01   chef@metroclub.org → do_not_mail
+17:50:02   >>> Moira McDonald (Director of Events): mguzi@metroclub.org [verified]
+17:50:02   mguzi@metroclub.org → valid
+17:50:05   ✓ Added: Moira McDonald <mguzi@metroclub.org>
+17:50:07   >>> Carmelo Gil (Executive Pastry Chef): cgil@metroclub.org [verified]
+17:50:07   cgil@metroclub.org → valid
+17:50:10   ✓ Added: Carmelo Gil <cgil@metroclub.org>
+17:50:11   >>> Zoey Downes (Membership Coordinator/Executive Assistant): zdownes@metroclub.org [verified]
+17:50:11   zdownes@metroclub.org → valid
+17:50:17   ✓ Added: Zoey Downes <zdownes@metroclub.org>
+17:50:18   >>> Emmet Gallagher (Assistant General Manager of The Metropolitan Club, City of Washington): egallagher@metroclub.org [verified]
+17:50:19   egallagher@metroclub.org → valid
+17:50:21   ✓ Added: Emmet Gallagher <egallagher@metroclub.org>
+17:50:22   >>> Molly Moore (Events Manager): mreynolds@metroclub.org [verified]
+17:50:23   mreynolds@metroclub.org → valid
+17:50:26   ✓ Added: Molly Moore <mreynolds@metroclub.org>
+17:50:27   Apollo API done: 12 credits used this run
+17:50:27 
+17:50:27 ========== STEP 4: LinkedIn + Apollo API ==========
+17:50:27   Using domain: metroclub.com
+17:50:28   LinkedIn page 1...
+17:50:34   Found 10 results
+17:50:34   Found: Deby Hawrylko
+17:50:34   Found: Nishaud Rajcoomar
+17:50:34   Found: Paula Ward
+17:50:34   Found: James Douthat
+17:50:34   Found: Ian MacDonald
+17:50:34   Found: Marc Wilson, CEC, CCA, WCEC
+17:50:37   LinkedIn page 2...
+17:50:46   Found 10 results
+17:50:46   Found: Peter Miller
+17:50:46   Found: Sheree Wen
+17:50:46   Found: Theresita M. Isorena CPP, SHRM-CP
+17:50:49   LinkedIn page 3...
+17:50:55   Found 10 results
+17:50:55   Found: Bryson Follett
+17:50:55   Found: Cassandra Centers
+17:50:55   Found: Carolyn Ruffner (Rehman), CCM, SHRM-CP
+17:50:55   Found: Maria Garcia
+17:50:55 
+17:50:55   LinkedIn found 13 new people. Enriching via Apollo API...
+17:50:55   LinkedIn + Apollo API done. Credits used: 12
+17:50:58   Setting status → pipelined
+17:51:01 
+17:51:01 ============================================================
+17:51:01  DONE: The City Club of Washington | 2 min | 17:51:01
+17:51:01 ============================================================
+17:51:31 
+17:51:31 ########## UNTOUCHED #3: Army Navy Country Club (XX-COUN-100) ##########
+17:51:40 
+17:51:40 ============================================================
+17:51:40  PIPELINE: Army Navy Country Club (XX-COUN-100)
+17:51:40  Website: https://www.ancc.org/Club/Scripts/Home
+17:51:40  Started: 2026-05-06 17:51:40
+17:51:40 ============================================================
+17:51:40   [ZB] Credits remaining: 4000
+17:51:43   Known emails: 0
+17:51:43   Known names: 0
+17:51:43 
+17:51:43 ========== STEP 1: Website Scrape ==========
+17:51:43   URL: https://www.ancc.org/Club/Scripts/Home
+17:51:43   Opening in Chrome: https://www.ancc.org/Club/Scripts/Home
+17:51:50   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+17:52:02   Emails: 0 | FB: none | IG: none | Contact Form: none
+17:52:07 
+17:52:07 ========== STEP 1B: Instagram Google Search ==========
+17:52:07   No Instagram found on website — Googling...
+17:52:12   [IG SEARCH] Found: https://www.instagram.com/anccgolf/
+17:52:14   ✓ Instagram URL saved
+17:52:17 
+17:52:17 ========== STEP 1C: Facebook Google Search ==========
+17:52:17   No Facebook found on website — Googling...
+17:52:21   [FB SEARCH] Found: https://www.facebook.com/ANCCGolfShop/
+17:52:24   ✓ Facebook URL saved
+17:52:24 
+17:52:24 ========== STEP 2: Social Media Scrape ==========
+17:52:27   FB: https://www.facebook.com/ANCCGolfShop/ | IG: https://www.instagram.com/anccgolf/
+17:52:27   Opening FB: https://www.facebook.com/ANCCGolfShop
+17:52:32   Opening FB: https://www.facebook.com/ANCCGolfShop/about
+17:52:38   Opening FB: https://www.facebook.com/ANCCGolfShop/directory_contact_info
+17:52:43   [FB] No email on page — trying Google snippet...
+17:52:47   [FB SNIPPET] No email in Google snippet
+17:52:47   Opening IG: https://www.instagram.com/anccgolf/
+17:52:52   [IG] No email on page — trying Google snippet...
+17:52:57   [IG SNIPPET] No email in Google snippet
+17:52:57   [APOLLO] Credits used this run: 12 / 300
+17:52:57 
+17:52:57 ========== STEP 3: Apollo API ==========
+17:52:57   Searching Apollo for company: Army Navy Country Club
+17:52:58   Found: Army Navy Country Club (domain: ancc.org, org_id: 54fca1e67369647df56f0d00)
+17:52:58   Searching for people at Army Navy Country Club (org_id: 54fca1e67369647df56f0d00)...
+17:52:59   Found 50 people total
+17:52:59   Skipped 7 people with no email (red ? on Apollo)
+17:52:59   Skipped 6 people with irrelevant titles (housekeeping, IT, security, etc.)
+17:52:59   37 people to enrich (1 credit each)
+17:53:00   >>> Bridget Merrick (Director of Ladies Tennis - Army Navy Cluntry Club): merrick@ancc.org [verified]
+17:53:01   merrick@ancc.org → valid
+17:53:04   ✓ Added: Bridget Merrick <merrick@ancc.org>
+17:53:05   >>> William Morris (Executive Chef): william.morris@ancc.org [verified]
+17:53:05   william.morris@ancc.org → valid
+17:53:08   ✓ Added: William Morris <william.morris@ancc.org>
+17:53:09   >>> Ana Donovan (Tennis Professional): ana.donovan@ancc.org [verified]
+17:53:09   ana.donovan@ancc.org → invalid
+17:53:12   ⚠ Added (invalid): Ana Donovan <ana.donovan@ancc.org>
+17:53:13   >>> Anna-Rose Cuccias (Assistant Banquet Manager): anna-rose.cuccias@ancc.org [verified]
+17:53:14   anna-rose.cuccias@ancc.org → valid
+17:53:16   ✓ Added: Anna-Rose Cuccias <anna-rose.cuccias@ancc.org>
+17:53:17   >>> Jordan Nichols (Assistant Restaurants Manager): jordan.nichols@ancc.org [verified]
+17:53:18   jordan.nichols@ancc.org → valid
+17:53:21   ✓ Added: Jordan Nichols <jordan.nichols@ancc.org>
+17:53:22   >>> Diana Wang (Assistant General Manager, Director of Marketing, Communications and Membership): diana.wang@ancc.org [verified]
+17:53:23   diana.wang@ancc.org → valid
+17:53:26   ✓ Added: Diana Wang <diana.wang@ancc.org>
+17:53:27   >>> Shelton Wood (Dishwasher): shelton.wood@ancc.org [verified]
+17:53:27   shelton.wood@ancc.org → invalid
+17:53:31   ⚠ Added (invalid): Shelton Wood <shelton.wood@ancc.org>
+17:53:32   >>> Katy Murray (Chief Business Officer): katy.murray@ancc.org [verified]
+17:53:32   katy.murray@ancc.org → valid
+17:53:35   ✓ Added: Katy Murray <katy.murray@ancc.org>
+17:53:36   >>> Patrick King (General Manager/COO at Army Navy Navy Country Club): patrick.king@ancc.org [verified]
+17:53:36   patrick.king@ancc.org → valid
+17:53:39   ✓ Added: Patrick King <patrick.king@ancc.org>
+17:53:40   >>> Gerardo Merino (Food and Beverage Manager): gerardo.merino@ancc.org [verified]
+17:53:40   gerardo.merino@ancc.org → valid
+17:53:43   ✓ Added: Gerardo Merino <gerardo.merino@ancc.org>
+17:53:46   >>> Wendy Wilson (Assistant General Manager/Director of Aquatics and Youth Programs): wendy.wilson@ancc.org [verified]
+17:53:46   wendy.wilson@ancc.org → valid
+17:53:50   ✓ Added: Wendy Wilson <wendy.wilson@ancc.org>
+17:53:51   >>> Jacob Seagrave (Executive Sous Chef): jacob.seagrave@ancc.org [verified]
+17:53:51   jacob.seagrave@ancc.org → valid
+17:53:54   ✓ Added: Jacob Seagrave <jacob.seagrave@ancc.org>
+17:53:55   >>> Verena Erwin (Tennis Professional): verena.erwin@ancc.org [verified]
+17:53:56   verena.erwin@ancc.org → valid
+17:54:00   ✓ Added: Verena Erwin <verena.erwin@ancc.org>
+17:54:01   >>> Ashley Hermsmeyer (Club Events Manager): ashley.hermsmeyer@ancc.org [verified]
+17:54:01   ashley.hermsmeyer@ancc.org → valid
+17:54:06   ✓ Added: Ashley Hermsmeyer <ashley.hermsmeyer@ancc.org>
+17:54:07   >>> Adam Lewis (Director of Food and Beverage): adam.lewis@ancc.org [verified]
+17:54:07   adam.lewis@ancc.org → valid
+17:54:11   ✓ Added: Adam Lewis <adam.lewis@ancc.org>
+17:54:12   >>> Kelli Rieck (Director of Catering): kelli.rieck@ancc.org [verified]
+17:54:12   kelli.rieck@ancc.org → valid
+17:54:15   ✓ Added: Kelli Rieck <kelli.rieck@ancc.org>
+17:54:16   >>> David Vesper (Banquet Chef): david.vesper@ancc.org [verified]
+17:54:16   david.vesper@ancc.org → valid
+17:54:20   ✓ Added: David Vesper <david.vesper@ancc.org>
+17:54:21   >>> Michael Palamara (Assistant General Manager): michael.palamara@ancc.org [verified]
+17:54:21   michael.palamara@ancc.org → valid
+17:54:24   ✓ Added: Michael Palamara <michael.palamara@ancc.org>
+17:54:25   >>> Dennis Williams (Controller): dennis.williams@ancc.org [verified]
+17:54:26   dennis.williams@ancc.org → valid
+17:54:28   ✓ Added: Dennis Williams <dennis.williams@ancc.org>
+17:54:29   >>> Tommy Smith (Director of Junior Golf): tommy.smith@ancc.org [verified]
+17:54:30   tommy.smith@ancc.org → invalid
+17:54:32   ⚠ Added (invalid): Tommy Smith <tommy.smith@ancc.org>
+17:54:35   >>> Taylor Munroe (Marketing Coordinator): taylor.munroe@ancc.org [verified]
+17:54:36   taylor.munroe@ancc.org → valid
+17:54:39   ✓ Added: Taylor Munroe <taylor.munroe@ancc.org>
+17:54:40   >>> Peter Karl (AGM Aquatics): peter.karl@ancc.org [verified]
+17:54:40   peter.karl@ancc.org → invalid
+17:54:43   ⚠ Added (invalid): Peter Karl <peter.karl@ancc.org>
+17:54:44   >>> Carly Swanson (Counselor): carly.swanson@ancc.org [verified]
+17:54:44   carly.swanson@ancc.org → invalid
+17:54:47   ⚠ Added (invalid): Carly Swanson <carly.swanson@ancc.org>
+17:54:48   >>> Andrew Welch (Director of Clubhouse Operations): andrew.welch@ancc.org [verified]
+17:54:48   andrew.welch@ancc.org → valid
+17:54:51   ✓ Added: Andrew Welch <andrew.welch@ancc.org>
+17:54:52   >>> Devin Fleig (Banquet Manager): devin.fleig@ancc.org [verified]
+17:54:52   devin.fleig@ancc.org → valid
+17:54:57   ✓ Added: Devin Fleig <devin.fleig@ancc.org>
+17:54:58   >>> Joey Gilman (Assistant Golf Professional): joey.gilman@ancc.org [verified]
+17:54:58   joey.gilman@ancc.org → valid
+17:55:02   ✓ Added: Joey Gilman <joey.gilman@ancc.org>
+17:55:03   >>> Jean-Marc Krone (Director of Ladies Tennis): jean-marc.krone@ancc.org [verified]
+17:55:03   jean-marc.krone@ancc.org → valid
+17:55:06   ✓ Added: Jean-Marc Krone <jean-marc.krone@ancc.org>
+17:55:07   >>> Kellie Demark (Rotating Chef): kellie.demark@ancc.org [verified]
+17:55:08   kellie.demark@ancc.org → valid
+17:55:11   ✓ Added: Kellie Demark <kellie.demark@ancc.org>
+17:55:12   >>> Tarik Idrissi (Restaurants Manager): tarik.idrissi@ancc.org [verified]
+17:55:12   tarik.idrissi@ancc.org → valid
+17:55:15   ✓ Added: Tarik Idrissi <tarik.idrissi@ancc.org>
+17:55:16   >>> Iustin Baciu (Tennis Professional): iustin.baciu@ancc.org [verified]
+17:55:16   iustin.baciu@ancc.org → valid
+17:55:20   ✓ Added: Iustin Baciu <iustin.baciu@ancc.org>
+17:55:23   >>> MJ Smith (Director of Instruction): mj.smith@ancc.org [verified]
+17:55:23   mj.smith@ancc.org → invalid
+17:55:25   ⚠ Added (invalid): MJ Smith <mj.smith@ancc.org>
+17:55:26   >>> Dylan Brewbaker (Assistant Golf Professional): dylan.brewbaker@ancc.org [verified]
+17:55:26   dylan.brewbaker@ancc.org → valid
+17:55:29   ✓ Added: Dylan Brewbaker <dylan.brewbaker@ancc.org>
+17:55:30   >>> Rachel Belanger (Director of Player Development): rachel.belanger@ancc.org [verified]
+17:55:30   rachel.belanger@ancc.org → valid
+17:55:33   ✓ Added: Rachel Belanger <rachel.belanger@ancc.org>
+17:55:34   >>> Madison Lucchino (Marketing & Membership Assistant): madison.lucchino@ancc.org [verified]
+17:55:34   madison.lucchino@ancc.org → valid
+17:55:37   ✓ Added: Madison Lucchino <madison.lucchino@ancc.org>
+17:55:38   >>> Andrea Gadsden (Pastry Cook): andrea.gadsden@ancc.org [verified]
+17:55:39   andrea.gadsden@ancc.org → invalid
+17:55:42   ⚠ Added (invalid): Andrea Gadsden <andrea.gadsden@ancc.org>
+17:55:43   >>> Jackson Miller (Server): jackson.miller@ancc.org [verified]
+17:55:44   jackson.miller@ancc.org → invalid
+17:55:47   ⚠ Added (invalid): Jackson Miller <jackson.miller@ancc.org>
+17:55:48   >>> Aadarsh Singh (Bartender): aadarsh.singh@ancc.org [verified]
+17:55:48   aadarsh.singh@ancc.org → invalid
+17:55:51   ⚠ Added (invalid): Aadarsh Singh <aadarsh.singh@ancc.org>
+17:55:52   Apollo API done: 49 credits used this run
+17:55:52 
+17:55:52 ========== STEP 4: LinkedIn + Apollo API ==========
+17:55:52   Using domain: ancc.org
+17:55:54   LinkedIn page 1...
+17:56:00   Found 10 results
+17:56:00   Found: Patrick King, CCM, CCE, ECM, CMAA Fellow
+17:56:00   Found: Jordan Nichols
+17:56:00   Found: Adam Lewis
+17:56:00   Found: Lexi Dean
+17:56:00   Found: Andrew Welch, CCM
+17:56:00   Found: Anjali Shah
+17:56:00   Found: Madison Lucchino
+17:56:00   Found: Sarah Ford, CHAE
+17:56:03   LinkedIn page 2...
+17:56:10   Found 10 results
+17:56:10   Found: Kelly Moore
+17:56:10   Found: Bridget Merrick
+17:56:10   Found: Diana Wang
+17:56:10   Found: Wendy Wilson
+17:56:10   Found: Edward Urben
+17:56:10   Found: Robert Giambrone
+17:56:10   Found: Thomasa Burton
+17:56:15   LinkedIn page 3...
+17:56:20   Found 10 results
+17:56:20   Found: Dylan Sevcik
+17:56:20   Found: Kellie DeMark
+17:56:20   Found: Devin Fleig
+17:56:20   Found: Andrew Brown
+17:56:20   Found: John Contreras
+17:56:20   Found: JENNIFER ACEVEDO, MA-HRM
+17:56:20   Found: Taylor Munroe
+17:56:20 
+17:56:20   LinkedIn found 22 new people. Enriching via Apollo API...
+17:56:20   LinkedIn + Apollo API done. Credits used: 49
+17:56:25   Setting status → pipelined
+17:56:28 
+17:56:28 ============================================================
+17:56:28  DONE: Army Navy Country Club | 4 min | 17:56:28
+17:56:28 ============================================================
+17:56:58 
+17:56:58 ########## UNTOUCHED #4: Washington Golf & Country Club (XX-COUN-101) ##########
+17:57:23 
+17:57:23 ============================================================
+17:57:23  PIPELINE: Washington Golf & Country Club (XX-COUN-101)
+17:57:23  Website: https://www.washingtongolfcc.org
+17:57:23  Started: 2026-05-06 17:57:23
+17:57:23 ============================================================
+17:57:24   [ZB] Credits remaining: 3963
+17:57:26   Known emails: 0
+17:57:26   Known names: 0
+17:57:26 
+17:57:26 ========== STEP 1: Website Scrape ==========
+17:57:26   URL: https://www.washingtongolfcc.org
+17:57:26   Opening in Chrome: https://www.washingtongolfcc.org
+17:57:33   Emails: 1 | FB: none | IG: none | Contact Form: none
+17:57:33   Crawling subpage (1/20): https://www.washingtongolfcc.org/Current_Weather
+17:57:38   Found on subpage: comments@washingtongolfcc.org
+17:57:38   Crawling subpage (2/20): https://www.washingtongolfcc.org/Home
+17:57:42   Found on subpage: comments@washingtongolfcc.org
+17:57:42   Crawling subpage (3/20): https://www.washingtongolfcc.org/Amenities
+17:57:46   Found on subpage: comments@washingtongolfcc.org
+17:57:46   Crawling subpage (4/20): https://www.washingtongolfcc.org/For_Guests
+17:57:51   Same emails 3 pages in a row — stopping subpage crawl
+17:57:53   comments@washingtongolfcc.org → invalid
+17:57:56   ⚠ Added (invalid): comments@washingtongolfcc.org <comments@washingtongolfcc.org>
+17:58:00 
+17:58:00 ========== STEP 1B: Instagram Google Search ==========
+17:58:00   No Instagram found on website — Googling...
+17:58:04   [IG SEARCH] Found: https://www.instagram.com/wgcc_swim/
+17:58:06   ✓ Instagram URL saved
+17:58:08 
+17:58:08 ========== STEP 1C: Facebook Google Search ==========
+17:58:08   No Facebook found on website — Googling...
+17:58:13   [FB SEARCH] Found: https://www.facebook.com/1536212130030193/
+17:58:16   ✓ Facebook URL saved
+17:58:16 
+17:58:16 ========== STEP 2: Social Media Scrape ==========
+17:58:19   FB: https://www.facebook.com/1536212130030193/ | IG: https://www.instagram.com/wgcc_swim/
+17:58:19   Opening FB: https://www.facebook.com/1536212130030193
+17:58:24   Opening FB: https://www.facebook.com/1536212130030193/about
+17:58:30   Opening FB: https://www.facebook.com/1536212130030193/directory_contact_info
+17:58:35   [FB] No email on page — trying Google snippet...
+17:58:39   [FB SNIPPET] Found: comments@washingtongolfcc.org
+17:58:39   Opening IG: https://www.instagram.com/wgcc_swim/
+17:58:44   [IG] No email on page — trying Google snippet...
+17:58:49   [IG SNIPPET] No email in Google snippet
+17:58:49   comments@washingtongolfcc.org → invalid
+17:58:51   ⚠ Added (invalid): comments@washingtongolfcc.org <comments@washingtongolfcc.org>
+17:58:53   [APOLLO] Credits used this run: 49 / 300
+17:58:53 
+17:58:53 ========== STEP 3: Apollo API ==========
+17:58:53   Searching Apollo for company: Washington Golf & Country Club
+17:58:54   Found: Washington Golf and Country Club (domain: washingtongolfcc.org, org_id: 5b13b6c6a6da98dcab4edee6)
+17:58:54   Searching for people at Washington Golf and Country Club (org_id: 5b13b6c6a6da98dcab4edee6)...
+17:58:55   Found 50 people total
+17:58:55   Skipped 28 people with no email (red ? on Apollo)
+17:58:55   22 people to enrich (1 credit each)
+17:58:56   >>> Dan Valbak (Director of Racquets): dvalbak@washingtongolfcc.org [verified]
+17:58:57   dvalbak@washingtongolfcc.org → invalid
+17:58:59   ⚠ Added (invalid): Dan Valbak <dvalbak@washingtongolfcc.org>
+17:59:00   >>> Kyoo Eom (Executive Chef): chef@washingtongolfcc.org [verified]
+17:59:00   chef@washingtongolfcc.org → invalid
+17:59:03   ⚠ Added (invalid): Kyoo Eom <chef@washingtongolfcc.org>
+17:59:04   >>> Caroline Smith (Group Fitness Instructor): csmith@washingtongolfcc.org [verified]
+17:59:04   csmith@washingtongolfcc.org → invalid
+17:59:06   ⚠ Added (invalid): Caroline Smith <csmith@washingtongolfcc.org>
+17:59:07   >>> Paige Ross (Club Events Specialist): pross@washingtongolfcc.org [verified]
+17:59:08   pross@washingtongolfcc.org → invalid
+17:59:11   ⚠ Added (invalid): Paige Ross <pross@washingtongolfcc.org>
+17:59:12   >>> Hannah Lampe (Pro Shop Attendant): hlampe@washingtongolfcc.org [verified]
+17:59:12   hlampe@washingtongolfcc.org → invalid
+17:59:14   ⚠ Added (invalid): Hannah Lampe <hlampe@washingtongolfcc.org>
+17:59:15   >>> Amanda Perez (Assistant Golf Professional): aperez@washingtongolfcc.org [verified]
+17:59:16   aperez@washingtongolfcc.org → invalid
+17:59:18   ⚠ Added (invalid): Amanda Perez <aperez@washingtongolfcc.org>
+17:59:19   >>> Josh Fordyce (First Assistant Superintendent): jfordyce@washingtongolfcc.org [verified]
+17:59:20   jfordyce@washingtongolfcc.org → invalid
+17:59:23   ⚠ Added (invalid): Josh Fordyce <jfordyce@washingtongolfcc.org>
+17:59:24   >>> Joel Nash (Controller): jnash@washingtongolfcc.org [verified]
+17:59:24   jnash@washingtongolfcc.org → invalid
+17:59:26   ⚠ Added (invalid): Joel Nash <jnash@washingtongolfcc.org>
+17:59:27   >>> Kyle Maxwell (Personal Trainer): kmaxwell@washingtongolfcc.org [verified]
+17:59:28   kmaxwell@washingtongolfcc.org → invalid
+17:59:30   ⚠ Added (invalid): Kyle Maxwell <kmaxwell@washingtongolfcc.org>
+17:59:31   >>> Mary Brayley (Director of Member Services): mbrayley@washingtongolfcc.org [verified]
+17:59:31   mbrayley@washingtongolfcc.org → invalid
+17:59:33   ⚠ Added (invalid): Mary Brayley <mbrayley@washingtongolfcc.org>
+17:59:36   >>> Mary Allen (Accounts Payable Clerk): mallen@washingtongolfcc.org [verified]
+17:59:36   mallen@washingtongolfcc.org → invalid
+17:59:39   ⚠ Added (invalid): Mary Allen <mallen@washingtongolfcc.org>
+17:59:40   >>> Bryan Lopes (Director of Food and Beverage): blopes@washingtongolfcc.org [verified]
+17:59:40   blopes@washingtongolfcc.org → invalid
+17:59:42   ⚠ Added (invalid): Bryan Lopes <blopes@washingtongolfcc.org>
+17:59:43   >>> Martina Kavanova (Event Coordinator): mkavanova@washingtongolfcc.org [verified]
+17:59:44   mkavanova@washingtongolfcc.org → invalid
+17:59:46   ⚠ Added (invalid): Martina Kavanova <mkavanova@washingtongolfcc.org>
+17:59:47   >>> Danielle Ralls (Event Coordinator): dralls@washingtongolfcc.org [verified]
+17:59:48   dralls@washingtongolfcc.org → invalid
+17:59:50   ⚠ Added (invalid): Danielle Ralls <dralls@washingtongolfcc.org>
+17:59:51   >>> Cassidy Newby (Server): cnewby@washingtongolfcc.org [verified]
+17:59:52   cnewby@washingtongolfcc.org → invalid
+17:59:54   ⚠ Added (invalid): Cassidy Newby <cnewby@washingtongolfcc.org>
+17:59:55   >>> Taylor Pope (Waiter): tpope@washingtongolfcc.org [verified]
+17:59:55   tpope@washingtongolfcc.org → invalid
+17:59:58   ⚠ Added (invalid): Taylor Pope <tpope@washingtongolfcc.org>
+17:59:59   --- Inga Saavedra (Administrative Assistant): no email available
+18:00:02   >>> Emma Spencer (Assistant Director of Fitness): espencer@washingtongolfcc.org [verified]
+18:00:02   espencer@washingtongolfcc.org → invalid
+18:00:05   ⚠ Added (invalid): Emma Spencer <espencer@washingtongolfcc.org>
+18:00:06   >>> Robertopologmail Polosherk (Chef): rpolosherk@washingtongolfcc.org [verified]
+18:00:06   rpolosherk@washingtongolfcc.org → invalid
+18:00:09   ⚠ Added (invalid): Robertopologmail Polosherk <rpolosherk@washingtongolfcc.org>
+18:00:10   >>> Gery Mendez (Director of Tennis): gmendez@washingtongolfcc.org [verified]
+18:00:10   gmendez@washingtongolfcc.org → invalid
+18:00:14   ⚠ Added (invalid): Gery Mendez <gmendez@washingtongolfcc.org>
+18:00:17   >>> Berta Granados (Lead Line Cook): bgranados@washingtongolfcc.org [verified]
+18:00:17   bgranados@washingtongolfcc.org → invalid
+18:00:20   ⚠ Added (invalid): Berta Granados <bgranados@washingtongolfcc.org>
+18:00:21   >>> Gerry Mendez (Director of Tennis): gmendez@washingtongolfcc.org [verified]
+18:00:21   gmendez@washingtongolfcc.org → invalid
+18:00:24   ⚠ Added (invalid): Gerry Mendez <gmendez@washingtongolfcc.org>
+18:00:25   Apollo API done: 71 credits used this run
+18:00:25 
+18:00:25 ========== STEP 4: LinkedIn + Apollo API ==========
+18:00:25   Using domain: washingtongolfcc.org
+18:00:26   LinkedIn page 1...
+18:00:34   Found 10 results
+18:00:35   Found: Jay Dufty
+18:00:35   Found: Jordan Pitre, CCM
+18:00:35   Found: Haissam Baityeh, CCM, CCE, MBA, CMAA Fellow
+18:00:35   Found: Betsy Huffman
+18:00:35   Found: Daniel Ryczek
+18:00:40   LinkedIn page 2...
+18:00:46   Found 10 results
+18:00:46   Found: Samuel Pauley
+18:00:46   Found: Brian Blase
+18:00:46   Found: Amanda Perez, PGA
+18:00:46   Found: Dan Valbak
+18:00:46   Found: Kevin Dean, PGA
+18:00:46   Found: Ellen Lolich
+18:00:49   LinkedIn page 3...
+18:00:59   Found 5 results
+18:01:00   Found: Robert Childress Walthall
+18:01:00   Found: Cory Brown, CGCS
+18:01:00   Found: Patrick Tobey
+18:01:00   Found: Caleb Kraus, PGA
+18:01:00 
+18:01:00   LinkedIn found 15 new people. Enriching via Apollo API...
+18:01:00   LinkedIn + Apollo API done. Credits used: 71
+18:01:02   Setting status → pipelined
+18:01:04 
+18:01:04 ============================================================
+18:01:04  DONE: Washington Golf & Country Club | 4 min | 18:01:04
+18:01:04 ============================================================
+18:01:34 
+18:01:34 ########## UNTOUCHED #5: Stoneleigh Golf and Country Club (XX-COUN-254) ##########
+18:01:39 
+18:01:39 ============================================================
+18:01:39  PIPELINE: Stoneleigh Golf and Country Club (XX-COUN-254)
+18:01:39  Website: https://www.stoneleighgolf.com
+18:01:39  Started: 2026-05-06 18:01:39
+18:01:39 ============================================================
+18:01:39   [ZB] Credits remaining: 3942
+18:01:42   Known emails: 0
+18:01:42   Known names: 0
+18:01:42 
+18:01:42 ========== STEP 1: Website Scrape ==========
+18:01:42   URL: https://www.stoneleighgolf.com
+18:01:42   Opening in Chrome: https://www.stoneleighgolf.com
+18:01:48   Validating contact form URL: https://www.stoneleighgolf.com/Contact/Careers
+18:01:53   Found on contact page: careers@stoneleighgolf.com, info@stoneleighgolf.com
+18:01:53   ✗ No submittable form found — clearing contact_form
+18:01:53   Emails: 1 | FB: https://www.facebook.com/stoneleighgolf | IG: https://instagram.com/stoneleighgolf | Contact Form: none
+18:01:53   Crawling subpage (1/20): https://www.stoneleighgolf.com/Home.aspx
+18:01:57   Found on subpage: info@stoneleighgolf.com
+18:01:57   Crawling subpage (2/20): https://www.stoneleighgolf.com/Home
+18:02:02   Found on subpage: info@stoneleighgolf.com
+18:02:02   Crawling subpage (3/20): https://www.stoneleighgolf.com/Membership
+18:02:06   Found on subpage: info@stoneleighgolf.com, membership@stoneleighgolf.com
+18:02:06   Crawling subpage (4/20): https://www.stoneleighgolf.com/Membership/Membership_FAQs
+18:02:11   Found on subpage: info@stoneleighgolf.com, membership@stoneleighgolf.com
+18:02:11   Crawling subpage (5/20): https://www.stoneleighgolf.com/Membership/Membership_Inquiry
+18:02:15   Found on subpage: info@stoneleighgolf.com
+18:02:15   Crawling subpage (6/20): https://www.stoneleighgolf.com/Golf
+18:02:19   Found on subpage: info@stoneleighgolf.com
+18:02:19   Crawling subpage (7/20): https://www.stoneleighgolf.com/Golf/Golf_Outings
+18:02:24   Found on subpage: info@stoneleighgolf.com, outings@stoneleighgolf.com
+18:02:24   Crawling subpage (8/20): https://www.stoneleighgolf.com/Golf/Professional_Staff
+18:02:28   Found on subpage: bpfeffer@stoneleighgolf.com, info@stoneleighgolf.com, jsmith@stoneleighgolf.com, rbeach@stoneleighgolf.com, zolsen@stoneleighgolf.com
+18:02:28   Crawling subpage (9/20): https://www.stoneleighgolf.com/Golf/Instructions
+18:02:32   Found on subpage: bpfeffer@stoneleighgolf.com, info@stoneleighgolf.com, rbeach@stoneleighgolf.com, zolsen@stoneleighgolf.com
+18:02:33   Crawling subpage (10/20): https://www.stoneleighgolf.com/Golf/Instructions/Summer_Camps
+18:02:37   Found on subpage: info@stoneleighgolf.com, rbeach@stoneleighgolf.com
+18:02:37   Crawling subpage (11/20): https://www.stoneleighgolf.com/Golf/History
+18:02:41   Found on subpage: info@stoneleighgolf.com
+18:02:41   Crawling subpage (12/20): https://www.stoneleighgolf.com/Golf/Golf_FAQ
+18:02:46   Found on subpage: info@stoneleighgolf.com, outings@stoneleighgolf.com
+18:02:46   Crawling subpage (13/20): https://www.stoneleighgolf.com/Golf/Scorecard
+18:02:50   Found on subpage: info@stoneleighgolf.com
+18:02:50   Crawling subpage (14/20): https://www.stoneleighgolf.com/Racquets
+18:02:54   Found on subpage: dlee@stoneleighgolf.com, info@stoneleighgolf.com
+18:02:54   Crawling subpage (15/20): https://www.stoneleighgolf.com/Racquets/Racquets_Staff
+18:02:59   Found on subpage: dlee@stoneleighgolf.com, info@stoneleighgolf.com
+18:02:59   Crawling subpage (16/20): https://www.stoneleighgolf.com/Pool
+18:03:03   Found on subpage: info@stoneleighgolf.com, pool@stoneleighgolf.com
+18:03:03   Crawling subpage (17/20): https://www.stoneleighgolf.com/Pool/Swim_Team
+18:03:08   Found on subpage: info@stoneleighgolf.com
+18:03:08   Crawling subpage (18/20): https://www.stoneleighgolf.com/Pool/Instructions
+18:03:12   Found on subpage: info@stoneleighgolf.com, pool@stoneleighgolf.com
+18:03:12   Crawling subpage (19/20): https://www.stoneleighgolf.com/Pool/FAQs
+18:03:16   Found on subpage: events@stoneleighgolf.com, info@stoneleighgolf.com, pool@stoneleighgolf.com
+18:03:16   Crawling subpage (20/20): https://www.stoneleighgolf.com/Tavern
+18:03:21   Found on subpage: info@stoneleighgolf.com
+18:03:21   Subpage cap (20) reached — stopping
+18:03:21   [CONTACT] Probing https://www.stoneleighgolf.com/contact
+18:03:27   [CONTACT] Found emails on https://www.stoneleighgolf.com/contact
+18:03:38   bpfeffer@stoneleighgolf.com → valid
+18:03:41   ✓ Added: bpfeffer@stoneleighgolf.com <bpfeffer@stoneleighgolf.com>
+18:03:42   careers@stoneleighgolf.com → do_not_mail
+18:03:49   dlee@stoneleighgolf.com → valid
+18:03:53   ✓ Added: dlee@stoneleighgolf.com <dlee@stoneleighgolf.com>
+18:03:54   events@stoneleighgolf.com → do_not_mail
+18:03:55   info@stoneleighgolf.com → do_not_mail
+18:03:57   jsmith@stoneleighgolf.com → valid
+18:03:59   ✓ Added: jsmith@stoneleighgolf.com <jsmith@stoneleighgolf.com>
+18:04:00   membership@stoneleighgolf.com → do_not_mail
+18:04:01   outings@stoneleighgolf.com → valid
+18:04:05   ✓ Added: outings@stoneleighgolf.com <outings@stoneleighgolf.com>
+18:04:06   pool@stoneleighgolf.com → valid
+18:04:11   ✓ Added: pool@stoneleighgolf.com <pool@stoneleighgolf.com>
+18:04:13   rbeach@stoneleighgolf.com → valid
+18:04:21   ✓ Added: rbeach@stoneleighgolf.com <rbeach@stoneleighgolf.com>
+18:04:29   zolsen@stoneleighgolf.com → valid
+18:04:32   ✓ Added: zolsen@stoneleighgolf.com <zolsen@stoneleighgolf.com>
+18:04:33 
+18:04:33 ========== STEP 2: Social Media Scrape ==========
+18:04:35   FB: https://www.facebook.com/stoneleighgolf | IG: https://instagram.com/stoneleighgolf
+18:04:35   Opening FB: https://www.facebook.com/stoneleighgolf
+18:04:40   FB emails found: info@stoneleighgolf.com
+18:04:40   Opening FB: https://www.facebook.com/stoneleighgolf/about
+18:04:45   Opening FB: https://www.facebook.com/stoneleighgolf/directory_contact_info
+18:04:51   FB emails found: info@stoneleighgolf.com
+18:04:51   Opening IG: https://instagram.com/stoneleighgolf
+18:04:56   [IG] No email on page — trying Google snippet...
+18:05:00   [IG SNIPPET] No email in Google snippet
+18:05:00   info@stoneleighgolf.com → do_not_mail
+18:05:01   [APOLLO] Credits used this run: 71 / 300
+18:05:01 
+18:05:01 ========== STEP 3: Apollo API ==========
+18:05:01   Searching Apollo for company: Stoneleigh Golf and Country Club
+18:05:03   Found: Stoneleigh Golf & Country Club (domain: stoneleighgolf.com, org_id: 54a13a9469702d0486b0f700)
+18:05:03   Searching for people at Stoneleigh Golf & Country Club (org_id: 54a13a9469702d0486b0f700)...
+18:05:03   Found 10 people total
+18:05:03   Skipped 5 people with no email (red ? on Apollo)
+18:05:03   5 people to enrich (1 credit each)
+18:05:04   >>> Rohan Somers (General Manager): rsomers@stoneleighgolf.com [verified]
+18:05:04   rsomers@stoneleighgolf.com → valid
+18:05:07   ✓ Added: Rohan Somers <rsomers@stoneleighgolf.com>
+18:05:08   >>> Robin Beach (Head Golf Professional): rbeach@stoneleighgolf.com [verified]
+18:05:09   rbeach@stoneleighgolf.com → valid
+18:05:12   ✓ Added: Robin Beach <rbeach@stoneleighgolf.com>
+18:05:13   >>> Thomas Pokorney (Director Membership Sales): tpokorney@stoneleighgolf.com [verified]
+18:05:13   tpokorney@stoneleighgolf.com → valid
+18:05:16   ✓ Added: Thomas Pokorney <tpokorney@stoneleighgolf.com>
+18:05:17   >>> Clinton Chapman (Membership Director): cchapman@stoneleighgolf.com [verified]
+18:05:17   cchapman@stoneleighgolf.com → valid
+18:05:20   ✓ Added: Clinton Chapman <cchapman@stoneleighgolf.com>
+18:05:21   >>> Saray McCombs (Wedding Coordinator): smccombs@stoneleighgolf.com [verified]
+18:05:21   smccombs@stoneleighgolf.com → valid
+18:05:23   ✓ Added: Saray McCombs <smccombs@stoneleighgolf.com>
+18:05:24   Apollo API done: 76 credits used this run
+18:05:24 
+18:05:24 ========== STEP 4: LinkedIn + Apollo API ==========
+18:05:25   Using domain: stoneleighgolf.com
+18:05:26   LinkedIn page 1...
+18:05:32   Found 10 results
+18:05:32   Found: Rohan Somers
+18:05:32   Found: Robin Beach, PGA
+18:05:32   Found: Jason Pakkala
+18:05:32   Found: Nigel Randle
+18:05:37   LinkedIn page 2...
+18:05:43   Found 10 results
+18:05:43   Found: Clinton Chapman
+18:05:43   Found: Gianna Farrell
+18:05:48   LinkedIn page 3...
+18:05:54   Found 10 results
+18:05:54   No new venue employees on this page.
+18:05:54 
+18:05:54   LinkedIn found 6 new people. Enriching via Apollo API...
+18:05:54   LinkedIn + Apollo API done. Credits used: 76
+18:05:56   Setting status → pipelined
+18:05:58 
+18:05:58 ============================================================
+18:05:58  DONE: Stoneleigh Golf and Country Club | 4 min | 18:05:58
+18:05:58 ============================================================
+18:06:28 
+18:06:28 ########## UNTOUCHED #6: Springfield Golf & Country Club (XX-COUN-269) ##########
+18:06:33 
+18:06:33 ============================================================
+18:06:33  PIPELINE: Springfield Golf & Country Club (XX-COUN-269)
+18:06:33  Website: https://www.sgccva.org
+18:06:33  Started: 2026-05-06 18:06:33
+18:06:33 ============================================================
+18:06:33   [ZB] Credits remaining: 3927
+18:06:36   Known emails: 0
+18:06:36   Known names: 0
+18:06:36 
+18:06:36 ========== STEP 1: Website Scrape ==========
+18:06:36   URL: https://www.sgccva.org
+18:06:36   Opening in Chrome: https://www.sgccva.org
+18:06:42   Validating contact form URL: https://www.sgccva.org/contact-us/employment-opportunities
+18:06:46   Found on contact page: jennifer@sgccva.org, sgccchef@sgccva.org, alessandra@sgccva.org, shawn@sgccva.org, miguel@sgccva.org, branden@sgccva.org, reggie@sgccva.org
+18:06:47   ✗ No submittable form found — clearing contact_form
+18:06:47   Emails: 0 | FB: none | IG: https://www.sgccva.org/default.aspx | Contact Form: none
+18:06:47   Crawling subpage (1/20): https://www.sgccva.org/home
+18:06:51   Crawling subpage (2/20): https://www.sgccva.org/membership
+18:06:55   Crawling subpage (3/20): https://www.sgccva.org/weddings-and-events
+18:07:00   Crawling subpage (4/20): https://www.sgccva.org/golf
+18:07:04   Crawling subpage (5/20): https://www.sgccva.org/golf/golf-instruction
+18:07:08   Found on subpage: alessandra@sgccva.org, cameron@sgccva.org, casey@sgccva.org, robert@sgccva.org
+18:07:08   Crawling subpage (6/20): https://www.sgccva.org/racquets
+18:07:13   Crawling subpage (7/20): https://www.sgccva.org/racquets/racquets-instruction
+18:07:17   Found on subpage: amok@sgccva.org, branden@sgccva.org, kristine@sgccva.org, slade@sgccva.org
+18:07:17   Crawling subpage (8/20): https://www.sgccva.org/lifestyle
+18:07:21   Crawling subpage (9/20): https://www.sgccva.org/contact-us
+18:07:26   Found on subpage: events@sgccva.org, frontdesk@sgccva.org, shelly@sgccva.org
+18:07:26   Crawling subpage (10/20): https://www.sgccva.org/contact-us/professional-staff
+18:07:30   Found on subpage: aimacalmt@gmail.com, alessandra@sgccva.org, amok@sgccva.org, branden@sgccva.org, cameron@sgccva.org, casey@sgccva.org, danagramling@gmail.com, emily@sgccva.org, jennifer@sgccva.org, jordan@sgccva.org, kelly@sgccva.org, kristine@sgccva.org, lindsay@sgccva.org, reggie@sgccva.org, robert@sgccva.org, sgccchef@sgccva.org, shawn@sgccva.org, shelly@sgccva.org, slade@sgccva.org, steve@sgccva.org
+18:07:30   Crawling subpage (11/20): https://www.sgccva.org/contact-us/guest-information
+18:07:34   Crawling subpage (12/20): https://www.sgccva.org/contact-us/employment-opportunities
+18:07:39   Found on subpage: alessandra@sgccva.org, branden@sgccva.org, jennifer@sgccva.org, miguel@sgccva.org, reggie@sgccva.org, sgccchef@sgccva.org, shawn@sgccva.org
+18:07:39   Crawling subpage (13/20): https://www.sgccva.org/member-login
+18:07:44   [CONTACT] Probing https://www.sgccva.org/contact-us
+18:07:49   [CONTACT] Found emails on https://www.sgccva.org/contact-us
+18:07:54   aimacalmt@gmail.com → valid
+18:07:56   ✓ Added: aimacalmt@gmail.com <aimacalmt@gmail.com>
+18:07:57   alessandra@sgccva.org → valid
+18:08:00   ✓ Added: alessandra@sgccva.org <alessandra@sgccva.org>
+18:08:02   amok@sgccva.org → valid
+18:08:06   ✓ Added: amok@sgccva.org <amok@sgccva.org>
+18:08:07   branden@sgccva.org → valid
+18:08:10   ✓ Added: branden@sgccva.org <branden@sgccva.org>
+18:08:12   cameron@sgccva.org → valid
+18:08:14   ✓ Added: cameron@sgccva.org <cameron@sgccva.org>
+18:08:16   casey@sgccva.org → valid
+18:08:19   ✓ Added: casey@sgccva.org <casey@sgccva.org>
+18:08:22   danagramling@gmail.com → valid
+18:08:24   ✓ Added: danagramling@gmail.com <danagramling@gmail.com>
+18:08:25   emily@sgccva.org → valid
+18:08:29   ✓ Added: emily@sgccva.org <emily@sgccva.org>
+18:08:30   events@sgccva.org → do_not_mail
+18:08:31   frontdesk@sgccva.org → do_not_mail
+18:08:33   jennifer@sgccva.org → valid
+18:08:35   ✓ Added: jennifer@sgccva.org <jennifer@sgccva.org>
+18:08:36   jordan@sgccva.org → valid
+18:08:39   ✓ Added: jordan@sgccva.org <jordan@sgccva.org>
+18:08:40   kelly@sgccva.org → valid
+18:08:43   ✓ Added: kelly@sgccva.org <kelly@sgccva.org>
+18:08:46   kristine@sgccva.org → valid
+18:08:48   ✓ Added: kristine@sgccva.org <kristine@sgccva.org>
+18:08:50   lindsay@sgccva.org → valid
+18:08:54   ✓ Added: lindsay@sgccva.org <lindsay@sgccva.org>
+18:08:56   miguel@sgccva.org → valid
+18:09:00   ✓ Added: miguel@sgccva.org <miguel@sgccva.org>
+18:09:02   reggie@sgccva.org → valid
+18:09:04   ✓ Added: reggie@sgccva.org <reggie@sgccva.org>
+18:09:05   robert@sgccva.org → valid
+18:09:07   ✓ Added: robert@sgccva.org <robert@sgccva.org>
+18:09:09   sgccchef@sgccva.org → valid
+18:09:12   ✓ Added: sgccchef@sgccva.org <sgccchef@sgccva.org>
+18:09:13   shawn@sgccva.org → valid
+18:09:17   ✓ Added: shawn@sgccva.org <shawn@sgccva.org>
+18:09:18   shelly@sgccva.org → valid
+18:09:20   ✓ Added: shelly@sgccva.org <shelly@sgccva.org>
+18:09:22   slade@sgccva.org → valid
+18:09:25   ✓ Added: slade@sgccva.org <slade@sgccva.org>
+18:09:26   steve@sgccva.org → valid
+18:09:36   ✓ Added: steve@sgccva.org <steve@sgccva.org>
+18:09:37 
+18:09:37 ========== STEP 2: Social Media Scrape ==========
+18:09:39   FB: https://www.facebook.com/stoneleighgolf | IG: https://www.sgccva.org/default.aspx
+18:09:40   Opening FB: https://www.facebook.com/stoneleighgolf
+18:09:45   FB emails found: info@stoneleighgolf.com
+18:09:45   Opening FB: https://www.facebook.com/stoneleighgolf/about
+18:09:50   Opening FB: https://www.facebook.com/stoneleighgolf/directory_contact_info
+18:09:55   FB emails found: info@stoneleighgolf.com
+18:09:55   Opening IG: https://www.sgccva.org/default.aspx
+18:10:00   [IG] No email on page — trying Google snippet...
+18:10:05   [IG SNIPPET] No email in Google snippet
+18:10:05   info@stoneleighgolf.com → do_not_mail
+18:10:06   [APOLLO] Credits used this run: 76 / 300
+18:10:06 
+18:10:06 ========== STEP 3: Apollo API ==========
+18:10:06   Searching Apollo for company: Springfield Golf & Country Club
+18:10:07   Found: Springfield Golf & Country Club (domain: sgccva.org, org_id: 5500bbe873696461504d2200)
+18:10:07   Searching for people at Springfield Golf & Country Club (org_id: 5500bbe873696461504d2200)...
+18:10:08   Found 33 people total
+18:10:08   Skipped 17 people with no email (red ? on Apollo)
+18:10:08   16 people to enrich (1 credit each)
+18:10:09   >>> Robert Simpson (Director of Instruction): robert@sgccva.org [verified]
+18:10:09   robert@sgccva.org → valid
+18:10:12   ✓ Added: Robert Simpson <robert@sgccva.org>
+18:10:13   >>> Alessandra Simpson (Director of Golf): alessandra@sgccva.org [verified]
+18:10:13   alessandra@sgccva.org → valid
+18:10:15   ✓ Added: Alessandra Simpson <alessandra@sgccva.org>
+18:10:16   >>> Branden Beets (Director of Racquet Sports): branden@sgccva.org [verified]
+18:10:16   branden@sgccva.org → valid
+18:10:21   ✓ Added: Branden Beets <branden@sgccva.org>
+18:10:22   >>> Robert McNamara (None): robert@sgccva.org [verified]
+18:10:22   [SKIP] robert@sgccva.org — already in sheet
+18:10:22   >>> Daysi Gonzales (Administrative Assistant): daysi@sgccva.org [verified]
+18:10:22   daysi@sgccva.org → invalid
+18:10:25   ⚠ Added (invalid): Daysi Gonzales <daysi@sgccva.org>
+18:10:26   >>> Jordan Willis (Assistant General Manager): jordan@sgccva.org [verified]
+18:10:26   jordan@sgccva.org → valid
+18:10:28   ✓ Added: Jordan Willis <jordan@sgccva.org>
+18:10:30   >>> Casey Weston (Head Golf Professional): casey@sgccva.org [verified]
+18:10:30   casey@sgccva.org → valid
+18:10:32   ✓ Added: Casey Weston <casey@sgccva.org>
+18:10:33   >>> Jennifer Keeler (Director of Food and Beverage): jennifer@sgccva.org [verified]
+18:10:33   jennifer@sgccva.org → valid
+18:10:35   ✓ Added: Jennifer Keeler <jennifer@sgccva.org>
+18:10:36   >>> Emily Kauffman (Director of Communication & Youth Activities): emily@sgccva.org [verified]
+18:10:36   emily@sgccva.org → valid
+18:10:40   ✓ Added: Emily Kauffman <emily@sgccva.org>
+18:10:41   >>> Dave Ruben (Director of Tennis): dave@sgccva.org [verified]
+18:10:41   dave@sgccva.org → valid
+18:10:45   ✓ Added: Dave Ruben <dave@sgccva.org>
+18:10:47   >>> Mike Lamb (Mhr): mike@springfieldgolf.ca [verified]
+18:10:48   mike@springfieldgolf.ca → valid
+18:10:53   ✓ Added: Mike Lamb <mike@springfieldgolf.ca>
+18:10:55   >>> Sunita Tenney (Line Cook): stenney@sgccva.org [verified]
+18:10:56   stenney@sgccva.org → invalid
+18:10:59   ⚠ Added (invalid): Sunita Tenney <stenney@sgccva.org>
+18:11:00   >>> Chris Hughes (Assistant Director of Food and Beverage): chughes@sgccva.org [verified]
+18:11:00   chughes@sgccva.org → valid
+18:11:03   ✓ Added: Chris Hughes <chughes@sgccva.org>
+18:11:04   >>> Lentz Wheeler (Golf Course Superintendent): lentz@sgccva.org [verified]
+18:11:06   lentz@sgccva.org → valid
+18:11:09   ✓ Added: Lentz Wheeler <lentz@sgccva.org>
+18:11:10   >>> Lindsay Webb (Pastry Chef): lindsay@sgccva.org [verified]
+18:11:10   lindsay@sgccva.org → valid
+18:11:12   ✓ Added: Lindsay Webb <lindsay@sgccva.org>
+18:11:13   >>> Brian Maloney (General Manager): brianm@sgccva.org [verified]
+18:11:17   brianm@sgccva.org → valid
+18:11:20   ✓ Added: Brian Maloney <brianm@sgccva.org>
+18:11:21   Apollo API done: 92 credits used this run
+18:11:21 
+18:11:21 ========== STEP 4: LinkedIn + Apollo API ==========
+18:11:21   Using domain: sgccva.org
+18:11:23   LinkedIn page 1...
+18:11:31   Found 10 results
+18:11:31   Found: Chad Dorrell
+18:11:31   Found: Emily Kauffman
+18:11:31   Found: Casey Weston, PGA
+18:11:31   Found: Cassy Tully
+18:11:31   Found: Christina Hess
+18:11:31   Found: Jake Houston, PGA
+18:11:31   Found: Alessandra Maurtua Simpson
+18:11:34   LinkedIn page 2...
+18:11:41   Found 10 results
+18:11:41   Found: Amelia Marlowe
+18:11:41   Found: Jordan Willis
+18:11:41   Found: Aaron Dufraimont
+18:11:41   Found: Ray Duke
+18:11:41   Found: Branden Beets
+18:11:46   LinkedIn page 3...
+18:11:53   Found 10 results
+18:11:53   Found: Daysi Gonzales
+18:11:53   Found: Victor Garcia
+18:11:53 
+18:11:53   LinkedIn found 14 new people. Enriching via Apollo API...
+18:11:53   LinkedIn + Apollo API done. Credits used: 92
+18:11:56   Setting status → pipelined
+18:12:00 
+18:12:00 ============================================================
+18:12:00  DONE: Springfield Golf & Country Club | 5 min | 18:12:00
+18:12:00 ============================================================
+18:12:30 
+18:12:30 ########## UNTOUCHED #7: Country Club of Fairfax (XX-COUN-578) ##########
+18:12:40 
+18:12:40 ============================================================
+18:12:40  PIPELINE: Country Club of Fairfax (XX-COUN-578)
+18:12:40  Website: https://ccfairfax.org
+18:12:41  Started: 2026-05-06 18:12:41
+18:12:41 ============================================================
+18:12:41   [ZB] Credits remaining: 3897
+18:13:14   Known emails: 0
+18:13:14   Known names: 0
+18:13:14 
+18:13:14 ========== STEP 1: Website Scrape ==========
+18:13:14   URL: https://ccfairfax.org
+18:13:14   Opening in Chrome: https://ccfairfax.org
+18:13:21   Emails: 1 | FB: https://www.facebook.com/countrycluboffairfax | IG: https://www.instagram.com/ccfairfaxva/ | Contact Form: none
+18:13:21   Crawling subpage (1/20): https://ccfairfax.org/about-us
+18:13:25   Found on subpage: ccf@ccfairfax.org
+18:13:25   Crawling subpage (2/20): https://ccfairfax.org/membership
+18:13:30   Found on subpage: ccf@ccfairfax.org, membership@ccfairfax.org
+18:13:30   Crawling subpage (3/20): https://ccfairfax.org/banquets-and-catering
+18:13:34   Found on subpage: ccf@ccfairfax.org, clairee@ccfairfax.org, paolaa@ccfairfax.org
+18:13:34   Crawling subpage (4/20): https://ccfairfax.org/amenities
+18:13:38   Found on subpage: ccf@ccfairfax.org
+18:13:38   Crawling subpage (5/20): https://ccfairfax.org/golf
+18:13:43   Found on subpage: brandons@ccfairfax.org, ccf@ccfairfax.org
+18:13:43   Crawling subpage (6/20): https://ccfairfax.org/racquets
+18:13:47   Found on subpage: ccf@ccfairfax.org, djb@ccfairfax.org
+18:13:47   Crawling subpage (7/20): https://ccfairfax.org/aquatics
+18:13:52   Found on subpage: ccf@ccfairfax.org
+18:13:52   Crawling subpage (8/20): https://ccfairfax.org/fitness
+18:13:56   Found on subpage: ccf@ccfairfax.org
+18:13:56   Crawling subpage (9/20): https://ccfairfax.org/dining-and-social
+18:14:00   Found on subpage: ccf@ccfairfax.org
+18:14:01   Crawling subpage (10/20): https://ccfairfax.org/member-login
+18:14:12   brandons@ccfairfax.org → valid
+18:14:15   ✓ Added: brandons@ccfairfax.org <brandons@ccfairfax.org>
+18:14:17   ccf@ccfairfax.org → valid
+18:14:20   ✓ Added: ccf@ccfairfax.org <ccf@ccfairfax.org>
+18:14:21   clairee@ccfairfax.org → valid
+18:14:24   ✓ Added: clairee@ccfairfax.org <clairee@ccfairfax.org>
+18:14:25   djb@ccfairfax.org → valid
+18:14:28   ✓ Added: djb@ccfairfax.org <djb@ccfairfax.org>
+18:14:29   membership@ccfairfax.org → do_not_mail
+18:14:31   paolaa@ccfairfax.org → valid
+18:14:33   ✓ Added: paolaa@ccfairfax.org <paolaa@ccfairfax.org>
+18:14:34 
+18:14:34 ========== STEP 2: Social Media Scrape ==========
+18:14:38   FB: https://www.facebook.com/countrycluboffairfax | IG: https://www.instagram.com/ccfairfaxva/
+18:14:38   Opening FB: https://www.facebook.com/countrycluboffairfax
+18:14:43   Opening FB: https://www.facebook.com/countrycluboffairfax/about
+18:14:48   Opening FB: https://www.facebook.com/countrycluboffairfax/directory_contact_info
+18:14:53   FB emails found: membership@ccfairfax.org
+18:14:53   Opening IG: https://www.instagram.com/ccfairfaxva/
+18:14:59   [IG] No email on page — trying Google snippet...
+18:15:03   [IG SNIPPET] No email in Google snippet
+18:15:03   membership@ccfairfax.org → do_not_mail
+18:15:04   [APOLLO] Credits used this run: 92 / 300
+18:15:04 
+18:15:04 ========== STEP 3: Apollo API ==========
+18:15:04   Searching Apollo for company: Country Club of Fairfax
+18:15:06   Found: The Country Club of Fairfax (domain: ccfairfax.org, org_id: 60b232940b45b40001075a28)
+18:15:06   Searching for people at The Country Club of Fairfax (org_id: 60b232940b45b40001075a28)...
+18:15:06   Found 36 people total
+18:15:07   Skipped 23 people with no email (red ? on Apollo)
+18:15:07   13 people to enrich (1 credit each)
+18:15:07   >>> Ryan Bourke (Membership Director): ryanb@ccfairfax.org [verified]
+18:15:08   ryanb@ccfairfax.org → valid
+18:15:11   ✓ Added: Ryan Bourke <ryanb@ccfairfax.org>
+18:15:12   >>> Brandon Sage (PGA Director of Golf, Country Club): brandons@ccfairfax.org [verified]
+18:15:13   brandons@ccfairfax.org → valid
+18:15:15   ✓ Added: Brandon Sage <brandons@ccfairfax.org>
+18:15:16   >>> Ian McConnell (Lead Assistant Golf Professional): ianm@ccfairfax.org [verified]
+18:15:17   ianm@ccfairfax.org → valid
+18:15:22   ✓ Added: Ian McConnell <ianm@ccfairfax.org>
+18:15:23   >>> Kris Todd (Director of Food & Beverage): krist@ccfairfax.org [verified]
+18:15:23   krist@ccfairfax.org → valid
+18:15:26   ✓ Added: Kris Todd <krist@ccfairfax.org>
+18:15:27   >>> Cameron Schwartz (Assistant Golf Professional): camerons@ccfairfax.org [verified]
+18:15:28   camerons@ccfairfax.org → valid
+18:15:32   ✓ Added: Cameron Schwartz <camerons@ccfairfax.org>
+18:15:33   >>> Ravi Makam (Assistant Golf Professional): rmakam@ccfairfax.org [verified]
+18:15:35   rmakam@ccfairfax.org → valid
+18:15:37   ✓ Added: Ravi Makam <rmakam@ccfairfax.org>
+18:15:38   >>> Claire Embrey (Director of Catering): clairee@ccfairfax.org [verified]
+18:15:38   clairee@ccfairfax.org → valid
+18:15:42   ✓ Added: Claire Embrey <clairee@ccfairfax.org>
+18:15:43   >>> Hannah Lawton (Communications and Membership Assistant): hannahl@ccfairfax.org [verified]
+18:15:43   hannahl@ccfairfax.org → valid
+18:15:46   ✓ Added: Hannah Lawton <hannahl@ccfairfax.org>
+18:15:47   >>> Anna White (Special Events Manager): annaw@ccfairfax.org [verified]
+18:15:47   annaw@ccfairfax.org → valid
+18:15:51   ✓ Added: Anna White <annaw@ccfairfax.org>
+18:15:52   >>> Jeff Carson (Certified Golf Course Superintendent): jeffc@ccfairfax.org [verified]
+18:15:54   jeffc@ccfairfax.org → valid
+18:15:58   ✓ Added: Jeff Carson <jeffc@ccfairfax.org>
+18:16:01   >>> Matt Gallagher (PGA Director of Golf at Country Club): mattg@ccfairfax.org [verified]
+18:16:01   mattg@ccfairfax.org → invalid
+18:16:03   ⚠ Added (invalid): Matt Gallagher <mattg@ccfairfax.org>
+18:16:04   >>> Zackary Tidwell (Server): zackaryt@ccfairfax.org [verified]
+18:16:05   zackaryt@ccfairfax.org → invalid
+18:16:09   ⚠ Added (invalid): Zackary Tidwell <zackaryt@ccfairfax.org>
+18:16:10   >>> Robert Mainor (Executive Chef): chefrobo@ccfairfax.org [verified]
+18:16:10   chefrobo@ccfairfax.org → valid
+18:16:13   ✓ Added: Robert Mainor <chefrobo@ccfairfax.org>
+18:16:14   Apollo API done: 105 credits used this run
+18:16:14 
+18:16:14 ========== STEP 4: LinkedIn + Apollo API ==========
+18:16:14   Using domain: ccfairfax.org
+18:16:16   LinkedIn page 1...
+18:16:22   Found 10 results
+18:16:22   Found: Todd Van Meer, PGA
+18:16:22   Found: Patrick King, CCM, CCE, ECM, CMAA Fellow
+18:16:22   Found: Kris Todd
+18:16:22   Found: Meena Saleh Faryadi
+18:16:26   LinkedIn page 2...
+18:16:32   Found 10 results
+18:16:32   Found: Kurtis L Pitcher
+18:16:32   Found: Kelly Key
+18:16:32   Found: Cameron Schwartz, PGA
+18:16:32   Found: Brandon Sage
+18:16:32   Found: Claire Embrey
+18:16:32   Found: Ian McConnell, PGA
+18:16:36   LinkedIn page 3...
+18:16:44   Found 10 results
+18:16:44   Found: Richard Mercer
+18:16:44   Found: Ryan Taber
+18:16:44   Found: Barbara Jagon Lockett
+18:16:44   Found: DJ Butler, USPTA Elite, USPTR, CRSE, DCA
+18:16:44   Found: Thomas Shockey
+18:16:44   Found: Elder Lopez
+18:16:44   Found: Michael Halpin
+18:16:44 
+18:16:44   LinkedIn found 17 new people. Enriching via Apollo API...
+18:16:44   LinkedIn + Apollo API done. Credits used: 105
+18:16:47   Setting status → pipelined
+18:16:49 
+18:16:49 ============================================================
+18:16:49  DONE: Country Club of Fairfax | 4 min | 18:16:49
+18:16:49 ============================================================
+18:17:19 
+18:17:19 ########## UNTOUCHED #8: Country Club of Maryland (XX-COUN-586) ##########
+18:17:26 
+18:17:26 ============================================================
+18:17:26  PIPELINE: Country Club of Maryland (XX-COUN-586)
+18:17:26  Website: https://ccofmd.com
+18:17:26  Started: 2026-05-06 18:17:26
+18:17:26 ============================================================
+18:17:26   [ZB] Credits remaining: 3880
+18:17:29   Known emails: 0
+18:17:29   Known names: 0
+18:17:29 
+18:17:29 ========== STEP 1: Website Scrape ==========
+18:17:29   URL: https://ccofmd.com
+18:17:29   Opening in Chrome: https://ccofmd.com
+18:17:35   Emails: 0 | FB: none | IG: https://ccofmd.com/default.aspx | Contact Form: none
+18:17:36   Crawling subpage (1/20): https://ccofmd.com/join
+18:17:40   Crawling subpage (2/20): https://ccofmd.com/golf
+18:17:44   Crawling subpage (3/20): https://ccofmd.com/eat
+18:17:48   Crawling subpage (4/20): https://ccofmd.com/celebrate
+18:17:53   Crawling subpage (5/20): https://ccofmd.com/guests
+18:17:57   Crawling subpage (6/20): https://ccofmd.com/Default.aspx
+18:18:01   Crawling subpage (7/20): https://ccofmd.com/careers
+18:18:06   Found on subpage: beth.reynolds@ccofmd.com, bill.augustin@ccofmd.com, chris.robison@ccofmd.com, emily.barrington@ccofmd.com, jin.luo@ccofmd.com, kate.reinhart@ccofmd.com, katie.anderson@ccofmd.com
+18:18:06   Crawling subpage (8/20): https://ccofmd.com/member-login
+18:18:15   beth.reynolds@ccofmd.com → valid
+18:18:17   ✓ Added: beth.reynolds@ccofmd.com <beth.reynolds@ccofmd.com>
+18:18:19   bill.augustin@ccofmd.com → valid
+18:18:22   ✓ Added: bill.augustin@ccofmd.com <bill.augustin@ccofmd.com>
+18:18:24   chris.robison@ccofmd.com → valid
+18:18:26   ✓ Added: chris.robison@ccofmd.com <chris.robison@ccofmd.com>
+18:18:28   emily.barrington@ccofmd.com → valid
+18:18:31   ✓ Added: emily.barrington@ccofmd.com <emily.barrington@ccofmd.com>
+18:18:33   jin.luo@ccofmd.com → valid
+18:18:35   ✓ Added: jin.luo@ccofmd.com <jin.luo@ccofmd.com>
+18:18:36   kate.reinhart@ccofmd.com → valid
+18:18:39   ✓ Added: kate.reinhart@ccofmd.com <kate.reinhart@ccofmd.com>
+18:18:40   katie.anderson@ccofmd.com → valid
+18:18:44   ✓ Added: katie.anderson@ccofmd.com <katie.anderson@ccofmd.com>
+18:18:45 
+18:18:45 ========== STEP 2: Social Media Scrape ==========
+18:18:49   FB: https://www.facebook.com/countrycluboffairfax | IG: https://ccofmd.com/default.aspx
+18:18:49   Opening FB: https://www.facebook.com/countrycluboffairfax
+18:18:54   FB emails found: membership@ccfairfax.org
+18:18:54   Opening FB: https://www.facebook.com/countrycluboffairfax/about
+18:18:59   Opening FB: https://www.facebook.com/countrycluboffairfax/directory_contact_info
+18:19:04   FB emails found: membership@ccfairfax.org
+18:19:04   Opening IG: https://ccofmd.com/default.aspx
+18:19:10   [IG] No email on page — trying Google snippet...
+18:19:14   [IG SNIPPET] No email in Google snippet
+18:19:14   membership@ccfairfax.org → do_not_mail
+18:19:15   [APOLLO] Credits used this run: 105 / 300
+18:19:15 
+18:19:15 ========== STEP 3: Apollo API ==========
+18:19:15   Searching Apollo for company: Country Club of Maryland
+18:19:17   Found: Country Club Of Maryland (domain: ccofmd.com, org_id: 54a19f897468695475619002)
+18:19:17   Searching for people at Country Club Of Maryland (org_id: 54a19f897468695475619002)...
+18:19:17   Found 21 people total
+18:19:17   Skipped 14 people with no email (red ? on Apollo)
+18:19:17   7 people to enrich (1 credit each)
+18:19:19   >>> Kathryn Reinhart (General Manager/COO): kate.reinhart@ccofmd.com [verified]
+18:19:19   kate.reinhart@ccofmd.com → valid
+18:19:22   ✓ Added: Kathryn Reinhart <kate.reinhart@ccofmd.com>
+18:19:23   >>> Mike Healy (PGA Head Professional): mike.healy@ccofmd.com [verified]
+18:19:24   mike.healy@ccofmd.com → valid
+18:19:27   ✓ Added: Mike Healy <mike.healy@ccofmd.com>
+18:19:28   >>> Katie Anderson (Food & Beverage Director): katie.anderson@ccofmd.com [verified]
+18:19:28   katie.anderson@ccofmd.com → valid
+18:19:32   ✓ Added: Katie Anderson <katie.anderson@ccofmd.com>
+18:19:33   >>> Chris Robison (Executive Chef): chris.robison@ccofmd.com [verified]
+18:19:33   chris.robison@ccofmd.com → valid
+18:19:36   ✓ Added: Chris Robison <chris.robison@ccofmd.com>
+18:19:37   >>> Carina Sipe (Director of Membership): carina.sipe@ccofmd.com [verified]
+18:19:37   carina.sipe@ccofmd.com → valid
+18:19:39   ✓ Added: Carina Sipe <carina.sipe@ccofmd.com>
+18:19:41   >>> Reed Barrington (Executive Sous Chef): reed.barrington@ccofmd.com [verified]
+18:19:41   reed.barrington@ccofmd.com → valid
+18:19:46   ✓ Added: Reed Barrington <reed.barrington@ccofmd.com>
+18:19:47   >>> William Flagle (Busser): william.flagle@ccofmd.com [verified]
+18:19:47   william.flagle@ccofmd.com → invalid
+18:19:50   ⚠ Added (invalid): William Flagle <william.flagle@ccofmd.com>
+18:19:51   Apollo API done: 112 credits used this run
+18:19:51 
+18:19:51 ========== STEP 4: LinkedIn + Apollo API ==========
+18:19:51   Using domain: ccofmd.com
+18:19:52   LinkedIn page 1...
+18:19:58   Found 10 results
+18:19:58   Found: Boris Gradina,MCM,CCE
+18:19:58   Found: Brian Sette, CCM
+18:19:58   Found: Dave Heiser CCM, PCAM
+18:19:58   Found: Mitchell Lavoie
+18:19:58   Found: Jean Luo, CPA, MBA
+18:19:58   Found: Mike Healy
+18:20:03   LinkedIn page 2...
+18:20:10   Found 10 results
+18:20:10   Found: Stefan Rossell, CCM
+18:20:10   Found: Yeliza Bernal
+18:20:10   Found: Reed Barrington
+18:20:10   Found: Joseph McGuire, CCM, CCE
+18:20:10   Found: Adam Cowen, CCM
+18:20:10   Found: Chris Robison
+18:20:10   Found: John Berish, CCM
+18:20:10   Found: Bill Jankowski
+18:20:10   Found: Emily Barrington
+18:20:10   Found: Janine Budzius, CCM, CCE
+18:20:13   LinkedIn page 3...
+18:20:20   Found 10 results
+18:20:20   Found: Richard Celeste
+18:20:20   Found: Trish Milby
+18:20:20   Found: Katie Anderson
+18:20:20   Found: Bobbie Davis
+18:20:20   Found: Allison Carver
+18:20:20   Found: Ryan Velasquez
+18:20:20   Found: Andrew Schrock
+18:20:20   Found: John Groh, FMP, MBA
+18:20:20 
+18:20:20   LinkedIn found 24 new people. Enriching via Apollo API...
+18:20:20   LinkedIn + Apollo API done. Credits used: 112
+18:20:22   Setting status → pipelined
+18:20:27 
+18:20:27 ============================================================
+18:20:27  DONE: Country Club of Maryland | 3 min | 18:20:27
+18:20:27 ============================================================
+18:20:57 [BUDGET] Shared limit of 8 reached — stopping untouched phase
+18:20:57 === UNTOUCHED PHASE COMPLETE ===
+18:20:57 
+18:20:57 SMART PICKS: Skipping — shared budget of 8 already reached (8 processed)
+18:20:57 === SMART PICKS COMPLETE ===
+18:20:57 
+18:20:57 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-06_18-20.html
+18:20:57 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-06_18-20.html
+
+18:50:47 === Pipeline started 2026-05-06 18:50:47 ===
+18:50:47 SMART PICKS MODE: Fetching ranked venues...
+18:50:55 SMART PICKS: 387 available, budget remaining: 8
+18:50:55 
+18:50:55 ########## SMART PICK #1 (score 89): Tred Avon Yacht Club (MD-COUN-556) ##########
+18:51:01   [LOOKUP] No website — Googling 'Tred Avon Yacht Club'...
+18:51:04   [WARN] Website domain mismatch — 'https://www.tayc.com' doesn't match venue 'Tred Avon Yacht Club'. Discarding.
+18:51:08 
+18:51:08 ============================================================
+18:51:08  PIPELINE: Tred Avon Yacht Club (MD-COUN-556)
+18:51:08  Website: 
+18:51:08  Started: 2026-05-06 18:51:08
+18:51:08 ============================================================
+18:51:08   [ZB] Credits remaining: 3869
+18:51:11   Known emails: 0
+18:51:11   Known names: 0
+18:51:11 
+18:51:11 ========== STEP 1: Website Scrape ==========
+18:51:11   [SKIP] No website URL
+18:51:15 
+18:51:15 ========== STEP 1B: Instagram Google Search ==========
+18:51:15   No Instagram found on website — Googling...
+18:51:19   [IG SEARCH] Found: https://www.instagram.com/tredavonyc/
+18:51:22   ✓ Instagram URL saved
+18:51:26 
+18:51:26 ========== STEP 1C: Facebook Google Search ==========
+18:51:26   No Facebook found on website — Googling...
+18:51:30   [FB SEARCH] Found: https://www.facebook.com/taycjrsail/
+18:51:32   ✓ Facebook URL saved
+18:51:32 
+18:51:32 ========== STEP 2: Social Media Scrape ==========
+18:51:36   FB: https://www.facebook.com/taycjrsail/ | IG: https://www.instagram.com/tredavonyc/
+18:51:36   Opening FB: https://www.facebook.com/taycjrsail
+18:51:41   FB emails found: juniorsail@tayc.com
+18:51:41   Opening FB: https://www.facebook.com/taycjrsail/about
+18:51:46   Opening FB: https://www.facebook.com/taycjrsail/directory_contact_info
+18:51:51   FB emails found: juniorsail@tayc.com
+18:51:51   Opening IG: https://www.instagram.com/tredavonyc/
+18:51:57   [IG] No email on page — trying Google snippet...
+18:52:01   [IG SNIPPET] No email in Google snippet
+18:52:02   juniorsail@tayc.com → valid
+18:52:04   ✓ Added: juniorsail@tayc.com <juniorsail@tayc.com>
+18:52:05   [APOLLO] Credits used this run: 0 / 300
+18:52:05 
+18:52:05 ========== STEP 3: Apollo API ==========
+18:52:05   Searching Apollo for company: Tred Avon Yacht Club
+18:52:10   Found: Tred Avon Yacht Club Junior Sailing (domain: tayc.com, org_id: 66e78f180422ec000155a06b)
+18:52:10   Searching for people at Tred Avon Yacht Club Junior Sailing (org_id: 66e78f180422ec000155a06b)...
+18:52:10   Found 1 people total
+18:52:11   Skipped 1 people with no email (red ? on Apollo)
+18:52:11   No new people to enrich.
+18:52:11 
+18:52:11 ========== STEP 4: LinkedIn + Apollo API ==========
+18:52:11   Using domain: tayc.com
+18:52:13   LinkedIn page 1...
+18:52:18   Found 10 results
+18:52:18   Found: Vicky Van Loo
+18:52:18   Found: April Jewell
+18:52:23   LinkedIn page 2...
+18:52:28   Found 10 results
+18:52:28   Found: Jay Dayton
+18:52:32   LinkedIn page 3...
+18:52:41   Found 10 results
+18:52:41   Found: Ian Ronald
+18:52:41 
+18:52:41   LinkedIn found 4 new people. Enriching via Apollo API...
+18:52:41   LinkedIn + Apollo API done. Credits used: 0
+18:52:44   Setting status → pipelined
+18:52:47 
+18:52:47 ============================================================
+18:52:47  DONE: Tred Avon Yacht Club | 1 min | 18:52:47
+18:52:47 ============================================================
+18:53:17 
+18:53:17 ########## SMART PICK #2 (score 85): Zephaniah Farm Vineyard (XX-WINE-031) ##########
+18:53:22   [LOOKUP] No website — Googling 'Zephaniah Farm Vineyard'...
+18:53:25   [WARN] Website domain mismatch — 'https://zephwine.com' doesn't match venue 'Zephaniah Farm Vineyard'. Discarding.
+18:53:27 
+18:53:27 ============================================================
+18:53:27  PIPELINE: Zephaniah Farm Vineyard (XX-WINE-031)
+18:53:27  Website: 
+18:53:27  Started: 2026-05-06 18:53:27
+18:53:27 ============================================================
+18:53:27   [ZB] Credits remaining: 3868
+18:53:30   Known emails: 0
+18:53:30   Known names: 0
+18:53:30 
+18:53:30 ========== STEP 1: Website Scrape ==========
+18:53:30   [SKIP] No website URL
+18:53:32 
+18:53:32 ========== STEP 1B: Instagram Google Search ==========
+18:53:32   No Instagram found on website — Googling...
+18:53:36   [IG SEARCH] Found: https://www.instagram.com/zephwine/
+18:53:39   ✓ Instagram URL saved
+18:53:41 
+18:53:41 ========== STEP 1C: Facebook Google Search ==========
+18:53:41   No Facebook found on website — Googling...
+18:53:46   [FB SEARCH] Found: https://www.facebook.com/202305313595209/
+18:53:48   ✓ Facebook URL saved
+18:53:48 
+18:53:48 ========== STEP 2: Social Media Scrape ==========
+18:53:50   FB: https://www.facebook.com/202305313595209/ | IG: https://www.instagram.com/zephwine/
+18:53:50   Opening FB: https://www.facebook.com/202305313595209
+18:53:55   Opening FB: https://www.facebook.com/202305313595209/about
+18:54:01   Opening FB: https://www.facebook.com/202305313595209/directory_contact_info
+18:54:06   [FB] No email on page — trying Google snippet...
+18:54:10   [FB SNIPPET] No email in Google snippet
+18:54:10   Opening IG: https://www.instagram.com/zephwine/
+18:54:15   [IG] No email on page — trying Google snippet...
+18:54:20   [IG SNIPPET] No email in Google snippet
+18:54:20   [APOLLO] Credits used this run: 0 / 300
+18:54:20 
+18:54:20 ========== STEP 3: Apollo API ==========
+18:54:20   Searching Apollo for company: Zephaniah Farm Vineyard
+18:54:23   Found: Zephaniah Farm Vineyard LLC (domain: zephwine.com, org_id: 672c9bc4ed6d5900018a0752)
+18:54:23   Searching for people at Zephaniah Farm Vineyard LLC (org_id: 672c9bc4ed6d5900018a0752)...
+18:54:24   Found 0 people total
+18:54:24   No people in Apollo for this company.
+18:54:24 
+18:54:24 ========== STEP 4: LinkedIn + Apollo API ==========
+18:54:24   Using domain: zephwine.com
+18:54:26   LinkedIn page 1...
+18:54:31   Found 7 results
+18:54:31   No new venue employees on this page.
+18:54:35   LinkedIn page 2...
+18:54:51   No results on page 2 — stopping.
+18:54:51   No new people found on LinkedIn.
+18:54:53   Setting status → pipelined
+18:54:55 
+18:54:55 ============================================================
+18:54:55  DONE: Zephaniah Farm Vineyard | 1 min | 18:54:55
+18:54:55 ============================================================
+18:55:25 
+18:55:25 ########## SMART PICK #3 (score 85): Clear Skies Meadery (XX-WINE-051) ##########
+18:55:31   [LOOKUP] No website — Googling 'Clear Skies Meadery'...
+18:55:34   [LOOKUP] Found: https://clearskiesmeadery.com
+18:55:38 
+18:55:38 ============================================================
+18:55:38  PIPELINE: Clear Skies Meadery (XX-WINE-051)
+18:55:38  Website: https://clearskiesmeadery.com
+18:55:38  Started: 2026-05-06 18:55:38
+18:55:38 ============================================================
+18:55:38   [ZB] Credits remaining: 3868
+18:55:41   Known emails: 0
+18:55:41   Known names: 0
+18:55:41 
+18:55:41 ========== STEP 1: Website Scrape ==========
+18:55:41   URL: https://clearskiesmeadery.com
+18:55:41   Opening in Chrome: https://clearskiesmeadery.com
+18:55:47   Validating contact form URL: https://clearskiesmeadery.com/contact
+18:55:52   Found on contact page: contact@clearskiesmeadery.com
+18:55:52   ✓ Real contact form confirmed
+18:55:52   Emails: 1 | FB: https://www.facebook.com/Clear-Skies-Meadery-631850983906291 | IG: https://www.instagram.com/clear_skies_meadery/ | Contact Form: https://clearskiesmeadery.com/contact
+18:55:52   Crawling subpage (1): https://clearskiesmeadery.com/contact
+18:55:56   Found on subpage: contact@clearskiesmeadery.com
+18:55:56   Crawling subpage (2): https://clearskiesmeadery.com/events
+18:56:00   Found on subpage: contact@clearskiesmeadery.com
+18:56:00   Crawling subpage (3): https://clearskiesmeadery.com/event
+18:56:05   Found on subpage: contact@clearskiesmeadery.com
+18:56:05   Crawling subpage (4): https://clearskiesmeadery.com/about-us
+18:56:09   Found on subpage: cdaverne@clearskiesmeadery.com, contact@clearskiesmeadery.com, jlatour@clearskiesmeadery.co, jlatour@clearskiesmeadery.com, manisha.eigner@clearskiesmeadery.co, maxhyman@clearskiesmeadery.com, mburgoyne@clearskiesmeadery.com, mfehr@clearskiesmeadery.com, rholt@clearskiesmeadery.com, rkomlo@clearskiesmeadery.com, yabodie@clearskiesmeadery.co
+18:56:09   Crawling subpage (5): https://clearskiesmeadery.com/shop-outside-of-maryland
+18:56:13   Found on subpage: contact@clearskiesmeadery.com
+18:56:13   Crawling subpage (6): https://clearskiesmeadery.com/our-store
+18:56:18   Found on subpage: contact@clearskiesmeadery.com
+18:56:18   Crawling subpage (7): https://clearskiesmeadery.com/blog
+18:56:22   Found on subpage: contact@clearskiesmeadery.com
+18:56:25   [CONTACT] Probing https://clearskiesmeadery.com/contact
+18:56:30   [CONTACT] Found emails on https://clearskiesmeadery.com/contact
+18:56:38   ✓ Contact form URL saved
+18:56:40   cdaverne@clearskiesmeadery.com → valid
+18:56:42   ✓ Added: cdaverne@clearskiesmeadery.com <cdaverne@clearskiesmeadery.com>
+18:56:44   contact@clearskiesmeadery.com → do_not_mail
+18:56:46   jlatour@clearskiesmeadery.co → invalid
+18:56:48   ⚠ Added (invalid): jlatour@clearskiesmeadery.co <jlatour@clearskiesmeadery.co>
+18:56:50   jlatour@clearskiesmeadery.com → valid
+18:56:53   ✓ Added: jlatour@clearskiesmeadery.com <jlatour@clearskiesmeadery.com>
+18:56:54   manisha.eigner@clearskiesmeadery.co → valid
+18:56:57   ✓ Added: manisha.eigner@clearskiesmeadery.co <manisha.eigner@clearskiesmeadery.co>
+18:56:59   maxhyman@clearskiesmeadery.com → valid
+18:57:01   ✓ Added: maxhyman@clearskiesmeadery.com <maxhyman@clearskiesmeadery.com>
+18:57:03   mburgoyne@clearskiesmeadery.com → valid
+18:57:06   ✓ Added: mburgoyne@clearskiesmeadery.com <mburgoyne@clearskiesmeadery.com>
+18:57:08   mfehr@clearskiesmeadery.com → valid
+18:57:11   ✓ Added: mfehr@clearskiesmeadery.com <mfehr@clearskiesmeadery.com>
+18:57:13   rholt@clearskiesmeadery.com → valid
+18:57:17   ✓ Added: rholt@clearskiesmeadery.com <rholt@clearskiesmeadery.com>
+18:57:18   rkomlo@clearskiesmeadery.com → valid
+18:57:21   ✓ Added: rkomlo@clearskiesmeadery.com <rkomlo@clearskiesmeadery.com>
+18:57:23   yabodie@clearskiesmeadery.co → invalid
+18:57:25   ⚠ Added (invalid): yabodie@clearskiesmeadery.co <yabodie@clearskiesmeadery.co>
+18:57:26 
+18:57:26 ========== STEP 2: Social Media Scrape ==========
+18:57:29   FB: https://www.facebook.com/Clear-Skies-Meadery-631850983906291 | IG: https://www.instagram.com/clear_skies_meadery/
+18:57:29   Opening FB: https://www.facebook.com/Clear-Skies-Meadery-631850983906291
+18:57:34   Opening FB: https://www.facebook.com/Clear-Skies-Meadery-631850983906291/about
+18:57:39   Opening FB: https://www.facebook.com/Clear-Skies-Meadery-631850983906291/directory_contact_info
+18:57:45   FB emails found: contact@clearskiesmeadery.com
+18:57:45   Opening IG: https://www.instagram.com/clear_skies_meadery/
+18:57:50   [IG] No email on page — trying Google snippet...
+18:57:54   [IG SNIPPET] No email in Google snippet
+18:57:54   contact@clearskiesmeadery.com → do_not_mail
+18:57:55   [APOLLO] Credits used this run: 0 / 300
+18:57:55 
+18:57:55 ========== STEP 3: Apollo API ==========
+18:57:55   Searching Apollo for company: Clear Skies Meadery
+18:57:57   Found: Clear Skies Meadery (domain: clearskiesmeadery.co, org_id: 6713dc22e1abc9000123d4ae)
+18:57:57   Searching for people at Clear Skies Meadery (org_id: 6713dc22e1abc9000123d4ae)...
+18:57:57   Found 5 people total
+18:57:58   Skipped 3 people with no email (red ? on Apollo)
+18:57:58   2 people to enrich (1 credit each)
+18:57:58   >>> Courtland Daverne (Assistant Brewer): cdaverne@clearskiesmeadery.com [verified]
+18:57:58   cdaverne@clearskiesmeadery.com → valid
+18:58:01   ✓ Added: Courtland Daverne <cdaverne@clearskiesmeadery.com>
+18:58:02   >>> Manisha Eigner (Chief Executive Officer): manisha.eigner@clearskiesmeadery.co [verified]
+18:58:02   manisha.eigner@clearskiesmeadery.co → valid
+18:58:04   ✓ Added: Manisha Eigner <manisha.eigner@clearskiesmeadery.co>
+18:58:05   Apollo API done: 2 credits used this run
+18:58:05 
+18:58:05 ========== STEP 4: LinkedIn + Apollo API ==========
+18:58:05   Using domain: clearskiesmeadery.co
+18:58:07   LinkedIn page 1...
+18:58:16   Found 10 results
+18:58:16   Found: Manisha Bane Eigner
+18:58:16   Found: Matthew Fehr
+18:58:16   Found: Missy Maloney Wilkins, Ph.D.
+18:58:20   LinkedIn page 2...
+18:58:25   Found 9 results
+18:58:25   Found: Ryan Holt
+18:58:30   LinkedIn page 3...
+18:58:46   No results on page 3 — stopping.
+18:58:46 
+18:58:46   LinkedIn found 4 new people. Enriching via Apollo API...
+18:58:46   LinkedIn + Apollo API done. Credits used: 2
+18:58:49   Setting status → pipelined
+18:58:52 
+18:58:52 ============================================================
+18:58:52  DONE: Clear Skies Meadery | 3 min | 18:58:52
+18:58:52 ============================================================
+18:59:22 
+18:59:22 ########## SMART PICK #4 (score 85): Bas Rouge (MD-REST-462) ##########
+18:59:32 
+18:59:32 ============================================================
+18:59:32  PIPELINE: Bas Rouge (MD-REST-462)
+18:59:32  Website: https://basrougeeaston.com/
+18:59:32  Started: 2026-05-06 18:59:32
+18:59:32 ============================================================
+18:59:32   [ZB] Credits remaining: 3857
+18:59:35   Known emails: 0
+18:59:35   Known names: 0
+18:59:35 
+18:59:35 ========== STEP 1: Website Scrape ==========
+18:59:35   URL: https://basrougeeaston.com/
+18:59:35   Opening in Chrome: https://basrougeeaston.com/
+18:59:41   Validating contact form URL: https://basrougeeaston.com/contact.php
+18:59:46   ✓ Real contact form confirmed
+18:59:46   Emails: 0 | FB: https://www.facebook.com/basrougeeaston | IG: https://www.instagram.com/bas_rouge/ | Contact Form: https://basrougeeaston.com/contact.php
+18:59:46   [LOCATION] Checking for location-specific page (city: Easton)...
+18:59:46   [LOCATION] Re-scraping location page: https://basrougeeaston.com/index.php
+18:59:57   [LOCATION] Re-scraped: Emails: 0 | FB: https://www.facebook.com/basrougeeaston | IG: https://www.instagram.com/bas_rouge/ | Contact Form: https://basrougeeaston.com/contact.php
+18:59:57   Crawling subpage (1): https://basrougeeaston.com/contact.php
+19:00:01   Crawling subpage (2): https://basrougeeaston.com/about_team.php
+19:00:05   Crawling subpage (3): https://basrougeeaston.com/events.php
+19:00:10   Crawling subpage (4): https://basrougeeaston.com/about_concept.php
+19:00:14   Crawling subpage (5): https://basrougeeaston.com/press.php
+19:00:18   Crawling subpage (6): https://basrougeeaston.com
+19:00:22   Crawling subpage (7): https://basrougeeaston.com/menu.php
+19:00:27   Crawling subpage (8): https://basrougeeaston.com/reservations.php
+19:00:40   ✓ Contact form URL saved
+19:00:40 
+19:00:40 ========== STEP 2: Social Media Scrape ==========
+19:00:43   FB: https://www.facebook.com/basrougeeaston | IG: https://www.instagram.com/bas_rouge/
+19:00:43   Opening FB: https://www.facebook.com/basrougeeaston
+19:00:49   Opening FB: https://www.facebook.com/basrougeeaston/about
+19:00:54   Opening FB: https://www.facebook.com/basrougeeaston/directory_contact_info
+19:00:59   [FB] No email on page — trying Google snippet...
+19:01:03   [FB SNIPPET] No email in Google snippet
+19:01:03   Opening IG: https://www.instagram.com/bas_rouge/
+19:01:08   [IG] No email on page — trying Google snippet...
+19:01:13   [IG SNIPPET] No email in Google snippet
+19:01:13   [APOLLO] Credits used this run: 2 / 300
+19:01:13 
+19:01:13 ========== STEP 3: Apollo API ==========
+19:01:13   Searching Apollo for company: Bas Rouge
+19:01:15   Found: Bas Rouge (domain: basrougeeaston.com, org_id: 66efc7554661480001193325)
+19:01:15   Searching for people at Bas Rouge (org_id: 66efc7554661480001193325)...
+19:01:16   Found 1 people total
+19:01:16   Skipped 1 people with no email (red ? on Apollo)
+19:01:16   No new people to enrich.
+19:01:16 
+19:01:16 ========== STEP 4: LinkedIn + Apollo API ==========
+19:01:16   Using domain: basrougeeaston.com
+19:01:18   LinkedIn page 1...
+19:01:26   Found 7 results
+19:01:26   Found: Matthew Dure
+19:01:30   LinkedIn page 2...
+19:01:49   No results on page 2 — stopping.
+19:01:49 
+19:01:49   LinkedIn found 1 new people. Enriching via Apollo API...
+19:01:49   LinkedIn + Apollo API done. Credits used: 2
+19:01:51   Setting status → pipelined
+19:01:53 
+19:01:53 ============================================================
+19:01:53  DONE: Bas Rouge | 2 min | 19:01:53
+19:01:53 ============================================================
+19:02:23 
+19:02:23 ########## SMART PICK #5 (score 85): The Wardroom (MD-REST-463) ##########
+19:02:31 
+19:02:31 ============================================================
+19:02:31  PIPELINE: The Wardroom (MD-REST-463)
+19:02:31  Website: https://thewardroom.com/
+19:02:31  Started: 2026-05-06 19:02:31
+19:02:31 ============================================================
+19:02:31   [ZB] Credits remaining: 3857
+19:02:35   Known emails: 0
+19:02:35   Known names: 0
+19:02:35 
+19:02:35 ========== STEP 1: Website Scrape ==========
+19:02:35   URL: https://thewardroom.com/
+19:02:35   Opening in Chrome: https://thewardroom.com/
+19:02:41   Validating contact form URL: https://thewardroom.com/inquiry_form.php
+19:02:46   ✓ Real contact form confirmed
+19:02:46   Emails: 0 | FB: https://www.facebook.com/thewardroomeaston | IG: https://www.instagram.com/_thewardroom/ | Contact Form: https://thewardroom.com/inquiry_form.php
+19:02:46   [LOCATION] Checking for location-specific page (city: Easton)...
+19:02:46   [LOCATION] No location-specific page found
+19:02:47   Crawling subpage (1): https://thewardroom.com/private_events.php
+19:02:51   Crawling subpage (2): https://thewardroom.com/index.php
+19:02:55   Crawling subpage (3): https://thewardroom.com/wine.php
+19:02:59   Crawling subpage (4): https://thewardroom.com/inquiry_form.php
+19:03:04   Crawling subpage (5): https://thewardroom.com/menu.php
+19:03:08   Crawling subpage (6): https://thewardroom.com/news.php
+19:03:22   ✓ Contact form URL saved
+19:03:22 
+19:03:22 ========== STEP 2: Social Media Scrape ==========
+19:03:26   FB: https://www.facebook.com/thewardroomeaston | IG: https://www.instagram.com/_thewardroom/
+19:03:26   Opening FB: https://www.facebook.com/thewardroomeaston
+19:03:31   Opening FB: https://www.facebook.com/thewardroomeaston/about
+19:03:36   Opening FB: https://www.facebook.com/thewardroomeaston/directory_contact_info
+19:03:41   [FB] No email on page — trying Google snippet...
+19:03:46   [FB SNIPPET] No email in Google snippet
+19:03:46   Opening IG: https://www.instagram.com/_thewardroom/
+19:03:51   [IG] No email on page — trying Google snippet...
+19:03:55   [IG SNIPPET] No email in Google snippet
+19:03:55   [APOLLO] Credits used this run: 2 / 300
+19:03:55 
+19:03:55 ========== STEP 3: Apollo API ==========
+19:03:55   Searching Apollo for company: The Wardroom
+19:03:56   Found: The Wardroom Cafe (domain: thewardroomcafe.com, org_id: 66f8eef1bfd90000018ff558)
+19:03:56   Searching for people at The Wardroom Cafe (org_id: 66f8eef1bfd90000018ff558)...
+19:03:57   Found 1 people total
+19:03:57   Skipped 1 people with no email (red ? on Apollo)
+19:03:57   No new people to enrich.
+19:03:57 
+19:03:57 ========== STEP 4: LinkedIn + Apollo API ==========
+19:03:57   Using domain: thewardroomcafe.com
+19:03:59   LinkedIn page 1...
+19:04:06   Found 10 results
+19:04:06   Found: Rich Santos MBA, USN, Retired
+19:04:06   Found: Darren McPherson
+19:04:06   Found: Matt Nole
+19:04:09   LinkedIn page 2...
+19:04:18   Found 10 results
+19:04:18   No new venue employees on this page.
+19:04:21   LinkedIn page 3...
+19:04:27   Found 10 results
+19:04:27   No new venue employees on this page.
+19:04:27 
+19:04:27   LinkedIn found 3 new people. Enriching via Apollo API...
+19:04:27   LinkedIn + Apollo API done. Credits used: 2
+19:04:30   Setting status → pipelined
+19:04:32 
+19:04:32 ============================================================
+19:04:32  DONE: The Wardroom | 2 min | 19:04:32
+19:04:32 ============================================================
+19:05:02 
+19:05:02 ########## SMART PICK #6 (score 84): Kabinett Wine Bar (MD-WINE-537) ##########
+19:05:07   [LOOKUP] No website — Googling 'Kabinett Wine Bar'...
+19:05:11   [LOOKUP] Found: https://www.kabinettwinebar.com
+19:05:17 
+19:05:17 ============================================================
+19:05:17  PIPELINE: Kabinett Wine Bar (MD-WINE-537)
+19:05:17  Website: https://www.kabinettwinebar.com
+19:05:17  Started: 2026-05-06 19:05:17
+19:05:17 ============================================================
+19:05:17   [ZB] Credits remaining: 3857
+19:05:20   Known emails: 0
+19:05:20   Known names: 0
+19:05:20 
+19:05:20 ========== STEP 1: Website Scrape ==========
+19:05:20   URL: https://www.kabinettwinebar.com
+19:05:20   Opening in Chrome: https://www.kabinettwinebar.com
+19:05:26   Emails: 0 | FB: http://www.facebook.com/2008 | IG: https://www.instagram.com/kabinett.winebar | Contact Form: none
+19:05:26   [LOCATION] Checking for location-specific page (city: Easton)...
+19:05:28   [LOCATION] No location-specific page found
+19:05:34 
+19:05:34 ========== STEP 2: Social Media Scrape ==========
+19:05:37   FB: http://www.facebook.com/2008 | IG: https://www.instagram.com/kabinett.winebar
+19:05:37   Opening FB: http://www.facebook.com/2008
+19:05:42   Opening FB: http://www.facebook.com/2008/about
+19:05:48   Opening FB: http://www.facebook.com/2008/directory_contact_info
+19:05:53   [FB] No email on page — trying Google snippet...
+19:05:57   [FB SNIPPET] No email in Google snippet
+19:05:57   Opening IG: https://www.instagram.com/kabinett.winebar
+19:06:02   [IG] No email on page — trying Google snippet...
+19:06:07   [IG SNIPPET] No email in Google snippet
+19:06:07   [APOLLO] Credits used this run: 2 / 300
+19:06:07 
+19:06:07 ========== STEP 3: Apollo API ==========
+19:06:07   Searching Apollo for company: Kabinett Wine Bar
+19:06:08   [WARN] No company found in Apollo for 'Kabinett Wine Bar' (tried name + domain)
+19:06:08   Using website domain for enrichment: kabinettwinebar.com
+19:06:08 
+19:06:08 ========== STEP 4: LinkedIn + Apollo API ==========
+19:06:08   Using domain: kabinettwinebar.com
+19:06:10   LinkedIn page 1...
+19:06:16   Found 10 results
+19:06:17   Found: Melanie Hansche
+19:06:17   Found: Morgan Bailey
+19:06:17   Found: Jacqueline Fassbinder
+19:06:17   Found: Rosana sousa
+19:06:17   Found: Tatiane Mie Takiuchi
+19:06:17   Found: Manu Brandao
+19:06:21   LinkedIn page 2...
+19:06:26   Found 10 results
+19:06:26   Found: Igor Coronado
+19:06:26   Found: Vanessa Kapitsyki Barbieri
+19:06:26   Found: Vanessa Mendes Lima
+19:06:26   Found: Gabriel Benz
+19:06:26   Found: Paula Daidone
+19:06:26   Found: Vicente Jorge
+19:06:30   LinkedIn page 3...
+19:06:38   Found 10 results
+19:06:38   Found: Marina Souza
+19:06:38   Found: Eduardo Machado Araujo, DipWset
+19:06:38   Found: Laysa Toledo
+19:06:38   Found: Cibele Siqueira
+19:06:38 
+19:06:38   LinkedIn found 16 new people. Enriching via Apollo API...
+19:06:39   LinkedIn + Apollo API done. Credits used: 2
+19:06:41   Setting status → pipelined
+19:06:43 
+19:06:43 ============================================================
+19:06:43  DONE: Kabinett Wine Bar | 1 min | 19:06:43
+19:06:43 ============================================================
+19:07:13 
+19:07:13 ########## SMART PICK #7 (score 80): Stoltz Listening Room (MD-EVEN-540) ##########
+19:07:18   [LOOKUP] No website — Googling 'Stoltz Listening Room'...
+19:07:22   [WARN] Website domain mismatch — 'https://avalonfoundation.org' doesn't match venue 'Stoltz Listening Room'. Discarding.
+19:07:24 
+19:07:24 ============================================================
+19:07:24  PIPELINE: Stoltz Listening Room (MD-EVEN-540)
+19:07:24  Website: 
+19:07:24  Started: 2026-05-06 19:07:24
+19:07:24 ============================================================
+19:07:24   [ZB] Credits remaining: 3857
+19:07:27   Known emails: 0
+19:07:27   Known names: 0
+19:07:27 
+19:07:27 ========== STEP 1: Website Scrape ==========
+19:07:27   [SKIP] No website URL
+19:07:30 
+19:07:30 ========== STEP 1B: Instagram Google Search ==========
+19:07:30   No Instagram found on website — Googling...
+19:07:34   [IG SEARCH] Found: https://www.instagram.com/markerelli/
+19:07:37   ✓ Instagram URL saved
+19:07:40 
+19:07:40 ========== STEP 1C: Facebook Google Search ==========
+19:07:40   No Facebook found on website — Googling...
+19:07:44   [FB SEARCH] Found: https://www.facebook.com/118929061821155/
+19:07:47   ✓ Facebook URL saved
+19:07:47 
+19:07:47 ========== STEP 2: Social Media Scrape ==========
+19:07:50   FB: https://www.facebook.com/118929061821155/ | IG: https://www.instagram.com/markerelli/
+19:07:50   Opening FB: https://www.facebook.com/118929061821155
+19:07:55   FB emails found: boxoffice@avalonfoundation.org
+19:07:55   Opening FB: https://www.facebook.com/118929061821155/about
+19:08:00   FB emails found: boxoffice@avalonfoundation.org
+19:08:00   Opening FB: https://www.facebook.com/118929061821155/directory_contact_info
+19:08:05   Opening IG: https://www.instagram.com/markerelli/
+19:08:10   [IG] No email on page — trying Google snippet...
+19:08:15   [IG SNIPPET] No email in Google snippet
+19:08:15   boxoffice@avalonfoundation.org → do_not_mail
+19:08:16   [APOLLO] Credits used this run: 2 / 300
+19:08:16 
+19:08:16 ========== STEP 3: Apollo API ==========
+19:08:16   Searching Apollo for company: Stoltz Listening Room
+19:08:21   [WARN] No company found in Apollo for 'Stoltz Listening Room' (tried name + domain)
+19:08:21   Using website domain for enrichment: 
+19:08:21 
+19:08:21 ========== STEP 4: LinkedIn + Apollo API ==========
+19:08:24   [WARN] No domain found for 'Stoltz Listening Room' — LinkedIn names won't be enrichable
+19:08:26   LinkedIn page 1...
+19:08:33   Found 10 results
+19:08:33   No new venue employees on this page.
+19:08:37   LinkedIn page 2...
+19:08:46   Found 10 results
+19:08:46   No new venue employees on this page.
+19:08:50   LinkedIn page 3...
+19:08:58   Found 10 results
+19:08:58   Found: Timothy Stoltz
+19:08:58 
+19:08:58   LinkedIn found 1 new people. Enriching via Apollo API...
+19:08:58   [SKIP] No domain — adding contacts without emails
+19:09:03   Setting status → pipelined
+19:09:07 
+19:09:07 ============================================================
+19:09:07  DONE: Stoltz Listening Room | 1 min | 19:09:07
+19:09:07 ============================================================
+19:09:37 
+19:09:37 ########## SMART PICK #8 (score 80): Chesapeake Music (MD-EVEN-555) ##########
+19:09:45   [LOOKUP] No website — Googling 'Chesapeake Music'...
+19:09:49   [LOOKUP] Found: https://chesapeakemusic.org
+19:09:53 
+19:09:53 ============================================================
+19:09:53  PIPELINE: Chesapeake Music (MD-EVEN-555)
+19:09:53  Website: https://chesapeakemusic.org
+19:09:53  Started: 2026-05-06 19:09:53
+19:09:53 ============================================================
+19:09:53   [ZB] Credits remaining: 3856
+19:09:57   Known emails: 0
+19:09:57   Known names: 0
+19:09:57 
+19:09:57 ========== STEP 1: Website Scrape ==========
+19:09:57   URL: https://chesapeakemusic.org
+19:09:57   Opening in Chrome: https://chesapeakemusic.org
+19:10:03   Validating contact form URL: https://chesapeakemusic.org/contact
+19:10:08   Found on contact page: info@chesapeakemusic.org
+19:10:08   ✓ Real contact form confirmed
+19:10:08   Emails: 1 | FB: https://www.facebook.com/ChesapeakeChamberMusic | IG: https://www.instagram.com/chesapeakemusic/ | Contact Form: https://chesapeakemusic.org/contact
+19:10:08   Crawling subpage (1): https://chesapeakemusic.org/contact
+19:10:12   Found on subpage: info@chesapeakemusic.org
+19:10:12   Crawling subpage (2): https://chesapeakemusic.org/join-the-team
+19:10:17   Found on subpage: info@chesapeakemusic.org
+19:10:17   Crawling subpage (3): https://chesapeakemusic.org/concerts-and-events/upcoming-events
+19:10:21   Found on subpage: info@chesapeakemusic.org
+19:10:21   Crawling subpage (4): https://chesapeakemusic.org/concerts-and-events/sept-27-renaissance-wang-and-cho
+19:10:25   Same emails 3 pages in a row — stopping subpage crawl
+19:10:26   [CONTACT] Probing https://chesapeakemusic.org/contact
+19:10:31   [CONTACT] Found emails on https://chesapeakemusic.org/contact
+19:10:39   ✓ Contact form URL saved
+19:10:40   info@chesapeakemusic.org → do_not_mail
+19:10:41 
+19:10:41 ========== STEP 2: Social Media Scrape ==========
+19:10:44   FB: https://www.facebook.com/ChesapeakeChamberMusic | IG: https://www.instagram.com/chesapeakemusic/
+19:10:44   Opening FB: https://www.facebook.com/ChesapeakeChamberMusic
+19:10:50   FB emails found: info@chesapeakemusic.org
+19:10:50   Opening FB: https://www.facebook.com/ChesapeakeChamberMusic/about
+19:10:55   FB emails found: info@chesapeakemusic.org
+19:10:55   Opening FB: https://www.facebook.com/ChesapeakeChamberMusic/directory_contact_info
+19:11:00   FB emails found: info@chesapeakemusic.org
+19:11:00   Opening IG: https://www.instagram.com/chesapeakemusic/
+19:11:05   [IG] No email on page — trying Google snippet...
+19:11:10   [IG SNIPPET] No email in Google snippet
+19:11:10   info@chesapeakemusic.org → do_not_mail
+19:11:11   [APOLLO] Credits used this run: 2 / 300
+19:11:11 
+19:11:11 ========== STEP 3: Apollo API ==========
+19:11:11   Searching Apollo for company: Chesapeake Music
+19:11:13   Found: CHESAPEAKE MUSIC (domain: chesapeakemusic.org, org_id: 655aabf7df175b0001fd0815)
+19:11:13   Searching for people at CHESAPEAKE MUSIC (org_id: 655aabf7df175b0001fd0815)...
+19:11:14   Found 1 people total
+19:11:14   Skipped 1 people with no email (red ? on Apollo)
+19:11:14   No new people to enrich.
+19:11:14 
+19:11:14 ========== STEP 4: LinkedIn + Apollo API ==========
+19:11:14   Using domain: chesapeakemusic.org
+19:11:15   LinkedIn page 1...
+19:11:20   Found 10 results
+19:11:20   Found: Niki Runge
+19:11:20   Found: Eastport Oyster Boys
+19:11:20   Found: Chris Pickett Creative Music
+19:11:20   Found: Ryan Deshaies
+19:11:20   Found: Cheryl Pearson
+19:11:20   Found: William Cooke
+19:11:20   Found: Vernon James
+19:11:25   LinkedIn page 2...
+19:11:31   Found 10 results
+19:11:31   Found: Chester (Chet) Poslusny
+19:11:31   Found: Donald Buxton
+19:11:31   Found: Danielle Roby
+19:11:31   Found: Paul Packett
+19:11:31   Found: Bill Nerenberg
+19:11:31   Found: Chris Kefer
+19:11:31   Found: Krys Baker
+19:11:31   Found: Brian Washington
+19:11:31   Found: Michael Reschke
+19:11:31   Found: Jennifer Smith
+19:11:35   LinkedIn page 3...
+19:11:41   Found 10 results
+19:11:41   Found: Déz Ramos-Smiley
+19:11:41   Found: Chuck Ferrell
+19:11:41   Found: Chris App
+19:11:41   Found: Mary Ann Medlin
+19:11:41   Found: Gavin Isaiah
+19:11:41   Found: Craig Gildner
+19:11:41   Found: Kristin Meyer
+19:11:41 
+19:11:41   LinkedIn found 24 new people. Enriching via Apollo API...
+19:11:41   LinkedIn + Apollo API done. Credits used: 2
+19:11:44   Setting status → pipelined
+19:11:46 
+19:11:46 ============================================================
+19:11:46  DONE: Chesapeake Music | 2 min | 19:11:46
+19:11:46 ============================================================
+19:12:16 [BUDGET] Shared limit of 8 reached — stopping smart picks
+19:12:16 === SMART PICKS COMPLETE ===
+19:12:16 
+19:12:16 UNTOUCHED PHASE: Fetching all venues...
+19:12:20 UNTOUCHED: 390 found (shared budget: 8 total)
+19:12:21 [BUDGET] Shared limit of 8 reached — stopping untouched phase
+19:12:21 === UNTOUCHED PHASE COMPLETE ===
+19:12:21 
+19:12:21 === SMART PICKS COMPLETE ===
+19:12:21 
+19:12:21 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-06_19-12.html
+19:12:21 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-06_19-12.html
+
+22:50:41 === Pipeline started 2026-05-07 22:50:41 ===
+22:50:41 SMART PICKS MODE: Fetching ranked venues...
+22:50:47 SMART PICKS: 430 available, budget remaining: 8
+22:50:47 
+22:50:47 ########## SMART PICK #1 (score 79): Scossa Restaurant & Lounge (MD-REST-464) ##########
+22:50:59 
+22:50:59 ============================================================
+22:50:59  PIPELINE: Scossa Restaurant & Lounge (MD-REST-464)
+22:50:59  Website: https://scossarestaurant.com/
+22:50:59  Started: 2026-05-07 22:50:59
+22:50:59 ============================================================
+22:51:00   [ZB] Credits remaining: 3853
+22:51:03   Known emails: 0
+22:51:03   Known names: 0
+22:51:03 
+22:51:03 ========== STEP 1: Website Scrape ==========
+22:51:03   URL: https://scossarestaurant.com/
+22:51:03   Opening in Chrome: https://scossarestaurant.com/
+22:51:09   Validating contact form URL: https://scossarestaurant.com/contact
+22:51:14   ✓ Real contact form confirmed
+22:51:14   Emails: 0 | FB: https://www.facebook.com/scossarestaurant | IG: https://www.instagram.com/scossa_restaurant/ | Contact Form: https://scossarestaurant.com/contact
+22:51:14   [LOCATION] Checking for location-specific page (city: Easton)...
+22:51:16   [LOCATION] No location-specific page found
+22:51:16   Crawling subpage (1): https://scossarestaurant.com/contact
+22:51:20   Crawling subpage (2): https://scossarestaurant.com/event-space
+22:51:25   Crawling subpage (3): https://scossarestaurant.com/banquet-menu
+22:51:29   Crawling subpage (4): https://scossarestaurant.com/about
+22:51:33   Crawling subpage (5): https://scossarestaurant.com/menus
+22:51:37   Crawling subpage (6): https://scossarestaurant.com/lunch-brunch-menu
+22:51:42   Crawling subpage (7): https://scossarestaurant.com/dinner-menu
+22:51:46   Crawling subpage (8): https://scossarestaurant.com/dessert-menu
+22:51:50   Crawling subpage (9): https://scossarestaurant.com/wine-menu
+22:51:55   Crawling subpage (10): https://scossarestaurant.com/wine-dinner
+22:51:59   Crawling subpage (11): https://scossarestaurant.com/gift-certificates
+22:52:04   [CONTACT] Probing https://scossarestaurant.com/contact
+22:52:18   ✓ Contact form URL saved
+22:52:18 
+22:52:18 ========== STEP 2: Social Media Scrape ==========
+22:52:22   FB: https://www.facebook.com/scossarestaurant | IG: https://www.instagram.com/scossa_restaurant/
+22:52:22   Opening FB: https://www.facebook.com/scossarestaurant
+22:52:27   FB emails found: info@scossarestaurant.com
+22:52:27   Opening FB: https://www.facebook.com/scossarestaurant/about
+22:52:32   Opening FB: https://www.facebook.com/scossarestaurant/directory_contact_info
+22:52:37   FB emails found: info@scossarestaurant.com
+22:52:37   Opening IG: https://www.instagram.com/scossa_restaurant/
+22:52:42   [IG] No email on page — trying Google snippet...
+22:52:47   [IG SNIPPET] No email in Google snippet
+22:52:48   info@scossarestaurant.com → do_not_mail
+22:52:49   [APOLLO] Credits used this run: 0 / 300
+22:52:49 
+22:52:49 ========== STEP 3: Apollo API ==========
+22:52:49   Searching Apollo for company: Scossa Restaurant & Lounge
+22:52:52   Found: Caffe Scossa (domain: scossarestaurant.com, org_id: 674d7a59a1eb080001d50ef6)
+22:52:52   Searching for people at Caffe Scossa (org_id: 674d7a59a1eb080001d50ef6)...
+22:52:52   Found 0 people total
+22:52:52   No people in Apollo for this company.
+22:52:52 
+22:52:52 ========== STEP 4: LinkedIn + Apollo API ==========
+22:52:52   Using domain: scossarestaurant.com
+22:52:54   LinkedIn page 1...
+22:53:03   Found 10 results
+22:53:03   Found: Amanda Wilkinson
+22:53:03   Found: Molly Wilson
+22:53:03   Found: Hannah Hulseman
+22:53:03   Found: Grant Friedman
+22:53:08   LinkedIn page 2...
+22:53:16   Found 10 results
+22:53:16   Found: Tim Bol, CRME
+22:53:16   Found: Ludo de Jong
+22:53:16   Found: Johan Scott Valentine
+22:53:16   Found: Aleksandra S Efimova
+22:53:16   Found: Sebastian Rojas Lacle
+22:53:21   LinkedIn page 3...
+22:53:28   Found 2 results
+22:53:28   No new venue employees on this page.
+22:53:28 
+22:53:28   LinkedIn found 9 new people. Enriching via Apollo API...
+22:53:28   LinkedIn + Apollo API done. Credits used: 0
+22:53:30   Setting status → pipelined
+22:53:33 
+22:53:33 ============================================================
+22:53:33  DONE: Scossa Restaurant & Lounge | 2 min | 22:53:33
+22:53:33 ============================================================
+22:54:03 
+22:54:03 ########## SMART PICK #2 (score 79): Hunters' Tavern at Tidewater Inn (MD-REST-465) ##########
+22:54:12 
+22:54:12 ============================================================
+22:54:12  PIPELINE: Hunters' Tavern at Tidewater Inn (MD-REST-465)
+22:54:12  Website: https://tidewaterinn.com/hunters-tavern
+22:54:12  Started: 2026-05-07 22:54:12
+22:54:12 ============================================================
+22:54:12   [ZB] Credits remaining: 3852
+22:54:16   Known emails: 0
+22:54:16   Known names: 0
+22:54:16 
+22:54:16 ========== STEP 1: Website Scrape ==========
+22:54:16   URL: https://tidewaterinn.com/hunters-tavern
+22:54:16   Opening in Chrome: https://tidewaterinn.com/hunters-tavern
+22:54:22   Validating contact form URL: https://tidewaterinn.com/contact/employment-opportunities
+22:54:27   ✗ No submittable form found — clearing contact_form
+22:54:27   Emails: 0 | FB: https://www.facebook.com/TheTidewaterInn | IG: https://www.instagram.com/thetidewaterinn/ | Contact Form: none
+22:54:27   [LOCATION] Checking for location-specific page (city: Easton)...
+22:54:29   [LOCATION] No location-specific page found
+22:54:29   Crawling subpage (1): https://tidewaterinn.com/contact
+22:54:33   Crawling subpage (2): https://tidewaterinn.com/contact/employment-opportunities
+22:54:38   Crawling subpage (3): https://tidewaterinn.com/weddings
+22:54:42   Found on subpage: mbennett@tidewaterinn.com
+22:54:42   Crawling subpage (4): https://tidewaterinn.com/weddings/ceremony-reception-venues
+22:54:47   Found on subpage: mbennett@tidewaterinn.com
+22:54:47   Crawling subpage (5): https://tidewaterinn.com/weddings/tidewater-house
+22:54:51   Crawling subpage (6): https://tidewaterinn.com/weddings/photo-gallery
+22:54:56   Crawling subpage (7): https://tidewaterinn.com/weddings/rehearsal-dinners
+22:55:00   Crawling subpage (8): https://tidewaterinn.com/weddings/request-information
+22:55:04   Crawling subpage (9): https://tidewaterinn.com/hunters-tavern/happenings-special-events
+22:55:09   Crawling subpage (10): https://tidewaterinn.com/meetings-events
+22:55:13   Found on subpage: lcatterton@tidewaterinn.com
+22:55:13   Crawling subpage (11): https://tidewaterinn.com/meetings-events/our-venues
+22:55:18   Found on subpage: lcatterton@tidewaterinn.com
+22:55:18   Crawling subpage (12): https://tidewaterinn.com/meetings-events/request-information
+22:55:22   Crawling subpage (13): https://tidewaterinn.com/terrasse-spa/specials-events
+22:55:27   Found on subpage: spainfo@tidewaterinn.com
+22:55:27   Crawling subpage (14): https://tidewaterinn.com
+22:55:31   Crawling subpage (15): https://tidewaterinn.com/hotel
+22:55:36   Crawling subpage (16): https://tidewaterinn.com/hotel/accommodations
+22:55:40   Crawling subpage (17): https://tidewaterinn.com/hotel/tidewater-house
+22:55:44   Found on subpage: lcatterton@tidewaterinn.com
+22:55:44   Crawling subpage (18): https://tidewaterinn.com/hotel/special-offers-packages
+22:55:49   Crawling subpage (19): https://tidewaterinn.com/hotel/history
+22:55:53   Crawling subpage (20): https://tidewaterinn.com/hunters-tavern/menus
+22:55:58   Crawling subpage (21): https://tidewaterinn.com/hunters-tavern/decanter-room
+22:56:02   Found on subpage: cmorgan@tidewaterinn.com
+22:56:02   Crawling subpage (22): https://tidewaterinn.com/terrasse-spa
+22:56:06   Found on subpage: spainfo@tidewaterinn.com
+22:56:07   Crawling subpage (23): https://tidewaterinn.com/terrasse-spa/spa-services
+22:56:11   Found on subpage: spainfo@tidewaterinn.com
+22:56:11   Crawling subpage (24): https://tidewaterinn.com/terrasse-spa/membership-packages
+22:56:15   Crawling subpage (25): https://tidewaterinn.com/inn-town-happenings
+22:56:20   Found on subpage: mbennett@tidewaterinn.com
+22:56:20   Crawling subpage (26): https://tidewaterinn.com/newsletter-sign-up
+22:56:25   [CONTACT] Probing https://tidewaterinn.com/contact
+22:56:36   cmorgan@tidewaterinn.com → valid
+22:56:38   ✓ Added: cmorgan@tidewaterinn.com <cmorgan@tidewaterinn.com>
+22:56:40   lcatterton@tidewaterinn.com → valid
+22:56:43   ✓ Added: lcatterton@tidewaterinn.com <lcatterton@tidewaterinn.com>
+22:56:45   mbennett@tidewaterinn.com → valid
+22:56:47   ✓ Added: mbennett@tidewaterinn.com <mbennett@tidewaterinn.com>
+22:56:49   spainfo@tidewaterinn.com → valid
+22:56:51   ✓ Added: spainfo@tidewaterinn.com <spainfo@tidewaterinn.com>
+22:56:52 
+22:56:52 ========== STEP 2: Social Media Scrape ==========
+22:56:55   FB: https://www.facebook.com/TheTidewaterInn | IG: https://www.instagram.com/thetidewaterinn/
+22:56:55   Opening FB: https://www.facebook.com/TheTidewaterInn
+22:57:00   FB emails found: mbennett@tidewaterinn.com
+22:57:00   Opening FB: https://www.facebook.com/TheTidewaterInn/about
+22:57:06   Opening FB: https://www.facebook.com/TheTidewaterInn/directory_contact_info
+22:57:11   FB emails found: mbennett@tidewaterinn.com
+22:57:11   Opening IG: https://www.instagram.com/thetidewaterinn/
+22:57:16   [IG] No email on page — trying Google snippet...
+22:57:20   [IG SNIPPET] No email in Google snippet
+22:57:20   mbennett@tidewaterinn.com → valid
+22:57:22   ✓ Added: mbennett@tidewaterinn.com <mbennett@tidewaterinn.com>
+22:57:23   [APOLLO] Credits used this run: 0 / 300
+22:57:23 
+22:57:23 ========== STEP 3: Apollo API ==========
+22:57:23   Searching Apollo for company: Hunters' Tavern at Tidewater Inn
+22:57:25   Found: The Tidewater Inn (domain: tidewaterinn.com, org_id: 54a1187969702d3ec0794900)
+22:57:25   Searching for people at The Tidewater Inn (org_id: 54a1187969702d3ec0794900)...
+22:57:26   Found 13 people total
+22:57:26   Skipped 6 people with no email (red ? on Apollo)
+22:57:26   7 people to enrich (1 credit each)
+22:57:27   >>> Lauren Catterton (Director of Sales): lcatterton@tidewaterinn.com [verified]
+22:57:27   lcatterton@tidewaterinn.com → valid
+22:57:29   ✓ Added: Lauren Catterton <lcatterton@tidewaterinn.com>
+22:57:30   >>> Don Reedy (Director of Operations): dreedy@tidewaterinn.com [verified]
+22:57:30   dreedy@tidewaterinn.com → valid
+22:57:33   ✓ Added: Don Reedy <dreedy@tidewaterinn.com>
+22:57:34   >>> Stacey Hamilton (Controller): shamilton@tidewaterinn.com [verified]
+22:57:34   shamilton@tidewaterinn.com → valid
+22:57:37   ✓ Added: Stacey Hamilton <shamilton@tidewaterinn.com>
+22:57:39   >>> Brandy Milligan (Sales Administrative Assistant): bmilligan@tidewaterinn.com [verified]
+22:57:39   bmilligan@tidewaterinn.com → valid
+22:57:42   ✓ Added: Brandy Milligan <bmilligan@tidewaterinn.com>
+22:57:43   >>> Michelle Peed (Corporate Sales Manager): mpeed@tidewaterinn.com [verified]
+22:57:43   mpeed@tidewaterinn.com → valid
+22:57:46   ✓ Added: Michelle Peed <mpeed@tidewaterinn.com>
+22:57:47   >>> Anita Cage (Front Desk Associate): acage@tidewaterinn.com [verified]
+22:57:47   acage@tidewaterinn.com → invalid
+22:57:49   ⚠ Added (invalid): Anita Cage <acage@tidewaterinn.com>
+22:57:50   >>> Winfield Miller (Night Auditor): wmiller@tidewaterinn.com [verified]
+22:57:51   wmiller@tidewaterinn.com → invalid
+22:57:53   ⚠ Added (invalid): Winfield Miller <wmiller@tidewaterinn.com>
+22:57:54   Apollo API done: 7 credits used this run
+22:57:54 
+22:57:54 ========== STEP 4: LinkedIn + Apollo API ==========
+22:57:54   Using domain: tidewaterinn.com
+22:57:55   LinkedIn page 1...
+22:58:01   Found 10 results
+22:58:02   Found: Cindy schneider
+22:58:02   Found: Lauren Catterton
+22:58:02   Found: Mel Blattner
+22:58:02   Found: Lamar Barton Pandeloglou
+22:58:02   Found: Sara Rosen
+22:58:02   Found: Don Reedy
+22:58:05   LinkedIn page 2...
+22:58:13   Found 4 results
+22:58:13   Found: Julia Winter
+22:58:16   LinkedIn page 3...
+22:58:33   No results on page 3 — stopping.
+22:58:33 
+22:58:33   LinkedIn found 7 new people. Enriching via Apollo API...
+22:58:33   LinkedIn + Apollo API done. Credits used: 7
+22:58:35   Setting status → pipelined
+22:58:37 
+22:58:37 ============================================================
+22:58:37  DONE: Hunters' Tavern at Tidewater Inn | 4 min | 22:58:37
+22:58:37 ============================================================
+22:59:07 
+22:59:07 ########## SMART PICK #3 (score 79): Out of the Fire (MD-REST-539) ##########
+22:59:13   [LOOKUP] No website — Googling 'Out of the Fire'...
+22:59:16   [LOOKUP] Found: https://www.outofthefire.com
+22:59:20 
+22:59:20 ============================================================
+22:59:20  PIPELINE: Out of the Fire (MD-REST-539)
+22:59:20  Website: https://www.outofthefire.com
+22:59:20  Started: 2026-05-07 22:59:20
+22:59:20 ============================================================
+22:59:21   [ZB] Credits remaining: 3842
+22:59:23   Known emails: 0
+22:59:23   Known names: 0
+22:59:23 
+22:59:23 ========== STEP 1: Website Scrape ==========
+22:59:23   URL: https://www.outofthefire.com
+22:59:23   Opening in Chrome: https://www.outofthefire.com
+22:59:30   Validating contact form URL: https://www.outofthefire.com/contact
+22:59:34   Found on contact page: amy@outofthefire.com, market@outofthefire.com
+22:59:34   ✓ Real contact form confirmed
+22:59:34   Emails: 0 | FB: https://www.facebook.com/OOTF.Restaurant | IG: https://www.instagram.com/out__of__the__fire/ | Contact Form: https://www.outofthefire.com/contact
+22:59:34   [LOCATION] Checking for location-specific page (city: Easton)...
+22:59:35   [LOCATION] No location-specific page found
+22:59:35   Crawling subpage (1): https://www.outofthefire.com/contact
+22:59:40   Found on subpage: amy@outofthefire.com, market@outofthefire.com
+22:59:40   Crawling subpage (2): https://www.outofthefire.com/reservation-redirect
+22:59:44   Crawling subpage (3): https://www.outofthefire.com/menus-1
+22:59:48   Crawling subpage (4): https://www.outofthefire.com/market
+22:59:53   Crawling subpage (5): https://www.outofthefire.com/product-page/gift-certificate
+22:59:57   Crawling subpage (6): https://www.outofthefire.com/parking
+23:00:01   Crawling subpage (7): https://www.outofthefire.com/blog
+23:00:06   Crawling subpage (8): https://www.outofthefire.com/our-story
+23:00:10   Crawling subpage (9): https://www.outofthefire.com/our-partners
+23:00:14   Crawling subpage (10): https://www.outofthefire.com/jobs
+23:00:19   Found on subpage: amy@outofthefire.com
+23:00:20   [CONTACT] Probing https://www.outofthefire.com/contact
+23:00:25   [CONTACT] Found emails on https://www.outofthefire.com/contact
+23:00:32   ✓ Contact form URL saved
+23:00:32   amy@outofthefire.com → valid
+23:00:34   ✓ Added: amy@outofthefire.com <amy@outofthefire.com>
+23:00:36   market@outofthefire.com → catch-all
+23:01:30   ⚠ Added (catch-all): market@outofthefire.com <market@outofthefire.com>
+23:01:31 
+23:01:31 ========== STEP 2: Social Media Scrape ==========
+23:01:33   FB: https://www.facebook.com/OOTF.Restaurant | IG: https://www.instagram.com/out__of__the__fire/
+23:01:33   Opening FB: https://www.facebook.com/OOTF.Restaurant
+23:01:39   FB emails found: amy@outofthefire.com
+23:01:39   Opening FB: https://www.facebook.com/OOTF.Restaurant/about
+23:01:44   Opening FB: https://www.facebook.com/OOTF.Restaurant/directory_contact_info
+23:01:49   FB emails found: amy@outofthefire.com
+23:01:49   Opening IG: https://www.instagram.com/out__of__the__fire/
+23:01:54   [IG] No email on page — trying Google snippet...
+23:01:59   [IG SNIPPET] No email in Google snippet
+23:01:59   amy@outofthefire.com → valid
+23:02:02   ✓ Added: amy@outofthefire.com <amy@outofthefire.com>
+23:02:03   [APOLLO] Credits used this run: 7 / 300
+23:02:03 
+23:02:03 ========== STEP 3: Apollo API ==========
+23:02:03   Searching Apollo for company: Out of the Fire
+23:02:05   Found: Out Of The Fire Inc (domain: outofthefire.com, org_id: 59bba1a5a6da98ca2ebae873)
+23:02:05   Searching for people at Out Of The Fire Inc (org_id: 59bba1a5a6da98ca2ebae873)...
+23:02:06   Found 0 people total
+23:02:06   No people in Apollo for this company.
+23:02:06 
+23:02:06 ========== STEP 4: LinkedIn + Apollo API ==========
+23:02:06   Using domain: outofthefire.com
+23:02:08   LinkedIn page 1...
+23:02:15   Found 10 results
+23:02:15   Found: Andrew Hewitson MIFSM MIFPO MIIRSM AIFireE NAHFO NFRAR Adv. Level
+23:02:15   Found: Al Alcala, CFEI, CVFI
+23:02:19   LinkedIn page 2...
+23:02:24   Found 10 results
+23:02:24   Found: Kimon Spyrou
+23:02:25   Found: Ian Dickie AIFireE
+23:02:25   Found: James Daley
+23:02:25   Found: Ryan Verbenkov
+23:02:25   Found: Ian Tonner
+23:02:25   Found: James Soley MIFSM DipFD Tier 3 NAFRAR
+23:02:30   LinkedIn page 3...
+23:02:37   Found 10 results
+23:02:37   Found: Geert Mertens
+23:02:37   Found: Dermot Gallagher
+23:02:37   Found: Kev Readhead
+23:02:37   Found: Ian Kirkup
+23:02:37 
+23:02:37   LinkedIn found 12 new people. Enriching via Apollo API...
+23:02:37   LinkedIn + Apollo API done. Credits used: 7
+23:02:39   Setting status → pipelined
+23:02:42 
+23:02:42 ============================================================
+23:02:42  DONE: Out of the Fire | 3 min | 23:02:42
+23:02:42 ============================================================
+23:03:12 
+23:03:12 ########## SMART PICK #4 (score 79): P. Bordier (MD-REST-548) ##########
+23:03:17   [LOOKUP] No website — Googling 'P. Bordier'...
+23:03:21   [LOOKUP] Found: https://pbordier.com
+23:03:27 
+23:03:27 ============================================================
+23:03:27  PIPELINE: P. Bordier (MD-REST-548)
+23:03:27  Website: https://pbordier.com
+23:03:27  Started: 2026-05-07 23:03:27
+23:03:27 ============================================================
+23:03:27   [ZB] Credits remaining: 3840
+23:03:30   Known emails: 0
+23:03:30   Known names: 0
+23:03:30 
+23:03:30 ========== STEP 1: Website Scrape ==========
+23:03:30   URL: https://pbordier.com
+23:03:30   Opening in Chrome: https://pbordier.com
+23:03:37   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:03:49   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:03:49   [LOCATION] Checking for location-specific page (city: Easton)...
+23:03:50   [LOCATION] No location-specific page found
+23:03:55 
+23:03:55 ========== STEP 1B: Instagram Google Search ==========
+23:03:55   No Instagram found on website — Googling...
+23:03:59   [IG SEARCH] Found: https://www.instagram.com/pbordiereaston/
+23:04:01   ✓ Instagram URL saved
+23:04:04 
+23:04:04 ========== STEP 1C: Facebook Google Search ==========
+23:04:04   No Facebook found on website — Googling...
+23:04:08   [FB SEARCH] Found: https://www.facebook.com/100092213757516/
+23:04:10   ✓ Facebook URL saved
+23:04:11 
+23:04:11 ========== STEP 2: Social Media Scrape ==========
+23:04:13   FB: https://www.facebook.com/100092213757516/ | IG: https://www.instagram.com/pbordiereaston/
+23:04:13   Opening FB: https://www.facebook.com/100092213757516
+23:04:19   Opening FB: https://www.facebook.com/100092213757516/about
+23:04:24   Opening FB: https://www.facebook.com/100092213757516/directory_contact_info
+23:04:29   [FB] No email on page — trying Google snippet...
+23:04:33   [FB SNIPPET] No email in Google snippet
+23:04:33   Opening IG: https://www.instagram.com/pbordiereaston/
+23:04:39   [IG] No email on page — trying Google snippet...
+23:04:43   [IG SNIPPET] No email in Google snippet
+23:04:43   [APOLLO] Credits used this run: 7 / 300
+23:04:43 
+23:04:43 ========== STEP 3: Apollo API ==========
+23:04:43   Searching Apollo for company: P. Bordier
+23:04:45   [WARN] No company found in Apollo for 'P. Bordier' (tried name + domain)
+23:04:45   Using website domain for enrichment: pbordier.com
+23:04:45 
+23:04:45 ========== STEP 4: LinkedIn + Apollo API ==========
+23:04:45   Using domain: pbordier.com
+23:04:47   LinkedIn page 1...
+23:04:53   Found 10 results
+23:04:54   Found: Jean-Pierre BORDIER
+23:04:54   Found: Nicolas P. CFA CAIA
+23:04:57   LinkedIn page 2...
+23:05:05   Found 9 results
+23:05:05   No new venue employees on this page.
+23:05:09   LinkedIn page 3...
+23:05:28   No results on page 3 — stopping.
+23:05:28 
+23:05:28   LinkedIn found 2 new people. Enriching via Apollo API...
+23:05:28   LinkedIn + Apollo API done. Credits used: 7
+23:05:35   Setting status → pipelined
+23:05:38 
+23:05:38 ============================================================
+23:05:38  DONE: P. Bordier | 2 min | 23:05:38
+23:05:38 ============================================================
+23:06:08 
+23:06:08 ########## SMART PICK #5 (score 79): Purser's Pub (MD-REST-574) ##########
+23:06:17   [LOOKUP] No website — Googling 'Purser's Pub'...
+23:06:21   [WARN] Website domain mismatch — 'https://innatperrycabin.com' doesn't match venue 'Purser's Pub'. Discarding.
+23:06:24 
+23:06:24 ============================================================
+23:06:24  PIPELINE: Purser's Pub (MD-REST-574)
+23:06:24  Website: 
+23:06:25  Started: 2026-05-07 23:06:24
+23:06:25 ============================================================
+23:06:25   [ZB] Credits remaining: 3840
+23:06:29   Known emails: 0
+23:06:29   Known names: 0
+23:06:29 
+23:06:29 ========== STEP 1: Website Scrape ==========
+23:06:29   [SKIP] No website URL
+23:06:32 
+23:06:32 ========== STEP 1B: Instagram Google Search ==========
+23:06:32   No Instagram found on website — Googling...
+23:06:37   [IG SEARCH] Found: https://www.instagram.com/innatperrycabin/
+23:06:41   ✓ Instagram URL saved
+23:06:45 
+23:06:45 ========== STEP 1C: Facebook Google Search ==========
+23:06:45   No Facebook found on website — Googling...
+23:06:49   [FB SEARCH] Found: https://www.facebook.com/InnatPerryCabin/
+23:06:51   ✓ Facebook URL saved
+23:06:51 
+23:06:51 ========== STEP 2: Social Media Scrape ==========
+23:06:54   FB: https://www.facebook.com/InnatPerryCabin/ | IG: https://www.instagram.com/innatperrycabin/
+23:06:54   Opening FB: https://www.facebook.com/InnatPerryCabin
+23:07:00   FB emails found: marketing@perrycabinresorts.com
+23:07:00   Opening FB: https://www.facebook.com/InnatPerryCabin/about
+23:07:05   Opening FB: https://www.facebook.com/InnatPerryCabin/directory_contact_info
+23:07:10   Opening IG: https://www.instagram.com/innatperrycabin/
+23:07:15   [IG] No email on page — trying Google snippet...
+23:07:20   [IG SNIPPET] No email in Google snippet
+23:07:20   marketing@perrycabinresorts.com → do_not_mail
+23:07:21   [APOLLO] Credits used this run: 7 / 300
+23:07:21 
+23:07:21 ========== STEP 3: Apollo API ==========
+23:07:21   Searching Apollo for company: Purser's Pub
+23:07:27   [WARN] No company found in Apollo for 'Purser's Pub' (tried name + domain)
+23:07:27   Using website domain for enrichment: 
+23:07:27 
+23:07:27 ========== STEP 4: LinkedIn + Apollo API ==========
+23:07:31   [WARN] No domain found for 'Purser's Pub' — LinkedIn names won't be enrichable
+23:07:34   LinkedIn page 1...
+23:07:42   Found 10 results
+23:07:42   Found: Sara Romera (Vega Mare)
+23:07:42   Found: Russell Clamp
+23:07:42   Found: Elizabeth Higginbottom Chartered FCIPD
+23:07:42   Found: Ana Alexandrescu
+23:07:42   Found: Ole Unger Weierholt
+23:07:42   Found: Michael Ceballos Marin
+23:07:42   Found: Michelle Mestier
+23:07:45   LinkedIn page 2...
+23:07:53   Found 10 results
+23:07:53   Found: Kyle McLaughlin
+23:07:53   Found: Paul Devine
+23:07:53   Found: Kate Brett-Castle
+23:07:53   Found: Anne Boulord
+23:07:53   Found: Zach Garcia
+23:07:53   Found: Jason Gelineau
+23:07:53   Found: Anna Vlaseva
+23:07:58   LinkedIn page 3...
+23:08:05   Found 10 results
+23:08:05   Found: Philippe Warzée
+23:08:05   Found: Amy Applegarth
+23:08:05   Found: Alicia Alizzi
+23:08:05   Found: Mônica Assalim
+23:08:05   Found: Melanie Vicars
+23:08:05 
+23:08:05   LinkedIn found 19 new people. Enriching via Apollo API...
+23:08:05   [SKIP] No domain — adding contacts without emails
+23:09:01   Setting status → pipelined
+23:09:04 
+23:09:04 ============================================================
+23:09:04  DONE: Purser's Pub | 2 min | 23:09:04
+23:09:04 ============================================================
+23:09:34 
+23:09:34 ########## SMART PICK #6 (score 79): Bistro St Michaels (MD-REST-595) ##########
+23:09:43 
+23:09:43 ============================================================
+23:09:43  PIPELINE: Bistro St Michaels (MD-REST-595)
+23:09:43  Website: stmichaelsmd.org
+23:09:43  Started: 2026-05-07 23:09:43
+23:09:43 ============================================================
+23:09:43   [ZB] Credits remaining: 3839
+23:09:47   Known emails: 0
+23:09:47   Known names: 0
+23:09:47 
+23:09:47 ========== STEP 1: Website Scrape ==========
+23:09:47   URL: stmichaelsmd.org
+23:09:47   Opening in Chrome: stmichaelsmd.org
+23:09:53   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:10:06   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:10:06   [LOCATION] Checking for location-specific page (city: St Michaels)...
+23:10:06   [LOCATION] No location-specific page found
+23:10:06   Crawling subpage (1): https://www.linkedin.com/feed
+23:10:10   Crawling subpage (2): https://www.linkedin.com/mynetwork
+23:10:15   Crawling subpage (3): https://www.linkedin.com/jobs
+23:10:19   Crawling subpage (4): https://www.linkedin.com/messaging
+23:10:23   Found on subpage: alexbarnettclassical@gmail.com, karim.abass@languagebridgesolutions.com, kimberly@linomusicsociety.org, noura.mamdouh@languagebridgesolutions.com, tarek.adel@languagebridgesolutions.com
+23:10:23   Crawling subpage (5): https://www.linkedin.com/notifications
+23:10:28   Crawling subpage (6): https://www.linkedin.com/accessibility
+23:10:32   Crawling subpage (7): https://www.linkedin.com/talent/post-a-job
+23:10:36   Crawling subpage (8): https://www.linkedin.com/legal/professional-community-policies
+23:10:40   Crawling subpage (9): https://www.linkedin.com/help/linkedin/answer/62931
+23:10:46   alexbarnettclassical@gmail.com → valid
+23:10:49   ✓ Added: alexbarnettclassical@gmail.com <alexbarnettclassical@gmail.com>
+23:10:52   karim.abass@languagebridgesolutions.com → valid
+23:10:56   ✓ Added: karim.abass@languagebridgesolutions.com <karim.abass@languagebridgesolutions.com>
+23:10:57   kimberly@linomusicsociety.org → invalid
+23:11:01   ⚠ Added (invalid): kimberly@linomusicsociety.org <kimberly@linomusicsociety.org>
+23:11:03   noura.mamdouh@languagebridgesolutions.com → valid
+23:11:06   ✓ Added: noura.mamdouh@languagebridgesolutions.com <noura.mamdouh@languagebridgesolutions.com>
+23:11:08   tarek.adel@languagebridgesolutions.com → valid
+23:11:11   ✓ Added: tarek.adel@languagebridgesolutions.com <tarek.adel@languagebridgesolutions.com>
+23:11:15 
+23:11:15 ========== STEP 1B: Instagram Google Search ==========
+23:11:15   No Instagram found on website — Googling...
+23:11:19   [IG SEARCH] Found: https://www.instagram.com/bistrostmichaels/
+23:11:21   ✓ Instagram URL saved
+23:11:25 
+23:11:25 ========== STEP 1C: Facebook Google Search ==========
+23:11:25   No Facebook found on website — Googling...
+23:11:30   [FB SEARCH] Found: https://www.facebook.com/BistroStMichaels/
+23:11:34   ✓ Facebook URL saved
+23:11:34 
+23:11:34 ========== STEP 2: Social Media Scrape ==========
+23:11:37   FB: https://www.facebook.com/BistroStMichaels/ | IG: https://www.instagram.com/bistrostmichaels/
+23:11:37   Opening FB: https://www.facebook.com/BistroStMichaels
+23:11:42   Opening FB: https://www.facebook.com/BistroStMichaels/about
+23:11:48   Opening FB: https://www.facebook.com/BistroStMichaels/directory_contact_info
+23:11:53   FB emails found: inquiries@bistrostmichaels.com
+23:11:53   Opening IG: https://www.instagram.com/bistrostmichaels/
+23:11:58   [IG] No email on page — trying Google snippet...
+23:12:02   [IG SNIPPET] Found: inquiries@bistrostmichaels.com.read
+23:12:02   inquiries@bistrostmichaels.com → do_not_mail
+23:12:04   inquiries@bistrostmichaels.com.read → invalid
+23:12:07   ⚠ Added (invalid): inquiries@bistrostmichaels.com.read <inquiries@bistrostmichaels.com.read>
+23:12:08   [APOLLO] Credits used this run: 7 / 300
+23:12:08 
+23:12:08 ========== STEP 3: Apollo API ==========
+23:12:08   Searching Apollo for company: Bistro St Michaels
+23:12:13   Found: Bistro St Michaels (domain: bistrostmichaels.com, org_id: 55f6f0faf3e5bb1d0201c4d6)
+23:12:13   Searching for people at Bistro St Michaels (org_id: 55f6f0faf3e5bb1d0201c4d6)...
+23:12:13   Found 1 people total
+23:12:13   Skipped 1 people with no email (red ? on Apollo)
+23:12:13   No new people to enrich.
+23:12:13 
+23:12:13 ========== STEP 4: LinkedIn + Apollo API ==========
+23:12:13   Using domain: bistrostmichaels.com
+23:12:16   LinkedIn page 1...
+23:12:24   Found 3 results
+23:12:24   Found: Tobias Settle
+23:12:24   Found: Matt Costantino
+23:12:29   LinkedIn page 2...
+23:12:36   Found 5 results
+23:12:36   Found: Michael Esposito
+23:12:36   Found: Sarah Turner
+23:12:36   Found: Jessie Patrick
+23:12:39   LinkedIn page 3...
+23:12:47   Found 5 results
+23:12:47   Found: Rumaiza Ali
+23:12:47 
+23:12:47   LinkedIn found 6 new people. Enriching via Apollo API...
+23:12:48   LinkedIn + Apollo API done. Credits used: 7
+23:12:50   Setting status → pipelined
+23:12:52 
+23:12:52 ============================================================
+23:12:52  DONE: Bistro St Michaels | 3 min | 23:12:52
+23:12:52 ============================================================
+23:13:22 
+23:13:22 ########## SMART PICK #7 (score 79): Financier Chesapeake at Robert Morris Inn (MD-REST-610) ##########
+23:13:32 
+23:13:32 ============================================================
+23:13:32  PIPELINE: Financier Chesapeake at Robert Morris Inn (MD-REST-610)
+23:13:32  Website: https://www.robertmorrisinn.com
+23:13:32  Started: 2026-05-07 23:13:32
+23:13:32 ============================================================
+23:13:32   [ZB] Credits remaining: 3832
+23:13:35   Known emails: 0
+23:13:35   Known names: 0
+23:13:35 
+23:13:35 ========== STEP 1: Website Scrape ==========
+23:13:35   URL: https://www.robertmorrisinn.com
+23:13:35   Opening in Chrome: https://www.robertmorrisinn.com
+23:13:42   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:13:54   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:13:54   [LOCATION] Checking for location-specific page (city: Oxford)...
+23:13:55   [LOCATION] No location-specific page found
+23:14:01 
+23:14:01 ========== STEP 1B: Instagram Google Search ==========
+23:14:01   No Instagram found on website — Googling...
+23:14:05   [IG SEARCH] No Instagram found via Google
+23:14:08 
+23:14:08 ========== STEP 1C: Facebook Google Search ==========
+23:14:08   No Facebook found on website — Googling...
+23:14:12   [FB SEARCH] No Facebook found via Google
+23:14:12 
+23:14:12 ========== STEP 2: Social Media Scrape ==========
+23:14:16   FB: none | IG: none
+23:14:16   [APOLLO] Credits used this run: 7 / 300
+23:14:16 
+23:14:16 ========== STEP 3: Apollo API ==========
+23:14:16   Searching Apollo for company: Financier Chesapeake at Robert Morris Inn
+23:14:18   Found: Homestead Real Estate LLC MD (domain: robertmorrisinn.com, org_id: 54a1206469702d88c48b2602)
+23:14:18   Searching for people at Homestead Real Estate LLC MD (org_id: 54a1206469702d88c48b2602)...
+23:14:19   Found 0 people total
+23:14:19   No people in Apollo for this company.
+23:14:19 
+23:14:19 ========== STEP 4: LinkedIn + Apollo API ==========
+23:14:19   Using domain: robertmorrisinn.com
+23:14:22   LinkedIn page 1...
+23:14:39   No results on page 1 — stopping.
+23:14:39   No new people found on LinkedIn.
+23:14:42   Setting status → pipelined
+23:14:45 
+23:14:45 ============================================================
+23:14:45  DONE: Financier Chesapeake at Robert Morris Inn | 1 min | 23:14:45
+23:14:45 ============================================================
+23:15:15 
+23:15:15 ########## SMART PICK #8 (score 78): Two Twisted Posts Winery & Tavern (XX-WINE-047) ##########
+23:15:21   [LOOKUP] No website — Googling 'Two Twisted Posts Winery & Tavern'...
+23:15:25   [LOOKUP] Found: https://www.twotwistedposts.com
+23:15:31 
+23:15:31 ============================================================
+23:15:31  PIPELINE: Two Twisted Posts Winery & Tavern (XX-WINE-047)
+23:15:31  Website: https://www.twotwistedposts.com
+23:15:31  Started: 2026-05-07 23:15:31
+23:15:31 ============================================================
+23:15:31   [ZB] Credits remaining: 3832
+23:15:34   Known emails: 0
+23:15:34   Known names: 0
+23:15:34 
+23:15:34 ========== STEP 1: Website Scrape ==========
+23:15:34   URL: https://www.twotwistedposts.com
+23:15:34   Opening in Chrome: https://www.twotwistedposts.com
+23:15:40   Validating contact form URL: https://www.twotwistedposts.com/contact
+23:15:45   Found on contact page: contact@twotwistedposts.com, casey@twotwistedposts.com, info@twotwistedposts.com, lynda@twotwistedposts.com
+23:15:45   ✓ Real contact form confirmed
+23:15:45   Emails: 3 | FB: https://www.facebook.com/twotwistedposts | IG: https://www.instagram.com/ttpwinery | Contact Form: https://www.twotwistedposts.com/contact
+23:15:45   Crawling subpage (1): https://www.twotwistedposts.com/contact
+23:15:50   Found on subpage: casey@twotwistedposts.com, contact@twotwistedposts.com, info@twotwistedposts.com, lynda@twotwistedposts.com
+23:15:50   Crawling subpage (2): https://www.twotwistedposts.com/staff-crew
+23:15:54   Found on subpage: contact@twotwistedposts.com, info@twotwistedposts.com, lynda@twotwistedposts.com
+23:15:54   Crawling subpage (3): https://www.twotwistedposts.com/events-1
+23:15:58   Found on subpage: contact@twotwistedposts.com, info@twotwistedposts.com, lynda@twotwistedposts.com
+23:15:58   Crawling subpage (4): https://www.twotwistedposts.com/events-1/mothers-day-brunch
+23:16:03   Found on subpage: contact@twotwistedposts.com, info@twotwistedposts.com, lynda@twotwistedposts.com
+23:16:03   Crawling subpage (5): https://www.twotwistedposts.com/events-1/https/bishopseventscom/event/2024-national-wine-day-5k-10k-2495d-hawx8
+23:16:07   Same emails 3 pages in a row — stopping subpage crawl
+23:16:07   [CONTACT] Probing https://www.twotwistedposts.com/contact
+23:16:13   [CONTACT] Found emails on https://www.twotwistedposts.com/contact
+23:16:21   ✓ Contact form URL saved
+23:16:21   casey@twotwistedposts.com → valid
+23:16:25   ✓ Added: casey@twotwistedposts.com <casey@twotwistedposts.com>
+23:16:27   contact@twotwistedposts.com → do_not_mail
+23:16:28   info@twotwistedposts.com → do_not_mail
+23:16:30   lynda@twotwistedposts.com → valid
+23:16:33   ✓ Added: lynda@twotwistedposts.com <lynda@twotwistedposts.com>
+23:16:34 
+23:16:34 ========== STEP 2: Social Media Scrape ==========
+23:16:37   FB: https://www.facebook.com/twotwistedposts | IG: https://www.instagram.com/ttpwinery
+23:16:37   Opening FB: https://www.facebook.com/twotwistedposts
+23:16:43   Opening FB: https://www.facebook.com/twotwistedposts/about
+23:16:48   Opening FB: https://www.facebook.com/twotwistedposts/directory_contact_info
+23:16:53   FB emails found: lynda@twotwistedposts.com
+23:16:53   Opening IG: https://www.instagram.com/ttpwinery
+23:16:58   [IG] No email on page — trying Google snippet...
+23:17:03   [IG SNIPPET] Found: contact@twotwistedposts.com
+23:17:03   contact@twotwistedposts.com → do_not_mail
+23:17:04   lynda@twotwistedposts.com → valid
+23:17:06   ✓ Added: lynda@twotwistedposts.com <lynda@twotwistedposts.com>
+23:17:07   [APOLLO] Credits used this run: 7 / 300
+23:17:07 
+23:17:07 ========== STEP 3: Apollo API ==========
+23:17:07   Searching Apollo for company: Two Twisted Posts Winery & Tavern
+23:17:08   Found: Two Twisted Posts Winery (domain: twotwistedposts.com, org_id: 618c9a334972f600019d02cd)
+23:17:08   Searching for people at Two Twisted Posts Winery (org_id: 618c9a334972f600019d02cd)...
+23:17:09   Found 6 people total
+23:17:09   Skipped 3 people with no email (red ? on Apollo)
+23:17:09   3 people to enrich (1 credit each)
+23:17:10   >>> Lynda Dattilio (Social Media Manager): lynda@twotwistedposts.com [verified]
+23:17:10   lynda@twotwistedposts.com → valid
+23:17:13   ✓ Added: Lynda Dattilio <lynda@twotwistedposts.com>
+23:17:14   >>> Brad Robertson (Owner): brad@twotwistedposts.com [verified]
+23:17:15   brad@twotwistedposts.com → valid
+23:17:19   ✓ Added: Brad Robertson <brad@twotwistedposts.com>
+23:17:20   >>> Samantha Milchenski (Server): sam.milchenski@veraxx.com [verified]
+23:17:20   sam.milchenski@veraxx.com → valid
+23:17:24   ✓ Added: Samantha Milchenski <sam.milchenski@veraxx.com>
+23:17:25   Apollo API done: 10 credits used this run
+23:17:25 
+23:17:25 ========== STEP 4: LinkedIn + Apollo API ==========
+23:17:25   Using domain: twotwistedposts.com
+23:17:28   LinkedIn page 1...
+23:17:34   Found 3 results
+23:17:34   No new venue employees on this page.
+23:17:39   LinkedIn page 2...
+23:17:47   Found 5 results
+23:17:47   Found: Jesson D'Souza
+23:17:52   LinkedIn page 3...
+23:18:01   Found 3 results
+23:18:01   No new venue employees on this page.
+23:18:01 
+23:18:01   LinkedIn found 1 new people. Enriching via Apollo API...
+23:18:01   LinkedIn + Apollo API done. Credits used: 10
+23:18:03   Setting status → pipelined
+23:18:06 
+23:18:06 ============================================================
+23:18:06  DONE: Two Twisted Posts Winery & Tavern | 2 min | 23:18:06
+23:18:06 ============================================================
+23:18:36 [BUDGET] Shared limit of 8 reached — stopping smart picks
+23:18:36 === SMART PICKS COMPLETE ===
+23:18:36 
+23:18:36 UNTOUCHED PHASE: Fetching all venues...
+23:18:39 UNTOUCHED: 433 found (shared budget: 8 total)
+23:18:39 [BUDGET] Shared limit of 8 reached — stopping untouched phase
+23:18:39 === UNTOUCHED PHASE COMPLETE ===
+23:18:39 
+23:18:39 === SMART PICKS COMPLETE ===
+23:18:39 
+23:18:39 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-07_23-18.html
+23:18:39 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-07_23-18.html

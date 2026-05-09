@@ -12034,3 +12034,795 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 23:18:39 
 23:18:39 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-07_23-18.html
 23:18:39 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-07_23-18.html
+
+22:57:44 === Pipeline started 2026-05-08 22:57:44 ===
+22:57:44 SMART PICKS MODE: Fetching ranked venues...
+22:57:47 SMART PICKS: 462 available, budget remaining: 9
+22:57:48 
+22:57:48 ########## SMART PICK #1 (score 85): The Pembroke (DC-REST-652) ##########
+22:57:54   [DOMAIN] Venue domain: thepembrokedc.com
+22:57:56 
+22:57:56 ============================================================
+22:57:56  PIPELINE: The Pembroke (DC-REST-652)
+22:57:56  Website: https://thepembrokedc.com
+22:57:56  Started: 2026-05-08 22:57:56
+22:57:56 ============================================================
+22:57:56   [ZB] Credits remaining: 3826
+22:57:59   Known emails: 0
+22:57:59   Known names: 0
+22:57:59 
+22:57:59 ========== STEP 1: Website Scrape ==========
+22:57:59   URL: https://thepembrokedc.com
+22:57:59   Opening in Chrome: https://thepembrokedc.com
+22:58:05   Validating contact form URL: https://thepembrokedc.com/event-inquiry
+22:58:10   Found on contact page: dupont@doylecollection.com, 483-6000dupont@doylecollection.comfollow
+22:58:10   ✓ Real contact form confirmed
+22:58:10   Emails: 2 | FB: https://www.facebook.com/thepembrokedc | IG: https://instagram.com/thepembrokedc | Contact Form: https://thepembrokedc.com/event-inquiry
+22:58:10   Crawling subpage (1): https://thepembrokedc.com/event-inquiry
+22:58:14   Found on subpage: 483-6000dupont@doylecollection.comfollow, dupont@doylecollection.com
+22:58:14   Crawling subpage (2): https://thepembrokedc.com/wp-content/uploads/2023/10/The-Pembroke-Breakfast-Menu.pdf
+22:58:19   Crawling subpage (3): https://thepembrokedc.com/wp-content/uploads/2023/10/The-Pembroke-Brunch-Menu.pdf
+22:58:23   Crawling subpage (4): https://thepembrokedc.com/wp-content/uploads/2023/10/The-Pembroke-Lunch-Menu.pdf
+22:58:27   Crawling subpage (5): https://thepembrokedc.com/wp-content/uploads/2023/10/The-Pembroke-Dinner-Menu.pdf
+22:58:32   Crawling subpage (6): https://thepembrokedc.com/wp-content/uploads/2023/10/The-Pembroke-Dessert-Menu.pdf
+22:58:36   Crawling subpage (7): https://thepembrokedc.com/wp-content/uploads/2026/03/The-Pembroke-Washington-DC-Wine-List.pdf
+22:58:40   Crawling subpage (8): https://thepembrokedc.com/wp-content/uploads/2023/10/Zero-Proof-Menu-2.pdf
+22:58:57   ✓ Contact form URL saved
+22:58:57   [SKIP] 483-6000dupont@doylecollection.comfollow — off-domain (venue: thepembrokedc.com)
+22:58:57   [SKIP] dupont@doylecollection.com — off-domain (venue: thepembrokedc.com)
+22:58:57 
+22:58:57 ========== STEP 2: Social Media Scrape ==========
+22:58:59   FB: https://www.facebook.com/thepembrokedc | IG: https://instagram.com/thepembrokedc
+22:58:59   Opening FB: https://www.facebook.com/thepembrokedc
+22:59:05   FB emails found: dupont@doylecollection.com
+22:59:05   Opening FB: https://www.facebook.com/thepembrokedc/about
+22:59:10   Opening FB: https://www.facebook.com/thepembrokedc/directory_contact_info
+22:59:15   FB emails found: dupont@doylecollection.com
+22:59:15   Opening IG: https://instagram.com/thepembrokedc
+22:59:20   [IG] No email on page — trying Google snippet...
+22:59:25   [IG SNIPPET] No email in Google snippet
+22:59:25   [SKIP] dupont@doylecollection.com — off-domain (venue: thepembrokedc.com)
+22:59:25   [APOLLO] Credits used this run: 0 / 300
+22:59:25 
+22:59:25 ========== STEP 3: Apollo API ==========
+22:59:25   Searching Apollo for company: The Pembroke
+22:59:27   Found: The Graduate School at UNC Pembroke (domain: uncp.edu, org_id: 6548c8f9cbb79400013cd4f4)
+22:59:27   Searching for people at The Graduate School at UNC Pembroke (org_id: 6548c8f9cbb79400013cd4f4)...
+22:59:28   Found 1 people total
+22:59:28   Skipped 1 people with no email (red ? on Apollo)
+22:59:28   No new people to enrich.
+22:59:28 
+22:59:28 ========== STEP 4: LinkedIn + Apollo API ==========
+22:59:28   Using domain: uncp.edu
+22:59:29   LinkedIn page 1...
+22:59:36   Found 10 results
+22:59:36   Found: Emily Oxendine
+22:59:36   Found: Aubrey Swett
+22:59:36   Found: Shauna Wentworth
+22:59:41   LinkedIn page 2...
+22:59:46   Found 10 results
+22:59:46   Found: Sabrina Chilcott
+22:59:46   Found: Tyler Thomas, MPA, ICMA-CM
+22:59:46   Found: Evan Long, MBA
+22:59:49   LinkedIn page 3...
+22:59:58   Found 10 results
+22:59:58   Found: Mary Beth Brayboy Locklear
+22:59:58   Found: Felicia Turnley, FACHE
+22:59:58 
+22:59:58   LinkedIn found 8 new people. Enriching via Apollo API...
+22:59:58   LinkedIn + Apollo API done. Credits used: 0
+23:00:00   Setting status → pipelined
+23:00:02 
+23:00:02 ============================================================
+23:00:02  DONE: The Pembroke | 2 min | 23:00:02
+23:00:02 ============================================================
+23:00:32 
+23:00:32 ########## SMART PICK #2 (score 78): Otium Cellars (XX-WINE-048) ##########
+23:00:39   [LOOKUP] No website — Googling 'Otium Cellars'...
+23:00:42   [WARN] Website domain mismatch — 'https://www.tranquilityfarm.com' doesn't match venue 'Otium Cellars'. Discarding.
+23:00:42   [DOMAIN] Venue domain: none
+23:00:44 
+23:00:44 ============================================================
+23:00:44  PIPELINE: Otium Cellars (XX-WINE-048)
+23:00:44  Website: 
+23:00:44  Started: 2026-05-08 23:00:44
+23:00:44 ============================================================
+23:00:44   [ZB] Credits remaining: 3826
+23:00:47   Known emails: 0
+23:00:47   Known names: 0
+23:00:47 
+23:00:47 ========== STEP 1: Website Scrape ==========
+23:00:47   [SKIP] No website URL
+23:00:50 
+23:00:50 ========== STEP 1B: Instagram Google Search ==========
+23:00:50   No Instagram found on website — Googling...
+23:00:54   [IG SEARCH] No Instagram found via Google
+23:00:57 
+23:00:57 ========== STEP 1C: Facebook Google Search ==========
+23:00:57   No Facebook found on website — Googling...
+23:01:02   [FB SEARCH] Found: https://www.facebook.com/otiumcellars/
+23:01:03   ✓ Facebook URL saved
+23:01:03 
+23:01:03 ========== STEP 2: Social Media Scrape ==========
+23:01:05   FB: https://www.facebook.com/otiumcellars/ | IG: none
+23:01:05   Opening FB: https://www.facebook.com/otiumcellars
+23:01:11   FB emails found: contact@otiumcellars.com
+23:01:11   Opening FB: https://www.facebook.com/otiumcellars/about
+23:01:16   Opening FB: https://www.facebook.com/otiumcellars/directory_contact_info
+23:01:21   FB emails found: contact@otiumcellars.com
+23:01:22   contact@otiumcellars.com → invalid
+23:01:24   ⚠ Added (invalid): contact@otiumcellars.com <contact@otiumcellars.com>
+23:01:25   [APOLLO] Credits used this run: 0 / 300
+23:01:25 
+23:01:25 ========== STEP 3: Apollo API ==========
+23:01:25   Searching Apollo for company: Otium Cellars
+23:01:29   Found: Otium Cellars (domain: otiumcellars.com, org_id: 60b2ada94f1296000123427a)
+23:01:29   Searching for people at Otium Cellars (org_id: 60b2ada94f1296000123427a)...
+23:01:29   Found 3 people total
+23:01:29   Skipped 3 people with no email (red ? on Apollo)
+23:01:29   No new people to enrich.
+23:01:29 
+23:01:29 ========== STEP 4: LinkedIn + Apollo API ==========
+23:01:29   Using domain: otiumcellars.com
+23:01:32   LinkedIn page 1...
+23:01:38   Found 10 results
+23:01:38   Found: Victoria Bratcher
+23:01:38   Found: Mindy M. Diemar
+23:01:38   Found: Samantha M Miller
+23:01:38   Found: Kristopher Diemar
+23:01:43   LinkedIn page 2...
+23:01:49   Found 10 results
+23:01:49   Found: Franklin Eyster
+23:01:54   LinkedIn page 3...
+23:02:12   No results on page 3 — stopping.
+23:02:12 
+23:02:12   LinkedIn found 5 new people. Enriching via Apollo API...
+23:02:12   LinkedIn + Apollo API done. Credits used: 0
+23:02:15   Setting status → pipelined
+23:02:17 
+23:02:17 ============================================================
+23:02:17  DONE: Otium Cellars | 1 min | 23:02:17
+23:02:17 ============================================================
+23:02:47 
+23:02:47 ########## SMART PICK #3 (score 78): Log Canoe Inn (MD-HOTE-445) ##########
+23:02:53   [DOMAIN] Venue domain: logcanoeinn.com
+23:02:56 
+23:02:56 ============================================================
+23:02:56  PIPELINE: Log Canoe Inn (MD-HOTE-445)
+23:02:56  Website: https://logcanoeinn.com/
+23:02:56  Started: 2026-05-08 23:02:56
+23:02:56 ============================================================
+23:02:57   [ZB] Credits remaining: 3825
+23:02:59   Known emails: 0
+23:02:59   Known names: 0
+23:02:59 
+23:02:59 ========== STEP 1: Website Scrape ==========
+23:02:59   URL: https://logcanoeinn.com/
+23:02:59   Opening in Chrome: https://logcanoeinn.com/
+23:03:05   Validating contact form URL: https://logcanoeinn.com/contact
+23:03:10   Found on contact page: reservations@logcanoeinn.com
+23:03:10   ✗ No submittable form found — clearing contact_form
+23:03:10   Emails: 0 | FB: https://www.facebook.com/106610924278783 | IG: https://www.instagram.com/logcanoeinn | Contact Form: none
+23:03:10   [LOCATION] Checking for location-specific page (city: St. Michaels)...
+23:03:11   [LOCATION] No location-specific page found
+23:03:11   Crawling subpage (1): https://logcanoeinn.com/contact
+23:03:15   Found on subpage: reservations@logcanoeinn.com
+23:03:15   Crawling subpage (2): https://logcanoeinn.com/all-rooms-%26-amenities
+23:03:20   Crawling subpage (3): https://logcanoeinn.com/mystery-room-1
+23:03:24   Crawling subpage (4): https://logcanoeinn.com/mary-rider-room-1
+23:03:28   Crawling subpage (5): https://logcanoeinn.com/olivers-gift-room-1
+23:03:32   Crawling subpage (6): https://logcanoeinn.com/island-bird-suite-1
+23:03:37   Crawling subpage (7): https://logcanoeinn.com/lark-suite-1
+23:03:41   Crawling subpage (8): https://logcanoeinn.com/magic-suite-1
+23:03:45   Crawling subpage (9): https://logcanoeinn.com/history
+23:03:50   Crawling subpage (10): https://logcanoeinn.com/policies
+23:03:54   [CONTACT] Probing https://logcanoeinn.com/contact
+23:03:59   [CONTACT] Found emails on https://logcanoeinn.com/contact
+23:04:07   reservations@logcanoeinn.com → do_not_mail
+23:04:08 
+23:04:08 ========== STEP 2: Social Media Scrape ==========
+23:04:11   FB: https://www.facebook.com/106610924278783 | IG: https://www.instagram.com/logcanoeinn
+23:04:11   Opening FB: https://www.facebook.com/106610924278783
+23:04:16   FB emails found: reservations@logcanoeinn.com
+23:04:16   Opening FB: https://www.facebook.com/106610924278783/about
+23:04:21   FB emails found: reservations@logcanoeinn.com
+23:04:21   Opening FB: https://www.facebook.com/106610924278783/directory_contact_info
+23:04:26   Opening IG: https://www.instagram.com/logcanoeinn
+23:04:31   [IG] No email on page — trying Google snippet...
+23:04:36   [IG SNIPPET] No email in Google snippet
+23:04:36   reservations@logcanoeinn.com → do_not_mail
+23:04:37   [APOLLO] Credits used this run: 0 / 300
+23:04:37 
+23:04:37 ========== STEP 3: Apollo API ==========
+23:04:37   Searching Apollo for company: Log Canoe Inn
+23:04:39   Found: Log Canoe Inn (domain: logcanoeinn.com, org_id: 6746dbad90e7cd0001b4fcaa)
+23:04:39   Searching for people at Log Canoe Inn (org_id: 6746dbad90e7cd0001b4fcaa)...
+23:04:40   Found 1 people total
+23:04:40   Skipped 1 people with no email (red ? on Apollo)
+23:04:40   No new people to enrich.
+23:04:40 
+23:04:40 ========== STEP 4: LinkedIn + Apollo API ==========
+23:04:40   Using domain: logcanoeinn.com
+23:04:41   LinkedIn page 1...
+23:04:47   Found 10 results
+23:04:48   Found: Jonathan Clarke
+23:04:48   Found: Benjamin Worley
+23:04:48   Found: Amanda Gallagher
+23:04:52   LinkedIn page 2...
+23:05:00   Found 5 results
+23:05:00   Found: Julian Stocker
+23:05:03   LinkedIn page 3...
+23:05:20   No results on page 3 — stopping.
+23:05:20 
+23:05:20   LinkedIn found 4 new people. Enriching via Apollo API...
+23:05:20   LinkedIn + Apollo API done. Credits used: 0
+23:05:22   Setting status → pipelined
+23:05:25 
+23:05:25 ============================================================
+23:05:25  DONE: Log Canoe Inn | 2 min | 23:05:25
+23:05:25 ============================================================
+23:05:55 
+23:05:55 ########## SMART PICK #4 (score 78): St. Michaels Harbour Inn Marina & Spa (MD-HOTE-446) ##########
+23:06:02   [DOMAIN] Venue domain: harbourinn.com
+23:06:05 
+23:06:05 ============================================================
+23:06:05  PIPELINE: St. Michaels Harbour Inn Marina & Spa (MD-HOTE-446)
+23:06:05  Website: https://www.harbourinn.com/
+23:06:05  Started: 2026-05-08 23:06:05
+23:06:05 ============================================================
+23:06:05   [ZB] Credits remaining: 3824
+23:06:07   Known emails: 0
+23:06:07   Known names: 0
+23:06:07 
+23:06:07 ========== STEP 1: Website Scrape ==========
+23:06:07   URL: https://www.harbourinn.com/
+23:06:07   Opening in Chrome: https://www.harbourinn.com/
+23:06:14   Validating contact form URL: https://www.harbourinn.com/contact
+23:06:18   Found on contact page: rooms@harbourinn.com
+23:06:18   ✓ Real contact form confirmed
+23:06:18   Emails: 1 | FB: https://www.facebook.com/SaintMichaelsHarbourInn | IG: https://www.instagram.com/saintmichaelsharbourinn/ | Contact Form: https://www.harbourinn.com/contact
+23:06:18   Crawling subpage (1): https://www.harbourinn.com/contact
+23:06:23   Found on subpage: rooms@harbourinn.com
+23:06:23   Crawling subpage (2): https://www.harbourinn.com/st-michaels-md-wedding-venue
+23:06:27   Found on subpage: rooms@harbourinn.com
+23:06:27   Crawling subpage (3): https://www.harbourinn.com/wedding-event-inquires
+23:06:32   Found on subpage: rooms@harbourinn.com
+23:06:32   Crawling subpage (4): https://www.harbourinn.com/about-us
+23:06:36   Same emails 3 pages in a row — stopping subpage crawl
+23:06:36   [CONTACT] Probing https://www.harbourinn.com/contact
+23:06:41   [CONTACT] Found emails on https://www.harbourinn.com/contact
+23:06:48   ✓ Contact form URL saved
+23:06:48   rooms@harbourinn.com → valid
+23:06:51   ✓ Added: rooms@harbourinn.com <rooms@harbourinn.com>
+23:06:52 
+23:06:52 ========== STEP 2: Social Media Scrape ==========
+23:06:55   FB: https://www.facebook.com/SaintMichaelsHarbourInn | IG: https://www.instagram.com/saintmichaelsharbourinn/
+23:06:55   Opening FB: https://www.facebook.com/SaintMichaelsHarbourInn
+23:07:00   FB emails found: rooms@harbourinn.com
+23:07:00   Opening FB: https://www.facebook.com/SaintMichaelsHarbourInn/about
+23:07:05   Opening FB: https://www.facebook.com/SaintMichaelsHarbourInn/directory_contact_info
+23:07:11   FB emails found: rooms@harbourinn.com
+23:07:11   Opening IG: https://www.instagram.com/saintmichaelsharbourinn/
+23:07:16   [IG] No email on page — trying Google snippet...
+23:07:20   [IG SNIPPET] No email in Google snippet
+23:07:20   rooms@harbourinn.com → valid
+23:07:22   ✓ Added: rooms@harbourinn.com <rooms@harbourinn.com>
+23:07:23   [APOLLO] Credits used this run: 0 / 300
+23:07:23 
+23:07:23 ========== STEP 3: Apollo API ==========
+23:07:23   Searching Apollo for company: St. Michaels Harbour Inn Marina & Spa
+23:07:25   Found: Spa At Harbour Inn (domain: spaatharbourinn.com, org_id: 66dd95a94bbff90001000933)
+23:07:25   Searching for people at Spa At Harbour Inn (org_id: 66dd95a94bbff90001000933)...
+23:07:26   Found 0 people total
+23:07:26   No people in Apollo for this company.
+23:07:26 
+23:07:26 ========== STEP 4: LinkedIn + Apollo API ==========
+23:07:26   Using domain: spaatharbourinn.com
+23:07:28   LinkedIn page 1...
+23:07:37   Found 10 results
+23:07:37   Found: Crystal Wyatt
+23:07:37   Found: Hunter Harrison
+23:07:42   LinkedIn page 2...
+23:07:47   Found 10 results
+23:07:47   Found: Cynthia Morgan, CMP
+23:07:47   Found: Bruce Wise
+23:07:47   Found: Denise Michaelides-Haddaway
+23:07:47   Found: Dolores Jones
+23:07:47   Found: Dorian Cummings
+23:07:47   Found: Melissa Connolly
+23:07:50   LinkedIn page 3...
+23:07:55   Found 3 results
+23:07:56   No new venue employees on this page.
+23:07:56 
+23:07:56   LinkedIn found 8 new people. Enriching via Apollo API...
+23:07:56   LinkedIn + Apollo API done. Credits used: 0
+23:08:04   Setting status → pipelined
+23:08:06 
+23:08:06 ============================================================
+23:08:06  DONE: St. Michaels Harbour Inn Marina & Spa | 2 min | 23:08:06
+23:08:06 ============================================================
+23:08:36 
+23:08:36 ########## SMART PICK #5 (score 78): Hummingbird Inn (MD-HOTE-466) ##########
+23:08:42   [DOMAIN] Venue domain: hummingbirdinneaston.com
+23:08:45 
+23:08:45 ============================================================
+23:08:45  PIPELINE: Hummingbird Inn (MD-HOTE-466)
+23:08:45  Website: https://www.hummingbirdinneaston.com/
+23:08:45  Started: 2026-05-08 23:08:45
+23:08:45 ============================================================
+23:08:45   [ZB] Credits remaining: 3823
+23:08:48   Known emails: 0
+23:08:48   Known names: 0
+23:08:48 
+23:08:48 ========== STEP 1: Website Scrape ==========
+23:08:48   URL: https://www.hummingbirdinneaston.com/
+23:08:48   Opening in Chrome: https://www.hummingbirdinneaston.com/
+23:08:54   Validating contact form URL: https://www.hummingbirdinneaston.com/contact
+23:08:59   ✗ No submittable form found — clearing contact_form
+23:08:59   Emails: 0 | FB: https://www.facebook.com/HummingbirdInnEaston | IG: https://www.instagram.com/hummingbirdinneaston/ | Contact Form: none
+23:08:59   [LOCATION] Checking for location-specific page (city: Easton)...
+23:09:00   [LOCATION] Found: https://www.hummingbirdinneaston.com/easton/
+23:09:00   [LOCATION] Re-scraping location page: https://www.hummingbirdinneaston.com/easton/
+23:09:08   [LOCATION] Re-scraped: Emails: 0 | FB: https://www.facebook.com/HummingbirdInnEaston | IG: https://www.instagram.com/hummingbirdinneaston/ | Contact Form: https://www.hummingbirdinneaston.com/contact
+23:09:09   Crawling subpage (1): https://www.hummingbirdinneaston.com/guest-information/contact
+23:09:13   Crawling subpage (2): https://www.hummingbirdinneaston.com/contact
+23:09:17   Crawling subpage (3): https://www.hummingbirdinneaston.com/the-hummingbird-inn-team
+23:09:22   Crawling subpage (4): https://www.hummingbirdinneaston.com/events
+23:09:26   Crawling subpage (5): https://www.hummingbirdinneaston.com/events/host-an-event
+23:09:31   Crawling subpage (6): https://www.hummingbirdinneaston.com/events/whats-happening
+23:09:35   Crawling subpage (7): https://www.hummingbirdinneaston.com/book-your-stay
+23:09:39   Crawling subpage (8): https://www.hummingbirdinneaston.com/book-your-stay/rooms
+23:09:44   Crawling subpage (9): https://www.hummingbirdinneaston.com/book-your-stay/rooms/st-michaels-room
+23:09:48   Crawling subpage (10): https://www.hummingbirdinneaston.com/book-your-stay/rooms/cambridge
+23:09:53   Crawling subpage (11): https://www.hummingbirdinneaston.com/book-your-stay/rooms/oxford
+23:09:57   Crawling subpage (12): https://www.hummingbirdinneaston.com/book-your-stay/rooms/tilghman-island
+23:10:01   Crawling subpage (13): https://www.hummingbirdinneaston.com/book-your-stay/rooms/crisfield
+23:10:06   Crawling subpage (14): https://www.hummingbirdinneaston.com/the-inn/about
+23:10:10   Crawling subpage (15): https://www.hummingbirdinneaston.com
+23:10:14   Crawling subpage (16): https://www.hummingbirdinneaston.com/experience
+23:10:19   Crawling subpage (17): https://www.hummingbirdinneaston.com/experience/your-stay-at-the-inn
+23:10:23   Crawling subpage (18): https://www.hummingbirdinneaston.com/experience/dog-friendly-bb
+23:10:28   Crawling subpage (19): https://www.hummingbirdinneaston.com/whats-happening-in-the-area
+23:10:32   Crawling subpage (20): https://www.hummingbirdinneaston.com/pricing
+23:10:36   Crawling subpage (21): https://www.hummingbirdinneaston.com/the-inn
+23:10:41   Crawling subpage (22): https://www.hummingbirdinneaston.com/the-inn/history
+23:10:45   Crawling subpage (23): https://www.hummingbirdinneaston.com/the-inn/amenities
+23:10:50   Crawling subpage (24): https://www.hummingbirdinneaston.com/blog
+23:10:54   Crawling subpage (25): https://www.hummingbirdinneaston.com/guest-information
+23:10:58   Found on subpage: info@hummingbirdinneaston.com
+23:10:59   SKIP (other location: frequently-asked-questions-hummingbird-inn-easton-md ≠ easton): https://www.hummingbirdinneaston.com/frequently-asked-questions-hummingbird-inn-easton-md
+23:10:59   Crawling subpage (26): https://www.hummingbirdinneaston.com/guest-information/policies
+23:11:03   Crawling subpage (27): https://www.hummingbirdinneaston.com/guest-information/directions
+23:11:09   [CONTACT] Probing https://www.hummingbirdinneaston.com/contact
+23:11:21   ✓ Contact form URL saved
+23:11:22   info@hummingbirdinneaston.com → do_not_mail
+23:11:23 
+23:11:23 ========== STEP 2: Social Media Scrape ==========
+23:11:26   FB: https://www.facebook.com/HummingbirdInnEaston | IG: https://www.instagram.com/hummingbirdinneaston/
+23:11:26   Opening FB: https://www.facebook.com/HummingbirdInnEaston
+23:11:31   FB emails found: info@hummingbirdinneaston.com
+23:11:31   Opening FB: https://www.facebook.com/HummingbirdInnEaston/about
+23:11:36   Opening FB: https://www.facebook.com/HummingbirdInnEaston/directory_contact_info
+23:11:41   FB emails found: info@hummingbirdinneaston.com
+23:11:41   Opening IG: https://www.instagram.com/hummingbirdinneaston/
+23:11:47   [IG] No email on page — trying Google snippet...
+23:11:51   [IG SNIPPET] No email in Google snippet
+23:11:51   info@hummingbirdinneaston.com → do_not_mail
+23:11:52   [APOLLO] Credits used this run: 0 / 300
+23:11:52 
+23:11:52 ========== STEP 3: Apollo API ==========
+23:11:52   Searching Apollo for company: Hummingbird Inn
+23:11:55   Found: Hummingbird Inn (domain: bransonairbnb.com, org_id: 64bbe14fa3a6b700010ba41e)
+23:11:55   Searching for people at Hummingbird Inn (org_id: 64bbe14fa3a6b700010ba41e)...
+23:11:55   Found 1 people total
+23:11:55   Skipped 1 people with no email (red ? on Apollo)
+23:11:55   No new people to enrich.
+23:11:55 
+23:11:55 ========== STEP 4: LinkedIn + Apollo API ==========
+23:11:55   Using domain: bransonairbnb.com
+23:11:57   LinkedIn page 1...
+23:12:05   Found 10 results
+23:12:05   Found: Eric Levinson
+23:12:05   Found: Patty Harrison
+23:12:05   Found: Hollie Dortch
+23:12:05   Found: Justin Beers
+23:12:05   Found: Rachel Beers
+23:12:05   Found: Mauricio Romero
+23:12:09   LinkedIn page 2...
+23:12:16   Found 10 results
+23:12:16   Found: Rebecca (Becky) Bush
+23:12:16   Found: Gene Messenkopf Jr.
+23:12:16   Found: Christopher Lush
+23:12:16   Found: Jeff Michael
+23:12:16   Found: Benjamin Parks
+23:12:16   Found: Kymberlee Dougherty Tysk
+23:12:20   LinkedIn page 3...
+23:12:29   Found 10 results
+23:12:29   No new venue employees on this page.
+23:12:29 
+23:12:29   LinkedIn found 12 new people. Enriching via Apollo API...
+23:12:29   LinkedIn + Apollo API done. Credits used: 0
+23:12:31   Setting status → pipelined
+23:12:33 
+23:12:33 ============================================================
+23:12:33  DONE: Hummingbird Inn | 3 min | 23:12:33
+23:12:33 ============================================================
+23:13:03 
+23:13:03 ########## SMART PICK #6 (score 78): Sandaway Suites & Beach (MD-HOTE-471) ##########
+23:13:09   [DOMAIN] Venue domain: sandaway.com
+23:13:11 
+23:13:11 ============================================================
+23:13:11  PIPELINE: Sandaway Suites & Beach (MD-HOTE-471)
+23:13:11  Website: https://www.sandaway.com/
+23:13:11  Started: 2026-05-08 23:13:11
+23:13:11 ============================================================
+23:13:11   [ZB] Credits remaining: 3822
+23:13:14   Known emails: 0
+23:13:14   Known names: 0
+23:13:14 
+23:13:14 ========== STEP 1: Website Scrape ==========
+23:13:14   URL: https://www.sandaway.com/
+23:13:14   Opening in Chrome: https://www.sandaway.com/
+23:13:20   Emails: 1 | FB: https://www.facebook.com/Sandaway | IG: https://www.instagram.com/ss.beach.hotel/ | Contact Form: none
+23:13:20   Crawling subpage (1): https://www.sandaway.com/weddings
+23:13:25   Found on subpage: info@sandaway.com
+23:13:25   Crawling subpage (2): https://www.sandaway.com/about-us
+23:13:29   Found on subpage: info@sandaway.com
+23:13:29   Crawling subpage (3): https://www.sandaway.com/shop
+23:13:33   Found on subpage: info@sandaway.com
+23:13:33   Crawling subpage (4): https://www.sandaway.com/accessibility
+23:13:38   Same emails 3 pages in a row — stopping subpage crawl
+23:13:39   [CONTACT] Probing https://www.sandaway.com/contact
+23:13:44   [CONTACT] Found emails on https://www.sandaway.com/contact
+23:13:52   info@sandaway.com → do_not_mail
+23:13:53 
+23:13:53 ========== STEP 2: Social Media Scrape ==========
+23:13:56   FB: https://www.facebook.com/Sandaway | IG: https://www.instagram.com/ss.beach.hotel/
+23:13:56   Opening FB: https://www.facebook.com/Sandaway
+23:14:01   FB emails found: info@sandaway.com
+23:14:01   Opening FB: https://www.facebook.com/Sandaway/about
+23:14:06   Opening FB: https://www.facebook.com/Sandaway/directory_contact_info
+23:14:11   FB emails found: info@sandaway.com
+23:14:11   Opening IG: https://www.instagram.com/ss.beach.hotel/
+23:14:17   [IG] No email on page — trying Google snippet...
+23:14:21   [IG SNIPPET] No email in Google snippet
+23:14:21   info@sandaway.com → do_not_mail
+23:14:22   [APOLLO] Credits used this run: 0 / 300
+23:14:22 
+23:14:22 ========== STEP 3: Apollo API ==========
+23:14:22   Searching Apollo for company: Sandaway Suites & Beach
+23:14:25   Found: Sandaway Waterfront Lodging (domain: sandaway.com, org_id: 66f10b7831b090000105a871)
+23:14:25   Searching for people at Sandaway Waterfront Lodging (org_id: 66f10b7831b090000105a871)...
+23:14:26   Found 0 people total
+23:14:26   No people in Apollo for this company.
+23:14:26 
+23:14:26 ========== STEP 4: LinkedIn + Apollo API ==========
+23:14:26   Using domain: sandaway.com
+23:14:30   LinkedIn page 1...
+23:14:38   Found 4 results
+23:14:38   Found: Rafael Rodriguez Pavia
+23:14:38   Found: Eva Vicente García
+23:14:42   LinkedIn page 2...
+23:14:49   Found 4 results
+23:14:49   Found: Janella Vieira
+23:14:49   Found: María Muñoz Cano
+23:14:49   Found: Eva Rollado
+23:14:52   LinkedIn page 3...
+23:15:11   No results on page 3 — stopping.
+23:15:11 
+23:15:11   LinkedIn found 5 new people. Enriching via Apollo API...
+23:15:11   LinkedIn + Apollo API done. Credits used: 0
+23:15:14   Setting status → pipelined
+23:15:16 
+23:15:16 ============================================================
+23:15:16  DONE: Sandaway Suites & Beach | 2 min | 23:15:16
+23:15:16 ============================================================
+23:15:46 
+23:15:46 ########## SMART PICK #7 (score 78): Bartlett Pear Inn (MD-HOTE-480) ##########
+23:15:52   [DOMAIN] Venue domain: bartlettpearinn.com
+23:15:54 
+23:15:54 ============================================================
+23:15:54  PIPELINE: Bartlett Pear Inn (MD-HOTE-480)
+23:15:54  Website: https://www.bartlettpearinn.com/
+23:15:54  Started: 2026-05-08 23:15:54
+23:15:54 ============================================================
+23:15:55   [ZB] Credits remaining: 3821
+23:15:57   Known emails: 0
+23:15:57   Known names: 0
+23:15:57 
+23:15:57 ========== STEP 1: Website Scrape ==========
+23:15:57   URL: https://www.bartlettpearinn.com/
+23:15:57   Opening in Chrome: https://www.bartlettpearinn.com/
+23:16:03   Validating contact form URL: https://www.bartlettpearinn.com/contact
+23:16:08   Found on contact page: info@bartlettpearinn.com, reservations@bartlettpearinn.com
+23:16:08   ✓ Real contact form confirmed
+23:16:08   Emails: 1 | FB: https://www.facebook.com/pages/Bartlett-Pear-Inn/109114032493884 | IG: http://instagram.com/bartlettpearinn | Contact Form: https://www.bartlettpearinn.com/contact
+23:16:08   Crawling subpage (1): https://www.bartlettpearinn.com/contact
+23:16:12   Found on subpage: info@bartlettpearinn.com, reservations@bartlettpearinn.com
+23:16:13   Crawling subpage (2): https://www.bartlettpearinn.com/events
+23:16:17   Found on subpage: alice@bartlettpearinn.com, elysia.mcewen@fourseasons.com, reservations@bartlettpearinn.com
+23:16:17   Crawling subpage (3): https://www.bartlettpearinn.com/book-a-room
+23:16:21   Found on subpage: reservations@bartlettpearinn.com
+23:16:21   Crawling subpage (4): https://www.bartlettpearinn.com/about-the-chef
+23:16:26   Found on subpage: alice@bartlettpearinn.com, reservations@bartlettpearinn.com
+23:16:26   Crawling subpage (5): https://www.bartlettpearinn.com/press
+23:16:30   Found on subpage: reservations@bartlettpearinn.com
+23:16:30   Crawling subpage (6): https://www.bartlettpearinn.com/our-rooms
+23:16:34   Found on subpage: reservations@bartlettpearinn.com
+23:16:34   Crawling subpage (7): https://www.bartlettpearinn.com/packages
+23:16:39   Crawling subpage (8): https://www.bartlettpearinn.com/ad-ons
+23:16:43   Found on subpage: reservations@bartlettpearinn.com
+23:16:43   Crawling subpage (9): https://www.bartlettpearinn.com/what-to-do-in-easton
+23:16:47   Same emails 3 pages in a row — stopping subpage crawl
+23:16:49   [CONTACT] Probing https://www.bartlettpearinn.com/contact
+23:16:54   [CONTACT] Found emails on https://www.bartlettpearinn.com/contact
+23:17:00   ✓ Contact form URL saved
+23:17:01   alice@bartlettpearinn.com → invalid
+23:17:04   ⚠ Added (invalid): alice@bartlettpearinn.com <alice@bartlettpearinn.com>
+23:17:05   [SKIP] elysia.mcewen@fourseasons.com — off-domain (venue: bartlettpearinn.com)
+23:17:05   info@bartlettpearinn.com → invalid
+23:17:07   ⚠ Added (invalid): info@bartlettpearinn.com <info@bartlettpearinn.com>
+23:17:09   reservations@bartlettpearinn.com → invalid
+23:17:11   ⚠ Added (invalid): reservations@bartlettpearinn.com <reservations@bartlettpearinn.com>
+23:17:12 
+23:17:12 ========== STEP 2: Social Media Scrape ==========
+23:17:15   FB: https://www.facebook.com/pages/Bartlett-Pear-Inn/109114032493884 | IG: http://instagram.com/bartlettpearinn
+23:17:15   Opening FB: https://www.facebook.com/pages/Bartlett-Pear-Inn/109114032493884
+23:17:20   Opening FB: https://www.facebook.com/pages/Bartlett-Pear-Inn/109114032493884/about
+23:17:25   Opening FB: https://www.facebook.com/pages/Bartlett-Pear-Inn/109114032493884/directory_contact_info
+23:17:30   [FB] No email on page — trying Google snippet...
+23:17:35   [FB SNIPPET] No email in Google snippet
+23:17:35   Opening IG: http://instagram.com/bartlettpearinn
+23:17:40   [IG] No email on page — trying Google snippet...
+23:17:44   [IG SNIPPET] No email in Google snippet
+23:17:44   [APOLLO] Credits used this run: 0 / 300
+23:17:44 
+23:17:44 ========== STEP 3: Apollo API ==========
+23:17:44   Searching Apollo for company: Bartlett Pear Inn
+23:17:47   Found: Bartlett Pear Inn (domain: bartlettpearinn.com, org_id: 67330fe9369a530001356b7a)
+23:17:47   Searching for people at Bartlett Pear Inn (org_id: 67330fe9369a530001356b7a)...
+23:17:48   Found 0 people total
+23:17:48   No people in Apollo for this company.
+23:17:48 
+23:17:48 ========== STEP 4: LinkedIn + Apollo API ==========
+23:17:48   Using domain: bartlettpearinn.com
+23:17:51   LinkedIn page 1...
+23:17:57   Found 4 results
+23:17:57   Found: Jodi Parks Anders
+23:17:57   Found: Hope Pritchard, MBA
+23:17:57   Found: Steven Kenny
+23:18:01   LinkedIn page 2...
+23:18:07   Found 1 results
+23:18:08   No new venue employees on this page.
+23:18:12   LinkedIn page 3...
+23:18:27   No results on page 3 — stopping.
+23:18:27 
+23:18:27   LinkedIn found 3 new people. Enriching via Apollo API...
+23:18:27   LinkedIn + Apollo API done. Credits used: 0
+23:18:30   Setting status → pipelined
+23:18:32 
+23:18:32 ============================================================
+23:18:32  DONE: Bartlett Pear Inn | 2 min | 23:18:32
+23:18:32 ============================================================
+23:19:02 
+23:19:02 ########## SMART PICK #8 (score 78): Combsberry Inn (MD-HOTE-482) ##########
+23:19:07   [LOOKUP] No website — Googling 'Combsberry Inn'...
+23:19:10   [LOOKUP] Found: http://www.combsberryinn.com
+23:19:12   [DOMAIN] Venue domain: combsberryinn.com
+23:19:16 
+23:19:16 ============================================================
+23:19:16  PIPELINE: Combsberry Inn (MD-HOTE-482)
+23:19:16  Website: http://www.combsberryinn.com
+23:19:16  Started: 2026-05-08 23:19:16
+23:19:16 ============================================================
+23:19:16   [ZB] Credits remaining: 3818
+23:19:19   Known emails: 0
+23:19:19   Known names: 0
+23:19:19 
+23:19:19 ========== STEP 1: Website Scrape ==========
+23:19:20   URL: http://www.combsberryinn.com
+23:19:20   Opening in Chrome: http://www.combsberryinn.com
+23:19:26   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:19:38   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:19:38   [LOCATION] Checking for location-specific page (city: Oxford)...
+23:19:39   [LOCATION] No location-specific page found
+23:19:42 
+23:19:42 ========== STEP 1B: Instagram Google Search ==========
+23:19:42   No Instagram found on website — Googling...
+23:19:46   [IG SEARCH] Found: https://www.instagram.com/combsberryinnmd/
+23:19:48   ✓ Instagram URL saved
+23:19:51 
+23:19:51 ========== STEP 1C: Facebook Google Search ==========
+23:19:51   No Facebook found on website — Googling...
+23:19:55   [FB SEARCH] Found: https://www.facebook.com/combsberry/
+23:19:57   ✓ Facebook URL saved
+23:19:57 
+23:19:57 ========== STEP 2: Social Media Scrape ==========
+23:20:00   FB: https://www.facebook.com/combsberry/ | IG: https://www.instagram.com/combsberryinnmd/
+23:20:00   Opening FB: https://www.facebook.com/combsberry
+23:20:05   Opening FB: https://www.facebook.com/combsberry/about
+23:20:10   Opening FB: https://www.facebook.com/combsberry/directory_contact_info
+23:20:15   FB emails found: innkeeper@combsberryinn.com
+23:20:15   Opening IG: https://www.instagram.com/combsberryinnmd/
+23:20:21   [IG] No email on page — trying Google snippet...
+23:20:25   [IG SNIPPET] Found: angie@eventfullyyoursmd.com
+23:20:25   [SKIP] angie@eventfullyyoursmd.com — off-domain (venue: combsberryinn.com)
+23:20:25   innkeeper@combsberryinn.com → do_not_mail
+23:20:26   [APOLLO] Credits used this run: 0 / 300
+23:20:26 
+23:20:26 ========== STEP 3: Apollo API ==========
+23:20:26   Searching Apollo for company: Combsberry Inn
+23:20:28   [WARN] No company found in Apollo for 'Combsberry Inn' (tried name + domain)
+23:20:28   Using website domain for enrichment: combsberryinn.com
+23:20:28 
+23:20:28 ========== STEP 4: LinkedIn + Apollo API ==========
+23:20:29   Using domain: combsberryinn.com
+23:20:33   LinkedIn page 1...
+23:20:41   Found 2 results
+23:20:41   No new venue employees on this page.
+23:20:46   LinkedIn page 2...
+23:21:02   No results on page 2 — stopping.
+23:21:02   No new people found on LinkedIn.
+23:21:04   Setting status → pipelined
+23:21:06 
+23:21:06 ============================================================
+23:21:06  DONE: Combsberry Inn | 2 min | 23:21:06
+23:21:06 ============================================================
+23:21:36 
+23:21:36 ########## SMART PICK #9 (score 78): The Stewart (MD-WINE-538) ##########
+23:21:43   [LOOKUP] No website — Googling 'The Stewart'...
+23:21:46   [LOOKUP] Found: https://thestewart.com
+23:21:49   [DOMAIN] Venue domain: thestewart.com
+23:21:52 
+23:21:52 ============================================================
+23:21:52  PIPELINE: The Stewart (MD-WINE-538)
+23:21:52  Website: https://thestewart.com
+23:21:52  Started: 2026-05-08 23:21:52
+23:21:52 ============================================================
+23:21:52   [ZB] Credits remaining: 3817
+23:21:56   Known emails: 0
+23:21:56   Known names: 0
+23:21:56 
+23:21:56 ========== STEP 1: Website Scrape ==========
+23:21:56   URL: https://thestewart.com
+23:21:56   Opening in Chrome: https://thestewart.com
+23:22:02   Emails: 0 | FB: http://www.facebook.com/thestewartbar | IG: https://www.instagram.com/thestewarteaston/ | Contact Form: none
+23:22:02   [LOCATION] Checking for location-specific page (city: Easton)...
+23:22:03   [LOCATION] No location-specific page found
+23:22:09 
+23:22:09 ========== STEP 2: Social Media Scrape ==========
+23:22:13   FB: http://www.facebook.com/thestewartbar | IG: https://www.instagram.com/thestewarteaston/
+23:22:13   Opening FB: http://www.facebook.com/thestewartbar
+23:22:18   Opening FB: http://www.facebook.com/thestewartbar/about
+23:22:23   Opening FB: http://www.facebook.com/thestewartbar/directory_contact_info
+23:22:28   [FB] No email on page — trying Google snippet...
+23:22:32   [FB SNIPPET] No email in Google snippet
+23:22:32   Opening IG: https://www.instagram.com/thestewarteaston/
+23:22:38   [IG] No email on page — trying Google snippet...
+23:22:42   [IG SNIPPET] No email in Google snippet
+23:22:42   [APOLLO] Credits used this run: 0 / 300
+23:22:42 
+23:22:42 ========== STEP 3: Apollo API ==========
+23:22:42   Searching Apollo for company: The Stewart
+23:22:43   Found: The Stewart Organization (domain: stewartorg.com, org_id: 54a1298769702d9ebca48501)
+23:22:43   Searching for people at The Stewart Organization (org_id: 54a1298769702d9ebca48501)...
+23:22:44   Found 50 people total
+23:22:45   Skipped 9 people with irrelevant titles (housekeeping, IT, security, etc.)
+23:22:45   41 people to enrich (1 credit each)
+23:22:45   >>> David Evans (Major Accounts Sales Manager): david.evans@stewartorg.com [verified]
+23:22:45   [SKIP] david.evans@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:45   >>> Sam Campos (Chief Operating Officer): sam.campos@stewartorg.com [verified]
+23:22:45   [SKIP] sam.campos@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:46   >>> Matthew Garnett (Enterprise Account Manager): matthew.garnett@stewartorg.com [verified]
+23:22:46   [SKIP] matthew.garnett@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:46   >>> Josh Durst (Vice President, Major Accounts): josh.durst@stewartorg.com [verified]
+23:22:46   [SKIP] josh.durst@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:46   >>> Ryan Speer (Sales Manager): ryan.speer@stewartorg.com [verified]
+23:22:46   [SKIP] ryan.speer@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:46   >>> Edgar Monrreal-Flores (Sales Manager): edgar.flores@stewartorg.com [verified]
+23:22:46   [SKIP] edgar.flores@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:46   >>> Zach Vineyard (Business System Analyst): zach.vineyard@stewartorg.com [verified]
+23:22:46   [SKIP] zach.vineyard@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:46   >>> John Lutz (Managed Print Services IT): john.lutz@stewartorg.com [verified]
+23:22:46   [SKIP] john.lutz@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:46   >>> Chris Clow (Perpetual Problem Solver // SQL Developer): chris.clow@stewartorg.com [verified]
+23:22:46   [SKIP] chris.clow@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:46   >>> Matt Lancaster (Director of Administration): matt.lancaster@stewartorg.com [verified]
+23:22:46   [SKIP] matt.lancaster@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:48   >>> Jeremy Dyer (Account Manager): jeremy.dyer@stewartorg.com [verified]
+23:22:48   [SKIP] jeremy.dyer@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:48   >>> Darren Morlando (Senior Account Manager): darren.morlando@stewartorg.com [verified]
+23:22:48   [SKIP] darren.morlando@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:48   >>> Christopher Nacar (Senior Account Manager): chris.nacar@stewartorg.com [verified]
+23:22:48   [SKIP] chris.nacar@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:48   >>> Sara Moss (PaaS Account Manager): sara.moss@stewartorg.com [verified]
+23:22:48   [SKIP] sara.moss@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:48   >>> Cara Despeaux (Senior Account Manager): cara.despeaux@stewartorg.com [verified]
+23:22:48   [SKIP] cara.despeaux@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:48   >>> Will Whitlock (Director of Solutions): will.whitlock@stewartorg.com [verified]
+23:22:48   [SKIP] will.whitlock@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:48   >>> Keith Hopkins (VP Sales, Major Accounts at The Stewart Organization): keith.hopkins@stewartorg.com [verified]
+23:22:48   [SKIP] keith.hopkins@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:48   >>> Mike McGuff (Director): mike.mcguff@stewartorg.com [verified]
+23:22:49   [SKIP] mike.mcguff@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:49   >>> Mike Braswell (President): mike.braswell@stewartorg.com [verified]
+23:22:49   [SKIP] mike.braswell@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:49   >>> Jay Acquazzino (Account Manager): jay.acquazzino@stewartorg.com [verified]
+23:22:49   [SKIP] jay.acquazzino@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Tanner Jones (Director Business Intelligence): tanner.jones@stewartorg.com [verified]
+23:22:51   [SKIP] tanner.jones@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Anthony Estorga (Sr. Account Manager): anthony.estorga@stewartorg.com [verified]
+23:22:51   [SKIP] anthony.estorga@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Jared Marchal (Administrative Coordinator): jared.marchal@stewartorg.com [verified]
+23:22:51   [SKIP] jared.marchal@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Ken Fisher (VP, Printers as a Service): ken.fisher@stewartorg.com [verified]
+23:22:51   [SKIP] ken.fisher@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Burke Strickland (Vice President of Service): burke.strickland@stewartorg.com [verified]
+23:22:51   [SKIP] burke.strickland@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Jennifer Cerrato (Controller): jennifer.cerrato@stewartorg.com [verified]
+23:22:51   [SKIP] jennifer.cerrato@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Steve Denson (Sr. Vice President): steve.denson@stewartorg.com [verified]
+23:22:51   [SKIP] steve.denson@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Joe Stryhal (Vice President): joe.stryhal@stewartorg.com [verified]
+23:22:51   [SKIP] joe.stryhal@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Bob Casteel (Supply Chain Manager): bob.casteel@stewartorg.com [verified]
+23:22:51   [SKIP] bob.casteel@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:51   >>> Allison Briggs (Order Processing Specialist): allison.briggs@stewartorg.com [verified]
+23:22:51   [SKIP] allison.briggs@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:53   >>> Matthew Warrington (Director of Warehouse and Logistics): matt.warrington@stewartorg.com [verified]
+23:22:53   [SKIP] matt.warrington@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:53   >>> Angela Buentello (Sales Account Manager): angela.buentello@stewartorg.com [verified]
+23:22:53   [SKIP] angela.buentello@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:53   >>> Kevin Richards (Director of Major Accounts): kevin.richards@stewartorg.com [verified]
+23:22:54   [SKIP] kevin.richards@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:54   >>> Mark Curry (Senior Vice President Service): mark.curry@stewartorg.com [verified]
+23:22:54   [SKIP] mark.curry@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:54   >>> Hunter Blackwell (Manager, Printers as a Services): hunter.blackwell@stewartorg.com [verified]
+23:22:54   [SKIP] hunter.blackwell@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:54   >>> Cristina Strain (Director of Major Accounts): cristina.strain@stewartorg.com [verified]
+23:22:54   [SKIP] cristina.strain@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:54   >>> Nikki Alvarez (Shop Manager): nikki.alvarez@stewartorg.com [verified]
+23:22:54   [SKIP] nikki.alvarez@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:54   >>> Richard Sellers (Parts and Supplies Inventory Specialist): rick.sellers@stewartorg.com [verified]
+23:22:54   [SKIP] rick.sellers@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:54   >>> Wes Davis (Service Manager): wes.davis@stewartorg.com [verified]
+23:22:54   [SKIP] wes.davis@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:54   --- Stacey Wilson (Inventory Control): no email available
+23:22:59   >>> Richard Pruett (Warehouse and Logistics Assistant Manager): richard.pruett@stewartorg.com [verified]
+23:22:59   [SKIP] richard.pruett@stewartorg.com — off-domain (venue: thestewart.com)
+23:22:59   Apollo API done: 41 credits used this run
+23:22:59 
+23:22:59 ========== STEP 4: LinkedIn + Apollo API ==========
+23:22:59   Using domain: stewartorg.com
+23:23:02   LinkedIn page 1...
+23:23:09   Found 4 results
+23:23:09   Found: Martha Stewart
+23:23:09   Found: R. Keith Martin
+23:23:14   LinkedIn page 2...
+23:23:20   Found 5 results
+23:23:20   No new venue employees on this page.
+23:23:24   LinkedIn page 3...
+23:23:32   Found 5 results
+23:23:32   Found: Michael Stewart
+23:23:32   Found: Amy Stewart
+23:23:32   Found: Kirstine Stewart
+23:23:32 
+23:23:32   LinkedIn found 5 new people. Enriching via Apollo API...
+23:23:32   LinkedIn + Apollo API done. Credits used: 41
+23:23:34   Setting status → pipelined
+23:23:37 
+23:23:37 ============================================================
+23:23:37  DONE: The Stewart | 1 min | 23:23:37
+23:23:37 ============================================================
+23:24:07 [BUDGET] Shared limit of 9 reached — stopping smart picks
+23:24:07 === SMART PICKS COMPLETE ===
+23:24:07 
+23:24:07 UNTOUCHED PHASE: Fetching all venues...
+23:24:12 UNTOUCHED: 465 found (shared budget: 9 total)
+23:24:12 [BUDGET] Shared limit of 9 reached — stopping untouched phase
+23:24:12 === UNTOUCHED PHASE COMPLETE ===
+23:24:12 
+23:24:12 === SMART PICKS COMPLETE ===
+23:24:12 
+23:24:12 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-08_23-24.html
+23:24:13 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-08_23-24.html

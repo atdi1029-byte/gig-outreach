@@ -313,7 +313,8 @@ tier1_types = [
 ]
 tier2_types = [
     'upscale restaurant', 'Italian fine dining',
-    'boutique hotel', 'historic inn', 'museum event space'
+    'boutique hotel', 'historic inn', 'museum event space',
+    'art gallery', 'fine art gallery'
 ]
 
 tier1_locations = [

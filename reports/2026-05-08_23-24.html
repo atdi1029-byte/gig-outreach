@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; May 08, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    background: #0c1a22;
+    color: #e0e0e0;
+    padding: 40px;
+    max-width: 960px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #6ecfcf;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #6ecfcf;
+    padding-bottom: 10px;
+  }
+  .date { color: #999; margin-bottom: 30px; font-size: 0.95rem; }
+  h2 {
+    color: #e8944c;
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+    border-left: 4px solid #e8944c;
+    padding-left: 12px;
+  }
+  h3 {
+    color: #6ecfcf;
+    font-size: 1.05rem;
+    margin: 20px 0 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 0.92rem;
+  }
+  th {
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: normal;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #1a2e3a;
+  }
+  tr:hover { background: rgba(110, 207, 207, 0.05); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+  }
+  .stat-box {
+    background: #1a2e3a;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6ecfcf;
+  }
+  .stat-box .label {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 4px;
+  }
+  .flag {
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .flag strong { color: #e85050; }
+  .fix {
+    background: #1a2a1a;
+    border-left: 4px solid #4caf50;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .fix strong { color: #4caf50; }
+  .contact-name { color: #6ecfcf; }
+  .valid { color: #4caf50; }
+  .invalid { color: #e85050; }
+  .blocked { color: #888; font-style: italic; }
+  .score {
+    display: inline-block;
+    background: #e8944c;
+    color: #0c1a22;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    margin-left: 6px;
+  }
+  .category-pill {
+    display: inline-block;
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    margin-left: 4px;
+  }
+  .social-links {
+    font-size: 0.85rem;
+    color: #999;
+    margin: 5px 0 10px;
+  }
+  .social-links a {
+    color: #6ecfcf;
+    text-decoration: none;
+  }
+  .social-links a:hover { text-decoration: underline; }
+  .note {
+    font-size: 0.87rem;
+    color: #aaa;
+    margin: 8px 0;
+    padding: 6px 10px;
+    background: #131f28;
+    border-radius: 4px;
+  }
+  .runtime { font-size: 0.78rem; color: #666; margin-top: 5px; }
+  .pattern {
+    background: #1a2e3a;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 0.9rem;
+  }
+  .pattern strong { color: #e8944c; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">May 08, 2026 &bull; MAX_GIGS=9 MAX_SP=9</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">41</div>
+    <div class="label">New Venues Discovered</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">9</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">1</div>
+    <div class="label">Valid Emails</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">41</div>
+    <div class="label">Apollo Credits Used</div>
+  </div>
+</div>
+
+<h2>Bugs Fixed This Run</h2>
+<div class="fix"><strong>Fixed:</strong> URL scheme normalization — pipeline now prepends https:// if missing before opening in Chrome. Prevents the LinkedIn fallback bug from May 7.</div>
+<div class="fix"><strong>Fixed:</strong> Off-domain email filter — <code>verify_and_push()</code> now checks VENUE_DOMAIN and skips emails whose domain doesn't match the venue. Blocked 36 off-domain emails this run.</div>
+<div class="fix"><strong>Fixed:</strong> Art gallery queries — added <code>art gallery</code> and <code>fine art gallery</code> to tier2_types in <code>discover.sh</code>. These will start appearing in future taste runs.</div>
+
+<h2>Discovery Results</h2>
+<p style="margin-bottom:12px;font-size:0.9rem;color:#aaa">
+9 taste queries run. All seeds exhausted. 473 queries remain for future runs.
+Queries used: <strong>historic fine dining restaurant</strong> &times; tier-1 locations.
+</p>
+<table>
+  <thead><tr><th>Query</th><th>New Venues</th></tr></thead>
+  <tbody>
+    <tr><td>historic fine dining restaurant Georgetown DC</td><td class="valid">14</td></tr>
+    <tr><td>historic fine dining restaurant Dupont Circle DC</td><td class="valid">22</td></tr>
+    <tr><td>historic fine dining restaurant Potomac MD</td><td class="blocked">0 — saturated</td></tr>
+    <tr><td>historic fine dining restaurant Bethesda MD</td><td class="blocked">0 — saturated</td></tr>
+    <tr><td>historic fine dining restaurant Chevy Chase MD</td><td class="valid">2</td></tr>
+    <tr><td>historic fine dining restaurant Great Falls VA</td><td class="valid">3</td></tr>
+    <tr><td>historic fine dining restaurant McLean VA</td><td class="blocked">0 — saturated</td></tr>
+    <tr><td>historic fine dining restaurant Alexandria VA</td><td class="blocked">0 — saturated</td></tr>
+    <tr><td>historic fine dining restaurant Reston VA</td><td class="blocked">0 — saturated</td></tr>
+  </tbody>
+</table>
+<div class="note">
+  Best haul: Georgetown (14) and Dupont Circle (22). Strong overlap with
+  French/European/private-club tier. Notable adds: <strong>Cosmos Club</strong>,
+  <strong>La Chaumiere</strong>, <strong>The Occidental</strong>,
+  <strong>Old Ebbitt Grill</strong>, <strong>Iron Gate Restaurant</strong>,
+  <strong>Café Riggs</strong>, <strong>Kingbird</strong> (Watergate Hotel),
+  <strong>Old Europe</strong>, <strong>River Club DC</strong>,
+  <strong>Pineapple and Pearls</strong>.
+  Tier-1 DC locations are producing well — switch to French restaurant +
+  private club queries next run to open new categories.
+</div>
+
+<h2>Pipeline Results</h2>
+
+<h3>1. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-652"
+   style="color:#6ecfcf;text-decoration:none">The Pembroke</a>
+   <span class="score">85</span> <span class="category-pill">restaurant</span>
+   &mdash; Washington DC</h3>
+<div class="social-links">
+  <a href="https://thepembrokedc.com">Website</a> &bull;
+  <a href="https://www.facebook.com/thepembrokedc">Facebook</a> &bull;
+  <a href="https://instagram.com/thepembrokedc">Instagram</a> &bull;
+  <a href="https://thepembrokedc.com/event-inquiry">Contact Form</a>
+</div>
+<div class="note">
+  Found dupont@doylecollection.com on website — correctly blocked by
+  off-domain filter (doylecollection.com &ne; thepembrokedc.com). But
+  <strong>this email is probably legit</strong> — The Pembroke is part of
+  The Doyle Collection hotel group and that's their actual contact address.
+  This is an edge case: off-domain filter is too strict for hotel chains.
+  <strong>Outreach via contact form</strong> is the best path here.
+</div>
+<div class="runtime">Runtime: 2 min | Apollo: 0 credits (wrong company match — UNC Pembroke)</div>
+
+<h3>2. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=XX-WINE-048"
+   style="color:#6ecfcf;text-decoration:none">Otium Cellars</a>
+   <span class="score">78</span> <span class="category-pill">winery</span>
+   &mdash; Loudoun County, VA</h3>
+<div class="social-links"><a href="https://www.facebook.com/otiumcellars/">Facebook</a></div>
+<table>
+  <thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="contact-name">contact@otiumcellars.com</td>
+      <td>contact@otiumcellars.com</td>
+      <td class="invalid">&#10007; invalid</td>
+    </tr>
+  </tbody>
+</table>
+<div class="runtime">Runtime: 1 min | Apollo: 0 credits</div>
+
+<h3>3. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-445"
+   style="color:#6ecfcf;text-decoration:none">Log Canoe Inn</a>
+   <span class="score">78</span> <span class="category-pill">hotel</span>
+   &mdash; St. Michaels, MD</h3>
+<div class="social-links">
+  <a href="https://logcanoeinn.com/">Website</a> &bull;
+  <a href="https://www.facebook.com/106610924278783">Facebook</a> &bull;
+  <a href="https://www.instagram.com/logcanoeinn">Instagram</a>
+</div>
+<div class="note">
+  Found reservations@logcanoeinn.com but ZeroBounce flagged do_not_mail.
+  Small boutique inn — contact form or direct phone call may be necessary.
+</div>
+<div class="runtime">Runtime: 2 min | Apollo: 0 credits</div>
+
+<h3>4. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-446"
+   style="color:#6ecfcf;text-decoration:none">St. Michaels Harbour Inn Marina &amp; Spa</a>
+   <span class="score">78</span> <span class="category-pill">hotel</span>
+   &mdash; St. Michaels, MD</h3>
+<div class="social-links">
+  <a href="https://www.harbourinn.com/">Website</a> &bull;
+  <a href="https://www.facebook.com/SaintMichaelsHarbourInn">Facebook</a> &bull;
+  <a href="https://www.instagram.com/saintmichaelsharbourinn/">Instagram</a> &bull;
+  <a href="https://www.harbourinn.com/contact">Contact Form</a>
+</div>
+<table>
+  <thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="contact-name">rooms@harbourinn.com</td>
+      <td>rooms@harbourinn.com</td>
+      <td class="valid">&#10003; valid</td>
+    </tr>
+  </tbody>
+</table>
+<div class="runtime">Runtime: 2 min | Apollo: 0 credits</div>
+
+<h3>5. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-466"
+   style="color:#6ecfcf;text-decoration:none">Hummingbird Inn</a>
+   <span class="score">78</span> <span class="category-pill">hotel</span>
+   &mdash; Easton, MD</h3>
+<div class="social-links">
+  <a href="https://www.hummingbirdinneaston.com/">Website</a> &bull;
+  <a href="https://www.facebook.com/HummingbirdInnEaston">Facebook</a> &bull;
+  <a href="https://www.instagram.com/hummingbirdinneaston/">Instagram</a> &bull;
+  <a href="https://www.hummingbirdinneaston.com/contact">Contact Form</a>
+</div>
+<div class="note">
+  No emails found anywhere. Apollo matched wrong company (Branson Airbnb).
+  Small boutique inn — manual outreach via contact form only.
+</div>
+<div class="runtime">Runtime: 3 min | Apollo: 0 credits (wrong company match)</div>
+
+<h3>6. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-471"
+   style="color:#6ecfcf;text-decoration:none">Sandaway Suites &amp; Beach</a>
+   <span class="score">78</span> <span class="category-pill">hotel</span>
+   &mdash; Oxford, MD</h3>
+<div class="social-links">
+  <a href="https://www.sandaway.com/">Website</a> &bull;
+  <a href="https://www.facebook.com/Sandaway">Facebook</a> &bull;
+  <a href="https://www.instagram.com/ss.beach.hotel/">Instagram</a>
+</div>
+<div class="note">
+  info@sandaway.com found everywhere but ZeroBounce flagged do_not_mail.
+  LinkedIn pulled Spanish-named employees — likely false matches with a
+  different "Sandaway" property. Waterfront inn on the Tred Avon.
+  Manual contact form or phone.
+</div>
+<div class="runtime">Runtime: 2 min | Apollo: 0 credits</div>
+
+<h3>7. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-480"
+   style="color:#6ecfcf;text-decoration:none">Bartlett Pear Inn</a>
+   <span class="score">78</span> <span class="category-pill">hotel</span>
+   &mdash; Easton, MD</h3>
+<div class="social-links">
+  <a href="https://www.bartlettpearinn.com/">Website</a> &bull;
+  <a href="https://www.facebook.com/pages/Bartlett-Pear-Inn/109114032493884">Facebook</a> &bull;
+  <a href="http://instagram.com/bartlettpearinn">Instagram</a> &bull;
+  <a href="https://www.bartlettpearinn.com/contact">Contact Form</a>
+</div>
+<table>
+  <thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+  <tbody>
+    <tr><td>alice@bartlettpearinn.com</td><td>alice@bartlettpearinn.com</td><td class="invalid">&#10007; invalid</td></tr>
+    <tr><td>info@bartlettpearinn.com</td><td>info@bartlettpearinn.com</td><td class="invalid">&#10007; invalid</td></tr>
+    <tr><td>reservations@bartlettpearinn.com</td><td>reservations@bartlettpearinn.com</td><td class="invalid">&#10007; invalid</td></tr>
+    <tr><td class="blocked">elysia.mcewen@fourseasons.com</td><td class="blocked">&mdash;</td><td class="blocked">blocked (off-domain)</td></tr>
+  </tbody>
+</table>
+<div class="note">
+  All three venue emails are invalid — the inn may have changed ownership
+  or closed. Worth verifying before outreach. Off-domain filter correctly
+  blocked a Four Seasons employee (wrong company from Apollo match).
+</div>
+<div class="runtime">Runtime: 2 min | Apollo: 0 credits</div>
+
+<h3>8. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-482"
+   style="color:#6ecfcf;text-decoration:none">Combsberry Inn</a>
+   <span class="score">78</span> <span class="category-pill">hotel</span>
+   &mdash; Oxford, MD</h3>
+<div class="social-links">
+  <a href="http://www.combsberryinn.com">Website</a> &bull;
+  <a href="https://www.facebook.com/combsberry/">Facebook</a> &bull;
+  <a href="https://www.instagram.com/combsberryinnmd/">Instagram</a>
+</div>
+<div class="note">
+  No emails found. Off-domain filter blocked angie@eventfullyyoursmd.com
+  (an event planner who works the venue, not venue staff). LinkedIn: 2 results,
+  no confirmed employees. Very small 6-room inn — may only be reachable
+  by phone or contact form.
+</div>
+<div class="runtime">Runtime: 2 min | Apollo: 0 credits</div>
+
+<h3>9. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-538"
+   style="color:#6ecfcf;text-decoration:none">The Stewart</a>
+   <span class="score">78</span> <span class="category-pill">wine_bar</span>
+   &mdash; Easton, MD</h3>
+<div class="social-links">
+  <a href="http://www.facebook.com/thestewartbar">Facebook</a> &bull;
+  <a href="https://www.instagram.com/thestewarteaston/">Instagram</a>
+</div>
+<div class="note">
+  <strong>Apollo wrong-company match.</strong> "The Stewart" matched "The Stewart
+  Organization" (a staffing company, stewartorg.com) — wasted 41 Apollo credits
+  enriching 26 salespeople, all correctly blocked by the off-domain filter.
+  LinkedIn similarly pulled Martha Stewart and other false matches. The bar
+  likely has minimal online presence outside Instagram.
+  <strong>Outreach via @thestewarteaston Instagram DM.</strong>
+</div>
+<div class="runtime">Runtime: 1 min | Apollo: 41 credits (wrong company — all blocked)</div>
+
+<h2>Taste Review</h2>
+<p style="font-size:0.9rem;color:#aaa;margin-bottom:12px">
+  No new votes since Apr 23. All patterns current.
+</p>
+<div class="pattern"><strong>French/European restaurants = GOLD</strong> — Strongest single signal. La Chaumiere "literally perfect," Bistrot Lepic "AMAZING audience." Discovery is now surfacing more: La Chaumiere, Old Europe, Café Riggs all added this run.</div>
+<div class="pattern"><strong>DC luxury hotels = major hunting ground</strong> — Database is nearly saturated on DC hotels. Cosmos Club added this run — high priority for pipeline.</div>
+<div class="pattern"><strong>"Cozy" + "quiet" + "historic" = top keywords</strong> — Consistent across all batches.</div>
+<div class="pattern"><strong>Art galleries = new tier 1/2</strong> — Queries added to discover.sh this run. Will start surfacing art spaces next discovery session.</div>
+<div class="pattern"><strong>St. Michaels / Oxford corridor nearly exhausted</strong> — 7 of 9 pipeline venues this run were Eastern Shore hotels with thin contact data. Next run should prioritize DC/NoVA venues from the new discovery batch (Cosmos Club, Iron Gate, La Chaumiere, etc.)</div>
+
+<h2>Bugs Found</h2>
+<div class="flag"><strong>Off-domain filter edge case:</strong> Hotel chains (The Pembroke / Doyle Collection, Bartlett Pear / Four Seasons) use parent-company email domains. Filter correctly blocked pollution but also blocked The Pembroke's legitimate contact email. Fix: whitelist known hospitality group domains.</div>
+<div class="flag"><strong>The Stewart website mismatch:</strong> Google resolved thestewart.com to the wrong business. 41 Apollo credits wasted on "The Stewart Organization" (staffing company). Fix: add category-relevance check on Google-resolved websites.</div>
+<div class="flag"><strong>rooms@harbourinn.com added twice:</strong> KNOWN_EMAILS dedup didn't prevent within-run duplicate between Step 1 and Step 2. Fix: reload KNOWN_EMAILS after each step.</div>
+
+<h2>Next Run TODO</h2>
+<table>
+  <thead><tr><th>Item</th><th>Priority</th></tr></thead>
+  <tbody>
+    <tr><td>Pipeline DC/NoVA venues from new discovery batch (Cosmos Club, Iron Gate, La Chaumiere, Old Europe, Café Riggs, River Club DC)</td><td>HIGH</td></tr>
+    <tr><td>Taste queries: switch to <code>French restaurant [city]</code> type — many DC locations still untouched</td><td>HIGH</td></tr>
+    <tr><td>Add parent-company domain whitelist for hotel chains</td><td>MED</td></tr>
+    <tr><td>Fix rooms@ dedup bug (reload KNOWN_EMAILS after Step 1)</td><td>MED</td></tr>
+    <tr><td>Verify Bartlett Pear Inn still open — all emails bounced</td><td>MED</td></tr>
+    <tr><td>Fix The Stewart category/website — it's a wine bar not a winery, website likely wrong</td><td>LOW</td></tr>
+  </tbody>
+</table>
+
+</body>
+</html>

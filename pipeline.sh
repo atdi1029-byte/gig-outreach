@@ -86,6 +86,7 @@ name_known() {
 ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_exhausted"
 APOLLO_EXHAUSTED_FLAG="/tmp/pipeline_apollo_exhausted"
 MAX_APOLLO=${MAX_APOLLO:-300}  # Max Apollo credits per run (default 300, set MAX_APOLLO=N to override)
+VENUE_DOMAIN=""  # Set per-venue in run_venue() — used by verify_and_push to filter off-domain emails
 rm -f "$ZB_EXHAUSTED_FLAG" "$APOLLO_EXHAUSTED_FLAG" /tmp/pipeline_step1_fb.txt /tmp/pipeline_step1_ig.txt /tmp/pipeline_seen_orgs
 
 check_apollo_credits() {
@@ -125,6 +126,23 @@ verify_and_push() {
     if email_known "$email"; then
         log "  [SKIP] $email — already in sheet"
         return
+    fi
+
+    # Off-domain filter — skip emails whose domain doesn't match the venue
+    if [ -n "$VENUE_DOMAIN" ] && echo "$email" | grep -q '@'; then
+        local email_domain
+        email_domain=$(echo "$email" | awk -F'@' '{print tolower($2)}')
+        local generic_domains="gmail.com yahoo.com outlook.com hotmail.com aol.com icloud.com"
+        if ! echo "$generic_domains" | grep -qw "$email_domain"; then
+            # Not a generic provider — check if domain relates to venue
+            local vbase ebase
+            vbase=$(echo "$VENUE_DOMAIN" | sed 's/\..*//')
+            ebase=$(echo "$email_domain" | sed 's/\..*//')
+            if [ "$email_domain" != "$VENUE_DOMAIN" ] && [ "$ebase" != "$vbase" ]; then
+                log "  [SKIP] $email — off-domain (venue: $VENUE_DOMAIN)"
+                return
+            fi
+        fi
     fi
 
     if [ -f "$ZB_EXHAUSTED_FLAG" ]; then
@@ -2488,6 +2506,23 @@ PYEOF
             website=""
         fi
     fi
+
+    # Normalize URL scheme — prepend https:// if missing
+    if [ -n "$website" ] && [ "$website" != "None" ]; then
+        if ! echo "$website" | grep -qE '^https?://'; then
+            website="https://$website"
+            log "  [URL FIX] Added https:// scheme: $website"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$website'''))")" > /dev/null
+        fi
+    fi
+
+    # Set VENUE_DOMAIN for off-domain email filter in verify_and_push
+    if [ -n "$website" ] && [ "$website" != "None" ]; then
+        VENUE_DOMAIN=$(python3 -c "from urllib.parse import urlparse; d=urlparse('${website}').netloc.lower(); print(d.replace('www.',''))" 2>/dev/null)
+    else
+        VENUE_DOMAIN=""
+    fi
+    log "  [DOMAIN] Venue domain: ${VENUE_DOMAIN:-none}"
 
     # Re-check category by venue name — ONLY if current category is generic 'restaurant'
     # Never overwrite intentional categories (art_gallery, museum, etc.)

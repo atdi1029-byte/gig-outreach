@@ -207,7 +207,12 @@ h1 {
 </head>
 <body>
 
-<h1>Discovery Tracker</h1>
+<div style="display:flex;align-items:baseline;
+  justify-content:space-between;flex-wrap:wrap;gap:8px;">
+  <h1>Discovery Tracker</h1>
+  <span id="sync-status" style="font-size:0.8rem;
+    color:#888;"></span>
+</div>
 <p class="subtitle">Every city in the 2-hour radius.
 Check off as you sweep each one for venues.</p>
 
@@ -245,7 +250,8 @@ Check off as you sweep each one for venues.</p>
 
 <script>
 const STORAGE_KEY = 'discovery_tracker_v1';
-const VENUES_KEY = 'discovery_tracker_venues';
+const VENUES_KEY  = 'discovery_tracker_venues';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec';
 
 // ============================================================
 // MASTER CITY LIST — every city in the 2-hour radius
@@ -550,10 +556,111 @@ const REGIONS = [
 let swept = {};
 let venuesCounts = {};
 let filter = 'all';
+let syncTimer = null;
+let syncStatus = ''; // '', 'saving', 'saved', 'error'
+
+// ============================================================
+// CLOUD SYNC — JSONP GET (POST blocked by AdBlock Plus)
+// Save: only non-empty swept + non-zero venue counts
+// Load: restore from cloud when localStorage is empty
+// ============================================================
+function jsonp(url, cb) {
+  const name = '_dt_cb_' + Date.now();
+  const s = document.createElement('script');
+  window[name] = function(data) {
+    delete window[name];
+    document.head.removeChild(s);
+    cb(data);
+  };
+  s.src = url + (url.includes('?') ? '&' : '?') +
+    'callback=' + name;
+  s.onerror = function() {
+    delete window[name];
+    try { document.head.removeChild(s); } catch(e) {}
+    cb(null);
+  };
+  document.head.appendChild(s);
+}
+
+function cloudSave() {
+  // Trim: only swept cities and non-zero venue counts
+  const sweptTrimmed = Object.fromEntries(
+    Object.entries(swept).filter(([, v]) => v)
+  );
+  const venuesTrimmed = Object.fromEntries(
+    Object.entries(venuesCounts).filter(([, v]) => v > 0)
+  );
+  const sweptStr  = encodeURIComponent(
+    JSON.stringify(sweptTrimmed)
+  );
+  const venuesStr = encodeURIComponent(
+    JSON.stringify(venuesTrimmed)
+  );
+  const url = GAS_URL + '?action=save_discovery' +
+    '&swept=' + sweptStr + '&venues=' + venuesStr;
+  setSyncStatus('saving');
+  jsonp(url, function(res) {
+    if (res && res.status === 'ok') {
+      setSyncStatus('saved');
+    } else {
+      setSyncStatus('error');
+    }
+  });
+}
+
+function cloudLoad(onDone) {
+  const url = GAS_URL + '?action=load_discovery';
+  jsonp(url, function(res) {
+    if (!res || res.status !== 'ok') { onDone(); return; }
+    let changed = false;
+    if (res.swept) {
+      try {
+        const s = JSON.parse(res.swept);
+        if (Object.keys(s).length) { swept = s; changed = true; }
+      } catch(e) {}
+    }
+    if (res.venues) {
+      try {
+        const v = JSON.parse(res.venues);
+        if (Object.keys(v).length) {
+          venuesCounts = v; changed = true;
+        }
+      } catch(e) {}
+    }
+    if (changed) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(swept));
+      localStorage.setItem(VENUES_KEY, JSON.stringify(venuesCounts));
+    }
+    onDone();
+  });
+}
+
+function setSyncStatus(s) {
+  syncStatus = s;
+  const el = document.getElementById('sync-status');
+  if (!el) return;
+  if (s === 'saving') {
+    el.textContent = 'Saving…';
+    el.style.color = '#888';
+  } else if (s === 'saved') {
+    el.textContent = '✓ Synced';
+    el.style.color = '#8bc34a';
+  } else if (s === 'error') {
+    el.textContent = '⚠ Sync failed';
+    el.style.color = '#ef5350';
+  }
+}
+
+function scheduleSave() {
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(cloudSave, 1500);
+}
 
 function load() {
   try {
-    swept = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    swept = JSON.parse(
+      localStorage.getItem(STORAGE_KEY)
+    ) || {};
     venuesCounts = JSON.parse(
       localStorage.getItem(VENUES_KEY)
     ) || {};
@@ -565,7 +672,10 @@ function load() {
 
 function save() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(swept));
-  localStorage.setItem(VENUES_KEY, JSON.stringify(venuesCounts));
+  localStorage.setItem(
+    VENUES_KEY, JSON.stringify(venuesCounts)
+  );
+  scheduleSave();
 }
 
 function cityKey(region, city) {
@@ -718,9 +828,25 @@ document.querySelectorAll('.filter-btn')
 
 // ============================================================
 // INIT
+// Load from localStorage first. If empty (fresh browser /
+// cache cleared), pull from cloud then render.
 // ============================================================
 load();
-render();
+const hasLocal = Object.keys(swept).length > 0 ||
+  Object.keys(venuesCounts).length > 0;
+if (hasLocal) {
+  render();
+} else {
+  setSyncStatus('saving');
+  document.getElementById('sync-status').textContent =
+    'Loading…';
+  document.getElementById('sync-status').style.color =
+    '#888';
+  cloudLoad(function() {
+    setSyncStatus('');
+    render();
+  });
+}
 </script>
 </body>
 </html>

@@ -67,6 +67,8 @@ function doGet(e) {
   if (action === 'get_skip_words')   return getSkipWords_();
   if (action === 'remap_contact_venue') return remapContactVenue_(e.parameter);
   if (action === 'find_by_domain')     return findByDomain_(e.parameter);
+  if (action === 'save_discovery')     return saveDiscovery_(e.parameter);
+  if (action === 'load_discovery')     return loadDiscovery_();
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -1788,6 +1790,34 @@ function remapContactVenue_(params) {
   }
 
   return jsonResponse_({ status: 'ok', updated: updated, old_venue_id: oldId, new_venue_id: newId });
+}
+
+// ---------------------------------------------------------------
+// saveDiscovery_ — Save discovery tracker state (swept cities +
+// venue counts) as JSON blobs in Config tab.
+// Params: swept (JSON string), venues (JSON string)
+// Only stores non-empty data — caller trims zero-count entries.
+// ---------------------------------------------------------------
+function saveDiscovery_(params) {
+  if (params.swept)  setConfig_('discovery_swept',  params.swept);
+  if (params.venues) setConfig_('discovery_venues', params.venues);
+  setConfig_('discovery_updated', new Date().toISOString());
+  return jsonResponse_({ status: 'ok' });
+}
+
+// ---------------------------------------------------------------
+// loadDiscovery_ — Load discovery tracker state from Config tab
+// ---------------------------------------------------------------
+function loadDiscovery_() {
+  var swept   = getConfig_('discovery_swept');
+  var venues  = getConfig_('discovery_venues');
+  var updated = getConfig_('discovery_updated');
+  return jsonResponse_({
+    status:  'ok',
+    swept:   swept   || null,
+    venues:  venues  || null,
+    updated: updated || null
+  });
 }
 
 // find_by_domain — look up a venue by its website domain

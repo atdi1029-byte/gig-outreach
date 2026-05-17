@@ -232,7 +232,8 @@ function serveDashboardJSON_() {
     var fbDone = !!venue.fb_msg_sent;
 
     for (var cc = 0; cc < vc.length; cc++) {
-      if (vc[cc].verified === 'valid' && !vc[cc].email_sent) {
+      var v2 = vc[cc].verified;
+      if ((v2 === 'valid' || v2 === 'catch-all' || v2 === 'unknown') && !vc[cc].email_sent) {
         pendingEmailContacts.push(vc[cc]);
       }
     }
@@ -883,15 +884,11 @@ function updateVenueStatus_(venueId) {
       var verified = String(cData[i][6]);
       var sent = String(cData[i][8]).toLowerCase() === 'true';
       if (sent) anyEmailSent = true;
-      if (verified === 'valid' && !sent) allEmailsSent = false;
+      if ((verified === 'valid' || verified === 'catch-all' || verified === 'unknown') && !sent) allEmailsSent = false;
     }
 
-    // Don't auto-set to 'contacted' — that's reserved for user clicking "Mark Done".
-    // Set to 'sent' so the venue stays visible until the user dismisses it.
-    var linkedinPending = String(vData[v][20]).toLowerCase() === 'true';
-    if (allEmailsSent && anyEmailSent && !linkedinPending) {
-      venueSheet.getRange(v + 1, 13).setValue('sent');
-    }
+    // Don't auto-set status — user must explicitly mark a venue done.
+    // (Removed auto 'sent' status that was hiding venues prematurely.)
     break;
   }
 }

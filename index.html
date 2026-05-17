@@ -2126,7 +2126,7 @@ function skipForm(venueId, el) {
 // === RENDER: HOME — Top Picks ===
 function toggleTopPicks() {
     const list = document.getElementById('topPicksList');
-    list.classList.toggle('collapsed');
+    list.classList.remove('collapsed');
 }
 
 function renderTopPicks(picks) {

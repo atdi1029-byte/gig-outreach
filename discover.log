@@ -2840,3 +2840,187 @@
 [22:55:53]   Queries run: 9
 [22:55:53]   Venues added: 41
 [22:55:53]   Queries remaining: 473
+
+[23:16:46] === Taste Discovery Mode Started ===
+[23:16:46] MAX_QUERIES=50
+[23:16:46] Fetching existing venues for dedup...
+
+[23:16:51] === Taste Discovery Mode Started ===
+[23:16:51] MAX_QUERIES=50
+[23:16:51] Fetching existing venues for dedup...
+
+[23:17:34] === Taste Discovery Mode Started ===
+[23:17:34] MAX_QUERIES=50
+[23:17:34] Fetching existing venues for dedup...
+[23:17:36] Existing venues: 678
+[23:17:36] Generating search queries from taste profile...
+[23:17:36] CITY_FILTER='Annapolis|Severna Park': filtered to 24 matching queries
+[23:17:36] Generated 24 queries (50 will run this session)
+[23:17:36] 
+[23:17:36] === Taste Query [1/50]: historic fine dining restaurant Annapolis MD ===
+
+[22:32:06] === Taste Discovery Mode Started ===
+[22:32:06] MAX_QUERIES=999
+[22:32:06] Fetching existing venues for dedup...
+[22:32:08] Existing venues: 743
+[22:32:08] Generating search queries from taste profile...
+[22:32:09] CITY_FILTER='Annapolis|Severna Park': filtered to 24 matching queries
+[22:32:09] Generated 24 queries (999 will run this session)
+[22:32:09] 
+[22:32:09] === Taste Query [1/999]: historic fine dining restaurant Annapolis MD ===
+[22:32:14]   Scrolling search results...
+[22:32:22]   Extracting results...
+[22:32:22]   No results found
+[22:32:27] 
+[22:32:27] === Taste Query [2/999]: French restaurant Annapolis MD ===
+[22:32:33]   Scrolling search results...
+
+[13:57:04] === Venue Discovery Started ===
+[13:57:04] Fetching past gigs...
+[13:57:08] Found 70 past gigs
+[13:57:08] Fetching existing venues for dedup...
+[13:57:13] Existing venues: 802
+[13:57:13]   SKIP (already discovered): L'Auberge Chez Francois
+[13:57:13]   SKIP (already discovered): The Inn at Perry Cabin
+[13:57:13]   SKIP (already discovered): The Maryland Club
+[13:57:13]   SKIP (already discovered): Black Ankle Vineyards
+[13:57:13]   SKIP (already discovered): Royal Restaurant
+[13:57:13]   SKIP (already discovered): Good Spirit Farm Winery
+[13:57:13]   SKIP (already discovered): Chesapeake Manor Vineyard
+[13:57:13]   SKIP (already discovered): Elkridge Furnace Inn
+[13:57:13]   SKIP (already discovered): Xella Winery and Vineyard
+[13:57:13]   SKIP (already discovered): Twin Oaks Tavern Winery
+[13:57:13]   SKIP (already discovered): Windridge Vineyards
+[13:57:13]   SKIP (already discovered): University Club
+[13:57:13]   SKIP (already discovered): The Farmhouse Tuscan
+[13:57:13]   SKIP (already discovered): Big Cork Vineyards
+[13:57:13]   SKIP (already discovered): Savage Mill Mall
+[13:57:13]   SKIP (already discovered): Trueman Vineyards
+[13:57:13]   SKIP (already discovered): Williams Gap Vineyard
+[13:57:13]   SKIP (already discovered): Hello Betty Bethesda
+[13:57:13]   SKIP (already discovered): The Madison Hotel
+[13:57:13]   SKIP (already discovered): Belle Haven Country Club
+[13:57:13]   SKIP (already discovered): Casanel Vineyards & Winery
+[13:57:13]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[13:57:13]   SKIP (already discovered): Corteau Winery
+[13:57:13]   SKIP (already discovered): Penn Oaks Winery
+[13:57:13]   SKIP (already discovered): Pizza Pomodoro
+[13:57:13]   SKIP (already discovered): Hidden Brook Winery
+[13:57:13]   SKIP (already discovered): Simple Theory Wine Co
+[13:57:13]   SKIP (already discovered): Brightview Perry Hall
+[13:57:13]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[13:57:13]   SKIP (already discovered): Gaylord National Harbor
+[13:57:13]   SKIP (already discovered): Woodberry Kitchen
+[13:57:13]   SKIP (already discovered): Great Sage
+[13:57:13]   SKIP (already discovered): Cosmos Club DC
+[13:57:13]   SKIP (already discovered): Doukénie Winery
+[13:57:13]   SKIP (already discovered): State Plaza Hotel DC
+[13:57:13]   SKIP (already discovered): Hyatt Cambridge
+[13:57:13]   SKIP (already discovered): Greenhill Vineyards
+[13:57:13]   SKIP (already discovered): Loudoun Golf & Country Club
+[13:57:13]   SKIP (already discovered): Creek's Edge Winery
+[13:57:13]   SKIP (already discovered): The Milton Inn
+[13:57:13]   SKIP (already discovered): Country Club of Fairfax
+[13:57:13]   SKIP (already discovered): Century Club Hagerstown
+[13:57:13]   SKIP (already discovered): Rock Spring Farm
+[13:57:13]   SKIP (already discovered): Janemark Winery & Vineyard
+[13:57:13]   SKIP (already discovered): Alma Cocina Latina
+[13:57:13]   SKIP (already discovered): Omni Shoreham Hotel
+[13:57:13]   SKIP (already discovered): Knoxie's Table
+[13:57:13]   SKIP (already discovered): 1757 Golf Club
+[13:57:13]   SKIP (already discovered): Holly Hills Country Club
+[13:57:13]   SKIP (already discovered): Conrad Washington DC
+[13:57:13]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[13:57:13]   SKIP (already discovered): Le Méridien Arlington
+[13:57:13]   SKIP (already discovered): Dulles Town Center
+[13:57:13]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[13:57:13]   SKIP (already discovered): Maritime Museum St Michaels
+[13:57:13]   SKIP (already discovered): Chartwell Golf & Country Club
+[13:57:13]   SKIP (already discovered): Ruse
+[13:57:13]   SKIP (already discovered): InGrano Bistro Bakery
+[13:57:13]   SKIP (already discovered): Kent Manor Inn
+[13:57:13]   SKIP (already discovered): Army Navy Country Club
+[13:57:13]   SKIP (already discovered): River Bend Country Club
+[13:57:13]   SKIP (already discovered): City Tavern DC
+[13:57:13]   SKIP (already discovered): Baltimore Country Club
+[13:57:13]   SKIP (already discovered): Vino and Pasta
+[13:57:13]   SKIP (already discovered): 50 West Vineyards
+[13:57:13]   SKIP (already discovered): The Galley Restaurant & Bar
+[13:57:13]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[13:57:13]   SKIP (already discovered): Bistrot Lepic
+[13:57:13]   SKIP (already discovered): Sunset Hills Winery
+[13:57:13]   SKIP (already discovered): The Oaks Waterfront Hotel
+[13:57:13] Cleaning up discovered_gigs.txt...
+[13:57:19] 
+[13:57:19] === Discovery Complete — Total new venues: 0 ===
+
+[13:57:45] === Taste Discovery Mode Started ===
+[13:57:45] MAX_QUERIES=9
+[13:57:45] Fetching existing venues for dedup...
+[13:57:48] Existing venues: 802
+[13:57:48] Generating search queries from taste profile...
+[13:57:48] Generated 501 queries (9 will run this session)
+[13:57:48] 
+[13:57:48] === Taste Query [1/9]: historic fine dining restaurant Middleburg VA ===
+[13:57:53]   Scrolling search results...
+[13:57:59]   Extracting results...
+[13:57:59]   Found 44 results
+[13:57:59]   Added 0 new venues from query
+[13:58:06] 
+[13:58:06] === Taste Query [2/9]: historic fine dining restaurant Leesburg VA ===
+[13:58:12]   Scrolling search results...
+[13:58:18]   Extracting results...
+[13:58:18]   Found 51 results
+[13:58:18]   Added 0 new venues from query
+[13:58:27] 
+[13:58:27] === Taste Query [3/9]: historic fine dining restaurant St. Michaels MD ===
+[13:58:33]   Scrolling search results...
+[13:58:39]   Extracting results...
+[13:58:40]   Found 6 results
+[13:58:40]   Added 0 new venues from query
+[13:58:45] 
+[13:58:45] === Taste Query [4/9]: historic fine dining restaurant Easton MD ===
+[13:58:49]   Scrolling search results...
+[13:58:57]   Extracting results...
+[13:58:57]   Found 44 results
+[13:59:01]   Added 1 new venues from query
+[13:59:01]   [WEBSITE] Looking up: Breakfast in Easton
+[13:59:04]     Website: http://eastondinermd.com
+[13:59:14] 
+[13:59:14] === Taste Query [5/9]: historic fine dining restaurant Roland Park Baltimore MD ===
+[13:59:19]   Scrolling search results...
+[13:59:27]   Extracting results...
+[13:59:27]   Found 42 results
+[13:59:27]   Added 0 new venues from query
+[13:59:34] 
+[13:59:35] === Taste Query [6/9]: French restaurant Georgetown DC ===
+[13:59:40]   Scrolling search results...
+[13:59:48]   Extracting results...
+[13:59:49]   Found 8 results
+[13:59:49]   Added 0 new venues from query
+[13:59:56] 
+[13:59:56] === Taste Query [7/9]: French restaurant Dupont Circle DC ===
+[14:00:01]   Scrolling search results...
+[14:00:10]   Extracting results...
+[14:00:10]   Found 2 results
+[14:00:10]   Added 0 new venues from query
+[14:00:16] 
+[14:00:16] === Taste Query [8/9]: French restaurant Potomac MD ===
+[14:00:21]   Scrolling search results...
+[14:00:28]   Extracting results...
+[14:00:28]   Found 34 results
+[14:00:28]   Added 0 new venues from query
+[14:00:36] 
+[14:00:36] === Taste Query [9/9]: French restaurant Bethesda MD ===
+[14:00:42]   Scrolling search results...
+[14:00:49]   Extracting results...
+[14:00:49]   Found 2 results
+[14:00:49]   Added 0 new venues from query
+[14:00:55]   MAX_QUERIES=9 reached — stopping.
+[14:00:55] Calculating distances for new venues...
+[14:01:03]   Distances calculated: 0
+[14:01:03] 
+[14:01:03] === Taste Discovery Complete ===
+[14:01:03]   Queries run: 9
+[14:01:03]   Venues added: 1
+[14:01:03]   Queries remaining: 492

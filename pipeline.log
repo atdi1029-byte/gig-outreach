@@ -12826,3 +12826,973 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 23:24:12 
 23:24:12 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-08_23-24.html
 23:24:13 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-08_23-24.html
+
+14:02:19 === Pipeline started 2026-05-18 14:02:19 ===
+14:02:19 SMART PICKS MODE: Fetching ranked venues...
+14:02:23 SMART PICKS: 578 available, budget remaining: 9
+14:02:23 
+14:02:23 ########## SMART PICK #1 (score 99): Naval Academy Club (MD-PRIV-693) ##########
+14:02:30   [LOOKUP] No website — Googling 'Naval Academy Club'...
+14:02:33   [LOOKUP] Found: https://www.navalacademyclub.com
+14:02:37   [DOMAIN] Venue domain: navalacademyclub.com
+14:02:40 
+14:02:40 ============================================================
+14:02:40  PIPELINE: Naval Academy Club (MD-PRIV-693)
+14:02:40  Website: https://www.navalacademyclub.com
+14:02:40  Started: 2026-05-18 14:02:40
+14:02:40 ============================================================
+14:02:40   [ZB] Credits remaining: 3814
+14:02:43   Known emails: 0
+14:02:43   Known names: 0
+14:02:43 
+14:02:43 ========== STEP 1: Website Scrape ==========
+14:02:43   URL: https://www.navalacademyclub.com
+14:02:43   Opening in Chrome: https://www.navalacademyclub.com
+14:02:50   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+14:03:02   Validating contact form URL: https://www.navalacademyclub.com/about/contact
+14:03:07   Found on contact page: membership@usna.edu, catering@usna.edu, clubreservations@usna.edu, drydock@usna.edu, steerage@usna.edu
+14:03:07   ✗ No submittable form found — clearing contact_form
+14:03:07   Emails: 0 | FB: none | IG: none | Contact Form: none
+14:03:07   [LOCATION] Checking for location-specific page (city: Annapolis)...
+14:03:10   [LOCATION] No location-specific page found
+14:03:10   Crawling subpage (1): https://www.navalacademyclub.com/about/contact
+14:03:14   Found on subpage: catering@usna.edu, clubreservations@usna.edu, drydock@usna.edu, membership@usna.edu, steerage@usna.edu
+14:03:14   Crawling subpage (2): https://www.navalacademyclub.com/catering/event-photos
+14:03:18   Crawling subpage (3): https://www.navalacademyclub.com/the-alley-restaurant/memberevents
+14:03:23   Crawling subpage (4): https://www.navalacademyclub.com/catering
+14:03:27   Found on subpage: catering@usna.edu
+14:03:27   Crawling subpage (5): https://www.navalacademyclub.com/catering/menus
+14:03:31   Crawling subpage (6): https://www.navalacademyclub.com/catering/venues
+14:03:36   Crawling subpage (7): https://www.navalacademyclub.com/about
+14:03:40   Found on subpage: catering@usna.edu, clubreservations@usna.edu
+14:03:40   Crawling subpage (8): https://www.navalacademyclub.com/about/mission
+14:03:44   Crawling subpage (9): https://www.navalacademyclub.com/about/access
+14:03:49   Crawling subpage (10): https://www.navalacademyclub.com/default.aspx
+14:03:53   Crawling subpage (11): https://www.navalacademyclub.com/membership
+14:03:57   Found on subpage: membership@usna.edu
+14:03:57   Crawling subpage (12): https://www.navalacademyclub.com/cw2026
+14:04:02   Crawling subpage (13): https://www.navalacademyclub.com/the-alley-restaurant
+14:04:06   Found on subpage: clubreservations@usna.edu
+14:04:06   Crawling subpage (14): https://www.navalacademyclub.com/the-alley-restaurant/menus
+14:04:10   Crawling subpage (15): https://www.navalacademyclub.com/happy-hour-specials
+14:04:15   Crawling subpage (16): https://www.navalacademyclub.com/onlinereservations
+14:04:19   Found on subpage: clubreservations@usna.edu, membership@usna.edu
+14:04:19   Crawling subpage (17): https://www.navalacademyclub.com/1845-coffee
+14:04:23   Crawling subpage (18): https://www.navalacademyclub.com/1845-coffee/gatehouse
+14:04:28   Crawling subpage (19): https://www.navalacademyclub.com/1845-coffee/midstore
+14:04:32   Crawling subpage (20): https://www.navalacademyclub.com/1845-coffee/hopper-hall
+14:04:36   Crawling subpage (21): https://www.navalacademyclub.com/club-at-greenbury-point
+14:04:40   Found on subpage: catering@usna.edu
+14:04:41   Crawling subpage (22): https://www.navalacademyclub.com/club-at-greenbury-point/menus
+14:04:45   Crawling subpage (23): https://www.navalacademyclub.com/Default.aspx
+14:04:49   Crawling subpage (24): https://www.navalacademyclub.com/steerage
+14:04:53   Crawling subpage (25): https://www.navalacademyclub.com/williamiii
+14:04:58   Crawling subpage (26): https://www.navalacademyclub.com/Food-Trucks
+14:05:02   Crawling subpage (27): https://www.navalacademyclub.com/login
+14:05:07   [CONTACT] Probing https://www.navalacademyclub.com/contact
+14:05:12   [CONTACT] Found emails on https://www.navalacademyclub.com/contact
+14:05:12   [SKIP] catering@usna.edu — off-domain (venue: navalacademyclub.com)
+14:05:12   [SKIP] clubreservations@usna.edu — off-domain (venue: navalacademyclub.com)
+14:05:12   [SKIP] drydock@usna.edu — off-domain (venue: navalacademyclub.com)
+14:05:12   [SKIP] membership@usna.edu — off-domain (venue: navalacademyclub.com)
+14:05:12   [SKIP] steerage@usna.edu — off-domain (venue: navalacademyclub.com)
+14:05:19 
+14:05:19 ========== STEP 1B: Instagram Google Search ==========
+14:05:19   No Instagram found on website — Googling...
+14:05:23   [IG SEARCH] Found: https://www.instagram.com/navyclublax/
+14:05:28   ✓ Instagram URL saved
+14:05:31 
+14:05:31 ========== STEP 1C: Facebook Google Search ==========
+14:05:31   No Facebook found on website — Googling...
+14:05:35   [FB SEARCH] Found: https://www.facebook.com/NavySoftball/
+14:05:39   ✓ Facebook URL saved
+14:05:39 
+14:05:39 ========== STEP 2: Social Media Scrape ==========
+14:05:43   FB: https://www.facebook.com/NavySoftball/ | IG: https://www.instagram.com/navyclublax/
+14:05:43   Opening FB: https://www.facebook.com/NavySoftball
+14:05:48   Opening FB: https://www.facebook.com/NavySoftball/about
+14:05:54   Opening FB: https://www.facebook.com/NavySoftball/directory_contact_info
+14:05:59   FB emails found: rrehberg@usna.edu
+14:05:59   Opening IG: https://www.instagram.com/navyclublax/
+14:06:04   [IG] No email on page — trying Google snippet...
+14:06:08   [IG SNIPPET] No email in Google snippet
+14:06:08   [SKIP] rrehberg@usna.edu — off-domain (venue: navalacademyclub.com)
+14:06:08   [APOLLO] Credits used this run: 0 / 300
+14:06:08 
+14:06:08 ========== STEP 3: Apollo API ==========
+14:06:08   Searching Apollo for company: Naval Academy Club
+14:06:10   Found: Naval Academy Club (domain: navalacademyclub.com, org_id: 673879e4b54b5300010654fb)
+14:06:10   Searching for people at Naval Academy Club (org_id: 673879e4b54b5300010654fb)...
+14:06:11   Found 3 people total
+14:06:11   Skipped 1 people with no email (red ? on Apollo)
+14:06:11   2 people to enrich (1 credit each)
+14:06:12   >>> Isabel Vandenberg (Senior Catering Account Executive): vandenbe@usna.edu [verified]
+14:06:12   [SKIP] vandenbe@usna.edu — off-domain (venue: navalacademyclub.com)
+14:06:12   >>> Andrew Rexroth (Cook/ Chef's Assistant): rexroth@usna.edu [verified]
+14:06:12   [SKIP] rexroth@usna.edu — off-domain (venue: navalacademyclub.com)
+14:06:12   Apollo API done: 2 credits used this run
+14:06:12 
+14:06:12 ========== STEP 4: LinkedIn + Apollo API ==========
+14:06:12   Using domain: navalacademyclub.com
+14:06:13   LinkedIn page 1...
+14:06:24   Found 10 results
+14:06:24   Found: Ana Goforth
+14:06:24   Found: Chelsea Folkes
+14:06:24   Found: Robert Lias
+14:06:24   Found: Chantal Buckley-Schurr
+14:06:24   Found: Murph McCarthy
+14:06:24   Found: Rachel Radwan
+14:06:27   LinkedIn page 2...
+14:06:35   Found 10 results
+14:06:35   Found: Ashley Hermsmeyer
+14:06:35   Found: Annie Newton
+14:06:35   Found: Meghan Hubley
+14:06:40   LinkedIn page 3...
+14:06:46   Found 10 results
+14:06:46   Found: Darby Ratcliffe
+14:06:46   Found: Shawn Clark
+14:06:46   Found: Darius Nwokike
+14:06:46   Found: Jamiya Clark
+14:06:46 
+14:06:46   LinkedIn found 13 new people. Enriching via Apollo API...
+14:06:46   LinkedIn + Apollo API done. Credits used: 2
+14:06:49 
+14:06:49 ========== STEP 5: Google Fallback (no email found yet) ==========
+14:06:49   Googling: "Naval Academy Club" contact Annapolis
+14:06:53   [FALLBACK] No new site found (or same domain as before)
+14:06:53   [FALLBACK] Re-trying Instagram: Naval Academy Club Annapolis site:instagram.com
+14:06:57   [FALLBACK] Found Instagram: https://www.instagram.com/usnavalacademy/
+14:07:00 
+14:07:00 ========== STEP 2: Social Media Scrape ==========
+14:07:06   FB: https://www.facebook.com/NavySoftball/ | IG: https://www.instagram.com/usnavalacademy/
+14:07:06   Opening FB: https://www.facebook.com/NavySoftball
+14:07:11   FB emails found: rrehberg@usna.edu
+14:07:11   Opening FB: https://www.facebook.com/NavySoftball/about
+14:07:16   Opening FB: https://www.facebook.com/NavySoftball/directory_contact_info
+14:07:21   FB emails found: rrehberg@usna.edu
+14:07:21   Opening IG: https://www.instagram.com/usnavalacademy/
+14:07:27   [IG] No email on page — trying Google snippet...
+14:07:31   [IG SNIPPET] No email in Google snippet
+14:07:31   [SKIP] rrehberg@usna.edu — off-domain (venue: navalacademyclub.com)
+14:07:31   Setting status → pipelined
+14:07:34 
+14:07:34 ============================================================
+14:07:34  DONE: Naval Academy Club | 5 min | 14:07:34
+14:07:34 ============================================================
+14:08:04 
+14:08:04 ########## SMART PICK #2 (score 89): Chartwell Golf and Country Club (MD-COUN-732) ##########
+14:08:12   [LOOKUP] No website — Googling 'Chartwell Golf and Country Club'...
+14:08:16   [LOOKUP] Found: https://www.chartwellgcc.com
+14:08:19   [DOMAIN] Venue domain: chartwellgcc.com
+14:08:23 
+14:08:23 ============================================================
+14:08:23  PIPELINE: Chartwell Golf and Country Club (MD-COUN-732)
+14:08:23  Website: https://www.chartwellgcc.com
+14:08:23  Started: 2026-05-18 14:08:23
+14:08:23 ============================================================
+14:08:23   [ZB] Credits remaining: 3814
+14:08:29   Known emails: 0
+14:08:29   Known names: 0
+14:08:29 
+14:08:29 ========== STEP 1: Website Scrape ==========
+14:08:29   URL: https://www.chartwellgcc.com
+14:08:29   Opening in Chrome: https://www.chartwellgcc.com
+14:08:36   Validating contact form URL: https://www.chartwellgcc.com/Contact_Us/Guest_Information
+14:08:40   Found on contact page: clubhouse@chartwellgcc.com
+14:08:40   ✗ No submittable form found — clearing contact_form
+14:08:40   Emails: 1 | FB: https://www.facebook.com/ChartwellGCC | IG: https://www.instagram.com/chartwellgcc/ | Contact Form: none
+14:08:40   Crawling subpage (1): https://www.chartwellgcc.com/Contact_Us
+14:08:45   Found on subpage: clubhouse@chartwellgcc.com
+14:08:45   Crawling subpage (2): https://www.chartwellgcc.com/Contact_Us/Employment
+14:08:49   Found on subpage: clubhouse@chartwellgcc.com
+14:08:49   Crawling subpage (3): https://www.chartwellgcc.com/Contact_Us/Guest_Information
+14:08:53   Found on subpage: clubhouse@chartwellgcc.com
+14:08:53   Crawling subpage (4): https://www.chartwellgcc.com/About/Our_Team
+14:08:58   Found on subpage: bendres@chartwellgcc.com, cgregorski@chartwellgcc.com, clubhouse@chartwellgcc.com, dmayhew@chartwellgcc.com, edorn@chartwellgcc.com, etipton@chartwellgcc.com, ragresti@chartwellgcc.com, rmarr@chartwellgcc.com, rshowalter@chartwellgcc.com
+14:08:58   Crawling subpage (5): https://www.chartwellgcc.com/Dining_Events/Private_Events_Weddings
+14:09:02   Found on subpage: clubhouse@chartwellgcc.com
+14:09:02   Crawling subpage (6): https://www.chartwellgcc.com/Dining_Events/Dining_at_Chartwell
+14:09:07   Found on subpage: clubhouse@chartwellgcc.com
+14:09:07   Crawling subpage (7): https://www.chartwellgcc.com/Dining_Events/Wine_Dinner_RSVP
+14:09:11   Found on subpage: clubhouse@chartwellgcc.com
+14:09:11   Crawling subpage (8): https://www.chartwellgcc.com/About
+14:09:15   Same emails 3 pages in a row — stopping subpage crawl
+14:09:16   [CONTACT] Probing https://www.chartwellgcc.com/contact_us
+14:09:22   [CONTACT] Found emails on https://www.chartwellgcc.com/contact_us
+14:09:28   bendres@chartwellgcc.com → valid
+14:09:35   ✓ Added: bendres@chartwellgcc.com <bendres@chartwellgcc.com>
+14:09:36   cgregorski@chartwellgcc.com → valid
+14:09:40   ✓ Added: cgregorski@chartwellgcc.com <cgregorski@chartwellgcc.com>
+14:09:42   clubhouse@chartwellgcc.com → valid
+14:09:45   ✓ Added: clubhouse@chartwellgcc.com <clubhouse@chartwellgcc.com>
+14:09:46   dmayhew@chartwellgcc.com → valid
+14:09:50   ✓ Added: dmayhew@chartwellgcc.com <dmayhew@chartwellgcc.com>
+14:09:52   edorn@chartwellgcc.com → valid
+14:09:56   ✓ Added: edorn@chartwellgcc.com <edorn@chartwellgcc.com>
+14:09:58   etipton@chartwellgcc.com → valid
+14:10:02   ✓ Added: etipton@chartwellgcc.com <etipton@chartwellgcc.com>
+14:10:03   ragresti@chartwellgcc.com → valid
+14:10:07   ✓ Added: ragresti@chartwellgcc.com <ragresti@chartwellgcc.com>
+14:10:08   rmarr@chartwellgcc.com → valid
+14:10:13   ✓ Added: rmarr@chartwellgcc.com <rmarr@chartwellgcc.com>
+14:10:15   rshowalter@chartwellgcc.com → valid
+14:10:18   ✓ Added: rshowalter@chartwellgcc.com <rshowalter@chartwellgcc.com>
+14:10:20 
+14:10:20 ========== STEP 2: Social Media Scrape ==========
+14:10:22   FB: https://www.facebook.com/ChartwellGCC | IG: https://www.instagram.com/chartwellgcc/
+14:10:22   Opening FB: https://www.facebook.com/ChartwellGCC
+14:10:28   FB emails found: rmarr@chartwellgcc.com
+14:10:28   Opening FB: https://www.facebook.com/ChartwellGCC/about
+14:10:33   Opening FB: https://www.facebook.com/ChartwellGCC/directory_contact_info
+14:10:38   FB emails found: rmarr@chartwellgcc.com
+14:10:38   Opening IG: https://www.instagram.com/chartwellgcc/
+14:10:43   [IG] No email on page — trying Google snippet...
+14:10:48   [IG SNIPPET] No email in Google snippet
+14:10:48   rmarr@chartwellgcc.com → valid
+14:10:51   ✓ Added: rmarr@chartwellgcc.com <rmarr@chartwellgcc.com>
+14:10:52   [APOLLO] Credits used this run: 2 / 300
+14:10:52 
+14:10:52 ========== STEP 3: Apollo API ==========
+14:10:52   Searching Apollo for company: Chartwell Golf and Country Club
+14:10:54   Found: Chartwell Golf & Country Club (domain: chartwellgcc.com, org_id: 636caea2f8251e00012e219d)
+14:10:54   Searching for people at Chartwell Golf & Country Club (org_id: 636caea2f8251e00012e219d)...
+14:10:54   Found 14 people total
+14:10:54   Skipped 9 people with no email (red ? on Apollo)
+14:10:54   5 people to enrich (1 credit each)
+14:10:55   >>> Robert Agresti (PGA Head Golf Professional): ragresti@chartwellgcc.com [verified]
+14:10:55   ragresti@chartwellgcc.com → valid
+14:10:57   ✓ Added: Robert Agresti <ragresti@chartwellgcc.com>
+14:10:59   >>> Erick Dorn (Facilities Manager): edorn@chartwellgcc.com [verified]
+14:10:59   edorn@chartwellgcc.com → valid
+14:11:02   ✓ Added: Erick Dorn <edorn@chartwellgcc.com>
+14:11:03   >>> Matthew Kinsey (Assistant Golf Professional): mkinsey@chartwellgcc.com [verified]
+14:11:03   mkinsey@chartwellgcc.com → valid
+14:11:07   ✓ Added: Matthew Kinsey <mkinsey@chartwellgcc.com>
+14:11:08   >>> Rebecca Showalter (Controller): rshowalter@chartwellgcc.com [verified]
+14:11:08   rshowalter@chartwellgcc.com → valid
+14:11:12   ✓ Added: Rebecca Showalter <rshowalter@chartwellgcc.com>
+14:11:13   >>> Deidra Mayhew (WSET Iii): dmayhew@chartwellgcc.com [verified]
+14:11:14   dmayhew@chartwellgcc.com → valid
+14:11:16   ✓ Added: Deidra Mayhew <dmayhew@chartwellgcc.com>
+14:11:17   Apollo API done: 7 credits used this run
+14:11:17 
+14:11:17 ========== STEP 4: LinkedIn + Apollo API ==========
+14:11:17   Using domain: chartwellgcc.com
+14:11:18   LinkedIn page 1...
+14:11:26   Found 10 results
+14:11:26   Found: Robert Agresti
+14:11:26   Found: Mark Ortiz
+14:11:26   Found: Dev Parmar
+14:11:26   Found: Michael Thomas
+14:11:26   Found: Shane Feldmann
+14:11:26   Found: Richard Marr
+14:11:31   LinkedIn page 2...
+14:11:36   Found 10 results
+14:11:36   Found: Connor Martel
+14:11:36   Found: Taylor Spring
+14:11:41   LinkedIn page 3...
+14:11:48   Found 10 results
+14:11:48   Found: J. Christopher Persico
+14:11:48   Found: Faith Dawson
+14:11:48   Found: Chad Stein
+14:11:48 
+14:11:48   LinkedIn found 11 new people. Enriching via Apollo API...
+14:11:48   LinkedIn + Apollo API done. Credits used: 7
+14:11:51   Setting status → pipelined
+14:11:56 
+14:11:56 ============================================================
+14:11:56  DONE: Chartwell Golf and Country Club | 3 min | 14:11:56
+14:11:56 ============================================================
+14:12:26 
+14:12:26 ########## SMART PICK #3 (score 85): Lewnes' Steakhouse (MD-REST-679) ##########
+14:12:36   [LOOKUP] No website — Googling 'Lewnes' Steakhouse'...
+14:12:39   [LOOKUP] Found: https://www.lewnessteakhouse.com
+14:12:43   [DOMAIN] Venue domain: lewnessteakhouse.com
+14:12:48 
+14:12:48 ============================================================
+14:12:48  PIPELINE: Lewnes' Steakhouse (MD-REST-679)
+14:12:48  Website: https://www.lewnessteakhouse.com
+14:12:48  Started: 2026-05-18 14:12:48
+14:12:48 ============================================================
+14:12:48   [ZB] Credits remaining: 3804
+14:12:52   Known emails: 0
+14:12:52   Known names: 0
+14:12:52 
+14:12:52 ========== STEP 1: Website Scrape ==========
+14:12:52   URL: https://www.lewnessteakhouse.com
+14:12:52   Opening in Chrome: https://www.lewnessteakhouse.com
+14:12:58   Validating contact form URL: https://www.lewnessteakhouse.com/contact
+14:13:03   ✓ Real contact form confirmed
+14:13:03   Emails: 0 | FB: https://www.facebook.com/lewnessteakhouseannapolis | IG: https://www.instagram.com/lewnes_steakhouse/ | Contact Form: https://www.lewnessteakhouse.com/contact
+14:13:03   [LOCATION] Checking for location-specific page (city: Annapolis)...
+14:13:03   [LOCATION] Found: https://www.lewnessteakhouse.com/annapolis/
+14:13:03   [LOCATION] Re-scraping location page: https://www.lewnessteakhouse.com/annapolis/
+14:13:14   [LOCATION] Re-scraped: Emails: 0 | FB: https://www.facebook.com/lewnessteakhouseannapolis | IG: https://www.instagram.com/lewnes_steakhouse/ | Contact Form: https://www.lewnessteakhouse.com/contact
+14:13:15   Crawling subpage (1): https://www.lewnessteakhouse.com/contact
+14:13:19   Crawling subpage (2): https://www.lewnessteakhouse.com/about
+14:13:23   Crawling subpage (3): https://www.lewnessteakhouse.com
+14:13:28   Crawling subpage (4): https://www.lewnessteakhouse.com/menu
+14:13:32   Crawling subpage (5): https://www.lewnessteakhouse.com/hours
+14:13:36   Crawling subpage (6): https://www.lewnessteakhouse.com/gallery
+14:13:41   Crawling subpage (7): https://www.lewnessteakhouse.com/careers
+14:13:46   [CONTACT] Probing https://www.lewnessteakhouse.com/contact
+14:13:59   ✓ Contact form URL saved
+14:13:59 
+14:13:59 ========== STEP 2: Social Media Scrape ==========
+14:14:02   FB: https://www.facebook.com/lewnessteakhouseannapolis | IG: https://www.instagram.com/lewnes_steakhouse/
+14:14:02   Opening FB: https://www.facebook.com/lewnessteakhouseannapolis
+14:14:08   FB emails found: mcl79@cornell.edu
+14:14:08   Opening FB: https://www.facebook.com/lewnessteakhouseannapolis/about
+14:14:13   Opening FB: https://www.facebook.com/lewnessteakhouseannapolis/directory_contact_info
+14:14:18   FB emails found: mcl79@cornell.edu
+14:14:18   Opening IG: https://www.instagram.com/lewnes_steakhouse/
+14:14:23   [IG] No email on page — trying Google snippet...
+14:14:28   [IG SNIPPET] No email in Google snippet
+14:14:28   [SKIP] mcl79@cornell.edu — off-domain (venue: lewnessteakhouse.com)
+14:14:28   [APOLLO] Credits used this run: 7 / 300
+14:14:28 
+14:14:28 ========== STEP 3: Apollo API ==========
+14:14:28   Searching Apollo for company: Lewnes' Steakhouse
+14:14:29   Found: Lewnes Steakhouse (domain: lewnessteakhouse.com, org_id: 54a1b4c274686942d3b2d109)
+14:14:29   Searching for people at Lewnes Steakhouse (org_id: 54a1b4c274686942d3b2d109)...
+14:14:30   Found 2 people total
+14:14:30   Skipped 2 people with no email (red ? on Apollo)
+14:14:30   No new people to enrich.
+14:14:30 
+14:14:30 ========== STEP 4: LinkedIn + Apollo API ==========
+14:14:30   Using domain: lewnessteakhouse.com
+14:14:31   LinkedIn page 1...
+14:14:37   Found 10 results
+14:14:37   Found: Kaitlyn Persinger
+14:14:37   Found: Tyler Grimsley
+14:14:40   LinkedIn page 2...
+14:14:49   Found 6 results
+14:14:49   No new venue employees on this page.
+14:14:54   LinkedIn page 3...
+14:15:13   No results on page 3 — stopping.
+14:15:13 
+14:15:13   LinkedIn found 2 new people. Enriching via Apollo API...
+14:15:13   LinkedIn + Apollo API done. Credits used: 7
+14:15:24 
+14:15:24 ========== STEP 5: Google Fallback (no email found yet) ==========
+14:15:24   Googling: "Lewnes' Steakhouse" contact Annapolis
+14:15:29   [FALLBACK] No new site found (or same domain as before)
+14:15:29   [FALLBACK] Re-trying Instagram: Lewnes' Steakhouse Annapolis site:instagram.com
+14:15:33   [FALLBACK] Found Instagram: https://www.instagram.com/lewnes_steakhouse/
+14:15:35 
+14:15:35 ========== STEP 2: Social Media Scrape ==========
+14:15:40   FB: https://www.facebook.com/lewnessteakhouseannapolis | IG: https://www.instagram.com/lewnes_steakhouse/
+14:15:40   Opening FB: https://www.facebook.com/lewnessteakhouseannapolis
+14:15:45   FB emails found: mcl79@cornell.edu
+14:15:45   Opening FB: https://www.facebook.com/lewnessteakhouseannapolis/about
+14:15:50   Opening FB: https://www.facebook.com/lewnessteakhouseannapolis/directory_contact_info
+14:15:55   FB emails found: mcl79@cornell.edu
+14:15:55   Opening IG: https://www.instagram.com/lewnes_steakhouse/
+14:16:01   [IG] No email on page — trying Google snippet...
+14:16:05   [IG SNIPPET] No email in Google snippet
+14:16:05   [SKIP] mcl79@cornell.edu — off-domain (venue: lewnessteakhouse.com)
+14:16:05   Setting status → pipelined
+14:16:08 
+14:16:08 ============================================================
+14:16:08  DONE: Lewnes' Steakhouse | 3 min | 14:16:08
+14:16:08 ============================================================
+14:16:38 
+14:16:38 ########## SMART PICK #4 (score 85): Osteria 177 (MD-REST-681) ##########
+14:16:46   [LOOKUP] No website — Googling 'Osteria 177'...
+14:16:49   [LOOKUP] Found: https://www.osteria177.com
+14:16:52   [DOMAIN] Venue domain: osteria177.com
+14:16:55 
+14:16:55 ============================================================
+14:16:55  PIPELINE: Osteria 177 (MD-REST-681)
+14:16:55  Website: https://www.osteria177.com
+14:16:55  Started: 2026-05-18 14:16:55
+14:16:55 ============================================================
+14:16:56   [ZB] Credits remaining: 3804
+14:17:00   Known emails: 0
+14:17:00   Known names: 0
+14:17:00 
+14:17:00 ========== STEP 1: Website Scrape ==========
+14:17:00   URL: https://www.osteria177.com
+14:17:00   Opening in Chrome: https://www.osteria177.com
+14:17:06   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+14:17:19   Emails: 0 | FB: none | IG: none | Contact Form: none
+14:17:19   [LOCATION] Checking for location-specific page (city: Annapolis)...
+14:17:21   [LOCATION] No location-specific page found
+14:17:21   Crawling subpage (1): https://www.osteria177.com/about
+14:17:27   [CONTACT] Probing https://www.osteria177.com/contact-us
+14:17:37 
+14:17:37 ========== STEP 1B: Instagram Google Search ==========
+14:17:37   No Instagram found on website — Googling...
+14:17:41   [IG SEARCH] Found: https://www.instagram.com/osteria177/
+14:17:44   ✓ Instagram URL saved
+14:17:48 
+14:17:48 ========== STEP 1C: Facebook Google Search ==========
+14:17:48   No Facebook found on website — Googling...
+14:17:52   [FB SEARCH] Found: https://www.facebook.com/Osteria177/
+14:17:56   ✓ Facebook URL saved
+14:17:56 
+14:17:56 ========== STEP 2: Social Media Scrape ==========
+14:18:02   FB: https://www.facebook.com/Osteria177/ | IG: https://www.instagram.com/osteria177/
+14:18:02   Opening FB: https://www.facebook.com/Osteria177
+14:18:08   FB emails found: osteria177@yahoo.com
+14:18:08   Opening FB: https://www.facebook.com/Osteria177/about
+14:18:13   Opening FB: https://www.facebook.com/Osteria177/directory_contact_info
+14:18:18   FB emails found: osteria177@yahoo.com
+14:18:18   Opening IG: https://www.instagram.com/osteria177/
+14:18:23   [IG] No email on page — trying Google snippet...
+14:18:28   [IG SNIPPET] No email in Google snippet
+14:18:28   osteria177@yahoo.com → valid
+14:18:31   ✓ Added: osteria177@yahoo.com <osteria177@yahoo.com>
+14:18:32   [APOLLO] Credits used this run: 7 / 300
+14:18:32 
+14:18:32 ========== STEP 3: Apollo API ==========
+14:18:32   Searching Apollo for company: Osteria 177
+14:18:34   Found: Osteria 177 (domain: osteria177.com, org_id: 672663247efe3d0001cdb334)
+14:18:34   Searching for people at Osteria 177 (org_id: 672663247efe3d0001cdb334)...
+14:18:34   Found 2 people total
+14:18:34   Skipped 2 people with no email (red ? on Apollo)
+14:18:34   No new people to enrich.
+14:18:34 
+14:18:34 ========== STEP 4: LinkedIn + Apollo API ==========
+14:18:34   Using domain: osteria177.com
+14:18:36   LinkedIn page 1...
+14:18:43   Found 10 results
+14:18:43   Found: Suzanne Rossini
+14:18:43   Found: Kelly Brophy
+14:18:43   Found: Michael Matteo
+14:18:43   Found: Diana Cefaratti
+14:18:43   Found: Angela Goods
+14:18:48   LinkedIn page 2...
+14:18:53   Found 10 results
+14:18:53   Found: Dayan Hernandez
+14:18:53   Found: Allen Carringer
+14:18:53   Found: Lauren Biederman
+14:18:53   Found: Lilly Hosking
+14:18:56   LinkedIn page 3...
+14:19:04   Found 10 results
+14:19:04   Found: Angela Sgro
+14:19:04   Found: Michael Ratini
+14:19:04   Found: Arturo Ottaviano
+14:19:04   Found: Chris Spencer
+14:19:04 
+14:19:04   LinkedIn found 13 new people. Enriching via Apollo API...
+14:19:04   LinkedIn + Apollo API done. Credits used: 7
+14:19:07   Setting status → pipelined
+14:19:12 
+14:19:12 ============================================================
+14:19:12  DONE: Osteria 177 | 2 min | 14:19:12
+14:19:12 ============================================================
+14:19:42 
+14:19:42 ########## SMART PICK #5 (score 85): Harry Browne's Restaurant (MD-REST-688) ##########
+14:19:50   [LOOKUP] No website — Googling 'Harry Browne's Restaurant'...
+14:19:53   [LOOKUP] Found: https://www.harrybrownes.net
+14:19:57   [DOMAIN] Venue domain: harrybrownes.net
+14:20:01 
+14:20:01 ============================================================
+14:20:01  PIPELINE: Harry Browne's Restaurant (MD-REST-688)
+14:20:01  Website: https://www.harrybrownes.net
+14:20:01  Started: 2026-05-18 14:20:01
+14:20:01 ============================================================
+14:20:01   [ZB] Credits remaining: 3803
+14:20:05   Known emails: 0
+14:20:05   Known names: 0
+14:20:05 
+14:20:05 ========== STEP 1: Website Scrape ==========
+14:20:05   URL: https://www.harrybrownes.net
+14:20:05   Opening in Chrome: https://www.harrybrownes.net
+14:20:11   Validating contact form URL: https://www.harrybrownes.net/copy-of-contact
+14:20:15   Found on contact page: harrybrownesevents@gmail.com
+14:20:15   ✓ Real contact form confirmed
+14:20:15   Emails: 1 | FB: https://www.facebook.com/HarryBrownes | IG: https://www.instagram.com/harrybrownes/ | Contact Form: https://www.harrybrownes.net/copy-of-contact
+14:20:16   Crawling subpage (1): https://www.harrybrownes.net/contact
+14:20:20   Found on subpage: harrybrownesevents@gmail.com
+14:20:20   Crawling subpage (2): https://www.harrybrownes.net/copy-of-contact
+14:20:24   Found on subpage: harrybrownesevents@gmail.com
+14:20:24   Crawling subpage (3): https://www.harrybrownes.net/catering-private-events
+14:20:29   Found on subpage: harrybrownesevents@gmail.com
+14:20:29   Crawling subpage (4): https://www.harrybrownes.net/lunch
+14:20:33   Same emails 3 pages in a row — stopping subpage crawl
+14:20:34   [CONTACT] Probing https://www.harrybrownes.net/contact
+14:20:39   [CONTACT] Found emails on https://www.harrybrownes.net/contact
+14:20:50   ✓ Contact form URL saved
+14:20:52   harrybrownesevents@gmail.com → valid
+14:20:56   ✓ Added: harrybrownesevents@gmail.com <harrybrownesevents@gmail.com>
+14:20:57 
+14:20:57 ========== STEP 2: Social Media Scrape ==========
+14:21:02   FB: https://www.facebook.com/HarryBrownes | IG: https://www.instagram.com/harrybrownes/
+14:21:02   Opening FB: https://www.facebook.com/HarryBrownes
+14:21:07   FB emails found: info@harrybrownes.com
+14:21:07   Opening FB: https://www.facebook.com/HarryBrownes/about
+14:21:12   Opening FB: https://www.facebook.com/HarryBrownes/directory_contact_info
+14:21:17   FB emails found: info@harrybrownes.com
+14:21:17   Opening IG: https://www.instagram.com/harrybrownes/
+14:21:23   [IG] No email on page — trying Google snippet...
+14:21:27   [IG SNIPPET] Found: harrybrownesevents@gmail.com
+14:21:27   harrybrownesevents@gmail.com → valid
+14:21:32   ✓ Added: harrybrownesevents@gmail.com <harrybrownesevents@gmail.com>
+14:21:34   info@harrybrownes.com → invalid
+14:21:37   ⚠ Added (invalid): info@harrybrownes.com <info@harrybrownes.com>
+14:21:38   [APOLLO] Credits used this run: 7 / 300
+14:21:38 
+14:21:38 ========== STEP 3: Apollo API ==========
+14:21:38   Searching Apollo for company: Harry Browne's Restaurant
+14:21:40   Found: Harry Browne's Restaurant (domain: harrybrownes.com, org_id: 6416a34bbf22e9000161f48d)
+14:21:40   Searching for people at Harry Browne's Restaurant (org_id: 6416a34bbf22e9000161f48d)...
+14:21:40   Found 0 people total
+14:21:40   No people in Apollo for this company.
+14:21:40 
+14:21:40 ========== STEP 4: LinkedIn + Apollo API ==========
+14:21:40   Using domain: harrybrownes.com
+14:21:41   LinkedIn page 1...
+14:21:48   Found 10 results
+14:21:48   Found: Gerald Zarcone
+14:21:48   Found: Melanie Argulewicz
+14:21:48   Found: Paul Brydbord
+14:21:48   Found: Susan Birdsell
+14:21:48   Found: Francis Herrera
+14:21:48   Found: Kyle Johnson
+14:21:48   Found: Esther Theodat
+14:21:51   LinkedIn page 2...
+14:21:57   Found 10 results
+14:21:57   Found: Meng Lin
+14:21:57   Found: Kimberly Butler
+14:21:57   Found: mohand mokhtari
+14:21:57   Found: Florin Cremene
+14:21:57   Found: Jean-Philippe Pillone
+14:22:02   LinkedIn page 3...
+14:22:08   Found 10 results
+14:22:08   Found: Andra Batu
+14:22:08   Found: Josh MacGregor
+14:22:08   Found: Attracta Creegan
+14:22:08   Found: Patrick Bobinger
+14:22:08   Found: Luke Boland
+14:22:08   Found: Herman Allenson
+14:22:08   Found: Alan Breitman
+14:22:08 
+14:22:08   LinkedIn found 19 new people. Enriching via Apollo API...
+14:22:08   LinkedIn + Apollo API done. Credits used: 7
+14:22:11   Setting status → pipelined
+14:22:16 
+14:22:16 ============================================================
+14:22:16  DONE: Harry Browne's Restaurant | 2 min | 14:22:16
+14:22:16 ============================================================
+14:22:46 
+14:22:47 ########## SMART PICK #6 (score 85): Les Folies Brasserie (MD-REST-689) ##########
+14:22:57   [LOOKUP] No website — Googling 'Les Folies Brasserie'...
+14:23:00   [LOOKUP] Found: https://www.brasserie9.com
+14:23:03   [DOMAIN] Venue domain: brasserie9.com
+14:23:07 
+14:23:07 ============================================================
+14:23:07  PIPELINE: Les Folies Brasserie (MD-REST-689)
+14:23:07  Website: https://www.brasserie9.com
+14:23:07  Started: 2026-05-18 14:23:07
+14:23:07 ============================================================
+14:23:07   [ZB] Credits remaining: 3801
+14:23:12   Known emails: 0
+14:23:12   Known names: 0
+14:23:12 
+14:23:12 ========== STEP 1: Website Scrape ==========
+14:23:12   URL: https://www.brasserie9.com
+14:23:12   Opening in Chrome: https://www.brasserie9.com
+14:23:19   Emails: 1 | FB: https://www.facebook.com/Brasserie9BKK | IG: https://www.instagram.com/brasserie9bkk/ | Contact Form: none
+14:23:19   Crawling subpage (1): https://www.brasserie9.com/blog/host-a-private-birthday-party-in-bangkok-at-brasserie-9
+14:23:23   Found on subpage: brasserie9@gourmethouse.co.th
+14:23:23   Crawling subpage (2): https://www.brasserie9.com/th
+14:23:28   Found on subpage: brasserie9@gourmethouse.co.th
+14:23:28   Crawling subpage (3): https://www.brasserie9.com/explore-our-menus
+14:23:32   Found on subpage: brasserie9@gourmethouse.co.th
+14:23:32   Crawling subpage (4): https://www.brasserie9.com/the-brass-cocktail-bar-bangkok
+14:23:37   Same emails 3 pages in a row — stopping subpage crawl
+14:23:57   [SKIP] brasserie9@gourmethouse.co.th — off-domain (venue: brasserie9.com)
+14:23:57 
+14:23:57 ========== STEP 2: Social Media Scrape ==========
+14:24:00   FB: https://www.facebook.com/Brasserie9BKK | IG: https://www.instagram.com/brasserie9bkk/
+14:24:00   Opening FB: https://www.facebook.com/Brasserie9BKK
+14:24:06   FB emails found: brasserie9@gourmethouse.co.th
+14:24:06   Opening FB: https://www.facebook.com/Brasserie9BKK/about
+14:24:11   Opening FB: https://www.facebook.com/Brasserie9BKK/directory_contact_info
+14:24:16   FB emails found: brasserie9@gourmethouse.co.th
+14:24:16   Opening IG: https://www.instagram.com/brasserie9bkk/
+14:24:21   [IG] No email on page — trying Google snippet...
+14:24:26   [IG SNIPPET] No email in Google snippet
+14:24:26   [SKIP] brasserie9@gourmethouse.co.th — off-domain (venue: brasserie9.com)
+14:24:26   [APOLLO] Credits used this run: 7 / 300
+14:24:26 
+14:24:26 ========== STEP 3: Apollo API ==========
+14:24:26   Searching Apollo for company: Les Folies Brasserie
+14:24:28   Found: brasserie 9 (domain: brasserie9.com, org_id: 68382134e54bf100019b4185)
+14:24:28   Searching for people at brasserie 9 (org_id: 68382134e54bf100019b4185)...
+14:24:29   Found 0 people total
+14:24:29   No people in Apollo for this company.
+14:24:29 
+14:24:29 ========== STEP 4: LinkedIn + Apollo API ==========
+14:24:29   Using domain: brasserie9.com
+14:24:31   LinkedIn page 1...
+14:24:37   Found 10 results
+14:24:37   Found: David Calderon
+14:24:37   Found: Maxime Grell
+14:24:37   Found: Stephane Galtay
+14:24:37   Found: Zuleyha Erdogan
+14:24:37   Found: Marie Gilman
+14:24:42   LinkedIn page 2...
+14:24:51   Found 10 results
+14:24:51   Found: Arnaud Douilly
+14:24:51   Found: Camille Agar
+14:24:54   LinkedIn page 3...
+14:24:59   Found 10 results
+14:24:59   Found: Clément Colpé
+14:24:59   Found: Sarah Tullamore
+14:24:59   Found: Floriane Villaume
+14:24:59 
+14:24:59   LinkedIn found 10 new people. Enriching via Apollo API...
+14:24:59   LinkedIn + Apollo API done. Credits used: 7
+14:25:13 
+14:25:13 ========== STEP 5: Google Fallback (no email found yet) ==========
+14:25:13   Googling: "Les Folies Brasserie" contact Annapolis
+14:25:17   [FALLBACK] Found site: https://www.insideannapolis.com (domain: insideannapolis.com)
+14:25:20 
+14:25:20 ========== STEP 1: Website Scrape ==========
+14:25:20   URL: https://www.insideannapolis.com
+14:25:20   Opening in Chrome: https://www.insideannapolis.com
+14:25:26   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+14:25:39   Emails: 0 | FB: none | IG: none | Contact Form: none
+14:25:39   [LOCATION] Checking for location-specific page (city: Annapolis)...
+14:25:41   [LOCATION] No location-specific page found
+14:25:42   [FALLBACK] Re-trying Instagram: Les Folies Brasserie Annapolis site:instagram.com
+14:25:47   [FALLBACK] Found Instagram: https://www.instagram.com/zbopjazz/
+14:25:50 
+14:25:50 ========== STEP 2: Social Media Scrape ==========
+14:25:53   FB: https://www.facebook.com/Brasserie9BKK | IG: https://www.instagram.com/zbopjazz/
+14:25:53   Opening FB: https://www.facebook.com/Brasserie9BKK
+14:25:59   FB emails found: brasserie9@gourmethouse.co.th
+14:25:59   Opening FB: https://www.facebook.com/Brasserie9BKK/about
+14:26:04   Opening FB: https://www.facebook.com/Brasserie9BKK/directory_contact_info
+14:26:09   FB emails found: brasserie9@gourmethouse.co.th
+14:26:09   Opening IG: https://www.instagram.com/zbopjazz/
+14:26:14   [IG] No email on page — trying Google snippet...
+14:26:18   [IG SNIPPET] No email in Google snippet
+14:26:19   [SKIP] brasserie9@gourmethouse.co.th — off-domain (venue: insideannapolis.com)
+14:26:19   Setting status → pipelined
+14:26:21 
+14:26:21 ============================================================
+14:26:21  DONE: Les Folies Brasserie | 3 min | 14:26:21
+14:26:21 ============================================================
+14:26:51 
+14:26:51 ########## SMART PICK #7 (score 85): Flamant (MD-REST-690) ##########
+14:26:58   [LOOKUP] No website — Googling 'Flamant'...
+14:27:02   [WARN] Website domain mismatch — 'https://www.baltimoremagazine.com' doesn't match venue 'Flamant'. Discarding.
+14:27:02   [DOMAIN] Venue domain: none
+14:27:05 
+14:27:05 ============================================================
+14:27:05  PIPELINE: Flamant (MD-REST-690)
+14:27:05  Website: 
+14:27:05  Started: 2026-05-18 14:27:05
+14:27:05 ============================================================
+14:27:05   [ZB] Credits remaining: 3801
+14:27:09   Known emails: 0
+14:27:09   Known names: 0
+14:27:09 
+14:27:09 ========== STEP 1: Website Scrape ==========
+14:27:09   [SKIP] No website URL
+14:27:15 
+14:27:15 ========== STEP 1B: Instagram Google Search ==========
+14:27:15   No Instagram found on website — Googling...
+14:27:19   [IG SEARCH] Found: https://www.instagram.com/flamant_official/
+14:27:22   ✓ Instagram URL saved
+14:27:28 
+14:27:28 ========== STEP 1C: Facebook Google Search ==========
+14:27:28   No Facebook found on website — Googling...
+14:27:33   [FB SEARCH] Found: https://www.facebook.com/FLAMANTofficial/
+14:27:37   ✓ Facebook URL saved
+14:27:37 
+14:27:37 ========== STEP 2: Social Media Scrape ==========
+14:27:40   FB: https://www.facebook.com/FLAMANTofficial/ | IG: https://www.instagram.com/flamant_official/
+14:27:40   Opening FB: https://www.facebook.com/FLAMANTofficial
+14:27:45   FB emails found: info@flamant.com
+14:27:45   Opening FB: https://www.facebook.com/FLAMANTofficial/about
+14:27:51   FB emails found: info@flamant.com
+14:27:51   Opening FB: https://www.facebook.com/FLAMANTofficial/directory_contact_info
+14:27:56   Opening IG: https://www.instagram.com/flamant_official/
+14:28:01   [IG] No email on page — trying Google snippet...
+14:28:05   [IG SNIPPET] No email in Google snippet
+14:28:06   info@flamant.com → do_not_mail
+14:28:07   [APOLLO] Credits used this run: 7 / 300
+14:28:07 
+14:28:07 ========== STEP 3: Apollo API ==========
+14:28:07   Searching Apollo for company: Flamant
+14:28:13   Found: FLAMANT (domain: flamant.com, org_id: 5f45b4862059ac0001f47d2f)
+14:28:13   Searching for people at FLAMANT (org_id: 5f45b4862059ac0001f47d2f)...
+14:28:14   Found 1 people total
+14:28:14   Skipped 1 people with no email (red ? on Apollo)
+14:28:14   No new people to enrich.
+14:28:14 
+14:28:14 ========== STEP 4: LinkedIn + Apollo API ==========
+14:28:14   Using domain: flamant.com
+14:28:16   LinkedIn page 1...
+14:28:25   Found 10 results
+14:28:25   Found: Olivier Flamant
+14:28:25   Found: Victoria Flamant
+14:28:25   Found: Mathieu Flamant
+14:28:25   Found: Jacques Flamant
+14:28:30   LinkedIn page 2...
+14:28:35   Found 10 results
+14:28:35   Found: Fanny Flamant
+14:28:35   Found: Julie Flamant
+14:28:35   Found: Vincent Flamant
+14:28:35   Found: Maxence Libbrecht
+14:28:40   LinkedIn page 3...
+14:28:47   Found 10 results
+14:28:48   Found: Emma Flamant
+14:28:48   Found: Bendar Alsadhan
+14:28:48   Found: Indira Flores
+14:28:48   Found: Camille Flamant
+14:28:48   Found: Yves Flamant
+14:28:48 
+14:28:48   LinkedIn found 13 new people. Enriching via Apollo API...
+14:28:48   LinkedIn + Apollo API done. Credits used: 7
+14:28:51 
+14:28:51 ========== STEP 5: Google Fallback (no email found yet) ==========
+14:28:51   Googling: "Flamant" contact Annapolis
+14:28:56   [FALLBACK] Found site: https://www.eater.com (domain: eater.com)
+14:28:59 
+14:28:59 ========== STEP 1: Website Scrape ==========
+14:28:59   URL: https://www.eater.com
+14:28:59   Opening in Chrome: https://www.eater.com
+14:29:05   Validating contact form URL: https://www.eater.com/contact
+14:29:10   ✓ Real contact form confirmed
+14:29:10   Emails: 0 | FB: https://www.facebook.com/eater | IG: https://www.instagram.com/eater/ | Contact Form: https://www.eater.com/contact
+14:29:10   [LOCATION] Checking for location-specific page (city: Annapolis)...
+14:29:11   [LOCATION] No location-specific page found
+14:29:11   Crawling subpage (1): https://www.eater.com/contact
+14:29:15   Crawling subpage (2): https://www.eater.com/food-culture/950005/spring-2026-best-new-food-books-memoirs-nonfiction
+14:29:19   Crawling subpage (3): https://www.eater.com/pages/about
+14:29:24   Crawling subpage (4): https://www.eater.com/press-room
+14:29:28   Found on subpage: lauren.starke@voxmedia.com
+14:29:28   Crawling subpage (5): https://www.eater.com/maps
+14:29:32   Crawling subpage (6): https://www.eater.com/restaurant-news
+14:29:37   Crawling subpage (7): https://www.eater.com/dining-out
+14:29:41   Crawling subpage (8): https://www.eater.com/eater-at-home
+14:29:45   Crawling subpage (9): https://www.eater.com/food-culture
+14:29:50   Crawling subpage (10): https://www.eater.com/travel-restaurants
+14:29:54   Crawling subpage (11): https://www.eater.com/newsletters
+14:29:58   Crawling subpage (12): https://www.eater.com/shopping
+14:30:02   Crawling subpage (13): https://www.eater.com/gastropod-podcast-episodes
+14:30:07   Crawling subpage (14): https://www.eater.com/archives/full
+14:30:11   Crawling subpage (15): https://www.eater.com/dining-out/959215/jose-andres-washington-dc-casa-teresa
+14:30:16   Crawling subpage (16): https://www.eater.com/dining-out/955765/restaurants-bars-cool-art-famous-restaurant-artworks
+14:30:20   [CONTACT] Probing https://www.eater.com/contact
+14:30:36   ✓ Contact form URL saved
+14:30:37   [SKIP] lauren.starke@voxmedia.com — off-domain (venue: eater.com)
+14:30:37   [FALLBACK] Re-trying Instagram: Flamant Annapolis site:instagram.com
+14:30:41   [FALLBACK] Found Instagram: https://www.instagram.com/rmarriner/
+14:30:44 
+14:30:44 ========== STEP 2: Social Media Scrape ==========
+14:30:49   FB: https://www.facebook.com/eater | IG: https://www.instagram.com/rmarriner/
+14:30:49   Opening FB: https://www.facebook.com/eater
+14:30:54   FB emails found: tips@eater.com
+14:30:54   Opening FB: https://www.facebook.com/eater/about
+14:31:00   FB emails found: tips@eater.com
+14:31:00   Opening FB: https://www.facebook.com/eater/directory_contact_info
+14:31:05   Opening IG: https://www.instagram.com/rmarriner/
+14:31:10   [IG] No email on page — trying Google snippet...
+14:31:14   [IG SNIPPET] No email in Google snippet
+14:31:15   tips@eater.com → invalid
+14:31:19   ⚠ Added (invalid): tips@eater.com <tips@eater.com>
+14:31:20   Setting status → pipelined
+14:31:23 
+14:31:23 ============================================================
+14:31:23  DONE: Flamant | 4 min | 14:31:23
+14:31:23 ============================================================
+14:31:53 
+14:31:53 ########## SMART PICK #8 (score 85): Treaty of Paris Restaurant (MD-REST-691) ##########
+14:32:00   [LOOKUP] No website — Googling 'Treaty of Paris Restaurant'...
+14:32:03   [WARN] Website domain mismatch — 'https://www.chesapeakebaymagazine.com' doesn't match venue 'Treaty of Paris Restaurant'. Discarding.
+14:32:03   [DOMAIN] Venue domain: none
+14:32:06 
+14:32:06 ============================================================
+14:32:06  PIPELINE: Treaty of Paris Restaurant (MD-REST-691)
+14:32:06  Website: 
+14:32:06  Started: 2026-05-18 14:32:06
+14:32:06 ============================================================
+14:32:06   [ZB] Credits remaining: 3799
+14:32:13   Known emails: 0
+14:32:13   Known names: 0
+14:32:13 
+14:32:13 ========== STEP 1: Website Scrape ==========
+14:32:13   [SKIP] No website URL
+14:32:17 
+14:32:17 ========== STEP 1B: Instagram Google Search ==========
+14:32:17   No Instagram found on website — Googling...
+14:32:21   [IG SEARCH] Found: https://www.instagram.com/popular/
+14:32:25   ✓ Instagram URL saved
+14:32:29 
+14:32:29 ========== STEP 1C: Facebook Google Search ==========
+14:32:29   No Facebook found on website — Googling...
+14:32:33   [FB SEARCH] Found: https://www.facebook.com/ChesInspired/
+14:32:37   ✓ Facebook URL saved
+14:32:37 
+14:32:37 ========== STEP 2: Social Media Scrape ==========
+14:32:40   FB: https://www.facebook.com/ChesInspired/ | IG: https://www.instagram.com/popular/
+14:32:40   Opening FB: https://www.facebook.com/ChesInspired
+14:32:46   FB emails found: djefferson@jecoannapolis.com
+14:32:46   Opening FB: https://www.facebook.com/ChesInspired/about
+14:32:51   Opening FB: https://www.facebook.com/ChesInspired/directory_contact_info
+14:32:56   FB emails found: djefferson@jecoannapolis.com
+14:32:56   Opening IG: https://www.instagram.com/popular/
+14:33:01   [IG] No email on page — trying Google snippet...
+14:33:05   [IG SNIPPET] No email in Google snippet
+14:33:06   djefferson@jecoannapolis.com → valid
+14:33:10   ✓ Added: djefferson@jecoannapolis.com <djefferson@jecoannapolis.com>
+14:33:11   [APOLLO] Credits used this run: 7 / 300
+14:33:11 
+14:33:11 ========== STEP 3: Apollo API ==========
+14:33:11   Searching Apollo for company: Treaty of Paris Restaurant
+14:33:17   [WARN] No company found in Apollo for 'Treaty of Paris Restaurant' (tried name + domain)
+14:33:17   Using website domain for enrichment: 
+14:33:17 
+14:33:17 ========== STEP 4: LinkedIn + Apollo API ==========
+14:33:22   [WARN] No domain found for 'Treaty of Paris Restaurant' — LinkedIn names won't be enrichable
+14:33:23   LinkedIn page 1...
+14:33:32   Found 10 results
+14:33:32   Found: Louis Sandin
+14:33:32   Found: Stephane Pitré
+14:33:32   Found: Anatole Tassy
+14:33:32   Found: FORTUNE TRAITEUR
+14:33:32   Found: Justin CHEREAU
+14:33:32   Found: Christophe Saintagne
+14:33:37   LinkedIn page 2...
+14:33:42   Found 10 results
+14:33:42   Found: Valentin Sevilla
+14:33:42   Found: Arthur Chamoyan
+14:33:42   Found: Thibault Mazarguil
+14:33:42   Found: Salvatore Cicia
+14:33:42   Found: Wim Van Gorp
+14:33:42   Found: Ho-Ym Chai
+14:33:42   Found: jessica yayon
+14:33:42   Found: Amandine Contant
+14:33:47   LinkedIn page 3...
+14:33:54   Found 10 results
+14:33:55   Found: Jason Gouzy
+14:33:55   Found: Yogesh Rawat
+14:33:55   Found: Austin Johnson
+14:33:55   Found: SUNGHO PARK
+14:33:55 
+14:33:55   LinkedIn found 18 new people. Enriching via Apollo API...
+14:33:55   [SKIP] No domain — adding contacts without emails
+14:34:51   Setting status → pipelined
+14:34:54 
+14:34:54 ============================================================
+14:34:54  DONE: Treaty of Paris Restaurant | 2 min | 14:34:54
+14:34:54 ============================================================
+14:35:24 
+14:35:24 ########## SMART PICK #9 (score 85): Reynolds Tavern (MD-REST-692) ##########
+14:35:35   [LOOKUP] No website — Googling 'Reynolds Tavern'...
+14:35:39   [LOOKUP] Found: https://reynoldstavern.org
+14:35:44   [DOMAIN] Venue domain: reynoldstavern.org
+14:35:47 
+14:35:47 ============================================================
+14:35:47  PIPELINE: Reynolds Tavern (MD-REST-692)
+14:35:47  Website: https://reynoldstavern.org
+14:35:47  Started: 2026-05-18 14:35:47
+14:35:47 ============================================================
+14:35:48   [ZB] Credits remaining: 3798
+14:35:52   Known emails: 0
+14:35:52   Known names: 0
+14:35:52 
+14:35:52 ========== STEP 1: Website Scrape ==========
+14:35:52   URL: https://reynoldstavern.org
+14:35:52   Opening in Chrome: https://reynoldstavern.org
+14:35:59   Validating contact form URL: https://reynoldstavern.org/contact
+14:36:03   Found on contact page: reservations@reynoldstavern.com, events@reynoldstavern.com
+14:36:03   ✓ Real contact form confirmed
+14:36:03   Emails: 1 | FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550 | IG: https://www.instagram.com/1747pub/ | Contact Form: https://reynoldstavern.org/contact
+14:36:03   Crawling subpage (1): https://reynoldstavern.org/contact
+14:36:07   Found on subpage: events@reynoldstavern.com, reservations@reynoldstavern.com
+14:36:07   Crawling subpage (2): https://reynoldstavern.org/event-directory
+14:36:12   Found on subpage: reservations@reynoldstavern.com
+14:36:12   Crawling subpage (3): https://reynoldstavern.org/about
+14:36:16   Found on subpage: reservations@reynoldstavern.com
+14:36:16   Crawling subpage (4): https://reynoldstavern.org/about/about-the-1747-pub
+14:36:20   Found on subpage: reservations@reynoldstavern.com
+14:36:21   Crawling subpage (5): https://reynoldstavern.org/jefferson-suite
+14:36:25   Same emails 3 pages in a row — stopping subpage crawl
+14:36:26   [CONTACT] Probing https://reynoldstavern.org/contact
+14:36:32   [CONTACT] Found emails on https://reynoldstavern.org/contact
+14:36:40   ✓ Contact form URL saved
+14:36:42   events@reynoldstavern.com → do_not_mail
+14:36:44   reservations@reynoldstavern.com → do_not_mail
+14:36:45 
+14:36:45 ========== STEP 2: Social Media Scrape ==========
+14:36:48   FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550 | IG: https://www.instagram.com/1747pub/
+14:36:48   Opening FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550
+14:36:54   FB emails found: reservations@reynoldstavern.com
+14:36:54   Opening FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550/about
+14:36:59   FB emails found: reservations@reynoldstavern.com
+14:36:59   Opening FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550/directory_contact_info
+14:37:04   Opening IG: https://www.instagram.com/1747pub/
+14:37:09   [IG] No email on page — trying Google snippet...
+14:37:14   [IG SNIPPET] No email in Google snippet
+14:37:14   reservations@reynoldstavern.com → do_not_mail
+14:37:15   [APOLLO] Credits used this run: 7 / 300
+14:37:15 
+14:37:15 ========== STEP 3: Apollo API ==========
+14:37:15   Searching Apollo for company: Reynolds Tavern
+14:37:17   Found: Reynolds Tavern 1747 Pub (domain: reynoldstavern.org, org_id: 68faf580626eea00014673fa)
+14:37:17   Searching for people at Reynolds Tavern 1747 Pub (org_id: 68faf580626eea00014673fa)...
+14:37:17   Found 1 people total
+14:37:17   Skipped 1 people with no email (red ? on Apollo)
+14:37:17   No new people to enrich.
+14:37:17 
+14:37:17 ========== STEP 4: LinkedIn + Apollo API ==========
+14:37:17   Using domain: reynoldstavern.org
+14:37:19   LinkedIn page 1...
+14:37:26   Found 10 results
+14:37:27   Found: Jacob Abraham
+14:37:27   Found: Rodrigo Guerra
+14:37:31   LinkedIn page 2...
+14:37:37   Found 10 results
+14:37:37   Found: Giano Isabella-Valenzi
+14:37:37   Found: Lurae Oler
+14:37:37   Found: Jimmy Davantes
+14:37:42   LinkedIn page 3...
+14:37:48   Found 10 results
+14:37:48   Found: Kristen Mecerod
+14:37:48   Found: Tyler Keigley
+14:37:48 
+14:37:48   LinkedIn found 7 new people. Enriching via Apollo API...
+14:37:49   LinkedIn + Apollo API done. Credits used: 7
+14:37:52 
+14:37:52 ========== STEP 5: Google Fallback (no email found yet) ==========
+14:37:52   Googling: "Reynolds Tavern" contact Annapolis
+14:37:56   [FALLBACK] No new site found (or same domain as before)
+14:37:56   [FALLBACK] Re-trying Instagram: Reynolds Tavern Annapolis site:instagram.com
+14:38:01   [FALLBACK] Found Instagram: https://www.instagram.com/1747pub/
+14:38:03 
+14:38:03 ========== STEP 2: Social Media Scrape ==========
+14:38:11   FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550 | IG: https://www.instagram.com/1747pub/
+14:38:11   Opening FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550
+14:38:16   FB emails found: reservations@reynoldstavern.com
+14:38:16   Opening FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550/about
+14:38:21   FB emails found: reservations@reynoldstavern.com
+14:38:21   Opening FB: https://www.facebook.com/pages/Reynolds-Tavern-in-Annapolis/125784687482550/directory_contact_info
+14:38:26   Opening IG: https://www.instagram.com/1747pub/
+14:38:32   [IG] No email on page — trying Google snippet...
+14:38:36   [IG SNIPPET] No email in Google snippet
+14:38:36   reservations@reynoldstavern.com → do_not_mail
+14:38:37   Setting status → pipelined
+14:38:41 
+14:38:41 ============================================================
+14:38:41  DONE: Reynolds Tavern | 3 min | 14:38:41
+14:38:41 ============================================================
+14:39:11 [BUDGET] Shared limit of 9 reached — stopping smart picks
+14:39:11 === SMART PICKS COMPLETE ===
+14:39:11 
+14:39:11 UNTOUCHED PHASE: Fetching all venues...
+14:39:18 UNTOUCHED: 581 found (shared budget: 9 total)
+14:39:18 [BUDGET] Shared limit of 9 reached — stopping untouched phase
+14:39:18 === UNTOUCHED PHASE COMPLETE ===
+14:39:18 
+14:39:18 === SMART PICKS COMPLETE ===
+14:39:18 
+14:39:18 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-18_14-39.html
+14:39:18 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-18_14-39.html

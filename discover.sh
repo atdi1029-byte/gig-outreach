@@ -309,7 +309,8 @@ tier1_types = [
     'luxury hotel', 'fine dining restaurant',
     'historic fine dining restaurant',
     'French restaurant', 'European bistro',
-    'private club', 'wine bar', 'country club', 'winery'
+    'private club', 'wine bar', 'country club', 'winery',
+    'yacht club'
 ]
 tier2_types = [
     'upscale restaurant', 'Italian fine dining',
@@ -372,6 +373,15 @@ for q in queries:
 PYEOF
 
     TOTAL_QUERIES=$(wc -l < "$QUERIES_FILE" | tr -d ' ')
+
+    # Apply city filter if set (regex, e.g. CITY_FILTER="Annapolis|Severna Park")
+    if [ -n "${CITY_FILTER:-}" ]; then
+        grep -iE "$CITY_FILTER" "$QUERIES_FILE" > "${QUERIES_FILE}.filtered"
+        mv "${QUERIES_FILE}.filtered" "$QUERIES_FILE"
+        TOTAL_QUERIES=$(wc -l < "$QUERIES_FILE" | tr -d ' ')
+        log "CITY_FILTER='$CITY_FILTER': filtered to $TOTAL_QUERIES matching queries"
+    fi
+
     log "Generated $TOTAL_QUERIES queries ($MAX_QUERIES will run this session)"
 
     # Process queries
@@ -465,6 +475,24 @@ sweet_spots = set([
 target_states = {'MD', 'VA', 'DC', 'PA', 'DE', 'WV'}
 state_re = re.compile(r'\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY|DC)\b')
 
+# Extract fallback state + city from the search query itself
+# e.g. "French restaurant Middleburg VA" -> state='VA', city='Middleburg'
+query_state = ''
+query_city = ''
+q_state_match = state_re.search(query)
+if q_state_match:
+    query_state = q_state_match.group(1)
+    before_state = query[:q_state_match.start()].strip().rstrip(',')
+    # Last word-group before the state is usually the city
+    words = before_state.split()
+    # Strip known venue-type words to isolate city
+    type_words = {'luxury', 'hotel', 'fine', 'dining', 'restaurant', 'french',
+                  'european', 'historic', 'bistro', 'private', 'club', 'wine',
+                  'bar', 'country', 'winery', 'yacht', 'upscale', 'italian',
+                  'boutique', 'inn', 'museum', 'event', 'space', 'art', 'gallery'}
+    city_words = [w for w in words if w.lower() not in type_words]
+    query_city = ' '.join(city_words).strip()
+
 def map_category(cat, name=''):
     cl = cat.lower()
     nl = name.lower()
@@ -500,10 +528,14 @@ def pre_score(venue):
     location = venue.get('location', '')
     state_match = state_re.search(location)
     state = state_match.group(1) if state_match else ''
+    # Fallback: if location empty, use state from the search query
+    if not state and query_state:
+        state = query_state
     if state in target_states: score += 10
     else: score -= 50
 
-    loc_lower = location.lower()
+    # Use location if available, else fall back to query city for sweet spot check
+    loc_lower = (location if location else query_city).lower()
     for city in sweet_spots:
         if city in loc_lower:
             score += 10
@@ -549,6 +581,11 @@ for venue in results:
         parts = before_state.split(',')
         city = parts[-1].strip() if parts else ''
         if city and city[0].isdigit(): city = ''
+    # Fallback to query-derived city/state when location is empty
+    if not city and query_city:
+        city = query_city
+    if not state and query_state:
+        state = query_state
 
     upscale = 3
     if rating:

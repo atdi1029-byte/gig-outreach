@@ -138,7 +138,9 @@ verify_and_push() {
             local vbase ebase
             vbase=$(echo "$VENUE_DOMAIN" | sed 's/\..*//')
             ebase=$(echo "$email_domain" | sed 's/\..*//')
-            if [ "$email_domain" != "$VENUE_DOMAIN" ] && [ "$ebase" != "$vbase" ]; then
+            # Match if: exact domain match, base match, or one base contains the other
+            if [ "$email_domain" != "$VENUE_DOMAIN" ] && [ "$ebase" != "$vbase" ] && \
+               ! echo "$vbase" | grep -qi "$ebase" && ! echo "$ebase" | grep -qi "$vbase"; then
                 log "  [SKIP] $email — off-domain (venue: $VENUE_DOMAIN)"
                 return
             fi
@@ -2421,6 +2423,79 @@ PYEOF
 }
 
 # =================================================================
+# STEP 5: GOOGLE FALLBACK (when all other steps found no email)
+# Searches Google for the venue website and scrapes it for emails.
+# Also re-tries Instagram search with city appended (catches cases
+# where the IG handle doesn't match the venue name, e.g. a parent
+# farm name like @tranquilityfarmvirginia for "Otium Cellars").
+# =================================================================
+step5_google_fallback() {
+    local venue="$1" venue_id="$2" city="$3"
+
+    local email_count
+    email_count=$(wc -l < /tmp/pipeline_contacts_count 2>/dev/null || echo 0)
+    if [ "$email_count" -gt 0 ] || [ "$(echo "$KNOWN_EMAILS" | tr '|||' '\n' | grep -c .)" -gt 0 ]; then
+        return  # Already have emails — skip
+    fi
+
+    log ""
+    log "========== STEP 5: Google Fallback (no email found yet) =========="
+
+    # --- 5A: Find real website via Google and scrape for email ---
+    local SEARCH_ENCODED
+    SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" contact' + (' ' + '''$city''' if '''$city''' else '')))")
+    log "  Googling: \"$venue\" contact $city"
+    osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
+    sleep 4
+
+    local found_site
+    found_site=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
+
+    if [ -n "$found_site" ] && [ "$found_site" != "missing value" ] && [ "$found_site" != "" ]; then
+        # Normalize scheme
+        if ! echo "$found_site" | grep -qE '^https?://'; then
+            found_site="https://$found_site"
+        fi
+        local found_domain
+        found_domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${found_site}').netloc.lower().replace('www.',''))" 2>/dev/null)
+        if [ -n "$found_domain" ] && [ "$found_domain" != "$VENUE_DOMAIN" ]; then
+            log "  [FALLBACK] Found site: $found_site (domain: $found_domain)"
+            VENUE_DOMAIN="$found_domain"
+            # Save to sheet
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$found_site'''))")" > /dev/null
+            # Scrape it
+            step1_website "$venue" "$venue_id" "$found_site" "$city"
+        else
+            log "  [FALLBACK] No new site found (or same domain as before)"
+        fi
+    else
+        log "  [FALLBACK] Google returned no site"
+    fi
+
+    # --- 5B: Re-try Instagram with city to catch parent-brand handles ---
+    local current_ig
+    current_ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_ig_check.json')).get('venue',{}).get('instagram',''))" 2>/dev/null)
+    if [ -z "$current_ig" ] || [ "$current_ig" = "None" ] || [ ${#current_ig} -le 5 ]; then
+        local IG_SEARCH
+        IG_SEARCH=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue''' + ' ' + '''$city''' + ' site:instagram.com'))")
+        log "  [FALLBACK] Re-trying Instagram: $venue $city site:instagram.com"
+        osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${IG_SEARCH}\""
+        sleep 4
+        local ig_url
+        ig_url=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_ig.js"'")' 2>/dev/null)
+        if [ -n "$ig_url" ] && [ "$ig_url" != "missing value" ] && [ "$ig_url" != "" ]; then
+            log "  [FALLBACK] Found Instagram: $ig_url"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$ig_url'''))")" > /dev/null
+            echo "$ig_url" > /tmp/pipeline_step1_ig.txt
+            # Try scraping the IG profile for email via step2
+            step2_social "$venue" "$venue_id"
+        else
+            log "  [FALLBACK] No Instagram found with city search"
+        fi
+    fi
+}
+
+# =================================================================
 # MAIN RUNNER
 # =================================================================
 run_venue() {
@@ -2603,6 +2678,9 @@ else: print('')
             log "  Marked linkedin_pending=true (no emails found)"
         fi
     fi
+
+    # Step 5: Google fallback if nothing found yet
+    step5_google_fallback "$venue" "$venue_id" "$city"
 
     # Always set status to pipelined when pipeline completes
     log "  Setting status → pipelined"

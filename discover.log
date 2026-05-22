@@ -3024,3 +3024,93 @@
 [14:01:03]   Queries run: 9
 [14:01:03]   Venues added: 1
 [14:01:03]   Queries remaining: 492
+
+[22:22:27] === Taste Discovery Mode Started ===
+[22:22:27] MAX_QUERIES=2
+[22:22:27] Fetching existing venues for dedup...
+[22:22:31] Existing venues: 803
+[22:22:31] Generating search queries from taste profile...
+[22:22:31] CITY_FILTER='Middleburg': filtered to 14 matching queries
+[22:22:31] Generated 14 queries (2 will run this session)
+[22:22:31] 
+[22:22:31] === Taste Query [1/2]: French restaurant Middleburg VA ===
+[22:22:37]   Scrolling search results...
+
+[10:02:05] === Venue Discovery Started ===
+[10:02:05] Fetching past gigs...
+[10:02:09] Found 70 past gigs
+[10:02:09] Fetching existing venues for dedup...
+[10:02:11] Existing venues: 799
+[10:02:11]   SKIP (already discovered): L'Auberge Chez Francois
+[10:02:11]   SKIP (already discovered): The Inn at Perry Cabin
+[10:02:11]   SKIP (already discovered): The Maryland Club
+[10:02:11]   SKIP (already discovered): Black Ankle Vineyards
+[10:02:11]   SKIP (already discovered): Royal Restaurant
+[10:02:11]   SKIP (already discovered): Good Spirit Farm Winery
+[10:02:11]   SKIP (already discovered): Chesapeake Manor Vineyard
+[10:02:11]   SKIP (already discovered): Elkridge Furnace Inn
+[10:02:11]   SKIP (already discovered): Xella Winery and Vineyard
+[10:02:11]   SKIP (already discovered): Twin Oaks Tavern Winery
+[10:02:11]   SKIP (already discovered): Windridge Vineyards
+[10:02:11]   SKIP (already discovered): University Club
+[10:02:11]   SKIP (already discovered): The Farmhouse Tuscan
+[10:02:11]   SKIP (already discovered): Big Cork Vineyards
+[10:02:11]   SKIP (already discovered): Savage Mill Mall
+[10:02:11]   SKIP (already discovered): Trueman Vineyards
+[10:02:11]   SKIP (already discovered): Williams Gap Vineyard
+[10:02:11]   SKIP (already discovered): Hello Betty Bethesda
+[10:02:11]   SKIP (already discovered): The Madison Hotel
+[10:02:11]   SKIP (already discovered): Belle Haven Country Club
+[10:02:11]   SKIP (already discovered): Casanel Vineyards & Winery
+[10:02:11]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[10:02:11]   SKIP (already discovered): Corteau Winery
+[10:02:11]   SKIP (already discovered): Penn Oaks Winery
+[10:02:11]   SKIP (already discovered): Pizza Pomodoro
+[10:02:11]   SKIP (already discovered): Hidden Brook Winery
+[10:02:11]   SKIP (already discovered): Simple Theory Wine Co
+[10:02:11]   SKIP (already discovered): Brightview Perry Hall
+[10:02:11]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[10:02:11]   SKIP (already discovered): Gaylord National Harbor
+[10:02:11]   SKIP (already discovered): Woodberry Kitchen
+[10:02:11]   SKIP (already discovered): Great Sage
+[10:02:11]   SKIP (already discovered): Cosmos Club DC
+[10:02:11]   SKIP (already discovered): Doukénie Winery
+[10:02:11]   SKIP (already discovered): State Plaza Hotel DC
+[10:02:11]   SKIP (already discovered): Hyatt Cambridge
+[10:02:11]   SKIP (already discovered): Greenhill Vineyards
+[10:02:11]   SKIP (already discovered): Loudoun Golf & Country Club
+[10:02:11]   SKIP (already discovered): Creek's Edge Winery
+[10:02:11]   SKIP (already discovered): The Milton Inn
+[10:02:11]   SKIP (already discovered): Country Club of Fairfax
+[10:02:11]   SKIP (already discovered): Century Club Hagerstown
+[10:02:11]   SKIP (already discovered): Rock Spring Farm
+[10:02:12]   SKIP (already discovered): Janemark Winery & Vineyard
+[10:02:12]   SKIP (already discovered): Alma Cocina Latina
+[10:02:12]   SKIP (already discovered): Omni Shoreham Hotel
+[10:02:12]   SKIP (already discovered): Knoxie's Table
+[10:02:12]   SKIP (already discovered): 1757 Golf Club
+[10:02:12]   SKIP (already discovered): Holly Hills Country Club
+[10:02:12]   SKIP (already discovered): Conrad Washington DC
+[10:02:12]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[10:02:12]   SKIP (already discovered): Le Méridien Arlington
+[10:02:12]   SKIP (already discovered): Dulles Town Center
+[10:02:12]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[10:02:12]   SKIP (already discovered): Maritime Museum St Michaels
+[10:02:12]   SKIP (already discovered): Chartwell Golf & Country Club
+[10:02:12]   SKIP (already discovered): Ruse
+[10:02:12]   SKIP (already discovered): InGrano Bistro Bakery
+[10:02:12]   SKIP (already discovered): Kent Manor Inn
+[10:02:12]   SKIP (already discovered): Army Navy Country Club
+[10:02:12]   SKIP (already discovered): River Bend Country Club
+[10:02:12]   SKIP (already discovered): City Tavern DC
+[10:02:12]   SKIP (already discovered): Baltimore Country Club
+[10:02:12]   SKIP (already discovered): Vino and Pasta
+[10:02:12]   SKIP (already discovered): 50 West Vineyards
+[10:02:12]   SKIP (already discovered): The Galley Restaurant & Bar
+[10:02:12]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[10:02:12]   SKIP (already discovered): Bistrot Lepic
+[10:02:12]   SKIP (already discovered): Sunset Hills Winery
+[10:02:12]   SKIP (already discovered): The Oaks Waterfront Hotel
+[10:02:12] Cleaning up discovered_gigs.txt...
+[10:02:17] 
+[10:02:17] === Discovery Complete — Total new venues: 0 ===

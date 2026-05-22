@@ -13796,3 +13796,999 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 14:39:18 
 14:39:18 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-18_14-39.html
 14:39:18 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-18_14-39.html
+
+01:04:44 === Pipeline started 2026-05-22 01:04:44 ===
+01:04:44 LINKEDIN RETRY MODE: Finding venues with linkedin_pending=true...
+01:06:27   [SKIP] |MD-REST-679|||Lewnes' Steakhouse already has emails — clearing linkedin_pending
+01:06:32 === LINKEDIN RETRY COMPLETE ===
+
+10:08:14 === Pipeline started 2026-05-22 10:08:14 ===
+10:08:14 SMART PICKS MODE: Fetching ranked venues...
+10:08:18 SMART PICKS: 593 available, budget remaining: 10
+10:08:18 
+10:08:18 ########## SMART PICK #1 (score 86): University and Whist Club (DE-PRIV-807) ##########
+10:08:25   [DOMAIN] Venue domain: universityandwhistclub.com
+10:08:28 
+10:08:28 ============================================================
+10:08:28  PIPELINE: University and Whist Club (DE-PRIV-807)
+10:08:28  Website: https://www.universityandwhistclub.com/
+10:08:28  Started: 2026-05-22 10:08:28
+10:08:28 ============================================================
+10:08:28   [ZB] Credits remaining: 3791
+10:08:31   Known emails: 0
+10:08:31   Known names: 0
+10:08:31 
+10:08:31 ========== STEP 1: Website Scrape ==========
+10:08:31   URL: https://www.universityandwhistclub.com/
+10:08:31   Opening in Chrome: https://www.universityandwhistclub.com/
+10:08:38   Validating contact form URL: https://www.universityandwhistclub.com/Contact
+10:08:42   Found on contact page: jmastroeni@universitywhist.com, sseth@universitywhist.com, lclemens@universitywhist.com, skokas@universitywhist.com, jnaimoli@universitywhist.com
+10:08:42   ✗ No submittable form found — clearing contact_form
+10:08:42   Emails: 0 | FB: https://www.facebook.com/whistcatering | IG: none | Contact Form: none
+10:08:42   [LOCATION] Checking for location-specific page (city: Wilmington)...
+10:08:44   [LOCATION] No location-specific page found
+10:08:44   Crawling subpage (1): https://www.universityandwhistclub.com/Contact
+10:08:48   Found on subpage: jmastroeni@universitywhist.com, jnaimoli@universitywhist.com, lclemens@universitywhist.com, skokas@universitywhist.com, sseth@universitywhist.com
+10:08:48   Crawling subpage (2): https://www.universityandwhistclub.com/Weddings
+10:08:52   Crawling subpage (3): https://www.universityandwhistclub.com/Weddings/Photo_Gallery
+10:08:57   Crawling subpage (4): https://www.universityandwhistclub.com/Private-Events/Evaluation-Form.aspx
+10:09:01   Crawling subpage (5): https://www.universityandwhistclub.com/Private-Events
+10:09:05   Crawling subpage (6): https://www.universityandwhistclub.com/Private-Events.aspx
+10:09:10   Crawling subpage (7): https://www.universityandwhistclub.com/Private-Events/Overview/Room_Capacities/Room_Capacities.aspx
+10:09:14   Crawling subpage (8): https://www.universityandwhistclub.com/Private-Events/Evaluation-Form
+10:09:18   Crawling subpage (9): https://www.universityandwhistclub.com/Events
+10:09:22   Crawling subpage (10): https://www.universityandwhistclub.com/PublicEventManagement.aspx
+10:09:27   Crawling subpage (11): https://www.universityandwhistclub.com/Events.aspx
+10:09:31   Crawling subpage (12): https://www.universityandwhistclub.com/About_1
+10:09:35   Crawling subpage (13): https://www.universityandwhistclub.com/About.aspx
+10:09:40   Crawling subpage (14): https://www.universityandwhistclub.com/About/History-of-the-Building
+10:09:44   Crawling subpage (15): https://www.universityandwhistclub.com/About/History-of-the-Building/Historic_Photos
+10:09:49   Crawling subpage (16): https://www.universityandwhistclub.com/About/Club-Presidents
+10:09:53   Crawling subpage (17): https://www.universityandwhistclub.com/About/Clubhouse-Policies
+10:09:57   Crawling subpage (18): https://www.universityandwhistclub.com/About/Club-Governance
+10:10:01   Crawling subpage (19): https://www.universityandwhistclub.com/About_1.aspx
+10:10:06   Crawling subpage (20): https://www.universityandwhistclub.com/getmedia/62ae1285-693a-4a9e-9784-cb42fe2f259c/2026_Breakfast_Menu.aspx
+10:10:10   Crawling subpage (21): https://www.universityandwhistclub.com/getmedia/69e687ec-24b5-4568-ace7-32c7f574ae8a/2026_Lunch.aspx
+10:10:14   Crawling subpage (22): https://www.universityandwhistclub.com/getmedia/4cb3f9cf-1132-434d-a7d0-c671713f6d4f/2026_Dinner_Final.aspx
+10:10:19   Crawling subpage (23): https://www.universityandwhistclub.com/getmedia/18f1fe89-8b7d-4bf4-a819-1496aba98aa5/2026_Hors_D_oeuvre-Stations_Final.aspx
+10:10:23   Crawling subpage (24): https://www.universityandwhistclub.com/getmedia/a7b32ad8-05b3-4b87-912c-5c03dbad5f78/2026_Memorial.aspx
+10:10:27   Crawling subpage (25): https://www.universityandwhistclub.com/getmedia/bc572429-daee-4731-844d-5473401cc5dd/2026_Children_s_Menu.aspx
+10:10:31   Crawling subpage (26): https://www.universityandwhistclub.com/home.aspx
+10:10:36   Crawling subpage (27): https://www.universityandwhistclub.com/Home
+10:10:40   Crawling subpage (28): https://www.universityandwhistclub.com/ClubCorp
+10:10:44   Crawling subpage (29): https://www.universityandwhistclub.com/Membership
+10:10:49   Crawling subpage (30): https://www.universityandwhistclub.com/Membership.aspx
+10:10:53   Crawling subpage (31): https://www.universityandwhistclub.com/Membership/Club-Services
+10:10:57   Crawling subpage (32): https://www.universityandwhistclub.com/Membership/Reciprocal-Clubs
+10:11:01   Crawling subpage (33): https://www.universityandwhistclub.com/Dining
+10:11:06   Crawling subpage (34): https://www.universityandwhistclub.com/Dining/Wines
+10:11:10   Crawling subpage (35): https://www.universityandwhistclub.com/Dining.aspx
+10:11:15   [CONTACT] Probing https://www.universityandwhistclub.com/contact
+10:11:20   [CONTACT] Found emails on https://www.universityandwhistclub.com/contact
+10:11:23   [SKIP] jmastroeni@universitywhist.com — off-domain (venue: universityandwhistclub.com)
+10:11:23   [SKIP] jnaimoli@universitywhist.com — off-domain (venue: universityandwhistclub.com)
+10:11:23   [SKIP] lclemens@universitywhist.com — off-domain (venue: universityandwhistclub.com)
+10:11:23   [SKIP] skokas@universitywhist.com — off-domain (venue: universityandwhistclub.com)
+10:11:23   [SKIP] sseth@universitywhist.com — off-domain (venue: universityandwhistclub.com)
+10:11:26 
+10:11:26 ========== STEP 1B: Instagram Google Search ==========
+10:11:26   No Instagram found on website — Googling...
+10:11:30   [IG SEARCH] Found: https://www.instagram.com/uwc805/
+10:11:32   ✓ Instagram URL saved
+10:11:32 
+10:11:32 ========== STEP 2: Social Media Scrape ==========
+10:11:35   FB: https://www.facebook.com/whistcatering | IG: https://www.instagram.com/uwc805/
+10:11:35   Opening FB: https://www.facebook.com/whistcatering
+10:11:41   Opening FB: https://www.facebook.com/whistcatering/about
+10:11:46   Opening FB: https://www.facebook.com/whistcatering/directory_contact_info
+10:11:51   [FB] No email on page — trying Google snippet...
+10:11:56   [FB SNIPPET] No email in Google snippet
+10:11:56   Opening IG: https://www.instagram.com/uwc805/
+10:12:01   [IG] No email on page — trying Google snippet...
+10:12:05   [IG SNIPPET] No email in Google snippet
+10:12:05   [APOLLO] Credits used this run: 0 / 300
+10:12:05 
+10:12:05 ========== STEP 3: Apollo API ==========
+10:12:05   Searching Apollo for company: University and Whist Club
+10:12:06   Found:  (domain: , org_id: )
+10:12:06   [WARN] Apollo returned empty domain — using website domain: universityandwhistclub.com
+10:12:06   Searching for people at  (org_id: )...
+10:12:07   Found 0 people total
+10:12:07   No people in Apollo for this company.
+10:12:07 
+10:12:07 ========== STEP 4: LinkedIn + Apollo API ==========
+10:12:07   Using domain: universityandwhistclub.com
+10:12:08   LinkedIn page 1...
+10:12:26   No results on page 1 — stopping.
+10:12:26   No new people found on LinkedIn.
+10:12:28 
+10:12:28 ========== STEP 5: Google Fallback (no email found yet) ==========
+10:12:28   Googling: "University and Whist Club" contact Wilmington
+10:12:32   [FALLBACK] No new site found (or same domain as before)
+10:12:33   [FALLBACK] Re-trying Instagram: University and Whist Club Wilmington site:instagram.com
+10:12:37   [FALLBACK] Found Instagram: https://www.instagram.com/uwc805/
+10:12:39 
+10:12:39 ========== STEP 2: Social Media Scrape ==========
+10:12:41   FB: https://www.facebook.com/whistcatering | IG: https://www.instagram.com/uwc805/
+10:12:41   Opening FB: https://www.facebook.com/whistcatering
+10:12:46   Opening FB: https://www.facebook.com/whistcatering/about
+10:12:52   Opening FB: https://www.facebook.com/whistcatering/directory_contact_info
+10:12:57   [FB] No email on page — trying Google snippet...
+10:13:01   [FB SNIPPET] No email in Google snippet
+10:13:01   Opening IG: https://www.instagram.com/uwc805/
+10:13:06   [IG] No email on page — trying Google snippet...
+10:13:11   [IG SNIPPET] No email in Google snippet
+10:13:11   Setting status → pipelined
+10:13:12 
+10:13:12 ============================================================
+10:13:12  DONE: University and Whist Club | 4 min | 10:13:12
+10:13:12 ============================================================
+10:13:42 
+10:13:42 ########## SMART PICK #2 (score 86): The Wilmington Club (DE-PRIV-815) ##########
+10:13:48   [LOOKUP] No website — Googling 'The Wilmington Club'...
+10:13:51   [LOOKUP] Found: https://downtownwilmingtonde.com
+10:13:54   [DOMAIN] Venue domain: downtownwilmingtonde.com
+10:13:56 
+10:13:56 ============================================================
+10:13:56  PIPELINE: The Wilmington Club (DE-PRIV-815)
+10:13:56  Website: https://downtownwilmingtonde.com
+10:13:56  Started: 2026-05-22 10:13:56
+10:13:56 ============================================================
+10:13:56   [ZB] Credits remaining: 3791
+10:14:04   Known emails: 0
+10:14:04   Known names: 0
+10:14:04 
+10:14:04 ========== STEP 1: Website Scrape ==========
+10:14:04   URL: https://downtownwilmingtonde.com
+10:14:04   Opening in Chrome: https://downtownwilmingtonde.com
+10:14:10   Validating contact form URL: https://downtownwilmingtonde.com/contact
+10:14:15   Found on contact page: mmaggitti@downtownvisions.org
+10:14:15   ✗ No submittable form found — clearing contact_form
+10:14:15   Emails: 0 | FB: https://www.facebook.com/downtownwilmingtonde | IG: https://www.instagram.com/downtownwilmde/ | Contact Form: none
+10:14:15   [LOCATION] Checking for location-specific page (city: Wilmington)...
+10:14:16   [LOCATION] Re-scraping location page: https://downtownwilmingtonde.com/blog
+10:14:24   [LOCATION] Re-scraped: Emails: 0 | FB: https://l.facebook.com/l.php | IG: https://www.instagram.com/downtownwilmde/ | Contact Form: https://downtownwilmingtonde.com/contact
+10:14:25   Crawling subpage (1): https://downtownwilmingtonde.com/contact
+10:14:29   Found on subpage: mmaggitti@downtownvisions.org
+10:14:29   Crawling subpage (2): https://downtownwilmingtonde.com/team
+10:14:34   Crawling subpage (3): https://downtownwilmingtonde.com/events
+10:14:38   Crawling subpage (4): https://downtownwilmingtonde.com/blog/category/Events
+10:14:42   Crawling subpage (5): https://downtownwilmingtonde.com/blog/tag/19801+new+years+eve+events
+10:14:47   Crawling subpage (6): https://downtownwilmingtonde.com/blog/tag/9th+mile+galleria+events
+10:14:51   Crawling subpage (7): https://downtownwilmingtonde.com/blog/category/Entertainment
+10:14:56   Crawling subpage (8): https://downtownwilmingtonde.com/city-sounds/block-party
+10:15:00   Crawling subpage (9): https://downtownwilmingtonde.com/about
+10:15:04   Crawling subpage (10): https://downtownwilmingtonde.com/newsletter
+10:15:09   Crawling subpage (11): https://downtownwilmingtonde.com/neighborhood
+10:15:13   Crawling subpage (12): https://downtownwilmingtonde.com/live-here
+10:15:18   Crawling subpage (13): https://downtownwilmingtonde.com/curbside/free-parking
+10:15:22   Crawling subpage (14): https://downtownwilmingtonde.com/curbside/outdoor-dining
+10:15:26   Crawling subpage (15): https://downtownwilmingtonde.com/business-directory
+10:15:31   Crawling subpage (16): https://downtownwilmingtonde.com/resources-businesses
+10:15:35   Crawling subpage (17): https://downtownwilmingtonde.com/initiatives
+10:15:40   Crawling subpage (18): https://downtownwilmingtonde.com/history
+10:15:44   Crawling subpage (19): https://downtownwilmingtonde.com/services-directory
+10:15:48   Crawling subpage (20): https://downtownwilmingtonde.com/safety
+10:15:53   Crawling subpage (21): https://downtownwilmingtonde.com/cleaning
+10:15:57   Crawling subpage (22): https://downtownwilmingtonde.com/support
+10:16:02   Found on subpage: katebf@downtownvisions.org
+10:16:02   Crawling subpage (23): https://downtownwilmingtonde.com/citysounds
+10:16:06   Crawling subpage (24): https://downtownwilmingtonde.com/downtownwilmapp
+10:16:10   Crawling subpage (25): https://downtownwilmingtonde.com
+10:16:15   Crawling subpage (26): https://downtownwilmingtonde.com/blog/2025/11/25/shop-small-ship-free-celebrate-wilmington
+10:16:19   Crawling subpage (27): https://downtownwilmingtonde.com/blog/category/Community
+10:16:24   Crawling subpage (28): https://downtownwilmingtonde.com/blog/category/Economic+Development
+10:16:28   Crawling subpage (29): https://downtownwilmingtonde.com/blog/category/Initiatives
+10:16:32   Crawling subpage (30): https://downtownwilmingtonde.com/blog/category/Retail
+10:16:37   Crawling subpage (31): https://downtownwilmingtonde.com/blog/2025/10/7/international-film-festival-lights-up-downtown-wilmington-this-fall
+10:16:41   Crawling subpage (32): https://downtownwilmingtonde.com/blog/2025/10/3/celebrating-black-restaurant-week-in-wilmington-september-2025
+10:16:46   Crawling subpage (33): https://downtownwilmingtonde.com/blog/category/Restaurants
+10:16:50   Crawling subpage (34): https://downtownwilmingtonde.com/blog/2025/9/9/taste-wilmington-brandywine-valley-restaurant-week-returns-this-september
+10:16:54   Crawling subpage (35): https://downtownwilmingtonde.com/blog/2025/7/23/main-street-wilmington-earns-2025-main-street-america-accreditation-again
+10:16:59   Crawling subpage (36): https://downtownwilmingtonde.com/blog/category/Development
+10:17:03   Crawling subpage (37): https://downtownwilmingtonde.com/blog/category/History
+10:17:08   [CONTACT] Probing https://downtownwilmingtonde.com/contact
+10:17:13   [CONTACT] Found emails on https://downtownwilmingtonde.com/contact
+10:17:22   ✓ Contact form URL saved
+10:17:22   [SKIP] katebf@downtownvisions.org — off-domain (venue: downtownwilmingtonde.com)
+10:17:22   [SKIP] mmaggitti@downtownvisions.org — off-domain (venue: downtownwilmingtonde.com)
+10:17:22 
+10:17:22 ========== STEP 2: Social Media Scrape ==========
+10:17:27   FB: https://l.facebook.com/l.php | IG: https://www.instagram.com/downtownwilmde/
+10:17:27   Opening FB: https://l.facebook.com/l.php
+10:17:32   Opening FB: https://l.facebook.com/l.php/about
+10:17:37   Opening FB: https://l.facebook.com/l.php/directory_contact_info
+10:17:43   [FB] No email on page — trying Google snippet...
+10:17:47   [FB SNIPPET] No email in Google snippet
+10:17:47   Opening IG: https://www.instagram.com/downtownwilmde/
+10:17:52   [IG] No email on page — trying Google snippet...
+10:17:56   [IG SNIPPET] No email in Google snippet
+10:17:56   [APOLLO] Credits used this run: 0 / 300
+10:17:56 
+10:17:56 ========== STEP 3: Apollo API ==========
+10:17:56   Searching Apollo for company: The Wilmington Club
+10:17:57   Found:  (domain: , org_id: )
+10:17:57   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:17:57 
+10:17:57 ========== STEP 4: LinkedIn + Apollo API ==========
+10:18:00   Using domain: downtownwilmingtonde.com
+10:18:01   LinkedIn page 1...
+10:18:19   No results on page 1 — stopping.
+10:18:19   No new people found on LinkedIn.
+10:18:21 
+10:18:21 ========== STEP 5: Google Fallback (no email found yet) ==========
+10:18:22   Googling: "The Wilmington Club" contact Wilmington
+
+10:18:22 === Pipeline started 2026-05-22 10:18:22 ===
+10:18:22 SMART PICKS MODE: Fetching ranked venues...
+10:18:25 SMART PICKS: 592 available, budget remaining: 10
+10:18:25 
+10:18:25 ########## SMART PICK #1 (score 86): The Wilmington Club (DE-PRIV-815) ##########
+10:18:26   [FALLBACK] Found site: https://6abc.com (domain: 6abc.com)
+10:18:29 
+10:18:29 ========== STEP 1: Website Scrape ==========
+10:18:30   URL: https://6abc.com
+10:18:30   Opening in Chrome: https://6abc.com
+10:18:31   [DOMAIN] Venue domain: downtownwilmingtonde.com
+10:18:36   Emails: 0 | FB: https://facebook.com/6abcactionnews | IG: https://www.instagram.com/6abcactionnews/ | Contact Form: none
+10:18:36   [LOCATION] Checking for location-specific page (city: Wilmington)...
+10:18:37   [LOCATION] Found: https://6abc.com/locations/wilmington/
+10:18:37   [LOCATION] Re-scraping location page: https://6abc.com/locations/wilmington/
+10:18:40 
+10:18:40 ============================================================
+10:18:40  PIPELINE: The Wilmington Club (DE-PRIV-815)
+10:18:40  Website: https://downtownwilmingtonde.com/blog
+10:18:40  Started: 2026-05-22 10:18:40
+10:18:40 ============================================================
+10:18:40   [ZB] Credits remaining: 3791
+10:18:43   Known emails: 0
+10:18:43   Known names: 0
+10:18:43 
+10:18:43 ========== STEP 1: Website Scrape ==========
+10:18:43   URL: https://downtownwilmingtonde.com/blog
+10:18:43   Opening in Chrome: https://downtownwilmingtonde.com/blog
+10:18:46   [LOCATION] Re-scraped: Emails: 0 | FB: https://l.facebook.com/l.php | IG: https://www.instagram.com/downtownwilmde/ | Contact Form: https://downtownwilmingtonde.com/contact
+10:18:46   Crawling subpage (1): https://downtownwilmingtonde.com/contact
+10:18:49   Validating contact form URL: https://downtownwilmingtonde.com/contact
+10:18:50   Found on subpage: mmaggitti@downtownvisions.org
+10:18:50   Crawling subpage (2): https://downtownwilmingtonde.com/team
+10:18:54   ✗ No submittable form found — clearing contact_form
+10:18:54   Emails: 1 | FB: http://facebook.com/downtownwilmingtonde | IG: https://www.instagram.com/downtownwilmde/ | Contact Form: none
+10:18:54   Crawling subpage (1): https://downtownwilmingtonde.com/team
+10:18:55   Crawling subpage (3): https://downtownwilmingtonde.com/events
+10:18:58   Crawling subpage (2): https://downtownwilmingtonde.com/events
+10:18:59   Crawling subpage (4): https://downtownwilmingtonde.com/blog/category/Events
+10:19:03   Crawling subpage (3): https://downtownwilmingtonde.com/city-sounds/block-party
+10:19:04   Crawling subpage (5): https://downtownwilmingtonde.com/blog/tag/19801+new+years+eve+events
+10:19:07   Crawling subpage (4): https://downtownwilmingtonde.com/about
+10:19:08   Crawling subpage (6): https://downtownwilmingtonde.com/blog/tag/9th+mile+galleria+events
+10:19:12   Crawling subpage (5): https://downtownwilmingtonde.com/blog
+10:19:12   Crawling subpage (7): https://downtownwilmingtonde.com/blog/category/Entertainment
+10:19:16   Crawling subpage (6): https://downtownwilmingtonde.com/newsletter
+10:19:17   Crawling subpage (8): https://downtownwilmingtonde.com/city-sounds/block-party
+10:19:20   Crawling subpage (7): https://downtownwilmingtonde.com/neighborhood
+10:19:21   Crawling subpage (9): https://downtownwilmingtonde.com/about
+10:19:25   Crawling subpage (8): https://downtownwilmingtonde.com/live-here
+10:19:25   Crawling subpage (10): https://downtownwilmingtonde.com/newsletter
+10:19:29   Crawling subpage (9): https://downtownwilmingtonde.com/curbside/free-parking
+10:19:30   Crawling subpage (11): https://downtownwilmingtonde.com/neighborhood
+10:19:34   Crawling subpage (10): https://downtownwilmingtonde.com/curbside/outdoor-dining
+10:19:34   Crawling subpage (12): https://downtownwilmingtonde.com/live-here
+10:19:38   Crawling subpage (11): https://downtownwilmingtonde.com/business-directory
+10:19:39   Crawling subpage (13): https://downtownwilmingtonde.com/curbside/free-parking
+10:19:42   Crawling subpage (12): https://downtownwilmingtonde.com/resources-businesses
+10:19:43   Crawling subpage (14): https://downtownwilmingtonde.com/curbside/outdoor-dining
+10:19:47   Crawling subpage (13): https://downtownwilmingtonde.com/initiatives
+10:19:47   Crawling subpage (15): https://downtownwilmingtonde.com/business-directory
+10:19:51   Crawling subpage (14): https://downtownwilmingtonde.com/history
+10:19:52   Crawling subpage (16): https://downtownwilmingtonde.com/resources-businesses
+10:19:56   Crawling subpage (15): https://downtownwilmingtonde.com/services-directory
+10:19:56   Crawling subpage (17): https://downtownwilmingtonde.com/initiatives
+10:20:00   Crawling subpage (16): https://downtownwilmingtonde.com/safety
+10:20:01   Crawling subpage (18): https://downtownwilmingtonde.com/history
+10:20:04   Crawling subpage (17): https://downtownwilmingtonde.com/cleaning
+10:20:05   Crawling subpage (19): https://downtownwilmingtonde.com/services-directory
+10:20:09   Crawling subpage (18): https://downtownwilmingtonde.com/support
+10:20:09   Found on subpage: katebf@downtownvisions.org
+10:20:09   Crawling subpage (20): https://downtownwilmingtonde.com/safety
+10:20:13   Crawling subpage (19): https://downtownwilmingtonde.com/citysounds
+10:20:14   Crawling subpage (21): https://downtownwilmingtonde.com/cleaning
+10:20:18   Crawling subpage (20): https://downtownwilmingtonde.com/downtownwilmapp
+10:20:18   Crawling subpage (22): https://downtownwilmingtonde.com/support
+10:20:22   Found on subpage: katebf@downtownvisions.org
+10:20:22   Crawling subpage (21): https://downtownwilmingtonde.com
+10:20:23   Crawling subpage (23): https://downtownwilmingtonde.com/citysounds
+10:20:27   [CONTACT] Probing https://downtownwilmingtonde.com/contact
+10:20:27   Found on subpage: mmaggitti@downtownvisions.org
+10:20:27   Crawling subpage (24): https://downtownwilmingtonde.com/downtownwilmapp
+10:20:32   Crawling subpage (25): https://downtownwilmingtonde.com
+10:20:36   Crawling subpage (26): https://downtownwilmingtonde.com/blog/2025/11/25/shop-small-ship-free-celebrate-wilmington
+10:20:37   [SKIP] katebf@downtownvisions.org — off-domain (venue: downtownwilmingtonde.com)
+10:20:37   [SKIP] mmaggitti@downtownvisions.org — off-domain (venue: downtownwilmingtonde.com)
+10:20:37 
+10:20:37 ========== STEP 2: Social Media Scrape ==========
+10:20:40   Crawling subpage (27): https://downtownwilmingtonde.com/blog/category/Community
+10:20:41   FB: http://facebook.com/downtownwilmingtonde | IG: https://www.instagram.com/downtownwilmde/
+10:20:41   Opening FB: http://facebook.com/downtownwilmingtonde
+10:20:45   Found on subpage: lschweiger@downtownvisions.org
+10:20:45   Crawling subpage (28): https://downtownwilmingtonde.com/blog/category/Economic+Development
+10:20:46   Opening FB: http://facebook.com/downtownwilmingtonde/about
+10:20:49   Found on subpage: lschweiger@downtownvisions.org
+10:20:49   Crawling subpage (29): https://downtownwilmingtonde.com/blog/category/Initiatives
+10:20:51   Opening FB: http://facebook.com/downtownwilmingtonde/directory_contact_info
+10:20:54   Crawling subpage (30): https://downtownwilmingtonde.com/blog/category/Retail
+10:20:56   [FB] No email on page — trying Google snippet...
+10:20:58   Crawling subpage (31): https://downtownwilmingtonde.com/blog/2025/10/7/international-film-festival-lights-up-downtown-wilmington-this-fall
+10:21:01   [FB SNIPPET] No email in Google snippet
+10:21:01   Opening IG: https://www.instagram.com/downtownwilmde/
+10:21:02   Crawling subpage (32): https://downtownwilmingtonde.com/blog/2025/10/3/celebrating-black-restaurant-week-in-wilmington-september-2025
+10:21:06   [IG] No email on page — trying Google snippet...
+10:21:07   Crawling subpage (33): https://downtownwilmingtonde.com/blog/category/Restaurants
+10:21:10   [IG SNIPPET] No email in Google snippet
+10:21:10   [APOLLO] Credits used this run: 0 / 300
+10:21:10 
+10:21:10 ========== STEP 3: Apollo API ==========
+10:21:10   Searching Apollo for company: The Wilmington Club
+10:21:11   Found:  (domain: , org_id: )
+10:21:11   [WARN] Apollo returned empty domain — using website domain: downtownwilmingtonde.com
+10:21:11   Searching for people at  (org_id: )...
+10:21:11   Crawling subpage (34): https://downtownwilmingtonde.com/blog/2025/9/9/taste-wilmington-brandywine-valley-restaurant-week-returns-this-september
+10:21:11   Found 0 people total
+10:21:11   No people in Apollo for this company.
+10:21:11 
+10:21:11 ========== STEP 4: LinkedIn + Apollo API ==========
+10:21:11   Using domain: downtownwilmingtonde.com
+10:21:13   LinkedIn page 1...
+10:21:16   Crawling subpage (35): https://downtownwilmingtonde.com/blog/2025/7/23/main-street-wilmington-earns-2025-main-street-america-accreditation-again
+10:21:20   Crawling subpage (36): https://downtownwilmingtonde.com/blog/category/Development
+10:21:24   Crawling subpage (37): https://downtownwilmingtonde.com/blog/category/History
+10:21:29   [CONTACT] Probing https://6abc.com/contact
+10:21:32   No results on page 1 — stopping.
+10:21:32   No new people found on LinkedIn.
+10:21:34   [CONTACT] Found emails on https://6abc.com/contact
+10:21:36 
+10:21:36 ========== STEP 5: Google Fallback (no email found yet) ==========
+10:21:36   Googling: "The Wilmington Club" contact Wilmington
+10:21:40   [FALLBACK] Found site: https://6abc.com (domain: 6abc.com)
+10:21:42   ✓ Contact form URL saved
+10:21:42   [SKIP] 6abc_ms@abclocal.go.com — off-domain (venue: 6abc.com)
+10:21:42   [SKIP] diane.hamlet@abc.com — off-domain (venue: 6abc.com)
+10:21:42   [SKIP] katebf@downtownvisions.org — off-domain (venue: 6abc.com)
+10:21:42   [SKIP] lschweiger@downtownvisions.org — off-domain (venue: 6abc.com)
+10:21:42   [SKIP] matthew.f.renaghan@abc.com — off-domain (venue: 6abc.com)
+10:21:42   [SKIP] matthew.f.renaghan@abc.com@abc.com — off-domain (venue: 6abc.com)
+10:21:42   [SKIP] mmaggitti@downtownvisions.org — off-domain (venue: 6abc.com)
+10:21:42   [FALLBACK] Re-trying Instagram: The Wilmington Club Wilmington site:instagram.com
+10:21:44 
+10:21:44 ========== STEP 1: Website Scrape ==========
+10:21:44   URL: https://6abc.com
+10:21:44   Opening in Chrome: https://6abc.com
+10:21:47   [FALLBACK] Found Instagram: https://www.instagram.com/6abcactionnews/
+10:21:49 
+10:21:49 ========== STEP 2: Social Media Scrape ==========
+10:21:50   Emails: 0 | FB: https://facebook.com/6abcactionnews | IG: https://www.instagram.com/6abcactionnews/ | Contact Form: none
+10:21:50   [LOCATION] Checking for location-specific page (city: Wilmington)...
+10:21:51   [LOCATION] Found: https://6abc.com/locations/wilmington/
+10:21:51   [LOCATION] Re-scraping location page: https://6abc.com/locations/wilmington/
+10:21:52   FB: https://l.facebook.com/l.php | IG: https://www.instagram.com/6abcactionnews/
+10:21:52   Opening FB: https://l.facebook.com/l.php
+10:21:57   Opening FB: https://l.facebook.com/l.php/about
+10:21:59   [LOCATION] Re-scraped: Emails: 0 | FB: none | IG: none | Contact Form: none
+10:22:00   Crawling subpage (1): https://www.facebook.com
+10:22:02   Opening FB: https://l.facebook.com/l.php/directory_contact_info
+10:22:04   Crawling subpage (2): https://www.facebook.com/professional_dashboard
+10:22:07   [FB] No email on page — trying Google snippet...
+10:22:08   Crawling subpage (3): https://www.facebook.com/reel
+10:22:12   [FB SNIPPET] No email in Google snippet
+10:22:12   Opening IG: https://www.instagram.com/6abcactionnews/
+10:22:13   Crawling subpage (4): https://www.facebook.com/marketplace
+10:22:17   [IG] No email on page — trying Google snippet...
+10:22:17   Crawling subpage (5): https://www.facebook.com/groups
+10:22:21   [IG SNIPPET] No email in Google snippet
+10:22:21   Setting status → pipelined
+10:22:22   Crawling subpage (6): https://www.facebook.com/help
+10:22:25 
+10:22:25 ============================================================
+10:22:25  DONE: The Wilmington Club | 8 min | 10:22:25
+10:22:25 ============================================================
+10:22:27   [CONTACT] Probing https://6abc.com/contact
+10:22:32   [CONTACT] Found emails on https://6abc.com/contact
+10:22:37   [SKIP] 6abc_ms@abclocal.go.com — off-domain (venue: 6abc.com)
+10:22:37   [SKIP] diane.hamlet@abc.com — off-domain (venue: 6abc.com)
+10:22:37   [SKIP] matthew.f.renaghan@abc.com — off-domain (venue: 6abc.com)
+10:22:37   [SKIP] matthew.f.renaghan@abc.com@abc.com — off-domain (venue: 6abc.com)
+10:22:37   [FALLBACK] Re-trying Instagram: The Wilmington Club Wilmington site:instagram.com
+10:22:42   [FALLBACK] Found Instagram: https://www.instagram.com/cityclub_wilmington/
+10:22:44 
+10:22:44 ========== STEP 2: Social Media Scrape ==========
+10:22:47   FB: https://facebook.com/6abcactionnews | IG: https://www.instagram.com/cityclub_wilmington/
+10:22:47   Opening FB: https://facebook.com/6abcactionnews
+10:22:52   Opening FB: https://facebook.com/6abcactionnews/about
+10:22:55 
+10:22:55 ########## SMART PICK #3 (score 85): O'Leary's Seafood Restaurant (MD-REST-749) ##########
+10:22:57   Opening FB: https://facebook.com/6abcactionnews/directory_contact_info
+10:23:02   [LOOKUP] No website — Googling 'O'Leary's Seafood Restaurant'...
+10:23:03   [FB] No email on page — trying Google snippet...
+10:23:05   [WARN] Website domain mismatch — 'https://wilmingtonwhiskeyclub.com' doesn't match venue 'O'Leary's Seafood Restaurant'. Discarding.
+10:23:05   [DOMAIN] Venue domain: none
+10:23:07   [FB SNIPPET] No email in Google snippet
+10:23:07   Opening IG: https://www.instagram.com/cityclub_wilmington/
+10:23:07 
+10:23:07 ============================================================
+10:23:07  PIPELINE: O'Leary's Seafood Restaurant (MD-REST-749)
+10:23:07  Website: 
+10:23:07  Started: 2026-05-22 10:23:07
+10:23:07 ============================================================
+10:23:07   [ZB] Credits remaining: 3791
+10:23:10   Known emails: 0
+10:23:10   Known names: 0
+10:23:10 
+10:23:10 ========== STEP 1: Website Scrape ==========
+10:23:10   [SKIP] No website URL
+10:23:12   [IG] No email on page — trying Google snippet...
+10:23:12 
+10:23:12 ========== STEP 1B: Instagram Google Search ==========
+10:23:12   No Instagram found on website — Googling...
+10:23:16   [IG SNIPPET] No email in Google snippet
+10:23:16   Setting status → pipelined
+10:23:17   [IG SEARCH] Found: https://www.instagram.com/theshawnmartingroup/
+10:23:18 
+10:23:18 ============================================================
+10:23:18  DONE: The Wilmington Club | 4 min | 10:23:18
+10:23:18 ============================================================
+10:23:19   ✓ Instagram URL saved
+10:23:21 
+10:23:21 ========== STEP 1C: Facebook Google Search ==========
+10:23:21   No Facebook found on website — Googling...
+10:23:25   [FB SEARCH] Found: https://www.facebook.com/olearysseafood/
+10:23:29   ✓ Facebook URL saved
+10:23:29 
+10:23:29 ========== STEP 2: Social Media Scrape ==========
+10:23:33   FB: https://www.facebook.com/olearysseafood/ | IG: https://www.instagram.com/theshawnmartingroup/
+10:23:33   Opening FB: https://www.facebook.com/olearysseafood
+10:23:38   FB emails found: olearys@olearysseafood.com
+10:23:38   Opening FB: https://www.facebook.com/olearysseafood/about
+10:23:43   FB emails found: olearys@olearysseafood.com
+10:23:43   Opening FB: https://www.facebook.com/olearysseafood/directory_contact_info
+10:23:48 
+10:23:48 ########## SMART PICK #2 (score 85): O'Leary's Seafood Restaurant (MD-REST-749) ##########
+10:23:49   Opening IG: https://www.instagram.com/theshawnmartingroup/
+10:23:54   [LOOKUP] No website — Googling 'O'Leary's Seafood Restaurant'...
+10:23:54   [IG] No email on page — trying Google snippet...
+10:23:57   [WARN] Website domain mismatch — 'https://thetowerteam.com' doesn't match venue 'O'Leary's Seafood Restaurant'. Discarding.
+10:23:57   [DOMAIN] Venue domain: none
+10:23:58   [IG SNIPPET] No email in Google snippet
+10:23:58   olearys@olearysseafood.com → valid
+10:24:00 
+10:24:00 ============================================================
+10:24:00  PIPELINE: O'Leary's Seafood Restaurant (MD-REST-749)
+10:24:00  Website: 
+10:24:00  Started: 2026-05-22 10:24:00
+10:24:00 ============================================================
+10:24:00   [ZB] Credits remaining: 3790
+10:24:02   ✓ Added: olearys@olearysseafood.com <olearys@olearysseafood.com>
+10:24:03   [APOLLO] Credits used this run: 0 / 300
+10:24:03 
+10:24:03 ========== STEP 3: Apollo API ==========
+10:24:03   Searching Apollo for company: O'Leary's Seafood Restaurant
+10:24:04   Known emails: 1
+10:24:04   Known names: 0
+10:24:04 
+10:24:04 ========== STEP 1: Website Scrape ==========
+10:24:04   [SKIP] No website URL
+10:24:06   Found:  (domain: , org_id: )
+10:24:06   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:24:06 
+10:24:06 ========== STEP 4: LinkedIn + Apollo API ==========
+10:24:09   [WARN] No domain found for 'O'Leary's Seafood Restaurant' — LinkedIn names won't be enrichable
+10:24:10 
+10:24:10 ========== STEP 2: Social Media Scrape ==========
+10:24:10   LinkedIn page 1...
+10:24:13   FB: https://www.facebook.com/olearysseafood/ | IG: https://www.instagram.com/theshawnmartingroup/
+10:24:13   Opening FB: https://www.facebook.com/olearysseafood
+10:24:18   FB emails found: olearys@olearysseafood.com
+10:24:18   Opening FB: https://www.facebook.com/olearysseafood/about
+10:24:23   FB emails found: olearys@olearysseafood.com
+10:24:23   Opening FB: https://www.facebook.com/olearysseafood/directory_contact_info
+10:24:28   Opening IG: https://www.instagram.com/theshawnmartingroup/
+10:24:29   No results on page 1 — stopping.
+10:24:29   No new people found on LinkedIn.
+10:24:32   Setting status → pipelined
+10:24:34   [IG] No email on page — trying Google snippet...
+10:24:34 
+10:24:34 ============================================================
+10:24:34  DONE: O'Leary's Seafood Restaurant | 1 min | 10:24:34
+10:24:34 ============================================================
+10:24:38   [IG SNIPPET] No email in Google snippet
+10:24:38   [SKIP] olearys@olearysseafood.com — already in sheet
+10:24:38   [APOLLO] Credits used this run: 0 / 300
+10:24:38 
+10:24:38 ========== STEP 3: Apollo API ==========
+10:24:38   Searching Apollo for company: O'Leary's Seafood Restaurant
+10:24:43   Found:  (domain: , org_id: )
+10:24:43   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:24:43 
+10:24:43 ========== STEP 4: LinkedIn + Apollo API ==========
+10:24:45   [WARN] No domain found for 'O'Leary's Seafood Restaurant' — LinkedIn names won't be enrichable
+10:24:46   LinkedIn page 1...
+10:25:04 
+10:25:04 ########## SMART PICK #4 (score 85): Cafe Mezzanotte (MD-REST-753) ##########
+10:25:05   No results on page 1 — stopping.
+10:25:05   No new people found on LinkedIn.
+10:25:09   [LOOKUP] No website — Googling 'Cafe Mezzanotte'...
+10:25:12   [LOOKUP] Found: https://cafemezzanotte.com
+10:25:14   Setting status → pipelined
+10:25:15   [DOMAIN] Venue domain: cafemezzanotte.com
+10:25:16 
+10:25:16 ============================================================
+10:25:16  DONE: O'Leary's Seafood Restaurant | 1 min | 10:25:16
+10:25:16 ============================================================
+10:25:17 
+10:25:17 ============================================================
+10:25:17  PIPELINE: Cafe Mezzanotte (MD-REST-753)
+10:25:17  Website: https://cafemezzanotte.com
+10:25:17  Started: 2026-05-22 10:25:17
+10:25:17 ============================================================
+10:25:17   [ZB] Credits remaining: 3790
+10:25:20   Known emails: 0
+10:25:20   Known names: 0
+10:25:20 
+10:25:20 ========== STEP 1: Website Scrape ==========
+10:25:20   URL: https://cafemezzanotte.com
+10:25:20   Opening in Chrome: https://cafemezzanotte.com
+10:25:26   Emails: 2 | FB: https://www.facebook.com/therealCafeMezz | IG: https://www.instagram.com/cafemezzanotte/ | Contact Form: none
+10:25:27   Crawling subpage (1): https://cafemezzanotte.com/wp-content/uploads/2026/02/BanquetMenu_2026_compressed.pdf
+10:25:31   Crawling subpage (2): https://cafemezzanotte.com/wp-content/uploads/2025/06/DiningRoom2-scaled.jpg
+10:25:45   [SKIP] banquets@cafemezz.com — off-domain (venue: cafemezzanotte.com)
+10:25:46   info@cafemezzanotte.com → do_not_mail
+10:25:46 
+10:25:46 ########## SMART PICK #3 (score 85): Cafe Mezzanotte (MD-REST-753) ##########
+10:25:47 
+10:25:47 ========== STEP 2: Social Media Scrape ==========
+10:25:51   [DOMAIN] Venue domain: cafemezzanotte.com
+10:25:51   FB: https://www.facebook.com/therealCafeMezz | IG: https://www.instagram.com/cafemezzanotte/
+10:25:51   Opening FB: https://www.facebook.com/therealCafeMezz
+10:25:54 
+10:25:54 ============================================================
+10:25:54  PIPELINE: Cafe Mezzanotte (MD-REST-753)
+10:25:54  Website: https://cafemezzanotte.com
+10:25:54  Started: 2026-05-22 10:25:54
+10:25:54 ============================================================
+10:25:54   [ZB] Credits remaining: 3789
+10:25:56   FB emails found: info@cafemezz.com
+10:25:56   Opening FB: https://www.facebook.com/therealCafeMezz/about
+10:25:57   Known emails: 0
+10:25:57   Known names: 0
+10:25:57 
+10:25:57 ========== STEP 1: Website Scrape ==========
+10:25:57   URL: https://cafemezzanotte.com
+10:25:57   Opening in Chrome: https://cafemezzanotte.com
+10:26:02   FB emails found: banquets@cafemezz.com|info@cafemezzanotte.com
+10:26:02   Opening FB: https://www.facebook.com/therealCafeMezz/directory_contact_info
+10:26:04   Validating contact form URL: https://www.facebook.com/therealCafeMezz/about_contact_and_basic_info
+10:26:07   FB emails found: info@cafemezz.com
+10:26:07   Opening IG: https://www.instagram.com/cafemezzanotte/
+10:26:08   ✗ No submittable form found — clearing contact_form
+10:26:08   Emails: 0 | FB: https://www.facebook.com/photo | IG: none | Contact Form: none
+10:26:08   [LOCATION] Checking for location-specific page (city: Severna Park)...
+10:26:12   [LOCATION] No location-specific page found
+10:26:12   Crawling subpage (1): https://www.facebook.com/therealCafeMezz/about_contact_and_basic_info
+10:26:12   [IG] No email on page — trying Google snippet...
+10:26:16   Crawling subpage (2): https://www.facebook.com/therealCafeMezz/about_life_events
+10:26:16   [IG SNIPPET] No email in Google snippet
+10:26:16   [SKIP] banquets@cafemezz.com — off-domain (venue: cafemezzanotte.com)
+10:26:16   [SKIP] info@cafemezz.com — off-domain (venue: cafemezzanotte.com)
+10:26:16   info@cafemezzanotte.com → do_not_mail
+10:26:17   [APOLLO] Credits used this run: 0 / 300
+10:26:17 
+10:26:17 ========== STEP 3: Apollo API ==========
+10:26:17   Searching Apollo for company: Cafe Mezzanotte
+10:26:18   Found:  (domain: , org_id: )
+10:26:18   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:26:18 
+10:26:18 ========== STEP 4: LinkedIn + Apollo API ==========
+10:26:20   Crawling subpage (3): https://www.facebook.com
+10:26:21   Using domain: cafemezzanotte.com
+10:26:23   LinkedIn page 1...
+10:26:25   Crawling subpage (4): https://www.facebook.com/professional_dashboard
+10:26:29   Crawling subpage (5): https://www.facebook.com/reel
+10:26:33   Crawling subpage (6): https://www.facebook.com/marketplace
+10:26:38   Crawling subpage (7): https://www.facebook.com/groups
+10:26:40   No results on page 1 — stopping.
+10:26:40   No new people found on LinkedIn.
+10:26:42   Crawling subpage (8): https://www.facebook.com/photo
+10:26:42 
+10:26:42 ========== STEP 5: Google Fallback (no email found yet) ==========
+10:26:43   Googling: "Cafe Mezzanotte" contact Severna Park
+10:26:46   Crawling subpage (9): https://www.facebook.com/therealCafeMezz/followers
+10:26:47   [FALLBACK] Google returned no site
+10:26:47   Setting status → pipelined
+10:26:50 
+10:26:50 ============================================================
+10:26:50  DONE: Cafe Mezzanotte | 1 min | 10:26:50
+10:26:50 ============================================================
+10:26:51   Crawling subpage (10): https://www.facebook.com/therealCafeMezz/following
+10:26:55   Crawling subpage (11): https://www.facebook.com/therealCafeMezz
+10:26:59   Found on subpage: info@cafemezz.com
+10:26:59   Crawling subpage (12): https://www.facebook.com/therealCafeMezz/about
+10:27:04   Found on subpage: info@cafemezz.com
+10:27:04   Crawling subpage (13): https://www.facebook.com/therealCafeMezz/mentions
+10:27:08   Crawling subpage (14): https://www.facebook.com/therealCafeMezz/reviews
+10:27:12   Crawling subpage (15): https://www.facebook.com/therealCafeMezz/reels_tab
+10:27:17   Crawling subpage (16): https://www.facebook.com/therealCafeMezz/photos
+10:27:20 
+10:27:20 ########## SMART PICK #5 (score 85): Marmo Annapolis (MD-REST-768) ##########
+10:27:21   Crawling subpage (17): https://www.facebook.com/therealCafeMezz/about_privacy_and_legal_info
+10:27:25   Crawling subpage (18): https://www.facebook.com/therealCafeMezz/about_work_and_education
+10:27:26   [LOOKUP] No website — Googling 'Marmo Annapolis'...
+10:27:29   [WARN] Website domain mismatch — 'https://atlasrestaurantgroup.com' doesn't match venue 'Marmo Annapolis'. Discarding.
+10:27:29   [DOMAIN] Venue domain: none
+10:27:29   Crawling subpage (19): https://www.facebook.com/therealCafeMezz/about_places
+10:27:34   Crawling subpage (20): https://www.facebook.com/therealCafeMezz/about_profile_transparency
+10:27:38   Crawling subpage (21): https://www.facebook.com/therealCafeMezz/about_family_and_relationships
+10:27:39 
+10:27:39 ============================================================
+10:27:39  PIPELINE: Marmo Annapolis (MD-REST-768)
+10:27:39  Website: 
+10:27:39  Started: 2026-05-22 10:27:39
+10:27:39 ============================================================
+10:27:40   [ZB] Credits remaining: 3789
+10:27:42   Crawling subpage (22): https://www.facebook.com/therealCafeMezz/about_details
+10:27:43   Known emails: 0
+10:27:43   Known names: 0
+10:27:43 
+10:27:43 ========== STEP 1: Website Scrape ==========
+10:27:43   [SKIP] No website URL
+10:27:48 
+10:27:48 ========== STEP 1B: Instagram Google Search ==========
+10:27:48   No Instagram found on website — Googling...
+10:27:52   [IG SEARCH] Found: https://www.instagram.com/marmoannapolis/
+10:27:55   ✓ Instagram URL saved
+10:27:55   [SKIP] info@cafemezz.com — off-domain (venue: cafemezzanotte.com)
+10:27:57 
+10:27:57 ========== STEP 1C: Facebook Google Search ==========
+10:27:57   No Facebook found on website — Googling...
+10:27:58 
+10:27:58 ========== STEP 2: Social Media Scrape ==========
+10:28:01   FB: https://www.facebook.com/photo | IG: https://www.instagram.com/cafemezzanotte/
+10:28:01   Opening FB: https://www.facebook.com/photo
+10:28:02   [FB SEARCH] Found: https://www.facebook.com/61559634175633/
+10:28:04   ✓ Facebook URL saved
+10:28:04 
+10:28:04 ========== STEP 2: Social Media Scrape ==========
+10:28:07   Opening FB: https://www.facebook.com/photo/about
+10:28:08   FB: https://www.facebook.com/61559634175633/ | IG: https://www.instagram.com/marmoannapolis/
+10:28:08   Opening FB: https://www.facebook.com/61559634175633
+10:28:12   FB emails found: marmoannapolis@gmail.com
+10:28:12   Opening FB: https://www.facebook.com/photo/directory_contact_info
+10:28:13   Opening FB: https://www.facebook.com/61559634175633/about
+10:28:17   Opening IG: https://www.instagram.com/cafemezzanotte/
+10:28:18   Opening FB: https://www.facebook.com/61559634175633/directory_contact_info
+10:28:22   IG emails found: marmoannapolis@gmail.com
+10:28:23   FB emails found: marmoannapolis@gmail.com
+10:28:23   Opening IG: https://www.instagram.com/marmoannapolis/
+10:28:24   marmoannapolis@gmail.com → valid
+10:28:27   ✓ Added: marmoannapolis@gmail.com <marmoannapolis@gmail.com>
+10:28:28   [APOLLO] Credits used this run: 0 / 300
+10:28:28 
+10:28:28 ========== STEP 3: Apollo API ==========
+10:28:28   Searching Apollo for company: Cafe Mezzanotte
+10:28:28   Found:  (domain: , org_id: )
+10:28:28   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:28:28 
+10:28:28 ========== STEP 4: LinkedIn + Apollo API ==========
+10:28:29   [IG] No email on page — trying Google snippet...
+10:28:32   Using domain: cafemezzanotte.com
+10:28:33   [IG SNIPPET] No email in Google snippet
+10:28:33   marmoannapolis@gmail.com → valid
+10:28:34   LinkedIn page 1...
+10:28:35   ✓ Added: marmoannapolis@gmail.com <marmoannapolis@gmail.com>
+10:28:36   [APOLLO] Credits used this run: 0 / 300
+10:28:36 
+10:28:37 ========== STEP 3: Apollo API ==========
+10:28:37   Searching Apollo for company: Marmo Annapolis
+10:28:42   Found:  (domain: , org_id: )
+10:28:42   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:28:42 
+10:28:42 ========== STEP 4: LinkedIn + Apollo API ==========
+10:28:45   [WARN] No domain found for 'Marmo Annapolis' — LinkedIn names won't be enrichable
+10:28:46   LinkedIn page 1...
+10:28:50   No results on page 1 — stopping.
+10:28:50   No new people found on LinkedIn.
+10:28:52   Setting status → pipelined
+10:28:55 
+10:28:55 ============================================================
+10:28:55  DONE: Cafe Mezzanotte | 3 min | 10:28:55
+10:28:55 ============================================================
+10:29:04   No results on page 1 — stopping.
+10:29:04   No new people found on LinkedIn.
+10:29:07   Setting status → pipelined
+10:29:09 
+10:29:09 ============================================================
+10:29:09  DONE: Marmo Annapolis | 1 min | 10:29:09
+10:29:09 ============================================================
+10:29:25 
+10:29:25 ########## SMART PICK #4 (score 85): Marmo Annapolis (MD-REST-768) ##########
+10:29:30   [LOOKUP] No website — Googling 'Marmo Annapolis'...
+10:29:34   [WARN] Website domain mismatch — 'https://atlasrestaurantgroup.com' doesn't match venue 'Marmo Annapolis'. Discarding.
+10:29:34   [DOMAIN] Venue domain: none
+10:29:36 
+10:29:36 ============================================================
+10:29:36  PIPELINE: Marmo Annapolis (MD-REST-768)
+10:29:36  Website: 
+10:29:36  Started: 2026-05-22 10:29:36
+10:29:36 ============================================================
+10:29:36   [ZB] Credits remaining: 3788
+10:29:39 
+10:29:39 ########## SMART PICK #6 (score 85): Pearl Restaurant Annapolis (MD-REST-778) ##########
+10:29:39   Known emails: 1
+10:29:39   Known names: 0
+10:29:39 
+10:29:39 ========== STEP 1: Website Scrape ==========
+10:29:39   [SKIP] No website URL
+10:29:45   [LOOKUP] No website — Googling 'Pearl Restaurant Annapolis'...
+10:29:45 
+10:29:45 ========== STEP 2: Social Media Scrape ==========
+10:29:48   FB: https://www.facebook.com/61559634175633/ | IG: https://www.instagram.com/marmoannapolis/
+10:29:48   Opening FB: https://www.facebook.com/61559634175633
+10:29:48   [LOOKUP] Found: https://www.pearlannapolis.com
+10:29:51   [DOMAIN] Venue domain: pearlannapolis.com
+10:29:53 
+10:29:53 ============================================================
+10:29:53  PIPELINE: Pearl Restaurant Annapolis (MD-REST-778)
+10:29:53  Website: https://www.pearlannapolis.com
+10:29:53  Started: 2026-05-22 10:29:53
+10:29:53 ============================================================
+10:29:53   [ZB] Credits remaining: 3788
+10:29:54   FB emails found: marmoannapolis@gmail.com
+10:29:54   Opening FB: https://www.facebook.com/61559634175633/about
+10:29:56   Known emails: 0
+10:29:56   Known names: 0
+10:29:56 
+10:29:56 ========== STEP 1: Website Scrape ==========
+10:29:56   URL: https://www.pearlannapolis.com
+10:29:56   Opening in Chrome: https://www.pearlannapolis.com
+10:29:59   FB emails found: justin@pearlannapolis.com
+10:29:59   Opening FB: https://www.facebook.com/61559634175633/directory_contact_info
+10:30:02   Validating contact form URL: https://www.facebook.com/help/contact/1914298425761977
+10:30:04   Opening IG: https://www.instagram.com/marmoannapolis/
+10:30:07   ✗ No submittable form found — clearing contact_form
+10:30:07   Emails: 1 | FB: https://www.facebook.com/notifications | IG: https://l.facebook.com/l.php | Contact Form: none
+10:30:07   Crawling subpage (1): https://www.facebook.com/help/contact/1914298425761977
+10:30:09   [IG] No email on page — trying Google snippet...
+10:30:11   Crawling subpage (2): https://www.facebook.com
+10:30:14   [IG SNIPPET] No email in Google snippet
+10:30:14   justin@pearlannapolis.com → valid
+10:30:15   Crawling subpage (3): https://www.facebook.com/professional_dashboard
+10:30:16   ✓ Added: justin@pearlannapolis.com <justin@pearlannapolis.com>
+10:30:17   [SKIP] marmoannapolis@gmail.com — already in sheet
+10:30:17   [APOLLO] Credits used this run: 0 / 300
+10:30:17 
+10:30:17 ========== STEP 3: Apollo API ==========
+10:30:17   Searching Apollo for company: Marmo Annapolis
+10:30:20   Crawling subpage (4): https://www.facebook.com/reel
+10:30:20   Found:  (domain: , org_id: )
+10:30:20   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:30:20 
+10:30:20 ========== STEP 4: LinkedIn + Apollo API ==========
+10:30:24   Crawling subpage (5): https://www.facebook.com/marketplace
+10:30:26   [WARN] No domain found for 'Marmo Annapolis' — LinkedIn names won't be enrichable
+10:30:28   LinkedIn page 1...
+10:30:28   Crawling subpage (6): https://www.facebook.com/groups
+10:30:33   Crawling subpage (7): https://www.facebook.com/notifications
+10:30:37   Crawling subpage (8): https://www.facebook.com/475339025926960/inbox
+10:30:41   Crawling subpage (9): https://www.facebook.com/tbguitars/videos/1260599154889363
+10:30:44   No results on page 1 — stopping.
+10:30:44   No new people found on LinkedIn.
+10:30:46   Crawling subpage (10): https://www.facebook.com/groups/988320767897523
+10:30:46   Setting status → pipelined
+10:30:48 
+10:30:48 ============================================================
+10:30:48  DONE: Marmo Annapolis | 1 min | 10:30:48
+10:30:48 ============================================================
+10:30:50   Crawling subpage (11): https://www.facebook.com/photo
+10:30:54   Crawling subpage (12): https://www.facebook.com/stories/create
+10:30:58   Crawling subpage (13): https://www.facebook.com/roberto.viscarelli/posts/pfbid02RTs6V4sUocZKpRSHx2UvSH8YLHFqnVnYgrRsAjixLpCWdkwgRAZYG7yTVVpP7aSnl
+10:31:03   Crawling subpage (14): https://www.facebook.com/groupslanding
+10:31:07   Crawling subpage (15): https://www.facebook.com/colby.sard.52/posts/pfbid0scgfj9HSN2Sup6MSdLMCFXNXWL1eFiiHyZ42ZdWuVkRNrxAueGzEbUeaSxKSXxY9l
+10:31:11   Crawling subpage (16): https://www.facebook.com/ambreh.lewis
+10:31:16   Crawling subpage (17): https://www.facebook.com/pages
+10:31:18 
+10:31:18 ########## SMART PICK #5 (score 85): Pearl Restaurant Annapolis (MD-REST-778) ##########
+10:31:20   Crawling subpage (18): https://www.facebook.com/profile.php
+10:31:24   Crawling subpage (19): https://www.facebook.com/messages/t/61559634175633
+10:31:25   [DOMAIN] Venue domain: pearlannapolis.com
+10:31:27 
+10:31:27 ============================================================
+10:31:27  PIPELINE: Pearl Restaurant Annapolis (MD-REST-778)
+10:31:27  Website: https://www.pearlannapolis.com
+10:31:27  Started: 2026-05-22 10:31:27
+10:31:27 ============================================================
+10:31:27   [ZB] Credits remaining: 3787
+10:31:29   Crawling subpage (20): https://www.facebook.com/MarylandHospitalAssociation
+10:31:31   Known emails: 0
+10:31:31   Known names: 0
+10:31:31 
+10:31:31 ========== STEP 1: Website Scrape ==========
+10:31:31   URL: https://www.pearlannapolis.com
+10:31:31   Opening in Chrome: https://www.pearlannapolis.com
+10:31:33   Found on subpage: justin@pearlannapolis.com
+10:31:33   Crawling subpage (21): https://www.facebook.com/photo.php
+10:31:38   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+10:31:38   [CONTACT] Probing https://www.pearlannapolis.com/contact
+10:31:43   [CONTACT] Found emails on https://www.pearlannapolis.com/contact
+10:31:50   Validating contact form URL: https://www.pearlannapolis.com/contact
+10:31:51   justin@pearlannapolis.com → valid
+10:31:54   ✓ Added: justin@pearlannapolis.com <justin@pearlannapolis.com>
+10:31:55   Found on contact page: justin@pearlannapolis.com, regina@pearlannapolis.com
+10:31:55   ✓ Real contact form confirmed
+10:31:55   Emails: 2 | FB: https://www.facebook.com/AnnapolisPearl | IG: https://www.instagram.com/pearl_annapolis/ | Contact Form: https://www.pearlannapolis.com/contact
+10:31:55   Crawling subpage (1): https://www.pearlannapolis.com/events
+10:31:55   marmoannapolis@gmail.com → valid
+10:31:59   Found on subpage: justin@pearlannapolis.com
+10:31:59   Crawling subpage (2): https://www.pearlannapolis.com/private-rental-pearl
+10:32:00   ✓ Added: marmoannapolis@gmail.com <marmoannapolis@gmail.com>
+10:32:01   regina@pearlannapolis.com → valid
+10:32:03   ✓ Added: regina@pearlannapolis.com <regina@pearlannapolis.com>
+10:32:04   Found on subpage: justin@pearlannapolis.com
+10:32:04   Crawling subpage (3): https://www.pearlannapolis.com/about
+10:32:04 
+10:32:04 ========== STEP 2: Social Media Scrape ==========
+10:32:08   FB: https://www.facebook.com/notifications | IG: https://l.facebook.com/l.php
+10:32:08   Opening FB: https://www.facebook.com/notifications
+10:32:08   Crawling subpage (4): https://www.pearlannapolis.com
+10:32:12   Found on subpage: justin@pearlannapolis.com
+10:32:12   Crawling subpage (5): https://www.pearlannapolis.com/location/pearl-annapolis
+10:32:13   FB emails found: justin@pearlannapolis.com
+10:32:13   Opening FB: https://www.facebook.com/notifications/about
+10:32:17   Crawling subpage (6): https://www.pearlannapolis.com/menu
+10:32:18   FB emails found: justin@pearlannapolis.com
+10:32:18   Opening FB: https://www.facebook.com/notifications/directory_contact_info
+10:32:21   Crawling subpage (7): https://www.pearlannapolis.com/ponche
+10:32:23   FB emails found: justin@pearlannapolis.com
+10:32:23   Opening IG: https://l.facebook.com/l.php
+10:32:25   Crawling subpage (8): https://www.pearlannapolis.com/to-go-orders
+10:32:29   IG emails found: justin@pearlannapolis.com
+10:32:29   justin@pearlannapolis.com → valid
+10:32:30   Same emails 3 pages in a row — stopping subpage crawl
+10:32:30   [CONTACT] Probing https://www.pearlannapolis.com/contact
+10:32:31   ✓ Added: justin@pearlannapolis.com <justin@pearlannapolis.com>
+10:32:32   [APOLLO] Credits used this run: 0 / 300
+10:32:32 
+10:32:32 ========== STEP 3: Apollo API ==========
+10:32:32   Searching Apollo for company: Pearl Restaurant Annapolis
+10:32:33   Found:  (domain: , org_id: )
+10:32:33   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:32:33 
+10:32:33 ========== STEP 4: LinkedIn + Apollo API ==========
+10:32:35   [CONTACT] Found emails on https://www.pearlannapolis.com/contact
+10:32:35   Using domain: pearlannapolis.com
+10:32:37   LinkedIn page 1...
+10:32:43   ✓ Contact form URL saved
+10:32:43   justin@pearlannapolis.com → valid
+10:32:46   ✓ Added: justin@pearlannapolis.com <justin@pearlannapolis.com>
+10:32:47   regina@pearlannapolis.com → valid
+10:32:50   ✓ Added: regina@pearlannapolis.com <regina@pearlannapolis.com>
+10:32:51 
+10:32:51 ========== STEP 2: Social Media Scrape ==========
+10:32:52   No results on page 1 — stopping.
+10:32:52   No new people found on LinkedIn.
+10:32:54   FB: https://www.facebook.com/AnnapolisPearl | IG: https://www.instagram.com/pearl_annapolis/
+10:32:54   Opening FB: https://www.facebook.com/AnnapolisPearl
+10:32:54   Setting status → pipelined
+10:32:56 
+10:32:56 ============================================================
+10:32:56  DONE: Pearl Restaurant Annapolis | 3 min | 10:32:56
+10:32:56 ============================================================
+10:32:59   FB emails found: justin@pearlannapolis.com
+10:32:59   Opening FB: https://www.facebook.com/AnnapolisPearl/about
+10:33:05   FB emails found: justin@pearlannapolis.com
+10:33:05   Opening FB: https://www.facebook.com/AnnapolisPearl/directory_contact_info
+10:33:10   Opening IG: https://www.instagram.com/pearl_annapolis/
+10:33:15   [IG] No email on page — trying Google snippet...
+10:33:19   [IG SNIPPET] No email in Google snippet
+10:33:19   justin@pearlannapolis.com → valid
+10:33:21   ✓ Added: justin@pearlannapolis.com <justin@pearlannapolis.com>
+10:33:22   [APOLLO] Credits used this run: 0 / 300
+10:33:22 
+10:33:22 ========== STEP 3: Apollo API ==========
+10:33:22   Searching Apollo for company: Pearl Restaurant Annapolis
+10:33:23   Found:  (domain: , org_id: )
+10:33:23   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:33:23 
+10:33:23 ========== STEP 4: LinkedIn + Apollo API ==========
+10:33:26   Using domain: pearlannapolis.com
+10:33:26 
+10:33:26 ########## SMART PICK #7 (score 85): Leo Annapolis (MD-REST-780) ##########
+10:33:30   LinkedIn page 1...
+10:33:33   [LOOKUP] No website — Googling 'Leo Annapolis'...
+10:33:37   [LOOKUP] Found: https://www.leoannapolis.com
+10:33:40   [DOMAIN] Venue domain: leoannapolis.com
+10:33:42 
+10:33:42 ============================================================
+10:33:42  PIPELINE: Leo Annapolis (MD-REST-780)
+10:33:42  Website: https://www.leoannapolis.com
+10:33:42  Started: 2026-05-22 10:33:42
+10:33:42 ============================================================
+10:33:42   [ZB] Credits remaining: 3786
+10:33:45   Known emails: 0
+10:33:45   Known names: 0
+10:33:45 
+10:33:45 ========== STEP 1: Website Scrape ==========
+10:33:45   URL: https://www.leoannapolis.com
+10:33:45   Opening in Chrome: https://www.leoannapolis.com
+10:33:46   No results on page 1 — stopping.
+10:33:46   No new people found on LinkedIn.
+10:33:49 
+10:33:49 ========== STEP 5: Google Fallback (no email found yet) ==========
+10:33:49   Googling: "Pearl Restaurant Annapolis" contact Annapolis
+10:33:52   Emails: 0 | FB: https://www.facebook.com/AnnapolisPearl | IG: https://www.instagram.com/pearl_annapolis/ | Contact Form: none
+10:33:52   [LOCATION] Checking for location-specific page (city: Annapolis)...
+10:33:53   [LOCATION] No location-specific page found
+10:33:53   [FALLBACK] No new site found (or same domain as before)
+10:33:53   Setting status → pipelined
+10:33:53   Crawling subpage (1): https://www.google.com/intl/en/about/products
+10:33:55 
+10:33:55 ============================================================
+10:33:55  DONE: Pearl Restaurant Annapolis | 2 min | 10:33:55
+10:33:55 ============================================================
+10:33:58   [CONTACT] Probing https://www.leoannapolis.com/contact
+10:34:03   [CONTACT] Found emails on https://www.leoannapolis.com/contact
+10:34:09   info@leoannapolis.com → do_not_mail
+10:34:10 
+10:34:10 ========== STEP 2: Social Media Scrape ==========
+10:34:12   FB: https://www.facebook.com/AnnapolisPearl | IG: https://www.instagram.com/pearl_annapolis/
+10:34:12   Opening FB: https://www.facebook.com/AnnapolisPearl
+10:34:17   FB emails found: justin@pearlannapolis.com
+10:34:17   Opening FB: https://www.facebook.com/AnnapolisPearl/about
+10:34:23   FB emails found: justin@pearlannapolis.com
+10:34:23   Opening FB: https://www.facebook.com/AnnapolisPearl/directory_contact_info
+10:34:25 [BUDGET] Shared limit of 10 reached — stopping smart picks
+10:34:25 === SMART PICKS COMPLETE ===
+10:34:25 
+10:34:25 UNTOUCHED PHASE: Fetching all venues...
+10:34:28   Opening IG: https://www.instagram.com/pearl_annapolis/
+10:34:28 UNTOUCHED: 599 found (shared budget: 10 total)
+10:34:29 [BUDGET] Shared limit of 10 reached — stopping untouched phase
+10:34:29 === UNTOUCHED PHASE COMPLETE ===
+10:34:29 
+10:34:29 === SMART PICKS COMPLETE ===
+10:34:29 
+10:34:29 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-22_10-34.html
+10:34:29 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-22_10-34.html
+10:34:33   [IG] No email on page — trying Google snippet...
+10:34:37   [IG SNIPPET] No email in Google snippet
+10:34:37   [SKIP] justin@pearlannapolis.com — off-domain (venue: leoannapolis.com)
+10:34:37   [APOLLO] Credits used this run: 0 / 300
+10:34:37 
+10:34:37 ========== STEP 3: Apollo API ==========
+10:34:37   Searching Apollo for company: Leo Annapolis
+10:34:38   Found:  (domain: , org_id: )
+10:34:38   [SKIP] Org  already processed this run — skipping to avoid duplicates
+10:34:38 
+10:34:38 ========== STEP 4: LinkedIn + Apollo API ==========
+10:34:41   Using domain: leoannapolis.com
+10:34:45   LinkedIn page 1...
+10:35:01   No results on page 1 — stopping.
+10:35:01   No new people found on LinkedIn.
+10:35:04 
+10:35:04 ========== STEP 5: Google Fallback (no email found yet) ==========
+10:35:04   Googling: "Leo Annapolis" contact Annapolis
+10:35:08   [FALLBACK] No new site found (or same domain as before)
+10:35:08   Setting status → pipelined
+10:35:12 
+10:35:12 ============================================================
+10:35:12  DONE: Leo Annapolis | 1 min | 10:35:12
+10:35:12 ============================================================
+10:35:42 [BUDGET] Shared limit of 10 reached — stopping smart picks
+10:35:42 === SMART PICKS COMPLETE ===
+10:35:42 
+10:35:42 UNTOUCHED PHASE: Fetching all venues...
+10:35:45 UNTOUCHED: 598 found (shared budget: 10 total)
+10:35:45 [BUDGET] Shared limit of 10 reached — stopping untouched phase
+10:35:45 === UNTOUCHED PHASE COMPLETE ===
+10:35:45 
+10:35:45 === SMART PICKS COMPLETE ===
+10:35:45 
+10:35:45 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-22_10-35.html
+10:35:46 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-22_10-35.html

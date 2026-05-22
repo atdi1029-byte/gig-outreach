@@ -37,6 +37,8 @@
         /localguide/, /cityguide/, /areaguide/
     ];
 
+    var results = [];
+    var seen = {};
     var cites = document.querySelectorAll("cite");
     for (var i = 0; i < cites.length; i++) {
         var t = cites[i].textContent.trim();
@@ -71,7 +73,13 @@
         }
         if (pathBad) continue;
 
-        return m[1];
+        // Dedupe by domain
+        if (!seen[domain]) {
+            seen[domain] = true;
+            results.push(m[1]);
+        }
+        // Return up to 5 candidates
+        if (results.length >= 5) break;
     }
-    return "";
+    return results.join("|");
 })()

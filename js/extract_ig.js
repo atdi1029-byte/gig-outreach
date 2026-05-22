@@ -1,4 +1,6 @@
 (function() {
+    var results = [];
+    var seen = {};
     var links = document.querySelectorAll("a[href]");
     for (var i = 0; i < links.length; i++) {
         var href = links[i].href || "";
@@ -9,21 +11,31 @@
             if (["explore","p","reel","reels","stories","accounts",
                  "about","directory","developer","legal"].indexOf(handle) > -1) continue;
             if (handle.length < 2) continue;
-            return "https://www.instagram.com/" + m[1] + "/";
+            if (!seen[handle]) {
+                seen[handle] = true;
+                results.push("https://www.instagram.com/" + m[1] + "/");
+            }
+            if (results.length >= 5) break;
         }
     }
     // Fallback: check cite elements (Google results)
-    var cites = document.querySelectorAll("cite");
-    for (var j = 0; j < cites.length; j++) {
-        var t = cites[j].textContent.trim();
-        var cm = t.match(/instagram\.com\/([a-zA-Z0-9._]+)/);
-        if (cm && cm[1]) {
-            var ch = cm[1].toLowerCase();
-            if (["explore","p","reel","reels","stories","accounts",
-                 "about","directory","developer","legal"].indexOf(ch) > -1) continue;
-            if (ch.length < 2) continue;
-            return "https://www.instagram.com/" + cm[1] + "/";
+    if (results.length < 5) {
+        var cites = document.querySelectorAll("cite");
+        for (var j = 0; j < cites.length; j++) {
+            var t = cites[j].textContent.trim();
+            var cm = t.match(/instagram\.com\/([a-zA-Z0-9._]+)/);
+            if (cm && cm[1]) {
+                var ch = cm[1].toLowerCase();
+                if (["explore","p","reel","reels","stories","accounts",
+                     "about","directory","developer","legal"].indexOf(ch) > -1) continue;
+                if (ch.length < 2) continue;
+                if (!seen[ch]) {
+                    seen[ch] = true;
+                    results.push("https://www.instagram.com/" + cm[1] + "/");
+                }
+                if (results.length >= 5) break;
+            }
         }
     }
-    return "";
+    return results.join("|");
 })()

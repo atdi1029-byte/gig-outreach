@@ -806,14 +806,52 @@ step1b_ig_search() {
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
     sleep 4
 
-    # Extract first instagram.com profile URL from Google results
-    local ig_url
-    ig_url=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_ig.js"'")' 2>/dev/null)
+    # Extract instagram.com profile URLs from Google results (pipe-separated)
+    local ig_all
+    ig_all=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_ig.js"'")' 2>/dev/null)
 
-    if [ -n "$ig_url" ] && [ "$ig_url" != "missing value" ] && [ "$ig_url" != "" ]; then
-        log "  [IG SEARCH] Found: $ig_url"
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$ig_url'''))")" > /dev/null
-        log "  ✓ Instagram URL saved"
+    if [ -n "$ig_all" ] && [ "$ig_all" != "missing value" ] && [ "$ig_all" != "" ]; then
+        # Pick the best match — check if IG handle relates to venue name
+        local best_ig=""
+        IFS='|' read -ra IG_LIST <<< "$ig_all"
+        for ig_candidate in "${IG_LIST[@]}"; do
+            [ -z "$ig_candidate" ] && continue
+            local handle
+            handle=$(echo "$ig_candidate" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
+            # Check if any venue name word appears in the handle
+            local ig_match
+            ig_match=$(python3 -c "
+import re, sys
+venue = sys.argv[1]
+handle = sys.argv[2]
+words = re.sub(r'[^a-z\s]','',venue.lower()).split()
+stop = {'the','a','an','and','of','at','in','by','on','for','to',
+        'hotel','inn','resort','lodge','restaurant','winery','vineyard',
+        'club','country','golf','bar','bistro','cafe','tavern','grill',
+        'pub','lounge','spa','marina','museum','gallery'}
+words = [w for w in words if w not in stop and len(w) > 2]
+if any(w in handle for w in words):
+    print('match')
+else:
+    print('no')
+" "$venue" "$handle" 2>/dev/null)
+            if [ "$ig_match" = "match" ]; then
+                best_ig="$ig_candidate"
+                break
+            else
+                log "  [IG SEARCH] Skipping $ig_candidate — handle '$handle' doesn't match venue"
+            fi
+        done
+        # If no match found, take first candidate as fallback
+        if [ -z "$best_ig" ] && [ ${#IG_LIST[@]} -gt 0 ]; then
+            best_ig="${IG_LIST[0]}"
+            log "  [IG SEARCH] No handle matched venue name — using first result"
+        fi
+        if [ -n "$best_ig" ]; then
+            log "  [IG SEARCH] Found: $best_ig"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$best_ig'''))")" > /dev/null
+            log "  ✓ Instagram URL saved"
+        fi
     else
         log "  [IG SEARCH] No Instagram found via Google"
     fi
@@ -854,13 +892,48 @@ step1c_fb_search() {
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
     sleep 4
 
-    local fb_url
-    fb_url=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_fb.js"'")' 2>/dev/null)
+    local fb_all
+    fb_all=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_fb.js"'")' 2>/dev/null)
 
-    if [ -n "$fb_url" ] && [ "$fb_url" != "missing value" ] && [ "$fb_url" != "" ]; then
-        log "  [FB SEARCH] Found: $fb_url"
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$fb_url'''))")" > /dev/null
-        log "  ✓ Facebook URL saved"
+    if [ -n "$fb_all" ] && [ "$fb_all" != "missing value" ] && [ "$fb_all" != "" ]; then
+        local best_fb=""
+        IFS='|' read -ra FB_LIST <<< "$fb_all"
+        for fb_candidate in "${FB_LIST[@]}"; do
+            [ -z "$fb_candidate" ] && continue
+            local fb_handle
+            fb_handle=$(echo "$fb_candidate" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
+            local fb_match
+            fb_match=$(python3 -c "
+import re, sys
+venue = sys.argv[1]
+handle = sys.argv[2]
+words = re.sub(r'[^a-z\s]','',venue.lower()).split()
+stop = {'the','a','an','and','of','at','in','by','on','for','to',
+        'hotel','inn','resort','lodge','restaurant','winery','vineyard',
+        'club','country','golf','bar','bistro','cafe','tavern','grill',
+        'pub','lounge','spa','marina','museum','gallery'}
+words = [w for w in words if w not in stop and len(w) > 2]
+if any(w in handle for w in words):
+    print('match')
+else:
+    print('no')
+" "$venue" "$fb_handle" 2>/dev/null)
+            if [ "$fb_match" = "match" ]; then
+                best_fb="$fb_candidate"
+                break
+            else
+                log "  [FB SEARCH] Skipping $fb_candidate — handle '$fb_handle' doesn't match venue"
+            fi
+        done
+        if [ -z "$best_fb" ] && [ ${#FB_LIST[@]} -gt 0 ]; then
+            best_fb="${FB_LIST[0]}"
+            log "  [FB SEARCH] No handle matched venue name — using first result"
+        fi
+        if [ -n "$best_fb" ]; then
+            log "  [FB SEARCH] Found: $best_fb"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$best_fb'''))")" > /dev/null
+            log "  ✓ Facebook URL saved"
+        fi
     else
         log "  [FB SEARCH] No Facebook found via Google"
     fi
@@ -2533,10 +2606,15 @@ run_venue() {
         SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue'''))")
         osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
         sleep 3
-        website=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
-        if [ -n "$website" ] && [ "$website" != "None" ] && [ "$website" != "missing value" ] && [ "$website" != "" ]; then
-            # Domain relevance check — reject if venue name words don't appear in domain
-            DOMAIN_OK=$(python3 - "$venue" "$website" << 'PYEOF'
+        local ALL_SITES
+        ALL_SITES=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
+        if [ -n "$ALL_SITES" ] && [ "$ALL_SITES" != "None" ] && [ "$ALL_SITES" != "missing value" ] && [ "$ALL_SITES" != "" ]; then
+            # Loop through pipe-separated candidates, take first domain match
+            local FOUND_SITE=""
+            IFS='|' read -ra SITE_LIST <<< "$ALL_SITES"
+            for candidate in "${SITE_LIST[@]}"; do
+                [ -z "$candidate" ] && continue
+                DOMAIN_OK=$(python3 - "$venue" "$candidate" << 'PYEOF'
 import sys, re
 from urllib.parse import urlparse
 venue_name = sys.argv[1]
@@ -2569,12 +2647,21 @@ else:
         print('reject')
 PYEOF
 )
-            if [ "$DOMAIN_OK" = "reject" ]; then
-                log "  [WARN] Website domain mismatch — '$website' doesn't match venue '$venue'. Discarding."
-                website=""
-            else
+                if [ "$DOMAIN_OK" = "reject" ]; then
+                    log "  [LOOKUP] Skipping '$candidate' — domain mismatch"
+                else
+                    FOUND_SITE="$candidate"
+                    break
+                fi
+            done
+
+            if [ -n "$FOUND_SITE" ]; then
+                website="$FOUND_SITE"
                 log "  [LOOKUP] Found: $website"
                 curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$website'''))")" > /dev/null
+            else
+                log "  [WARN] Google returned ${#SITE_LIST[@]} results but none matched venue '$venue': $ALL_SITES"
+                website=""
             fi
         else
             log "  [LOOKUP] No website found via Google"

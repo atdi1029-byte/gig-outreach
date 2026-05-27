@@ -14792,3 +14792,776 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 10:35:45 
 10:35:45 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-22_10-35.html
 10:35:46 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-22_10-35.html
+
+23:31:40 === Pipeline started 2026-05-26 23:31:40 ===
+23:31:40 SMART PICKS MODE: Fetching ranked venues...
+23:31:44 SMART PICKS: 625 available, budget remaining: 10
+23:31:44 
+23:31:44 ########## SMART PICK #1 (score 85): L'Auberge Chez Francois (VA-REST-828) ##########
+23:31:50   [DOMAIN] Venue domain: laubergechezfrancois.com|https:
+23:31:53 
+23:31:53 ============================================================
+23:31:53  PIPELINE: L'Auberge Chez Francois (VA-REST-828)
+23:31:53  Website: https://www.laubergechezfrancois.com|https://www.fxva.com|https://washingtonian.com|https://9.8K+|https://scholar.lib.vt.edu
+23:31:53  Started: 2026-05-26 23:31:53
+23:31:53 ============================================================
+23:31:53   [ZB] Credits remaining: 3765
+23:31:55   Known emails: 0
+23:31:55   Known names: 0
+23:31:55 
+23:31:55 ========== STEP 1: Website Scrape ==========
+23:31:55   URL: https://www.laubergechezfrancois.com|https://www.fxva.com|https://washingtonian.com|https://9.8K+|https://scholar.lib.vt.edu
+23:31:55   Opening in Chrome: https://www.laubergechezfrancois.com|https://www.fxva.com|https://washingtonian.com|https://9.8K+|https://scholar.lib.vt.edu
+23:32:02   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:32:14   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:32:14   [LOCATION] Checking for location-specific page (city: Great Falls)...
+23:32:15   [LOCATION] No location-specific page found
+23:32:15   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:32:22 
+23:32:22 ========== STEP 1B: Instagram Google Search ==========
+23:32:22   No Instagram found on website — Googling...
+23:32:26   [IG SEARCH] Found: https://www.instagram.com/laubergechezfrancois/
+23:32:29   ✓ Instagram URL saved
+23:32:31 
+23:32:31 ========== STEP 1C: Facebook Google Search ==========
+23:32:31   No Facebook found on website — Googling...
+23:32:35   [FB SEARCH] Skipping https://www.facebook.com/61562752126587/ — handle 'https://www.facebook.com/61562752126587/' doesn't match venue
+23:32:35   [FB SEARCH] No handle matched venue name — using first result
+23:32:35   [FB SEARCH] Found: https://www.facebook.com/61562752126587/
+23:32:38   ✓ Facebook URL saved
+23:32:38 
+23:32:38 ========== STEP 2: Social Media Scrape ==========
+23:32:41   FB: https://www.facebook.com/61562752126587/ | IG: https://www.instagram.com/laubergechezfrancois/
+23:32:41   Opening FB: https://www.facebook.com/61562752126587
+23:32:47   FB emails found: info@laubergechezfrancois.com
+23:32:47   Opening FB: https://www.facebook.com/61562752126587/about
+23:32:52   Opening FB: https://www.facebook.com/61562752126587/directory_contact_info
+23:32:57   FB emails found: info@laubergechezfrancois.com
+23:32:57   Opening IG: https://www.instagram.com/laubergechezfrancois/
+23:33:02   [IG] No email on page — trying Google snippet...
+23:33:07   [IG SNIPPET] No email in Google snippet
+23:33:07   info@laubergechezfrancois.com → do_not_mail
+23:33:08   [APOLLO] Credits used this run: 0 / 300
+23:33:08 
+23:33:08 ========== STEP 3: Apollo API ==========
+23:33:08   Searching Apollo for company: L'Auberge Chez Francois
+23:33:10   [WARN] No company found in Apollo for 'L'Auberge Chez Francois' (tried name + domain)
+23:33:10   Using website domain for enrichment: laubergechezfrancois.com|https:
+23:33:10 
+23:33:10 ========== STEP 4: LinkedIn + Apollo API ==========
+23:33:10   Using domain: laubergechezfrancois.com|https:
+23:33:12   LinkedIn page 1...
+23:33:31   No results on page 1 — stopping.
+23:33:31   No new people found on LinkedIn.
+23:33:33 
+23:33:33 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:33:33   Googling: "L'Auberge Chez Francois" contact Great Falls
+23:33:37   [FALLBACK] No new site found (or same domain as before)
+23:33:38   [FALLBACK] Re-trying Instagram: L'Auberge Chez Francois Great Falls site:instagram.com
+23:33:42   [FALLBACK] Found Instagram: https://www.instagram.com/laubergechezfrancois/
+23:33:46 
+23:33:46 ========== STEP 2: Social Media Scrape ==========
+23:33:49   FB: https://www.facebook.com/61562752126587/ | IG: https://www.instagram.com/laubergechezfrancois/
+23:33:49   Opening FB: https://www.facebook.com/61562752126587
+23:33:54   FB emails found: info@laubergechezfrancois.com
+23:33:54   Opening FB: https://www.facebook.com/61562752126587/about
+23:33:59   Opening FB: https://www.facebook.com/61562752126587/directory_contact_info
+23:34:04   FB emails found: info@laubergechezfrancois.com
+23:34:04   Opening IG: https://www.instagram.com/laubergechezfrancois/
+23:34:10   [IG] No email on page — trying Google snippet...
+23:34:14   [IG SNIPPET] No email in Google snippet
+23:34:14   info@laubergechezfrancois.com → do_not_mail
+23:34:15   Setting status → pipelined
+23:34:17 
+23:34:17 ============================================================
+23:34:17  DONE: L'Auberge Chez Francois | 2 min | 23:34:17
+23:34:17 ============================================================
+23:34:47 
+23:34:47 ########## SMART PICK #2 (score 85): Le Refuge (VA-REST-834) ##########
+23:34:55   [DOMAIN] Venue domain: lerefugealexandria.com|https:
+23:34:58 
+23:34:58 ============================================================
+23:34:58  PIPELINE: Le Refuge (VA-REST-834)
+23:34:58  Website: https://www.lerefugealexandria.com|https://1.6K+|https://thezebra.org|http://places.singleplatform.com
+23:34:58  Started: 2026-05-26 23:34:58
+23:34:58 ============================================================
+23:34:58   [ZB] Credits remaining: 3764
+23:35:01   Known emails: 0
+23:35:01   Known names: 0
+23:35:01 
+23:35:01 ========== STEP 1: Website Scrape ==========
+23:35:01   URL: https://www.lerefugealexandria.com|https://1.6K+|https://thezebra.org|http://places.singleplatform.com
+23:35:01   Opening in Chrome: https://www.lerefugealexandria.com|https://1.6K+|https://thezebra.org|http://places.singleplatform.com
+23:35:07   Emails: 0 | FB: none | IG: https://www.instagram.com/laubergechezfrancois/ | Contact Form: none
+23:35:07   [LOCATION] Checking for location-specific page (city: Alexandria)...
+23:35:07   [LOCATION] No location-specific page found
+23:35:08   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:35:17 
+23:35:17 ========== STEP 1C: Facebook Google Search ==========
+23:35:17   No Facebook found on website — Googling...
+23:35:22   [FB SEARCH] Found: https://www.facebook.com/LeRefuge127/
+23:35:24   ✓ Facebook URL saved
+23:35:24 
+23:35:24 ========== STEP 2: Social Media Scrape ==========
+23:35:27   FB: https://www.facebook.com/LeRefuge127/ | IG: https://www.instagram.com/laubergechezfrancois/
+23:35:27   Opening FB: https://www.facebook.com/LeRefuge127
+23:35:32   Opening FB: https://www.facebook.com/LeRefuge127/about
+23:35:37   Opening FB: https://www.facebook.com/LeRefuge127/directory_contact_info
+23:35:43   [FB] No email on page — trying Google snippet...
+23:35:47   [FB SNIPPET] No email in Google snippet
+23:35:47   Opening IG: https://www.instagram.com/laubergechezfrancois/
+23:35:52   [IG] No email on page — trying Google snippet...
+23:35:56   [IG SNIPPET] No email in Google snippet
+23:35:57   [APOLLO] Credits used this run: 0 / 300
+23:35:57 
+23:35:57 ========== STEP 3: Apollo API ==========
+23:35:57   Searching Apollo for company: Le Refuge
+23:35:58   Found: Le Refuge Restaurant (domain: lerefugealexandria.com, org_id: 54fca5857369647ffcff2f00)
+23:35:58   Searching for people at Le Refuge Restaurant (org_id: 54fca5857369647ffcff2f00)...
+23:35:58   Found 5 people total
+23:35:59   Skipped 5 people with no email (red ? on Apollo)
+23:35:59   +++ Le Re***e (Manager): no email — added as pending
+23:36:02   +++ Florian Ma***c (Chef Personnel): no email — added as pending
+23:36:04   +++ Angelique Ja***d (Restaurant Manager): no email — added as pending
+23:36:05   No new people to enrich (but pending contacts may have been added above).
+23:36:05 
+23:36:05 ========== STEP 4: LinkedIn + Apollo API ==========
+23:36:06   Using domain: lerefugealexandria.com
+23:36:07   LinkedIn page 1...
+23:36:24   No results on page 1 — stopping.
+23:36:25   No new people found on LinkedIn.
+23:36:26 
+23:36:26 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:36:27   Googling: "Le Refuge" contact Alexandria
+23:36:31   [FALLBACK] No new site found (or same domain as before)
+23:36:31   [FALLBACK] Re-trying Instagram: Le Refuge Alexandria site:instagram.com
+23:36:35   [FALLBACK] Found Instagram: https://www.instagram.com/wanderingsnoweats/|https://www.instagram.com/livinginoldtownalexandria/
+23:36:37 
+23:36:37 ========== STEP 2: Social Media Scrape ==========
+23:36:40   FB: https://www.facebook.com/LeRefuge127/ | IG: https://www.instagram.com/wanderingsnoweats/|https://www.instagram.com/livinginoldtownalexandria/
+23:36:40   Opening FB: https://www.facebook.com/LeRefuge127
+23:36:45   Opening FB: https://www.facebook.com/LeRefuge127/about
+23:36:50   Opening FB: https://www.facebook.com/LeRefuge127/directory_contact_info
+23:36:56   [FB] No email on page — trying Google snippet...
+23:37:00   [FB SNIPPET] No email in Google snippet
+23:37:00   Opening IG: https://www.instagram.com/wanderingsnoweats/|https://www.instagram.com/livinginoldtownalexandria/
+23:37:05   [IG] No email on page — trying Google snippet...
+23:37:10   [IG SNIPPET] No email in Google snippet
+23:37:10   Setting status → pipelined
+23:37:11 
+23:37:11 ============================================================
+23:37:11  DONE: Le Refuge | 2 min | 23:37:11
+23:37:11 ============================================================
+23:37:41 
+23:37:41 ########## SMART PICK #3 (score 85): Del Ray Café (VA-REST-835) ##########
+23:37:48   [DOMAIN] Venue domain: delraycafe.com|https:
+23:37:50 
+23:37:50 ============================================================
+23:37:50  PIPELINE: Del Ray Café (VA-REST-835)
+23:37:50  Website: https://www.delraycafe.com|https://2.3K+|https://joe.coffee
+23:37:50  Started: 2026-05-26 23:37:50
+23:37:50 ============================================================
+23:37:50   [ZB] Credits remaining: 3764
+23:37:54   Known emails: 0
+23:37:54   Known names: 0
+23:37:54 
+23:37:54 ========== STEP 1: Website Scrape ==========
+23:37:54   URL: https://www.delraycafe.com|https://2.3K+|https://joe.coffee
+23:37:54   Opening in Chrome: https://www.delraycafe.com|https://2.3K+|https://joe.coffee
+23:38:00   Emails: 0 | FB: none | IG: https://www.instagram.com/lerefugeofficiel/ | Contact Form: none
+23:38:00   [LOCATION] Checking for location-specific page (city: Alexandria)...
+23:38:01   [LOCATION] No location-specific page found
+23:38:01   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:38:10 
+23:38:10 ========== STEP 1C: Facebook Google Search ==========
+23:38:10   No Facebook found on website — Googling...
+23:38:15   [FB SEARCH] Found: https://www.facebook.com/DelRayCafe/
+23:38:18   ✓ Facebook URL saved
+23:38:18 
+23:38:18 ========== STEP 2: Social Media Scrape ==========
+23:38:20   FB: https://www.facebook.com/DelRayCafe/ | IG: https://www.instagram.com/lerefugeofficiel/
+23:38:20   Opening FB: https://www.facebook.com/DelRayCafe
+23:38:25   FB emails found: info@delraycafe.com
+23:38:25   Opening FB: https://www.facebook.com/DelRayCafe/about
+23:38:31   Opening FB: https://www.facebook.com/DelRayCafe/directory_contact_info
+23:38:36   FB emails found: info@delraycafe.com
+23:38:36   Opening IG: https://www.instagram.com/lerefugeofficiel/
+23:38:41   [IG] No email on page — trying Google snippet...
+23:38:45   [IG SNIPPET] No email in Google snippet
+23:38:46   info@delraycafe.com → do_not_mail
+23:38:47   [APOLLO] Credits used this run: 0 / 300
+23:38:47 
+23:38:47 ========== STEP 3: Apollo API ==========
+23:38:47   Searching Apollo for company: Del Ray Café
+23:38:48   Found: Del Ray Cafe (domain: delraycafe.net, org_id: 66e57c463b116900019d87df)
+23:38:48   Searching for people at Del Ray Cafe (org_id: 66e57c463b116900019d87df)...
+23:38:49   Found 2 people total
+23:38:49   Skipped 2 people with no email (red ? on Apollo)
+23:38:49   +++ Abdelhadi La***i (Operations Manager): no email — added as pending
+23:38:53   No new people to enrich (but pending contacts may have been added above).
+23:38:53 
+23:38:53 ========== STEP 4: LinkedIn + Apollo API ==========
+23:38:53   Using domain: delraycafe.net
+23:38:55   LinkedIn page 1...
+23:39:12   No results on page 1 — stopping.
+23:39:12   No new people found on LinkedIn.
+23:39:15 
+23:39:15 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:39:15   Googling: "Del Ray Café" contact Alexandria
+23:39:19   [FALLBACK] No new site found (or same domain as before)
+23:39:20   [FALLBACK] Re-trying Instagram: Del Ray Café Alexandria site:instagram.com
+23:39:24   [FALLBACK] Found Instagram: https://www.instagram.com/delraycafe/
+23:39:26 
+23:39:26 ========== STEP 2: Social Media Scrape ==========
+23:39:29   FB: https://www.facebook.com/DelRayCafe/ | IG: https://www.instagram.com/delraycafe/
+23:39:29   Opening FB: https://www.facebook.com/DelRayCafe
+23:39:34   FB emails found: info@delraycafe.com
+23:39:34   Opening FB: https://www.facebook.com/DelRayCafe/about
+23:39:39   Opening FB: https://www.facebook.com/DelRayCafe/directory_contact_info
+23:39:44   FB emails found: info@delraycafe.com
+23:39:44   Opening IG: https://www.instagram.com/delraycafe/
+23:39:50   [IG] No email on page — trying Google snippet...
+23:39:54   [IG SNIPPET] No email in Google snippet
+23:39:54   info@delraycafe.com → do_not_mail
+23:39:55   Setting status → pipelined
+23:39:58 
+23:39:58 ============================================================
+23:39:58  DONE: Del Ray Café | 2 min | 23:39:58
+23:39:58 ============================================================
+23:40:28 
+23:40:28 ########## SMART PICK #4 (score 85): Gustave Le Jardin (VA-REST-841) ##########
+23:40:33   [DOMAIN] Venue domain: gustaveboulangerie.com|https:
+23:40:36 
+23:40:36 ============================================================
+23:40:36  PIPELINE: Gustave Le Jardin (VA-REST-841)
+23:40:36  Website: https://gustaveboulangerie.com|https://5.7K+|https://thezebra.org|https://www.alxnow.com|https://patch.com
+23:40:36  Started: 2026-05-26 23:40:36
+23:40:36 ============================================================
+23:40:37   [ZB] Credits remaining: 3763
+23:40:39   Known emails: 0
+23:40:39   Known names: 0
+23:40:39 
+23:40:39 ========== STEP 1: Website Scrape ==========
+23:40:39   URL: https://gustaveboulangerie.com|https://5.7K+|https://thezebra.org|https://www.alxnow.com|https://patch.com
+23:40:39   Opening in Chrome: https://gustaveboulangerie.com|https://5.7K+|https://thezebra.org|https://www.alxnow.com|https://patch.com
+23:40:46   Emails: 0 | FB: none | IG: https://www.instagram.com/delraycafe/ | Contact Form: none
+23:40:46   [LOCATION] Checking for location-specific page (city: Alexandria)...
+23:40:46   [LOCATION] No location-specific page found
+23:40:46   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:40:56 
+23:40:56 ========== STEP 1C: Facebook Google Search ==========
+23:40:56   No Facebook found on website — Googling...
+23:41:01   [FB SEARCH] Skipping https://www.facebook.com/VisitDelRay/ — handle 'https://www.facebook.com/visitdelray/' doesn't match venue
+23:41:01   [FB SEARCH] Skipping https://www.facebook.com/SevernaParkVoice/ — handle 'https://www.facebook.com/severnaparkvoice/' doesn't match venue
+23:41:01   [FB SEARCH] No handle matched venue name — using first result
+23:41:01   [FB SEARCH] Found: https://www.facebook.com/VisitDelRay/
+23:41:03   ✓ Facebook URL saved
+23:41:03 
+23:41:03 ========== STEP 2: Social Media Scrape ==========
+23:41:07   FB: https://www.facebook.com/VisitDelRay/ | IG: https://www.instagram.com/delraycafe/
+23:41:07   Opening FB: https://www.facebook.com/VisitDelRay
+23:41:12   Opening FB: https://www.facebook.com/VisitDelRay/about
+23:41:17   Opening FB: https://www.facebook.com/VisitDelRay/directory_contact_info
+23:41:22   [FB] No email on page — trying Google snippet...
+23:41:27   [FB SNIPPET] No email in Google snippet
+23:41:27   Opening IG: https://www.instagram.com/delraycafe/
+23:41:32   [IG] No email on page — trying Google snippet...
+23:41:36   [IG SNIPPET] No email in Google snippet
+23:41:36   [APOLLO] Credits used this run: 0 / 300
+23:41:36 
+23:41:36 ========== STEP 3: Apollo API ==========
+23:41:36   Searching Apollo for company: Gustave Le Jardin
+23:41:39   Found: Le Jardin de Gustave (domain: lejardindegustave.com, org_id: 670c26b6fc18fe00013052dd)
+23:41:39   Searching for people at Le Jardin de Gustave (org_id: 670c26b6fc18fe00013052dd)...
+23:41:40   Found 0 people total
+23:41:40   No people in Apollo for this company.
+23:41:40 
+23:41:40 ========== STEP 4: LinkedIn + Apollo API ==========
+23:41:40   Using domain: lejardindegustave.com
+23:41:41   LinkedIn page 1...
+23:41:59   No results on page 1 — stopping.
+23:41:59   No new people found on LinkedIn.
+23:42:02 
+23:42:02 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:42:02   Googling: "Gustave Le Jardin" contact Alexandria
+23:42:06   [FALLBACK] No new site found (or same domain as before)
+23:42:06   [FALLBACK] Re-trying Instagram: Gustave Le Jardin Alexandria site:instagram.com
+23:42:11   [FALLBACK] Found Instagram: https://www.instagram.com/gustaveboulangerie_jardin/
+23:42:13 
+23:42:13 ========== STEP 2: Social Media Scrape ==========
+23:42:15   FB: https://www.facebook.com/VisitDelRay/ | IG: https://www.instagram.com/gustaveboulangerie_jardin/
+23:42:15   Opening FB: https://www.facebook.com/VisitDelRay
+23:42:20   Opening FB: https://www.facebook.com/VisitDelRay/about
+23:42:26   Opening FB: https://www.facebook.com/VisitDelRay/directory_contact_info
+23:42:31   [FB] No email on page — trying Google snippet...
+23:42:35   [FB SNIPPET] No email in Google snippet
+23:42:35   Opening IG: https://www.instagram.com/gustaveboulangerie_jardin/
+23:42:40   [IG] No email on page — trying Google snippet...
+23:42:45   [IG SNIPPET] No email in Google snippet
+23:42:45   Setting status → pipelined
+23:42:47 
+23:42:47 ============================================================
+23:42:47  DONE: Gustave Le Jardin | 2 min | 23:42:47
+23:42:47 ============================================================
+23:43:17 
+23:43:17 ########## SMART PICK #5 (score 85): La Bonne Vie (VA-REST-843) ##########
+23:43:24   [DOMAIN] Venue domain: labonnevieva.com|https:
+23:43:28 
+23:43:28 ============================================================
+23:43:28  PIPELINE: La Bonne Vie (VA-REST-843)
+23:43:28  Website: https://www.labonnevieva.com|https://mindtrip.ai
+23:43:28  Started: 2026-05-26 23:43:28
+23:43:28 ============================================================
+23:43:28   [ZB] Credits remaining: 3763
+23:43:31   Known emails: 0
+23:43:31   Known names: 0
+23:43:31 
+23:43:31 ========== STEP 1: Website Scrape ==========
+23:43:31   URL: https://www.labonnevieva.com|https://mindtrip.ai
+23:43:31   Opening in Chrome: https://www.labonnevieva.com|https://mindtrip.ai
+23:43:37   Emails: 0 | FB: none | IG: https://www.instagram.com/p/C4PKPn2N5EI/ | Contact Form: none
+23:43:37   [LOCATION] Checking for location-specific page (city: Reston)...
+23:43:37   [LOCATION] No location-specific page found
+23:43:37   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:43:48 
+23:43:48 ========== STEP 1C: Facebook Google Search ==========
+23:43:48   No Facebook found on website — Googling...
+23:43:52   [FB SEARCH] Found: https://www.facebook.com/labonneviecheese/
+23:43:55   ✓ Facebook URL saved
+23:43:55 
+23:43:55 ========== STEP 2: Social Media Scrape ==========
+23:43:57   FB: https://www.facebook.com/labonneviecheese/ | IG: https://www.instagram.com/p/C4PKPn2N5EI/
+23:43:57   Opening FB: https://www.facebook.com/labonneviecheese
+23:44:03   Opening FB: https://www.facebook.com/labonneviecheese/about
+23:44:08   Opening FB: https://www.facebook.com/labonneviecheese/directory_contact_info
+23:44:13   [FB] No email on page — trying Google snippet...
+23:44:17   [FB SNIPPET] No email in Google snippet
+23:44:17   Opening IG: https://www.instagram.com/p/C4PKPn2N5EI/
+23:44:23   [IG] No email on page — trying Google snippet...
+23:44:27   [IG SNIPPET] No email in Google snippet
+23:44:27   [APOLLO] Credits used this run: 0 / 300
+23:44:27 
+23:44:27 ========== STEP 3: Apollo API ==========
+23:44:27   Searching Apollo for company: La Bonne Vie
+23:44:29   Found: Agence La Vie Bonne (domain: viebonnevoyages.com, org_id: 6724469ac11a0c00015ab9b9)
+23:44:29   Searching for people at Agence La Vie Bonne (org_id: 6724469ac11a0c00015ab9b9)...
+23:44:29   Found 1 people total
+23:44:30   1 people to enrich (1 credit each)
+23:44:30   >>> Pauline Versace (Fondatrice et Dirigeante): pauline@viebonne.fr [verified]
+23:44:30   [SKIP] pauline@viebonne.fr — off-domain (venue: labonnevieva.com|https:)
+23:44:30   Apollo API done: 1 credits used this run
+23:44:30 
+23:44:30 ========== STEP 4: LinkedIn + Apollo API ==========
+23:44:31   Using domain: viebonnevoyages.com
+23:44:33   LinkedIn page 1...
+23:44:51   No results on page 1 — stopping.
+23:44:51   No new people found on LinkedIn.
+23:44:54 
+23:44:54 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:44:54   Googling: "La Bonne Vie" contact Reston
+23:44:58   [FALLBACK] No new site found (or same domain as before)
+23:44:59   [FALLBACK] Re-trying Instagram: La Bonne Vie Reston site:instagram.com
+23:45:03   [FALLBACK] Found Instagram: https://www.instagram.com/eatingwithjonni/|https://www.instagram.com/dmvfooodie/
+23:45:06 
+23:45:06 ========== STEP 2: Social Media Scrape ==========
+23:45:11   FB: https://www.facebook.com/labonneviecheese/ | IG: https://www.instagram.com/eatingwithjonni/|https://www.instagram.com/dmvfooodie/
+23:45:11   Opening FB: https://www.facebook.com/labonneviecheese
+23:45:16   Opening FB: https://www.facebook.com/labonneviecheese/about
+23:45:21   Opening FB: https://www.facebook.com/labonneviecheese/directory_contact_info
+23:45:26   [FB] No email on page — trying Google snippet...
+23:45:31   [FB SNIPPET] No email in Google snippet
+23:45:31   Opening IG: https://www.instagram.com/eatingwithjonni/|https://www.instagram.com/dmvfooodie/
+23:45:36   [IG] No email on page — trying Google snippet...
+23:45:40   [IG SNIPPET] No email in Google snippet
+23:45:40   Setting status → pipelined
+23:45:43 
+23:45:43 ============================================================
+23:45:43  DONE: La Bonne Vie | 2 min | 23:45:43
+23:45:43 ============================================================
+23:46:13 
+23:46:13 ########## SMART PICK #6 (score 85): Le Vingt Trois Cafe & Bakery (VA-REST-844) ##########
+23:46:18   [DOMAIN] Venue domain: le23cafe.com|https:
+23:46:22 
+23:46:22 ============================================================
+23:46:22  PIPELINE: Le Vingt Trois Cafe & Bakery (VA-REST-844)
+23:46:22  Website: https://le23cafe.com|https://joe.coffee|https://greaterrestonliving.com
+23:46:22  Started: 2026-05-26 23:46:22
+23:46:22 ============================================================
+23:46:22   [ZB] Credits remaining: 3763
+23:46:25   Known emails: 0
+23:46:25   Known names: 0
+23:46:25 
+23:46:25 ========== STEP 1: Website Scrape ==========
+23:46:25   URL: https://le23cafe.com|https://joe.coffee|https://greaterrestonliving.com
+23:46:25   Opening in Chrome: https://le23cafe.com|https://joe.coffee|https://greaterrestonliving.com
+23:46:32   Emails: 0 | FB: none | IG: https://www.instagram.com/labonneviecheese/ | Contact Form: none
+23:46:32   [LOCATION] Checking for location-specific page (city: Reston)...
+23:46:32   [LOCATION] No location-specific page found
+23:46:32   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:46:42 
+23:46:42 ========== STEP 1C: Facebook Google Search ==========
+23:46:42   No Facebook found on website — Googling...
+23:46:46   [FB SEARCH] Skipping https://www.facebook.com/le23cafe/ — handle 'https://www.facebook.com/le23cafe/' doesn't match venue
+23:46:46   [FB SEARCH] Skipping https://www.facebook.com/MyDMVAdventures/ — handle 'https://www.facebook.com/mydmvadventures/' doesn't match venue
+23:46:46   [FB SEARCH] Skipping https://www.facebook.com/100063652478130/ — handle 'https://www.facebook.com/100063652478130/' doesn't match venue
+23:46:46   [FB SEARCH] Skipping https://www.facebook.com/media/ — handle 'https://www.facebook.com/media/' doesn't match venue
+23:46:46   [FB SEARCH] No handle matched venue name — using first result
+23:46:46   [FB SEARCH] Found: https://www.facebook.com/le23cafe/
+23:46:48   ✓ Facebook URL saved
+23:46:48 
+23:46:48 ========== STEP 2: Social Media Scrape ==========
+23:46:51   FB: https://www.facebook.com/le23cafe/ | IG: https://www.instagram.com/labonneviecheese/
+23:46:51   Opening FB: https://www.facebook.com/le23cafe
+23:46:57   FB emails found: info@le23cafe.com
+23:46:57   Opening FB: https://www.facebook.com/le23cafe/about
+23:47:02   Opening FB: https://www.facebook.com/le23cafe/directory_contact_info
+23:47:07   FB emails found: info@le23cafe.com
+23:47:07   Opening IG: https://www.instagram.com/labonneviecheese/
+23:47:12   [IG] No email on page — trying Google snippet...
+23:47:17   [IG SNIPPET] No email in Google snippet
+23:47:32   info@le23cafe.com → unknown
+23:47:35   ⚠ Added (unknown): info@le23cafe.com <info@le23cafe.com>
+23:47:36   [APOLLO] Credits used this run: 1 / 300
+23:47:36 
+23:47:36 ========== STEP 3: Apollo API ==========
+23:47:36   Searching Apollo for company: Le Vingt Trois Cafe & Bakery
+23:47:38   Found: LE QUATRE VINGT TROIS (domain: quatrevingttrois.com, org_id: 672801e50b702b00015a31f2)
+23:47:38   Searching for people at LE QUATRE VINGT TROIS (org_id: 672801e50b702b00015a31f2)...
+23:47:39   Found 0 people total
+23:47:39   No people in Apollo for this company.
+23:47:39 
+23:47:39 ========== STEP 4: LinkedIn + Apollo API ==========
+23:47:39   Using domain: quatrevingttrois.com
+23:47:41   LinkedIn page 1...
+23:48:00   No results on page 1 — stopping.
+23:48:00   No new people found on LinkedIn.
+23:48:03   Setting status → pipelined
+23:48:07 
+23:48:07 ============================================================
+23:48:07  DONE: Le Vingt Trois Cafe & Bakery | 1 min | 23:48:07
+23:48:07 ============================================================
+23:48:37 
+23:48:37 ########## SMART PICK #7 (score 85): Tous Les Jours - Reston Station (VA-REST-847) ##########
+23:48:44   [DOMAIN] Venue domain: tljus.com|https:
+23:48:46 
+23:48:46 ============================================================
+23:48:46  PIPELINE: Tous Les Jours - Reston Station (VA-REST-847)
+23:48:46  Website: https://tljus.com|https://restonstation.com|https://joe.coffee
+23:48:46  Started: 2026-05-26 23:48:46
+23:48:46 ============================================================
+23:48:46   [ZB] Credits remaining: 3758
+23:48:49   Known emails: 0
+23:48:49   Known names: 0
+23:48:49 
+23:48:49 ========== STEP 1: Website Scrape ==========
+23:48:49   URL: https://tljus.com|https://restonstation.com|https://joe.coffee
+23:48:49   Opening in Chrome: https://tljus.com|https://restonstation.com|https://joe.coffee
+23:48:56   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:49:08   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:49:08   [LOCATION] Checking for location-specific page (city: Reston)...
+23:49:08   [LOCATION] No location-specific page found
+23:49:09   Crawling subpage (1): https://www.linkedin.com/mynetwork
+23:49:13   Crawling subpage (2): https://www.linkedin.com/jobs
+23:49:17   Crawling subpage (3): https://www.linkedin.com/messaging
+23:49:21   Crawling subpage (4): https://www.linkedin.com/notifications
+23:49:26   Crawling subpage (5): https://www.linkedin.com/talent/job-posting-redirect
+23:49:35 
+23:49:35 ========== STEP 1B: Instagram Google Search ==========
+23:49:35   No Instagram found on website — Googling...
+23:49:39   [IG SEARCH] Found: https://www.instagram.com/touslesjoursreston/
+23:49:42   ✓ Instagram URL saved
+23:49:45 
+23:49:45 ========== STEP 1C: Facebook Google Search ==========
+23:49:45   No Facebook found on website — Googling...
+23:49:49   [FB SEARCH] No Facebook found via Google
+23:49:49 
+23:49:49 ========== STEP 2: Social Media Scrape ==========
+23:49:52   FB: none | IG: https://www.instagram.com/touslesjoursreston/
+23:49:52   Opening IG: https://www.instagram.com/touslesjoursreston/
+23:49:57   [IG] No email on page — trying Google snippet...
+23:50:01   [IG SNIPPET] No email in Google snippet
+23:50:01   [APOLLO] Credits used this run: 1 / 300
+23:50:01 
+23:50:01 ========== STEP 3: Apollo API ==========
+23:50:01   Searching Apollo for company: Tous Les Jours - Reston Station
+23:50:04   Found: Daily tous les jours (domain: dailytouslesjours.com, org_id: 54a1b2437468694012730909)
+23:50:04   Searching for people at Daily tous les jours (org_id: 54a1b2437468694012730909)...
+23:50:04   Found 20 people total
+23:50:04   Skipped 7 people with no email (red ? on Apollo)
+23:50:04   +++ Kelly Nu***s (Artist, Director, Freelance Director): no email — added as pending
+23:50:08   +++ Kelsey Sn***k (Senior Creative Director): no email — added as pending
+23:50:12   13 people to enrich (1 credit each)
+23:50:13   >>> Melissa Mongiat (Co-Founder): melissa@dailytlj.com [verified]
+23:50:13   [SKIP] melissa@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Mouna Andraos (Co-Founder & Co-Director, Adjunct Professor): mouna@dailytlj.com [verified]
+23:50:13   [SKIP] mouna@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Leyla Nahas (Business Development Associate): leyla@dailytlj.com [verified]
+23:50:13   [SKIP] leyla@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Stu Wershof (Product Director / Producer): stu@dailytlj.com [verified]
+23:50:13   [SKIP] stu@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Mathieu Frenette (Technical Director): mathieu@dailytlj.com [verified]
+23:50:13   [SKIP] mathieu@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Lilian Laucoin (Project Manager): lilian@dailytlj.com [verified]
+23:50:13   [SKIP] lilian@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Justine Jacob-Roy (Gestionnaire des Opérations): justine@dailytlj.com [verified]
+23:50:13   [SKIP] justine@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Claire Lecker (Graphic Designer and Communications Coordinator): claire@dailytlj.com [verified]
+23:50:13   [SKIP] claire@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Eva Schindling (Technology Director): eva@dailytlj.com [verified]
+23:50:13   [SKIP] eva@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:13   >>> Michael Baker (Audio Director): michael@dailytlj.com [verified]
+23:50:13   [SKIP] michael@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:15   >>> Rafine You (Coordinateur Studio et Administration): rafine@dailytlj.com [verified]
+23:50:15   [SKIP] rafine@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:15   >>> Ellen Eamon (Scrum Master): ellen@dailytlj.com [verified]
+23:50:15   [SKIP] ellen@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:15   >>> Michael Carosello (Environment Designer): michael.c@dailytlj.com [verified]
+23:50:15   [SKIP] michael.c@dailytlj.com — off-domain (venue: tljus.com|https:)
+23:50:15   Apollo API done: 14 credits used this run
+23:50:15 
+23:50:15 ========== STEP 4: LinkedIn + Apollo API ==========
+23:50:16   Using domain: dailytouslesjours.com
+23:50:20   LinkedIn page 1...
+23:50:37   No results on page 1 — stopping.
+23:50:37   No new people found on LinkedIn.
+23:50:40 
+23:50:40 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:50:40   Googling: "Tous Les Jours - Reston Station" contact Reston
+23:50:44   [FALLBACK] Found site: https://restonstation.com|https://joe.coffee|https://www.tripadvisor.in|https://www.corner.inc|https://www.atly.com (domain: restonstation.com|https:)
+23:50:46 
+23:50:46 ========== STEP 1: Website Scrape ==========
+23:50:46   URL: https://restonstation.com|https://joe.coffee|https://www.tripadvisor.in|https://www.corner.inc|https://www.atly.com
+23:50:46   Opening in Chrome: https://restonstation.com|https://joe.coffee|https://www.tripadvisor.in|https://www.corner.inc|https://www.atly.com
+23:50:53   Emails: 0 | FB: https://www.facebook.com/TousLesJoursUSA | IG: https://www.instagram.com/touslesjoursreston/ | Contact Form: none
+23:50:53   [LOCATION] Checking for location-specific page (city: Reston)...
+23:50:53   [LOCATION] No location-specific page found
+23:50:53   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:51:03   [FALLBACK] Re-trying Instagram: Tous Les Jours - Reston Station Reston site:instagram.com
+23:51:07   [FALLBACK] Found Instagram: https://www.instagram.com/touslesjoursreston/
+23:51:09 
+23:51:09 ========== STEP 2: Social Media Scrape ==========
+23:51:12   FB: https://www.facebook.com/TousLesJoursUSA | IG: https://www.instagram.com/touslesjoursreston/
+23:51:13   Opening FB: https://www.facebook.com/TousLesJoursUSA
+23:51:18   FB emails found: info@tljus.com
+23:51:18   Opening FB: https://www.facebook.com/TousLesJoursUSA/about
+23:51:23   Opening FB: https://www.facebook.com/TousLesJoursUSA/directory_contact_info
+23:51:28   FB emails found: info@tljus.com
+23:51:28   Opening IG: https://www.instagram.com/touslesjoursreston/
+23:51:33   [IG] No email on page — trying Google snippet...
+23:51:38   [IG SNIPPET] No email in Google snippet
+23:51:38   [SKIP] info@tljus.com — off-domain (venue: restonstation.com|https:)
+23:51:38   Setting status → pipelined
+23:51:41 
+23:51:41 ============================================================
+23:51:41  DONE: Tous Les Jours - Reston Station | 3 min | 23:51:41
+23:51:41 ============================================================
+23:52:11 
+23:52:11 ########## SMART PICK #8 (score 85): Bistro L'Hermitage (VA-REST-852) ##########
+23:52:17   [DOMAIN] Venue domain: bistrolhermitage.com|https:
+23:52:20 
+23:52:20 ============================================================
+23:52:20  PIPELINE: Bistro L'Hermitage (VA-REST-852)
+23:52:20  Website: https://bistrolhermitage.com|https://www.waze.com|https://princewilliamliving.com
+23:52:20  Started: 2026-05-26 23:52:20
+23:52:20 ============================================================
+23:52:20   [ZB] Credits remaining: 3758
+23:52:23   Known emails: 0
+23:52:23   Known names: 0
+23:52:23 
+23:52:24 ========== STEP 1: Website Scrape ==========
+23:52:24   URL: https://bistrolhermitage.com|https://www.waze.com|https://princewilliamliving.com
+23:52:24   Opening in Chrome: https://bistrolhermitage.com|https://www.waze.com|https://princewilliamliving.com
+23:52:30   Emails: 0 | FB: none | IG: https://www.instagram.com/touslesjoursreston/ | Contact Form: none
+23:52:30   [LOCATION] Checking for location-specific page (city: Middleburg)...
+23:52:30   [LOCATION] No location-specific page found
+23:52:30   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:52:39 
+23:52:39 ========== STEP 1C: Facebook Google Search ==========
+23:52:39   No Facebook found on website — Googling...
+23:52:44   [FB SEARCH] Found: https://www.facebook.com/BistroLHermitageVA/
+23:52:46   ✓ Facebook URL saved
+23:52:46 
+23:52:46 ========== STEP 2: Social Media Scrape ==========
+23:52:49   FB: https://www.facebook.com/BistroLHermitageVA/ | IG: https://www.instagram.com/touslesjoursreston/
+23:52:49   Opening FB: https://www.facebook.com/BistroLHermitageVA
+23:52:54   Opening FB: https://www.facebook.com/BistroLHermitageVA/about
+23:52:59   Opening FB: https://www.facebook.com/BistroLHermitageVA/directory_contact_info
+23:53:04   FB emails found: bistro.lhermitage@verizon.net
+23:53:04   Opening IG: https://www.instagram.com/touslesjoursreston/
+23:53:10   [IG] No email on page — trying Google snippet...
+23:53:14   [IG SNIPPET] No email in Google snippet
+23:53:14   [SKIP] bistro.lhermitage@verizon.net — off-domain (venue: bistrolhermitage.com|https:)
+23:53:14   [APOLLO] Credits used this run: 14 / 300
+23:53:14 
+23:53:14 ========== STEP 3: Apollo API ==========
+23:53:14   Searching Apollo for company: Bistro L'Hermitage
+23:53:16   Found: Bistro L’hermitage (domain: bistrolhermitage.com, org_id: 673c7d72f5d052000109457d)
+23:53:16   Searching for people at Bistro L’hermitage (org_id: 673c7d72f5d052000109457d)...
+23:53:17   Found 0 people total
+23:53:17   No people in Apollo for this company.
+23:53:17 
+23:53:17 ========== STEP 4: LinkedIn + Apollo API ==========
+23:53:17   Using domain: bistrolhermitage.com
+23:53:21   LinkedIn page 1...
+23:53:38   No results on page 1 — stopping.
+23:53:38   No new people found on LinkedIn.
+23:53:41 
+23:53:41 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:53:41   Googling: "Bistro L'Hermitage" contact Middleburg
+23:53:45   [FALLBACK] Found site: https://wanderlog.com|https://www.chriscolgan.com|https://ww1.aaa.com (domain: wanderlog.com|https:)
+23:53:48 
+23:53:48 ========== STEP 1: Website Scrape ==========
+23:53:48   URL: https://wanderlog.com|https://www.chriscolgan.com|https://ww1.aaa.com
+23:53:48   Opening in Chrome: https://wanderlog.com|https://www.chriscolgan.com|https://ww1.aaa.com
+23:53:54   Emails: 1 | FB: https://www.facebook.com/BistroLHermitageVA | IG: none | Contact Form: none
+23:53:54   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:54:01   [SKIP] bistro.lhermitage@verizon.net — off-domain (venue: wanderlog.com|https:)
+23:54:02   [FALLBACK] Re-trying Instagram: Bistro L'Hermitage Middleburg site:instagram.com
+23:54:06   [FALLBACK] No Instagram found with city search
+23:54:06   Setting status → pipelined
+23:54:08 
+23:54:08 ============================================================
+23:54:08  DONE: Bistro L'Hermitage | 1 min | 23:54:08
+23:54:08 ============================================================
+23:54:38 
+23:54:38 ########## SMART PICK #9 (score 85): Lightfoot Restaurant (VA-REST-868) ##########
+23:54:44   [DOMAIN] Venue domain: lightfootrestaurant.com|https:
+23:54:47 
+23:54:47 ============================================================
+23:54:47  PIPELINE: Lightfoot Restaurant (VA-REST-868)
+23:54:47  Website: https://lightfootrestaurant.com|https://2.1K+|https://www.visitloudoun.org|http://places.singleplatform.com
+23:54:47  Started: 2026-05-26 23:54:47
+23:54:47 ============================================================
+23:54:47   [ZB] Credits remaining: 3758
+23:54:51   Known emails: 0
+23:54:51   Known names: 0
+23:54:51 
+23:54:51 ========== STEP 1: Website Scrape ==========
+23:54:51   URL: https://lightfootrestaurant.com|https://2.1K+|https://www.visitloudoun.org|http://places.singleplatform.com
+23:54:51   Opening in Chrome: https://lightfootrestaurant.com|https://2.1K+|https://www.visitloudoun.org|http://places.singleplatform.com
+23:54:57   Emails: 0 | FB: none | IG: https://accounts.google.com/SignOutOptions | Contact Form: none
+23:54:57   [LOCATION] Checking for location-specific page (city: Leesburg)...
+23:54:58   [LOCATION] No location-specific page found
+23:54:58   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:55:08 
+23:55:08 ========== STEP 1C: Facebook Google Search ==========
+23:55:08   No Facebook found on website — Googling...
+23:55:12   [FB SEARCH] Found: https://www.facebook.com/LightfootRestaurant/
+23:55:14   ✓ Facebook URL saved
+23:55:14 
+23:55:14 ========== STEP 2: Social Media Scrape ==========
+23:55:18   FB: https://www.facebook.com/LightfootRestaurant/ | IG: https://accounts.google.com/SignOutOptions
+23:55:18   Opening FB: https://www.facebook.com/LightfootRestaurant
+23:55:23   Opening FB: https://www.facebook.com/LightfootRestaurant/about
+23:55:28   Opening FB: https://www.facebook.com/LightfootRestaurant/directory_contact_info
+23:55:33   FB emails found: carrie@lightfootrestaurant.com
+23:55:33   Opening IG: https://accounts.google.com/SignOutOptions
+23:55:38   IG emails found: atdi1029@gmail.com|alex@alexbarnettclassical.com|alexbarnettclassical@gmail.com|abar89251@gmail.com
+23:55:40   abar89251@gmail.com → valid
+23:55:44   ✓ Added: abar89251@gmail.com <abar89251@gmail.com>
+23:55:45   [SKIP] alex@alexbarnettclassical.com — off-domain (venue: lightfootrestaurant.com|https:)
+23:55:46   alexbarnettclassical@gmail.com → valid
+23:55:48   ✓ Added: alexbarnettclassical@gmail.com <alexbarnettclassical@gmail.com>
+23:55:49   atdi1029@gmail.com → valid
+23:55:52   ✓ Added: atdi1029@gmail.com <atdi1029@gmail.com>
+23:55:54   carrie@lightfootrestaurant.com → valid
+23:55:56   ✓ Added: carrie@lightfootrestaurant.com <carrie@lightfootrestaurant.com>
+23:55:57   [APOLLO] Credits used this run: 14 / 300
+23:55:57 
+23:55:57 ========== STEP 3: Apollo API ==========
+23:55:57   Searching Apollo for company: Lightfoot Restaurant
+23:55:59   Found: Lightfoot Restaurant (domain: lightfootrestaurant.com, org_id: 54a1b67074686945fadf2a0a)
+23:55:59   Searching for people at Lightfoot Restaurant (org_id: 54a1b67074686945fadf2a0a)...
+23:55:59   Found 3 people total
+23:56:00   Skipped 2 people with no email (red ? on Apollo)
+23:56:00   1 people to enrich (1 credit each)
+23:56:00   >>> Carrie Kansu (Owner): carrie@lightfootrestaurant.com [verified]
+23:56:01   carrie@lightfootrestaurant.com → valid
+23:56:04   ✓ Added: Carrie Kansu <carrie@lightfootrestaurant.com>
+23:56:05   Apollo API done: 15 credits used this run
+23:56:05 
+23:56:05 ========== STEP 4: LinkedIn + Apollo API ==========
+23:56:05   Using domain: lightfootrestaurant.com
+23:56:08   LinkedIn page 1...
+23:56:24   No results on page 1 — stopping.
+23:56:24   No new people found on LinkedIn.
+23:56:28   Setting status → pipelined
+23:56:30 
+23:56:30 ============================================================
+23:56:30  DONE: Lightfoot Restaurant | 1 min | 23:56:30
+23:56:30 ============================================================
+23:57:01 
+23:57:01 ########## SMART PICK #10 (score 85): Shoe’s Cup and Cork (VA-REST-869) ##########
+23:57:07   [DOMAIN] Venue domain: shoescupandcork.com|https:
+23:57:10 
+23:57:10 ============================================================
+23:57:10  PIPELINE: Shoe’s Cup and Cork (VA-REST-869)
+23:57:10  Website: https://www.shoescupandcork.com|https://6.5K+|https://4.6K+|https://www.visitloudoun.org|https://www.thrillist.com
+23:57:11  Started: 2026-05-26 23:57:11
+23:57:11 ============================================================
+23:57:11   [ZB] Credits remaining: 3754
+23:57:13   Known emails: 0
+23:57:13   Known names: 0
+23:57:13 
+23:57:13 ========== STEP 1: Website Scrape ==========
+23:57:13   URL: https://www.shoescupandcork.com|https://6.5K+|https://4.6K+|https://www.visitloudoun.org|https://www.thrillist.com
+23:57:13   Opening in Chrome: https://www.shoescupandcork.com|https://6.5K+|https://4.6K+|https://www.visitloudoun.org|https://www.thrillist.com
+23:57:20   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:57:32   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:57:32   [LOCATION] Checking for location-specific page (city: Leesburg)...
+23:57:33   [LOCATION] No location-specific page found
+23:57:33   Crawling subpage (1): https://www.linkedin.com/mynetwork
+23:57:37   Crawling subpage (2): https://www.linkedin.com/jobs
+23:57:41   Crawling subpage (3): https://www.linkedin.com/messaging
+23:57:45   Crawling subpage (4): https://www.linkedin.com/notifications
+23:57:50   Crawling subpage (5): https://www.linkedin.com/talent/job-posting-redirect
+23:57:57 
+23:57:57 ========== STEP 1B: Instagram Google Search ==========
+23:57:57   No Instagram found on website — Googling...
+23:58:01   [IG SEARCH] No Instagram found via Google
+23:58:05 
+23:58:05 ========== STEP 1C: Facebook Google Search ==========
+23:58:05   No Facebook found on website — Googling...
+23:58:09   [FB SEARCH] Found: https://www.facebook.com/ShoesCupAndCork/
+23:58:12   ✓ Facebook URL saved
+23:58:12 
+23:58:12 ========== STEP 2: Social Media Scrape ==========
+23:58:16   FB: https://www.facebook.com/ShoesCupAndCork/ | IG: none
+23:58:16   Opening FB: https://www.facebook.com/ShoesCupAndCork
+23:58:21   Opening FB: https://www.facebook.com/ShoesCupAndCork/about
+23:58:27   Opening FB: https://www.facebook.com/ShoesCupAndCork/directory_contact_info
+23:58:32   FB emails found: shoescupandcork@gmail.com
+23:58:33   shoescupandcork@gmail.com → valid
+23:58:36   ✓ Added: shoescupandcork@gmail.com <shoescupandcork@gmail.com>
+23:58:37   [APOLLO] Credits used this run: 15 / 300
+23:58:37 
+23:58:37 ========== STEP 3: Apollo API ==========
+23:58:37   Searching Apollo for company: Shoe’s Cup and Cork
+23:58:39   Found: SHOES CUP & CORK (domain: shoescupandcork.com, org_id: 673c74742074f30001c5b3f9)
+23:58:39   Searching for people at SHOES CUP & CORK (org_id: 673c74742074f30001c5b3f9)...
+23:58:40   Found 1 people total
+23:58:40   Skipped 1 people with no email (red ? on Apollo)
+23:58:40   No new people to enrich (but pending contacts may have been added above).
+23:58:40 
+23:58:40 ========== STEP 4: LinkedIn + Apollo API ==========
+23:58:40   Using domain: shoescupandcork.com
+23:58:43   LinkedIn page 1...
+23:58:59   No results on page 1 — stopping.
+23:58:59   No new people found on LinkedIn.
+23:59:01   Setting status → pipelined
+23:59:03 
+23:59:03 ============================================================
+23:59:03  DONE: Shoe’s Cup and Cork | 1 min | 23:59:03
+23:59:03 ============================================================
+23:59:33 [BUDGET] Shared limit of 10 reached — stopping smart picks
+23:59:33 === SMART PICKS COMPLETE ===
+23:59:33 
+23:59:33 UNTOUCHED PHASE: Fetching all venues...
+23:59:38 UNTOUCHED: 633 found (shared budget: 10 total)
+23:59:38 [BUDGET] Shared limit of 10 reached — stopping untouched phase
+23:59:38 === UNTOUCHED PHASE COMPLETE ===
+23:59:38 
+23:59:38 === SMART PICKS COMPLETE ===
+23:59:38 
+23:59:38 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-26_23-59.html
+23:59:38 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-26_23-59.html

@@ -3114,3 +3114,262 @@
 [10:02:12] Cleaning up discovered_gigs.txt...
 [10:02:17] 
 [10:02:17] === Discovery Complete — Total new venues: 0 ===
+
+[22:40:34] === Taste Discovery Mode Started ===
+[22:40:34] MAX_QUERIES=999
+[22:40:34] Fetching existing venues for dedup...
+[22:40:37] Existing venues: 827
+[22:40:37] Generating search queries from taste profile...
+[22:40:37] CITY_FILTER='Potomac MD': filtered to 33 matching queries
+[22:40:37] Generated 33 queries (999 will run this session)
+[22:40:37] 
+[22:40:37] === Taste Query [1/999]: European bistro Potomac MD ===
+[22:40:44]   Scrolling search results...
+
+[22:40:54] === Taste Discovery Mode Started ===
+[22:40:54] MAX_QUERIES=999
+[22:40:54] Fetching existing venues for dedup...
+[22:40:58] Existing venues: 827
+[22:40:58] Generating search queries from taste profile...
+[22:40:58] CITY_FILTER='Potomac MD': filtered to 33 matching queries
+[22:40:58] Generated 33 queries (999 will run this session)
+[22:40:58] 
+[22:40:58] === Taste Query [1/999]: European bistro Potomac MD ===
+
+[23:18:16] === Venue Discovery Started ===
+[23:18:16] Fetching past gigs...
+[23:18:21] Found 70 past gigs
+[23:18:21] Fetching existing venues for dedup...
+[23:18:23] Existing venues: 827
+[23:18:23]   SKIP (already discovered): L'Auberge Chez Francois
+[23:18:23]   SKIP (already discovered): The Inn at Perry Cabin
+[23:18:23]   SKIP (already discovered): The Maryland Club
+[23:18:23]   SKIP (already discovered): Black Ankle Vineyards
+[23:18:23]   SKIP (already discovered): Royal Restaurant
+[23:18:23]   SKIP (already discovered): Good Spirit Farm Winery
+[23:18:23]   SKIP (already discovered): Chesapeake Manor Vineyard
+[23:18:23]   SKIP (already discovered): Elkridge Furnace Inn
+[23:18:23]   SKIP (already discovered): Xella Winery and Vineyard
+[23:18:23]   SKIP (already discovered): Twin Oaks Tavern Winery
+[23:18:23]   SKIP (already discovered): Windridge Vineyards
+[23:18:23]   SKIP (already discovered): University Club
+[23:18:23]   SKIP (already discovered): The Farmhouse Tuscan
+[23:18:23]   SKIP (already discovered): Big Cork Vineyards
+[23:18:23]   SKIP (already discovered): Savage Mill Mall
+[23:18:23]   SKIP (already discovered): Trueman Vineyards
+[23:18:23]   SKIP (already discovered): Williams Gap Vineyard
+[23:18:23]   SKIP (already discovered): Hello Betty Bethesda
+[23:18:23]   SKIP (already discovered): The Madison Hotel
+[23:18:23]   SKIP (already discovered): Belle Haven Country Club
+[23:18:24]   SKIP (already discovered): Casanel Vineyards & Winery
+[23:18:24]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[23:18:24]   SKIP (already discovered): Corteau Winery
+[23:18:24]   SKIP (already discovered): Penn Oaks Winery
+[23:18:24]   SKIP (already discovered): Pizza Pomodoro
+[23:18:24]   SKIP (already discovered): Hidden Brook Winery
+[23:18:24]   SKIP (already discovered): Simple Theory Wine Co
+[23:18:24]   SKIP (already discovered): Brightview Perry Hall
+[23:18:24]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[23:18:24]   SKIP (already discovered): Gaylord National Harbor
+[23:18:24]   SKIP (already discovered): Woodberry Kitchen
+[23:18:24]   SKIP (already discovered): Great Sage
+[23:18:24]   SKIP (already discovered): Cosmos Club DC
+[23:18:24]   SKIP (already discovered): Doukénie Winery
+[23:18:24]   SKIP (already discovered): State Plaza Hotel DC
+[23:18:24]   SKIP (already discovered): Hyatt Cambridge
+[23:18:24]   SKIP (already discovered): Greenhill Vineyards
+[23:18:24]   SKIP (already discovered): Loudoun Golf & Country Club
+[23:18:24]   SKIP (already discovered): Creek's Edge Winery
+[23:18:24]   SKIP (already discovered): The Milton Inn
+[23:18:24]   SKIP (already discovered): Country Club of Fairfax
+[23:18:24]   SKIP (already discovered): Century Club Hagerstown
+[23:18:24]   SKIP (already discovered): Rock Spring Farm
+[23:18:24]   SKIP (already discovered): Janemark Winery & Vineyard
+[23:18:24]   SKIP (already discovered): Alma Cocina Latina
+[23:18:24]   SKIP (already discovered): Omni Shoreham Hotel
+[23:18:24]   SKIP (already discovered): Knoxie's Table
+[23:18:24]   SKIP (already discovered): 1757 Golf Club
+[23:18:24]   SKIP (already discovered): Holly Hills Country Club
+[23:18:24]   SKIP (already discovered): Conrad Washington DC
+[23:18:24]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[23:18:24]   SKIP (already discovered): Le Méridien Arlington
+[23:18:24]   SKIP (already discovered): Dulles Town Center
+[23:18:24]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[23:18:24]   SKIP (already discovered): Maritime Museum St Michaels
+[23:18:24]   SKIP (already discovered): Chartwell Golf & Country Club
+[23:18:24]   SKIP (already discovered): Ruse
+[23:18:24]   SKIP (already discovered): InGrano Bistro Bakery
+[23:18:24]   SKIP (already discovered): Kent Manor Inn
+[23:18:24]   SKIP (already discovered): Army Navy Country Club
+[23:18:24]   SKIP (already discovered): River Bend Country Club
+[23:18:24]   SKIP (already discovered): City Tavern DC
+[23:18:24]   SKIP (already discovered): Baltimore Country Club
+[23:18:24]   SKIP (already discovered): Vino and Pasta
+[23:18:24]   SKIP (already discovered): 50 West Vineyards
+[23:18:24]   SKIP (already discovered): The Galley Restaurant & Bar
+[23:18:24]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[23:18:24]   SKIP (already discovered): Bistrot Lepic
+[23:18:24]   SKIP (already discovered): Sunset Hills Winery
+[23:18:24]   SKIP (already discovered): The Oaks Waterfront Hotel
+[23:18:24] Cleaning up discovered_gigs.txt...
+[23:18:30] 
+[23:18:30] === Discovery Complete — Total new venues: 0 ===
+
+[23:18:35] === Taste Discovery Mode Started ===
+[23:18:35] MAX_QUERIES=10
+[23:18:35] Fetching existing venues for dedup...
+[23:18:37] Existing venues: 827
+[23:18:37] Generating search queries from taste profile...
+[23:18:37] Generated 492 queries (10 will run this session)
+[23:18:37] 
+[23:18:37] === Taste Query [1/10]: French restaurant Chevy Chase MD ===
+[23:18:44]   Scrolling search results...
+[23:18:51]   Extracting results...
+[23:18:51]   No results found
+[23:18:54] 
+[23:18:54] === Taste Query [2/10]: French restaurant Great Falls VA ===
+[23:19:00]   Scrolling search results...
+[23:19:06]   Extracting results...
+[23:19:06]   Found 2 results
+[23:19:13]   Added 2 new venues from query
+[23:19:13]   [WEBSITE] Looking up: L'Auberge Chez Francois
+[23:19:16]     Website: https://www.laubergechezfrancois.com|https://www.fxva.com|https://washingtonian.com|https://9.8K+|https://scholar.lib.vt.edu
+[23:19:20]   [WEBSITE] Looking up: Jacques' Brasserie
+[23:19:23]     Website: https://www.laubergechezfrancois.com|https://www.fxva.com|https://eventup.com
+[23:19:34] 
+[23:19:34] === Taste Query [3/10]: French restaurant McLean VA ===
+[23:19:39]   Scrolling search results...
+[23:19:45]   Extracting results...
+[23:19:45]   Found 5 results
+[23:19:57]   Added 2 new venues from query
+[23:19:57]   [WEBSITE] Looking up: LCD - La Côte D'Or Café
+[23:20:01]     Website: https://www.lcd6876va.com|https://www.ramw.org|https://lcdlacotedorcafe.restaurants-us.com
+[23:20:04]   [WEBSITE] Looking up: Bistro Vivant
+[23:20:07]     Website: https://quenchavl.com|http://reviews.dcdining.com|https://dc.eater.com|https://dcspotlight.com|https://www.arlingtonmagazine.com
+[23:20:19] 
+[23:20:19] === Taste Query [4/10]: French restaurant Alexandria VA ===
+[23:20:23]   Scrolling search results...
+[23:20:30]   Extracting results...
+[23:20:31]   Found 14 results
+[23:21:04]   Added 11 new venues from query
+[23:21:04]   [WEBSITE] Looking up: McCormick & Schmick's Seafood & Steaks
+[23:21:07]     Website: https://www.mccormickandschmicks.com|https://nationallanding.org|https://2.5K+|https://www.stayarlington.com
+[23:21:10]   [WEBSITE] Looking up: Josephine
+[23:21:14]     Website: https://www.josephineoldtown.com|https://8.7K+|https://www.ramw.org|https://pattersonrealestate.com
+[23:21:18]   [WEBSITE] Looking up: Le Refuge
+[23:21:21]     Website: https://www.lerefugealexandria.com|https://1.6K+|https://thezebra.org|http://places.singleplatform.com
+[23:21:24]   [WEBSITE] Looking up: Del Ray Café
+[23:21:27]     Website: https://www.delraycafe.com|https://2.3K+|https://joe.coffee
+[23:21:30]   [WEBSITE] Looking up: Gustave Boulangerie & Brasserie
+[23:21:33]     Website: https://gustaveboulangerie.com|https://5.7K+|https://joe.coffee|https://alexandrialivingmagazine.com|https://order.online
+[23:21:36]   [WEBSITE] Looking up: Fontaine Caffe & Creperie
+[23:21:39]     Website: https://www.fontainecaffe.com|https://2.2K+|https://www.virginia.org|https://joe.coffee
+[23:21:42]   [WEBSITE] Looking up: Fresh Baguette
+[23:21:46]     Website: https://www.freshbaguette.net|https://fresh-baguette.square.site|https://14.2K+|https://myfreshbaguette.com
+[23:21:49]   [WEBSITE] Looking up: Café du Soleil
+[23:21:52]     Website: https://cafedusoleilva.com|https://2.4K+|https://joe.coffee|https://cafe-du-soleil.menufyy.com
+[23:21:56]   [WEBSITE] Looking up: maman
+[23:21:59]     Website: https://mamannyc.com|https://258.8K+|https://www.seamless.com
+[23:22:04]   [WEBSITE] Looking up: Gustave Le Jardin
+[23:22:07]     Website: https://gustaveboulangerie.com|https://5.7K+|https://thezebra.org|https://www.alxnow.com|https://patch.com
+[23:22:12]   [WEBSITE] Looking up: la Madeleine
+[23:22:15]     Website: https://lamadeleine.com
+[23:22:23] 
+[23:22:23] === Taste Query [5/10]: French restaurant Reston VA ===
+[23:22:30]   Scrolling search results...
+[23:22:36]   Extracting results...
+[23:22:36]   Found 10 results
+[23:23:01]   Added 6 new venues from query
+[23:23:01]   [WEBSITE] Looking up: La Bonne Vie
+[23:23:05]     Website: https://www.labonnevieva.com|https://mindtrip.ai
+[23:23:09]   [WEBSITE] Looking up: Le Vingt Trois Cafe & Bakery
+[23:23:12]     Website: https://le23cafe.com|https://joe.coffee|https://greaterrestonliving.com
+[23:23:16]   [WEBSITE] Looking up: Corsica Wine Bar
+[23:23:19]     Website: https://www.corsicawinebar.com|https://luxuryyachtcharters.com|https://7.8K+|https://www.fxva.com
+[23:23:24]   [WEBSITE] Looking up: Brasserie Royale
+[23:23:27]     Website: https://3.5K+|https://www.ramw.org|https://brasserieroyaleva.com|https://www.parisinsidersguide.com|https://northernvirginiamag.com
+[23:23:31]   [WEBSITE] Looking up: Tous Les Jours - Reston Station
+[23:23:34]     Website: https://tljus.com|https://restonstation.com|https://joe.coffee
+[23:23:38]   [WEBSITE] Looking up: Mon Ami Gabi
+[23:23:41]     Website: https://www.monamigabi.com|https://www.ramw.org|https://www.ffxnow.com|https://northernvirginiamag.com
+[23:23:50] 
+[23:23:50] === Taste Query [6/10]: French restaurant Middleburg VA ===
+[23:23:55]   Scrolling search results...
+[23:24:01]   Extracting results...
+[23:24:01]   Found 20 results
+[23:24:59]   Added 16 new venues from query
+[23:24:59]   [WEBSITE] Looking up: The Bistro at Goodstone Inn
+[23:25:02]     Website: https://www.goodstone.com|https://18.2K+|https://www.partyslate.com|https://www.aaa.com
+[23:25:05]   [WEBSITE] Looking up: The Conservatory at Goodstone Inn
+[23:25:09]     Website: https://www.goodstone.com|https://www.partyslate.com|https://www.venuereport.com|https://wanderlog.com
+[23:25:13]   [WEBSITE] Looking up: L'Auberge Provencale Inn & Restaurant
+[23:25:16]     Website: https://www.laubergeprovencale.com|https://4.5K+
+[23:25:19]   [WEBSITE] Looking up: Bistro L'Hermitage
+[23:25:23]     Website: https://bistrolhermitage.com|https://www.waze.com|https://princewilliamliving.com
+[23:25:26]   [WEBSITE] Looking up: Tremolo Bar
+[23:25:29]     Website: https://www.tremolobar.com|https://2.2K+|https://www.visitloudoun.org|https://resy.com|https://www.mastersommeliers.org
+[23:25:33]   [WEBSITE] Looking up: Red Horse Tavern LLC
+[23:25:36]     Website: https://www.redhorsetavern.net|https://www.visitloudoun.org|https://www.virginia.org
+[23:25:39]   [WEBSITE] Looking up: Hunter's Head Tavern
+[23:25:42]     Website: https://www.huntersheadtavern.com|https://3.6K+|https://resy.com|https://www.virginia.org|https://theburn.com
+[23:25:45]   [WEBSITE] Looking up: Le Yaca French Restaurant
+[23:25:49]     Website: https://leyacawilliamsburg.org|https://leyacafrench.restaurant|https://www.visitwilliamsburg.com
+[23:25:52]   [WEBSITE] Looking up: La Petite Auberge
+[23:25:55]     Website: https://www.lapetiteaubergefred.com|https://2.2K+|https://www.virginia.org|https://news.fredericksburgva.com
+[23:25:58]   [WEBSITE] Looking up: La Table Provençale
+[23:26:02]     Website: https://www.laubergeprovencale.com|https://4.5K+|https://www.virginia.org
+[23:26:05]   [WEBSITE] Looking up: Les Jardins De Bagatelle LLC
+[23:26:09]     Website: https://norasmiddleburg.com|https://wanderlog.com|https://local.yahoo.com|https://www.city-data.com
+[23:26:13]   [WEBSITE] Looking up: Bistro @ The Porch
+[23:26:16]     Website: https://www.bistroporch.com|https://7.2K+|https://2.6K+|https://bistro-the-porch.res-menu.net|https://bistro-the-porch.findmenuworld.com
+[23:26:19]   [WEBSITE] Looking up: Goodstone Inn & Restaurant
+[23:26:23]     Website: https://www.goodstone.com|https://18.2K+|https://www.visitloudoun.org
+[23:26:26]   [WEBSITE] Looking up: Salamander Middleburg
+[23:26:30]     Website: https://salamanderresort.com|https://132.4K+|https://64.6K+
+[23:26:33]   [WEBSITE] Looking up: Harrimans Grill
+[23:26:36]     Website: https://salamanderresort.com|https://3.5K+|https://www.virginia.org
+[23:26:40]   [WEBSITE] Looking up: Magnolias at the Mill
+[23:26:43]     Website: https://www.magnoliasmill.com|https://www.visitloudoun.org|https://5.5K+
+[23:26:52] 
+[23:26:52] === Taste Query [7/10]: French restaurant Leesburg VA ===
+[23:26:59]   Scrolling search results...
+[23:27:06]   Extracting results...
+[23:27:06]   Found 9 results
+[23:27:30]   Added 7 new venues from query
+[23:27:30]   [WEBSITE] Looking up: Falcon & Fig
+[23:27:34]     Website: https://falconandfig.com|https://theburn.com|https://www.insidenova.com|https://www.vinobistroonline.com|https://www.pcrehomes.com
+[23:27:37]   [WEBSITE] Looking up: Paris Baguette
+[23:27:41]     Website: https://parisbaguette.com
+[23:27:44]   [WEBSITE] Looking up: The Wine Kitchen
+[23:27:48]     Website: https://www.thewinekitchen.com
+[23:27:51]   [WEBSITE] Looking up: Lightfoot Restaurant
+[23:27:55]     Website: https://lightfootrestaurant.com|https://2.1K+|https://www.visitloudoun.org|http://places.singleplatform.com
+[23:27:58]   [WEBSITE] Looking up: Shoe’s Cup and Cork
+[23:28:01]     Website: https://www.shoescupandcork.com|https://6.5K+|https://4.6K+|https://www.visitloudoun.org|https://www.thrillist.com
+[23:28:07]   [WEBSITE] Looking up: French Hound Brasserie
+[23:28:10]     Website: https://theburn.com|https://www.alignable.com|https://brasserieblanc.com|https://www.gayot.com|https://piedmontvirginian.com
+[23:28:14]   [WEBSITE] Looking up: La Lou Bistro
+[23:28:17]     Website: http://every-restaurant-in-leesburg.blogspot.com|https://www.enprimeurclub.com|https://www.fredericknewspost.com|https://sg.trip.com
+[23:28:26] 
+[23:28:26] === Taste Query [8/10]: French restaurant St. Michaels MD ===
+[23:28:32]   Scrolling search results...
+[23:28:39]   Extracting results...
+[23:28:40]   No results found
+[23:28:43] 
+[23:28:43] === Taste Query [9/10]: French restaurant Easton MD ===
+[23:28:47]   Scrolling search results...
+[23:28:54]   Extracting results...
+[23:28:54]   No results found
+[23:28:58] 
+[23:28:58] === Taste Query [10/10]: French restaurant Annapolis MD ===
+[23:29:04]   Scrolling search results...
+[23:29:13]   Extracting results...
+[23:29:13]   No results found
+[23:29:17]   MAX_QUERIES=10 reached — stopping.
+[23:29:17] Calculating distances for new venues...
+[23:29:24]   Distances calculated: 0
+[23:29:24] 
+[23:29:24] === Taste Discovery Complete ===
+[23:29:24]   Queries run: 10
+[23:29:24]   Venues added: 44
+[23:29:24]   Queries remaining: 482

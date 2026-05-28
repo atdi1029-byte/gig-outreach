@@ -182,6 +182,60 @@ for ig in igs:
         fi
     fi
 
+    # --- LinkedIn search via Chrome ---
+    log "  Searching LinkedIn for: $NAME"
+    local LI_SEARCH
+    LI_SEARCH=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$NAME'))")
+    osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.linkedin.com/search/results/people/?keywords=${LI_SEARCH}&origin=SWITCH_SEARCH_VERTICAL\"" 2>/dev/null
+    sleep 5
+
+    local LI_RESULTS
+    LI_RESULTS=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "
+(function() {
+    var results = [];
+    var cards = document.querySelectorAll(\".reusable-search__result-container\");
+    for (var i = 0; i < cards.length && i < 10; i++) {
+        var nameEl = cards[i].querySelector(\".entity-result__title-text a span[aria-hidden=true]\");
+        var titleEl = cards[i].querySelector(\".entity-result__primary-subtitle\");
+        var locEl = cards[i].querySelector(\".entity-result__secondary-subtitle\");
+        var name = nameEl ? nameEl.textContent.trim() : \"\";
+        var title = titleEl ? titleEl.textContent.trim() : \"\";
+        var loc = locEl ? locEl.textContent.trim() : \"\";
+        if (name) results.push(name + \"|||\" + title + \"|||\" + loc);
+    }
+    return results.join(\"\\n\");
+})()"' 2>/dev/null)
+
+    if [ -n "$LI_RESULTS" ] && [ "$LI_RESULTS" != "missing value" ] && [ "$LI_RESULTS" != "" ]; then
+        local VENUE_LOWER
+        VENUE_LOWER=$(echo "$NAME" | tr '[:upper:]' '[:lower:]')
+        local LI_ADDED=0
+
+        while IFS='|||' read -r LI_NAME LI_TITLE LI_LOC; do
+            [ -z "$LI_NAME" ] && continue
+            # Only keep people whose title mentions this venue
+            local TITLE_LOWER
+            TITLE_LOWER=$(echo "$LI_TITLE" | tr '[:upper:]' '[:lower:]')
+            if echo "$TITLE_LOWER" | grep -qi "$VENUE_LOWER" || echo "$TITLE_LOWER" | grep -qiE "$(echo "$NAME" | sed 's/ /.*/' | tr '[:upper:]' '[:lower:]')"; then
+                log "  [LinkedIn] $LI_NAME — $LI_TITLE ($LI_LOC)"
+                # Add to sheet as contact (name only, no email)
+                local LI_NAME_ENC LI_TITLE_ENC
+                LI_NAME_ENC=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$LI_NAME'))")
+                LI_TITLE_ENC=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$LI_TITLE'))")
+                curl -sL "${APPS_SCRIPT_URL}?action=add_contact&venue_id=${VID}&name=${LI_NAME_ENC}&title=${LI_TITLE_ENC}&source=linkedin-postcheck" > /dev/null
+                LI_ADDED=$((LI_ADDED + 1))
+            fi
+        done <<< "$LI_RESULTS"
+
+        if [ "$LI_ADDED" -eq 0 ]; then
+            log "  [LinkedIn] No relevant people found (none with venue in title)"
+        else
+            log "  [LinkedIn] Added $LI_ADDED contacts"
+        fi
+    else
+        log "  [LinkedIn] No results"
+    fi
+
     if [ -z "$ALL_EMAILS" ] && [ -z "$CONTACT_FORM" ]; then
         log "  Nothing found on website"
     fi

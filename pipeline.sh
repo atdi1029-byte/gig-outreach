@@ -30,6 +30,8 @@ APOLLO_CREDITS_USED=0
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="${SCRIPT_DIR}/pipeline.log"
 JUNK_DOMAINS="wix.com|wordpress|sentry.io|cloudflare|example.com|squarespace|shopify|mailchimp|googleapis|google.com|gstatic|facebook|instagram|twitter|hubspot|sendgrid|zendesk|fontawesome.io"
+# Owner's own emails — never add these as venue contacts
+OWN_EMAILS="atdi1029@gmail.com|alexbarnettclassical@gmail.com|abar89251@gmail.com|alex@alexbarnettclassical.com"
 
 rand_delay() {
     local min=$1 max=$2
@@ -125,6 +127,12 @@ verify_and_push() {
 
     if email_known "$email"; then
         log "  [SKIP] $email — already in sheet"
+        return
+    fi
+
+    # Block owner's own emails from being added as contacts
+    if echo "$OWN_EMAILS" | tr '|' '\n' | grep -qi "^${email}$" 2>/dev/null; then
+        log "  [SKIP] $email — owner's own email"
         return
     fi
 
@@ -549,7 +557,7 @@ for url in list(set(re.findall(r'https?://[^\s\"<>]+', json.dumps(d)))):
         if [ -n "$loc_found" ]; then
             log "  [LOCATION] Re-scraping location page: $loc_found"
             # Update venue website to location-specific URL
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$loc_found'''))")" > /dev/null
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$loc_found")" > /dev/null
             website="$loc_found"
 
             # Re-scrape the location page
@@ -738,15 +746,15 @@ for c in d.get('contacts', []):
 
     # Update social links — also write to temp files so step1b/1c don't re-query the sheet
     if [ -n "$fb" ] && [ "$fb" != "None" ] && [ "$fb" != "" ]; then
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$fb'''))")" > /dev/null
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$fb")" > /dev/null
         echo "$fb" > /tmp/pipeline_step1_fb.txt
     fi
     if [ -n "$ig" ] && [ "$ig" != "None" ] && [ "$ig" != "" ]; then
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$ig'''))")" > /dev/null
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig")" > /dev/null
         echo "$ig" > /tmp/pipeline_step1_ig.txt
     fi
     if [ -n "$contact_form" ] && [ "$contact_form" != "None" ] && [ "$contact_form" != "" ]; then
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=contact_form&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$contact_form'''))")" > /dev/null
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=contact_form&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$contact_form")" > /dev/null
         log "  ✓ Contact form URL saved"
     fi
 
@@ -802,7 +810,7 @@ step1b_ig_search() {
     log "  No Instagram found on website — Googling..."
 
     local SEARCH_ENCODED
-    SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" instagram'))")
+    SEARCH_ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote('\"' + sys.argv[1] + '\" instagram'))" "$venue")
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
     sleep 4
 
@@ -849,7 +857,7 @@ else:
         fi
         if [ -n "$best_ig" ]; then
             log "  [IG SEARCH] Found: $best_ig"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$best_ig'''))")" > /dev/null
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$best_ig")" > /dev/null
             log "  ✓ Instagram URL saved"
         fi
     else
@@ -888,7 +896,7 @@ step1c_fb_search() {
     log "  No Facebook found on website — Googling..."
 
     local SEARCH_ENCODED
-    SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" facebook'))")
+    SEARCH_ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote('\"' + sys.argv[1] + '\" facebook'))" "$venue")
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
     sleep 4
 
@@ -931,7 +939,7 @@ else:
         fi
         if [ -n "$best_fb" ]; then
             log "  [FB SEARCH] Found: $best_fb"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$best_fb'''))")" > /dev/null
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$best_fb")" > /dev/null
             log "  ✓ Facebook URL saved"
         fi
     else
@@ -1008,7 +1016,7 @@ JSEOF
             # Facebook DOM may not render email — fall back to Google snippet
             log "  [FB] No email on page — trying Google snippet..."
             local fb_search_encoded
-            fb_search_encoded=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" facebook'))")
+            fb_search_encoded=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote('\"' + sys.argv[1] + '\" facebook'))" "$venue")
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${fb_search_encoded}\""
             sleep 4
             local fb_snippet_emails
@@ -1036,7 +1044,7 @@ JSEOF
             # Instagram DOM doesn't render bio emails — fall back to Google snippet
             log "  [IG] No email on page — trying Google snippet..."
             local ig_search_encoded
-            ig_search_encoded=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" instagram'))")
+            ig_search_encoded=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote('\"' + sys.argv[1] + '\" instagram'))" "$venue")
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${ig_search_encoded}\""
             sleep 4
             local ig_snippet_emails
@@ -1254,12 +1262,14 @@ PYEOF
 
     # Skip if this org was already processed this run (prevents duplicate contacts across venues)
     local SEEN_ORGS_FILE="/tmp/pipeline_seen_orgs"
-    if [ -f "$SEEN_ORGS_FILE" ] && grep -qF "$ORG_ID" "$SEEN_ORGS_FILE" 2>/dev/null; then
+    if [ -n "$ORG_ID" ] && [ "$ORG_ID" != "None" ] && [ -f "$SEEN_ORGS_FILE" ] && grep -qF "$ORG_ID" "$SEEN_ORGS_FILE" 2>/dev/null; then
         log "  [SKIP] Org $ORG_ID already processed this run — skipping to avoid duplicates"
         APOLLO_DOMAIN="$DOMAIN"
         return
     fi
-    echo "$ORG_ID" >> "$SEEN_ORGS_FILE"
+    if [ -n "$ORG_ID" ] && [ "$ORG_ID" != "None" ]; then
+        echo "$ORG_ID" >> "$SEEN_ORGS_FILE"
+    fi
 
     # CRITICAL: If Apollo returned empty domain, fall back to website domain
     if [ -z "$DOMAIN" ] || [ "$DOMAIN" = "None" ]; then
@@ -1382,14 +1392,20 @@ for p in people:
     first = p.get('first_name', '').strip()
     if not first:
         continue
-    # Only enrich people who actually have an email (green check on Apollo)
-    if not p.get('has_email', False):
-        skipped_no_email += 1
-        continue
     # Skip irrelevant job titles (housekeeping, IT, security, etc.)
     title = p.get('title', '') or ''
     if title and not title_is_relevant(title):
         skipped_bad_title += 1
+        continue
+    if not p.get('has_email', False):
+        # Still add decision-makers as pending contacts (reachable via other channels)
+        decision_words = {'owner','founder','president','partner','director','manager',
+            'general manager','gm','ceo','coo','events','entertainment','booking',
+            'operations','chef','proprietor','managing','beverage'}
+        t = title.lower()
+        if any(w in t for w in decision_words):
+            print(f"PENDING:::{first}:::{p.get('last_name_hint','')}:::{title}")
+        skipped_no_email += 1
         continue
     to_enrich.append(p)
 
@@ -1415,11 +1431,37 @@ PYEOF
     if [ -n "$SKIP_TITLE_COUNT" ] && [ "$SKIP_TITLE_COUNT" -gt 0 ] 2>/dev/null; then
         log "  Skipped $SKIP_TITLE_COUNT people with irrelevant titles (housekeeping, IT, security, etc.)"
     fi
-    # Remove the SKIPPED lines from TO_ENRICH
-    TO_ENRICH=$(echo "$TO_ENRICH" | grep -v "SKIPPED_NO_EMAIL:" | grep -v "SKIPPED_BAD_TITLE:")
+    # Process PENDING contacts (decision-makers without email — add as pending)
+    echo "$TO_ENRICH" | grep "^PENDING:::" | while IFS= read -r line; do
+        local PFIRST PLAST PTITLE PNAME
+        PFIRST=$(echo "$line" | awk -F':::' '{print $2}')
+        PLAST=$(echo "$line" | awk -F':::' '{print $3}')
+        PTITLE=$(echo "$line" | awk -F':::' '{print $4}')
+        PNAME="$PFIRST"
+        if [ -n "$PLAST" ] && [ "$PLAST" != "None" ]; then
+            PNAME="$PFIRST $PLAST"
+        fi
+        log "  +++ $PNAME ($PTITLE): no email — added as pending"
+        local encoded
+        encoded=$(python3 -c "
+import urllib.parse, sys
+print(urllib.parse.urlencode({
+    'action': 'add_contact',
+    'venue_id': sys.argv[1],
+    'name': sys.argv[2],
+    'title': sys.argv[3],
+    'source': 'apollo',
+    'verified': 'pending'
+}))" "$venue_id" "$PNAME" "$PTITLE")
+        curl -sL "${APPS_SCRIPT_URL}?${encoded}" > /dev/null
+        KNOWN_NAMES="${KNOWN_NAMES}|||$(echo "$PNAME" | tr '[:upper:]' '[:lower:]')"
+    done
+
+    # Remove the SKIPPED and PENDING lines from TO_ENRICH
+    TO_ENRICH=$(echo "$TO_ENRICH" | grep -v "SKIPPED_NO_EMAIL:" | grep -v "SKIPPED_BAD_TITLE:" | grep -v "^PENDING:::")
 
     if [ -z "$TO_ENRICH" ]; then
-        log "  No new people to enrich."
+        log "  No new people to enrich (but pending contacts may have been added above)."
         return
     fi
 
@@ -1548,7 +1590,7 @@ step4_linkedin() {
 
     local MAX_PAGES=3
     local ENCODED_VENUE
-    ENCODED_VENUE=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue'''))")
+    ENCODED_VENUE=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$venue")
 
     # Use the domain found in Step 3, or fall back to website domain
     local DOMAIN="$APOLLO_DOMAIN"
@@ -2516,7 +2558,7 @@ step5_google_fallback() {
 
     # --- 5A: Find real website via Google and scrape for email ---
     local SEARCH_ENCODED
-    SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('\"' + '''$venue''' + '\" contact' + (' ' + '''$city''' if '''$city''' else '')))")
+    SEARCH_ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote('\"' + sys.argv[1] + '\" contact' + (' ' + sys.argv[2] if sys.argv[2] else '')))" "$venue" "$city")
     log "  Googling: \"$venue\" contact $city"
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
     sleep 4
@@ -2535,7 +2577,7 @@ step5_google_fallback() {
             log "  [FALLBACK] Found site: $found_site (domain: $found_domain)"
             VENUE_DOMAIN="$found_domain"
             # Save to sheet
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$found_site'''))")" > /dev/null
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$found_site")" > /dev/null
             # Scrape it
             step1_website "$venue" "$venue_id" "$found_site" "$city"
         else
@@ -2550,7 +2592,7 @@ step5_google_fallback() {
     current_ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_ig_check.json')).get('venue',{}).get('instagram',''))" 2>/dev/null)
     if [ -z "$current_ig" ] || [ "$current_ig" = "None" ] || [ ${#current_ig} -le 5 ]; then
         local IG_SEARCH
-        IG_SEARCH=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue''' + ' ' + '''$city''' + ' site:instagram.com'))")
+        IG_SEARCH=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1] + ' ' + sys.argv[2] + ' site:instagram.com'))" "$venue" "$city")
         log "  [FALLBACK] Re-trying Instagram: $venue $city site:instagram.com"
         osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${IG_SEARCH}\""
         sleep 4
@@ -2558,7 +2600,7 @@ step5_google_fallback() {
         ig_url=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_ig.js"'")' 2>/dev/null)
         if [ -n "$ig_url" ] && [ "$ig_url" != "missing value" ] && [ "$ig_url" != "" ]; then
             log "  [FALLBACK] Found Instagram: $ig_url"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$ig_url'''))")" > /dev/null
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig_url")" > /dev/null
             echo "$ig_url" > /tmp/pipeline_step1_ig.txt
             # Try scraping the IG profile for email via step2
             step2_social "$venue" "$venue_id"
@@ -2578,6 +2620,10 @@ run_venue() {
 
     # Clear per-venue temp files so previous venue's data doesn't bleed in
     rm -f /tmp/pipeline_step1_fb.txt /tmp/pipeline_step1_ig.txt
+    rm -f /tmp/pipeline_ig_check.json /tmp/pipeline_contacts_count
+    rm -f /tmp/pipeline_apollo_company.json /tmp/pipeline_people.json
+    rm -f /tmp/pipeline_domain_lookup.json /tmp/pipeline_li_domain.json
+    rm -f /tmp/pipeline_sp_detail.json
 
     # Resolve real venue ID — if the passed ID doesn't exist in the sheet,
     # look it up by domain. Catches the case where discover.sh assigned a
@@ -2603,7 +2649,7 @@ run_venue() {
     if [ -z "$website" ] || [ "$website" = "None" ]; then
         log "  [LOOKUP] No website — Googling '$venue'..."
         local SEARCH_ENCODED
-        SEARCH_ENCODED=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$venue'''))")
+        SEARCH_ENCODED=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$venue")
         osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\""
         sleep 3
         local ALL_SITES
@@ -2658,7 +2704,7 @@ PYEOF
             if [ -n "$FOUND_SITE" ]; then
                 website="$FOUND_SITE"
                 log "  [LOOKUP] Found: $website"
-                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$website'''))")" > /dev/null
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$website")" > /dev/null
             else
                 log "  [WARN] Google returned ${#SITE_LIST[@]} results but none matched venue '$venue': $ALL_SITES"
                 website=""
@@ -2674,7 +2720,7 @@ PYEOF
         if ! echo "$website" | grep -qE '^https?://'; then
             website="https://$website"
             log "  [URL FIX] Added https:// scheme: $website"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$website'''))")" > /dev/null
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$website")" > /dev/null
         fi
     fi
 
@@ -2786,6 +2832,20 @@ else: print('')
 # =================================================================
 # ENTRY POINT
 # =================================================================
+LOCK_FILE="/tmp/pipeline.lock"
+if [ -f "$LOCK_FILE" ]; then
+    LOCK_PID=$(cat "$LOCK_FILE" 2>/dev/null)
+    if kill -0 "$LOCK_PID" 2>/dev/null; then
+        echo "ERROR: Pipeline already running (PID $LOCK_PID). Wait for it to finish."
+        exit 1
+    else
+        echo "WARNING: Stale lock file found (PID $LOCK_PID not running). Removing."
+        rm -f "$LOCK_FILE"
+    fi
+fi
+echo $$ > "$LOCK_FILE"
+trap 'rm -f "$LOCK_FILE"' EXIT
+
 SKIPPED_VENUES_FILE="/tmp/pipeline_skipped_venues"
 rm -f "$SKIPPED_VENUES_FILE"
 echo "" >> "$LOG_FILE"

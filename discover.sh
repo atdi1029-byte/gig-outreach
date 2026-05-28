@@ -271,18 +271,29 @@ if [ "$1" = "--taste" ]; then
     MAX_QUERIES=${MAX_QUERIES:-20}
     log "MAX_QUERIES=$MAX_QUERIES"
 
-    # Fetch existing venues for dedup
-    log "Fetching existing venues for dedup..."
+    # Fetch existing venues + past gigs for dedup
+    log "Fetching existing venues + past gigs for dedup..."
     EXISTING_RAW=$(curl -sL "${APPS_SCRIPT_URL}?action=venues")
+    GIGS_RAW_TASTE=$(curl -sL "${APPS_SCRIPT_URL}?action=get_gigs")
     EXISTING_FILE="/tmp/discover_existing.txt"
-    echo "$EXISTING_RAW" | python3 -c "
+    python3 -c "
 import json,sys
-d=json.loads(sys.stdin.read())
-for v in d.get('venues',[]):
-    print(v.get('name','').lower().strip())
+venues = json.loads('''$(echo "$EXISTING_RAW")''')
+gigs = json.loads('''$(echo "$GIGS_RAW_TASTE")''')
+seen = set()
+for v in venues.get('venues',[]):
+    n = v.get('name','').lower().strip()
+    if n and n not in seen:
+        seen.add(n)
+        print(n)
+for g in gigs.get('gigs',[]):
+    n = g.get('venue_name','').lower().strip()
+    if n and n not in seen:
+        seen.add(n)
+        print(n)
 " > "$EXISTING_FILE" 2>/dev/null
     EXISTING_COUNT=$(wc -l < "$EXISTING_FILE" | tr -d ' ')
-    log "Existing venues: $EXISTING_COUNT"
+    log "Existing venues + past gigs: $EXISTING_COUNT"
 
     # Generate prioritized search queries
     log "Generating search queries from taste profile..."
@@ -641,7 +652,9 @@ PYEOF2
             SEARCH_Q=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$VNAME''' + ' ' + '''$VSTATE'''))")
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_Q}\""
             sleep 3
-            FOUND_WEB=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${JS_DIR}/extract_cite.js"'")' 2>/dev/null)
+            FOUND_WEB_RAW=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${JS_DIR}/extract_cite.js"'")' 2>/dev/null)
+            # extract_cite.js returns up to 5 URLs joined by "|" — take only the first
+            FOUND_WEB=$(echo "$FOUND_WEB_RAW" | cut -d'|' -f1)
             if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
                 # Reject Airbnb/VRBO — these are vacation rentals, not venues
                 if echo "$FOUND_WEB" | grep -qiE 'airbnb\.com|vrbo\.com'; then
@@ -1015,8 +1028,10 @@ PYEOF
         SEARCH_Q=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$VNAME''' + ' ' + '''$VSTATE'''))")
         osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_Q}\""
         sleep 3
-        FOUND_WEB=
-        FOUND_WEB=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
+        FOUND_WEB_RAW=
+        FOUND_WEB_RAW=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
+        # extract_cite.js returns up to 5 URLs joined by "|" — take only the first
+        FOUND_WEB=$(echo "$FOUND_WEB_RAW" | cut -d'|' -f1)
         if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
             # Reject Airbnb/VRBO — these are vacation rentals, not venues
             if echo "$FOUND_WEB" | grep -qiE 'airbnb\.com|vrbo\.com'; then

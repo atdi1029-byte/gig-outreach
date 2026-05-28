@@ -16,7 +16,10 @@
 
 APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+[ -f "$SCRIPT_DIR/.env" ] && source "$SCRIPT_DIR/.env"
 LOG_FILE="${SCRIPT_DIR}/postcheck.log"
+APOLLO_API_KEY="${APOLLO_API_KEY:-}"
+APOLLO_API_BASE="https://api.apollo.io/api/v1"
 
 log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
 
@@ -180,6 +183,58 @@ for ig in igs:
             curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$FOUND_IG'))")" > /dev/null
             log "  Found & saved IG: $FOUND_IG"
         fi
+    fi
+
+    # --- Apollo API search ---
+    if [ -n "$APOLLO_API_KEY" ]; then
+        local DOMAIN=""
+        if [ -n "$WEBSITE" ]; then
+            DOMAIN=$(python3 -c "from urllib.parse import urlparse; print(urlparse('$WEBSITE').netloc.lower().replace('www.',''))" 2>/dev/null)
+        fi
+
+        local APOLLO_RESULTS=""
+        if [ -n "$DOMAIN" ]; then
+            log "  [Apollo] Searching by domain: $DOMAIN"
+            APOLLO_RESULTS=$(curl -s --max-time 15 -H "Content-Type: application/json" \
+                -H "X-Api-Key: $APOLLO_API_KEY" \
+                -d "{\"q_organization_domains_list\":[\"$DOMAIN\"],\"per_page\":10}" \
+                "${APOLLO_API_BASE}/mixed_people/search" 2>/dev/null)
+        fi
+
+        local APOLLO_TOTAL
+        APOLLO_TOTAL=$(echo "$APOLLO_RESULTS" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('pagination',{}).get('total_entries',0))" 2>/dev/null || echo "0")
+
+        if [ "$APOLLO_TOTAL" = "0" ] || [ -z "$APOLLO_TOTAL" ]; then
+            # Try by company name
+            log "  [Apollo] No results by domain — searching by name: $NAME"
+            APOLLO_RESULTS=$(curl -s --max-time 15 -H "Content-Type: application/json" \
+                -H "X-Api-Key: $APOLLO_API_KEY" \
+                -d "{\"q_keywords\":\"$NAME\",\"per_page\":10}" \
+                "${APOLLO_API_BASE}/mixed_people/search" 2>/dev/null)
+            APOLLO_TOTAL=$(echo "$APOLLO_RESULTS" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('pagination',{}).get('total_entries',0))" 2>/dev/null || echo "0")
+        fi
+
+        log "  [Apollo] Found $APOLLO_TOTAL people"
+
+        if [ "$APOLLO_TOTAL" -gt 0 ] 2>/dev/null; then
+            echo "$APOLLO_RESULTS" | python3 -c "
+import json, sys
+data = json.loads(sys.stdin.read())
+for p in data.get('people', []):
+    name = (p.get('first_name','') + ' ' + p.get('last_name','')).strip()
+    if not name or name == ' ':
+        name = p.get('first_name','') + ' ' + (p.get('last_name','')[:2] + '***' if p.get('last_name') else '')
+    title = p.get('title','')
+    has_email = p.get('has_email', False)
+    org = p.get('organization',{}).get('name','')
+    email_flag = 'HAS EMAIL' if has_email else 'no email'
+    print(f'  {name} | {title} | {org} | {email_flag}')
+" 2>/dev/null | while IFS= read -r LINE; do
+                log "  [Apollo]$LINE"
+            done
+        fi
+    else
+        log "  [Apollo] SKIPPED — no API key"
     fi
 
     # --- LinkedIn search via Chrome ---

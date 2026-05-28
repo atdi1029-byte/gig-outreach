@@ -3015,11 +3015,24 @@ for i, venue in enumerate(untouched):
     fi
     log "=== SMART PICKS COMPLETE ==="
 
-    # Post-pipeline: check every zero-contact venue's website for emails/forms
+    # Post-pipeline: check every zero-contact venue's website, Apollo, LinkedIn
     log ""
-    log "=== POST-PIPELINE WEBSITE CHECK ==="
+    log "=== POST-PIPELINE VERIFICATION ==="
+    POSTCHECK_LOG="${SCRIPT_DIR}/postcheck.log"
+    POSTCHECK_START=""
     if [ -x "${SCRIPT_DIR}/postcheck.sh" ]; then
+        POSTCHECK_START=$(wc -l < "$POSTCHECK_LOG" 2>/dev/null || echo "0")
+        POSTCHECK_START=$((POSTCHECK_START + 1))
         "${SCRIPT_DIR}/postcheck.sh"
+        # Append postcheck results to pipeline log so they appear in the report
+        if [ -n "$POSTCHECK_START" ]; then
+            log ""
+            log "--- Postcheck Results ---"
+            tail -n "+${POSTCHECK_START}" "$POSTCHECK_LOG" 2>/dev/null | while IFS= read -r PCLINE; do
+                log "  $PCLINE"
+            done
+            log "--- End Postcheck ---"
+        fi
     else
         log "WARNING: postcheck.sh not found or not executable"
     fi

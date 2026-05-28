@@ -3015,6 +3015,15 @@ for i, venue in enumerate(untouched):
     fi
     log "=== SMART PICKS COMPLETE ==="
 
+    # Post-pipeline: check every zero-contact venue's website for emails/forms
+    log ""
+    log "=== POST-PIPELINE WEBSITE CHECK ==="
+    if [ -x "${SCRIPT_DIR}/postcheck.sh" ]; then
+        "${SCRIPT_DIR}/postcheck.sh"
+    else
+        log "WARNING: postcheck.sh not found or not executable"
+    fi
+
     # Generate HTML report
     generate_report "$RUN_START_LINE"
 

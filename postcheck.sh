@@ -55,10 +55,37 @@ check_venue() {
 
     log "  Website: $WEBSITE"
 
-    # --- Check main page + common subpages ---
+    # --- Check main page + common subpages + discovered links ---
     local PAGES=("$WEBSITE" "${WEBSITE}/contact" "${WEBSITE}/contact-us" "${WEBSITE}/about" "${WEBSITE}/events" "${WEBSITE}/private-events" "${WEBSITE}/event-contact")
     local ALL_EMAILS=""
     local CONTACT_FORM=""
+
+    # Crawl homepage for links containing contact/reservation/booking/inquiry/event
+    local HOMEPAGE_BODY
+    HOMEPAGE_BODY=$(curl -sL --max-time 10 -A "Mozilla/5.0" "$WEBSITE" 2>/dev/null)
+    if [ -n "$HOMEPAGE_BODY" ]; then
+        local EXTRA_PAGES
+        EXTRA_PAGES=$(echo "$HOMEPAGE_BODY" | python3 -c "
+import re, sys
+from urllib.parse import urljoin
+html = sys.stdin.read()
+base = '$WEBSITE'
+hrefs = re.findall(r'href=[\"'\''](.*?)[\"'\'']', html)
+seen = set()
+keywords = ['contact', 'reservat', 'booking', 'inquiry', 'enquir', 'private-event', 'event-contact', 'get-in-touch', 'reach-us']
+for h in hrefs:
+    url = urljoin(base, h).split('?')[0].split('#')[0].rstrip('/')
+    if url in seen: continue
+    seen.add(url)
+    if url.startswith(base) and any(k in url.lower() for k in keywords):
+        print(url)
+" 2>/dev/null)
+        if [ -n "$EXTRA_PAGES" ]; then
+            while IFS= read -r EXTRA; do
+                PAGES+=("$EXTRA")
+            done <<< "$EXTRA_PAGES"
+        fi
+    fi
 
     for PAGE in "${PAGES[@]}"; do
         local BODY

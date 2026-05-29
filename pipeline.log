@@ -15583,3 +15583,1158 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 21:13:42   Opening in Chrome: https://www.otiumcellars.com
 21:13:48   Emails: 0 | FB: none | IG: https://www.instagram.com/tranquilityfarmvirginia/ | Contact Form: none
 21:13:48   Crawling subpage (1): https://www.tranquilityfarm.com/weddings
+
+01:36:32 === Pipeline started 2026-05-29 01:36:32 ===
+01:36:32 SMART PICKS MODE: Fetching ranked venues...
+01:36:36 SMART PICKS: 921 available, budget remaining: 10
+01:36:36 
+01:36:36 ########## SMART PICK #1 (score 95): TPC Potomac at Avenel Farm (MD-COUN-872) ##########
+01:36:43   [DOMAIN] Venue domain: tpc.com
+01:36:45 
+01:36:45 ============================================================
+01:36:45  PIPELINE: TPC Potomac at Avenel Farm (MD-COUN-872)
+01:36:45  Website: https://tpc.com/potomac/
+01:36:45  Started: 2026-05-29 01:36:45
+01:36:45 ============================================================
+01:36:45   [ZB] Credits remaining: 3752
+01:36:48   Known emails: 0
+01:36:48   Known names: 0
+01:36:48 
+01:36:48 ========== STEP 1: Website Scrape ==========
+01:36:48   URL: https://tpc.com/potomac/
+01:36:48   Opening in Chrome: https://tpc.com/potomac/
+01:36:54   Validating contact form URL: https://tpc.com/potomac/about/contact-directions
+01:36:59   ✓ Real contact form confirmed
+01:36:59   Emails: 0 | FB: https://www.facebook.com/tpcpotomac | IG: https://www.instagram.com/tpcpotomac/ | Contact Form: https://tpc.com/potomac/about/contact-directions
+01:36:59   [LOCATION] Checking for location-specific page (city: Potomac)...
+01:36:59   [LOCATION] Found: https://tpc.com/potomac/
+01:36:59   [LOCATION] Re-scraping location page: https://tpc.com/potomac/
+01:37:08   [LOCATION] Re-scraped: Emails: 0 | FB: https://www.facebook.com/tpcpotomac | IG: https://www.instagram.com/tpcpotomac/ | Contact Form: https://tpc.com/potomac/about/contact-directions
+01:37:09   Crawling subpage (1): https://tpc.com/potomac/contact-directions
+01:37:13   Crawling subpage (2): https://tpc.com/potomac/about/contact-directions
+01:37:17   Crawling subpage (3): https://tpc.com/potomac/weddings
+01:37:22   Found on subpage: megankelly@pgatourtpc.com
+01:37:22   Crawling subpage (4): https://tpc.com/potomac/outings-and-events
+01:37:26   Crawling subpage (5): https://tpc.com/potomac/corporate-events
+01:37:30   Found on subpage: katikarolyi@pgatourtpc.com
+01:37:31   Crawling subpage (6): https://tpc.com/potomac/social-events
+01:37:35   Found on subpage: megankelly@pgatourtpc.com
+01:37:35   Crawling subpage (7): https://tpc.com/potomac/events-photo-gallery
+01:37:39   Crawling subpage (8): https://tpc.com/potomac/pop-up/outingsevents-form
+01:37:44   Crawling subpage (9): https://tpc.com/potomac/outings-events/golf-outings
+01:37:48   Crawling subpage (10): https://tpc.com/potomac/outings-events/social-events
+01:37:52   Found on subpage: megankelly@pgatourtpc.com
+01:37:53   Crawling subpage (11): https://tpc.com/potomac/outings-events
+01:37:57   Crawling subpage (12): https://tpc.com/potomac/about
+01:38:01   Crawling subpage (13): https://tpc.com/potomac/about-the-area
+01:38:06   Crawling subpage (14): https://tpc.com/about-tpc/partners
+01:38:10   Crawling subpage (15): https://tpc.com/potomac/about/about-the-area
+01:38:14   Crawling subpage (16): https://tpc.com/potomac/about/charitable-initiatives
+01:38:19   Crawling subpage (17): https://tpc.com/potomac/about/tpc-network-pga-tour
+01:38:23   Crawling subpage (18): https://tpc.com/potomac/membership
+01:38:27   Crawling subpage (19): https://tpc.com/potomac/membership-privileges
+01:38:32   Crawling subpage (20): https://tpc.com/potomac/tpc-network-privileges
+01:38:36   Crawling subpage (21): https://tpc.com/potomac/pop-up/membership-form
+01:38:40   Crawling subpage (22): https://tpc.com/potomac/golf
+01:38:45   Crawling subpage (23): https://tpc.com/potomac/course-design
+01:38:49   Crawling subpage (24): https://tpc.com/potomac/hole-by-hole
+01:38:53   Crawling subpage (25): https://tpc.com/potomac/scorecard
+01:38:58   Crawling subpage (26): https://tpc.com/potomac/featured-holes
+01:39:02   Crawling subpage (27): https://tpc.com/potomac/practice-facility
+01:39:06   Crawling subpage (28): https://tpc.com/potomac/photo-gallery
+01:39:11   Crawling subpage (29): https://tpc.com/potomac/golf-outings
+01:39:15   Crawling subpage (30): https://tpc.com/potomac/club-and-amenities
+01:39:19   Crawling subpage (31): https://tpc.com/potomac/clubhouse
+01:39:24   Crawling subpage (32): https://tpc.com/potomac/dining
+01:39:28   Crawling subpage (33): https://tpc.com/potomac/guest-information
+01:39:32   Crawling subpage (34): https://tpc.com/potomac/tpc-network-pga-tour
+01:39:37   Crawling subpage (35): https://tpc.com/potomac/charitable-initiatives
+01:39:41   Crawling subpage (36): https://tpc.com/gift-cards
+01:39:45   Found on subpage: tpc@giftcardsupportdesk.com
+01:39:45   Crawling subpage (37): https://tpc.com/potomac/eclub
+01:39:50   Found on subpage: tpcnetwork@pgatourhq.com
+01:39:50   Crawling subpage (38): https://tpc.com
+01:39:54   Crawling subpage (39): https://tpc.com/privacy-policy
+01:39:58   Found on subpage: contacttpcnetwork@pgatourhq.com
+01:39:59   Crawling subpage (40): https://tpc.com/terms-of-use
+01:40:03   Found on subpage: contacttpcnetwork@pgatourhq.com
+01:40:03   Crawling subpage (41): https://tpc.com/careers
+01:40:07   Crawling subpage (42): https://tpc.com/potpmac/sitemap
+01:40:12   Crawling subpage (43): https://tpc.com/do-not-sell-or-share-my-personal-information
+01:40:17   [CONTACT] Probing https://tpc.com/contact
+01:40:29   ✓ Contact form URL saved
+01:40:29   [SKIP] contacttpcnetwork@pgatourhq.com — off-domain (venue: tpc.com)
+01:40:29   katikarolyi@pgatourtpc.com → valid
+01:40:32   ✓ Added: katikarolyi@pgatourtpc.com <katikarolyi@pgatourtpc.com>
+01:40:34   megankelly@pgatourtpc.com → invalid
+01:40:37   ⚠ Added (invalid): megankelly@pgatourtpc.com <megankelly@pgatourtpc.com>
+01:40:38   [SKIP] tpc@giftcardsupportdesk.com — off-domain (venue: tpc.com)
+01:40:38   [SKIP] tpcnetwork@pgatourhq.com — off-domain (venue: tpc.com)
+01:40:38 
+01:40:38 ========== STEP 2: Social Media Scrape ==========
+01:40:41   FB: https://www.facebook.com/tpcpotomac | IG: https://www.instagram.com/tpcpotomac/
+01:40:41   Opening FB: https://www.facebook.com/tpcpotomac
+01:40:46   Opening FB: https://www.facebook.com/tpcpotomac/about
+01:40:52   Opening FB: https://www.facebook.com/tpcpotomac/directory_contact_info
+01:40:57   FB emails found: contacttpcpotomac@pgatourhq.com
+01:40:57   Opening IG: https://www.instagram.com/tpcpotomac/
+01:41:02   [IG] No email on page — trying Google snippet...
+01:41:06   [IG SNIPPET] No email in Google snippet
+01:41:06   [SKIP] contacttpcpotomac@pgatourhq.com — off-domain (venue: tpc.com)
+01:41:06   [APOLLO] Credits used this run: 0 / 300
+01:41:06 
+01:41:06 ========== STEP 3: Apollo API ==========
+01:41:06   Searching Apollo for company: TPC Potomac at Avenel Farm
+01:41:08   Found: TPC Toronto at Osprey Valley (domain: tpc.com, org_id: 5ed2512b1eb460000195592c)
+01:41:08   Searching for people at TPC Toronto at Osprey Valley (org_id: 5ed2512b1eb460000195592c)...
+01:41:09   Found 50 people total
+01:41:09   Skipped 23 people with no email (red ? on Apollo)
+01:41:09   Skipped 5 people with irrelevant titles (housekeeping, IT, security, etc.)
+01:41:09   +++ Christine Wa***r (Banquet Chef): no email — added as pending
+01:41:12   +++ Stephanie Jo***n (Senior Events Coordinator): no email — added as pending
+01:41:14   +++ Alexandra Je***s (Beverage Cart Server): no email — added as pending
+01:41:17   +++ Jamie Hu***h (Restaurant Manager): no email — added as pending
+01:41:20   +++ Molly Pa***d (Beverage Cart Attendant): no email — added as pending
+01:41:23   +++ Simran Ch***l (Line Cook): no email — added as pending
+01:41:25   +++ Beth Pi***k (Food & Beverage Manager): no email — added as pending
+01:41:27   +++ Bonnie Ra***n (Guest Experience Manager): no email — added as pending
+01:41:29   22 people to enrich (1 credit each)
+01:41:30   >>> Terry Kim (General Manager): tkim@ospreyvalley.com [verified]
+01:41:30   [SKIP] tkim@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Christopher Humeniuk (President): chumeniuk@ospreyvalley.com [verified]
+01:41:30   [SKIP] chumeniuk@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Andre Walker (Executive Chef): awalker@ospreyvalley.com [verified]
+01:41:30   [SKIP] awalker@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Brad Parkins (Director, Golf Operations): bparkins@ospreyvalley.com [verified]
+01:41:30   [SKIP] bparkins@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Lori Dowling (Event Manager): ldowling@ospreyvalley.com [verified]
+01:41:30   [SKIP] ldowling@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Raj Malik (Controller): rmalik@ospreyvalley.com [verified]
+01:41:30   [SKIP] rmalik@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Rina Novak (Director of Hospitality Operations): rnovak@ospreyvalley.com [verified]
+01:41:30   [SKIP] rnovak@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Mike Dinner (Director of Sales and Partnerships): mdinner@ospreyvalley.com [verified]
+01:41:30   [SKIP] mdinner@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Brian Decker (Director of Marketing and Communications): bdecker@ospreyvalley.com [verified]
+01:41:30   [SKIP] bdecker@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:30   >>> Evan Brewer (Marketing and Content Manager): ebrewer@ospreyvalley.com [verified]
+01:41:30   [SKIP] ebrewer@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Jeff Turcotte (Facilities Manager): jturcotte@ospreyvalley.com [verified]
+01:41:32   [SKIP] jturcotte@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Jake Torrieri (Assistant Golf Professional): jtorrieri@ospreyvalley.com [verified]
+01:41:32   [SKIP] jtorrieri@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Braeden Cryderman (Director of Instruction): bcryderman@ospreyvalley.com [verified]
+01:41:32   [SKIP] bcryderman@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Scott Littleton (Assistant Golf Course Superintendent): slittleton@ospreyvalley.com [verified]
+01:41:32   [SKIP] slittleton@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Shauna Meyer (Event Programming Manager): smeyer@ospreyvalley.com [verified]
+01:41:32   [SKIP] smeyer@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Cherise Robinson (Assistant Food & Beverage Manager): crobinson@ospreyvalley.com [verified]
+01:41:32   [SKIP] crobinson@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Shane Longstreet (Assistant Golf Professional): slongstreet@ospreyvalley.com [verified]
+01:41:32   [SKIP] slongstreet@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Scott Brook (Golf Course Superintendent): sbrook@ospreyvalley.com [verified]
+01:41:32   [SKIP] sbrook@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Peter Kemp (Assistant Golf Course Superintendent): pkemp@ospreyvalley.com [verified]
+01:41:32   [SKIP] pkemp@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:32   >>> Ashleigh Turner (Assistant Food Beverage Manager): aturner@ospreyvalley.com [verified]
+01:41:32   [SKIP] aturner@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:34   >>> David Hunter (Golf Course Superintendent): dhunter@ospreyvalley.com [verified]
+01:41:34   [SKIP] dhunter@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:34   >>> Mike Hunter (Director of Horticulture): mhunter@ospreyvalley.com [verified]
+01:41:34   [SKIP] mhunter@ospreyvalley.com — off-domain (venue: tpc.com)
+01:41:34   Apollo API done: 22 credits used this run
+01:41:34 
+01:41:34 ========== STEP 4: LinkedIn + Apollo API ==========
+01:41:34   Using domain: tpc.com
+01:41:37   LinkedIn page 1...
+01:41:56   No results on page 1 — stopping.
+01:41:56   No new people found on LinkedIn.
+01:41:59   Setting status → pipelined
+01:42:01 
+01:42:01 ============================================================
+01:42:01  DONE: TPC Potomac at Avenel Farm | 5 min | 01:42:01
+01:42:01 ============================================================
+01:42:31 
+01:42:31 ########## SMART PICK #2 (score 95): Chevy Chase Club (MD-COUN-887) ##########
+01:42:40   [LOOKUP] No website — Googling 'Chevy Chase Club'...
+01:42:43   [LOOKUP] Found: https://www.chevychaseclub.org
+01:42:46   [DOMAIN] Venue domain: chevychaseclub.org
+01:42:50 
+01:42:50 ============================================================
+01:42:50  PIPELINE: Chevy Chase Club (MD-COUN-887)
+01:42:50  Website: https://www.chevychaseclub.org
+01:42:50  Started: 2026-05-29 01:42:50
+01:42:50 ============================================================
+01:42:50   [ZB] Credits remaining: 3750
+01:42:54   Known emails: 0
+01:42:54   Known names: 0
+01:42:54 
+01:42:54 ========== STEP 1: Website Scrape ==========
+01:42:54   URL: https://www.chevychaseclub.org
+01:42:54   Opening in Chrome: https://www.chevychaseclub.org
+01:43:01   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+01:43:13   Emails: 0 | FB: none | IG: none | Contact Form: none
+01:43:13   [LOCATION] Checking for location-specific page (city: Chevy Chase)...
+01:43:14   [LOCATION] Re-scraping location page: https://www.chevychaseclub.org/weather-notices
+01:43:23   [LOCATION] Re-scraped: Emails: 0 | FB: none | IG: none | Contact Form: none
+01:43:23   Crawling subpage (1): https://www.chevychaseclub.org
+01:43:27   Crawling subpage (2): https://www.chevychaseclub.org/guests
+01:43:32   Crawling subpage (3): https://www.chevychaseclub.org/careers
+01:43:36   Crawling subpage (4): https://www.chevychaseclub.org/guest-information/login
+01:43:45 
+01:43:45 ========== STEP 1B: Instagram Google Search ==========
+01:43:45   No Instagram found on website — Googling...
+01:43:50   [IG SEARCH] Found: https://www.instagram.com/chevychaseclub/
+01:43:53   ✓ Instagram URL saved
+01:43:57 
+01:43:57 ========== STEP 1C: Facebook Google Search ==========
+01:43:57   No Facebook found on website — Googling...
+01:44:01   [FB SEARCH] Found: https://www.facebook.com/ChevyChaseClub/
+01:44:04   ✓ Facebook URL saved
+01:44:04 
+01:44:04 ========== STEP 2: Social Media Scrape ==========
+01:44:08   FB: https://www.facebook.com/ChevyChaseClub/ | IG: https://www.instagram.com/chevychaseclub/
+01:44:08   Opening FB: https://www.facebook.com/ChevyChaseClub
+01:44:13   Opening FB: https://www.facebook.com/ChevyChaseClub/about
+01:44:18   Opening FB: https://www.facebook.com/ChevyChaseClub/directory_contact_info
+01:44:23   FB emails found: frontdesk@chevychaseclub.org
+01:44:23   Opening IG: https://www.instagram.com/chevychaseclub/
+01:44:29   [IG] No email on page — trying Google snippet...
+01:44:33   [IG SNIPPET] No email in Google snippet
+01:44:33   frontdesk@chevychaseclub.org → do_not_mail
+01:44:34   [APOLLO] Credits used this run: 22 / 300
+01:44:34 
+01:44:34 ========== STEP 3: Apollo API ==========
+01:44:34   Searching Apollo for company: Chevy Chase Club
+01:44:35   Found: Chevy Chase Club (domain: chevychaseclub.org, org_id: 5e57abef7e83710001e10856)
+01:44:35   Searching for people at Chevy Chase Club (org_id: 5e57abef7e83710001e10856)...
+01:44:36   Found 50 people total
+01:44:36   Skipped 4 people with no email (red ? on Apollo)
+01:44:36   Skipped 3 people with irrelevant titles (housekeeping, IT, security, etc.)
+01:44:36   +++ Zachary Ha***y (Banquet Chef): no email — added as pending
+01:44:40   43 people to enrich (1 credit each)
+01:44:41   >>> Abigail Cooke (Greenhouse Manager): acooke@chevychaseclub.org [verified]
+01:44:42   acooke@chevychaseclub.org → catch-all
+01:44:44   ⚠ Added (catch-all): Abigail Cooke <acooke@chevychaseclub.org>
+01:44:45   >>> Adam Hemeon (Director of Golf Operations): ahemeon@chevychaseclub.org [verified]
+01:44:46   ahemeon@chevychaseclub.org → catch-all
+01:44:49   ⚠ Added (catch-all): Adam Hemeon <ahemeon@chevychaseclub.org>
+01:44:50   >>> Zach Hatem (Director of Food and Beverage): zhatem@chevychaseclub.org [verified]
+01:44:51   zhatem@chevychaseclub.org → catch-all
+01:44:54   ⚠ Added (catch-all): Zach Hatem <zhatem@chevychaseclub.org>
+01:44:55   >>> Corbin Booker (Assistant Fitness Director): cbooker@chevychaseclub.org [verified]
+01:44:55   cbooker@chevychaseclub.org → valid
+01:44:58   ✓ Added: Corbin Booker <cbooker@chevychaseclub.org>
+01:44:59   >>> James Fitzgerald (Professional Emeritus): jaf@chevychaseclub.org [verified]
+01:45:00   jaf@chevychaseclub.org → catch-all
+01:45:04   ⚠ Added (catch-all): James Fitzgerald <jaf@chevychaseclub.org>
+01:45:05   >>> Elisha Cicerone (General Manager/COO): ecicerone@chevychaseclub.org [verified]
+01:45:05   ecicerone@chevychaseclub.org → catch-all
+01:45:08   ⚠ Added (catch-all): Elisha Cicerone <ecicerone@chevychaseclub.org>
+01:45:09   >>> Michael Gildea (Director of Horticulture): mgildea@chevychaseclub.org [verified]
+01:45:09   mgildea@chevychaseclub.org → valid
+01:45:11   ✓ Added: Michael Gildea <mgildea@chevychaseclub.org>
+01:45:13   >>> Nicole Calles (People Operations Manager): ncalles@chevychaseclub.org [verified]
+01:45:14   ncalles@chevychaseclub.org → catch-all
+01:45:16   ⚠ Added (catch-all): Nicole Calles <ncalles@chevychaseclub.org>
+01:45:17   >>> Lauren Pollock (Assistant Director of Food & Beverage): lpollock@chevychaseclub.org [verified]
+01:45:18   lpollock@chevychaseclub.org → catch-all
+01:45:22   ⚠ Added (catch-all): Lauren Pollock <lpollock@chevychaseclub.org>
+01:45:23   >>> Victor Lewton (Director): victor@chevychaseclub.org [verified]
+01:45:23   victor@chevychaseclub.org → catch-all
+01:45:27   ⚠ Added (catch-all): Victor Lewton <victor@chevychaseclub.org>
+01:45:30   >>> Alyson Smith (Director of Racquets): asmith@chevychaseclub.org [verified]
+01:45:31   asmith@chevychaseclub.org → catch-all
+01:45:33   ⚠ Added (catch-all): Alyson Smith <asmith@chevychaseclub.org>
+01:45:34   >>> Rachel Connolly (Special Event Manager): rconnolly@chevychaseclub.org [verified]
+01:45:35   rconnolly@chevychaseclub.org → catch-all
+01:45:39   ⚠ Added (catch-all): Rachel Connolly <rconnolly@chevychaseclub.org>
+01:45:40   >>> Taylor Newman (Assistant Director of Racquets): tnewman@chevychaseclub.org [verified]
+01:45:41   tnewman@chevychaseclub.org → catch-all
+01:45:44   ⚠ Added (catch-all): Taylor Newman <tnewman@chevychaseclub.org>
+01:45:45   >>> Alison Bailey (Horticulturist): abailey@chevychaseclub.org [verified]
+01:45:46   abailey@chevychaseclub.org → catch-all
+01:45:49   ⚠ Added (catch-all): Alison Bailey <abailey@chevychaseclub.org>
+01:45:50   >>> Dominique Calabrese (Group Cycling Instructor): dcalabrese@chevychaseclub.org [verified]
+01:45:51   dcalabrese@chevychaseclub.org → catch-all
+01:45:53   ⚠ Added (catch-all): Dominique Calabrese <dcalabrese@chevychaseclub.org>
+01:45:54   >>> Christina Jefferson (Director of People Operations): cjefferson@chevychaseclub.org [verified]
+01:45:55   cjefferson@chevychaseclub.org → catch-all
+01:45:58   ⚠ Added (catch-all): Christina Jefferson <cjefferson@chevychaseclub.org>
+01:45:59   >>> Hernan Hatem (Director of Adult Tennis): hhatem@chevychaseclub.org [verified]
+01:46:00   hhatem@chevychaseclub.org → catch-all
+01:46:03   ⚠ Added (catch-all): Hernan Hatem <hhatem@chevychaseclub.org>
+01:46:04   >>> David Engelberg (Clubhouse Dining Manager): dengelberg@chevychaseclub.org [verified]
+01:46:04   dengelberg@chevychaseclub.org → catch-all
+01:46:08   ⚠ Added (catch-all): David Engelberg <dengelberg@chevychaseclub.org>
+01:46:09   >>> Meredith Colgin (Personal Fitness Trainer): meredith@chevychaseclub.org [verified]
+01:46:09   meredith@chevychaseclub.org → catch-all
+01:46:12   ⚠ Added (catch-all): Meredith Colgin <meredith@chevychaseclub.org>
+01:46:13   >>> Sarah Ramberg (Pilates Instructor): sramberg@chevychaseclub.org [verified]
+01:46:14   sramberg@chevychaseclub.org → catch-all
+01:46:17   ⚠ Added (catch-all): Sarah Ramberg <sramberg@chevychaseclub.org>
+01:46:20   >>> Lynette Miller (Casual Dining Operations Manager): lmiller@chevychaseclub.org [verified]
+01:46:21   lmiller@chevychaseclub.org → catch-all
+01:46:23   ⚠ Added (catch-all): Lynette Miller <lmiller@chevychaseclub.org>
+01:46:25   >>> Craig Collins (Head Trainer): ccollins@chevychaseclub.org [verified]
+01:46:25   ccollins@chevychaseclub.org → catch-all
+01:46:29   ⚠ Added (catch-all): Craig Collins <ccollins@chevychaseclub.org>
+01:46:30   >>> Leanne Hartzell (Director of Special Events): lhartzell@chevychaseclub.org [verified]
+01:46:31   lhartzell@chevychaseclub.org → catch-all
+01:46:33   ⚠ Added (catch-all): Leanne Hartzell <lhartzell@chevychaseclub.org>
+01:46:35   >>> Graham Kaltman (Director of Platform Tennis and Pickleball): gkaltman@chevychaseclub.org [verified]
+01:46:35   gkaltman@chevychaseclub.org → catch-all
+01:46:39   ⚠ Added (catch-all): Graham Kaltman <gkaltman@chevychaseclub.org>
+01:46:40   >>> Brandon Haus (Ladies Interclub Team Coach): bhaus@chevychaseclub.org [verified]
+01:46:41   bhaus@chevychaseclub.org → catch-all
+01:46:44   ⚠ Added (catch-all): Brandon Haus <bhaus@chevychaseclub.org>
+01:46:45   >>> Stephen Britton (Director of Agronomy): sbritton@chevychaseclub.org [verified]
+01:46:46   sbritton@chevychaseclub.org → catch-all
+01:46:49   ⚠ Added (catch-all): Stephen Britton <sbritton@chevychaseclub.org>
+01:46:50   >>> Grace Goodman (Marketing Communications Coordinator): ggoodman@chevychaseclub.org [verified]
+01:46:51   ggoodman@chevychaseclub.org → catch-all
+01:46:55   ⚠ Added (catch-all): Grace Goodman <ggoodman@chevychaseclub.org>
+01:46:56   >>> Daren Rubenstein (Director of Facilities): drubenstein@chevychaseclub.org [verified]
+01:46:57   drubenstein@chevychaseclub.org → catch-all
+01:47:00   ⚠ Added (catch-all): Daren Rubenstein <drubenstein@chevychaseclub.org>
+01:47:01   >>> Sarah Stone (Director of Instruction): sstone@chevychaseclub.org [verified]
+01:47:02   sstone@chevychaseclub.org → catch-all
+01:47:07   ⚠ Added (catch-all): Sarah Stone <sstone@chevychaseclub.org>
+01:47:08   >>> Zachary Sowinski (Assistant Director of Skate and Swim): zsowinski@chevychaseclub.org [verified]
+01:47:09   zsowinski@chevychaseclub.org → catch-all
+01:47:12   ⚠ Added (catch-all): Zachary Sowinski <zsowinski@chevychaseclub.org>
+01:47:15   >>> Christine Callahan (Assistant Director of Special Events): cdaugherty@chevychaseclub.org [verified]
+01:47:16   cdaugherty@chevychaseclub.org → catch-all
+01:47:19   ⚠ Added (catch-all): Christine Callahan <cdaugherty@chevychaseclub.org>
+01:47:20   >>> Sarah Nissen (Executive Pastry Chef): snissen@chevychaseclub.org [verified]
+01:47:20   snissen@chevychaseclub.org → catch-all
+01:47:24   ⚠ Added (catch-all): Sarah Nissen <snissen@chevychaseclub.org>
+01:47:25   >>> Will Vasquez (Banquet Captain): wvasquez@chevychaseclub.org [verified]
+01:47:26   wvasquez@chevychaseclub.org → catch-all
+01:47:28   ⚠ Added (catch-all): Will Vasquez <wvasquez@chevychaseclub.org>
+01:47:30   >>> Bill Rublee (Head Tennis Professional): brublee@chevychaseclub.org [verified]
+01:47:30   brublee@chevychaseclub.org → catch-all
+01:47:34   ⚠ Added (catch-all): Bill Rublee <brublee@chevychaseclub.org>
+01:47:35   >>> Alishah Cobblah (Assistant Food and Beverage Manager): acobblah@chevychaseclub.org [verified]
+01:47:35   acobblah@chevychaseclub.org → catch-all
+01:47:39   ⚠ Added (catch-all): Alishah Cobblah <acobblah@chevychaseclub.org>
+01:47:40   >>> Alexander Morgan (Associate): alexander@chevychaseclub.org [verified]
+01:47:41   alexander@chevychaseclub.org → catch-all
+01:47:44   ⚠ Added (catch-all): Alexander Morgan <alexander@chevychaseclub.org>
+01:47:45   >>> Dell Tinker (Admin Assitant): dtinker@chevychaseclub.org [verified]
+01:47:46   dtinker@chevychaseclub.org → catch-all
+01:47:49   ⚠ Added (catch-all): Dell Tinker <dtinker@chevychaseclub.org>
+01:47:50   >>> Paul Buehler (Sous Chef): pbuehler@chevychaseclub.org [verified]
+01:47:51   pbuehler@chevychaseclub.org → catch-all
+01:47:54   ⚠ Added (catch-all): Paul Buehler <pbuehler@chevychaseclub.org>
+01:47:55   >>> Mauricio Martinez (Banquet Manager): mmartinez@chevychaseclub.org [verified]
+01:47:56   mmartinez@chevychaseclub.org → valid
+01:47:59   ✓ Added: Mauricio Martinez <mmartinez@chevychaseclub.org>
+01:48:00   >>> Thomas Lescovich (Hockey Director): tlescovich@chevychaseclub.org [verified]
+01:48:01   tlescovich@chevychaseclub.org → catch-all
+01:48:05   ⚠ Added (catch-all): Thomas Lescovich <tlescovich@chevychaseclub.org>
+01:48:07   >>> Marisa Harris (Lead Horticulturist): mharris@chevychaseclub.org [verified]
+01:48:08   mharris@chevychaseclub.org → catch-all
+01:48:12   ⚠ Added (catch-all): Marisa Harris <mharris@chevychaseclub.org>
+01:48:13   >>> Niclas Sedlmayer (Assistant Beverage Manager): nsedlmayer@chevychaseclub.org [verified]
+01:48:14   nsedlmayer@chevychaseclub.org → catch-all
+01:48:16   ⚠ Added (catch-all): Niclas Sedlmayer <nsedlmayer@chevychaseclub.org>
+01:48:18   >>> Carlos Ayuso (Project Manager): cayuso@chevychaseclub.org [verified]
+01:48:18   cayuso@chevychaseclub.org → catch-all
+01:48:21   ⚠ Added (catch-all): Carlos Ayuso <cayuso@chevychaseclub.org>
+01:48:22   Apollo API done: 65 credits used this run
+01:48:22 
+01:48:22 ========== STEP 4: LinkedIn + Apollo API ==========
+01:48:22   Using domain: chevychaseclub.org
+01:48:26   LinkedIn page 1...
+01:48:42   No results on page 1 — stopping.
+01:48:42   No new people found on LinkedIn.
+01:48:44   Setting status → pipelined
+01:48:48 
+01:48:48 ============================================================
+01:48:48  DONE: Chevy Chase Club | 6 min | 01:48:48
+01:48:48 ============================================================
+01:49:19 
+01:49:19 ########## SMART PICK #3 (score 91): Bistro L'Hermitage (VA-REST-852) ##########
+01:49:25   [DOMAIN] Venue domain: bistrolhermitage.com
+01:49:28 
+01:49:28 ============================================================
+01:49:28  PIPELINE: Bistro L'Hermitage (VA-REST-852)
+01:49:28  Website: https://bistrolhermitage.com
+01:49:28  Started: 2026-05-29 01:49:28
+01:49:28 ============================================================
+01:49:28   [ZB] Credits remaining: 3706
+01:49:31   Known emails: 1
+01:49:31   Known names: 2
+01:49:31 
+01:49:31 ========== STEP 1: Website Scrape ==========
+01:49:31   URL: https://bistrolhermitage.com
+01:49:31   Opening in Chrome: https://bistrolhermitage.com
+01:49:38   Validating contact form URL: https://bistrolhermitage.com/welcome-bistro-lhermitage-2/contact-reservations
+01:49:42   ✓ Real contact form confirmed
+01:49:42   Emails: 0 | FB: https://www.facebook.com/bistro.lhermitage | IG: none | Contact Form: https://bistrolhermitage.com/welcome-bistro-lhermitage-2/contact-reservations
+01:49:42   [LOCATION] Checking for location-specific page (city: Middleburg)...
+01:49:52   [LOCATION] No location-specific page found
+01:49:52   Crawling subpage (1): https://bistrolhermitage.com/welcome-bistro-lhermitage-2/contact-reservations
+01:49:56   Crawling subpage (2): https://bistrolhermitage.com/special-events-page
+01:50:01   Crawling subpage (3): https://bistrolhermitage.com/event/mothers-day
+01:50:05   Crawling subpage (4): https://bistrolhermitage.com/menu
+01:50:09   Crawling subpage (5): https://bistrolhermitage.com/pictures
+01:50:18   [CONTACT] Probing https://bistrolhermitage.com/contact
+01:50:27   ✓ Contact form URL saved
+01:50:30 
+01:50:30 ========== STEP 2: Social Media Scrape ==========
+01:50:33   FB: https://www.facebook.com/bistro.lhermitage | IG: https://www.instagram.com/bistrolhermitage/
+01:50:33   Opening FB: https://www.facebook.com/bistro.lhermitage
+01:50:38   Opening FB: https://www.facebook.com/bistro.lhermitage/about
+01:50:44   Opening FB: https://www.facebook.com/bistro.lhermitage/directory_contact_info
+01:50:49   [FB] No email on page — trying Google snippet...
+01:50:53   [FB SNIPPET] No email in Google snippet
+01:50:53   Opening IG: https://www.instagram.com/bistrolhermitage/
+01:50:58   [IG] No email on page — trying Google snippet...
+01:51:03   [IG SNIPPET] No email in Google snippet
+01:51:03   [APOLLO] Credits used this run: 65 / 300
+01:51:03 
+01:51:03 ========== STEP 3: Apollo API ==========
+01:51:03   Searching Apollo for company: Bistro L'Hermitage
+01:51:05   Found: Bistro l'Hermitage (domain: bistrolhermitage.com, org_id: 673c7d72f5d052000109457d)
+01:51:05   Searching for people at Bistro l'Hermitage (org_id: 673c7d72f5d052000109457d)...
+01:51:05   Found 0 people total
+01:51:05   No people in Apollo for this company.
+01:51:05 
+01:51:05 ========== STEP 4: LinkedIn + Apollo API ==========
+01:51:05   Using domain: bistrolhermitage.com
+01:51:09   LinkedIn page 1...
+01:51:25   No results on page 1 — stopping.
+01:51:25   No new people found on LinkedIn.
+01:51:27   Setting status → pipelined
+01:51:30 
+01:51:30 ============================================================
+01:51:30  DONE: Bistro L'Hermitage | 2 min | 01:51:30
+01:51:30 ============================================================
+01:52:00 
+01:52:00 ########## SMART PICK #4 (score 89): Kenwood Golf Country Club (MD-COUN-899) ##########
+01:52:06   [DOMAIN] Venue domain: kenwoodcc.net
+01:52:09 
+01:52:09 ============================================================
+01:52:09  PIPELINE: Kenwood Golf Country Club (MD-COUN-899)
+01:52:09  Website: https://kenwoodcc.net/
+01:52:09  Started: 2026-05-29 01:52:09
+01:52:09 ============================================================
+01:52:09   [ZB] Credits remaining: 3706
+01:52:12   Known emails: 0
+01:52:12   Known names: 0
+01:52:12 
+01:52:12 ========== STEP 1: Website Scrape ==========
+01:52:12   URL: https://kenwoodcc.net/
+01:52:12   Opening in Chrome: https://kenwoodcc.net/
+01:52:18   Emails: 0 | FB: none | IG: https://www.kenwoodcc.net/default.aspx | Contact Form: none
+01:52:18   [LOCATION] Checking for location-specific page (city: Bethesda)...
+01:52:19   [LOCATION] Found: https://kenwoodcc.net/bethesda/
+01:52:19   [LOCATION] Re-scraping location page: https://kenwoodcc.net/bethesda/
+01:52:27   [LOCATION] Re-scraped: Emails: 0 | FB: none | IG: https://www.kenwoodcc.net/default.aspx | Contact Form: none
+01:52:27   Crawling subpage (1): https://www.kenwoodcc.net/event-payment
+01:52:31   Crawling subpage (2): https://www.kenwoodcc.net/host-an-event
+01:52:36   Crawling subpage (3): https://www.kenwoodcc.net
+01:52:40   Crawling subpage (4): https://www.kenwoodcc.net/the-club
+01:52:44   Crawling subpage (5): https://www.kenwoodcc.net/golf
+01:52:49   Crawling subpage (6): https://www.kenwoodcc.net/amenities
+01:52:53   Crawling subpage (7): https://www.kenwoodcc.net/membership-information
+01:52:57   Crawling subpage (8): https://www.kenwoodcc.net/guests
+01:53:02   Crawling subpage (9): https://www.kenwoodcc.net/member-login
+01:53:07   [CONTACT] Probing https://kenwoodcc.net/contact
+01:53:18 
+01:53:18 ========== STEP 1C: Facebook Google Search ==========
+01:53:18   No Facebook found on website — Googling...
+01:53:23   [FB SEARCH] Skipping https://www.facebook.com/gwuhospital/ — handle 'https://www.facebook.com/gwuhospital/' doesn't match venue
+01:53:23   [FB SEARCH] Skipping https://www.facebook.com/7NewsDC/ — handle 'https://www.facebook.com/7newsdc/' doesn't match venue
+01:53:23   [FB SEARCH] No handle matched venue name — using first result
+01:53:23   [FB SEARCH] Found: https://www.facebook.com/gwuhospital/
+01:53:25   ✓ Facebook URL saved
+01:53:25 
+01:53:25 ========== STEP 2: Social Media Scrape ==========
+01:53:28   FB: https://www.facebook.com/gwuhospital/ | IG: https://www.kenwoodcc.net/default.aspx
+01:53:28   Opening FB: https://www.facebook.com/gwuhospital
+01:53:34   Opening FB: https://www.facebook.com/gwuhospital/about
+01:53:39   Opening FB: https://www.facebook.com/gwuhospital/directory_contact_info
+01:53:44   FB emails found: patientadvocate@gwu-hospital.com
+01:53:44   Opening IG: https://www.kenwoodcc.net/default.aspx
+01:53:49   [IG] No email on page — trying Google snippet...
+01:53:53   [IG SNIPPET] No email in Google snippet
+01:53:53   [SKIP] patientadvocate@gwu-hospital.com — off-domain (venue: kenwoodcc.net)
+01:53:53   [APOLLO] Credits used this run: 65 / 300
+01:53:53 
+01:53:53 ========== STEP 3: Apollo API ==========
+01:53:53   Searching Apollo for company: Kenwood Golf Country Club
+01:53:55   Found: Kenwood Golf and Country Club (domain: kenwoodcc.net, org_id: 56e411b4f3e5bb022400152c)
+01:53:55   Searching for people at Kenwood Golf and Country Club (org_id: 56e411b4f3e5bb022400152c)...
+01:53:56   Found 36 people total
+01:53:56   Skipped 24 people with no email (red ? on Apollo)
+01:53:56   Skipped 2 people with irrelevant titles (housekeeping, IT, security, etc.)
+01:53:56   +++ Javier Ma***a (Executive Chef): no email — added as pending
+01:54:00   +++ Riggs Ch***n (Restaurant Floor Manager): no email — added as pending
+01:54:03   +++ Stephen Sm***h (General Manager): no email — added as pending
+01:54:05   +++ Kay Kh***h (Banquet Manager): no email — added as pending
+01:54:07   +++ Lisa La***b (Membership Director): no email — added as pending
+01:54:09   10 people to enrich (1 credit each)
+01:54:10   >>> London Worrell (Club Marketing Coordinator): london@kenwoodcc.net [verified]
+01:54:10   london@kenwoodcc.net → do_not_mail
+01:54:11   >>> Dawn Lipsey (Director of Catering): dawn@kenwoodcc.net [verified]
+01:54:11   dawn@kenwoodcc.net → valid
+01:54:14   ✓ Added: Dawn Lipsey <dawn@kenwoodcc.net>
+01:54:15   >>> Martin Billenstein (Executive Chef): martin@kenwoodcc.net [verified]
+01:54:16   martin@kenwoodcc.net → invalid
+01:54:19   ⚠ Added (invalid): Martin Billenstein <martin@kenwoodcc.net>
+01:54:20   >>> Slim Hamza (Head Tennis Professional): slim@kenwoodcc.net [verified]
+01:54:20   slim@kenwoodcc.net → valid
+01:54:22   ✓ Added: Slim Hamza <slim@kenwoodcc.net>
+01:54:24   >>> Monica Thiem (Assistant Golf Professional): mthiem@kenwoodcc.net [verified]
+01:54:24   mthiem@kenwoodcc.net → valid
+01:54:27   ✓ Added: Monica Thiem <mthiem@kenwoodcc.net>
+01:54:28   >>> Philip Rector (Director of Fitness, Aquatics, & Racquet Sports): fitness_director@kenwoodcc.net [verified]
+01:54:28   fitness_director@kenwoodcc.net → invalid
+01:54:30   ⚠ Added (invalid): Philip Rector <fitness_director@kenwoodcc.net>
+01:54:32   >>> Debbie Lamb (Catering Director): debbie@kenwoodcc.net [verified]
+01:54:32   debbie@kenwoodcc.net → invalid
+01:54:34   ⚠ Added (invalid): Debbie Lamb <debbie@kenwoodcc.net>
+01:54:35   >>> Cyndi Chamberlin (Director of Personnel): cyndi@kenwoodcc.net [verified]
+01:54:35   cyndi@kenwoodcc.net → valid
+01:54:38   ✓ Added: Cyndi Chamberlin <cyndi@kenwoodcc.net>
+01:54:40   >>> Adriane Allen (Director of Children's Programs): kidfit@kenwoodcc.net [verified]
+01:54:40   kidfit@kenwoodcc.net → valid
+01:54:42   ✓ Added: Adriane Allen <kidfit@kenwoodcc.net>
+01:54:43   >>> Amit Rozario (Head Waiter): arozario@kenwoodcc.com [verified]
+01:54:44   arozario@kenwoodcc.com → invalid
+01:54:47   ⚠ Added (invalid): Amit Rozario <arozario@kenwoodcc.com>
+01:54:49   Apollo API done: 75 credits used this run
+01:54:49 
+01:54:49 ========== STEP 4: LinkedIn + Apollo API ==========
+01:54:49   Using domain: kenwoodcc.net
+01:54:53   LinkedIn page 1...
+01:55:10   No results on page 1 — stopping.
+01:55:10   No new people found on LinkedIn.
+01:55:12   Setting status → pipelined
+01:55:15 
+01:55:15 ============================================================
+01:55:15  DONE: Kenwood Golf Country Club | 3 min | 01:55:15
+01:55:15 ============================================================
+01:55:45 
+01:55:45 ########## SMART PICK #5 (score 89): Lakewood Country Club (MD-COUN-900) ##########
+01:55:52   [DOMAIN] Venue domain: lakewoodcc.org
+01:55:54 
+01:55:54 ============================================================
+01:55:54  PIPELINE: Lakewood Country Club (MD-COUN-900)
+01:55:54  Website: https://lakewoodcc.org/
+01:55:54  Started: 2026-05-29 01:55:54
+01:55:54 ============================================================
+01:55:54   [ZB] Credits remaining: 3696
+01:55:57   Known emails: 0
+01:55:57   Known names: 0
+01:55:57 
+01:55:58 ========== STEP 1: Website Scrape ==========
+01:55:58   URL: https://lakewoodcc.org/
+01:55:58   Opening in Chrome: https://lakewoodcc.org/
+01:56:04   Validating contact form URL: https://www.lakewoodcc.org/event-inquiry
+01:56:08   Found on contact page: andrea.morrow@lakewoodcc.org
+01:56:08   ✓ Real contact form confirmed
+01:56:08   Emails: 0 | FB: https://www.facebook.com/lakewoodcountryclubrockville | IG: https://www.instagram.com/p/DYSLXUZFoZr | Contact Form: https://www.lakewoodcc.org/event-inquiry
+01:56:08   [LOCATION] Checking for location-specific page (city: Rockville)...
+01:56:09   [LOCATION] Found: https://lakewoodcc.org/rockville/
+01:56:09   [LOCATION] Re-scraping location page: https://lakewoodcc.org/rockville/
+01:56:18   [LOCATION] Re-scraped: Emails: 0 | FB: https://www.facebook.com/lakewoodcountryclubrockville | IG: https://www.instagram.com/p/DYSLXUZFoZr | Contact Form: https://www.lakewoodcc.org/event-inquiry
+01:56:18   Crawling subpage (1): https://www.lakewoodcc.org/event-inquiry
+01:56:23   Found on subpage: andrea.morrow@lakewoodcc.org
+01:56:23   Crawling subpage (2): https://www.lakewoodcc.org/history
+01:56:27   Crawling subpage (3): https://www.lakewoodcc.org/Default.aspx
+01:56:31   Crawling subpage (4): https://www.lakewoodcc.org/golf-course
+01:56:36   Found on subpage: andrea.morrow@lakewoodcc.org, carlos.delacarrera@lakewoodcc.org, david.crawmer@lakewoodcc.org, mac.niven@lakewoodcc.org, nick.keefer@lakewoodcc.org, patrick.williams@lakewoodcc.org, phil.desbrow@lakewoodcc.org, shellie.ferguson@lakewoodcc.org
+01:56:36   Crawling subpage (5): https://www.lakewoodcc.org/tennis-fitness
+01:56:40   Crawling subpage (6): https://www.lakewoodcc.org/membership-inquiry
+01:56:44   Found on subpage: nelly.sandoval@lakewoodcc.org
+01:56:45   Crawling subpage (7): https://www.lakewoodcc.org/guests
+01:56:49   Crawling subpage (8): https://www.lakewoodcc.org/dress-code
+01:56:53   Crawling subpage (9): https://www.lakewoodcc.org/login
+01:56:58   [CONTACT] Probing https://lakewoodcc.org/contact
+01:57:11   ✓ Contact form URL saved
+01:57:11   andrea.morrow@lakewoodcc.org → valid
+01:57:15   ✓ Added: andrea.morrow@lakewoodcc.org <andrea.morrow@lakewoodcc.org>
+01:57:16   carlos.delacarrera@lakewoodcc.org → unknown
+01:57:20   ⚠ Added (unknown): carlos.delacarrera@lakewoodcc.org <carlos.delacarrera@lakewoodcc.org>
+01:57:21   david.crawmer@lakewoodcc.org → valid
+01:57:24   ✓ Added: david.crawmer@lakewoodcc.org <david.crawmer@lakewoodcc.org>
+01:57:25   mac.niven@lakewoodcc.org → unknown
+01:57:28   ⚠ Added (unknown): mac.niven@lakewoodcc.org <mac.niven@lakewoodcc.org>
+01:57:30   nelly.sandoval@lakewoodcc.org → unknown
+01:57:33   ⚠ Added (unknown): nelly.sandoval@lakewoodcc.org <nelly.sandoval@lakewoodcc.org>
+01:57:34   nick.keefer@lakewoodcc.org → unknown
+01:57:39   ⚠ Added (unknown): nick.keefer@lakewoodcc.org <nick.keefer@lakewoodcc.org>
+01:57:40   patrick.williams@lakewoodcc.org → unknown
+01:57:43   ⚠ Added (unknown): patrick.williams@lakewoodcc.org <patrick.williams@lakewoodcc.org>
+01:57:44   phil.desbrow@lakewoodcc.org → valid
+01:57:47   ✓ Added: phil.desbrow@lakewoodcc.org <phil.desbrow@lakewoodcc.org>
+01:57:49   shellie.ferguson@lakewoodcc.org → unknown
+01:57:52   ⚠ Added (unknown): shellie.ferguson@lakewoodcc.org <shellie.ferguson@lakewoodcc.org>
+01:57:53 
+01:57:53 ========== STEP 2: Social Media Scrape ==========
+01:57:55   FB: https://www.facebook.com/lakewoodcountryclubrockville | IG: https://www.instagram.com/p/DYSLXUZFoZr
+01:57:55   Opening FB: https://www.facebook.com/lakewoodcountryclubrockville
+01:58:00   Opening FB: https://www.facebook.com/lakewoodcountryclubrockville/about
+01:58:06   Opening FB: https://www.facebook.com/lakewoodcountryclubrockville/directory_contact_info
+01:58:11   [FB] No email on page — trying Google snippet...
+01:58:15   [FB SNIPPET] No email in Google snippet
+01:58:15   Opening IG: https://www.instagram.com/p/DYSLXUZFoZr
+01:58:20   [IG] No email on page — trying Google snippet...
+01:58:25   [IG SNIPPET] No email in Google snippet
+01:58:25   [APOLLO] Credits used this run: 75 / 300
+01:58:25 
+01:58:25 ========== STEP 3: Apollo API ==========
+01:58:25   Searching Apollo for company: Lakewood Country Club
+01:58:26   Found: Lakewood Country Club Rockville (domain: lakewoodcc.org, org_id: 5e577402cecdff0001ae23de)
+01:58:26   Searching for people at Lakewood Country Club Rockville (org_id: 5e577402cecdff0001ae23de)...
+01:58:27   Found 12 people total
+01:58:27   Skipped 6 people with no email (red ? on Apollo)
+01:58:27   Skipped 1 people with irrelevant titles (housekeeping, IT, security, etc.)
+01:58:27   5 people to enrich (1 credit each)
+01:58:28   >>> Nicholas Keefer (PGA Head Golf Professional): nick.keefer@lakewoodcc.org [verified]
+01:58:28   nick.keefer@lakewoodcc.org → unknown
+01:58:30   ⚠ Added (unknown): Nicholas Keefer <nick.keefer@lakewoodcc.org>
+01:58:31   >>> Debbie Halpin (Director of Food and Beverage): debbie.halpin@lakewoodcc.org [verified]
+01:58:31   debbie.halpin@lakewoodcc.org → valid
+01:58:34   ✓ Added: Debbie Halpin <debbie.halpin@lakewoodcc.org>
+01:58:35   >>> Jose Segovia (Clubhouse Manager): jose.segovia@lakewoodcc.org [verified]
+01:58:35   jose.segovia@lakewoodcc.org → valid
+01:58:38   ✓ Added: Jose Segovia <jose.segovia@lakewoodcc.org>
+01:58:39   >>> Terence Killen (Director of Adult Tennis Development): terence.killen@lakewoodcc.org [verified]
+01:58:40   terence.killen@lakewoodcc.org → unknown
+01:58:42   ⚠ Added (unknown): Terence Killen <terence.killen@lakewoodcc.org>
+01:58:44   >>> Thomas Albert (Superintendent): thomas.albert@lakewoodcc.org [verified]
+01:58:44   thomas.albert@lakewoodcc.org → unknown
+01:58:47   ⚠ Added (unknown): Thomas Albert <thomas.albert@lakewoodcc.org>
+01:58:48   Apollo API done: 80 credits used this run
+01:58:48 
+01:58:48 ========== STEP 4: LinkedIn + Apollo API ==========
+01:58:48   Using domain: lakewoodcc.org
+01:58:51   LinkedIn page 1...
+01:59:08   No results on page 1 — stopping.
+01:59:08   No new people found on LinkedIn.
+01:59:10   Setting status → pipelined
+01:59:12 
+01:59:12 ============================================================
+01:59:12  DONE: Lakewood Country Club | 3 min | 01:59:12
+01:59:12 ============================================================
+01:59:42 
+01:59:42 ########## SMART PICK #6 (score 89): Manor Country Club (MD-COUN-901) ##########
+01:59:48   [DOMAIN] Venue domain: manorcc.org
+01:59:50 
+01:59:50 ============================================================
+01:59:50  PIPELINE: Manor Country Club (MD-COUN-901)
+01:59:50  Website: https://manorcc.org/
+01:59:50  Started: 2026-05-29 01:59:50
+01:59:50 ============================================================
+01:59:50   [ZB] Credits remaining: 3691
+01:59:52   Known emails: 0
+01:59:52   Known names: 0
+01:59:52 
+01:59:52 ========== STEP 1: Website Scrape ==========
+01:59:52   URL: https://manorcc.org/
+01:59:52   Opening in Chrome: https://manorcc.org/
+01:59:59   Emails: 0 | FB: https://www.facebook.com/manorcountryclub | IG: https://instagram.com/manorcountryclub | Contact Form: none
+01:59:59   [LOCATION] Checking for location-specific page (city: Rockville)...
+02:00:00   [LOCATION] No location-specific page found
+02:00:00   Crawling subpage (1): https://www.manorcc.org/private-events
+02:00:04   Crawling subpage (2): https://www.manorcc.org/about-us/directions
+02:00:09   Found on subpage: manorcc@manorcc.org
+02:00:09   Crawling subpage (3): https://www.manorcc.org/about-us/login
+02:00:13   Crawling subpage (4): https://www.manorcc.org/about-us
+02:00:17   Crawling subpage (5): https://www.manorcc.org/about-us/careers
+02:00:22   Crawling subpage (6): https://www.manorcc.org/home-page/weather-course-conditions
+02:00:26   Crawling subpage (7): https://www.manorcc.org/manor-lifestyle
+02:00:30   Crawling subpage (8): https://www.manorcc.org/guests
+02:00:42   manorcc@manorcc.org → catch-all
+02:00:54   ⚠ Added (catch-all): manorcc@manorcc.org <manorcc@manorcc.org>
+02:00:55 
+02:00:55 ========== STEP 2: Social Media Scrape ==========
+02:00:59   FB: https://www.facebook.com/manorcountryclub | IG: https://instagram.com/manorcountryclub
+02:00:59   Opening FB: https://www.facebook.com/manorcountryclub
+02:01:04   Opening FB: https://www.facebook.com/manorcountryclub/about
+02:01:09   Opening FB: https://www.facebook.com/manorcountryclub/directory_contact_info
+02:01:15   FB emails found: manorcc@manorcc.org
+02:01:15   Opening IG: https://instagram.com/manorcountryclub
+02:01:20   [IG] No email on page — trying Google snippet...
+02:01:24   [IG SNIPPET] No email in Google snippet
+02:01:24   manorcc@manorcc.org → catch-all
+02:01:26   ⚠ Added (catch-all): manorcc@manorcc.org <manorcc@manorcc.org>
+02:01:27   [APOLLO] Credits used this run: 80 / 300
+02:01:27 
+02:01:27 ========== STEP 3: Apollo API ==========
+02:01:27   Searching Apollo for company: Manor Country Club
+02:01:28   Found: Manor Country Club (domain: manorcc.org, org_id: 5ed80b6414a3d60001b267ea)
+02:01:28   Searching for people at Manor Country Club (org_id: 5ed80b6414a3d60001b267ea)...
+02:01:29   Found 31 people total
+02:01:29   Skipped 10 people with no email (red ? on Apollo)
+02:01:29   Skipped 1 people with irrelevant titles (housekeeping, IT, security, etc.)
+02:01:29   +++ Joseph Ol***t (Aquatics Director): no email — added as pending
+02:01:32   +++ Matina Pi***o (Jr. Activities Director): no email — added as pending
+02:01:34   +++ Bill Hu***s (GM): no email — added as pending
+02:01:36   20 people to enrich (1 credit each)
+02:01:37   >>> Phill Grossman (General Manager/Chief Operating Officer): pgrossman@manorcc.org [verified]
+02:01:38   pgrossman@manorcc.org → catch-all
+02:01:40   ⚠ Added (catch-all): Phill Grossman <pgrossman@manorcc.org>
+02:01:41   >>> Joseph Milazzo (Director of Membership Development): jmilazzo@manorcc.org [verified]
+02:01:42   jmilazzo@manorcc.org → catch-all
+02:01:45   ⚠ Added (catch-all): Joseph Milazzo <jmilazzo@manorcc.org>
+02:01:46   >>> Hyon Elite (Director of Racquets): hyoo@manorcc.org [verified]
+02:01:47   hyoo@manorcc.org → catch-all
+02:01:49   ⚠ Added (catch-all): Hyon Elite <hyoo@manorcc.org>
+02:01:50   >>> Branden Allen (Head Golf Professional): ballen@manorcc.org [verified]
+02:01:51   ballen@manorcc.org → catch-all
+02:01:53   ⚠ Added (catch-all): Branden Allen <ballen@manorcc.org>
+02:01:54   >>> Ailee Apac (Executive Chef): aapac@manorcc.org [verified]
+02:01:55   aapac@manorcc.org → catch-all
+02:01:58   ⚠ Added (catch-all): Ailee Apac <aapac@manorcc.org>
+02:01:59   >>> Neil Hodes (Director of Catering): nhodes@manorcc.org [verified]
+02:01:59   nhodes@manorcc.org → valid
+02:02:02   ✓ Added: Neil Hodes <nhodes@manorcc.org>
+02:02:03   >>> Jane Poetker (Facilities Manager): jpoetker@manorcc.org [verified]
+02:02:04   jpoetker@manorcc.org → catch-all
+02:02:06   ⚠ Added (catch-all): Jane Poetker <jpoetker@manorcc.org>
+02:02:07   >>> John Cleary (Senior Staff Tennis Professional): jcleary@manorcc.org [verified]
+02:02:08   jcleary@manorcc.org → catch-all
+02:02:11   ⚠ Added (catch-all): John Cleary <jcleary@manorcc.org>
+02:02:12   >>> Noah Segui (Assistant Golf Professional): nsegui@manorcc.org [verified]
+02:02:13   nsegui@manorcc.org → catch-all
+02:02:15   ⚠ Added (catch-all): Noah Segui <nsegui@manorcc.org>
+02:02:16   >>> Jillian Birke (Recreation and Camp Coordinator): jbirke@manorcc.org [verified]
+02:02:17   jbirke@manorcc.org → catch-all
+02:02:19   ⚠ Added (catch-all): Jillian Birke <jbirke@manorcc.org>
+02:02:22   >>> Rafiqul Hoque (Director of Marketing and Communications): rhoque@manorcc.org [verified]
+02:02:22   rhoque@manorcc.org → valid
+02:02:24   ✓ Added: Rafiqul Hoque <rhoque@manorcc.org>
+02:02:26   >>> Mesfin Kassa (Banquet Manager): mkassa@manorcc.org [verified]
+02:02:26   mkassa@manorcc.org → catch-all
+02:02:29   ⚠ Added (catch-all): Mesfin Kassa <mkassa@manorcc.org>
+02:02:30   >>> Will McNeal (Golf Course Superintendent): wmcneal@manorcc.org [verified]
+02:02:31   wmcneal@manorcc.org → catch-all
+02:02:33   ⚠ Added (catch-all): Will McNeal <wmcneal@manorcc.org>
+02:02:34   >>> Kristen Troop (Director of Member Dining): ktroop@manorcc.org [verified]
+02:02:34   ktroop@manorcc.org → catch-all
+02:02:37   ⚠ Added (catch-all): Kristen Troop <ktroop@manorcc.org>
+02:02:38   >>> Natalia Vasquez (Accounts Receivable): nvasquez@manorcc.org [verified]
+02:02:39   nvasquez@manorcc.org → catch-all
+02:02:42   ⚠ Added (catch-all): Natalia Vasquez <nvasquez@manorcc.org>
+02:02:43   >>> Joseph Shapiro (Director of Outdoor Operations): jshapiro@manorcc.org [verified]
+02:02:43   jshapiro@manorcc.org → valid
+02:02:45   ✓ Added: Joseph Shapiro <jshapiro@manorcc.org>
+02:02:46   >>> Tyler Meneely (Professional Bartender): tyler@manorcc.org [verified]
+02:02:47   tyler@manorcc.org → catch-all
+02:02:50   ⚠ Added (catch-all): Tyler Meneely <tyler@manorcc.org>
+02:02:51   >>> Robert Jeffrey (2nd Assistant Superintendent): rjeffrey@manorcc.org [verified]
+02:02:51   rjeffrey@manorcc.org → catch-all
+02:02:54   ⚠ Added (catch-all): Robert Jeffrey <rjeffrey@manorcc.org>
+02:02:55   >>> Bob Ger (Tennis Instructor): bger@manorcc.org [verified]
+02:02:56   bger@manorcc.org → catch-all
+02:02:58   ⚠ Added (catch-all): Bob Ger <bger@manorcc.org>
+02:02:59   >>> Susan Pelletier (Controller): spelletier@manorcc.org [verified]
+02:03:00   spelletier@manorcc.org → catch-all
+02:03:05   ⚠ Added (catch-all): Susan Pelletier <spelletier@manorcc.org>
+02:03:07   Apollo API done: 100 credits used this run
+02:03:07 
+02:03:07 ========== STEP 4: LinkedIn + Apollo API ==========
+02:03:07   Using domain: manorcc.org
+02:03:11   LinkedIn page 1...
+02:03:30   No results on page 1 — stopping.
+02:03:30   No new people found on LinkedIn.
+02:03:32   Setting status → pipelined
+02:03:34 
+02:03:34 ============================================================
+02:03:34  DONE: Manor Country Club | 3 min | 02:03:34
+02:03:34 ============================================================
+02:04:04 
+02:04:04 ########## SMART PICK #7 (score 89): Burning Tree Club (MD-COUN-915) ##########
+02:04:11   [LOOKUP] No website — Googling 'Burning Tree Club'...
+02:04:15   [LOOKUP] Skipping 'https://www.top100golfcourses.com' — domain mismatch
+02:04:15   [LOOKUP] Found: https://www.burningtreecc.org
+02:04:18   [DOMAIN] Venue domain: burningtreecc.org
+02:04:20 
+02:04:20 ============================================================
+02:04:20  PIPELINE: Burning Tree Club (MD-COUN-915)
+02:04:20  Website: https://www.burningtreecc.org
+02:04:20  Started: 2026-05-29 02:04:20
+02:04:20 ============================================================
+02:04:21   [ZB] Credits remaining: 3670
+02:04:23   Known emails: 0
+02:04:23   Known names: 0
+02:04:23 
+02:04:23 ========== STEP 1: Website Scrape ==========
+02:04:23   URL: https://www.burningtreecc.org
+02:04:23   Opening in Chrome: https://www.burningtreecc.org
+02:04:30   Emails: 1 | FB: https://www.facebook.com/btccgreenwich | IG: https://www.instagram.com/btccgreenwich/ | Contact Form: none
+02:04:30   Crawling subpage (1): https://www.burningtreecc.org/Events
+02:04:34   Found on subpage: frontdesk@burningtreecc.org, sperbellini@burningtreecc.org
+02:04:34   Crawling subpage (2): https://www.burningtreecc.org/Events/Public_Events
+02:04:39   Found on subpage: frontdesk@burningtreecc.org
+02:04:39   Crawling subpage (3): https://www.burningtreecc.org/home
+02:04:43   Found on subpage: frontdesk@burningtreecc.org
+02:04:43   Crawling subpage (4): https://www.burningtreecc.org/Golf
+02:04:47   Found on subpage: frontdesk@burningtreecc.org, sirons@burningtreecc.org
+02:04:47   Crawling subpage (5): https://www.burningtreecc.org/TeeTimes/TeeSheet.aspx
+02:04:52   Found on subpage: frontdesk@burningtreecc.org, sirons@burningtreecc.org
+02:04:52   Crawling subpage (6): https://www.burningtreecc.org/Golf/Men_s_Golf
+02:04:56   Found on subpage: frontdesk@burningtreecc.org, sirons@burningtreecc.org
+02:04:56   Crawling subpage (7): https://www.burningtreecc.org/Golf/Ladies_Golf
+02:05:00   Same emails 3 pages in a row — stopping subpage crawl
+02:05:09   frontdesk@burningtreecc.org → do_not_mail
+02:05:10   sirons@burningtreecc.org → valid
+02:05:13   ✓ Added: sirons@burningtreecc.org <sirons@burningtreecc.org>
+02:05:14   sperbellini@burningtreecc.org → valid
+02:05:17   ✓ Added: sperbellini@burningtreecc.org <sperbellini@burningtreecc.org>
+02:05:18 
+02:05:18 ========== STEP 2: Social Media Scrape ==========
+02:05:22   FB: https://www.facebook.com/btccgreenwich | IG: https://www.instagram.com/btccgreenwich/
+02:05:22   Opening FB: https://www.facebook.com/btccgreenwich
+02:05:27   Opening FB: https://www.facebook.com/btccgreenwich/about
+02:05:33   Opening FB: https://www.facebook.com/btccgreenwich/directory_contact_info
+02:05:38   [FB] No email on page — trying Google snippet...
+02:05:42   [FB SNIPPET] No email in Google snippet
+02:05:42   Opening IG: https://www.instagram.com/btccgreenwich/
+02:05:47   [IG] No email on page — trying Google snippet...
+02:05:52   [IG SNIPPET] No email in Google snippet
+02:05:52   [APOLLO] Credits used this run: 100 / 300
+02:05:52 
+02:05:52 ========== STEP 3: Apollo API ==========
+02:05:52   Searching Apollo for company: Burning Tree Club
+02:05:53   Found: Burning Tree Country Club (domain: burningtreecc.org, org_id: 5ed06b753b14b300017ad1c3)
+02:05:53   Searching for people at Burning Tree Country Club (org_id: 5ed06b753b14b300017ad1c3)...
+02:05:54   Found 1 people total
+02:05:54   Skipped 1 people with no email (red ? on Apollo)
+02:05:54   No new people to enrich (but pending contacts may have been added above).
+02:05:54 
+02:05:54 ========== STEP 4: LinkedIn + Apollo API ==========
+02:05:54   Using domain: burningtreecc.org
+02:05:58   LinkedIn page 1...
+02:06:16   No results on page 1 — stopping.
+02:06:16   No new people found on LinkedIn.
+02:06:18   Setting status → pipelined
+02:06:21 
+02:06:21 ============================================================
+02:06:21  DONE: Burning Tree Club | 2 min | 02:06:21
+02:06:21 ============================================================
+02:06:51 
+02:06:51 ########## SMART PICK #8 (score 85): Il Pizzico (MD-REST-873) ##########
+02:06:58   [DOMAIN] Venue domain: ilpizzico.com
+02:07:01 
+02:07:01 ============================================================
+02:07:01  PIPELINE: Il Pizzico (MD-REST-873)
+02:07:01  Website: https://www.ilpizzico.com/
+02:07:01  Started: 2026-05-29 02:07:01
+02:07:01 ============================================================
+02:07:01   [ZB] Credits remaining: 3667
+02:07:04   Known emails: 0
+02:07:04   Known names: 0
+02:07:04 
+02:07:04 ========== STEP 1: Website Scrape ==========
+02:07:04   URL: https://www.ilpizzico.com/
+02:07:04   Opening in Chrome: https://www.ilpizzico.com/
+02:07:10   Validating contact form URL: https://www.ilpizzico.com/contact
+02:07:15   Found on contact page: info@ilpizzico.com
+02:07:15   ✓ Real contact form confirmed
+02:07:15   Emails: 1 | FB: http://www.facebook.com/2008 | IG: https://www.instagram.com/ilpizzico/ | Contact Form: https://www.ilpizzico.com/contact
+02:07:15   Crawling subpage (1): https://www.ilpizzico.com/contact
+02:07:19   Found on subpage: info@ilpizzico.com
+02:07:19   Crawling subpage (2): https://www.ilpizzico.com/about-us
+02:07:23   Found on subpage: info@ilpizzico.com
+02:07:23   Crawling subpage (3): https://www.ilpizzico.com/find-us
+02:07:28   Found on subpage: info@ilpizzico.com
+02:07:28   Crawling subpage (4): https://www.ilpizzico.com/employment
+02:07:32   Same emails 3 pages in a row — stopping subpage crawl
+02:07:32   [CONTACT] Probing https://www.ilpizzico.com/contact
+02:07:38   [CONTACT] Found emails on https://www.ilpizzico.com/contact
+02:07:45   ✓ Contact form URL saved
+02:07:45   info@ilpizzico.com → do_not_mail
+02:07:47 
+02:07:47 ========== STEP 2: Social Media Scrape ==========
+02:07:50   FB: http://www.facebook.com/2008 | IG: https://www.instagram.com/ilpizzico/
+02:07:50   Opening FB: http://www.facebook.com/2008
+02:07:55   Opening FB: http://www.facebook.com/2008/about
+02:08:00   Opening FB: http://www.facebook.com/2008/directory_contact_info
+02:08:05   [FB] No email on page — trying Google snippet...
+02:08:10   [FB SNIPPET] No email in Google snippet
+02:08:10   Opening IG: https://www.instagram.com/ilpizzico/
+02:08:15   [IG] No email on page — trying Google snippet...
+02:08:19   [IG SNIPPET] No email in Google snippet
+02:08:19   [APOLLO] Credits used this run: 100 / 300
+02:08:19 
+02:08:19 ========== STEP 3: Apollo API ==========
+02:08:19   Searching Apollo for company: Il Pizzico
+02:08:20   Found: Il Pizzico (domain: ilpizzico.com, org_id: 54a1c1ff7468695c827d2a0e)
+02:08:20   Searching for people at Il Pizzico (org_id: 54a1c1ff7468695c827d2a0e)...
+02:08:21   Found 0 people total
+02:08:21   No people in Apollo for this company.
+02:08:21 
+02:08:21 ========== STEP 4: LinkedIn + Apollo API ==========
+02:08:21   Using domain: ilpizzico.com
+02:08:24   LinkedIn page 1...
+02:08:41   No results on page 1 — stopping.
+02:08:41   No new people found on LinkedIn.
+02:08:44 
+02:08:44 ========== STEP 5: Google Fallback (no email found yet) ==========
+02:08:44   Googling: "Il Pizzico" contact Rockville
+02:08:48   [FALLBACK] Found site: https://www.ilpizzico.com|https://www.wbfn.org (domain: ilpizzico.com|https:)
+02:08:50 
+02:08:50 ========== STEP 1: Website Scrape ==========
+02:08:50   URL: https://www.ilpizzico.com|https://www.wbfn.org
+02:08:50   Opening in Chrome: https://www.ilpizzico.com|https://www.wbfn.org
+02:08:57   Emails: 2 | FB: https://www.facebook.com/ilpizzicoristorante | IG: https://www.instagram.com/ilpizzico/ | Contact Form: none
+02:08:57   Crawling subpage (1): https://www.google.com/intl/en/about/products
+02:09:07   info@ilpizzico.com → do_not_mail
+02:09:08   info@ilpizzico.com.read → invalid
+02:09:12   ⚠ Added (invalid): info@ilpizzico.com.read <info@ilpizzico.com.read>
+02:09:13   [FALLBACK] Re-trying Instagram: Il Pizzico Rockville site:instagram.com
+02:09:17   [FALLBACK] Found Instagram: https://www.instagram.com/ilpizzico/
+02:09:20 
+02:09:20 ========== STEP 2: Social Media Scrape ==========
+02:09:23   FB: https://www.facebook.com/ilpizzicoristorante | IG: https://www.instagram.com/ilpizzico/
+02:09:23   Opening FB: https://www.facebook.com/ilpizzicoristorante
+02:09:28   Opening FB: https://www.facebook.com/ilpizzicoristorante/about
+02:09:33   Opening FB: https://www.facebook.com/ilpizzicoristorante/directory_contact_info
+02:09:38   FB emails found: info@ilpizzico.com
+02:09:38   Opening IG: https://www.instagram.com/ilpizzico/
+02:09:43   [IG] No email on page — trying Google snippet...
+02:09:48   [IG SNIPPET] No email in Google snippet
+02:09:48   info@ilpizzico.com → do_not_mail
+02:09:49   Setting status → pipelined
+02:09:51 
+02:09:51 ============================================================
+02:09:51  DONE: Il Pizzico | 2 min | 02:09:51
+02:09:51 ============================================================
+02:10:21 
+02:10:21 ########## SMART PICK #9 (score 85): Maurizio's (MD-REST-876) ##########
+02:10:27   [LOOKUP] No website — Googling 'Maurizio's'...
+02:10:31   [LOOKUP] Found: https://www.mauriziositalian.com
+02:10:33   [DOMAIN] Venue domain: mauriziositalian.com
+02:10:39 
+02:10:39 ============================================================
+02:10:39  PIPELINE: Maurizio's (MD-REST-876)
+02:10:39  Website: https://www.mauriziositalian.com
+02:10:39  Started: 2026-05-29 02:10:39
+02:10:39 ============================================================
+02:10:39   [ZB] Credits remaining: 3665
+02:10:42   Known emails: 0
+02:10:42   Known names: 0
+02:10:42 
+02:10:42 ========== STEP 1: Website Scrape ==========
+02:10:42   URL: https://www.mauriziositalian.com
+02:10:42   Opening in Chrome: https://www.mauriziositalian.com
+02:10:49   Validating contact form URL: https://www.mauriziositalian.com/contact
+02:10:53   Found on contact page: info@mauriziositalian.com, molly@mhco.studio
+02:10:53   ✗ No submittable form found — clearing contact_form
+02:10:53   Emails: 0 | FB: http://www.facebook.com/2008 | IG: http://instagram.com/mauriziositalian | Contact Form: none
+02:10:53   [LOCATION] Checking for location-specific page (city: Potomac)...
+02:10:54   [LOCATION] No location-specific page found
+02:10:54   Crawling subpage (1): https://www.mauriziositalian.com/contact
+02:10:59   Found on subpage: info@mauriziositalian.com, molly@mhco.studio
+02:10:59   Crawling subpage (2): https://www.mauriziositalian.com/ourstory
+02:11:03   Crawling subpage (3): https://www.mauriziositalian.com/careers
+02:11:07   Crawling subpage (4): https://www.mauriziositalian.com/reservations
+02:11:12   [CONTACT] Probing https://www.mauriziositalian.com/contact
+02:11:17   [CONTACT] Found emails on https://www.mauriziositalian.com/contact
+02:11:23   info@mauriziositalian.com → do_not_mail
+02:11:25   [SKIP] molly@mhco.studio — off-domain (venue: mauriziositalian.com)
+02:11:25 
+02:11:25 ========== STEP 2: Social Media Scrape ==========
+02:11:27   FB: http://www.facebook.com/2008 | IG: http://instagram.com/mauriziositalian
+02:11:27   Opening FB: http://www.facebook.com/2008
+02:11:32   Opening FB: http://www.facebook.com/2008/about
+02:11:38   Opening FB: http://www.facebook.com/2008/directory_contact_info
+02:11:43   [FB] No email on page — trying Google snippet...
+02:11:47   [FB SNIPPET] No email in Google snippet
+02:11:47   Opening IG: http://instagram.com/mauriziositalian
+02:11:52   [IG] No email on page — trying Google snippet...
+02:11:57   [IG SNIPPET] No email in Google snippet
+02:11:57   [APOLLO] Credits used this run: 100 / 300
+02:11:57 
+02:11:57 ========== STEP 3: Apollo API ==========
+02:11:57   Searching Apollo for company: Maurizio's
+02:12:00   Found: Maurizio's Hair Studio (domain: mauriziohairstudio.com, org_id: 5a9e306da6da98d94672a156)
+02:12:00   Searching for people at Maurizio's Hair Studio (org_id: 5a9e306da6da98d94672a156)...
+02:12:02   Found 0 people total
+02:12:02   No people in Apollo for this company.
+02:12:02 
+02:12:02 ========== STEP 4: LinkedIn + Apollo API ==========
+02:12:02   Using domain: mauriziohairstudio.com
+02:12:05   LinkedIn page 1...
+02:12:21   No results on page 1 — stopping.
+02:12:21   No new people found on LinkedIn.
+02:12:23 
+02:12:23 ========== STEP 5: Google Fallback (no email found yet) ==========
+02:12:23   Googling: "Maurizio's" contact Potomac
+02:12:27   [FALLBACK] Found site: https://www.mauriziositalian.com|https://bethesdamagazine.com|https://maps.roadtrippers.com|https://www.storereporter.com (domain: mauriziositalian.com|https:)
+02:12:29 
+02:12:29 ========== STEP 1: Website Scrape ==========
+02:12:29   URL: https://www.mauriziositalian.com|https://bethesdamagazine.com|https://maps.roadtrippers.com|https://www.storereporter.com
+02:12:29   Opening in Chrome: https://www.mauriziositalian.com|https://bethesdamagazine.com|https://maps.roadtrippers.com|https://www.storereporter.com
+02:12:36   Emails: 2 | FB: https://www.facebook.com/MoCoShow/posts/maurizios-in-potomac-named-only-maryland-restaurant-on-eater-dcs-most-anticipate/1441858037873628 | IG: https://www.instagram.com/p/DUbPZvpDuEU/ | Contact Form: none
+02:12:36   Crawling subpage (1): https://www.google.com/intl/en/about/products
+02:12:44   info@mauriziositalian.com → do_not_mail
+02:12:45   [SKIP] molly@mhco.read — off-domain (venue: mauriziositalian.com|https:)
+02:12:45   [FALLBACK] Re-trying Instagram: Maurizio's Potomac site:instagram.com
+02:12:50   [FALLBACK] Found Instagram: https://www.instagram.com/mauriziositalian/
+02:12:52 
+02:12:52 ========== STEP 2: Social Media Scrape ==========
+02:12:55   FB: https://www.facebook.com/MoCoShow/posts/maurizios-in-potomac-named-only-maryland-restaurant-on-eater-dcs-most-anticipate/1441858037873628 | IG: https://www.instagram.com/mauriziositalian/
+02:12:55   Opening FB: https://www.facebook.com/MoCoShow/posts/maurizios-in-potomac-named-only-maryland-restaurant-on-eater-dcs-most-anticipate/1441858037873628
+02:13:00   Opening FB: https://www.facebook.com/MoCoShow/posts/maurizios-in-potomac-named-only-maryland-restaurant-on-eater-dcs-most-anticipate/1441858037873628/about
+02:13:05   Opening FB: https://www.facebook.com/MoCoShow/posts/maurizios-in-potomac-named-only-maryland-restaurant-on-eater-dcs-most-anticipate/1441858037873628/directory_contact_info
+02:13:11   [FB] No email on page — trying Google snippet...
+02:13:15   [FB SNIPPET] No email in Google snippet
+02:13:15   Opening IG: https://www.instagram.com/mauriziositalian/
+02:13:20   [IG] No email on page — trying Google snippet...
+02:13:24   [IG SNIPPET] No email in Google snippet
+02:13:24   Setting status → pipelined
+02:13:27 
+02:13:27 ============================================================
+02:13:27  DONE: Maurizio's | 3 min | 02:13:27
+02:13:27 ============================================================
+02:13:57 
+02:13:57 ########## SMART PICK #10 (score 85): Mon Ami Gabi (MD-REST-884) ##########
+02:14:03   [DOMAIN] Venue domain: monamigabi.com
+02:14:06 
+02:14:06 ============================================================
+02:14:06  PIPELINE: Mon Ami Gabi (MD-REST-884)
+02:14:06  Website: https://monamigabi.com/bethesda
+02:14:06  Started: 2026-05-29 02:14:06
+02:14:06 ============================================================
+02:14:06   [ZB] Credits remaining: 3664
+02:14:10   Known emails: 0
+02:14:10   Known names: 0
+02:14:10 
+02:14:10 ========== STEP 1: Website Scrape ==========
+02:14:10   URL: https://monamigabi.com/bethesda
+02:14:10   Opening in Chrome: https://monamigabi.com/bethesda
+02:14:16   Validating contact form URL: https://www.monamigabi.com/bethesda/contact
+02:14:21   ✓ Real contact form confirmed
+02:14:21   Emails: 0 | FB: https://www.facebook.com/MonAmiGabiMD | IG: https://www.instagram.com/monamigabibistro/ | Contact Form: https://www.monamigabi.com/bethesda/contact
+02:14:21   [LOCATION] Checking for location-specific page (city: Bethesda)...
+02:14:22   [LOCATION] Found: https://monamigabi.com/bethesda/
+02:14:22   [LOCATION] Re-scraping location page: https://monamigabi.com/bethesda/
+02:14:30   [LOCATION] Re-scraped: Emails: 0 | FB: https://www.facebook.com/MonAmiGabiMD | IG: https://www.instagram.com/monamigabibistro/ | Contact Form: https://www.monamigabi.com/bethesda/contact
+02:14:30   Crawling subpage (1): https://www.monamigabi.com/bethesda/contact
+02:14:35   Crawling subpage (2): https://www.monamigabi.com/bethesda/events
+02:14:39   Crawling subpage (3): https://www.monamigabi.com/events/fathers-day-3
+02:14:43   Crawling subpage (4): https://www.monamigabi.com/events/weekend-brunch-2
+02:14:48   Crawling subpage (5): https://www.monamigabi.com
+02:14:52   Crawling subpage (6): https://www.monamigabi.com/bethesda/menus
+02:14:56   Crawling subpage (7): https://www.monamigabi.com/bethesda/parties
+02:15:01   Found on subpage: monamimdparties@lettuce.com
+02:15:01   Crawling subpage (8): https://www.monamigabi.com/bethesda/newsletter
+02:15:06   [CONTACT] Probing https://monamigabi.com/contact
+02:15:20   ✓ Contact form URL saved
+02:15:20   [SKIP] monamimdparties@lettuce.com — off-domain (venue: monamigabi.com)
+02:15:20 
+02:15:20 ========== STEP 2: Social Media Scrape ==========
+02:15:23   FB: https://www.facebook.com/MonAmiGabiMD | IG: https://www.instagram.com/monamigabibistro/
+02:15:23   Opening FB: https://www.facebook.com/MonAmiGabiMD
+02:15:28   Opening FB: https://www.facebook.com/MonAmiGabiMD/about
+02:15:33   Opening FB: https://www.facebook.com/MonAmiGabiMD/directory_contact_info
+02:15:39   [FB] No email on page — trying Google snippet...
+02:15:43   [FB SNIPPET] No email in Google snippet
+02:15:43   Opening IG: https://www.instagram.com/monamigabibistro/
+02:15:48   [IG] No email on page — trying Google snippet...
+02:15:52   [IG SNIPPET] No email in Google snippet
+02:15:52   [APOLLO] Credits used this run: 100 / 300
+02:15:52 
+02:15:52 ========== STEP 3: Apollo API ==========
+02:15:52   Searching Apollo for company: Mon Ami Gabi
+02:15:54   Found: MON AMI GABI LLC (domain: monamigabi.com, org_id: 66fa100fd221a200017bc0b2)
+02:15:54   Searching for people at MON AMI GABI LLC (org_id: 66fa100fd221a200017bc0b2)...
+02:15:55   Found 3 people total
+02:15:55   Skipped 3 people with no email (red ? on Apollo)
+02:15:55   +++ Zomorod K (Assistant Manager): no email — added as pending
+02:15:58   No new people to enrich (but pending contacts may have been added above).
+02:15:58 
+02:15:58 ========== STEP 4: LinkedIn + Apollo API ==========
+02:15:59   Using domain: monamigabi.com
+02:16:02   LinkedIn page 1...
+02:16:18   No results on page 1 — stopping.
+02:16:18   No new people found on LinkedIn.
+02:16:21 
+02:16:21 ========== STEP 5: Google Fallback (no email found yet) ==========
+02:16:21   Googling: "Mon Ami Gabi" contact Bethesda
+02:16:25   [FALLBACK] Found site: https://www.monamigabi.com|https://4.7K+|https://bethesdamagazine.com|https://www.ramw.org (domain: monamigabi.com|https:)
+02:16:27 
+02:16:27 ========== STEP 1: Website Scrape ==========
+02:16:27   URL: https://www.monamigabi.com|https://4.7K+|https://bethesdamagazine.com|https://www.ramw.org
+02:16:27   Opening in Chrome: https://www.monamigabi.com|https://4.7K+|https://bethesdamagazine.com|https://www.ramw.org
+02:16:33   Emails: 1 | FB: https://www.facebook.com/MonAmiGabiMD | IG: https://www.instagram.com/monamigabibistro/ | Contact Form: none
+02:16:34   Crawling subpage (1): https://www.google.com/intl/en/about/products
+02:16:42   [SKIP] monamimdparties@lettuce.com — off-domain (venue: monamigabi.com|https:)
+02:16:42   [FALLBACK] Re-trying Instagram: Mon Ami Gabi Bethesda site:instagram.com
+02:16:47   [FALLBACK] Found Instagram: https://www.instagram.com/monamigabibethesda/|https://www.instagram.com/monamigabibistro/
+02:16:49 
+02:16:49 ========== STEP 2: Social Media Scrape ==========
+02:16:51   FB: https://www.facebook.com/MonAmiGabiMD | IG: https://www.instagram.com/monamigabibethesda/|https://www.instagram.com/monamigabibistro/
+02:16:51   Opening FB: https://www.facebook.com/MonAmiGabiMD
+02:16:57   Opening FB: https://www.facebook.com/MonAmiGabiMD/about
+02:17:02   Opening FB: https://www.facebook.com/MonAmiGabiMD/directory_contact_info
+02:17:07   [FB] No email on page — trying Google snippet...
+02:17:11   [FB SNIPPET] No email in Google snippet
+02:17:11   Opening IG: https://www.instagram.com/monamigabibethesda/|https://www.instagram.com/monamigabibistro/
+02:17:17   [IG] No email on page — trying Google snippet...
+02:17:21   [IG SNIPPET] No email in Google snippet
+02:17:21   Setting status → pipelined
+02:17:23 
+02:17:23 ============================================================
+02:17:23  DONE: Mon Ami Gabi | 3 min | 02:17:23
+02:17:23 ============================================================
+02:17:53 [BUDGET] Shared limit of 10 reached — stopping smart picks
+02:17:53 === SMART PICKS COMPLETE ===
+02:17:53 
+02:17:53 UNTOUCHED PHASE: Fetching all venues...
+02:17:57 UNTOUCHED: 939 found (shared budget: 10 total)
+02:17:57 [BUDGET] Shared limit of 10 reached — stopping untouched phase
+02:17:57 === UNTOUCHED PHASE COMPLETE ===
+02:17:57 
+02:17:57 === SMART PICKS COMPLETE ===
+02:17:57 
+02:17:57 === POST-PIPELINE VERIFICATION ===
+02:18:26 
+02:18:26 --- Postcheck Results ---
+02:18:26   
+02:18:26   [02:17:58] === Post-Pipeline Check Started ===
+02:18:26   [02:17:58] Fetching pipelined venues with zero contacts...
+02:18:26   [02:18:05] 
+02:18:26   [02:18:05] === Maurizio's (MD-REST-876) | Potomac, MD | Contacts: 0 ===
+02:18:26   [02:18:05]   Website: https://www.mauriziositalian.com
+02:18:26   [02:18:05]   Found emails on https://www.mauriziositalian.com:
+02:18:26   [02:18:05]     user@domain.com
+02:18:26   [02:18:05]   Contact form found: https://www.mauriziositalian.com
+02:18:26   [02:18:05]   Found emails on https://www.mauriziositalian.com/contact:
+02:18:26   [02:18:05]     info@mauriziositalian.com
+02:18:26   [02:18:05]     molly@mhco.studio
+02:18:26   [02:18:05]     user@domain.com
+02:18:26   [02:18:06]   Found emails on https://www.mauriziositalian.com/contact-us:
+02:18:26   [02:18:06]     user@domain.com
+02:18:26   [02:18:06]   Found emails on https://www.mauriziositalian.com/about:
+02:18:26   [02:18:06]     user@domain.com
+02:18:26   [02:18:06]   Found emails on https://www.mauriziositalian.com/events:
+02:18:26   [02:18:06]     user@domain.com
+02:18:26   [02:18:07]   Found emails on https://www.mauriziositalian.com/private-events:
+02:18:26   [02:18:07]     user@domain.com
+02:18:26   [02:18:07]   Found emails on https://www.mauriziositalian.com/event-contact:
+02:18:26   [02:18:07]     user@domain.com
+02:18:26   [02:18:10]   Saved contact form to sheet
+02:18:26   [02:18:13]   Added contact: info@mauriziositalian.com
+02:18:26   [02:18:17]   Added contact: molly@mhco.studio
+02:18:26   [02:18:20]   Added contact: user@domain.com
+02:18:26   [02:18:20]   [Apollo] Searching by domain: mauriziositalian.com
+02:18:26   [02:18:20]   [Apollo] No results by domain — searching by name: Maurizio's
+02:18:26   [02:18:20]   [Apollo] Found 0 people
+02:18:26   [02:18:20]   Searching LinkedIn for: Maurizio's
+02:18:26   [02:18:26]   [LinkedIn] No results
+02:18:26   [02:18:26] 
+02:18:26   [02:18:26] === Post-Pipeline Check Complete ===
+02:18:26 --- End Postcheck ---
+02:18:26 
+02:18:26 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-29_02-18.html
+02:18:26 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-29_02-18.html

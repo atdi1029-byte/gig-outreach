@@ -73,3 +73,37 @@
 [22:23:19]   Saved contact form to sheet
 [22:23:19] 
 [22:23:19] === Post-Pipeline Check Complete ===
+
+[02:17:58] === Post-Pipeline Check Started ===
+[02:17:58] Fetching pipelined venues with zero contacts...
+[02:18:05] 
+[02:18:05] === Maurizio's (MD-REST-876) | Potomac, MD | Contacts: 0 ===
+[02:18:05]   Website: https://www.mauriziositalian.com
+[02:18:05]   Found emails on https://www.mauriziositalian.com:
+[02:18:05]     user@domain.com
+[02:18:05]   Contact form found: https://www.mauriziositalian.com
+[02:18:05]   Found emails on https://www.mauriziositalian.com/contact:
+[02:18:05]     info@mauriziositalian.com
+[02:18:05]     molly@mhco.studio
+[02:18:05]     user@domain.com
+[02:18:06]   Found emails on https://www.mauriziositalian.com/contact-us:
+[02:18:06]     user@domain.com
+[02:18:06]   Found emails on https://www.mauriziositalian.com/about:
+[02:18:06]     user@domain.com
+[02:18:06]   Found emails on https://www.mauriziositalian.com/events:
+[02:18:06]     user@domain.com
+[02:18:07]   Found emails on https://www.mauriziositalian.com/private-events:
+[02:18:07]     user@domain.com
+[02:18:07]   Found emails on https://www.mauriziositalian.com/event-contact:
+[02:18:07]     user@domain.com
+[02:18:10]   Saved contact form to sheet
+[02:18:13]   Added contact: info@mauriziositalian.com
+[02:18:17]   Added contact: molly@mhco.studio
+[02:18:20]   Added contact: user@domain.com
+[02:18:20]   [Apollo] Searching by domain: mauriziositalian.com
+[02:18:20]   [Apollo] No results by domain — searching by name: Maurizio's
+[02:18:20]   [Apollo] Found 0 people
+[02:18:20]   Searching LinkedIn for: Maurizio's
+[02:18:26]   [LinkedIn] No results
+[02:18:26] 
+[02:18:26] === Post-Pipeline Check Complete ===

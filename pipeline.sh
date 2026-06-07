@@ -136,7 +136,7 @@ verify_and_push() {
         return
     fi
 
-    # Off-domain filter — skip emails whose domain doesn't match the venue
+    # Off-domain check — flag but still save emails whose domain doesn't match the venue
     if [ -n "$VENUE_DOMAIN" ] && echo "$email" | grep -q '@'; then
         local email_domain
         email_domain=$(echo "$email" | awk -F'@' '{print tolower($2)}')
@@ -146,11 +146,10 @@ verify_and_push() {
             local vbase ebase
             vbase=$(echo "$VENUE_DOMAIN" | sed 's/\..*//')
             ebase=$(echo "$email_domain" | sed 's/\..*//')
-            # Match if: exact domain match, base match, or one base contains the other
+            # Flag if domains don't match, but still save the contact
             if [ "$email_domain" != "$VENUE_DOMAIN" ] && [ "$ebase" != "$vbase" ] && \
                ! echo "$vbase" | grep -qi "$ebase" && ! echo "$ebase" | grep -qi "$vbase"; then
-                log "  [SKIP] $email — off-domain (venue: $VENUE_DOMAIN)"
-                return
+                log "  [WARN] $email — off-domain (venue: $VENUE_DOMAIN) — saving anyway"
             fi
         fi
     fi
@@ -735,8 +734,8 @@ for c in d.get('contacts', []):
                     local pc_fb pc_ig
                     pc_fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_contact_probe.json')).get('facebook',''))" 2>/dev/null)
                     pc_ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_contact_probe.json')).get('instagram',''))" 2>/dev/null)
-                    if [ -z "$fb" ] || [ "$fb" = "None" ]; then fb="$pc_fb"; fi
-                    if [ -z "$ig" ] || [ "$ig" = "None" ]; then ig="$pc_ig"; fi
+                    if ([ -z "$fb" ] || [ "$fb" = "None" ]) && echo "$pc_fb" | grep -qi 'facebook\.com'; then fb="$pc_fb"; fi
+                    if ([ -z "$ig" ] || [ "$ig" = "None" ]) && echo "$pc_ig" | grep -qi 'instagram\.com'; then ig="$pc_ig"; fi
                     rm -f /tmp/pipeline_contact_probe.json
                 fi
                 break  # Only need to find one valid contact page
@@ -745,13 +744,42 @@ for c in d.get('contacts', []):
     fi
 
     # Update social links — also write to temp files so step1b/1c don't re-query the sheet
+    # Validate: only save if URL actually belongs to the right platform
     if [ -n "$fb" ] && [ "$fb" != "None" ] && [ "$fb" != "" ]; then
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$fb")" > /dev/null
-        echo "$fb" > /tmp/pipeline_step1_fb.txt
+        if echo "$fb" | grep -qi 'facebook\.com'; then
+            # Warn if FB slug doesn't match any venue name word
+            local fb_slug fb_name_match
+            fb_slug=$(echo "$fb" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
+            fb_name_match=$(python3 -c "
+import re, sys
+venue = sys.argv[1]; handle = sys.argv[2]
+words = re.sub(r'[^a-z\s]','',venue.lower()).split()
+stop = {'the','a','an','and','of','at','in','by','on','for','to',
+        'hotel','inn','resort','lodge','restaurant','winery','vineyard',
+        'club','country','golf','bar','bistro','cafe','tavern','grill',
+        'pub','lounge','spa','marina','museum','gallery'}
+words = [w for w in words if w not in stop and len(w) > 2]
+print('match' if any(w in handle for w in words) else 'no')
+" "$venue" "$fb_slug" 2>/dev/null)
+            if [ "$fb_name_match" = "no" ]; then
+                log "  [WARN] Facebook slug '$fb_slug' doesn't match venue name — may be wrong"
+                echo "FLAG:Off-venue Facebook: $fb (slug '$fb_slug' vs venue '$venue')" >> /tmp/pipeline_flags.txt
+            fi
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$fb")" > /dev/null
+            echo "$fb" > /tmp/pipeline_step1_fb.txt
+        else
+            log "  [WARN] Rejecting non-Facebook URL in fb field: $fb"
+            fb=""
+        fi
     fi
     if [ -n "$ig" ] && [ "$ig" != "None" ] && [ "$ig" != "" ]; then
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig")" > /dev/null
-        echo "$ig" > /tmp/pipeline_step1_ig.txt
+        if echo "$ig" | grep -qi 'instagram\.com'; then
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig")" > /dev/null
+            echo "$ig" > /tmp/pipeline_step1_ig.txt
+        else
+            log "  [WARN] Rejecting non-Instagram URL in ig field: $ig"
+            ig=""
+        fi
     fi
     if [ -n "$contact_form" ] && [ "$contact_form" != "None" ] && [ "$contact_form" != "" ]; then
         curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=contact_form&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$contact_form")" > /dev/null

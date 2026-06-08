@@ -16738,3 +16738,783 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 02:18:26 
 02:18:26 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-29_02-18.html
 02:18:26 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-05-29_02-18.html
+
+00:36:09 === Pipeline started 2026-06-08 00:36:09 ===
+00:36:09 SMART PICKS MODE: Fetching ranked venues...
+00:36:12 SMART PICKS: 1029 available, budget remaining: 10
+00:36:12 
+00:36:12 ########## SMART PICK #1 (score 99): Burning Tree Club (MD-COUN-915) ##########
+
+00:36:21 === Pipeline started 2026-06-08 00:36:21 ===
+00:36:21 SMART PICKS MODE: Fetching ranked venues...
+00:36:24 SMART PICKS: 1029 available, budget remaining: 10
+00:36:24 
+00:36:24 ########## SMART PICK #1 (score 99): Burning Tree Club (MD-COUN-915) ##########
+00:36:29   [LOOKUP] No website — Googling 'Burning Tree Club'...
+00:36:32   [LOOKUP] Skipping 'https://www.top100golfcourses.com' — domain mismatch
+00:36:33   [LOOKUP] Skipping 'https://www.golfclubatlas.com' — domain mismatch
+00:36:33   [LOOKUP] Skipping 'https://golfadelphia.com' — domain mismatch
+00:36:33   [LOOKUP] Skipping 'https://directory.pga.org' — domain mismatch
+00:36:33   [LOOKUP] Skipping 'https://www.golfdigest.com' — domain mismatch
+00:36:33   [WARN] Google returned 5 results but none matched venue 'Burning Tree Club': https://www.top100golfcourses.com|https://www.golfclubatlas.com|https://golfadelphia.com|https://directory.pga.org|https://www.golfdigest.com
+00:36:33   [DOMAIN] Venue domain: none
+00:36:34 
+00:36:34 ============================================================
+00:36:34  PIPELINE: Burning Tree Club (MD-COUN-915)
+00:36:34  Website: 
+00:36:34  Started: 2026-06-08 00:36:34
+00:36:34 ============================================================
+00:36:34   [ZB] Credits remaining: 3660
+00:36:38   Known emails: 2
+00:36:38   Known names: 0
+00:36:38 
+00:36:38 ========== STEP 1: Website Scrape ==========
+00:36:38   [SKIP] No website URL
+00:36:41 
+00:36:41 ========== STEP 1B: Instagram Google Search ==========
+00:36:41   No Instagram found on website — Googling...
+00:36:45   [IG SEARCH] No Instagram found via Google
+00:36:48 
+00:36:48 ========== STEP 1C: Facebook Google Search ==========
+00:36:48   No Facebook found on website — Googling...
+00:36:53   [FB SEARCH] Skipping https://www.facebook.com/metrodetroitgolfers/ — handle 'https://www.facebook.com/metrodetroitgolfers/' doesn't match venue
+00:36:53   [FB SEARCH] No handle matched venue name — using first result
+00:36:53   [FB SEARCH] Found: https://www.facebook.com/metrodetroitgolfers/
+00:36:55   ✓ Facebook URL saved
+00:36:55 
+00:36:55 ========== STEP 2: Social Media Scrape ==========
+00:36:56   FB: https://www.facebook.com/metrodetroitgolfers/ | IG: none
+00:36:56   Opening FB: https://www.facebook.com/metrodetroitgolfers
+00:37:02   FB emails found: info@metrodetroitgolfers.com
+00:37:02   Opening FB: https://www.facebook.com/metrodetroitgolfers/about
+00:37:07   Opening FB: https://www.facebook.com/metrodetroitgolfers/directory_contact_info
+00:37:12   FB emails found: info@metrodetroitgolfers.com
+00:37:13   info@metrodetroitgolfers.com → do_not_mail
+00:37:14   [APOLLO] Credits used this run: 0 / 300
+00:37:14 
+00:37:14 ========== STEP 3: Apollo API ==========
+00:37:14   Searching Apollo for company: Burning Tree Club
+00:37:18   Found: Burning Tree Club (domain: , org_id: 67315bf90af9f60001e94e38)
+00:37:18   [ERROR] No domain from Apollo or website — skipping people search
+00:37:18 
+00:37:18 ========== STEP 4: LinkedIn + Apollo API ==========
+00:37:20   [WARN] No domain found for 'Burning Tree Club' — LinkedIn names won't be enrichable
+00:37:22   LinkedIn page 1...
+00:37:38   No results on page 1 — stopping.
+00:37:38   No new people found on LinkedIn.
+00:37:39   Setting status → pipelined
+00:37:41 
+00:37:41 ============================================================
+00:37:41  DONE: Burning Tree Club | 1 min | 00:37:41
+00:37:41 ============================================================
+00:38:11 
+00:38:11 ########## SMART PICK #2 (score 85): Jaleo Bethesda (MD-REST-885) ##########
+00:38:17   [DOMAIN] Venue domain: jaleo.com
+00:38:20 
+00:38:20 ============================================================
+00:38:20  PIPELINE: Jaleo Bethesda (MD-REST-885)
+00:38:20  Website: https://jaleo.com/
+00:38:20  Started: 2026-06-08 00:38:20
+00:38:20 ============================================================
+00:38:20   [ZB] Credits remaining: 3659
+00:38:22   Known emails: 0
+00:38:22   Known names: 0
+00:38:22 
+00:38:22 ========== STEP 1: Website Scrape ==========
+00:38:22   URL: https://jaleo.com/
+00:38:22   Opening in Chrome: https://jaleo.com/
+00:38:28   Emails: 0 | FB: https://www.facebook.com/jaleo | IG: https://www.instagram.com/jaleobyjose/ | Contact Form: none
+00:38:28   [LOCATION] Checking for location-specific page (city: Bethesda)...
+00:38:32   [LOCATION] No location-specific page found
+00:38:32   Crawling subpage (1): https://www.jaleo.com/private-events
+00:38:37   Crawling subpage (2): https://www.jaleo.com/event/all-spain-matches-all-in-one-place
+00:38:41   Crawling subpage (3): https://www.jaleo.com/event/las-vegas-restaurant-week
+00:38:45   Crawling subpage (4): https://www.jaleo.com/event/weekend-brunch
+00:38:49   Crawling subpage (5): https://www.jaleo.com/event/sangria-hour
+00:38:54   Crawling subpage (6): https://www.jaleo.com/location/jaleo-disney-springs
+00:38:58   Crawling subpage (7): https://www.jaleo.com/location/las-vegas
+00:39:02   Crawling subpage (8): https://www.jaleo.com/location/washington-dc
+00:39:06   Crawling subpage (9): https://www.jaleo.com/disney-springsr
+00:39:11   Crawling subpage (10): https://www.jaleo.com/las-vegas
+00:39:15   Crawling subpage (11): https://www.jaleo.com/washington-dc
+00:39:19   Crawling subpage (12): https://www.jaleo.com/story
+00:39:23   Crawling subpage (13): https://www.jaleo.com/order-online
+00:39:28   Crawling subpage (14): https://www.jaleo.com/careers
+00:39:32   Crawling subpage (15): https://www.jaleo.com/accessibility-statement
+00:39:36   Found on subpage: digital@thinkfoodgroup.com
+00:39:36   Crawling subpage (16): https://www.jaleo.com/privacy
+00:39:40   Found on subpage: digital@thinkfoodgroup.com, info@thinkfoodgroup.com
+00:39:41   Crawling subpage (17): https://www.jaleo.com/terms-of-use
+00:39:45   Found on subpage: digital@thinkfoodgroup.com
+00:39:45   Crawling subpage (18): https://www.jaleo.com/giftcard
+00:39:50   [CONTACT] Probing https://jaleo.com/contact
+00:40:00   [WARN] digital@thinkfoodgroup.com — off-domain (venue: jaleo.com) — saving anyway
+00:40:01   digital@thinkfoodgroup.com → do_not_mail
+00:40:02   [WARN] info@thinkfoodgroup.com — off-domain (venue: jaleo.com) — saving anyway
+00:40:02   info@thinkfoodgroup.com → do_not_mail
+00:40:03 
+00:40:03 ========== STEP 2: Social Media Scrape ==========
+00:40:06   FB: https://www.facebook.com/jaleo | IG: https://www.instagram.com/jaleobyjose/
+00:40:06   Opening FB: https://www.facebook.com/jaleo
+00:40:11   Opening FB: https://www.facebook.com/jaleo/about
+00:40:17   Opening FB: https://www.facebook.com/jaleo/directory_contact_info
+00:40:22   FB emails found: info@thinkfoodgroup.com
+00:40:22   Opening IG: https://www.instagram.com/jaleobyjose/
+00:40:27   [IG] No email on page — trying Google snippet...
+00:40:31   [IG SNIPPET] No email in Google snippet
+00:40:31   [WARN] info@thinkfoodgroup.com — off-domain (venue: jaleo.com) — saving anyway
+00:40:31   info@thinkfoodgroup.com → do_not_mail
+00:40:32   [APOLLO] Credits used this run: 0 / 300
+00:40:32 
+00:40:32 ========== STEP 3: Apollo API ==========
+00:40:32   Searching Apollo for company: Jaleo Bethesda
+00:40:34   Found: Jaleo Tapas Bar (domain: jaleo.com, org_id: 54a1c0877468695c8224a40d)
+00:40:34   Searching for people at Jaleo Tapas Bar (org_id: 54a1c0877468695c8224a40d)...
+00:40:34   Found 9 people total
+00:40:35   Skipped 2 people with no email (red ? on Apollo)
+00:40:35   +++ David Ca***a (Sous Chef): no email — added as pending
+00:40:37   7 people to enrich (1 credit each)
+00:40:38   >>> Roberto Saenz (Server): robertos@jaleo.com [verified]
+00:40:39   robertos@jaleo.com → invalid
+00:40:42   ⚠ Added (invalid): Roberto Saenz <robertos@jaleo.com>
+00:40:43   >>> Marcus Stockton (Prep Cook): marcuss@jaleo.com [verified]
+00:40:43   marcuss@jaleo.com → invalid
+00:40:47   ⚠ Added (invalid): Marcus Stockton <marcuss@jaleo.com>
+00:40:48   >>> Raza Ali (Cook): razaa@jaleo.com [verified]
+00:40:48   razaa@jaleo.com → invalid
+00:40:50   ⚠ Added (invalid): Raza Ali <razaa@jaleo.com>
+00:40:51   >>> Rashieda Blake (Bartender): rashiedab@jaleo.com [verified]
+00:40:52   rashiedab@jaleo.com → invalid
+00:40:55   ⚠ Added (invalid): Rashieda Blake <rashiedab@jaleo.com>
+00:40:56   >>> Mario Hernandez (Dishwasher): marioh@jaleo.com [verified]
+00:40:57   marioh@jaleo.com → invalid
+00:40:59   ⚠ Added (invalid): Mario Hernandez <marioh@jaleo.com>
+00:41:00   >>> Marissa Barber (Host): marissab@jaleo.com [verified]
+00:41:00   marissab@jaleo.com → invalid
+00:41:04   ⚠ Added (invalid): Marissa Barber <marissab@jaleo.com>
+00:41:05   >>> Manuel Rojas (Server): manuelr@jaleo.com [verified]
+00:41:05   manuelr@jaleo.com → invalid
+00:41:08   ⚠ Added (invalid): Manuel Rojas <manuelr@jaleo.com>
+00:41:09   Apollo API done: 7 credits used this run
+00:41:09 
+00:41:09 ========== STEP 4: LinkedIn + Apollo API ==========
+00:41:09   Using domain: jaleo.com
+00:41:12   LinkedIn page 1...
+00:41:30   No results on page 1 — stopping.
+00:41:30   No new people found on LinkedIn.
+00:41:32   Setting status → pipelined
+00:41:35 
+00:41:35 ============================================================
+00:41:35  DONE: Jaleo Bethesda | 3 min | 00:41:35
+00:41:35 ============================================================
+00:42:05 
+00:42:05 ########## SMART PICK #3 (score 85): Aventino Cucina (MD-REST-886) ##########
+00:42:10   [DOMAIN] Venue domain: aventinocucina.com
+00:42:12 
+00:42:12 ============================================================
+00:42:12  PIPELINE: Aventino Cucina (MD-REST-886)
+00:42:12  Website: https://aventinocucina.com/
+00:42:12  Started: 2026-06-08 00:42:12
+00:42:12 ============================================================
+00:42:12   [ZB] Credits remaining: 3650
+00:42:16   Known emails: 0
+00:42:16   Known names: 0
+00:42:16 
+00:42:16 ========== STEP 1: Website Scrape ==========
+00:42:16   URL: https://aventinocucina.com/
+00:42:16   Opening in Chrome: https://aventinocucina.com/
+00:42:22   Validating contact form URL: https://aventinocucina.com/contact
+00:42:27   Found on contact page: info@aventinocucina.com
+00:42:27   ✗ No submittable form found — clearing contact_form
+00:42:27   Emails: 1 | FB: https://www.facebook.com/AventinoCucina-104012198337267 | IG: https://www.instagram.com/aventinocucina/ | Contact Form: none
+00:42:27   Crawling subpage (1): https://aventinocucina.com/contact
+00:42:31   Found on subpage: info@aventinocucina.com
+00:42:31   Crawling subpage (2): https://aventinocucina.com/private-events
+00:42:36   Found on subpage: info@aventinocucina.com
+00:42:36   Crawling subpage (3): https://aventinocucina.com/about
+00:42:40   Found on subpage: info@aventinocucina.com
+00:42:40   Crawling subpage (4): https://aventinocucina.com/press
+00:42:44   Found on subpage: info@aventinocucina.com, melissa@theredhendc.com, molly@mhco.studio
+00:42:44   Crawling subpage (5): https://aventinocucina.com/menus
+00:42:49   Found on subpage: info@aventinocucina.com
+00:42:49   Crawling subpage (6): https://aventinocucina.com/faq
+00:42:53   Found on subpage: events@aventinocucina.com, info@aventinocucina.com
+00:42:54   [CONTACT] Probing https://aventinocucina.com/contact
+00:42:59   [CONTACT] Found emails on https://aventinocucina.com/contact
+00:43:05   events@aventinocucina.com → do_not_mail
+00:43:07   info@aventinocucina.com → do_not_mail
+00:43:08   [WARN] melissa@theredhendc.com — off-domain (venue: aventinocucina.com) — saving anyway
+00:43:09   melissa@theredhendc.com → invalid
+00:43:12   ⚠ Added (invalid): melissa@theredhendc.com <melissa@theredhendc.com>
+00:43:13   [WARN] molly@mhco.studio — off-domain (venue: aventinocucina.com) — saving anyway
+00:43:14   molly@mhco.studio → valid
+00:43:17   ✓ Added: molly@mhco.studio <molly@mhco.studio>
+00:43:18 
+00:43:18 ========== STEP 2: Social Media Scrape ==========
+00:43:20   FB: https://www.facebook.com/AventinoCucina-104012198337267 | IG: https://www.instagram.com/aventinocucina/
+00:43:20   Opening FB: https://www.facebook.com/AventinoCucina-104012198337267
+00:43:25   Opening FB: https://www.facebook.com/AventinoCucina-104012198337267/about
+00:43:31   Opening FB: https://www.facebook.com/AventinoCucina-104012198337267/directory_contact_info
+00:43:36   [FB] No email on page — trying Google snippet...
+00:43:40   [FB SNIPPET] No email in Google snippet
+00:43:40   Opening IG: https://www.instagram.com/aventinocucina/
+00:43:45   [IG] No email on page — trying Google snippet...
+00:43:50   [IG SNIPPET] No email in Google snippet
+00:43:50   [APOLLO] Credits used this run: 7 / 300
+00:43:50 
+00:43:50 ========== STEP 3: Apollo API ==========
+00:43:50   Searching Apollo for company: Aventino Cucina
+00:43:51   [WARN] No company found in Apollo for 'Aventino Cucina' (tried name + domain)
+00:43:51   Using website domain for enrichment: aventinocucina.com
+00:43:51 
+00:43:51 ========== STEP 4: LinkedIn + Apollo API ==========
+00:43:51   Using domain: aventinocucina.com
+00:43:55   LinkedIn page 1...
+00:44:11   No results on page 1 — stopping.
+00:44:11   No new people found on LinkedIn.
+00:44:15   Setting status → pipelined
+00:44:17 
+00:44:17 ============================================================
+00:44:17  DONE: Aventino Cucina | 2 min | 00:44:17
+00:44:17 ============================================================
+00:44:47 
+00:44:47 ########## SMART PICK #4 (score 85): The Sovereign (DC-REST-1024) ##########
+00:44:53   [DOMAIN] Venue domain: thesovereigndc.com
+00:44:56 
+00:44:56 ============================================================
+00:44:56  PIPELINE: The Sovereign (DC-REST-1024)
+00:44:56  Website: https://www.thesovereigndc.com
+00:44:56  Started: 2026-06-08 00:44:56
+00:44:56 ============================================================
+00:44:56   [ZB] Credits remaining: 3646
+00:44:59   Known emails: 0
+00:44:59   Known names: 0
+00:44:59 
+00:44:59 ========== STEP 1: Website Scrape ==========
+00:44:59   URL: https://www.thesovereigndc.com
+00:44:59   Opening in Chrome: https://www.thesovereigndc.com
+00:45:06   Emails: 2 | FB: https://www.facebook.com/theSovereignDC | IG: https://www.instagram.com/thesovereigndc/ | Contact Form: none
+00:45:06   Crawling subpage (1): https://www.thesovereigndc.com/events
+00:45:10   Found on subpage: info@thesovereigndc.com, keghunt@churchkeydc.com, michael@neighborhoodrestaurantgroup.com
+00:45:17   info@thesovereigndc.com → do_not_mail
+00:45:18   [WARN] keghunt@churchkeydc.com — off-domain (venue: thesovereigndc.com) — saving anyway
+00:45:20   keghunt@churchkeydc.com → valid
+00:45:23   ✓ Added: keghunt@churchkeydc.com <keghunt@churchkeydc.com>
+00:45:24   [WARN] michael@neighborhoodrestaurantgroup.com — off-domain (venue: thesovereigndc.com) — saving anyway
+00:45:24   michael@neighborhoodrestaurantgroup.com → valid
+00:45:27   ✓ Added: michael@neighborhoodrestaurantgroup.com <michael@neighborhoodrestaurantgroup.com>
+00:45:28 
+00:45:28 ========== STEP 2: Social Media Scrape ==========
+00:45:31   FB: https://www.facebook.com/theSovereignDC | IG: https://www.instagram.com/thesovereigndc/
+00:45:31   Opening FB: https://www.facebook.com/theSovereignDC
+00:45:36   Opening FB: https://www.facebook.com/theSovereignDC/about
+00:45:41   Opening FB: https://www.facebook.com/theSovereignDC/directory_contact_info
+00:45:46   FB emails found: guestservices@neighborhoodrestaurantgroup.com
+00:45:46   Opening IG: https://www.instagram.com/thesovereigndc/
+00:45:52   [IG] No email on page — trying Google snippet...
+00:45:56   [IG SNIPPET] No email in Google snippet
+00:45:56   [WARN] guestservices@neighborhoodrestaurantgroup.com — off-domain (venue: thesovereigndc.com) — saving anyway
+00:45:56   guestservices@neighborhoodrestaurantgroup.com → valid
+00:45:59   ✓ Added: guestservices@neighborhoodrestaurantgroup.com <guestservices@neighborhoodrestaurantgroup.com>
+00:46:00   [APOLLO] Credits used this run: 7 / 300
+00:46:00 
+00:46:00 ========== STEP 3: Apollo API ==========
+00:46:00   Searching Apollo for company: The Sovereign
+00:46:01   Found: The Sovereign (domain: thesovereigndc.com, org_id: 69953ea3624e6d0001c7cd2a)
+00:46:01   Searching for people at The Sovereign (org_id: 69953ea3624e6d0001c7cd2a)...
+00:46:02   Found 6 people total
+00:46:02   Skipped 6 people with no email (red ? on Apollo)
+00:46:02   +++ Darryl Hi***s (Founder): no email — added as pending
+00:46:05   +++ Tim We***r (Managing Partner): no email — added as pending
+00:46:08   +++ Savan Dh***a (Founder): no email — added as pending
+00:46:11   No new people to enrich (but pending contacts may have been added above).
+00:46:11 
+00:46:11 ========== STEP 4: LinkedIn + Apollo API ==========
+00:46:11   Using domain: thesovereigndc.com
+00:46:15   LinkedIn page 1...
+00:46:33   No results on page 1 — stopping.
+00:46:33   No new people found on LinkedIn.
+00:46:35   Setting status → pipelined
+00:46:38 
+00:46:38 ============================================================
+00:46:38  DONE: The Sovereign | 1 min | 00:46:38
+00:46:38 ============================================================
+00:47:08 
+00:47:08 ########## SMART PICK #5 (score 85): YELLOW Georgetown (DC-REST-1026) ##########
+00:47:14   [DOMAIN] Venue domain: yellowthecafe.com
+00:47:17 
+00:47:17 ============================================================
+00:47:17  PIPELINE: YELLOW Georgetown (DC-REST-1026)
+00:47:17  Website: https://www.yellowthecafe.com
+00:47:17  Started: 2026-06-08 00:47:17
+00:47:17 ============================================================
+00:47:17   [ZB] Credits remaining: 3642
+00:47:20   Known emails: 0
+00:47:20   Known names: 0
+00:47:20 
+00:47:20 ========== STEP 1: Website Scrape ==========
+00:47:20   URL: https://www.yellowthecafe.com
+00:47:20   Opening in Chrome: https://www.yellowthecafe.com
+00:47:26   Emails: 4 | FB: http://www.facebook.com/2008 | IG: https://www.instagram.com/yellowthecafe | Contact Form: none
+00:47:26   Crawling subpage (1): https://www.yellowthecafe.com/catering
+00:47:31   Found on subpage: catering@yellowthecafe.com, georgetown@yellowthecafe.com, press@albidc.com, unionmarket@yellowthecafe.com, yellow@yellowthecafe.com
+00:47:31   Crawling subpage (2): https://www.yellowthecafe.com/our-story
+00:47:35   Found on subpage: georgetown@yellowthecafe.com, press@albidc.com, unionmarket@yellowthecafe.com, yellow@yellowthecafe.com
+00:47:35   Crawling subpage (3): https://www.yellowthecafe.com/our-story-1
+00:47:39   Found on subpage: georgetown@yellowthecafe.com, press@albidc.com, unionmarket@yellowthecafe.com, yellow@yellowthecafe.com
+00:47:39   Crawling subpage (4): https://www.yellowthecafe.com/careers
+00:47:44   Found on subpage: georgetown@yellowthecafe.com, press@albidc.com, unionmarket@yellowthecafe.com, yellow@yellowthecafe.com
+00:47:44   Crawling subpage (5): https://www.yellowthecafe.com/georgetown
+00:47:48   Same emails 3 pages in a row — stopping subpage crawl
+00:47:50   [WARN] Facebook slug 'http://www.facebook.com/2008' doesn't match venue name — may be wrong
+00:47:56   catering@yellowthecafe.com → do_not_mail
+00:48:00   georgetown@yellowthecafe.com → valid
+00:48:03   ✓ Added: georgetown@yellowthecafe.com <georgetown@yellowthecafe.com>
+00:48:04   [WARN] press@albidc.com — off-domain (venue: yellowthecafe.com) — saving anyway
+00:48:05   press@albidc.com → do_not_mail
+00:48:07   unionmarket@yellowthecafe.com → valid
+00:48:10   ✓ Added: unionmarket@yellowthecafe.com <unionmarket@yellowthecafe.com>
+00:48:12   yellow@yellowthecafe.com → valid
+00:48:14   ✓ Added: yellow@yellowthecafe.com <yellow@yellowthecafe.com>
+00:48:15 
+00:48:15 ========== STEP 2: Social Media Scrape ==========
+00:48:18   FB: http://www.facebook.com/2008 | IG: https://www.instagram.com/yellowthecafe
+00:48:18   Opening FB: http://www.facebook.com/2008
+00:48:23   Opening FB: http://www.facebook.com/2008/about
+00:48:28   Opening FB: http://www.facebook.com/2008/directory_contact_info
+00:48:33   [FB] No email on page — trying Google snippet...
+00:48:38   [FB SNIPPET] No email in Google snippet
+00:48:38   Opening IG: https://www.instagram.com/yellowthecafe
+00:48:43   [IG] No email on page — trying Google snippet...
+00:48:47   [IG SNIPPET] No email in Google snippet
+00:48:47   [APOLLO] Credits used this run: 7 / 300
+00:48:47 
+00:48:47 ========== STEP 3: Apollo API ==========
+00:48:47   Searching Apollo for company: YELLOW Georgetown
+00:48:50   Found: From Yellow (domain: yellowthecafe.com, org_id: 6724a1d7ede68600019b2e4b)
+00:48:50   Searching for people at From Yellow (org_id: 6724a1d7ede68600019b2e4b)...
+00:48:50   Found 0 people total
+00:48:50   No people in Apollo for this company.
+00:48:50 
+00:48:50 ========== STEP 4: LinkedIn + Apollo API ==========
+00:48:50   Using domain: yellowthecafe.com
+00:48:53   LinkedIn page 1...
+00:49:11   No results on page 1 — stopping.
+00:49:11   No new people found on LinkedIn.
+00:49:14   Setting status → pipelined
+00:49:17 
+00:49:17 ============================================================
+00:49:17  DONE: YELLOW Georgetown | 2 min | 00:49:17
+00:49:17 ============================================================
+00:49:47 
+00:49:47 ########## SMART PICK #6 (score 85): Cafe Milano (DC-REST-1029) ##########
+00:49:53   [DOMAIN] Venue domain: cafemilano.com
+00:49:56 
+00:49:56 ============================================================
+00:49:56  PIPELINE: Cafe Milano (DC-REST-1029)
+00:49:56  Website: https://www.cafemilano.com
+00:49:56  Started: 2026-06-08 00:49:56
+00:49:56 ============================================================
+00:49:57   [ZB] Credits remaining: 3637
+00:50:00   Known emails: 0
+00:50:00   Known names: 0
+00:50:00 
+00:50:00 ========== STEP 1: Website Scrape ==========
+00:50:00   URL: https://www.cafemilano.com
+00:50:00   Opening in Chrome: https://www.cafemilano.com
+00:50:06   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+00:50:18   Validating contact form URL: https://www.cafemilano.com/contact
+00:50:23   Found on contact page: francisco@cafemilano.com, feedback@cafemilano.com, accountspayable@cafemilano.com
+00:50:23   ✓ Real contact form confirmed
+00:50:23   Emails: 0 | FB: none | IG: none | Contact Form: https://www.cafemilano.com/contact
+00:50:23   [LOCATION] Checking for location-specific page (city: Georgetown)...
+00:50:24   [LOCATION] No location-specific page found
+00:50:25   Crawling subpage (1): https://www.cafemilano.com/contact
+00:50:29   Found on subpage: accountspayable@cafemilano.com, feedback@cafemilano.com, francisco@cafemilano.com
+00:50:29   Crawling subpage (2): https://www.cafemilano.com/news-events
+00:50:33   Found on subpage: feedback@cafemilano.com
+00:50:33   Crawling subpage (3): https://www.cafemilano.com/catering
+00:50:38   Found on subpage: feedback@cafemilano.com, francisco@cafemilano.com
+00:50:38   Crawling subpage (4): https://www.cafemilano.com/about
+00:50:42   Found on subpage: cm-0035-copy@2x-1.png, cm-0169-copy@2x-1.png, cm-0232-copy@2x-1.png, cm-0280-copy@2x-1.png, feedback@cafemilano.com
+00:50:42   Crawling subpage (5): https://www.cafemilano.com/menu
+00:50:46   Found on subpage: feedback@cafemilano.com
+00:50:46   Crawling subpage (6): https://www.cafemilano.com/dress-code
+00:50:51   Found on subpage: feedback@cafemilano.com
+00:50:51   [CONTACT] Probing https://www.cafemilano.com/contact
+00:50:56   [CONTACT] Found emails on https://www.cafemilano.com/contact
+00:51:03   ✓ Contact form URL saved
+00:51:04   accountspayable@cafemilano.com → do_not_mail
+00:51:05   [WARN] cm-0035-copy@2x-1.png — off-domain (venue: cafemilano.com) — saving anyway
+00:51:05   cm-0035-copy@2x-1.png → invalid
+00:51:09   ⚠ Added (invalid): cm-0035-copy@2x-1.png <cm-0035-copy@2x-1.png>
+00:51:10   [WARN] cm-0169-copy@2x-1.png — off-domain (venue: cafemilano.com) — saving anyway
+00:51:10   cm-0169-copy@2x-1.png → invalid
+00:51:13   ⚠ Added (invalid): cm-0169-copy@2x-1.png <cm-0169-copy@2x-1.png>
+00:51:15   [WARN] cm-0232-copy@2x-1.png — off-domain (venue: cafemilano.com) — saving anyway
+00:51:15   cm-0232-copy@2x-1.png → invalid
+00:51:19   ⚠ Added (invalid): cm-0232-copy@2x-1.png <cm-0232-copy@2x-1.png>
+00:51:20   [WARN] cm-0280-copy@2x-1.png — off-domain (venue: cafemilano.com) — saving anyway
+00:51:20   cm-0280-copy@2x-1.png → invalid
+00:51:23   ⚠ Added (invalid): cm-0280-copy@2x-1.png <cm-0280-copy@2x-1.png>
+00:51:24   feedback@cafemilano.com → do_not_mail
+00:51:25   francisco@cafemilano.com → valid
+00:51:29   ✓ Added: francisco@cafemilano.com <francisco@cafemilano.com>
+00:51:30 
+00:51:30 ========== STEP 2: Social Media Scrape ==========
+00:51:33   FB: https://www.facebook.com/Cafe-Milano-168518221144 | IG: https://www.instagram.com/cafemilanodc/
+00:51:33   Opening FB: https://www.facebook.com/Cafe-Milano-168518221144
+00:51:38   Opening FB: https://www.facebook.com/Cafe-Milano-168518221144/about
+00:51:43   Opening FB: https://www.facebook.com/Cafe-Milano-168518221144/directory_contact_info
+00:51:49   FB emails found: feedback@cafemilano.com
+00:51:49   Opening IG: https://www.instagram.com/cafemilanodc/
+00:51:54   [IG] No email on page — trying Google snippet...
+00:51:58   [IG SNIPPET] No email in Google snippet
+00:51:58   feedback@cafemilano.com → do_not_mail
+00:51:59   [APOLLO] Credits used this run: 7 / 300
+00:51:59 
+00:51:59 ========== STEP 3: Apollo API ==========
+00:51:59   Searching Apollo for company: Cafe Milano
+00:52:01   Found: PROSPECT CAFE MILANO, INC. (domain: cafemilano.com, org_id: 6727d8410426250001804a24)
+00:52:01   Searching for people at PROSPECT CAFE MILANO, INC. (org_id: 6727d8410426250001804a24)...
+00:52:01   Found 4 people total
+00:52:01   Skipped 1 people with no email (red ? on Apollo)
+00:52:01   Skipped 1 people with irrelevant titles (housekeeping, IT, security, etc.)
+00:52:01   +++ Antonio Ro***a (Food and Beverage Supervisor): no email — added as pending
+00:52:04   2 people to enrich (1 credit each)
+00:52:05   >>> Pancrazio Manconi (General Manager): pancrazio@cafemilano.com [verified]
+00:52:05   pancrazio@cafemilano.com → valid
+00:52:08   ✓ Added: Pancrazio Manconi <pancrazio@cafemilano.com>
+00:52:09   >>> Amila Lak (Sous Chef): amila@cafemilano.com [verified]
+00:52:09   amila@cafemilano.com → valid
+00:52:12   ✓ Added: Amila Lak <amila@cafemilano.com>
+00:52:13   Apollo API done: 9 credits used this run
+00:52:13 
+00:52:13 ========== STEP 4: LinkedIn + Apollo API ==========
+00:52:13   Using domain: cafemilano.com
+00:52:16   LinkedIn page 1...
+00:52:32   No results on page 1 — stopping.
+00:52:32   No new people found on LinkedIn.
+00:52:34   Setting status → pipelined
+00:52:36 
+00:52:36 ============================================================
+00:52:36  DONE: Cafe Milano | 2 min | 00:52:36
+00:52:36 ============================================================
+00:53:06 
+00:53:06 ########## SMART PICK #7 (score 85): DIVINO Ristorante Enoteca (DC-REST-1030) ##########
+00:53:11   [DOMAIN] Venue domain: divinodc.com
+00:53:13 
+00:53:13 ============================================================
+00:53:13  PIPELINE: DIVINO Ristorante Enoteca (DC-REST-1030)
+00:53:13  Website: https://divinodc.com
+00:53:13  Started: 2026-06-08 00:53:13
+00:53:13 ============================================================
+00:53:14   [ZB] Credits remaining: 3628
+00:53:16   Known emails: 0
+00:53:16   Known names: 0
+00:53:16 
+00:53:16 ========== STEP 1: Website Scrape ==========
+00:53:16   URL: https://divinodc.com
+00:53:16   Opening in Chrome: https://divinodc.com
+00:53:23   Validating contact form URL: https://divinodc.com/contact
+00:53:27   ✓ Real contact form confirmed
+00:53:27   Emails: 0 | FB: none | IG: https://www.instagram.com/thedivinodc | Contact Form: https://divinodc.com/contact
+00:53:27   [LOCATION] Checking for location-specific page (city: Georgetown)...
+00:53:31   [LOCATION] No location-specific page found
+00:53:31   Crawling subpage (1): https://divinodc.com/contact
+00:53:36   Crawling subpage (2): https://divinodc.com/private-events-catering
+00:53:40   Found on subpage: events@divinodc.com
+00:53:40   Crawling subpage (3): https://divinodc.com/about-us
+00:53:44   Crawling subpage (4): https://divinodc.com/dinner-menu
+00:53:48   Crawling subpage (5): https://divinodc.com/happy-hour-menu
+00:53:53   Crawling subpage (6): https://divinodc.com/wine-club
+00:53:57   Crawling subpage (7): https://divinodc.com/elementor-2287
+00:54:03   [CONTACT] Probing https://divinodc.com/contact
+00:54:13   ✓ Contact form URL saved
+00:54:14   events@divinodc.com → do_not_mail
+00:54:18 
+00:54:18 ========== STEP 1C: Facebook Google Search ==========
+00:54:18   No Facebook found on website — Googling...
+00:54:22   [FB SEARCH] Skipping https://www.facebook.com/61565896594954/ — handle 'https://www.facebook.com/61565896594954/' doesn't match venue
+00:54:23   [FB SEARCH] Skipping https://www.facebook.com/mondayafterdarkjazzsessions/ — handle 'https://www.facebook.com/mondayafterdarkjazzsessions/' doesn't match venue
+00:54:23   [FB SEARCH] No handle matched venue name — using first result
+00:54:23   [FB SEARCH] Found: https://www.facebook.com/61565896594954/
+00:54:26   ✓ Facebook URL saved
+00:54:26 
+00:54:26 ========== STEP 2: Social Media Scrape ==========
+00:54:28   FB: https://www.facebook.com/61565896594954/ | IG: https://www.instagram.com/thedivinodc
+00:54:28   Opening FB: https://www.facebook.com/61565896594954
+00:54:33   Opening FB: https://www.facebook.com/61565896594954/about
+00:54:38   Opening FB: https://www.facebook.com/61565896594954/directory_contact_info
+00:54:44   [FB] No email on page — trying Google snippet...
+00:54:48   [FB SNIPPET] No email in Google snippet
+00:54:48   Opening IG: https://www.instagram.com/thedivinodc
+00:54:53   [IG] No email on page — trying Google snippet...
+00:54:57   [IG SNIPPET] No email in Google snippet
+00:54:57   [APOLLO] Credits used this run: 9 / 300
+00:54:57 
+00:54:57 ========== STEP 3: Apollo API ==========
+00:54:57   Searching Apollo for company: DIVINO Ristorante Enoteca
+00:54:59   [WARN] No company found in Apollo for 'DIVINO Ristorante Enoteca' (tried name + domain)
+00:54:59   Using website domain for enrichment: divinodc.com
+00:54:59 
+00:54:59 ========== STEP 4: LinkedIn + Apollo API ==========
+00:54:59   Using domain: divinodc.com
+00:55:02   LinkedIn page 1...
+00:55:20   No results on page 1 — stopping.
+00:55:20   No new people found on LinkedIn.
+00:55:21 
+00:55:21 ========== STEP 5: Google Fallback (no email found yet) ==========
+00:55:22   Googling: "DIVINO Ristorante Enoteca" contact Georgetown
+00:55:26   [FALLBACK] Found site: https://restaurent.com|https://www.aaa.com|https://divino-ristorante-enoteca.res-menu.net|https://www.tagvenue.com|https://wanderlog.com (domain: restaurent.com|https:)
+00:55:28 
+00:55:28 ========== STEP 1: Website Scrape ==========
+00:55:28   URL: https://restaurent.com|https://www.aaa.com|https://divino-ristorante-enoteca.res-menu.net|https://www.tagvenue.com|https://wanderlog.com
+00:55:28   Opening in Chrome: https://restaurent.com|https://www.aaa.com|https://divino-ristorante-enoteca.res-menu.net|https://www.tagvenue.com|https://wanderlog.com
+00:55:35   Emails: 1 | FB: https://www.facebook.com/DivinoBelmont | IG: https://www.instagram.com/thedivinodc/ | Contact Form: none
+00:55:35   Crawling subpage (1): https://www.google.com/intl/en/about/products
+00:55:44   [WARN] events@divinodc.com — off-domain (venue: restaurent.com|https:) — saving anyway
+00:55:44   events@divinodc.com → do_not_mail
+00:55:45   [FALLBACK] Re-trying Instagram: DIVINO Ristorante Enoteca Georgetown site:instagram.com
+00:55:49   [FALLBACK] Found Instagram: https://www.instagram.com/thedivinodc/
+00:55:51 
+00:55:51 ========== STEP 2: Social Media Scrape ==========
+00:55:54   FB: https://www.facebook.com/DivinoBelmont | IG: https://www.instagram.com/thedivinodc/
+00:55:54   Opening FB: https://www.facebook.com/DivinoBelmont
+00:55:59   Opening FB: https://www.facebook.com/DivinoBelmont/about
+00:56:04   Opening FB: https://www.facebook.com/DivinoBelmont/directory_contact_info
+00:56:10   FB emails found: belmont@divinoristorante.com
+00:56:10   Opening IG: https://www.instagram.com/thedivinodc/
+00:56:15   [IG] No email on page — trying Google snippet...
+00:56:19   [IG SNIPPET] No email in Google snippet
+00:56:19   [WARN] belmont@divinoristorante.com — off-domain (venue: restaurent.com|https:) — saving anyway
+00:56:19   belmont@divinoristorante.com → valid
+00:56:22   ✓ Added: belmont@divinoristorante.com <belmont@divinoristorante.com>
+00:56:23   Setting status → pipelined
+00:56:25 
+00:56:25 ============================================================
+00:56:25  DONE: DIVINO Ristorante Enoteca | 3 min | 00:56:25
+00:56:25 ============================================================
+00:56:55 
+00:56:55 ########## SMART PICK #8 (score 85): Le Diplomate (DC-REST-1031) ##########
+00:57:00   [DOMAIN] Venue domain: lediplomatedc.com
+00:57:04 
+00:57:04 ============================================================
+00:57:04  PIPELINE: Le Diplomate (DC-REST-1031)
+00:57:04  Website: https://lediplomatedc.com
+00:57:04  Started: 2026-06-08 00:57:04
+00:57:04 ============================================================
+00:57:05   [ZB] Credits remaining: 3626
+00:57:07   Known emails: 0
+00:57:07   Known names: 0
+00:57:07 
+00:57:07 ========== STEP 1: Website Scrape ==========
+00:57:07   URL: https://lediplomatedc.com
+00:57:07   Opening in Chrome: https://lediplomatedc.com
+00:57:14   Emails: 3 | FB: https://www.facebook.com/lediplomatedc | IG: https://www.instagram.com/lediplomatedc | Contact Form: none
+00:57:21   [WARN] lediplomate.events@starr-restaurants.com — off-domain (venue: lediplomatedc.com) — saving anyway
+00:57:22   lediplomate.events@starr-restaurants.com → invalid
+00:57:25   ⚠ Added (invalid): lediplomate.events@starr-restaurants.com <lediplomate.events@starr-restaurants.com>
+00:57:26   [WARN] lediplomate.info@starr-restaurants.com — off-domain (venue: lediplomatedc.com) — saving anyway
+00:57:27   lediplomate.info@starr-restaurants.com → invalid
+00:57:30   ⚠ Added (invalid): lediplomate.info@starr-restaurants.com <lediplomate.info@starr-restaurants.com>
+00:57:31   [WARN] lediplomate.press@starr-restaurants.com — off-domain (venue: lediplomatedc.com) — saving anyway
+00:57:32   lediplomate.press@starr-restaurants.com → invalid
+00:57:34   ⚠ Added (invalid): lediplomate.press@starr-restaurants.com <lediplomate.press@starr-restaurants.com>
+00:57:35 
+00:57:35 ========== STEP 2: Social Media Scrape ==========
+00:57:37   FB: https://www.facebook.com/lediplomatedc | IG: https://www.instagram.com/lediplomatedc
+00:57:37   Opening FB: https://www.facebook.com/lediplomatedc
+00:57:42   Opening FB: https://www.facebook.com/lediplomatedc/about
+00:57:47   Opening FB: https://www.facebook.com/lediplomatedc/directory_contact_info
+00:57:52   FB emails found: lediomate.marketing@starr-restaurant.com
+00:57:52   Opening IG: https://www.instagram.com/lediplomatedc
+00:57:58   [IG] No email on page — trying Google snippet...
+00:58:02   [IG SNIPPET] No email in Google snippet
+00:58:02   [WARN] lediomate.marketing@starr-restaurant.com — off-domain (venue: lediplomatedc.com) — saving anyway
+00:58:03   lediomate.marketing@starr-restaurant.com → invalid
+00:58:05   ⚠ Added (invalid): lediomate.marketing@starr-restaurant.com <lediomate.marketing@starr-restaurant.com>
+00:58:06   [APOLLO] Credits used this run: 9 / 300
+00:58:06 
+00:58:06 ========== STEP 3: Apollo API ==========
+00:58:06   Searching Apollo for company: Le Diplomate
+00:58:08   Found: Le Diplomate (domain: lediplomatedc.com, org_id: 6531faab15b93e0001a305f7)
+00:58:08   Searching for people at Le Diplomate (org_id: 6531faab15b93e0001a305f7)...
+00:58:09   Found 14 people total
+00:58:09   Skipped 12 people with no email (red ? on Apollo)
+00:58:09   +++ Dwight We***r (Beverage Manager): no email — added as pending
+00:58:11   +++ Benjamin Gr***g (Dining Room Manager): no email — added as pending
+00:58:13   +++ Juan Ca***s (Line Cook): no email — added as pending
+00:58:15   +++ Paul Ru***n (Manager/Sommelier): no email — added as pending
+00:58:16   +++ Vinay Za***r (Trainee Chef): no email — added as pending
+00:58:18   2 people to enrich (1 credit each)
+00:58:19   >>> Charlie Smedile (General Manager): charlie.smedile@starr-restaurant.com [verified]
+00:58:19   [WARN] charlie.smedile@starr-restaurant.com — off-domain (venue: lediplomatedc.com) — saving anyway
+00:58:20   charlie.smedile@starr-restaurant.com → valid
+00:58:23   ✓ Added: Charlie Smedile <charlie.smedile@starr-restaurant.com>
+00:58:24   --- Joel Bradley (Server): no email available
+00:58:25   Apollo API done: 11 credits used this run
+00:58:25 
+00:58:25 ========== STEP 4: LinkedIn + Apollo API ==========
+00:58:25   Using domain: lediplomatedc.com
+00:58:29   LinkedIn page 1...
+00:58:46   No results on page 1 — stopping.
+00:58:46   No new people found on LinkedIn.
+00:58:48   Setting status → pipelined
+00:58:49 
+00:58:49 ============================================================
+00:58:49  DONE: Le Diplomate | 1 min | 00:58:49
+00:58:49 ============================================================
+00:59:19 
+00:59:19 ########## SMART PICK #9 (score 85): Bistrot Du Coin (DC-REST-1032) ##########
+00:59:24   [DOMAIN] Venue domain: bistrotducoin.com
+00:59:26 
+00:59:26 ============================================================
+00:59:26  PIPELINE: Bistrot Du Coin (DC-REST-1032)
+00:59:26  Website: https://www.bistrotducoin.com
+00:59:26  Started: 2026-06-08 00:59:26
+00:59:26 ============================================================
+00:59:26   [ZB] Credits remaining: 3621
+00:59:30   Known emails: 0
+00:59:30   Known names: 0
+00:59:30 
+00:59:30 ========== STEP 1: Website Scrape ==========
+00:59:30   URL: https://www.bistrotducoin.com
+00:59:30   Opening in Chrome: https://www.bistrotducoin.com
+00:59:36   Emails: 2 | FB: https://www.facebook.com/bistrotducoinwashingtondc | IG: https://www.instagram.com/bistrotducoin | Contact Form: none
+00:59:36   Crawling subpage (1): https://www.bistrotducoin.com/privacy-policy
+00:59:41   Found on subpage: 234-6969inquiries@bistrotducoin.com, inquiries@bistrotducoin.com
+00:59:41   Crawling subpage (2): https://www.bistrotducoin.com/terms-of-use
+00:59:45   Found on subpage: 234-6969inquiries@bistrotducoin.com, inquiries@bistrotducoin.com
+00:59:45   Crawling subpage (3): https://www.bistrotducoin.com/accessibility
+00:59:49   Found on subpage: 234-6969inquiries@bistrotducoin.com, inquiries@bistrotducoin.com
+00:59:55   234-6969inquiries@bistrotducoin.com → invalid
+00:59:58   ⚠ Added (invalid): 234-6969inquiries@bistrotducoin.com <234-6969inquiries@bistrotducoin.com>
+00:59:59   inquiries@bistrotducoin.com → do_not_mail
+01:00:00 
+01:00:00 ========== STEP 2: Social Media Scrape ==========
+01:00:03   FB: https://www.facebook.com/bistrotducoinwashingtondc | IG: https://www.instagram.com/bistrotducoin
+01:00:03   Opening FB: https://www.facebook.com/bistrotducoinwashingtondc
+01:00:08   Opening FB: https://www.facebook.com/bistrotducoinwashingtondc/about
+01:00:13   Opening FB: https://www.facebook.com/bistrotducoinwashingtondc/directory_contact_info
+01:00:18   FB emails found: inquiries@bistrotducoin.com
+01:00:18   Opening IG: https://www.instagram.com/bistrotducoin
+01:00:24   [IG] No email on page — trying Google snippet...
+01:00:28   [IG SNIPPET] No email in Google snippet
+01:00:28   inquiries@bistrotducoin.com → do_not_mail
+01:00:29   [APOLLO] Credits used this run: 11 / 300
+01:00:29 
+01:00:29 ========== STEP 3: Apollo API ==========
+01:00:29   Searching Apollo for company: Bistrot Du Coin
+01:00:30   Found: Bistrot Du Coin (domain: bistrotducoin.com, org_id: 54fca4b6736964013a662700)
+01:00:30   Searching for people at Bistrot Du Coin (org_id: 54fca4b6736964013a662700)...
+01:00:31   Found 2 people total
+01:00:31   Skipped 2 people with no email (red ? on Apollo)
+01:00:31   +++ Ayca Ka***n (Manager): no email — added as pending
+01:00:33   +++ Antoine De***e (Office Manager): no email — added as pending
+01:00:36   No new people to enrich (but pending contacts may have been added above).
+01:00:36 
+01:00:36 ========== STEP 4: LinkedIn + Apollo API ==========
+01:00:36   Using domain: bistrotducoin.com
+01:00:40   LinkedIn page 1...
+01:00:57   No results on page 1 — stopping.
+01:00:57   No new people found on LinkedIn.
+01:00:59   Setting status → pipelined
+01:01:01 
+01:01:01 ============================================================
+01:01:01  DONE: Bistrot Du Coin | 1 min | 01:01:01
+01:01:01 ============================================================
+01:01:31 
+01:01:31 ########## SMART PICK #10 (score 85): Residents Cafe & Bar (DC-REST-1042) ##########
+01:01:36   [DOMAIN] Venue domain: residentsdc.com
+01:01:39 
+01:01:39 ============================================================
+01:01:39  PIPELINE: Residents Cafe & Bar (DC-REST-1042)
+01:01:39  Website: https://www.residentsdc.com
+01:01:39  Started: 2026-06-08 01:01:39
+01:01:39 ============================================================
+01:01:39   [ZB] Credits remaining: 3619
+01:01:42   Known emails: 0
+01:01:42   Known names: 0
+01:01:42 
+01:01:42 ========== STEP 1: Website Scrape ==========
+01:01:42   URL: https://www.residentsdc.com
+01:01:42   Opening in Chrome: https://www.residentsdc.com
+01:01:49   Validating contact form URL: https://www.residentsdc.com/contact
+01:01:53   Found on contact page: contact@residentsdc.com
+01:01:53   ✓ Real contact form confirmed
+01:01:53   Emails: 1 | FB: https://www.facebook.com/Residentsdc | IG: https://www.instagram.com/residentsdc/ | Contact Form: https://www.residentsdc.com/contact
+01:01:53   Crawling subpage (1): https://www.residentsdc.com/contact
+01:01:57   Found on subpage: contact@residentsdc.com
+01:01:57   Crawling subpage (2): https://www.residentsdc.com/private-events
+01:02:02   Found on subpage: contact@residentsdc.com
+01:02:02   Crawling subpage (3): https://www.residentsdc.com/about-us
+01:02:06   Found on subpage: contact@residentsdc.com
+01:02:06   Crawling subpage (4): https://www.residentsdc.com/press
+01:02:11   Same emails 3 pages in a row — stopping subpage crawl
+01:02:11   [CONTACT] Probing https://www.residentsdc.com/contact
+01:02:17   [CONTACT] Found emails on https://www.residentsdc.com/contact
+01:02:24   ✓ Contact form URL saved
+01:02:25   contact@residentsdc.com → do_not_mail
+01:02:26 
+01:02:26 ========== STEP 2: Social Media Scrape ==========
+01:02:29   FB: https://www.facebook.com/Residentsdc | IG: https://www.instagram.com/residentsdc/
+01:02:29   Opening FB: https://www.facebook.com/Residentsdc
+01:02:34   Opening FB: https://www.facebook.com/Residentsdc/about
+01:02:40   Opening FB: https://www.facebook.com/Residentsdc/directory_contact_info
+01:02:45   FB emails found: contact@residentsdc.com
+01:02:45   Opening IG: https://www.instagram.com/residentsdc/
+01:02:50   [IG] No email on page — trying Google snippet...
+01:02:54   [IG SNIPPET] No email in Google snippet
+01:02:54   contact@residentsdc.com → do_not_mail
+01:02:55   [APOLLO] Credits used this run: 11 / 300
+01:02:55 
+01:02:55 ========== STEP 3: Apollo API ==========
+01:02:55   Searching Apollo for company: Residents Cafe & Bar
+01:02:57   Found: Residents DC (domain: residentsdc.com, org_id: 64f972280a9f3f0001021abd)
+01:02:57   Searching for people at Residents DC (org_id: 64f972280a9f3f0001021abd)...
+01:02:57   Found 1 people total
+01:02:57   1 people to enrich (1 credit each)
+01:02:58   >>> Lucy Valenti (Server): lucy@residentsdc.com [verified]
+01:03:00   lucy@residentsdc.com → valid
+01:03:03   ✓ Added: Lucy Valenti <lucy@residentsdc.com>
+01:03:04   Apollo API done: 12 credits used this run
+01:03:04 
+01:03:04 ========== STEP 4: LinkedIn + Apollo API ==========
+01:03:04   Using domain: residentsdc.com
+01:03:08   LinkedIn page 1...
+01:03:25   No results on page 1 — stopping.
+01:03:25   No new people found on LinkedIn.
+01:03:27   Setting status → pipelined
+01:03:29 
+01:03:29 ============================================================
+01:03:29  DONE: Residents Cafe & Bar | 1 min | 01:03:29
+01:03:29 ============================================================
+01:03:59 [BUDGET] Shared limit of 10 reached — stopping smart picks
+01:03:59 === SMART PICKS COMPLETE ===
+01:03:59 
+01:03:59 UNTOUCHED PHASE: Fetching all venues...
+01:04:02 UNTOUCHED: 1055 found (shared budget: 10 total)
+01:04:03 [BUDGET] Shared limit of 10 reached — stopping untouched phase
+01:04:03 === UNTOUCHED PHASE COMPLETE ===
+01:04:03 
+01:04:03 
+01:04:03 ============================================================
+01:04:03  SKIPPED VENUES (need manual lookup):
+01:04:03 ============================================================
+01:04:03   ✗ Burning Tree Club (MD-COUN-915) — no domain found
+01:04:03 ============================================================
+01:04:03 === SMART PICKS COMPLETE ===
+01:04:03 
+01:04:03 === POST-PIPELINE VERIFICATION ===
+01:04:07 
+01:04:07 --- Postcheck Results ---
+01:04:07   
+01:04:07   [01:04:03] === Post-Pipeline Check Started ===
+01:04:07   [01:04:03] Fetching pipelined venues with zero contacts...
+01:04:07   [01:04:07] 
+01:04:07   [01:04:07] === Post-Pipeline Check Complete ===
+01:04:07 --- End Postcheck ---
+01:04:07 
+01:04:07 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-06-08_01-04.html
+01:04:07 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-06-08_01-04.html

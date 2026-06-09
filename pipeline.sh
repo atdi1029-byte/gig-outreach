@@ -289,10 +289,11 @@ for(var i=0;i<cfProtected.length;i++){
 
 // 3. Emails from visible text (no name/title available)
 var text = document.body.innerText || '';
+var imgExts = /\.(png|jpg|jpeg|gif|svg|webp|bmp|ico|pdf|doc|docx|xls|xlsx|csv|zip|mp3|mp4|mov|avi)$/i;
 var textMatches = text.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || [];
 textMatches.forEach(function(e){
     var el = e.toLowerCase();
-    if(!isJunk(el) && !contacts[el]) contacts[el] = {email:el, name:'', title:''};
+    if(!isJunk(el) && !imgExts.test(el) && !contacts[el]) contacts[el] = {email:el, name:'', title:''};
 });
 
 // 4. Emails from all href attributes
@@ -2366,6 +2367,26 @@ html = f'''<!DOCTYPE html>
     color: #999;
     margin-top: 4px;
   }}
+  .flag-group {{
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 12px 14px;
+    margin: 10px 0;
+    border-radius: 0 6px 6px 0;
+  }}
+  .flag-group .flag-venue {{
+    color: #e85050;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }}
+  .flag-group .flag-item {{
+    color: #e0e0e0;
+    font-size: 0.85rem;
+    padding: 3px 0 3px 16px;
+    border-left: 2px solid #3a2020;
+    margin: 4px 0;
+  }}
   .flag {{
     background: #2a1a1a;
     border-left: 4px solid #e85050;
@@ -2418,6 +2439,8 @@ html = f'''<!DOCTYPE html>
     .stat-box .num {{ color: #1a5c5c; }}
     .flag {{ background: #fff0f0; border-color: #cc3333; }}
     .flag strong {{ color: #cc3333; }}
+    .flag-group {{ background: #fff0f0; border-color: #cc3333; }}
+    .flag-group .flag-venue {{ color: #cc3333; }}
     .contact-name {{ color: #1a5c5c; }}
     .score {{ background: #e8944c; }}
     .category-pill {{ background: #eee; color: #333; }}
@@ -2431,19 +2454,25 @@ html = f'''<!DOCTYPE html>
 <div class="date">{esc(report_title)} &bull; Runtime: {runtime_str}</div>
 '''
 
-# Flags section
-all_flags = []
+# Flags section — grouped by venue
+from collections import OrderedDict
+flag_groups = OrderedDict()
 for v in venues:
-    for fl in v.get('flags', []):
-        all_flags.append(f'{v["name"]}: {fl}')
+    vflags = v.get('flags', [])
+    if vflags:
+        flag_groups[v['name']] = [esc(fl) for fl in vflags]
 for s in skipped:
-    all_flags.append(
-        f'Skipped: {s["name"]} ({s["venue_id"]}) &mdash; {s["reason"]}')
+    sname = f'{s["name"]} ({s["venue_id"]})'
+    flag_groups.setdefault(sname, []).append(f'Skipped &mdash; {esc(s["reason"])}')
 
-if all_flags:
+if flag_groups:
     html += '<h2>Flagged for Review</h2>\n'
-    for fl in all_flags:
-        html += f'<div class="flag"><strong>Flag:</strong> {esc(fl)}</div>\n'
+    for venue_name, flags in flag_groups.items():
+        html += f'<div class="flag-group">\n'
+        html += f'  <div class="flag-venue">{esc(venue_name)}</div>\n'
+        for fl in flags:
+            html += f'  <div class="flag-item">{fl}</div>\n'
+        html += f'</div>\n'
 
 # Stat boxes
 html += f'''

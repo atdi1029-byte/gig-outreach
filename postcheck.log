@@ -112,3 +112,44 @@
 [01:04:03] Fetching pipelined venues with zero contacts...
 [01:04:07] 
 [01:04:07] === Post-Pipeline Check Complete ===
+
+[01:43:15] === Post-Pipeline Check Started ===
+[01:43:15] Fetching pipelined venues with zero contacts...
+[01:43:23] 
+[01:43:23] === Ruta Ukrainian Restaurant (DC-REST-1050) | Dupont Circle, DC | Contacts: 0 ===
+[01:43:23]   Website: https://www.rutadc.us
+[01:43:24]   Found emails on https://www.rutadc.us:
+[01:43:24]     605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+[01:43:24]     88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+[01:43:24]     8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+[01:43:24]     9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+[01:43:24]     c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+[01:43:24]     dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+[01:43:24]     e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+[01:43:24]     info@rutadc.us
+[01:43:24]   Contact form found: https://www.rutadc.us
+[01:43:27]   Found emails on https://www.rutadc.us/events:
+[01:43:27]     605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+[01:43:27]     88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+[01:43:27]     8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+[01:43:27]     9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+[01:43:27]     c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+[01:43:27]     dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+[01:43:27]     e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+[01:43:27]     info@rutadc.us
+[01:43:30]   Saved contact form to sheet
+[01:43:34]   Added contact: 605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+[01:43:36]   Added contact: 88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+[01:43:39]   Added contact: 8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+[01:43:42]   Added contact: 9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+[01:43:45]   Added contact: c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+[01:43:48]   Added contact: dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+[01:43:51]   Added contact: e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+[01:43:54]   Added contact: info@rutadc.us
+[01:43:55]   [Apollo] Searching by domain: rutadc.us
+[01:43:55]   [Apollo] No results by domain — searching by name: Ruta Ukrainian Restaurant
+[01:43:55]   [Apollo] Found 0 people
+[01:43:55]   Searching LinkedIn for: Ruta Ukrainian Restaurant
+[01:44:00]   [LinkedIn] No results
+[01:44:00] 
+[01:44:00] === Post-Pipeline Check Complete ===

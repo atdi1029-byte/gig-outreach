@@ -4267,3 +4267,546 @@
 [00:34:42]   Queries run: 10
 [00:34:42]   Venues added: 124
 [00:34:42]   Queries remaining: 462
+
+[23:56:07] === Taste Discovery Mode Started ===
+[23:56:07] MAX_QUERIES=999
+[23:56:07] Fetching existing venues + past gigs for dedup...
+
+[00:30:18] === Venue Discovery Started ===
+[00:30:18] Fetching past gigs...
+[00:30:21] Found 70 past gigs
+[00:30:21] Fetching existing venues for dedup...
+[00:30:24] Existing venues: 1357
+[00:30:24]   SKIP (already discovered): L'Auberge Chez Francois
+[00:30:24]   SKIP (already discovered): The Inn at Perry Cabin
+[00:30:24]   SKIP (already discovered): The Maryland Club
+[00:30:24]   SKIP (already discovered): Black Ankle Vineyards
+[00:30:24]   SKIP (already discovered): Royal Restaurant
+[00:30:24]   SKIP (already discovered): Good Spirit Farm Winery
+[00:30:24]   SKIP (already discovered): Chesapeake Manor Vineyard
+[00:30:24]   SKIP (already discovered): Elkridge Furnace Inn
+[00:30:24]   SKIP (already discovered): Xella Winery and Vineyard
+[00:30:24]   SKIP (already discovered): Twin Oaks Tavern Winery
+[00:30:24]   SKIP (already discovered): Windridge Vineyards
+[00:30:24]   SKIP (already discovered): University Club
+[00:30:24]   SKIP (already discovered): The Farmhouse Tuscan
+[00:30:24]   SKIP (already discovered): Big Cork Vineyards
+[00:30:24]   SKIP (already discovered): Savage Mill Mall
+[00:30:24]   SKIP (already discovered): Trueman Vineyards
+[00:30:24]   SKIP (already discovered): Williams Gap Vineyard
+[00:30:24]   SKIP (already discovered): Hello Betty Bethesda
+[00:30:24]   SKIP (already discovered): The Madison Hotel
+[00:30:24]   SKIP (already discovered): Belle Haven Country Club
+[00:30:24]   SKIP (already discovered): Casanel Vineyards & Winery
+[00:30:24]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[00:30:24]   SKIP (already discovered): Corteau Winery
+[00:30:24]   SKIP (already discovered): Penn Oaks Winery
+[00:30:24]   SKIP (already discovered): Pizza Pomodoro
+[00:30:24]   SKIP (already discovered): Hidden Brook Winery
+[00:30:24]   SKIP (already discovered): Simple Theory Wine Co
+[00:30:24]   SKIP (already discovered): Brightview Perry Hall
+[00:30:24]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[00:30:24]   SKIP (already discovered): Gaylord National Harbor
+[00:30:24]   SKIP (already discovered): Woodberry Kitchen
+[00:30:24]   SKIP (already discovered): Great Sage
+[00:30:24]   SKIP (already discovered): Cosmos Club DC
+[00:30:24]   SKIP (already discovered): Doukénie Winery
+[00:30:24]   SKIP (already discovered): State Plaza Hotel DC
+[00:30:24]   SKIP (already discovered): Hyatt Cambridge
+[00:30:24]   SKIP (already discovered): Greenhill Vineyards
+[00:30:24]   SKIP (already discovered): Loudoun Golf & Country Club
+[00:30:24]   SKIP (already discovered): Creek's Edge Winery
+[00:30:24]   SKIP (already discovered): The Milton Inn
+[00:30:24]   SKIP (already discovered): Country Club of Fairfax
+[00:30:24]   SKIP (already discovered): Century Club Hagerstown
+[00:30:24]   SKIP (already discovered): Rock Spring Farm
+[00:30:24]   SKIP (already discovered): Janemark Winery & Vineyard
+[00:30:24]   SKIP (already discovered): Alma Cocina Latina
+[00:30:24]   SKIP (already discovered): Omni Shoreham Hotel
+[00:30:24]   SKIP (already discovered): Knoxie's Table
+[00:30:24]   SKIP (already discovered): 1757 Golf Club
+[00:30:24]   SKIP (already discovered): Holly Hills Country Club
+[00:30:24]   SKIP (already discovered): Conrad Washington DC
+[00:30:24]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[00:30:24]   SKIP (already discovered): Le Méridien Arlington
+[00:30:24]   SKIP (already discovered): Dulles Town Center
+[00:30:24]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[00:30:24]   SKIP (already discovered): Maritime Museum St Michaels
+[00:30:24]   SKIP (already discovered): Chartwell Golf & Country Club
+[00:30:24]   SKIP (already discovered): Ruse
+[00:30:24]   SKIP (already discovered): InGrano Bistro Bakery
+[00:30:24]   SKIP (already discovered): Kent Manor Inn
+[00:30:24]   SKIP (already discovered): Army Navy Country Club
+[00:30:24]   SKIP (already discovered): River Bend Country Club
+[00:30:24]   SKIP (already discovered): City Tavern DC
+[00:30:24]   SKIP (already discovered): Baltimore Country Club
+[00:30:24]   SKIP (already discovered): Vino and Pasta
+[00:30:24]   SKIP (already discovered): 50 West Vineyards
+[00:30:24]   SKIP (already discovered): The Galley Restaurant & Bar
+[00:30:24]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[00:30:24]   SKIP (already discovered): Bistrot Lepic
+[00:30:24]   SKIP (already discovered): Sunset Hills Winery
+[00:30:24]   SKIP (already discovered): The Oaks Waterfront Hotel
+[00:30:24] Cleaning up discovered_gigs.txt...
+[00:30:29] 
+[00:30:29] === Discovery Complete — Total new venues: 0 ===
+
+[00:30:36] === Taste Discovery Mode Started ===
+[00:30:36] MAX_QUERIES=11
+[00:30:36] Fetching existing venues + past gigs for dedup...
+[00:30:42] Existing venues + past gigs: 0
+[00:30:42] Generating search queries from taste profile...
+[00:30:42] Generated 462 queries (11 will run this session)
+[00:30:42] 
+[00:30:42] === Taste Query [1/11]: private club Chevy Chase MD ===
+[00:30:48]   Scrolling search results...
+[00:30:55]   Extracting results...
+[00:30:56]   Found 2 results
+[00:31:02]   Added 0 new venues from query
+[00:31:07] 
+[00:31:07] === Taste Query [2/11]: private club Great Falls VA ===
+[00:31:12]   Scrolling search results...
+[00:31:19]   Extracting results...
+[00:31:20]   No results found
+[00:31:25] 
+[00:31:25] === Taste Query [3/11]: private club McLean VA ===
+[00:31:30]   Scrolling search results...
+[00:31:38]   Extracting results...
+[00:31:39]   Found 44 results
+[00:33:53]   Added 41 new venues from query
+[00:33:53]   [WEBSITE] Looking up: The Palladium
+[00:33:56]     Website: https://www.tysonscondos.co
+[00:33:59]   [WEBSITE] Looking up: The Tower Club Tysons
+[00:34:02]     Website: https://www.invitedclubs.com
+[00:34:05]   [WEBSITE] Looking up: McLean Racquet & Health Club
+[00:34:09]     Website: https://www.mcleanrhclub.com
+[00:34:12]   [WEBSITE] Looking up: Kent Gardens Recreation Club
+[00:34:15]     Website: https://kentgardens.org
+[00:34:18]   [WEBSITE] Looking up: Tuckahoe Recreation Club
+[00:34:21]     Website: https://tuckahoe.net
+[00:34:25]   [WEBSITE] Looking up: The Mclean Business Club
+[00:34:28]     Website: https://www.mcleanbusinessclub.com
+[00:34:32]   [WEBSITE] Looking up: Westwood Country Club
+[00:34:35]     Website: https://www.westwoodcc.com
+[00:34:38]   [WEBSITE] Looking up: The Pickleball Club of Tysons
+[00:34:41]     Website: https://www.tpc-tysons.com
+[00:34:44]   [WEBSITE] Looking up: River Bend Golf & Country Club
+[00:34:48]     Website: https://www.rbgcc.org
+[00:34:51]   [WEBSITE] Looking up: McLean Swim & Tennis Association
+[00:34:54]     Website: https://mcleanswimandtennis.org
+[00:34:57]   [WEBSITE] Looking up: Washington Golf & Country Club
+[00:35:01]     Website: https://www.washingtongolfcc.org
+[00:35:05]   [WEBSITE] Looking up: Highlands Swim & Tennis Club
+[00:35:08]     Website: https://highlandsswim.org
+[00:35:12]   [WEBSITE] Looking up: Langley Swim and Tennis Club
+[00:35:15]     Website: https://langleyclub.org
+[00:35:18]   [WEBSITE] Looking up: Arlington Forest Club
+[00:35:21]     Website: https://arlingtonforestclub.org
+[00:35:25]   [WEBSITE] Looking up: Hamlet Swim & Tennis Club
+[00:35:28]     Website: https://hamletpool.org
+[00:35:31]   [WEBSITE] Looking up: Tutoring Club of McLean
+[00:35:35]     Website: https://tutoringclub.com
+[00:35:38]   [WEBSITE] Looking up: Vienna Woods Swim & Tennis Club
+[00:35:42]     Website: https://viennawoods.org
+[00:35:45]   [WEBSITE] Looking up: Chesterbrook Swim & Tennis Club
+[00:35:48]     Website: https://chesterbrookclub.com
+[00:35:52]   [WEBSITE] Looking up: Sunnyside Executive Lounge
+[00:35:55]     Website: https://www.sunnysiderestaurantgroup.com
+[00:36:00]   [WEBSITE] Looking up: The Columbus Club of Arlington
+[00:36:04]     Website: https://www.columbusclubevents.com
+[00:36:07]   [WEBSITE] Looking up: Play Squash Academy
+[00:36:10]     Website: https://playsquashacademy.com
+[00:36:14]   [WEBSITE] Looking up: LiL Havana Cigar Club
+[00:36:17]     Website: https://lilhavanacigar.com
+[00:36:20]   [WEBSITE] Looking up: THE SALSA ROOM
+[00:36:24]     Website: https://6.2K+
+[00:36:27]   [WEBSITE] Looking up: Dominion Hills Area Recreation
+[00:36:30]     Website: https://dominionhills.org
+[00:36:34]   [WEBSITE] Looking up: Army Navy Country Club
+[00:36:37]     Website: http://www.ancc.org
+[00:36:40]   [WEBSITE] Looking up: Cardinal Hill Swim and Racquet Club
+[00:36:43]     Website: https://chsrc.com
+[00:36:47]   [WEBSITE] Looking up: Club Studio
+[00:36:50]     Website: https://clubstudiofitness.com
+[00:36:54]   [WEBSITE] Looking up: Potomac Officers Club
+[00:36:57]     Website: https://www.potomacofficersclub.com
+[00:37:00]   [WEBSITE] Looking up: International Country Club
+[00:37:03]     Website: https://internationalcc.com
+[00:37:06]   [WEBSITE] Looking up: Clarendon Ballroom Nightclub and Rooftop
+[00:37:10]     Website: https://www.clarendonballroomva.com
+[00:37:14]   [WEBSITE] Looking up: Golf Defined
+[00:37:17]     Website: https://www.golfdefined.com
+[00:37:21]   [WEBSITE] Looking up: York Swim Club
+[00:37:24]     Website: https://www.gomotionapp.com
+[00:37:27]   [WEBSITE] Looking up: Lucky Strike Tysons Corner
+[00:37:31]     Website: https://www.luckystrikeent.com
+[00:37:35]   [WEBSITE] Looking up: Squash Revolution - McLean, VA
+[00:37:38]     Website: https://www.squashrevolution.com
+[00:37:41]   [WEBSITE] Looking up: Nation's Capital Swim Club
+[00:37:45]     Website: https://www.ncapswim.com
+[00:37:48]   [WEBSITE] Looking up: Fox Mill Woods Swim & Tennis
+[00:37:52]     Website: https://www.fmwst.com
+[00:37:55]   [WEBSITE] Looking up: The Ridge Club
+[00:37:58]     Website: https://www.cityridgedc.com
+[00:38:01]   [WEBSITE] Looking up: McLean Community Players
+[00:38:04]     Website: https://mcleanplayers.org
+[00:38:08]   [WEBSITE] Looking up: Army Navy Country Club - Fairfax
+[00:38:12]     Website: https://www.ancc.org
+[00:38:15]   [WEBSITE] Looking up: Bethesda Country Club
+[00:38:18]     Website: https://www.bethesdacountryclub.org
+[00:38:21]   [WEBSITE] Looking up: Rotary Club of McLean
+[00:38:25]     Website: https://mcleanrotary.org
+[00:38:36] 
+[00:38:36] === Taste Query [4/11]: private club Alexandria VA ===
+[00:38:40]   Scrolling search results...
+[00:38:48]   Extracting results...
+[00:38:49]   Found 55 results
+[00:41:18]   Added 46 new venues from query
+[00:41:18]   [WEBSITE] Looking up: Belle Haven Country Club
+[00:41:21]     Website: https://www.bellehavencc.com
+[00:41:25]   [WEBSITE] Looking up: CXIII Rex
+[00:41:28]     Website: https://hospitalitysnapshots.com
+[00:41:31]   [WEBSITE] Looking up: Departmental Progressive Club
+[00:41:34]     Website: https://dpc1927.org
+[00:41:39]   [WEBSITE] Looking up: Mansion House Swim, Tennis & Dive
+[00:41:43]     Website: https://mansionhouseclub.com
+[00:41:48]   [WEBSITE] Looking up: Serenity Club Inc
+[00:41:51]     Website: https://serenityclubva.com
+[00:41:54]   [WEBSITE] Looking up: Shadows Private Club 2.0
+[00:41:57]     Website: https://www.shadowslove.com
+[00:42:00]   [WEBSITE] Looking up: Hayfield Farm Swim Club
+[00:42:03]     Website: http://www.hayfieldpool.com
+[00:42:06]   [WEBSITE] Looking up: Virginia Hills Swim Club
+[00:42:09]     Website: https://vahillspool.com
+[00:42:13]   [WEBSITE] Looking up: National Club Association
+[00:42:16]     Website: https://nationalclub.org
+[00:42:19]   [WEBSITE] Looking up: Parklawn Pool
+[00:42:22]     Website: https://parklawnpool.org
+[00:42:26]   [WEBSITE] Looking up: Highland Park Pool
+[00:42:29]     Website: https://highlandparkpool.com
+[00:42:32]   [WEBSITE] Looking up: Two Nineteen Restaurant
+[00:42:36]     Website: https://219restaurant.com
+[00:42:39]   [WEBSITE] Looking up: Springfield Golf & Country Club
+[00:42:42]     Website: https://www.sgccva.org
+[00:42:45]   [WEBSITE] Looking up: Alexandria Elks Lodge #48 (IBPOEW)
+[00:42:49]     Website: https://www.spring2action.org
+[00:42:52]   [WEBSITE] Looking up: Little Hunting Park Club Swim and Tennis Club
+[00:42:55]     Website: https://littlehuntingpark.com
+[00:42:58]   [WEBSITE] Looking up: Mansion House Yacht Club
+[00:43:01]     Website: https://www.mansionhouseyachtclub.com
+[00:43:04]   [WEBSITE] Looking up: Delta Rocks Billiard
+[00:43:08]     Website: https://findtourneys.com
+[00:43:11]   [WEBSITE] Looking up: Old Dominion Boat Club
+[00:43:14]     Website: https://www.olddominionboatclub.com
+[00:43:17]   [WEBSITE] Looking up: The Crucible
+[00:43:21]     Website: https://team-crucible.com
+[00:43:23]   [WEBSITE] Looking up: Hollin Meadows Swim and Tennis Club
+[00:43:27]     Website: https://hollinmeadows.org
+[00:43:30]   [WEBSITE] Looking up: Hollin Hills Pool
+[00:43:33]     Website: https://hollinhillspool.org
+[00:43:36]   [WEBSITE] Looking up: The GeorgeTown Club
+[00:43:39]     Website: https://www.georgetownclub.org
+[00:43:42]   [WEBSITE] Looking up: Live-K Karaoke Bar | The Wharf
+[00:43:45]     Website: https://www.live-k.com
+[00:43:49]   [WEBSITE] Looking up: The Study at Morrison House
+[00:43:52]     Website: https://morrisonhouse.com
+[00:43:55]   [WEBSITE] Looking up: Silk Rose Spa
+[00:43:58]     Website: https://www.silkrosespa.com
+[00:44:01]   [WEBSITE] Looking up: Saint Yves
+[00:44:05]     Website: https://www.saintyvesdc.com
+[00:44:07]   [WEBSITE] Looking up: Crystal City Restaurant - Gentleman's Club
+[00:44:11]     Website: https://crystalcityrestaurant.com
+[00:44:14]   [WEBSITE] Looking up: Landini Brothers Restaurant
+[00:44:17]     Website: https://www.landinibrothers.com
+[00:44:20]   [WEBSITE] Looking up: The Metropolitan Club
+[00:44:24]     Website: https://www.metroclub.com
+[00:44:27]   [WEBSITE] Looking up: PaperMoon Springfield
+[00:44:30]     Website: https://www.papermoonvip.com
+[00:44:33]   [WEBSITE] Looking up: Portales Restaurant
+[00:44:36]     Website: https://portales-restaurant.weeblyte.com
+[00:44:40]   [WEBSITE] Looking up: Potomac Paddle Club
+[00:44:43]     Website: https://seasuitecruises.com
+[00:44:47]   [WEBSITE] Looking up: WeAquatics
+[00:44:50]     Website: https://weaquatics.com
+[00:44:53]   [WEBSITE] Looking up: Club Management Association of America (CMAA)
+[00:44:56]     Website: https://www.cmaa.org
+[00:44:59]   [WEBSITE] Looking up: Warwick Pool
+[00:45:02]     Website: https://www.alexandriava.gov
+[00:45:06]   [WEBSITE] Looking up: O'Shaughnessy's Sports bar & Pub
+[00:45:10]     Website: https://outinoldtown.com
+[00:45:13]   [WEBSITE] Looking up: Mount Vernon Park Association, Inc.
+[00:45:16]     Website: https://mtvpa.com
+[00:45:19]   [WEBSITE] Looking up: The City Club of Washington
+[00:45:22]     Website: https://www.bizjournals.com
+[00:45:26]   [WEBSITE] Looking up: Sleepy Hollow Recreation Association
+[00:45:29]     Website: https://shrasharks.org
+[00:45:32]   [WEBSITE] Looking up: Street Lights Billiards Academy
+[00:45:35]     Website: https://5.7K+
+[00:45:38]   [WEBSITE] Looking up: Venue
+[00:45:41]     Website: https://www.wolftrap.org
+[00:45:44]   [WEBSITE] Looking up: Cosmos Club
+[00:45:47]     Website: https://www.cosmosclub.org
+[00:45:50]   [WEBSITE] Looking up: The Light Horse Restaurant and Bar
+[00:45:54]     Website: https://thelighthorserestaurant.com
+[00:45:58]   [WEBSITE] Looking up: The Camelot Showbar Strip Club
+[00:46:02]     Website: https://camelotshowbar.com
+[00:46:05]   [WEBSITE] Looking up: LPRC-Tennis
+[00:46:08]     Website: https://www.lincolniapark.org
+[00:46:12]   [WEBSITE] Looking up: Muneer Chess and Tennis Club (MCTC)
+[00:46:16]     Website: https://www.mctc.games
+[00:46:25] 
+[00:46:25] === Taste Query [5/11]: private club Reston VA ===
+[00:46:32]   Scrolling search results...
+[00:46:40]   Extracting results...
+[00:46:40]   Found 11 results
+[00:47:08]   Added 5 new venues from query
+[00:47:08]   [WEBSITE] Looking up: Hidden Creek Country Club
+[00:47:11]     Website: https://www.hiddencreekcc.com
+[00:47:15]   [WEBSITE] Looking up: Worldgate Athletic Club
+[00:47:18]     Website: https://worldgateathleticclubandspa.com
+[00:47:21]   [WEBSITE] Looking up: Pinecrest Swim & Tennis Club
+[00:47:25]     Website: https://pinecrest20171.com
+[00:47:28]   [WEBSITE] Looking up: Life Time
+[00:47:31]     Website: https://www.lifetime.life
+[00:47:34]   [WEBSITE] Looking up: Penthouse Pool Club
+[00:47:38]     Website: https://penthousepool.com
+[00:47:50] 
+[00:47:50] === Taste Query [6/11]: private club Middleburg VA ===
+[00:47:57]   Scrolling search results...
+[00:48:03]   Extracting results...
+[00:48:03]   Found 20 results
+[00:48:58]   Added 17 new venues from query
+[00:48:58]   [WEBSITE] Looking up: Greenhill Vineyards
+[00:49:01]     Website: https://experiencegreenhill.com
+[00:49:04]   [WEBSITE] Looking up: Middleburg Tennis Club Association
+[00:49:08]     Website: https://www.middleburgtennisclub.com
+[00:49:11]   [WEBSITE] Looking up: Middleburg Hunt
+[00:49:14]     Website: https://www.middleburghunt.com
+[00:49:17]   [WEBSITE] Looking up: River Creek Club
+[00:49:20]     Website: https://www.invitedclubs.com
+[00:49:23]   [WEBSITE] Looking up: Banbury Cross Polo Club
+[00:49:26]     Website: https://www.banburycrosspoloclub.com
+[00:49:30]   [WEBSITE] Looking up: Boxwood Estate Winery
+[00:49:33]     Website: https://boxwoodwinery.com
+[00:49:36]   [WEBSITE] Looking up: Middleburg Hospitality
+[00:49:39]     Website: https://middleburghospitality.com
+[00:49:43]   [WEBSITE] Looking up: Cana Vineyards and Winery of Middleburg
+[00:49:46]     Website: https://canavineyards.com
+[00:49:49]   [WEBSITE] Looking up: 50 West Vineyards
+[00:49:52]     Website: https://www.50westvineyards.com
+[00:49:55]   [WEBSITE] Looking up: Heritage Hunt Country Club
+[00:49:58]     Website: https://www.heritagehunt.net
+[00:50:03]   [WEBSITE] Looking up: Creighton Farms
+[00:50:06]     Website: https://creightonfarms.com
+[00:50:09]   [WEBSITE] Looking up: Evergreen Country Club
+[00:50:13]     Website: https://www.evergreencc.org
+[00:50:16]   [WEBSITE] Looking up: Stoneleigh Golf and Country Club
+[00:50:19]     Website: https://www.stoneleighgolf.com
+[00:50:22]   [WEBSITE] Looking up: Belmont Country Club
+[00:50:25]     Website: https://www.invitedclubs.com
+[00:50:28]   [WEBSITE] Looking up: Piedmont Club - Haymarket
+[00:50:32]     Website: https://www.invitedclubs.com
+[00:50:34]   [WEBSITE] Looking up: Dominion Valley Country Club
+[00:50:38]     Website: https://www.invitedclubs.com
+[00:50:41]   [WEBSITE] Looking up: The Chase Club at Hotel Burg
+[00:50:44]     Website: https://hotelburg.com
+[00:50:55] 
+[00:50:55] === Taste Query [7/11]: private club Leesburg VA ===
+[00:51:02]   Scrolling search results...
+[00:51:10]   Extracting results...
+[00:51:10]   Found 20 results
+[00:52:22]   Added 14 new venues from query
+[00:52:22]   [WEBSITE] Looking up: Play The Par Social Club
+[00:52:25]     Website: https://ptpsocialclub.com
+[00:52:28]   [WEBSITE] Looking up: The Diana Lounge
+[00:52:32]     Website: https://www.thehunton.com
+[00:52:35]   [WEBSITE] Looking up: Birkby House
+[00:52:38]     Website: https://birkbyhouse.com
+[00:52:41]   [WEBSITE] Looking up: Toire Avenue
+[00:52:44]     Website: https://www.toireavenue.com
+[00:52:47]   [WEBSITE] Looking up: The Golf Club at Lansdowne
+[00:52:51]     Website: https://golfatlansdowne.com
+[00:52:53]   [WEBSITE] Looking up: The Huntōn
+[00:52:57]     Website: https://www.thehunton.com
+[00:53:00]   [WEBSITE] Looking up: Rose Hill Manor
+[00:53:04]     Website: https://www.rosehillmanor.com
+[00:53:07]   [WEBSITE] Looking up: October One Vineyard Wine Tasting Shop
+[00:53:10]     Website: https://octoberonevineyard.com
+[00:53:13]   [WEBSITE] Looking up: Tally Ho Theater
+[00:53:16]     Website: https://tallyhotheater.com
+[00:53:22]   [WEBSITE] Looking up: Lucky Strike Leesburg
+[00:53:25]     Website: https://www.luckystrikeent.com
+[00:53:27]   [WEBSITE] Looking up: Loudoun Club 12
+[00:53:31]     Website: https://www.loudounclub12.org
+[00:53:34]   [WEBSITE] Looking up: Stratford Club
+[00:53:38]     Website: https://stratfordclub.fswp3.net
+[00:53:40]   [WEBSITE] Looking up: Stone Tower Winery
+[00:53:44]     Website: https://www.stonetowerwinery.com
+[00:53:47]   [WEBSITE] Looking up: Beacon Hill Golf Club
+[00:53:51]     Website: https://beaconhillgolfva.com
+[00:53:59] 
+[00:53:59] === Taste Query [8/11]: private club St. Michaels MD ===
+[00:54:05]   Scrolling search results...
+[00:54:11]   Extracting results...
+[00:54:11]   Found 14 results
+[00:54:47]   Added 10 new venues from query
+[00:54:47]   [WEBSITE] Looking up: Woman's Club of St Michaels
+[00:54:51]     Website: https://womansclubofsaintmichaels.org
+[00:54:53]   [WEBSITE] Looking up: The Treetop Lounge
+[00:54:57]     Website: https://www.thegalleysaintmichaels.com
+[00:55:00]   [WEBSITE] Looking up: Ship's Cove Inn and Resort
+[00:55:04]     Website: https://www.harbourinn.com
+[00:55:07]   [WEBSITE] Looking up: St. Michaels Concours d'Elegance on Chesapeake Bay
+[00:55:10]     Website: https://smcde.org
+[00:55:13]   [WEBSITE] Looking up: Spa at Perry Cabin
+[00:55:16]     Website: https://innatperrycabin.com
+[00:55:19]   [WEBSITE] Looking up: Cliff Drysdale Tennis at Inn at Perry Cabin
+[00:55:23]     Website: https://www.cliffdrysdale.com
+[00:55:26]   [WEBSITE] Looking up: The Harbor Club
+[00:55:29]     Website: https://thepier5.com
+[00:55:32]   [WEBSITE] Looking up: Cove Creek Club
+[00:55:35]     Website: http://www.covecreekclub.com
+[00:55:38]   [WEBSITE] Looking up: Sail Selina II
+[00:55:42]     Website: https://www.stmichaelssailingcharters.com
+[00:55:46]   [WEBSITE] Looking up: St. Michaels Business Association
+[00:55:49]     Website: https://www.stmichaelsmd.org
+[00:55:57] 
+[00:55:57] === Taste Query [9/11]: private club Easton MD ===
+[00:56:02]   Scrolling search results...
+[00:56:08]   Extracting results...
+[00:56:08]   Found 11 results
+[00:56:36]   Added 8 new venues from query
+[00:56:36]   [WEBSITE] Looking up: Easton Club East
+[00:56:40]     Website: https://www.eastonclubeast.org
+[00:56:43]   [WEBSITE] Looking up: Easton Club Community Association, Inc
+[00:56:47]     Website: https://www.theeastonclub.com
+[00:56:50]   [WEBSITE] Looking up: Maryland Health Club LLC
+[00:56:53]     Website: https://www.theeastonclub.com
+[00:56:57]   [WEBSITE] Looking up: Chesapeake Bay Yacht Club
+[00:57:00]     Website: https://www.chesapeakeyachtclub.org
+[00:57:03]   [WEBSITE] Looking up: Easton Family YMCA
+[00:57:06]     Website: http://ymcachesapeake.org
+[00:57:09]   [WEBSITE] Looking up: The Gratitude Club
+[00:57:13]     Website: https://www.samhsa.gov
+[00:57:17]   [WEBSITE] Looking up: Hog Neck Golf Course
+[00:57:20]     Website: https://hogneck.com
+[00:57:23]   [WEBSITE] Looking up: Talbot County Women's Club
+[00:57:26]     Website: https://talbotcountywomensclub.org
+[00:57:36] 
+[00:57:36] === Taste Query [10/11]: private club Annapolis MD ===
+[00:57:41]   Scrolling search results...
+[00:57:47]   Extracting results...
+[00:57:47]   Found 60 results
+[01:00:19]   Added 46 new venues from query
+[01:00:19]   [WEBSITE] Looking up: Fleet Reserve Club Of Annapolis
+[01:00:22]     Website: https://frcannapolis.org
+[01:00:26]   [WEBSITE] Looking up: Club 164
+[01:00:29]     Website: https://www.club164.org
+[01:00:33]   [WEBSITE] Looking up: Peerless Rens Club
+[01:00:36]     Website: https://www.peerlessrensclub.com
+[01:00:39]   [WEBSITE] Looking up: Epping Forest Club House
+[01:00:42]     Website: https://eppingforest.com
+[01:00:45]   [WEBSITE] Looking up: Heritage Harbor Golf Club
+[01:00:49]     Website: https://www.golfpass.com
+[01:00:51]   [WEBSITE] Looking up: The Golf Club at South River
+[01:00:55]     Website: https://www.golfclubsr.com
+[01:00:58]   [WEBSITE] Looking up: Prism Annapolis
+[01:01:01]     Website: https://www.prismannapolis.com
+[01:01:05]   [WEBSITE] Looking up: Seafarers Yacht Club of Annapolis
+[01:01:08]     Website: https://www.seafarersyc.com
+[01:01:12]   [WEBSITE] Looking up: Chartwell Golf & Country Club
+[01:01:15]     Website: https://www.chartwellgcc.com
+[01:01:20]   [WEBSITE] Looking up: X-Golf Annapolis
+[01:01:23]     Website: https://playxgolf.com
+[01:01:27]   [WEBSITE] Looking up: United States Naval Academy Golf Club
+[01:01:30]     Website: https://usnagolf.com
+[01:01:33]   [WEBSITE] Looking up: Chesapeake Boating Club
+[01:01:36]     Website: https://chesapeakeboatingclub.com
+[01:01:39]   [WEBSITE] Looking up: The Atreeum at Soaring Timbers
+[01:01:43]     Website: https://www.soaringtimbers.org
+[01:01:47]   [WEBSITE] Looking up: Oyster Harbor Private Beach
+[01:01:50]     Website: https://www.oysterharbor.org
+[01:01:54]   [WEBSITE] Looking up: Annapolis Athletic Club
+[01:01:57]     Website: https://www.clubaac.com
+[01:02:01]   [WEBSITE] Looking up: SailTime Annapolis
+[01:02:04]     Website: https://sailtime.com
+[01:02:07]   [WEBSITE] Looking up: Bay Hills Swim Club
+[01:02:11]     Website: https://bayhillsswimclub.com
+[01:02:14]   [WEBSITE] Looking up: Hornor Maritime Center
+[01:02:17]     Website: https://www.hornormaritime.org
+[01:02:21]   [WEBSITE] Looking up: Severn River Swim Club
+[01:02:24]     Website: https://severnriverswimclub.com
+[01:02:27]   [WEBSITE] Looking up: Whitehurst Club and Marina
+[01:02:30]     Website: https://www.severnapark.com
+[01:02:33]   [WEBSITE] Looking up: Pine Tree Associates
+[01:02:37]     Website: https://pinetreeclub.org
+[01:02:39]   [WEBSITE] Looking up: Elks Lodge
+[01:02:43]     Website: https://www.elks.org
+[01:02:45]   [WEBSITE] Looking up: Ulmstead Swim Club
+[01:02:49]     Website: https://ulmsteadswimclub.com
+[01:02:52]   [WEBSITE] Looking up: Walden Country Club
+[01:02:55]     Website: https://www.waldencountryclub.com
+[01:02:58]   [WEBSITE] Looking up: Pip Moyer Recreation Center (Annapolis Recreation and Parks)
+[01:03:01]     Website: https://www.annapolis.gov
+[01:03:04]   [WEBSITE] Looking up: Old Line Golf Club
+[01:03:07]     Website: https://www.oldlinegolfclub.com
+[01:03:10]   [WEBSITE] Looking up: P1 Sim Racing
+[01:03:13]     Website: https://www.drivep1.com
+[01:03:16]   [WEBSITE] Looking up: Annapolis Tango, Fábrica Tango
+[01:03:19]     Website: https://www.fabricatango.com
+[01:03:22]   [WEBSITE] Looking up: Naptown Tiki Club
+[01:03:25]     Website: https://seasuitecruises.com
+[01:03:28]   [WEBSITE] Looking up: Anne Arundel Fish & Game
+[01:03:31]     Website: https://www.aafg.org
+[01:03:34]   [WEBSITE] Looking up: Hidden View Farm
+[01:03:37]     Website: https://hiddenviewfarm.org
+[01:03:40]   [WEBSITE] Looking up: Safety First Swimming
+[01:03:44]     Website: https://safetyfirstswimming.com
+[01:03:47]   [WEBSITE] Looking up: Laurel Park
+[01:03:50]     Website: https://www.laurelpark.com
+[01:03:53]   [WEBSITE] Looking up: The Point On Gibson Island
+[01:03:56]     Website: https://www.thepointcrabhouse.com
+[01:04:00]   [WEBSITE] Looking up: Harrells Elite Athletic Training Club LLC
+[01:04:03]     Website: https://www.heat-club.com
+[01:04:07]   [WEBSITE] Looking up: Annapolis Moose Lodge
+[01:04:10]     Website: https://annapolismoose.org
+[01:04:13]   [WEBSITE] Looking up: Gibson Island Clubhouse
+[01:04:17]     Website: https://www.gibsonisland.com
+[01:04:20]   [WEBSITE] Looking up: Hillsmere Shores Pool
+[01:04:23]     Website: https://hillsmereshores.org
+[01:04:27]   [WEBSITE] Looking up: Navy Juniors Annapolis Summer Swim Team
+[01:04:30]     Website: https://njst.swimtopia.com
+[01:04:34]   [WEBSITE] Looking up: Arundel Olympic Swim Center
+[01:04:37]     Website: https://www.aacounty.org
+[01:04:40]   [WEBSITE] Looking up: Maris
+[01:04:43]     Website: https://stellamaris.org
+[01:04:47]   [WEBSITE] Looking up: Athletic Performance Inc
+[01:04:50]     Website: https://athleticperformanceinc.com
+[01:04:53]   [WEBSITE] Looking up: Indian Landing Boat Club
+[01:04:56]     Website: https://indianlandingboatclub.com
+[01:05:01]   [WEBSITE] Looking up: Annapolis Boxing
+[01:05:04]     Website: https://boxingannapolis.com
+[01:05:08]   [WEBSITE] Looking up: Olde Severna Park Community Beach
+[01:05:11]     Website: https://www.oldesevernapark.com
+[01:05:14]   [WEBSITE] Looking up: Bay Ridge Beach
+[01:05:17]     Website: https://www.annapolishomemag.com
+[01:05:27] 
+[01:05:27] === Taste Query [11/11]: private club Roland Park Baltimore MD ===
+[01:05:33]   Scrolling search results...
+[01:05:41]   Extracting results...
+[01:05:42]   Found 3 results
+[01:05:50]   Added 3 new venues from query
+[01:05:50]   [WEBSITE] Looking up: Woman's Club of Roland Park
+[01:05:54]     Website: https://twcrp.org
+[01:05:57]   [WEBSITE] Looking up: Baltimore Country Club - Roland Park
+[01:06:00]     Website: https://bcc1898.com
+[01:06:05]   [WEBSITE] Looking up: Roland Park Pool
+[01:06:08]     Website: https://rolandparkpool.org
+[01:06:18]   MAX_QUERIES=11 reached — stopping.
+[01:06:18] Calculating distances for new venues...
+[01:06:51]   Distances calculated: 0
+[01:06:51] 
+[01:06:51] === Taste Discovery Complete ===
+[01:06:51]   Queries run: 11
+[01:06:51]   Venues added: 190
+[01:06:51]   Queries remaining: 451

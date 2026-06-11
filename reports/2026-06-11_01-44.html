@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; June 11, 2026 at 01:44</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    background: #0c1a22;
+    color: #e0e0e0;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #6ecfcf;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #6ecfcf;
+    padding-bottom: 10px;
+  }
+  .date { color: #999; margin-bottom: 30px; font-size: 0.95rem; }
+  h2 {
+    color: #e8944c;
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+    border-left: 4px solid #e8944c;
+    padding-left: 12px;
+  }
+  h3 {
+    color: #6ecfcf;
+    font-size: 1.1rem;
+    margin: 20px 0 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #1a2e3a;
+  }
+  tr:hover { background: rgba(110, 207, 207, 0.05); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+  }
+  .stat-box {
+    background: #1a2e3a;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6ecfcf;
+  }
+  .stat-box .label {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 4px;
+  }
+  .flag-group {
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 12px 14px;
+    margin: 10px 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .flag-group .flag-venue {
+    color: #e85050;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .flag-group .flag-item {
+    color: #e0e0e0;
+    font-size: 0.85rem;
+    padding: 3px 0 3px 16px;
+    border-left: 2px solid #3a2020;
+    margin: 4px 0;
+  }
+  .flag {
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .flag strong { color: #e85050; }
+  .contact-name { color: #6ecfcf; }
+  .valid { color: #4caf50; }
+  .unknown { color: #ff9800; }
+  .score {
+    display: inline-block;
+    background: #e8944c;
+    color: #0c1a22;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+  .category-pill {
+    display: inline-block;
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  .social-links {
+    font-size: 0.85rem;
+    color: #999;
+    margin: 5px 0 10px;
+  }
+  .social-links a {
+    color: #6ecfcf;
+    text-decoration: none;
+  }
+  .social-links a:hover {
+    text-decoration: underline;
+  }
+  @media print {
+    body { background: #fff; color: #222; padding: 20px; }
+    h1 { color: #1a5c5c; border-color: #1a5c5c; }
+    h2 { color: #b06a2a; border-color: #b06a2a; }
+    h3 { color: #1a5c5c; }
+    th { background: #eee; color: #333; }
+    td { border-color: #ddd; }
+    .stat-box { background: #f5f5f5; border: 1px solid #ddd; }
+    .stat-box .num { color: #1a5c5c; }
+    .flag { background: #fff0f0; border-color: #cc3333; }
+    .flag strong { color: #cc3333; }
+    .flag-group { background: #fff0f0; border-color: #cc3333; }
+    .flag-group .flag-venue { color: #cc3333; }
+    .contact-name { color: #1a5c5c; }
+    .score { background: #e8944c; }
+    .category-pill { background: #eee; color: #333; }
+    tr:hover { background: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">June 11, 2026 at 01:44 &bull; Runtime: unknown</div>
+<h2>Flagged for Review</h2>
+<div class="flag-group">
+  <div class="flag-venue">Bistro Cacao</div>
+  <div class="flag-item">No verified emails — only invalid</div>
+  <div class="flag-item">Off-domain email: rev@restaurant.com (venue: bistrocacao.com)</div>
+</div>
+<div class="flag-group">
+  <div class="flag-venue">AMBAR Restaurant, Capitol Hill</div>
+  <div class="flag-item">Off-domain email: laura@ambarhrservices.com (venue: ambarrestaurant.com)</div>
+</div>
+<div class="flag-group">
+  <div class="flag-venue">Ruta Ukrainian Restaurant</div>
+  <div class="flag-item">No contacts found</div>
+</div>
+<div class="flag-group">
+  <div class="flag-venue">Rakuya</div>
+  <div class="flag-item">Off-domain email: dling@rakuasiandining.com (venue: rakuyarestaurant.com)</div>
+  <div class="flag-item">Off-domain email: davidchen@rakuya.com.tw (venue: rakuyarestaurant.com)</div>
+</div>
+<div class="flag-group">
+  <div class="flag-venue">Dacha Beer Garden</div>
+  <div class="flag-item">Off-domain email: agellerman@dachadc.com (venue: dachabeergarden.com)</div>
+  <div class="flag-item">Off-domain email: chekaldin@dachadc.com (venue: dachabeergarden.com)</div>
+  <div class="flag-item">Off-domain email: ebarahona@dachadc.com (venue: dachabeergarden.com)</div>
+  <div class="flag-item">Off-domain email: dflores@dachadc.com (venue: dachabeergarden.com)</div>
+  <div class="flag-item">Off-domain email: jlitterst@dachadc.com (venue: dachabeergarden.com)</div>
+  <div class="flag-item">Off-domain email: zmakar@dachadc.com (venue: dachabeergarden.com)</div>
+  <div class="flag-item">Off-domain email: ggossman@dachadc.com (venue: dachabeergarden.com)</div>
+</div>
+<div class="flag-group">
+  <div class="flag-venue">Unconventional Diner</div>
+  <div class="flag-item">Off-domain email: john@eatunconventional.com (venue: unconventionaldiner.com)</div>
+</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">11</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">27</div>
+    <div class="label">Verified Emails</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">94</div>
+    <div class="label">Apollo Credits Used</div>
+  </div>
+</div>
+<h2>Pipeline Results</h2>
+<h3>1. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-COUN-1322" style="color:#6ecfcf;text-decoration:none">Kenwood Golf &amp; Country Club</a> <span class="score">Score: 89</span> <span class="category-pill">country_club</span></h3>
+<div class="social-links"><a href="https://www.kenwoodcc.net">Website</a> &bull; <a href="https://www.facebook.com/KenwoodGCC/">Facebook</a> &bull; <a href="https://www.kenwoodcc.net/default.aspx">Instagram</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">Dawn Lipsey</td><td></td><td>dawn@kenwoodcc.net</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Martin Billenstein</td><td></td><td>martin@kenwoodcc.net</td><td><span style="color:#e85050">&#10007; invalid</span></td></tr>
+<tr><td class="contact-name">Slim Hamza</td><td></td><td>slim@kenwoodcc.net</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Monica Thiem</td><td></td><td>mthiem@kenwoodcc.net</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Philip Rector</td><td></td><td>fitness_director@kenwoodcc.net</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Debbie Lamb</td><td></td><td>debbie@kenwoodcc.net</td><td><span style="color:#e85050">&#10007; invalid</span></td></tr>
+<tr><td class="contact-name">Cyndi Chamberlin</td><td></td><td>cyndi@kenwoodcc.net</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Adriane Allen</td><td></td><td>kidfit@kenwoodcc.net</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Amit Rozario</td><td>Head Waiter</td><td>arozario@kenwoodcc.com</td><td><span style="color:#e85050">&#10007; invalid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 3 min | Apollo credits: 10 credits</div>
+<h3>2. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1046" style="color:#6ecfcf;text-decoration:none">Bistro Cacao</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://www.bistrocacao.com">Website</a> &bull; <a href="https://www.facebook.com/bistro.cacao">Facebook</a> &bull; <a href="https://instagram.com">Instagram</a> &bull; <a href="https://www.bistrocacao.com/contact-now">Contact Form</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">rev@restaurant.com</td><td>rev@restaurant.com</td><td><span style="color:#e85050">&#10007; invalid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 2 min | Apollo credits: none</div>
+<h3>3. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1047" style="color:#6ecfcf;text-decoration:none">AMBAR Restaurant, Capitol Hill</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://ambarrestaurant.com">Website</a> &bull; <a href="https://www.facebook.com/AmbarClarendon">Facebook</a> &bull; <a href="https://www.instagram.com/ambar_restaurants/">Instagram</a> &bull; <a href="https://ambarrestaurant.com/page/contact-us">Contact Form</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">clarendon@ambarrestaurant.com</td><td></td><td>clarendon@ambarrestaurant.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">shaw@ambarrestaurant.com</td><td></td><td>shaw@ambarrestaurant.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Laura Scarpa</td><td>Founder &amp; Partner</td><td>laura@ambarhrservices.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 3 min | Apollo credits: 11 credits</div>
+<h3>4. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1050" style="color:#6ecfcf;text-decoration:none">Ruta Ukrainian Restaurant</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://www.rutadc.us">Website</a> &bull; <a href="https://www.facebook.com/ruta.dmv">Facebook</a> &bull; <a href="https://www.instagram.com/ruta.dmv/">Instagram</a></div>
+<div style="color:#999;font-size:0.9rem;margin:10px 0">No contacts found.</div>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 2 min | Apollo credits: none</div>
+<h3>5. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1055" style="color:#6ecfcf;text-decoration:none">Licht Cafe</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://www.lichtdc.com">Website</a> &bull; <a href="https://www.facebook.com/lichtdc">Facebook</a> &bull; <a href="https://instagram.com/lichtdc">Instagram</a> &bull; <a href="https://www.lichtdc.com/pages/contact-us">Contact Form</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">spencer@lichtdc.com</td><td>spencer@lichtdc.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 1 min | Apollo credits: none</div>
+<h3>6. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1056" style="color:#6ecfcf;text-decoration:none">Taberna del Alabardero</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://alabardero.com">Website</a> &bull; <a href="https://www.facebook.com/AlabarderoDC">Facebook</a> &bull; <a href="https://www.instagram.com/alabarderodc/">Instagram</a> &bull; <a href="https://alabardero.com/contact">Contact Form</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">alabarderofoundation@alabardero.com</td><td>alabarderofoundation@alabardero.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">javila@alabardero.com</td><td>javila@alabardero.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">taberna.dc@alabardero.com</td><td>taberna.dc@alabardero.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">taberna.dc@alabardero.com</td><td>taberna.dc@alabardero.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 2 min | Apollo credits: none</div>
+<h3>7. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1058" style="color:#6ecfcf;text-decoration:none">Rakuya</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://www.rakuyarestaurant.com">Website</a> &bull; <a href="http://facebook.com/rakuyarestaurant">Facebook</a> &bull; <a href="http://instagram.com/rakuyarestaurant/">Instagram</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">dling@rakuasiandining.com</td><td></td><td>dling@rakuasiandining.com</td><td><span class="unknown">&#8776; catch-all</span></td></tr>
+<tr><td class="contact-name">David Chen</td><td>Software Development Assistant Manager</td><td>davidchen@rakuya.com.tw</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 2 min | Apollo credits: 12 credits</div>
+<h3>8. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=Shaw" style="color:#6ecfcf;text-decoration:none">Dacha Beer Garden</a> <span class="score">Score: 85</span></h3>
+<div class="social-links"><a href="https://www.dachabeergarden.com">Website</a> &bull; <a href="https://www.facebook.com/DachaBeerGardenShaw">Facebook</a> &bull; <a href="https://www.instagram.com/dachashaw/">Instagram</a> &bull; <a href="https://www.dachabeergarden.com/contact">Contact Form</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">Anya Gellerman</td><td></td><td>agellerman@dachadc.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Dmitri Chekaldin</td><td></td><td>chekaldin@dachadc.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Erick Barahona</td><td></td><td>ebarahona@dachadc.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Denis Guerra</td><td></td><td>dflores@dachadc.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Jeff Litterst</td><td></td><td>jlitterst@dachadc.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Zoriana Makar</td><td></td><td>zmakar@dachadc.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Galen Gossman</td><td>Event Manager</td><td>ggossman@dachadc.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 3 min | Apollo credits: 19 credits</div>
+<h3>9. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1064" style="color:#6ecfcf;text-decoration:none">Unconventional Diner</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://www.unconventionaldiner.com">Website</a> &bull; <a href="https://www.facebook.com/unconventionaldiner">Facebook</a> &bull; <a href="https://www.instagram.com/unconventionaldiner">Instagram</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">John Cidre</td><td>Co-Owner</td><td>john@eatunconventional.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 1 min | Apollo credits: 20 credits</div>
+<h3>10. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1066" style="color:#6ecfcf;text-decoration:none">AMBAR Restaurant, Clarendon</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://ambarrestaurant.com">Website</a> &bull; <a href="https://www.facebook.com/AmbarClarendon">Facebook</a> &bull; <a href="https://www.instagram.com/ambar_restaurants/">Instagram</a> &bull; <a href="https://ambarrestaurant.com/page/contact-us">Contact Form</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">clarendon@ambarrestaurant.com</td><td>clarendon@ambarrestaurant.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">shaw@ambarrestaurant.com</td><td>shaw@ambarrestaurant.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 2 min | Apollo credits: none</div>
+<h3>11. <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1068" style="color:#6ecfcf;text-decoration:none">Pizzeria Paradiso Dupont Circle</a> <span class="score">Score: 85</span> <span class="category-pill">restaurant</span></h3>
+<div class="social-links"><a href="https://www.eatyourpizza.com">Website</a> &bull; <a href="https://www.facebook.com/paradisopizzeria">Facebook</a> &bull; <a href="http://instagram.com/eatyourpizza">Instagram</a></div>
+<table>
+<thead><tr><th>Contact</th><th>Title</th><th>Email</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td class="contact-name">Samuel Morris</td><td></td><td>samuelmorris@eatyourpizza.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+<tr><td class="contact-name">Tony Hamilton</td><td>Director of Operations</td><td>tonyhamilton@eatyourpizza.com</td><td><span class="valid">&#10003; valid</span></td></tr>
+</tbody>
+</table>
+<div style="font-size:0.8rem;color:#666;margin-top:5px">Runtime: 2 min | Apollo credits: 22 credits</div>
+
+</body>
+</html>

@@ -459,12 +459,24 @@ skip_cats = ['pub', 'irish pub', 'sports bar', 'fast food', 'pizza',
              'diner', 'gas station', 'grocery', 'pharmacy', 'convenience',
              'deli', 'food truck', 'taco', 'burger', 'sandwich',
              'chicken', 'ramen', 'noodle', 'donut', 'bagel', 'juice',
-             'bar & grill', 'hookah', 'karaoke', 'nightclub', 'spa']
+             'bar & grill', 'hookah', 'karaoke', 'nightclub', 'spa',
+             'gym', 'fitness', 'boxing', 'martial art', 'yoga',
+             'swimming pool', 'swim team', 'swim club', 'pool',
+             'athletic', 'crossfit', 'pilates', 'dance studio',
+             'church', 'mosque', 'synagogue', 'temple',
+             'school', 'daycare', 'preschool', 'tutoring',
+             'ymca', 'community center', 'community beach',
+             'storage', 'laundry', 'car wash', 'auto repair']
 
 skip_names = ['cottage', 'apartment', 'vacation rental', 'retreat',
               'airbnb', 'vrbo', 'walk to', 'screened porch',
               'king room', 'queen room', 'deluxe room', 'suite -',
-              'one-bedroom', 'fitness', 'gym', 'urgent care']
+              'one-bedroom', 'fitness', 'gym', 'urgent care',
+              'boxing', 'swim team', 'swim club', 'pool',
+              'ymca', 'crossfit', 'martial art', 'karate',
+              'taekwondo', 'jiu jitsu', 'community beach',
+              'business association', 'rotary club',
+              'tennis', 'pickleball', 'basketball']
 
 tier1_cats = ['country_club', 'private_club', 'yacht_club']
 tier2_cats = ['restaurant', 'winery', 'hotel', 'wine_bar', 'museum',
@@ -901,7 +913,14 @@ skip_cats = ['pub', 'irish pub', 'sports bar', 'fast food', 'pizza',
              'diner', 'gas station', 'grocery', 'pharmacy', 'convenience',
              'deli', 'food truck', 'taco',
              'burger', 'sandwich', 'chicken', 'ramen', 'noodle',
-             'donut', 'bagel', 'juice']
+             'donut', 'bagel', 'juice',
+             'gym', 'fitness', 'boxing', 'martial art', 'yoga',
+             'swimming pool', 'swim team', 'swim club', 'pool',
+             'athletic', 'crossfit', 'pilates', 'dance studio',
+             'church', 'mosque', 'synagogue', 'temple',
+             'school', 'daycare', 'preschool', 'tutoring',
+             'ymca', 'community center', 'community beach',
+             'storage', 'laundry', 'car wash', 'auto repair']
 
 added = 0
 for card in cards:

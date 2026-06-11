@@ -29,7 +29,7 @@ APOLLO_API_BASE="https://api.apollo.io/api/v1"
 APOLLO_CREDITS_USED=0
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="${SCRIPT_DIR}/pipeline.log"
-JUNK_DOMAINS="wix.com|wordpress|sentry.io|cloudflare|example.com|squarespace|shopify|mailchimp|googleapis|google.com|gstatic|facebook|instagram|twitter|hubspot|sendgrid|zendesk|fontawesome.io"
+JUNK_DOMAINS="wix.com|wixpress.com|wordpress|sentry.io|sentry-next|cloudflare|example.com|squarespace|shopify|mailchimp|googleapis|google.com|gstatic|facebook|instagram|twitter|hubspot|sendgrid|zendesk|fontawesome.io"
 # Owner's own emails — never add these as venue contacts
 OWN_EMAILS="atdi1029@gmail.com|alexbarnettclassical@gmail.com|abar89251@gmail.com|alex@alexbarnettclassical.com"
 

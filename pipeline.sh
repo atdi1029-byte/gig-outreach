@@ -136,20 +136,25 @@ verify_and_push() {
         return
     fi
 
-    # Off-domain check — flag but still save emails whose domain doesn't match the venue
+    # Off-domain check — REJECT emails whose domain doesn't match the venue
+    # (Apollo contacts pass source=apollo and are allowed through)
     if [ -n "$VENUE_DOMAIN" ] && echo "$email" | grep -q '@'; then
         local email_domain
         email_domain=$(echo "$email" | awk -F'@' '{print tolower($2)}')
         local generic_domains="gmail.com yahoo.com outlook.com hotmail.com aol.com icloud.com"
         if ! echo "$generic_domains" | grep -qw "$email_domain"; then
-            # Not a generic provider — check if domain relates to venue
             local vbase ebase
             vbase=$(echo "$VENUE_DOMAIN" | sed 's/\..*//')
             ebase=$(echo "$email_domain" | sed 's/\..*//')
-            # Flag if domains don't match, but still save the contact
             if [ "$email_domain" != "$VENUE_DOMAIN" ] && [ "$ebase" != "$vbase" ] && \
                ! echo "$vbase" | grep -qi "$ebase" && ! echo "$ebase" | grep -qi "$vbase"; then
-                log "  [WARN] $email — off-domain (venue: $VENUE_DOMAIN) — saving anyway"
+                if [ "$source" = "apollo" ] || [ "$source" = "apollo_api" ] || [ "$source" = "linkedin" ]; then
+                    log "  [WARN] $email — off-domain (venue: $VENUE_DOMAIN) — keeping (source: $source)"
+                else
+                    log "  [REJECT] $email — off-domain (venue: $VENUE_DOMAIN) — discarding"
+                    echo "FLAG:Off-domain email rejected: $email (domain $email_domain vs venue $VENUE_DOMAIN)" >> /tmp/pipeline_flags.txt
+                    return
+                fi
             fi
         fi
     fi

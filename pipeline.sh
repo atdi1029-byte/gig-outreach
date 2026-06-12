@@ -337,8 +337,10 @@ for(var i=0;i<fbLinks.length;i++){
 var ig = '';
 var igLinks = document.querySelectorAll('a[href*="instagram.com"]');
 for(var i=0;i<igLinks.length;i++){
-    var u = igLinks[i].getAttribute('href').split('?')[0];
+    var u = igLinks[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
     if(u.startsWith('//')) u = 'https:' + u;
+    var igSlug = u.split('instagram.com/')[1] || '';
+    if(igSlug.length < 2) continue;
     if(u.indexOf('share') === -1){ ig = u; break; }
 }
 
@@ -363,6 +365,8 @@ if(!ig){
     var igRaw = rawHtml2.match(/https?:\/\/(?:www\.)?instagram\.com\/[A-Za-z0-9._\-]+/g) || [];
     for(var i=0;i<igRaw.length;i++){
         var u = igRaw[i].split('?')[0].replace(/\/$/,'');
+        var igSlug2 = u.split('instagram.com/')[1] || '';
+        if(igSlug2.length < 2) continue;
         if(u.indexOf('share') === -1){ ig = u; break; }
     }
 }
@@ -747,7 +751,11 @@ for c in d.get('contacts', []):
     # Update social links — also write to temp files so step1b/1c don't re-query the sheet
     # Validate: only save if URL actually belongs to the right platform
     if [ -n "$fb" ] && [ "$fb" != "None" ] && [ "$fb" != "" ]; then
-        if echo "$fb" | grep -qi 'facebook\.com'; then
+        # Reject bare facebook.com with no page slug
+        if echo "$fb" | grep -qiE '^https?://(www\.)?facebook\.com/?$'; then
+            log "  [WARN] Rejecting bare Facebook URL (no page): $fb"
+            fb=""
+        elif echo "$fb" | grep -qi 'facebook\.com'; then
             # Warn if FB slug doesn't match any venue name word
             local fb_slug fb_name_match
             fb_slug=$(echo "$fb" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
@@ -763,20 +771,46 @@ words = [w for w in words if w not in stop and len(w) > 2]
 print('match' if any(w in handle for w in words) else 'no')
 " "$venue" "$fb_slug" 2>/dev/null)
             if [ "$fb_name_match" = "no" ]; then
-                log "  [WARN] Facebook slug '$fb_slug' doesn't match venue name — may be wrong"
-                echo "FLAG:Off-venue Facebook: $fb (slug '$fb_slug' vs venue '$venue')" >> /tmp/pipeline_flags.txt
+                log "  [REJECT] Facebook slug '$fb_slug' doesn't match venue name '$venue' — discarding"
+                echo "FLAG:Off-venue Facebook rejected: $fb (slug '$fb_slug' vs venue '$venue')" >> /tmp/pipeline_flags.txt
+                fb=""
+            else
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$fb")" > /dev/null
+                echo "$fb" > /tmp/pipeline_step1_fb.txt
             fi
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$fb")" > /dev/null
-            echo "$fb" > /tmp/pipeline_step1_fb.txt
         else
             log "  [WARN] Rejecting non-Facebook URL in fb field: $fb"
             fb=""
         fi
     fi
     if [ -n "$ig" ] && [ "$ig" != "None" ] && [ "$ig" != "" ]; then
-        if echo "$ig" | grep -qi 'instagram\.com'; then
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig")" > /dev/null
-            echo "$ig" > /tmp/pipeline_step1_ig.txt
+        # Reject bare instagram.com with no profile slug
+        if echo "$ig" | grep -qiE '^https?://(www\.)?instagram\.com/?$'; then
+            log "  [WARN] Rejecting bare Instagram URL (no profile): $ig"
+            ig=""
+        elif echo "$ig" | grep -qi 'instagram\.com'; then
+            # Validate IG handle matches venue name
+            local ig_slug ig_name_match
+            ig_slug=$(echo "$ig" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
+            ig_name_match=$(python3 -c "
+import re, sys
+venue = sys.argv[1]; handle = sys.argv[2]
+words = re.sub(r'[^a-z\s]','',venue.lower()).split()
+stop = {'the','a','an','and','of','at','in','by','on','for','to',
+        'hotel','inn','resort','lodge','restaurant','winery','vineyard',
+        'club','country','golf','bar','bistro','cafe','tavern','grill',
+        'pub','lounge','spa','marina','museum','gallery'}
+words = [w for w in words if w not in stop and len(w) > 2]
+print('match' if any(w in handle for w in words) else 'no')
+" "$venue" "$ig_slug" 2>/dev/null)
+            if [ "$ig_name_match" = "no" ]; then
+                log "  [REJECT] Instagram handle '$ig_slug' doesn't match venue name '$venue' — discarding"
+                echo "FLAG:Off-venue Instagram rejected: $ig (handle '$ig_slug' vs venue '$venue')" >> /tmp/pipeline_flags.txt
+                ig=""
+            else
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig")" > /dev/null
+                echo "$ig" > /tmp/pipeline_step1_ig.txt
+            fi
         else
             log "  [WARN] Rejecting non-Instagram URL in ig field: $ig"
             ig=""
@@ -879,10 +913,9 @@ else:
                 log "  [IG SEARCH] Skipping $ig_candidate — handle '$handle' doesn't match venue"
             fi
         done
-        # If no match found, take first candidate as fallback
+        # If no match found, reject — don't use unmatched handles
         if [ -z "$best_ig" ] && [ ${#IG_LIST[@]} -gt 0 ]; then
-            best_ig="${IG_LIST[0]}"
-            log "  [IG SEARCH] No handle matched venue name — using first result"
+            log "  [IG SEARCH] No handle matched venue name — rejecting all candidates"
         fi
         if [ -n "$best_ig" ]; then
             log "  [IG SEARCH] Found: $best_ig"
@@ -963,8 +996,7 @@ else:
             fi
         done
         if [ -z "$best_fb" ] && [ ${#FB_LIST[@]} -gt 0 ]; then
-            best_fb="${FB_LIST[0]}"
-            log "  [FB SEARCH] No handle matched venue name — using first result"
+            log "  [FB SEARCH] No handle matched venue name — rejecting all candidates"
         fi
         if [ -n "$best_fb" ]; then
             log "  [FB SEARCH] Found: $best_fb"
@@ -2656,11 +2688,29 @@ step5_google_fallback() {
         local ig_url
         ig_url=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_ig.js"'")' 2>/dev/null)
         if [ -n "$ig_url" ] && [ "$ig_url" != "missing value" ] && [ "$ig_url" != "" ]; then
-            log "  [FALLBACK] Found Instagram: $ig_url"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig_url")" > /dev/null
-            echo "$ig_url" > /tmp/pipeline_step1_ig.txt
-            # Try scraping the IG profile for email via step2
-            step2_social "$venue" "$venue_id"
+            # Validate fallback IG handle matches venue name
+            local fb_ig_slug fb_ig_match
+            fb_ig_slug=$(echo "$ig_url" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
+            fb_ig_match=$(python3 -c "
+import re, sys
+venue = sys.argv[1]; handle = sys.argv[2]
+words = re.sub(r'[^a-z\s]','',venue.lower()).split()
+stop = {'the','a','an','and','of','at','in','by','on','for','to',
+        'hotel','inn','resort','lodge','restaurant','winery','vineyard',
+        'club','country','golf','bar','bistro','cafe','tavern','grill',
+        'pub','lounge','spa','marina','museum','gallery'}
+words = [w for w in words if w not in stop and len(w) > 2]
+print('match' if any(w in handle for w in words) else 'no')
+" "$venue" "$fb_ig_slug" 2>/dev/null)
+            if [ "$fb_ig_match" = "no" ]; then
+                log "  [FALLBACK] Instagram handle '$fb_ig_slug' doesn't match venue name '$venue' — rejecting"
+            else
+                log "  [FALLBACK] Found Instagram: $ig_url"
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig_url")" > /dev/null
+                echo "$ig_url" > /tmp/pipeline_step1_ig.txt
+                # Try scraping the IG profile for email via step2
+                step2_social "$venue" "$venue_id"
+            fi
         else
             log "  [FALLBACK] No Instagram found with city search"
         fi

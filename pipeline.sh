@@ -321,28 +321,37 @@ for(var i=0;i<schemas.length;i++){
 
 var contactList = Object.keys(contacts).map(function(k){return contacts[k];});
 
-// Facebook URL
-var fb = '';
-var fbLinks = document.querySelectorAll('a[href*="facebook.com"]');
-for(var i=0;i<fbLinks.length;i++){
-    var u = fbLinks[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
-    if(u.startsWith('//')) u = 'https:' + u;
-    var slug = u.split('facebook.com/')[1] || '';
-    if(['tr','pixel','plugins','sharer','share','login','dialog','policy.php','policy','terms','terms.php','about','legal','cookies','r.php','recover','profile.php','help','privacy','settings','pages','ads','business'].indexOf(slug) > -1) continue;
-    if(u.indexOf('sharer') > -1 || u.indexOf('share') > -1) continue;
-    if(slug.length >= 3){ fb = u; break; }
+// Helper: extract social link from a set of elements
+function extractFb(links){
+    var SKIP = ['tr','pixel','plugins','sharer','share','login','dialog','policy.php','policy','terms','terms.php','about','legal','cookies','r.php','recover','profile.php','help','privacy','settings','pages','ads','business'];
+    for(var i=0;i<links.length;i++){
+        var u = links[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
+        if(u.startsWith('//')) u = 'https:' + u;
+        var slug = u.split('facebook.com/')[1] || '';
+        if(SKIP.indexOf(slug) > -1) continue;
+        if(u.indexOf('sharer') > -1 || u.indexOf('share') > -1) continue;
+        if(slug.length >= 3) return u;
+    }
+    return '';
+}
+function extractIg(links){
+    for(var i=0;i<links.length;i++){
+        var u = links[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
+        if(u.startsWith('//')) u = 'https:' + u;
+        var igSlug = u.split('instagram.com/')[1] || '';
+        if(igSlug.length < 2) continue;
+        if(u.indexOf('share') === -1) return u;
+    }
+    return '';
 }
 
-// Instagram URL
-var ig = '';
-var igLinks = document.querySelectorAll('a[href*="instagram.com"]');
-for(var i=0;i<igLinks.length;i++){
-    var u = igLinks[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
-    if(u.startsWith('//')) u = 'https:' + u;
-    var igSlug = u.split('instagram.com/')[1] || '';
-    if(igSlug.length < 2) continue;
-    if(u.indexOf('share') === -1){ ig = u; break; }
-}
+// Facebook + Instagram URLs — search header/footer/nav FIRST, then full page
+var priorityZones = 'header, footer, nav, [role=banner], [role=contentinfo], .footer, .header, .site-footer, .site-header, #footer, #header';
+var fb = extractFb(document.querySelectorAll(priorityZones + ' a[href*="facebook.com"]'));
+var ig = extractIg(document.querySelectorAll(priorityZones + ' a[href*="instagram.com"]'));
+// Fallback to full page only if priority zones found nothing
+if(!fb) fb = extractFb(document.querySelectorAll('a[href*="facebook.com"]'));
+if(!ig) ig = extractIg(document.querySelectorAll('a[href*="instagram.com"]'));
 
 // Fallback: scan raw HTML for facebook/instagram URLs (catches Wix/JS-rendered links
 // where href is a redirect URL or set via data attributes / onclick handlers)

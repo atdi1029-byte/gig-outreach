@@ -18453,3 +18453,858 @@ UNTOUCHED: 173 found (shared budget: 8 total)
 01:44:01 
 01:44:01 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-06-11_01-44.html
 01:44:01 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-06-11_01-44.html
+
+23:12:14 === Pipeline started 2026-06-11 23:12:14 ===
+23:12:14 SMART PICKS MODE: Fetching ranked venues...
+23:12:19 SMART PICKS: 1360 available, budget remaining: 11
+23:12:19 
+23:12:19 ########## SMART PICK #1 (score 85): AMBAR Restaurant, Shaw (DC-REST-1071) ##########
+23:12:25   [DOMAIN] Venue domain: ambarrestaurant.com
+23:12:28 
+23:12:28 ============================================================
+23:12:28  PIPELINE: AMBAR Restaurant, Shaw (DC-REST-1071)
+23:12:28  Website: https://ambarrestaurant.com
+23:12:28  Started: 2026-06-11 23:12:28
+23:12:28 ============================================================
+23:12:28   [ZB] Credits remaining: 3561
+23:12:33   Known emails: 0
+23:12:33   Known names: 0
+23:12:33 
+23:12:33 ========== STEP 1: Website Scrape ==========
+23:12:33   URL: https://ambarrestaurant.com
+23:12:33   Opening in Chrome: https://ambarrestaurant.com
+23:12:40   Validating contact form URL: https://ambarrestaurant.com/page/contact-us
+23:12:44   ✓ Real contact form confirmed
+23:12:44   Emails: 4 | FB: https://www.facebook.com/AmbarClarendon | IG: https://www.instagram.com/ambar_restaurants/ | Contact Form: https://ambarrestaurant.com/page/contact-us
+23:12:44   Crawling subpage (1): https://ambarrestaurant.com/page/contact-us
+23:12:49   Crawling subpage (2): https://ambarrestaurant.com/catering
+23:12:53   Found on subpage: chicago@ambarrestaurant.com, clarendon@ambarrestaurant.com, info@ambarrestaurant.com, shaw@ambarrestaurant.com
+23:12:53   Crawling subpage (3): https://ambarrestaurant.com/page/rsvp
+23:12:57   Crawling subpage (4): https://ambarrestaurant.com/page/locations
+23:13:01   Crawling subpage (5): https://ambarrestaurant.com/story
+23:13:06   Crawling subpage (6): https://ambarrestaurant.com/page/our-menus
+23:13:10   Crawling subpage (7): https://ambarrestaurant.com/page/dining-without-limits
+23:13:14   Crawling subpage (8): https://ambarrestaurant.com/careers
+23:13:19   Crawling subpage (9): https://ambarrestaurant.com/page/in-the-news
+23:13:23   Crawling subpage (10): https://ambarrestaurant.com/page/awards
+23:13:27   Crawling subpage (11): https://ambarrestaurant.com/page/rewards
+23:13:31   Crawling subpage (12): https://ambarrestaurant.com/page/bottomless-brunch
+23:13:36   Crawling subpage (13): https://ambarrestaurant.com/page/all-you-can-eat-lunch--dinner
+23:13:40   Crawling subpage (14): https://ambarrestaurant.com/login
+23:13:44   Crawling subpage (15): https://ambarrestaurant.com/menu
+23:13:49   Crawling subpage (16): https://ambarrestaurant.com/tags/fine-dining
+23:13:53   [CONTACT] Probing https://ambarrestaurant.com/contact
+23:14:06   ✓ Contact form URL saved
+23:14:06   chicago@ambarrestaurant.com → do_not_mail
+23:14:08   clarendon@ambarrestaurant.com → valid
+23:14:10   ✓ Added: clarendon@ambarrestaurant.com <clarendon@ambarrestaurant.com>
+23:14:11   info@ambarrestaurant.com → do_not_mail
+23:14:12   shaw@ambarrestaurant.com → valid
+23:14:15   ✓ Added: shaw@ambarrestaurant.com <shaw@ambarrestaurant.com>
+23:14:16 
+23:14:16 ========== STEP 2: Social Media Scrape ==========
+23:14:20   FB: https://www.facebook.com/AmbarClarendon | IG: https://www.instagram.com/ambar_restaurants/
+23:14:20   Opening FB: https://www.facebook.com/AmbarClarendon
+23:14:25   Opening FB: https://www.facebook.com/AmbarClarendon/about
+23:14:30   Opening FB: https://www.facebook.com/AmbarClarendon/directory_contact_info
+23:14:35   [FB] No email on page — trying Google snippet...
+23:14:40   [FB SNIPPET] No email in Google snippet
+23:14:40   Opening IG: https://www.instagram.com/ambar_restaurants/
+23:14:45   [IG] No email on page — trying Google snippet...
+23:14:49   [IG SNIPPET] No email in Google snippet
+23:14:49   [APOLLO] Credits used this run: 0 / 300
+23:14:49 
+23:14:49 ========== STEP 3: Apollo API ==========
+23:14:49   Searching Apollo for company: AMBAR Restaurant, Shaw
+23:14:51   Found: Ambar (domain: ambarrestaurant.com, org_id: 669ba99a719fbc01b3ab8b8d)
+23:14:51   Searching for people at Ambar (org_id: 669ba99a719fbc01b3ab8b8d)...
+23:14:52   Found 9 people total
+23:14:52   Skipped 6 people with no email (red ? on Apollo)
+23:14:52   Skipped 2 people with irrelevant titles (housekeeping, IT, security, etc.)
+23:14:52   +++ Daniela Aq***e (Founder & Partner): no email — added as pending
+23:14:55   1 people to enrich (1 credit each)
+23:14:55   >>> Laura Scarpa (Founder & Partner): laura@ambarhrservices.com [verified]
+23:14:55   [WARN] laura@ambarhrservices.com — off-domain (venue: ambarrestaurant.com) — saving anyway
+23:14:56   laura@ambarhrservices.com → valid
+23:15:00   ✓ Added: Laura Scarpa <laura@ambarhrservices.com>
+23:15:01   Apollo API done: 1 credits used this run
+23:15:01 
+23:15:01 ========== STEP 4: LinkedIn + Apollo API ==========
+23:15:01   Using domain: ambarrestaurant.com
+23:15:03   LinkedIn page 1...
+23:15:20   No results on page 1 — stopping.
+23:15:20   No new people found on LinkedIn.
+23:15:22   Setting status → pipelined
+23:15:23 
+23:15:23 ============================================================
+23:15:23  DONE: AMBAR Restaurant, Shaw | 3 min | 23:15:23
+23:15:23 ============================================================
+23:15:53 
+23:15:53 ########## SMART PICK #2 (score 85): Gregorio's Trattoria (MD-REST-1073) ##########
+23:16:00   [DOMAIN] Venue domain: gregoriostrattoria.com
+23:16:02 
+23:16:02 ============================================================
+23:16:02  PIPELINE: Gregorio's Trattoria (MD-REST-1073)
+23:16:02  Website: https://gregoriostrattoria.com
+23:16:02  Started: 2026-06-11 23:16:02
+23:16:02 ============================================================
+23:16:02   [ZB] Credits remaining: 3556
+23:16:05   Known emails: 0
+23:16:05   Known names: 0
+23:16:05 
+23:16:05 ========== STEP 1: Website Scrape ==========
+23:16:05   URL: https://gregoriostrattoria.com
+23:16:05   Opening in Chrome: https://gregoriostrattoria.com
+23:16:12   Emails: 0 | FB: https://www.facebook.com/augiesbeergarden | IG: https://www.instagram.com/augiesbeergarden/ | Contact Form: none
+23:16:12   [LOCATION] Checking for location-specific page (city: Potomac)...
+23:16:15   [LOCATION] No location-specific page found
+23:16:15   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:16:20   [CONTACT] Probing https://gregoriostrattoria.com/contact
+23:16:25   [WARN] Facebook slug 'https://www.facebook.com/augiesbeergarden' doesn't match venue name — may be wrong
+23:16:31 
+23:16:31 ========== STEP 2: Social Media Scrape ==========
+23:16:35   FB: https://www.facebook.com/augiesbeergarden | IG: https://www.instagram.com/augiesbeergarden/
+23:16:35   Opening FB: https://www.facebook.com/augiesbeergarden
+23:16:40   Opening FB: https://www.facebook.com/augiesbeergarden/about
+23:16:45   Opening FB: https://www.facebook.com/augiesbeergarden/directory_contact_info
+23:16:51   [FB] No email on page — trying Google snippet...
+23:16:55   [FB SNIPPET] No email in Google snippet
+23:16:55   Opening IG: https://www.instagram.com/augiesbeergarden/
+23:17:00   [IG] No email on page — trying Google snippet...
+23:17:04   [IG SNIPPET] No email in Google snippet
+23:17:04   [APOLLO] Credits used this run: 1 / 300
+23:17:04 
+23:17:04 ========== STEP 3: Apollo API ==========
+23:17:04   Searching Apollo for company: Gregorio's Trattoria
+23:17:06   Found: GREGORIOS TRATTORIA (domain: gregoriostrattoria.com, org_id: 66e3fd8f4e52a7000108fbc5)
+23:17:06   Searching for people at GREGORIOS TRATTORIA (org_id: 66e3fd8f4e52a7000108fbc5)...
+23:17:07   Found 1 people total
+23:17:07   Skipped 1 people with no email (red ? on Apollo)
+23:17:07   No new people to enrich (but pending contacts may have been added above).
+23:17:07 
+23:17:07 ========== STEP 4: LinkedIn + Apollo API ==========
+23:17:07   Using domain: gregoriostrattoria.com
+23:17:09   LinkedIn page 1...
+23:17:27   No results on page 1 — stopping.
+23:17:27   No new people found on LinkedIn.
+23:17:29 
+23:17:29 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:17:29   Googling: "Gregorio's Trattoria" contact Potomac
+23:17:33   [FALLBACK] Found site: https://www.captaingregorys.com|https://11.9K+|https://resy.com|https://alexandrialivingmagazine.com (domain: captaingregorys.com|https:)
+23:17:36 
+23:17:36 ========== STEP 1: Website Scrape ==========
+23:17:36   URL: https://www.captaingregorys.com|https://11.9K+|https://resy.com|https://alexandrialivingmagazine.com
+23:17:36   Opening in Chrome: https://www.captaingregorys.com|https://11.9K+|https://resy.com|https://alexandrialivingmagazine.com
+23:17:42   Emails: 0 | FB: https://www.facebook.com/ThePeoplesDrug | IG: https://www.instagram.com/thepeoplesdrug/ | Contact Form: none
+23:17:42   [LOCATION] Checking for location-specific page (city: Potomac)...
+23:17:42   [LOCATION] No location-specific page found
+23:17:42   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:17:47   [WARN] Facebook slug 'https://www.facebook.com/thepeoplesdrug' doesn't match venue name — may be wrong
+23:17:51   [FALLBACK] Re-trying Instagram: Gregorio's Trattoria Potomac site:instagram.com
+23:17:55   [FALLBACK] Found Instagram: https://www.instagram.com/gregstrattoria/|https://www.instagram.com/popular/
+23:17:58 
+23:17:58 ========== STEP 2: Social Media Scrape ==========
+23:18:00   FB: https://www.facebook.com/ThePeoplesDrug | IG: https://www.instagram.com/gregstrattoria/|https://www.instagram.com/popular/
+23:18:00   Opening FB: https://www.facebook.com/ThePeoplesDrug
+23:18:06   FB emails found: order@namastejalsaa.com
+23:18:06   Opening FB: https://www.facebook.com/ThePeoplesDrug/about
+23:18:11   Opening FB: https://www.facebook.com/ThePeoplesDrug/directory_contact_info
+23:18:16   Opening IG: https://www.instagram.com/gregstrattoria/|https://www.instagram.com/popular/
+23:18:21   [IG] No email on page — trying Google snippet...
+23:18:26   [IG SNIPPET] No email in Google snippet
+23:18:26   [WARN] order@namastejalsaa.com — off-domain (venue: captaingregorys.com|https:) — saving anyway
+23:18:26   order@namastejalsaa.com → do_not_mail
+23:18:27   Setting status → pipelined
+23:18:30 
+23:18:30 ============================================================
+23:18:30  DONE: Gregorio's Trattoria | 2 min | 23:18:30
+23:18:30 ============================================================
+23:19:00 
+23:19:00 ########## SMART PICK #3 (score 85): Nova Europa Restaurant (MD-REST-1075) ##########
+23:19:07   [DOMAIN] Venue domain: novaeuroparestaurant.com
+23:19:10 
+23:19:10 ============================================================
+23:19:10  PIPELINE: Nova Europa Restaurant (MD-REST-1075)
+23:19:10  Website: https://www.novaeuroparestaurant.com
+23:19:10  Started: 2026-06-11 23:19:10
+23:19:10 ============================================================
+23:19:10   [ZB] Credits remaining: 3555
+23:19:14   Known emails: 0
+23:19:14   Known names: 0
+23:19:14 
+23:19:14 ========== STEP 1: Website Scrape ==========
+23:19:14   URL: https://www.novaeuroparestaurant.com
+23:19:14   Opening in Chrome: https://www.novaeuroparestaurant.com
+23:19:20   Emails: 0 | FB: https://www.facebook.com/lostboycider | IG: https://www.instagram.com/explore/ | Contact Form: none
+23:19:20   [LOCATION] Checking for location-specific page (city: Potomac)...
+23:19:21   [LOCATION] No location-specific page found
+23:19:21   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:19:26   [CONTACT] Probing https://www.novaeuroparestaurant.com/contact
+23:19:31   [WARN] Facebook slug 'https://www.facebook.com/lostboycider' doesn't match venue name — may be wrong
+23:19:35 
+23:19:35 ========== STEP 2: Social Media Scrape ==========
+23:19:38   FB: https://www.facebook.com/lostboycider | IG: https://www.instagram.com/explore/
+23:19:38   Opening FB: https://www.facebook.com/lostboycider
+23:19:44   Opening FB: https://www.facebook.com/lostboycider/about
+23:19:49   Opening FB: https://www.facebook.com/lostboycider/directory_contact_info
+23:19:54   [FB] No email on page — trying Google snippet...
+23:19:58   [FB SNIPPET] No email in Google snippet
+23:19:58   Opening IG: https://www.instagram.com/explore/
+23:20:04   [IG] No email on page — trying Google snippet...
+23:20:08   [IG SNIPPET] No email in Google snippet
+23:20:08   [APOLLO] Credits used this run: 1 / 300
+23:20:08 
+23:20:08 ========== STEP 3: Apollo API ==========
+23:20:08   Searching Apollo for company: Nova Europa Restaurant
+23:20:10   Found: Nova Europa Restaurant (domain: novaeuroparestaurant.com, org_id: 67349463db231d00010860db)
+23:20:10   Searching for people at Nova Europa Restaurant (org_id: 67349463db231d00010860db)...
+23:20:10   Found 1 people total
+23:20:10   Skipped 1 people with no email (red ? on Apollo)
+23:20:11   No new people to enrich (but pending contacts may have been added above).
+23:20:11 
+23:20:11 ========== STEP 4: LinkedIn + Apollo API ==========
+23:20:11   Using domain: novaeuroparestaurant.com
+23:20:13   LinkedIn page 1...
+23:20:30   No results on page 1 — stopping.
+23:20:31   No new people found on LinkedIn.
+23:20:34 
+23:20:34 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:20:34   Googling: "Nova Europa Restaurant" contact Potomac
+23:20:38   [FALLBACK] No new site found (or same domain as before)
+23:20:38   [FALLBACK] Re-trying Instagram: Nova Europa Restaurant Potomac site:instagram.com
+23:20:42   [FALLBACK] Found Instagram: https://www.instagram.com/thebluedoorkitchen/
+23:20:51 
+23:20:51 ========== STEP 2: Social Media Scrape ==========
+23:20:57   FB: https://www.facebook.com/lostboycider | IG: https://www.instagram.com/thebluedoorkitchen/
+23:20:57   Opening FB: https://www.facebook.com/lostboycider
+23:21:03   FB emails found: info@lostboycider.com
+23:21:03   Opening FB: https://www.facebook.com/lostboycider/about
+23:21:08   Opening FB: https://www.facebook.com/lostboycider/directory_contact_info
+23:21:13   Opening IG: https://www.instagram.com/thebluedoorkitchen/
+23:21:18   IG emails found: info@mtdefiance.com.read
+23:21:18   [WARN] info@lostboycider.com — off-domain (venue: novaeuroparestaurant.com) — saving anyway
+23:21:19   info@lostboycider.com → do_not_mail
+23:21:20   [WARN] info@mtdefiance.com.read — off-domain (venue: novaeuroparestaurant.com) — saving anyway
+23:21:20   info@mtdefiance.com.read → invalid
+23:21:22   ⚠ Added (invalid): info@mtdefiance.com.read <info@mtdefiance.com.read>
+23:21:23   Setting status → pipelined
+23:21:26 
+23:21:26 ============================================================
+23:21:26  DONE: Nova Europa Restaurant | 2 min | 23:21:26
+23:21:26 ============================================================
+23:21:56 
+23:21:56 ########## SMART PICK #4 (score 85): O PORTUGUÊS - European Market Inc. (MD-REST-1076) ##########
+23:22:03   [DOMAIN] Venue domain: o-portugu-s-european-market-inc.wheree.com
+23:22:07 
+23:22:07 ============================================================
+23:22:07  PIPELINE: O PORTUGUÊS - European Market Inc. (MD-REST-1076)
+23:22:07  Website: https://o-portugu-s-european-market-inc.wheree.com
+23:22:07  Started: 2026-06-11 23:22:07
+23:22:07 ============================================================
+23:22:07   [ZB] Credits remaining: 3553
+23:22:10   Known emails: 0
+23:22:10   Known names: 0
+23:22:10 
+23:22:10 ========== STEP 1: Website Scrape ==========
+23:22:10   URL: https://o-portugu-s-european-market-inc.wheree.com
+23:22:10   Opening in Chrome: https://o-portugu-s-european-market-inc.wheree.com
+23:22:16   [WARN] Page returned 0 emails + 0 social — likely didn't render. Retrying with 12s wait...
+23:22:29   Emails: 0 | FB: none | IG: none | Contact Form: none
+23:22:29   [LOCATION] Checking for location-specific page (city: Potomac)...
+23:22:29   [LOCATION] No location-specific page found
+23:22:33 
+23:22:33 ========== STEP 1B: Instagram Google Search ==========
+23:22:33   No Instagram found on website — Googling...
+23:22:38   [IG SEARCH] Found: https://www.instagram.com/oportugues_europeanmarket/
+23:22:41   ✓ Instagram URL saved
+23:22:43 
+23:22:43 ========== STEP 1C: Facebook Google Search ==========
+23:22:43   No Facebook found on website — Googling...
+23:22:47   [FB SEARCH] No Facebook found via Google
+23:22:47 
+23:22:47 ========== STEP 2: Social Media Scrape ==========
+23:22:50   FB: none | IG: https://www.instagram.com/oportugues_europeanmarket/
+23:22:50   Opening IG: https://www.instagram.com/oportugues_europeanmarket/
+23:22:56   [IG] No email on page — trying Google snippet...
+23:23:00   [IG SNIPPET] Found: info@twistedcattavern.com|info@twistedcattavern.com.read
+23:23:00   [WARN] info@twistedcattavern.com — off-domain (venue: o-portugu-s-european-market-inc.wheree.com) — saving anyway
+23:23:01   info@twistedcattavern.com → do_not_mail
+23:23:02   [WARN] info@twistedcattavern.com.read — off-domain (venue: o-portugu-s-european-market-inc.wheree.com) — saving anyway
+23:23:02   info@twistedcattavern.com.read → invalid
+23:23:05   ⚠ Added (invalid): info@twistedcattavern.com.read <info@twistedcattavern.com.read>
+23:23:06   [APOLLO] Credits used this run: 1 / 300
+23:23:06 
+23:23:06 ========== STEP 3: Apollo API ==========
+23:23:06   Searching Apollo for company: O PORTUGUÊS - European Market Inc.
+23:23:08   Found: Wheree (domain: wheree.com, org_id: 6619f1fa90bb9b01afce66dd)
+23:23:08   Searching for people at Wheree (org_id: 6619f1fa90bb9b01afce66dd)...
+23:23:09   Found 2 people total
+23:23:09   Skipped 2 people with no email (red ? on Apollo)
+23:23:09   +++ Phat Ho***g (Founder): no email — added as pending
+23:23:13   No new people to enrich (but pending contacts may have been added above).
+23:23:13 
+23:23:13 ========== STEP 4: LinkedIn + Apollo API ==========
+23:23:13   Using domain: wheree.com
+23:23:15   LinkedIn page 1...
+23:23:31   No results on page 1 — stopping.
+23:23:31   No new people found on LinkedIn.
+23:23:33   Setting status → pipelined
+23:23:35 
+23:23:35 ============================================================
+23:23:35  DONE: O PORTUGUÊS - European Market Inc. | 1 min | 23:23:35
+23:23:35 ============================================================
+23:24:05 
+23:24:05 ########## SMART PICK #5 (score 85): MezeHub (MD-REST-1079) ##########
+23:24:12   [DOMAIN] Venue domain: mezehub.com
+23:24:15 
+23:24:15 ============================================================
+23:24:15  PIPELINE: MezeHub (MD-REST-1079)
+23:24:15  Website: https://mezehub.com
+23:24:15  Started: 2026-06-11 23:24:15
+23:24:15 ============================================================
+23:24:15   [ZB] Credits remaining: 3551
+23:24:18   Known emails: 0
+23:24:18   Known names: 0
+23:24:18 
+23:24:18 ========== STEP 1: Website Scrape ==========
+23:24:18   URL: https://mezehub.com
+23:24:18   Opening in Chrome: https://mezehub.com
+23:24:25   Emails: 1 | FB: https://www.facebook.com/mezehub | IG: https://www.instagram.com/mezehub/ | Contact Form: none
+23:24:25   Crawling subpage (1): https://mezehub.com/pages/about-us
+23:24:29   Found on subpage: sales@mezehub.com
+23:24:29   Crawling subpage (2): https://mezehub.com/collections/view-all
+23:24:34   Found on subpage: sales@mezehub.com
+23:24:34   Crawling subpage (3): https://mezehub.com/collections/mezehub-fresh-pies
+23:24:38   Found on subpage: sales@mezehub.com
+23:24:38   Crawling subpage (4): https://mezehub.com/collections/ajvar
+23:24:42   Same emails 3 pages in a row — stopping subpage crawl
+23:24:50   sales@mezehub.com → do_not_mail
+23:24:51 
+23:24:51 ========== STEP 2: Social Media Scrape ==========
+23:24:55   FB: https://www.facebook.com/mezehub | IG: https://www.instagram.com/mezehub/
+23:24:55   Opening FB: https://www.facebook.com/mezehub
+23:25:01   Opening FB: https://www.facebook.com/mezehub/about
+23:25:06   Opening FB: https://www.facebook.com/mezehub/directory_contact_info
+23:25:11   FB emails found: stmichaels@avaspizzeria.com|info@avaspizzeria.read
+23:25:11   Opening IG: https://www.instagram.com/mezehub/
+23:25:16   [IG] No email on page — trying Google snippet...
+23:25:20   [IG SNIPPET] No email in Google snippet
+23:25:20   [WARN] info@avaspizzeria.read — off-domain (venue: mezehub.com) — saving anyway
+23:25:21   info@avaspizzeria.read → invalid
+23:25:23   ⚠ Added (invalid): info@avaspizzeria.read <info@avaspizzeria.read>
+23:25:24   [WARN] stmichaels@avaspizzeria.com — off-domain (venue: mezehub.com) — saving anyway
+23:25:24   stmichaels@avaspizzeria.com → valid
+23:25:27   ✓ Added: stmichaels@avaspizzeria.com <stmichaels@avaspizzeria.com>
+23:25:28   [APOLLO] Credits used this run: 1 / 300
+23:25:28 
+23:25:28 ========== STEP 3: Apollo API ==========
+23:25:28   Searching Apollo for company: MezeHub
+23:25:29   Found: MezeHub (domain: mezehub.com, org_id: 5e55b3f1f77548000178be02)
+23:25:29   Searching for people at MezeHub (org_id: 5e55b3f1f77548000178be02)...
+23:25:30   Found 2 people total
+23:25:30   Skipped 1 people with no email (red ? on Apollo)
+23:25:30   +++ Omar Sa***z (Executive Chef): no email — added as pending
+23:25:33   1 people to enrich (1 credit each)
+23:25:33   >>> Doug Wheeler (Co-Founder): doug@mezehub.com [verified]
+23:25:34   doug@mezehub.com → invalid
+23:25:38   ⚠ Added (invalid): Doug Wheeler <doug@mezehub.com>
+23:25:39   Apollo API done: 2 credits used this run
+23:25:39 
+23:25:39 ========== STEP 4: LinkedIn + Apollo API ==========
+23:25:39   Using domain: mezehub.com
+23:25:43   LinkedIn page 1...
+23:26:01   No results on page 1 — stopping.
+23:26:01   No new people found on LinkedIn.
+23:26:03   Setting status → pipelined
+23:26:05 
+23:26:05 ============================================================
+23:26:05  DONE: MezeHub | 1 min | 23:26:05
+23:26:05 ============================================================
+23:26:35 
+23:26:35 ########## SMART PICK #6 (score 85): Ruta Ukrainian Restaurant (MD-REST-1082) ##########
+23:26:42   [DOMAIN] Venue domain: rutadc.us
+23:26:45 
+23:26:45 ============================================================
+23:26:45  PIPELINE: Ruta Ukrainian Restaurant (MD-REST-1082)
+23:26:45  Website: https://www.rutadc.us
+23:26:45  Started: 2026-06-11 23:26:45
+23:26:45 ============================================================
+23:26:45   [ZB] Credits remaining: 3547
+23:26:49   Known emails: 0
+23:26:49   Known names: 0
+23:26:49 
+23:26:49 ========== STEP 1: Website Scrape ==========
+23:26:49   URL: https://www.rutadc.us
+23:26:49   Opening in Chrome: https://www.rutadc.us
+23:26:55   Emails: 1 | FB: https://www.facebook.com/ruta.dmv | IG: https://www.instagram.com/ruta.dmv/ | Contact Form: none
+23:26:55   Crawling subpage (1): https://www.rutadc.us/catering
+23:27:00   Found on subpage: info@rutadc.us
+23:27:00   Crawling subpage (2): https://www.rutadc.us/menu
+23:27:04   Found on subpage: info@rutadc.us
+23:27:04   Crawling subpage (3): https://www.rutadc.us/ruta-dc
+23:27:08   Found on subpage: info@rutadc.us
+23:27:08   Crawling subpage (4): https://www.rutadc.us/ruta-md
+23:27:13   Same emails 3 pages in a row — stopping subpage crawl
+23:27:19   info@rutadc.us → do_not_mail
+23:27:20 
+23:27:20 ========== STEP 2: Social Media Scrape ==========
+23:27:24   FB: https://www.facebook.com/ruta.dmv | IG: https://www.instagram.com/ruta.dmv/
+23:27:24   Opening FB: https://www.facebook.com/ruta.dmv
+23:27:29   Opening FB: https://www.facebook.com/ruta.dmv/about
+23:27:34   Opening FB: https://www.facebook.com/ruta.dmv/directory_contact_info
+23:27:39   [FB] No email on page — trying Google snippet...
+23:27:44   [FB SNIPPET] No email in Google snippet
+23:27:44   Opening IG: https://www.instagram.com/ruta.dmv/
+23:27:49   [IG] No email on page — trying Google snippet...
+23:27:53   [IG SNIPPET] No email in Google snippet
+23:27:53   [APOLLO] Credits used this run: 2 / 300
+23:27:53 
+23:27:53 ========== STEP 3: Apollo API ==========
+23:27:53   Searching Apollo for company: Ruta Ukrainian Restaurant
+23:27:55   [WARN] No company found in Apollo for 'Ruta Ukrainian Restaurant' (tried name + domain)
+23:27:55   Using website domain for enrichment: rutadc.us
+23:27:55 
+23:27:55 ========== STEP 4: LinkedIn + Apollo API ==========
+23:27:55   Using domain: rutadc.us
+23:27:58   LinkedIn page 1...
+23:28:13   No results on page 1 — stopping.
+23:28:13   No new people found on LinkedIn.
+23:28:16 
+23:28:16 ========== STEP 5: Google Fallback (no email found yet) ==========
+23:28:16   Googling: "Ruta Ukrainian Restaurant" contact Bethesda
+23:28:20   [FALLBACK] Found site: https://www.rutadc.us|https://chapters.theprimetimersww.com|https://book.toasttab.com|https://dc.eater.com (domain: rutadc.us|https:)
+23:28:22 
+23:28:22 ========== STEP 1: Website Scrape ==========
+23:28:22   URL: https://www.rutadc.us|https://chapters.theprimetimersww.com|https://book.toasttab.com|https://dc.eater.com
+23:28:22   Opening in Chrome: https://www.rutadc.us|https://chapters.theprimetimersww.com|https://book.toasttab.com|https://dc.eater.com
+23:28:29   Emails: 0 | FB: https://www.facebook.com/ruta.dmv | IG: https://www.instagram.com/ruta.dmv/ | Contact Form: none
+23:28:29   [LOCATION] Checking for location-specific page (city: Bethesda)...
+23:28:29   [LOCATION] No location-specific page found
+23:28:29   Crawling subpage (1): https://www.google.com/intl/en/about/products
+23:28:40   [FALLBACK] Re-trying Instagram: Ruta Ukrainian Restaurant Bethesda site:instagram.com
+23:28:44   [FALLBACK] Found Instagram: https://www.instagram.com/ruta.dmv/|https://www.instagram.com/mococouncilmd/
+23:28:46 
+23:28:46 ========== STEP 2: Social Media Scrape ==========
+23:28:49   FB: https://www.facebook.com/ruta.dmv | IG: https://www.instagram.com/ruta.dmv/|https://www.instagram.com/mococouncilmd/
+23:28:49   Opening FB: https://www.facebook.com/ruta.dmv
+23:28:55   Opening FB: https://www.facebook.com/ruta.dmv/about
+23:29:00   Opening FB: https://www.facebook.com/ruta.dmv/directory_contact_info
+23:29:05   FB emails found: info@rutadc.us
+23:29:05   Opening IG: https://www.instagram.com/ruta.dmv/|https://www.instagram.com/mococouncilmd/
+23:29:10   [IG] No email on page — trying Google snippet...
+23:29:14   [IG SNIPPET] No email in Google snippet
+23:29:14   info@rutadc.us → do_not_mail
+23:29:16   Setting status → pipelined
+23:29:18 
+23:29:18 ============================================================
+23:29:18  DONE: Ruta Ukrainian Restaurant | 2 min | 23:29:18
+23:29:18 ============================================================
+23:29:49 
+23:29:49 ########## SMART PICK #7 (score 85): Julii (MD-REST-1084) ##########
+23:29:54   [DOMAIN] Venue domain: julii.com
+23:29:57 
+23:29:57 ============================================================
+23:29:57  PIPELINE: Julii (MD-REST-1084)
+23:29:57  Website: https://www.julii.com
+23:29:57  Started: 2026-06-11 23:29:57
+23:29:57 ============================================================
+23:29:57   [ZB] Credits remaining: 3546
+23:30:00   Known emails: 0
+23:30:00   Known names: 0
+23:30:00 
+23:30:00 ========== STEP 1: Website Scrape ==========
+23:30:00   URL: https://www.julii.com
+23:30:00   Opening in Chrome: https://www.julii.com
+23:30:07   Emails: 1 | FB: http://www.facebook.com/2008 | IG: http://instagram.com/juliieats | Contact Form: none
+23:30:07   Crawling subpage (1): https://www.julii.com/joinourteam
+23:30:11   Found on subpage: info@julii.com, mara@eatcava.com, molly@mhco.studio
+23:30:11   Crawling subpage (2): https://www.julii.com/pdfmenu
+23:30:15   Found on subpage: info@julii.com
+23:30:15   Crawling subpage (3): https://www.julii.com/deliverycurbside-menu
+23:30:20   Found on subpage: info@julii.com
+23:30:20   Crawling subpage (4): https://www.julii.com/reso
+23:30:24   Found on subpage: info@julii.com
+23:30:24   Crawling subpage (5): https://www.julii.com/gallery-1
+23:30:28   Same emails 3 pages in a row — stopping subpage crawl
+23:30:30   [WARN] Facebook slug 'http://www.facebook.com/2008' doesn't match venue name — may be wrong
+23:30:38   info@julii.com → do_not_mail
+23:30:39   [WARN] mara@eatcava.com — off-domain (venue: julii.com) — saving anyway
+23:30:39   mara@eatcava.com → valid
+23:30:43   ✓ Added: mara@eatcava.com <mara@eatcava.com>
+23:30:44   [WARN] molly@mhco.studio — off-domain (venue: julii.com) — saving anyway
+23:30:45   molly@mhco.studio → valid
+23:30:48   ✓ Added: molly@mhco.studio <molly@mhco.studio>
+23:30:50 
+23:30:50 ========== STEP 2: Social Media Scrape ==========
+23:30:52   FB: http://www.facebook.com/2008 | IG: http://instagram.com/juliieats
+23:30:52   Opening FB: http://www.facebook.com/2008
+23:30:57   Opening FB: http://www.facebook.com/2008/about
+23:31:03   Opening FB: http://www.facebook.com/2008/directory_contact_info
+23:31:08   [FB] No email on page — trying Google snippet...
+23:31:12   [FB SNIPPET] No email in Google snippet
+23:31:12   Opening IG: http://instagram.com/juliieats
+23:31:17   [IG] No email on page — trying Google snippet...
+23:31:22   [IG SNIPPET] No email in Google snippet
+23:31:22   [APOLLO] Credits used this run: 2 / 300
+23:31:22 
+23:31:22 ========== STEP 3: Apollo API ==========
+23:31:22   Searching Apollo for company: Julii
+23:31:23   Found: Julii (domain: julii.com, org_id: 6729c7d36d0cb6000107ad90)
+23:31:23   Searching for people at Julii (org_id: 6729c7d36d0cb6000107ad90)...
+23:31:23   Found 2 people total
+23:31:23   Skipped 2 people with no email (red ? on Apollo)
+23:31:23   No new people to enrich (but pending contacts may have been added above).
+23:31:23 
+23:31:23 ========== STEP 4: LinkedIn + Apollo API ==========
+23:31:23   Using domain: julii.com
+23:31:27   LinkedIn page 1...
+23:31:43   No results on page 1 — stopping.
+23:31:43   No new people found on LinkedIn.
+23:31:46   Setting status → pipelined
+23:31:48 
+23:31:48 ============================================================
+23:31:48  DONE: Julii | 1 min | 23:31:48
+23:31:48 ============================================================
+23:32:18 
+23:32:18 ########## SMART PICK #8 (score 85): European Delight (MD-REST-1089) ##########
+23:32:26   [DOMAIN] Venue domain: joe.coffee
+23:32:29 
+23:32:29 ============================================================
+23:32:29  PIPELINE: European Delight (MD-REST-1089)
+23:32:29  Website: https://joe.coffee
+23:32:29  Started: 2026-06-11 23:32:29
+23:32:29 ============================================================
+23:32:29   [ZB] Credits remaining: 3543
+23:32:32   Known emails: 0
+23:32:32   Known names: 0
+23:32:32 
+23:32:32 ========== STEP 1: Website Scrape ==========
+23:32:32   URL: https://joe.coffee
+23:32:32   Opening in Chrome: https://joe.coffee
+23:32:38   Validating contact form URL: https://joe.coffee/contact
+23:32:43   Found on contact page: thrive@joe.coffee, press@joe.coffee
+23:32:43   ✓ Real contact form confirmed
+23:32:43   Emails: 0 | FB: none | IG: https://instagram.com/joe_is_awake | Contact Form: https://joe.coffee/contact
+23:32:43   [LOCATION] Checking for location-specific page (city: Bethesda)...
+23:32:45   [LOCATION] Found: https://joe.coffee/locations/bethesda/
+23:32:45   [LOCATION] Re-scraping location page: https://joe.coffee/locations/bethesda/
+23:32:54   [LOCATION] Re-scraped: Emails: 0 | FB: none | IG: none | Contact Form: none
+23:32:54   Crawling subpage (1): https://joe.coffee/about
+23:32:58   Crawling subpage (2): https://joe.coffee
+23:33:03   Crawling subpage (3): https://joe.coffee/for-coffee-shops
+23:33:07   [CONTACT] Probing https://joe.coffee/contact
+23:33:13   [CONTACT] Found emails on https://joe.coffee/contact
+23:33:13   [WARN] Facebook slug 'https://facebook.com/joecoffeeapp' doesn't match venue name — may be wrong
+23:33:19   press@joe.coffee → do_not_mail
+23:33:20   thrive@joe.coffee → valid
+23:33:23   ✓ Added: thrive@joe.coffee <thrive@joe.coffee>
+23:33:24 
+23:33:24 ========== STEP 2: Social Media Scrape ==========
+23:33:29   FB: https://facebook.com/joecoffeeapp | IG: https://instagram.com/joe_is_awake
+23:33:29   Opening FB: https://facebook.com/joecoffeeapp
+23:33:35   Opening FB: https://facebook.com/joecoffeeapp/about
+23:33:40   Opening FB: https://facebook.com/joecoffeeapp/directory_contact_info
+23:33:45   FB emails found: success@joe.coffee
+23:33:45   Opening IG: https://instagram.com/joe_is_awake
+23:33:50   [IG] No email on page — trying Google snippet...
+23:33:54   [IG SNIPPET] No email in Google snippet
+23:33:55   success@joe.coffee → do_not_mail
+23:33:56   [APOLLO] Credits used this run: 2 / 300
+23:33:56 
+23:33:56 ========== STEP 3: Apollo API ==========
+23:33:56   Searching Apollo for company: European Delight
+23:33:57   Found: joe (domain: joe.coffee, org_id: 5d89fe0bc7d7850099a8fb3b)
+23:33:57   Searching for people at joe (org_id: 5d89fe0bc7d7850099a8fb3b)...
+23:33:58   Found 4 people total
+23:33:58   Skipped 4 people with no email (red ? on Apollo)
+23:33:58   No new people to enrich (but pending contacts may have been added above).
+23:33:58 
+23:33:58 ========== STEP 4: LinkedIn + Apollo API ==========
+23:33:58   Using domain: joe.coffee
+23:34:01   LinkedIn page 1...
+23:34:19   No results on page 1 — stopping.
+23:34:19   No new people found on LinkedIn.
+23:34:22   Setting status → pipelined
+23:34:24 
+23:34:24 ============================================================
+23:34:24  DONE: European Delight | 2 min | 23:34:24
+23:34:24 ============================================================
+23:34:54 
+23:34:54 ########## SMART PICK #9 (score 85): Ege Market (MD-REST-1092) ##########
+23:35:00   [DOMAIN] Venue domain: egemarketbethesda.com
+23:35:04 
+23:35:04 ============================================================
+23:35:04  PIPELINE: Ege Market (MD-REST-1092)
+23:35:04  Website: https://egemarketbethesda.com
+23:35:04  Started: 2026-06-11 23:35:04
+23:35:04 ============================================================
+23:35:04   [ZB] Credits remaining: 3540
+23:35:07   Known emails: 0
+23:35:07   Known names: 0
+23:35:07 
+23:35:07 ========== STEP 1: Website Scrape ==========
+23:35:07   URL: https://egemarketbethesda.com
+23:35:07   Opening in Chrome: https://egemarketbethesda.com
+23:35:14   Validating contact form URL: https://egemarketbethesda.com/contact-us
+23:35:18   Found on contact page: info@egemarketbethesda.com
+23:35:18   ✓ Real contact form confirmed
+23:35:18   Emails: 1 | FB: https://www.facebook.com/EgeMarketMD | IG: https://www.instagram.com/EgeMarketMD | Contact Form: https://egemarketbethesda.com/contact-us
+23:35:18   Crawling subpage (1): https://egemarketbethesda.com/contact-us
+23:35:22   Found on subpage: info@egemarketbethesda.com
+23:35:22   Crawling subpage (2): https://egemarketbethesda.com/ege-market-home
+23:35:27   Found on subpage: info@egemarketbethesda.com
+23:35:27   [CONTACT] Probing https://egemarketbethesda.com/contact-us
+23:35:32   [CONTACT] Found emails on https://egemarketbethesda.com/contact-us
+23:35:39   ✓ Contact form URL saved
+23:35:41   info@egemarketbethesda.com → do_not_mail
+23:35:42 
+23:35:42 ========== STEP 2: Social Media Scrape ==========
+23:35:44   FB: https://www.facebook.com/EgeMarketMD | IG: https://www.instagram.com/EgeMarketMD
+23:35:44   Opening FB: https://www.facebook.com/EgeMarketMD
+23:35:49   FB emails found: egemarketgs@gmail.com
+23:35:49   Opening FB: https://www.facebook.com/EgeMarketMD/about
+23:35:55   Opening FB: https://www.facebook.com/EgeMarketMD/directory_contact_info
+23:36:00   FB emails found: egemarketgs@gmail.com
+23:36:00   Opening IG: https://www.instagram.com/EgeMarketMD
+23:36:05   [IG] No email on page — trying Google snippet...
+23:36:09   [IG SNIPPET] No email in Google snippet
+23:36:11   egemarketgs@gmail.com → valid
+23:36:14   ✓ Added: egemarketgs@gmail.com <egemarketgs@gmail.com>
+23:36:15   [APOLLO] Credits used this run: 2 / 300
+23:36:15 
+23:36:15 ========== STEP 3: Apollo API ==========
+23:36:15   Searching Apollo for company: Ege Market
+23:36:17   Found: Ege Zemin Market (domain: egezeminmarket.com.tr, org_id: 66dc72e6e6fec9000141bb8e)
+23:36:17   Searching for people at Ege Zemin Market (org_id: 66dc72e6e6fec9000141bb8e)...
+23:36:17   Found 1 people total
+23:36:17   Skipped 1 people with no email (red ? on Apollo)
+23:36:17   No new people to enrich (but pending contacts may have been added above).
+23:36:17 
+23:36:17 ========== STEP 4: LinkedIn + Apollo API ==========
+23:36:17   Using domain: egezeminmarket.com.tr
+23:36:21   LinkedIn page 1...
+23:36:37   No results on page 1 — stopping.
+23:36:37   No new people found on LinkedIn.
+23:36:39   Setting status → pipelined
+23:36:42 
+23:36:42 ============================================================
+23:36:42  DONE: Ege Market | 1 min | 23:36:42
+23:36:42 ============================================================
+23:37:13 
+23:37:13 ########## SMART PICK #10 (score 85): Kielbasa Factory (MD-REST-1098) ##########
+23:37:19   [DOMAIN] Venue domain: kielbasafactory.com
+23:37:23 
+23:37:23 ============================================================
+23:37:23  PIPELINE: Kielbasa Factory (MD-REST-1098)
+23:37:23  Website: https://kielbasafactory.com
+23:37:23  Started: 2026-06-11 23:37:23
+23:37:23 ============================================================
+23:37:23   [ZB] Credits remaining: 3538
+23:37:27   Known emails: 0
+23:37:27   Known names: 0
+23:37:27 
+23:37:27 ========== STEP 1: Website Scrape ==========
+23:37:27   URL: https://kielbasafactory.com
+23:37:27   Opening in Chrome: https://kielbasafactory.com
+23:37:33   Emails: 2 | FB: https://www.facebook.com/KielbasaFactory | IG: https://www.instagram.com/kielbasa_factory/ | Contact Form: none
+23:37:33   Crawling subpage (1): https://kielbasafactory.com/products/wedding-kielbasa
+23:37:37   Found on subpage: abuse@company.site
+23:37:37   Crawling subpage (2): https://kielbasafactory.com/products/meat-party-platters-only-store-pickup
+23:37:42   Found on subpage: abuse@company.site
+23:37:42   Crawling subpage (3): https://kielbasafactory.com/products/meat-and-cheese-party-platters-only-store-pickup-724484818
+23:37:46   Found on subpage: abuse@company.site
+23:37:46   Crawling subpage (4): https://kielbasafactory.com/about
+23:37:50   Same emails 3 pages in a row — stopping subpage crawl
+23:37:57   [WARN] abuse@company.site — off-domain (venue: kielbasafactory.com) — saving anyway
+23:37:57   abuse@company.site → do_not_mail
+23:37:59   kielbasafactory@hotmail.com → valid
+23:38:03   ✓ Added: kielbasafactory@hotmail.com <kielbasafactory@hotmail.com>
+23:38:04 
+23:38:04 ========== STEP 2: Social Media Scrape ==========
+23:38:07   FB: https://www.facebook.com/KielbasaFactory | IG: https://www.instagram.com/kielbasa_factory/
+23:38:07   Opening FB: https://www.facebook.com/KielbasaFactory
+23:38:12   Opening FB: https://www.facebook.com/KielbasaFactory/about
+23:38:17   Opening FB: https://www.facebook.com/KielbasaFactory/directory_contact_info
+23:38:22   FB emails found: kielbasafactory@hotmail.com
+23:38:22   Opening IG: https://www.instagram.com/kielbasa_factory/
+23:38:27   [IG] No email on page — trying Google snippet...
+23:38:32   [IG SNIPPET] No email in Google snippet
+23:38:32   kielbasafactory@hotmail.com → valid
+23:38:34   ✓ Added: kielbasafactory@hotmail.com <kielbasafactory@hotmail.com>
+23:38:35   [APOLLO] Credits used this run: 2 / 300
+23:38:35 
+23:38:35 ========== STEP 3: Apollo API ==========
+23:38:35   Searching Apollo for company: Kielbasa Factory
+23:38:37   Found: Kielbasa Factory (domain: kielbasafactory.com, org_id: 66f8dfcad8ce1200015a5f28)
+23:38:37   Searching for people at Kielbasa Factory (org_id: 66f8dfcad8ce1200015a5f28)...
+23:38:38   Found 1 people total
+23:38:38   Skipped 1 people with no email (red ? on Apollo)
+23:38:38   No new people to enrich (but pending contacts may have been added above).
+23:38:38 
+23:38:38 ========== STEP 4: LinkedIn + Apollo API ==========
+23:38:38   Using domain: kielbasafactory.com
+23:38:42   LinkedIn page 1...
+23:38:58   No results on page 1 — stopping.
+23:38:58   No new people found on LinkedIn.
+23:39:00   Setting status → pipelined
+23:39:03 
+23:39:03 ============================================================
+23:39:03  DONE: Kielbasa Factory | 1 min | 23:39:03
+23:39:03 ============================================================
+23:39:33 
+23:39:33 ########## SMART PICK #11 (score 85): La Bonne Vache (MD-REST-1099) ##########
+23:39:41   [DOMAIN] Venue domain: labonnevachedc.com
+23:39:45 
+23:39:45 ============================================================
+23:39:45  PIPELINE: La Bonne Vache (MD-REST-1099)
+23:39:45  Website: https://www.labonnevachedc.com
+23:39:45  Started: 2026-06-11 23:39:45
+23:39:45 ============================================================
+23:39:45   [ZB] Credits remaining: 3536
+23:39:58   Known emails: 0
+23:39:58   Known names: 0
+23:39:58 
+23:39:58 ========== STEP 1: Website Scrape ==========
+23:39:58   URL: https://www.labonnevachedc.com
+23:39:58   Opening in Chrome: https://www.labonnevachedc.com
+23:40:04   Validating contact form URL: https://www.labonnevachedc.com/contact
+23:40:09   Found on contact page: info@labonnevachedc.com
+23:40:09   ✓ Real contact form confirmed
+23:40:09   Emails: 1 | FB: http://www.facebook.com/2008 | IG: http://instagram.com/labonnevachedc | Contact Form: https://www.labonnevachedc.com/contact
+23:40:09   Crawling subpage (1): https://www.labonnevachedc.com/contact
+23:40:13   Found on subpage: info@labonnevachedc.com
+23:40:13   Crawling subpage (2): https://www.labonnevachedc.com/menu
+23:40:18   Found on subpage: info@labonnevachedc.com
+23:40:18   Crawling subpage (3): https://www.labonnevachedc.com/cart
+23:40:22   Found on subpage: info@labonnevachedc.com
+23:40:22   [CONTACT] Probing https://www.labonnevachedc.com/contact
+23:40:27   [CONTACT] Found emails on https://www.labonnevachedc.com/contact
+23:40:28   [WARN] Facebook slug 'http://www.facebook.com/2008' doesn't match venue name — may be wrong
+23:40:33   ✓ Contact form URL saved
+23:40:42   info@labonnevachedc.com → do_not_mail
+23:40:43 
+23:40:43 ========== STEP 2: Social Media Scrape ==========
+23:40:46   FB: http://www.facebook.com/2008 | IG: http://instagram.com/labonnevachedc
+23:40:46   Opening FB: http://www.facebook.com/2008
+23:40:51   Opening FB: http://www.facebook.com/2008/about
+23:40:57   Opening FB: http://www.facebook.com/2008/directory_contact_info
+23:41:02   [FB] No email on page — trying Google snippet...
+23:41:06   [FB SNIPPET] No email in Google snippet
+23:41:06   Opening IG: http://instagram.com/labonnevachedc
+23:41:11   [IG] No email on page — trying Google snippet...
+23:41:15   [IG SNIPPET] No email in Google snippet
+23:41:15   [APOLLO] Credits used this run: 2 / 300
+23:41:15 
+23:41:15 ========== STEP 3: Apollo API ==========
+23:41:15   Searching Apollo for company: La Bonne Vache
+23:41:17   Found: La Bonne Vache (domain: labonnevachedc.com, org_id: 6852378efae0fb00017c852d)
+23:41:17   Searching for people at La Bonne Vache (org_id: 6852378efae0fb00017c852d)...
+23:41:18   Found 3 people total
+23:41:18   Skipped 2 people with no email (red ? on Apollo)
+23:41:18   1 people to enrich (1 credit each)
+23:41:19   >>> Claire Wilder (Owner): claire@labonnevachedc.com [verified]
+23:41:19   claire@labonnevachedc.com → valid
+23:41:22   ✓ Added: Claire Wilder <claire@labonnevachedc.com>
+23:41:23   Apollo API done: 3 credits used this run
+23:41:23 
+23:41:23 ========== STEP 4: LinkedIn + Apollo API ==========
+23:41:23   Using domain: labonnevachedc.com
+23:41:26   LinkedIn page 1...
+23:41:44   No results on page 1 — stopping.
+23:41:44   No new people found on LinkedIn.
+23:41:46   Setting status → pipelined
+23:41:48 
+23:41:48 ============================================================
+23:41:48  DONE: La Bonne Vache | 2 min | 23:41:48
+23:41:48 ============================================================
+23:42:19 [BUDGET] Shared limit of 11 reached — stopping smart picks
+23:42:19 === SMART PICKS COMPLETE ===
+23:42:19 
+23:42:19 UNTOUCHED PHASE: Fetching all venues...
+23:42:22 UNTOUCHED: 1455 found (shared budget: 11 total)
+23:42:22 [BUDGET] Shared limit of 11 reached — stopping untouched phase
+23:42:22 === UNTOUCHED PHASE COMPLETE ===
+23:42:22 
+23:42:22 === SMART PICKS COMPLETE ===
+23:42:22 
+23:42:22 === POST-PIPELINE VERIFICATION ===
+23:43:25 
+23:43:25 --- Postcheck Results ---
+23:43:25   
+23:43:25   [23:42:22] === Post-Pipeline Check Started ===
+23:43:25   [23:42:22] Fetching pipelined venues with zero contacts...
+23:43:25   [23:42:30] 
+23:43:25   [23:42:30] === Gregorio's Trattoria (MD-REST-1073) | Potomac, MD | Contacts: 0 ===
+23:43:25   [23:42:30]   Website: https://www.captaingregorys.com
+23:43:25   [23:42:31]   Found emails on https://www.captaingregorys.com:
+23:43:25   [23:42:31]     info@captaingregorys.com
+23:43:25   [23:42:31]     user@domain.com
+23:43:25   [23:42:31]   Contact form found: https://www.captaingregorys.com
+23:43:25   [23:42:31]   Found emails on https://www.captaingregorys.com/contact:
+23:43:25   [23:42:31]     info@captaingregorys.com
+23:43:25   [23:42:31]     user@domain.com
+23:43:25   [23:42:32]   Found emails on https://www.captaingregorys.com/contact-us:
+23:43:25   [23:42:32]     info@captaingregorys.com
+23:43:25   [23:42:32]     user@domain.com
+23:43:25   [23:42:32]   Found emails on https://www.captaingregorys.com/about:
+23:43:25   [23:42:32]     info@captaingregorys.com
+23:43:25   [23:42:32]     user@domain.com
+23:43:25   [23:42:32]   Found emails on https://www.captaingregorys.com/events:
+23:43:25   [23:42:32]     info@captaingregorys.com
+23:43:25   [23:42:32]     user@domain.com
+23:43:25   [23:42:33]   Found emails on https://www.captaingregorys.com/private-events:
+23:43:25   [23:42:33]     info@captaingregorys.com
+23:43:25   [23:42:33]     user@domain.com
+23:43:25   [23:42:33]   Found emails on https://www.captaingregorys.com/event-contact:
+23:43:25   [23:42:33]     info@captaingregorys.com
+23:43:25   [23:42:33]     user@domain.com
+23:43:25   [23:42:35]   Saved contact form to sheet
+23:43:25   [23:42:38]   Added contact: info@captaingregorys.com
+23:43:25   [23:42:41]   Added contact: user@domain.com
+23:43:25   [23:42:41]   [Apollo] Searching by domain: captaingregorys.com
+23:43:25   [23:42:41]   [Apollo] No results by domain — searching by name: Gregorio's Trattoria
+23:43:25   [23:42:42]   [Apollo] Found 0 people
+23:43:25   [23:42:42]   Searching LinkedIn for: Gregorio's Trattoria
+23:43:25   [23:42:47]   [LinkedIn] No results
+23:43:25   [23:42:51] 
+23:43:25   [23:42:51] === Ruta Ukrainian Restaurant (MD-REST-1082) | Bethesda, MD | Contacts: 0 ===
+23:43:25   [23:42:51]   Website: https://www.rutadc.us
+23:43:25   [23:42:51]   Found emails on https://www.rutadc.us:
+23:43:25   [23:42:51]     605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+23:43:25   [23:42:51]     88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+23:43:25   [23:42:51]     8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+23:43:25   [23:42:51]     9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+23:43:25   [23:42:51]     c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+23:43:25   [23:42:51]     dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+23:43:25   [23:42:51]     e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+23:43:25   [23:42:51]     info@rutadc.us
+23:43:25   [23:42:51]   Contact form found: https://www.rutadc.us
+23:43:25   [23:42:52]   Found emails on https://www.rutadc.us/events:
+23:43:25   [23:42:52]     605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+23:43:25   [23:42:52]     88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+23:43:25   [23:42:52]     8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+23:43:25   [23:42:52]     9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+23:43:25   [23:42:52]     c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+23:43:25   [23:42:52]     dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+23:43:25   [23:42:52]     e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+23:43:25   [23:42:52]     info@rutadc.us
+23:43:25   [23:42:56]   Saved contact form to sheet
+23:43:25   [23:42:59]   Added contact: 605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+23:43:25   [23:43:01]   Added contact: 88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+23:43:25   [23:43:04]   Added contact: 8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+23:43:25   [23:43:07]   Added contact: 9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+23:43:25   [23:43:10]   Added contact: c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+23:43:25   [23:43:13]   Added contact: dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+23:43:25   [23:43:16]   Added contact: e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+23:43:25   [23:43:19]   Added contact: info@rutadc.us
+23:43:25   [23:43:19]   [Apollo] Searching by domain: rutadc.us
+23:43:25   [23:43:20]   [Apollo] No results by domain — searching by name: Ruta Ukrainian Restaurant
+23:43:25   [23:43:20]   [Apollo] Found 0 people
+23:43:25   [23:43:20]   Searching LinkedIn for: Ruta Ukrainian Restaurant
+23:43:25   [23:43:25]   [LinkedIn] No results
+23:43:25   [23:43:25] 
+23:43:25   [23:43:25] === Post-Pipeline Check Complete ===
+23:43:25 --- End Postcheck ---
+23:43:25 
+23:43:25 Generating report: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-06-11_23-43.html
+23:43:25 Report saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/2026-06-11_23-43.html

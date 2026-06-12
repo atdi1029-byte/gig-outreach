@@ -4810,3 +4810,552 @@
 [01:06:51]   Queries run: 11
 [01:06:51]   Venues added: 190
 [01:06:51]   Queries remaining: 451
+
+[22:53:57] === Venue Discovery Started ===
+[22:53:57] Fetching past gigs...
+[22:54:01] Found 70 past gigs
+[22:54:01] Fetching existing venues for dedup...
+[22:54:03] Existing venues: 1549
+[22:54:03]   SKIP (already discovered): L'Auberge Chez Francois
+[22:54:03]   SKIP (already discovered): The Inn at Perry Cabin
+[22:54:03]   SKIP (already discovered): The Maryland Club
+[22:54:03]   SKIP (already discovered): Black Ankle Vineyards
+[22:54:03]   SKIP (already discovered): Royal Restaurant
+[22:54:03]   SKIP (already discovered): Good Spirit Farm Winery
+[22:54:04]   SKIP (already discovered): Chesapeake Manor Vineyard
+[22:54:04]   SKIP (already discovered): Elkridge Furnace Inn
+[22:54:04]   SKIP (already discovered): Xella Winery and Vineyard
+[22:54:04]   SKIP (already discovered): Twin Oaks Tavern Winery
+[22:54:04]   SKIP (already discovered): Windridge Vineyards
+[22:54:04]   SKIP (already discovered): University Club
+[22:54:04]   SKIP (already discovered): The Farmhouse Tuscan
+[22:54:04]   SKIP (already discovered): Big Cork Vineyards
+[22:54:04]   SKIP (already discovered): Savage Mill Mall
+[22:54:04]   SKIP (already discovered): Trueman Vineyards
+[22:54:04]   SKIP (already discovered): Williams Gap Vineyard
+[22:54:04]   SKIP (already discovered): Hello Betty Bethesda
+[22:54:04]   SKIP (already discovered): The Madison Hotel
+[22:54:04]   SKIP (already discovered): Belle Haven Country Club
+[22:54:04]   SKIP (already discovered): Casanel Vineyards & Winery
+[22:54:04]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[22:54:04]   SKIP (already discovered): Corteau Winery
+[22:54:04]   SKIP (already discovered): Penn Oaks Winery
+[22:54:04]   SKIP (already discovered): Pizza Pomodoro
+[22:54:04]   SKIP (already discovered): Hidden Brook Winery
+[22:54:04]   SKIP (already discovered): Simple Theory Wine Co
+[22:54:04]   SKIP (already discovered): Brightview Perry Hall
+[22:54:04]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[22:54:04]   SKIP (already discovered): Gaylord National Harbor
+[22:54:04]   SKIP (already discovered): Woodberry Kitchen
+[22:54:04]   SKIP (already discovered): Great Sage
+[22:54:04]   SKIP (already discovered): Cosmos Club DC
+[22:54:04]   SKIP (already discovered): Doukénie Winery
+[22:54:04]   SKIP (already discovered): State Plaza Hotel DC
+[22:54:04]   SKIP (already discovered): Hyatt Cambridge
+[22:54:04]   SKIP (already discovered): Greenhill Vineyards
+[22:54:04]   SKIP (already discovered): Loudoun Golf & Country Club
+[22:54:04]   SKIP (already discovered): Creek's Edge Winery
+[22:54:04]   SKIP (already discovered): The Milton Inn
+[22:54:04]   SKIP (already discovered): Country Club of Fairfax
+[22:54:04]   SKIP (already discovered): Century Club Hagerstown
+[22:54:04]   SKIP (already discovered): Rock Spring Farm
+[22:54:04]   SKIP (already discovered): Janemark Winery & Vineyard
+[22:54:04]   SKIP (already discovered): Alma Cocina Latina
+[22:54:04]   SKIP (already discovered): Omni Shoreham Hotel
+[22:54:04]   SKIP (already discovered): Knoxie's Table
+[22:54:04]   SKIP (already discovered): 1757 Golf Club
+[22:54:04]   SKIP (already discovered): Holly Hills Country Club
+[22:54:04]   SKIP (already discovered): Conrad Washington DC
+[22:54:04]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[22:54:04]   SKIP (already discovered): Le Méridien Arlington
+[22:54:04]   SKIP (already discovered): Dulles Town Center
+[22:54:04]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[22:54:04]   SKIP (already discovered): Maritime Museum St Michaels
+[22:54:04]   SKIP (already discovered): Chartwell Golf & Country Club
+[22:54:04]   SKIP (already discovered): Ruse
+[22:54:04]   SKIP (already discovered): InGrano Bistro Bakery
+[22:54:04]   SKIP (already discovered): Kent Manor Inn
+[22:54:04]   SKIP (already discovered): Army Navy Country Club
+[22:54:04]   SKIP (already discovered): River Bend Country Club
+[22:54:04]   SKIP (already discovered): City Tavern DC
+[22:54:04]   SKIP (already discovered): Baltimore Country Club
+[22:54:04]   SKIP (already discovered): Vino and Pasta
+[22:54:04]   SKIP (already discovered): 50 West Vineyards
+[22:54:04]   SKIP (already discovered): The Galley Restaurant & Bar
+[22:54:04]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[22:54:04]   SKIP (already discovered): Bistrot Lepic
+[22:54:04]   SKIP (already discovered): Sunset Hills Winery
+[22:54:04]   SKIP (already discovered): The Oaks Waterfront Hotel
+[22:54:04] Cleaning up discovered_gigs.txt...
+[22:54:08] 
+[22:54:08] === Discovery Complete — Total new venues: 0 ===
+
+[22:54:46] === Taste Discovery Mode Started ===
+[22:54:46] MAX_QUERIES=10
+[22:54:46] Fetching existing venues + past gigs for dedup...
+[22:54:51] Existing venues + past gigs: 0
+[22:54:51] Generating search queries from taste profile...
+[22:54:51] Generated 451 queries (10 will run this session)
+[22:54:51] 
+[22:54:51] === Taste Query [1/10]: wine bar Georgetown DC ===
+[22:54:58]   Scrolling search results...
+[22:55:05]   Extracting results...
+[22:55:05]   Found 38 results
+[22:56:52]   Added 27 new venues from query
+[22:56:52]   [WEBSITE] Looking up: Bar a Vin
+[22:56:55]     Website: http://chezbillysud.com
+[22:56:58]   [WEBSITE] Looking up: Martin's Tavern
+[22:57:02]     Website: https://www.martinstavern.com
+[22:57:05]   [WEBSITE] Looking up: Bodega Spanish Tapas & Lounge
+[22:57:08]     Website: https://bodegadc.com
+[22:57:11]   [WEBSITE] Looking up: Press Club Cocktail Bar
+[22:57:14]     Website: https://www.pressclubdc.com
+[22:57:18]   [WEBSITE] Looking up: The Alex at the Graham
+[22:57:21]     Website: https://thegrahamgeorgetown.com
+[22:57:25]   [WEBSITE] Looking up: Sixty Vines Foggy Bottom
+[22:57:28]     Website: https://www.sixtyvines.com
+[22:57:31]   [WEBSITE] Looking up: a.kitchen+bar - D.C.
+[22:57:34]     Website: https://akitchenandbardc.com
+[22:57:39]   [WEBSITE] Looking up: The Lounge at BOURBON STEAK
+[22:57:42]     Website: https://www.fourseasons.com
+[22:57:45]   [WEBSITE] Looking up: Mr. Smith's of Georgetown
+[22:57:48]     Website: https://mrsmiths.com
+[22:57:52]   [WEBSITE] Looking up: Fitzgerald's
+[22:57:55]     Website: https://www.fitzgeraldsdc.com
+[22:57:59]   [WEBSITE] Looking up: The Tombs
+[22:58:02]     Website: https://www.tombs.com
+[22:58:05]   [WEBSITE] Looking up: Bourbon Concierge
+[22:58:08]     Website: https://thebourbonconcierge.com
+[22:58:12]   [WEBSITE] Looking up: Clyde's of Georgetown
+[22:58:15]     Website: https://www.clydes.com
+[22:58:19]   [WEBSITE] Looking up: Osteria Mozza DC
+[22:58:23]     Website: https://osteriamozzadc.com
+[22:58:25]   [WEBSITE] Looking up: Maison Bar À Vins
+[22:58:29]     Website: https://www.maisondc.com
+[22:58:33]   [WEBSITE] Looking up: 1310 Kitchen and Bar
+[22:58:37]     Website: https://www.1310kitchendc.com
+[22:58:39]   [WEBSITE] Looking up: Housebar Georgetown
+[22:58:43]     Website: https://www.housebar.com
+[22:58:47]   [WEBSITE] Looking up: The Rooftop at the Graham
+[22:58:51]     Website: https://thegrahamgeorgetown.com
+[22:58:54]   [WEBSITE] Looking up: Mercy Me
+[22:58:58]     Website: https://www.mercymedc.com
+[22:59:01]   [WEBSITE] Looking up: Breadsoda Bar, Deli & Billiards
+[22:59:04]     Website: https://www.breadsoda.com
+[22:59:07]   [WEBSITE] Looking up: Bacchus Wine Cellar
+[22:59:10]     Website: https://www.bwcellar.com
+[22:59:14]   [WEBSITE] Looking up: Salt
+[22:59:17]     Website: https://saltrosslyn.com
+[22:59:21]   [WEBSITE] Looking up: Tai Chi Bar
+[22:59:25]     Website: https://bardc.com
+[22:59:28]   [WEBSITE] Looking up: CUT Above
+[22:59:31]     Website: https://washington.org
+[22:59:34]   [WEBSITE] Looking up: The Lobby Lounge | Cocktail & Wine Bar
+[22:59:37]     Website: https://lobbyloungedc.com
+[22:59:40]   [WEBSITE] Looking up: Oro Nami
+[22:59:44]     Website: https://yeahthatskosher.com
+[22:59:48]   [WEBSITE] Looking up: Tasting Room Georgetown
+[22:59:51]     Website: https://www.fountaininndc.com
+[23:00:01] 
+[23:00:01] === Taste Query [2/10]: wine bar Dupont Circle DC ===
+[23:00:08]   Scrolling search results...
+[23:00:16]   Extracting results...
+[23:00:16]   No results found
+[23:00:21] 
+[23:00:21] === Taste Query [3/10]: wine bar Potomac MD ===
+[23:00:26]   Scrolling search results...
+[23:00:34]   Extracting results...
+[23:00:34]   Found 10 results
+[23:01:01]   Added 6 new venues from query
+[23:01:01]   [WEBSITE] Looking up: Whelan's Beer & Wine
+[23:01:04]     Website: https://whelans-potomac.square.site
+[23:01:07]   [WEBSITE] Looking up: The Bottle Shop Wine & Beer
+[23:01:11]     Website: https://www.mybottleshop.net
+[23:01:15]   [WEBSITE] Looking up: Quincy’s Potomac Bar & Grille
+[23:01:18]     Website: https://www.quincyspotomac.com
+[23:01:21]   [WEBSITE] Looking up: T&T Wine Shop
+[23:01:24]     Website: https://www.tandtwineshop.com
+[23:01:27]   [WEBSITE] Looking up: Cooper’s Hawk Winery & Restaurant
+[23:01:31]     Website: https://chwinery.com
+[23:01:34]   [WEBSITE] Looking up: Hunter’s Bar and Grill
+[23:01:37]     Website: https://huntersbarandgrill.com
+[23:01:47] 
+[23:01:47] === Taste Query [4/10]: wine bar Bethesda MD ===
+[23:01:54]   Scrolling search results...
+[23:02:01]   Extracting results...
+[23:02:02]   Found 64 results
+
+[23:04:57] === Taste Discovery Mode Started ===
+[23:04:57] MAX_QUERIES=10
+[23:04:57] Fetching existing venues + past gigs for dedup...
+[23:05:01]   Added 50 new venues from query
+[23:05:01]   [WEBSITE] Looking up: Six Ways to Sunday
+[23:05:02] Existing venues + past gigs: 0
+[23:05:02] Generating search queries from taste profile...
+[23:05:02] Generated 448 queries (10 will run this session)
+[23:05:02] 
+[23:05:02] === Taste Query [1/10]: wine bar Bethesda MD ===
+[23:05:04]     No website found
+[23:05:05]   [WEBSITE] Looking up: Takumi Japanese Bistro & Bar
+[23:05:07]   Scrolling search results...
+[23:05:09]     Website: https://takumisushibar.com
+[23:05:13]   [WEBSITE] Looking up: BETH'S
+[23:05:15]   Extracting results...
+[23:05:15]   No results found
+[23:05:16]     Website: https://www.bethsrestaurant.com
+[23:05:19]   [WEBSITE] Looking up: ON St. Elmo
+[23:05:20] 
+[23:05:20] === Taste Query [2/10]: wine bar Chevy Chase MD ===
+[23:05:23]     No website found
+[23:05:24]   [WEBSITE] Looking up: Barrel & Crow
+[23:05:27]   Scrolling search results...
+[23:05:27]     Website: https://barrelandcrow.com
+[23:05:30]   [WEBSITE] Looking up: Cork Cleveland Park
+[23:05:34]     Website: https://www.corkdc.com
+[23:05:35]   Extracting results...
+[23:05:35]   No results found
+[23:05:38]   [WEBSITE] Looking up: Cork 57 Beer & Wine
+[23:05:40] 
+[23:05:40] === Taste Query [3/10]: wine bar Great Falls VA ===
+[23:05:41]     Website: https://cork57.com
+[23:05:44]   [WEBSITE] Looking up: Little Blackbird
+[23:05:46]   Scrolling search results...
+[23:05:48]     Website: https://www.littleblackbirddc.com
+[23:05:51]   [WEBSITE] Looking up: Corella Café & Lounge
+[23:05:54]   Extracting results...
+[23:05:54]   No results found
+[23:05:54]     Website: https://www.corellabethesda.com
+[23:05:57] 
+[23:05:57] === Taste Query [4/10]: wine bar McLean VA ===
+[23:05:58]   [WEBSITE] Looking up: Black's Bar & Kitchen
+[23:06:01]     No website found
+[23:06:02]   [WEBSITE] Looking up: Knowles Station Wine & Co
+[23:06:03]   Scrolling search results...
+[23:06:05]     Website: https://knowlesstation.com
+[23:06:08]   [WEBSITE] Looking up: The Salt Line
+[23:06:10]   Extracting results...
+[23:06:10]   No results found
+[23:06:12]     Website: https://www.thesaltline.com
+[23:06:14] 
+[23:06:14] === Taste Query [5/10]: wine bar Alexandria VA ===
+[23:06:15]   [WEBSITE] Looking up: World of Beer
+[23:06:18]     Website: https://worldofbeer.com
+[23:06:19]   Scrolling search results...
+[23:06:22]   [WEBSITE] Looking up: Seventh State Restaurant and Lounge
+[23:06:25]     Website: https://www.seventhstaterestaurant.com
+[23:06:26]   Extracting results...
+[23:06:26]   No results found
+[23:06:29]   [WEBSITE] Looking up: Aura Bar & Lounge
+[23:06:31] 
+[23:06:31] === Taste Query [6/10]: wine bar Reston VA ===
+[23:06:32]     Website: https://aurabardc.com
+[23:06:35]   [WEBSITE] Looking up: The Urban Winery of Silver Spring
+[23:06:38]   Scrolling search results...
+[23:06:39]     Website: https://www.theurbanwinery.com
+[23:06:42]   [WEBSITE] Looking up: Maple Beer & Wine
+[23:06:45]   Extracting results...
+[23:06:45]   No results found
+[23:06:46]     Website: https://www.maplebeerwine.com
+[23:06:49]   [WEBSITE] Looking up: Locavino
+[23:06:50] 
+[23:06:50] === Taste Query [7/10]: wine bar Middleburg VA ===
+[23:06:52]     No website found
+[23:06:53]   [WEBSITE] Looking up: The Girl and The Vine
+[23:06:55]   Scrolling search results...
+[23:06:57]     Website: https://thegirlthevine.toast.site
+[23:06:59]   [WEBSITE] Looking up: The Barking Dog
+[23:07:02]   Extracting results...
+[23:07:02]   No results found
+[23:07:03]     Website: https://www.barkingdogbar.com
+[23:07:06]   [WEBSITE] Looking up: Bethesda Bazar
+[23:07:07] 
+[23:07:07] === Taste Query [8/10]: wine bar Leesburg VA ===
+[23:07:09]     No website found
+[23:07:10]   [WEBSITE] Looking up: Hawkers Asian Street Food
+[23:07:14]     Website: https://eathawkers.com
+[23:07:14]   Scrolling search results...
+[23:07:17]   [WEBSITE] Looking up: Olazzo
+[23:07:20]     Website: https://www.olazzo.com
+[23:07:20]   Extracting results...
+[23:07:20]   No results found
+[23:07:23] 
+[23:07:23] === Taste Query [9/10]: wine bar St. Michaels MD ===
+[23:07:24]   [WEBSITE] Looking up: Capital Beer & Wine
+[23:07:27]     Website: https://capitalbeerwine.com
+[23:07:28]   Scrolling search results...
+[23:07:31]   [WEBSITE] Looking up: La Catrina Lounge
+[23:07:34]     Website: https://lacatrinabarandlounge.com
+[23:07:35]   Extracting results...
+[23:07:35]   No results found
+[23:07:38] 
+[23:07:38] === Taste Query [10/10]: wine bar Easton MD ===
+[23:07:38]   [WEBSITE] Looking up: Bacchus of Lebanon
+[23:07:42]     No website found
+[23:07:43]   [WEBSITE] Looking up: Guardado's Restaurant
+[23:07:44]   Scrolling search results...
+[23:07:46]     Website: https://guardados.com
+[23:07:50]   [WEBSITE] Looking up: Raku
+[23:07:52]   Extracting results...
+[23:07:52]   No results found
+[23:07:53]     Website: https://www.rakuasiandining.com
+[23:07:55]   MAX_QUERIES=10 reached — stopping.
+[23:07:55] 
+[23:07:55] === Taste Discovery Complete ===
+[23:07:55]   Queries run: 10
+[23:07:55]   Venues added: 0
+[23:07:55]   Queries remaining: 438
+[23:07:58]   [WEBSITE] Looking up: Gringos & Mariachis
+[23:08:01]     Website: https://www.gringosandmariachis.com
+[23:08:05]   [WEBSITE] Looking up: Nido Wine Shop + Market
+[23:08:08]     Website: https://www.nidodc.com
+[23:08:11]   [WEBSITE] Looking up: PLANTA Bethesda
+[23:08:15]     Website: https://www.plantarestaurants.com
+[23:08:18]   [WEBSITE] Looking up: Georgetown Square Wine and Beer
+[23:08:21]     Website: https://www.bethesdawine.com
+[23:08:24]   [WEBSITE] Looking up: Wagshal's Grand Bodega
+[23:08:28]     Website: https://www.wagshals.com
+[23:08:32]   [WEBSITE] Looking up: Tommy Joe's
+[23:08:35]     Website: https://tommy-joes.com
+[23:08:39]   [WEBSITE] Looking up: Barcelona Wine Bar
+[23:08:43]     Website: https://barcelonawinebar.com
+[23:08:46]   [WEBSITE] Looking up: Caddies
+[23:08:49]     Website: https://www.caddiesoncordell.com
+[23:08:53]   [WEBSITE] Looking up: Guapo's Cocina & Bar
+[23:08:56]     Website: https://guaposrestaurant.com
+[23:09:00]   [WEBSITE] Looking up: Cooper's Mill
+[23:09:03]     Website: https://www.coopersmillmd.com
+[23:09:07]   [WEBSITE] Looking up: Lance's Beer and Wine
+[23:09:10]     Website: https://www.lancesbeerwine.com
+[23:09:14]   [WEBSITE] Looking up: Geste Wine and Food
+[23:09:17]     Website: http://www.geste-wines.com
+[23:09:20]   [WEBSITE] Looking up: Pines of Rome
+[23:09:24]     Website: https://www.pinesofrometogo.com
+[23:09:28]   [WEBSITE] Looking up: Silver
+[23:09:31]     Website: https://www.umms.org
+[23:09:33]   [WEBSITE] Looking up: St. Vincent Wine
+[23:09:37]     Website: https://www.stvincentwine.com
+[23:09:40]   [WEBSITE] Looking up: Cubano’s
+[23:09:44]     Website: https://cubanos.menu-world.com
+[23:09:47]   [WEBSITE] Looking up: The Fourth Wall Bar and Cafe
+[23:09:50]     Website: https://www.roundhousetheatre.org
+[23:09:53]   [WEBSITE] Looking up: Kusshi Bethesda Downtown Woodmont Triangle
+[23:09:57]     Website: https://www.kusshisushi.com
+[23:10:00]   [WEBSITE] Looking up: Maya Cuisine Restaurant & Bar
+[23:10:03]     Website: https://www.mayacuisinerestaurant.com
+[23:10:06]   [WEBSITE] Looking up: No Kisses Bar
+[23:10:10]     Website: https://www.sonnyspizzadc.com
+[23:10:13]   [WEBSITE] Looking up: Pere Wine Bar
+[23:10:16]     Website: https://whatnow.com
+[23:10:19]   [WEBSITE] Looking up: Peter's Carryout
+[23:10:22]     Website: https://www.peterscarryoutmarlboro.com
+[23:10:36] 
+[23:10:36] === Taste Query [5/10]: ne bar Alexandria VA ===
+[23:10:40]   Scrolling search results...
+[23:10:47]   Extracting results...
+[23:10:47]   Found 64 results
+[23:13:51]   Added 58 new venues from query
+[23:13:51]   [WEBSITE] Looking up: No. 9 Lounge
+[23:13:54]     No website found
+[23:13:55]   [WEBSITE] Looking up: Basin Street Lounge
+[23:13:58]     Website: http://www.219restaurant.com
+[23:14:01]   [WEBSITE] Looking up: BARCA Pier & Wine Bar
+[23:14:04]     Website: https://9.9K+
+[23:14:08]   [WEBSITE] Looking up: Union Street Public House
+[23:14:11]     Website: https://www.unionstreetpublichouse.com
+[23:14:14]   [WEBSITE] Looking up: 2260 Lounge
+[23:14:18]     Website: https://www.seamless.com
+[23:14:21]   [WEBSITE] Looking up: BRUT Champagne & Wine Bar
+[23:14:25]     Website: https://brutwinebarva.com
+[23:14:29]   [WEBSITE] Looking up: Bar 86
+[23:14:32]     No website found
+[23:14:33]   [WEBSITE] Looking up: Del Ray Pop Up Bar
+[23:14:36]     Website: https://www.restaurent.com
+[23:14:40]   [WEBSITE] Looking up: Casa Luna Bar
+[23:14:43]     Website: https://casa-luna-bar.placejoys.com
+[23:14:46]   [WEBSITE] Looking up: Mason Social
+[23:14:50]     Website: http://www.mason-social.com
+[23:14:53]   [WEBSITE] Looking up: Old Hat Bar
+[23:14:57]     Website: https://www.oldhatbar.com
+[23:15:00]   [WEBSITE] Looking up: Majestic Lounge
+[23:15:03]     Website: https://majestic-lounge.res-menu.net
+[23:15:06]   [WEBSITE] Looking up: Alice Comfort Cocktail
+[23:15:09]     Website: https://alicebar.site
+[23:15:13]   [WEBSITE] Looking up: The Commodore Old Town
+[23:15:16]     Website: https://www.thecommodorepub.com
+[23:15:20]   [WEBSITE] Looking up: Shooter McGee's
+[23:15:23]     Website: https://www.shootermcgees.com
+[23:15:27]   [WEBSITE] Looking up: Hank's Oyster Bar, Old Town
+[23:15:30]     Website: https://hanksoysterbar.com
+[23:15:33]   [WEBSITE] Looking up: Alexandria Bier Garden
+[23:15:36]     Website: https://alexandriabiergarden.com
+[23:15:40]   [WEBSITE] Looking up: Continues Arcade
+[23:15:44]     Website: https://www.continuesarcade.com
+[23:15:47]   [WEBSITE] Looking up: Rock It Grill
+[23:15:50]     Website: https://rock-it-grill.restaurants-world.net
+[23:15:54]   [WEBSITE] Looking up: King's Ransom
+[23:15:57]     Website: https://4.2K+
+[23:16:00]   [WEBSITE] Looking up: The Parlour Lounge
+[23:16:03]     Website: https://www.theparlour-bar.com
+[23:16:07]   [WEBSITE] Looking up: Augie's Mussel House and Beer Garden
+[23:16:11]     Website: https://www.eataugies.com
+[23:16:14]   [WEBSITE] Looking up: The Garden
+[23:16:19]     No website found
+[23:16:20]   [WEBSITE] Looking up: Diko Hookah Bar and Lounge
+[23:16:23]     No website found
+[23:16:24]   [WEBSITE] Looking up: Blackwall Hitch
+[23:16:27]     Website: http://www.blackwallhitchalexandria.com
+[23:16:30]   [WEBSITE] Looking up: Northside 10
+[23:16:33]     Website: https://www.thenorthside10.com
+[23:16:37]   [WEBSITE] Looking up: a.lounge+bar - Alexandria
+[23:16:40]     Website: https://www.stayaka.com
+[23:16:43]   [WEBSITE] Looking up: Hops N Shine
+[23:16:46]     No website found
+[23:16:47]   [WEBSITE] Looking up: Hummingbird Bar and Kitchen
+[23:16:51]     Website: https://www.hummingbirdva.net
+[23:16:54]   [WEBSITE] Looking up: Daniel O'Connell's Irish Restaurant & Bar
+[23:16:57]     No website found
+[23:16:58]   [WEBSITE] Looking up: Rustico
+[23:17:01]     Website: https://1.8K+
+[23:17:06]   [WEBSITE] Looking up: Vola’s Dockside Grill and Hi-Tide Lounge
+[23:17:09]     Website: https://volasdockside.com
+[23:17:12]   [WEBSITE] Looking up: Virtue Feed & Grain
+[23:17:15]     Website: https://virtuefeedgrain.com
+[23:17:18]   [WEBSITE] Looking up: Feru Bar and Restaurant
+[23:17:21]     Website: https://ferurestaurantandbar.com
+[23:17:24]   [WEBSITE] Looking up: T.J. Stone's
+[23:17:28]     Website: https://www.tjstones.com
+[23:17:31]   [WEBSITE] Looking up: Captain Gregory's
+[23:17:34]     Website: https://www.captaingregorys.com
+[23:17:37]   [WEBSITE] Looking up: The Peoples Drug
+[23:17:41]     Website: https://thepeoplesdrug.com
+[23:17:44]   [WEBSITE] Looking up: Southside 815
+[23:17:48]     Website: https://southside815.com
+[23:17:50]   [WEBSITE] Looking up: The Majestic by Santiago Lopez
+[23:17:54]     Website: https://1.8K+
+[23:17:57]   [WEBSITE] Looking up: The Warehouse
+[23:18:00]     Website: https://warehouseoldtown.com
+[23:18:03]   [WEBSITE] Looking up: Namaste Jalsaa, Restaurant & Bar
+[23:18:06]     No website found
+[23:18:07]   [WEBSITE] Looking up: Sonoma Cellar
+[23:18:10]     Website: https://www.mysonomacellar.com
+[23:18:15]   [WEBSITE] Looking up: Evening Star Cafe
+[23:18:18]     No website found
+[23:18:19]   [WEBSITE] Looking up: Akeno Sushi Bar@ Old Town
+[23:18:23]     Website: https://1.8K+
+[23:18:27]   [WEBSITE] Looking up: Gin Ramen & Asian Tapas
+[23:18:30]     Website: https://www.ginramenalexandria.com
+[23:18:33]   [WEBSITE] Looking up: Frankie's Kitchen & Cocktail Bar
+[23:18:37]     Website: https://frankiesoldtown.com
+[23:18:41]   [WEBSITE] Looking up: Matt & Tony's All Day Kitchen + Bar
+[23:18:45]     Website: https://www.mattandtonysva.com
+[23:18:49]   [WEBSITE] Looking up: Vermilion Restaurant & Bar
+[23:18:52]     Website: https://www.vermilionrestaurant.com
+[23:18:56]   [WEBSITE] Looking up: Joe Theismann's Restaurant
+[23:18:59]     Website: https://theismanns.com
+[23:19:03]   [WEBSITE] Looking up: Chadwicks
+[23:19:06]     Website: https://www.chadwicksoldtown.com
+[23:19:09]   [WEBSITE] Looking up: Revel Restaurant
+[23:19:12]     Website: https://www.revelava.com
+[23:19:15]   [WEBSITE] Looking up: Lost Boy Cider
+[23:19:19]     Website: https://www.lostboycider.com
+[23:19:22]   [WEBSITE] Looking up: El Texano Bar and Grill
+[23:19:25]     Website: https://www.texanodmv.com
+[23:19:28]   [WEBSITE] Looking up: Clyde's at Mark Center
+[23:19:32]     Website: https://www.clydes.com
+[23:19:35]   [WEBSITE] Looking up: Dental Bar
+[23:19:39]     Website: https://www.dentbar.com
+[23:19:42]   [WEBSITE] Looking up: Hi/Fi Tex-Mex BBQ
+[23:19:46]     No website found
+[23:19:47]   [WEBSITE] Looking up: Zeke Hookah lounge
+[23:19:50]     No website found
+[23:19:51]   [WEBSITE] Looking up: Laporta's Restaurant
+[23:19:54]     Website: http://www.laportas.net
+[23:20:04] 
+[23:20:04] === Taste Query [6/10]: wine bar Reston VA ===
+[23:20:09]   Scrolling search results...
+[23:20:16]   Extracting results...
+[23:20:16]   No results found
+[23:20:19] 
+[23:20:19] === Taste Query [7/10]: wine bar Middleburg VA ===
+[23:20:26]   Scrolling search results...
+[23:20:32]   Extracting results...
+[23:20:32]   Found 12 results
+[23:21:08]   Added 3 new venues from query
+[23:21:08]   [WEBSITE] Looking up: Nomad
+[23:21:11]     No website found
+[23:21:12]   [WEBSITE] Looking up: Lost Barrel Brewing
+[23:21:15]     No website found
+[23:21:16]   [WEBSITE] Looking up: Mt. Defiance Cidery & Distillery
+[23:21:20]     Website: https://mtdefiance.com
+[23:21:31] 
+[23:21:31] === Taste Query [8/10]: wine bar Leesburg VA ===
+[23:21:38]   Scrolling search results...
+[23:21:44]   Extracting results...
+[23:21:44]   Found 20 results
+[23:22:38]   Added 11 new venues from query
+[23:22:38]   [WEBSITE] Looking up: Night Shift Cocktails
+[23:22:42]     Website: https://www.sidebarlbg.com
+[23:22:45]   [WEBSITE] Looking up: The Docket
+[23:22:49]     Website: https://www.va.gov
+[23:22:51]   [WEBSITE] Looking up: Eagletree Farm Winery & Restaurant
+[23:22:55]     Website: https://eagletreevineyards.com
+[23:22:58]   [WEBSITE] Looking up: Twisted Cat Tavern
+[23:23:01]     Website: https://twistedcattavern.com
+[23:23:04]   [WEBSITE] Looking up: King's Tavern & Wine Bar
+[23:23:07]     Website: http://www.kingstavernandwinebar.com
+[23:23:10]   [WEBSITE] Looking up: King Street Oyster Bar
+[23:23:14]     Website: https://www.kingstreetoysterbar.com
+[23:23:17]   [WEBSITE] Looking up: The Conche
+[23:23:20]     Website: https://the-conche.com
+[23:23:23]   [WEBSITE] Looking up: Rebellion Bourbon Bar & Kitchen Leesburg
+[23:23:26]     Website: https://eatatrebellion.com
+[23:23:30]   [WEBSITE] Looking up: Green Tree Tavern
+[23:23:33]     Website: https://www.greentreetavern.com
+[23:23:37]   [WEBSITE] Looking up: The Crow's Nest
+[23:23:40]     Website: https://www.dcr.virginia.gov
+[23:23:44]   [WEBSITE] Looking up: Bleu Frog Vineyards & Ole Bleu Brewery
+[23:23:47]     Website: https://bleufrogvineyards.com
+[23:23:55] 
+[23:23:55] === Taste Query [9/10]: wine bar St. Michaels MD ===
+[23:24:00]   Scrolling search results...
+[23:24:08]   Extracting results...
+[23:24:08]   Found 20 results
+[23:25:02]   Added 12 new venues from query
+[23:25:02]   [WEBSITE] Looking up: Limoncello Restaurant and Wine Bar
+[23:25:05]     Website: http://limoncellostmichaels.com
+[23:25:09]   [WEBSITE] Looking up: Ava's Pizzeria & Wine Bar - St. Michaels
+[23:25:12]     No website found
+[23:25:13]   [WEBSITE] Looking up: Ruse
+[23:25:16]     Website: https://ruserestaurant.com
+[23:25:20]   [WEBSITE] Looking up: Bordeleau Winery at St. Michaels
+[23:25:23]     Website: https://www.bordeleauwine.com
+[23:25:26]   [WEBSITE] Looking up: Talbot St. Tavern
+[23:25:29]     Website: https://www.talbotsttavern.com
+[23:25:33]   [WEBSITE] Looking up: Carpenter Street Saloon
+[23:25:36]     Website: https://carpenterstreetsaloon.com
+[23:25:40]   [WEBSITE] Looking up: Foxy's Harbor Grille
+[23:25:43]     Website: https://www.foxysharborgrille.com
+[23:25:46]   [WEBSITE] Looking up: The Galley Restaurant & Bar
+[23:25:49]     Website: https://thegalleysaintmichaels.com
+[23:25:52]   [WEBSITE] Looking up: Gina's Cafe
+[23:25:55]     Website: https://www.ginascafemd.com
+[23:25:59]   [WEBSITE] Looking up: The Blue Crab
+[23:26:02]     Website: https://www.bluecrabhouse.com
+[23:26:06]   [WEBSITE] Looking up: The Oak Room Restaurant & Bar
+[23:26:09]     Website: https://the-oaks.com
+[23:26:13]   [WEBSITE] Looking up: Simpatico Italy's Finest
+[23:26:16]     Website: https://www.simpaticostmichaels.com
+[23:26:28] 
+[23:26:28] === Taste Query [10/10]: wine bar Easton MD ===
+[23:26:35]   Scrolling search results...
+[23:26:41]   Extracting results...
+[23:26:41]   Found 7 results
+[23:26:54]   Added 0 new venues from query
+[23:26:59]   MAX_QUERIES=10 reached — stopping.
+[23:26:59] Calculating distances for new venues...
+[23:27:40]   Distances calculated: 0
+[23:27:40] 
+[23:27:40] === Taste Discovery Complete ===
+[23:27:40]   Queries run: 10
+[23:27:40]   Venues added: 167
+[23:27:40]   Queries remaining: 441

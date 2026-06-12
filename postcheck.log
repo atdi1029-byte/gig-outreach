@@ -153,3 +153,77 @@
 [01:44:00]   [LinkedIn] No results
 [01:44:00] 
 [01:44:00] === Post-Pipeline Check Complete ===
+
+[23:42:22] === Post-Pipeline Check Started ===
+[23:42:22] Fetching pipelined venues with zero contacts...
+[23:42:30] 
+[23:42:30] === Gregorio's Trattoria (MD-REST-1073) | Potomac, MD | Contacts: 0 ===
+[23:42:30]   Website: https://www.captaingregorys.com
+[23:42:31]   Found emails on https://www.captaingregorys.com:
+[23:42:31]     info@captaingregorys.com
+[23:42:31]     user@domain.com
+[23:42:31]   Contact form found: https://www.captaingregorys.com
+[23:42:31]   Found emails on https://www.captaingregorys.com/contact:
+[23:42:31]     info@captaingregorys.com
+[23:42:31]     user@domain.com
+[23:42:32]   Found emails on https://www.captaingregorys.com/contact-us:
+[23:42:32]     info@captaingregorys.com
+[23:42:32]     user@domain.com
+[23:42:32]   Found emails on https://www.captaingregorys.com/about:
+[23:42:32]     info@captaingregorys.com
+[23:42:32]     user@domain.com
+[23:42:32]   Found emails on https://www.captaingregorys.com/events:
+[23:42:32]     info@captaingregorys.com
+[23:42:32]     user@domain.com
+[23:42:33]   Found emails on https://www.captaingregorys.com/private-events:
+[23:42:33]     info@captaingregorys.com
+[23:42:33]     user@domain.com
+[23:42:33]   Found emails on https://www.captaingregorys.com/event-contact:
+[23:42:33]     info@captaingregorys.com
+[23:42:33]     user@domain.com
+[23:42:35]   Saved contact form to sheet
+[23:42:38]   Added contact: info@captaingregorys.com
+[23:42:41]   Added contact: user@domain.com
+[23:42:41]   [Apollo] Searching by domain: captaingregorys.com
+[23:42:41]   [Apollo] No results by domain — searching by name: Gregorio's Trattoria
+[23:42:42]   [Apollo] Found 0 people
+[23:42:42]   Searching LinkedIn for: Gregorio's Trattoria
+[23:42:47]   [LinkedIn] No results
+[23:42:51] 
+[23:42:51] === Ruta Ukrainian Restaurant (MD-REST-1082) | Bethesda, MD | Contacts: 0 ===
+[23:42:51]   Website: https://www.rutadc.us
+[23:42:51]   Found emails on https://www.rutadc.us:
+[23:42:51]     605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+[23:42:51]     88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+[23:42:51]     8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+[23:42:51]     9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+[23:42:51]     c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+[23:42:51]     dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+[23:42:51]     e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+[23:42:51]     info@rutadc.us
+[23:42:51]   Contact form found: https://www.rutadc.us
+[23:42:52]   Found emails on https://www.rutadc.us/events:
+[23:42:52]     605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+[23:42:52]     88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+[23:42:52]     8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+[23:42:52]     9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+[23:42:52]     c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+[23:42:52]     dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+[23:42:52]     e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+[23:42:52]     info@rutadc.us
+[23:42:56]   Saved contact form to sheet
+[23:42:59]   Added contact: 605a7baede844d278b89dc95ae0a9123@sentry-next.wixpress.com
+[23:43:01]   Added contact: 88170cb0c9d64f94b5821ca7fd2d55a4@sentry-next.wixpress.com
+[23:43:04]   Added contact: 8eb368c655b84e029ed79ad7a5c1718e@sentry.wixpress.com
+[23:43:07]   Added contact: 9a65e97ebe8141fca0c4fd686f70996b@sentry.wixpress.com
+[23:43:10]   Added contact: c183baa23371454f99f417f6616b724d@sentry.wixpress.com
+[23:43:13]   Added contact: dd0a55ccb8124b9c9d938e3acf41f8aa@sentry.wixpress.com
+[23:43:16]   Added contact: e0b4d631da7b4200828051f7f9c783e3@sentry-next.wixpress.com
+[23:43:19]   Added contact: info@rutadc.us
+[23:43:19]   [Apollo] Searching by domain: rutadc.us
+[23:43:20]   [Apollo] No results by domain — searching by name: Ruta Ukrainian Restaurant
+[23:43:20]   [Apollo] Found 0 people
+[23:43:20]   Searching LinkedIn for: Ruta Ukrainian Restaurant
+[23:43:25]   [LinkedIn] No results
+[23:43:25] 
+[23:43:25] === Post-Pipeline Check Complete ===

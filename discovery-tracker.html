@@ -582,7 +582,9 @@ function jsonp(url, cb) {
   document.head.appendChild(s);
 }
 
+let _discoveryReady = false;
 function cloudSave() {
+  if (!_discoveryReady) return;
   // Trim: only swept cities and non-zero venue counts
   const sweptTrimmed = Object.fromEntries(
     Object.entries(swept).filter(([, v]) => v)
@@ -590,6 +592,11 @@ function cloudSave() {
   const venuesTrimmed = Object.fromEntries(
     Object.entries(venuesCounts).filter(([, v]) => v > 0)
   );
+  // Block pushing empty data after cache wipe
+  if (!Object.keys(sweptTrimmed).length && !Object.keys(venuesTrimmed).length) {
+    console.warn('[Discovery] BLOCKED — empty data, refusing cloud push');
+    return;
+  }
   const sweptStr  = encodeURIComponent(
     JSON.stringify(sweptTrimmed)
   );
@@ -835,6 +842,7 @@ load();
 const hasLocal = Object.keys(swept).length > 0 ||
   Object.keys(venuesCounts).length > 0;
 if (hasLocal) {
+  _discoveryReady = true;
   render();
 } else {
   setSyncStatus('saving');
@@ -843,6 +851,7 @@ if (hasLocal) {
   document.getElementById('sync-status').style.color =
     '#888';
   cloudLoad(function() {
+    _discoveryReady = true;
     setSyncStatus('');
     render();
   });

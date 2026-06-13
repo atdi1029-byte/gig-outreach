@@ -2936,12 +2936,19 @@ function saveMonthlyDefaults(arr) {
 }
 
 let _syncTimer = null;
+let _monthlyReady = false;
 function syncMonthlyToCloud() {
+    if (!_monthlyReady) return;
     // Debounce — wait 2s after last change before pushing
     clearTimeout(_syncTimer);
     _syncTimer = setTimeout(() => {
         const tasks = localStorage.getItem(MONTHLY_KEY) || '{}';
         const defaults = localStorage.getItem(MONTHLY_DEFAULTS_KEY) || '[]';
+        // Block pushing empty data after cache wipe
+        if (tasks === '{}' && (defaults === '[]' || defaults === '{}')) {
+            console.warn('[Monthly] BLOCKED — empty data, refusing cloud push');
+            return;
+        }
         const url = buildUrl({
             action: 'save_monthly',
             tasks: tasks,
@@ -3835,7 +3842,10 @@ function toggleLevel() {
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
     renderMonthlyTasks(); // Show local immediately
-    loadMonthlyFromCloud(); // Then overwrite with cloud
+    // If local already has data, unlock sync immediately
+    var _localTasks = localStorage.getItem(MONTHLY_KEY) || '{}';
+    if (_localTasks !== '{}') _monthlyReady = true;
+    loadMonthlyFromCloud(function() { _monthlyReady = true; }); // Unlock after cloud pull
     // Restore level bar expanded state
     if (localStorage.getItem('outreach_level_expanded') === '1') {
         var ls = document.getElementById('levelSection');

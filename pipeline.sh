@@ -1139,6 +1139,36 @@ else:
     else
         log "  [FB SEARCH] No Facebook found via Google"
     fi
+
+    # Last resort: try common Facebook URL patterns directly
+    if [ -z "$best_fb" ]; then
+        local fb_slugs
+        fb_slugs=$(python3 -c "
+import re, sys
+venue = sys.argv[1]
+# Generate slug candidates: 'Echelon Wine Bar' -> echelonwinebar, echelon-wine-bar, echelon.wine.bar
+clean = re.sub(r'[^a-zA-Z0-9\s]','',venue).strip()
+words = clean.lower().split()
+print('\n'.join([
+    ''.join(words),
+    '-'.join(words),
+    '.'.join(words),
+    words[0] if words else '',
+]))
+" "$venue" 2>/dev/null)
+        while IFS= read -r slug; do
+            [ -z "$slug" ] && continue
+            local try_url="https://www.facebook.com/${slug}"
+            local http_code
+            http_code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 5 "$try_url" 2>/dev/null)
+            if [ "$http_code" = "200" ]; then
+                log "  [FB PROBE] Found: $try_url"
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$try_url")" > /dev/null
+                log "  ✓ Facebook URL saved"
+                break
+            fi
+        done <<< "$fb_slugs"
+    fi
 }
 
 # =================================================================

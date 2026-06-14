@@ -405,7 +405,7 @@ for(var i=0;i<navLinks.length;i++){
 }
 
 // 2. Body links matching keywords (catches deep links not in nav)
-var keywords = ['event','private','wedding','cater','contact','about','entertain','music','banquet','dining','party','book','ticket','team','staff','press','news','media','rental','meeting','corporate'];
+var keywords = ['event','private','wedding','cater','contact','about','entertain','music','banquet','dining','party','book','ticket','team','staff','press','news','media','rental','meeting','corporate','wine-club','wine_club','live-music','reserv','hire','inquiry','enquiry'];
 var allAnchors = document.querySelectorAll('a[href]');
 for(var i=0;i<allAnchors.length;i++){
     var h = allAnchors[i].getAttribute('href') || '';

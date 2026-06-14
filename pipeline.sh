@@ -810,7 +810,35 @@ else:
             sleep 4
             local sub_result
             sub_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
-            if [ -n "$sub_result" ] && [ "$sub_result" != "missing value" ]; then
+            # Curl fallback for subpages (Wix/Squarespace render empty in Chrome)
+            if [ -z "$sub_result" ] || [ "$sub_result" = "missing value" ]; then
+                local sub_html
+                sub_html=$(curl -sL --max-time 8 "$subpage" 2>/dev/null)
+                if [ -n "$sub_html" ]; then
+                    sub_result=$(python3 -c "
+import re, json, sys
+html = sys.stdin.read()
+emails = set()
+for m in re.findall(r'mailto:([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})', html):
+    emails.add(m.lower())
+for enc in re.findall(r'data-cfemail=\"([a-f0-9]+)\"', html):
+    key = int(enc[:2], 16)
+    decoded = ''.join(chr(int(enc[i:i+2], 16) ^ key) for i in range(2, len(enc), 2))
+    if '@' in decoded: emails.add(decoded.lower())
+text = re.sub(r'<[^>]+>', ' ', html)
+for m in re.findall(r'[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}', text):
+    e = m.lower()
+    if not re.search(r'\.(png|jpg|gif|svg|css|js)$', e): emails.add(e)
+junk = ['noreply','no-reply','mailer-daemon','postmaster','webmaster','sentry','wix.com','squarespace']
+contacts = [{'email':e,'name':'','title':''} for e in emails if not any(j in e for j in junk) and len(e)<60]
+print(json.dumps({'contacts':contacts}))
+" <<< "$sub_html" 2>/dev/null)
+                    if [ -n "$sub_result" ] && [ "$sub_result" != "null" ]; then
+                        log "  [CURL FALLBACK] Subpage parsed via curl"
+                    fi
+                fi
+            fi
+            if [ -n "$sub_result" ] && [ "$sub_result" != "missing value" ] && [ "$sub_result" != "null" ]; then
                 echo "$sub_result" > /tmp/pipeline_sub_scrape.json
                 local sub_count
                 sub_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(len(d.get('contacts',[])))" 2>/dev/null || echo "0")

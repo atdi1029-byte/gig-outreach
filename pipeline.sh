@@ -226,7 +226,7 @@ step1_website() {
     cat > /tmp/pipeline_website_scrape.js << 'JSEOF'
 (function(){
 var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk','fontawesome.io'];
-var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','info@','sales@','hello@','contact@','enquiries@','inquiries@','reservations@'];
+var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','info@','hello@','contact@','enquiries@','inquiries@','reservations@'];
 var contacts = {};
 
 function titleCase(s){
@@ -485,7 +485,7 @@ for m in re.findall(r'[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}', text):
         emails.add(e)
 
 # Junk filter
-junk_kw = ['noreply','no-reply','mailer-daemon','postmaster','webmaster','sentry','info@','sales@','hello@','contact@','enquiries@','inquiries@','reservations@',
+junk_kw = ['noreply','no-reply','mailer-daemon','postmaster','webmaster','sentry','info@','hello@','contact@','enquiries@','inquiries@','reservations@',
            'wix.com','squarespace','mailchimp','sendgrid','amazonaws']
 contacts = []
 for e in emails:

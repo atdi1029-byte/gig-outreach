@@ -453,8 +453,88 @@ JSEOF
     fi
 
     if [ -z "$scrape_result" ] || [ "$scrape_result" = "missing value" ]; then
-        log "  [ERROR] Chrome scrape failed. Skipping website."
-        return
+        log "  [WARN] Chrome scrape failed — trying curl fallback..."
+        local curl_html
+        curl_html=$(curl -sL --max-time 10 "$website" 2>/dev/null)
+        if [ -n "$curl_html" ]; then
+            # Extract emails, social links, and subpages from raw HTML via Python
+            scrape_result=$(python3 -c "
+import re, json, sys
+from urllib.parse import urljoin, urlparse
+
+html = sys.stdin.read()
+base = '${website}'
+base_origin = urlparse(base).scheme + '://' + urlparse(base).netloc
+
+# Emails — from mailto: hrefs and visible text
+emails = set()
+# Mailto links
+for m in re.findall(r'mailto:([a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,})', html):
+    emails.add(m.lower())
+# Cloudflare encoded emails
+for enc in re.findall(r'data-cfemail=\"([a-f0-9]+)\"', html):
+    key = int(enc[:2], 16)
+    decoded = ''.join(chr(int(enc[i:i+2], 16) ^ key) for i in range(2, len(enc), 2))
+    if '@' in decoded:
+        emails.add(decoded.lower())
+# Plain text emails (strip HTML tags first)
+text = re.sub(r'<[^>]+>', ' ', html)
+for m in re.findall(r'[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}', text):
+    e = m.lower()
+    if not re.search(r'\.(png|jpg|jpeg|gif|svg|webp|ico|pdf|css|js)$', e):
+        emails.add(e)
+
+# Junk filter
+junk_kw = ['noreply','no-reply','mailer-daemon','postmaster','webmaster','sentry',
+           'wix.com','squarespace','mailchimp','sendgrid','amazonaws']
+contacts = []
+for e in emails:
+    if not any(j in e for j in junk_kw) and len(e) < 60:
+        contacts.append({'email': e, 'name': '', 'title': ''})
+
+# Facebook + Instagram
+fb = ''
+ig = ''
+for m in re.findall(r'https?://(?:www\.)?facebook\.com/[a-zA-Z0-9._\-]+', html):
+    if '/tr?' not in m and '/sharer' not in m:
+        fb = m.split('?')[0].rstrip('/')
+        break
+for m in re.findall(r'https?://(?:www\.)?instagram\.com/[a-zA-Z0-9._]+', html):
+    if '/p/' not in m and '/share' not in m:
+        ig = m.split('?')[0].rstrip('/')
+        break
+
+# Subpages — internal links
+seen = set()
+subpages = []
+for href in re.findall(r'href=[\"\\']([^\"\\']+)[\"\\']', html):
+    try:
+        full = urljoin(base, href).split('#')[0].split('?')[0].rstrip('/')
+    except:
+        continue
+    if full.startswith(base_origin) and full not in seen and full != base.rstrip('/'):
+        seen.add(full)
+        subpages.append(full)
+
+# Contact form
+contact_form = ''
+for url in seen:
+    if any(kw in url.lower() for kw in ['contact','get-in-touch','reach-us','inquiry','enquiry']):
+        contact_form = url
+        break
+
+print(json.dumps({'contacts': contacts, 'facebook': fb, 'instagram': ig, 'contact_form': contact_form, 'subpages': subpages}))
+" <<< "$curl_html" 2>/dev/null)
+            if [ -n "$scrape_result" ] && [ "$scrape_result" != "null" ]; then
+                log "  [CURL FALLBACK] Success — parsed HTML directly"
+            else
+                log "  [ERROR] Both Chrome and curl fallback failed. Skipping website."
+                return
+            fi
+        else
+            log "  [ERROR] Both Chrome and curl failed. Skipping website."
+            return
+        fi
     fi
 
     echo "$scrape_result" > /tmp/pipeline_scrape.json

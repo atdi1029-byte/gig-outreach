@@ -804,6 +804,15 @@ else:
                 fi
             fi
 
+            # Skip non-HTML resources (images, CSS, JS, fonts, favicons, manifests)
+            if echo "$subpage" | grep -qiE '\.(css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|pdf|zip|mp3|mp4|json|xml|txt|map)(\?|$)'; then
+                continue
+            fi
+            # Skip wp-content asset paths
+            if echo "$subpage" | grep -qiE '/wp-content/(plugins|themes)/.*\.(css|js|png|jpg|ico|json)'; then
+                continue
+            fi
+
             page_count=$((page_count + 1))
             log "  Crawling subpage ($page_count): $subpage"
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${subpage}\""

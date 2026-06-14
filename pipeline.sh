@@ -3009,10 +3009,28 @@ print(len(filtered))
     fi
 
     python3 -c "
-import json, os
+import json, os, re
 with open('$SP_FILE') as f:
     recs = json.load(f).get('recommendations', [])
-filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
+
+# Junk name filter — skip non-venue businesses
+JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
+    'grocery','specialty food','sushi','pizza','taco','burger','kebab','gyro',
+    'brewing','brewery','hookah','karaoke','nightclub','swim club','tennis club',
+    'boxing','athletic','nail salon','hair salon','senior living','assisted living',
+    'nursing','cornucopia','deli','sandwich','hilton garden','hampton inn',
+    'comfort inn','residence inn','courtyard by','fairfield inn','holiday inn',
+    'days inn','la quinta','moose lodge','elks lodge','strip mall','shopping center',
+    'food court','rooftop bar','sports bar']
+
+filtered = []
+for r in recs:
+    if r.get('status','') in ('pipelined','contacted'): continue
+    name_lower = r.get('name','').lower()
+    if any(j in name_lower for j in JUNK):
+        continue
+    filtered.append(r)
+
 for i, r in enumerate(filtered):
     print(f\"{i}|{r['name']}|{r['venue_id']}|{r.get('recommendation_score',0)}\")
 " 2>/dev/null | while IFS='|' read -r IDX NAME VID SCORE; do
@@ -3094,6 +3112,16 @@ def action_score(v):
     if v.get('state','').strip(): score += 1
     if v.get('city','').strip(): score += 1
     return score
+# Junk name filter
+JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
+    'grocery','specialty food','sushi','pizza','taco','burger','kebab','gyro',
+    'brewing','brewery','hookah','karaoke','nightclub','swim club','tennis club',
+    'boxing','athletic','nail salon','hair salon','senior living','assisted living',
+    'nursing','cornucopia','deli','sandwich','hilton garden','hampton inn',
+    'comfort inn','residence inn','courtyard by','fairfield inn','holiday inn',
+    'days inn','la quinta','moose lodge','elks lodge','strip mall','shopping center',
+    'food court','rooftop bar','sports bar']
+untouched = [v for v in untouched if not any(j in v.get('name','').lower() for j in JUNK)]
 untouched.sort(key=action_score, reverse=True)
 for i, venue in enumerate(untouched):
     vid = venue.get('venue_id', '')

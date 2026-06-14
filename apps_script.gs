@@ -1369,10 +1369,11 @@ function getRecommendations_() {
     });
   }
 
-  // Load taste preferences (category tiers + sweet spot locations)
+  // Load taste preferences (category tiers + sweet spot locations + junk keywords)
   var tasteSheet = ss.getSheetByName(TASTE);
   var categoryTiers = {};    // category → tier (1-4)
   var sweetSpotCities = {};  // lowercase city name → true
+  var junkKeywords = [];     // name keywords to auto-exclude
   if (tasteSheet) {
     var tData = tasteSheet.getDataRange().getValues();
     for (var ti = 1; ti < tData.length; ti++) {
@@ -1383,6 +1384,8 @@ function getRecommendations_() {
         categoryTiers[tKey] = Number(tVal) || 3;
       } else if (tType === 'location') {
         sweetSpotCities[tKey] = true;
+      } else if (tType === 'junk') {
+        junkKeywords.push(tKey);
       }
     }
   }
@@ -1417,6 +1420,14 @@ function getRecommendations_() {
 
     // Hard cutoff: skip venues beyond 150 miles (~2 hours highway)
     if (vDist !== null && vDist > 150) continue;
+
+    // Junk filter: skip venues whose name contains any junk keyword
+    var vName = String(row[1]).toLowerCase();
+    var isJunk = false;
+    for (var jk = 0; jk < junkKeywords.length; jk++) {
+      if (vName.indexOf(junkKeywords[jk]) > -1) { isJunk = true; break; }
+    }
+    if (isJunk) continue;
 
     // --- CATEGORY MATCH (0-40 pts) — most important factor ---
     var catPts = 0;

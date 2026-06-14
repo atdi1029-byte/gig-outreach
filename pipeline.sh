@@ -649,6 +649,27 @@ print(m.group(1) if m else '')
     # These slugs appear in multi-location chain URLs
     local US_STATE_SLUGS="-md|-va|-dc|-pa|-de|-wv|-ny|-ca|-fl|-tx|-nc|-sc|-ga|-oh|-il|-ma|-nj|-ct|-ri|-nh|-vt|-me|-mi|-wi|-mn|-ia|-mo|-ks|-ne|-sd|-nd|-mt|-wy|-co|-ut|-nv|-id|-or|-wa|-ak|-hi|-al|-ms|-tn|-ky|-in|-ar|-la|-ok|-nm|-az"
 
+    # --- Probe common subpaths that may not be linked from homepage ---
+    local base_url
+    base_url=$(python3 -c "from urllib.parse import urlparse; u=urlparse('${website}'); print(u.scheme+'://'+u.netloc)" 2>/dev/null)
+    if [ -n "$base_url" ] && [ "$base_url" != "None" ]; then
+        local probe_paths="/contact /about /events /private-events /live-music /wine-club /entertainment /catering /team /staff /press /private-dining /book-event /reservations"
+        for probe in $probe_paths; do
+            local probe_url="${base_url}${probe}"
+            # Skip if already in discovered subpages
+            if echo "$subpages" | grep -qi "$(echo $probe | sed 's|/||')"; then
+                continue
+            fi
+            local http_code
+            http_code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 4 "$probe_url" 2>/dev/null)
+            if [ "$http_code" = "200" ]; then
+                subpages="${probe_url}
+${subpages}"
+                log "  [PROBE] Found: $probe_url"
+            fi
+        done
+    fi
+
     if [ -n "$subpages" ]; then
         local page_count=0
         local last_emails=""

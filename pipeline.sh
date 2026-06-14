@@ -2000,10 +2000,11 @@ for line in lines:
     m = re.search(r'SMART PICK #(\d+) \(score (\d+)\): (.+?) \(([^)]+)\)', text)
     # Untouched venue header
     m2 = re.search(r'UNTOUCHED #(\d+): (.+?) \(([^)]+)\)', text) if not m else None
+    # Batch venue header: "VENUE [1/11]: Name"
+    m_batch = re.search(r'VENUE \[\d+/\d+\]: (.+?)$', text) if not m and not m2 else None
     # Batch/single venue header: " PIPELINE: Name (venue_id)"
-    # Only treat as new venue if no current_venue (standalone batch mode, not sub-header)
-    m3 = re.search(r'PIPELINE: (.+?) \(([^)]+)\)', text) if not m and not m2 and not current_venue else None
-    if m or m2 or m3:
+    m3 = re.search(r'PIPELINE: (.+?) \(([^)]+)\)', text) if not m and not m2 and not m_batch and not current_venue else None
+    if m or m2 or m_batch or m3:
         if current_venue:
             venues.append(current_venue)
         if m:
@@ -2021,6 +2022,14 @@ for line in lines:
                 'name': m2.group(2),
                 'venue_id': m2.group(3),
                 'phase': 'untouched',
+            }
+        elif m_batch:
+            current_venue = {
+                'pick_num': 0,  # renumbered globally after parsing
+                'score': 0,
+                'name': m_batch.group(1).strip(),
+                'venue_id': '',  # filled in by PIPELINE: line
+                'phase': 'batch',
             }
         else:
             current_venue = {
@@ -2070,6 +2079,22 @@ for line in lines:
 
     if not current_venue:
         continue
+
+    # Fill in venue_id from PIPELINE: line for batch-mode venues
+    if not current_venue['venue_id']:
+        m_pid = re.search(r'PIPELINE: .+? \(([^)]+)\)', text)
+        if m_pid:
+            current_venue['venue_id'] = m_pid.group(1)
+            # Derive category from venue_id
+            parts = current_venue['venue_id'].split('-')
+            if len(parts) >= 2:
+                cat_map = {
+                    'WINE': 'winery', 'HOTE': 'hotel', 'COUN': 'country_club',
+                    'REST': 'restaurant', 'EVEN': 'event', 'MUSE': 'museum',
+                    'PRIV': 'private_club', 'GOLF': 'golf_club', 'YACH': 'yacht_club',
+                    'ART_': 'art_gallery',
+                }
+                current_venue['category'] = cat_map.get(parts[1], parts[1].lower())
 
     # Website
     m = re.match(r'\s*Website:\s*(.+)', text)

@@ -421,7 +421,7 @@ for(var i=0;i<allAnchors.length;i++){
     }
 }
 
-// Contact form URL
+// Contact form URL — check discovered links AND buttons/anchors with contact text
 var contactKw = ['contact','get-in-touch','reach-us','inquiry','enquiry'];
 var contactForm = '';
 Object.keys(seen).forEach(function(url){
@@ -430,6 +430,24 @@ Object.keys(seen).forEach(function(url){
         if(p.indexOf(contactKw[c]) > -1){ contactForm = url; return; }
     }
 });
+// Also check all links/buttons on page for contact text (catches JS-rendered buttons)
+if(!contactForm){
+    var allClickable = document.querySelectorAll('a[href], button');
+    for(var i=0;i<allClickable.length;i++){
+        var el = allClickable[i];
+        var txt = (el.textContent||'').trim().toLowerCase();
+        var href = (el.getAttribute('href')||'').toLowerCase();
+        if(txt.match(/^contact\s*(us)?$/) || href.indexOf('contact') > -1){
+            var full = el.getAttribute('href')||'';
+            if(full && full !== '#'){
+                try { contactForm = new URL(full, base).href; } catch(e){ contactForm = full; }
+            } else {
+                contactForm = location.href + '#contact';
+            }
+            break;
+        }
+    }
+}
 
 return JSON.stringify({contacts:contactList, facebook:fb, instagram:ig, contact_form:contactForm, subpages:subpages});
 })()

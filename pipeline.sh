@@ -2800,6 +2800,8 @@ step5_google_fallback() {
         if ! echo "$found_site" | grep -qE '^https?://'; then
             found_site="https://$found_site"
         fi
+        # Take only the first URL if multiple were returned (pipe-separated)
+        found_site=$(echo "$found_site" | cut -d'|' -f1)
         local found_domain
         found_domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${found_site}').netloc.lower().replace('www.',''))" 2>/dev/null)
         if [ -n "$found_domain" ] && [ "$found_domain" != "$VENUE_DOMAIN" ]; then

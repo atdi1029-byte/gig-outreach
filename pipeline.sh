@@ -653,7 +653,7 @@ print(m.group(1) if m else '')
     local base_url
     base_url=$(python3 -c "from urllib.parse import urlparse; u=urlparse('${website}'); print(u.scheme+'://'+u.netloc)" 2>/dev/null)
     if [ -n "$base_url" ] && [ "$base_url" != "None" ]; then
-        local probe_paths="/contact /contact.html /contact-us /about /about.html /about-us /events /private-events /live-music /wine-club /entertainment /catering /team /staff /press /private-dining /book-event /reservations"
+        local probe_paths="/contact /contact.html /contact-us /contactus /about /about.html /about-us /aboutus /events /private-events /live-music /wine-club /entertainment /catering /team /staff /press /private-dining /book-event /reservations /inquiry /enquiry"
         for probe in $probe_paths; do
             local probe_url="${base_url}${probe}"
             # Skip if already in discovered subpages

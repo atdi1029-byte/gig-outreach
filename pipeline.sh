@@ -459,14 +459,14 @@ JSEOF
     # Open website in Chrome and scrape
     log "  Opening in Chrome: $website"
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${website}\""
-    sleep 6
+    sleep 10
 
     local scrape_result
     scrape_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
 
     if [ -z "$scrape_result" ] || [ "$scrape_result" = "missing value" ]; then
         log "  [WARN] Chrome scrape returned empty — trying with longer wait"
-        sleep 5
+        sleep 8
         scrape_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
     fi
 
@@ -2442,6 +2442,40 @@ for line in lines:
         if c['email'] in title_map and not c['title']:
             ttl = title_map[c['email']]
             c['title'] = '' if ttl == 'None' else ttl
+
+# --- Override social links from sheet (log data is often stale/wrong) ---
+import subprocess as _sp
+import urllib.parse as _up
+_API = os.environ.get('APPS_SCRIPT_URL', '')
+if not _API:
+    # Try to read from script
+    try:
+        with open(os.path.join(os.path.dirname(run_log_path), 'discover.sh')) as _f:
+            for _line in _f:
+                if 'APPS_SCRIPT_URL=' in _line and 'http' in _line:
+                    _API = _line.split('"')[1]
+                    break
+    except:
+        pass
+if _API:
+    for v in venues:
+        vid = v.get('venue_id', '')
+        if not vid:
+            continue
+        try:
+            _r = _sp.run(['curl', '-sL', '--max-time', '10', f'{_API}?action=venue_detail&venue_id={vid}'],
+                         capture_output=True, text=True, timeout=15)
+            _d = json.loads(_r.stdout).get('venue', {})
+            if _d.get('facebook'):
+                v['facebook'] = _d['facebook']
+            if _d.get('instagram'):
+                v['instagram'] = _d['instagram']
+            if _d.get('website'):
+                v['website'] = _d['website']
+            if _d.get('contact_form') and not v.get('contact_form'):
+                v['contact_form'] = _d['contact_form']
+        except:
+            pass
 
 # --- Post-parse smart flags ---
 for v in venues:

@@ -3013,6 +3013,32 @@ run_venue() {
         fi
     fi
 
+    # --- DUPLICATE CHECK: Skip if venue already has contacts from a previous run ---
+    local existing_contacts
+    existing_contacts=$(curl -sL --max-time 10 "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" 2>/dev/null | python3 -c "
+import json, sys
+try:
+    d = json.load(sys.stdin)
+    contacts = d.get('contacts', [])
+    status = d.get('venue', {}).get('status', '')
+    if status in ('contacted', 'closed'):
+        print('SKIP:' + status)
+    elif len(contacts) > 0:
+        emails = [c.get('email','') for c in contacts if c.get('email','')]
+        print('SKIP:has_contacts:' + ','.join(emails[:3]))
+    else:
+        print('OK')
+except:
+    print('OK')
+" 2>/dev/null)
+    if [[ "$existing_contacts" == SKIP:* ]]; then
+        log "  [SKIP] Venue already processed: $existing_contacts"
+        log "  Skipping to avoid duplicate work."
+        # Write to skipped file for report
+        echo "${venue}|${venue_id}|Already processed: ${existing_contacts}" >> "${SKIPPED_VENUES_FILE:-/tmp/pipeline_skipped.txt}"
+        return
+    fi
+
     # If no website, Google it via Chrome
     if [ -z "$website" ] || [ "$website" = "None" ]; then
         log "  [LOOKUP] No website — Googling '$venue'..."

@@ -1732,12 +1732,14 @@ function buildGmailLink(email, category) {
 // === SOCIAL URL NORMALIZER ===
 function normalizeIGUrl(url) {
     if (!url) return '';
+    url = url.split('|')[0];
     if (url.startsWith('http')) return url;
     if (url.startsWith('//')) return 'https:' + url;
     return 'https://www.instagram.com/' + url.replace(/^@/, '');
 }
 function normalizeFBUrl(url) {
     if (!url) return '';
+    url = url.split('|')[0];
     if (url.startsWith('http')) return url;
     if (url.startsWith('//')) return 'https:' + url;
     return url;

@@ -37,5 +37,5 @@
             }
         }
     }
-    return results.join("|");
+    return results.length > 0 ? results[0] : "";
 })()

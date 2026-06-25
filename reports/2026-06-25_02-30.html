@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; June 25, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    background: #0c1a22;
+    color: #e0e0e0;
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  h1 {
+    color: #6ecfcf;
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    border-bottom: 2px solid #6ecfcf;
+    padding-bottom: 10px;
+  }
+  .date { color: #999; margin-bottom: 30px; font-size: 0.95rem; }
+  h2 {
+    color: #e8944c;
+    font-size: 1.3rem;
+    margin: 30px 0 15px;
+    border-left: 4px solid #e8944c;
+    padding-left: 12px;
+  }
+  h3 {
+    color: #6ecfcf;
+    font-size: 1.1rem;
+    margin: 20px 0 10px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #1a2e3a;
+  }
+  tr:hover { background: rgba(110, 207, 207, 0.05); }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+  }
+  .stat-box {
+    background: #1a2e3a;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6ecfcf;
+  }
+  .stat-box .label {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 4px;
+  }
+  .fix {
+    background: #1a2a1a;
+    border-left: 4px solid #4caf50;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .fix strong { color: #4caf50; }
+  .flag {
+    background: #2a1a1a;
+    border-left: 4px solid #e85050;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .flag strong { color: #e85050; }
+  .warn {
+    background: #2a2a1a;
+    border-left: 4px solid #ff9800;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+  }
+  .warn strong { color: #ff9800; }
+  .valid { color: #4caf50; }
+  .score {
+    display: inline-block;
+    background: #e8944c;
+    color: #0c1a22;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
+  .category-pill {
+    display: inline-block;
+    background: #1a2e3a;
+    color: #6ecfcf;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  ul { margin: 8px 0 8px 20px; }
+  li { margin: 4px 0; font-size: 0.9rem; }
+  a { color: #6ecfcf; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">June 25, 2026 &bull; Discover + Pipeline + Manual Check + Taste Review</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">160</div>
+    <div class="label">Venues Discovered</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">14</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">93</div>
+    <div class="label">Apollo Credits</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">23</div>
+    <div class="label">New Taste Votes</div>
+  </div>
+</div>
+
+<h2>Discovery</h2>
+<p>All 70 past gigs already discovered. Ran <code>--taste</code> with 14 queries.
+Added 160 new venues, mostly in Kennett Square/Brandywine Valley PA area
+(restaurants, wineries, wine bars) and DC/NoVA.</p>
+
+<h2>Pipeline Results (14 Smart Picks)</h2>
+
+<table>
+<thead><tr><th>#</th><th>Venue</th><th>Score</th><th>Category</th><th>Contacts</th><th>Status</th></tr></thead>
+<tbody>
+<tr>
+  <td>1</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1845">Talulas Table</a></td>
+  <td><span class="score">100</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>1 (info@talulastable.com)</td>
+  <td><span class="valid">FIXED</span> &mdash; removed 13 wrong brandywinevalley.com emails</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1840">Portabellos of Kennett Square</a></td>
+  <td><span class="score">98</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>1 (Portabellosofkennettsquare@gmail.com)</td>
+  <td><span class="valid">ADDED</span> manually &mdash; pipeline found 0</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1844">Hearth Kitchen</a></td>
+  <td><span class="score">98</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>1 (william@kitchenhearth.com) + form</td>
+  <td>Catch-all email, contact form at /reach-us</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1897">Sovana Bistro</a></td>
+  <td><span class="score">98</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>2 (contactsovana@, adamjunkins@sovanabistro.com)</td>
+  <td><span class="valid">GOOD</span> &mdash; Adam Junkins is GM/Sommelier, owners Nick &amp; Linda Farrell</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1925">The Naked Olive</a></td>
+  <td><span class="score">98</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>1 (thenakedolivepa@gmail.com)</td>
+  <td><span class="valid">GOOD</span></td>
+</tr>
+<tr>
+  <td>6</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1927">Sweet Amelias</a></td>
+  <td><span class="score">98</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>1 (contact@sweetameliasksq.com)</td>
+  <td><span class="valid">FIXED</span> &mdash; removed 13 wrong brandywinevalley.com emails. Owners: Zack &amp; Karessa Hathaway</td>
+</tr>
+<tr>
+  <td>7</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-WINE-1842">Wayvine Kennett Square</a></td>
+  <td><span class="score">97</span></td>
+  <td><span class="category-pill">winery</span></td>
+  <td>2 (james@wayvine.wine, info@wayvine.wine)</td>
+  <td><span class="valid">GOOD</span> &mdash; James Wilson (Co-Founder). Brother Zachary also co-founder.</td>
+</tr>
+<tr>
+  <td>8</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-WINE-1846">Chaddsford Winery</a></td>
+  <td><span class="score">97</span></td>
+  <td><span class="category-pill">winery</span></td>
+  <td>14 (all @chaddsford.com)</td>
+  <td><span class="valid">EXCELLENT</span> &mdash; Michael O'Halloran (Managing Dir), Sofia MacTough (Events), Gretchen Krejcik (Controller)</td>
+</tr>
+<tr>
+  <td>9</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-WINE-1847">Penns Woods Winery</a></td>
+  <td><span class="score">97</span></td>
+  <td><span class="category-pill">winery</span></td>
+  <td>5 (all @pennswoodswinery.com)</td>
+  <td><span class="valid">EXCELLENT</span> &mdash; Andrea Creato (COO), Carley Razzi (President), Kait (Events)</td>
+</tr>
+<tr>
+  <td>10</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2051">The Gables at Chadds Ford</a></td>
+  <td><span class="score">97</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>3 (gmail, ann@, kayla@)</td>
+  <td><span class="valid">GOOD</span> &mdash; Ann Kolenick (Owner), Kayla Sandy (Event Manager, added via Apollo enrichment)</td>
+</tr>
+<tr>
+  <td>11</td>
+  <td>The Winery (XX-REST-034)</td>
+  <td><span class="score">95</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>0</td>
+  <td style="color:#e85050">INVALID &mdash; too generic, can't identify venue. XX prefix = data error.</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1149">ArTeA Restaurant + Bar</a></td>
+  <td><span class="score">95</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>1 (managers@artealounge.com)</td>
+  <td><span class="valid">FIXED</span> &mdash; removed 9 wrong ramw.org emails. Website fixed to arteamclean.com</td>
+</tr>
+<tr>
+  <td>13</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1155">AMBAR Restaurant, Clarendon</a></td>
+  <td><span class="score">95</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>3 (clarendon@, laura@ambarhrservices, ivaniricanin@streetguyshospitality)</td>
+  <td><span class="valid">GOOD</span> &mdash; Ivan Iricanin (CEO/Founder, Street Guys Hospitality) added via Apollo enrichment</td>
+</tr>
+<tr>
+  <td>14</td>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1166">McLean Family Restaurant</a></td>
+  <td><span class="score">95</span></td>
+  <td><span class="category-pill">restaurant</span></td>
+  <td>0</td>
+  <td style="color:#ff9800">NO EMAILS &mdash; family-run diner since 1969, owner George Kapetanakis. Phone/DM only.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Manual Fixes Applied</h2>
+
+<div class="fix">
+  <strong>Talulas Table:</strong> Pipeline's Google Fallback scraped brandywinevalley.com (tourism site) instead of the restaurant. Deleted 13 wrong emails. Added info@talulastable.com (owner: Aimee Olexy).
+</div>
+<div class="fix">
+  <strong>Sweet Amelias:</strong> Same brandywinevalley.com bug. Deleted 13 wrong emails. Added contact@sweetameliasksq.com (owners: Zack &amp; Karessa Hathaway).
+</div>
+<div class="fix">
+  <strong>ArTeA Restaurant:</strong> Apollo matched ramw.org (Restaurant Association of Metro Washington) instead of the actual venue. Deleted 9 wrong emails. Added managers@artealounge.com. Fixed website from artearestaurant.com to arteamclean.com.
+</div>
+<div class="fix">
+  <strong>Portabellos:</strong> Pipeline found 0 contacts. Manual check found Portabellosofkennettsquare@gmail.com (owner: Sandra Morris, co-founder: Chef Brett Hulbert).
+</div>
+<div class="fix">
+  <strong>Chaddsford Winery:</strong> Fixed corrupted email u003ecorey@chaddsford.com &rarr; corey@chaddsford.com.
+</div>
+<div class="fix">
+  <strong>Apollo Enrichments (5 credits):</strong> Kayla Sandy (Event Manager, The Gables) &rarr; kayla@thegablesatchaddsford.com. Ivan Iricanin (CEO, AMBAR) &rarr; ivaniricanin@streetguyshospitality.com (verified). Dina Jones, Tim Jones, Richard Barnes &mdash; no emails available.
+</div>
+
+<div class="warn">
+  <strong>Pipeline Bug:</strong> Google Fallback for venues without email sometimes scrapes tourism directory sites (brandywinevalley.com) instead of the actual venue. This affected 2 of 14 venues. The fallback URL matching needs tighter domain validation.
+</div>
+
+<div class="flag">
+  <strong>The Winery (XX-REST-034):</strong> Invalid venue &mdash; "The Winery" is too generic with an XX prefix. Recommend removing from the database.
+</div>
+
+<h2>LinkedIn Searches (all 14 venues)</h2>
+<p>Searched LinkedIn People for each venue in Chrome. Key decision-makers found and enriched where possible:</p>
+<ul>
+  <li><strong>Sovana Bistro:</strong> Dina Jones (Catering &amp; Events), Abigail Hohn (Office Manager), Caroline Brunovszky (Pastry Chef) &mdash; no emails on Apollo</li>
+  <li><strong>The Gables:</strong> Ann Kolenick (Owner), Kayla Sandy (Event Manager) &mdash; Kayla enriched, email added</li>
+  <li><strong>Chaddsford:</strong> Gretchen Krejcik (Controller), Kate Wilson (HR Director), Sofia MacTough (Events) &mdash; all already in sheet</li>
+  <li><strong>Penns Woods:</strong> Andrea Creato (COO), Carley Razzi (President), Kacie Elberson (Tasting Room Mgr) &mdash; all already in sheet</li>
+  <li><strong>AMBAR:</strong> Ivan Iricanin (CEO/Founder via Street Guys Hospitality) &mdash; enriched, verified email added</li>
+  <li><strong>McLean Family:</strong> Chef Tim Jones (Executive Chef) &mdash; no email on Apollo</li>
+  <li><strong>LinkedIn limit hit</strong> during ArTeA search &mdash; monthly profile search cap reached</li>
+</ul>
+
+<h2>Taste Review (23 new votes processed)</h2>
+<p>Processed 23 new venue votes since last review (Apr 23). Updated <code>taste_notes.md</code> and added 17 venues to <code>taste_venues.txt</code>.</p>
+
+<h3>New Positives (17)</h3>
+<table>
+<thead><tr><th>Venue</th><th>Category</th><th>Location</th><th>Feedback</th></tr></thead>
+<tbody>
+<tr><td>Bas Rouge</td><td>restaurant</td><td>Easton, MD</td><td>"Upscale French restaurant!"</td></tr>
+<tr><td>The Stewart</td><td>wine_bar</td><td>Easton, MD</td><td>"Fancy wine bar! Good fit"</td></tr>
+<tr><td>Le Refuge</td><td>restaurant</td><td>Alexandria, VA</td><td>"Historic French restaurant"</td></tr>
+<tr><td>Nova Europa Restaurant</td><td>restaurant</td><td>Potomac, MD</td><td>"Portuguese/European restaurants are a good fit"</td></tr>
+<tr><td>La Bonne Vache</td><td>restaurant</td><td>Bethesda, MD</td><td>"French restaurant"</td></tr>
+<tr><td>The Vineyard Wine Bar</td><td>wine_bar</td><td>Havre de Grace, MD</td><td>"Wine bars are a good fit"</td></tr>
+<tr><td>Petit Louis Bistro</td><td>restaurant</td><td>Roland Park, MD</td><td>(thumbs up)</td></tr>
+<tr><td>Le Comptoir du Vin</td><td>wine_bar</td><td>Roland Park, MD</td><td>(thumbs up)</td></tr>
+<tr><td>L'Hirondelle Club</td><td>private_club</td><td>Ruxton, MD</td><td>(thumbs up)</td></tr>
+<tr><td>Gibson Island Club</td><td>country_club</td><td>Gibson Island, MD</td><td>(thumbs up)</td></tr>
+<tr><td>Kenwood Golf CC</td><td>country_club</td><td>Bethesda, MD</td><td>(thumbs up)</td></tr>
+<tr><td>Springfield Golf CC</td><td>country_club</td><td>&mdash;</td><td>(thumbs up)</td></tr>
+<tr><td>Country Club of MD</td><td>country_club</td><td>&mdash;</td><td>(thumbs up)</td></tr>
+<tr><td>Lancaster Arts Hotel</td><td>hotel</td><td>Lancaster, PA</td><td>(thumbs up)</td></tr>
+<tr><td>Bavarian Inn</td><td>hotel</td><td>Shepherdstown, WV</td><td>(thumbs up)</td></tr>
+<tr><td>Lightfoot Restaurant</td><td>restaurant</td><td>Leesburg, VA</td><td>(thumbs up)</td></tr>
+<tr><td>La Grande Boucherie DC</td><td>restaurant</td><td>DC</td><td>(thumbs up)</td></tr>
+</tbody>
+</table>
+
+<h3>Negatives (6)</h3>
+<table>
+<thead><tr><th>Venue</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>Pearl Restaurant Annapolis</td><td>"Tiki bar"</td></tr>
+<tr><td>Dacha Beer Garden (Shaw)</td><td>Beer garden = wrong vibe</td></tr>
+<tr><td>Ege Market</td><td>Thumbs down, no notes</td></tr>
+<tr><td>KaFean Koffee</td><td>Coffee shop = wrong fit</td></tr>
+<tr><td>Le Bustiere Boutique</td><td>"Terrible, a lingerie store" &mdash; discovery bug</td></tr>
+<tr><td>De Ma Vie</td><td>Thumbs down, no notes</td></tr>
+</tbody>
+</table>
+
+<h3>Pattern Updates</h3>
+<ul>
+  <li><strong>French dominance continues</strong> &mdash; 6 new French/European positives this batch</li>
+  <li><strong>European broadly confirmed</strong> &mdash; "Portuguese/European restaurants are a good fit"</li>
+  <li><strong>Wine bars = tier 1</strong> &mdash; 3 new wine bar positives</li>
+  <li><strong>Roland Park (Baltimore) = new sweet spot</strong> &mdash; Petit Louis + Le Comptoir du Vin both positive</li>
+  <li><strong>Beer gardens / tiki bars = hard no</strong> &mdash; 2 new negatives in this category</li>
+  <li><strong>Discovery quality issue</strong> &mdash; Le Bustiere Boutique is a lingerie store, not a venue</li>
+</ul>
+
+<h2>Files Changed</h2>
+<ul>
+  <li><code>taste_notes.md</code> &mdash; 23 new entries + updated patterns</li>
+  <li><code>taste_venues.txt</code> &mdash; 17 new venues added (now 72 total)</li>
+  <li><code>taste_queries.txt</code> &mdash; 14 queries marked complete</li>
+  <li><code>reports/2026-06-25_02-30.html</code> &mdash; this report</li>
+</ul>
+
+</body>
+</html>

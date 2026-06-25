@@ -256,3 +256,121 @@
 - **No major pattern shifts** — only 1 new vote this cycle (negative).
 - **Plantation/museum event venues = hard no** — Historic Sotterley rejected for uncomfortable plantation associations. Category "event" at historical sites needs vetting for vibe fit.
 - **All prior patterns hold** — French/European restaurants, DC luxury hotels, historic inns, country clubs, wine bars, art galleries remain the top categories.
+
+---
+
+## Jun 25, 2026 — Post-Pipeline Review (23 new votes)
+
+### Springfield Golf & Country Club (country_club) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Country club thumbs up, no specific feedback
+- **Action:** Added to taste_venues.txt. Country clubs remain reliable.
+
+### Bas Rouge (restaurant, Easton MD) — POSITIVE
+> "Upscale French restaurant!"
+- **Extracted:** upscale French restaurant in Easton — Eastern Shore fine dining
+- **Action:** Added to taste_venues.txt. French restaurants on Eastern Shore = double win.
+
+### The Stewart (wine_bar, Easton MD) — POSITIVE
+> "Fancy wine bar! Good fit"
+- **Extracted:** fancy wine bar in Easton — wine bar + Eastern Shore combo
+- **Action:** Added to taste_venues.txt. Wine bars in upscale areas confirmed again.
+
+### Country Club of Maryland (country_club) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Country club thumbs up
+- **Action:** Added to taste_venues.txt.
+
+### La Grande Boucherie DC (restaurant, DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French boucherie in DC — name signals upscale French dining
+- **Action:** Added to taste_venues.txt.
+
+### Pearl Restaurant Annapolis (restaurant, Annapolis MD) — NEGATIVE
+> "Tiki bar"
+- **Extracted:** tiki bar = wrong vibe entirely. Don't be fooled by "restaurant" category.
+- **Action:** Not added. Tiki/tropical bars = skip.
+
+### Gibson Island Club (country_club, Gibson Island MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Exclusive private club on Gibson Island (very wealthy, gated community)
+- **Action:** Added to taste_venues.txt. Gibson Island = elite clientele.
+
+### Le Refuge (restaurant, Alexandria VA) — POSITIVE
+> "Historic French restaurant"
+- **Extracted:** historic + French + Alexandria = triple hit
+- **Action:** Added to taste_venues.txt. Another Alexandria French gem.
+
+### Lightfoot Restaurant (restaurant, Leesburg VA) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Leesburg restaurant, Loudoun County area
+- **Action:** Added to taste_venues.txt.
+
+### Kenwood Golf Country Club (country_club, Bethesda MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Bethesda country club — wealthy area
+- **Action:** Added to taste_venues.txt.
+
+### Dacha Beer Garden (Shaw) (restaurant, DC) — NEGATIVE
+- **Extracted:** Beer garden = wrong vibe. Outdoor, loud, beer-focused.
+- **Action:** Not added. Beer gardens = skip (like sports bars).
+
+### Nova Europa Restaurant (restaurant, Potomac MD) — POSITIVE
+> "Portuguese/ European restaurants are a good fit"
+- **Extracted:** Portuguese/European restaurant in Potomac (wealthy area). Confirms European dining broadly as a fit.
+- **Action:** Added to taste_venues.txt. European restaurants (not just French) = confirmed.
+
+### Ege Market (restaurant, Bethesda MD) — NEGATIVE
+- **Extracted:** No feedback — thumbs down without comment. Likely wrong vibe or cuisine type.
+- **Action:** Not added.
+
+### La Bonne Vache (restaurant, Bethesda MD) — POSITIVE
+> "French restaurant"
+- **Extracted:** French restaurant in Bethesda
+- **Action:** Added to taste_venues.txt. French + Bethesda = reliable.
+
+### KaFean Koffee (restaurant, Bethesda MD) — NEGATIVE
+- **Extracted:** Thumbs down, no notes. Coffee shop/cafe = wrong fit.
+- **Action:** Not added.
+
+### Le Bustiere Boutique (restaurant, Bethesda MD) — NEGATIVE
+> "Terrible, a lingerie store"
+- **Extracted:** Not actually a restaurant — misclassified. Lingerie store.
+- **Action:** Not added. Discovery bug — non-venue slipping through.
+
+### De Ma Vie (restaurant, McLean VA) — NEGATIVE
+- **Extracted:** Thumbs down, no notes.
+- **Action:** Not added.
+
+### Petit Louis Bistro (restaurant, Roland Park Baltimore MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French bistro in Roland Park — upscale Baltimore neighborhood
+- **Action:** Added to taste_venues.txt. Roland Park = good Baltimore area.
+
+### Le Comptoir du Vin (wine_bar, Roland Park Baltimore MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French wine bar in Roland Park
+- **Action:** Added to taste_venues.txt. Wine bar + French + Roland Park.
+
+### The Vineyard Wine Bar (wine_bar, Havre de Grace MD) — POSITIVE
+> "Wine bars are a good fit"
+- **Extracted:** Wine bar confirmation again, Havre de Grace area
+- **Action:** Added to taste_venues.txt.
+
+### L'Hirondelle Club (private_club, Ruxton MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Private club in Ruxton (wealthy Baltimore suburb)
+- **Action:** Added to taste_venues.txt. Private clubs remain tier 1.
+
+### Bavarian Inn (hotel, Shepherdstown WV) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Inn in Shepherdstown — historic college town, edge of radius
+- **Action:** Added to taste_venues.txt.
+
+### Lancaster Arts Hotel (hotel, Lancaster PA) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Arts hotel in Lancaster PA — cultural/artistic venue
+- **Action:** Added to taste_venues.txt. Arts-oriented hotels = good fit.
+
+---
+
+## Updated Patterns (Jun 25)
+- **French dominance continues** — Bas Rouge, Le Refuge, La Bonne Vache, La Grande Boucherie, Petit Louis, Le Comptoir du Vin all positive. French restaurants/wine bars are the single strongest category.
+- **European broadly confirmed** — Nova Europa: "Portuguese/European restaurants are a good fit." Not just French — Portuguese, Italian, European in general.
+- **Wine bars = tier 1 confirmed** — The Stewart, Le Comptoir du Vin, The Vineyard Wine Bar all positive. User explicitly says "wine bars are a good fit."
+- **Country clubs still rock solid** — Springfield, Country Club of MD, Gibson Island, Kenwood all thumbs up with zero hesitation.
+- **Private clubs strong** — L'Hirondelle Club positive, reinforces tier 1.
+- **Eastern Shore expanding** — Bas Rouge + The Stewart in Easton = more than just hotels there. Fine dining + wine bars viable.
+- **Roland Park (Baltimore) = new sweet spot** — Petit Louis + Le Comptoir du Vin both positive. Add to Baltimore area targets.
+- **Beer gardens/tiki bars = hard no** — Dacha + Pearl both negative. Outdoor, loud, casual = wrong audience.
+- **Discovery quality issue** — Le Bustiere Boutique is a lingerie store, not a venue. Filter needs work.
+- **6 negatives this batch** — highest negative count yet. But all are clear category mismatches (tiki, beer garden, coffee, lingerie). The taste system is working — user is filtering junk quickly.

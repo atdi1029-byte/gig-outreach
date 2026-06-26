@@ -460,6 +460,11 @@ skip_cats = ['pub', 'irish pub', 'sports bar', 'fast food', 'pizza',
              'deli', 'food truck', 'taco', 'burger', 'sandwich',
              'chicken', 'ramen', 'noodle', 'donut', 'bagel', 'juice',
              'bar & grill', 'hookah', 'karaoke', 'nightclub', 'spa',
+             'ice cream', 'gelato', 'frozen yogurt', 'bakery', 'pastry',
+             'cafe', 'coffee', 'dessert', 'sweets', 'candy', 'confection',
+             'liquor store', 'wine store', 'wine shop', 'beer store',
+             'toast', 'brunch', 'breakfast',
+             'clubhouse', 'rec center', 'recreation center',
              'gym', 'fitness', 'boxing', 'martial art', 'yoga',
              'swimming pool', 'swim team', 'swim club', 'pool',
              'athletic', 'crossfit', 'pilates', 'dance studio',
@@ -476,7 +481,11 @@ skip_names = ['cottage', 'apartment', 'vacation rental', 'retreat',
               'ymca', 'crossfit', 'martial art', 'karate',
               'taekwondo', 'jiu jitsu', 'community beach',
               'business association', 'rotary club',
-              'tennis', 'pickleball', 'basketball']
+              'tennis', 'pickleball', 'basketball',
+              'ice cream', 'gelato', 'frozen yogurt', 'toastique',
+              'sweets', 'clubhouse and pool', 'clubhouse & pool',
+              ' pub', 'irish pub', 'liquor', 'wine & spirits',
+              'wine and spirits', 'spirits']
 
 tier1_cats = ['country_club', 'private_club', 'yacht_club']
 tier2_cats = ['restaurant', 'winery', 'hotel', 'wine_bar', 'museum',
@@ -914,6 +923,12 @@ skip_cats = ['pub', 'irish pub', 'sports bar', 'fast food', 'pizza',
              'deli', 'food truck', 'taco',
              'burger', 'sandwich', 'chicken', 'ramen', 'noodle',
              'donut', 'bagel', 'juice',
+             'bar & grill', 'hookah', 'karaoke', 'nightclub', 'spa',
+             'ice cream', 'gelato', 'frozen yogurt', 'bakery', 'pastry',
+             'cafe', 'coffee', 'dessert', 'sweets', 'candy', 'confection',
+             'liquor store', 'wine store', 'wine shop', 'beer store',
+             'toast', 'brunch', 'breakfast',
+             'clubhouse', 'rec center', 'recreation center',
              'gym', 'fitness', 'boxing', 'martial art', 'yoga',
              'swimming pool', 'swim team', 'swim club', 'pool',
              'athletic', 'crossfit', 'pilates', 'dance studio',
@@ -936,7 +951,11 @@ for card in cards:
     name_lower = name.lower()
     skip_names = ['cottage', 'apartment', 'vacation rental', 'retreat', 'bedroom',
                   'airbnb', 'vrbo', 'walk to', 'screened porch', 'historic house',
-                  'king room', 'queen room', 'deluxe room', 'suite -', 'one-bedroom']
+                  'king room', 'queen room', 'deluxe room', 'suite -', 'one-bedroom',
+                  'ice cream', 'gelato', 'frozen yogurt', 'toastique',
+                  'sweets', 'clubhouse and pool', 'clubhouse & pool',
+                  ' pub', 'irish pub', 'liquor', 'wine & spirits',
+                  'wine and spirits', 'spirits']
     if any(s in name_lower for s in skip_names):
         print(f"  SKIP (rental): {name}")
         continue

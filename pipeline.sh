@@ -3189,6 +3189,62 @@ else: print('')
     else
         step3_apollo_api "$venue" "$venue_id" "$website" "$city"
     fi
+
+    # Step 3b: Scrape alternate domain if Apollo returned a different one
+    if [ -n "$APOLLO_DOMAIN" ] && [ "$APOLLO_DOMAIN" != "None" ]; then
+        local alt_domain="$APOLLO_DOMAIN"
+        local site_domain
+        site_domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${website}').netloc.replace('www.',''))" 2>/dev/null)
+        if [ -n "$alt_domain" ] && [ "$alt_domain" != "$site_domain" ]; then
+            log ""
+            log "========== STEP 3b: Alternate Domain Scrape ($alt_domain) =========="
+            local alt_urls=("https://$alt_domain" "https://$alt_domain/contact" "https://$alt_domain/contact-us" "https://www.$alt_domain" "https://www.$alt_domain/contact")
+            for alt_url in "${alt_urls[@]}"; do
+                local alt_html
+                alt_html=$(curl -sL --max-time 10 "$alt_url" 2>/dev/null)
+                if [ -z "$alt_html" ]; then
+                    continue
+                fi
+                local alt_emails
+                alt_emails=$(echo "$alt_html" | python3 -c "
+import re, sys
+html = sys.stdin.read()
+junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk','fontawesome.io']
+generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@']
+img_exts = re.compile(r'\.(png|jpg|jpeg|gif|svg|webp|bmp|ico|pdf|doc|docx|xls|xlsx|csv|zip|mp3|mp4|mov|avi)$', re.I)
+emails = set()
+for m in re.findall(r'[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}', html):
+    e = m.lower()
+    if any(j in e for j in junk): continue
+    if any(e.startswith(g) for g in generic): continue
+    if img_exts.search(e): continue
+    if len(e) > 60: continue
+    emails.add(e)
+for e in sorted(emails):
+    print(e)
+" 2>/dev/null)
+                if [ -n "$alt_emails" ]; then
+                    log "  Found on $alt_url:"
+                    while IFS= read -r alt_email; do
+                        if [ -z "$alt_email" ]; then continue; fi
+                        log "    $alt_email"
+                        # Add to collection if not already known
+                        if ! echo "$KNOWN_EMAILS" | grep -qiF "$alt_email"; then
+                            # Validate with ZeroBounce
+                            # Temporarily set VENUE_DOMAIN to alt domain so off-domain check passes
+                            local orig_venue_domain="$VENUE_DOMAIN"
+                            VENUE_DOMAIN="$alt_domain"
+                            verify_and_push "$alt_email" "$venue_id" "" "" "apollo"
+                            VENUE_DOMAIN="$orig_venue_domain"
+                        else
+                            log "    [SKIP] $alt_email — already known"
+                        fi
+                    done <<< "$alt_emails"
+                fi
+            done
+        fi
+    fi
+
     # LinkedIn — skip if SKIP_LINKEDIN=1 or credits exhausted (resets May 2026)
     if [ "${SKIP_LINKEDIN:-0}" != "1" ] && [ "$(date +%Y%m)" -ge 202605 ] 2>/dev/null; then
         step4_linkedin "$venue" "$venue_id"
@@ -3294,7 +3350,11 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     'nursing','cornucopia','deli','sandwich','hilton garden','hampton inn',
     'comfort inn','residence inn','courtyard by','fairfield inn','holiday inn',
     'days inn','la quinta','moose lodge','elks lodge','strip mall','shopping center',
-    'food court','rooftop bar','sports bar']
+    'food court','rooftop bar','sports bar',
+    'ice cream','gelato','frozen yogurt','toastique','toast ',
+    'sweets','candy','dessert','confection',
+    'clubhouse','liquor','wine shop','wine store','wine & spirits',
+    'wine and spirits',' pub','irish pub','pastry']
 
 filtered = []
 for r in recs:
@@ -3393,7 +3453,11 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     'nursing','cornucopia','deli','sandwich','hilton garden','hampton inn',
     'comfort inn','residence inn','courtyard by','fairfield inn','holiday inn',
     'days inn','la quinta','moose lodge','elks lodge','strip mall','shopping center',
-    'food court','rooftop bar','sports bar']
+    'food court','rooftop bar','sports bar',
+    'ice cream','gelato','frozen yogurt','toastique','toast ',
+    'sweets','candy','dessert','confection',
+    'clubhouse','liquor','wine shop','wine store','wine & spirits',
+    'wine and spirits',' pub','irish pub','pastry']
 untouched = [v for v in untouched if not any(j in v.get('name','').lower() for j in JUNK)]
 untouched.sort(key=action_score, reverse=True)
 for i, venue in enumerate(untouched):
@@ -3526,6 +3590,13 @@ print(v.get('city',''))
         CITY=$(echo "$INFO" | sed -n '4p')
         log ""
         log "########## VENUE [$((i+1))/$TOTAL]: $NAME ##########"
+        # Skip venues already pipelined or contacted
+        local VSTATUS
+        VSTATUS=$(curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${VID}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('status',''))" 2>/dev/null)
+        if [ "$VSTATUS" = "pipelined" ] || [ "$VSTATUS" = "contacted" ]; then
+            log "  [SKIP] Already $VSTATUS — skipping"
+            continue
+        fi
         run_venue "$NAME" "$VID" "$WEB" "$CITY"
         if [ "$i" -lt "$((TOTAL - 1))" ]; then sleep 30; fi
     done

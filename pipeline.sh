@@ -2028,11 +2028,13 @@ ${PEOPLE_ON_PAGE}"
 
     if [ -z "$ALL_LINKEDIN_PEOPLE" ]; then
         log "  No new people found on LinkedIn."
+        echo "0" > /tmp/pipeline_li_found_count
         return
     fi
 
     local TOTAL_FOUND
     TOTAL_FOUND=$(echo "$ALL_LINKEDIN_PEOPLE" | wc -l | tr -d ' ')
+    echo "$TOTAL_FOUND" > /tmp/pipeline_li_found_count
     log ""
     log "  LinkedIn found $TOTAL_FOUND new people. Enriching via Apollo API..."
 
@@ -3275,7 +3277,15 @@ for e in sorted(emails):
     # LinkedIn — skip if SKIP_LINKEDIN=1 or credits exhausted (resets May 2026)
     if [ "${SKIP_LINKEDIN:-0}" != "1" ] && [ "$(date +%Y%m)" -ge 202605 ] 2>/dev/null; then
         step4_linkedin "$venue" "$venue_id"
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
+        # If LinkedIn found 0 people, keep linkedin_pending=true so manual check retries
+        local LI_FOUND_FILE="/tmp/pipeline_li_found_count"
+        local LI_FOUND_COUNT=$(cat "$LI_FOUND_FILE" 2>/dev/null || echo "0")
+        if [ "$LI_FOUND_COUNT" -gt 0 ]; then
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
+        else
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
+            log "  LinkedIn found 0 — marking linkedin_pending=true for manual retry"
+        fi
     else
         log ""
         log "========== STEP 4: LinkedIn (SKIPPED — quota exhausted) =========="
@@ -3645,6 +3655,15 @@ print(v.get('city',''))
 
     # Generate HTML report
     generate_report "$RUN_START_LINE"
+
+    # Auto-run postcheck on ALL pipelined venues (not just this batch)
+    log ""
+    log "=== AUTO-RUNNING POSTCHECK ON ALL PIPELINED VENUES ==="
+    if [ -x "${SCRIPT_DIR}/postcheck.sh" ]; then
+        "${SCRIPT_DIR}/postcheck.sh"
+    else
+        log "[WARN] postcheck.sh not found or not executable at ${SCRIPT_DIR}/postcheck.sh"
+    fi
 
 else
     VENUE="${1:?Usage: $0 \"Venue Name\"}"

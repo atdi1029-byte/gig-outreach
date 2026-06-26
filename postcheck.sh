@@ -43,9 +43,10 @@ check_venue() {
     log ""
     log "=== $NAME ($VID) | $CITY, $STATE | Contacts: $CONTACT_COUNT ==="
 
+    # Don't skip venues with contacts — they may have only generic info@ emails
+    # and be missing named contacts, catering emails, event emails, etc.
     if [ "$CONTACT_COUNT" -gt 0 ]; then
-        log "  Already has contacts — skipping"
-        return
+        log "  Has $CONTACT_COUNT existing contacts — checking for more"
     fi
 
     if [ -z "$WEBSITE" ] || [ "$WEBSITE" = "None" ] || [ "$WEBSITE" = "" ]; then
@@ -59,7 +60,7 @@ check_venue() {
     log "  Website: $WEBSITE"
 
     # --- Check main page + common subpages + discovered links ---
-    local PAGES=("$WEBSITE" "${WEBSITE}/contact" "${WEBSITE}/contact-us" "${WEBSITE}/about" "${WEBSITE}/events" "${WEBSITE}/private-events" "${WEBSITE}/event-contact")
+    local PAGES=("$WEBSITE" "${WEBSITE}/contact" "${WEBSITE}/contact-us" "${WEBSITE}/about" "${WEBSITE}/events" "${WEBSITE}/private-events" "${WEBSITE}/event-contact" "${WEBSITE}/catering" "${WEBSITE}/private-dining" "${WEBSITE}/private-event-space" "${WEBSITE}/book-event" "${WEBSITE}/group-dining" "${WEBSITE}/weddings")
     local ALL_EMAILS=""
     local CONTACT_FORM=""
 
@@ -217,20 +218,57 @@ for ig in igs:
         log "  [Apollo] Found $APOLLO_TOTAL people"
 
         if [ "$APOLLO_TOTAL" -gt 0 ] 2>/dev/null; then
-            echo "$APOLLO_RESULTS" | python3 -c "
+            # Find people with emails and enrich them
+            local ENRICH_LIST
+            ENRICH_LIST=$(echo "$APOLLO_RESULTS" | python3 -c "
 import json, sys
 data = json.loads(sys.stdin.read())
 for p in data.get('people', []):
-    name = (p.get('first_name','') + ' ' + p.get('last_name','')).strip()
-    if not name or name == ' ':
-        name = p.get('first_name','') + ' ' + (p.get('last_name','')[:2] + '***' if p.get('last_name') else '')
+    pid = p.get('id','')
+    first = p.get('first_name','')
+    last = p.get('last_name','') or ''
     title = p.get('title','')
     has_email = p.get('has_email', False)
     org = p.get('organization',{}).get('name','')
-    email_flag = 'HAS EMAIL' if has_email else 'no email'
-    print(f'  {name} | {title} | {org} | {email_flag}')
-" 2>/dev/null | while IFS= read -r LINE; do
-                log "  [Apollo]$LINE"
+    # Skip low-value roles
+    skip_titles = ['server','waiter','waitress','hostess','host','busser',
+                   'bartender','dishwasher','line cook','prep cook','barback']
+    if title.lower() in skip_titles:
+        print(f'SKIP|{first} {last}|{title}|no email - low value role')
+        continue
+    if has_email:
+        print(f'ENRICH|{pid}|{first} {last}|{title}|{org}')
+    else:
+        print(f'LOG|{first} {last}|{title}|no email')
+" 2>/dev/null)
+
+            echo "$ENRICH_LIST" | while IFS='|' read -r ACTION REST; do
+                case "$ACTION" in
+                    ENRICH)
+                        IFS='|' read -r PID PNAME PTITLE PORG <<< "$REST"
+                        log "  [Apollo] Enriching: $PNAME ($PTITLE)"
+                        local ENRICH_RESP
+                        ENRICH_RESP=$(curl -s --max-time 15 -H "Content-Type: application/json" \
+                            -H "X-Api-Key: $APOLLO_API_KEY" \
+                            -d "{\"id\":\"$PID\"}" \
+                            "${APOLLO_API_BASE}/people/match" 2>/dev/null)
+                        local ENRICH_EMAIL ENRICH_STATUS
+                        ENRICH_EMAIL=$(echo "$ENRICH_RESP" | python3 -c "import json,sys; p=json.loads(sys.stdin.read()).get('person',{}); print(p.get('email',''))" 2>/dev/null)
+                        ENRICH_STATUS=$(echo "$ENRICH_RESP" | python3 -c "import json,sys; p=json.loads(sys.stdin.read()).get('person',{}); print(p.get('email_status',''))" 2>/dev/null)
+                        if [ -n "$ENRICH_EMAIL" ] && [ "$ENRICH_EMAIL" != "None" ] && [ "$ENRICH_EMAIL" != "" ]; then
+                            log "  [Apollo] Got email: $ENRICH_EMAIL ($ENRICH_STATUS)"
+                            curl -sL "${APPS_SCRIPT_URL}?action=add_contact&venue_id=${VID}&name=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$PNAME'))")&email=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$ENRICH_EMAIL'))")&title=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$PTITLE'))")&source=postcheck_apollo" > /dev/null
+                            log "  [Apollo] Saved: $PNAME <$ENRICH_EMAIL>"
+                        else
+                            log "  [Apollo] No email returned for $PNAME"
+                        fi
+                        sleep 1
+                        ;;
+                    SKIP|LOG)
+                        IFS='|' read -r PNAME PTITLE REASON <<< "$REST"
+                        log "  [Apollo] $PNAME ($PTITLE) — $REASON"
+                        ;;
+                esac
             done
         fi
     else

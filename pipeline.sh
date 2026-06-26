@@ -2658,25 +2658,18 @@ html = f'''<!DOCTYPE html>
     color: #999;
     margin-top: 4px;
   }}
-  .flag-group {{
+  .flag-list {{
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }}
+  .flag-list li {{
     background: #2a1a1a;
     border-left: 4px solid #e85050;
-    padding: 12px 14px;
-    margin: 10px 0;
+    padding: 10px 14px;
+    margin: 6px 0;
     border-radius: 0 6px 6px 0;
-  }}
-  .flag-group .flag-venue {{
-    color: #e85050;
-    font-weight: bold;
-    font-size: 0.95rem;
-    margin-bottom: 6px;
-  }}
-  .flag-group .flag-item {{
-    color: #e0e0e0;
-    font-size: 0.85rem;
-    padding: 3px 0 3px 16px;
-    border-left: 2px solid #3a2020;
-    margin: 4px 0;
+    font-size: 0.9rem;
   }}
   .flag {{
     background: #2a1a1a;
@@ -2730,8 +2723,7 @@ html = f'''<!DOCTYPE html>
     .stat-box .num {{ color: #1a5c5c; }}
     .flag {{ background: #fff0f0; border-color: #cc3333; }}
     .flag strong {{ color: #cc3333; }}
-    .flag-group {{ background: #fff0f0; border-color: #cc3333; }}
-    .flag-group .flag-venue {{ color: #cc3333; }}
+    .flag-list li {{ background: #fff0f0; border-color: #cc3333; }}
     .contact-name {{ color: #1a5c5c; }}
     .score {{ background: #e8944c; }}
     .category-pill {{ background: #eee; color: #333; }}
@@ -2758,12 +2750,11 @@ for s in skipped:
 
 if flag_groups:
     html += '<h2>Flagged for Review</h2>\n'
+    html += '<ul class="flag-list">\n'
     for venue_name, flags in flag_groups.items():
-        html += f'<div class="flag-group">\n'
-        html += f'  <div class="flag-venue">{esc(venue_name)}</div>\n'
-        for fl in flags:
-            html += f'  <div class="flag-item">{fl}</div>\n'
-        html += f'</div>\n'
+        reasons = '; '.join(flags)
+        html += f'  <li><strong>{esc(venue_name)}</strong> &mdash; {reasons}</li>\n'
+    html += '</ul>\n'
 
 # Stat boxes
 html += f'''

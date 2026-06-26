@@ -482,11 +482,10 @@ function addVenue_(params) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(VENUES);
 
-  // Check for duplicate by name + state
+  // Check for duplicate by name only (ignore state — same venue appears in MD/VA/DC searches)
   var data = sheet.getDataRange().getValues();
   for (var i = 1; i < data.length; i++) {
-    if (String(data[i][1]).toLowerCase() === (params.name || '').toLowerCase() &&
-        String(data[i][6]).toUpperCase() === (params.state || '').toUpperCase()) {
+    if (String(data[i][1]).toLowerCase().trim() === (params.name || '').toLowerCase().trim()) {
       return jsonResponse_({ status: 'ok', message: 'Duplicate — skipped', venue_id: String(data[i][0]) });
     }
   }

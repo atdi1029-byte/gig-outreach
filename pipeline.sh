@@ -335,16 +335,20 @@ function extractFb(links){
         var slug = u.split('facebook.com/')[1] || '';
         if(SKIP.indexOf(slug) > -1) continue;
         if(u.indexOf('sharer') > -1 || u.indexOf('share') > -1) continue;
+        if(/^\d+$/.test(slug)) continue;
         if(slug.length >= 3) return u;
     }
     return '';
 }
 function extractIg(links){
+    var IG_SKIP = ['p','reel','reels','explore','stories','accounts','developer','about','legal','privacy','terms','share','embed'];
     for(var i=0;i<links.length;i++){
         var u = links[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
         if(u.startsWith('//')) u = 'https:' + u;
         var igSlug = u.split('instagram.com/')[1] || '';
         if(igSlug.length < 2) continue;
+        if(IG_SKIP.indexOf(igSlug) > -1) continue;
+        if(/^\d+$/.test(igSlug)) continue;
         if(u.indexOf('share') === -1) return u;
     }
     return '';
@@ -371,6 +375,7 @@ if(!fb){
         var slug = u.split('facebook.com/')[1] || '';
         if(SKIP_FB_SLUGS.indexOf(slug) > -1) continue;
         if(u.indexOf('sharer') > -1 || u.indexOf('share') > -1) continue;
+        if(/^\d+$/.test(slug)) continue;
         if(slug.length >= 3){ fb = u; break; }
     }
 }
@@ -381,6 +386,8 @@ if(!ig){
         var u = igRaw[i].split('?')[0].replace(/\/$/,'');
         var igSlug2 = u.split('instagram.com/')[1] || '';
         if(igSlug2.length < 2) continue;
+        if(/^\d+$/.test(igSlug2)) continue;
+        if(['p','reel','reels','explore','stories','accounts','developer','about','legal','privacy','terms','embed'].indexOf(igSlug2) > -1) continue;
         if(u.indexOf('share') === -1){ ig = u; break; }
     }
 }
@@ -513,13 +520,25 @@ for e in emails:
 # Facebook + Instagram
 fb = ''
 ig = ''
+FB_SKIP = {'tr','pixel','plugins','sharer','share','login','dialog','pages','ads','business','policy','terms','about','legal','privacy','settings','help','recover','cookies'}
 for m in re.findall(r'https?://(?:www\.)?facebook\.com/[a-zA-Z0-9._\-]+', html):
-    if '/tr?' not in m and '/sharer' not in m:
-        fb = m.split('?')[0].rstrip('/')
+    clean = m.split('?')[0].rstrip('/')
+    slug = clean.split('facebook.com/')[-1] if 'facebook.com/' in clean else ''
+    if slug in FB_SKIP: continue
+    if slug.isdigit(): continue
+    if '/sharer' in m: continue
+    if len(slug) >= 3:
+        fb = clean
         break
+IG_SKIP = {'p','reel','reels','explore','stories','accounts','developer','about','legal','privacy','terms','embed'}
 for m in re.findall(r'https?://(?:www\.)?instagram\.com/[a-zA-Z0-9._]+', html):
-    if '/p/' not in m and '/share' not in m:
-        ig = m.split('?')[0].rstrip('/')
+    clean = m.split('?')[0].rstrip('/')
+    slug = clean.split('instagram.com/')[-1] if 'instagram.com/' in clean else ''
+    if slug in IG_SKIP: continue
+    if slug.isdigit(): continue
+    if '/share' in m: continue
+    if len(slug) >= 2:
+        ig = clean
         break
 
 # Subpages — internal links
@@ -925,6 +944,12 @@ for c in d.get('contacts', []):
         if echo "$fb" | grep -qiE '^https?://(www\.)?facebook\.com/?$'; then
             log "  [WARN] Rejecting bare Facebook URL (no page): $fb"
             fb=""
+        elif echo "$fb" | grep -qiE 'facebook\.com/(tr|pages|sharer|dialog|plugins|ads|business)/?$'; then
+            log "  [WARN] Rejecting junk Facebook URL: $fb"
+            fb=""
+        elif echo "$fb" | grep -qiE 'facebook\.com/[0-9]+/?$'; then
+            log "  [WARN] Rejecting numeric-only Facebook slug: $fb"
+            fb=""
         elif echo "$fb" | grep -qi 'facebook\.com'; then
             # Warn if FB slug doesn't match any venue name word
             local fb_slug fb_name_match
@@ -957,6 +982,12 @@ print('match' if any(w in handle for w in words) else 'no')
         # Reject bare instagram.com with no profile slug
         if echo "$ig" | grep -qiE '^https?://(www\.)?instagram\.com/?$'; then
             log "  [WARN] Rejecting bare Instagram URL (no profile): $ig"
+            ig=""
+        elif echo "$ig" | grep -qiE 'instagram\.com/(p|reel|reels|explore|stories|accounts|developer|embed)/?$'; then
+            log "  [WARN] Rejecting junk Instagram URL: $ig"
+            ig=""
+        elif echo "$ig" | grep -qiE 'instagram\.com/[0-9]+/?$'; then
+            log "  [WARN] Rejecting numeric-only Instagram slug: $ig"
             ig=""
         elif echo "$ig" | grep -qi 'instagram\.com'; then
             # Validate IG handle matches venue name
@@ -3350,7 +3381,9 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     'ice cream','gelato','frozen yogurt','toastique','toast ',
     'sweets','candy','dessert','confection',
     'clubhouse','liquor','wine shop','wine store','wine & spirits',
-    'wine and spirits',' pub','irish pub','pastry']
+    'wine and spirits',' pub','irish pub','pastry',
+    ' cafe','cafe ','slice','cupcake','smoothie','juice bar',
+    'acai','poke bowl','bubble tea','boba']
 
 filtered = []
 for r in recs:
@@ -3453,7 +3486,9 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     'ice cream','gelato','frozen yogurt','toastique','toast ',
     'sweets','candy','dessert','confection',
     'clubhouse','liquor','wine shop','wine store','wine & spirits',
-    'wine and spirits',' pub','irish pub','pastry']
+    'wine and spirits',' pub','irish pub','pastry',
+    ' cafe','cafe ','slice','cupcake','smoothie','juice bar',
+    'acai','poke bowl','bubble tea','boba']
 untouched = [v for v in untouched if not any(j in v.get('name','').lower() for j in JUNK)]
 untouched.sort(key=action_score, reverse=True)
 for i, venue in enumerate(untouched):

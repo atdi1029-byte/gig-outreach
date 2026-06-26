@@ -485,7 +485,10 @@ skip_names = ['cottage', 'apartment', 'vacation rental', 'retreat',
               'ice cream', 'gelato', 'frozen yogurt', 'toastique',
               'sweets', 'clubhouse and pool', 'clubhouse & pool',
               ' pub', 'irish pub', 'liquor', 'wine & spirits',
-              'wine and spirits', 'spirits']
+              'wine and spirits', 'spirits',
+              ' cafe', 'cafe ', 'bakery', 'pastry', 'patisserie',
+              'slice', 'cupcake', 'donut', 'bagel', 'smoothie',
+              'juice bar', 'acai', 'poke bowl', 'bubble tea', 'boba']
 
 tier1_cats = ['country_club', 'private_club', 'yacht_club']
 tier2_cats = ['restaurant', 'winery', 'hotel', 'wine_bar', 'museum',
@@ -955,7 +958,10 @@ for card in cards:
                   'ice cream', 'gelato', 'frozen yogurt', 'toastique',
                   'sweets', 'clubhouse and pool', 'clubhouse & pool',
                   ' pub', 'irish pub', 'liquor', 'wine & spirits',
-                  'wine and spirits', 'spirits']
+                  'wine and spirits', 'spirits',
+                  ' cafe', 'cafe ', 'bakery', 'pastry', 'patisserie',
+                  'slice', 'cupcake', 'donut', 'bagel', 'smoothie',
+                  'juice bar', 'acai', 'poke bowl', 'bubble tea', 'boba']
     if any(s in name_lower for s in skip_names):
         print(f"  SKIP (rental): {name}")
         continue

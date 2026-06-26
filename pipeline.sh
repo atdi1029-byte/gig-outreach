@@ -2915,12 +2915,17 @@ step5_google_fallback() {
         local found_domain
         found_domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${found_site}').netloc.lower().replace('www.',''))" 2>/dev/null)
         if [ -n "$found_domain" ] && [ "$found_domain" != "$VENUE_DOMAIN" ]; then
-            log "  [FALLBACK] Found site: $found_site (domain: $found_domain)"
-            VENUE_DOMAIN="$found_domain"
-            # Save to sheet
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$found_site")" > /dev/null
-            # Scrape it
-            step1_website "$venue" "$venue_id" "$found_site" "$city"
+            # SAFETY: never overwrite an existing venue website with a fallback result
+            # and never change VENUE_DOMAIN — the fallback site may be a directory/tourism
+            # page (e.g. visitloudoun.org) not the actual venue website
+            if [ -z "$VENUE_DOMAIN" ] || [ "$VENUE_DOMAIN" = "none" ]; then
+                log "  [FALLBACK] Found site (no existing website): $found_site (domain: $found_domain)"
+                VENUE_DOMAIN="$found_domain"
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$found_site")" > /dev/null
+                step1_website "$venue" "$venue_id" "$found_site" "$city"
+            else
+                log "  [FALLBACK] Found site $found_site but venue already has domain $VENUE_DOMAIN — skipping (won't overwrite)"
+            fi
         else
             log "  [FALLBACK] No new site found (or same domain as before)"
         fi

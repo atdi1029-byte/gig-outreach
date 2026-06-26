@@ -374,3 +374,24 @@
 - **Beer gardens/tiki bars = hard no** — Dacha + Pearl both negative. Outdoor, loud, casual = wrong audience.
 - **Discovery quality issue** — Le Bustiere Boutique is a lingerie store, not a venue. Filter needs work.
 - **6 negatives this batch** — highest negative count yet. But all are clear category mismatches (tiki, beer garden, coffee, lingerie). The taste system is working — user is filtering junk quickly.
+
+---
+
+## Jun 26, 2026 — Post-Pipeline Review (2 new votes)
+
+### Fleurie Restaurant (restaurant, Charlottesville VA) — REJECTED (distance)
+> "Too far"
+- **Extracted:** Charlottesville = outside 2hr radius. Confirms existing venue_radius rule.
+- **Action:** No changes. Charlottesville remains out of range.
+
+### 1799 at The Clifton (restaurant, Charlottesville VA) — REJECTED (distance)
+> "Too far"
+- **Extracted:** Same — Charlottesville too far.
+- **Action:** No changes.
+
+---
+
+## Updated Patterns (Jun 26)
+- **No major pattern shifts** — only 2 new votes, both distance rejections.
+- **Charlottesville confirmed too far** — two separate venues rejected for distance alone. Remove from taste discovery tier 2 locations if still present.
+- **All prior patterns hold** — French/European restaurants, wine bars, country clubs/private clubs, DC luxury hotels, historic venues remain top categories.

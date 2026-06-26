@@ -5359,3 +5359,1411 @@
 [23:27:40]   Queries run: 10
 [23:27:40]   Venues added: 167
 [23:27:40]   Queries remaining: 441
+
+[19:24:22] === Venue Discovery Started ===
+[19:24:22] Fetching past gigs...
+[19:24:26] Found 70 past gigs
+[19:24:26] Fetching existing venues for dedup...
+[19:24:29] Existing venues: 1733
+[19:24:29]   SKIP (already discovered): L'Auberge Chez Francois
+[19:24:29]   SKIP (already discovered): The Inn at Perry Cabin
+[19:24:29]   SKIP (already discovered): The Maryland Club
+[19:24:29]   SKIP (already discovered): Black Ankle Vineyards
+[19:24:29]   SKIP (already discovered): Royal Restaurant
+[19:24:29]   SKIP (already discovered): Good Spirit Farm Winery
+[19:24:29]   SKIP (already discovered): Chesapeake Manor Vineyard
+[19:24:29]   SKIP (already discovered): Elkridge Furnace Inn
+[19:24:29]   SKIP (already discovered): Xella Winery and Vineyard
+[19:24:29]   SKIP (already discovered): Twin Oaks Tavern Winery
+[19:24:29]   SKIP (already discovered): Windridge Vineyards
+[19:24:29]   SKIP (already discovered): University Club
+[19:24:29]   SKIP (already discovered): The Farmhouse Tuscan
+[19:24:29]   SKIP (already discovered): Big Cork Vineyards
+[19:24:29]   SKIP (already discovered): Savage Mill Mall
+[19:24:29]   SKIP (already discovered): Trueman Vineyards
+[19:24:29]   SKIP (already discovered): Williams Gap Vineyard
+[19:24:29]   SKIP (already discovered): Hello Betty Bethesda
+[19:24:29]   SKIP (already discovered): The Madison Hotel
+[19:24:29]   SKIP (already discovered): Belle Haven Country Club
+[19:24:29]   SKIP (already discovered): Casanel Vineyards & Winery
+[19:24:29]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[19:24:29]   SKIP (already discovered): Corteau Winery
+[19:24:29]   SKIP (already discovered): Penn Oaks Winery
+[19:24:29]   SKIP (already discovered): Pizza Pomodoro
+[19:24:29]   SKIP (already discovered): Hidden Brook Winery
+[19:24:29]   SKIP (already discovered): Simple Theory Wine Co
+[19:24:29]   SKIP (already discovered): Brightview Perry Hall
+[19:24:29]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[19:24:29]   SKIP (already discovered): Gaylord National Harbor
+[19:24:29]   SKIP (already discovered): Woodberry Kitchen
+[19:24:29]   SKIP (already discovered): Great Sage
+[19:24:29]   SKIP (already discovered): Cosmos Club DC
+[19:24:29]   SKIP (already discovered): Doukénie Winery
+[19:24:29]   SKIP (already discovered): State Plaza Hotel DC
+[19:24:29]   SKIP (already discovered): Hyatt Cambridge
+[19:24:29]   SKIP (already discovered): Greenhill Vineyards
+[19:24:29]   SKIP (already discovered): Loudoun Golf & Country Club
+[19:24:29]   SKIP (already discovered): Creek's Edge Winery
+[19:24:29]   SKIP (already discovered): The Milton Inn
+[19:24:29]   SKIP (already discovered): Country Club of Fairfax
+[19:24:29]   SKIP (already discovered): Century Club Hagerstown
+[19:24:29]   SKIP (already discovered): Rock Spring Farm
+[19:24:29]   SKIP (already discovered): Janemark Winery & Vineyard
+[19:24:29]   SKIP (already discovered): Alma Cocina Latina
+[19:24:29]   SKIP (already discovered): Omni Shoreham Hotel
+[19:24:29]   SKIP (already discovered): Knoxie's Table
+[19:24:29]   SKIP (already discovered): 1757 Golf Club
+[19:24:29]   SKIP (already discovered): Holly Hills Country Club
+[19:24:29]   SKIP (already discovered): Conrad Washington DC
+[19:24:29]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[19:24:29]   SKIP (already discovered): Le Méridien Arlington
+[19:24:29]   SKIP (already discovered): Dulles Town Center
+[19:24:29]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[19:24:29]   SKIP (already discovered): Maritime Museum St Michaels
+[19:24:29]   SKIP (already discovered): Chartwell Golf & Country Club
+[19:24:29]   SKIP (already discovered): Ruse
+[19:24:29]   SKIP (already discovered): InGrano Bistro Bakery
+[19:24:29]   SKIP (already discovered): Kent Manor Inn
+[19:24:29]   SKIP (already discovered): Army Navy Country Club
+[19:24:29]   SKIP (already discovered): River Bend Country Club
+[19:24:29]   SKIP (already discovered): City Tavern DC
+[19:24:29]   SKIP (already discovered): Baltimore Country Club
+[19:24:29]   SKIP (already discovered): Vino and Pasta
+[19:24:29]   SKIP (already discovered): 50 West Vineyards
+[19:24:29]   SKIP (already discovered): The Galley Restaurant & Bar
+[19:24:29]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[19:24:29]   SKIP (already discovered): Bistrot Lepic
+[19:24:29]   SKIP (already discovered): Sunset Hills Winery
+[19:24:29]   SKIP (already discovered): The Oaks Waterfront Hotel
+[19:24:29] Cleaning up discovered_gigs.txt...
+[19:24:33] 
+[19:24:33] === Discovery Complete — Total new venues: 0 ===
+
+[13:49:45] === Venue Discovery Started ===
+[13:49:45] Fetching past gigs...
+[13:49:47] Found 70 past gigs
+[13:49:47] Fetching existing venues for dedup...
+[13:49:49] Existing venues: 1752
+[13:49:49]   SKIP (already discovered): L'Auberge Chez Francois
+[13:49:49]   SKIP (already discovered): The Inn at Perry Cabin
+[13:49:49]   SKIP (already discovered): The Maryland Club
+[13:49:49]   SKIP (already discovered): Black Ankle Vineyards
+[13:49:49]   SKIP (already discovered): Royal Restaurant
+
+[13:50:15] === Venue Discovery Started ===
+[13:50:15] Fetching past gigs...
+[13:50:17] Found 70 past gigs
+[13:50:17] Fetching existing venues for dedup...
+[13:50:19] Existing venues: 1752
+[13:50:19]   SKIP (already discovered): L'Auberge Chez Francois
+[13:50:19]   SKIP (already discovered): The Inn at Perry Cabin
+[13:50:19]   SKIP (already discovered): The Maryland Club
+[13:50:19]   SKIP (already discovered): Black Ankle Vineyards
+[13:50:19]   SKIP (already discovered): Royal Restaurant
+[13:50:19]   SKIP (already discovered): Good Spirit Farm Winery
+[13:50:19]   SKIP (already discovered): Chesapeake Manor Vineyard
+[13:50:19]   SKIP (already discovered): Elkridge Furnace Inn
+[13:50:19]   SKIP (already discovered): Xella Winery and Vineyard
+[13:50:19]   SKIP (already discovered): Twin Oaks Tavern Winery
+[13:50:19]   SKIP (already discovered): Windridge Vineyards
+[13:50:19]   SKIP (already discovered): University Club
+[13:50:19]   SKIP (already discovered): The Farmhouse Tuscan
+[13:50:19]   SKIP (already discovered): Big Cork Vineyards
+[13:50:19]   SKIP (already discovered): Savage Mill Mall
+[13:50:19]   SKIP (already discovered): Trueman Vineyards
+[13:50:19]   SKIP (already discovered): Williams Gap Vineyard
+[13:50:19]   SKIP (already discovered): Hello Betty Bethesda
+[13:50:19]   SKIP (already discovered): The Madison Hotel
+[13:50:19]   SKIP (already discovered): Belle Haven Country Club
+[13:50:19]   SKIP (already discovered): Casanel Vineyards & Winery
+[13:50:19]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[13:50:19]   SKIP (already discovered): Corteau Winery
+[13:50:19]   SKIP (already discovered): Penn Oaks Winery
+[13:50:19]   SKIP (already discovered): Pizza Pomodoro
+[13:50:19]   SKIP (already discovered): Hidden Brook Winery
+[13:50:19]   SKIP (already discovered): Simple Theory Wine Co
+[13:50:19]   SKIP (already discovered): Brightview Perry Hall
+[13:50:19]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[13:50:19]   SKIP (already discovered): Gaylord National Harbor
+[13:50:19]   SKIP (already discovered): Woodberry Kitchen
+[13:50:19]   SKIP (already discovered): Great Sage
+[13:50:19]   SKIP (already discovered): Cosmos Club DC
+[13:50:19]   SKIP (already discovered): Doukénie Winery
+[13:50:19]   SKIP (already discovered): State Plaza Hotel DC
+[13:50:19]   SKIP (already discovered): Hyatt Cambridge
+[13:50:19]   SKIP (already discovered): Greenhill Vineyards
+[13:50:19]   SKIP (already discovered): Loudoun Golf & Country Club
+[13:50:19]   SKIP (already discovered): Creek's Edge Winery
+[13:50:19]   SKIP (already discovered): The Milton Inn
+[13:50:19]   SKIP (already discovered): Country Club of Fairfax
+[13:50:19]   SKIP (already discovered): Century Club Hagerstown
+[13:50:19]   SKIP (already discovered): Rock Spring Farm
+[13:50:19]   SKIP (already discovered): Janemark Winery & Vineyard
+[13:50:19]   SKIP (already discovered): Alma Cocina Latina
+[13:50:19]   SKIP (already discovered): Omni Shoreham Hotel
+[13:50:19]   SKIP (already discovered): Knoxie's Table
+[13:50:19]   SKIP (already discovered): 1757 Golf Club
+[13:50:19]   SKIP (already discovered): Holly Hills Country Club
+[13:50:19]   SKIP (already discovered): Conrad Washington DC
+[13:50:19]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[13:50:19]   SKIP (already discovered): Le Méridien Arlington
+[13:50:19]   SKIP (already discovered): Dulles Town Center
+[13:50:19]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[13:50:19]   SKIP (already discovered): Maritime Museum St Michaels
+[13:50:19]   SKIP (already discovered): Chartwell Golf & Country Club
+[13:50:19]   SKIP (already discovered): Ruse
+[13:50:19]   SKIP (already discovered): InGrano Bistro Bakery
+[13:50:19]   SKIP (already discovered): Kent Manor Inn
+[13:50:19]   SKIP (already discovered): Army Navy Country Club
+[13:50:19]   SKIP (already discovered): River Bend Country Club
+[13:50:19]   SKIP (already discovered): City Tavern DC
+[13:50:19]   SKIP (already discovered): Baltimore Country Club
+[13:50:19]   SKIP (already discovered): Vino and Pasta
+[13:50:19]   SKIP (already discovered): 50 West Vineyards
+[13:50:19]   SKIP (already discovered): The Galley Restaurant & Bar
+[13:50:19]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[13:50:19]   SKIP (already discovered): Bistrot Lepic
+[13:50:19]   SKIP (already discovered): Sunset Hills Winery
+[13:50:19]   SKIP (already discovered): The Oaks Waterfront Hotel
+[13:50:19] Cleaning up discovered_gigs.txt...
+[13:50:24] 
+[13:50:24] === Discovery Complete — Total new venues: 0 ===
+
+[22:26:52] === Taste Discovery Mode Started ===
+[22:26:52] MAX_QUERIES=999
+[22:26:52] Fetching existing venues + past gigs for dedup...
+[22:26:58] Existing venues + past gigs: 0
+[22:26:58] Generating search queries from taste profile...
+[22:26:58] CITY_FILTER='Bethesda MD': filtered to 29 matching queries
+[22:26:58] Generated 29 queries (999 will run this session)
+[22:26:58] 
+[22:26:58] === Taste Query [1/999]: country club Bethesda MD ===
+
+[00:12:20] === Venue Discovery Started ===
+[00:12:20] Fetching past gigs...
+[00:12:23] Found 70 past gigs
+[00:12:23] Fetching existing venues for dedup...
+[00:12:26] Existing venues: 1806
+[00:12:26]   SKIP (already discovered): L'Auberge Chez Francois
+[00:12:26]   SKIP (already discovered): The Inn at Perry Cabin
+[00:12:26]   SKIP (already discovered): The Maryland Club
+[00:12:26]   SKIP (already discovered): Black Ankle Vineyards
+[00:12:26]   SKIP (already discovered): Royal Restaurant
+[00:12:26]   SKIP (already discovered): Good Spirit Farm Winery
+[00:12:26]   SKIP (already discovered): Chesapeake Manor Vineyard
+[00:12:26]   SKIP (already discovered): Elkridge Furnace Inn
+[00:12:26]   SKIP (already discovered): Xella Winery and Vineyard
+[00:12:26]   SKIP (already discovered): Twin Oaks Tavern Winery
+[00:12:26]   SKIP (already discovered): Windridge Vineyards
+[00:12:26]   SKIP (already discovered): University Club
+[00:12:26]   SKIP (already discovered): The Farmhouse Tuscan
+[00:12:26]   SKIP (already discovered): Big Cork Vineyards
+[00:12:26]   SKIP (already discovered): Savage Mill Mall
+[00:12:26]   SKIP (already discovered): Trueman Vineyards
+[00:12:26]   SKIP (already discovered): Williams Gap Vineyard
+[00:12:26]   SKIP (already discovered): Hello Betty Bethesda
+[00:12:26]   SKIP (already discovered): The Madison Hotel
+[00:12:26]   SKIP (already discovered): Belle Haven Country Club
+[00:12:26]   SKIP (already discovered): Casanel Vineyards & Winery
+[00:12:26]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[00:12:26]   SKIP (already discovered): Corteau Winery
+[00:12:26]   SKIP (already discovered): Penn Oaks Winery
+[00:12:26]   SKIP (already discovered): Pizza Pomodoro
+[00:12:26]   SKIP (already discovered): Hidden Brook Winery
+[00:12:26]   SKIP (already discovered): Simple Theory Wine Co
+[00:12:26]   SKIP (already discovered): Brightview Perry Hall
+[00:12:26]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[00:12:26]   SKIP (already discovered): Gaylord National Harbor
+[00:12:26]   SKIP (already discovered): Woodberry Kitchen
+[00:12:26]   SKIP (already discovered): Great Sage
+[00:12:26]   SKIP (already discovered): Cosmos Club DC
+[00:12:26]   SKIP (already discovered): Doukénie Winery
+[00:12:26]   SKIP (already discovered): State Plaza Hotel DC
+[00:12:26]   SKIP (already discovered): Hyatt Cambridge
+[00:12:26]   SKIP (already discovered): Greenhill Vineyards
+[00:12:26]   SKIP (already discovered): Loudoun Golf & Country Club
+[00:12:26]   SKIP (already discovered): Creek's Edge Winery
+[00:12:26]   SKIP (already discovered): The Milton Inn
+[00:12:26]   SKIP (already discovered): Country Club of Fairfax
+[00:12:26]   SKIP (already discovered): Century Club Hagerstown
+[00:12:26]   SKIP (already discovered): Rock Spring Farm
+[00:12:26]   SKIP (already discovered): Janemark Winery & Vineyard
+[00:12:26]   SKIP (already discovered): Alma Cocina Latina
+[00:12:26]   SKIP (already discovered): Omni Shoreham Hotel
+[00:12:26]   SKIP (already discovered): Knoxie's Table
+[00:12:26]   SKIP (already discovered): 1757 Golf Club
+[00:12:26]   SKIP (already discovered): Holly Hills Country Club
+[00:12:26]   SKIP (already discovered): Conrad Washington DC
+[00:12:26]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[00:12:26]   SKIP (already discovered): Le Méridien Arlington
+[00:12:26]   SKIP (already discovered): Dulles Town Center
+[00:12:26]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[00:12:26]   SKIP (already discovered): Maritime Museum St Michaels
+[00:12:26]   SKIP (already discovered): Chartwell Golf & Country Club
+[00:12:26]   SKIP (already discovered): Ruse
+[00:12:26]   SKIP (already discovered): InGrano Bistro Bakery
+[00:12:26]   SKIP (already discovered): Kent Manor Inn
+[00:12:26]   SKIP (already discovered): Army Navy Country Club
+[00:12:26]   SKIP (already discovered): River Bend Country Club
+[00:12:26]   SKIP (already discovered): City Tavern DC
+[00:12:26]   SKIP (already discovered): Baltimore Country Club
+[00:12:26]   SKIP (already discovered): Vino and Pasta
+[00:12:26]   SKIP (already discovered): 50 West Vineyards
+[00:12:26]   SKIP (already discovered): The Galley Restaurant & Bar
+[00:12:26]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[00:12:26]   SKIP (already discovered): Bistrot Lepic
+[00:12:26]   SKIP (already discovered): Sunset Hills Winery
+[00:12:26]   SKIP (already discovered): The Oaks Waterfront Hotel
+[00:12:26] Cleaning up discovered_gigs.txt...
+[00:12:31] 
+[00:12:31] === Discovery Complete — Total new venues: 0 ===
+
+[22:55:19] === Venue Discovery Started ===
+[22:55:19] Fetching past gigs...
+[22:55:21] Found 70 past gigs
+[22:55:21] Fetching existing venues for dedup...
+[22:55:23] Existing venues: 1817
+[22:55:23]   SKIP (already discovered): L'Auberge Chez Francois
+[22:55:23]   SKIP (already discovered): The Inn at Perry Cabin
+[22:55:23]   SKIP (already discovered): The Maryland Club
+[22:55:23]   SKIP (already discovered): Black Ankle Vineyards
+[22:55:23]   SKIP (already discovered): Royal Restaurant
+[22:55:23]   SKIP (already discovered): Good Spirit Farm Winery
+[22:55:23]   SKIP (already discovered): Chesapeake Manor Vineyard
+[22:55:23]   SKIP (already discovered): Elkridge Furnace Inn
+[22:55:23]   SKIP (already discovered): Xella Winery and Vineyard
+[22:55:23]   SKIP (already discovered): Twin Oaks Tavern Winery
+[22:55:23]   SKIP (already discovered): Windridge Vineyards
+[22:55:23]   SKIP (already discovered): University Club
+[22:55:23]   SKIP (already discovered): The Farmhouse Tuscan
+[22:55:23]   SKIP (already discovered): Big Cork Vineyards
+[22:55:23]   SKIP (already discovered): Savage Mill Mall
+[22:55:23]   SKIP (already discovered): Trueman Vineyards
+[22:55:23]   SKIP (already discovered): Williams Gap Vineyard
+[22:55:23]   SKIP (already discovered): Hello Betty Bethesda
+[22:55:23]   SKIP (already discovered): The Madison Hotel
+[22:55:23]   SKIP (already discovered): Belle Haven Country Club
+[22:55:23]   SKIP (already discovered): Casanel Vineyards & Winery
+[22:55:23]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[22:55:23]   SKIP (already discovered): Corteau Winery
+[22:55:23]   SKIP (already discovered): Penn Oaks Winery
+[22:55:23]   SKIP (already discovered): Pizza Pomodoro
+[22:55:23]   SKIP (already discovered): Hidden Brook Winery
+[22:55:23]   SKIP (already discovered): Simple Theory Wine Co
+[22:55:23]   SKIP (already discovered): Brightview Perry Hall
+[22:55:23]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[22:55:23]   SKIP (already discovered): Gaylord National Harbor
+[22:55:23]   SKIP (already discovered): Woodberry Kitchen
+[22:55:23]   SKIP (already discovered): Great Sage
+[22:55:23]   SKIP (already discovered): Cosmos Club DC
+[22:55:23]   SKIP (already discovered): Doukénie Winery
+[22:55:23]   SKIP (already discovered): State Plaza Hotel DC
+[22:55:23]   SKIP (already discovered): Hyatt Cambridge
+[22:55:23]   SKIP (already discovered): Greenhill Vineyards
+[22:55:23]   SKIP (already discovered): Loudoun Golf & Country Club
+[22:55:23]   SKIP (already discovered): Creek's Edge Winery
+[22:55:23]   SKIP (already discovered): The Milton Inn
+[22:55:23]   SKIP (already discovered): Country Club of Fairfax
+[22:55:23]   SKIP (already discovered): Century Club Hagerstown
+[22:55:23]   SKIP (already discovered): Rock Spring Farm
+[22:55:23]   SKIP (already discovered): Janemark Winery & Vineyard
+[22:55:23]   SKIP (already discovered): Alma Cocina Latina
+[22:55:23]   SKIP (already discovered): Omni Shoreham Hotel
+[22:55:23]   SKIP (already discovered): Knoxie's Table
+[22:55:23]   SKIP (already discovered): 1757 Golf Club
+[22:55:23]   SKIP (already discovered): Holly Hills Country Club
+[22:55:23]   SKIP (already discovered): Conrad Washington DC
+[22:55:23]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[22:55:23]   SKIP (already discovered): Le Méridien Arlington
+[22:55:23]   SKIP (already discovered): Dulles Town Center
+[22:55:23]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[22:55:23]   SKIP (already discovered): Maritime Museum St Michaels
+[22:55:23]   SKIP (already discovered): Chartwell Golf & Country Club
+[22:55:23]   SKIP (already discovered): Ruse
+[22:55:23]   SKIP (already discovered): InGrano Bistro Bakery
+[22:55:23]   SKIP (already discovered): Kent Manor Inn
+[22:55:23]   SKIP (already discovered): Army Navy Country Club
+[22:55:23]   SKIP (already discovered): River Bend Country Club
+[22:55:23]   SKIP (already discovered): City Tavern DC
+[22:55:23]   SKIP (already discovered): Baltimore Country Club
+[22:55:23]   SKIP (already discovered): Vino and Pasta
+[22:55:23]   SKIP (already discovered): 50 West Vineyards
+[22:55:23]   SKIP (already discovered): The Galley Restaurant & Bar
+[22:55:23]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[22:55:23]   SKIP (already discovered): Bistrot Lepic
+[22:55:23]   SKIP (already discovered): Sunset Hills Winery
+[22:55:23]   SKIP (already discovered): The Oaks Waterfront Hotel
+[22:55:23] Cleaning up discovered_gigs.txt...
+[22:55:28] 
+[22:55:28] === Discovery Complete — Total new venues: 0 ===
+
+[21:52:35] === Venue Discovery Started ===
+[21:52:35] Fetching past gigs...
+[21:52:37] Found 70 past gigs
+[21:52:37] Fetching existing venues for dedup...
+[21:52:40] Existing venues: 2097
+[21:52:40]   SKIP (already discovered): L'Auberge Chez Francois
+[21:52:40]   SKIP (already discovered): The Inn at Perry Cabin
+[21:52:40]   SKIP (already discovered): The Maryland Club
+[21:52:40]   SKIP (already discovered): Black Ankle Vineyards
+[21:52:40]   SKIP (already discovered): Royal Restaurant
+[21:52:40]   SKIP (already discovered): Good Spirit Farm Winery
+[21:52:40]   SKIP (already discovered): Chesapeake Manor Vineyard
+[21:52:40]   SKIP (already discovered): Elkridge Furnace Inn
+[21:52:40]   SKIP (already discovered): Xella Winery and Vineyard
+[21:52:40]   SKIP (already discovered): Twin Oaks Tavern Winery
+[21:52:40]   SKIP (already discovered): Windridge Vineyards
+[21:52:40]   SKIP (already discovered): University Club
+[21:52:40]   SKIP (already discovered): The Farmhouse Tuscan
+[21:52:40]   SKIP (already discovered): Big Cork Vineyards
+[21:52:40]   SKIP (already discovered): Savage Mill Mall
+[21:52:40]   SKIP (already discovered): Trueman Vineyards
+[21:52:40]   SKIP (already discovered): Williams Gap Vineyard
+[21:52:40]   SKIP (already discovered): Hello Betty Bethesda
+[21:52:40]   SKIP (already discovered): The Madison Hotel
+[21:52:40]   SKIP (already discovered): Belle Haven Country Club
+[21:52:40]   SKIP (already discovered): Casanel Vineyards & Winery
+[21:52:40]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[21:52:40]   SKIP (already discovered): Corteau Winery
+[21:52:40]   SKIP (already discovered): Penn Oaks Winery
+[21:52:40]   SKIP (already discovered): Pizza Pomodoro
+[21:52:40]   SKIP (already discovered): Hidden Brook Winery
+[21:52:40]   SKIP (already discovered): Simple Theory Wine Co
+[21:52:40]   SKIP (already discovered): Brightview Perry Hall
+[21:52:40]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[21:52:40]   SKIP (already discovered): Gaylord National Harbor
+[21:52:40]   SKIP (already discovered): Woodberry Kitchen
+[21:52:40]   SKIP (already discovered): Great Sage
+[21:52:40]   SKIP (already discovered): Cosmos Club DC
+[21:52:40]   SKIP (already discovered): Doukénie Winery
+[21:52:40]   SKIP (already discovered): State Plaza Hotel DC
+[21:52:40]   SKIP (already discovered): Hyatt Cambridge
+[21:52:40]   SKIP (already discovered): Greenhill Vineyards
+[21:52:40]   SKIP (already discovered): Loudoun Golf & Country Club
+[21:52:40]   SKIP (already discovered): Creek's Edge Winery
+[21:52:40]   SKIP (already discovered): The Milton Inn
+[21:52:40]   SKIP (already discovered): Country Club of Fairfax
+[21:52:40]   SKIP (already discovered): Century Club Hagerstown
+[21:52:40]   SKIP (already discovered): Rock Spring Farm
+[21:52:40]   SKIP (already discovered): Janemark Winery & Vineyard
+[21:52:40]   SKIP (already discovered): Alma Cocina Latina
+[21:52:40]   SKIP (already discovered): Omni Shoreham Hotel
+[21:52:40]   SKIP (already discovered): Knoxie's Table
+[21:52:40]   SKIP (already discovered): 1757 Golf Club
+[21:52:40]   SKIP (already discovered): Holly Hills Country Club
+[21:52:40]   SKIP (already discovered): Conrad Washington DC
+[21:52:40]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[21:52:40]   SKIP (already discovered): Le Méridien Arlington
+[21:52:40]   SKIP (already discovered): Dulles Town Center
+[21:52:40]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[21:52:40]   SKIP (already discovered): Maritime Museum St Michaels
+[21:52:40]   SKIP (already discovered): Chartwell Golf & Country Club
+[21:52:40]   SKIP (already discovered): Ruse
+[21:52:40]   SKIP (already discovered): InGrano Bistro Bakery
+[21:52:40]   SKIP (already discovered): Kent Manor Inn
+[21:52:40]   SKIP (already discovered): Army Navy Country Club
+[21:52:40]   SKIP (already discovered): River Bend Country Club
+[21:52:40]   SKIP (already discovered): City Tavern DC
+[21:52:40]   SKIP (already discovered): Baltimore Country Club
+[21:52:40]   SKIP (already discovered): Vino and Pasta
+[21:52:40]   SKIP (already discovered): 50 West Vineyards
+[21:52:40]   SKIP (already discovered): The Galley Restaurant & Bar
+[21:52:40]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[21:52:40]   SKIP (already discovered): Bistrot Lepic
+[21:52:40]   SKIP (already discovered): Sunset Hills Winery
+[21:52:40]   SKIP (already discovered): The Oaks Waterfront Hotel
+[21:52:40] Cleaning up discovered_gigs.txt...
+[21:52:44] 
+[21:52:44] === Discovery Complete — Total new venues: 0 ===
+
+[23:41:11] === Venue Discovery Started ===
+[23:41:11] Fetching past gigs...
+[23:41:14] Found 70 past gigs
+[23:41:14] Fetching existing venues for dedup...
+[23:41:17] Existing venues: 2101
+[23:41:17]   SKIP (already discovered): L'Auberge Chez Francois
+[23:41:17]   SKIP (already discovered): The Inn at Perry Cabin
+[23:41:17]   SKIP (already discovered): The Maryland Club
+[23:41:17]   SKIP (already discovered): Black Ankle Vineyards
+[23:41:17]   SKIP (already discovered): Royal Restaurant
+[23:41:17]   SKIP (already discovered): Good Spirit Farm Winery
+[23:41:17]   SKIP (already discovered): Chesapeake Manor Vineyard
+[23:41:17]   SKIP (already discovered): Elkridge Furnace Inn
+[23:41:17]   SKIP (already discovered): Xella Winery and Vineyard
+[23:41:17]   SKIP (already discovered): Twin Oaks Tavern Winery
+[23:41:17]   SKIP (already discovered): Windridge Vineyards
+[23:41:17]   SKIP (already discovered): University Club
+[23:41:17]   SKIP (already discovered): The Farmhouse Tuscan
+[23:41:17]   SKIP (already discovered): Big Cork Vineyards
+[23:41:17]   SKIP (already discovered): Savage Mill Mall
+[23:41:17]   SKIP (already discovered): Trueman Vineyards
+[23:41:17]   SKIP (already discovered): Williams Gap Vineyard
+[23:41:17]   SKIP (already discovered): Hello Betty Bethesda
+[23:41:17]   SKIP (already discovered): The Madison Hotel
+[23:41:17]   SKIP (already discovered): Belle Haven Country Club
+[23:41:17]   SKIP (already discovered): Casanel Vineyards & Winery
+[23:41:17]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[23:41:17]   SKIP (already discovered): Corteau Winery
+[23:41:17]   SKIP (already discovered): Penn Oaks Winery
+[23:41:17]   SKIP (already discovered): Pizza Pomodoro
+[23:41:17]   SKIP (already discovered): Hidden Brook Winery
+[23:41:17]   SKIP (already discovered): Simple Theory Wine Co
+[23:41:17]   SKIP (already discovered): Brightview Perry Hall
+[23:41:17]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[23:41:17]   SKIP (already discovered): Gaylord National Harbor
+[23:41:17]   SKIP (already discovered): Woodberry Kitchen
+[23:41:17]   SKIP (already discovered): Great Sage
+[23:41:17]   SKIP (already discovered): Cosmos Club DC
+[23:41:17]   SKIP (already discovered): Doukénie Winery
+[23:41:17]   SKIP (already discovered): State Plaza Hotel DC
+[23:41:17]   SKIP (already discovered): Hyatt Cambridge
+[23:41:17]   SKIP (already discovered): Greenhill Vineyards
+[23:41:17]   SKIP (already discovered): Loudoun Golf & Country Club
+[23:41:17]   SKIP (already discovered): Creek's Edge Winery
+[23:41:17]   SKIP (already discovered): The Milton Inn
+[23:41:17]   SKIP (already discovered): Country Club of Fairfax
+[23:41:17]   SKIP (already discovered): Century Club Hagerstown
+[23:41:17]   SKIP (already discovered): Rock Spring Farm
+[23:41:17]   SKIP (already discovered): Janemark Winery & Vineyard
+[23:41:17]   SKIP (already discovered): Alma Cocina Latina
+[23:41:17]   SKIP (already discovered): Omni Shoreham Hotel
+[23:41:17]   SKIP (already discovered): Knoxie's Table
+[23:41:17]   SKIP (already discovered): 1757 Golf Club
+[23:41:17]   SKIP (already discovered): Holly Hills Country Club
+[23:41:17]   SKIP (already discovered): Conrad Washington DC
+[23:41:17]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[23:41:17]   SKIP (already discovered): Le Méridien Arlington
+[23:41:17]   SKIP (already discovered): Dulles Town Center
+[23:41:17]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[23:41:17]   SKIP (already discovered): Maritime Museum St Michaels
+[23:41:17]   SKIP (already discovered): Chartwell Golf & Country Club
+[23:41:17]   SKIP (already discovered): Ruse
+[23:41:17]   SKIP (already discovered): InGrano Bistro Bakery
+[23:41:17]   SKIP (already discovered): Kent Manor Inn
+[23:41:17]   SKIP (already discovered): Army Navy Country Club
+[23:41:17]   SKIP (already discovered): River Bend Country Club
+[23:41:17]   SKIP (already discovered): City Tavern DC
+[23:41:17]   SKIP (already discovered): Baltimore Country Club
+[23:41:17]   SKIP (already discovered): Vino and Pasta
+[23:41:17]   SKIP (already discovered): 50 West Vineyards
+[23:41:17]   SKIP (already discovered): The Galley Restaurant & Bar
+[23:41:17]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[23:41:17]   SKIP (already discovered): Bistrot Lepic
+[23:41:17]   SKIP (already discovered): Sunset Hills Winery
+[23:41:17]   SKIP (already discovered): The Oaks Waterfront Hotel
+[23:41:17] Cleaning up discovered_gigs.txt...
+[23:41:22] 
+[23:41:22] === Discovery Complete — Total new venues: 0 ===
+
+[23:41:27] === Taste Discovery Mode Started ===
+[23:41:27] MAX_QUERIES=14
+[23:41:27] Fetching existing venues + past gigs for dedup...
+[23:41:32] Existing venues + past gigs: 0
+[23:41:32] Generating search queries from taste profile...
+[23:41:32] Generated 435 queries (14 will run this session)
+[23:41:32] 
+[23:41:32] === Taste Query [1/14]: wine bar Annapolis MD ===
+[23:41:39]   Scrolling search results...
+[23:41:45]   Extracting results...
+[23:41:45]   Found 20 results
+[23:42:37]   Added 9 new venues from query
+[23:42:37]   [WEBSITE] Looking up: Vin 909 Winecafe' in Annapolis
+[23:42:40]     Website: https://www.vin909wine.com
+[23:42:43]   [WEBSITE] Looking up: Wine Cellars of Annapolis
+[23:42:47]     Website: https://www.winecellarsofannapolis.com
+[23:42:50]   [WEBSITE] Looking up: WOB Bar & Kitchen Annapolis
+[23:42:53]     Website: https://worldofbeer.com
+[23:42:56]   [WEBSITE] Looking up: Augie's Mussel House & Sports Bar
+[23:43:00]     Website: https://www.eataugies.com
+[23:43:03]   [WEBSITE] Looking up: Acqua al 2 - Annapolis
+[23:43:06]     Website: https://acquaal2.com
+[23:43:10]   [WEBSITE] Looking up: Bin 201 Wine + Spirits
+[23:43:13]     Website: https://bin201.com
+[23:43:16]   [WEBSITE] Looking up: Full On Craft Eats & Drinks
+[23:43:20]     Website: https://fulloncraft.com
+[23:43:23]   [WEBSITE] Looking up: Curate Annapolis Cafe & Bakery
+[23:43:26]     Website: https://curateannapolis.com
+[23:43:29]   [WEBSITE] Looking up: Julep Kitchen & Bar
+[23:43:33]     Website: https://www.julepannapolis.com
+[23:43:41] 
+[23:43:41] === Taste Query [2/14]: wine bar Roland Park Baltimore MD ===
+[23:43:46]   Scrolling search results...
+[23:43:54]   Extracting results...
+[23:43:55]   Found 65 results
+[23:46:47]   Added 60 new venues from query
+[23:46:47]   [WEBSITE] Looking up: Roland Park Wines & Liquors
+[23:46:51]     Website: http://www.rolandpark.com
+[23:46:53]   [WEBSITE] Looking up: The Bluebird Cocktail Room
+[23:46:57]     Website: https://www.thebluebirdbaltimore.com
+[23:47:00]   [WEBSITE] Looking up: Wicked Sisters
+[23:47:03]     Website: https://www.wickedsistershampden.com
+[23:47:07]   [WEBSITE] Looking up: The Barn & Lodge At The Rotunda
+[23:47:10]     Website: https://www.barnandlodge.com
+[23:47:14]   [WEBSITE] Looking up: Hana
+[23:47:17]     Website: https://profiles.hopkinsmedicine.org
+[23:47:22]   [WEBSITE] Looking up: The Wine Source
+[23:47:25]     Website: https://www.thewinesource.com
+[23:47:28]   [WEBSITE] Looking up: Fadensonnen
+[23:47:31]     Website: https://www.fadensonnen.com
+[23:47:35]   [WEBSITE] Looking up: Bodega and Vino
+[23:47:38]     Website: https://www.bodegaandvino.com
+[23:47:40]   [WEBSITE] Looking up: Cypriana - Baltimore
+[23:47:44]     Website: https://cypriana.com
+[23:47:47]   [WEBSITE] Looking up: Tavern at Woodberry Kitchen
+[23:47:51]     Website: https://www.woodberrykitchen.com
+[23:47:54]   [WEBSITE] Looking up: Melanie’s at Griffith's Tavern
+[23:47:57]     Website: https://4.9K+
+[23:48:00]   [WEBSITE] Looking up: Alonso's
+[23:48:04]     Website: https://www.alonsos.com
+[23:48:08]   [WEBSITE] Looking up: Dylan's Oyster Cellar
+[23:48:11]     Website: https://dylansoyster.com
+[23:48:14]   [WEBSITE] Looking up: The Duchess
+[23:48:17]     Website: https://www.theduchessbaltimore.com
+[23:48:20]   [WEBSITE] Looking up: Mt. Washington Wine & Spirits
+[23:48:24]     Website: https://www.mtwashingtonwine.com
+[23:48:27]   [WEBSITE] Looking up: Soundbar
+[23:48:30]     Website: https://www.soundbarbaltimore.com
+[23:48:33]   [WEBSITE] Looking up: Corkscrew
+[23:48:36]     Website: https://11.6K+
+[23:48:39]   [WEBSITE] Looking up: Hampden Yards - Beer Garden
+[23:48:42]     Website: https://thehampdenyards.com
+[23:48:45]   [WEBSITE] Looking up: Mt. Washington Tavern
+[23:48:48]     Website: https://mtwashingtontavern.com
+[23:48:52]   [WEBSITE] Looking up: The Old Vine
+[23:48:55]     Website: http://theoldvinemd.com
+[23:48:58]   [WEBSITE] Looking up: No Land Beyond
+[23:49:02]     Website: https://www.nolandbaltimore.com
+[23:49:04]   [WEBSITE] Looking up: GRANO WINE CAVE
+[23:49:08]     Website: https://granopastabar.com
+[23:49:11]   [WEBSITE] Looking up: Showroom
+[23:49:14]     Website: https://www.showroomfrederick.com
+[23:49:17]   [WEBSITE] Looking up: True Chesapeake
+[23:49:20]     Website: https://truechesapeake.com
+[23:49:23]   [WEBSITE] Looking up: Union Collective
+[23:49:27]     Website: https://www.union-collective.com
+[23:49:30]   [WEBSITE] Looking up: r•bar
+[23:49:34]     Website: https://www.livech.com
+[23:49:37]   [WEBSITE] Looking up: Swallow At the Hollow
+[23:49:40]     Website: https://www.thehollowbaltimore.com
+[23:49:44]   [WEBSITE] Looking up: Spring Cafe "A Taste of Authentic Afghan Cuisine"
+[23:49:47]     Website: https://spring-cafe-a-taste-of-authentic-afghan-cuisine.uk-restaurants.com
+[23:49:51]   [WEBSITE] Looking up: Heritage Smokehouse
+[23:49:54]     Website: https://www.heritagesmokehousebalt.com
+[23:49:57]   [WEBSITE] Looking up: Easy Like Sunday
+[23:50:00]     Website: https://www.easylikesundaybrunch.com
+[23:50:03]   [WEBSITE] Looking up: Eddie's of Roland Park
+[23:50:07]     Website: https://www.eddiesofrolandpark.com
+[23:50:09]   [WEBSITE] Looking up: R. House
+[23:50:13]     Website: https://222.5K+
+[23:50:16]   [WEBSITE] Looking up: Seppia
+[23:50:19]     Website: https://www.seppiabaltimore.com
+[23:50:22]   [WEBSITE] Looking up: Ottobar
+[23:50:25]     Website: https://theottobar.com
+[23:50:29]   [WEBSITE] Looking up: Angels Ate Lemons
+[23:50:32]     Website: https://angelsatelemons.com
+[23:50:37]   [WEBSITE] Looking up: Grano Pasta Bar
+[23:50:40]     Website: https://granopastabar.com
+[23:50:44]   [WEBSITE] Looking up: Barfly's
+[23:50:47]     Website: https://barflysbaltimore.com
+[23:50:50]   [WEBSITE] Looking up: Cosima
+[23:50:54]     No website found
+[23:50:55]   [WEBSITE] Looking up: Birroteca Baltimore
+[23:50:58]     Website: https://www.bmorebirroteca.com
+[23:51:02]   [WEBSITE] Looking up: Modern World
+[23:51:05]     Website: https://3.6K+
+[23:51:09]   [WEBSITE] Looking up: Idle Hour
+[23:51:12]     Website: http://idlehourwinetasting.com
+[23:51:15]   [WEBSITE] Looking up: Nepenthe Brewing Co.
+[23:51:19]     Website: https://www.nepenthebrewingco.com
+[23:51:22]   [WEBSITE] Looking up: Wine Underground
+[23:51:26]     Website: https://wineunderground.us
+[23:51:29]   [WEBSITE] Looking up: Frazier's On the Avenue
+[23:51:32]     Website: https://www.fraziersbmore.com
+[23:51:36]   [WEBSITE] Looking up: Rocket To Venus
+[23:51:39]     Website: https://www.rockettovenus.com
+[23:51:43]   [WEBSITE] Looking up: Blue Pit BBQ
+[23:51:46]     Website: https://bluepitbbq.com
+[23:51:49]   [WEBSITE] Looking up: Avenue Kitchen & Bar
+[23:51:52]     Website: https://avenuekitchenbar.com
+[23:51:56]   [WEBSITE] Looking up: Mona's Super Noodle
+[23:51:59]     Website: https://www.monasupernoodle.com
+[23:52:02]   [WEBSITE] Looking up: JERRY´S BELVEDERE TAVERN
+[23:52:06]     Website: https://www.mdparty.com
+[23:52:10]   [WEBSITE] Looking up: Zissimos Bar
+[23:52:13]     Website: https://www.zissimosbar.com
+[23:52:16]   [WEBSITE] Looking up: 3 Miles House
+[23:52:20]     Website: https://3-miles-house.wheree.com
+[23:52:23]   [WEBSITE] Looking up: Namaste Baltimore
+[23:52:27]     Website: https://www.namastebaltimore.com
+[23:52:30]   [WEBSITE] Looking up: The Food Market
+[23:52:33]     Website: https://www.the-food-market.com
+[23:52:36]   [WEBSITE] Looking up: Clavel
+[23:52:39]     Website: https://barclavel.com
+[23:52:43]   [WEBSITE] Looking up: Daniela Pasta & Pastries
+[23:52:46]     Website: https://www.danielaristorante.com
+[23:52:49]   [WEBSITE] Looking up: Noir Restaurant & Lounge
+[23:52:53]     Website: https://www.noirbaltimore.com
+[23:52:56]   [WEBSITE] Looking up: HEX Superette
+[23:52:59]     Website: https://market.hexsuperette.com
+[23:53:02]   [WEBSITE] Looking up: Remington Bottle
+[23:53:06]     Website: https://theremingtonbottle.com
+[23:53:10]   [WEBSITE] Looking up: Pinehurst Gourmet & Spirit Shoppe
+[23:53:13]     Website: https://www.pinehurstwineshoppe.com
+[23:53:17]   [WEBSITE] Looking up: iBar
+[23:53:20]     Website: https://www.ibarbaltimore.com
+[23:53:30] 
+[23:53:30] === Taste Query [3/14]: country club Georgetown DC ===
+[23:53:37]   Scrolling search results...
+[23:53:45]   Extracting results...
+[23:53:45]   Found 58 results
+[23:56:28]   Added 50 new venues from query
+[23:56:28]   [WEBSITE] Looking up: Washington Golf & Country Club
+[23:56:31]     Website: https://www.washingtongolfcc.org
+[23:56:35]   [WEBSITE] Looking up: Columbia Country Club
+[23:56:38]     Website: https://www.columbiacc.org
+[23:56:41]   [WEBSITE] Looking up: Chevy Chase Club
+[23:56:45]     Website: https://www.chevychaseclub.org
+[23:56:47]   [WEBSITE] Looking up: Army Navy Country Club
+[23:56:51]     Website: https://www.ancc.org
+[23:56:54]   [WEBSITE] Looking up: Kenwood Golf and Country Club
+[23:56:58]     Website: https://www.kenwoodcc.net
+[23:57:01]   [WEBSITE] Looking up: East Potomac Golf Links
+[23:57:04]     Website: https://www.playdcgolf.com
+[23:57:08]   [WEBSITE] Looking up: Rock Creek Park Golf
+[23:57:11]     Website: https://www.playdcgolf.com
+[23:57:14]   [WEBSITE] Looking up: Congressional Country Club
+[23:57:17]     Website: https://www.ccclub.org
+[23:57:21]   [WEBSITE] Looking up: Belle Haven Country Club
+[23:57:24]     Website: https://www.bellehavencc.com
+[23:57:28]   [WEBSITE] Looking up: National Golf Club
+[23:57:31]     Website: https://www.nationalgolfclubmd.com
+[23:57:35]   [WEBSITE] Looking up: Langston Golf Course & Driving Range
+[23:57:38]     Website: https://www.playdcgolf.com
+[23:57:41]   [WEBSITE] Looking up: Capitol Hill Club
+[23:57:44]     Website: https://www.capitolhillclub.org
+[23:57:47]   [WEBSITE] Looking up: CitySwing
+[23:57:51]     Website: https://www.cityswing.com
+[23:57:54]   [WEBSITE] Looking up: Bethesda Country Club
+[23:57:57]     Website: https://www.bethesdacountryclub.org
+[23:58:00]   [WEBSITE] Looking up: playDCgolf
+[23:58:03]     Website: https://www.playdcgolf.com
+[23:58:06]   [WEBSITE] Looking up: Puttery
+[23:58:10]     Website: https://www.puttery.com
+[23:58:13]   [WEBSITE] Looking up: Old Soldiers' Home Golf Course
+[23:58:16]     Website: http://www.afrh.gov
+[23:58:20]   [WEBSITE] Looking up: Argyle Country Club
+[23:58:23]     Website: https://argylecountryclub.com
+[23:58:26]   [WEBSITE] Looking up: River Bend Golf & Country Club
+[23:58:29]     Website: https://www.rbgcc.org
+[23:58:32]   [WEBSITE] Looking up: Lakewood Country Club
+[23:58:36]     Website: https://www.lakewoodcc.org
+[23:58:39]   [WEBSITE] Looking up: Country Club of Fairfax
+[23:58:42]     Website: https://ccfairfax.org
+[23:58:45]   [WEBSITE] Looking up: The Army & Navy Club
+[23:58:49]     Website: https://www.armynavyclub.org
+[23:58:52]   [WEBSITE] Looking up: Henson Creek Golf Course
+[23:58:55]     Website: https://www.pgparks.com
+[23:58:58]   [WEBSITE] Looking up: TPC Potomac at Avenel Farm
+[23:59:01]     Website: https://www.golfdigest.com
+[23:59:05]   [WEBSITE] Looking up: Five Iron Golf
+[23:59:08]     Website: https://fiveirongolf.com
+[23:59:12]   [WEBSITE] Looking up: Burning Tree Club
+[23:59:16]     Website: https://www.top100golfcourses.com
+[23:59:20]   [WEBSITE] Looking up: Manor Country Club
+[23:59:23]     Website: https://www.manorcc.org
+[23:59:26]   [WEBSITE] Looking up: Springfield Golf & Country Club
+[23:59:30]     Website: https://www.sgccva.org
+[23:59:33]   [WEBSITE] Looking up: City Tavern
+[23:59:36]     Website: https://citytaverndc.com
+[23:59:39]   [WEBSITE] Looking up: Jefferson District Golf Course
+[23:59:42]     Website: https://www.fairfaxcounty.gov
+[23:59:46]   [WEBSITE] Looking up: University of Maryland Golf Course
+[23:59:49]     Website: https://www.golf.umd.edu
+[23:59:53]   [WEBSITE] Looking up: Lakeville Country Club
+[23:59:56]     Website: https://www.lakewoodcc.org
+[23:59:59]   [WEBSITE] Looking up: Sligo Creek Golf Course
+[00:00:03]     Website: https://www.mcggolf.com
+[00:00:06]   [WEBSITE] Looking up: Greendale Golf Course
+[00:00:09]     Website: https://www.fairfaxcounty.gov
+[00:00:13]   [WEBSITE] Looking up: Falls Road Golf Course
+[00:00:16]     Website: https://www.mcggolf.com
+[00:00:20]   [WEBSITE] Looking up: Gunpowder Golf Course
+[00:00:23]     Website: https://www.gunpowdergolfcourse.com
+[00:00:27]   [WEBSITE] Looking up: Army Navy Country Club - Fairfax
+[00:00:31]     Website: https://www.ancc.org
+[00:00:34]   [WEBSITE] Looking up: Bretton Woods Golf Course Club House
+[00:00:37]     Website: https://www.bwrc.org
+[00:00:41]   [WEBSITE] Looking up: Midway House Congressional
+[00:00:44]     Website: https://www.ccclub.org
+[00:00:48]   [WEBSITE] Looking up: Swingers Dupont Circle
+[00:00:51]     Website: https://www.swingers.club
+[00:00:54]   [WEBSITE] Looking up: Columbia Country Club Greens Department
+[00:00:58]     Website: https://www.columbiacc.org
+[00:01:01]   [WEBSITE] Looking up: Langston Golf Course Conservancy
+[00:01:05]     Website: https://www.friendsoflangston.org
+[00:01:08]   [WEBSITE] Looking up: First Tee of Greater Washington, DC
+[00:01:11]     Website: https://firstteedc.org
+[00:01:15]   [WEBSITE] Looking up: Blues Alley Club
+[00:01:18]     Website: https://www.bluesalley.com
+[00:01:21]   [WEBSITE] Looking up: Fort Belvoir Golf Club
+[00:01:25]     Website: https://belvoir.armymwr.com
+[00:01:28]   [WEBSITE] Looking up: Country Club At Woodmore
+[00:01:31]     Website: https://www.ccwoodmore.com
+[00:01:35]   [WEBSITE] Looking up: Bretton Woods Recreation Center
+[00:01:38]     Website: https://www.bwrc.org
+[00:01:41]   [WEBSITE] Looking up: Lakewood Country Club Hole #4
+[00:01:45]     Website: https://course.bluegolf.com
+[00:01:47]   [WEBSITE] Looking up: The Golf Doctor - DC
+[00:01:51]     Website: https://www.golfdoctordc.com
+[00:01:53]   [WEBSITE] Looking up: Penderbrook Golf Club
+[00:01:57]     Website: https://www.penderbrookgolfclub.com
+[00:02:07] 
+[00:02:07] === Taste Query [4/14]: country club Dupont Circle DC ===
+[00:02:11]   Scrolling search results...
+[00:02:19]   Extracting results...
+[00:02:19]   Found 21 results
+[00:03:05]   Added 6 new venues from query
+[00:03:05]   [WEBSITE] Looking up: Dupont Circle Club, Inc.
+[00:03:08]     Website: https://www.dupontcircleclub.org
+[00:03:12]   [WEBSITE] Looking up: DuPont Country Club
+[00:03:15]     Website: https://www.dupontcountryclub.com
+[00:03:18]   [WEBSITE] Looking up: Cafe Citron
+[00:03:21]     Website: http://www.cafecitrondc.com
+[00:03:25]   [WEBSITE] Looking up: ZogSports DC
+[00:03:29]     Website: https://www.zogsports.com
+[00:03:32]   [WEBSITE] Looking up: DuPont Italian Kitchen
+[00:03:36]     Website: https://dupontitaliankitchen.com
+[00:03:39]   [WEBSITE] Looking up: DanceSport Dupont Circle
+[00:03:42]     Website: https://www.dancesportdupont.com
+[00:03:52] 
+[00:03:52] === Taste Query [5/14]: country club Potomac MD ===
+[00:03:56]   Scrolling search results...
+[00:04:02]   Extracting results...
+[00:04:03]   No results found
+[00:04:06] 
+[00:04:06] === Taste Query [6/14]: country club Bethesda MD ===
+[00:04:12]   Scrolling search results...
+[00:04:19]   Extracting results...
+[00:04:20]   No results found
+[00:04:25] 
+[00:04:25] === Taste Query [7/14]: country club Great Falls VA ===
+[00:04:31]   Scrolling search results...
+[00:04:39]   Extracting results...
+[00:04:40]   No results found
+[00:04:45] 
+[00:04:45] === Taste Query [8/14]: country club McLean VA ===
+[00:04:51]   Scrolling search results...
+[00:04:58]   Extracting results...
+[00:04:59]   Found 56 results
+[00:07:05]   Added 33 new venues from query
+[00:07:05]   [WEBSITE] Looking up: Country Club of Fairfax
+[00:07:08]     Website: https://ccfairfax.org
+[00:07:12]   [WEBSITE] Looking up: Jefferson District Golf Course
+[00:07:15]     Website: https://www.fairfaxcounty.gov
+[00:07:19]   [WEBSITE] Looking up: Chevy Chase Club
+[00:07:22]     Website: https://www.chevychaseclub.org
+[00:07:25]   [WEBSITE] Looking up: Kenwood Golf and Country Club
+[00:07:28]     Website: https://www.kenwoodcc.net
+[00:07:32]   [WEBSITE] Looking up: Penderbrook Golf Club
+[00:07:35]     Website: https://www.penderbrookgolfclub.com
+[00:07:38]   [WEBSITE] Looking up: Pinecrest Golf Course
+[00:07:42]     Website: https://www.fairfaxcounty.gov
+[00:07:45]   [WEBSITE] Looking up: Congressional Country Club
+[00:07:49]     Website: https://www.ccclub.org
+[00:07:52]   [WEBSITE] Looking up: Woodmont Country Club
+[00:07:55]     Website: https://www.woodmontcc.com
+[00:07:58]   [WEBSITE] Looking up: Westfields Golf Club
+[00:08:02]     Website: https://www.westfieldsgolf.com
+[00:08:05]   [WEBSITE] Looking up: Twin Lakes Golf Course
+[00:08:08]     Website: https://www.fairfaxcounty.gov
+[00:08:11]   [WEBSITE] Looking up: Greendale Golf Course
+[00:08:15]     Website: https://www.fairfaxcounty.gov
+[00:08:18]   [WEBSITE] Looking up: Reston National Golf Course
+[00:08:21]     Website: https://www.restonnationalgc.com
+[00:08:24]   [WEBSITE] Looking up: Algonkian Golf Course
+[00:08:27]     Website: https://www.novaparks.com
+[00:08:30]   [WEBSITE] Looking up: Laurel Hill Golf Club
+[00:08:33]     Website: https://www.fairfaxcounty.gov
+[00:08:37]   [WEBSITE] Looking up: Herndon Centennial Golf Course
+[00:08:40]     Website: https://www.herndongolf.com
+[00:08:43]   [WEBSITE] Looking up: Burke Lake Golf Center
+[00:08:46]     Website: https://www.fairfaxcounty.gov
+[00:08:50]   [WEBSITE] Looking up: Rock Creek Park Golf
+[00:08:53]     Website: https://www.playdcgolf.com
+[00:08:56]   [WEBSITE] Looking up: Falls Road Golf Course
+[00:08:59]     Website: https://www.mcggolf.com
+[00:09:02]   [WEBSITE] Looking up: Burning Tree Club
+[00:09:05]     Website: https://www.top100golfcourses.com
+[00:09:09]   [WEBSITE] Looking up: Brambleton Golf Course
+[00:09:12]     Website: https://www.novaparks.com
+[00:09:16]   [WEBSITE] Looking up: Old Hickory Golf Club LLC
+[00:09:19]     Website: https://www.golfoldhickory.com
+[00:09:22]   [WEBSITE] Looking up: Argyle Country Club
+[00:09:26]     Website: https://argylecountryclub.com
+[00:09:29]   [WEBSITE] Looking up: Columbia Country Club
+[00:09:32]     Website: https://www.columbiacc.org
+[00:09:35]   [WEBSITE] Looking up: Sterling Park Golf Club
+[00:09:38]     Website: https://playsterlinggolf.com
+[00:09:41]   [WEBSITE] Looking up: 1757 Golf Club
+[00:09:45]     Website: https://www.1757golfclub.com
+[00:09:49]   [WEBSITE] Looking up: TPC Potomac at Avenel Farm
+[00:09:52]     Website: https://www.golfdigest.com
+[00:09:56]   [WEBSITE] Looking up: National Golf Club
+[00:09:59]     Website: https://www.vbnational.com
+[00:10:03]   [WEBSITE] Looking up: Country Club Hills Recreation Corporation
+[00:10:06]     Website: https://www.cchpool.com
+[00:10:09]   [WEBSITE] Looking up: Lakewood Country Club
+[00:10:12]     Website: https://www.lakewoodcc.org
+[00:10:15]   [WEBSITE] Looking up: Belmont Country Club Maintenance
+[00:10:19]     Website: https://belmonthoa.org
+[00:10:21]   [WEBSITE] Looking up: Pleasant Valley Golf Club
+[00:10:25]     Website: https://www.pleasantvalleygc.com
+[00:10:30]   [WEBSITE] Looking up: Sligo Creek Golf Course
+[00:10:33]     Website: https://www.mcggolf.com
+[00:10:37]   [WEBSITE] Looking up: Army Navy Country Club Maintenance
+[00:10:40]     Website: https://www.ancc.org
+[00:10:51] 
+[00:10:51] === Taste Query [9/14]: country club Alexandria VA ===
+[00:11:00]   Scrolling search results...
+[00:11:08]   Extracting results...
+[00:11:08]   Found 7 results
+[00:11:21]   Added 0 new venues from query
+[00:11:29] 
+[00:11:29] === Taste Query [10/14]: country club Reston VA ===
+[00:11:38]   Scrolling search results...
+[00:11:44]   Extracting results...
+[00:11:44]   Found 2 results
+[00:11:50]   Added 0 new venues from query
+[00:11:55] 
+[00:11:55] === Taste Query [11/14]: country club Middleburg VA ===
+[00:12:01]   Scrolling search results...
+[00:12:08]   Extracting results...
+[00:12:09]   Found 7 results
+[00:12:24]   Added 1 new venues from query
+[00:12:24]   [WEBSITE] Looking up: Bull Run Golf Club
+[00:12:28]     Website: https://www.golfbullrun.com
+[00:12:36] 
+[00:12:36] === Taste Query [12/14]: country club Leesburg VA ===
+[00:12:43]   Scrolling search results...
+[00:12:49]   Extracting results...
+[00:12:49]   No results found
+[00:12:54] 
+[00:12:54] === Taste Query [13/14]: country club St. Michaels MD ===
+[00:13:01]   Scrolling search results...
+[00:13:08]   Extracting results...
+[00:13:08]   Found 3 results
+[00:13:14]   Added 1 new venues from query
+[00:13:14]   [WEBSITE] Looking up: Harbourtowne Country Club
+[00:13:17]     Website: https://www.golfpass.com
+[00:13:29] 
+[00:13:29] === Taste Query [14/14]: country club Easton MD ===
+[00:13:37]   Scrolling search results...
+[00:13:45]   Extracting results...
+[00:13:45]   No results found
+[00:13:48]   MAX_QUERIES=14 reached — stopping.
+[00:13:48] Calculating distances for new venues...
+[00:14:35]   Distances calculated: 3
+[00:14:35] 
+[00:14:35] === Taste Discovery Complete ===
+[00:14:35]   Queries run: 14
+[00:14:35]   Venues added: 160
+[00:14:35]   Queries remaining: 421
+
+[23:44:12] === Venue Discovery Started ===
+[23:44:12] Fetching past gigs...
+[23:44:14] Found 70 past gigs
+[23:44:14] Fetching existing venues for dedup...
+[23:44:17] Existing venues: 2261
+[23:44:17]   SKIP (already discovered): L'Auberge Chez Francois
+[23:44:17]   SKIP (already discovered): The Inn at Perry Cabin
+[23:44:17]   SKIP (already discovered): The Maryland Club
+[23:44:17]   SKIP (already discovered): Black Ankle Vineyards
+[23:44:17]   SKIP (already discovered): Royal Restaurant
+[23:44:17]   SKIP (already discovered): Good Spirit Farm Winery
+[23:44:17]   SKIP (already discovered): Chesapeake Manor Vineyard
+[23:44:17]   SKIP (already discovered): Elkridge Furnace Inn
+[23:44:17]   SKIP (already discovered): Xella Winery and Vineyard
+[23:44:17]   SKIP (already discovered): Twin Oaks Tavern Winery
+[23:44:17]   SKIP (already discovered): Windridge Vineyards
+[23:44:17]   SKIP (already discovered): University Club
+[23:44:17]   SKIP (already discovered): The Farmhouse Tuscan
+[23:44:17]   SKIP (already discovered): Big Cork Vineyards
+[23:44:17]   SKIP (already discovered): Savage Mill Mall
+[23:44:17]   SKIP (already discovered): Trueman Vineyards
+[23:44:17]   SKIP (already discovered): Williams Gap Vineyard
+[23:44:17]   SKIP (already discovered): Hello Betty Bethesda
+[23:44:17]   SKIP (already discovered): The Madison Hotel
+[23:44:17]   SKIP (already discovered): Belle Haven Country Club
+[23:44:17]   SKIP (already discovered): Casanel Vineyards & Winery
+[23:44:17]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[23:44:17]   SKIP (already discovered): Corteau Winery
+[23:44:17]   SKIP (already discovered): Penn Oaks Winery
+[23:44:17]   SKIP (already discovered): Pizza Pomodoro
+[23:44:17]   SKIP (already discovered): Hidden Brook Winery
+[23:44:17]   SKIP (already discovered): Simple Theory Wine Co
+[23:44:17]   SKIP (already discovered): Brightview Perry Hall
+[23:44:17]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[23:44:17]   SKIP (already discovered): Gaylord National Harbor
+[23:44:17]   SKIP (already discovered): Woodberry Kitchen
+[23:44:17]   SKIP (already discovered): Great Sage
+[23:44:17]   SKIP (already discovered): Cosmos Club DC
+[23:44:17]   SKIP (already discovered): Doukénie Winery
+[23:44:17]   SKIP (already discovered): State Plaza Hotel DC
+[23:44:17]   SKIP (already discovered): Hyatt Cambridge
+[23:44:17]   SKIP (already discovered): Greenhill Vineyards
+[23:44:17]   SKIP (already discovered): Loudoun Golf & Country Club
+[23:44:17]   SKIP (already discovered): Creek's Edge Winery
+[23:44:17]   SKIP (already discovered): The Milton Inn
+[23:44:17]   SKIP (already discovered): Country Club of Fairfax
+[23:44:17]   SKIP (already discovered): Century Club Hagerstown
+[23:44:17]   SKIP (already discovered): Rock Spring Farm
+[23:44:17]   SKIP (already discovered): Janemark Winery & Vineyard
+[23:44:17]   SKIP (already discovered): Alma Cocina Latina
+[23:44:17]   SKIP (already discovered): Omni Shoreham Hotel
+[23:44:17]   SKIP (already discovered): Knoxie's Table
+[23:44:17]   SKIP (already discovered): 1757 Golf Club
+[23:44:17]   SKIP (already discovered): Holly Hills Country Club
+[23:44:17]   SKIP (already discovered): Conrad Washington DC
+[23:44:17]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[23:44:17]   SKIP (already discovered): Le Méridien Arlington
+[23:44:17]   SKIP (already discovered): Dulles Town Center
+[23:44:17]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[23:44:17]   SKIP (already discovered): Maritime Museum St Michaels
+[23:44:17]   SKIP (already discovered): Chartwell Golf & Country Club
+[23:44:17]   SKIP (already discovered): Ruse
+[23:44:17]   SKIP (already discovered): InGrano Bistro Bakery
+[23:44:17]   SKIP (already discovered): Kent Manor Inn
+[23:44:17]   SKIP (already discovered): Army Navy Country Club
+[23:44:17]   SKIP (already discovered): River Bend Country Club
+[23:44:17]   SKIP (already discovered): City Tavern DC
+[23:44:17]   SKIP (already discovered): Baltimore Country Club
+[23:44:17]   SKIP (already discovered): Vino and Pasta
+[23:44:17]   SKIP (already discovered): 50 West Vineyards
+[23:44:17]   SKIP (already discovered): The Galley Restaurant & Bar
+[23:44:17]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[23:44:17]   SKIP (already discovered): Bistrot Lepic
+[23:44:17]   SKIP (already discovered): Sunset Hills Winery
+[23:44:17]   SKIP (already discovered): The Oaks Waterfront Hotel
+[23:44:17] Cleaning up discovered_gigs.txt...
+[23:44:21] 
+[23:44:21] === Discovery Complete — Total new venues: 0 ===
+
+[23:44:25] === Taste Discovery Mode Started ===
+[23:44:25] MAX_QUERIES=15
+[23:44:25] Fetching existing venues + past gigs for dedup...
+[23:44:31] Existing venues + past gigs: 0
+[23:44:31] Generating search queries from taste profile...
+[23:44:31] Generated 421 queries (15 will run this session)
+[23:44:31] 
+[23:44:31] === Taste Query [1/15]: country club Annapolis MD ===
+[23:44:36]   Scrolling search results...
+[23:44:43]   Extracting results...
+[23:44:43]   Found 28 results
+[23:46:02]   Added 15 new venues from query
+[23:46:02]   [WEBSITE] Looking up: Bay Hills Golf Club
+[23:46:06]     Website: https://bayhillsgc.com
+[23:46:09]   [WEBSITE] Looking up: The Preserve At Eisenhower
+[23:46:12]     Website: https://www.thepreserveateisenhower.com
+[23:46:15]   [WEBSITE] Looking up: Renditions Golf Course
+[23:46:18]     Website: https://www.renditionsgolf.com
+[23:46:22]   [WEBSITE] Looking up: Oak Creek Golf Club
+[23:46:25]     Website: https://www.invitedclubs.com
+[23:46:29]   [WEBSITE] Looking up: Bowie Golf Club
+[23:46:32]     Website: https://www.golfbowie.com
+[23:46:35]   [WEBSITE] Looking up: Blue Heron Golf Course
+[23:46:39]     Website: https://blueherongolf.org
+[23:46:43]   [WEBSITE] Looking up: Compass Pointe Golf Course
+[23:46:46]     Website: https://www.compasspointegolf.com
+[23:46:49]   [WEBSITE] Looking up: Severna Park Golf Center
+[23:46:53]     Website: https://www.severnaparkgolf.com
+[23:46:56]   [WEBSITE] Looking up: Golfdom
+[23:46:59]     Website: https://stores.worldwidegolfshops.com
+[23:47:03]   [WEBSITE] Looking up: Country Club At Woodmore
+[23:47:06]     Website: https://www.ccwoodmore.com
+[23:47:09]   [WEBSITE] Looking up: Lake Presidential Golf Club
+[23:47:13]     Website: https://www.lakepresidentialgolf.com
+[23:47:17]   [WEBSITE] Looking up: Enterprise Golf Course
+[23:47:20]     Website: https://www.pgparks.com
+[23:47:23]   [WEBSITE] Looking up: Heritage Harbour Community Lodge
+[23:47:27]     Website: https://www.heritageharbour.org
+[23:47:30]   [WEBSITE] Looking up: GOLFTEC Annapolis
+[23:47:33]     Website: https://golftec.com
+[23:47:36]   [WEBSITE] Looking up: Heritage Harbour Country Club
+[23:47:39]     Website: https://www.golfpass.com
+[23:47:50] 
+[23:47:50] === Taste Query [2/15]: country club Roland Park Baltimore MD ===
+[23:47:56]   Scrolling search results...
+[23:48:04]   Extracting results...
+[23:48:04]   No results found
+[23:48:08] 
+[23:48:08] === Taste Query [3/15]: winery Georgetown DC ===
+[23:48:13]   Scrolling search results...
+[23:48:19]   Extracting results...
+[23:48:19]   Found 61 results
+[23:51:28]   Added 43 new venues from query
+[23:51:28]   [WEBSITE] Looking up: District Winery
+[23:51:31]     Website: https://www.districtwinery.com
+[23:51:35]   [WEBSITE] Looking up: Little Blackbird
+[23:51:38]     Website: https://www.littleblackbirddc.com
+[23:51:42]   [WEBSITE] Looking up: Potomac Wines & Spirits
+[23:51:45]     Website: https://potomacwines.com
+[23:51:48]   [WEBSITE] Looking up: Negus Winery
+[23:51:52]     Website: https://neguswines.com
+[23:51:55]   [WEBSITE] Looking up: Rocklands Farm Winery
+[23:51:59]     Website: https://www.rocklandsfarmmd.com
+[23:52:02]   [WEBSITE] Looking up: Wide World of Wines
+[23:52:05]     Website: https://www.wideworldofwines.com
+[23:52:09]   [WEBSITE] Looking up: Vino Virginia Wine Tours
+[23:52:12]     Website: https://vinovirginia.net
+[23:52:16]   [WEBSITE] Looking up: St. Vincent Wine
+[23:52:19]     Website: https://www.stvincentwine.com
+[23:52:22]   [WEBSITE] Looking up: Vin Sur Vingt Wine Bar - DC
+[23:52:25]     Website: https://www.vsvwinebars.com
+[23:52:29]   [WEBSITE] Looking up: Cork Cleveland Park
+[23:52:32]     Website: https://www.corkdc.com
+[23:52:35]   [WEBSITE] Looking up: vineyard vines
+[23:52:38]     Website: https://www.vineyardvines.com
+[23:52:41]   [WEBSITE] Looking up: Grand Cata
+[23:52:45]     Website: https://www.grandcata.com
+[23:52:50]   [WEBSITE] Looking up: Hop, Cask & Barrel
+[23:52:54]     Website: https://hopcaskandbarrel.com
+[23:52:57]   [WEBSITE] Looking up: Hipstoricdc DC Winery Tours
+[23:53:00]     Website: https://www.hipstoricdc.com
+[23:53:04]   [WEBSITE] Looking up: Maxwell Park
+[23:53:08]     Website: https://www.maxwellparkdc.com
+[23:53:10]   [WEBSITE] Looking up: The Winery at Bull Run
+[23:53:14]     Website: https://wineryatbullrun.com
+[23:53:17]   [WEBSITE] Looking up: Filomena Ristorante
+[23:53:20]     Website: https://www.filomena.com
+[23:53:23]   [WEBSITE] Looking up: établi
+[23:53:27]     Website: https://www.etablidc.com
+[23:53:30]   [WEBSITE] Looking up: Lulu’s Wine Garden
+[23:53:33]     Website: https://www.luluswinegarden.com
+[23:53:37]   [WEBSITE] Looking up: Verified Spirits & Fine Wines
+[23:53:41]     Website: https://verifiedwines.com
+[23:53:44]   [WEBSITE] Looking up: Fiola Mare
+[23:53:47]     Website: https://www.fiolamaredc.com
+[23:53:50]   [WEBSITE] Looking up: Domestique Wine
+[23:53:53]     Website: https://domestiquewine.com
+[23:53:56]   [WEBSITE] Looking up: Imperial Wine And Spirits
+[23:53:59]     Website: https://dcimperial.com
+[23:54:04]   [WEBSITE] Looking up: Towne Wine &Liquor
+[23:54:07]     Website: https://townewineliquor.com
+[23:54:15]   [WEBSITE] Looking up: Calvert Woodley Fine Wines & Spirits
+[23:54:18]     Website: https://calvertwoodley.com
+[23:54:22]   [WEBSITE] Looking up: il Canale
+[23:54:25]     Website: https://ilcanale.com
+[23:54:28]   [WEBSITE] Looking up: The Eastern
+[23:54:31]     Website: https://easternwinebar.com
+[23:54:35]   [WEBSITE] Looking up: UOVO Wine Storage — Northeast DC
+[23:54:38]     Website: https://uovo.com
+[23:54:41]   [WEBSITE] Looking up: Sonoma Cellar
+[23:54:45]     Website: https://www.mysonomacellar.com
+[23:54:49]   [WEBSITE] Looking up: Easy Company
+[23:54:52]     Website: https://www.easycowharf.com
+[23:54:55]   [WEBSITE] Looking up: Georgetown Square Wine and Beer
+[23:54:58]     Website: https://www.bethesdawine.com
+[23:55:01]   [WEBSITE] Looking up: Cairo Wine & Liquor
+[23:55:05]     Website: https://www.dcwineguy.com
+[23:55:09]   [WEBSITE] Looking up: Wine Key Experience
+[23:55:12]     Website: https://www.winekeyexperience.com
+[23:55:15]   [WEBSITE] Looking up: Virginia & Washington DC Winery Tours
+[23:55:18]     Website: https://www.spirited-tours.com
+[23:55:23]   [WEBSITE] Looking up: DCANTER - Capitol Hill, DC
+[23:55:26]     Website: https://www.dcanterwines.com
+[23:55:29]   [WEBSITE] Looking up: Capital Wine School
+[23:55:32]     Website: https://capitalwineschool.com
+[23:55:36]   [WEBSITE] Looking up: Watergate Vintners & Spirits
+[23:55:39]     Website: https://watergatespirits.com
+[23:55:44]   [WEBSITE] Looking up: 1789 Restaurant
+[23:55:47]     Website: https://www.1789restaurant.com
+[23:55:51]   [WEBSITE] Looking up: UOVO Wine Storage — Northwest DC
+[23:55:54]     Website: https://uovo.com
+[23:55:58]   [WEBSITE] Looking up: DC Wine & Spirits
+[23:56:01]     Website: https://www.dcwineandspirits.com
+[23:56:04]   [WEBSITE] Looking up: Arcay Chocolates
+[23:56:07]     Website: https://arcaychocolates.com
+[23:56:11]   [WEBSITE] Looking up: Metro Wine & Spirits
+[23:56:14]     Website: https://www.metrowinedc.com
+[23:56:17]   [WEBSITE] Looking up: Sip City DC Spirits and Wine
+[23:56:20]     Website: https://dcsipcity.com
+[23:56:32] 
+[23:56:32] === Taste Query [4/15]: winery Dupont Circle DC ===
+[23:56:38]   Scrolling search results...
+[23:56:46]   Extracting results...
+[23:56:46]   Found 61 results
+[23:59:29]   Added 26 new venues from query
+[23:59:29]   [WEBSITE] Looking up: Cork Wine Bar and Market
+[23:59:33]     Website: https://www.corkdc.com
+[23:59:37]   [WEBSITE] Looking up: Nido Wine Shop + Market
+[23:59:40]     Website: https://www.nidodc.com
+[23:59:43]   [WEBSITE] Looking up: Nero
+[23:59:46]     Website: https://www.nerowashdc.com
+[23:59:50]   [WEBSITE] Looking up: Connecticut Ave Wine & Liquor
+[23:59:53]     Website: https://www.dupontwine.com
+[23:59:56]   [WEBSITE] Looking up: Gemini — Wine Shop + Dinner
+[23:59:59]     Website: https://www.happygeminidc.com
+[00:00:03]   [WEBSITE] Looking up: Cork & Fork Fine Wine Merchants
+[00:00:06]     Website: https://corkandfork.co
+[00:00:10]   [WEBSITE] Looking up: 1 West Dupont Circle Wines & Liquors
+[00:00:13]     Website: https://pstreetwines.com
+[00:00:16]   [WEBSITE] Looking up: Exotic Wine and Spirits
+[00:00:20]     Website: https://exoticwinespirits.com
+[00:00:24]   [WEBSITE] Looking up: Era Wine Bar
+[00:00:27]     Website: https://www.erawinebar.com
+[00:00:30]   [WEBSITE] Looking up: Georgian Wine
+[00:00:33]     Website: https://www.georgianwinehouse.com
+[00:00:37]   [WEBSITE] Looking up: The Wine Concierge
+[00:00:41]     Website: https://thewineconcierge.co
+[00:00:44]   [WEBSITE] Looking up: The Dabney Cellar
+[00:00:47]     Website: https://www.thedabneycellar.com
+[00:00:51]   [WEBSITE] Looking up: Kramers
+[00:00:54]     Website: https://www.kramers.com
+[00:00:58]   [WEBSITE] Looking up: Barkada Wine and Cocktail Bar
+[00:01:01]     Website: https://www.barkadawinebar.com
+[00:01:04]   [WEBSITE] Looking up: ala
+[00:01:08]     Website: https://www.ala-dc.com
+[00:01:10]   [WEBSITE] Looking up: Sherry's Wine & Spirits
+[00:01:14]     Website: https://sherryswine.com
+[00:01:17]   [WEBSITE] Looking up: Cleveland Park Fine Wines & Spirits
+[00:01:20]     Website: https://clevelandparkwines.us
+[00:01:23]   [WEBSITE] Looking up: Spirits & Spice Washington D.C
+[00:01:26]     Website: https://spiritsandspice.com
+[00:01:30]   [WEBSITE] Looking up: Lady Bird, THE Roof Top Event Space
+[00:01:33]     Website: https://www.ladybirddc.com
+[00:01:36]   [WEBSITE] Looking up: Wine & Butter Cafe & Market
+[00:01:39]     Website: http://www.wineandbutterdc.com
+[00:01:42]   [WEBSITE] Looking up: Rosemarino D'Italia I Dupont Circle
+[00:01:45]     Website: https://www.rosemarinoditalia.com
+[00:01:49]   [WEBSITE] Looking up: S&R Wine and Liquor
+[00:01:52]     Website: https://srliquors.com
+[00:01:55]   [WEBSITE] Looking up: Boogy & Peel
+[00:01:58]     Website: https://boogyandpeel.com
+[00:02:01]   [WEBSITE] Looking up: Reveler's Hour
+[00:02:05]     Website: https://www.revelershour.com
+[00:02:09]   [WEBSITE] Looking up: Irving Wine and Spirits
+[00:02:12]     Website: https://www.irvingwineandspirits.com
+[00:02:15]   [WEBSITE] Looking up: Uncorked Wine & Spirits
+[00:02:18]     Website: https://uncorkeddc.com
+[00:02:26] 
+[00:02:27] === Taste Query [5/15]: winery Potomac MD ===
+[00:02:33]   Scrolling search results...
+[00:02:41]   Extracting results...
+[00:02:42]   Found 48 results
+[00:04:52]   Added 25 new venues from query
+[00:04:52]   [WEBSITE] Looking up: Windridge Vineyards
+[00:04:55]     Website: https://www.windridge.wine
+[00:04:59]   [WEBSITE] Looking up: Thanksgiving Farm Winery
+[00:05:02]     Website: https://www.thanksgivingfarm.com
+[00:05:06]   [WEBSITE] Looking up: Penn Oaks Winery
+[00:05:09]     Website: https://pennoakswinery.com
+[00:05:12]   [WEBSITE] Looking up: Robin Hill Farm and Vineyards
+[00:05:16]     Website: https://www.robinhillfarmandvineyards.com
+[00:05:19]   [WEBSITE] Looking up: Boyd Cru Wines
+[00:05:23]     Website: https://www.boydcruwines.com
+[00:05:27]   [WEBSITE] Looking up: Potomac Point Winery & Vineyard
+[00:05:30]     Website: https://www.potomacpointwinery.com
+[00:05:33]   [WEBSITE] Looking up: New Market Plains Vineyards
+[00:05:37]     Website: https://www.newmarketplains.com
+[00:05:40]   [WEBSITE] Looking up: Janemark Winery & Vineyard
+[00:05:43]     Website: https://janemarkwinery.com
+[00:05:48]   [WEBSITE] Looking up: Old Westminster Winery
+[00:05:51]     Website: https://www.oldwestminster.com
+[00:05:55]   [WEBSITE] Looking up: Mazzaroth Vineyard
+[00:05:58]     Website: https://mazzaroth.squarespace.com
+[00:06:04]   [WEBSITE] Looking up: Xella Winery and Vineyard
+[00:06:07]     Website: http://www.xellawine.com
+[00:06:10]   [WEBSITE] Looking up: Big Cork Vineyards
+[00:06:13]     Website: https://www.bigcorkvineyards.com
+[00:06:17]   [WEBSITE] Looking up: Dove Valley Vineyard
+[00:06:20]     Website: https://www.dovevalleywine.com
+[00:06:32]   [WEBSITE] Looking up: Wheaton Winery
+[00:06:36]     Website: https://www.wheatonmd.org
+[00:06:39]   [WEBSITE] Looking up: McLean Wine Outlet
+[00:06:42]     Website: https://thewineoutlets.com
+[00:06:46]   [WEBSITE] Looking up: Catoctin Breeze Vineyard
+[00:06:49]     Website: https://www.catoctinbreeze.com
+[00:06:53]   [WEBSITE] Looking up: Pasadena Market Wine & Spirits
+[00:06:56]     Website: https://www.pasadena-ws.com
+[00:07:00]   [WEBSITE] Looking up: MoCo's Founding Farmers
+[00:07:03]     Website: https://www.wearefoundingfarmers.com
+[00:07:07]   [WEBSITE] Looking up: Wine Junction Shop and Bar
+[00:07:11]     Website: https://winejunction.net
+[00:07:15]   [WEBSITE] Looking up: Magothy Wine & Spirits
+[00:07:19]     Website: https://magothywine.com
+[00:07:22]   [WEBSITE] Looking up: Montgomery County Oak Barrel & Vine
+[00:07:25]     Website: https://pikedistrict.org
+[00:07:29]   [WEBSITE] Looking up: Downtown Crown Wine and Beer
+[00:07:33]     Website: https://www.downtowncrownwine.com
+[00:07:36]   [WEBSITE] Looking up: Westlake Wine & Beer
+[00:07:40]     Website: https://www.gotoliquorstore.com
+[00:07:44]   [WEBSITE] Looking up: Total Wine & More
+[00:07:47]     Website: https://www.totalwine.com
+[00:07:51]   [WEBSITE] Looking up: Potomac Beer & Wine
+[00:07:55]     Website: https://potomacwines.com
+[00:08:05] 
+[00:08:05] === Taste Query [6/15]: winery Bethesda MD ===
+[00:08:10]   Scrolling search results...
+[00:08:17]   Extracting results...
+[00:08:17]   Found 64 results
+[00:11:11]   Added 17 new venues from query
+[00:11:11]   [WEBSITE] Looking up: Tin Lizzie Wineworks
+[00:11:14]     Website: https://tinlizziewineworks.com
+[00:11:17]   [WEBSITE] Looking up: Willowcroft Farm Vineyards
+[00:11:21]     Website: https://willowcroftwine.com
+[00:11:24]   [WEBSITE] Looking up: Harford Vineyard & Winery
+[00:11:27]     Website: https://www.harfordvineyard.com
+[00:11:30]   [WEBSITE] Looking up: Paradise Springs Winery
+[00:11:34]     Website: https://paradisespringswinery.com
+[00:11:38]   [WEBSITE] Looking up: The Organic Butcher of Bethesda
+[00:11:41]     Website: https://www.theorganicbutcher.com
+[00:11:44]   [WEBSITE] Looking up: Montgomery Farm Women's Cooperative Market
+[00:11:47]     Website: https://marylandsbest.maryland.gov
+[00:11:51]   [WEBSITE] Looking up: District Winery
+[00:11:55]     Website: https://www.districtwinery.com
+[00:11:58]   [WEBSITE] Looking up: Red Shedman Farm Brewery and Hop Yard
+[00:12:02]     Website: https://www.visitfrederick.org
+[00:12:05]   [WEBSITE] Looking up: ala | Bethesda
+[00:12:08]     Website: https://www.ala-dc.com
+[00:12:12]   [WEBSITE] Looking up: Butchers Alley
+[00:12:15]     Website: https://www.butchersalley.com
+[00:12:20]   [WEBSITE] Looking up: Bethesda Beer & Wine
+[00:12:24]     Website: https://capitalbeerwine.com
+[00:12:27]   [WEBSITE] Looking up: Medium Rare
+[00:12:30]     Website: https://www.mediumrarerestaurant.com
+[00:12:34]   [WEBSITE] Looking up: Woodmont Market
+[00:12:37]     Website: https://www.atly.com
+[00:12:40]   [WEBSITE] Looking up: Vace Italian Delicatessen
+[00:12:43]     Website: https://vaceitaliandeli.com
+[00:12:47]   [WEBSITE] Looking up: Lilit Cafe | Beer & Wine Store
+[00:12:50]     Website: https://www.lilitcafe.com
+[00:12:53]   [WEBSITE] Looking up: Grape Escape Kentlands
+[00:12:56]     Website: https://linktr.ee
+[00:12:59]   [WEBSITE] Looking up: Grand Cata
+[00:13:03]     Website: https://www.grandcata.com
+[00:13:15] 
+[00:13:16] === Taste Query [7/15]: winery Chevy Chase MD ===
+[00:13:22]   Scrolling search results...
+[00:13:30]   Extracting results...
+[00:13:30]   Found 51 results
+[00:15:54]   Added 14 new venues from query
+[00:15:54]   [WEBSITE] Looking up: EuroAlcoUS
+[00:15:57]     Website: https://www.euroalcous.com
+[00:16:01]   [WEBSITE] Looking up: Craft Beer & Wine
+[00:16:04]     Website: https://fenwickbeerandwine.com
+[00:16:08]   [WEBSITE] Looking up: Beer Wine and Co.
+[00:16:11]     Website: https://beerwineandco.company.site
+[00:16:14]   [WEBSITE] Looking up: Clyopatra Winery & Vineyard
+[00:16:18]     Website: https://clyopatrawineryvineyard.com
+[00:16:22]   [WEBSITE] Looking up: Magruder's
+[00:16:25]     Website: https://progressivegrocer.com
+[00:16:29]   [WEBSITE] Looking up: Chevy Chase Wine & Spirits
+[00:16:32]     Website: https://chevychasewine.com
+[00:16:35]   [WEBSITE] Looking up: Verified Spirits & Fine Wines
+[00:16:39]     Website: https://verifiedwines.com
+[00:16:42]   [WEBSITE] Looking up: Boordy Vineyards Inc
+[00:16:45]     Website: https://boordy.com
+[00:16:49]   [WEBSITE] Looking up: Friendship Beer and Wine Deli
+[00:16:52]     Website: https://www.friendshipwine.com
+[00:16:56]   [WEBSITE] Looking up: Calvert Woodley Fine Wines & Spirits
+[00:16:59]     Website: https://calvertwoodley.com
+[00:17:02]   [WEBSITE] Looking up: HOP N GRAPE
+[00:17:06]     Website: https://www.hop-and-grape.com
+[00:17:10]   [WEBSITE] Looking up: Sheffield Wine & Liquor Shoppe
+[00:17:13]     Website: https://local.yahoo.com
+[00:17:17]   [WEBSITE] Looking up: Dok Khao Thai Chevy Chase
+[00:17:20]     Website: https://dokkhao.com
+[00:17:23]   [WEBSITE] Looking up: Sushiko
+[00:17:26]     Website: https://www.sushikorestaurants.com
+[00:17:38] 
+[00:17:38] === Taste Query [8/15]: winery Great Falls VA ===
+[00:17:45]   Scrolling search results...
+[00:17:53]   Extracting results...
+[00:17:53]   Found 7 results
+[00:18:15]   Added 5 new venues from query
+[00:18:15]   [WEBSITE] Looking up: Rocklands Farm Winery
+[00:18:18]     Website: https://www.rocklandsfarmmd.com
+[00:18:21]   [WEBSITE] Looking up: Old Farm Winery at Hartland
+[00:18:24]     Website: https://oldfarmwineryhartland.com
+[00:18:29]   [WEBSITE] Looking up: Paradise Springs Winery
+[00:18:32]     Website: https://paradisespringswinery.com
+[00:18:35]   [WEBSITE] Looking up: Negus Winery
+[00:18:38]     Website: https://neguswines.com
+[00:18:41]   [WEBSITE] Looking up: The Winery at Bull Run
+[00:18:45]     Website: https://wineryatbullrun.com
+[00:18:54] 
+[00:18:54] === Taste Query [9/15]: winery McLean VA ===
+[00:19:01]   Scrolling search results...
+[00:19:08]   Extracting results...
+[00:19:08]   Found 7 results
+[00:19:30]   Added 3 new venues from query
+[00:19:30]   [WEBSITE] Looking up: McLean Wine Outlet
+[00:19:33]     Website: https://thewineoutlets.com
+[00:19:36]   [WEBSITE] Looking up: Wine Junction Shop and Bar
+[00:19:39]     Website: https://winejunction.net
+[00:19:44]   [WEBSITE] Looking up: Chain Bridge Cellars
+[00:19:47]     Website: https://www.cbcwine.com
+[00:19:56] 
+[00:19:56] === Taste Query [10/15]: winery Alexandria VA ===
+[00:20:04]   Scrolling search results...
+[00:20:10]   Extracting results...
+[00:20:10]   Found 7 results
+[00:20:28]   Added 3 new venues from query
+[00:20:28]   [WEBSITE] Looking up: Vino Virginia Wine Tours
+[00:20:31]     Website: https://vinovirginia.net
+[00:20:34]   [WEBSITE] Looking up: District Winery
+[00:20:37]     Website: https://www.districtwinery.com
+[00:20:41]   [WEBSITE] Looking up: DCANTER - Old Town Alexandria, VA
+[00:20:44]     Website: https://www.dcanterwines.com
+[00:20:54] 
+[00:20:54] === Taste Query [11/15]: winery Reston VA ===
+[00:21:01]   Scrolling search results...
+[00:21:10]   Extracting results...
+[00:21:10]   Found 5 results
+[00:21:22]   Added 3 new venues from query
+[00:21:22]   [WEBSITE] Looking up: Cooper’s Hawk Winery & Restaurant
+[00:21:25]     Website: https://chwinery.com
+[00:21:28]   [WEBSITE] Looking up: Sixty Vines Reston
+[00:21:32]     Website: https://www.sixtyvines.com
+[00:21:35]   [WEBSITE] Looking up: The Wine Cabinet
+[00:21:38]     Website: https://www.thewinecabinet.com
+[00:21:46] 
+[00:21:46] === Taste Query [12/15]: winery Middleburg VA ===
+[00:21:55]   Scrolling search results...
+[00:22:03]   Extracting results...
+[00:22:03]   Found 7 results
+[00:22:22]   Added 1 new venues from query
+[00:22:22]   [WEBSITE] Looking up: Chrysalis Vineyards at The Ag District
+[00:22:25]     Website: https://www.chrysaliswine.com
+[00:22:35] 
+[00:22:35] === Taste Query [13/15]: winery Leesburg VA ===
+[00:22:42]   Scrolling search results...
+[00:22:50]   Extracting results...
+[00:22:50]   Found 7 results
+[00:23:09]   Added 4 new venues from query
+[00:23:09]   [WEBSITE] Looking up: Casanel Vineyards & Winery
+[00:23:13]     Website: https://www.casanelvineyards.com
+[00:23:17]   [WEBSITE] Looking up: Willowcroft Farm Vineyards
+[00:23:20]     Website: https://willowcroftwine.com
+[00:23:24]   [WEBSITE] Looking up: Hidden Brook Winery
+[00:23:27]     Website: http://www.hiddenbrookwinery.com
+[00:23:31]   [WEBSITE] Looking up: Fleetwood Farm Winery
+[00:23:34]     Website: https://fleetwoodfarmwinery.com
+[00:23:42] 
+[00:23:42] === Taste Query [14/15]: winery St. Michaels MD ===
+[00:23:49]   Scrolling search results...
+[00:23:57]   Extracting results...
+[00:23:57]   No results found
+[00:24:02] 
+[00:24:02] === Taste Query [15/15]: winery Easton MD ===
+[00:24:10]   Scrolling search results...
+[00:24:17]   Extracting results...
+[00:24:17]   No results found
+[00:24:21]   MAX_QUERIES=15 reached — stopping.
+[00:24:21] Calculating distances for new venues...
+[00:25:12]   Distances calculated: 0
+[00:25:12] 
+[00:25:12] === Taste Discovery Complete ===
+[00:25:12]   Queries run: 15
+[00:25:12]   Venues added: 159
+[00:25:12]   Queries remaining: 406

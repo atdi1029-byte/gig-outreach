@@ -1228,12 +1228,41 @@ print('\n'.join([
             [ -z "$slug" ] && continue
             local try_url="https://www.facebook.com/${slug}"
             local http_code
-            http_code=$(curl -sL -o /dev/null -w "%{http_code}" --max-time 5 "$try_url" 2>/dev/null)
-            if [ "$http_code" = "200" ]; then
-                log "  [FB PROBE] Found: $try_url"
-                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$try_url")" > /dev/null
-                log "  ✓ Facebook URL saved"
-                break
+            local fb_body
+            fb_body=$(curl -sL --max-time 8 "$try_url" 2>/dev/null)
+            http_code=$(echo "$fb_body" | head -c 1 | wc -c)  # non-empty check
+            if [ "$http_code" -gt 0 ]; then
+                # Verify the page title actually matches the venue name
+                local fb_title
+                fb_title=$(echo "$fb_body" | python3 -c "
+import sys, re, html
+content = sys.stdin.read()
+m = re.search(r'<title[^>]*>(.*?)</title>', content, re.IGNORECASE|re.DOTALL)
+if m:
+    print(html.unescape(m.group(1)).strip())
+else:
+    print('')
+" 2>/dev/null)
+                local venue_lower slug_match
+                venue_lower=$(echo "$venue" | tr '[:upper:]' '[:lower:]' | sed "s/^the //")
+                slug_match=$(python3 -c "
+import sys
+title = sys.argv[1].lower()
+venue = sys.argv[2].lower()
+# Check if venue's main word(s) appear in the FB page title
+words = [w for w in venue.split() if len(w) > 3]
+matched = sum(1 for w in words if w in title)
+# Need at least half the significant words to match
+print('yes' if words and matched >= max(1, len(words)//2) else 'no')
+" "$fb_title" "$venue_lower" 2>/dev/null)
+                if [ "$slug_match" = "yes" ]; then
+                    log "  [FB PROBE] Found: $try_url (title: $fb_title)"
+                    curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$try_url")" > /dev/null
+                    log "  ✓ Facebook URL saved"
+                    break
+                else
+                    log "  [FB PROBE] Rejected $try_url — page title '$fb_title' doesn't match venue"
+                fi
             fi
         done <<< "$fb_slugs"
     fi
@@ -2907,6 +2936,40 @@ print(f'Manifest updated: {len(manifest)} reports')
 PYEOF
 
     log "Report saved: $REPORT_FILE"
+
+    # Auto-cleanup: remove reports older than 30 days
+    local CUTOFF_DATE=$(date -v-30d '+%Y-%m-%d' 2>/dev/null || date -d '30 days ago' '+%Y-%m-%d' 2>/dev/null)
+    if [ -n "$CUTOFF_DATE" ]; then
+        local CLEANED=0
+        python3 - "$MANIFEST_FILE" "$CUTOFF_DATE" "$REPORT_DIR" << 'CLEANPY'
+import json, sys, os
+
+manifest_file = sys.argv[1]
+cutoff = sys.argv[2]
+report_dir = sys.argv[3]
+
+with open(manifest_file, 'r') as f:
+    manifest = json.load(f)
+
+keep = []
+removed = 0
+for entry in manifest:
+    if entry.get('date', '9999') < cutoff:
+        fpath = os.path.join(report_dir, entry['file'])
+        if os.path.exists(fpath):
+            os.remove(fpath)
+            removed += 1
+    else:
+        keep.append(entry)
+
+if removed > 0:
+    with open(manifest_file, 'w') as f:
+        json.dump(keep, f, indent=2)
+    print(f"Cleaned up {removed} old reports (before {cutoff})")
+else:
+    print("No old reports to clean up")
+CLEANPY
+    fi
 }
 
 # =================================================================
@@ -3393,7 +3456,11 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     'clubhouse','liquor','wine shop','wine store','wine & spirits',
     'wine and spirits',' pub','irish pub','pastry',
     ' cafe','cafe ','slice','cupcake','smoothie','juice bar',
-    'acai','poke bowl','bubble tea','boba']
+    'acai','poke bowl','bubble tea','boba',
+    'swimming','swim team','swim school','fins swimming',
+    'tennis academy','tennis central','golf institute','golf academy',
+    'recreation club','rec club','canoe club','kayak','paddle club',
+    'marina','boat club','peak golf']
 
 filtered = []
 for r in recs:

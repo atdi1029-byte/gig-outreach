@@ -541,6 +541,9 @@ def map_category(cat, name=''):
     if any(t in cl for t in ['private club', 'social club']): return 'private_club'
     if 'spa' in cl: return 'spa'
     if any(t in cl for t in ['farmers market', 'farm stand', 'farmer']): return 'farmers_market'
+    if any(t in cl for t in ['swim', 'pool', 'tennis', 'golf', 'recreation',
+                              'athletic', 'fitness', 'gym', 'canoe', 'kayak',
+                              'paddle', 'marina', 'boat']): return 'recreation'
     # Name-based fallback: catch hotels Google Maps labels as restaurants
     hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
                    'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
@@ -550,6 +553,11 @@ def map_category(cat, name=''):
                    'hilton', 'intercontinental', 'kimpton', 'rosewood',
                    'peninsula', 'langham', 'omni', 'loews']
     if any(t in nl for t in hotel_names): return 'hotel'
+    # Name-based fallback: catch recreation venues Google Maps labels wrong
+    rec_names = ['swim', 'swimming', 'pool ', ' pool', 'tennis', 'golf institute',
+                 'golf academy', 'recreation club', 'rec club', 'canoe', 'kayak',
+                 'paddle', 'marina ', 'boat club', 'athletic']
+    if any(t in nl for t in rec_names): return 'recreation'
     return 'restaurant'
 
 def pre_score(venue):
@@ -910,6 +918,9 @@ def map_category(cat, name=''):
     if any(t in cl for t in ['private club', 'social club']): return 'private_club'
     if 'spa' in cl: return 'spa'
     if any(t in cl for t in ['farmers market', 'farm stand', 'farmer']): return 'farmers_market'
+    if any(t in cl for t in ['swim', 'pool', 'tennis', 'golf', 'recreation',
+                              'athletic', 'fitness', 'gym', 'canoe', 'kayak',
+                              'paddle', 'marina', 'boat']): return 'recreation'
     hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
                    'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
                    'the line ', 'the jefferson', 'yours truly',
@@ -918,6 +929,10 @@ def map_category(cat, name=''):
                    'hilton', 'intercontinental', 'kimpton', 'rosewood',
                    'peninsula', 'langham', 'omni', 'loews']
     if any(t in nl for t in hotel_names): return 'hotel'
+    rec_names = ['swim', 'swimming', 'pool ', ' pool', 'tennis', 'golf institute',
+                 'golf academy', 'recreation club', 'rec club', 'canoe', 'kayak',
+                 'paddle', 'marina ', 'boat club', 'athletic']
+    if any(t in nl for t in rec_names): return 'recreation'
     return 'restaurant'
 
 # Skip types - not useful for classical guitar gigs

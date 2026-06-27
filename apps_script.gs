@@ -69,6 +69,9 @@ function doGet(e) {
   if (action === 'find_by_domain')     return findByDomain_(e.parameter);
   if (action === 'save_discovery')     return saveDiscovery_(e.parameter);
   if (action === 'load_discovery')     return loadDiscovery_();
+  if (action === 'save_check')         return saveCheck_(e.parameter);
+  if (action === 'save_step')          return saveStep_(e.parameter);
+  if (action === 'audit_pipeline')     return auditPipeline_();
 
   // Default health check
   return jsonResponse_({ status: 'ok', message: 'Gig Outreach API is live', timestamp: new Date().toISOString() });
@@ -90,48 +93,33 @@ function jsonResponse_(obj) {
 // ---------------------------------------------------------------
 // serveDashboardJSON_ — Main dashboard payload
 // ---------------------------------------------------------------
-function serveDashboardJSON_() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+// Dashboard helpers — each builds one slice of the dashboard payload
+// ---------------------------------------------------------------
 
-  // Read all venues
-  var venueSheet = ss.getSheetByName(VENUES);
-  var venueData = venueSheet ? venueSheet.getDataRange().getValues() : [[]];
-  var venueHeaders = venueData[0] || [];
-
-  // Read all contacts
-  var contactSheet = ss.getSheetByName(CONTACTS);
-  var contactData = contactSheet ? contactSheet.getDataRange().getValues() : [[]];
-  var contactHeaders = contactData[0] || [];
-
-  // Read outreach log
-  var outreachSheet = ss.getSheetByName(OUTREACH);
-  var outreachData = outreachSheet ? outreachSheet.getDataRange().getValues() : [[]];
-
-  // Build sets of venues with outreach logged (IG, FB, contact form)
-  var formSentVenues = {};
-  var igSentVenues = {};
-  var fbSentVenues = {};
-  for (var ol = 1; ol < outreachData.length; ol++) {
-    var olChan = String(outreachData[ol][3]);
-    var olVid = String(outreachData[ol][1]);
-    if (olChan === 'contact_form' || olChan === 'contact_form_skip') {
-      formSentVenues[olVid] = true;
-    }
-    if (olChan === 'instagram' || olChan === 'instagram_skip') {
-      igSentVenues[olVid] = true;
-    }
-    if (olChan === 'facebook' || olChan === 'facebook_skip') {
-      fbSentVenues[olVid] = true;
-    }
+// Build outreach-sent lookup maps from the outreach log.
+// Returns { form: {venueId: true}, ig: {}, fb: {} }
+function buildOutreachSentMaps_(outreachData) {
+  var form = {}, ig = {}, fb = {};
+  for (var i = 1; i < outreachData.length; i++) {
+    var chan = String(outreachData[i][3]);
+    var vid = String(outreachData[i][1]);
+    if (chan === 'contact_form' || chan === 'contact_form_skip') form[vid] = true;
+    if (chan === 'instagram' || chan === 'instagram_skip') ig[vid] = true;
+    if (chan === 'facebook' || chan === 'facebook_skip') fb[vid] = true;
   }
+  return { form: form, ig: ig, fb: fb };
+}
 
-  // Build venues array
+// Parse raw venue sheet rows into venue objects.
+// sentMaps comes from buildOutreachSentMaps_.
+function buildVenues_(venueData, sentMaps) {
   var venues = [];
   for (var i = 1; i < venueData.length; i++) {
     var row = venueData[i];
-    if (!row[0]) continue; // skip empty rows
+    if (!row[0]) continue;
+    var vid = String(row[0]);
     venues.push({
-      venue_id:       String(row[0]),
+      venue_id:       vid,
       name:           String(row[1]),
       category:       String(row[2]),
       website:        String(row[3]),
@@ -154,13 +142,17 @@ function serveDashboardJSON_() {
       linkedin_pending: String(row[20]).toLowerCase() === 'true',
       venue_vote:     String(row[21] || ''),
       venue_feedback: String(row[22] || ''),
-      contact_form_sent: !!formSentVenues[String(row[0])],
-      ig_dm_sent: !!igSentVenues[String(row[0])],
-      fb_msg_sent: !!fbSentVenues[String(row[0])]
+      check_status:   String(row[23] || ''),
+      contact_form_sent: !!sentMaps.form[vid],
+      ig_dm_sent: !!sentMaps.ig[vid],
+      fb_msg_sent: !!sentMaps.fb[vid]
     });
   }
+  return venues;
+}
 
-  // Build contacts array
+// Parse raw contact sheet rows into contact objects.
+function buildContacts_(contactData) {
   var contacts = [];
   for (var j = 1; j < contactData.length; j++) {
     var cr = contactData[j];
@@ -180,18 +172,22 @@ function serveDashboardJSON_() {
       fb_msg_sent:    String(cr[11]).toLowerCase() === 'true'
     });
   }
+  return contacts;
+}
 
-  // Build contact map by venue_id
-  var contactsByVenue = {};
+// Group contacts into a map keyed by venue_id.
+function groupContactsByVenue_(contacts) {
+  var map = {};
   for (var c = 0; c < contacts.length; c++) {
     var vid = contacts[c].venue_id;
-    if (!contactsByVenue[vid]) contactsByVenue[vid] = [];
-    contactsByVenue[vid].push(contacts[c]);
+    if (!map[vid]) map[vid] = [];
+    map[vid].push(contacts[c]);
   }
+  return map;
+}
 
-  // Calculate stats
-  var totalVenues = venues.length;
-  var totalContacts = contacts.length;
+// Calculate aggregate stats from venues and contacts.
+function getVenueStats_(venues, contacts) {
   var emailsSent = 0, igDmsSent = 0, fbMsgsSent = 0;
   var pendingEmails = 0, pendingVerify = 0;
 
@@ -205,25 +201,42 @@ function serveDashboardJSON_() {
     if (venues[vv].fb_msg_sent) fbMsgsSent++;
   }
 
-  var totalOutreach = emailsSent + igDmsSent + fbMsgsSent;
+  return {
+    totalVenues: venues.length,
+    totalContacts: contacts.length,
+    emailsSent: emailsSent,
+    igDmsSent: igDmsSent,
+    fbMsgsSent: fbMsgsSent,
+    pendingEmails: pendingEmails,
+    pendingVerify: pendingVerify,
+    totalOutreach: emailsSent + igDmsSent + fbMsgsSent
+  };
+}
 
-  // Build set of past-gig venue IDs so we exclude them from Top Picks
-  var gigSheet2 = ss.getSheetByName(PAST_GIGS);
-  var pastGigVenueIds = {};
-  if (gigSheet2) {
-    var gd = gigSheet2.getDataRange().getValues();
+// Build the set of venue IDs that have a past gig logged.
+function getPastGigVenueIds_(ss) {
+  var gigSheet = ss.getSheetByName(PAST_GIGS);
+  var ids = {};
+  if (gigSheet) {
+    var gd = gigSheet.getDataRange().getValues();
     for (var pg = 1; pg < gd.length; pg++) {
-      if (gd[pg][1]) pastGigVenueIds[String(gd[pg][1])] = true;
+      if (gd[pg][1]) ids[String(gd[pg][1])] = true;
     }
   }
+  return ids;
+}
 
-  // Build action needed — venues with pending actions
+// Build and sort the action-needed list (pipelined venues with
+// unsent emails, IG, or FB). Returns the full sorted array.
+function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
   var actionNeeded = [];
+
   for (var v = 0; v < venues.length; v++) {
     var venue = venues[v];
-    if (venue.status === 'contacted') continue; // skip fully done
-    if (venue.status === 'untouched') continue; // top picks = pipelined only
-    if (pastGigVenueIds[venue.venue_id]) continue; // skip past gigs
+    if (venue.status === 'contacted') continue;
+    if (venue.status === 'untouched') continue;
+    if (pastGigVenueIds[venue.venue_id]) continue;
+
     var vc = contactsByVenue[venue.venue_id] || [];
     var pendingEmailContacts = [];
     var hasIg = venue.instagram && venue.instagram.length > 5;
@@ -250,127 +263,208 @@ function serveDashboardJSON_() {
     }
   }
 
-  // Sort action needed: thumbs up first, then zone, then upscale
-  var zonePriority = { green: 3, yellow: 2, 'default': 1 };
-  var votePriority = { up: 3, '': 1, down: 0 };
-  actionNeeded.sort(function(a, b) {
-    var voteA = votePriority[a.venue.venue_vote || ''] || 1;
-    var voteB = votePriority[b.venue.venue_vote || ''] || 1;
-    if (voteB !== voteA) return voteB - voteA;
-    var zoneA = zonePriority[a.venue.zone_priority] || 1;
-    var zoneB = zonePriority[b.venue.zone_priority] || 1;
-    if (zoneB !== zoneA) return zoneB - zoneA;
-    return (b.venue.upscale_score || 3) - (a.venue.upscale_score || 3);
-  });
-
-  // Top picks = first 10 action needed
-  var topPicks = actionNeeded.slice(0, 10);
-
-  // State breakdown
-  var stateBreakdown = {};
-  for (var sv = 0; sv < venues.length; sv++) {
-    var st = venues[sv].state || 'Unknown';
-    if (!stateBreakdown[st]) stateBreakdown[st] = { total: 0, contacted: 0, pending: 0 };
-    stateBreakdown[st].total++;
-    if (venues[sv].status === 'contacted') stateBreakdown[st].contacted++;
-    else stateBreakdown[st].pending++;
-  }
-
-  // Category breakdown
-  var categoryBreakdown = {};
-  for (var cv = 0; cv < venues.length; cv++) {
-    var cat = venues[cv].category || 'other';
-    if (!categoryBreakdown[cat]) categoryBreakdown[cat] = { total: 0, contacted: 0, pending: 0 };
-    categoryBreakdown[cat].total++;
-    if (venues[cv].status === 'contacted') categoryBreakdown[cat].contacted++;
-    else categoryBreakdown[cat].pending++;
-  }
-
-  // Recent outreach (last 20)
-  var recentOutreach = [];
-  for (var ro = Math.max(1, outreachData.length - 20); ro < outreachData.length; ro++) {
-    var or = outreachData[ro];
-    if (!or[0]) continue;
-    recentOutreach.push({
-      timestamp: or[0] ? new Date(or[0]).toISOString() : '',
-      venue_id: String(or[1]),
-      contact_id: String(or[2]),
-      channel: String(or[3]),
-      template_used: String(or[4])
-    });
-  }
-  recentOutreach.reverse();
-
-  // Load past gigs for dashboard
-  var gigSheet = ss.getSheetByName(PAST_GIGS);
-  var gigs = [];
-  if (gigSheet) {
-    var gData = gigSheet.getDataRange().getValues();
-    for (var gi = 1; gi < gData.length; gi++) {
-      if (!gData[gi][0]) continue;
-      gigs.push({
-        gig_id: String(gData[gi][0]),
-        venue_id: String(gData[gi][1]),
-        venue_name: String(gData[gi][2]),
-        date: String(gData[gi][3]),
-        category: String(gData[gi][4]),
-        rating_tips: Number(gData[gi][5]),
-        rating_rebooked: Number(gData[gi][6]),
-        rating_audience: Number(gData[gi][7]),
-        rating_venue_quality: Number(gData[gi][8]),
-        overall_score: Number(gData[gi][9]),
-        notes: String(gData[gi][10] || '')
-      });
+  // Load taste tiers for scoring
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var tasteSheet = ss.getSheetByName(TASTE);
+  var categoryTiers = {};
+  var sweetSpotCities = {};
+  if (tasteSheet) {
+    var tData = tasteSheet.getDataRange().getValues();
+    for (var ti = 1; ti < tData.length; ti++) {
+      var tType = String(tData[ti][0]).toLowerCase();
+      var tKey = String(tData[ti][1]).toLowerCase().trim();
+      var tVal = String(tData[ti][2]);
+      if (tType === 'tier') categoryTiers[tKey] = Number(tVal) || 3;
+      else if (tType === 'location') sweetSpotCities[tKey] = true;
     }
   }
 
-  // Weekly + daily outreach counts
+  // Taste tier points: tier 1 (French bistro etc) = 50, tier 2 = 30, tier 3 = 10, tier 4 = -20
+  var tierPts = { 1: 50, 2: 30, 3: 10, 4: -20 };
+
+  // Score each venue: taste (0-50) + distance (0-30) + vote (0-20)
+  actionNeeded.forEach(function(item) {
+    var v = item.venue;
+    var cat = String(v.category || '').toLowerCase();
+    var tier = categoryTiers[cat] || 3;
+    var taste = tierPts[tier] || 10;
+
+    // Distance score: closer = higher, max 30 pts
+    // 0-20 mi = 30, 20-50 mi = 20, 50-80 mi = 10, 80+ = 0
+    var dist = v.distance_miles ? Number(v.distance_miles) : null;
+    var distScore = 15; // neutral if unknown
+    if (dist !== null) {
+      if (dist <= 20) distScore = 30;
+      else if (dist <= 50) distScore = 25;
+      else if (dist <= 80) distScore = 15;
+      else if (dist <= 120) distScore = 5;
+      else distScore = 0;
+    }
+
+    // Vote bonus
+    var vote = String(v.venue_vote || '');
+    var voteScore = 0;
+    if (vote === 'up') voteScore = 20;
+    else if (vote === 'down') voteScore = -30;
+
+    // Sweet spot city bonus
+    var cityBonus = 0;
+    var city = String(v.city || '').toLowerCase().trim();
+    if (sweetSpotCities[city]) cityBonus = 10;
+
+    item._topPickScore = taste + distScore + voteScore + cityBonus;
+  });
+
+  actionNeeded.sort(function(a, b) {
+    return (b._topPickScore || 0) - (a._topPickScore || 0);
+  });
+
+  return actionNeeded;
+}
+
+// Build state and category breakdowns from the venues array.
+function buildBreakdowns_(venues) {
+  var stateBreakdown = {};
+  var categoryBreakdown = {};
+
+  for (var i = 0; i < venues.length; i++) {
+    var v = venues[i];
+    var st = v.state || 'Unknown';
+    if (!stateBreakdown[st]) stateBreakdown[st] = { total: 0, contacted: 0, pending: 0 };
+    stateBreakdown[st].total++;
+    if (v.status === 'contacted') stateBreakdown[st].contacted++;
+    else stateBreakdown[st].pending++;
+
+    var cat = v.category || 'other';
+    if (!categoryBreakdown[cat]) categoryBreakdown[cat] = { total: 0, contacted: 0, pending: 0 };
+    categoryBreakdown[cat].total++;
+    if (v.status === 'contacted') categoryBreakdown[cat].contacted++;
+    else categoryBreakdown[cat].pending++;
+  }
+
+  return { state: stateBreakdown, category: categoryBreakdown };
+}
+
+// Return the last 20 outreach log entries (newest first).
+function getRecentOutreach_(outreachData) {
+  var recent = [];
+  for (var ro = Math.max(1, outreachData.length - 20); ro < outreachData.length; ro++) {
+    var r = outreachData[ro];
+    if (!r[0]) continue;
+    recent.push({
+      timestamp: r[0] ? new Date(r[0]).toISOString() : '',
+      venue_id: String(r[1]),
+      contact_id: String(r[2]),
+      channel: String(r[3]),
+      template_used: String(r[4])
+    });
+  }
+  recent.reverse();
+  return recent;
+}
+
+// Load all past gigs as an array of gig objects.
+function loadGigs_(ss) {
+  var gigSheet = ss.getSheetByName(PAST_GIGS);
+  var gigs = [];
+  if (!gigSheet) return gigs;
+
+  var gData = gigSheet.getDataRange().getValues();
+  for (var gi = 1; gi < gData.length; gi++) {
+    if (!gData[gi][0]) continue;
+    gigs.push({
+      gig_id: String(gData[gi][0]),
+      venue_id: String(gData[gi][1]),
+      venue_name: String(gData[gi][2]),
+      date: String(gData[gi][3]),
+      category: String(gData[gi][4]),
+      rating_tips: Number(gData[gi][5]),
+      rating_rebooked: Number(gData[gi][6]),
+      rating_audience: Number(gData[gi][7]),
+      rating_venue_quality: Number(gData[gi][8]),
+      overall_score: Number(gData[gi][9]),
+      notes: String(gData[gi][10] || '')
+    });
+  }
+  return gigs;
+}
+
+// Calculate weekly + daily outreach counts from the outreach log.
+function getOutreachCounts_(outreachData) {
   var now = new Date();
   var dayOfWeek = now.getDay();
   var mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
   var weekStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() + mondayOffset);
   var todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  var weeklyCounts = { email: 0, ig: 0, fb: 0 };
-  var dailyCounts = { email: 0, ig: 0, fb: 0 };
+  var weekly = { email: 0, ig: 0, fb: 0 };
+  var daily = { email: 0, ig: 0, fb: 0 };
+
   for (var oi = 1; oi < outreachData.length; oi++) {
     var oRow = outreachData[oi];
     if (!oRow[0]) continue;
     var oDate = new Date(oRow[0]);
     var oChan = String(oRow[3]);
     if (oDate >= weekStart) {
-      if (oChan === 'email' || oChan === 'contact_form') weeklyCounts.email++;
-      else if (oChan === 'instagram') weeklyCounts.ig++;
-      else if (oChan === 'facebook') weeklyCounts.fb++;
+      if (oChan === 'email' || oChan === 'contact_form') weekly.email++;
+      else if (oChan === 'instagram') weekly.ig++;
+      else if (oChan === 'facebook') weekly.fb++;
     }
     if (oDate >= todayStart) {
-      if (oChan === 'email' || oChan === 'contact_form') dailyCounts.email++;
-      else if (oChan === 'instagram') dailyCounts.ig++;
-      else if (oChan === 'facebook') dailyCounts.fb++;
+      if (oChan === 'email' || oChan === 'contact_form') daily.email++;
+      else if (oChan === 'instagram') daily.ig++;
+      else if (oChan === 'facebook') daily.fb++;
     }
   }
 
+  return { weekly: weekly, daily: daily };
+}
+
+// ---------------------------------------------------------------
+// serveDashboardJSON_ — Assembles the full dashboard payload
+// from the helper functions above.
+// ---------------------------------------------------------------
+function serveDashboardJSON_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  // Load raw sheet data
+  var venueSheet = ss.getSheetByName(VENUES);
+  var venueData = venueSheet ? venueSheet.getDataRange().getValues() : [[]];
+
+  var contactSheet = ss.getSheetByName(CONTACTS);
+  var contactData = contactSheet ? contactSheet.getDataRange().getValues() : [[]];
+
+  var outreachSheet = ss.getSheetByName(OUTREACH);
+  var outreachData = outreachSheet ? outreachSheet.getDataRange().getValues() : [[]];
+
+  // Transform raw data
+  var sentMaps = buildOutreachSentMaps_(outreachData);
+  var venues = buildVenues_(venueData, sentMaps);
+  var contacts = buildContacts_(contactData);
+  var contactsByVenue = groupContactsByVenue_(contacts);
+
+  // Build each dashboard section
+  var stats = getVenueStats_(venues, contacts);
+  var pastGigVenueIds = getPastGigVenueIds_(ss);
+  var actionNeeded = buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds);
+  var topPicks = actionNeeded.slice(0, 10);
+  var breakdowns = buildBreakdowns_(venues);
+  var recentOutreach = getRecentOutreach_(outreachData);
+  var gigs = loadGigs_(ss);
+  var counts = getOutreachCounts_(outreachData);
+
   return jsonResponse_({
     status: 'ok',
-    stats: {
-      totalVenues: totalVenues,
-      totalContacts: totalContacts,
-      emailsSent: emailsSent,
-      igDmsSent: igDmsSent,
-      fbMsgsSent: fbMsgsSent,
-      pendingEmails: pendingEmails,
-      pendingVerify: pendingVerify,
-      totalOutreach: totalOutreach
-    },
-    weeklyCounts: weeklyCounts,
-    dailyCounts: dailyCounts,
+    stats: stats,
+    weeklyCounts: counts.weekly,
+    dailyCounts: counts.daily,
     topPicks: topPicks,
     actionNeeded: actionNeeded,
     venues: venues,
     contacts: contacts,
     gigs: gigs,
     recentOutreach: recentOutreach,
-    stateBreakdown: stateBreakdown,
-    categoryBreakdown: categoryBreakdown
+    stateBreakdown: breakdowns.state,
+    categoryBreakdown: breakdowns.category
   });
 }
 
@@ -403,7 +497,8 @@ function serveVenuesJSON_(params) {
       state: String(row[6]), facebook: String(row[8]), instagram: String(row[9]),
       upscale_score: Number(row[10]) || 3, zone_priority: String(row[11]) || 'default',
       status: String(row[12]) || 'untouched', contact_form: String(row[19] || ''),
-      linkedin_pending: String(row[20]).toLowerCase() === 'true'
+      linkedin_pending: String(row[20]).toLowerCase() === 'true',
+      check_status: String(row[23] || '')
     });
   }
 
@@ -436,7 +531,8 @@ function serveVenueDetail_(params) {
         contact_form: String(row[19] || ''),
         linkedin_pending: String(row[20]).toLowerCase() === 'true',
         venue_vote: String(row[21] || ''),
-        venue_feedback: String(row[22] || '')
+        venue_feedback: String(row[22] || ''),
+        check_status: String(row[23] || '')
       };
       break;
     }
@@ -511,7 +607,15 @@ function addVenue_(params) {
     'untouched',
     params.source || '',
     new Date(),
-    params.notes || ''
+    params.notes || '',
+    '',    // distance_miles (16)
+    '',    // drive_minutes (17)
+    '',    // contacted_date (18)
+    '',    // contact_form (19)
+    false, // linkedin_pending (20)
+    '',    // venue_vote (21)
+    '',    // venue_feedback (22)
+    ''     // check_status (23)
   ]);
 
   // Auto-calculate distance for new venue
@@ -758,25 +862,37 @@ function cleanupGenericEmails_() {
   for (var i = data.length - 1; i >= 1; i--) {
     var email = String(data[i][4] || '').toLowerCase().trim();
     if (!email) continue;
+
     var isGeneric = false;
     for (var g = 0; g < generic.length; g++) {
-      if (email.indexOf(generic[g]) === 0) { isGeneric = true; break; }
+      if (email.startsWith(generic[g])) {
+        isGeneric = true;
+        break;
+      }
     }
+
     if (isGeneric) {
+      var contactId = String(data[i][0]);
       var venueId = String(data[i][1]);
-      deleted.push({ contact_id: String(data[i][0]), email: email, venue_id: venueId });
-      affectedVenues[venueId] = true;
+
       sheet.deleteRow(i + 1);
+      deleted.push(contactId);
+      affectedVenues[venueId] = true;
     }
   }
 
-  // Update status for affected venues
-  var venueIds = Object.keys(affectedVenues);
-  for (var v = 0; v < venueIds.length; v++) {
-    updateVenueStatus_(venueIds[v]);
+  // Update venue statuses for any venue that lost a contact
+  for (var vId in affectedVenues) {
+    if (typeof updateVenueStatus_ === 'function') {
+      updateVenueStatus_(vId);
+    }
   }
 
-  return jsonResponse_({ status: 'ok', deleted_count: deleted.length, deleted: deleted, venues_updated: venueIds.length });
+  return jsonResponse_({
+    status: 'ok',
+    deletedCount: deleted.length,
+    deletedContacts: deleted
+  });
 }
 
 // ---------------------------------------------------------------
@@ -1589,7 +1705,7 @@ function setupSheets() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
 
   var tabs = {
-    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date', 'contact_form', 'linkedin_pending', 'venue_vote', 'venue_feedback'],
+    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date', 'contact_form', 'linkedin_pending', 'venue_vote', 'venue_feedback', 'check_status'],
     'Contacts': ['contact_id', 'venue_id', 'name', 'title', 'email', 'source', 'verified', 'verified_date', 'email_sent', 'email_sent_date', 'ig_dm_sent', 'fb_msg_sent'],
     'Outreach Log': ['timestamp', 'venue_id', 'contact_id', 'channel', 'template_used'],
     'Config': ['key', 'value'],
@@ -1824,6 +1940,311 @@ function loadDiscovery_() {
     swept:   swept   || null,
     venues:  venues  || null,
     updated: updated || null
+  });
+}
+
+// ---------------------------------------------------------------
+// VERIFICATION STEP MODEL
+//
+// Each pipelined venue must complete ALL required verification steps.
+// Steps are tracked individually in check_status (column X, index 23)
+// as a pipe-delimited string: "web:MANUAL_VERIFIED|apollo:AUTO_FOUND:3|li:MANUAL_VERIFIED:0|..."
+//
+// Step statuses:
+//   NOT_RUN      — step hasn't been executed (absent from string)
+//   AUTO_FOUND   — automation found results
+//   AUTO_NONE    — automation ran but found nothing
+//   MANUAL_VERIFIED — human/agent manually confirmed
+//   MANUAL_FOUND — manual check found new contacts
+//   FAILED       — step failed, needs retry
+//
+// Required steps (ALL must be non-NOT_RUN and non-FAILED):
+//   web     — venue website checked for contacts/forms
+//   apollo  — Apollo MCP search by domain + company name
+//   li      — LinkedIn People search for venue employees
+//   google  — Google "[venue] contact email" search
+//   socials — IG/FB links verified as correct for this venue
+//   enrich  — all named contacts without email enriched via Apollo
+//
+// A venue is FULLY CHECKED only when every required step has a
+// terminal status. The audit endpoint reports exactly which steps
+// are missing per venue — no more inferring from contact count.
+// ---------------------------------------------------------------
+var REQUIRED_STEPS = ['web', 'apollo', 'li', 'google', 'socials', 'enrich'];
+
+// Parse check_status string into {step: {status, detail}} map
+function parseCheckStatus_(checkStr) {
+  var steps = {};
+  if (!checkStr) return steps;
+  var parts = checkStr.split('|');
+  for (var i = 0; i < parts.length; i++) {
+    var part = parts[i].trim();
+    if (!part) continue;
+    // Legacy: skip "CHECKED:date" prefix from old format
+    if (part.indexOf('CHECKED:') === 0) continue;
+    // Format: "step:STATUS" or "step:STATUS:detail"
+    var segs = part.split(':');
+    if (segs.length >= 2) {
+      steps[segs[0]] = {
+        status: segs[1],
+        detail: segs.length > 2 ? segs.slice(2).join(':') : ''
+      };
+    }
+  }
+  return steps;
+}
+
+// Serialize steps map back to check_status string
+function serializeCheckStatus_(steps) {
+  var parts = [];
+  for (var step in steps) {
+    var entry = step + ':' + steps[step].status;
+    if (steps[step].detail) entry += ':' + steps[step].detail;
+    parts.push(entry);
+  }
+  return parts.join('|');
+}
+
+// ---------------------------------------------------------------
+// saveStep_ — Save a single verification step for a venue
+// Params: venue_id, step (web|apollo|li|google|socials|enrich),
+//         status (AUTO_FOUND|AUTO_NONE|MANUAL_VERIFIED|MANUAL_FOUND|FAILED),
+//         detail (optional, e.g. "found 2 emails" or "0 results")
+// Merges into existing check_status — does not overwrite other steps.
+// ---------------------------------------------------------------
+function saveStep_(params) {
+  var venueId = params.venue_id || '';
+  var step = params.step || '';
+  var stepStatus = params.status || 'MANUAL_VERIFIED';
+  var detail = params.detail || '';
+
+  if (!venueId || !step) return jsonResponse_({ status: 'error', message: 'venue_id and step required' });
+
+  var validSteps = ['web', 'apollo', 'li', 'google', 'socials', 'enrich'];
+  if (validSteps.indexOf(step) === -1) {
+    return jsonResponse_({ status: 'error', message: 'Invalid step: ' + step + '. Must be one of: ' + validSteps.join(', ') });
+  }
+
+  var validStatuses = ['AUTO_FOUND', 'AUTO_NONE', 'MANUAL_VERIFIED', 'MANUAL_FOUND', 'FAILED'];
+  if (validStatuses.indexOf(stepStatus) === -1) {
+    return jsonResponse_({ status: 'error', message: 'Invalid status: ' + stepStatus + '. Must be one of: ' + validStatuses.join(', ') });
+  }
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(VENUES);
+  var data = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]) === venueId) {
+      var existing = parseCheckStatus_(String(data[i][23] || ''));
+      existing[step] = { status: stepStatus, detail: detail };
+      var newStr = serializeCheckStatus_(existing);
+      sheet.getRange(i + 1, 24).setValue(newStr);
+      return jsonResponse_({
+        status: 'ok',
+        venue_id: venueId,
+        step: step,
+        step_status: stepStatus,
+        detail: detail,
+        check_status: newStr,
+        steps_complete: Object.keys(existing).length,
+        steps_required: REQUIRED_STEPS.length
+      });
+    }
+  }
+  return jsonResponse_({ status: 'error', message: 'Venue not found: ' + venueId });
+}
+
+// ---------------------------------------------------------------
+// saveCheck_ — Save manual check evidence for a venue (LEGACY)
+// Still works for backward compat but prefer save_step for new code.
+// Params: venue_id, evidence (pipe-delimited step results)
+// ---------------------------------------------------------------
+function saveCheck_(params) {
+  var venueId = params.venue_id || '';
+  var evidence = params.evidence || '';
+  if (!venueId) return jsonResponse_({ status: 'error', message: 'venue_id required' });
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(VENUES);
+  var data = sheet.getDataRange().getValues();
+
+  for (var i = 1; i < data.length; i++) {
+    if (String(data[i][0]) === venueId) {
+      // Merge with existing steps rather than overwriting
+      var existing = parseCheckStatus_(String(data[i][23] || ''));
+      var newSteps = parseCheckStatus_(evidence);
+      for (var step in newSteps) {
+        existing[step] = newSteps[step];
+      }
+      var checkStr = serializeCheckStatus_(existing);
+      sheet.getRange(i + 1, 24).setValue(checkStr);
+      return jsonResponse_({ status: 'ok', venue_id: venueId, check_status: checkStr });
+    }
+  }
+  return jsonResponse_({ status: 'error', message: 'Venue not found: ' + venueId });
+}
+
+// ---------------------------------------------------------------
+// auditPipeline_ — Per-step audit of pipelined venue verification
+//
+// Returns exactly which verification steps are missing per venue.
+// The run is NOT done until every venue has all 6 required steps
+// in a terminal status (not NOT_RUN, not FAILED).
+//
+// Response includes:
+//   incomplete_venues[] — venues missing any required step, with
+//       missing_steps[] listing exactly what needs to be done
+//   complete_venues[] — venues with all steps done
+//   pending_enrichments[] — contacts with name but no email
+//   failed_steps[] — steps that failed and need retry
+// ---------------------------------------------------------------
+function auditPipeline_() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+
+  // Load venues
+  var vSheet = ss.getSheetByName(VENUES);
+  var vData = vSheet.getDataRange().getValues();
+
+  // Load contacts
+  var cSheet = ss.getSheetByName(CONTACTS);
+  var cData = cSheet.getDataRange().getValues();
+
+  // Build contacts by venue + find pending enrichments
+  var contactsByVenue = {};
+  var pendingEnrich = [];
+  for (var j = 1; j < cData.length; j++) {
+    var cr = cData[j];
+    if (!cr[0]) continue;
+    var vid = String(cr[1]);
+    if (!contactsByVenue[vid]) contactsByVenue[vid] = [];
+    contactsByVenue[vid].push({
+      contact_id: String(cr[0]),
+      name: String(cr[2]),
+      title: String(cr[3]),
+      email: String(cr[4]),
+      source: String(cr[5]),
+      verified: String(cr[6])
+    });
+    // Flag contacts with name but no email — need enrichment
+    var hasName = String(cr[2]).trim().length > 0;
+    var hasEmail = String(cr[4]).trim().length > 0 && String(cr[4]).trim() !== 'undefined';
+    if (hasName && !hasEmail) {
+      pendingEnrich.push({
+        contact_id: String(cr[0]),
+        venue_id: vid,
+        name: String(cr[2]),
+        title: String(cr[3]),
+        source: String(cr[5])
+      });
+    }
+  }
+
+  // Audit each pipelined venue against required steps
+  var incomplete = [];
+  var complete = [];
+  var failedSteps = [];
+  var terminalStatuses = ['AUTO_FOUND', 'AUTO_NONE', 'MANUAL_VERIFIED', 'MANUAL_FOUND'];
+
+  for (var i = 1; i < vData.length; i++) {
+    var row = vData[i];
+    if (!row[0]) continue;
+    var status = String(row[12]) || 'untouched';
+    if (status !== 'pipelined') continue;
+
+    var venueId = String(row[0]);
+    var checkStatus = String(row[23] || '');
+    var steps = parseCheckStatus_(checkStatus);
+    var vc = contactsByVenue[venueId] || [];
+
+    // Count contacts
+    var validEmails = 0;
+    var noEmailContacts = 0;
+    for (var c = 0; c < vc.length; c++) {
+      if (vc[c].email && vc[c].email.trim() && vc[c].email !== 'undefined') {
+        validEmails++;
+      } else if (vc[c].name && vc[c].name.trim()) {
+        noEmailContacts++;
+      }
+    }
+
+    // Determine which steps are missing or failed
+    var missing = [];
+    var completed = [];
+    var failed = [];
+    for (var s = 0; s < REQUIRED_STEPS.length; s++) {
+      var stepName = REQUIRED_STEPS[s];
+      var stepData = steps[stepName];
+      if (!stepData) {
+        missing.push(stepName);
+      } else if (stepData.status === 'FAILED') {
+        failed.push(stepName);
+        failedSteps.push({ venue_id: venueId, name: String(row[1]), step: stepName, detail: stepData.detail });
+      } else if (terminalStatuses.indexOf(stepData.status) > -1) {
+        completed.push(stepName);
+      } else {
+        missing.push(stepName);
+      }
+    }
+
+    var entry = {
+      venue_id: venueId,
+      name: String(row[1]),
+      city: String(row[4]),
+      state: String(row[6]),
+      website: String(row[3]),
+      contact_count: vc.length,
+      valid_emails: validEmails,
+      no_email_contacts: noEmailContacts,
+      check_status: checkStatus,
+      steps: steps,
+      completed_steps: completed,
+      missing_steps: missing,
+      failed_steps: failed,
+      is_complete: missing.length === 0 && failed.length === 0
+    };
+
+    if (entry.is_complete) {
+      complete.push(entry);
+    } else {
+      incomplete.push(entry);
+    }
+  }
+
+  // Build step-level summary: how many venues are missing each step
+  var stepSummary = {};
+  for (var si = 0; si < REQUIRED_STEPS.length; si++) {
+    var sn = REQUIRED_STEPS[si];
+    stepSummary[sn] = { missing: 0, failed: 0, done: 0 };
+  }
+  for (var ii = 0; ii < incomplete.length; ii++) {
+    for (var mi = 0; mi < incomplete[ii].missing_steps.length; mi++) {
+      stepSummary[incomplete[ii].missing_steps[mi]].missing++;
+    }
+    for (var fi = 0; fi < incomplete[ii].failed_steps.length; fi++) {
+      stepSummary[incomplete[ii].failed_steps[fi]].failed++;
+    }
+  }
+  for (var ci = 0; ci < complete.length; ci++) {
+    for (var di = 0; di < complete[ci].completed_steps.length; di++) {
+      stepSummary[complete[ci].completed_steps[di]].done++;
+    }
+  }
+
+  return jsonResponse_({
+    status: 'ok',
+    incomplete_venues: incomplete,
+    complete_venues: complete,
+    pending_enrichments: pendingEnrich,
+    failed_steps: failedSteps,
+    step_summary: stepSummary,
+    summary: {
+      total_pipelined: incomplete.length + complete.length,
+      incomplete: incomplete.length,
+      complete: complete.length,
+      pending_enrichments: pendingEnrich.length,
+      failed_steps: failedSteps.length
+    }
   });
 }
 

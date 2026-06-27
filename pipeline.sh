@@ -1945,12 +1945,24 @@ print(m.group(1) if m else '')
         osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${URL}\""
         rand_delay 5 8
 
-        # Wait for results
+        # Wait for results (text-based detection — LinkedIn obfuscates DOM selectors)
         local COUNT=0
         for RETRY in 1 2 3 4 5; do
             COUNT=$(osascript -e '
 tell application "Google Chrome"
-    execute active tab of front window javascript "document.querySelectorAll(\"[data-view-name=search-entity-result-universal-template]\").length"
+    execute active tab of front window javascript "
+        (function() {
+            var main = document.querySelector(\"main\");
+            if (!main) return 0;
+            var text = main.innerText;
+            var lines = text.split(\"\\n\").map(function(l){return l.trim()}).filter(function(l){return l.length > 0});
+            var count = 0;
+            for (var i = 0; i < lines.length; i++) {
+                if (lines[i].match(/^\\s*[•·]\\s*(1st|2nd|3rd|\\d+th)/) || lines[i] === \"LinkedIn Member\") count++;
+            }
+            return count;
+        })()
+    "
 end tell' 2>/dev/null)
             if [ "$COUNT" -gt 0 ] 2>/dev/null; then break; fi
             sleep 2
@@ -1962,28 +1974,33 @@ end tell' 2>/dev/null)
         fi
         log "  Found $COUNT results"
 
-        # Extract people with names and titles
+        # Extract people with names and titles (text-based parsing)
         local PAGE_JSON
         PAGE_JSON=$(osascript -e '
 tell application "Google Chrome"
     execute active tab of front window javascript "
         (function() {
+            var main = document.querySelector(\"main\");
+            if (!main) return \"[]\";
+            var text = main.innerText;
+            var lines = text.split(\"\\n\").map(function(l){return l.trim()}).filter(function(l){return l.length > 0});
             var results = [];
-            var cards = document.querySelectorAll(\"[data-view-name=search-entity-result-universal-template]\");
-            cards.forEach(function(card) {
-                var nameEl = card.querySelector(\"span[aria-hidden=true]\");
-                var name = nameEl ? nameEl.textContent.trim() : \"?\";
-                var lines = card.innerText.split(\"\\n\").map(function(l){return l.trim()}).filter(function(l){return l.length > 0});
-                var title = \"\";
-                for (var j = 0; j < lines.length; j++) {
-                    if (lines[j].match(/degree connection/)) {
-                        if (j+1 < lines.length) title = lines[j+1];
-                        break;
+            for (var i = 0; i < lines.length; i++) {
+                if (lines[i].match(/^\\s*[•·]\\s*(1st|2nd|3rd|\\d+th)/)) {
+                    var name = (i > 0) ? lines[i-1] : \"\";
+                    var title = (i+1 < lines.length) ? lines[i+1] : \"\";
+                    if (name && !name.startsWith(\"Results for\")) {
+                        name = name.replace(/,\\s*(CCM|PGA|SHRM|CPA|MBA|PHR|SPHR|CEC|CMC|CEBS).*/i, \"\").trim();
+                        var isCurrent = !title.toLowerCase().includes(\"past:\") && !title.toLowerCase().startsWith(\"former\");
+                        results.push(JSON.stringify({name:name, title:title.substring(0,120), current:isCurrent}));
                     }
                 }
-                var isCurrent = !title.toLowerCase().includes(\"past:\") && !title.toLowerCase().startsWith(\"former\");
-                results.push(JSON.stringify({name:name, title:title, current:isCurrent}));
-            });
+                if (lines[i] === \"LinkedIn Member\" && i+1 < lines.length) {
+                    var title2 = lines[i+1] || \"\";
+                    var isCurrent2 = !title2.toLowerCase().includes(\"past:\") && !title2.toLowerCase().startsWith(\"former\");
+                    results.push(JSON.stringify({name:\"LinkedIn Member\", title:title2.substring(0,120), current:isCurrent2}));
+                }
+            }
             return \"[\" + results.join(\",\") + \"]\";
         })()
     "

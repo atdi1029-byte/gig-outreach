@@ -304,65 +304,87 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     'liquor', 'wine shop', 'wine store', 'spirits'
   ];
 
-  // Score each venue: taste (0-50) + name boost + distance (0-30) + vote (0-20)
+  // Venue type ranking — matches alex_taste.md exactly
+  // 1. Upscale French/European restaurants
+  // 2. Historic private clubs
+  // 3. Upscale country clubs with wine dinners
+  // 4. Luxury boutique hotels
+  // 5. Mountain/architectural wineries
+  // 6. Nice restaurants in upscale areas
+  // 7. Wine bars in wealthy neighborhoods
+  // 8. Eastern Shore venues
+  // 9. Average wineries
+  // 10. Sports-focused country clubs
+  var nameBoostWords = [
+    'french', 'bistro', 'brasserie', 'boucherie', 'chaumiere', 'auberge',
+    'la ferme', 'le chat', 'le comptoir', 'le refuge', 'petit louis',
+    'european', 'portuguese', 'italia', 'trattoria', 'ristorante', 'osteria'
+  ];
+  var nameJunkWords = [
+    'ice cream', 'gelato', 'frozen', 'toast', 'bakery', 'pastry',
+    'slice', 'cupcake', 'smoothie', 'juice', 'bagel', 'donut',
+    'cafe', 'coffee', 'deli', 'sandwich', 'pizza', 'taco', 'burger',
+    'pub', 'irish', 'beer garden', 'sports bar', 'hookah',
+    'sweets', 'candy', 'dessert', 'acai', 'poke', 'bubble tea',
+    'chicken', 'ramen', 'noodle', 'kebab', 'gyro', 'sushi',
+    'clubhouse', 'pool', 'swim', 'tennis', 'golf', 'recreation',
+    'liquor', 'wine shop', 'wine store', 'spirits'
+  ];
+
+  // Score = taste rank (primary), distance as tiebreaker within same rank
   actionNeeded.forEach(function(item) {
     var v = item.venue;
     var cat = String(v.category || '').toLowerCase();
-    var tier = categoryTiers[cat] || 3;
-    var taste = tierPts[tier] || 10;
-
-    // Name-based sub-tier for restaurants
     var name = String(v.name || '').toLowerCase();
     var notes = String(v.notes || '').toLowerCase();
     var nameText = name + ' ' + notes;
-    if (cat === 'restaurant' || cat === 'rest') {
+    var vote = String(v.venue_vote || '');
+
+    // Assign taste rank (lower = better, 1-10 matching the taste profile)
+    var tasteRank = 6; // default: nice restaurant
+
+    // Check for junk first — always last
+    var isJunk = false;
+    for (var nj = 0; nj < nameJunkWords.length; nj++) {
+      if (name.indexOf(nameJunkWords[nj]) > -1) { isJunk = true; break; }
+    }
+    if (isJunk || vote === 'down') {
+      tasteRank = 99;
+    } else if (cat === 'restaurant' || cat === 'rest') {
+      // Check if French/European
       var isFrenchEuro = false;
       for (var nb = 0; nb < nameBoostWords.length; nb++) {
         if (nameText.indexOf(nameBoostWords[nb]) > -1) { isFrenchEuro = true; break; }
       }
-      if (isFrenchEuro) {
-        taste = 50; // boost to tier 1
-      } else {
-        var isGood = false;
-        for (var ng = 0; ng < nameGoodWords.length; ng++) {
-          if (nameText.indexOf(nameGoodWords[ng]) > -1) { isGood = true; break; }
-        }
-        if (isGood) taste = 30; // boost to tier 2
-
-        var isJunk = false;
-        for (var nj = 0; nj < nameJunkWords.length; nj++) {
-          if (name.indexOf(nameJunkWords[nj]) > -1) { isJunk = true; break; }
-        }
-        if (isJunk) taste = -20; // demote to tier 4
-      }
+      if (isFrenchEuro) tasteRank = 1;  // #1 French/European
+      else tasteRank = 6;               // #6 nice restaurant
+    } else if (cat === 'private_club') {
+      tasteRank = 2;                     // #2 historic private clubs
+    } else if (cat === 'country_club') {
+      tasteRank = 3;                     // #3 country clubs
+    } else if (cat === 'hotel') {
+      tasteRank = 4;                     // #4 luxury hotels
+    } else if (cat === 'winery') {
+      tasteRank = 5;                     // #5 wineries
+    } else if (cat === 'wine_bar') {
+      tasteRank = 5;                     // #5 wine bars (same tier as wineries)
+    } else if (cat === 'art_gallery' || cat === 'museum') {
+      tasteRank = 5;                     // #5 art/museum
+    } else if (cat === 'yacht_club') {
+      tasteRank = 3;                     // same as country clubs
+    } else if (cat === 'event' || cat === 'event_venue') {
+      tasteRank = 7;                     // events lower
     }
 
-    // Upscale score bonus (0-10 pts) — higher quality venues score better
-    var upscaleBonus = Math.max(0, ((Number(v.upscale_score) || 3) - 2) * 3);
+    // Vote boost: thumbs up moves venue up 2 ranks
+    if (vote === 'up' && tasteRank > 1) tasteRank = Math.max(1, tasteRank - 2);
 
-    // Distance score: closer = higher, max 30 pts
-    var dist = v.distance_miles ? Number(v.distance_miles) : null;
-    var distScore = 15; // neutral if unknown
-    if (dist !== null) {
-      if (dist <= 20) distScore = 30;
-      else if (dist <= 50) distScore = 25;
-      else if (dist <= 80) distScore = 15;
-      else if (dist <= 120) distScore = 5;
-      else distScore = 0;
-    }
+    // Distance as tiebreaker within rank (closer = higher score)
+    var dist = v.distance_miles ? Number(v.distance_miles) : 50;
+    var distTiebreak = Math.max(0, 100 - dist); // 0-100, closer = higher
 
-    // Vote bonus
-    var vote = String(v.venue_vote || '');
-    var voteScore = 0;
-    if (vote === 'up') voteScore = 20;
-    else if (vote === 'down') voteScore = -30;
-
-    // Sweet spot city bonus
-    var cityBonus = 0;
-    var city = String(v.city || '').toLowerCase().trim();
-    if (sweetSpotCities[city]) cityBonus = 10;
-
-    item._topPickScore = taste + upscaleBonus + distScore + voteScore + cityBonus;
+    // Final score: rank is primary (inverted so higher = better), distance breaks ties
+    item._topPickScore = (100 - tasteRank) * 1000 + distTiebreak;
   });
 
   actionNeeded.sort(function(a, b) {

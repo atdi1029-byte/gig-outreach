@@ -3855,6 +3855,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ls) ls.classList.add('expanded');
     }
     loadDashboard();
+
+    // Deep link: ?venue=VENUE_ID opens venue detail directly
+    const urlParams = new URLSearchParams(window.location.search);
+    const deepVenue = urlParams.get('venue');
+    if (deepVenue) {
+        setTimeout(() => openVenueDetail(deepVenue), 1500);
+    }
 });
 
 // Refresh dashboard when app resumes from background

@@ -279,18 +279,68 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     }
   }
 
-  // Taste tier points: tier 1 (French bistro etc) = 50, tier 2 = 30, tier 3 = 10, tier 4 = -20
+  // Taste tier points: tier 1 = 50, tier 2 = 30, tier 3 = 10, tier 4 = -20
   var tierPts = { 1: 50, 2: 30, 3: 10, 4: -20 };
 
-  // Score each venue: taste (0-50) + distance (0-30) + vote (0-20)
+  // Name-based taste boost for restaurants — French/European score like tier 1,
+  // upscale/fine dining like tier 2, junk like tier 4
+  var nameBoostWords = [
+    'french', 'bistro', 'brasserie', 'boucherie', 'chaumiere', 'auberge',
+    'la ferme', 'le chat', 'le comptoir', 'le refuge', 'petit louis',
+    'european', 'portuguese', 'italia', 'trattoria', 'ristorante', 'osteria'
+  ];
+  var nameGoodWords = [
+    'fine dining', 'steakhouse', 'prime', 'chophouse', 'grille',
+    'tavern', 'inn ', ' inn', 'manor', 'estate'
+  ];
+  var nameJunkWords = [
+    'ice cream', 'gelato', 'frozen', 'toast', 'bakery', 'pastry',
+    'slice', 'cupcake', 'smoothie', 'juice', 'bagel', 'donut',
+    'cafe', 'coffee', 'deli', 'sandwich', 'pizza', 'taco', 'burger',
+    'pub', 'irish', 'beer garden', 'sports bar', 'hookah',
+    'sweets', 'candy', 'dessert', 'acai', 'poke', 'bubble tea',
+    'chicken', 'ramen', 'noodle', 'kebab', 'gyro', 'sushi',
+    'clubhouse', 'pool', 'swim', 'tennis', 'golf', 'recreation',
+    'liquor', 'wine shop', 'wine store', 'spirits'
+  ];
+
+  // Score each venue: taste (0-50) + name boost + distance (0-30) + vote (0-20)
   actionNeeded.forEach(function(item) {
     var v = item.venue;
     var cat = String(v.category || '').toLowerCase();
     var tier = categoryTiers[cat] || 3;
     var taste = tierPts[tier] || 10;
 
+    // Name-based sub-tier for restaurants
+    var name = String(v.name || '').toLowerCase();
+    var notes = String(v.notes || '').toLowerCase();
+    var nameText = name + ' ' + notes;
+    if (cat === 'restaurant' || cat === 'rest') {
+      var isFrenchEuro = false;
+      for (var nb = 0; nb < nameBoostWords.length; nb++) {
+        if (nameText.indexOf(nameBoostWords[nb]) > -1) { isFrenchEuro = true; break; }
+      }
+      if (isFrenchEuro) {
+        taste = 50; // boost to tier 1
+      } else {
+        var isGood = false;
+        for (var ng = 0; ng < nameGoodWords.length; ng++) {
+          if (nameText.indexOf(nameGoodWords[ng]) > -1) { isGood = true; break; }
+        }
+        if (isGood) taste = 30; // boost to tier 2
+
+        var isJunk = false;
+        for (var nj = 0; nj < nameJunkWords.length; nj++) {
+          if (name.indexOf(nameJunkWords[nj]) > -1) { isJunk = true; break; }
+        }
+        if (isJunk) taste = -20; // demote to tier 4
+      }
+    }
+
+    // Upscale score bonus (0-10 pts) — higher quality venues score better
+    var upscaleBonus = Math.max(0, ((Number(v.upscale_score) || 3) - 2) * 3);
+
     // Distance score: closer = higher, max 30 pts
-    // 0-20 mi = 30, 20-50 mi = 20, 50-80 mi = 10, 80+ = 0
     var dist = v.distance_miles ? Number(v.distance_miles) : null;
     var distScore = 15; // neutral if unknown
     if (dist !== null) {
@@ -312,7 +362,7 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     var city = String(v.city || '').toLowerCase().trim();
     if (sweetSpotCities[city]) cityBonus = 10;
 
-    item._topPickScore = taste + distScore + voteScore + cityBonus;
+    item._topPickScore = taste + upscaleBonus + distScore + voteScore + cityBonus;
   });
 
   actionNeeded.sort(function(a, b) {

@@ -3486,13 +3486,52 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     'real estate','insurance','law firm','accounting firm',
     'church','mosque','synagogue','temple']
 
+# Taste-matched categories — pipeline these FIRST
+# Matches alex_taste.md ranking exactly
+FRENCH_EURO = ['french','bistro','brasserie','boucherie','chaumiere','auberge',
+    'la ferme','le chat','le comptoir','le refuge','petit louis',
+    'european','portuguese','trattoria','ristorante','osteria']
+TIER1_CATS = ['private_club','country_club','yacht_club']
+TIER2_CATS = ['hotel','winery','wine_bar','art_gallery','museum']
+
+def taste_rank(r):
+    \"\"\"Lower = better. Taste-matched venues pipeline first.\"\"\"
+    cat = r.get('category','').lower()
+    name = r.get('name','').lower()
+    notes = str(r.get('notes','')).lower() if r.get('notes') else ''
+    nametext = name + ' ' + notes
+    vote = r.get('venue_vote','')
+
+    # Thumbs up = always top priority
+    if vote == 'up': return 0
+
+    # French/European restaurants = rank 1
+    if any(kw in nametext for kw in FRENCH_EURO): return 1
+
+    # Private clubs, country clubs, yacht clubs = rank 2
+    if cat in TIER1_CATS: return 2
+
+    # Hotels, wineries, wine bars, galleries = rank 3
+    if cat in TIER2_CATS: return 3
+
+    # Regular restaurants in good areas = rank 4
+    if cat in ('restaurant','rest'): return 4
+
+    # Everything else = rank 5
+    return 5
+
 filtered = []
 for r in recs:
     if r.get('status','') in ('pipelined','contacted'): continue
     name_lower = r.get('name','').lower()
     if any(j in name_lower for j in JUNK):
         continue
+    # Skip thumbs down
+    if r.get('venue_vote','') == 'down': continue
     filtered.append(r)
+
+# Sort by taste rank FIRST, then recommendation_score as tiebreaker
+filtered.sort(key=lambda r: (taste_rank(r), -r.get('recommendation_score', 0)))
 
 for i, r in enumerate(filtered):
     print(f\"{i}|{r['name']}|{r['venue_id']}|{r.get('recommendation_score',0)}\")

@@ -3477,7 +3477,14 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     'swimming','swim team','swim school','fins swimming',
     'tennis academy','tennis central','golf institute','golf academy',
     'recreation club','rec club','canoe club','kayak','paddle club',
-    'marina','boat club','peak golf']
+    'marina','boat club','peak golf',
+    'pickleball','tutoring','learning center','karate','taekwondo',
+    'jiu jitsu','martial art','dance studio','yoga studio',
+    'pilates','crossfit','personal training','physical therapy',
+    'veterinar','dental','medical','urgent care','pharmacy',
+    'dry cleaner','laundry','storage','auto repair','car wash',
+    'real estate','insurance','law firm','accounting firm',
+    'church','mosque','synagogue','temple']
 
 filtered = []
 for r in recs:

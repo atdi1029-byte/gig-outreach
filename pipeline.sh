@@ -3655,8 +3655,8 @@ for i, venue in enumerate(untouched):
         log "WARNING: postcheck.sh not found or not executable"
     fi
 
-    # Generate HTML report
-    generate_report "$RUN_START_LINE"
+    # Report generated manually after full run (not per-batch)
+    # generate_report "$RUN_START_LINE"
 
 elif [ "$1" = "--linkedin-retry" ]; then
     # Re-run Step 4 (LinkedIn) on venues with linkedin_pending=true
@@ -3744,8 +3744,8 @@ print(v.get('city',''))
     fi
     log "=== BATCH COMPLETE ==="
 
-    # Generate HTML report
-    generate_report "$RUN_START_LINE"
+    # Report generated manually after full run (not per-batch)
+    # generate_report "$RUN_START_LINE"
 
     # Auto-run postcheck on ALL pipelined venues (not just this batch)
     log ""

@@ -213,16 +213,20 @@ function getVenueStats_(venues, contacts) {
   };
 }
 
-// Build the set of venue IDs that have a past gig logged.
+// Build the set of venue IDs AND names that have a past gig logged.
+// Returns { ids: {vid: true}, names: {lowercase_name: true} }
 function getPastGigVenueIds_(ss) {
   var gigSheet = ss.getSheetByName(PAST_GIGS);
   var ids = {};
+  var names = {};
   if (gigSheet) {
     var gd = gigSheet.getDataRange().getValues();
     for (var pg = 1; pg < gd.length; pg++) {
       if (gd[pg][1]) ids[String(gd[pg][1])] = true;
+      if (gd[pg][0]) names[String(gd[pg][0]).toLowerCase().trim()] = true;
     }
   }
+  ids._names = names;
   return ids;
 }
 
@@ -236,6 +240,7 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     if (venue.status === 'contacted') continue;
     if (venue.status === 'untouched') continue;
     if (pastGigVenueIds[venue.venue_id]) continue;
+    if (pastGigVenueIds._names && pastGigVenueIds._names[String(venue.name || '').toLowerCase().trim()]) continue;
 
     var vc = contactsByVenue[venue.venue_id] || [];
     var pendingEmailContacts = [];
@@ -1577,12 +1582,14 @@ function getRecommendations_() {
     }
   }
 
-  // Build set of past-gig venue IDs to exclude from recommendations
+  // Build set of past-gig venue IDs AND names to exclude from recommendations
   var pastGigVids = {};
+  var pastGigNames = {};
   if (gigSheet) {
     var pgData = gigSheet.getDataRange().getValues();
     for (var pg = 1; pg < pgData.length; pg++) {
       if (pgData[pg][1]) pastGigVids[String(pgData[pg][1])] = true;
+      if (pgData[pg][0]) pastGigNames[String(pgData[pg][0]).toLowerCase().trim()] = true;
     }
   }
 
@@ -1596,7 +1603,8 @@ function getRecommendations_() {
     var row = vData[vi];
     if (!row[0]) continue;
     var venueId = String(row[0]);
-    if (pastGigVids[venueId]) continue; // skip past gigs
+    if (pastGigVids[venueId]) continue; // skip past gigs by ID
+    if (pastGigNames[String(row[1] || '').toLowerCase().trim()]) continue; // skip by name too
     var vVote = String(row[21] || '');
     var vStatus = String(row[12]) || 'untouched';
     if (vVote === 'down') continue; // explicitly rejected = always excluded

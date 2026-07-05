@@ -395,3 +395,35 @@
 - **No major pattern shifts** — only 2 new votes, both distance rejections.
 - **Charlottesville confirmed too far** — two separate venues rejected for distance alone. Remove from taste discovery tier 2 locations if still present.
 - **All prior patterns hold** — French/European restaurants, wine bars, country clubs/private clubs, DC luxury hotels, historic venues remain top categories.
+
+---
+
+## Jul 4, 2026 — Post-Pipeline Review (5 new votes)
+
+### Le Chat Noir (restaurant, Washington DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French restaurant in Tenleytown DC, wine lounge upstairs. Already identified as legit in Jun 26 run.
+- **Action:** Added to taste_venues.txt. French restaurants in DC remain gold.
+
+### Annapolis Waterfront Hotel Autograph Collection (hotel, Annapolis MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Waterfront hotel in Annapolis — upscale area, tourist/boating crowd.
+- **Action:** Added to taste_venues.txt. Annapolis hotels = viable targets.
+
+### Al Tiramisu (restaurant, Washington DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Italian fine dining in DC (Dupont Circle area). White tablecloth Italian.
+- **Action:** Added to taste_venues.txt. Italian fine dining confirmed again as tier 2+.
+
+### Rosemarino D'Italia (restaurant, location TBD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Italian restaurant — name signals upscale Italian dining.
+- **Action:** Added to taste_venues.txt.
+
+### Monarque (restaurant, Washington DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French brasserie in DC (Penn Quarter). Upscale French dining.
+- **Action:** Added to taste_venues.txt. Another DC French restaurant thumbs up.
+
+---
+
+## Updated Patterns (Jul 4)
+- **French/Italian dominance continues** — Le Chat Noir, Monarque (both French), Al Tiramisu, Rosemarino D'Italia (both Italian) all positive. These two cuisines are the strongest single signal.
+- **Annapolis hotels confirmed** — waterfront hotel thumbs up, adds to Eastern Shore/Annapolis as viable territory.
+- **All 5 votes positive** — zero negatives this batch. User's taste profile is well-calibrated at this point.
+- **All prior patterns hold** — French/European, Italian fine dining, wine bars, country clubs/private clubs, DC luxury hotels, historic venues remain top categories.

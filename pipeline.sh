@@ -3277,6 +3277,26 @@ else: print('')
     # Track how many new contacts we find (file-based to survive subshells)
     rm -f /tmp/pipeline_contacts_count
 
+    # Freshness check: ping the website to catch dead/closed venues early
+    if [ -n "$website" ] && [ "$website" != "null" ]; then
+        local HTTP_CODE
+        HTTP_CODE=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 10 "$website" 2>/dev/null || echo "000")
+        if [ "$HTTP_CODE" = "000" ]; then
+            log "  [WARN] Website DNS failure ($website) — venue may be closed"
+            log "  Flagging as potentially closed and skipping"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=notes&value=PIPELINE_FLAG:+DNS+failure,+possibly+closed" > /dev/null
+            echo "${venue}|${venue_id}|DNS failure — possibly closed" >> "${SKIPPED_VENUES_FILE:-/tmp/pipeline_skipped.txt}"
+            return
+        elif [ "$HTTP_CODE" = "404" ] || [ "$HTTP_CODE" = "410" ]; then
+            log "  [WARN] Website returned $HTTP_CODE ($website) — venue may be closed"
+            log "  Flagging as potentially closed and skipping"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=notes&value=PIPELINE_FLAG:+HTTP+${HTTP_CODE},+possibly+closed" > /dev/null
+            echo "${venue}|${venue_id}|HTTP $HTTP_CODE — possibly closed" >> "${SKIPPED_VENUES_FILE:-/tmp/pipeline_skipped.txt}"
+            return
+        fi
+        log "  Website check: HTTP $HTTP_CODE ✓"
+    fi
+
     # Check ZeroBounce credits before spending time on this venue
     if ! check_zb_credits; then
         log "  [ABORT] Skipping $venue — ZeroBounce credits too low"

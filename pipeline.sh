@@ -3552,8 +3552,13 @@ for i, r in enumerate(filtered):
         WEB=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('website',''))" 2>/dev/null)
         CITY=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sp_detail.json')).get('venue',{}).get('city',''))" 2>/dev/null)
         run_venue "$NAME" "$VID" "$WEB" "$CITY"
-        CURRENT=$(cat "$SHARED_COUNT_FILE")
-        echo "$((CURRENT + 1))" > "$SHARED_COUNT_FILE"
+        # Only count toward budget if venue was actually processed (not skipped)
+        if ! grep -q "^${NAME}|${VID}|" "$SKIPPED_VENUES_FILE" 2>/dev/null; then
+            CURRENT=$(cat "$SHARED_COUNT_FILE")
+            echo "$((CURRENT + 1))" > "$SHARED_COUNT_FILE"
+        else
+            log "  [BUDGET] $NAME was skipped — not counting toward $MAX_SP limit"
+        fi
         if [ "$IDX" -lt "$((SP_COUNT - 1))" ]; then sleep 30; fi
     done
     fi  # end shared budget else block
@@ -3650,7 +3655,12 @@ for i, venue in enumerate(untouched):
             log ""
             log "########## UNTOUCHED #$((IDX+1)): $NAME ($VID) ##########"
             run_venue "$NAME" "$VID" "$WEB" "$CITY"
-            echo "$((CURRENT + 1))" > "$SHARED_COUNT_FILE"
+            # Only count toward budget if venue was actually processed (not skipped)
+            if ! grep -q "^${NAME}|${VID}|" "$SKIPPED_VENUES_FILE" 2>/dev/null; then
+                echo "$((CURRENT + 1))" > "$SHARED_COUNT_FILE"
+            else
+                log "  [BUDGET] $NAME was skipped — not counting toward $MAX_SP limit"
+            fi
             sleep 30
         done
         log "=== UNTOUCHED PHASE COMPLETE ==="

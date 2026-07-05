@@ -214,19 +214,19 @@ function getVenueStats_(venues, contacts) {
 }
 
 // Build the set of venue IDs AND names that have a past gig logged.
-// Returns { ids: {vid: true}, names: {lowercase_name: true} }
+// Returns { ids: {vid: true}, namesList: [lowercase names] }
 function getPastGigVenueIds_(ss) {
   var gigSheet = ss.getSheetByName(PAST_GIGS);
   var ids = {};
-  var names = {};
+  var namesList = [];
   if (gigSheet) {
     var gd = gigSheet.getDataRange().getValues();
     for (var pg = 1; pg < gd.length; pg++) {
       if (gd[pg][1]) ids[String(gd[pg][1])] = true;
-      if (gd[pg][0]) names[String(gd[pg][0]).toLowerCase().trim()] = true;
+      if (gd[pg][0]) namesList.push(String(gd[pg][0]).toLowerCase().trim());
     }
   }
-  ids._names = names;
+  ids._namesList = namesList;
   return ids;
 }
 
@@ -240,7 +240,16 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     if (venue.status === 'contacted') continue;
     if (venue.status === 'untouched') continue;
     if (pastGigVenueIds[venue.venue_id]) continue;
-    if (pastGigVenueIds._names && pastGigVenueIds._names[String(venue.name || '').toLowerCase().trim()]) continue;
+    // Substring match: skip if venue name contains a past gig name or vice versa
+    var vnLower = String(venue.name || '').toLowerCase().trim();
+    var pgNames = pastGigVenueIds._namesList || [];
+    var matchedPg = false;
+    for (var pn = 0; pn < pgNames.length; pn++) {
+      if (vnLower.indexOf(pgNames[pn]) > -1 || pgNames[pn].indexOf(vnLower) > -1) {
+        matchedPg = true; break;
+      }
+    }
+    if (matchedPg) continue;
 
     var vc = contactsByVenue[venue.venue_id] || [];
     var pendingEmailContacts = [];
@@ -1584,12 +1593,12 @@ function getRecommendations_() {
 
   // Build set of past-gig venue IDs AND names to exclude from recommendations
   var pastGigVids = {};
-  var pastGigNames = {};
+  var pastGigNamesList = [];
   if (gigSheet) {
     var pgData = gigSheet.getDataRange().getValues();
     for (var pg = 1; pg < pgData.length; pg++) {
       if (pgData[pg][1]) pastGigVids[String(pgData[pg][1])] = true;
-      if (pgData[pg][0]) pastGigNames[String(pgData[pg][0]).toLowerCase().trim()] = true;
+      if (pgData[pg][0]) pastGigNamesList.push(String(pgData[pg][0]).toLowerCase().trim());
     }
   }
 
@@ -1604,7 +1613,16 @@ function getRecommendations_() {
     if (!row[0]) continue;
     var venueId = String(row[0]);
     if (pastGigVids[venueId]) continue; // skip past gigs by ID
-    if (pastGigNames[String(row[1] || '').toLowerCase().trim()]) continue; // skip by name too
+    // Substring match: skip if venue name contains a past gig name or vice versa
+    // (catches "Bistrot Lepic" matching "Bistrot Lepic & Wine Bar")
+    var vNameLower = String(row[1] || '').toLowerCase().trim();
+    var isPastGig = false;
+    for (var pn = 0; pn < pastGigNamesList.length; pn++) {
+      if (vNameLower.indexOf(pastGigNamesList[pn]) > -1 || pastGigNamesList[pn].indexOf(vNameLower) > -1) {
+        isPastGig = true; break;
+      }
+    }
+    if (isPastGig) continue;
     var vVote = String(row[21] || '');
     var vStatus = String(row[12]) || 'untouched';
     if (vVote === 'down') continue; // explicitly rejected = always excluded

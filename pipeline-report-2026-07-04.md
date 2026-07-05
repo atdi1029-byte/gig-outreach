@@ -10,9 +10,9 @@
 | **Pipeline: venues processed** | 18 (smart picks, mostly French/European bistros) |
 | **Pipeline contacts found (automated)** | 36 total across 18 venues |
 | **Apollo MCP enrichments** | 5 credits (2 Bistrot Lepic owners, 1 Brasserie Liberte AGM, 2 Sette Osteria staff) |
-| **Manual check contacts added** | Contacts already captured by pipeline (duplicates confirmed) |
+| **Manual check contacts added** | 3 new (sales@leseldc.com, social@setteosteria.com, sasha.papantoniou@ritzcarlton.com) |
 | **Taste reviews** | 5 new positive votes processed |
-| **Flagged venues** | 3 (1 closed, 2 junk) |
+| **Flagged venues** | 6 (4 closed, 2 junk) |
 
 ## Pipeline Results
 
@@ -24,18 +24,18 @@
 | 4 | Gustave Boulangerie & Brasserie | Alexandria, VA | restaurant | 3 | LEGIT - French bakery/brasserie in Del Ray |
 | 5 | Brasserie Royale | Sterling, VA | restaurant | 2 | LEGIT - French bistro opened June 2025 |
 | 6 | L'Auberge Provencale Inn & Restaurant | White Post, VA | hotel | 2 | LEGIT - TOP TIER - French inn, fine dining |
-| 7 | French Hound Brasserie | Leesburg, VA | restaurant | 1 | LEGIT - French in downtown Leesburg |
-| 8 | La Lou Bistro | Leesburg, VA | restaurant | 1 | LEGIT - French bistro |
-| 9 | Takumi Japanese Bistro | Bethesda, MD | restaurant | 1 | LEGIT - Japanese in Bethesda |
+| 7 | **French Hound Brasserie** | Leesburg, VA | restaurant | 1 | **CLOSED** - permanently closed since June 2019 |
+| 8 | **La Lou Bistro** | Leesburg, VA | restaurant | 1 | **CLOSED** - wrong website/socials (pointed to Petit Louis) |
+| 9 | Takumi Japanese Bistro | Bethesda, MD | restaurant | 1 | LEGIT - Japanese in Bethesda, owners ID'd but no emails |
 | 10 | **Bistrot Lepic & Wine Bar** | Georgetown, DC | restaurant | 4 | LEGIT - DREAM VENUE - owners Bruno Fortin & Cyrille Bar |
 | 11 | Brasserie Liberte | Georgetown, DC | restaurant | 3 | LEGIT - French brasserie, AGM Merve Cil |
-| 12 | Degrees Bistro | Georgetown, DC | restaurant | 4 | LEGIT - Inside Ritz-Carlton Georgetown |
-| 13 | Le Sel French Bistro | Dupont Circle, DC | restaurant | 3 | LEGIT - French bistro near Dupont |
-| 14 | Sette Osteria | Dupont Circle, DC | restaurant | 5 | LEGIT - Italian on Connecticut Ave |
-| 15 | Euro Bistro | Potomac, MD | restaurant | 2 | LEGIT - European in Potomac Village |
-| 16 | Mele Bistro | McLean, VA | restaurant | 1 | LEGIT - Italian in McLean |
-| 17 | **RH Bistro** | McLean, VA | restaurant | 0 | **JUNK** - Chinese bistro, not classical guitar fit |
-| 18 | **Doner Bistro** | Leesburg, VA | restaurant | 0 | **JUNK** - Turkish doner kebab, fast casual |
+| 12 | Degrees Bistro | Georgetown, DC | restaurant | 6 | LEGIT - Inside Ritz-Carlton Georgetown, events contact Sasha Papantoniou |
+| 13 | Le Sel French Bistro | Dupont Circle, DC | restaurant | 5 | LEGIT - Inside Kimpton Banneker Hotel, events: sales@leseldc.com |
+| 14 | Sette Osteria | Dupont Circle, DC | restaurant | 6 | LEGIT - Italian on Connecticut Ave, private events |
+| 15 | Euro Bistro | Herndon, VA | restaurant | 2 | LEGIT - Austrian/German fine dining, owner Raimund Stieger (needs Apollo) |
+| 16 | Mele Bistro | Arlington, VA | restaurant | 1 | LEGIT - Upscale Italian steakhouse, 144-bottle wine list |
+| 17 | **RH Bistro** | Falls Church, VA | restaurant | 0 | **JUNK** - Casual Chinese, DoorDash focus, no events |
+| 18 | **Doner Bistro** | Leesburg, VA | restaurant | 0 | **CLOSED** - building razed Oct 2023, was fast-casual kebab |
 
 ## Key Wins
 
@@ -56,17 +56,30 @@ Inside the Ritz-Carlton Georgetown hotel. 4 contacts found. Luxury hotel restaur
 
 ## FLAGGED Venues
 
-1. **Bistro Vivant** (VA-REST-831) -- PERMANENTLY CLOSED. Closed after NYE 2023. Multiple sources confirm. Remove from pipeline.
-2. **RH Bistro** (VA-REST-1180) -- Chinese bistro in McLean. 0 contacts. Wrong vibe for classical guitar.
-3. **Doner Bistro** (VA-REST-1211) -- Turkish doner kebab in Leesburg. Fast casual. 0 contacts. Wrong fit entirely.
+**CLOSED (4 venues -- 22% closure rate this batch):**
+1. **Bistro Vivant** (VA-REST-831) -- CLOSED after NYE 2023. Yelp confirms Feb 2026.
+2. **French Hound Brasserie** (VA-REST-870) -- CLOSED since June 2019. Website DNS gone.
+3. **La Lou Bistro** (VA-REST-871) -- CLOSED. Pipeline had wrong website/FB/IG (all pointed to Petit Louis Bistro, a different restaurant).
+4. **Doner Bistro** (VA-REST-1211) -- CLOSED Oct 2023. Building razed for redevelopment.
+
+**JUNK (2 venues):**
+5. **RH Bistro** (VA-REST-1180) -- Casual Chinese restaurant in Falls Church. DoorDash/takeout focus. No events, no fine dining ambiance.
+6. **Doner Bistro** was also junk (fast-casual kebab) before being confirmed closed.
 
 ## Data Corrections
 
 - Bistro Vivant: flagged as CLOSED, check evidence saved
+- French Hound Brasserie: flagged as CLOSED (since 2019), wrong website (was alignable.com)
+- La Lou Bistro: flagged as CLOSED, wrong website/FB/IG (all pointed to Petit Louis Bistro)
+- Doner Bistro: flagged as CLOSED (building razed Oct 2023)
 - Gustave Boulangerie: owners identified (Karim Mashmour & Ibtissam Lhadi)
 - Brasserie Royale: owners identified (Michael & Allyson Stebner), opened June 2025
 - L'Auberge Provencale: owners identified (Celeste & Alain Borel)
-- French Hound Brasserie: wrong website (was alignable.com)
+- Degrees Bistro: events contact added (Sasha Papantoniou, sasha.papantoniou@ritzcarlton.com)
+- Le Sel French Bistro: events email added (sales@leseldc.com), inside Kimpton Banneker Hotel
+- Sette Osteria: social/press email added (social@setteosteria.com)
+- Euro Bistro: corrected location from MD to Herndon, VA. Owner Raimund Stieger identified.
+- Mele Bistro: corrected location to Arlington, VA. Upscale Italian steakhouse with 144-bottle wine list.
 
 ## Apollo MCP Summary
 
@@ -107,26 +120,24 @@ Inside the Ritz-Carlton Georgetown hotel. 4 contacts found. Luxury hotel restaur
 
 ## Legitimate Venues Worth Pursuing (Ranked)
 
-1. **Bistrot Lepic & Wine Bar** (Georgetown DC) -- DREAM VENUE. Both owners' emails verified. #1 priority.
+1. **Bistrot Lepic & Wine Bar** (Georgetown DC) -- DREAM VENUE. Both owners' verified emails. #1 priority.
 2. **L'Auberge Provencale** (White Post VA) -- French inn with fine dining. Owner email verified.
-3. **Degrees Bistro** (Georgetown DC) -- Inside Ritz-Carlton. 4 contacts.
-4. **Brasserie Liberte** (Georgetown DC) -- French brasserie. AGM email verified.
-5. **Sette Osteria** (Dupont Circle DC) -- Italian. 5 contacts. Private dining/events.
-6. **Le Sel French Bistro** (Dupont Circle DC) -- French bistro. 3 contacts.
-7. **Gustave Boulangerie** (Alexandria VA) -- French bakery/brasserie in Del Ray. Owner identified.
-8. **Euro Bistro** (Potomac MD) -- European in wealthy Potomac Village. 2 contacts.
-9. **Brasserie Royale** (Sterling VA) -- New French bistro (opened 2025). Owner identified.
-10. **Osteria Ama** (Chadds Ford PA) -- BYOB Italian. 2 contacts.
-11. **Mele Bistro** (McLean VA) -- Italian in McLean. 1 contact.
-12. **French Hound Brasserie** (Leesburg VA) -- French in Leesburg. 1 contact.
-13. **La Lou Bistro** (Leesburg VA) -- French in Leesburg. 1 contact.
-14. **Mistral French & Fast** (West Chester PA) -- French casual. 1 contact.
-15. **Takumi Japanese Bistro** (Bethesda MD) -- Japanese. 1 contact.
+3. **Degrees Bistro** (Georgetown DC) -- Inside Ritz-Carlton. Events contact Sasha Papantoniou.
+4. **Le Sel French Bistro** (Dupont Circle DC) -- Inside Kimpton Banneker. Events: sales@leseldc.com.
+5. **Brasserie Liberte** (Georgetown DC) -- French brasserie. AGM email verified.
+6. **Sette Osteria** (Dupont Circle DC) -- Italian. 6 contacts. Private dining/events.
+7. **Mele Bistro** (Arlington VA) -- Upscale Italian steakhouse, 144-bottle wine list. Great fit.
+8. **Gustave Boulangerie** (Alexandria VA) -- French bakery/brasserie in Del Ray. Owner identified.
+9. **Euro Bistro** (Herndon VA) -- Austrian/German fine dining. Owner Raimund Stieger (needs Apollo for email).
+10. **Brasserie Royale** (Sterling VA) -- New French bistro (opened 2025). Owner identified.
+11. **Osteria Ama** (Chadds Ford PA) -- BYOB Italian. 2 contacts.
+12. **Mistral French & Fast** (West Chester PA) -- French casual. 1 contact.
 
 ## Running Total
 
 - **Session runs: 8**
-- **Total venues pipelined this session: 18** (15 legit, 1 closed, 2 junk)
-- **Total contacts this run: 36**
+- **Total venues pipelined this session: 18** (12 legit, 4 closed, 2 junk)
+- **Total contacts this run: ~39** (36 pipeline + 3 manual check)
 - **Apollo MCP credits used: 5**
 - **ZeroBounce credits remaining: ~2831**
+- **Closure rate: 22%** -- 4 of 18 venues were permanently closed. Pipeline needs better freshness filtering.

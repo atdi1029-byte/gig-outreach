@@ -3354,8 +3354,8 @@ for e in sorted(emails):
         fi
     fi
 
-    # LinkedIn — skip if SKIP_LINKEDIN=1 or credits exhausted (resets May 2026)
-    if [ "${SKIP_LINKEDIN:-0}" != "1" ] && [ "$(date +%Y%m)" -ge 202605 ] 2>/dev/null; then
+    # LinkedIn — skip only if SKIP_LINKEDIN=1
+    if [ "${SKIP_LINKEDIN:-0}" != "1" ]; then
         step4_linkedin "$venue" "$venue_id"
         # If LinkedIn found 0 people, keep linkedin_pending=true so manual check retries
         local LI_FOUND_FILE="/tmp/pipeline_li_found_count"
@@ -3368,15 +3368,9 @@ for e in sorted(emails):
         fi
     else
         log ""
-        log "========== STEP 4: LinkedIn (SKIPPED — quota exhausted) =========="
-        # Only mark pending if no emails found yet — venues with emails don't need LinkedIn urgently
-        NEW_EMAIL_COUNT=$(cat /tmp/pipeline_contacts_count 2>/dev/null || echo 0)
-        if [ "$NEW_EMAIL_COUNT" -gt 0 ] || [ "$(echo "$KNOWN_EMAILS" | tr '|||' '\n' | grep -c .)" -gt 0 ]; then
-            log "  Emails already found — not marking linkedin_pending"
-        else
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
-            log "  Marked linkedin_pending=true (no emails found)"
-        fi
+        log "========== STEP 4: LinkedIn (SKIPPED — SKIP_LINKEDIN=1) =========="
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
+        log "  Marked linkedin_pending=true"
     fi
 
     # Step 5: Google fallback if nothing found yet

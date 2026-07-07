@@ -154,10 +154,24 @@ else:
         fi
     fi
 
-    # Add any new emails as contacts
+    # Add any new emails as contacts (skip generic prefixes)
+    local GENERIC_PREFIXES="info@ hello@ contact@ sales@ events@ reservations@ booking@ enquiries@ inquiries@ office@ general@ frontdesk@ reception@ noreply@ no-reply@ support@ admin@ webmaster@ billing@ dataremoval@ privacy@ careers@ jobs@ hr@ marketing@ press@ media@ eat@ dine@ wine@ music@ art@ mail@"
     if [ -n "$ALL_EMAILS" ]; then
         echo -e "$ALL_EMAILS" | sort -u | while IFS= read -r EMAIL; do
             [ -z "$EMAIL" ] && continue
+            local EMAIL_LOWER
+            EMAIL_LOWER=$(echo "$EMAIL" | tr '[:upper:]' '[:lower:]')
+            local IS_GENERIC=false
+            for gp in $GENERIC_PREFIXES; do
+                if echo "$EMAIL_LOWER" | grep -q "^${gp}"; then
+                    IS_GENERIC=true
+                    break
+                fi
+            done
+            if [ "$IS_GENERIC" = true ]; then
+                log "  [SKIP] $EMAIL — generic prefix"
+                continue
+            fi
             curl -sL "${APPS_SCRIPT_URL}?action=add_contact&venue_id=${VID}&email=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$EMAIL'))")&source=postcheck" > /dev/null
             log "  Added contact: $EMAIL"
         done
@@ -332,6 +346,118 @@ for p in data.get('people', []):
     if [ -z "$ALL_EMAILS" ] && [ -z "$CONTACT_FORM" ]; then
         log "  Nothing found on website"
     fi
+
+    # --- Build evidence string and save check status ---
+    local WEB_STATUS="web:ok"
+    if [ -z "$WEBSITE" ] || [ "$WEBSITE" = "None" ]; then WEB_STATUS="web:none"; fi
+
+    local APOLLO_STATUS="apollo:${APOLLO_TOTAL:-0}"
+    local LI_STATUS="li:0"
+    if [ -n "$LI_RESULTS" ] && [ "$LI_RESULTS" != "missing value" ]; then
+        local LI_COUNT
+        LI_COUNT=$(echo "$LI_RESULTS" | grep -c '|||' 2>/dev/null || echo "0")
+        LI_STATUS="li:${LI_COUNT}"
+    fi
+
+    local FORM_STATUS="form:no"
+    if [ -n "$CONTACT_FORM" ]; then FORM_STATUS="form:yes"; fi
+
+    local EMAIL_COUNT=0
+    if [ -n "$ALL_EMAILS" ]; then
+        EMAIL_COUNT=$(echo -e "$ALL_EMAILS" | sort -u | grep -c '@' 2>/dev/null || echo "0")
+    fi
+
+    local EVIDENCE="${WEB_STATUS}|${APOLLO_STATUS}|${LI_STATUS}|emails:${EMAIL_COUNT}|${FORM_STATUS}"
+    local EVIDENCE_ENC
+    EVIDENCE_ENC=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$EVIDENCE'))" 2>/dev/null)
+    curl -sL "${APPS_SCRIPT_URL}?action=save_check&venue_id=${VID}&evidence=${EVIDENCE_ENC}" > /dev/null
+    log "  [CHECK] Saved: $EVIDENCE"
+}
+
+# --- Enrich pending contacts (name but no email) ---
+enrich_pending() {
+    if [ -z "$APOLLO_API_KEY" ]; then
+        log "[ENRICH] No Apollo API key — skipping pending enrichments"
+        return
+    fi
+
+    log ""
+    log "=== Enriching Pending Contacts (name, no email) ==="
+
+    local AUDIT_TMP="/tmp/postcheck_audit.json"
+    curl -sL "${APPS_SCRIPT_URL}?action=audit_pipeline" -o "$AUDIT_TMP" 2>/dev/null
+
+    local PENDING_COUNT
+    PENDING_COUNT=$(python3 -c "
+import json
+with open('$AUDIT_TMP') as f:
+    data = json.load(f)
+pending = data.get('pending_enrichments', [])
+print(len(pending))
+" 2>/dev/null || echo "0")
+
+    if [ "$PENDING_COUNT" = "0" ]; then
+        log "  No pending contacts to enrich"
+        return
+    fi
+
+    log "  Found $PENDING_COUNT contacts needing enrichment"
+
+    python3 -c "
+import json
+with open('$AUDIT_TMP') as f:
+    data = json.load(f)
+for p in data.get('pending_enrichments', []):
+    print(p['contact_id'] + '|||' + p['venue_id'] + '|||' + p['name'] + '|||' + p.get('title',''))
+" 2>/dev/null | while IFS='|||' read -r CID PVID PNAME PTITLE; do
+        [ -z "$CID" ] && continue
+        log "  [ENRICH] $PNAME ($PTITLE) at $PVID"
+
+        # Get venue name + domain for enrichment
+        local VDETAIL_TMP="/tmp/postcheck_enrich_detail.json"
+        curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${PVID}" -o "$VDETAIL_TMP" 2>/dev/null
+        local VNAME VDOMAIN
+        VNAME=$(python3 -c "import json; print(json.load(open('$VDETAIL_TMP')).get('venue',{}).get('name',''))" 2>/dev/null)
+        VDOMAIN=$(python3 -c "
+import json
+from urllib.parse import urlparse
+v = json.load(open('$VDETAIL_TMP')).get('venue',{})
+w = v.get('website','')
+if w:
+    print(urlparse(w).netloc.lower().replace('www.',''))
+else:
+    print('')
+" 2>/dev/null)
+
+        # Split first/last name
+        local FIRST_NAME LAST_NAME
+        FIRST_NAME=$(echo "$PNAME" | awk '{print $1}')
+        LAST_NAME=$(echo "$PNAME" | awk '{$1=""; print}' | xargs)
+
+        # Apollo people/match enrichment
+        local MATCH_RESP
+        MATCH_RESP=$(curl -s --max-time 15 -H "Content-Type: application/json" \
+            -H "X-Api-Key: $APOLLO_API_KEY" \
+            -d "{\"first_name\":\"$FIRST_NAME\",\"last_name\":\"$LAST_NAME\",\"organization_name\":\"$VNAME\",\"domain\":\"$VDOMAIN\"}" \
+            "${APOLLO_API_BASE}/people/match" 2>/dev/null)
+
+        local MATCH_EMAIL MATCH_STATUS
+        MATCH_EMAIL=$(echo "$MATCH_RESP" | python3 -c "import json,sys; p=json.loads(sys.stdin.read()).get('person',{}); print(p.get('email','') or '')" 2>/dev/null)
+        MATCH_STATUS=$(echo "$MATCH_RESP" | python3 -c "import json,sys; p=json.loads(sys.stdin.read()).get('person',{}); print(p.get('email_status','') or '')" 2>/dev/null)
+
+        if [ -n "$MATCH_EMAIL" ] && [ "$MATCH_EMAIL" != "None" ] && [ "$MATCH_EMAIL" != "" ]; then
+            log "  [ENRICH] Got: $MATCH_EMAIL ($MATCH_STATUS)"
+            # Update existing contact with email
+            local NAME_ENC EMAIL_ENC
+            NAME_ENC=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$PNAME'))")
+            EMAIL_ENC=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$MATCH_EMAIL'))")
+            curl -sL "${APPS_SCRIPT_URL}?action=update_contact_email&venue_id=${PVID}&name=${NAME_ENC}&email=${EMAIL_ENC}&source=postcheck_enrich&verified=${MATCH_STATUS}" > /dev/null
+            log "  [ENRICH] Updated: $PNAME <$MATCH_EMAIL>"
+        else
+            log "  [ENRICH] No email found for $PNAME"
+        fi
+        sleep 1
+    done
 }
 
 # --- Main ---
@@ -342,30 +468,54 @@ if [ -n "$1" ]; then
     # Check specific venue
     check_venue "$1"
 else
-    # Check all pipelined venues with zero contacts
-    log "Fetching pipelined venues with zero contacts..."
-    DASHBOARD_TMP="/tmp/postcheck_dashboard.json"
-    curl -sL "${APPS_SCRIPT_URL}?action=dashboard" -o "$DASHBOARD_TMP" 2>/dev/null
+    # Check ALL pipelined venues — not just zero-contact ones
+    # The old code only checked zero-contact venues, which is why
+    # venues with 1-2 bad pipeline contacts never got manual verification.
+    log "Fetching ALL pipelined venues for manual check..."
+    AUDIT_TMP="/tmp/postcheck_audit.json"
+    curl -sL "${APPS_SCRIPT_URL}?action=audit_pipeline" -o "$AUDIT_TMP" 2>/dev/null
+
+    TOTAL_UNCHECKED=$(python3 -c "
+import json
+with open('$AUDIT_TMP') as f:
+    data = json.load(f)
+print(data.get('summary',{}).get('unchecked',0))
+" 2>/dev/null || echo "0")
+
+    log "Found $TOTAL_UNCHECKED unchecked pipelined venues"
 
     python3 -c "
 import json
-with open('$DASHBOARD_TMP') as f:
+with open('$AUDIT_TMP') as f:
     data = json.load(f)
-contacts_by_venue = {}
-for c in data.get('contacts', []):
-    vid = c.get('venue_id', '')
-    if vid:
-        contacts_by_venue[vid] = contacts_by_venue.get(vid, 0) + 1
-
-for v in data.get('venues', []):
-    venue = v.get('venue', v)
-    vid = venue.get('venue_id', '')
-    status = venue.get('status', '')
-    if status == 'pipelined' and contacts_by_venue.get(vid, 0) == 0:
-        print(vid)
+for v in data.get('unchecked_venues', []):
+    print(v['venue_id'])
 " 2>/dev/null | while IFS= read -r VID; do
         check_venue "$VID"
     done
+
+    # After checking all venues, enrich any pending contacts
+    enrich_pending
+
+    # Final audit — show what's left
+    log ""
+    log "=== Final Audit ==="
+    curl -sL "${APPS_SCRIPT_URL}?action=audit_pipeline" -o "$AUDIT_TMP" 2>/dev/null
+    python3 -c "
+import json
+with open('$AUDIT_TMP') as f:
+    data = json.load(f)
+s = data.get('summary', {})
+print(f\"Pipelined: {s.get('total_pipelined',0)} | Checked: {s.get('checked',0)} | Unchecked: {s.get('unchecked',0)} | Pending enrichments: {s.get('pending_enrichments',0)}\")
+if s.get('unchecked', 0) > 0:
+    print('WARNING: Still have unchecked venues!')
+    for v in data.get('unchecked_venues', []):
+        print(f\"  {v['venue_id']} — {v['name']} ({v['city']}, {v['state']})\")
+if s.get('pending_enrichments', 0) > 0:
+    print('WARNING: Still have contacts needing enrichment!')
+    for p in data.get('pending_enrichments', []):
+        print(f\"  {p['contact_id']} — {p['name']} at {p['venue_id']}\")
+" 2>/dev/null
 fi
 
 log ""

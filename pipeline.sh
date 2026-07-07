@@ -136,6 +136,17 @@ verify_and_push() {
         return
     fi
 
+    # Block generic/role-based email prefixes (info@, hello@, contact@, etc.)
+    local email_lower
+    email_lower=$(echo "$email" | tr '[:upper:]' '[:lower:]')
+    local generic_prefixes="info@ hello@ contact@ sales@ events@ reservations@ booking@ enquiries@ inquiries@ office@ general@ frontdesk@ reception@ noreply@ no-reply@ support@ admin@ webmaster@ billing@ dataremoval@ privacy@ careers@ jobs@ hr@ marketing@ press@ media@ eat@ dine@ wine@ music@ art@ mail@"
+    for gp in $generic_prefixes; do
+        if echo "$email_lower" | grep -q "^${gp}"; then
+            log "  [SKIP] $email — generic prefix ($gp)"
+            return
+        fi
+    done
+
     # Off-domain check — REJECT emails whose domain doesn't match the venue
     # (Apollo contacts pass source=apollo and are allowed through)
     if [ -n "$VENUE_DOMAIN" ] && echo "$email" | grep -q '@'; then

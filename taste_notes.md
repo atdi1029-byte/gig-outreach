@@ -427,3 +427,38 @@
 - **Annapolis hotels confirmed** — waterfront hotel thumbs up, adds to Eastern Shore/Annapolis as viable territory.
 - **All 5 votes positive** — zero negatives this batch. User's taste profile is well-calibrated at this point.
 - **All prior patterns hold** — French/European, Italian fine dining, wine bars, country clubs/private clubs, DC luxury hotels, historic venues remain top categories.
+
+---
+
+## Jul 8, 2026 — Post-Pipeline Review (5 new votes)
+
+### Chester River Yacht & Country Club (country_club, Chestertown MD) — POSITIVE
+> "Private club are good"
+- **Extracted:** Private/yacht club on Eastern Shore, Chestertown area. Reinforces clubs as tier 1.
+- **Action:** Added to taste_venues.txt. Yacht clubs confirmed alongside country clubs.
+
+### Norbeck Country Club (country_club, Potomac MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Country club in Potomac — one of the wealthiest areas in MD.
+- **Action:** Added to taste_venues.txt. Potomac country clubs = prime targets.
+
+### La Ferme (restaurant, Chevy Chase MD) — POSITIVE
+> "Fancy French restaurant"
+- **Extracted:** French restaurant in Chevy Chase — wealthy DC suburb, French dining confirmed again.
+- **Action:** Added to taste_venues.txt. French restaurants in wealthy suburbs = reliable.
+
+### LiLLiES Italian (restaurant, Washington DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Italian restaurant in DC. Another Italian fine dining thumbs up.
+- **Action:** Added to taste_venues.txt. Italian continues to rank alongside French.
+
+### Filomena Ristorante (restaurant, Georgetown DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Iconic Georgetown Italian restaurant. White tablecloth, upscale crowd.
+- **Action:** Added to taste_venues.txt. Georgetown Italian = strong fit.
+
+---
+
+## Updated Patterns (Jul 8)
+- **French + Italian = bulletproof** — La Ferme (French), LiLLiES + Filomena (Italian) all positive. These two cuisines have zero negatives across all batches.
+- **Clubs still rock solid** — Chester River Y&CC + Norbeck CC both positive. User explicitly says "private clubs are good."
+- **Georgetown Italian emerging** — Filomena is a Georgetown institution. Combined with Brasserie Liberte and Degrees Bistro, Georgetown has the highest density of positive votes.
+- **All 5 votes positive** — zero negatives again. Taste profile is extremely well-calibrated.
+- **All prior patterns hold** — French/European, Italian, wine bars, clubs, DC hotels, historic venues.

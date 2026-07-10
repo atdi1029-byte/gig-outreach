@@ -650,8 +650,14 @@ print(json.dumps({'contacts': contacts, 'facebook': fb, 'instagram': ig, 'contac
             fi
         fi
         if [ "$has_form" != "yes" ]; then
-            log "  ✗ No submittable form found — clearing contact_form"
-            contact_form=""
+            # Keep the URL if it looks like a contact page — Wix/JS sites
+            # won't render forms for the validator but the URL is still useful
+            if echo "$contact_form" | grep -qiE '/contact|/inquir|/book|/event'; then
+                log "  ⚠ No rendered form found — keeping URL (likely JS/Wix site)"
+            else
+                log "  ✗ No submittable form found — clearing contact_form"
+                contact_form=""
+            fi
         else
             log "  ✓ Real contact form confirmed"
         fi

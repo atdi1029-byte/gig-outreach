@@ -7,12 +7,12 @@
 | **Discovery: past gig seeds** | All 73 exhausted (0 new) |
 | **Discovery: taste queries** | Skipped -- 2,845 venues already in inventory |
 | **Pipeline: venues in batch** | 20 (3 batches of 8/8/4) |
-| **Pipeline: venues actually processed** | 14 (4 skipped as already contacted, 2 flagged junk) |
+| **Pipeline: venues actually processed** | 14 (4 skipped as already contacted, 2 flagged junk, 2 wasted on past gigs) |
 | **Pipeline contacts found (automated)** | ~55 total |
 | **Apollo MCP enrichments** | 1 credit (Kathy Ackley, Argyle CC) |
 | **Manual check contacts added** | 8 pending (owners/GMs identified, no email yet) |
 | **Taste reviews** | 5 new positive votes processed |
-| **Flagged venues** | 4 (2 junk, 1 closed for reno, 1 name correction) |
+| **Flagged venues** | 4 (2 junk, 1 closed for reno, 1 name correction) + 2 past gigs wasted |
 
 ## Pipeline Results
 
@@ -36,10 +36,10 @@
 | 1 | **Ferry Point Yacht Club** | Trappe, MD | marina | 0 | **JUNK** - Actually a marina (Atlantic Marinas), not a yacht club. Flagged closed. |
 | 2 | Creighton Farms | Middleburg, VA | country_club | 3 | SKIPPED - already has contacts |
 | 3 | St. Michaels Harbour Inn | St. Michaels, MD | hotel | 1 | LEGIT - Name corrected from "Ship's Cove Inn". Luxury waterfront inn. Only generic email (rooms@). Apollo has 0 relevant contacts. |
-| 4 | The Elkridge Furnace Inn | Ellicott City, MD | hotel | 2 | LEGIT - Past gig venue (8.3 rating). Events email + bridal coordinator pending. |
+| 4 | The Elkridge Furnace Inn | Ellicott City, MD | hotel | 2 | WASTED - Past gig venue (8.3 rating). Should not have been pipelined. |
 | 5 | Oxford Inn | Oxford, MD | hotel | 0 | CLOSED FOR RENOVATION - Reopening 2026. Only email: contact@oxfordinn.net |
 | 6 | **Turf Valley Resort** | Ellicott City, MD | hotel | 35 | **BIG WIN** - 50 people in Apollo, 14 emails verified. Key contact: Wendy Taylor (Hotel Sales & Events Manager). |
-| 7 | Good Spirit Farm | VA | winery | 2 | LEGIT - Past gig venue (9.0 rating). Owner Luanne Gutermuth email verified. |
+| 7 | Good Spirit Farm | VA | winery | 2 | WASTED - Past gig venue (9.0 rating). Should not have been pipelined. |
 | 8 | Serpent Ridge Vineyard | Westminster, MD | winery | 2 pending | LEGIT - Owners Karen Smith & Hal Roche identified. Only generic info@ on site. |
 
 ### Batch 3: Wineries & Event Venues
@@ -69,9 +69,11 @@ Italian fine dining in DC. 5 contacts found including:
 - **Leena Ali** -- Corporate Chef (leena@lardente.com)
 - **Daniel Caicedo** -- F&B Manager (daniel@lardente.com)
 
-### Good Spirit Farm
-Past dream gig (9.0 rating) now has owner's direct email:
-- **Luanne Gutermuth** -- Owner (luanne@goodspiritfarmva.com)
+## WASTED (Past Gigs -- Should Not Have Been Pipelined)
+
+- **Good Spirit Farm** (XX-WINE-077) -- Past gig (9.0 rating). Already play here.
+- **Elkridge Furnace Inn** (MD-HOTE-2430) -- Past gig (8.3 rating). Already play here.
+- **Fix applied:** Future runs will cross-reference `get_gigs` API to exclude past gig venues from batches.
 
 ## FLAGGED Venues
 
@@ -130,14 +132,12 @@ Past dream gig (9.0 rating) now has owner's direct email:
 1. **Turf Valley Resort** (Ellicott City MD) -- 35 contacts, events manager email. #1 priority.
 2. **L'Ardente** (DC) -- Italian fine dining, 3 key contacts with emails.
 3. **Argyle Country Club** (Silver Spring MD) -- Dir. of Catering & Events identified.
-4. **Good Spirit Farm** (VA) -- Owner email verified. Past dream gig.
-5. **Agora DC** (Dupont Circle DC) -- Mediterranean, GM email verified, owners identified.
-6. **Amelie DC Bistro** (Logan Circle DC) -- Parisian wine bar, perfect fit. No email yet but 5 partners identified.
-7. **Elkridge Furnace Inn** (Ellicott City MD) -- Past gig, events email found.
-8. **St. Michaels Harbour Inn** (St. Michaels MD) -- Luxury waterfront. Only generic email.
-9. **Serpent Ridge Vineyard** (Westminster MD) -- Owners identified, pending enrichment.
-10. **Hiddencroft Vineyards** (Lovettsville VA) -- Owners identified, pending enrichment.
-11. **Woodend Sanctuary** (Chevy Chase MD) -- Event venue. No contacts yet.
+4. **Agora DC** (Dupont Circle DC) -- Mediterranean, GM email verified, owners identified.
+5. **Amelie DC Bistro** (Logan Circle DC) -- Parisian wine bar, perfect fit. No email yet but 5 partners identified.
+6. **St. Michaels Harbour Inn** (St. Michaels MD) -- Luxury waterfront. Only generic email.
+7. **Serpent Ridge Vineyard** (Westminster MD) -- Owners identified, pending enrichment.
+8. **Hiddencroft Vineyards** (Lovettsville VA) -- Owners identified, pending enrichment.
+9. **Woodend Sanctuary** (Chevy Chase MD) -- Event venue. No contacts yet.
 
 ## Running Total
 

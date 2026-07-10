@@ -536,9 +536,11 @@ def map_category(cat, name=''):
     if any(t in cl for t in ['country club', 'golf club']): return 'country_club'
     if 'wine bar' in cl: return 'wine_bar'
     if any(t in cl for t in ['museum', 'gallery']): return 'museum'
-    if any(t in cl for t in ['event', 'banquet', 'wedding']): return 'event'
+    if any(t in cl for t in ['event', 'banquet', 'wedding', 'booking agent',
+                              'entertainment agency', 'party', 'catering']): return 'event'
     if any(t in cl for t in ['yacht', 'sailing']): return 'yacht_club'
-    if any(t in cl for t in ['private club', 'social club']): return 'private_club'
+    if any(t in cl for t in ['private club', 'social club', "women's club",
+                              "woman's club", 'civic club', 'fraternal']): return 'private_club'
     if 'spa' in cl: return 'spa'
     if any(t in cl for t in ['farmers market', 'farm stand', 'farmer']): return 'farmers_market'
     if any(t in cl for t in ['swim', 'pool', 'tennis', 'golf', 'recreation',
@@ -558,6 +560,14 @@ def map_category(cat, name=''):
                  'golf academy', 'recreation club', 'rec club', 'canoe', 'kayak',
                  'paddle', 'marina ', 'boat club', 'athletic']
     if any(t in nl for t in rec_names): return 'recreation'
+    # Name-based fallback: catch event venues Google Maps mislabels
+    event_names = ['farm', 'mansion', 'estate', 'manor', 'sanctuary',
+                   'garden', 'chapel', 'barn ', ' barn', 'pavilion',
+                   "woman's club", "women's club", 'civic club']
+    if any(t in nl for t in event_names): return 'event_venue'
+    # Name-based fallback: catch private clubs
+    club_names = ['club of', 'city club', 'town club', 'circle club']
+    if any(t in nl for t in club_names): return 'private_club'
     return 'restaurant'
 
 def pre_score(venue):
@@ -913,9 +923,11 @@ def map_category(cat, name=''):
     if any(t in cl for t in ['country club', 'golf club']): return 'country_club'
     if 'wine bar' in cl: return 'wine_bar'
     if any(t in cl for t in ['museum', 'gallery']): return 'museum'
-    if any(t in cl for t in ['event', 'banquet', 'wedding']): return 'event'
+    if any(t in cl for t in ['event', 'banquet', 'wedding', 'booking agent',
+                              'entertainment agency', 'party', 'catering']): return 'event'
     if any(t in cl for t in ['yacht', 'sailing']): return 'yacht_club'
-    if any(t in cl for t in ['private club', 'social club']): return 'private_club'
+    if any(t in cl for t in ['private club', 'social club', "women's club",
+                              "woman's club", 'civic club', 'fraternal']): return 'private_club'
     if 'spa' in cl: return 'spa'
     if any(t in cl for t in ['farmers market', 'farm stand', 'farmer']): return 'farmers_market'
     if any(t in cl for t in ['swim', 'pool', 'tennis', 'golf', 'recreation',
@@ -933,6 +945,14 @@ def map_category(cat, name=''):
                  'golf academy', 'recreation club', 'rec club', 'canoe', 'kayak',
                  'paddle', 'marina ', 'boat club', 'athletic']
     if any(t in nl for t in rec_names): return 'recreation'
+    # Name-based fallback: catch event venues Google Maps mislabels
+    event_names = ['farm', 'mansion', 'estate', 'manor', 'sanctuary',
+                   'garden', 'chapel', 'barn ', ' barn', 'pavilion',
+                   "woman's club", "women's club", 'civic club']
+    if any(t in nl for t in event_names): return 'event_venue'
+    # Name-based fallback: catch private clubs
+    club_names = ['club of', 'city club', 'town club', 'circle club']
+    if any(t in nl for t in club_names): return 'private_club'
     return 'restaurant'
 
 # Skip types - not useful for classical guitar gigs

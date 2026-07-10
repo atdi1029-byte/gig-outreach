@@ -697,6 +697,10 @@ PYEOF2
             FOUND_WEB_RAW=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${JS_DIR}/extract_cite.js"'")' 2>/dev/null)
             # extract_cite.js returns up to 5 URLs joined by "|" — take only the first
             FOUND_WEB=$(echo "$FOUND_WEB_RAW" | cut -d'|' -f1)
+            # Strip to root domain — never save deep paths like /my-account, /menu, /login
+            if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
+                FOUND_WEB=$(python3 -c "from urllib.parse import urlparse; u=urlparse('$FOUND_WEB'); print(u.scheme+'://'+u.netloc)" 2>/dev/null || echo "$FOUND_WEB")
+            fi
             if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
                 # Reject Airbnb/VRBO — these are vacation rentals, not venues
                 if echo "$FOUND_WEB" | grep -qiE 'airbnb\.com|vrbo\.com'; then

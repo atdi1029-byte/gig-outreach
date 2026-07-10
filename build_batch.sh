@@ -31,6 +31,7 @@ echo "Fetching venues + past gigs..."
 
 curl -sL "${APPS_SCRIPT_URL}?action=venues" -o /tmp/bb_venues.json
 curl -sL "${APPS_SCRIPT_URL}?action=get_gigs" -o /tmp/bb_gigs.json
+curl -sL "${APPS_SCRIPT_URL}?action=dashboard" -o /tmp/bb_dashboard.json
 
 python3 << PYEOF
 import json, sys
@@ -42,6 +43,8 @@ with open('/tmp/bb_venues.json') as f:
     venues = json.load(f).get('venues', [])
 with open('/tmp/bb_gigs.json') as f:
     gigs = json.load(f).get('gigs', [])
+with open('/tmp/bb_dashboard.json') as f:
+    dash = json.load(f)
 
 # Past gig names (lowercase for matching)
 past_gig_names = set()
@@ -50,8 +53,16 @@ for g in gigs:
     if name and name != '(deleted)':
         past_gig_names.add(name)
 
+# Venues that already have contacts (from dashboard)
+venues_with_contacts = set()
+for c in dash.get('contacts', []):
+    vid = c.get('venue_id', '')
+    if vid:
+        venues_with_contacts.add(vid)
+
 print(f"Total venues: {len(venues)}")
 print(f"Past gigs: {len(past_gig_names)}")
+print(f"Venues with existing contacts: {len(venues_with_contacts)}")
 
 target_states = {'MD', 'VA', 'DC', 'PA', 'DE', 'WV'}
 target_cats = {
@@ -74,6 +85,7 @@ skip_names = [
 pool = []
 skipped_status = 0
 skipped_gig = 0
+skipped_has_contacts = 0
 skipped_nosite = 0
 skipped_state = 0
 skipped_cat = 0
@@ -87,6 +99,10 @@ for v in venues:
     name = v.get('name', '')
     if name.lower().strip() in past_gig_names:
         skipped_gig += 1
+        continue
+    vid = v.get('venue_id', '')
+    if vid in venues_with_contacts:
+        skipped_has_contacts += 1
         continue
     website = v.get('website', '')
     if not website:
@@ -109,6 +125,7 @@ for v in venues:
 print(f"Filtered pool: {len(pool)}")
 print(f"  Skipped (status): {skipped_status}")
 print(f"  Skipped (past gig): {skipped_gig}")
+print(f"  Skipped (has contacts): {skipped_has_contacts}")
 print(f"  Skipped (no website): {skipped_nosite}")
 print(f"  Skipped (out of area): {skipped_state}")
 print(f"  Skipped (wrong category): {skipped_cat}")

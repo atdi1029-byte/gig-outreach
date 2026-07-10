@@ -483,8 +483,8 @@ JSEOF
     scrape_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
 
     if [ -z "$scrape_result" ] || [ "$scrape_result" = "missing value" ]; then
-        log "  [WARN] Chrome scrape returned empty — trying with longer wait"
-        sleep 8
+        log "  [WARN] Chrome scrape returned empty — trying with longer wait (18s for JS-heavy sites)"
+        sleep 18
         scrape_result=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "/tmp/pipeline_website_scrape.js")' 2>/dev/null)
     fi
 

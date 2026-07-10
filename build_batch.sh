@@ -1,0 +1,210 @@
+#!/bin/bash
+# =============================================================
+# Build Pipeline Batch — SAFE venue selection
+#
+# Usage:
+#   ./build_batch.sh [COUNT]    — build diversified batch (default 20)
+#   ./build_batch.sh 8          — build batch of 8
+#
+# Output: /tmp/pipeline_batch.json
+#
+# FILTERS (cannot be bypassed):
+#   - Only status=untouched venues
+#   - Excludes past gigs (from get_gigs API)
+#   - Excludes venues with existing contacts
+#   - Only venues with a website
+#   - Only venues in target states (MD/VA/DC/PA/DE/WV)
+#
+# DIVERSIFICATION:
+#   ~30% French/European restaurants
+#   ~20% country clubs / private clubs
+#   ~20% hotels / boutique inns
+#   ~15% wineries / wine bars
+#   ~15% wild cards (art galleries, museums, event venues)
+# =============================================================
+
+APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec"
+COUNT=${1:-20}
+
+echo "Building batch of $COUNT venues..."
+echo "Fetching venues + past gigs..."
+
+curl -sL "${APPS_SCRIPT_URL}?action=venues" -o /tmp/bb_venues.json
+curl -sL "${APPS_SCRIPT_URL}?action=get_gigs" -o /tmp/bb_gigs.json
+
+python3 << PYEOF
+import json, sys
+from collections import defaultdict
+
+COUNT = $COUNT
+
+with open('/tmp/bb_venues.json') as f:
+    venues = json.load(f).get('venues', [])
+with open('/tmp/bb_gigs.json') as f:
+    gigs = json.load(f).get('gigs', [])
+
+# Past gig names (lowercase for matching)
+past_gig_names = set()
+for g in gigs:
+    name = g.get('venue_name', '').lower().strip()
+    if name and name != '(deleted)':
+        past_gig_names.add(name)
+
+print(f"Total venues: {len(venues)}")
+print(f"Past gigs: {len(past_gig_names)}")
+
+target_states = {'MD', 'VA', 'DC', 'PA', 'DE', 'WV'}
+target_cats = {
+    'restaurant', 'hotel', 'winery', 'wine_bar',
+    'country_club', 'private_club', 'art_gallery',
+    'yacht_club', 'museum', 'event', 'event_venue',
+    'hotel_restaurant', 'luxury_hotel_restaurant',
+    'boutique_hotel_restaurant', 'historic_inn_restaurant'
+}
+
+skip_names = [
+    'elks lodge', 'moose lodge', 'vfw', 'american legion',
+    'knights of columbus', 'peninsula sailors', 'sail ',
+    'mcdonalds', 'taco bell', 'subway', 'chipotle',
+    'hookah', 'karaoke', 'strip club'
+]
+
+# FILTER: only untouched, with website, in target states,
+# not a past gig, not a junk name
+pool = []
+skipped_status = 0
+skipped_gig = 0
+skipped_nosite = 0
+skipped_state = 0
+skipped_cat = 0
+skipped_name = 0
+
+for v in venues:
+    status = v.get('status', 'untouched')
+    if status != 'untouched':
+        skipped_status += 1
+        continue
+    name = v.get('name', '')
+    if name.lower().strip() in past_gig_names:
+        skipped_gig += 1
+        continue
+    website = v.get('website', '')
+    if not website:
+        skipped_nosite += 1
+        continue
+    state = v.get('state', '')
+    if state and state not in target_states:
+        skipped_state += 1
+        continue
+    cat = v.get('category', '').lower()
+    if cat not in target_cats:
+        skipped_cat += 1
+        continue
+    nl = name.lower()
+    if any(s in nl for s in skip_names):
+        skipped_name += 1
+        continue
+    pool.append(v)
+
+print(f"Filtered pool: {len(pool)}")
+print(f"  Skipped (status): {skipped_status}")
+print(f"  Skipped (past gig): {skipped_gig}")
+print(f"  Skipped (no website): {skipped_nosite}")
+print(f"  Skipped (out of area): {skipped_state}")
+print(f"  Skipped (wrong category): {skipped_cat}")
+print(f"  Skipped (junk name): {skipped_name}")
+
+# Sort by upscale score desc, then state priority
+state_priority = {'DC': 0, 'MD': 1, 'VA': 2, 'PA': 3, 'DE': 4, 'WV': 5}
+
+# French/European keywords
+french_kw = [
+    'french', 'bistro', 'brasserie', 'provenc', 'lyon',
+    'paris', 'chez', 'la ', 'le ', 'les ', "l'", 'au ',
+    'aux ', 'du ', 'des ', 'trattoria', 'osteria',
+    'ristorante', 'enoteca', 'european', 'mediterranean',
+    'portuguese'
+]
+
+def is_french(v):
+    nl = v.get('name', '').lower()
+    notes = v.get('notes', '') or ''
+    return any(k in nl or k in notes.lower() for k in french_kw)
+
+# Group by category
+by_cat = defaultdict(list)
+for v in pool:
+    by_cat[v.get('category', '').lower()].append(v)
+
+batch = []
+used = set()
+
+def pick(cats, count, label, filter_fn=None):
+    added = 0
+    p = []
+    for c in cats:
+        p.extend(by_cat.get(c, []))
+    if filter_fn:
+        p = [v for v in p if filter_fn(v)]
+    p.sort(key=lambda v: (
+        -int(v.get('upscale_score', 0) or 0),
+        state_priority.get(v.get('state', ''), 9)
+    ))
+    for v in p:
+        if added >= count:
+            break
+        vid = v.get('venue_id', '')
+        if vid in used:
+            continue
+        used.add(vid)
+        batch.append(v)
+        added += 1
+    print(f"  {label}: {added}/{count}")
+
+# Diversified picks
+fr_count = max(1, int(COUNT * 0.30))
+cl_count = max(1, int(COUNT * 0.20))
+ho_count = max(1, int(COUNT * 0.20))
+wi_count = max(1, int(COUNT * 0.15))
+wc_count = COUNT - fr_count - cl_count - ho_count - wi_count
+
+pick(['restaurant'], fr_count,
+     'French/European restaurants', is_french)
+pick(['country_club', 'private_club', 'yacht_club',
+      'golf_club'], cl_count, 'Clubs')
+pick(['hotel', 'hotel_restaurant',
+      'luxury_hotel_restaurant',
+      'boutique_hotel_restaurant',
+      'historic_inn_restaurant'], ho_count, 'Hotels')
+pick(['winery', 'wine_bar'], wi_count, 'Wineries/Wine Bars')
+pick(['art_gallery', 'museum', 'event',
+      'event_venue'], wc_count, 'Wild Cards')
+
+# If we didn't fill the batch, top up with best remaining
+if len(batch) < COUNT:
+    remaining = [v for v in pool
+                 if v.get('venue_id') not in used]
+    remaining.sort(key=lambda v: (
+        -int(v.get('upscale_score', 0) or 0),
+        state_priority.get(v.get('state', ''), 9)
+    ))
+    for v in remaining:
+        if len(batch) >= COUNT:
+            break
+        batch.append(v)
+        used.add(v.get('venue_id'))
+    print(f"  Top-up: {len(batch) - sum(1 for _ in batch)}")
+
+print(f"\n=== BATCH: {len(batch)} venues ===")
+for i, v in enumerate(batch):
+    print(f"{i+1}. [{v.get('venue_id','')}] "
+          f"{v.get('name','')} | "
+          f"{v.get('category','')} | "
+          f"{v.get('city','')} {v.get('state','')} | "
+          f"score={v.get('upscale_score','')}")
+
+with open('/tmp/pipeline_batch.json', 'w') as f:
+    json.dump(batch, f, indent=2)
+
+print(f"\nSaved to /tmp/pipeline_batch.json")
+PYEOF

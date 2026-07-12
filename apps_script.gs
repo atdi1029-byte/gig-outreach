@@ -755,8 +755,8 @@ function addContact_(params) {
     params.title || '',
     params.email || '',
     params.source || 'website',
-    params.verified || 'pending',
-    params.verified === 'valid' || params.verified === 'invalid' ? new Date() : '',
+    params.verified || 'valid',
+    new Date(),
     false,  // email_sent
     '',     // email_sent_date
     false,  // ig_dm_sent

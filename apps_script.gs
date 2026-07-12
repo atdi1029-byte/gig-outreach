@@ -839,6 +839,41 @@ function updateVenue_(params) {
     if (value.indexOf('http') !== 0 && value.indexOf('//') !== 0) {
       return jsonResponse_({ status: 'error', message: field + ' must be a full URL (got: ' + value + ')' });
     }
+
+    // Evidence check: social link slug must plausibly match venue name or domain
+    // Find the venue row first to get name and domain
+    for (var v = 1; v < data.length; v++) {
+      if (String(data[v][0]) === venueId) {
+        var venueName = String(data[v][1] || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+        var venueWebsite = String(data[v][4] || '').toLowerCase();
+        var venueDomain = venueWebsite.replace(/https?:\/\/(www\.)?/, '').split('/')[0].split('.')[0];
+        var socialUrl = value.toLowerCase();
+        // Extract the slug (last path segment) from the social URL
+        var slug = socialUrl.replace(/\/+$/, '').split('/').pop().replace(/[^a-z0-9]/g, '');
+
+        // Check if slug matches venue name, domain, or shares significant overlap
+        var nameWords = String(data[v][1] || '').toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ').filter(function(w) {
+          return w.length > 2 && ['the', 'and', 'bar', 'inn', 'club'].indexOf(w) === -1;
+        });
+        var slugMatchesName = nameWords.some(function(w) { return slug.indexOf(w) !== -1; });
+        var slugMatchesDomain = venueDomain && slug.indexOf(venueDomain) !== -1;
+        var nameMatchesSlug = venueName && slug && (venueName.indexOf(slug) !== -1 || slug.indexOf(venueName) !== -1);
+
+        if (!slugMatchesName && !slugMatchesDomain && !nameMatchesSlug) {
+          // Allow override with force=true
+          if (params.force !== 'true') {
+            return jsonResponse_({
+              status: 'error',
+              message: field + ' URL slug "' + slug + '" does not match venue name "' + String(data[v][1]) + '" or domain "' + venueDomain + '". Pass force=true to override.',
+              venue_name: String(data[v][1]),
+              venue_domain: venueDomain,
+              social_slug: slug
+            });
+          }
+        }
+        break;
+      }
+    }
   }
 
   // Find venue row

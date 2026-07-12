@@ -2513,7 +2513,40 @@ function resurfaceLabel(venue) {
     return 'Last contacted ' + months + ' months ago';
 }
 
+// === REPORT GATE ===
+// Venues from unreviewed reports are hidden until user marks the report "done".
+// After 50 reviewed reports, the gate auto-disables.
+const REPORT_GATE_THRESHOLD = 50;
+let _gatedVenueIds = null;
+
+function getGatedVenueIds() {
+    if (_gatedVenueIds !== null) return _gatedVenueIds;
+    const reviewed = getReviewedReports();
+    // If 50+ reports reviewed, gate is off
+    if (Object.keys(reviewed).length >= REPORT_GATE_THRESHOLD) {
+        _gatedVenueIds = new Set();
+        return _gatedVenueIds;
+    }
+    // Collect venue_ids from unreviewed reports
+    const gated = new Set();
+    if (reportManifest && Array.isArray(reportManifest)) {
+        for (const r of reportManifest) {
+            if (!reviewed[r.file] && Array.isArray(r.venue_ids)) {
+                for (const id of r.venue_ids) gated.add(id);
+            }
+        }
+    }
+    _gatedVenueIds = gated;
+    return _gatedVenueIds;
+}
+
+function isVenueGated(venueId) {
+    return getGatedVenueIds().has(venueId);
+}
+
 function venueHasPending(venueId) {
+    // Report gate: hide venues from unreviewed reports
+    if (isVenueGated(venueId)) return false;
     const contacts = ((dashboardData && dashboardData.contacts) || []).filter(c => c.venue_id === venueId);
     const venue = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === venueId);
     if (!venue) return false;
@@ -2808,6 +2841,17 @@ async function openReportsView() {
 
     let html = '';
     html += `<div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);margin-bottom:0.5rem">Run Reports</div>`;
+    // Gate progress counter
+    const reviewedCount = Object.keys(reviewed).length;
+    if (reviewedCount < REPORT_GATE_THRESHOLD) {
+        const gatedCount = getGatedVenueIds().size;
+        html += `<div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem">
+            <span style="color:var(--gold)">${reviewedCount}/${REPORT_GATE_THRESHOLD}</span> reports reviewed
+            ${gatedCount > 0 ? `<span style="color:var(--red)">· ${gatedCount} venues gated</span>` : ''}
+        </div>`;
+    } else {
+        html += `<div style="font-size:0.75rem;color:var(--green);margin-bottom:0.6rem">Gate complete — all venues visible</div>`;
+    }
     if (unique.length === 0) {
         html += '<div style="text-align:center;padding:1rem;color:var(--text-dim);font-size:0.85rem">No reports yet.</div>';
     } else {
@@ -2859,7 +2903,10 @@ async function openReportsView() {
 function toggleReportReviewed(file) {
     const reviewed = getReviewedReports();
     setReportReviewed(file, !reviewed[file]);
+    _gatedVenueIds = null; // invalidate gate cache
     openReportsView();
+    // Re-render home view so venue counts update
+    if (dashboardData) renderStateGrid();
 }
 
 // === LINKEDIN REMINDER ===
@@ -3854,7 +3901,8 @@ document.addEventListener('DOMContentLoaded', () => {
         var ls = document.getElementById('levelSection');
         if (ls) ls.classList.add('expanded');
     }
-    loadDashboard();
+    // Load report manifest first so venue gate is active before dashboard renders
+    loadReportManifest().then(() => { _gatedVenueIds = null; loadDashboard(); });
 
     // Deep link: ?venue=VENUE_ID opens venue detail directly
     const urlParams = new URLSearchParams(window.location.search);

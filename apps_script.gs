@@ -736,6 +736,20 @@ function addContact_(params) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(CONTACTS);
 
+  // Reject generic emails unless explicitly flagged
+  var GENERIC_PREFIXES = [
+    'info', 'manager', 'admin', 'office', 'contact', 'sales',
+    'events', 'hello', 'support', 'reservations', 'frontdesk',
+    'catering', 'eat', 'dine', 'host', 'general', 'mail'
+  ];
+  var emailLocal = (params.email || '').split('@')[0].toLowerCase();
+  if (GENERIC_PREFIXES.indexOf(emailLocal) !== -1 && params.is_generic !== 'true') {
+    return jsonResponse_({
+      status: 'error',
+      message: 'Generic email (' + emailLocal + '@) cannot be a contact. Use update_venue to store venue-level emails, or pass is_generic=true to override.'
+    });
+  }
+
   // Check for duplicate email at same venue
   var data = sheet.getDataRange().getValues();
   for (var i = 1; i < data.length; i++) {

@@ -359,6 +359,7 @@ body {
 .category-badge.hotel { background: #e67e22; color: #fff; }
 .category-badge.country_club { background: #27ae60; color: #fff; }
 .category-badge.event { background: #e74c3c; color: #fff; }
+.category-badge.event_venue { background: #c0392b; color: #fff; }
 .category-badge.restaurant { background: #f39c12; color: #000; }
 .category-badge.wine_bar { background: #8e44ad; color: #fff; }
 .category-badge.resort { background: #16a085; color: #fff; }
@@ -1411,6 +1412,8 @@ const TEMPLATES = {
         pitch: [], setting: "in your lounge" },
     event: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) for your Event!", "Classical Guitarist (Latin, Classical & Modern Arrangements) for your Event!", "Classical guitarist for your upcoming events"], label: "Event",
         pitch: [], setting: "at your events" },
+    event_venue: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Venue!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Venue!", "Classical guitar for events at {venue}"], label: "Event Venue",
+        pitch: [], setting: "at your venue" },
     event_planner: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) for your Events!", "Classical Guitarist (Latin, Classical & Modern Arrangements) for your Events!", "Classical guitarist for your events"], label: "Event Planner",
         pitch: ["weddings, galas, corporate events, and private parties"], setting: "at your events" },
     luxury_apts: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform for your Residents!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform for your Residents!", "Live classical guitar for resident events at {venue}"], label: "Luxury Apartments",
@@ -1616,7 +1619,7 @@ function getTemplate(category) {
 
 // === CONSTANTS ===
 const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
-const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', farmers_market: 'Farmers Markets', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents' };
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', event_venue: 'Event Venues', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', farmers_market: 'Farmers Markets', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents' };
 
 const STATE_IMAGES = {
     MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
@@ -1634,6 +1637,7 @@ const CATEGORY_IMAGES = {
     museum: 'https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=400&h=250&fit=crop',
     country_club: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=400&h=250&fit=crop',
     event: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=250&fit=crop',
+    event_venue: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=250&fit=crop',
     wine_bar: 'https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400&h=250&fit=crop',
     resort: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&h=250&fit=crop',
     senior_living: 'https://images.unsplash.com/photo-1559234938-b60fff04894d?w=400&h=250&fit=crop',
@@ -2216,7 +2220,7 @@ function openState(state) {
     });
 
     // Only show categories that have pending venues
-    const allCats = ['agent', 'winery', 'museum', 'hotel', 'country_club', 'event', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'farmers_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
+    const allCats = ['agent', 'winery', 'museum', 'hotel', 'country_club', 'event', 'event_venue', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'farmers_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
     const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0);
     const el = document.getElementById('stateBody');
 

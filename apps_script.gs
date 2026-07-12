@@ -750,6 +750,21 @@ function addContact_(params) {
     });
   }
 
+  // Reject contacts without a real person name
+  var name = (params.name || '').trim();
+  if (!name) {
+    return jsonResponse_({ status: 'error', message: 'Contact must have a name.' });
+  }
+  // Reject if name equals the email prefix, title, or is a generic role word
+  var FAKE_NAMES = ['manager', 'admin', 'owner', 'chef', 'host', 'staff',
+    'catering', 'events', 'private events', 'general', 'front desk', 'reception'];
+  if (FAKE_NAMES.indexOf(name.toLowerCase()) !== -1) {
+    return jsonResponse_({ status: 'error', message: 'Contact name "' + name + '" looks like a role, not a person. Provide a real first and last name.' });
+  }
+  if (name.toLowerCase() === emailLocal) {
+    return jsonResponse_({ status: 'error', message: 'Contact name "' + name + '" matches email prefix. Provide a real person name.' });
+  }
+
   // Check for duplicate email at same venue
   var data = sheet.getDataRange().getValues();
   for (var i = 1; i < data.length; i++) {
@@ -780,7 +795,18 @@ function addContact_(params) {
   // Auto-calculate distance if venue is missing it
   calcDistanceForVenue_(params.venue_id || '');
 
-  return jsonResponse_({ status: 'ok', contact_id: contactId, email: params.email });
+  // Read-after-write: confirm the contact persisted
+  SpreadsheetApp.flush();
+  var lastRow = sheet.getLastRow();
+  var persisted = sheet.getRange(lastRow, 1, 1, 5).getValues()[0];
+  return jsonResponse_({
+    status: 'ok',
+    contact_id: contactId,
+    email: params.email,
+    persisted_name: String(persisted[2]),
+    persisted_email: String(persisted[4]),
+    verified: String(persisted[0]) === contactId
+  });
 }
 
 // ---------------------------------------------------------------
@@ -808,6 +834,13 @@ function updateVenue_(params) {
   }
   if (colIdx === -1) return jsonResponse_({ status: 'error', message: 'Unknown field: ' + field });
 
+  // Validate social URLs
+  if ((field === 'facebook' || field === 'instagram') && value) {
+    if (value.indexOf('http') !== 0 && value.indexOf('//') !== 0) {
+      return jsonResponse_({ status: 'error', message: field + ' must be a full URL (got: ' + value + ')' });
+    }
+  }
+
   // Find venue row
   for (var i = 1; i < data.length; i++) {
     if (String(data[i][0]) === venueId) {
@@ -818,7 +851,14 @@ function updateVenue_(params) {
       } else if (field === 'status' && value === 'untouched') {
         sheet.getRange(i + 1, 19).setValue(''); // Clear contacted_date on reset
       }
-      return jsonResponse_({ status: 'ok', venue_id: venueId, field: field, value: value });
+      // Read-after-write: confirm the value persisted
+      SpreadsheetApp.flush();
+      var persisted = String(sheet.getRange(i + 1, colIdx + 1).getValue());
+      return jsonResponse_({
+        status: 'ok', venue_id: venueId, field: field,
+        value: value, persisted: persisted,
+        verified: persisted === value
+      });
     }
   }
 
@@ -2148,6 +2188,18 @@ function saveStep_(params) {
 
   for (var i = 1; i < data.length; i++) {
     if (String(data[i][0]) === venueId) {
+      // Postcondition: socials step with MANUAL_VERIFIED requires facebook or instagram to actually exist
+      if (step === 'socials' && (stepStatus === 'MANUAL_VERIFIED' || stepStatus === 'MANUAL_FOUND')) {
+        var fb = String(data[i][8] || '').trim();
+        var ig = String(data[i][9] || '').trim();
+        if (!fb && !ig) {
+          return jsonResponse_({
+            status: 'error',
+            message: 'Cannot mark socials as ' + stepStatus + ' — no facebook or instagram URL saved on venue. Call update_venue first, then save_step.'
+          });
+        }
+      }
+
       var existing = parseCheckStatus_(String(data[i][23] || ''));
       existing[step] = { status: stepStatus, detail: detail };
       var newStr = serializeCheckStatus_(existing);

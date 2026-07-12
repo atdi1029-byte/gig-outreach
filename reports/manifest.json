@@ -1,5 +1,15 @@
 [
   {
+    "file": "2026-07-12_02-00.html",
+    "date": "2026-07-12",
+    "title": "July 12, 2026 \u2014 Diversified Batch (20 venues)",
+    "summary": "20 venues pipelined, ~120 contacts, ~52 Apollo credits. Wolf Trap (38), Woodholme CC (19), Glen Echo Park (19), Elkridge Club (12). Woodend Sanctuary 4 events contacts via MCP. 2 flagged (3 Miles House, European Taste).",
+    "venues": 20,
+    "verified_emails": 120,
+    "apollo_credits": 52,
+    "venue_ids": ["MD-REST-2161", "MD-REST-2379", "MD-REST-2402", "MD-REST-2709", "VA-REST-856", "VA-REST-1154", "XX-COUN-407", "XX-COUN-583", "XX-COUN-584", "XX-COUN-585", "PA-HOTE-1832", "PA-HOTE-2386", "PA-HOTE-2321", "MD-WINE-936", "VA-WINE-908", "PA-WINE-1850", "MD-EVEN-888", "MD-EVEN-890", "VA-EVEN-883", "VA-EVEN-889"]
+  },
+  {
     "file": "2026-07-09_22-00.html",
     "date": "2026-07-09",
     "title": "July 09, 2026 \u2014 First Clean Run (build_batch.sh)",

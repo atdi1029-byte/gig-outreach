@@ -393,12 +393,14 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     // Vote boost: thumbs up moves venue up 2 ranks
     if (vote === 'up' && tasteRank > 1) tasteRank = Math.max(1, tasteRank - 2);
 
-    // Distance as tiebreaker within rank (closer = higher score)
+    // Taste score: 0-100 (rank 1 = best = 100, rank 7 = ~14, junk = 0)
+    var tasteScore = (tasteRank >= 99) ? 0 : Math.max(0, (8 - tasteRank) / 7 * 100);
+    // Distance score: 0-100 (closer = higher)
     var dist = v.distance_miles ? Number(v.distance_miles) : 50;
-    var distTiebreak = Math.max(0, 100 - dist); // 0-100, closer = higher
+    var distScore = Math.max(0, 100 - dist);
 
-    // Final score: rank is primary (inverted so higher = better), distance breaks ties
-    item._topPickScore = (100 - tasteRank) * 1000 + distTiebreak;
+    // 50/50 blend: taste and distance weighted equally
+    item._topPickScore = tasteScore + distScore;
   });
 
   actionNeeded.sort(function(a, b) {
@@ -1746,13 +1748,16 @@ function getRecommendations_() {
     // --- ZONE (0-10 pts) ---
     var zPts = zonePts[vZone] || 0;
 
-    // --- DISTANCE (0-10 pts) — just a tiebreaker, will drive for great gigs ---
+    // --- DISTANCE (0-25 pts) — closer venues rank higher, not just a tiebreaker ---
     var distPts = 0;
     if (vDist !== null) {
-      if (vDist <= 80) distPts = 10;
-      else distPts = Math.round(Math.max(0, 10 * (1 - (vDist - 80) / 70)));
+      if (vDist <= 30) distPts = 25;        // local (DC/MD/NoVA core)
+      else if (vDist <= 60) distPts = 20;   // nearby (Bethesda, Alexandria, etc.)
+      else if (vDist <= 90) distPts = 15;   // moderate (Frederick, Annapolis, Leesburg)
+      else if (vDist <= 120) distPts = 10;  // far (Eastern Shore, PA Main Line)
+      else distPts = Math.round(Math.max(0, 5 * (1 - (vDist - 120) / 30)));  // edge of radius
     } else {
-      distPts = 5; // neutral if no distance data
+      distPts = 10; // neutral if no distance data
     }
 
     // --- CONTACT QUALITY (0-10 pts) ---

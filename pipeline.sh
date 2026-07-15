@@ -442,9 +442,12 @@ for(var i=0;i<allAnchors.length;i++){
 
 // Contact form URL — check discovered links AND buttons/anchors with contact text
 var contactKw = ['contact','get-in-touch','reach-us','inquiry','enquiry'];
+var assetExt = ['.css','.js','.png','.jpg','.jpeg','.gif','.svg','.ico','.woff','.woff2','.ttf','.eot','.map','.xml','.pdf'];
 var contactForm = '';
 Object.keys(seen).forEach(function(url){
-    var p = url.toLowerCase();
+    var p = url.toLowerCase().split('?')[0];
+    // Skip static assets (CSS, JS, images, fonts)
+    for(var a=0;a<assetExt.length;a++){ if(p.endsWith(assetExt[a])) return; }
     for(var c=0;c<contactKw.length;c++){
         if(p.indexOf(contactKw[c]) > -1){ contactForm = url; return; }
     }
@@ -568,8 +571,13 @@ for href in re.findall(r'href=[\"\\']([^\"\\']+)[\"\\']', html):
 
 # Contact form
 contact_form = ''
+ASSET_EXT = ('.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico',
+             '.woff', '.woff2', '.ttf', '.eot', '.map', '.xml', '.pdf')
 for url in seen:
-    if any(kw in url.lower() for kw in ['contact','get-in-touch','reach-us','inquiry','enquiry']):
+    url_lower = url.lower().split('?')[0]  # strip query params
+    if url_lower.endswith(ASSET_EXT):
+        continue
+    if any(kw in url_lower for kw in ['contact','get-in-touch','reach-us','inquiry','enquiry']):
         contact_form = url
         break
 

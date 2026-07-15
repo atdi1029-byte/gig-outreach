@@ -68,10 +68,12 @@ target_states = {'MD', 'VA', 'DC', 'PA', 'DE', 'WV'}
 target_cats = {
     'restaurant', 'hotel', 'winery', 'wine_bar',
     'country_club', 'private_club', 'art_gallery',
-    'yacht_club', 'museum', 'event', 'event_venue',
-    'hotel_restaurant', 'luxury_hotel_restaurant',
-    'boutique_hotel_restaurant', 'historic_inn_restaurant'
+    'yacht_club', 'museum', 'event', 'event_venue'
 }
+# EXCLUDED: hotel_restaurant, luxury_hotel_restaurant,
+# boutique_hotel_restaurant, historic_inn_restaurant
+# These are restaurants INSIDE hotels that already have
+# their own venue entry. Pipelining both = duplicate work.
 
 skip_names = [
     'elks lodge', 'moose lodge', 'vfw', 'american legion',
@@ -80,8 +82,43 @@ skip_names = [
     'hookah', 'karaoke', 'strip club'
 ]
 
+# Chain restaurant names — skip corporate chains
+chain_names = [
+    'founding farmers', 'cava', 'sweetgreen', 'nandos',
+    'cheesecake factory', 'capital grille', 'ruth chris',
+    'mortons', 'flemings', 'sullivan steakhouse',
+    'olive garden', 'red lobster', 'outback',
+    'applebees', 'chilis', 'tgi friday',
+    'panera', 'starbucks', 'dunkin', 'five guys',
+    'shake shack', 'wingstop', 'buffalo wild wings',
+    'paris baguette', 'kitchen + kocktails',
+    'planta ', 'grocery', 'bakery', 'baking company',
+    'shawarma', 'kebab', 'falafel', 'food truck',
+    'ice cream', 'frozen yogurt', 'donut', 'doughnut',
+    'pizza hut', 'dominos', 'papa john'
+]
+
+# Cities that are too far (>2hr from DC metro)
+too_far_cities = [
+    'charlottesville', 'richmond', 'williamsburg',
+    'norfolk', 'virginia beach', 'hampton', 'newport news',
+    'roanoke', 'lynchburg', 'blacksburg',
+    'ocean city', 'salisbury', 'cumberland',
+    'pittsburgh', 'harrisburg', 'state college',
+    'dover', 'milford', 'georgetown de'
+]
+
+# Junk website domains — not real venue sites
+junk_websites = [
+    'cbs19news.com', 'facebook.com', 'yelp.com',
+    'tripadvisor.com', 'google.com', 'wikipedia.org',
+    'instagram.com', 'twitter.com', 'youtube.com',
+    'wix.com', 'squarespace.com'
+]
+
 # FILTER: only untouched, with website, in target states,
-# not a past gig, not a junk name
+# not a past gig, not a junk name, not a chain, not too far,
+# not blank city/state, not junk website
 pool = []
 skipped_status = 0
 skipped_gig = 0
@@ -90,6 +127,14 @@ skipped_nosite = 0
 skipped_state = 0
 skipped_cat = 0
 skipped_name = 0
+skipped_chain = 0
+skipped_radius = 0
+skipped_blank_city = 0
+skipped_junk_site = 0
+skipped_dupe_site = 0
+
+# Track websites to detect duplicate venues (same website = same venue)
+seen_websites = set()
 
 for v in venues:
     status = v.get('status', 'untouched')
@@ -108,9 +153,76 @@ for v in venues:
     if not website:
         skipped_nosite += 1
         continue
+    # Reject junk websites
+    web_domain = website.lower().replace('https://','').replace('http://','').replace('www.','').split('/')[0]
+    if any(j in web_domain for j in junk_websites):
+        skipped_junk_site += 1
+        continue
+    # Reject duplicate websites (same venue listed multiple times)
+    web_key = web_domain.split('.')[0]  # e.g. "cbmm" from "cbmm.org"
+    if web_key in seen_websites:
+        skipped_dupe_site += 1
+        continue
+    seen_websites.add(web_key)
     state = v.get('state', '')
     if state and state not in target_states:
         skipped_state += 1
+        continue
+    # Reject blank city or state
+    city = v.get('city', '').strip()
+    if not city or not state:
+        skipped_blank_city += 1
+        continue
+    # Reject broken city fields (venue name leaked into city)
+    # Valid cities are short (e.g. "Washington", "Bethesda", "Kennett Square")
+    # Broken cities contain venue names, adjectives, or quotes
+    city_lc = city.lower()
+    valid_cities = {
+        'washington', 'georgetown', 'bethesda', 'potomac',
+        'chevy chase', 'rockville', 'silver spring', 'columbia',
+        'baltimore', 'annapolis', 'easton', 'st michaels',
+        'st. michaels', 'ellicott city', 'towson', 'frederick',
+        'hagerstown', 'havre de grace', 'cambridge',
+        'alexandria', 'arlington', 'mclean', 'vienna',
+        'reston', 'herndon', 'leesburg', 'middleburg',
+        'fairfax', 'falls church', 'great falls', 'manassas',
+        'lovettsville', 'purcellville', 'woodbridge',
+        'stafford', 'warrenton', 'flint hill', 'front royal',
+        'gladwyne', 'bryn mawr', 'gwynedd', 'kennett square',
+        'west chester', 'media', 'philadelphia', 'lancaster',
+        'wayne', 'devon', 'ardmore', 'radnor', 'newtown square',
+        'chadds ford', 'malvern', 'paoli', 'king of prussia',
+        'wilmington', 'greenville', 'hockessin', 'rehoboth beach',
+        'lewes', 'shepherdstown', 'charles town',
+        'martinsburg', 'harpers ferry',
+        'roland park', 'pikesville', 'owings mills',
+        'hunt valley', 'severna park', 'gibson island',
+        'centreville', 'chestertown', 'oxford',
+        'dupont circle', 'foggy bottom', 'penn quarter',
+        'capitol hill', 'logan circle', 'adams morgan',
+        'tenleytown', 'cleveland park', 'woodley park',
+        'st michaels', 'tilghman island', 'kent island',
+        'taneytown', 'mt airy', 'mount airy', 'dickerson',
+        'boyds', 'clarksburg', 'gaithersburg', 'olney',
+        'laurel', 'bowie', 'crofton', 'gambrills',
+        'edgewater', 'arnold', 'glen echo',
+        'ashburn', 'sterling', 'south riding',
+        'delaplane', 'round hill'
+    }
+    # Check if venue name words leaked into city field
+    name_words = [w for w in name.lower().split() if len(w) > 3
+                  and w not in {'the','and','bar','inn','club','farm'}]
+    name_in_city = any(w in city_lc for w in name_words)
+    if city_lc not in valid_cities and (
+        len(city) > 25 or '"' in city or
+        city_lc == name.lower() or name_in_city or
+        any(w in city_lc for w in ['restaurant', 'best ', 'historic',
+            'genuine', 'famous', 'great ', 'top ', 'finest'])):
+        skipped_blank_city += 1
+        continue
+    # Reject cities outside radius
+    if city.lower() in too_far_cities:
+        skipped_radius += 1
         continue
     cat = v.get('category', '').lower()
     if cat not in target_cats:
@@ -119,6 +231,10 @@ for v in venues:
     nl = name.lower()
     if any(s in nl for s in skip_names):
         skipped_name += 1
+        continue
+    # Reject chain restaurants
+    if any(c in nl for c in chain_names):
+        skipped_chain += 1
         continue
     pool.append(v)
 
@@ -130,6 +246,11 @@ print(f"  Skipped (no website): {skipped_nosite}")
 print(f"  Skipped (out of area): {skipped_state}")
 print(f"  Skipped (wrong category): {skipped_cat}")
 print(f"  Skipped (junk name): {skipped_name}")
+print(f"  Skipped (chain): {skipped_chain}")
+print(f"  Skipped (too far): {skipped_radius}")
+print(f"  Skipped (blank city/state): {skipped_blank_city}")
+print(f"  Skipped (junk website): {skipped_junk_site}")
+print(f"  Skipped (duplicate site): {skipped_dupe_site}")
 
 # Sort by upscale score desc, then state priority
 state_priority = {'DC': 0, 'MD': 1, 'VA': 2, 'PA': 3, 'DE': 4, 'WV': 5}
@@ -210,7 +331,9 @@ if len(batch) < COUNT:
             break
         batch.append(v)
         used.add(v.get('venue_id'))
-    print(f"  Top-up: {len(batch) - sum(1 for _ in batch)}")
+    topup_count = len(batch) - (fr_count + cl_count + ho_count + wi_count + wc_count)
+    if topup_count < 0: topup_count = 0
+    print(f"  Top-up: {topup_count}")
 
 print(f"\n=== BATCH: {len(batch)} venues ===")
 for i, v in enumerate(batch):

@@ -352,7 +352,8 @@ function extractFb(links){
     return '';
 }
 function extractIg(links){
-    var IG_SKIP = ['p','reel','reels','explore','stories','accounts','developer','about','legal','privacy','terms','share','embed'];
+    var IG_SKIP = ['p','reel','reels','explore','stories','accounts','developer','about','legal','privacy','terms','share','embed',
+                   'squarespace','wix','wordpress','shopify','godaddy','weebly','webflow','carrd','linktree','linktr'];
     for(var i=0;i<links.length;i++){
         var u = links[i].getAttribute('href').split('?')[0].replace(/\/$/,'');
         if(u.startsWith('//')) u = 'https:' + u;
@@ -541,7 +542,8 @@ for m in re.findall(r'https?://(?:www\.)?facebook\.com/[a-zA-Z0-9._\-]+', html):
     if len(slug) >= 3:
         fb = clean
         break
-IG_SKIP = {'p','reel','reels','explore','stories','accounts','developer','about','legal','privacy','terms','embed'}
+IG_SKIP = {'p','reel','reels','explore','stories','accounts','developer','about','legal','privacy','terms','embed',
+           'squarespace','wix','wordpress','shopify','godaddy','weebly','webflow','carrd','linktree','linktr'}
 for m in re.findall(r'https?://(?:www\.)?instagram\.com/[a-zA-Z0-9._]+', html):
     clean = m.split('?')[0].rstrip('/')
     slug = clean.split('instagram.com/')[-1] if 'instagram.com/' in clean else ''
@@ -1478,11 +1480,18 @@ def name_matches(result_name, target_name):
     rn_stripped = normalize(strip_brand(result_name))
     if tn_stripped and rn_stripped and (tn_stripped in rn_stripped or rn_stripped in tn_stripped):
         return True
-    # Check word overlap (at least 50% of target words present)
+    # Check word overlap — require 50% AND at least 2 shared words
+    # (prevents "Bistro" alone from matching "La Lou Bistro" to "Petit Louis Bistro")
     stopwords = {'the', 'a', 'an', 'and', 'of', 'at', 'in', 'by', 'hotel', 'collection'}
+    common_venue_words = {'bar', 'grill', 'bistro', 'cafe', 'restaurant', 'kitchen',
+                          'tavern', 'pub', 'lounge', 'house', 'club', 'wine', 'brewing',
+                          'inn', 'suites', 'resort', 'lodge', 'manor', 'estate'}
     tw = set(re.sub(r'[^a-z\s]', '', target_name.lower()).split()) - stopwords
     rw = set(re.sub(r'[^a-z\s]', '', result_name.lower()).split()) - stopwords
-    if tw and len(tw & rw) / len(tw) >= 0.5:
+    shared = tw & rw
+    # Shared words that are just generic venue types don't count as real matches
+    meaningful_shared = shared - common_venue_words
+    if tw and len(shared) / len(tw) >= 0.5 and len(meaningful_shared) >= 1:
         return True
     return False
 

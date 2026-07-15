@@ -462,3 +462,56 @@
 - **Georgetown Italian emerging** — Filomena is a Georgetown institution. Combined with Brasserie Liberte and Degrees Bistro, Georgetown has the highest density of positive votes.
 - **All 5 votes positive** — zero negatives again. Taste profile is extremely well-calibrated.
 - **All prior patterns hold** — French/European, Italian, wine bars, clubs, DC hotels, historic venues.
+
+---
+
+## Jul 15, 2026 — Post-Pipeline Review (10 new votes)
+
+### The Tidewater Inn (hotel, Easton MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Already processed in backfill (Mar 26). Re-confirmed positive. Historic inn in Easton.
+- **Action:** Already in taste_venues.txt. No changes.
+
+### La Chaumiere (restaurant, Washington DC) — POSITIVE (duplicate vote)
+- **Extracted:** Already processed Apr 21 ("Literally perfect!"). Re-confirmed.
+- **Action:** Already in taste_venues.txt. No changes.
+
+### Brasserie Royale (restaurant, Reston VA) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French brasserie in Reston — NoVA fine dining territory.
+- **Action:** Added to taste_venues.txt. French + Reston = reliable.
+
+### Brasserie Liberte (restaurant, Georgetown DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French brasserie in Georgetown — premium DC location.
+- **Action:** Added to taste_venues.txt. Georgetown French = strong fit.
+
+### Degrees Bistro (restaurant, Georgetown DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Bistro in Georgetown at the Ritz-Carlton. Hotel dining + Georgetown.
+- **Action:** Added to taste_venues.txt. Georgetown hotel restaurants = viable.
+
+### Le Sel French Bistro (restaurant, Dupont Circle DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French bistro in Dupont Circle — wealthy, cultured neighborhood.
+- **Action:** Added to taste_venues.txt. Dupont Circle French = strong fit.
+
+### Tuscarora Mill Restaurant (restaurant, Leesburg VA) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Fine dining in Leesburg — historic mill building, Loudoun County.
+- **Action:** Added to taste_venues.txt. Leesburg fine dining = viable.
+
+### La Fete (restaurant, Wilmington DE) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French restaurant in Wilmington DE — Brandywine Valley territory.
+- **Action:** Added to taste_venues.txt. Wilmington French dining confirmed.
+
+### The Elkridge Furnace Inn (hotel, Ellicott City MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Historic inn — user already plays here (past gig). Re-confirmed love.
+- **Action:** Already in taste_venues.txt. No changes.
+
+### Alta Strada (Mosaic) (restaurant, Fairfax VA) — POSITIVE (duplicate vote)
+- **Extracted:** Already processed Apr 21. Re-confirmed.
+- **Action:** Already in taste_venues.txt. No changes.
+
+---
+
+## Updated Patterns (Jul 15)
+- **French brasseries are the GOLD STANDARD** — Brasserie Royale, Brasserie Liberte, Le Sel, La Fete all positive. Every French restaurant vote across all batches has been positive. Zero negatives ever.
+- **Georgetown density increasing** — Brasserie Liberte + Degrees Bistro join Filomena. Georgetown now has the most concentrated cluster of positive votes.
+- **Leesburg/Loudoun emerging** — Tuscarora Mill joins Lightfoot Restaurant as Leesburg fine dining targets. The 8 batch 1 venues from this run are all Leesburg — a heavy investment in the area.
+- **All 10 votes positive** — third consecutive batch with zero negatives. Taste profile is highly calibrated.
+- **All prior patterns hold** — French/European, Italian, wine bars, clubs, DC hotels, historic venues.

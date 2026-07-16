@@ -253,7 +253,7 @@ print(f"  Skipped (junk website): {skipped_junk_site}")
 print(f"  Skipped (duplicate site): {skipped_dupe_site}")
 
 # Sort by upscale score desc, then state priority
-state_priority = {'DC': 0, 'MD': 1, 'VA': 2, 'PA': 3, 'DE': 4, 'WV': 5}
+state_priority = {'DC': 0, 'VA': 1, 'MD': 2, 'DE': 3, 'WV': 4, 'PA': 5}
 
 # French/European keywords
 french_kw = [
@@ -285,8 +285,8 @@ def pick(cats, count, label, filter_fn=None):
     if filter_fn:
         p = [v for v in p if filter_fn(v)]
     p.sort(key=lambda v: (
-        -int(v.get('upscale_score', 0) or 0),
-        state_priority.get(v.get('state', ''), 9)
+        state_priority.get(v.get('state', ''), 9),
+        -int(v.get('upscale_score', 0) or 0)
     ))
     for v in p:
         if added >= count:
@@ -323,8 +323,8 @@ if len(batch) < COUNT:
     remaining = [v for v in pool
                  if v.get('venue_id') not in used]
     remaining.sort(key=lambda v: (
-        -int(v.get('upscale_score', 0) or 0),
-        state_priority.get(v.get('state', ''), 9)
+        state_priority.get(v.get('state', ''), 9),
+        -int(v.get('upscale_score', 0) or 0)
     ))
     for v in remaining:
         if len(batch) >= COUNT:

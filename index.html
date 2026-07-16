@@ -2526,12 +2526,7 @@ let _gatedVenueIds = null;
 function getGatedVenueIds() {
     if (_gatedVenueIds !== null) return _gatedVenueIds;
     const reviewed = getReviewedReports();
-    // If 50+ reports reviewed, gate is off
-    if (Object.keys(reviewed).length >= REPORT_GATE_THRESHOLD) {
-        _gatedVenueIds = new Set();
-        return _gatedVenueIds;
-    }
-    // Collect venue_ids from unreviewed reports
+    // Collect venue_ids from unreviewed reports — venues stay hidden until report is confirmed
     const gated = new Set();
     if (reportManifest && Array.isArray(reportManifest)) {
         for (const r of reportManifest) {
@@ -2845,16 +2840,9 @@ async function openReportsView() {
 
     let html = '';
     html += `<div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);margin-bottom:0.5rem">Run Reports</div>`;
-    // Gate progress counter
-    const reviewedCount = Object.keys(reviewed).length;
-    if (reviewedCount < REPORT_GATE_THRESHOLD) {
-        const gatedCount = getGatedVenueIds().size;
-        html += `<div style="font-size:0.75rem;color:var(--text-dim);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem">
-            <span style="color:var(--gold)">${reviewedCount}/${REPORT_GATE_THRESHOLD}</span> reports reviewed
-            ${gatedCount > 0 ? `<span style="color:var(--red)">· ${gatedCount} venues gated</span>` : ''}
-        </div>`;
-    } else {
-        html += `<div style="font-size:0.75rem;color:var(--green);margin-bottom:0.6rem">Gate complete — all venues visible</div>`;
+    const gatedCount = getGatedVenueIds().size;
+    if (gatedCount > 0) {
+        html += `<div style="font-size:0.75rem;color:var(--red);margin-bottom:0.6rem">${gatedCount} venues hidden until reports confirmed</div>`;
     }
     if (unique.length === 0) {
         html += '<div style="text-align:center;padding:1rem;color:var(--text-dim);font-size:0.85rem">No reports yet.</div>';

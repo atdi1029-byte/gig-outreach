@@ -159,13 +159,8 @@ verify_and_push() {
             ebase=$(echo "$email_domain" | sed 's/\..*//')
             if [ "$email_domain" != "$VENUE_DOMAIN" ] && [ "$ebase" != "$vbase" ] && \
                ! echo "$vbase" | grep -qi "$ebase" && ! echo "$ebase" | grep -qi "$vbase"; then
-                if [ "$source" = "apollo" ] || [ "$source" = "apollo_api" ] || [ "$source" = "linkedin" ]; then
-                    log "  [WARN] $email — off-domain (venue: $VENUE_DOMAIN) — keeping (source: $source)"
-                else
-                    log "  [REJECT] $email — off-domain (venue: $VENUE_DOMAIN) — discarding"
-                    echo "FLAG:Off-domain email rejected: $email (domain $email_domain vs venue $VENUE_DOMAIN)" >> /tmp/pipeline_flags.txt
-                    return
-                fi
+                log "  [WARN] $email — off-domain (venue: $VENUE_DOMAIN) — keeping (source: $source)"
+                echo "FLAG:Off-domain email kept: $email (domain $email_domain vs venue $VENUE_DOMAIN, source: $source)" >> /tmp/pipeline_flags.txt
             fi
         fi
     fi

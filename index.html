@@ -2139,7 +2139,7 @@ function toggleTopPicks() {
 function renderTopPicks(picks) {
     const el = document.getElementById('topPicksList');
     const badge = document.getElementById('topPicksBadge');
-    const all = picks || [];
+    const all = (picks || []).filter(p => !isVenueGated((p.venue || p).venue_id));
     badge.textContent = all.length;
 
     if (all.length === 0) {

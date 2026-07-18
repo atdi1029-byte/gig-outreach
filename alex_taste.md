@@ -29,10 +29,11 @@ The pattern is clear across every top-rated venue: **educated, wealthy, cultured
 
 ### Tier 1 — Actively Hunt For These
 1. **Upscale French/European restaurants** — Best audience match. Educated, cultured crowd. Dark intimate settings. (L'Auberge, Bistrot Lepic, Elkridge Furnace Inn)
-2. **Historic private clubs** — Prestigious, intelligent members. No tips but great pay. (University Club, Maryland Club, Cosmos Club)
-3. **Upscale country clubs with wine dinners** — Rich educated crowd, recurring bookings. (Army Navy, Belle Haven, River Bend)
-4. **Luxury boutique hotels** — Upscale travelers, great ambiance. Restaurant/lounge setting preferred. (Inn at Perry Cabin, Conrad DC)
-5. **Mountain/architectural wineries** — Beautiful settings attract better crowds. (Big Cork, Good Spirit Farm, Windridge, Black Ankle)
+2. **Spanish restaurants & wine bars** — "Any Spanish stuff is a huge win." Barcelona Wine Bar = "amazing fit." Tapas bars, Spanish wine bars, Latin-European fusion. Classical/Latin guitar is a natural match.
+3. **Historic private clubs** — Prestigious, intelligent members. No tips but great pay. (University Club, Maryland Club, Cosmos Club)
+4. **Upscale country clubs with wine dinners** — Rich educated crowd, recurring bookings. (Army Navy, Belle Haven, River Bend)
+5. **Luxury boutique hotels** — Upscale travelers, great ambiance. Restaurant/lounge setting preferred. (Inn at Perry Cabin, Conrad DC)
+6. **Mountain/architectural wineries** — Beautiful settings attract better crowds. (Big Cork, Good Spirit Farm, Windridge, Black Ankle)
 
 ### Tier 2 — Good Calendar Fillers
 6. **Nice restaurants in upscale areas** — Alexandria VA, Reston, St Michaels, Bethesda. Area matters as much as venue. (Royal Restaurant, Great Sage, Woodberry Kitchen)
@@ -131,13 +132,14 @@ The pattern is clear across every top-rated venue: **educated, wealthy, cultured
 1. **Luxury hotels** — Ritz-Carlton, Four Seasons, Conrad, Waldorf, Salamander, boutique hotels with restaurants/lounges
 2. **Historic fine dining** — Milton Inn-type gems, old inns with character, chef-driven restaurants in historic buildings
 3. **French/European bistros** — intimate, dark, romantic, educated clientele (Bistrot Lepic was 9/10)
-4. **Elite private clubs** — university clubs, city clubs, yacht clubs, Cosmos Club-type venues in every major city
-5. **Wine bars** — in wealthy neighborhoods, educated crowd, NOT sports bars that serve wine
-6. **Upscale country clubs with wine dinners** — Belle Haven, Army Navy, River Bend style
-7. **Mountain wineries with great architecture** — Big Cork, Good Spirit Farm style, beautiful settings
-8. **Corporate events / law firms** — DC/Bethesda/Tysons corridor, holiday parties, firm retreats
-9. **Upscale Latin/international restaurants** — Alma Cocina Latina type, cultured crowd
-10. **Italian fine dining** — not casual Italian, white tablecloth
+4. **Spanish restaurants & wine bars** — tapas bars, Spanish wine bars, Latin-European fusion. Classical/Latin guitar is a PERFECT match. (Barcelona Wine Bar = "amazing fit")
+5. **Elite private clubs** — university clubs, city clubs, yacht clubs, Cosmos Club-type venues in every major city
+6. **Wine bars** — in wealthy neighborhoods, educated crowd, NOT sports bars that serve wine
+7. **Upscale country clubs with wine dinners** — Belle Haven, Army Navy, River Bend style
+8. **Mountain wineries with great architecture** — Big Cork, Good Spirit Farm style, beautiful settings
+9. **Corporate events / law firms** — DC/Bethesda/Tysons corridor, holiday parties, firm retreats
+10. **Upscale Latin/international restaurants** — Alma Cocina Latina type, cultured crowd
+11. **Italian fine dining** — not casual Italian, white tablecloth
 11. **Museum event spaces** — maritime museums, art galleries, cultural centers
 12. **Upscale restaurants in wealthy areas** — Georgetown, Alexandria, Bethesda, Reston, Main Line PA
 13. **Historic inns and B&Bs** — Eastern Shore, Shenandoah Valley, Brandywine Valley

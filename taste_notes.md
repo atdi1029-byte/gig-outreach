@@ -515,3 +515,68 @@
 - **Leesburg/Loudoun emerging** — Tuscarora Mill joins Lightfoot Restaurant as Leesburg fine dining targets. The 8 batch 1 venues from this run are all Leesburg — a heavy investment in the area.
 - **All 10 votes positive** — third consecutive batch with zero negatives. Taste profile is highly calibrated.
 - **All prior patterns hold** — French/European, Italian, wine bars, clubs, DC hotels, historic venues.
+
+---
+
+## Jul 18, 2026 — Post-Pipeline Review (12 new votes)
+
+### Woodholme Country Club (country_club, Baltimore MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Country club in Baltimore area. Another club thumbs up.
+- **Action:** Added to taste_venues.txt.
+
+### The Elkridge Club (country_club, Baltimore MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Historic private club in Baltimore — prestigious, old-money institution.
+- **Action:** Added to taste_venues.txt. Baltimore elite clubs = strong fit.
+
+### Green Spring Valley Hunt Club (private_club, Baltimore MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Exclusive private hunt club in Green Spring Valley — very wealthy area.
+- **Action:** Added to taste_venues.txt. Hunt clubs joining country clubs as tier 1.
+
+### Le Yaca French Restaurant (restaurant, Williamsburg VA) — POSITIVE
+> "French restaurant"
+- **Extracted:** French restaurant — simple confirmation. Note: Williamsburg may be outside radius but user still voted positive on quality.
+- **Action:** Added to taste_venues.txt. French = always positive.
+
+### Chez Billy Sud (restaurant, Georgetown DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French restaurant in Georgetown. Already a strong neighborhood.
+- **Action:** Added to taste_venues.txt. Georgetown French = bulletproof.
+
+### La Piquette (restaurant, DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French restaurant in DC.
+- **Action:** Added to taste_venues.txt.
+
+### Cafe du Parc (restaurant, DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** French cafe/restaurant in DC.
+- **Action:** Added to taste_venues.txt.
+
+### Barcelona Wine Bar (restaurant, DC) — POSITIVE
+> "Fancy Spanish wine bar is an amazing fit!"
+- **Extracted:** Spanish wine bar — "amazing fit" is strong signal. NEW: Spanish wine bars join French/Italian as positive cuisine categories.
+- **Action:** Added to taste_venues.txt. Spanish wine bars = new tier 2+ category.
+
+### The Tower Club Tysons (restaurant/private_club, Tysons VA) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Private business club in Tysons — upscale corporate crowd.
+- **Action:** Added to taste_venues.txt. Business/tower clubs joining private clubs as targets.
+
+### Bistro 112 (restaurant, Shepherdstown WV) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Bistro in Shepherdstown — WV college town at edge of radius.
+- **Action:** Added to taste_venues.txt. Shepherdstown viable for bistro-quality venues.
+
+### Takumi Japanese Bistro (restaurant, Bethesda MD) — NEGATIVE (thumbs down, no notes)
+- **Extracted:** Japanese restaurant = wrong fit. Sushi/ramen atmosphere doesn't match classical guitar.
+- **Action:** Not added. Japanese restaurants = skip.
+
+### Takumi Japanese Bistro & Bar (restaurant, Bethesda MD) — NEGATIVE (thumbs down, no notes)
+- **Extracted:** Same chain/concept, same negative signal. Japanese dining confirmed as poor fit.
+- **Action:** Not added. Two separate Takumi entries both negative = strong signal against Japanese restaurants.
+
+---
+
+## Updated Patterns (Jul 18)
+- **Spanish wine bars = NEW positive category** — Barcelona Wine Bar "amazing fit." Adds to French/Italian/European as confirmed cuisines.
+- **Baltimore elite clubs cluster** — Woodholme, Elkridge Club, Green Spring Valley Hunt Club all positive in one batch. Baltimore private clubs = hunt aggressively.
+- **Business/tower clubs viable** — Tower Club Tysons positive. Corporate private clubs (not just country clubs) are targets.
+- **Japanese restaurants = skip** — two separate Takumi venues both negative. Japanese cuisine doesn't match classical guitar vibe.
+- **French still undefeated** — Chez Billy Sud, La Piquette, Cafe du Parc, Le Yaca all positive. ZERO negative French votes across all time.
+- **10 of 12 positive** — two negatives are both Japanese restaurants (same concept). Taste profile remains highly calibrated.
+- **All prior patterns hold** — French/European, Italian, Spanish wine bars, wine bars, clubs, DC hotels, historic venues.

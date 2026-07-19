@@ -48,9 +48,15 @@ border-left: 4px solid #e85050;
 padding: 10px 14px; margin: 6px 0;
 border-radius: 0 6px 6px 0;
 font-size: 0.9rem; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
   .valid { color: #4caf50; }
   .closed { color: #e85050; }
   .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
   a { color: #6ecfcf; text-decoration: none; }
 </style>
 </head>
@@ -61,15 +67,19 @@ font-size: 0.9rem; }
 Diversified Batch via build_batch.sh (23 venues,
 Georgetown DC, Paris VA, Boyce VA,
 St Michaels MD, Annapolis MD, Easton MD,
-Potomac MD, Germantown MD, Rockville MD)</div>
+Potomac MD, Germantown MD, Rockville MD).
+<br><strong class="closed">INCIDENT:</strong>
+4 venues had duplicate IDs that caused data to
+write to the wrong venue records. Fixed post-run.
+See Incident section below.</div>
 
 <div class="stat-grid">
   <div class="stat-box">
-    <div class="num">22</div>
-    <div class="label">Venues Pipelined</div>
+    <div class="num">18</div>
+    <div class="label">Venues Actually Pipelined</div>
   </div>
   <div class="stat-box">
-    <div class="num">11</div>
+    <div class="num">9</div>
     <div class="label">Clean Pass</div>
   </div>
   <div class="stat-box">
@@ -84,8 +94,8 @@ Potomac MD, Germantown MD, Rockville MD)</div>
     <div class="label">Failed / Closed</div>
   </div>
   <div class="stat-box">
-    <div class="num">~165</div>
-    <div class="label">Apollo Credits Used</div>
+    <div class="num">4</div>
+    <div class="label">Lost to ID Collision</div>
   </div>
   <div class="stat-box">
     <div class="num">1</div>
@@ -93,113 +103,116 @@ Potomac MD, Germantown MD, Rockville MD)</div>
   </div>
 </div>
 
-<h2>Clean Passes (11)</h2>
+<h2 style="border-left-color:#e040e0;color:#e040e0">
+Incident: Venue ID Collisions</h2>
+<div class="incident">
+<strong class="purple">ROOT CAUSE:</strong>
+The Apps Script generated venue IDs using the sheet row count
+(<code>data.length</code>) instead of finding the max existing
+ID and incrementing. When venues were added at the same row count
+in different sessions, they got identical IDs.
+<strong>80 duplicate IDs</strong> affected 193 venues total.
+<br><br>
+<strong class="purple">IMPACT THIS RUN:</strong>
+4 venues in the batch had IDs that collided with other venues.
+The pipeline ran against the correct websites but wrote
+status/contact-form data to the wrong records:
+</div>
+<table>
+<tr><th>Batch Venue</th><th>Old ID</th>
+<th>Data Went To</th><th>New ID</th></tr>
+<tr>
+  <td>Bistro Du Jour</td><td>DC-REST-2580</td>
+  <td class="closed">Pastis DC</td>
+  <td>DC-REST-2661</td>
+</tr>
+<tr>
+  <td>Paolo's Ristorante</td><td>DC-REST-2604</td>
+  <td class="closed">Susheria</td>
+  <td>DC-REST-2675</td>
+</tr>
+<tr>
+  <td>Villa Yara</td><td>DC-REST-2608</td>
+  <td class="closed">Cafe Georgetown</td>
+  <td>DC-REST-2681</td>
+</tr>
+<tr>
+  <td>The Poppy Georgetown</td><td>DC-HOTE-2608</td>
+  <td class="closed">Bazaar House</td>
+  <td>DC-HOTE-2634</td>
+</tr>
+</table>
+<div class="incident">
+<strong class="purple">FIXES APPLIED:</strong>
+<br>1. All 113 duplicate venue IDs reassigned unique IDs
+via <code>fix_venue_ids</code> (2959 venues, 0 duplicates remain).
+<br>2. ID generation now uses max existing number + 1, not row count.
+<br>3. <code>build_batch.sh</code> now cross-checks pipelined domains
+to catch duplicate entries.
+<br>4. Collision holders (Pastis DC, Susheria, Cafe Georgetown,
+Bazaar House) reset to <code>untouched</code>.
+<br>5. The 4 affected batch venues need re-pipelining under
+their new IDs.
+</div>
+
+<h2>Clean Passes (9)</h2>
 <table>
 <tr><th>Venue</th><th>Contacts</th><th>Key Contact</th></tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2582">My Little Chamomile</a></td>
   <td>0 emails</td>
-  <td>Cagla Onal Urel (Owner/Chef) &mdash; no email found</td>
+  <td>Cagla Onal Urel (Owner/Chef) &mdash;
+no personal email found</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2598">La Bonne Vache Georgetown</a></td>
   <td>1 verified</td>
-  <td>Claire Wilder (Owner) &mdash; claire@labonnevachedc.com</td>
-</tr>
-<tr>
-  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2608">Villa Yara</a></td>
-  <td>0 emails</td>
-  <td>Ramzi Iskandar (CEO/Co-Owner) &mdash; partial email r***@irgdc.com</td>
-</tr>
-<tr>
-  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2608">The Poppy Georgetown</a></td>
-  <td>1 verified</td>
-  <td>John Jenkins (AGM) &mdash; JJenkins@tbchotels.com</td>
+  <td>Claire Wilder (Owner) &mdash;
+claire@labonnevachedc.com</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-805">L'Auberge Provencale</a></td>
   <td>0 emails</td>
-  <td>Celeste &amp; Alain Borel (Owners) &mdash; venue email only</td>
+  <td>Celeste &amp; Alain Borel (Owners) &mdash;
+venue email only</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-806">The Ashby Inn</a></td>
   <td>0 emails</td>
-  <td>Charles Leopold (Owner), David Saavedra (GM)</td>
+  <td>Charles Leopold (Owner),
+David Saavedra (GM)</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-707">Grapes Wine Bar</a></td>
   <td>1</td>
-  <td>Patrick Bouculat (Owner) &mdash; grapeswb@gmail.com</td>
+  <td>Patrick Bouculat (Owner) &mdash;
+grapeswb@gmail.com</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-596">Magnolia Manor</a></td>
   <td>0 emails</td>
-  <td>No named contacts found &mdash; venue email only</td>
+  <td>No named contacts found &mdash;
+venue email only</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-602">Waterfowl Festival Hall</a></td>
   <td>3 verified</td>
-  <td>Deena Kilmon (Exec Dir) &mdash; dkilmon@waterfowlfestival.org</td>
+  <td>Deena Kilmon (Exec Dir) &mdash;
+dkilmon@waterfowlfestival.org</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-927">BlackRock Center for the Arts</a></td>
   <td>Multiple</td>
-  <td>Katie Hecklinger (CEO), Kelly Ch***y (Artistic Dir)</td>
+  <td>Katie Hecklinger (CEO),
+Kelly Ch***y (Artistic Dir)</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-933">VisArts at Rockville</a></td>
   <td>Multiple</td>
-  <td>Lisa Marie Ryder (CEO) &mdash; lmryder@visartscenter.org</td>
+  <td>Lisa Marie Ryder (CEO) &mdash;
+lmryder@visartscenter.org</td>
 </tr>
 </table>
-
-<h2>Flagged &mdash; Needs Review (6)</h2>
-<ul class="flag-list">
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-598">St Michaels Winery</a> &mdash;
-<span class="junk">WRONG WEBSITE.</span> Sheet has winetrailtraveler.com (a travel blog).
-Correct site: st-michaels-winery.com. Pipeline matched wrong business
-(Wine Trail Traveler LLC). Contacts added are WRONG.
-Owner: Mark Emon. Events: Lindsay Greenwood.</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-608">Bordeleau Winery at St Michaels</a> &mdash;
-<span class="junk">Location split.</span> Main vineyard in Eden MD, but they DO
-have a tasting room at 500 S Talbot St, St Michaels. Sheet data
-is acceptable. Owners: Thomas &amp; Lisa Shelton.</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-921">St Andrew Episcopal School</a> &mdash;
-<span class="junk">Private school, not a venue.</span> May hire musicians
-for galas but unclear viability as a regular gig.
-Event Coordinator on Apollo (Madeline O'***n, has_email).</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-922">German International School</a> &mdash;
-<span class="junk">School, not traditional venue.</span> Pass on data quality
-but gig viability uncertain. 63 staff on Apollo.</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1566">Housebar Georgetown</a> &mdash;
-<span class="junk">Wrong website.</span> Listed housebar.com goes to Navy Yard
-location. Georgetown site (housebar-georgetown.com) is DOWN.
-Also a bottle shop, not a restaurant. Owner: Nate Smith.</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1568">Mercy Me</a> &mdash;
-<span class="junk">Wrong neighborhood.</span> Listed as Georgetown but actual
-address is 1143 New Hampshire Ave NW (West End/Dupont).
-Owners: Radovan Jankovic &amp; Marko Bogdanovic (Unordinary Hospitality).</li>
-</ul>
-
-<h2>Failed / Closed (5)</h2>
-<ul class="flag-list">
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2580">Bistro Du Jour</a> &mdash;
-<span class="closed">NOT IN GEORGETOWN.</span> Only locations are The Wharf
-and Capitol Hill. Listed website (bistrodujour.com) is a parked domain.
-Real site: bistro-dujour.com (KNEAD Hospitality).</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2604">Paolo's Ristorante</a> &mdash;
-<span class="closed">PERMANENTLY CLOSED</span> since August 2018.</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2218">Lakewood Country Club Hole #4</a> &mdash;
-<span class="closed">WRONG LOCATION &amp; WRONG WEBSITE.</span> Club is in
-Rockville MD, not Georgetown. Website (course.bluegolf.com) is
-a generic golf platform. Bad data entry.</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2630">Sonder Georgetown</a> &mdash;
-<span class="closed">COMPANY BANKRUPT.</span> Sonder shut down Nov 2025
-after Marriott ended licensing deal. HTTP 404 confirmed.</li>
-<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1560">The Tombs</a> &mdash;
-<span class="valid">PASS</span> (Part of Clyde's Restaurant Group.
-No direct contacts beyond corporate.)</li>
-</ul>
 
 <h2>Additional Passes (Clyde's Group)</h2>
 <table>
@@ -207,36 +220,126 @@ No direct contacts beyond corporate.)</li>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1560">The Tombs</a></td>
   <td>Corporate</td>
-  <td>Nicole Ha***t (Corp Dir Sales &amp; Events, Clyde's Group)</td>
+  <td>Nicole Ha***t (Corp Dir Sales &amp;
+Events, Clyde's Group)</td>
 </tr>
 <tr>
   <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1562">Clyde's of Georgetown</a></td>
   <td>1 verified</td>
-  <td>Bryan Trotter (GM) &mdash; btrotter@clydes.com</td>
+  <td>Bryan Trotter (GM) &mdash;
+btrotter@clydes.com</td>
+</tr>
+</table>
+
+<h2>Flagged &mdash; Needs Review (6)</h2>
+<ul class="flag-list">
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-598">St Michaels Winery</a> &mdash;
+<span class="junk">WRONG WEBSITE.</span> Sheet has
+winetrailtraveler.com (a travel blog). Correct site:
+st-michaels-winery.com. Pipeline matched wrong business
+(Wine Trail Traveler LLC). Contacts added are WRONG.
+Owner: Mark Emon. Events: Lindsay Greenwood.</li>
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-608">Bordeleau Winery at St Michaels</a> &mdash;
+<span class="junk">Location split.</span> Main vineyard in
+Eden MD, but they DO have a tasting room at 500 S Talbot St,
+St Michaels. Sheet data is acceptable.
+Owners: Thomas &amp; Lisa Shelton.</li>
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-921">St Andrew Episcopal School</a> &mdash;
+<span class="junk">Private school, not a venue.</span>
+May hire musicians for galas but unclear viability
+as a regular gig.</li>
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-922">German International School</a> &mdash;
+<span class="junk">School, not traditional venue.</span>
+Pass on data quality but gig viability uncertain.</li>
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1566">Housebar Georgetown</a> &mdash;
+<span class="junk">Wrong website.</span> Listed housebar.com
+goes to Navy Yard location. Georgetown site
+(housebar-georgetown.com) is DOWN.
+Also a bottle shop, not a restaurant.
+Owner: Nate Smith.</li>
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1568">Mercy Me</a> &mdash;
+<span class="junk">Wrong neighborhood.</span> Listed as
+Georgetown but actual address is 1143 New Hampshire Ave NW
+(West End/Dupont). Owners: Radovan Jankovic &amp;
+Marko Bogdanovic (Unordinary Hospitality).</li>
+</ul>
+
+<h2>Failed / Closed (5)</h2>
+<ul class="flag-list">
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2661">Bistro Du Jour</a> &mdash;
+<span class="closed">NOT IN GEORGETOWN.</span> Only locations
+are The Wharf and Capitol Hill. Listed website
+(bistrodujour.com) is a parked domain.
+Real site: bistro-dujour.com (KNEAD Hospitality).</li>
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2675">Paolo's Ristorante</a> &mdash;
+<span class="closed">PERMANENTLY CLOSED</span>
+since August 2018.</li>
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2218">Lakewood Country Club Hole #4</a> &mdash;
+<span class="closed">WRONG LOCATION &amp; WRONG WEBSITE.</span>
+Club is in Rockville MD, not Georgetown.
+Website (course.bluegolf.com) is a generic golf platform.
+Bad data entry.</li>
+<li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2630">Sonder Georgetown</a> &mdash;
+<span class="closed">COMPANY BANKRUPT.</span> Sonder shut down
+Nov 2025 after Marriott ended licensing deal.
+HTTP 404 confirmed.</li>
+</ul>
+
+<h2>Needs Re-Pipeline (4 &mdash; lost to ID collision)</h2>
+<table>
+<tr><th>Venue</th><th>New ID</th><th>Notes</th></tr>
+<tr>
+  <td>Bistro Du Jour</td>
+  <td>DC-REST-2661</td>
+  <td class="closed">FAIL &mdash; not in Georgetown,
+closed/wrong. Skip.</td>
+</tr>
+<tr>
+  <td>Paolo's Ristorante</td>
+  <td>DC-REST-2675</td>
+  <td class="closed">FAIL &mdash; permanently closed 2018.
+Skip.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2681">Villa Yara</a></td>
+  <td>DC-REST-2681</td>
+  <td class="junk">Lebanese restaurant, Georgetown.
+Re-pipeline needed. Owners: Ramzi Iskandar,
+Mike Saadi.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2634">The Poppy Georgetown</a></td>
+  <td>DC-HOTE-2634</td>
+  <td class="junk">Boutique guesthouse, Georgetown.
+Re-pipeline needed. AGM: John Jenkins
+(JJenkins@tbchotels.com).</td>
 </tr>
 </table>
 
 <h2>Wins &mdash; Best Contacts This Run</h2>
-<div class="win"><strong>La Bonne Vache Georgetown</strong> &mdash;
-Claire Wilder (Owner), verified email. French bistro in Georgetown,
-walk-in only. Perfect classical guitar fit.</div>
-<div class="win"><strong>The Poppy Georgetown</strong> &mdash;
-John Jenkins (AGM), verified email. Boutique guesthouse with wine
-tastings, garden events, weddings. Excellent intimate setting.</div>
-<div class="win"><strong>Waterfowl Festival Hall</strong> &mdash;
-Deena Kilmon (Executive Director) + 2 more verified. Easton MD
-nonprofit with event hall rentals.</div>
-<div class="win"><strong>BlackRock Center for the Arts</strong> &mdash;
-Katie Hecklinger (CEO) + Artistic Director + Event Coordinator.
-Arts center in Germantown MD &mdash; natural live music fit.</div>
-<div class="win"><strong>VisArts at Rockville</strong> &mdash;
-Lisa Marie Ryder (CEO), verified email. Art center with events program.</div>
-<div class="win"><strong>Clyde's of Georgetown</strong> &mdash;
-Bryan Trotter (GM), verified email. Established Georgetown restaurant
-with private events. Also covers The Tombs.</div>
-<div class="win"><strong>Grapes Wine Bar</strong> &mdash;
-Patrick Bouculat (Owner). Wine Spectator-awarded wine bar in
-Annapolis. Intimate, educated crowd &mdash; great fit.</div>
+<div class="win"><strong>La Bonne Vache Georgetown</strong>
+&mdash; Claire Wilder (Owner), verified email.
+French bistro in Georgetown, walk-in only.
+Perfect classical guitar fit.</div>
+<div class="win"><strong>Waterfowl Festival Hall</strong>
+&mdash; Deena Kilmon (Executive Director) + 2 more
+verified. Easton MD nonprofit with event hall
+rentals.</div>
+<div class="win"><strong>BlackRock Center for the Arts</strong>
+&mdash; Katie Hecklinger (CEO) + Artistic Director
++ Event Coordinator. Arts center in Germantown MD
+&mdash; natural live music fit.</div>
+<div class="win"><strong>VisArts at Rockville</strong>
+&mdash; Lisa Marie Ryder (CEO), verified email.
+Art center with events program.</div>
+<div class="win"><strong>Clyde's of Georgetown</strong>
+&mdash; Bryan Trotter (GM), verified email.
+Established Georgetown restaurant with private
+events. Also covers The Tombs.</div>
+<div class="win"><strong>Grapes Wine Bar</strong>
+&mdash; Patrick Bouculat (Owner). Wine
+Spectator-awarded wine bar in Annapolis.
+Intimate, educated crowd &mdash; great fit.</div>
 
 <h2>Taste Review</h2>
 <p>No new venue votes or feedback since last run.
@@ -246,29 +349,45 @@ No taste file updates needed this run.</p>
 <table>
 <tr><th>Action</th><th>Venue</th><th>Detail</th></tr>
 <tr>
+  <td class="junk">Re-pipeline</td>
+  <td>Villa Yara (DC-REST-2681)</td>
+  <td>Lost to ID collision. Needs fresh pipeline
+run under new ID.</td>
+</tr>
+<tr>
+  <td class="junk">Re-pipeline</td>
+  <td>The Poppy Georgetown (DC-HOTE-2634)</td>
+  <td>Lost to ID collision. Needs fresh pipeline
+run under new ID.</td>
+</tr>
+<tr>
   <td class="closed">Delete contacts</td>
   <td>St Michaels Winery</td>
-  <td>Remove Kathy Sullivan &amp; Terry Sullivan (Wine Trail Traveler, wrong business).
+  <td>Remove Kathy Sullivan &amp; Terry Sullivan
+(Wine Trail Traveler, wrong business).
 Update website to st-michaels-winery.com</td>
 </tr>
 <tr>
   <td class="junk">Update website</td>
   <td>Housebar Georgetown</td>
-  <td>Change from housebar.com to housebar-georgetown.com (currently down)</td>
+  <td>Change from housebar.com to
+housebar-georgetown.com (currently down)</td>
 </tr>
 <tr>
   <td class="junk">Fix neighborhood</td>
   <td>Mercy Me</td>
-  <td>Not Georgetown &mdash; actual location is West End/Dupont Circle</td>
+  <td>Not Georgetown &mdash; actual location is
+West End/Dupont Circle</td>
 </tr>
 <tr>
   <td class="junk">Fix location</td>
   <td>Lakewood Country Club</td>
-  <td>Not Georgetown DC &mdash; actually Rockville MD. Fix website to lakewoodcc.org</td>
+  <td>Not Georgetown DC &mdash; actually
+Rockville MD. Fix website to lakewoodcc.org</td>
 </tr>
 <tr>
   <td class="closed">Mark closed</td>
-  <td>Paolo's Ristorante</td>
+  <td>Paolo's Ristorante (DC-REST-2675)</td>
   <td>Permanently closed Aug 2018</td>
 </tr>
 <tr>

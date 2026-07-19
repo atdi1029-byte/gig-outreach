@@ -64,6 +64,17 @@ try:
 except:
     pass
 
+# Build set of website domains already pipelined (any status != untouched)
+# This catches duplicate venue entries with different IDs but same website
+already_pipelined_domains = set()
+for v in venues:
+    if v.get('status', 'untouched') != 'untouched':
+        w = v.get('website', '').lower()
+        w = w.replace('https://','').replace('http://','').replace('www.','')
+        domain = w.split('/')[0].strip()
+        if domain and len(domain) > 3:
+            already_pipelined_domains.add(domain)
+
 # Past gig names (lowercase for matching)
 past_gig_names = set()
 for g in gigs:
@@ -97,6 +108,8 @@ target_cats = {
 skip_names = [
     'elks lodge', 'moose lodge', 'vfw', 'american legion',
     'knights of columbus', 'peninsula sailors', 'sail ',
+    'school', 'academy', 'seminary', 'university',
+    'college', 'montessori', 'preschool',
     'mcdonalds', 'taco bell', 'subway', 'chipotle',
     'hookah', 'karaoke', 'strip club'
 ]
@@ -180,6 +193,11 @@ for v in venues:
     web_domain = website.lower().replace('https://','').replace('http://','').replace('www.','').split('/')[0]
     if any(j in web_domain for j in junk_websites):
         skipped_junk_site += 1
+        continue
+    # Reject if this domain was already pipelined (catches duplicate
+    # venue entries with different IDs but same business)
+    if web_domain in already_pipelined_domains:
+        skipped_already_reported += 1
         continue
     # Reject duplicate websites (same venue listed multiple times)
     web_key = web_domain.split('.')[0]  # e.g. "cbmm" from "cbmm.org"

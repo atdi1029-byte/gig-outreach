@@ -46,6 +46,24 @@ with open('/tmp/bb_gigs.json') as f:
 with open('/tmp/bb_dashboard.json') as f:
     dash = json.load(f)
 
+# Load venue IDs from recent reports (manifest.json)
+# so we never re-pipeline a venue already in a report
+import os
+script_dir = os.path.dirname(os.path.abspath(__file__)) \
+    if '__file__' in dir() else os.getcwd()
+manifest_path = os.path.join(script_dir, 'reports', 'manifest.json')
+if not os.path.exists(manifest_path):
+    manifest_path = 'reports/manifest.json'
+already_reported = set()
+try:
+    with open(manifest_path) as f:
+        manifest = json.load(f)
+    for entry in manifest:
+        for vid in entry.get('venue_ids', []):
+            already_reported.add(vid)
+except:
+    pass
+
 # Past gig names (lowercase for matching)
 past_gig_names = set()
 for g in gigs:
@@ -63,6 +81,7 @@ for c in dash.get('contacts', []):
 print(f"Total venues: {len(venues)}")
 print(f"Past gigs: {len(past_gig_names)}")
 print(f"Venues with existing contacts: {len(venues_with_contacts)}")
+print(f"Already in reports: {len(already_reported)}")
 
 target_states = {'MD', 'VA', 'DC', 'PA', 'DE', 'WV'}
 target_cats = {
@@ -131,6 +150,7 @@ skipped_chain = 0
 skipped_radius = 0
 skipped_blank_city = 0
 skipped_junk_site = 0
+skipped_already_reported = 0
 skipped_dupe_site = 0
 
 # Track websites to detect duplicate venues (same website = same venue)
@@ -146,6 +166,9 @@ for v in venues:
         skipped_gig += 1
         continue
     vid = v.get('venue_id', '')
+    if vid in already_reported:
+        skipped_already_reported += 1
+        continue
     if vid in venues_with_contacts:
         skipped_has_contacts += 1
         continue
@@ -241,6 +264,7 @@ for v in venues:
 print(f"Filtered pool: {len(pool)}")
 print(f"  Skipped (status): {skipped_status}")
 print(f"  Skipped (past gig): {skipped_gig}")
+print(f"  Skipped (already reported): {skipped_already_reported}")
 print(f"  Skipped (has contacts): {skipped_has_contacts}")
 print(f"  Skipped (no website): {skipped_nosite}")
 print(f"  Skipped (out of area): {skipped_state}")

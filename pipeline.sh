@@ -713,9 +713,8 @@ for url in list(set(re.findall(r'https?://[^\s\"<>]+', json.dumps(d)))):
 
         if [ -n "$loc_found" ]; then
             log "  [LOCATION] Re-scraping location page: $loc_found"
-            # Update venue website to location-specific URL
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=website&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$loc_found")" > /dev/null
-            website="$loc_found"
+            # NOTE: Do NOT update venue website — keep the original root URL.
+            # Only use the location page for additional scraping.
 
             # Re-scrape the location page
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"${loc_found}\""
@@ -2070,6 +2069,8 @@ for p in data:
     name = p['name'].strip()
     name_lower = name.lower()
     if name_lower in known_names or name_lower == '?': continue
+    # Reject masked/obfuscated names (e.g. "General Ma***r", "LinkedIn Member")
+    if '***' in name or name_lower == 'linkedin member': continue
     # Split name into first/last
     parts = name.split()
     if len(parts) < 2: continue

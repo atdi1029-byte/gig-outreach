@@ -845,6 +845,28 @@ function updateVenue_(params) {
   }
   if (colIdx === -1) return jsonResponse_({ status: 'error', message: 'Unknown field: ' + field });
 
+  // Validate website updates — reject garbage URLs
+  if (field === 'website' && value) {
+    var valLower = value.toLowerCase();
+    // Reject favicon/image URLs
+    if (/\.(ico|png|jpg|jpeg|gif|svg|css|js)(\?|$)/i.test(value)) {
+      return jsonResponse_({ status: 'error', message: 'Rejected website update — looks like an asset URL: ' + value });
+    }
+    // Reject pipe-separated junk (multiple URLs crammed together)
+    if (value.indexOf('|') !== -1) {
+      return jsonResponse_({ status: 'error', message: 'Rejected website update — contains pipe characters: ' + value });
+    }
+    // Reject obvious non-venue URLs
+    var junkDomains = ['facebook.com', 'instagram.com', 'yelp.com', 'tripadvisor.com',
+      'google.com', 'wikipedia.org', 'twitter.com', 'youtube.com', 'linkedin.com',
+      'zoominfo.com', 'wix.com', 'squarespace.com', 'fandom.com', 'res-menu.net'];
+    for (var jd = 0; jd < junkDomains.length; jd++) {
+      if (valLower.indexOf(junkDomains[jd]) !== -1) {
+        return jsonResponse_({ status: 'error', message: 'Rejected website update — junk domain: ' + value });
+      }
+    }
+  }
+
   // Validate social URLs
   if ((field === 'facebook' || field === 'instagram') && value) {
     if (value.indexOf('http') !== 0 && value.indexOf('//') !== 0) {

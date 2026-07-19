@@ -175,7 +175,7 @@ verify_and_push() {
     if [ -z "$zb_status" ]; then zb_status="unknown"; fi
     log "  $email → $zb_status"
 
-    if [ "$zb_status" = "valid" ] || [ "$zb_status" = "invalid" ] || [ "$zb_status" = "catch-all" ] || [ "$zb_status" = "unknown" ]; then
+    if [ "$zb_status" = "valid" ] || [ "$zb_status" = "invalid" ] || [ "$zb_status" = "catch-all" ] || [ "$zb_status" = "unknown" ] || [ "$zb_status" = "do_not_mail" ]; then
         local encoded
         encoded=$(python3 -c "
 import urllib.parse

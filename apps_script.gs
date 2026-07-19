@@ -772,9 +772,8 @@ function addContact_(params) {
   if (FAKE_NAMES.indexOf(name.toLowerCase()) !== -1) {
     return jsonResponse_({ status: 'error', message: 'Contact name "' + name + '" looks like a role, not a person. Provide a real first and last name.' });
   }
-  if (name.toLowerCase() === emailLocal) {
-    return jsonResponse_({ status: 'error', message: 'Contact name "' + name + '" matches email prefix. Provide a real person name.' });
-  }
+  // Allow email prefix as name — pipeline uses this when no person name is available
+  // The contact still gets saved so the email is accessible in the app
 
   // Check for duplicate email at same venue
   var data = sheet.getDataRange().getValues();

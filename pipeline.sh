@@ -176,23 +176,31 @@ verify_and_push() {
     log "  $email → $zb_status"
 
     if [ "$zb_status" = "valid" ] || [ "$zb_status" = "invalid" ] || [ "$zb_status" = "catch-all" ] || [ "$zb_status" = "unknown" ] || [ "$zb_status" = "do_not_mail" ]; then
+        # If no name provided, use email prefix as display name
+        local save_name="$name"
+        if [ -z "$save_name" ]; then
+            save_name=$(echo "$email" | cut -d'@' -f1)
+        fi
         local encoded
         encoded=$(python3 -c "
 import urllib.parse
 print(urllib.parse.urlencode({
     'action': 'add_contact',
     'venue_id': '$venue_id',
-    'name': '''$name''',
+    'name': '''$save_name''',
     'title': '''$title''',
     'email': '$email',
     'source': '$source',
     'verified': '$zb_status'
 }))")
-        curl -sL "${APPS_SCRIPT_URL}?${encoded}" > /dev/null
-        if [ "$zb_status" = "valid" ]; then
-            log "  ✓ Added: ${name:-$email} <$email>"
+        local api_response
+        api_response=$(curl -sL "${APPS_SCRIPT_URL}?${encoded}")
+        if echo "$api_response" | grep -q '"status":"error"'; then
+            log "  [API ERROR] ${save_name:-$email}: $(echo "$api_response" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('message',''))" 2>/dev/null)"
+        elif [ "$zb_status" = "valid" ]; then
+            log "  ✓ Added: ${save_name:-$email} <$email>"
         else
-            log "  ⚠ Added (${zb_status}): ${name:-$email} <$email>"
+            log "  ⚠ Added (${zb_status}): ${save_name:-$email} <$email>"
         fi
         echo "1" >> /tmp/pipeline_contacts_count
         KNOWN_EMAILS="${KNOWN_EMAILS}|||$(echo "$email" | tr '[:upper:]' '[:lower:]')"

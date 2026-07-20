@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; July 20, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif;
+background: #0c1a22; color: #e0e0e0;
+padding: 40px; max-width: 900px;
+margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem;
+margin-bottom: 5px;
+border-bottom: 2px solid #6ecfcf;
+padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 30px;
+font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem;
+margin: 30px 0 15px;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse;
+margin: 15px 0; font-size: 0.9rem; }
+  th { background: #1a2e3a; color: #6ecfcf;
+padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px;
+border-bottom: 1px solid #1a2e3a; }
+  .stat-grid { display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a;
+border-radius: 8px; padding: 15px;
+text-align: center; }
+  .stat-box .num { font-size: 2rem;
+font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.85rem;
+color: #999; margin-top: 4px; }
+  .win { background: #1a2a1a;
+border-left: 4px solid #4caf50;
+padding: 10px 14px; margin: 8px 0;
+border-radius: 0 6px 6px 0; }
+  .win strong { color: #4caf50; }
+  .flag-list { list-style: none; padding: 0; }
+  .flag-list li { background: #2a1a1a;
+border-left: 4px solid #e85050;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+  .valid { color: #4caf50; }
+  .closed { color: #e85050; }
+  .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
+  .skip { color: #888; }
+  a { color: #6ecfcf; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">July 20, 2026 &mdash;
+Diversified batch via build_batch.sh (23 venues).
+Georgetown DC, McLean VA, Alexandria VA,
+Middleburg VA, Lancaster PA, Vienna VA,
+Luray VA, Easton MD, Bethesda MD.
+<br>Taste discovery added 290 new venues
+from 23 search queries before pipeline run.</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">23</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">10</div>
+    <div class="label">Clean Pass</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">41</div>
+    <div class="label">Apollo Credits Used</div>
+  </div>
+</div>
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">7</div>
+    <div class="label">Flagged / Issues</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">6</div>
+    <div class="label">Skip / Bad Fit</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">290</div>
+    <div class="label">Discovery Venues Added</div>
+  </div>
+</div>
+
+<!-- ==================== CLEAN PASS ==================== -->
+<h2>Clean Pass (10 venues)</h2>
+<table>
+<tr><th>Venue</th><th>Contacts</th>
+<th>Notes</th></tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2682">
+Ristorante Piccolo</a><br>
+<span class="skip">Georgetown DC | restaurant</span></td>
+<td>3 (no named contacts &mdash;
+gmail addresses, no person names)</td>
+<td>Italian restaurant in Georgetown.
+FB/IG verified (piccolodc). Pipeline found
+gmail addresses but no named people.
+Needs manual LinkedIn deep dive for
+owner/manager name.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2687">
+Angolo Ristorante Italiano</a><br>
+<span class="skip">Georgetown DC | restaurant</span></td>
+<td>2 (angolodc1@gmail.com likely venue email,
+pasha.one@gmail.com unknown)</td>
+<td>Italian restaurant in Georgetown.
+FB/IG verified (angolodc). Contact form on
+site. No named person contacts found.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-830">
+LCD &mdash; La C&ocirc;te D'Or Caf&eacute;</a><br>
+<span class="skip">McLean VA | restaurant</span></td>
+<td>1 real (jmichef59@gmail.com &mdash; likely
+chef/owner Jean-Michel). user@domain.com
+is junk placeholder.</td>
+<td>French cafe in McLean &mdash; great Tier 1
+target. FB/IG verified. jmichef59 email
+likely belongs to the chef. user@domain.com
+is a template placeholder &mdash; delete.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-PRIV-001">
+Hamilton Club of Lancaster</a><br>
+<span class="skip">Lancaster PA | private_club</span></td>
+<td>1 named: Vishal (GM)
+vishal@hamiltonclub.org</td>
+<td>Historic private club in Lancaster PA.
+FB/IG verified. Vishal the GM is a solid
+contact. Good Tier 1 target.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2633">
+Rosewood Washington DC</a><br>
+<span class="skip">Georgetown DC | hotel</span></td>
+<td>6 named: Megan Trudo (Dir Sales),
+Hannah Fleming (Marketing), Ligia Barros
+(Exec Pastry Chef), Paige Heim (Revenue
+Mgr), Jessika Cedano (Sales Coord),
+Dawit Abey (Bellperson)</td>
+<td>Luxury hotel in Georgetown. Excellent data.
+FB/IG verified. Megan Trudo (Dir of Sales)
+is the primary target. Strong Tier 1 venue.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-820">
+Mimslyn Inn</a><br>
+<span class="skip">Luray VA | hotel</span></td>
+<td>3 named: Alyssa Hummel (Dir Sales &amp;
+Marketing), Debbie Zinn (Admin Asst),
+Chad Shenk (Bellman)</td>
+<td>Historic inn in Luray VA (~1.5hr from DC).
+FB/IG verified. Alyssa Hummel is the
+primary target. Beautiful historic setting.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-ART_-2628">
+Guarisco Gallery</a><br>
+<span class="skip">Georgetown DC | art_gallery</span></td>
+<td>3 named: Laura Guarisco (Exec Director),
+R McLean (Curator), J Navarro (Art
+Preparator). Plus venue emails.</td>
+<td>Fine art gallery in Georgetown. FB/IG
+verified. Laura Guarisco (owner/director)
+is the primary target. Good events venue.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1782">
+Bethesda Blues Jazz Supper Club</a><br>
+<span class="skip">Bethesda MD | event</span></td>
+<td>5 named: Skip (Music Promoter),
+Michael (Production Mgr), Amber (Manager),
+Ryan (Bar Back), Jason (Food Service).
+box.office@ is venue email.</td>
+<td>Jazz/blues supper club in Bethesda.
+FB (BethesdaTheater) / IG (bethesdatheater)
+verified. Skip the music promoter is the
+#1 target. Great fit for live music.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1574">
+The Lobby Lounge</a><br>
+<span class="skip">Georgetown DC | restaurant</span></td>
+<td>1 (naims8020@gmail.com, no name)</td>
+<td>Georgetown wine &amp; cocktail bar at
+1660 33rd St NW. Upscale speakeasy vibe.
+IG verified (thelobby.dc). No FB found.
+Good Tier 2 target. Need owner name.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2631">
+Fairmont Washington DC Georgetown</a><br>
+<span class="skip">Georgetown DC | hotel</span></td>
+<td>3 venue emails (rfp-wdc@, theempress@,
+washington@fairmont.com). Hotel Manager
+(no name/email).</td>
+<td>Major luxury hotel in Georgetown.
+FB/IG verified. No named person contacts
+from pipeline. Need to find catering/events
+director. Tier 1 hotel target.</td>
+</tr>
+
+</table>
+
+<!-- ==================== FLAGGED ==================== -->
+<h2>Flagged &mdash; Issues Found (7 venues)</h2>
+
+<ul class="flag-list">
+
+<li>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-839">
+<strong>Caf&eacute; du Soleil</strong></a>
+(Alexandria VA | restaurant)<br>
+<span class="closed">IG MISMATCH:</span>
+Instagram is @cafedusoleilnyc &mdash; that's the
+NYC location, not Alexandria VA.
+email@example.com is a junk placeholder.
+cafedusoleilva@gmail.com is likely the venue
+email. <strong>Action needed:</strong> find
+correct VA Instagram, delete
+email@example.com.</li>
+
+<li>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-857">
+<strong>La Petite Auberge</strong></a>
+(listed as Middleburg VA | restaurant)<br>
+<span class="closed">CITY MISMATCH:</span>
+This restaurant is in <strong>Fredericksburg
+VA</strong>, not Middleburg. Website domain
+confirms: lapetiteaubergefred.com.
+311 William St, Fredericksburg VA 22401.
+Fredericksburg is ~1hr from DC &mdash; still
+in range. French fine dining since 1981,
+Renault family &mdash; excellent Tier 1 target.
+<strong>Action needed:</strong> fix city to
+Fredericksburg. Delete junk emails
+(example@mysite.com, name@example.com).
+Waitress/server contacts are low-value
+&mdash; need owner (Renault family).</li>
+
+<li>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1571">
+<strong>Salt</strong></a>
+(listed as Georgetown DC | restaurant)<br>
+<span class="closed">WRONG CITY + WRONG
+CONTACTS:</span> Salt is in
+<strong>Rosslyn VA</strong>, not Georgetown DC.
+Website: saltrosslyn.com. All contacts are
+wrong: mark.siegel@caa.com is a talent
+agency, ddelbecq@welovesalt.com is a
+recruitment company called "Salt" (different
+business). FB (ssssaltkitchenridgemd) is a
+DIFFERENT Salt restaurant in Ridge MD.
+IG (daonlysalt) is also wrong.
+<strong>Action needed:</strong> fix city to
+Rosslyn VA. Delete ALL contacts and socials
+&mdash; all belong to different businesses.
+Re-pipeline from scratch.</li>
+
+<li>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1572">
+<strong>Tai Chi Bar</strong></a>
+(Georgetown DC | restaurant)<br>
+<span class="closed">WRONG WEBSITE:</span>
+Pipeline had bardc.com (a DC bar directory).
+Real website is <strong>taichibardc.com</strong>.
+bri@rightproperbrewing.com is from a
+DIFFERENT business (Right Proper Brewing).
+It's a boba/ramen/poke fusion bar on
+Wisconsin Ave &mdash; casual, neon vibes.
+<strong>Questionable classical guitar fit.</strong>
+<strong>Action needed:</strong> fix website to
+taichibardc.com. Delete wrong contact.
+Consider skipping &mdash; not an upscale vibe.</li>
+
+<li>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1575">
+<strong>Oro Nami</strong></a>
+(Georgetown DC | restaurant)<br>
+<span class="closed">WRONG WEBSITE:</span>
+Pipeline had yeahthatskosher.com (a kosher
+travel blog). Real website is
+<strong>oronamidc.com</strong>.
+dani@yeahthatskosher.com is from wrong
+business. sushi@oronamidc.com is the real
+venue email. Oro Nami is a modern upscale
+kosher sushi restaurant at 2512 Pennsylvania
+Ave NW. <strong>Action needed:</strong> fix
+website to oronamidc.com. Delete
+dani@yeahthatskosher.com. FB/IG look
+correct (oronami, oronamidc).</li>
+
+<li>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2182">
+<strong>Capitol Hill Club</strong></a>
+(listed as Georgetown DC | restaurant)<br>
+<span class="closed">WRONG CITY + WRONG
+CATEGORY:</span> This is a
+<strong>Republican private club on Capitol
+Hill</strong> (300 First St SE), not
+Georgetown. Should be category: private_club.
+21 contacts found &mdash; mostly first-name
+@capitolhillclub.org emails. Key targets:
+Stan (GM), Elias (Asst Restaurant Mgr).
+Actually a <strong>great Tier 1 target</strong>
+&mdash; prestigious political private club,
+exactly the educated/wealthy crowd.
+<strong>Action needed:</strong> fix city to
+Capitol Hill DC, fix category to
+private_club.</li>
+
+<li>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-1792">
+<strong>Gallery B</strong></a>
+(Bethesda MD | art_gallery)<br>
+<span class="junk">DATA QUALITY:</span>
+Gallery B is run by Bethesda Urban
+Partnership. 14 contacts are all
+@bethesda.org employees &mdash; most are
+org-level staff, not gallery-specific.
+E Zanello (Marketing/Comms) and C Fraser
+(Dir Fine Arts Festival) are the most
+relevant. No FB or IG found.
+<strong>Action needed:</strong> identify which
+contacts are gallery-specific vs general
+Bethesda Urban Partnership staff.</li>
+
+</ul>
+
+<!-- ==================== SKIP ==================== -->
+<h2>Skip / Bad Fit (6 venues)</h2>
+
+<table>
+<tr><th>Venue</th><th>Contacts</th>
+<th>Reason</th></tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2988">
+Ingle Korean Steakhouse</a><br>
+<span class="skip">Vienna VA | restaurant</span></td>
+<td>&mdash;</td>
+<td><span class="junk">VIBE MISMATCH:</span>
+Korean steakhouse &mdash; loud, casual dining.
+Not a classical guitar venue. Zero contacts
+found. Skip.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2893">
+Vienna Inn</a><br>
+<span class="skip">Vienna VA | hotel</span></td>
+<td>1 named (Laura Hannigan,
+server/bartender)</td>
+<td><span class="closed">WRONG CATEGORY +
+BAD FIT:</span> This is a <strong>dive bar
+famous for chili dogs</strong>, not a hotel.
+Sells 10,000+ chili dogs/month. Casual bar
+with pool tables. Absolutely not a classical
+guitar venue. SSL cert expired. Skip.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-ART_-2629">
+Gallery Article 15</a><br>
+<span class="skip">Georgetown DC |
+art_gallery</span></td>
+<td>1 (Director, no name/email)</td>
+<td><span class="junk">ZERO USEFUL DATA:</span>
+Only contact is unnamed director with no
+email. FB/IG verified but no event info
+found. May need separate deep dive.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-597">
+Trippe Gallery</a><br>
+<span class="skip">Easton MD | art_gallery</span></td>
+<td>1 real (thetrippegallery@gmail.com).
+Also has typo version .gmail.co</td>
+<td>Small Easton gallery. No FB found.
+IG verified. Only venue email, no person
+name. thetrippegallery@gmail.co is a typo
+&mdash; delete that one.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-603">
+Zach Gallery at Prager Arts Center</a><br>
+<span class="skip">Easton MD | art_gallery</span></td>
+<td>&mdash;</td>
+<td><span class="junk">ZERO CONTACTS:</span>
+No contacts, no FB. IG verified. Small
+gallery &mdash; may need in-person visit or
+direct call.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2183">
+CitySwing</a><br>
+<span class="skip">Georgetown DC |
+restaurant</span></td>
+<td>4 named: Tari (Founder/CEO),
+Demarkis (GM DC), Keith (GM),
+Kendall (Dir Golf Instruction)</td>
+<td><span class="junk">WRONG CATEGORY +
+QUESTIONABLE FIT:</span> CitySwing is an
+<strong>indoor golf entertainment venue</strong>
+with simulators, not a restaurant.
+Golf suites with music &mdash; loud, casual
+environment. Classical guitar unlikely fit.
+Good contacts though (Tari the CEO).
+user@domain.com is junk. Consider keeping
+for corporate event outreach only.</td>
+</tr>
+
+</table>
+
+<!-- ==================== JUNK CLEANUP ==================== -->
+<h2>Junk Contacts to Delete</h2>
+<table>
+<tr><th>Venue</th><th>Email</th>
+<th>Reason</th></tr>
+<tr><td>LCD Caf&eacute;</td>
+<td>user@domain.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>Caf&eacute; du Soleil</td>
+<td>email@example.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>La Petite Auberge</td>
+<td>example@mysite.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>La Petite Auberge</td>
+<td>name@example.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>Bethesda Blues Jazz</td>
+<td>user@domain.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>Salt</td>
+<td>mark.siegel@caa.com</td>
+<td>Talent agency &mdash; wrong business</td></tr>
+<tr><td>Salt</td>
+<td>ddelbecq@welovesalt.com</td>
+<td>Recruitment co &mdash; wrong business</td></tr>
+<tr><td>Tai Chi Bar</td>
+<td>bri@rightproperbrewing.com</td>
+<td>Right Proper Brewing &mdash; wrong business</td></tr>
+<tr><td>Oro Nami</td>
+<td>dani@yeahthatskosher.com</td>
+<td>Kosher travel blog &mdash; wrong business</td></tr>
+<tr><td>CitySwing</td>
+<td>user@domain.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>Trippe Gallery</td>
+<td>thetrippegallery@gmail.co</td>
+<td>Typo (missing 'm')</td></tr>
+</table>
+
+<!-- ==================== KEY WINS ==================== -->
+<h2>Key Wins</h2>
+
+<div class="win">
+<strong>Rosewood Washington DC</strong> &mdash;
+6 named contacts including Director of Sales
+(Megan Trudo). Luxury Georgetown hotel,
+excellent Tier 1 target.</div>
+
+<div class="win">
+<strong>Bethesda Blues Jazz Supper Club</strong>
+&mdash; Skip (Music Promoter) is a direct
+booking contact. Jazz supper club = perfect
+live music venue.</div>
+
+<div class="win">
+<strong>Hamilton Club of Lancaster</strong>
+&mdash; GM (Vishal) with direct email.
+Historic private club, great Tier 1
+target.</div>
+
+<div class="win">
+<strong>Capitol Hill Club</strong> &mdash;
+Republican private club near the Capitol.
+21 contacts including GM (Stan) and Asst
+Restaurant Mgr (Elias). Prestigious venue,
+educated/wealthy crowd. Needs city/category
+fix but excellent target.</div>
+
+<div class="win">
+<strong>Guarisco Gallery</strong> &mdash;
+Laura Guarisco (owner/director) found with
+email. Georgetown fine art gallery.</div>
+
+<div class="win">
+<strong>La Petite Auberge</strong> &mdash;
+French fine dining since 1981, Renault
+family. Needs city fix (Fredericksburg not
+Middleburg) but a dream Tier 1 target.</div>
+
+<!-- ==================== TASTE ==================== -->
+<h2>Taste Review</h2>
+<p>No new venue votes or feedback to process
+this run. taste_notes.md unchanged.</p>
+
+<!-- ==================== DISCOVERY ==================== -->
+<h2>Discovery Summary</h2>
+<p>Taste discovery ran 23 search queries across
+target areas. 290 new venues added to the
+sheet. Queries covered private clubs and wine
+bars in Kennett Square PA, Rehoboth Beach DE,
+Oxford MD, Charlottesville VA, Shepherdstown
+WV, Greenville DE, Bryn Mawr PA, Wilmington
+DE, Lancaster PA, Ellicott City MD, Severna
+Park MD, and Vienna VA.</p>
+<p>Past gig seeds fully exhausted (all 73
+already discovered). Future discovery will
+rely entirely on taste-based queries
+(308 remaining).</p>
+
+<hr style="border-color:#1a2e3a; margin:30px 0;">
+<p style="color:#666; font-size:0.85rem;">
+Pipeline run: 01:46 &ndash; 03:45 (1h59m).
+Apollo credits: 41 used, 1956 remaining.
+ZeroBounce credits: 1953 remaining.
+Manual checks: 3 agents launched (Apollo MCP
+timeouts caused stalls &mdash; findings
+supplemented with direct WebFetch/WebSearch).
+</p>
+
+</body>
+</html>

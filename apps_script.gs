@@ -65,6 +65,8 @@ function doGet(e) {
   if (action === 'update_taste')     return updateTaste_(e.parameter);
   if (action === 'save_skip_words')  return saveSkipWords_(e.parameter);
   if (action === 'get_skip_words')   return getSkipWords_();
+  if (action === 'save_reviewed_reports') return saveReviewedReports_(e.parameter);
+  if (action === 'get_reviewed_reports')  return getReviewedReports_();
   if (action === 'remap_contact_venue') return remapContactVenue_(e.parameter);
   if (action === 'find_by_domain')     return findByDomain_(e.parameter);
   if (action === 'save_discovery')     return saveDiscovery_(e.parameter);
@@ -1424,6 +1426,19 @@ function getSkipWords_() {
   var words = [];
   try { words = JSON.parse(raw || '[]'); } catch(e) {}
   return jsonResponse_({ status: 'ok', words: words });
+}
+
+function saveReviewedReports_(params) {
+  var data = params.data || '{}';
+  setConfig_('reviewed_reports', data);
+  return jsonResponse_({ status: 'ok' });
+}
+
+function getReviewedReports_() {
+  var raw = getConfig_('reviewed_reports');
+  var data = {};
+  try { data = JSON.parse(raw || '{}'); } catch(e) {}
+  return jsonResponse_({ status: 'ok', reviewed: data });
 }
 
 // ---------------------------------------------------------------

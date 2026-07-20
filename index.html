@@ -2810,7 +2810,9 @@ function updateTplProgress() {
     }
 }
 
+let _reviewedReportsCache = null;
 function getReviewedReports() {
+    if (_reviewedReportsCache) return _reviewedReportsCache;
     try { return JSON.parse(localStorage.getItem('outreach_reviewed_reports') || '{}'); } catch(e) { return {}; }
 }
 function setReportReviewed(file, reviewed) {
@@ -2818,6 +2820,27 @@ function setReportReviewed(file, reviewed) {
     if (reviewed) data[file] = Date.now();
     else delete data[file];
     localStorage.setItem('outreach_reviewed_reports', JSON.stringify(data));
+    _reviewedReportsCache = data;
+    // Sync to cloud
+    if (BASE_URL) fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(data) }));
+}
+async function loadReviewedReportsFromCloud() {
+    if (!BASE_URL) return;
+    try {
+        const resp = await fetch(buildUrl({ action: 'get_reviewed_reports' }));
+        const json = await resp.json();
+        if (json.reviewed) {
+            // Merge cloud + local (keep whichever has more entries)
+            const local = getReviewedReports();
+            const merged = Object.assign({}, json.reviewed, local);
+            localStorage.setItem('outreach_reviewed_reports', JSON.stringify(merged));
+            _reviewedReportsCache = merged;
+            // Push merged back if cloud was missing local entries
+            if (Object.keys(merged).length > Object.keys(json.reviewed).length) {
+                fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(merged) }));
+            }
+        }
+    } catch(e) { console.warn('Failed to load reviewed reports from cloud:', e); }
 }
 
 async function openReportsView() {
@@ -3893,8 +3916,10 @@ document.addEventListener('DOMContentLoaded', () => {
         var ls = document.getElementById('levelSection');
         if (ls) ls.classList.add('expanded');
     }
-    // Load report manifest first so venue gate is active before dashboard renders
-    loadReportManifest().then(() => { _gatedVenueIds = null; loadDashboard(); });
+    // Load reviewed reports from cloud + report manifest before dashboard renders
+    loadReviewedReportsFromCloud().then(() => {
+        return loadReportManifest();
+    }).then(() => { _gatedVenueIds = null; loadDashboard(); });
 
     // Deep link: ?venue=VENUE_ID opens venue detail directly
     const urlParams = new URLSearchParams(window.location.search);

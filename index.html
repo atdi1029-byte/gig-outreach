@@ -1888,7 +1888,7 @@ function copyAndOpenFB() {
     navigator.clipboard.writeText(text).then(
         () => showToast('Copied! Opening FB...')
     ).catch(() => showToast('Opening FB...'));
-    openExternal(composeState.fbUrl);
+    openExternal(composeState.fbUrl, true);
 }
 
 function composeSent() {
@@ -2296,7 +2296,7 @@ function openComposeForContact(contactId, email, contactName, channel) {
         openExternal(normalizeIGUrl(v.instagram));
     } else if (channel === 'fb' && v.facebook) {
         copyText(tmpl.body);
-        openExternal(normalizeFBUrl(v.facebook));
+        openExternal(normalizeFBUrl(v.facebook), true);
     }
 }
 

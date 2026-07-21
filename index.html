@@ -1705,9 +1705,17 @@ function showToast(msg) {
 }
 
 // === OPEN EXTERNAL APP (forces Android to leave PWA) ===
-function openExternal(url) {
+const isAndroid = /Android/i.test(navigator.userAgent);
+function openExternal(url, forceChrome) {
     if (url && !url.startsWith('http') && !url.startsWith('mailto:')) {
         url = 'https://' + url;
+    }
+    // On Android, force Facebook URLs to open in Chrome (not FB app)
+    if (isAndroid && forceChrome && url.startsWith('http')) {
+        const parsed = new URL(url);
+        const intentUrl = `intent://${parsed.host}${parsed.pathname}${parsed.search}${parsed.hash}#Intent;scheme=https;package=com.android.chrome;end`;
+        window.location.href = intentUrl;
+        return;
     }
     if (isMobile) {
         window.open(url, '_blank');
@@ -1757,7 +1765,7 @@ function openIGWithTemplate(igUrl, category) {
 
 function openFBWithTemplate(fbUrl, category) {
     copyText(getTemplate(category).body);
-    openExternal(normalizeFBUrl(fbUrl));
+    openExternal(normalizeFBUrl(fbUrl), true);
 }
 
 // === COMPOSE VIEW ===

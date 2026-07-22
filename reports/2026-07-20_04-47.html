@@ -26,7 +26,8 @@ margin: 15px 0; font-size: 0.9rem; }
   th { background: #1a2e3a; color: #6ecfcf;
 padding: 10px 12px; text-align: left; }
   td { padding: 8px 12px;
-border-bottom: 1px solid #1a2e3a; }
+border-bottom: 1px solid #1a2e3a;
+vertical-align: top; }
   .stat-grid { display: grid;
 grid-template-columns: repeat(3, 1fr);
 gap: 15px; margin: 15px 0; }
@@ -42,17 +43,6 @@ border-left: 4px solid #4caf50;
 padding: 10px 14px; margin: 8px 0;
 border-radius: 0 6px 6px 0; }
   .win strong { color: #4caf50; }
-  .flag-list { list-style: none; padding: 0; }
-  .flag-list li { background: #2a1a1a;
-border-left: 4px solid #e85050;
-padding: 10px 14px; margin: 6px 0;
-border-radius: 0 6px 6px 0;
-font-size: 0.9rem; }
-  .incident { background: #2a1a2a;
-border-left: 4px solid #e040e0;
-padding: 10px 14px; margin: 6px 0;
-border-radius: 0 6px 6px 0;
-font-size: 0.9rem; }
   .valid { color: #4caf50; }
   .closed { color: #e85050; }
   .junk { color: #ff9800; }
@@ -77,6 +67,10 @@ color: #e85050; min-width: 40px;
 text-align: center; }
   .review-item .venue-type { color: #888;
 font-size: 0.8rem; }
+  td.emails-zero { color: #e85050;
+font-weight: bold; font-size: 1.1rem; }
+  td.emails-good { color: #4caf50;
+font-weight: bold; font-size: 1.1rem; }
   details { margin: 30px 0; }
   details summary { color: #e8944c;
 font-size: 1.3rem; cursor: pointer;
@@ -84,6 +78,11 @@ padding: 10px 0; font-weight: bold;
 border-left: 4px solid #e8944c;
 padding-left: 12px; }
   details summary:hover { color: #f0a060; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
 </style>
 </head>
 <body>
@@ -96,9 +95,6 @@ Fredericksburg VA, Lancaster PA, Vienna VA,
 Luray VA, Easton MD, Bethesda MD.
 <br>Taste discovery added 290 new venues
 from 23 search queries before pipeline run.
-<br><strong class="closed">INCIDENT:</strong>
-Ristorante Piccolo is permanently closed
-(COVID fraud conviction, space converted).
 </div>
 
 <div class="stat-grid">
@@ -107,55 +103,36 @@ Ristorante Piccolo is permanently closed
     <div class="label">Venues Pipelined</div>
   </div>
   <div class="stat-box">
-    <div class="num">9</div>
-    <div class="label">Clean Pass</div>
+    <div class="num">20</div>
+    <div class="label">Verified Emails</div>
   </div>
   <div class="stat-box">
     <div class="num">67</div>
     <div class="label">Apollo Credits Used</div>
   </div>
 </div>
-<div class="stat-grid">
-  <div class="stat-box">
-    <div class="num">7</div>
-    <div class="label">Flagged / Issues</div>
-  </div>
-  <div class="stat-box">
-    <div class="num">6</div>
-    <div class="label">Skip / Bad Fit</div>
-  </div>
-  <div class="stat-box">
-    <div class="num">290</div>
-    <div class="label">Discovery Venues Added</div>
-  </div>
-</div>
 
 <!-- ==================== NEEDS YOUR REVIEW ==================== -->
 <div class="review-box">
-<h2 style="color:#e8944c;">Needs Your Review (0-1 contacts)</h2>
+<h2 style="color:#e8944c;">Needs Your Review
+(0 verified emails)</h2>
 <div class="review-item">
   <div>
     <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2687"
     class="venue-name">Angolo Ristorante Italiano</a>
-    <div class="venue-type">Georgetown DC | restaurant</div>
+    <div class="venue-type">Georgetown DC |
+    restaurant &mdash; 2 venue emails, no named
+    person</div>
   </div>
   <div class="contact-count">0</div>
-</div>
-<div class="review-item">
-  <div>
-    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-830"
-    class="venue-name">LCD &mdash; La C&ocirc;te D'Or Caf&eacute;</a>
-    <div class="venue-type">Arlington VA | restaurant
-    &mdash; FIX CITY (listed McLean)</div>
-  </div>
-  <div class="contact-count">1</div>
 </div>
 <div class="review-item">
   <div>
     <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2633"
     class="venue-name">Rosewood Washington DC</a>
     <div class="venue-type">Georgetown DC | hotel
-    &mdash; 6 names but no personal emails</div>
+    &mdash; 6 names found but no personal emails
+    (global brand)</div>
   </div>
   <div class="contact-count">0</div>
 </div>
@@ -163,125 +140,131 @@ Ristorante Piccolo is permanently closed
   <div>
     <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1574"
     class="venue-name">The Lobby Lounge</a>
-    <div class="venue-type">Georgetown DC | restaurant
-    &mdash; venue email only, no name</div>
+    <div class="venue-type">Georgetown DC |
+    restaurant &mdash; venue email only, no
+    person name</div>
   </div>
   <div class="contact-count">0</div>
 </div>
 <div class="review-item">
   <div>
-    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2631"
-    class="venue-name">Fairmont Washington DC</a>
-    <div class="venue-type">Georgetown DC | hotel
-    &mdash; GM verified, Dir Catering may be vacant</div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-839"
+    class="venue-name">Caf&eacute; du Soleil</a>
+    <div class="venue-type">Alexandria VA |
+    restaurant &mdash; owners identified (Nahom
+    &amp; Mara Debessay) but no emails</div>
   </div>
-  <div class="contact-count">1</div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1571"
+    class="venue-name">Salt</a>
+    <div class="venue-type">Rosslyn VA |
+    restaurant &mdash; all data was wrong
+    business, needs re-pipeline</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1572"
+    class="venue-name">Tai Chi Bar</a>
+    <div class="venue-type">Georgetown DC |
+    restaurant &mdash; wrong website, marginal
+    guitar fit</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1575"
+    class="venue-name">Oro Nami</a>
+    <div class="venue-type">Georgetown DC |
+    restaurant &mdash; venue email only, owners
+    identified but no personal emails</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2988"
+    class="venue-name">Ingle Korean Steakhouse</a>
+    <div class="venue-type">Vienna VA |
+    restaurant &mdash; owner James Jang, no
+    email. Vibe mismatch.</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2893"
+    class="venue-name">Vienna Inn</a>
+    <div class="venue-type">Vienna VA | hotel
+    &mdash; dive bar famous for chili dogs, not
+    a hotel</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-ART_-2629"
+    class="venue-name">Gallery Article 15</a>
+    <div class="venue-type">Georgetown DC |
+    art_gallery &mdash; owner Elizabeth Jaffee,
+    info@ only</div>
+  </div>
+  <div class="contact-count">0</div>
 </div>
 </div>
 
-<!-- ==================== CLOSED ==================== -->
-<details>
-<summary>Permanently Closed (1 venue)</summary>
-<div class="incident">
-<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2682">
-<strong>Ristorante Piccolo</strong></a>
-(Georgetown DC | restaurant) &mdash;
-<strong class="closed">PERMANENTLY CLOSED.</strong>
-Owners sentenced for COVID-19 fraud. Space
-being converted to Current Boutique (retail).
-Website ristorantepiccolo.com now redirects
-to a different restaurant in Mallorca, Spain.
-Pipeline contacts (admi.oceantwins@gmail.com,
-restaurantevibes@gmail.com) belong to the
-Spanish restaurant. Mark as closed on sheet.
-</div>
-
-</details>
-
-<!-- ==================== CLEAN PASS ==================== -->
-<h2>Clean Pass (9 venues)</h2>
+<!-- ==================== ALL VENUES ==================== -->
+<h2>All Venues (22 active + 1 closed)</h2>
 <table>
-<tr><th>Venue</th><th>Contacts</th>
-<th>Notes</th></tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2687">
-Angolo Ristorante Italiano</a><br>
-<span class="skip">Georgetown DC | restaurant</span></td>
-<td>2 venue emails (angolodc1@gmail.com,
-pasha.one@gmail.com). No named people.</td>
-<td>Italian restaurant in Georgetown.
-FB/IG verified (angolodc). 200-person
-private party room. No owner name found
-via any source. Phone: (202) 262-9047.</td>
-</tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-830">
-LCD &mdash; La C&ocirc;te D'Or Caf&eacute;</a><br>
-<span class="skip">Arlington VA | restaurant</span></td>
-<td><span class="valid">1 verified:</span>
-Jacques Imperato (Owner/Chef)
-jmichef59@gmail.com.
-<br>Also: lacotedor@verizon.net (venue)</td>
-<td>French cafe &mdash; great Tier 1 target.
-FB/IG verified. Chef Jacques Imperato
-confirmed as owner on website /about page.
-<strong class="junk">FIX CITY:</strong>
-Actually at 6876 Langston Blvd,
-<strong>Arlington VA</strong>, not McLean.</td>
-</tr>
+<tr><th>Venue</th><th style="width:60px;
+text-align:center;">Emails</th>
+<th>Key Contact</th><th>Notes</th></tr>
 
 <tr>
 <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-PRIV-001">
 Hamilton Club of Lancaster</a><br>
 <span class="skip">Lancaster PA |
 private_club</span></td>
-<td><span class="valid">7 with emails:</span>
+<td class="emails-good" style="text-align:center;">7</td>
+<td>Emma Sigg (Events Mgr),
 Vishal Gonuguntla (GM),
-Emma Sigg (Events Mgr),
-David Yeo (Head Chef),
-Wes Taylor (House Mgr),
-Holly Hansen (Admin Asst),
-Stephanie Groff (Bookkeeper),
-Aleena Lyerly (F&amp;B Supervisor)</td>
-<td>Historic private club, founded 1889.
-Full staff directory found on website.
-FB/IG verified. Emma Sigg (Events) and
-Vishal (GM) are primary targets. Revenue
-~$15.2M, 18 employees. Goldmine venue.</td>
+David Yeo (Head Chef) + 4 more</td>
+<td>Historic private club, 1889.
+Staff directory on website.
+$15.2M revenue. Goldmine.</td>
 </tr>
 
 <tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2633">
-Rosewood Washington DC</a><br>
-<span class="skip">Georgetown DC | hotel</span></td>
-<td>6 named pipeline contacts (Megan Trudo,
-Hannah Fleming, Ligia Barros, Paige Heim,
-Jessika Cedano, Dawit Abey).
-No personal emails found &mdash; Apollo
-returned 0 DC-specific results for global
-brand domain.</td>
-<td>Luxury 5-star hotel in Georgetown.
-CUT by Wolfgang Puck, rooftop bar, events.
-FB/IG verified. Megan Trudo (Dir Sales) is
-primary target. Live music programming at
-bar lounge already. Venue emails preserved.</td>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-1792">
+Gallery B</a><br>
+<span class="skip">Bethesda MD |
+art_gallery</span></td>
+<td class="emails-good" style="text-align:center;">5</td>
+<td>Jason Liu (Events Mgr),
+Stephanie Coppula (Dir Mktg)
++ 3 more @bethesda.org</td>
+<td>Non-profit rental gallery.
+Bethesda Urban Partnership.
+Jason Liu = primary target.</td>
 </tr>
 
 <tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-820">
-Mimslyn Inn</a><br>
-<span class="skip">Luray VA | hotel</span></td>
-<td><span class="valid">2 verified:</span>
-Alyssa Hummel (Dir Sales &amp; Marketing),
-Debbie Zinn (Admin Asst).
-Chad Shenk (Bellman, no email).</td>
-<td>Historic inn since 1931. Hosts variety
-dinner shows, murder mysteries, events.
-FB/IG verified. Alyssa Hummel previously
-at Inn at Little Washington &amp; Goodstone
-Inn. ~1.5hr from DC. Perfect guitar venue.</td>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1782">
+Bethesda Blues Jazz Supper Club</a><br>
+<span class="skip">Bethesda MD | event</span></td>
+<td class="emails-good" style="text-align:center;">3</td>
+<td>Skip Kelly (Music Promoter,
+KEY booking contact),
+Michael Hull (Prod Mgr),
+Amber Howard (Manager)</td>
+<td>500-seat theater. Rebranded
+to "Bethesda Theater." Skip
+Kelly = THE booking contact.</td>
 </tr>
 
 <tr>
@@ -289,287 +272,29 @@ Inn. ~1.5hr from DC. Perfect guitar venue.</td>
 Guarisco Gallery</a><br>
 <span class="skip">Georgetown DC |
 art_gallery</span></td>
-<td><span class="valid">3 verified:</span>
-Laura Guarisco (Exec Director),
+<td class="emails-good" style="text-align:center;">3</td>
+<td>Laura Guarisco (Exec Dir),
 Randall McLean (Curator),
-Joshua Navarro (Art Preparator).
-Plus 2 venue emails.</td>
-<td>Fine art gallery since 1981, one of
-largest 19th/20th century painting galleries
-worldwide. 2828 Pennsylvania Ave NW, near
-Four Seasons. FB/IG verified. All 3 contacts
-enriched with verified emails. Laura is
-the primary target.</td>
+Joshua Navarro (Preparator)</td>
+<td>Fine art gallery since 1981.
+Near Four Seasons. Laura is
+primary target.</td>
 </tr>
 
 <tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1782">
-Bethesda Blues Jazz Supper Club</a><br>
-<span class="skip">Bethesda MD | event</span></td>
-<td><span class="valid">3 verified:</span>
-Skip Kelly (Music Promoter &mdash;
-since 2013, KEY booking contact),
-Michael Hull (Production Mgr),
-Amber Howard (Manager).
-Also: booking@bethesdabluesjazz.com</td>
-<td>500-seat Streamline Moderne theater.
-Rebranded to "Bethesda Theater" &mdash;
-update website to bethesdatheater.com.
-FB/IG verified under new branding.
-Skip Kelly is THE booking contact &mdash;
-previously Exec Dir at On The Potomac
-Productions (1987-2012). Perfect venue.</td>
-</tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1574">
-The Lobby Lounge</a><br>
-<span class="skip">Georgetown DC |
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-857">
+La Petite Auberge</a><br>
+<span class="skip">Fredericksburg VA |
 restaurant</span></td>
-<td>1 venue email (naims8020@gmail.com,
-no name). FB found by agent.</td>
-<td>Georgetown's wine &amp; cocktail bar at
-1660 33rd St NW. Upscale speakeasy vibe.
-IG verified (thelobby.dc). FB found:
-facebook.com/profile.php?id=61580876542051.
-New venue, minimal online footprint.
-Good Tier 2 target. Phone: (202) 491-2943.</td>
-</tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2631">
-Fairmont Washington DC Georgetown</a><br>
-<span class="skip">Georgetown DC | hotel</span></td>
-<td><span class="valid">1 verified:</span>
-Mark Huntley (Regional VP &amp; GM)
-mark_huntley@accorpacific.net.
-3 venue emails (rfp-wdc@, theempress@,
-washington@fairmont.com).</td>
-<td>Major luxury hotel. New Kennedy
-Ballroom (2,990 sqft, up to 300 guests).
-FB/IG verified. Dir of Catering Sales
-role was posted Apr 2026 &mdash; may be
-vacant or newly filled. Mark Huntley is
-GM. Tier 1 hotel target.</td>
-</tr>
-
-</table>
-
-<!-- ==================== FLAGGED ==================== -->
-<details>
-<summary>Flagged &mdash; Issues Found (7 venues)</summary>
-
-<ul class="flag-list">
-
-<li>
-<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-839">
-<strong>Caf&eacute; du Soleil</strong></a>
-(Alexandria VA | restaurant)<br>
-<span class="closed">IG MISMATCH:</span>
-Instagram @cafedusoleilnyc is the NYC cafe.
-Correct IG: <strong>@cafe_du_soleil_va</strong>
-(2,450 followers, organic coffee in Old Town).
-email@example.com is junk &mdash; delete.
-Owners identified: <strong>Nahom &amp; Mara
-Debessay</strong> (co-owners) and Chef Sammy
-(partner). Also operates Bar 86 speakeasy.
-Two locations in Alexandria. No personal
-emails found via Apollo.
-<strong>Action:</strong> fix IG, delete junk,
-add owner names.</li>
-
-<li>
-<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-857">
-<strong>La Petite Auberge</strong></a>
-(listed Middleburg VA | restaurant)<br>
-<span class="closed">CITY MISMATCH:</span>
-Actually at 311 William St, <strong>
-Fredericksburg VA</strong> 22401.
-French fine dining since 1981, Renault
-family (Raymond &amp; Jessica, 2nd gen).
-<span class="valid">3 manager contacts
-enriched:</span> Jocelyne Mignerey (Manager),
-Gabby Evans (Room Mgr), Adnan Ozdilli
-(Asst Mgr) &mdash; all verified
-@lapetiteaubergefred.com emails.
-Delete junk (example@mysite.com,
-name@example.com). ~55 mi from DC.
-Excellent Tier 1 French target.</li>
-
-<li>
-<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1571">
-<strong>Salt</strong></a>
-(listed Georgetown DC | restaurant)<br>
-<span class="closed">TOTAL DATA DISASTER:</span>
-Salt is at 1201 Wilson Blvd, <strong>Rosslyn/
-Arlington VA</strong>. FB (ssssaltkitchenridgemd)
-= Salt Kitchen in Ridge MD. IG (daonlysalt)
-= unrelated. mark.siegel@caa.com = talent
-agency. ddelbecq@welovesalt.com = UK recruiter.
-Correct socials: FB=facebook.com/saltrosslyn,
-IG=instagram.com/saltrosslyn.
-Operated by Metropolitan Hospitality Group.
-Apollo returned 0 for saltrosslyn.com.
-<strong>Action:</strong> fix city, replace ALL
-socials, delete ALL contacts, re-pipeline.</li>
-
-<li>
-<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1572">
-<strong>Tai Chi Bar</strong></a>
-(Georgetown DC | restaurant)<br>
-<span class="closed">WRONG WEBSITE:</span>
-bardc.com is a DC bar directory. Real site:
-<strong>taichibardc.com</strong>. 1357
-Wisconsin Ave NW. bri@rightproperbrewing.com
-= wrong business. IG found:
-<strong>@taichigeorgetown</strong> (Taichi
-Bubble Tea upstairs, Tai Chi Bar speakeasy
-downstairs). Karaoke/ramen/boba bar &mdash;
-<strong class="junk">marginal classical
-guitar fit.</strong> No FB found. Apollo 0
-results. Phone: (202) 525-1996.
-<strong>Action:</strong> fix website, add IG,
-delete wrong contact.</li>
-
-<li>
-<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1575">
-<strong>Oro Nami</strong></a>
-(Georgetown DC | restaurant)<br>
-<span class="closed">WRONG WEBSITE:</span>
-yeahthatskosher.com = kosher food blog.
-Real site: <strong>oronamidc.com</strong>.
-2512-B Pennsylvania Ave NW (Foggy Bottom).
-Modern upscale kosher sushi, opened June 2025.
-Owners identified: <strong>Dino Lonzano,
-Harold Willner (sushi chef), Harrison Furman
-</strong>. dani@yeahthatskosher.com = wrong
-business. sushi@oronamidc.com = correct venue
-email. FB/IG verified. Apollo 0 results
-(too new). Phone: 202-558-6330.
-<strong>Action:</strong> fix website, delete
-wrong contact, add owner names.</li>
-
-<li>
-<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2182">
-<strong>Capitol Hill Club</strong></a>
-(listed Georgetown DC | restaurant)<br>
-<span class="closed">WRONG CITY + CATEGORY:
-</span> 300 First St SE &mdash;
-<strong>Capitol Hill DC</strong>, not Georgetown.
-Republican private political club. 5-story
-clubhouse, 2 restaurants, 14 meeting rooms.
-<span class="valid">2 key contacts enriched:
-</span> <strong>Leland Spence</strong>
-(GM/COO, verified), <strong>Michelle Johnson
-</strong> (Events Mgr, verified). Stan on
-sheet may be previous GM. Closed weekends,
-holidays, recess. Great Tier 1 private club
-&mdash; educated wealthy crowd.
-<strong>Action:</strong> fix city, fix category
-to private_club.</li>
-
-<li>
-<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-1792">
-<strong>Gallery B</strong></a>
-(Bethesda MD | art_gallery)<br>
-<span class="junk">DATA QUALITY:</span>
-Non-profit rental gallery managed by Bethesda
-Urban Partnership. 7700 Wisconsin Ave Ste E.
-<strong>FB found:</strong>
-facebook.com/GalleryB.Bethesda.
-<span class="valid">5 relevant contacts
-enriched:</span> Jason Liu (Marketing &amp;
-Events Mgr), Stephanie Coppula (Dir
-Marketing), Emma Zanello, Susanna Parker,
-Catriona Fraser &mdash; all verified
-@bethesda.org. Most pipeline contacts were
-org-level BUP staff. Jason Liu (events) is
-the primary target.
-<strong>Action:</strong> add FB, focus to
-relevant contacts.</li>
-
-</ul>
-
-</details>
-
-<!-- ==================== SKIP ==================== -->
-<details>
-<summary>Skip / Bad Fit (6 venues)</summary>
-
-<table>
-<tr><th>Venue</th><th>Contacts</th>
-<th>Reason</th></tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2988">
-Ingle Korean Steakhouse</a><br>
-<span class="skip">Vienna VA | restaurant</span></td>
-<td>Owner: James Jang (no email).
-Venue: Contact@inglekoreansteakhouse.com</td>
-<td><span class="junk">VIBE MISMATCH:</span>
-Korean steakhouse at 8369 Leesburg Pike
-(technically Tysons). Loud, casual.
-Not a classical guitar venue.</td>
-</tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2893">
-Vienna Inn</a><br>
-<span class="skip">Vienna VA | hotel</span></td>
-<td>Owner: Marty Volk (since 2000, no email).
-Laura Hannigan (server/bartender)</td>
-<td><span class="closed">WRONG CATEGORY +
-BAD FIT:</span> <strong>Dive bar famous for
-chili dogs</strong>, not a hotel. 10,000+
-chili dogs/month. SSL cert expired. Owner
-Marty Volk identified but no email.
-Absolutely not a classical guitar venue.</td>
-</tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-ART_-2629">
-Gallery Article 15</a><br>
-<span class="skip">Georgetown DC |
-art_gallery</span></td>
-<td>Owner: Elizabeth Jaffee (Founder/Director).
-info@article15gallery.com</td>
-<td><span class="junk">WRONG WEBSITE:</span>
-galleryarticle15.com doesn't exist. Correct:
-<strong>article15gallery.com</strong>.
-1624 Wisconsin Ave NW. Contemporary Congolese
-art. Elizabeth Jaffee = former US Foreign
-Service Officer. One-person gallery &mdash;
-info@ IS the owner's email. Fix website.</td>
-</tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-597">
-Trippe Gallery</a><br>
-<span class="skip">Easton MD |
-art_gallery</span></td>
-<td>Owner: Nanny Trippe (photographer).
-thetrippegallery@gmail.com</td>
-<td>Small gallery at 23 N Harrison St.
-<strong>FB found:</strong>
-facebook.com/100063592896300/.
-IG verified. thetrippegallery@gmail.co is
-a TYPO &mdash; delete. Sole proprietor,
-gallery email = owner email.</td>
-</tr>
-
-<tr>
-<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-603">
-Zach Gallery at Prager Arts Center</a><br>
-<span class="skip">Easton MD |
-art_gallery</span></td>
-<td><span class="valid">1 found:</span>
-Aynsley Schopfer (Curator &amp; Mgr)
-schopfer@bluepointhospitality.com</td>
-<td><strong>FB found:</strong>
-facebook.com/61564448901808/.
-17 S Washington St. Part of Bluepoint
-Hospitality group. IG verified. Email is
-via parent company domain.</td>
+<td class="emails-good" style="text-align:center;">3</td>
+<td>Jocelyne Mignerey (Mgr),
+Gabby Evans (Room Mgr),
+Adnan Ozdilli (Asst Mgr)</td>
+<td><span class="junk">CITY FIX:</span>
+listed Middleburg, actually
+Fredericksburg. French fine
+dining, Renault family, 1981.
+Delete junk emails. Tier 1.</td>
 </tr>
 
 <tr>
@@ -577,71 +302,238 @@ via parent company domain.</td>
 CitySwing</a><br>
 <span class="skip">Downtown DC |
 restaurant</span></td>
-<td><span class="valid">3 verified:</span>
-Tari Cash (Founder/CEO, Harvard MBA),
+<td class="emails-good" style="text-align:center;">3</td>
+<td>Tari Cash (Founder/CEO),
 Demarkis Cooper (GM DC),
 Keith Kuminski (GM)</td>
-<td><span class="junk">WRONG CATEGORY +
-WRONG CITY:</span> Indoor golf simulators
-at 901 New York Ave NW (<strong>Downtown
-DC</strong>, not Georgetown). FB/IG verified.
-user@domain.com is junk. Strong contacts
-but questionable classical guitar fit.
-Consider for corporate event outreach.</td>
+<td><span class="junk">WRONG CATEGORY:</span>
+indoor golf simulators, not
+restaurant. Questionable
+guitar fit. Corporate events?</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2182">
+Capitol Hill Club</a><br>
+<span class="skip">Capitol Hill DC |
+private_club</span></td>
+<td class="emails-good" style="text-align:center;">2</td>
+<td>Leland Spence (GM/COO),
+Michelle Johnson (Events Mgr)</td>
+<td><span class="junk">FIX CITY + CATEGORY:</span>
+listed Georgetown/restaurant.
+Republican private club, 5-story.
+Great Tier 1 target.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-820">
+Mimslyn Inn</a><br>
+<span class="skip">Luray VA | hotel</span></td>
+<td class="emails-good" style="text-align:center;">2</td>
+<td>Alyssa Hummel (Dir Sales),
+Debbie Zinn (Admin Asst)</td>
+<td>Historic inn since 1931.
+Dinner shows, events.
+~1.5hr from DC. Perfect fit.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-830">
+LCD &mdash; La C&ocirc;te D'Or
+Caf&eacute;</a><br>
+<span class="skip">Arlington VA |
+restaurant</span></td>
+<td class="emails-good" style="text-align:center;">1</td>
+<td>Jacques Imperato (Owner/Chef)
+jmichef59@gmail.com</td>
+<td><span class="junk">FIX CITY:</span>
+listed McLean, actually
+Arlington. French cafe.
+Tier 1 target.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2631">
+Fairmont Washington DC</a><br>
+<span class="skip">Georgetown DC |
+hotel</span></td>
+<td class="emails-good" style="text-align:center;">1</td>
+<td>Mark Huntley (Regional VP/GM)
+mark_huntley@accorpacific.net</td>
+<td>Luxury hotel. New Kennedy
+Ballroom (2,990 sqft). Dir
+Catering role may be vacant.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-603">
+Zach Gallery at Prager Arts</a><br>
+<span class="skip">Easton MD |
+art_gallery</span></td>
+<td class="emails-good" style="text-align:center;">1</td>
+<td>Aynsley Schopfer (Curator)
+schopfer@bluepointhospitality.com</td>
+<td>Part of Bluepoint Hospitality.
+FB/IG verified.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-597">
+Trippe Gallery</a><br>
+<span class="skip">Easton MD |
+art_gallery</span></td>
+<td class="emails-good" style="text-align:center;">1</td>
+<td>Nanny Trippe (Owner)
+thetrippegallery@gmail.com</td>
+<td>Small gallery. Sole proprietor.
+Delete typo email (.co).
+FB found.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2687">
+Angolo Ristorante Italiano</a><br>
+<span class="skip">Georgetown DC |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>&mdash;</td>
+<td>Italian restaurant. 200-person
+party room. 2 venue emails but
+no named person found.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2633">
+Rosewood Washington DC</a><br>
+<span class="skip">Georgetown DC |
+hotel</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Megan Trudo (Dir Sales) &mdash;
+name only, no email</td>
+<td>Luxury 5-star. 6 names found
+but Apollo returned 0 for
+global brand domain.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1574">
+The Lobby Lounge</a><br>
+<span class="skip">Georgetown DC |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>&mdash;</td>
+<td>Wine &amp; cocktail bar. New
+venue, minimal footprint.
+Venue email only. Good Tier 2.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-839">
+Caf&eacute; du Soleil</a><br>
+<span class="skip">Alexandria VA |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Nahom &amp; Mara Debessay
+(co-owners) &mdash; no emails</td>
+<td><span class="junk">FIX IG:</span>
+@cafedusoleilnyc is NYC.
+Correct: @cafe_du_soleil_va.
+Also operates Bar 86.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1571">
+Salt</a><br>
+<span class="skip">Rosslyn VA |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>&mdash;</td>
+<td><span class="closed">DATA DISASTER:</span>
+all contacts wrong business.
+Fix city, replace ALL socials,
+delete ALL contacts, re-pipeline.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1572">
+Tai Chi Bar</a><br>
+<span class="skip">Georgetown DC |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>&mdash;</td>
+<td><span class="closed">WRONG WEBSITE.</span>
+Karaoke/ramen/boba bar.
+Marginal guitar fit.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1575">
+Oro Nami</a><br>
+<span class="skip">Georgetown DC |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Dino Lonzano, Harold Willner,
+Harrison Furman (owners)
+&mdash; no emails</td>
+<td><span class="closed">WRONG WEBSITE.</span>
+Upscale kosher sushi. Venue
+email only. Fix website.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2988">
+Ingle Korean Steakhouse</a><br>
+<span class="skip">Vienna VA |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>James Jang (Owner) &mdash;
+no email</td>
+<td><span class="junk">VIBE MISMATCH.</span>
+Korean steakhouse. Loud,
+casual. Not a guitar venue.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2893">
+Vienna Inn</a><br>
+<span class="skip">Vienna VA |
+hotel</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Marty Volk (Owner) &mdash;
+no email</td>
+<td><span class="closed">BAD FIT.</span>
+Dive bar famous for chili dogs.
+Not a hotel. Not a guitar venue.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-ART_-2629">
+Gallery Article 15</a><br>
+<span class="skip">Georgetown DC |
+art_gallery</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Elizabeth Jaffee (Founder)
+&mdash; info@ only</td>
+<td><span class="junk">WRONG WEBSITE.</span>
+Fix to article15gallery.com.
+One-person gallery. info@
+is likely owner email.</td>
+</tr>
+
+<tr style="background: #1a1015;">
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2682">
+Ristorante Piccolo</a><br>
+<span class="closed">Georgetown DC |
+CLOSED</span></td>
+<td class="emails-zero" style="text-align:center;">&mdash;</td>
+<td>&mdash;</td>
+<td><span class="closed">PERMANENTLY CLOSED.</span>
+COVID fraud conviction. Space
+converted to retail.</td>
 </tr>
 
 </table>
-
-</details>
-
-<!-- ==================== JUNK CLEANUP ==================== -->
-<details>
-<summary>Junk Contacts to Delete (13)</summary>
-<table>
-<tr><th>Venue</th><th>Email</th>
-<th>Reason</th></tr>
-<tr><td>Ristorante Piccolo</td>
-<td>admi.oceantwins@gmail.com</td>
-<td>Belongs to Spanish restaurant</td></tr>
-<tr><td>Ristorante Piccolo</td>
-<td>restaurantevibes@gmail.com</td>
-<td>Belongs to Spanish restaurant</td></tr>
-<tr><td>LCD Caf&eacute;</td>
-<td>user@domain.com</td>
-<td>Template placeholder</td></tr>
-<tr><td>Caf&eacute; du Soleil</td>
-<td>email@example.com</td>
-<td>Template placeholder</td></tr>
-<tr><td>La Petite Auberge</td>
-<td>example@mysite.com</td>
-<td>Template placeholder</td></tr>
-<tr><td>La Petite Auberge</td>
-<td>name@example.com</td>
-<td>Template placeholder</td></tr>
-<tr><td>Bethesda Blues Jazz</td>
-<td>user@domain.com</td>
-<td>Template placeholder</td></tr>
-<tr><td>Salt</td>
-<td>mark.siegel@caa.com</td>
-<td>Talent agency &mdash; wrong business</td></tr>
-<tr><td>Salt</td>
-<td>ddelbecq@welovesalt.com</td>
-<td>Recruitment co &mdash; wrong business</td></tr>
-<tr><td>Tai Chi Bar</td>
-<td>bri@rightproperbrewing.com</td>
-<td>Right Proper Brewing &mdash; wrong biz</td></tr>
-<tr><td>Oro Nami</td>
-<td>dani@yeahthatskosher.com</td>
-<td>Kosher blog &mdash; wrong business</td></tr>
-<tr><td>CitySwing</td>
-<td>user@domain.com</td>
-<td>Template placeholder</td></tr>
-<tr><td>Trippe Gallery</td>
-<td>thetrippegallery@gmail.co</td>
-<td>Typo (missing 'm')</td></tr>
-</table>
-
-</details>
 
 <!-- ==================== KEY WINS ==================== -->
 <h2>Key Wins</h2>
@@ -698,6 +590,54 @@ Alyssa Hummel (Dir Sales/Marketing) enriched
 with verified email. Previously at Inn at
 Little Washington. Historic inn since 1931
 with variety shows and events.</div>
+
+<!-- ==================== JUNK CLEANUP ==================== -->
+<details>
+<summary>Junk Contacts to Delete (13)</summary>
+<table>
+<tr><th>Venue</th><th>Email</th>
+<th>Reason</th></tr>
+<tr><td>Ristorante Piccolo</td>
+<td>admi.oceantwins@gmail.com</td>
+<td>Belongs to Spanish restaurant</td></tr>
+<tr><td>Ristorante Piccolo</td>
+<td>restaurantevibes@gmail.com</td>
+<td>Belongs to Spanish restaurant</td></tr>
+<tr><td>LCD Caf&eacute;</td>
+<td>user@domain.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>Caf&eacute; du Soleil</td>
+<td>email@example.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>La Petite Auberge</td>
+<td>example@mysite.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>La Petite Auberge</td>
+<td>name@example.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>Bethesda Blues Jazz</td>
+<td>user@domain.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>Salt</td>
+<td>mark.siegel@caa.com</td>
+<td>Talent agency &mdash; wrong business</td></tr>
+<tr><td>Salt</td>
+<td>ddelbecq@welovesalt.com</td>
+<td>Recruitment co &mdash; wrong business</td></tr>
+<tr><td>Tai Chi Bar</td>
+<td>bri@rightproperbrewing.com</td>
+<td>Right Proper Brewing &mdash; wrong biz</td></tr>
+<tr><td>Oro Nami</td>
+<td>dani@yeahthatskosher.com</td>
+<td>Kosher blog &mdash; wrong business</td></tr>
+<tr><td>CitySwing</td>
+<td>user@domain.com</td>
+<td>Template placeholder</td></tr>
+<tr><td>Trippe Gallery</td>
+<td>thetrippegallery@gmail.co</td>
+<td>Typo (missing 'm')</td></tr>
+</table>
+</details>
 
 <!-- ==================== TASTE ==================== -->
 <h2>Taste Review</h2>

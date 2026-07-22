@@ -59,6 +59,31 @@ font-size: 0.9rem; }
   .purple { color: #e040e0; }
   .skip { color: #888; }
   a { color: #6ecfcf; text-decoration: none; }
+  .review-box { background: #1a1a2a;
+border: 2px solid #e8944c;
+border-radius: 8px; padding: 20px;
+margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none;
+padding: 0; }
+  .review-item { display: flex;
+justify-content: space-between;
+align-items: center; padding: 10px 0;
+border-bottom: 1px solid #1a2e3a; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .contact-count {
+font-size: 1.4rem; font-weight: bold;
+color: #e85050; min-width: 40px;
+text-align: center; }
+  .review-item .venue-type { color: #888;
+font-size: 0.8rem; }
+  details { margin: 30px 0; }
+  details summary { color: #e8944c;
+font-size: 1.3rem; cursor: pointer;
+padding: 10px 0; font-weight: bold;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  details summary:hover { color: #f0a060; }
 </style>
 </head>
 <body>
@@ -105,8 +130,58 @@ Ristorante Piccolo is permanently closed
   </div>
 </div>
 
+<!-- ==================== NEEDS YOUR REVIEW ==================== -->
+<div class="review-box">
+<h2 style="color:#e8944c;">Needs Your Review (0-1 contacts)</h2>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2687"
+    class="venue-name">Angolo Ristorante Italiano</a>
+    <div class="venue-type">Georgetown DC | restaurant</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-830"
+    class="venue-name">LCD &mdash; La C&ocirc;te D'Or Caf&eacute;</a>
+    <div class="venue-type">Arlington VA | restaurant
+    &mdash; FIX CITY (listed McLean)</div>
+  </div>
+  <div class="contact-count">1</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2633"
+    class="venue-name">Rosewood Washington DC</a>
+    <div class="venue-type">Georgetown DC | hotel
+    &mdash; 6 names but no personal emails</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1574"
+    class="venue-name">The Lobby Lounge</a>
+    <div class="venue-type">Georgetown DC | restaurant
+    &mdash; venue email only, no name</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2631"
+    class="venue-name">Fairmont Washington DC</a>
+    <div class="venue-type">Georgetown DC | hotel
+    &mdash; GM verified, Dir Catering may be vacant</div>
+  </div>
+  <div class="contact-count">1</div>
+</div>
+</div>
+
 <!-- ==================== CLOSED ==================== -->
-<h2>Permanently Closed (1 venue)</h2>
+<details>
+<summary>Permanently Closed (1 venue)</summary>
 <div class="incident">
 <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2682">
 <strong>Ristorante Piccolo</strong></a>
@@ -120,6 +195,8 @@ Pipeline contacts (admi.oceantwins@gmail.com,
 restaurantevibes@gmail.com) belong to the
 Spanish restaurant. Mark as closed on sheet.
 </div>
+
+</details>
 
 <!-- ==================== CLEAN PASS ==================== -->
 <h2>Clean Pass (9 venues)</h2>
@@ -279,7 +356,8 @@ GM. Tier 1 hotel target.</td>
 </table>
 
 <!-- ==================== FLAGGED ==================== -->
-<h2>Flagged &mdash; Issues Found (7 venues)</h2>
+<details>
+<summary>Flagged &mdash; Issues Found (7 venues)</summary>
 
 <ul class="flag-list">
 
@@ -412,8 +490,11 @@ relevant contacts.</li>
 
 </ul>
 
+</details>
+
 <!-- ==================== SKIP ==================== -->
-<h2>Skip / Bad Fit (6 venues)</h2>
+<details>
+<summary>Skip / Bad Fit (6 venues)</summary>
 
 <table>
 <tr><th>Venue</th><th>Contacts</th>
@@ -511,8 +592,11 @@ Consider for corporate event outreach.</td>
 
 </table>
 
+</details>
+
 <!-- ==================== JUNK CLEANUP ==================== -->
-<h2>Junk Contacts to Delete</h2>
+<details>
+<summary>Junk Contacts to Delete (13)</summary>
 <table>
 <tr><th>Venue</th><th>Email</th>
 <th>Reason</th></tr>
@@ -556,6 +640,8 @@ Consider for corporate event outreach.</td>
 <td>thetrippegallery@gmail.co</td>
 <td>Typo (missing 'm')</td></tr>
 </table>
+
+</details>
 
 <!-- ==================== KEY WINS ==================== -->
 <h2>Key Wins</h2>

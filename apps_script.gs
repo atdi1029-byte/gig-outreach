@@ -669,10 +669,26 @@ function addVenue_(params) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(VENUES);
 
-  // Check for duplicate by name only (ignore state — same venue appears in MD/VA/DC searches)
+  // Check for duplicate by normalized name + city (or name + website domain)
+  // Name-only dedup caused false positives: "The Wine Bar" DC vs "The Wine Bar" Bethesda
+  var newName = (params.name || '').toLowerCase().trim();
+  var newCity = (params.city || '').toLowerCase().trim();
+  var newDomain = '';
+  if (params.website) {
+    try { newDomain = params.website.replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].toLowerCase(); } catch(e) {}
+  }
   var data = sheet.getDataRange().getValues();
   for (var i = 1; i < data.length; i++) {
-    if (String(data[i][1]).toLowerCase().trim() === (params.name || '').toLowerCase().trim()) {
+    var existName = String(data[i][1]).toLowerCase().trim();
+    if (existName !== newName) continue;
+    // Same name — check city or website domain
+    var existCity = String(data[i][4]).toLowerCase().trim();
+    var existDomain = '';
+    try { existDomain = String(data[i][3]).replace(/^https?:\/\//, '').replace(/^www\./, '').split('/')[0].toLowerCase(); } catch(e) {}
+    // Match if same city, same domain, or both are empty (legacy data)
+    if (existCity === newCity ||
+        (newDomain && existDomain && existDomain === newDomain) ||
+        (!newCity && !existCity)) {
       return jsonResponse_({ status: 'ok', message: 'Duplicate — skipped', venue_id: String(data[i][0]) });
     }
   }

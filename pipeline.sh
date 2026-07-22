@@ -58,7 +58,7 @@ try:
     for c in d.get('contacts', []):
         if c.get('email'): emails.add(c['email'].lower())
     print('|||'.join(emails))
-except: print('')
+except Exception as e: print('', file=__import__('sys').stderr); print('')
 " 2>/dev/null)
     KNOWN_NAMES=$(python3 -c "
 import json
@@ -69,7 +69,7 @@ try:
         if c.get('name'):
             names.add(c['name'].lower().strip())
     print('|||'.join(names))
-except: print('')
+except Exception as e: print('', file=__import__('sys').stderr); print('')
 " 2>/dev/null)
 }
 
@@ -1770,7 +1770,8 @@ try:
     resp = urllib.request.urlopen(os.environ.get('APPS_SCRIPT_URL','') + '?action=get_skip_words', timeout=10)
     user_skip = json.loads(resp.read()).get('words', [])
     bad_titles.extend(w for w in user_skip if w not in bad_titles)
-except: pass
+except Exception as e:
+    import sys; print(f'WARN: skip_words fetch failed: {e}', file=sys.stderr)
 
 def title_is_relevant(title):
     t = title.lower()
@@ -2606,8 +2607,8 @@ if not _API:
                 if 'APPS_SCRIPT_URL=' in _line and 'http' in _line:
                     _API = _line.split('"')[1]
                     break
-    except:
-        pass
+    except Exception as e:
+        import sys; print(f'WARN: discover.sh API parse failed: {e}', file=sys.stderr)
 if _API:
     for v in venues:
         vid = v.get('venue_id', '')
@@ -2625,8 +2626,8 @@ if _API:
                 v['website'] = _d['website']
             if _d.get('contact_form') and not v.get('contact_form'):
                 v['contact_form'] = _d['contact_form']
-        except:
-            pass
+        except Exception as e:
+            import sys; print(f'WARN: venue_detail fetch failed for {vid}: {e}', file=sys.stderr)
 
 # --- Post-parse smart flags ---
 for v in venues:
@@ -2643,8 +2644,8 @@ for v in venues:
         if v['website']:
             try:
                 vdomain = v['website'].split('//')[1].split('/')[0].replace('www.', '').lower()
-            except:
-                pass
+            except Exception:
+                vdomain = ''
         if vdomain:
             # Strip TLD for fuzzy matching (winelair.us == winelair.com)
             vbase = vdomain.rsplit('.', 1)[0] if '.' in vdomain else vdomain
@@ -2686,7 +2687,8 @@ if run_start and run_end:
         t2 = datetime.strptime(run_end, '%H:%M:%S')
         diff = (t2 - t1).total_seconds() / 60
         runtime_str = f'~{int(diff)} minutes'
-    except:
+    except Exception as e:
+        import sys; print(f'WARN: runtime parse failed: {e}', file=sys.stderr)
         runtime_str = 'unknown'
 else:
     runtime_str = 'unknown'
@@ -3002,7 +3004,8 @@ if os.path.exists(manifest_file):
     try:
         with open(manifest_file) as f:
             manifest = json.load(f)
-    except:
+    except Exception as e:
+        import sys; print(f'WARN: manifest.json parse failed: {e}', file=sys.stderr)
         manifest = []
 
 # Add new report entry (prepend so newest is first)
@@ -3209,7 +3212,8 @@ try:
         print('SKIP:has_contacts:' + ','.join(emails[:3]))
     else:
         print('OK')
-except:
+except Exception as e:
+    import sys; print(f'WARN: existing contact check failed: {e}', file=sys.stderr)
     print('OK')
 " 2>/dev/null)
     if [[ "$existing_contacts" == SKIP:* ]]; then

@@ -888,10 +888,20 @@ for m in re.findall(r'[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}', text):
     if not re.search(r'\.(png|jpg|gif|svg|css|js)$', e): emails.add(e)
 junk = ['noreply','no-reply','mailer-daemon','postmaster','webmaster','sentry','wix.com','squarespace']
 contacts = [{'email':e,'name':'','title':''} for e in emails if not any(j in e for j in junk) and len(e)<60]
-print(json.dumps({'contacts':contacts}))
+has_form = bool(re.search(r'<form[^>]*>.*?(<textarea|<input[^>]*type=[\"\\x27]email|<input[^>]*name=[\"\\x27][^\"\\x27]*(?:email|message))', html, re.IGNORECASE | re.DOTALL))
+print(json.dumps({'contacts':contacts, 'has_form': has_form}))
 " <<< "$sub_html" 2>/dev/null)
                     if [ -n "$sub_result" ] && [ "$sub_result" != "null" ]; then
                         log "  [CURL FALLBACK] Subpage parsed via curl"
+                        # Check for contact form in curl fallback
+                        if [ -z "$contact_form" ] || [ "$contact_form" = "None" ] || [ "$contact_form" = "" ]; then
+                            local curl_has_form
+                            curl_has_form=$(python3 -c "import json; print('yes' if json.loads('$sub_result').get('has_form') else 'no')" 2>/dev/null)
+                            if [ "$curl_has_form" = "yes" ]; then
+                                contact_form="$subpage"
+                                log "  [CONTACT FORM] Found on subpage (curl): $subpage"
+                            fi
+                        fi
                     fi
                 fi
             fi
@@ -922,6 +932,30 @@ for c in d.get('contacts', []):
 " 2>/dev/null >> /tmp/pipeline_all_contacts.txt
                 fi
             fi
+
+            # Check subpage for contact form if we haven't found one yet
+            if [ -z "$contact_form" ] || [ "$contact_form" = "None" ] || [ "$contact_form" = "" ]; then
+                local sub_has_form
+                sub_has_form=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "
+(function(){
+  var forms = document.querySelectorAll(\"form\");
+  for(var i=0;i<forms.length;i++){
+    var f = forms[i];
+    if(f.querySelector(\"textarea\") ||
+       f.querySelector(\"input[type=email]\") ||
+       f.querySelector(\"input[name*=email]\") ||
+       f.querySelector(\"input[name*=message]\")){
+      return \"yes\";
+    }
+  }
+  return \"no\";
+})()"' 2>/dev/null)
+                if [ "$sub_has_form" = "yes" ]; then
+                    contact_form="$subpage"
+                    log "  [CONTACT FORM] Found on subpage: $subpage"
+                fi
+            fi
+
         done <<< "$subpages"
     fi
 

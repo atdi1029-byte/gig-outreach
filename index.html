@@ -1666,7 +1666,7 @@ function jsonpFetch(url, cb) {
     window[cbName] = function(resp) { done=true; delete window[cbName]; script.remove(); cb(null, resp); };
     script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;
     script.onerror = function() { if(!done) { delete window[cbName]; script.remove(); cb('Failed'); } };
-    setTimeout(function() { if(!done) { delete window[cbName]; script.remove(); cb('Timeout'); } }, 15000);
+    setTimeout(function() { if(!done) { delete window[cbName]; script.remove(); cb('Timeout'); } }, 30000);
     document.head.appendChild(script);
 }
 
@@ -2832,23 +2832,22 @@ function setReportReviewed(file, reviewed) {
     // Sync to cloud
     if (BASE_URL) fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(data) }));
 }
-async function loadReviewedReportsFromCloud() {
-    if (!BASE_URL) return;
-    try {
-        const resp = await fetch(buildUrl({ action: 'get_reviewed_reports' }));
-        const json = await resp.json();
-        if (json.reviewed) {
-            // Merge cloud + local (keep whichever has more entries)
-            const local = getReviewedReports();
-            const merged = Object.assign({}, json.reviewed, local);
-            localStorage.setItem('outreach_reviewed_reports', JSON.stringify(merged));
-            _reviewedReportsCache = merged;
-            // Push merged back if cloud was missing local entries
-            if (Object.keys(merged).length > Object.keys(json.reviewed).length) {
-                fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(merged) }));
+function loadReviewedReportsFromCloud() {
+    if (!BASE_URL) return Promise.resolve();
+    return new Promise(function(resolve) {
+        jsonpFetch(buildUrl({ action: 'get_reviewed_reports' }), function(err, json) {
+            if (!err && json && json.reviewed) {
+                var local = getReviewedReports();
+                var merged = Object.assign({}, json.reviewed, local);
+                localStorage.setItem('outreach_reviewed_reports', JSON.stringify(merged));
+                _reviewedReportsCache = merged;
+                if (Object.keys(merged).length > Object.keys(json.reviewed).length) {
+                    fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(merged) }));
+                }
             }
-        }
-    } catch(e) { console.warn('Failed to load reviewed reports from cloud:', e); }
+            resolve();
+        });
+    });
 }
 
 async function openReportsView() {
@@ -3927,7 +3926,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load reviewed reports from cloud + report manifest before dashboard renders
     loadReviewedReportsFromCloud().then(() => {
         return loadReportManifest();
-    }).then(() => { _gatedVenueIds = null; loadDashboard(); });
+    }).then(() => { _gatedVenueIds = null; loadDashboard(); })
+    .catch(() => { _gatedVenueIds = null; loadDashboard(); });
 
     // Deep link: ?venue=VENUE_ID opens venue detail directly
     const urlParams = new URLSearchParams(window.location.search);

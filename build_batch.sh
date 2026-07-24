@@ -98,7 +98,8 @@ target_states = {'MD', 'VA', 'DC', 'PA', 'DE', 'WV'}
 target_cats = {
     'restaurant', 'hotel', 'winery', 'wine_bar',
     'country_club', 'private_club', 'art_gallery',
-    'yacht_club', 'museum', 'event', 'event_venue'
+    'yacht_club', 'museum', 'event', 'event_venue',
+    'music_venue', 'bar', 'club', 'gallery'
 }
 # EXCLUDED: hotel_restaurant, luxury_hotel_restaurant,
 # boutique_hotel_restaurant, historic_inn_restaurant
@@ -281,7 +282,7 @@ for v in venues:
     if city.lower() in too_far_cities:
         skipped_radius += 1
         continue
-    cat = v.get('category', '').lower()
+    cat = v.get('category', '').lower().replace(' ', '_')
     if cat not in target_cats:
         skipped_cat += 1
         continue

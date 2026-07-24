@@ -111,7 +111,22 @@ skip_names = [
     'school', 'academy', 'seminary', 'university',
     'college', 'montessori', 'preschool',
     'mcdonalds', 'taco bell', 'subway', 'chipotle',
-    'hookah', 'karaoke', 'strip club'
+    'hookah', 'karaoke', 'strip club',
+    # Venues NOT suitable for classical guitar
+    'dance hall', 'dance studio', 'ballroom',
+    'salsa', 'bachata', 'tango ',
+    'theater', 'theatre', 'playhouse', 'comedy club',
+    'golf course', 'golf club', 'golf simulator',
+    'five iron', 'puttery', 'topgolf', 'mini golf',
+    'driving range', 'recreation center',
+    'liquor store', 'wine store', 'wine shop',
+    'spirits', 'bottle shop',
+    'bowling', 'arcade', 'laser tag', 'escape room',
+    'axe throwing', 'trampoline',
+    'gym ', ' gym', 'crossfit', 'yoga studio',
+    'pilates', 'boxing gym', 'martial art',
+    'swim club', 'pool club', 'tennis club',
+    'ice rink', 'skating'
 ]
 
 # Chain restaurant names — skip corporate chains
@@ -119,6 +134,7 @@ chain_names = [
     'founding farmers', 'cava', 'sweetgreen', 'nandos',
     'cheesecake factory', 'capital grille', 'ruth chris',
     'mortons', 'flemings', 'sullivan steakhouse',
+    'maggiano', 'puttery', 'five iron golf', 'topgolf',
     'olive garden', 'red lobster', 'outback',
     'applebees', 'chilis', 'tgi friday',
     'panera', 'starbucks', 'dunkin', 'five guys',
@@ -276,6 +292,19 @@ for v in venues:
     # Reject chain restaurants
     if any(c in nl for c in chain_names):
         skipped_chain += 1
+        continue
+    # Reject junk venues hiding in notes (Google Maps category)
+    notes_lc = (v.get('notes', '') or '').lower()
+    junk_notes = ['liquor store', 'wine store', 'wine shop',
+        'golf course', 'golf club', 'mini golf', 'golf simulator',
+        'dance hall', 'dance studio', 'dance school', 'ballroom',
+        'theater', 'theatre', 'comedy club', 'bowling',
+        'recreation center', 'rec center', 'community center',
+        'gym', 'fitness center', 'yoga studio', 'pilates',
+        'ice cream', 'frozen yogurt', 'donut', 'bagel',
+        'lingerie', 'clothing store', 'retail store']
+    if any(j in notes_lc for j in junk_notes):
+        skipped_name += 1
         continue
     pool.append(v)
 

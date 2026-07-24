@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; July 24, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif;
+background: #0c1a22; color: #e0e0e0;
+padding: 40px; max-width: 900px;
+margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem;
+margin-bottom: 5px;
+border-bottom: 2px solid #6ecfcf;
+padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 30px;
+font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem;
+margin: 30px 0 15px;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse;
+margin: 15px 0; font-size: 0.9rem; }
+  th { background: #1a2e3a; color: #6ecfcf;
+padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px;
+border-bottom: 1px solid #1a2e3a;
+vertical-align: top; }
+  .stat-grid { display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a;
+border-radius: 8px; padding: 15px;
+text-align: center; }
+  .stat-box .num { font-size: 2rem;
+font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.85rem;
+color: #999; margin-top: 4px; }
+  .win { background: #1a2a1a;
+border-left: 4px solid #4caf50;
+padding: 10px 14px; margin: 8px 0;
+border-radius: 0 6px 6px 0; }
+  .win strong { color: #4caf50; }
+  .valid { color: #4caf50; }
+  .closed { color: #e85050; }
+  .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
+  .skip { color: #888; }
+  a { color: #6ecfcf; text-decoration: none; }
+  .review-box { background: #1a1a2a;
+border: 2px solid #e8944c;
+border-radius: 8px; padding: 20px;
+margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none;
+padding: 0; }
+  .review-item { display: flex;
+justify-content: space-between;
+align-items: center; padding: 10px 0;
+border-bottom: 1px solid #1a2e3a; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .contact-count {
+font-size: 1.4rem; font-weight: bold;
+color: #e85050; min-width: 40px;
+text-align: center; }
+  .review-item .venue-type { color: #888;
+font-size: 0.8rem; }
+  td.emails-zero { color: #e85050;
+font-weight: bold; font-size: 1.1rem; }
+  td.emails-good { color: #4caf50;
+font-weight: bold; font-size: 1.1rem; }
+  details { margin: 30px 0; }
+  details summary { color: #e8944c;
+font-size: 1.3rem; cursor: pointer;
+padding: 10px 0; font-weight: bold;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  details summary:hover { color: #f0a060; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">July 24, 2026 &mdash;
+Diversified batch via build_batch.sh (23 venues).
+Herndon VA, Middleburg VA, McLean VA,
+Alexandria VA, Vienna VA, Great Falls VA,
+Bethesda MD, Dickerson MD, Georgetown DC.
+<br>Taste discovery added 239 new venues
+from 23 search queries before pipeline run.
+<br>3 new taste votes processed (2 positive,
+1 negative).
+</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">23</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">13</div>
+    <div class="label">Active (Pass/Flagged)</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">10</div>
+    <div class="label">Skipped (Junk/Wrong)</div>
+  </div>
+</div>
+
+<!-- ============ NEEDS YOUR REVIEW ============ -->
+<div class="review-box">
+<h2 style="color:#e8944c;">Needs Your Review
+(0&ndash;1 verified emails)</h2>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3104"
+    class="venue-name">Uncle Jalapeno</a>
+    <div class="venue-type">Herndon VA |
+    restaurant &mdash; Mexican restaurant,
+    only generic eat@ email, no named contacts</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-860"
+    class="venue-name">Bistro @ The Porch</a>
+    <div class="venue-type">The Plains VA |
+    restaurant &mdash; owner Shawn Malone
+    found but no email.
+    <span class="junk">CITY FIX:</span>
+    listed Middleburg, actually The Plains</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1686"
+    class="venue-name">The Peoples Drug</a>
+    <div class="venue-type">Alexandria VA |
+    restaurant &mdash; owner Teddy Kim found
+    but zero emails anywhere</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-1467"
+    class="venue-name">The Chase Club at Hotel Burg</a>
+    <div class="venue-type">Leesburg VA |
+    hotel &mdash; owners Kevin &amp; Remington Ash
+    identified, no emails. New boutique hotel +
+    social club opening.
+    <span class="junk">CITY FIX:</span>
+    listed Middleburg, actually Leesburg</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2854"
+    class="venue-name">Hotel Heron</a>
+    <div class="venue-type">Alexandria VA |
+    hotel &mdash; GM Phillip Blane, F&amp;B Dir
+    Betty Woodward, Lifestyle Dir Harry Francis
+    found but no emails. Rooftop concert series.</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1786"
+    class="venue-name">The Cordell</a>
+    <div class="venue-type">Bethesda MD |
+    event &mdash; upscale event venue, no named
+    contacts found, info@ only</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+<div class="review-item">
+  <div>
+    <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1787"
+    class="venue-name">The Rooftop Bethesda</a>
+    <div class="venue-type">Bethesda MD |
+    event &mdash; Hyatt Regency event space.
+    No social media found. Needs Apollo search
+    for event manager.</div>
+  </div>
+  <div class="contact-count">0</div>
+</div>
+</div>
+
+<!-- ============ ALL VENUES ============ -->
+<h2>All Venues (13 active + 10 skipped)</h2>
+<table>
+<tr><th>Venue</th><th style="width:60px;
+text-align:center;">Contacts</th>
+<th>Key Contact</th><th>Notes</th></tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-849">
+The Bistro at Goodstone Inn</a><br>
+<span class="skip">Middleburg VA | hotel</span></td>
+<td class="emails-good" style="text-align:center;">5</td>
+<td>chobbs@goodstone.com (GM?),
+Betsy Khashoggi (Group Sales),
+information@goodstone.com</td>
+<td>Luxury boutique inn.
+Pipeline found personal email
+for GM. Betsy Khashoggi =
+Group Sales Manager. Tier 1.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2855">
+Archer Hotel Alexandria</a><br>
+<span class="skip">Alexandria VA | hotel</span></td>
+<td class="emails-good" style="text-align:center;">10</td>
+<td>10 contacts already in sheet.
+AKB lobby bar.</td>
+<td>Boutique hotel, 107 rooms.
+Already well-populated.
+Venue email:
+alexandria@archerhotel.com</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2214">
+Blues Alley Club</a><br>
+<span class="skip">Georgetown DC |
+restaurant</span></td>
+<td class="emails-good" style="text-align:center;">8</td>
+<td>Harry Schnipper (Owner),
+ExecutiveDirector@BluesAlley.org,
+communications@bluesalley.com</td>
+<td>Legendary Georgetown jazz
+supper club, 60 years. Owner
+Harry Schnipper since 2003.
+Good fit for guitar.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2281">
+Rocklands Farm Winery</a><br>
+<span class="skip">Poolesville MD |
+winery</span></td>
+<td class="emails-good" style="text-align:center;">8</td>
+<td>Jeni Treseler (Events Mgr,
+needs Apollo enrichment)</td>
+<td><span class="junk">WRONG WEBSITE:</span>
+sheet has adventuresunbound.com.
+Correct: rocklandsfarmmd.com.
+Live music Fridays. Fix website
++ FB/IG links.
+<span class="junk">CITY FIX:</span>
+listed Georgetown, actually
+Poolesville MD.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1161">
+Pulcinella Italian Kitchen</a><br>
+<span class="skip">McLean VA |
+restaurant</span></td>
+<td class="emails-good" style="text-align:center;">1</td>
+<td>Moe Jebali (Owner)</td>
+<td>Italian restaurant in McLean.
+Owner identified.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2437">
+Zeffirelli Ristorante Italiano</a><br>
+<span class="skip">Herndon VA |
+restaurant</span></td>
+<td class="emails-good" style="text-align:center;">2</td>
+<td>Sayed Hussain (Owner,
+needs Apollo enrichment).
+Pipeline found IG:
+@zeffirelliitaliano</td>
+<td>Italian fine dining in Herndon.
+Add missing Instagram handle.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-952">
+Comus Farm</a><br>
+<span class="skip">Dickerson MD |
+event_venue</span></td>
+<td class="emails-good" style="text-align:center;">1</td>
+<td>Lauren Huyser (Owner &amp;
+Event Coordinator),
+Iago Huyser (Co-Owner)</td>
+<td>Working farm + wedding/event
+venue. WeddingWire award winner.
+Lauren is the decision maker.
+ZoomInfo has email lead.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3104">
+Uncle Jalapeno</a><br>
+<span class="skip">Herndon VA |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>&mdash;</td>
+<td>Mexican restaurant. Generic
+eat@ email only. Not ideal
+for classical guitar but
+website/socials verified.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-860">
+Bistro @ The Porch</a><br>
+<span class="skip">The Plains VA |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Shawn Malone (Owner,
+no email)</td>
+<td><span class="junk">CITY FIX:</span>
+listed Middleburg, actually
+The Plains VA. Owner identified
+via web search.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1686">
+The Peoples Drug</a><br>
+<span class="skip">Alexandria VA |
+restaurant</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Teddy Kim (Owner, no email)</td>
+<td>Restaurant in Alexandria.
+Zero emails found anywhere.
+Owner Teddy Kim identified.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-1467">
+The Chase Club at Hotel Burg</a><br>
+<span class="skip">Leesburg VA | hotel</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Kevin &amp; Remington Ash
+(Owners, no emails)</td>
+<td><span class="junk">CITY FIX:</span>
+listed Middleburg, actually
+Leesburg. New boutique hotel +
+social club. Venue email:
+thechase@hotelburg.com</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2854">
+Hotel Heron</a><br>
+<span class="skip">Alexandria VA |
+hotel</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>Phillip Blane (GM),
+Betty Woodward (F&amp;B Dir),
+Harry Francis (Lifestyle Dir)</td>
+<td>Boutique hotel, Old Town
+Alexandria. Rooftop concert
+series. 4 named staff found,
+all need Apollo enrichment.</td>
+</tr>
+
+<tr>
+<td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1786">
+The Cordell</a><br>
+<span class="skip">Bethesda MD | event</span></td>
+<td class="emails-zero" style="text-align:center;">0</td>
+<td>&mdash;</td>
+<td>Upscale event venue, 3,800
+sq ft, capacity 200. Good for
+reception music. No named
+contacts; needs Apollo search.</td>
+</tr>
+
+</table>
+
+<!-- ============ SKIPPED VENUES ============ -->
+<details>
+<summary>Skipped Venues (10)</summary>
+<table>
+<tr><th>Venue</th><th>Reason</th></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3018">
+Maggiano's Little Italy</a><br>
+<span class="skip">Vienna VA | restaurant</span></td>
+<td><span class="junk">CHAIN RESTAURANT</span>
+&mdash; Brinker International national chain.
+No local decision-maker to reach. Should have
+been filtered by build_batch.sh.</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-EVEN-2966">
+Colvin Run Dance Hall</a><br>
+<span class="skip">Great Falls VA | event</span></td>
+<td><span class="junk">DANCE HALL</span>
+&mdash; Social dancing venue (ballroom, swing,
+tango) since 1931. Not suitable for classical
+guitar.</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1785">
+Round House Theatre</a><br>
+<span class="skip">Bethesda MD | event</span></td>
+<td><span class="junk">THEATER</span>
+&mdash; Professional theater company. User
+explicitly said "I'm not looking for theaters."</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1802">
+Salsa With Silvia Ballroom</a><br>
+<span class="skip">Bethesda MD | event</span></td>
+<td><span class="junk">DANCE STUDIO</span>
+&mdash; Salsa/bachata/reggaeton dance classes.
+Not a venue for classical guitar.</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2186">
+Puttery</a><br>
+<span class="skip">Penn Quarter DC |
+restaurant</span></td>
+<td><span class="junk">MINI-GOLF</span>
+&mdash; Upscale mini-golf entertainment chain.
+Not in Georgetown (Penn Quarter).
+Not suitable for classical guitar.</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2195">
+Five Iron Golf</a><br>
+<span class="skip">Penn Quarter DC |
+restaurant</span></td>
+<td><span class="junk">GOLF SIMULATOR</span>
+&mdash; Indoor golf simulator venue/bar.
+Not in Georgetown (Penn Quarter).
+Sports bar vibes.</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2208">
+Bretton Woods Golf Course</a><br>
+<span class="skip">Germantown MD |
+restaurant</span></td>
+<td><span class="junk">RECREATION CENTER</span>
+&mdash; bwrc.org = Bretton Woods Recreation
+Center in Germantown MD, not Georgetown DC.
+Wrong city, wrong category.</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2209">
+Midway House Congressional</a><br>
+<span class="skip">Bethesda MD |
+restaurant</span></td>
+<td><span class="junk">ULTRA-EXCLUSIVE CLUB</span>
+&mdash; ccclub.org = Congressional Country Club.
+One of the most exclusive clubs in the US.
+Cold outreach unlikely to work. Not in
+Georgetown (Bethesda).</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-1787">
+The Rooftop Bethesda</a><br>
+<span class="skip">Bethesda MD | event</span></td>
+<td><span class="purple">FLAGGED</span>
+&mdash; Hyatt Regency event space. No social
+media found. Sheet data wrong (IG=Y but none
+exists). May be worth pursuing via Hyatt
+events team but needs more research.</td></tr>
+
+<tr><td>
+<a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2296">
+Verified Spirits &amp; Fine Wines</a><br>
+<span class="skip">Tenleytown DC |
+restaurant</span></td>
+<td><span class="junk">LIQUOR STORE + WRONG
+WEBSITE</span> &mdash; Website nbyachtclub.com
+belongs to Nauti Buoy Yacht Club, not this
+venue. A wine/spirits retail shop, not a
+restaurant or venue.</td></tr>
+
+</table>
+</details>
+
+<!-- ============ DATA QUALITY ============ -->
+<details>
+<summary>Data Quality Issues (7)</summary>
+
+<div class="incident">
+<strong>4 City Mismatches:</strong>
+Bistro @ The Porch (Middleburg &rarr; The Plains),
+The Chase Club (Middleburg &rarr; Leesburg),
+Rocklands Farm (Georgetown &rarr; Poolesville MD),
+Bretton Woods (Georgetown &rarr; Germantown MD).
+build_batch.sh valid_cities list needs updating.
+</div>
+
+<div class="incident">
+<strong>2 Wrong Websites:</strong>
+Rocklands Farm Winery has adventuresunbound.com
+(should be rocklandsfarmmd.com).
+Verified Spirits has nbyachtclub.com
+(belongs to Nauti Buoy Yacht Club).
+</div>
+
+<div class="incident">
+<strong>Maggiano's slipped through chain filter:</strong>
+build_batch.sh has "maggianos" in chain_names
+but it matched "Maggiano's" (apostrophe).
+Needs apostrophe-insensitive matching.
+</div>
+
+<div class="incident">
+<strong>10 of 23 venues were junk:</strong>
+43% skip rate. Pool had 0 clubs and 0 wineries
+available. The remaining pool is mostly
+event venues and miscategorized restaurants.
+Discovery quality declining &mdash; may need
+to run more taste discovery queries focused
+on restaurants and clubs.
+</div>
+
+</details>
+
+<!-- ============ TASTE REVIEW ============ -->
+<h2>Taste Review</h2>
+<p>3 new votes processed since Jul 18:</p>
+<table>
+<tr><th>Venue</th><th>Vote</th><th>Notes</th></tr>
+<tr><td>Rosewood Washington DC</td>
+<td class="valid">UP</td>
+<td>Luxury Georgetown hotel.
+Added to taste_venues.txt.</td></tr>
+<tr><td>The Georgetown Inn</td>
+<td class="valid">UP</td>
+<td>Georgetown hotel.
+Added to taste_venues.txt.</td></tr>
+<tr><td>Bethesda Theater</td>
+<td class="closed">DOWN</td>
+<td>"Counterintuitively I'm not
+looking for theaters." New
+anti-pattern: skip theaters.</td></tr>
+</table>
+
+<p><strong>Pattern update:</strong> Georgetown hotel
+cluster growing (Rosewood + Georgetown Inn).
+Theaters explicitly rejected as category.
+All prior patterns hold &mdash;
+French/European, Italian, wine bars, clubs,
+DC hotels, historic venues.</p>
+
+<p><strong>Files changed:</strong>
+taste_notes.md (3 new entries + Jul 23
+patterns section), taste_venues.txt (+2).</p>
+
+<!-- ============ DISCOVERY ============ -->
+<h2>Discovery</h2>
+<p>Taste discovery ran 23 Google Maps queries.
+Added <strong>239 new venues</strong>.
+Major areas: PA country clubs (Bryn Mawr,
+Main Line), DE wineries/restaurants
+(Greenville, Wilmington), VA wineries
+(Charlottesville area, Leesburg),
+MD wineries. Queries remaining: 285.</p>
+
+</body>
+</html>

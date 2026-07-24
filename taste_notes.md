@@ -580,3 +580,27 @@
 - **French still undefeated** — Chez Billy Sud, La Piquette, Cafe du Parc, Le Yaca all positive. ZERO negative French votes across all time.
 - **10 of 12 positive** — two negatives are both Japanese restaurants (same concept). Taste profile remains highly calibrated.
 - **All prior patterns hold** — French/European, Italian, Spanish wine bars, wine bars, clubs, DC hotels, historic venues.
+
+---
+
+## Jul 23, 2026 — Post-Pipeline Review (3 new votes)
+
+### Rosewood Washington DC (hotel, Georgetown DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Luxury hotel in Georgetown — premium location + high-end brand.
+- **Action:** Added to taste_venues.txt. Georgetown luxury hotels = strong fit.
+
+### The Georgetown Inn (hotel, Georgetown DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Georgetown hotel — another Georgetown hospitality venue thumbs up.
+- **Action:** Added to taste_venues.txt. Georgetown hotels clustering as targets.
+
+### Bethesda Theater (event, Bethesda MD) — NEGATIVE
+> "Counterintuitively I'm not looking for theaters"
+- **Extracted:** Theaters explicitly rejected as a category. Despite seeming like a cultural fit, user doesn't want them.
+- **Action:** Not added. Theaters/performance venues = skip. This is a new anti-pattern — not obvious from the taste profile.
+
+---
+
+## Updated Patterns (Jul 23)
+- **Georgetown hotel cluster** — Rosewood + Georgetown Inn join Degrees Bistro (at Ritz), Chez Billy Sud. Georgetown is the #1 neighborhood for positive votes across all categories.
+- **Theaters = NEW anti-pattern** — user explicitly says "not looking for theaters." Counterintuitive but clear. Remove theater/performance venues from discovery targets.
+- **All prior patterns hold** — French/European, Italian, Spanish wine bars, wine bars, clubs, DC hotels, historic venues. No French restaurant has ever received a negative vote.

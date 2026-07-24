@@ -135,7 +135,7 @@ chain_names = [
     'founding farmers', 'cava', 'sweetgreen', 'nandos',
     'cheesecake factory', 'capital grille', 'ruth chris',
     'mortons', 'flemings', 'sullivan steakhouse',
-    'maggiano', 'puttery', 'five iron golf', 'topgolf',
+    'puttery', 'five iron golf', 'topgolf',
     'olive garden', 'red lobster', 'outback',
     'applebees', 'chilis', 'tgi friday',
     'panera', 'starbucks', 'dunkin', 'five guys',

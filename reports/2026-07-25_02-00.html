@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; July 25, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif;
+background: #0c1a22; color: #e0e0e0;
+padding: 40px; max-width: 900px;
+margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem;
+margin-bottom: 5px;
+border-bottom: 2px solid #6ecfcf;
+padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 30px;
+font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem;
+margin: 30px 0 15px;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse;
+margin: 15px 0; font-size: 0.9rem; }
+  th { background: #1a2e3a; color: #6ecfcf;
+padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px;
+border-bottom: 1px solid #1a2e3a;
+vertical-align: top; }
+  .stat-grid { display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a;
+border-radius: 8px; padding: 15px;
+text-align: center; }
+  .stat-box .num { font-size: 2rem;
+font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.85rem;
+color: #999; margin-top: 4px; }
+  .win { background: #1a2a1a;
+border-left: 4px solid #4caf50;
+padding: 10px 14px; margin: 8px 0;
+border-radius: 0 6px 6px 0; }
+  .win strong { color: #4caf50; }
+  .valid { color: #4caf50; }
+  .closed { color: #e85050; }
+  .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
+  .skip { color: #888; }
+  a { color: #6ecfcf; text-decoration: none; }
+  .review-box { background: #1a1a2a;
+border: 2px solid #e8944c;
+border-radius: 8px; padding: 20px;
+margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none;
+padding: 0; }
+  .review-item { display: flex;
+justify-content: space-between;
+align-items: center; padding: 10px 0;
+border-bottom: 1px solid #1a2e3a; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .contact-count {
+font-size: 1.4rem; font-weight: bold;
+color: #e85050; min-width: 40px;
+text-align: center; }
+  .review-item .venue-type { color: #888;
+font-size: 0.8rem; }
+  td.emails-zero { color: #e85050;
+font-weight: bold; font-size: 1.1rem; }
+  td.emails-good { color: #4caf50;
+font-weight: bold; font-size: 1.1rem; }
+  details { margin: 30px 0; }
+  details summary { color: #e8944c;
+font-size: 1.3rem; cursor: pointer;
+padding: 10px 0; font-weight: bold;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  details summary:hover { color: #f0a060; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">July 25, 2026 &mdash;
+Diversified batch via build_batch.sh (23 venues).
+McLean VA, Herndon VA, Alexandria VA,
+Tysons VA, Chestertown MD, Brookeville MD,
+Greenville DE, Bryn Mawr PA,
+Dupont Circle DC, Georgetown DC.
+<br>No taste discovery needed (1,286 untouched
+venues in pool).
+<br>0 new taste votes since Jul 23.
+</div>
+
+<!-- Stats -->
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">23</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">4</div>
+    <div class="label">Verified Contacts Added</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">18</div>
+    <div class="label">Junk Contacts Deleted</div>
+  </div>
+</div>
+
+<!-- Needs Your Review -->
+<div class="review-box">
+  <h2>Needs Your Review (0 contacts)</h2>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3053">Capri Ristorante Italiano</a></div>
+      <div class="venue-type">restaurant | McLean VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2896">Watermark Hotel - Wren Restaurant</a></div>
+      <div class="venue-type">hotel | Tysons VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2332">Kramers</a></div>
+      <div class="venue-type">restaurant | Dupont Circle DC</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-638">River Club DC</a></div>
+      <div class="venue-type">restaurant | Georgetown DC</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+</div>
+
+<!-- Key Wins -->
+<h2>Key Wins</h2>
+
+<div class="win">
+  <strong>The Army & Navy Club (DC)</strong> &mdash;
+  HIGH PRIORITY. Private members-only Five Star
+  Platinum Club at Farragut Square, founded 1891.
+  Found Elizabeth Newcomer (Director of Events &
+  Catering, enewcomer@armynavyclub.org) and
+  Donna Rogers (Director of Catering,
+  drogers@armynavyclub.org). Perfect fit for
+  classical guitar &mdash; formal dining, private
+  events, member entertainment.
+</div>
+
+<div class="win">
+  <strong>Georgian Wine House (DC)</strong> &mdash;
+  ALL 7 pipeline contacts were wine distributor
+  emails (JUNK &mdash; deleted). Found actual
+  owner: Dr. Mamuka Tsereteli (Founder) and
+  Noel Brockett (President / Director of Sales,
+  noel@georgianwinehouse.com). Note: primarily
+  a wine importer, verify they have a tasting
+  room for live music.
+</div>
+
+<div class="win">
+  <strong>The Hamilton (DC)</strong> &mdash;
+  Dave Cooper (Venue Manager &mdash; Ticketing &
+  Marketing, dcooper@thehamiltondc.com). Part of
+  Clyde's Restaurant Group. FLAG: large concert
+  venue (~600 capacity) &mdash; may be too
+  big/loud for classical guitar.
+</div>
+
+<div class="win">
+  <strong>Bella Vita Farm (Brookeville MD)</strong>
+  &mdash; All 4 pipeline contacts now have full
+  names: Amy Falcone (Owner, Gatherings &
+  Greenhouse), Jeff Dowling (Farm Manager),
+  Nate Tharp (Associate), Simon Dass (Market
+  Garden Manager). Primary contact: Amy.
+  Note: primarily a farm/event venue.
+</div>
+
+<!-- All Venues Table -->
+<h2>All Venues</h2>
+<table>
+<tr>
+  <th>Venue</th>
+  <th>Type</th>
+  <th>Location</th>
+  <th>Contacts</th>
+  <th>Status</th>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3053">Capri Ristorante Italiano</a></td>
+  <td>restaurant</td>
+  <td>McLean VA</td>
+  <td class="emails-zero">0</td>
+  <td>Owner: Beatrice Zelaya. No email found.
+  Contact form only.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3081">Mile 20 at Med Breeze</a></td>
+  <td>restaurant</td>
+  <td>Herndon VA</td>
+  <td class="emails-zero">0</td>
+  <td><span class="junk">FLAG:</span> Mile 20
+  is a beer bar section. Owner: Terry Kasotakis.
+  Website 403. Sports bar vibes.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-811">Il Porto Ristorante</a></td>
+  <td>restaurant</td>
+  <td>Alexandria VA</td>
+  <td class="emails-good">1</td>
+  <td>ilporto@comcast.net (venue email).
+  Italian restaurant, good fit.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1430">Portales Restaurant</a></td>
+  <td>restaurant</td>
+  <td>Alexandria VA</td>
+  <td class="emails-good">1</td>
+  <td>losportalesrestaurantcafe@gmail.com
+  (venue email). Latin restaurant.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2881">Brabo Brasserie</a></td>
+  <td>Restaurant</td>
+  <td>Alexandria VA</td>
+  <td>&mdash;</td>
+  <td><span class="closed">CLOSED</span> &mdash;
+  replaced by HomeGrown restaurant (2025).
+  Website redirects to Archer Hotel.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2890">The George of Old Town</a></td>
+  <td>Hotel</td>
+  <td>Alexandria VA</td>
+  <td class="emails-good">1</td>
+  <td>thegeorgeofoldtown@gmail.com.
+  <span class="junk">FLAG:</span> Airbnb/boutique
+  B&amp;B (8 bedrooms), not traditional hotel.
+  Owners: Steven &amp; Martha Peterson.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2896">Watermark Hotel - Wren Restaurant</a></td>
+  <td>hotel</td>
+  <td>Tysons VA</td>
+  <td class="emails-zero">0</td>
+  <td>hello@thewatermarkhotel.com found but
+  generic. No person contacts.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-491">Brampton 1860 Inn</a></td>
+  <td>Hotel</td>
+  <td>Chestertown MD</td>
+  <td class="emails-zero">0</td>
+  <td>Innkeepers: Colette Kay, Sandra
+  DeOliveira (LinkedIn). innkeeper@ deleted
+  (generic). Historic B&amp;B.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-495">White Swan Tavern</a></td>
+  <td>Hotel</td>
+  <td>Chestertown MD</td>
+  <td class="emails-zero">0</td>
+  <td>Beth Lavery, Innkeeper. info@ rejected
+  as generic. Historic B&amp;B, good fit.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-975">Bella Vita Farm</a></td>
+  <td>event_venue</td>
+  <td>Brookeville MD</td>
+  <td class="emails-good">3</td>
+  <td><span class="valid">PASS</span> Amy Falcone
+  (owner), Jeff Dowling, Nate Tharp all with
+  @bellavitafarm.com emails. Farm/event venue.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DE-EVEN-001">Bohemia Manor Farm Wine</a></td>
+  <td>event_venue</td>
+  <td>Greenville DE</td>
+  <td class="emails-zero">0</td>
+  <td>Jeffrey Siebold (LinkedIn). Broken
+  email encoding deleted. Winery/event venue.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DE-EVEN-002">Frightened Turtle Winery</a></td>
+  <td>event_venue</td>
+  <td>Greenville DE</td>
+  <td class="emails-good">2</td>
+  <td>ron@frightenedturtle.com (valid),
+  eben@eyebytes.com (off-domain, invalid).
+  Small winery at Sunny Slope Farms.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DE-EVEN-003">Winterthur Museum</a></td>
+  <td>event_venue</td>
+  <td>Wilmington DE</td>
+  <td class="emails-good">1</td>
+  <td>B. White, Corporate Events
+  (bwhite@winterthur.org). 21 generic dept
+  emails in pipeline &mdash; only 1 real person.
+  <span class="junk">FLAG:</span> city listed as
+  Greenville but actually Wilmington DE.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-EVEN-2071">Ivy Hall Mansion</a></td>
+  <td>event_venue</td>
+  <td>Philadelphia PA</td>
+  <td class="emails-good">1</td>
+  <td>mhaas@syndstrat.com. International
+  Institute of Culture. <span class="junk">
+  FLAG:</span> city listed as Bryn Mawr but
+  actually Philadelphia 19151.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-EVEN-2072">Blue Ridge Estate Winery</a></td>
+  <td>event_venue</td>
+  <td>Saylorsburg PA</td>
+  <td class="emails-good">2</td>
+  <td>steelcreek@hotmail.com, teunis@ptd.net.
+  <span class="closed">WRONG LOCATION</span>
+  &mdash; listed as Bryn Mawr but actually
+  Saylorsburg PA (Poconos). TOO FAR.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2328">Era Wine Bar</a></td>
+  <td>restaurant</td>
+  <td>Mount Rainier MD</td>
+  <td class="emails-good">1</td>
+  <td>Owners: Dr. Michelle &amp; Ka-ton Grant.
+  drinkwine@erawinebar.com. RAMMY 2025 winner.
+  <span class="junk">FLAG:</span> city listed as
+  Dupont Circle DC, actually Mount Rainier MD.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2329">Georgian Wine House</a></td>
+  <td>restaurant</td>
+  <td>Dupont Circle DC</td>
+  <td class="emails-good">1</td>
+  <td><span class="valid">PASS</span>
+  Noel Brockett (President,
+  noel@georgianwinehouse.com). 7 junk
+  distributor emails deleted. Wine importer
+  &mdash; verify tasting room.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2332">Kramers</a></td>
+  <td>restaurant</td>
+  <td>Dupont Circle DC</td>
+  <td class="emails-zero">0</td>
+  <td>Owner: Steve Salis (Salis Holdings).
+  FB/IG added (Kramerbooks). Bookstore/
+  restaurant, hosts events.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-638">River Club DC</a></td>
+  <td>restaurant</td>
+  <td>Georgetown DC</td>
+  <td class="emails-zero">0</td>
+  <td>Co-founders: Farid Azouri, David Nammour.
+  FB added. Upscale Mediterranean restaurant
+  on Georgetown waterfront.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-672">The Hamilton</a></td>
+  <td>restaurant</td>
+  <td>Washington DC</td>
+  <td class="emails-good">1</td>
+  <td><span class="valid">PASS</span>
+  Dave Cooper (Venue Manager,
+  dcooper@thehamiltondc.com). Clyde's group.
+  <span class="junk">FLAG:</span> ~600 capacity
+  concert venue, may be too big/loud.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1052">Prost DC</a></td>
+  <td>restaurant</td>
+  <td>Washington DC</td>
+  <td class="emails-good">1</td>
+  <td>prostindc@gmail.com (venue email).
+  <span class="junk">SKIP:</span> German beer
+  hall. Owners: Eric Heidenberger, Frank Wilson.
+  Wrong vibe for classical guitar.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1576">Tasting Room Georgetown</a></td>
+  <td>restaurant</td>
+  <td>Georgetown DC</td>
+  <td>&mdash;</td>
+  <td><span class="closed">CLOSED</span> &mdash;
+  per Yelp Jul 2025. Wrong website was
+  fountaininndc.com. All contacts deleted.</td>
+</tr>
+<tr>
+  <td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2192">The Army &amp; Navy Club</a></td>
+  <td>private_club</td>
+  <td>Washington DC</td>
+  <td class="emails-good">2</td>
+  <td><span class="valid">HIGH PRIORITY</span>
+  Elizabeth Newcomer (Dir Events &amp; Catering,
+  enewcomer@armynavyclub.org), Donna Rogers
+  (Dir Catering, drogers@armynavyclub.org).
+  Five Star Platinum Club, founded 1891.</td>
+</tr>
+</table>
+
+<!-- Flagged / Skip Details -->
+<details>
+<summary>Flagged &amp; Skip Details (7 venues)</summary>
+
+<div class="incident">
+<strong>Mile 20 at Med Breeze</strong> (VA-REST-3081)
+&mdash; The "Mile 20" portion is a beer bar in the
+back of Mediterranean Breeze restaurant. Owner Terry
+Kasotakis also runs the main restaurant side.
+Website returned 403 Forbidden. Multiple co-owners
+from 2005. Sports bar section makes this a poor
+fit for classical guitar. Consider emailing the
+restaurant side directly if pursuing.
+</div>
+
+<div class="incident">
+<strong>The George of Old Town</strong> (VA-HOTE-2890)
+&mdash; Listed as "Hotel" but is actually an Airbnb /
+boutique B&amp;B with 8 bedrooms. Owner Steven
+Peterson (Peterson Companies / National Harbor real
+estate developer) ran for Alexandria mayor in 2024.
+Not a traditional hotel with a lounge or restaurant
+for live music.
+</div>
+
+<div class="incident">
+<strong>The Hamilton</strong> (DC-REST-672) &mdash;
+Large concert venue (~600 capacity) under Clyde's
+Restaurant Group. Books headlining acts, not
+background music. Dave Cooper handles ticketing
+and marketing. Classical guitar would be lost here
+unless for a private event in a smaller room.
+</div>
+
+<div class="incident">
+<strong>Prost DC</strong> (DC-REST-1052) &mdash;
+Bavarian beer hall at Mount Vernon Triangle. User has
+explicitly rejected beer gardens (Dacha = negative).
+Same wrong-vibe issue. Owners Eric Heidenberger and
+Frank Wilson also run Shaw's Tavern, Madhatter, 801.
+High-volume casual &mdash; skip.
+</div>
+
+<div class="incident">
+<strong>Blue Ridge Estate Winery</strong> (PA-EVEN-2072)
+&mdash; Listed as Bryn Mawr PA but actually in
+Saylorsburg PA (Poconos). Over 2 hours from DC metro.
+Owners: Randy and Tiffany Detrick. OUTSIDE RADIUS.
+</div>
+
+<div class="incident">
+<strong>Era Wine Bar</strong> (DC-REST-2328) &mdash;
+Listed as Dupont Circle DC but actually at 3300 Rhode
+Island Ave, Mount Rainier MD 20712. Owners Dr.
+Michelle Grant (lead sommelier) and Ka-ton Grant.
+RAMMY 2025 Wine Program of the Year. Still within
+range but wrong city in database.
+</div>
+
+<div class="incident">
+<strong>Ivy Hall Mansion</strong> (PA-EVEN-2071) &mdash;
+Listed as Bryn Mawr PA but actually in Philadelphia
+(Overbrook section, 19151). International Institute of
+Culture. Does host events (Oktoberfest, lectures,
+retreats). Founder: Dr. John M. Haas. mhaas@syndstrat.com
+may be a family member managing via strategy firm.
+</div>
+</details>
+
+<!-- Closed Venues -->
+<details>
+<summary>Closed Venues (2)</summary>
+
+<div class="incident">
+<strong>Brabo Brasserie</strong> (VA-REST-2881) &mdash;
+Permanently closed, replaced by HomeGrown: A Daytime
+Eatery as of early 2025 (Zebra Press report).
+Website braborestaurant.com redirects to
+archerhotel.com/alexandria (Lorien Hotel rebranded
+to Archer Hotel). Chef Robert Wiedmaier was original
+owner-chef. Pipeline contact alexandria@archerhotel.com
+was junk &mdash; deleted.
+</div>
+
+<div class="incident">
+<strong>Tasting Room Georgetown</strong> (DC-REST-1576)
+&mdash; Confirmed closed per Yelp (Jul 2025). Was at
+1073 31st St NW (2nd floor of Flavio restaurant).
+Wrong website (fountaininndc.com is The Fountain Inn,
+a different venue). Pipeline contacts
+georgia@elevenelevenpr.com (PR firm) and
+user@domain.com both deleted.
+</div>
+</details>
+
+<!-- Data Quality -->
+<details>
+<summary>Data Quality Issues</summary>
+
+<div class="incident">
+<strong>Georgian Wine pipeline disaster</strong> &mdash;
+Pipeline scraped 7 emails from the website, but ALL
+were wine distributor/supplier emails (spirit-wine.com,
+juliosliquors.com, wildchildwines.com, etc.) &mdash;
+not the venue itself. All deleted. This is a recurring
+pipeline bug with wine importers/distributors.
+</div>
+
+<div class="incident">
+<strong>user@domain.com plague</strong> &mdash; 5 venues
+had user@domain.com as a contact (George of Old Town,
+White Swan, Blue Ridge, Era Wine Bar, Georgian Wine).
+This is a Wix/Squarespace placeholder email that the
+pipeline keeps scraping from template code. 5 deleted.
+</div>
+
+<div class="incident">
+<strong>City/location mismatches (4)</strong> &mdash;
+Blue Ridge Estate listed as Bryn Mawr PA, actually
+Saylorsburg PA (Poconos). Era Wine Bar listed as
+Dupont Circle DC, actually Mount Rainier MD. Ivy Hall
+listed as Bryn Mawr PA, actually Philadelphia.
+Winterthur listed as Greenville DE, actually
+Wilmington DE.
+</div>
+
+<div class="incident">
+<strong>0 clubs, 0 wineries in pool</strong> &mdash;
+build_batch.sh selected 0 clubs and 0 wineries for
+this run. Pool is getting thin on these categories
+(all have been pipelined or have contacts). May need
+fresh discovery sweep to replenish.
+</div>
+</details>
+
+<!-- Taste Review -->
+<h2>Taste Review</h2>
+<p>No new taste votes since Jul 23 (3 votes: 2
+positive Georgetown hotels, 1 negative theater).
+All patterns from Jul 23 hold: French/European
+restaurants undefeated, Georgetown is #1
+neighborhood, theaters explicitly rejected as a
+category. No files changed.</p>
+
+<!-- Footer -->
+<p style="margin-top: 40px; color: #666;
+font-size: 0.8rem; border-top: 1px solid #1a2e3a;
+padding-top: 15px;">
+Generated by Claude Code &mdash; July 25, 2026
+02:00 AM<br>
+Pipeline batches: 3 (8+8+7). Manual check agents: 6.
+<br>18 junk contacts deleted, 4 verified contacts
+added, 2 venues marked closed.
+</p>
+
+</body>
+</html>

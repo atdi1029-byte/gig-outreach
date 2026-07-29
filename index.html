@@ -2144,10 +2144,12 @@ function toggleTopPicks() {
     list.classList.remove('collapsed');
 }
 
-function renderTopPicks(picks) {
+function renderTopPicks() {
     const el = document.getElementById('topPicksList');
     const badge = document.getElementById('topPicksBadge');
-    const all = (picks || []).filter(p => !isVenueGated((p.venue || p).venue_id));
+    // Build top picks from actionNeeded — same pool the state tabs use
+    const an = (dashboardData && dashboardData.actionNeeded) || [];
+    const all = an.filter(p => venueHasPending((p.venue || p).venue_id)).slice(0, 10);
     badge.textContent = all.length;
 
     if (all.length === 0) {
@@ -2708,7 +2710,7 @@ function loadDashboard() {
                     }
                 });
             }
-            renderTopPicks(data.topPicks);
+            renderTopPicks();
             renderStateGrid();
             updateGigsCount();
             renderWeeklyGoals();

@@ -1525,7 +1525,7 @@ const EMAIL_CLOSINGS = [
 function generateAgentEmail(venueName, contactName) {
     const firstName = contactName ? contactName.split(/\s+/)[0] : '';
     const useName = firstName.length >= 3 && firstName.length <= 15 && /^[a-z]+$/i.test(firstName);
-    const greeting = useName ? pick(GREETINGS).replace('{name}', firstName) : pick(['Hi!', 'Hey!']);
+    const greeting = pick(['Hi!', 'Hey!']);
     const signoff = pick(SIGNOFFS);
 
     const bodies = [
@@ -1554,7 +1554,7 @@ function generateEmail(venueName, contactName, category) {
     const signoff = pick(SIGNOFFS);
 
     return [
-        useName ? pick(GREETINGS).replace('{name}', firstName) : pick(['Hi!', 'Hey!']),
+        pick(['Hi!', 'Hey!']),
         '',
         body,
         '',

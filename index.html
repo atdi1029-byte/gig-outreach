@@ -2158,14 +2158,21 @@ function renderTopPicks() {
         if (!byCat[cat]) byCat[cat] = [];
         byCat[cat].push(p);
     }
+    // Shuffle category order so no single type always gets slot #1
     const cats = Object.keys(byCat);
+    for (let i = cats.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cats[i], cats[j]] = [cats[j], cats[i]];
+    }
     const all = [];
     const seenStates = {};
+    const catUsed = {};
+    const maxPerCat = Math.max(2, Math.ceil(10 / cats.length));
     let round = 0;
     while (all.length < 10 && round < 20) {
         for (const cat of cats) {
             if (all.length >= 10) break;
-            if (round < byCat[cat].length) {
+            if (round < byCat[cat].length && (catUsed[cat] || 0) < maxPerCat) {
                 const pick = byCat[cat][round];
                 const st = (pick.venue || pick).state || '';
                 // Skip if we already have 3 from this state (spread it out)
@@ -2178,6 +2185,7 @@ function renderTopPicks() {
                         if ((seenStates[altSt] || 0) < 3) {
                             all.push(byCat[cat][j]);
                             seenStates[altSt] = (seenStates[altSt] || 0) + 1;
+                            catUsed[cat] = (catUsed[cat] || 0) + 1;
                             byCat[cat].splice(j, 1);
                             swapped = true;
                             break;
@@ -2186,10 +2194,12 @@ function renderTopPicks() {
                     if (!swapped) {
                         all.push(pick);
                         seenStates[st] = stCount + 1;
+                        catUsed[cat] = (catUsed[cat] || 0) + 1;
                     }
                 } else {
                     all.push(pick);
                     seenStates[st] = stCount + 1;
+                    catUsed[cat] = (catUsed[cat] || 0) + 1;
                 }
             }
         }

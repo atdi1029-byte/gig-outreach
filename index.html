@@ -2147,9 +2147,54 @@ function toggleTopPicks() {
 function renderTopPicks() {
     const el = document.getElementById('topPicksList');
     const badge = document.getElementById('topPicksBadge');
-    // Build top picks from actionNeeded — same pool the state tabs use
+    // Build top picks from actionNeeded — diversified by category + state
     const an = (dashboardData && dashboardData.actionNeeded) || [];
-    const all = an.filter(p => venueHasPending((p.venue || p).venue_id)).slice(0, 10);
+    const pending = an.filter(p => venueHasPending((p.venue || p).venue_id));
+    // Round-robin across categories so no single type dominates
+    const byCat = {};
+    for (const p of pending) {
+        const v = p.venue || p;
+        const cat = (v.category || 'other').toLowerCase();
+        if (!byCat[cat]) byCat[cat] = [];
+        byCat[cat].push(p);
+    }
+    const cats = Object.keys(byCat);
+    const all = [];
+    const seenStates = {};
+    let round = 0;
+    while (all.length < 10 && round < 20) {
+        for (const cat of cats) {
+            if (all.length >= 10) break;
+            if (round < byCat[cat].length) {
+                const pick = byCat[cat][round];
+                const st = (pick.venue || pick).state || '';
+                // Skip if we already have 3 from this state (spread it out)
+                const stCount = seenStates[st] || 0;
+                if (stCount >= 3 && round < byCat[cat].length - 1) {
+                    // Try to find one from a different state in this cat
+                    let swapped = false;
+                    for (let j = round + 1; j < byCat[cat].length; j++) {
+                        const altSt = (byCat[cat][j].venue || byCat[cat][j]).state || '';
+                        if ((seenStates[altSt] || 0) < 3) {
+                            all.push(byCat[cat][j]);
+                            seenStates[altSt] = (seenStates[altSt] || 0) + 1;
+                            byCat[cat].splice(j, 1);
+                            swapped = true;
+                            break;
+                        }
+                    }
+                    if (!swapped) {
+                        all.push(pick);
+                        seenStates[st] = stCount + 1;
+                    }
+                } else {
+                    all.push(pick);
+                    seenStates[st] = stCount + 1;
+                }
+            }
+        }
+        round++;
+    }
     badge.textContent = all.length;
 
     if (all.length === 0) {

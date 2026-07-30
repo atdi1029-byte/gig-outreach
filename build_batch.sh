@@ -113,6 +113,11 @@ skip_names = [
     'college', 'montessori', 'preschool',
     'mcdonalds', 'taco bell', 'subway', 'chipotle',
     'hookah', 'karaoke', 'strip club',
+    'garden club', 'rotary club', 'citizens association',
+    'community lodge', 'community center', 'community assn',
+    'civic association', 'civic club', 'kiwanis',
+    'lions club', 'wine and liquor', 'wine & liquor',
+    'liquor store',
     # Venues NOT suitable for classical guitar
     'dance hall', 'dance studio', 'ballroom',
     'salsa', 'bachata', 'tango ',
@@ -144,7 +149,9 @@ chain_names = [
     'planta ', 'grocery', 'bakery', 'baking company',
     'shawarma', 'kebab', 'falafel', 'food truck',
     'ice cream', 'frozen yogurt', 'donut', 'doughnut',
-    'pizza hut', 'dominos', 'papa john'
+    'pizza hut', 'dominos', 'papa john',
+    'la madeleine', 'maggiano', 'patisserie',
+    'chocolat', 'chocolate'
 ]
 
 # Cities that are too far (>2hr from DC metro)

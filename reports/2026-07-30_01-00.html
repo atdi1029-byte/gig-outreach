@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; July 30, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif;
+background: #0c1a22; color: #e0e0e0;
+padding: 40px; max-width: 900px;
+margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem;
+margin-bottom: 5px;
+border-bottom: 2px solid #6ecfcf;
+padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 30px;
+font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem;
+margin: 30px 0 15px;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse;
+margin: 15px 0; font-size: 0.9rem; }
+  th { background: #1a2e3a; color: #6ecfcf;
+padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px;
+border-bottom: 1px solid #1a2e3a;
+vertical-align: top; }
+  .stat-grid { display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a;
+border-radius: 8px; padding: 15px;
+text-align: center; }
+  .stat-box .num { font-size: 2rem;
+font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.85rem;
+color: #999; margin-top: 4px; }
+  .win { background: #1a2a1a;
+border-left: 4px solid #4caf50;
+padding: 10px 14px; margin: 8px 0;
+border-radius: 0 6px 6px 0; }
+  .win strong { color: #4caf50; }
+  .valid { color: #4caf50; }
+  .closed { color: #e85050; }
+  .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
+  .skip { color: #888; }
+  a { color: #6ecfcf; text-decoration: none; }
+  .review-box { background: #1a1a2a;
+border: 2px solid #e8944c;
+border-radius: 8px; padding: 20px;
+margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none;
+padding: 0; }
+  .review-item { display: flex;
+justify-content: space-between;
+align-items: center; padding: 10px 0;
+border-bottom: 1px solid #1a2e3a; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .contact-count {
+font-size: 1.4rem; font-weight: bold;
+color: #e85050; min-width: 40px;
+text-align: center; }
+  .review-item .venue-type { color: #888;
+font-size: 0.8rem; }
+  td.emails-zero { color: #e85050;
+font-weight: bold; font-size: 1.1rem; }
+  td.emails-good { color: #4caf50;
+font-weight: bold; font-size: 1.1rem; }
+  details { margin: 30px 0; }
+  details summary { color: #e8944c;
+font-size: 1.3rem; cursor: pointer;
+padding: 10px 0; font-weight: bold;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  details summary:hover { color: #f0a060; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">July 30, 2026 &mdash;
+Diversified batch via build_batch.sh (24 venues).
+Alexandria VA, Vienna VA, McLean VA, Herndon VA,
+Great Falls VA, Bethesda MD, Potomac MD,
+Baltimore MD, Annapolis MD, St. Michaels MD,
+Georgetown DC, Dupont Circle DC.
+<br>Past gig seeds exhausted (all 70 discovered).
+Taste discovery ran 24 queries.
+<br>0 new taste votes since Jul 23.
+</div>
+
+<!-- Stats -->
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">24</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">7</div>
+    <div class="label">Legit Venues</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">17</div>
+    <div class="label">Junk / Skip</div>
+  </div>
+</div>
+
+<!-- INCIDENT -->
+<div class="incident">
+<strong>INCIDENT: Batch quality crisis.</strong>
+build_batch.sh produced 24 venues, but 17 were
+junk: 2 chain restaurants (la Madeleine,
+Maggiano's), 4 civic orgs (Garden Club, Rotary,
+Citizens Assn, Celebrate GF Foundation),
+1 community center (Heritage Harbour), 1 chocolate
+shop, 1 liquor store, 1 patisserie, 3 wrong-website
+venues, 2 yacht clubs (wrong category), 1 wine
+experience (not a venue). Only 7 of 24 (29%) were
+real gig-appropriate venues. The French/club/hotel
+categories are nearly depleted in the pool &mdash;
+batch is backfilling with anything that passes
+basic filters. Filters need tightening: add
+chains (la Madeleine, Maggiano's) to chain list,
+exclude civic orgs by name pattern, exclude
+liquor stores and chocolate shops from restaurant
+category.
+</div>
+
+<!-- Needs Your Review -->
+<div class="review-box">
+  <h2>Needs Your Review (0&ndash;1 contacts)</h2>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2891"
+>La Fromagerie</a></div>
+      <div class="venue-type">
+restaurant | Alexandria VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1153"
+>Bistro 1775</a></div>
+      <div class="venue-type">
+restaurant | McLean VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-1093"
+>Mussel Bar &amp; Grille Bethesda</a></div>
+      <div class="venue-type">
+restaurant | Bethesda MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-444"
+>Victoriana Inn</a></div>
+      <div class="venue-type">
+hotel | St. Michaels MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2274"
+>Port of Washington Yacht Club</a></div>
+      <div class="venue-type">
+restaurant | Georgetown DC</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1017"
+>Kafe Leopold</a></div>
+      <div class="venue-type">
+restaurant | Georgetown DC</div>
+    </div>
+    <div class="contact-count">1</div>
+  </div>
+</div>
+
+<!-- Key Wins -->
+<h2>Key Wins</h2>
+
+<div class="win">
+  <strong>The Maple Room (Vienna VA)</strong> &mdash;
+  Upscale restaurant in a MAC's Hospitality
+  property. Found gleigh@macsthospitality.com
+  (likely Greg Leigh, hospitality group contact).
+  FB and IG verified. Good fit for NoVA fine dining.
+</div>
+
+<div class="win">
+  <strong>Bolger Center (Potomac MD)</strong> &mdash;
+  Conference/retreat center in affluent Potomac.
+  Found 3 Aramark contacts: Tiffany Carter and
+  Donna Timmons (verified emails). Hosts events
+  and retreats &mdash; potential for corporate
+  entertainment bookings.
+</div>
+
+<div class="win">
+  <strong>The Barn &amp; Lodge At The Rotunda
+  (Roland Park, Baltimore MD)</strong> &mdash;
+  Boutique venue in upscale Roland Park.
+  Found rotunda@barnandlodge.com. FB and IG
+  verified. Roland Park is a confirmed sweet spot
+  neighborhood.
+</div>
+
+<div class="win">
+  <strong>Kafe Leopold (Georgetown DC)</strong>
+  &mdash; European-style cafe in Georgetown.
+  Found guestsfirst@kafeleopold.com (venue email).
+  IG verified. Georgetown location is prime.
+  Austrian/European vibe could work for classical.
+</div>
+
+<div class="win">
+  <strong>Washington Yacht Club
+  (Georgetown DC)</strong> &mdash;
+  Found Ken Howe (Head Fleet Captain,
+  headfleetcaptain@washingtonyachtclub.org) and
+  Wyc Curator (curator@washingtonyachtclub.org).
+  Historic yacht club founded 1892 on Georgetown
+  waterfront. Yacht clubs are tier 1 targets.
+  NOTE: pipeline used wrong website
+  (historicsites.dcpreservation.org) &mdash;
+  correct is washingtonyachtclub.org.
+</div>
+
+<!-- All Venues Table -->
+<h2>All Venues</h2>
+<table>
+<tr>
+  <th>Venue</th>
+  <th>Type</th>
+  <th>Location</th>
+  <th>Contacts</th>
+  <th>Status</th>
+</tr>
+
+<!-- BATCH 1 -->
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-842"
+>la Madeleine</a></td>
+  <td>restaurant</td>
+  <td>Alexandria VA</td>
+  <td>&mdash;</td>
+  <td><span class="junk">CHAIN</span> &mdash;
+  National bakery/cafe chain. 14 contacts added
+  are all corporate employees. Not a classical
+  guitar venue. Add "la madeleine" to chain filter.
+  </td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2891"
+>La Fromagerie</a></td>
+  <td>restaurant</td>
+  <td>Alexandria VA</td>
+  <td class="emails-zero">0</td>
+  <td>Cheese shop/wine bar in Old Town Alexandria.
+  Pipeline contact (3creekswinery@gmail.com) is
+  WRONG VENUE. FB: lafromagerieoldtown (verified).
+  IG: lafromagerie (may be wrong &mdash; global
+  chain with same name). Could work for intimate
+  wine/cheese tastings.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2985"
+>The Maple Room</a></td>
+  <td>restaurant</td>
+  <td>Vienna VA</td>
+  <td class="emails-good">1</td>
+  <td>gleigh@macsthospitality.com. MAC's Hospitality
+  Group property. Upscale NoVA restaurant with
+  lounge. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3049"
+>Maggiano's Little Italy Tysons</a></td>
+  <td>restaurant</td>
+  <td>McLean VA</td>
+  <td>&mdash;</td>
+  <td><span class="junk">CHAIN</span> &mdash;
+  National Italian chain (Brinker International).
+  30+ contacts are all corporate employees. Not a
+  gig venue. Add "maggiano" to chain filter.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3113"
+>Old Ox Grille &amp; Cardinal Bar</a></td>
+  <td>restaurant</td>
+  <td>Herndon VA</td>
+  <td>&mdash;</td>
+  <td><span class="junk">SKIP</span> &mdash;
+  Restaurant inside DoubleTree by Hilton Dulles
+  Airport. Chain hotel restaurant. FB was wrong
+  (SantaClaraHilton). Not appropriate for
+  classical guitar.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1153"
+>Bistro 1775 Inc.</a></td>
+  <td>restaurant</td>
+  <td>McLean VA</td>
+  <td class="emails-zero">0</td>
+  <td>Only user@domain.com (junk). No FB found.
+  IG: bistro.1775. Contact form available.
+  Bistro in McLean &mdash; verify if still open
+  and suitable.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-1093"
+>Mussel Bar &amp; Grille Bethesda</a></td>
+  <td>restaurant</td>
+  <td>Bethesda MD</td>
+  <td class="emails-zero">0</td>
+  <td>Robert Wiedmaier restaurant. info@musselbar.com
+  on website. Chef: Robert Wiedmaier. Manager: Marc
+  Hayes. FB/IG verified. Good Bethesda location
+  but likely too loud/casual for classical.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-PRIV-001"
+>Womens Club of Great Falls</a></td>
+  <td>private_club</td>
+  <td>Great Falls VA</td>
+  <td>&mdash;</td>
+  <td><span class="junk">CIVIC ORG</span> &mdash;
+  Women's civic club, not a music venue. Website
+  is gffnva.org (Great Falls Friends &amp;
+  Neighbors). Hosts community events, not
+  entertainment bookings.</td>
+</tr>
+
+<!-- BATCH 2 -->
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-PRIV-002"
+>Great Falls Garden Club</a></td>
+  <td>private_club</td>
+  <td>Great Falls VA</td>
+  <td>&mdash;</td>
+  <td><span class="junk">CIVIC ORG</span> &mdash;
+  Garden club. Not a music venue.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-PRIV-003"
+>Rotary Club of Great Falls</a></td>
+  <td>private_club</td>
+  <td>Great Falls VA</td>
+  <td>&mdash;</td>
+  <td><span class="junk">CIVIC ORG</span> &mdash;
+  Rotary Club service organization.
+  Not a music venue.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-PRIV-004"
+>Great Falls Citizens Association</a></td>
+  <td>private_club</td>
+  <td>Great Falls VA</td>
+  <td>&mdash;</td>
+  <td><span class="junk">CIVIC ORG</span> &mdash;
+  Community association. 15+ generic role-based
+  emails (environment@, trails@, etc.). Not a
+  venue. Add "citizens association" to skip list.
+  </td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-904"
+>Bolger Center</a></td>
+  <td>hotel</td>
+  <td>Potomac MD</td>
+  <td class="emails-good">3</td>
+  <td>Conference/retreat center managed by Aramark.
+  Tiffany Carter &amp; Donna Timmons (Aramark).
+  sales-bolgercenter@aramark.com. Hosts events
+  in affluent Potomac. Potential for corporate
+  entertainment bookings. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-2114"
+>The Barn &amp; Lodge At The Rotunda</a></td>
+  <td>hotel</td>
+  <td>Roland Park Baltimore MD</td>
+  <td class="emails-good">1</td>
+  <td>rotunda@barnandlodge.com. Boutique venue in
+  upscale Roland Park. FB/IG verified. Good
+  neighborhood for classical guitar.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-2274"
+>Heritage Harbour Community Lodge</a></td>
+  <td>hotel</td>
+  <td>Annapolis MD</td>
+  <td>&mdash;</td>
+  <td><span class="junk">COMMUNITY CENTER</span>
+  &mdash; 55+ retirement community clubhouse, not
+  a hotel. Emails are HOA admin contacts
+  (administration@, finance@heritageharbour.org).
+  Not a gig venue.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-444"
+>Victoriana Inn</a></td>
+  <td>hotel</td>
+  <td>St. Michaels MD</td>
+  <td class="emails-zero">0</td>
+  <td>Boutique B&amp;B on Eastern Shore. 0 contacts
+  found. IG: victorianainn. No FB. Great location
+  (St. Michaels). Needs manual contact search.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-EVEN-2970"
+>Celebrate Great Falls Foundation</a></td>
+  <td>event_venue</td>
+  <td>Great Falls VA</td>
+  <td class="emails-good">1</td>
+  <td>Jennifer Cleveland
+  (jen@celebrategreatfalls.org). Community arts
+  foundation. <span class="junk">FLAG:</span>
+  Organizes outdoor festivals/concerts, not
+  intimate settings. May be too large/loud for
+  classical guitar solo gigs.</td>
+</tr>
+
+<!-- BATCH 3 -->
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2298"
+>Domestique Wine</a></td>
+  <td>restaurant</td>
+  <td>DC</td>
+  <td>&mdash;</td>
+  <td><span class="closed">WRONG WEBSITE</span>
+  &mdash; Pipeline used fox5dc.com (FOX 5 TV
+  station!). 80+ FOX TV employee contacts saved
+  &mdash; ALL WRONG. City field broken ("and prices
+  in DC"). <span class="purple">ALL FOX CONTACTS
+  MUST BE DELETED.</span> Venue may not exist as
+  a physical location.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2309"
+>Wine Key Experience</a></td>
+  <td>restaurant</td>
+  <td>Georgetown DC</td>
+  <td>&mdash;</td>
+  <td><span class="closed">WRONG WEBSITE</span>
+  &mdash; Pipeline used capital.adventuresunbound.com
+  (sailing/outdoor company). Contacts are Guest
+  Services Inc employees. May be a wine tasting
+  experience, not a venue.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2317"
+>Arcay Chocolates</a></td>
+  <td>restaurant</td>
+  <td>Georgetown DC</td>
+  <td class="emails-zero">0</td>
+  <td><span class="junk">CHOCOLATE SHOP</span>
+  &mdash; Not a restaurant or venue. Artisan
+  chocolatier in Georgetown. 0 contacts. Should
+  not be in pipeline.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2341"
+>S&amp;R Wine and Liquor</a></td>
+  <td>restaurant</td>
+  <td>Dupont Circle DC</td>
+  <td>&mdash;</td>
+  <td><span class="junk">LIQUOR STORE</span>
+  &mdash; Not a venue. Retail wine &amp; liquor
+  shop. srliquors@srliquors.com. Should not be
+  in pipeline. Add to skip names.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2274"
+>Port of Washington Yacht Club</a></td>
+  <td>restaurant</td>
+  <td>Georgetown DC</td>
+  <td class="emails-zero">0</td>
+  <td>Yacht club at Georgetown waterfront
+  (powyc.org). 0 contacts found. Category should
+  be yacht_club not restaurant. Yacht clubs are
+  tier 1 targets. Needs manual contact search.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2275"
+>Washington Yacht Club</a></td>
+  <td>restaurant</td>
+  <td>Georgetown DC</td>
+  <td class="emails-good">2</td>
+  <td>Ken Howe (Head Fleet Captain) and Wyc Curator.
+  Website wrong (historicsites.dcpreservation.org)
+  &mdash; real site: washingtonyachtclub.org.
+  Historic club (1892). Category should be
+  yacht_club. Good target.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1017"
+>Kafe Leopold</a></td>
+  <td>restaurant</td>
+  <td>Georgetown DC</td>
+  <td class="emails-good">1</td>
+  <td>guestsfirst@kafeleopold.com (venue email).
+  Austrian/European cafe in Georgetown. IG verified.
+  Stylish European atmosphere could work for
+  classical guitar. Prime location.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-1028"
+>Patisserie Poupon</a></td>
+  <td>restaurant</td>
+  <td>Georgetown DC</td>
+  <td class="emails-zero">0</td>
+  <td><span class="junk">BAKERY</span> &mdash;
+  French patisserie/bakery in Georgetown. 0
+  contacts. Not a restaurant &mdash; primarily
+  sells pastries and baked goods. Too small for
+  live music.</td>
+</tr>
+</table>
+
+<!-- Flagged -->
+<details>
+<summary>Flagged &amp; Skip Venues (17)</summary>
+<p style="margin:15px 0;color:#999;">
+<strong>Chains (2):</strong> la Madeleine,
+Maggiano's Little Italy Tysons &mdash; both slipped
+through chain filter. Fix: add to chain_names list.
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>Civic Orgs (4):</strong> Great Falls Garden
+Club, Rotary Club of Great Falls, Great Falls
+Citizens Association, Womens Club of Great Falls
+&mdash; all community/civic organizations, not
+venues. Fix: add patterns to skip_names
+(garden club, rotary club, citizens association).
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>Wrong Category (5):</strong> Old Ox
+Grille (chain hotel restaurant), Arcay Chocolates
+(chocolate shop), S&amp;R Wine and Liquor (liquor
+store), Patisserie Poupon (bakery), Heritage
+Harbour (community center). Fix: tighten
+category filters for "restaurant" bucket.
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>Wrong Website (3):</strong> Domestique Wine
+(fox5dc.com!), Wine Key Experience
+(adventuresunbound.com), Washington Yacht Club
+(dcpreservation.org). Discovery assigned wrong
+URLs during Google search scrape.
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>Community Foundation (1):</strong>
+Celebrate Great Falls Foundation &mdash; arts
+foundation, runs outdoor festivals. May be too
+large for solo classical guitar.
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>Too Casual (2):</strong> Mussel Bar
+(gastropub vibe, probably too loud), La Fromagerie
+(cheese shop &mdash; tiny, not a dining venue).
+</p>
+</details>
+
+<!-- Taste Review -->
+<h2>Taste Review</h2>
+<p style="color:#999;">
+0 new venue votes since Jul 23 review. All
+patterns hold: French/European restaurants remain
+gold standard, country clubs/private clubs solid,
+DC luxury hotels strong, wine bars confirmed,
+theaters rejected. See taste_notes.md for full
+history.
+</p>
+
+<!-- Build Quality Issue -->
+<h2>Build Quality &mdash; Action Needed</h2>
+<p>This batch had a 71% junk rate (17/24 venues
+were not appropriate for classical guitar gigs).
+The venue pool is getting thin in target
+categories. Recommended filter fixes:</p>
+<ul style="margin:10px 0 10px 20px;color:#999;">
+<li>Add to chain_names: 'la madeleine',
+'maggiano'</li>
+<li>Add to skip_names: 'garden club',
+'rotary club', 'citizens association',
+'community lodge', 'community center',
+'chocolat', 'patisserie', 'liquor'</li>
+<li>Exclude "restaurant" venues whose website
+domain is a TV station, news site, or
+unrelated business</li>
+<li>Flag venues with broken city fields
+(e.g. "and prices in DC")</li>
+</ul>
+
+<p style="margin-top:30px;color:#555;
+font-size:0.8rem;">
+Report generated 2026-07-30 01:00 ET.
+Pipeline used ~100 Apollo credits across
+3 batches. Taste discovery added ~24 queries
+worth of new venues to the pool.
+</p>
+
+</body>
+</html>

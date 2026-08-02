@@ -695,23 +695,70 @@ PYEOF2
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_Q}\""
             sleep 3
             FOUND_WEB_RAW=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${JS_DIR}/extract_cite.js"'")' 2>/dev/null)
-            # extract_cite.js returns up to 5 URLs joined by "|" — take only the first
-            FOUND_WEB=$(echo "$FOUND_WEB_RAW" | cut -d'|' -f1)
-            # Strip to root domain — never save deep paths like /my-account, /menu, /login
-            if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
-                FOUND_WEB=$(python3 -c "from urllib.parse import urlparse; u=urlparse('$FOUND_WEB'); print(u.scheme+'://'+u.netloc)" 2>/dev/null || echo "$FOUND_WEB")
+            # extract_cite.js returns up to 5 URLs joined by "|" — try each until one matches
+            FOUND_WEB=""
+            if [ -n "$FOUND_WEB_RAW" ] && [ "$FOUND_WEB_RAW" != "missing value" ]; then
+                FOUND_WEB=$(python3 -c "
+import re, unicodedata, sys
+from urllib.parse import urlparse
+
+def normalize(text):
+    text = unicodedata.normalize('NFKD', text)
+    text = ''.join(c for c in text if not unicodedata.combining(c))
+    return re.sub(r'[^a-z0-9]', '', text.lower())
+
+def domain_matches_venue(name, domain):
+    if not domain or not name: return False
+    base = domain.split('.')[0].lower()
+    if len(base) < 3: return False
+    nn = normalize(name); dn = normalize(base)
+    if dn in nn or nn in dn: return True
+    stops = {'the','and','bar','inn','club','farm','restaurant',
+             'grille','grill','lounge','bistro','cafe','hotel',
+             'wine','winery','vineyard','country','yacht','art',
+             'gallery','museum','event','private','inc','llc',
+             'little','italy','old','new','great','big',
+             'east','west','north','south','port',
+             'washington','virginia','maryland'}
+    words = [w for w in re.findall(r'[a-z]{3,}', name.lower()) if w not in stops]
+    for w in words:
+        if w in dn: return True
+    parts = re.findall(r'[a-z]{3,}', base)
+    for p in parts:
+        if p in nn and p not in {'com','org','net','www','the'}: return True
+    return False
+
+junk = ['facebook.com','yelp.com','tripadvisor.com','google.com',
+        'wikipedia.org','instagram.com','twitter.com','youtube.com',
+        'wix.com','squarespace.com','linkedin.com','airbnb.com',
+        'vrbo.com','eventbrite.com','meetup.com','opentable.com',
+        'doordash.com','grubhub.com','fox5dc.com','fox.com',
+        'dcpreservation.org','visitmaryland.org']
+junk_tlds = ['.edu','.gov','.mil']
+
+venue = '''$VNAME'''
+urls = '''$FOUND_WEB_RAW'''.split('|')
+for url in urls:
+    url = url.strip()
+    if not url: continue
+    try:
+        parsed = urlparse(url)
+        domain = parsed.netloc.lower().replace('www.','')
+    except: continue
+    if not domain: continue
+    if any(j in domain for j in junk): continue
+    if any(domain.endswith(t) for t in junk_tlds): continue
+    if domain_matches_venue(venue, domain):
+        print(parsed.scheme + '://' + parsed.netloc)
+        sys.exit(0)
+# No match found — print nothing
+" 2>/dev/null)
             fi
             if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
-                # Reject Airbnb/VRBO — these are vacation rentals, not venues
-                if echo "$FOUND_WEB" | grep -qiE 'airbnb\.com|vrbo\.com'; then
-                    log "    REJECTED (Airbnb/VRBO): $FOUND_WEB — deleting venue $VID"
-                    curl -sL "${APPS_SCRIPT_URL}?action=delete_venue&venue_id=${VID}" > /dev/null
-                else
-                    log "    Website: $FOUND_WEB"
-                    curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
-                fi
+                log "    Website: $FOUND_WEB"
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
             else
-                log "    No website found"
+                log "    No matching website found (all candidates rejected)"
             fi
             sleep 1
         done
@@ -1113,19 +1160,69 @@ PYEOF
         sleep 3
         FOUND_WEB_RAW=
         FOUND_WEB_RAW=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
-        # extract_cite.js returns up to 5 URLs joined by "|" — take only the first
-        FOUND_WEB=$(echo "$FOUND_WEB_RAW" | cut -d'|' -f1)
+        # Try each URL until one matches the venue name
+        FOUND_WEB=""
+        if [ -n "$FOUND_WEB_RAW" ] && [ "$FOUND_WEB_RAW" != "missing value" ]; then
+            FOUND_WEB=$(python3 -c "
+import re, unicodedata, sys
+from urllib.parse import urlparse
+
+def normalize(text):
+    text = unicodedata.normalize('NFKD', text)
+    text = ''.join(c for c in text if not unicodedata.combining(c))
+    return re.sub(r'[^a-z0-9]', '', text.lower())
+
+def domain_matches_venue(name, domain):
+    if not domain or not name: return False
+    base = domain.split('.')[0].lower()
+    if len(base) < 3: return False
+    nn = normalize(name); dn = normalize(base)
+    if dn in nn or nn in dn: return True
+    stops = {'the','and','bar','inn','club','farm','restaurant',
+             'grille','grill','lounge','bistro','cafe','hotel',
+             'wine','winery','vineyard','country','yacht','art',
+             'gallery','museum','event','private','inc','llc',
+             'little','italy','old','new','great','big',
+             'east','west','north','south','port',
+             'washington','virginia','maryland'}
+    words = [w for w in re.findall(r'[a-z]{3,}', name.lower()) if w not in stops]
+    for w in words:
+        if w in dn: return True
+    parts = re.findall(r'[a-z]{3,}', base)
+    for p in parts:
+        if p in nn and p not in {'com','org','net','www','the'}: return True
+    return False
+
+junk = ['facebook.com','yelp.com','tripadvisor.com','google.com',
+        'wikipedia.org','instagram.com','twitter.com','youtube.com',
+        'wix.com','squarespace.com','linkedin.com','airbnb.com',
+        'vrbo.com','eventbrite.com','meetup.com','opentable.com',
+        'doordash.com','grubhub.com','fox5dc.com','fox.com',
+        'dcpreservation.org','visitmaryland.org']
+junk_tlds = ['.edu','.gov','.mil']
+
+venue = '''$VNAME'''
+urls = '''$FOUND_WEB_RAW'''.split('|')
+for url in urls:
+    url = url.strip()
+    if not url: continue
+    try:
+        parsed = urlparse(url)
+        domain = parsed.netloc.lower().replace('www.','')
+    except: continue
+    if not domain: continue
+    if any(j in domain for j in junk): continue
+    if any(domain.endswith(t) for t in junk_tlds): continue
+    if domain_matches_venue(venue, domain):
+        print(parsed.scheme + '://' + parsed.netloc)
+        sys.exit(0)
+" 2>/dev/null)
+        fi
         if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
-            # Reject Airbnb/VRBO — these are vacation rentals, not venues
-            if echo "$FOUND_WEB" | grep -qiE 'airbnb\.com|vrbo\.com'; then
-                log "    REJECTED (Airbnb/VRBO): $FOUND_WEB — deleting venue $VID"
-                curl -sL "${APPS_SCRIPT_URL}?action=delete_venue&venue_id=${VID}" > /dev/null
-            else
-                log "    Website: $FOUND_WEB"
-                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
-            fi
+            log "    Website: $FOUND_WEB"
+            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
         else
-            log "    No website found"
+            log "    No matching website found (all candidates rejected)"
         fi
         sleep 1
     done

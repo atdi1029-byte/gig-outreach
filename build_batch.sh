@@ -348,10 +348,30 @@ def is_french(v):
     notes = v.get('notes', '') or ''
     return any(k in nl or k in notes.lower() for k in french_kw)
 
-# Group by category
+# Normalize category names once so values like "country club" and
+# "country_club" land in the same bucket.
+def category_key(v):
+    return (v.get('category', '') or '').strip().lower() \
+        .replace(' ', '_').replace('-', '_')
+
+# Parse score safely and use it as the PRIMARY ranking signal.
+def quality_score(v):
+    try:
+        return float(v.get('upscale_score', 0) or 0)
+    except (TypeError, ValueError):
+        return 0.0
+
+def quality_sort_key(v):
+    return (
+        -quality_score(v),
+        state_priority.get(v.get('state', ''), 9),
+        (v.get('name', '') or '').lower()
+    )
+
+# Group by normalized category
 by_cat = defaultdict(list)
 for v in pool:
-    by_cat[v.get('category', '').lower()].append(v)
+    by_cat[category_key(v)].append(v)
 
 batch = []
 used = set()
@@ -363,10 +383,8 @@ def pick(cats, count, label, filter_fn=None):
         p.extend(by_cat.get(c, []))
     if filter_fn:
         p = [v for v in p if filter_fn(v)]
-    p.sort(key=lambda v: (
-        state_priority.get(v.get('state', ''), 9),
-        -int(v.get('upscale_score', 0) or 0)
-    ))
+    # Best-scoring venues first; geography only breaks ties.
+    p.sort(key=quality_sort_key)
     for v in p:
         if added >= count:
             break
@@ -401,10 +419,7 @@ pick(['art_gallery', 'museum', 'event',
 if len(batch) < COUNT:
     remaining = [v for v in pool
                  if v.get('venue_id') not in used]
-    remaining.sort(key=lambda v: (
-        state_priority.get(v.get('state', ''), 9),
-        -int(v.get('upscale_score', 0) or 0)
-    ))
+    remaining.sort(key=quality_sort_key)
     for v in remaining:
         if len(batch) >= COUNT:
             break
@@ -414,7 +429,11 @@ if len(batch) < COUNT:
     if topup_count < 0: topup_count = 0
     print(f"  Top-up: {topup_count}")
 
-print(f"\n=== BATCH: {len(batch)} venues ===")
+# Category quotas decide WHICH venues make the batch, but the final
+# execution order is always best score first across every category.
+batch.sort(key=quality_sort_key)
+
+print(f"\n=== BATCH: {len(batch)} venues (best score first) ===")
 for i, v in enumerate(batch):
     print(f"{i+1}. [{v.get('venue_id','')}] "
           f"{v.get('name','')} | "

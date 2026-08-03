@@ -39,6 +39,23 @@
 
     var results = [];
     var seen = {};
+
+    // First: grab the Knowledge Panel website link (most reliable)
+    var kpLink = null;
+    var allLinks = document.querySelectorAll('a');
+    for (var j = 0; j < allLinks.length; j++) {
+        var txt = allLinks[j].textContent.trim();
+        var aria = allLinks[j].getAttribute('aria-label') || '';
+        if (txt === 'Website' || aria === 'Website') {
+            kpLink = allLinks[j]; break;
+        }
+    }
+    if (kpLink && kpLink.href && kpLink.href.indexOf('google.com') === -1) {
+        var kpUrl = kpLink.href.replace(/[?#].*$/, '').replace(/\/+$/, '');
+        results.push(kpUrl);
+        var kpDomain = kpUrl.replace(/^https?:\/\//, '').split('/')[0].toLowerCase();
+        seen[kpDomain] = true;
+    }
     var cites = document.querySelectorAll("cite");
     for (var i = 0; i < cites.length; i++) {
         var t = cites[i].textContent.trim();

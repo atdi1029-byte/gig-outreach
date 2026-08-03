@@ -37,6 +37,32 @@ rand_delay() {
 
 log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOG_FILE"; }
 
+# Promote a quarantined discovery only after the website write succeeds and
+# the stored venue can be read back with the expected website and status.
+promote_verified_website() {
+    local vid="$1" website="$2" encoded response ok
+    encoded=$(python3 - "$vid" "$website" <<'PY'
+import sys, urllib.parse
+print(urllib.parse.urlencode({
+    'action':'update_venue', 'venue_id':sys.argv[1],
+    'field':'website', 'value':sys.argv[2]
+}))
+PY
+)
+    response=$(curl -fsSL --max-time 20 "${APPS_SCRIPT_URL}?${encoded}" 2>/dev/null) || return 1
+    ok=$(echo "$response" | python3 -c "import json,sys; print('yes' if json.load(sys.stdin).get('status')=='ok' else 'no')" 2>/dev/null)
+    [ "$ok" = "yes" ] || return 1
+    curl -fsSL --max-time 20 "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=status&value=untouched" >/dev/null 2>&1 || return 1
+    curl -fsSL --max-time 20 "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${vid}" 2>/dev/null |
+        EXPECTED_WEBSITE="$website" python3 -c "
+import json,os,sys
+v=json.load(sys.stdin).get('venue',{})
+ok=(v.get('website','').rstrip('/')==os.environ['EXPECTED_WEBSITE'].rstrip('/')
+    and v.get('status','')=='untouched')
+raise SystemExit(0 if ok else 1)
+" 2>/dev/null
+}
+
 # Helper: run JS from file in Chrome via AppleScript
 run_js_file() {
     local js_file="$1"
@@ -660,7 +686,8 @@ for venue in results:
         'address': location if location else name,
         'upscale_score': str(upscale),
         'source': f'taste:{query[:60]}',
-        'notes': notes
+        'notes': notes,
+        'status': 'needs_review'
     }
     encoded = urllib.parse.urlencode(params)
     url = f"{api}?{encoded}"
@@ -699,44 +726,19 @@ PYEOF2
             FOUND_WEB=""
             if [ -n "$FOUND_WEB_RAW" ] && [ "$FOUND_WEB_RAW" != "missing value" ]; then
                 FOUND_WEB=$(python3 -c "
-import re, unicodedata, sys
+import sys
 from urllib.parse import urlparse
 
-def normalize(text):
-    text = unicodedata.normalize('NFKD', text)
-    text = ''.join(c for c in text if not unicodedata.combining(c))
-    return re.sub(r'[^a-z0-9]', '', text.lower())
-
-def domain_matches_venue(name, domain):
-    if not domain or not name: return False
-    base = domain.split('.')[0].lower()
-    if len(base) < 3: return False
-    nn = normalize(name); dn = normalize(base)
-    if dn in nn or nn in dn: return True
-    stops = {'the','and','bar','inn','club','farm','restaurant',
-             'grille','grill','lounge','bistro','cafe','hotel',
-             'wine','winery','vineyard','country','yacht','art',
-             'gallery','museum','event','private','inc','llc',
-             'little','italy','old','new','great','big',
-             'east','west','north','south','port',
-             'washington','virginia','maryland'}
-    words = [w for w in re.findall(r'[a-z]{3,}', name.lower()) if w not in stops]
-    for w in words:
-        if w in dn: return True
-    parts = re.findall(r'[a-z]{3,}', base)
-    for p in parts:
-        if p in nn and p not in {'com','org','net','www','the'}: return True
-    return False
-
-junk = ['facebook.com','yelp.com','tripadvisor.com','google.com',
+junk = {'facebook.com','yelp.com','tripadvisor.com','google.com',
         'wikipedia.org','instagram.com','twitter.com','youtube.com',
-        'wix.com','squarespace.com','linkedin.com','airbnb.com',
-        'vrbo.com','eventbrite.com','meetup.com','opentable.com',
-        'doordash.com','grubhub.com','fox5dc.com','fox.com',
-        'dcpreservation.org','visitmaryland.org']
+        'linkedin.com','airbnb.com','vrbo.com','eventbrite.com',
+        'meetup.com','opentable.com','doordash.com','grubhub.com',
+        'fox5dc.com','fox.com','dcpreservation.org','visitmaryland.org',
+        'yellowpages.com','travelocity.com','hotels.com','booking.com',
+        'expedia.com','resy.com','zomato.com','foursquare.com',
+        'mapquest.com','bbb.org','chamberofcommerce.com','ubereats.com'}
 junk_tlds = ['.edu','.gov','.mil']
 
-venue = '''$VNAME'''
 urls = '''$FOUND_WEB_RAW'''.split('|')
 for url in urls:
     url = url.strip()
@@ -746,19 +748,21 @@ for url in urls:
         domain = parsed.netloc.lower().replace('www.','')
     except: continue
     if not domain: continue
-    if any(j in domain for j in junk): continue
+    if any(j in domain or domain.endswith('.'+j) for j in junk): continue
     if any(domain.endswith(t) for t in junk_tlds): continue
-    if domain_matches_venue(venue, domain):
-        print(parsed.scheme + '://' + parsed.netloc)
-        sys.exit(0)
-# No match found — print nothing
+    print(parsed._replace(query='',fragment='').geturl().rstrip('/'))
+    sys.exit(0)
 " 2>/dev/null)
             fi
             if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
                 log "    Website: $FOUND_WEB"
-                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
+                if promote_verified_website "$VID" "$FOUND_WEB"; then
+                    log "    Promoted to untouched (website verified)"
+                else
+                    log "    Website saved but promotion failed — remains needs_review"
+                fi
             else
-                log "    No matching website found (all candidates rejected)"
+                log "    No matching website found — remains needs_review"
             fi
             sleep 1
         done
@@ -1124,7 +1128,8 @@ for card in cards:
         'address': address,
         'upscale_score': str(upscale),
         'source': f'gmaps:{source_venue}',
-        'notes': notes
+        'notes': notes,
+        'status': 'needs_review'
     }
     encoded = urllib.parse.urlencode(params)
     url = f"{api}?{encoded}"
@@ -1164,44 +1169,19 @@ PYEOF
         FOUND_WEB=""
         if [ -n "$FOUND_WEB_RAW" ] && [ "$FOUND_WEB_RAW" != "missing value" ]; then
             FOUND_WEB=$(python3 -c "
-import re, unicodedata, sys
+import sys
 from urllib.parse import urlparse
 
-def normalize(text):
-    text = unicodedata.normalize('NFKD', text)
-    text = ''.join(c for c in text if not unicodedata.combining(c))
-    return re.sub(r'[^a-z0-9]', '', text.lower())
-
-def domain_matches_venue(name, domain):
-    if not domain or not name: return False
-    base = domain.split('.')[0].lower()
-    if len(base) < 3: return False
-    nn = normalize(name); dn = normalize(base)
-    if dn in nn or nn in dn: return True
-    stops = {'the','and','bar','inn','club','farm','restaurant',
-             'grille','grill','lounge','bistro','cafe','hotel',
-             'wine','winery','vineyard','country','yacht','art',
-             'gallery','museum','event','private','inc','llc',
-             'little','italy','old','new','great','big',
-             'east','west','north','south','port',
-             'washington','virginia','maryland'}
-    words = [w for w in re.findall(r'[a-z]{3,}', name.lower()) if w not in stops]
-    for w in words:
-        if w in dn: return True
-    parts = re.findall(r'[a-z]{3,}', base)
-    for p in parts:
-        if p in nn and p not in {'com','org','net','www','the'}: return True
-    return False
-
-junk = ['facebook.com','yelp.com','tripadvisor.com','google.com',
+junk = {'facebook.com','yelp.com','tripadvisor.com','google.com',
         'wikipedia.org','instagram.com','twitter.com','youtube.com',
-        'wix.com','squarespace.com','linkedin.com','airbnb.com',
-        'vrbo.com','eventbrite.com','meetup.com','opentable.com',
-        'doordash.com','grubhub.com','fox5dc.com','fox.com',
-        'dcpreservation.org','visitmaryland.org']
+        'linkedin.com','airbnb.com','vrbo.com','eventbrite.com',
+        'meetup.com','opentable.com','doordash.com','grubhub.com',
+        'fox5dc.com','fox.com','dcpreservation.org','visitmaryland.org',
+        'yellowpages.com','travelocity.com','hotels.com','booking.com',
+        'expedia.com','resy.com','zomato.com','foursquare.com',
+        'mapquest.com','bbb.org','chamberofcommerce.com','ubereats.com'}
 junk_tlds = ['.edu','.gov','.mil']
 
-venue = '''$VNAME'''
 urls = '''$FOUND_WEB_RAW'''.split('|')
 for url in urls:
     url = url.strip()
@@ -1211,18 +1191,21 @@ for url in urls:
         domain = parsed.netloc.lower().replace('www.','')
     except: continue
     if not domain: continue
-    if any(j in domain for j in junk): continue
+    if any(j in domain or domain.endswith('.'+j) for j in junk): continue
     if any(domain.endswith(t) for t in junk_tlds): continue
-    if domain_matches_venue(venue, domain):
-        print(parsed.scheme + '://' + parsed.netloc)
-        sys.exit(0)
+    print(parsed._replace(query='',fragment='').geturl().rstrip('/'))
+    sys.exit(0)
 " 2>/dev/null)
         fi
         if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
             log "    Website: $FOUND_WEB"
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=website&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('''$FOUND_WEB'''))")" > /dev/null
+            if promote_verified_website "$VID" "$FOUND_WEB"; then
+                log "    Promoted to untouched (website verified)"
+            else
+                log "    Website saved but promotion failed — remains needs_review"
+            fi
         else
-            log "    No matching website found (all candidates rejected)"
+            log "    No matching website found — remains needs_review"
         fi
         sleep 1
     done

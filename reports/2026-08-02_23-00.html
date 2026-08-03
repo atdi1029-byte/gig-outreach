@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; August 2, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif;
+background: #0c1a22; color: #e0e0e0;
+padding: 40px; max-width: 900px;
+margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem;
+margin-bottom: 5px;
+border-bottom: 2px solid #6ecfcf;
+padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 30px;
+font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem;
+margin: 30px 0 15px;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse;
+margin: 15px 0; font-size: 0.9rem; }
+  th { background: #1a2e3a; color: #6ecfcf;
+padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px;
+border-bottom: 1px solid #1a2e3a;
+vertical-align: top; }
+  .stat-grid { display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a;
+border-radius: 8px; padding: 15px;
+text-align: center; }
+  .stat-box .num { font-size: 2rem;
+font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.85rem;
+color: #999; margin-top: 4px; }
+  .win { background: #1a2a1a;
+border-left: 4px solid #4caf50;
+padding: 10px 14px; margin: 8px 0;
+border-radius: 0 6px 6px 0; }
+  .win strong { color: #4caf50; }
+  .valid { color: #4caf50; }
+  .closed { color: #e85050; }
+  .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
+  .skip { color: #888; }
+  a { color: #6ecfcf; text-decoration: none; }
+  .review-box { background: #1a1a2a;
+border: 2px solid #e8944c;
+border-radius: 8px; padding: 20px;
+margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none;
+padding: 0; }
+  .review-item { display: flex;
+justify-content: space-between;
+align-items: center; padding: 10px 0;
+border-bottom: 1px solid #1a2e3a; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .contact-count {
+font-size: 1.4rem; font-weight: bold;
+color: #e85050; min-width: 40px;
+text-align: center; }
+  .review-item .venue-type { color: #888;
+font-size: 0.8rem; }
+  td.emails-zero { color: #e85050;
+font-weight: bold; font-size: 1.1rem; }
+  td.emails-good { color: #4caf50;
+font-weight: bold; font-size: 1.1rem; }
+  details { margin: 30px 0; }
+  details summary { color: #e8944c;
+font-size: 1.3rem; cursor: pointer;
+padding: 10px 0; font-weight: bold;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  details summary:hover { color: #f0a060; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">August 2, 2026 &mdash;
+Diversified batch via build_batch.sh (24 venues).
+Annapolis MD, Hydes MD, Lothian MD, Shady Side MD,
+St. Michaels MD, Brandywine MD, Millersville MD,
+Glover Park DC, Alexandria VA, Flint Hill VA,
+Middleburg VA, Wilmington DE, Lancaster PA,
+Bryn Mawr PA, Philadelphia PA.
+<br>Past gig seeds exhausted (all 70 discovered).
+Taste discovery ran 20 queries, added 96 new venues.
+<br>2 new taste votes since Jul 23:
+Il Porto Ristorante (positive),
+Round House Theatre (negative &mdash; theaters
+confirmed as anti-pattern).
+</div>
+
+<!-- Stats -->
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">24</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">15</div>
+    <div class="label">Legit Venues</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">9</div>
+    <div class="label">Junk / Skip / Closed</div>
+  </div>
+</div>
+
+<!-- Needs Your Review -->
+<div class="review-box">
+  <h2>Needs Your Review (0&ndash;1 contacts)</h2>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2902"
+>Finn &amp; Fire</a></div>
+      <div class="venue-type">
+restaurant | Alexandria VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-789"
+>Capital Hotel Annapolis</a></div>
+      <div class="venue-type">
+hotel | Annapolis MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2904"
+>The Blue Door Kitchen and Inn</a></div>
+      <div class="venue-type">
+hotel | Flint Hill VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2638"
+>Ciro's Italian Bistro</a></div>
+      <div class="venue-type">
+restaurant | Lancaster PA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-2957"
+>Robin Hill Farm and Vineyards</a></div>
+      <div class="venue-type">
+event_venue | Brandywine MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+</div>
+
+<!-- Key Wins -->
+<h2>Key Wins</h2>
+
+<div class="win">
+  <strong>Annapolis Yacht Club (Annapolis MD)</strong>
+  &mdash; JACKPOT. Premier private yacht club (est.
+  1886) with 12 contacts including GM Stephen Creese,
+  Tracie Parkinson (Member Services Director,
+  tparkinson@annapolisyc.org), David Ray (F&amp;B
+  Manager, dray@annapolisyc.org), plus 9 more staff
+  with verified emails. Hosts events, dining, social
+  activities. FB/IG verified. This is a tier 1
+  private club target.
+</div>
+
+<div class="win">
+  <strong>Greenville Country Club
+  (Wilmington DE)</strong> &mdash; Historic private
+  club (former Eugene du Pont residence, est. 1961).
+  9 contacts with verified emails including James
+  Davis (GM, jdavis@greenvillecc.com), Alyssa Jackson
+  (Catering Director, ajackson@greenvillecc.com),
+  Nate Wenzel (Clubhouse Mgr,
+  nwenzel@greenvillecc.com). Full staff directory
+  found. FB/IG verified. Category should be
+  country_club (listed as restaurant).
+</div>
+
+<div class="win">
+  <strong>Boordy Vineyards (Hydes MD)</strong>
+  &mdash; Maryland's oldest winery, DeFord family.
+  5 contacts with emails: Rob Deford (Owner,
+  rob@boordy.com), Phineas Deford (President,
+  phineas@boordy.com), Kate Cordell (Sales,
+  kate@boordy.com), Sally (sally@boordy.com). Hosts
+  Saturday concerts and Thursday markets. Strong
+  gig venue.
+</div>
+
+<div class="win">
+  <strong>Panorama at Penns View Hotel
+  (Philadelphia PA)</strong> &mdash; Italian wine bar
+  inside Penn's View Hotel (est. 1990). Guinness
+  World Record wine system. Carlo Sena (GM,
+  carlo@pennsviewhotel.com), Luca Sena (Founder,
+  luca@pennsviewhotel.com). Hosts wine club, happy
+  hours, private dining for 10&ndash;80. FB/IG
+  verified.
+</div>
+
+<div class="win">
+  <strong>Hammond Harwood House
+  (Annapolis MD)</strong> &mdash; National Historic
+  Landmark (1774). Museum with events. 4 contacts:
+  Barbara Goyette (Executive Director), Lucinda Dukes
+  Edinberg (Curator), plus assistant director and
+  trustee. Phone: 410-263-4683. Hosts events in a
+  historic setting. FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>The Cannon Club (Lothian MD)</strong>
+  &mdash; Private member-owned golf and country club
+  (est. 1989). GM Mike Thomas, Head Pro Dennis
+  Winters. 3 contacts with emails including
+  events@thecannongolfclub.com. FB verified.
+</div>
+
+<div class="win">
+  <strong>Chesapeake Yacht Club
+  (Shady Side MD)</strong> &mdash; Found GM Andrew
+  Davidson (gm@chesapeakeyachtclub.org, verified).
+  Pipeline had 0 contacts &mdash; manual check
+  resolved this. FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>Jo Fleming Contemporary Art
+  (Annapolis MD)</strong> &mdash; Solo owner gallery.
+  Jo Fleming (jo@jofleming.com). 35+ years
+  experience, rotating exhibitions. Perfect for
+  art gallery events. FB/IG verified.
+</div>
+
+<!-- All Venues Table -->
+<h2>All Venues</h2>
+<table>
+<tr>
+  <th>Venue</th>
+  <th>Type</th>
+  <th>Location</th>
+  <th>Contacts</th>
+  <th>Status</th>
+</tr>
+
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-MUSE-811"
+>Hammond Harwood House</a></td>
+  <td>museum</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">4</td>
+  <td>National Historic Landmark (1774). Barbara
+  Goyette (Exec Director), Lucinda Edinberg
+  (Curator). Hosts events. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-789"
+>Capital Hotel Annapolis</a></td>
+  <td>hotel</td>
+  <td>Annapolis MD</td>
+  <td class="emails-zero">0</td>
+  <td>Boutique 6-room hotel above Vida Taco Bar.
+  Only info@capitalhotelannapolis.com (generic).
+  Very small operation, likely owner-operated.
+  The Parley Room cocktail bar on first floor.
+  Needs manual phone outreach.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-810"
+>Jo Fleming Contemporary Art</a></td>
+  <td>art_gallery</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">1</td>
+  <td>Jo Fleming (Owner, jo@jofleming.com).
+  68 Maryland Ave. Solo operator gallery.
+  FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-792"
+>Smashing Grapes Kitchen and Wine Bar</a></td>
+  <td>wine_bar</td>
+  <td>Annapolis MD</td>
+  <td>&mdash;</td>
+  <td><span class="closed">CLOSED</span> &mdash;
+  Annapolis location closed July 2023. Replaced by
+  "The Lodge" (Titan Hospitality Group). Website
+  and socials now point to Columbia MD location only.
+  Venue record is INVALID.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-COUN-798"
+>The Cannon Club</a></td>
+  <td>country_club</td>
+  <td>Lothian MD</td>
+  <td class="emails-good">3</td>
+  <td>Private golf/country club (est. 1989). GM Mike
+  Thomas, Head Pro Dennis Winters. Events and
+  membership department emails. FB verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-813"
+>Annapolis Marine Art Gallery</a></td>
+  <td>art_gallery</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">2</td>
+  <td><span class="junk">CLOSING</span> &mdash;
+  Gallery closing by end of 2026 (Baltimore Sun,
+  May 2026). City Dock construction made business
+  unsustainable. Owner: Samantha Wilkerson.
+  Transitioning online. Not a viable gig venue.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-819"
+>Boordy Vineyards</a></td>
+  <td>winery</td>
+  <td>Hydes MD</td>
+  <td class="emails-good">5</td>
+  <td>Maryland's oldest winery. Rob Deford (Owner),
+  Phineas Deford (President), Kate Cordell (Sales).
+  Hosts Saturday concerts. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-YACH-806"
+>Seafarers Yacht Club</a></td>
+  <td>yacht_club</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">1</td>
+  <td>Historic Black yacht club (NPR feature 2023).
+  Wix site. Board officers found: Commodore A. Joyce
+  Price-Jones, Vice Commodore David Turner. Apollo
+  could not enrich emails. info@seafarersyc.com
+  (generic). FB verified, no IG.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-YACH-809"
+>Chesapeake Yacht Club</a></td>
+  <td>yacht_club</td>
+  <td>Shady Side MD</td>
+  <td class="emails-good">1</td>
+  <td>Andrew Davidson (GM/Chef,
+  gm@chesapeakeyachtclub.org verified). Manual
+  check found this contact after pipeline returned 0.
+  FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2697"
+>DIVINO Ristorante Enoteca</a></td>
+  <td>restaurant</td>
+  <td>Glover Park DC</td>
+  <td class="emails-good">1</td>
+  <td>Italian enoteca opened Nov 2024 by Luca
+  Giovannini (also owns Donahue). Chef Daniel Perron.
+  In Glover Park Hotel (NOT Dupont Circle &mdash;
+  city corrected). info@divinodc.com. IG:
+  @thedivinodc. No dedicated FB found.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2902"
+>Finn &amp; Fire</a></td>
+  <td>restaurant</td>
+  <td>Alexandria VA</td>
+  <td class="emails-zero">0</td>
+  <td>Peruvian-Nikkei fusion, soft opened June 2026.
+  Owner: Ghazal Amir. Very new, limited presence.
+  No email, no FB. IG: @finnandfireva.
+  Category corrected from hotel to restaurant.
+  Phone: 571-488-6955.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2904"
+>The Blue Door Kitchen and Inn</a></td>
+  <td>hotel</td>
+  <td>Flint Hill VA</td>
+  <td class="emails-zero">0</td>
+  <td><span class="junk">FOR SALE</span> &mdash;
+  Listed for $2.5M. Chef Andrea Pace and partner
+  Reem Arbid own since 2018. City corrected from
+  Middleburg to Flint Hill. info@thebluedoorkitchen.com
+  (generic). FB/IG verified. May be closing.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-YACH-700"
+>Annapolis Yacht Club</a></td>
+  <td>yacht_club</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">12</td>
+  <td>Premier private club (est. 1886). GM Stephen
+  Creese, Tracie Parkinson (Member Services),
+  David Ray (F&amp;B), plus 9 more with verified
+  emails. Excellent coverage. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-2959"
+>Bangkok Garden Pasadena</a></td>
+  <td>event_venue</td>
+  <td>Pasadena MD</td>
+  <td>&mdash;</td>
+  <td><span class="junk">NOT A VENUE</span> &mdash;
+  Small Thai takeout restaurant. City was wrong
+  (Oxford &rarr; Pasadena). Category was wrong
+  (event_venue). No event space, no owner found.
+  Not a gig venue.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-2958"
+>Kinder Farm Park</a></td>
+  <td>event_venue</td>
+  <td>Millersville MD</td>
+  <td class="emails-good">5</td>
+  <td>County park (288 acres) run by Anne Arundel
+  County Rec &amp; Parks. City corrected from Oxford
+  to Millersville. "Friends of Kinder Farm Park"
+  volunteer org. Has 5 contacts. Outdoor park
+  &mdash; could work for seasonal events.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-2957"
+>Robin Hill Farm and Vineyards</a></td>
+  <td>event_venue</td>
+  <td>Brandywine MD</td>
+  <td class="emails-zero">0</td>
+  <td>Family farm/winery (since 1955). Owners:
+  Susan Watson White &amp; Bob White. Shelby
+  Watson-Hampton (Marketing Dir) has verified email
+  at SMADC (her other job). City corrected from
+  Oxford to Brandywine. Popular wedding venue.
+  Open Fri&ndash;Sun. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-2958"
+>Spa at Harbour Inn</a></td>
+  <td>hotel</td>
+  <td>St. Michaels MD</td>
+  <td class="emails-good">1</td>
+  <td>Spa on 3rd floor of Harbour Inn. Owner: Laurie
+  Toth (Spa Director). spa@harbourinn.com. Eastern
+  Shore location. FB verified, no IG.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DE-REST-2559"
+>Greenville Country Club</a></td>
+  <td>restaurant</td>
+  <td>Wilmington DE</td>
+  <td class="emails-good">9</td>
+  <td>Private country club (former du Pont estate).
+  GM James Davis, Catering Dir Alyssa Jackson,
+  Clubhouse Mgr Nate Wenzel &mdash; all verified
+  emails. Full staff directory. Category should be
+  country_club. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DE-REST-2630"
+>Washington Street Ale House</a></td>
+  <td>restaurant</td>
+  <td>Wilmington DE</td>
+  <td class="emails-zero">0</td>
+  <td><span class="junk">VIBE MISMATCH</span>
+  &mdash; Beer pub with themed food nights (Burger
+  Tuesday, Wing Wednesday). Owner: Darius Mansoory
+  (no email). No live music mentioned anywhere.
+  Not a classical guitar fit. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2846"
+>Balla Cloiche Vineyards</a></td>
+  <td>restaurant</td>
+  <td>Stewartstown PA</td>
+  <td class="emails-good">2</td>
+  <td>Winery and wedding venue (category should be
+  winery). Owner: Sue Ewing. City corrected from
+  Lancaster to Stewartstown. Hosts live music
+  and events. Open Fri&ndash;Sun. FB/IG verified.
+  </td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2638"
+>Ciro's Italian Bistro</a></td>
+  <td>restaurant</td>
+  <td>Lancaster PA</td>
+  <td class="emails-zero">0</td>
+  <td>Italian bistro owned by Tony &amp; Angelo Ciro
+  (Sicilian family, est. 2009). Neither owner has
+  email via Apollo. Listed on Unique Venues as
+  event space. Good classical guitar fit. No IG.
+  Phone: 717-560-5660. FB verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2657"
+>Kitchen Kettle Village</a></td>
+  <td>restaurant</td>
+  <td>Intercourse PA</td>
+  <td class="emails-good">18</td>
+  <td><span class="junk">TOURIST COMPLEX</span>
+  &mdash; Shopping village with 42+ shops, not a
+  single restaurant. 3rd gen Burnley family (since
+  1954). 800K annual visitors. Events Dir: Halle
+  Woodall (hwoodall@kitchenkettle.com). City
+  corrected from Lancaster to Intercourse.
+  Questionable fit for classical guitar solo gigs
+  &mdash; retail complex, not intimate dining.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2677"
+>La Maison</a></td>
+  <td>restaurant</td>
+  <td>Coventryville PA</td>
+  <td>&mdash;</td>
+  <td><span class="closed">WRONG BUSINESS</span>
+  &mdash; Pipeline website was lamaisonapartments.net
+  (luxury apartment complex in Wayne PA). Real venue
+  is a 24-seat French BYOB at martinskitchen.com in
+  Coventryville/Pottstown PA. Owner: Martin &amp;
+  Janet Gagne. <span class="purple">All pipeline
+  contacts DELETED (wrong business).</span> Website,
+  city, and Facebook corrected. Cash only, Fri/Sat
+  only, prix-fixe &mdash; tiny venue, questionable
+  for live music.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-WINE-2042"
+>Panorama at Penns View Hotel</a></td>
+  <td>wine_bar</td>
+  <td>Philadelphia PA</td>
+  <td class="emails-good">3</td>
+  <td>Italian wine bar in Penn's View Hotel.
+  Guinness Record wine system. Carlo Sena (GM,
+  carlo@pennsviewhotel.com), Luca Sena (Founder,
+  luca@pennsviewhotel.com). Wine club, happy hours,
+  private events. FB/IG verified.</td>
+</tr>
+</table>
+
+<!-- Flagged -->
+<details>
+<summary>Flagged &amp; Skip Venues (9)</summary>
+<p style="margin:15px 0;color:#999;">
+<strong>Closed / Closing (2):</strong>
+Smashing Grapes (Annapolis closed July 2023),
+Annapolis Marine Art Gallery (closing end of 2026
+per Baltimore Sun).
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>Wrong Business (1):</strong>
+La Maison &mdash; pipeline scraped an apartment
+complex. Corrected to real restaurant but very
+tiny (24 seats, cash only, Fri/Sat).
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>Not a Venue (2):</strong>
+Bangkok Garden Pasadena (Thai takeout, wrong city),
+Kitchen Kettle Village (tourist shopping complex
+with 42 shops, not a restaurant).
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>Vibe Mismatch (1):</strong>
+Washington Street Ale House &mdash; beer pub with
+themed food nights, no live music, not a classical
+guitar fit.
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>For Sale (1):</strong>
+Blue Door Kitchen and Inn &mdash; listed at $2.5M,
+may be closing or changing hands.
+</p>
+<p style="margin:15px 0;color:#999;">
+<strong>City Corrections (7):</strong>
+DIVINO (Dupont Circle &rarr; Glover Park),
+Blue Door (Middleburg &rarr; Flint Hill),
+Bangkok Garden (Oxford &rarr; Pasadena),
+Kinder Farm Park (Oxford &rarr; Millersville),
+Robin Hill Farm (Oxford &rarr; Brandywine),
+Balla Cloiche (Lancaster &rarr; Stewartstown),
+Kitchen Kettle (Lancaster &rarr; Intercourse).
+</p>
+</details>
+
+<!-- Taste Review -->
+<h2>Taste Review</h2>
+<p style="color:#999;">
+2 new venue votes since Jul 23:
+<strong>Il Porto Ristorante</strong> (Italian,
+Alexandria VA) &mdash; thumbs up. Added to
+taste_venues.txt. Italian + Alexandria continues
+bulletproof.
+<strong>Round House Theatre</strong> (Bethesda MD)
+&mdash; thumbs down. "Theatre are bad." Second
+theater rejection (after Bethesda Theater Jul 23).
+Theaters now double-confirmed as hard skip.
+</p>
+<p style="color:#999;">
+All prior patterns hold: French/European
+restaurants = gold, Italian = bulletproof,
+country clubs/private clubs rock solid,
+DC luxury hotels strong, wine bars confirmed,
+theaters and Japanese restaurants = skip.
+taste_notes.md and taste_venues.txt updated.
+</p>
+
+<!-- Data Quality Notes -->
+<h2>Data Quality Notes</h2>
+<p>This batch was significantly better than
+Jul 30 (37% junk vs 71% last time). The pool
+has good Annapolis-area venues (4 yacht clubs,
+2 art galleries, 1 museum, 1 winery, 1 wine bar,
+1 hotel). The PA/DE edge-of-radius venues were
+weaker (tourist shopping village, apartment
+mixup, ale house). Category mismatches persist:
+Greenville CC listed as restaurant, Balla Cloiche
+listed as restaurant (is a winery).</p>
+<ul style="margin:10px 0 10px 20px;color:#999;">
+<li>7 city corrections applied this run &mdash;
+build_batch.sh has a location-checking gap for
+venues added via discover.sh --taste</li>
+<li>Apollo enrichment hit rate low: 2/10 matched,
+0 new emails found via bulk match</li>
+<li>Manual check agents found 1 critical new
+contact (Chesapeake YC GM) and confirmed 3 new
+contacts at Greenville CC</li>
+</ul>
+
+<p style="margin-top:30px;color:#555;
+font-size:0.8rem;">
+Report generated 2026-08-02 23:00 ET.
+Pipeline used ~50 Apollo credits across 24 venues.
+Taste discovery ran 20 queries, added 96 new
+venues to the pool. ZeroBounce credits remaining:
+~1478.
+</p>
+
+</body>
+</html>

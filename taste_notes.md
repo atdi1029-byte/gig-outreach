@@ -604,3 +604,23 @@
 - **Georgetown hotel cluster** — Rosewood + Georgetown Inn join Degrees Bistro (at Ritz), Chez Billy Sud. Georgetown is the #1 neighborhood for positive votes across all categories.
 - **Theaters = NEW anti-pattern** — user explicitly says "not looking for theaters." Counterintuitive but clear. Remove theater/performance venues from discovery targets.
 - **All prior patterns hold** — French/European, Italian, Spanish wine bars, wine bars, clubs, DC hotels, historic venues. No French restaurant has ever received a negative vote.
+
+---
+
+## Aug 2, 2026 — Post-Pipeline Review (2 new votes)
+
+### Il Porto Ristorante (restaurant, Alexandria VA) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Italian restaurant in Alexandria — Old Town area, upscale Italian dining.
+- **Action:** Added to taste_venues.txt. Italian + Alexandria = reliable combo, reinforces both categories.
+
+### Round House Theatre (event, Bethesda MD) — NEGATIVE
+> "Theatre are bad"
+- **Extracted:** Another theater explicitly rejected. Confirms Jul 23 pattern.
+- **Action:** Not added. Theaters = confirmed anti-pattern (now 2 separate negative votes).
+
+---
+
+## Updated Patterns (Aug 2)
+- **Theaters double-confirmed as skip** — Round House Theatre joins Bethesda Theater as explicit negative. Two separate theater venues rejected = hard rule.
+- **Italian in Alexandria still bulletproof** — Il Porto joins the long list of positive Italian/Alexandria votes.
+- **All prior patterns hold** — French/European, Italian, Spanish wine bars, wine bars, clubs, DC hotels, historic venues. No French or Italian restaurant has ever received a negative vote.

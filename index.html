@@ -2147,68 +2147,50 @@ function toggleTopPicks() {
 function renderTopPicks() {
     const el = document.getElementById('topPicksList');
     const badge = document.getElementById('topPicksBadge');
-    // Build top picks from actionNeeded — diversified by category + state
     const an = (dashboardData && dashboardData.actionNeeded) || [];
-    const pending = an.filter(p => venueHasPending((p.venue || p).venue_id));
-    // Round-robin across categories so no single type dominates
-    const byCat = {};
-    for (const p of pending) {
-        const v = p.venue || p;
-        const cat = (v.category || 'other').toLowerCase();
-        if (!byCat[cat]) byCat[cat] = [];
-        byCat[cat].push(p);
+    const pending = an.filter(p =>
+        venueHasPending((p.venue || p).venue_id));
+    // Category tiers — high-value gig venues first
+    const tier1 = ['country_club','fine_dining','wine_bar',
+        'winery','hotel','yacht_club','private_club','spa'];
+    const tier2 = ['restaurant','event','event_venue',
+        'farmers_market'];
+    const tier3 = ['museum','recreation','other'];
+    function catTier(cat) {
+        const c = (cat || 'other').toLowerCase()
+            .replace(/[\s\/]/g, '_');
+        if (tier1.includes(c)) return 0;
+        if (tier2.includes(c)) return 1;
+        return 2;
     }
-    // Shuffle category order so no single type always gets slot #1
-    const cats = Object.keys(byCat);
-    for (let i = cats.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [cats[i], cats[j]] = [cats[j], cats[i]];
-    }
+    // Sort by tier, then by upscale_score descending
+    pending.sort((a, b) => {
+        const va = a.venue || a, vb = b.venue || b;
+        const ta = catTier(va.category);
+        const tb = catTier(vb.category);
+        if (ta !== tb) return ta - tb;
+        return (vb.upscale_score || 0) - (va.upscale_score || 0);
+    });
+    // Pick top 10, max 3 per category, max 3 per state
     const all = [];
-    const seenStates = {};
-    const catUsed = {};
-    const maxPerCat = Math.max(2, Math.ceil(10 / cats.length));
-    let round = 0;
-    while (all.length < 10 && round < 20) {
-        for (const cat of cats) {
-            if (all.length >= 10) break;
-            if (round < byCat[cat].length && (catUsed[cat] || 0) < maxPerCat) {
-                const pick = byCat[cat][round];
-                const st = (pick.venue || pick).state || '';
-                // Skip if we already have 3 from this state (spread it out)
-                const stCount = seenStates[st] || 0;
-                if (stCount >= 3 && round < byCat[cat].length - 1) {
-                    // Try to find one from a different state in this cat
-                    let swapped = false;
-                    for (let j = round + 1; j < byCat[cat].length; j++) {
-                        const altSt = (byCat[cat][j].venue || byCat[cat][j]).state || '';
-                        if ((seenStates[altSt] || 0) < 3) {
-                            all.push(byCat[cat][j]);
-                            seenStates[altSt] = (seenStates[altSt] || 0) + 1;
-                            catUsed[cat] = (catUsed[cat] || 0) + 1;
-                            byCat[cat].splice(j, 1);
-                            swapped = true;
-                            break;
-                        }
-                    }
-                    if (!swapped) {
-                        all.push(pick);
-                        seenStates[st] = stCount + 1;
-                        catUsed[cat] = (catUsed[cat] || 0) + 1;
-                    }
-                } else {
-                    all.push(pick);
-                    seenStates[st] = stCount + 1;
-                    catUsed[cat] = (catUsed[cat] || 0) + 1;
-                }
-            }
-        }
-        round++;
+    const catCount = {};
+    const stCount = {};
+    for (const p of pending) {
+        if (all.length >= 10) break;
+        const v = p.venue || p;
+        const cat = (v.category || 'other').toLowerCase()
+            .replace(/[\s\/]/g, '_');
+        const st = v.state || '';
+        if ((catCount[cat] || 0) >= 3) continue;
+        if ((stCount[st] || 0) >= 3) continue;
+        all.push(p);
+        catCount[cat] = (catCount[cat] || 0) + 1;
+        stCount[st] = (stCount[st] || 0) + 1;
     }
     badge.textContent = all.length;
-
     if (all.length === 0) {
-        el.innerHTML = '<div class="empty-state">No top picks yet. Run the scraper to find venues!</div>';
+        el.innerHTML = '<div class="empty-state">' +
+            'No top picks yet. Run the scraper!</div>';
         return;
     }
     el.innerHTML = all.map(renderVenueCard).join('');

@@ -2180,7 +2180,8 @@ function renderTopPicks() {
         const v = p.venue || p;
         const cat = (v.category || 'other').toLowerCase()
             .replace(/[\s\/]/g, '_');
-        const st = v.state || '';
+        const st = (v.state || '').toUpperCase();
+        if (st === 'PA') continue;
         if ((catCount[cat] || 0) >= 3) continue;
         if ((stCount[st] || 0) >= 3) continue;
         all.push(p);

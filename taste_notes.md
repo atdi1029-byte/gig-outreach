@@ -624,3 +624,18 @@
 - **Theaters double-confirmed as skip** — Round House Theatre joins Bethesda Theater as explicit negative. Two separate theater venues rejected = hard rule.
 - **Italian in Alexandria still bulletproof** — Il Porto joins the long list of positive Italian/Alexandria votes.
 - **All prior patterns hold** — French/European, Italian, Spanish wine bars, wine bars, clubs, DC hotels, historic venues. No French or Italian restaurant has ever received a negative vote.
+
+---
+
+## Aug 6, 2026 — Post-Pipeline Review (1 new vote)
+
+### Annapolis Yacht Club (yacht_club, Annapolis MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Premier yacht club in Annapolis — high-end maritime/sailing community. Educated, wealthy members.
+- **Action:** Added to taste_venues.txt. Yacht clubs continue to be strong positive signals. Annapolis already clustering as a positive area.
+
+---
+
+## Updated Patterns (Aug 6)
+- **Yacht clubs confirmed as strong fit** — Annapolis Yacht Club joins the list. Maritime/sailing clubs = wealthy, educated members, exactly the target audience.
+- **Annapolis continues clustering** — Eastport YC in today's batch + Annapolis YC vote = the Annapolis maritime scene is a goldmine.
+- **All prior patterns hold** — French/European, Italian, Spanish wine bars, wine bars, clubs, DC hotels, historic venues, yacht clubs. No French or Italian restaurant has ever received a negative vote.

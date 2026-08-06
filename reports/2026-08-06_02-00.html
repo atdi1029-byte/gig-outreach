@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; August 6, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif;
+background: #0c1a22; color: #e0e0e0;
+padding: 40px; max-width: 900px;
+margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem;
+margin-bottom: 5px;
+border-bottom: 2px solid #6ecfcf;
+padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 30px;
+font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem;
+margin: 30px 0 15px;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse;
+margin: 15px 0; font-size: 0.9rem; }
+  th { background: #1a2e3a; color: #6ecfcf;
+padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px;
+border-bottom: 1px solid #1a2e3a;
+vertical-align: top; }
+  .stat-grid { display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a;
+border-radius: 8px; padding: 15px;
+text-align: center; }
+  .stat-box .num { font-size: 2rem;
+font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.85rem;
+color: #999; margin-top: 4px; }
+  .win { background: #1a2a1a;
+border-left: 4px solid #4caf50;
+padding: 10px 14px; margin: 8px 0;
+border-radius: 0 6px 6px 0; }
+  .win strong { color: #4caf50; }
+  .valid { color: #4caf50; }
+  .closed { color: #e85050; }
+  .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
+  .skip { color: #888; }
+  a { color: #6ecfcf; text-decoration: none; }
+  .review-box { background: #1a1a2a;
+border: 2px solid #e8944c;
+border-radius: 8px; padding: 20px;
+margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none;
+padding: 0; }
+  .review-item { display: flex;
+justify-content: space-between;
+align-items: center; padding: 10px 0;
+border-bottom: 1px solid #1a2e3a; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .contact-count {
+font-size: 1.4rem; font-weight: bold;
+color: #e85050; min-width: 40px;
+text-align: center; }
+  .review-item .venue-type { color: #888;
+font-size: 0.8rem; }
+  td.emails-zero { color: #e85050;
+font-weight: bold; font-size: 1.1rem; }
+  td.emails-good { color: #4caf50;
+font-weight: bold; font-size: 1.1rem; }
+  details { margin: 30px 0; }
+  details summary { color: #e8944c;
+font-size: 1.3rem; cursor: pointer;
+padding: 10px 0; font-weight: bold;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  details summary:hover { color: #f0a060; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">August 6, 2026 &mdash;
+Diversified batch via build_batch.sh (25 venues).
+Baltimore MD, Pasadena MD, Chesapeake Beach MD,
+Mechanicsville MD, Crofton MD, Annapolis MD,
+Pikesville MD, Kensington MD, Bethesda MD,
+Rehoboth Beach DE, Millsboro DE,
+Kennett Square PA, Newtown PA, West Chester PA,
+Lancaster PA, Stewartstown PA, Philadelphia PA,
+Flourtown PA, Lafayette Hill PA,
+Alexandria VA, Round Hill VA.
+<br>Past gig seeds exhausted (all 70 discovered).
+Taste discovery added 25 new venues (7 wineries,
+5 clubs, 4 wine bars, 3 hotels, 6 restaurants).
+<br>1 new taste vote since Aug 2:
+Annapolis Yacht Club (positive &mdash; yacht clubs
+confirmed as strong fit).
+</div>
+
+<!-- Stats -->
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">25</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">16</div>
+    <div class="label">Legit Venues</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">9</div>
+    <div class="label">Needs Review / Skip</div>
+  </div>
+</div>
+
+<!-- Needs Your Review -->
+<div class="review-box">
+  <h2>Needs Your Review (0&ndash;1 contacts)</h2>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-2955"
+>Stoney Creek Inn</a></div>
+      <div class="venue-type">
+hotel | Pasadena MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DE-HOTE-2392"
+>Shorebreak Lodge</a></div>
+      <div class="venue-type">
+hotel | Rehoboth Beach DE</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2383"
+>La Stalla</a></div>
+      <div class="venue-type">
+restaurant | Newtown PA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2837"
+>Pinnacle Ridge Winery</a></div>
+      <div class="venue-type">
+winery | Stewartstown PA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-340"
+>Baia Coastal Italian Kitchen</a></div>
+      <div class="venue-type">
+wine_bar | Chesapeake Beach MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=XX-WINE-040"
+>Corteau Vineyards</a></div>
+      <div class="venue-type">
+winery | Mechanicsville MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=XX-WINE-028"
+>Bogati Winery</a></div>
+      <div class="venue-type">
+winery | Round Hill VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-2983"
+>Corradetti Glass Studio</a></div>
+      <div class="venue-type">
+event | Baltimore MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+</div>
+
+<!-- Key Wins -->
+<h2>Key Wins</h2>
+
+<div class="win">
+  <strong>Philadelphia Cricket Club
+  (Flourtown PA)</strong>
+  &mdash; JACKPOT. Historic private club (est. 1854),
+  one of the oldest in the US. 36 verified contacts
+  with @philacricket.com emails. Key targets:
+  Christine Cassano (Director of Food &amp; Beverage),
+  Emily Conrad (Flourtown Events Manager),
+  Amber Corp (Director of Member Events),
+  Linda Cozzi (GM &amp; CFO), Jim Smith (Director
+  of Golf/COO). Full staff directory found via
+  Apollo. FB verified.
+</div>
+
+<div class="win">
+  <strong>Chizuk Amuno Congregation
+  (Pikesville MD)</strong>
+  &mdash; Large synagogue with 11 verified contacts.
+  Key: Lee Sherman (Executive Director),
+  Sam Blustin (Director of Music),
+  Seydee Doradea (Director of Operations),
+  Melissa Brill (Director of Communications).
+  Active programming calendar. Unusual venue type
+  but strong organizational infrastructure.
+  FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>Crofton Country Club
+  (Crofton MD)</strong>
+  &mdash; 7 verified contacts with @croftonclub.com
+  emails. 5 staff names identified from website
+  staff page. Plus Phillip French (Asst Golf Pro)
+  and Tad Dinan (Golf Course Super). FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>Whitemarsh Valley Country Club
+  (Lafayette Hill PA)</strong>
+  &mdash; 6 verified contacts after manual check.
+  High-value adds: Drew Smalbach (Executive Chef,
+  drewsmalbach@whitemarshvalleycc.com), Jennifer
+  Zurick (Director of Catering Sales,
+  jennifer@whitemarshvalleycc.com). Club est. 1908,
+  ~67 employees. FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>Pergola at The Bellevue
+  (Philadelphia PA)</strong>
+  &mdash; Restaurant inside the historic Bellevue
+  Hotel. 3 verified contacts: Hannah Graff (Group
+  Sales Manager), Tricia Pavlis (Business Travel
+  Sales Manager), Kobie Gibson (Restaurant
+  Supervisor). IG verified.
+</div>
+
+<div class="win">
+  <strong>Daniel O'Connell's
+  (Alexandria VA)</strong>
+  &mdash; Irish restaurant in Old Town. Pipeline
+  had 0 contacts &mdash; manual check found John
+  Brennan (Owner, j.brennan@danieloconnells.com)
+  and Kate Brennan (GM, kate@danieloconnells.com).
+  FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>The Lodge at Truitt Homestead
+  (Rehoboth Beach DE)</strong>
+  &mdash; 2 verified contacts: Carlyn Talerico
+  (Recreation &amp; Events Coordinator) and Suzette
+  Chambers (Director of Community Relations). Note:
+  this is a retirement community &mdash; flagged as
+  unusual venue type.
+</div>
+
+<div class="win">
+  <strong>Lancaster Brasserie
+  (Lancaster PA)</strong>
+  &mdash; Manual check found Chris Skiadas (Owner,
+  chris.skiadas@lancasterbrasserie.com). Wrong-
+  business contact (Paul Dorlodot, French brewery)
+  deleted. Malformed email deleted. FB/IG verified.
+</div>
+
+<!-- All Venues Table -->
+<h2>All Venues</h2>
+<table>
+<tr>
+  <th>Venue</th>
+  <th>Type</th>
+  <th>Location</th>
+  <th>Contacts</th>
+  <th>Status</th>
+</tr>
+
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-COUN-1935"
+>Philadelphia Cricket Club</a></td>
+  <td>country_club</td>
+  <td>Flourtown PA</td>
+  <td class="emails-good">36</td>
+  <td>Historic private club (est. 1854). Full staff
+  directory. Christine Cassano (Dir F&amp;B), Emily
+  Conrad (Events), Amber Corp (Member Events),
+  Linda Cozzi (GM). Premier PA target.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-2966"
+>Chizuk Amuno Congregation</a></td>
+  <td>event</td>
+  <td>Pikesville MD</td>
+  <td class="emails-good">11</td>
+  <td><span class="junk">UNUSUAL TYPE</span>
+  &mdash; synagogue. Lee Sherman (Exec Dir),
+  Sam Blustin (Dir of Music). Active
+  programming. Flag as non-standard venue.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-COUN-773"
+>Crofton Country Club</a></td>
+  <td>country_club</td>
+  <td>Crofton MD</td>
+  <td class="emails-good">7</td>
+  <td>5 staff + Phillip French (Asst Golf Pro),
+  Tad Dinan (Super). FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-COUN-1895"
+>Whitemarsh Valley Country Club</a></td>
+  <td>country_club</td>
+  <td>Lafayette Hill PA</td>
+  <td class="emails-good">6</td>
+  <td>Drew Smalbach (Chef), Jennifer Zurick
+  (Catering Sales) added via manual check.
+  Club est. 1908. FB added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1995"
+>Pergola at The Bellevue</a></td>
+  <td>restaurant</td>
+  <td>Philadelphia PA</td>
+  <td class="emails-good">3</td>
+  <td>Historic Bellevue Hotel restaurant. Hannah
+  Graff (Sales), Tricia Pavlis, Kobie Gibson.
+  IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2637"
+>Lancaster Brasserie</a></td>
+  <td>restaurant</td>
+  <td>Lancaster PA</td>
+  <td class="emails-good">2</td>
+  <td>Chris Skiadas (Owner) added, wrong-business
+  contact deleted. Venue email kept. FB added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1679"
+>Daniel O'Connell's</a></td>
+  <td>restaurant</td>
+  <td>Alexandria VA</td>
+  <td class="emails-good">2</td>
+  <td>John Brennan (Owner) + Kate Brennan (GM).
+  Manual check found both. City fixed from
+  "ne Alexandria." FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DE-HOTE-2397"
+>The Lodge at Truitt Homestead</a></td>
+  <td>hotel</td>
+  <td>Rehoboth Beach DE</td>
+  <td class="emails-good">2</td>
+  <td><span class="junk">FLAG: retirement
+  community</span>. Carlyn Talerico (Events),
+  Suzette Chambers (Community Relations).
+  Venue fit questionable.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2453"
+>La Tartine</a></td>
+  <td>restaurant</td>
+  <td>West Chester PA</td>
+  <td class="emails-good">2</td>
+  <td>Johnny Abi Khattar (Owner) identified.
+  Venue emails only. City fixed from Kennett
+  Square. Mediterranean/Lebanese.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-2964"
+>Gramercy Mansion</a></td>
+  <td>hotel</td>
+  <td>Baltimore MD</td>
+  <td class="emails-good">1</td>
+  <td>Raina Gover (Manager). Historic B&amp;B with
+  events. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DE-HOTE-2394"
+>Peninsula Golf &amp; Country Club</a></td>
+  <td>country_club</td>
+  <td>Millsboro DE</td>
+  <td class="emails-good">1</td>
+  <td>Neil Maurer (GM) added via manual check.
+  <span class="purple">Pipeline found Australian
+  club contacts (.com.au) &mdash; all rejected
+  as WRONG BUSINESS.</span> City fixed from
+  Rehoboth Beach.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2344"
+>La Pe&ntilde;a Mexicana</a></td>
+  <td>restaurant</td>
+  <td>Kennett Square PA</td>
+  <td class="emails-good">1</td>
+  <td>Julian Pena (Chef-Owner) identified. Venue
+  email only. Taqueria.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-2771"
+>Adah Rose Gallery</a></td>
+  <td>art_gallery</td>
+  <td>Kensington MD</td>
+  <td class="emails-good">1</td>
+  <td>Venue email. Adah Birnbaum (Owner/Director)
+  identified but no personal email. City fixed
+  from Bethesda.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-2964"
+>Chase Court</a></td>
+  <td>event</td>
+  <td>Baltimore MD</td>
+  <td class="emails-good">1</td>
+  <td><span class="junk">SKIP: wedding-only
+  venue</span>. David Egan (Owner). FB/IG both
+  say "wedding venue." Not a recurring gig
+  target.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-YACH-701"
+>Eastport Yacht Club</a></td>
+  <td>yacht_club</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">1</td>
+  <td>Dan McQuay (GM/COO) added. 6 generic
+  department emails deleted. Liz McQuay (Events
+  Manager) identified but no email yet.
+  FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-782"
+>Gallery 57 West</a></td>
+  <td>art_gallery</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">1</td>
+  <td>Nonprofit collective. Venue email only. No
+  individual owner found. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-PRIV-2894"
+>Old Georgetown Club</a></td>
+  <td>private_club</td>
+  <td>Bethesda MD</td>
+  <td class="emails-good">1</td>
+  <td><span class="junk">VIBE MISMATCH: seasonal
+  swim &amp; tennis club</span>. Bill Balshem
+  (IT Dir, volunteer board). Deleted:
+  vignolagourmet@gmail.com (WRONG BUSINESS
+  &mdash; Vignola Gourmet restaurant in
+  Rockville), ogctennis@gmail.com (generic).
+  Not a year-round private club.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-2955"
+>Stoney Creek Inn</a></td>
+  <td>hotel</td>
+  <td>Pasadena MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Dan Von Sas identified as contact. City
+  fixed from Oxford. No emails found.
+  FB/IG verified (IG handle corrected).</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DE-HOTE-2392"
+>Shorebreak Lodge</a></td>
+  <td>hotel</td>
+  <td>Rehoboth Beach DE</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Ben Winiarczyk (Owner) identified. No FB
+  (could not verify). IG verified. No emails.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2383"
+>La Stalla</a></td>
+  <td>restaurant</td>
+  <td>Newtown PA</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Marc Masso (Owner, 17+ years). City fixed
+  from Bryn Mawr to Newtown. Joseph Russo (Chef).
+  Italian in historic 1929 barn. No emails.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-2837"
+>Pinnacle Ridge Winery</a></td>
+  <td>winery</td>
+  <td>Stewartstown PA</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Carl Helrich (Owner) &mdash; email at
+  allegrowines.com (off-domain, also owns Allegro).
+  City fixed from Lancaster. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-340"
+>Baia Coastal Italian Kitchen</a></td>
+  <td>wine_bar</td>
+  <td>Chesapeake Beach MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Owners: Jason &amp; Jordan Nagers, Tim &amp;
+  Ronda Tracy. No emails found. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=XX-WINE-040"
+>Corteau Vineyards</a></td>
+  <td>winery</td>
+  <td>Mechanicsville MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Owners: Peter &amp; Gerald Byrne. No emails.
+  IG verified. FB found but slug mismatch.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=XX-WINE-028"
+>Bogati Winery</a></td>
+  <td>winery</td>
+  <td>Round Hill VA</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>James Bogaty (CEO) email at veramar.com
+  (off-domain, correctly rejected). Tracy Rhodes
+  (Manager), Justin Bogaty (Winemaker) identified.
+  Family winery, 7 employees. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-EVEN-2983"
+>Corradetti Glass Studio</a></td>
+  <td>event</td>
+  <td>Baltimore MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>dj.mikie.love@gmail.com deleted (WRONG
+  BUSINESS). Anthony Corradetti (Owner) identified.
+  Glass blowing studio with events. FB/IG
+  verified.</td>
+</tr>
+</table>
+
+<!-- Data Quality Actions -->
+<details>
+  <summary>Data Quality Actions Taken (14 fixes)</summary>
+
+  <div class="incident">
+  <strong>7 city corrections:</strong> Stoney Creek
+  Inn (Oxford&rarr;Pasadena), Peninsula GCC (Rehoboth
+  Beach&rarr;Millsboro), La Stalla (Bryn Mawr&rarr;
+  Newtown), La Tartine (Kennett Square&rarr;West
+  Chester), Daniel O'Connell's ("ne Alexandria"&rarr;
+  Alexandria), Pinnacle Ridge (Lancaster&rarr;
+  Stewartstown), Adah Rose (Bethesda&rarr;Kensington).
+  </div>
+
+  <div class="incident">
+  <strong>4 contacts deleted:</strong>
+  dj.mikie.love@gmail.com at Corradetti (wrong
+  business), vignolagourmet@gmail.com at Old
+  Georgetown (wrong business &mdash; Vignola Gourmet
+  restaurant), ogctennis@gmail.com at Old Georgetown
+  (generic), %20lancasterbrasserie@gmail.com at
+  Lancaster Brasserie (malformed duplicate).
+  </div>
+
+  <div class="incident">
+  <strong>6 generic department emails deleted</strong>
+  at Eastport Yacht Club: agm@, bookkeeper@, cruise@,
+  green@, marina@, waterfront@eastportyc.org.
+  Replaced with Dan McQuay (GM/COO).
+  </div>
+
+  <div class="incident">
+  <strong>5 new verified contacts added</strong>
+  via manual check: Chris Skiadas (Owner, Lancaster
+  Brasserie), John Brennan + Kate Brennan (Owner/GM,
+  Daniel O'Connell's), Drew Smalbach + Jennifer
+  Zurick (Chef/Catering Sales, Whitemarsh Valley CC),
+  Neil Maurer (GM, Peninsula GCC).
+  </div>
+
+  <div class="incident">
+  <strong>Wrong business gate:</strong> Peninsula
+  GCC pipeline contacts were all from Australian
+  "Peninsula Kingswood" club (.com.au emails).
+  All correctly rejected. Paul Dorlodot at
+  Lancaster Brasserie was from a French brewery
+  (brasserieds.fr). All rejected.
+  </div>
+
+  <div class="incident">
+  <strong>Contact name updates:</strong> Chase Court
+  "david" updated to David Egan (Owner). Old
+  Georgetown "billbalshem" updated to Bill Balshem
+  (IT Director, Board).
+  </div>
+</details>
+
+<!-- Flagged Venues -->
+<details>
+  <summary>Flagged Venues (4 venues)</summary>
+
+  <div class="incident">
+  <strong>Chase Court (MD-EVEN-2964)</strong> &mdash;
+  Wedding-only venue. FB and IG both include "wedding
+  venue" in the name. Not a recurring gig target.
+  Recommend SKIP.
+  </div>
+
+  <div class="incident">
+  <strong>Old Georgetown Club (MD-PRIV-2894)</strong>
+  &mdash; VIBE MISMATCH. This is a seasonal swim
+  &amp; tennis club with volunteer board, not a
+  year-round private club with dining/events. Pool
+  managed by Pool Personnel Inc. No paid events
+  staff. Limited gig opportunity.
+  </div>
+
+  <div class="incident">
+  <strong>Lodge at Truitt Homestead
+  (DE-HOTE-2397)</strong> &mdash; Retirement
+  community managed by Vantage Point. Has recreation
+  and events staff but may not fit the typical
+  venue profile. FB link goes to parent company.
+  </div>
+
+  <div class="incident">
+  <strong>Chizuk Amuno (MD-EVEN-2966)</strong> &mdash;
+  Synagogue with active programming. Unusual venue
+  type but strong organizational infrastructure.
+  Sam Blustin (Director of Music) is the best
+  contact for entertainment programming.
+  </div>
+</details>
+
+<!-- Taste Discovery -->
+<h2>Taste Discovery</h2>
+<p>25 new venues added via web search, focused on
+thin categories: 7 wineries (VA Loudoun,
+PA Brandywine, MD Frederick), 5 clubs (MD/VA),
+4 wine bars (DC, VA), 3 hotels (Eastern Shore, DE),
+6 restaurants (DC, VA, MD Baltimore). Pool
+replenished: wineries 3&rarr;10, clubs 5&rarr;11.</p>
+
+<!-- Taste Review -->
+<h2>Taste Review</h2>
+<p>1 new vote since Aug 2:</p>
+<div class="win">
+  <strong>Annapolis Yacht Club</strong> (thumbs up)
+  &mdash; Premier yacht club confirms the pattern:
+  maritime/sailing clubs = wealthy, educated members.
+  Annapolis continues clustering as a positive area
+  (Eastport YC in today's batch + this vote).
+  Yacht clubs now a confirmed Tier 1 target.
+</div>
+
+<h2>Apollo Credits</h2>
+<p>80 credits used this run (300 budget).
+ZeroBounce: 1,385 credits remaining.</p>
+
+</body>
+</html>

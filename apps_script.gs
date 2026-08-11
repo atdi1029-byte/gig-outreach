@@ -402,8 +402,12 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     var dist = v.distance_miles ? Number(v.distance_miles) : 50;
     var distScore = Math.max(0, 100 - dist);
 
-    // 50/50 blend: taste and distance weighted equally
-    item._topPickScore = tasteScore + distScore;
+    // State priority: DC/MD/VA first, everything else pushed down
+    var vState = String(v.state || '').toUpperCase();
+    var statePts = (vState === 'DC' || vState === 'MD' || vState === 'VA') ? 50 : 0;
+
+    // Blend: taste + distance + state priority
+    item._topPickScore = tasteScore + distScore + statePts;
   });
 
   actionNeeded.sort(function(a, b) {
@@ -719,7 +723,7 @@ function addVenue_(params) {
     params.instagram || '',
     Number(params.upscale_score) || 3,
     params.zone_priority || 'default',
-    'untouched',
+    params.status || 'untouched',
     params.source || '',
     new Date(),
     params.notes || '',
@@ -1931,7 +1935,11 @@ function getRecommendations_() {
       locPts = 15;
     }
 
-    var totalScore = Math.max(0, Math.min(100, catPts + distPts + upscalePts + zPts + cqPts + votePts + tastePts + locPts));
+    // --- STATE PRIORITY (0-20 pts) — DC/MD/VA venues rank above out-of-area ---
+    var vState = String(row[6]).toUpperCase();
+    var statePts = (vState === 'DC' || vState === 'MD' || vState === 'VA') ? 20 : 0;
+
+    var totalScore = Math.max(0, Math.min(100, catPts + distPts + upscalePts + zPts + cqPts + votePts + tastePts + locPts + statePts));
 
     recommendations.push({
       venue_id: venueId,
@@ -1953,7 +1961,8 @@ function getRecommendations_() {
         contact_quality: cqPts,
         vote: votePts,
         taste_tier: tastePts,
-        location: locPts
+        location: locPts,
+        state_priority: statePts
       },
       contact_count: vContacts.length
     });

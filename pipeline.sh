@@ -29,6 +29,11 @@ APOLLO_API_BASE="https://api.apollo.io/api/v1"
 APOLLO_CREDITS_USED=0
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG_FILE="${SCRIPT_DIR}/pipeline.log"
+# Discovery evidence is append-only: candidates are retained even when verification
+# later rejects them, so a "miss" can be audited instead of disappearing.
+CANDIDATE_LOG="${SCRIPT_DIR}/reports/discovery-candidates.jsonl"
+COVERAGE_DIR="${SCRIPT_DIR}/reports/web-coverage"
+mkdir -p "$(dirname "$CANDIDATE_LOG")" "$COVERAGE_DIR"
 JUNK_DOMAINS="wix.com|wixpress.com|wordpress|sentry.io|sentry-next|cloudflare|example.com|squarespace|shopify|mailchimp|googleapis|google.com|gstatic|facebook|instagram|twitter|hubspot|sendgrid|zendesk|fontawesome.io"
 # Owner's own emails — never add these as venue contacts
 OWN_EMAILS="atdi1029@gmail.com|alexbarnettclassical@gmail.com|abar89251@gmail.com|alex@alexbarnettclassical.com"
@@ -121,37 +126,78 @@ check_zb_credits() {
     return 0
 }
 
+
+record_candidate() {
+    local email="$1" venue_id="$2" name="$3" title="$4" source="$5" disposition="$6" evidence_url="${7:-}"
+    [ -z "$email" ] && return
+    CANDIDATE_LOG="$CANDIDATE_LOG" python3 - "$email" "$venue_id" "$name" "$title" "$source" "$disposition" "$evidence_url" <<'PYEOF'
+import json, os, sys
+from datetime import datetime, timezone
+email, venue_id, name, title, source, disposition, evidence_url = sys.argv[1:8]
+row = {
+    "timestamp": datetime.now(timezone.utc).isoformat(),
+    "venue_id": venue_id,
+    "email": email.lower().strip(),
+    "name": name,
+    "title": title,
+    "source": source,
+    "disposition": disposition,
+    "evidence_url": evidence_url,
+}
+with open(os.environ["CANDIDATE_LOG"], "a", encoding="utf-8") as f:
+    f.write(json.dumps(row, ensure_ascii=False) + "\n")
+PYEOF
+}
+
 verify_and_push() {
     local email="$1" venue_id="$2" name="$3" title="$4" source="$5"
     if [ -z "$email" ]; then return; fi
 
-    if email_known "$email"; then
-        log "  [SKIP] $email — already in sheet"
-        return
-    fi
-
-    # Block owner's own emails from being added as contacts
-    if echo "$OWN_EMAILS" | tr '|' '\n' | grep -qi "^${email}$" 2>/dev/null; then
-        log "  [SKIP] $email — owner's own email"
-        return
-    fi
-
-    # Block generic/role-based email prefixes (info@, hello@, contact@, etc.)
     local email_lower
-    email_lower=$(echo "$email" | tr '[:upper:]' '[:lower:]')
-    local generic_prefixes="info@ hello@ contact@ sales@ reservations@ booking@ enquiries@ inquiries@ office@ general@ frontdesk@ reception@ noreply@ no-reply@ support@ admin@ webmaster@ billing@ dataremoval@ privacy@ careers@ jobs@ hr@ marketing@ press@ media@ eat@ dine@ wine@ music@ art@ mail@"
-    for gp in $generic_prefixes; do
+    email_lower=$(echo "$email" | tr '[:upper:]' '[:lower:]' | xargs)
+    record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "discovered"
+
+    if email_known "$email_lower"; then
+        log "  [SKIP] $email_lower — already in sheet"
+        record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "already_known"
+        return
+    fi
+
+    # Block owner's own emails from being added as contacts.
+    if echo "$OWN_EMAILS" | tr '|' '\n' | grep -qi "^${email_lower}$" 2>/dev/null; then
+        log "  [SKIP] $email_lower — owner's own email"
+        record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "owner_email"
+        return
+    fi
+
+    # Hard-reject only addresses that are operational/non-contact mailboxes.
+    # Role mailboxes such as events@, catering@, reservations@, info@, etc. are
+    # retained and can be saved as generic venue contacts when they validate.
+    local hard_reject="noreply@ no-reply@ webmaster@ billing@ dataremoval@ privacy@ careers@ jobs@ hr@ mailer-daemon@ postmaster@"
+    for gp in $hard_reject; do
         if echo "$email_lower" | grep -q "^${gp}"; then
-            log "  [SKIP] $email — generic prefix ($gp)"
+            log "  [SKIP] $email_lower — hard-reject prefix ($gp)"
+            record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "hard_reject_prefix:$gp"
             return
         fi
     done
 
-    # Off-domain check — REJECT emails whose domain doesn't match the venue
-    # (Apollo contacts pass source=apollo and are allowed through)
-    if [ -n "$VENUE_DOMAIN" ] && echo "$email" | grep -q '@'; then
+    local is_generic="false"
+    local generic_prefixes="info@ hello@ contact@ sales@ events@ event@ privateevents@ private-events@ reservations@ booking@ bookings@ enquiries@ inquiries@ office@ general@ frontdesk@ reception@ support@ admin@ catering@ groups@ weddings@ meetings@"
+    for gp in $generic_prefixes; do
+        if echo "$email_lower" | grep -q "^${gp}"; then
+            is_generic="true"
+            log "  [GENERIC] $email_lower — retaining role mailbox ($gp)"
+            break
+        fi
+    done
+
+    # Off-domain is evidence to review, not an automatic rejection. Hospitality
+    # groups, hotels, management companies, caterers, and parent brands often own
+    # the real mailbox used by a venue.
+    if [ -n "$VENUE_DOMAIN" ] && echo "$email_lower" | grep -q '@'; then
         local email_domain
-        email_domain=$(echo "$email" | awk -F'@' '{print tolower($2)}')
+        email_domain=$(echo "$email_lower" | awk -F'@' '{print tolower($2)}')
         local generic_domains="gmail.com yahoo.com outlook.com hotmail.com aol.com icloud.com"
         if ! echo "$generic_domains" | grep -qw "$email_domain"; then
             local vbase ebase
@@ -159,54 +205,84 @@ verify_and_push() {
             ebase=$(echo "$email_domain" | sed 's/\..*//')
             if [ "$email_domain" != "$VENUE_DOMAIN" ] && [ "$ebase" != "$vbase" ] && \
                ! echo "$vbase" | grep -qi "$ebase" && ! echo "$ebase" | grep -qi "$vbase"; then
-                log "  [WARN] $email — off-domain (venue: $VENUE_DOMAIN) — keeping (source: $source)"
-                echo "FLAG:Off-domain email kept: $email (domain $email_domain vs venue $VENUE_DOMAIN, source: $source)" >> /tmp/pipeline_flags.txt
+                log "  [REVIEW] $email_lower — off-domain (venue: $VENUE_DOMAIN, source: $source); keeping as candidate"
+                echo "FLAG:Off-domain email retained for review: $email_lower (domain $email_domain vs venue $VENUE_DOMAIN, source: $source)" >> /tmp/pipeline_flags.txt
+                record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "off_domain_retained"
             fi
         fi
     fi
 
     if [ -f "$ZB_EXHAUSTED_FLAG" ]; then
-        log "  [SKIP] $email — ZeroBounce credits exhausted"
+        log "  [CANDIDATE] $email_lower — ZeroBounce credits exhausted; retained in candidate log"
+        record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "verification_deferred_zb_exhausted"
         return
     fi
 
     local zb_status
-    zb_status=$(curl -s --max-time 15 "https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_KEY&email=$email" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('status','unknown'))" 2>/dev/null)
-    if [ -z "$zb_status" ]; then zb_status="unknown"; fi
-    log "  $email → $zb_status"
+    if [ -z "$ZEROBOUNCE_KEY" ]; then
+        zb_status="unknown"
+    else
+        zb_status=$(curl -s --max-time 15 "https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_KEY&email=$email_lower" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('status','unknown'))" 2>/dev/null)
+        [ -z "$zb_status" ] && zb_status="unknown"
+    fi
+    log "  $email_lower → $zb_status"
 
-    if [ "$zb_status" = "valid" ] || [ "$zb_status" = "invalid" ] || [ "$zb_status" = "catch-all" ] || [ "$zb_status" = "unknown" ] || [ "$zb_status" = "do_not_mail" ]; then
-        # If no name provided, use email prefix as display name
+    if [ "$zb_status" = "valid" ]; then
         local save_name="$name"
-        if [ -z "$save_name" ]; then
-            save_name=$(echo "$email" | cut -d'@' -f1)
+        if [ -z "$save_name" ] || [ "$save_name" = "None" ]; then
+            save_name=$(python3 - "$email_lower" <<'PYEOF'
+import re, sys
+local = sys.argv[1].split('@',1)[0]
+local = re.sub(r'[-_.]+', ' ', local).strip()
+print(' '.join(w.capitalize() for w in local.split()) or sys.argv[1])
+PYEOF
+)
         fi
         local encoded
-        encoded=$(python3 -c "
-import urllib.parse
+        encoded=$(python3 - "$venue_id" "$save_name" "$title" "$email_lower" "$source" "$zb_status" "$is_generic" <<'PYEOF'
+import sys, urllib.parse
+venue_id, name, title, email, source, verified, is_generic = sys.argv[1:8]
 print(urllib.parse.urlencode({
     'action': 'add_contact',
-    'venue_id': '$venue_id',
-    'name': '''$save_name''',
-    'title': '''$title''',
-    'email': '$email',
-    'source': '$source',
-    'verified': '$zb_status'
-}))")
+    'venue_id': venue_id,
+    'name': name,
+    'title': title,
+    'email': email,
+    'source': source,
+    'verified': verified,
+    'is_generic': is_generic,
+}))
+PYEOF
+)
         local api_response
         api_response=$(curl -sL "${APPS_SCRIPT_URL}?${encoded}")
-        if echo "$api_response" | grep -q '"status":"error"'; then
-            log "  [API ERROR] ${save_name:-$email}: $(echo "$api_response" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('message',''))" 2>/dev/null)"
-        elif [ "$zb_status" = "valid" ]; then
-            log "  ✓ Added: ${save_name:-$email} <$email>"
-        else
-            log "  ⚠ Added (${zb_status}): ${save_name:-$email} <$email>"
+        local api_ok
+        api_ok=$(echo "$api_response" | python3 -c "import json,sys; d=json.load(sys.stdin); print('yes' if d.get('status') == 'ok' else 'no')" 2>/dev/null || echo "no")
+        if [ "$api_ok" != "yes" ]; then
+            log "  [API ERROR] Contact was not saved: ${save_name:-$email_lower} <$email_lower>"
+            record_candidate "$email_lower" "$venue_id" "$save_name" "$title" "$source" "api_save_failed"
+            return
         fi
+
+        local readback_ok
+        readback_ok=$(curl -sL --max-time 10 "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" 2>/dev/null | \
+            EMAIL_TO_CHECK="$email_lower" python3 -c "import json,os,sys; d=json.load(sys.stdin); target=os.environ['EMAIL_TO_CHECK']; print('yes' if any((c.get('email') or '').lower()==target for c in d.get('contacts',[])) else 'no')" 2>/dev/null || echo "no")
+        if [ "$readback_ok" != "yes" ]; then
+            log "  [API ERROR] Contact write could not be verified: ${save_name:-$email_lower} <$email_lower>"
+            record_candidate "$email_lower" "$venue_id" "$save_name" "$title" "$source" "api_readback_failed"
+            return
+        fi
+
+        log "  ✓ Added and verified: ${save_name:-$email_lower} <$email_lower>"
+        record_candidate "$email_lower" "$venue_id" "$save_name" "$title" "$source" "saved_valid"
         echo "1" >> /tmp/pipeline_contacts_count
-        KNOWN_EMAILS="${KNOWN_EMAILS}|||$(echo "$email" | tr '[:upper:]' '[:lower:]')"
+        KNOWN_EMAILS="${KNOWN_EMAILS}|||${email_lower}"
         if [ -n "$name" ]; then
             KNOWN_NAMES="${KNOWN_NAMES}|||$(echo "$name" | tr '[:upper:]' '[:lower:]')"
         fi
+    else
+        log "  [CANDIDATE] $email_lower — ZeroBounce status is $zb_status; retained for review"
+        record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "verification:$zb_status"
     fi
     sleep 1
 }
@@ -224,13 +300,15 @@ step1_website() {
         return
     fi
 
-    # Skip corporate hotel domains — website crawl is useless, Apollo carries these
+    # Corporate hotel/property pages are still valuable website evidence. They often
+    # expose property-specific Facebook/Instagram, weddings, meetings, and catering
+    # contacts even when Apollo has corporate people. Never skip the web crawl here.
     local corp_hotels="hilton.com marriott.com hyatt.com ihg.com fourseasons.com ritzcarlton.com starwoodhotels.com wyndhamhotels.com choicehotels.com bestwestern.com radissonhotels.com omnihotels.com loewshotels.com"
     local site_domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${website}').netloc.replace('www.',''))" 2>/dev/null)
     for corp in $corp_hotels; do
         if [ "$site_domain" = "$corp" ]; then
-            log "  [SKIP] Corporate hotel domain ($corp) — skipping website crawl"
-            return
+            log "  [WEB] Corporate hotel domain ($corp) — crawling property page instead of skipping"
+            break
         fi
     done
 
@@ -240,7 +318,6 @@ step1_website() {
     cat > /tmp/pipeline_website_scrape.js << 'JSEOF'
 (function(){
 var junk = ['wix.com','wordpress','sentry.io','cloudflare','example.com','squarespace','shopify','mailchimp','googleapis','google.com','gstatic','facebook','instagram','twitter','hubspot','sendgrid','zendesk','fontawesome.io'];
-var generic = ['noreply@','no-reply@','support@','admin@','webmaster@','billing@','info@','hello@','contact@','enquiries@','inquiries@','reservations@'];
 var contacts = {};
 
 function titleCase(s){
@@ -268,7 +345,6 @@ function parseContext(ctx, email){
 
 function isJunk(e){
     for(var j=0;j<junk.length;j++){ if(e.indexOf(junk[j])>-1) return true; }
-    for(var g=0;g<generic.length;g++){ if(e.indexOf(generic[g])===0) return true; }
     return e.length > 60;
 }
 
@@ -326,17 +402,34 @@ for(var i=0;i<allLinks.length;i++){
     }
 }
 
-// 5. Emails from schema.org structured data
+// 5. Emails from schema.org structured data — recurse through @graph,
+// contactPoint arrays, nested organizations/people, and arbitrary string values.
+function walkStructured(node){
+    if(node === null || node === undefined) return;
+    if(typeof node === 'string'){
+        var matches = node.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || [];
+        for(var j=0;j<matches.length;j++){
+            var se = matches[j].toLowerCase().replace('mailto:','').trim();
+            if(se.indexOf('@')>0 && !isJunk(se) && !contacts[se]) contacts[se] = {email:se, name:'', title:''};
+        }
+        return;
+    }
+    if(Array.isArray(node)){ for(var j=0;j<node.length;j++) walkStructured(node[j]); return; }
+    if(typeof node === 'object'){ for(var k in node){ if(Object.prototype.hasOwnProperty.call(node,k)) walkStructured(node[k]); } }
+}
 var schemas = document.querySelectorAll('script[type="application/ld+json"]');
 for(var i=0;i<schemas.length;i++){
-    try {
-        var sd = JSON.parse(schemas[i].textContent);
-        var schemaEmail = (sd.email || '').toLowerCase().replace('mailto:','').trim();
-        if(schemaEmail && schemaEmail.indexOf('@')>0 && !isJunk(schemaEmail) && !contacts[schemaEmail]){
-            contacts[schemaEmail] = {email:schemaEmail, name:'', title:''};
-        }
-    } catch(e){}
+    try { walkStructured(JSON.parse(schemas[i].textContent)); } catch(e){}
 }
+
+// 6. Search hidden DOM / hydration / data attributes too. innerText misses
+// accordion content, modal bodies, and client-side data present in the DOM.
+var rawDom = document.documentElement ? (document.documentElement.textContent + '\n' + document.documentElement.outerHTML) : '';
+var rawMatches = rawDom.match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g) || [];
+rawMatches.forEach(function(e){
+    var el = e.toLowerCase();
+    if(!isJunk(el) && !imgExts.test(el) && !contacts[el]) contacts[el] = {email:el, name:'', title:''};
+});
 
 var contactList = Object.keys(contacts).map(function(k){return contacts[k];});
 
@@ -407,39 +500,46 @@ if(!ig){
     }
 }
 
-// Internal links — grab ALL nav/header links + keyword-matched body links
+// Internal links — preserve meaningful query strings and hash states. A hash can
+// open a tab/accordion on JS sites, so /events#events-cta is not discarded.
 var base = location.origin;
 var subpages = [];
 var seen = {};
-seen[location.href.split('#')[0].split('?')[0].replace(/\/$/,'')] = true;
+function normalizeInternal(h){
+    try {
+        var u = new URL(h, location.href);
+        if(u.origin !== base) return '';
+        ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','fbclid','gclid'].forEach(function(k){u.searchParams.delete(k);});
+        var out = u.href;
+        if(!u.hash && u.pathname !== '/') out = out.replace(/\/$/,'');
+        return out;
+    } catch(e){ return ''; }
+}
+seen[normalizeInternal(location.href)] = true;
 
-// 1. All internal links from nav, header, and top-level menus — crawl everything
-var navLinks = document.querySelectorAll('nav a[href], header a[href], [role="navigation"] a[href], .menu a[href], .nav a[href], #menu a[href], #nav a[href]');
+// 1. All internal links from navigation surfaces.
+var navLinks = document.querySelectorAll('nav a[href], header a[href], footer a[href], [role="navigation"] a[href], .menu a[href], .nav a[href], #menu a[href], #nav a[href]');
 for(var i=0;i<navLinks.length;i++){
     var h = navLinks[i].getAttribute('href') || '';
     if(h.startsWith('mailto:') || h.startsWith('tel:') || h === '#') continue;
-    var full;
-    try { full = new URL(h, base).href.split('#')[0].split('?')[0].replace(/\/$/,''); } catch(e){ continue; }
-    if(full.indexOf(base) !== 0) continue;
-    if(seen[full]) continue;
+    var full = normalizeInternal(h);
+    if(!full || seen[full]) continue;
     seen[full] = true;
     subpages.push(full);
 }
 
-// 2. Body links matching keywords (catches deep links not in nav)
-var keywords = ['event','private','wedding','cater','contact','about','entertain','music','banquet','dining','party','book','ticket','team','staff','press','news','media','rental','meeting','corporate','wine-club','wine_club','live-music','reserv','hire','inquiry','enquiry'];
+// 2. Keyword-matched links anywhere on the page. Match URL + anchor text so a
+// generic href such as /page/123 with text "Private Events" still wins.
+var keywords = ['event','private','wedding','cater','contact','about','entertain','music','banquet','dining','party','book','ticket','team','staff','press','news','media','rental','meeting','corporate','wine-club','wine_club','live-music','reserv','hire','inquiry','enquiry','group','sales'];
 var allAnchors = document.querySelectorAll('a[href]');
 for(var i=0;i<allAnchors.length;i++){
     var h = allAnchors[i].getAttribute('href') || '';
     if(h.startsWith('mailto:') || h.startsWith('tel:')) continue;
-    var full;
-    try { full = new URL(h, base).href.split('#')[0].split('?')[0].replace(/\/$/,''); } catch(e){ continue; }
-    if(full.indexOf(base) !== 0) continue;
-    if(seen[full]) continue;
-    seen[full] = true;
-    var path = full.toLowerCase();
+    var full = normalizeInternal(h);
+    if(!full || seen[full]) continue;
+    var hay = (full + ' ' + (allAnchors[i].textContent||'') + ' ' + (allAnchors[i].getAttribute('aria-label')||'')).toLowerCase();
     for(var k=0;k<keywords.length;k++){
-        if(path.indexOf(keywords[k]) > -1){ subpages.push(full); break; }
+        if(hay.indexOf(keywords[k]) > -1){ seen[full] = true; subpages.push(full); break; }
     }
 }
 
@@ -498,7 +598,7 @@ JSEOF
     if [ -z "$scrape_result" ] || [ "$scrape_result" = "missing value" ]; then
         log "  [WARN] Chrome scrape failed — trying curl fallback..."
         local curl_html
-        curl_html=$(curl -sL --max-time 10 "$website" 2>/dev/null)
+        curl_html=$(curl -sL --compressed --max-time 10 "$website" 2>/dev/null)
         if [ -n "$curl_html" ]; then
             # Extract emails, social links, and subpages from raw HTML via Python
             scrape_result=$(python3 -c "
@@ -565,14 +665,14 @@ seen = set()
 subpages = []
 for href in re.findall(r'href=[\"\\']([^\"\\']+)[\"\\']', html):
     try:
-        full = urljoin(base, href).split('#')[0].split('?')[0].rstrip('/')
+        full = urljoin(base, href).rstrip('/')
     except:
         continue
     if full.startswith(base_origin) and full not in seen and full != base.rstrip('/'):
         seen.add(full)
         subpages.append(full)
 
-# Contact form
+# Contact form — check URLs first, then inline <form> tags
 contact_form = ''
 ASSET_EXT = ('.css', '.js', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico',
              '.woff', '.woff2', '.ttf', '.eot', '.map', '.xml', '.pdf')
@@ -583,6 +683,19 @@ for url in seen:
     if any(kw in url_lower for kw in ['contact','get-in-touch','reach-us','inquiry','enquiry']):
         contact_form = url
         break
+# If no contact URL found, check for inline modal/embedded contact forms
+if not contact_form:
+    # Match forms with contact-related ids, classes, names, or actions
+    form_patterns = [
+        r'<form[^>]*(?:id|class|name)=[\"\\'][^\"\\']*contact[^\"\\']*[\"\\']',
+        r'<form[^>]*action=[\"\\'][^\"\\']*contact[^\"\\']*[\"\\']',
+        r'<form[^>]*(?:id|class|name)=[\"\\'][^\"\\']*inquir[^\"\\']*[\"\\']',
+        r'<form[^>]*(?:id|class|name)=[\"\\'][^\"\\']*get-in-touch[^\"\\']*[\"\\']',
+    ]
+    for pat in form_patterns:
+        if re.search(pat, html, re.I):
+            contact_form = base + '#contact-form'
+            break
 
 print(json.dumps({'contacts': contacts, 'facebook': fb, 'instagram': ig, 'contact_form': contact_form, 'subpages': subpages}))
 " <<< "$curl_html" 2>/dev/null)
@@ -661,6 +774,19 @@ print(json.dumps({'contacts': contacts, 'facebook': fb, 'instagram': ig, 'contac
                 cf_emails=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_contact_page_scrape.json')); print(', '.join(c['email'] for c in d.get('contacts',[])))" 2>/dev/null)
                 log "  Found on contact page: $cf_emails"
             fi
+            # Social icons are often only on /contact or in a contact-page footer.
+            # Do not throw those away just because the homepage had none.
+            local cf_fb cf_ig
+            cf_fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_contact_page_scrape.json')).get('facebook',''))" 2>/dev/null)
+            cf_ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_contact_page_scrape.json')).get('instagram',''))" 2>/dev/null)
+            if ([ -z "$fb" ] || [ "$fb" = "None" ]) && echo "$cf_fb" | grep -qi 'facebook\.com'; then
+                fb="$cf_fb"
+                log "  [SOCIAL] Facebook recovered from contact page: $fb"
+            fi
+            if ([ -z "$ig" ] || [ "$ig" = "None" ]) && echo "$cf_ig" | grep -qi 'instagram\.com'; then
+                ig="$cf_ig"
+                log "  [SOCIAL] Instagram recovered from contact page: $ig"
+            fi
         fi
         if [ "$has_form" != "yes" ]; then
             # Keep the URL if it looks like a contact page — Wix/JS sites
@@ -731,9 +857,13 @@ for url in list(set(re.findall(r'https?://[^\s\"<>]+', json.dumps(d)))):
             if [ -n "$scrape_result" ] && [ "$scrape_result" != "missing value" ]; then
                 echo "$scrape_result" > /tmp/pipeline_scrape.json
                 email_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_scrape.json')); print(len(d.get('contacts',d.get('emails',[]))))" 2>/dev/null || echo "0")
-                fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['facebook'])" 2>/dev/null)
-                ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json'))['instagram'])" 2>/dev/null)
-                contact_form=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('contact_form',''))" 2>/dev/null)
+                local loc_fb loc_ig loc_contact_form
+                loc_fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('facebook',''))" 2>/dev/null)
+                loc_ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('instagram',''))" 2>/dev/null)
+                loc_contact_form=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_scrape.json')).get('contact_form',''))" 2>/dev/null)
+                if ([ -z "$fb" ] || [ "$fb" = "None" ]) && echo "$loc_fb" | grep -qi 'facebook\.com'; then fb="$loc_fb"; fi
+                if ([ -z "$ig" ] || [ "$ig" = "None" ]) && echo "$loc_ig" | grep -qi 'instagram\.com'; then ig="$loc_ig"; fi
+                if [ -n "$loc_contact_form" ] && [ "$loc_contact_form" != "None" ]; then contact_form="$loc_contact_form"; fi
                 log "  [LOCATION] Re-scraped: Emails: $email_count | FB: ${fb:-none} | IG: ${ig:-none} | Contact Form: ${contact_form:-none}"
             fi
         else
@@ -761,6 +891,89 @@ for c in d.get('contacts', []):
         rm -f /tmp/pipeline_contact_page_scrape.json
     fi
 
+    # --- Website-wide recursive discovery audit ---
+    # The browser homepage crawl is intentionally supplemented by a deterministic,
+    # bounded recursive crawl. This catches second/third-hop pages, sitemap-only URLs,
+    # PDFs, plain-text/obfuscated emails, and social links that are not on the homepage.
+    local safe_venue_id static_crawl_json coverage_file
+    safe_venue_id=$(echo "$venue_id" | tr -cd '[:alnum:]_.-')
+    [ -z "$safe_venue_id" ] && safe_venue_id="venue"
+    static_crawl_json="/tmp/pipeline_static_crawl_${safe_venue_id}.json"
+    coverage_file="${COVERAGE_DIR}/${safe_venue_id}.json"
+    rm -f "$static_crawl_json"
+
+    if [ -f "${SCRIPT_DIR}/site_discovery.py" ]; then
+        log "  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)..."
+        python3 "${SCRIPT_DIR}/site_discovery.py" static-crawl "$website" --max-pages 40 --max-depth 3 > "$static_crawl_json" 2>/dev/null || true
+        if python3 - "$static_crawl_json" >/dev/null 2>&1 <<'PYEOF'
+import json, sys
+json.load(open(sys.argv[1]))
+PYEOF
+        then
+            # Persist an auditable coverage artifact for this venue.
+            python3 - "$static_crawl_json" "$coverage_file" "$venue_id" "$venue" "$website" <<'PYEOF'
+import json, sys
+from datetime import datetime, timezone
+src, dst, venue_id, venue, website = sys.argv[1:6]
+d = json.load(open(src))
+d["venue_id"] = venue_id
+d["venue_name"] = venue
+d["requested_website"] = website
+d["coverage_generated_at"] = datetime.now(timezone.utc).isoformat()
+with open(dst, "w", encoding="utf-8") as f:
+    json.dump(d, f, indent=2, ensure_ascii=False, sort_keys=True)
+PYEOF
+
+            local crawl_pages crawl_pdfs crawl_emails crawl_sitemaps crawl_unvisited crawl_fragments
+            read -r crawl_pages crawl_pdfs crawl_emails crawl_sitemaps crawl_unvisited crawl_fragments < <(python3 - "$static_crawl_json" <<'PYEOF'
+import json, sys
+d=json.load(open(sys.argv[1])); c=d.get('coverage',{})
+print(c.get('visited_page_count',0), c.get('pdf_count',0), len(d.get('contacts',[])), c.get('sitemap_count',0), c.get('unvisited_page_count',0), c.get('fragment_state_count',0))
+PYEOF
+)
+            log "  [COVERAGE] pages=$crawl_pages pdfs=$crawl_pdfs emails=$crawl_emails sitemaps=$crawl_sitemaps fragments=$crawl_fragments unvisited=$crawl_unvisited"
+            log "  [COVERAGE] Saved: $coverage_file"
+
+            # Candidate retention: append every discovered email. Verification happens
+            # later; discovery itself never deletes unknown/catch-all/generic candidates.
+            python3 - "$static_crawl_json" <<'PYEOF' >> /tmp/pipeline_all_contacts.txt
+import json, sys
+d=json.load(open(sys.argv[1]))
+for c in d.get('contacts', []):
+    email=(c.get('email') or '').strip()
+    if email:
+        print(email + '||||||')
+PYEOF
+
+            # Recover socials from ANY crawled page, including scripts/data attributes.
+            if [ -z "$fb" ] || [ "$fb" = "None" ]; then
+                local crawl_fb
+                crawl_fb=$(python3 - "$static_crawl_json" <<'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+for s in d.get('socials',[]):
+    if s.get('platform')=='facebook': print(s.get('url','')); break
+PYEOF
+)
+                if echo "$crawl_fb" | grep -qi 'facebook\.com'; then fb="$crawl_fb"; log "  [SOCIAL] Facebook recovered by recursive website crawl: $fb"; fi
+            fi
+            if [ -z "$ig" ] || [ "$ig" = "None" ]; then
+                local crawl_ig
+                crawl_ig=$(python3 - "$static_crawl_json" <<'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+for s in d.get('socials',[]):
+    if s.get('platform')=='instagram': print(s.get('url','')); break
+PYEOF
+)
+                if echo "$crawl_ig" | grep -qi 'instagram\.com'; then ig="$crawl_ig"; log "  [SOCIAL] Instagram recovered by recursive website crawl: $ig"; fi
+            fi
+        else
+            log "  [WARN] Recursive discovery audit failed; browser crawl will continue"
+            rm -f "$static_crawl_json"
+        fi
+    fi
+
     # Crawl all subpages found by JS (nav/header links + keyword body links)
     local subpages
     subpages=$(python3 -c "
@@ -778,6 +991,30 @@ def page_score(url):
 subs.sort(key=page_score)
 print('\n'.join(subs))
 " 2>/dev/null)
+
+    # Add recursively discovered pages and preserved hash states to the browser queue.
+    # This is what turns the old homepage+one-hop scan into a bounded recursive render.
+    if [ -s "$static_crawl_json" ]; then
+        local recursive_subpages
+        recursive_subpages=$(python3 - "$static_crawl_json" "$website" <<'PYEOF'
+import json, sys
+from urllib.parse import urlsplit, urlunsplit
+d=json.load(open(sys.argv[1])); home=sys.argv[2].rstrip('/')
+urls=[]
+# Render every page the static crawler actually reached (these can contain JS-only data).
+for p in d.get('pages',[]):
+    u=(p.get('url') or '').strip()
+    if u and u.rstrip('/') != home: urls.append(u)
+# Hash states are separate browser states even though HTTP fetch ignores the fragment.
+urls.extend(d.get('fragment_states',[]))
+seen=set()
+for u in urls:
+    if u and u not in seen:
+        seen.add(u); print(u)
+PYEOF
+)
+        subpages=$(printf '%s\n%s\n' "$subpages" "$recursive_subpages" | awk 'NF && !seen[$0]++')
+    fi
 
     # Determine city slug from the venue's location URL (e.g. /st-michaels-md → st-michaels)
     # Used to skip subpages that belong to other locations of a chain
@@ -870,7 +1107,7 @@ else:
             # Curl fallback for subpages (Wix/Squarespace render empty in Chrome)
             if [ -z "$sub_result" ] || [ "$sub_result" = "missing value" ]; then
                 local sub_html
-                sub_html=$(curl -sL --max-time 8 "$subpage" 2>/dev/null)
+                sub_html=$(curl -sL --compressed --max-time 8 "$subpage" 2>/dev/null)
                 if [ -n "$sub_html" ]; then
                     sub_result=$(python3 -c "
 import re, json, sys
@@ -888,8 +1125,34 @@ for m in re.findall(r'[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}', text):
     if not re.search(r'\.(png|jpg|gif|svg|css|js)$', e): emails.add(e)
 junk = ['noreply','no-reply','mailer-daemon','postmaster','webmaster','sentry','wix.com','squarespace']
 contacts = [{'email':e,'name':'','title':''} for e in emails if not any(j in e for j in junk) and len(e)<60]
-has_form = bool(re.search(r'<form[^>]*>.*?(<textarea|<input[^>]*type=[\"\\x27]email|<input[^>]*name=[\"\\x27][^\"\\x27]*(?:email|message))', html, re.IGNORECASE | re.DOTALL))
-print(json.dumps({'contacts':contacts, 'has_form': has_form}))
+# Social fallback: inspect raw/JSON-escaped/percent-encoded HTML too.
+from urllib.parse import unquote, urlparse, parse_qs
+work = html.replace('\\u002F','/').replace('\\u002f','/').replace('\\/','/')
+try: work = work + '\n' + unquote(work) + '\n' + unquote(unquote(work))
+except Exception: pass
+fb = ''
+ig = ''
+fb_skip = {'tr','pixel','plugins','sharer','share','login','dialog','policy.php','policy','terms','about','legal','cookies','recover','help','privacy','settings','ads','business'}
+for m in re.findall(r'https?://(?:www\.|m\.|web\.)?facebook\.com/[^\s\"\x27<>]+', work, re.I):
+    u=m.rstrip('.,;:)]}')
+    p=urlparse(u); parts=[x for x in p.path.split('/') if x]
+    if not parts: continue
+    first=parts[0].lower()
+    if first == 'profile.php' and parse_qs(p.query).get('id'):
+        fb='https://www.facebook.com/profile.php?id=' + parse_qs(p.query)['id'][0]; break
+    if first == 'pages' and len(parts)>=3 and parts[-1].isdigit():
+        fb='https://www.facebook.com/' + '/'.join(parts[:3]); break
+    if first in fb_skip or first.isdigit() or len(first)<2: continue
+    fb='https://www.facebook.com/' + parts[0] + '/'; break
+ig_skip = {'p','reel','reels','explore','stories','accounts','developer','about','legal','privacy','terms','share','embed','direct','tv'}
+for m in re.findall(r'https?://(?:www\.)?instagram\.com/[^\s\"\x27<>]+', work, re.I):
+    p=urlparse(m.rstrip('.,;:)]}')); parts=[x for x in p.path.split('/') if x]
+    if not parts: continue
+    h=parts[0]
+    if h.lower() in ig_skip or h.isdigit() or len(h)<2 or not re.fullmatch(r'[A-Za-z0-9._]+',h): continue
+    ig='https://www.instagram.com/' + h + '/'; break
+has_form = bool(re.search(r'<form[^>]*>.*?(<textarea|<input[^>]*type=[\"\x27]email|<input[^>]*name=[\"\x27][^\"\x27]*(?:email|message))', html, re.IGNORECASE | re.DOTALL))
+print(json.dumps({'contacts':contacts, 'facebook':fb, 'instagram':ig, 'has_form': has_form}))
 " <<< "$sub_html" 2>/dev/null)
                     if [ -n "$sub_result" ] && [ "$sub_result" != "null" ]; then
                         log "  [CURL FALLBACK] Subpage parsed via curl"
@@ -907,17 +1170,28 @@ print(json.dumps({'contacts':contacts, 'has_form': has_form}))
             fi
             if [ -n "$sub_result" ] && [ "$sub_result" != "missing value" ] && [ "$sub_result" != "null" ]; then
                 echo "$sub_result" > /tmp/pipeline_sub_scrape.json
-                local sub_count
+                local sub_count sub_fb sub_ig
                 sub_count=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(len(d.get('contacts',[])))" 2>/dev/null || echo "0")
+                sub_fb=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sub_scrape.json')).get('facebook',''))" 2>/dev/null)
+                sub_ig=$(python3 -c "import json; print(json.load(open('/tmp/pipeline_sub_scrape.json')).get('instagram',''))" 2>/dev/null)
+                if ([ -z "$fb" ] || [ "$fb" = "None" ]) && echo "$sub_fb" | grep -qi 'facebook\.com'; then
+                    fb="$sub_fb"
+                    log "  [SOCIAL] Facebook recovered from subpage: $subpage -> $fb"
+                fi
+                if ([ -z "$ig" ] || [ "$ig" = "None" ]) && echo "$sub_ig" | grep -qi 'instagram\.com'; then
+                    ig="$sub_ig"
+                    log "  [SOCIAL] Instagram recovered from subpage: $subpage -> $ig"
+                fi
                 if [ "$sub_count" != "0" ]; then
                     local sub_emails
                     sub_emails=$(python3 -c "import json; d=json.load(open('/tmp/pipeline_sub_scrape.json')); print(', '.join(sorted(c['email'] for c in d.get('contacts',[]))))" 2>/dev/null)
-                    # Dupe detection: stop if same emails found 3 pages in a row
+                    # Repeated footer emails are not a completion signal. A later page can
+                    # still contain a unique event contact or the only social links. Track the
+                    # repetition for diagnostics, but never terminate discovery because of it.
                     if [ "$sub_emails" = "$last_emails" ]; then
                         dupe_streak=$((dupe_streak + 1))
-                        if [ "$dupe_streak" -ge 3 ]; then
-                            log "  Same emails 3 pages in a row — stopping subpage crawl"
-                            break
+                        if [ "$dupe_streak" -eq 3 ]; then
+                            log "  [COVERAGE] Same emails repeated across 3 pages — continuing crawl"
                         fi
                     else
                         dupe_streak=0
@@ -995,10 +1269,57 @@ for c in d.get('contacts', []):
                     if ([ -z "$ig" ] || [ "$ig" = "None" ]) && echo "$pc_ig" | grep -qi 'instagram\.com'; then ig="$pc_ig"; fi
                     rm -f /tmp/pipeline_contact_probe.json
                 fi
-                break  # Only need to find one valid contact page
+                # Do not break on the first HTTP 200. Many sites return soft-404 pages
+                # with status 200; continue probing the remaining known contact paths.
             fi
         done
     fi
+
+    # Final website-wide social recovery pass. The browser crawler can miss links
+    # embedded in scripts/data attributes, encoded redirect URLs, sitemaps, or pages
+    # it did not render. site_discovery.py statically crawls the same-origin site and
+    # retains provenance for every Facebook/Instagram candidate it sees.
+    if ([ -z "$fb" ] || [ "$fb" = "None" ] || [ -z "$ig" ] || [ "$ig" = "None" ]) && [ -f "${SCRIPT_DIR}/site_discovery.py" ]; then
+        local social_crawl_json="/tmp/pipeline_social_crawl_${venue_id}.json"
+        python3 "${SCRIPT_DIR}/site_discovery.py" static-crawl "$website" --max-pages 30 --max-depth 2 > "$social_crawl_json" 2>/dev/null || true
+        if [ -s "$social_crawl_json" ]; then
+            local crawl_fb crawl_ig
+            crawl_fb=$(python3 - "$social_crawl_json" <<'PYEOF'
+import json, sys
+try:
+    d=json.load(open(sys.argv[1]))
+except Exception:
+    print(''); raise SystemExit
+for s in d.get('socials', []):
+    if s.get('platform') == 'facebook':
+        print(s.get('url','')); break
+PYEOF
+)
+            crawl_ig=$(python3 - "$social_crawl_json" <<'PYEOF'
+import json, sys
+try:
+    d=json.load(open(sys.argv[1]))
+except Exception:
+    print(''); raise SystemExit
+for s in d.get('socials', []):
+    if s.get('platform') == 'instagram':
+        print(s.get('url','')); break
+PYEOF
+)
+            if ([ -z "$fb" ] || [ "$fb" = "None" ]) && echo "$crawl_fb" | grep -qi 'facebook\.com'; then
+                fb="$crawl_fb"
+                log "  [SOCIAL RECOVERY] Facebook found by website-wide crawl: $fb"
+            fi
+            if ([ -z "$ig" ] || [ "$ig" = "None" ]) && echo "$crawl_ig" | grep -qi 'instagram\.com'; then
+                ig="$crawl_ig"
+                log "  [SOCIAL RECOVERY] Instagram found by website-wide crawl: $ig"
+            fi
+        fi
+    fi
+
+    # Track whether socials came from the venue's own website (trusted source)
+    local fb_from_website="yes"
+    local ig_from_website="yes"
 
     # Update social links — also write to temp files so step1b/1c don't re-query the sheet
     # Validate: only save if URL actually belongs to the right platform
@@ -1010,14 +1331,29 @@ for c in d.get('contacts', []):
         elif echo "$fb" | grep -qiE 'facebook\.com/(tr|pages|sharer|dialog|plugins|ads|business)/?$'; then
             log "  [WARN] Rejecting junk Facebook URL: $fb"
             fb=""
+        elif echo "$fb" | grep -qiE 'facebook\.com/(WixStudio|wix)/?'; then
+            log "  [WARN] Rejecting Wix template Facebook link: $fb"
+            fb=""
         elif echo "$fb" | grep -qiE 'facebook\.com/[0-9]+/?$'; then
             log "  [WARN] Rejecting numeric-only Facebook slug: $fb"
             fb=""
         elif echo "$fb" | grep -qi 'facebook\.com'; then
-            # Warn if FB slug doesn't match any venue name word
-            local fb_slug fb_name_match
-            fb_slug=$(echo "$fb" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
-            fb_name_match=$(python3 -c "
+            if [ "$fb_from_website" = "yes" ]; then
+                # Found on venue's own website — trust it, skip name-matching
+                log "  ✓ Facebook from venue website (trusted): $fb"
+                local fb_save_response fb_save_ok
+                fb_save_response=$(curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&force=true&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$fb")")
+                fb_save_ok=$(echo "$fb_save_response" | python3 -c "import json,sys; d=json.load(sys.stdin); print('yes' if d.get('status')=='ok' and d.get('verified',True) else 'no')" 2>/dev/null || echo no)
+                if [ "$fb_save_ok" = "yes" ]; then
+                    echo "$fb" > /tmp/pipeline_step1_fb.txt
+                else
+                    log "  [API ERROR] Facebook was found on website but did not persist: $fb | $fb_save_response"
+                fi
+            else
+                # From external source — validate slug matches venue name
+                local fb_slug fb_name_match
+                fb_slug=$(echo "$fb" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
+                fb_name_match=$(python3 -c "
 import re, sys
 venue = sys.argv[1]; handle = sys.argv[2]
 words = re.sub(r'[^a-z\s]','',venue.lower()).split()
@@ -1028,13 +1364,14 @@ stop = {'the','a','an','and','of','at','in','by','on','for','to',
 words = [w for w in words if w not in stop and len(w) > 2]
 print('match' if any(w in handle for w in words) else 'no')
 " "$venue" "$fb_slug" 2>/dev/null)
-            if [ "$fb_name_match" = "no" ]; then
-                log "  [REJECT] Facebook slug '$fb_slug' doesn't match venue name '$venue' — discarding"
-                echo "FLAG:Off-venue Facebook rejected: $fb (slug '$fb_slug' vs venue '$venue')" >> /tmp/pipeline_flags.txt
-                fb=""
-            else
-                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$fb")" > /dev/null
-                echo "$fb" > /tmp/pipeline_step1_fb.txt
+                if [ "$fb_name_match" = "no" ]; then
+                    log "  [REJECT] Facebook slug '$fb_slug' doesn't match venue name '$venue' — discarding"
+                    echo "FLAG:Off-venue Facebook rejected: $fb (slug '$fb_slug' vs venue '$venue')" >> /tmp/pipeline_flags.txt
+                    fb=""
+                else
+                    curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=facebook&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$fb")" > /dev/null
+                    echo "$fb" > /tmp/pipeline_step1_fb.txt
+                fi
             fi
         else
             log "  [WARN] Rejecting non-Facebook URL in fb field: $fb"
@@ -1053,10 +1390,22 @@ print('match' if any(w in handle for w in words) else 'no')
             log "  [WARN] Rejecting numeric-only Instagram slug: $ig"
             ig=""
         elif echo "$ig" | grep -qi 'instagram\.com'; then
-            # Validate IG handle matches venue name
-            local ig_slug ig_name_match
-            ig_slug=$(echo "$ig" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
-            ig_name_match=$(python3 -c "
+            if [ "$ig_from_website" = "yes" ]; then
+                # Found on venue's own website — trust it, skip name-matching
+                log "  ✓ Instagram from venue website (trusted): $ig"
+                local ig_save_response ig_save_ok
+                ig_save_response=$(curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&force=true&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig")")
+                ig_save_ok=$(echo "$ig_save_response" | python3 -c "import json,sys; d=json.load(sys.stdin); print('yes' if d.get('status')=='ok' and d.get('verified',True) else 'no')" 2>/dev/null || echo no)
+                if [ "$ig_save_ok" = "yes" ]; then
+                    echo "$ig" > /tmp/pipeline_step1_ig.txt
+                else
+                    log "  [API ERROR] Instagram was found on website but did not persist: $ig | $ig_save_response"
+                fi
+            else
+                # From external source — validate handle matches venue name
+                local ig_slug ig_name_match
+                ig_slug=$(echo "$ig" | sed 's|.*/\([^/]*\)/\?$|\1|' | tr '[:upper:]' '[:lower:]')
+                ig_name_match=$(python3 -c "
 import re, sys
 venue = sys.argv[1]; handle = sys.argv[2]
 words = re.sub(r'[^a-z\s]','',venue.lower()).split()
@@ -1067,13 +1416,14 @@ stop = {'the','a','an','and','of','at','in','by','on','for','to',
 words = [w for w in words if w not in stop and len(w) > 2]
 print('match' if any(w in handle for w in words) else 'no')
 " "$venue" "$ig_slug" 2>/dev/null)
-            if [ "$ig_name_match" = "no" ]; then
-                log "  [REJECT] Instagram handle '$ig_slug' doesn't match venue name '$venue' — discarding"
-                echo "FLAG:Off-venue Instagram rejected: $ig (handle '$ig_slug' vs venue '$venue')" >> /tmp/pipeline_flags.txt
-                ig=""
-            else
-                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig")" > /dev/null
-                echo "$ig" > /tmp/pipeline_step1_ig.txt
+                if [ "$ig_name_match" = "no" ]; then
+                    log "  [REJECT] Instagram handle '$ig_slug' doesn't match venue name '$venue' — discarding"
+                    echo "FLAG:Off-venue Instagram rejected: $ig (handle '$ig_slug' vs venue '$venue')" >> /tmp/pipeline_flags.txt
+                    ig=""
+                else
+                    curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=instagram&value=$(python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$ig")" > /dev/null
+                    echo "$ig" > /tmp/pipeline_step1_ig.txt
+                fi
             fi
         else
             log "  [WARN] Rejecting non-Instagram URL in ig field: $ig"
@@ -1278,13 +1628,13 @@ else:
 import re, sys
 venue = sys.argv[1]
 # Generate slug candidates: 'Echelon Wine Bar' -> echelonwinebar, echelon-wine-bar, echelon.wine.bar
+# Never use single first-word slug — too likely to match wrong business (e.g. 'balla' -> 'GA BALLA')
 clean = re.sub(r'[^a-zA-Z0-9\s]','',venue).strip()
 words = clean.lower().split()
 print('\n'.join([
     ''.join(words),
     '-'.join(words),
     '.'.join(words),
-    words[0] if words else '',
 ]))
 " "$venue" 2>/dev/null)
         while IFS= read -r slug; do
@@ -1292,7 +1642,7 @@ print('\n'.join([
             local try_url="https://www.facebook.com/${slug}"
             local http_code
             local fb_body
-            fb_body=$(curl -sL --max-time 8 "$try_url" 2>/dev/null)
+            fb_body=$(curl -sL --compressed --max-time 8 "$try_url" 2>/dev/null)
             http_code=$(echo "$fb_body" | head -c 1 | wc -c)  # non-empty check
             if [ "$http_code" -gt 0 ]; then
                 # Verify the page title actually matches the venue name
@@ -3197,7 +3547,10 @@ run_venue() {
         fi
     fi
 
-    # --- DUPLICATE CHECK: Skip if venue already has contacts from a previous run ---
+    # --- EXISTING DATA CHECK ---
+    # Existing contacts are NOT a completion signal. A prior run may have found an
+    # owner/founder while missing events, catering, sales, social links, PDFs, etc.
+    # Only venues that are explicitly contacted/closed are skipped here.
     local existing_contacts
     existing_contacts=$(curl -sL --max-time 10 "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" 2>/dev/null | python3 -c "
 import json, sys
@@ -3209,19 +3562,19 @@ try:
         print('SKIP:' + status)
     elif len(contacts) > 0:
         emails = [c.get('email','') for c in contacts if c.get('email','')]
-        print('SKIP:has_contacts:' + ','.join(emails[:3]))
+        print('CONTINUE:has_contacts:' + ','.join(emails[:3]))
     else:
-        print('OK')
+        print('CONTINUE:no_contacts')
 except Exception as e:
-    import sys; print(f'WARN: existing contact check failed: {e}', file=sys.stderr)
-    print('OK')
+    print(f'WARN: existing contact check failed: {e}', file=sys.stderr)
+    print('CONTINUE:check_failed')
 " 2>/dev/null)
     if [[ "$existing_contacts" == SKIP:* ]]; then
-        log "  [SKIP] Venue already processed: $existing_contacts"
-        log "  Skipping to avoid duplicate work."
-        # Write to skipped file for report
-        echo "${venue}|${venue_id}|Already processed: ${existing_contacts}" >> "${SKIPPED_VENUES_FILE:-/tmp/pipeline_skipped.txt}"
+        log "  [SKIP] Venue status prevents new outreach research: $existing_contacts"
+        echo "${venue}|${venue_id}|Status: ${existing_contacts}" >> "${SKIPPED_VENUES_FILE:-/tmp/pipeline_skipped.txt}"
         return
+    elif [[ "$existing_contacts" == CONTINUE:has_contacts:* ]]; then
+        log "  [RESEARCH AGAIN] Existing contacts found, but web discovery will still run: ${existing_contacts#CONTINUE:has_contacts:}"
     fi
 
     # If no website, Google it via Chrome
@@ -3406,7 +3759,7 @@ else: print('')
             local alt_urls=("https://$alt_domain" "https://$alt_domain/contact" "https://$alt_domain/contact-us" "https://www.$alt_domain" "https://www.$alt_domain/contact")
             for alt_url in "${alt_urls[@]}"; do
                 local alt_html
-                alt_html=$(curl -sL --max-time 10 "$alt_url" 2>/dev/null)
+                alt_html=$(curl -sL --compressed --max-time 10 "$alt_url" 2>/dev/null)
                 if [ -z "$alt_html" ]; then
                     continue
                 fi
@@ -3472,9 +3825,17 @@ for e in sorted(emails):
     # Step 5: Google fallback if nothing found yet
     step5_google_fallback "$venue" "$venue_id" "$city"
 
-    # Always set status to pipelined when pipeline completes
-    log "  Setting status → pipelined"
-    curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=pipelined" > /dev/null
+    # Status reflects outcome — zero verified contacts = needs_review
+    local saved_count
+    saved_count=$(wc -l < /tmp/pipeline_contacts_count 2>/dev/null || echo 0)
+    saved_count=$(echo "$saved_count" | tr -d ' ')
+    if [ "$saved_count" -gt 0 ] 2>/dev/null; then
+        log "  Setting status → pipelined ($saved_count verified contacts saved)"
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=pipelined" > /dev/null
+    else
+        log "  Setting status → needs_review (no verified contacts saved)"
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=status&value=needs_review" > /dev/null
+    fi
 
     local end_time elapsed
     end_time=$(date +%s)
@@ -3509,6 +3870,10 @@ echo "" >> "$LOG_FILE"
 log "=== Pipeline started $(date '+%Y-%m-%d %H:%M:%S') ==="
 
 if [ "$1" = "--smart-picks" ]; then
+    log "ERROR: --smart-picks is disabled because it bypasses build_batch.sh validation."
+    log "Run: ./build_batch.sh 8 --dry-run"
+    log "Then: ./build_batch.sh 8 && ./pipeline.sh --batch /tmp/pipeline_batch.json"
+    exit 2
     # Track start line for report generation
     RUN_START_LINE=$(wc -l < "$LOG_FILE")
     RUN_START_LINE=$((RUN_START_LINE + 1))

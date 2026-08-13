@@ -10,8 +10,8 @@
 #   ./postcheck.sh              — check all zero-contact venues from latest run
 #   ./postcheck.sh VA-REST-841  — check specific venue
 #
-# This script catches what pipeline misses: contact forms, emails
-# on subpages, correct social links.
+# This script is discovery/audit only. It records candidates for the
+# Verifier/Executor workflow; it never writes contacts or socials directly.
 # =============================================================
 
 APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec"
@@ -63,10 +63,88 @@ check_venue() {
     local PAGES=("$WEBSITE" "${WEBSITE}/contact" "${WEBSITE}/contact-us" "${WEBSITE}/about" "${WEBSITE}/events" "${WEBSITE}/private-events" "${WEBSITE}/event-contact" "${WEBSITE}/catering" "${WEBSITE}/private-dining" "${WEBSITE}/private-event-space" "${WEBSITE}/book-event" "${WEBSITE}/group-dining" "${WEBSITE}/weddings")
     local ALL_EMAILS=""
     local CONTACT_FORM=""
+    local DISCOVERED_IG=""
+    local DISCOVERED_FB=""
+
+    # Shared recursive discovery engine: sitemap + depth-3 links + PDFs + socials.
+    # This keeps postcheck aligned with pipeline.sh instead of maintaining a second,
+    # shallower definition of what counts as "website checked".
+    local SAFE_VID DISCOVERY_JSON POSTCHECK_COVERAGE_DIR
+    SAFE_VID=$(echo "$VID" | tr -cd '[:alnum:]_.-')
+    [ -z "$SAFE_VID" ] && SAFE_VID="venue"
+    DISCOVERY_JSON="/tmp/postcheck_discovery_${SAFE_VID}.json"
+    POSTCHECK_COVERAGE_DIR="${SCRIPT_DIR}/reports/postcheck-web-coverage"
+    mkdir -p "$POSTCHECK_COVERAGE_DIR"
+    rm -f "$DISCOVERY_JSON"
+    if [ -f "${SCRIPT_DIR}/site_discovery.py" ]; then
+        python3 "${SCRIPT_DIR}/site_discovery.py" static-crawl "$WEBSITE" --max-pages 40 --max-depth 3 > "$DISCOVERY_JSON" 2>/dev/null || true
+        if python3 - "$DISCOVERY_JSON" >/dev/null 2>&1 <<'PYEOF'
+import json,sys
+json.load(open(sys.argv[1]))
+PYEOF
+        then
+            cp "$DISCOVERY_JSON" "${POSTCHECK_COVERAGE_DIR}/${SAFE_VID}.json"
+            local DISCOVERY_PAGES
+            DISCOVERY_PAGES=$(python3 - "$DISCOVERY_JSON" <<'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1])); seen=set()
+for p in d.get('pages',[]):
+    u=(p.get('url') or '').strip()
+    if u and u not in seen:
+        seen.add(u); print(u)
+for u in d.get('fragment_states',[]):
+    if u and u not in seen:
+        seen.add(u); print(u)
+PYEOF
+)
+            if [ -n "$DISCOVERY_PAGES" ]; then
+                while IFS= read -r EXTRA; do
+                    [ -n "$EXTRA" ] && PAGES+=("$EXTRA")
+                done <<< "$DISCOVERY_PAGES"
+            fi
+            local DISCOVERY_EMAILS
+            DISCOVERY_EMAILS=$(python3 - "$DISCOVERY_JSON" <<'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+for c in d.get('contacts',[]):
+    e=(c.get('email') or '').strip()
+    if e: print(e)
+PYEOF
+)
+            if [ -n "$DISCOVERY_EMAILS" ]; then
+                ALL_EMAILS="${ALL_EMAILS}${DISCOVERY_EMAILS}
+"
+            fi
+            DISCOVERED_IG=$(python3 - "$DISCOVERY_JSON" <<'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+for s in d.get('socials',[]):
+    if s.get('platform')=='instagram': print(s.get('url','')); break
+PYEOF
+)
+            DISCOVERED_FB=$(python3 - "$DISCOVERY_JSON" <<'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1]))
+for s in d.get('socials',[]):
+    if s.get('platform')=='facebook': print(s.get('url','')); break
+PYEOF
+)
+            local COV_SUMMARY
+            COV_SUMMARY=$(python3 - "$DISCOVERY_JSON" <<'PYEOF'
+import json,sys
+d=json.load(open(sys.argv[1])); c=d.get('coverage',{})
+print('pages=%s pdfs=%s sitemaps=%s fragments=%s unvisited=%s' % (
+ c.get('visited_page_count',0), c.get('pdf_count',0), c.get('sitemap_count',0),
+ c.get('fragment_state_count',0), c.get('unvisited_page_count',0)))
+PYEOF
+)
+            log "  [DISCOVERY] $COV_SUMMARY"
+        fi
+    fi
 
     # Crawl homepage for links containing contact/reservation/booking/inquiry/event
     local HOMEPAGE_BODY
-    HOMEPAGE_BODY=$(curl -sL --max-time 10 -A "Mozilla/5.0" "$WEBSITE" 2>/dev/null)
+    HOMEPAGE_BODY=$(curl -sL --compressed --max-time 10 -A "Mozilla/5.0" "$WEBSITE" 2>/dev/null)
     if [ -n "$HOMEPAGE_BODY" ]; then
         local EXTRA_PAGES
         EXTRA_PAGES=$(echo "$HOMEPAGE_BODY" | python3 -c "
@@ -78,10 +156,10 @@ hrefs = re.findall(r'href=[\"'\''](.*?)[\"'\'']', html)
 seen = set()
 keywords = ['contact', 'reservat', 'booking', 'inquiry', 'enquir', 'private-event', 'event-contact', 'get-in-touch', 'reach-us']
 for h in hrefs:
-    url = urljoin(base, h).split('?')[0].split('#')[0].rstrip('/')
+    url = urljoin(base, h).rstrip('/')
     if url in seen: continue
     seen.add(url)
-    if url.startswith(base) and any(k in url.lower() for k in keywords):
+    if url.startswith(base) and any(k in url.lower() for k in keywords) and not any(url.lower().endswith(ext) for ext in ['.css','.js','.png','.jpg','.gif','.svg','.pdf','.zip','.woff','.woff2','.ttf']):
         print(url)
 " 2>/dev/null)
         if [ -n "$EXTRA_PAGES" ]; then
@@ -93,7 +171,7 @@ for h in hrefs:
 
     for PAGE in "${PAGES[@]}"; do
         local BODY
-        BODY=$(curl -sL --max-time 10 -A "Mozilla/5.0" "$PAGE" 2>/dev/null)
+        BODY=$(curl -sL --compressed --max-time 10 -A "Mozilla/5.0" "$PAGE" 2>/dev/null)
         if [ -z "$BODY" ]; then continue; fi
 
         # Extract emails
@@ -124,18 +202,32 @@ for e in sorted(emails):
             done <<< "$PAGE_EMAILS"
         fi
 
-        # Check for contact forms
+        # Check for contact forms (inline modals + subpage forms)
         local HAS_FORM
         HAS_FORM=$(echo "$BODY" | python3 -c "
 import re, sys
 html = sys.stdin.read()
-# Look for form tags or common form indicators
-if re.search(r'<form[^>]*action', html, re.I):
+# Check for contact-specific forms (not login/search forms)
+contact_form_patterns = [
+    r'<form[^>]*(?:id|class|name)=[\"\\'][^\"\\']*contact[^\"\\']*[\"\\']',
+    r'<form[^>]*action=[\"\\'][^\"\\']*contact[^\"\\']*[\"\\']',
+    r'<form[^>]*(?:id|class|name)=[\"\\'][^\"\\']*inquir[^\"\\']*[\"\\']',
+    r'<form[^>]*(?:id|class|name)=[\"\\'][^\"\\']*get-in-touch[^\"\\']*[\"\\']',
+    r'<form[^>]*(?:id|class|name)=[\"\\'][^\"\\']*book.*event[^\"\\']*[\"\\']',
+]
+for pat in contact_form_patterns:
+    if re.search(pat, html, re.I):
+        print('form')
+        sys.exit()
+# Also check for contact modal containers with form inside
+if re.search(r'class=[\"\\'][^\"\\']*contactModal[^\"\\']*[\"\\']', html, re.I):
     print('form')
-elif re.search(r'contact.form|inquiry|book.*event|private.*event|request.*info', html, re.I):
+    sys.exit()
+# General fallback: form with textarea (likely contact, not login)
+if re.search(r'<form[^>]*>[\s\S]{0,2000}<textarea', html, re.I):
     print('form')
-else:
-    print('')
+    sys.exit()
+print('')
 " 2>/dev/null)
 
         if [ "$HAS_FORM" = "form" ] && [ -z "$CONTACT_FORM" ]; then
@@ -154,49 +246,82 @@ else:
         fi
     fi
 
-    # Add any new emails as contacts (skip generic prefixes)
-    local GENERIC_PREFIXES="info@ hello@ contact@ sales@ events@ reservations@ booking@ enquiries@ inquiries@ office@ general@ frontdesk@ reception@ noreply@ no-reply@ support@ admin@ webmaster@ billing@ dataremoval@ privacy@ careers@ jobs@ hr@ marketing@ press@ media@ eat@ dine@ wine@ music@ art@ mail@"
+    # Add any new emails as contacts — hard-reject always-junk, flag generic for manual name check
+    local HARD_REJECT="noreply@ no-reply@ webmaster@ billing@ dataremoval@ privacy@ careers@ jobs@ hr@ marketing@ press@ media@ mail@"
+    local SOFT_REJECT="info@ hello@ contact@ sales@ events@ reservations@ booking@ enquiries@ inquiries@ office@ general@ frontdesk@ reception@ support@ admin@ eat@ dine@ wine@ music@ art@"
     if [ -n "$ALL_EMAILS" ]; then
         echo -e "$ALL_EMAILS" | sort -u | while IFS= read -r EMAIL; do
             [ -z "$EMAIL" ] && continue
             local EMAIL_LOWER
             EMAIL_LOWER=$(echo "$EMAIL" | tr '[:upper:]' '[:lower:]')
-            local IS_GENERIC=false
-            for gp in $GENERIC_PREFIXES; do
+            local IS_HARD=false
+            for gp in $HARD_REJECT; do
                 if echo "$EMAIL_LOWER" | grep -q "^${gp}"; then
-                    IS_GENERIC=true
+                    IS_HARD=true
                     break
                 fi
             done
-            if [ "$IS_GENERIC" = true ]; then
-                log "  [SKIP] $EMAIL — generic prefix"
+            if [ "$IS_HARD" = true ]; then
+                log "  [SKIP] $EMAIL — hard-reject generic prefix"
                 continue
             fi
-            curl -sL "${APPS_SCRIPT_URL}?action=add_contact&venue_id=${VID}&email=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$EMAIL'))")&source=postcheck" > /dev/null
-            log "  Added contact: $EMAIL"
+            local IS_SOFT=false
+            for gp in $SOFT_REJECT; do
+                if echo "$EMAIL_LOWER" | grep -q "^${gp}"; then
+                    IS_SOFT=true
+                    break
+                fi
+            done
+            if [ "$IS_SOFT" = true ]; then
+                log "  CANDIDATE: $EMAIL (generic prefix — check staff page for person name)"
+            else
+                log "  CANDIDATE: $EMAIL (postcheck — needs Executor verification)"
+            fi
         done
     fi
 
-    # --- Check Instagram ---
+    # --- Check Instagram + Facebook ---
     local CURRENT_IG
     CURRENT_IG=$(python3 -c "import json; print(json.load(open('$DETAIL_TMP')).get('venue',{}).get('instagram',''))" 2>/dev/null)
     if [ -z "$CURRENT_IG" ] || [ "$CURRENT_IG" = "None" ] || echo "$CURRENT_IG" | grep -q "accounts.google.com"; then
-        # Try to find IG from website HTML
-        local MAIN_BODY
-        MAIN_BODY=$(curl -sL --max-time 10 -A "Mozilla/5.0" "$WEBSITE" 2>/dev/null)
-        local FOUND_IG
-        FOUND_IG=$(echo "$MAIN_BODY" | python3 -c "
+        local FOUND_IG="$DISCOVERED_IG"
+        if [ -z "$FOUND_IG" ]; then
+            local MAIN_BODY
+            MAIN_BODY=$(curl -sL --compressed --max-time 10 -A "Mozilla/5.0" "$WEBSITE" 2>/dev/null)
+            FOUND_IG=$(echo "$MAIN_BODY" | python3 -c "
 import re, sys
-html = sys.stdin.read()
-igs = re.findall(r'https?://(?:www\.)?instagram\.com/([A-Za-z0-9._]+)', html)
+html = sys.stdin.read().replace('\\/','/')
+igs = re.findall(r'(?:https?:)?//(?:www\.)?instagram\.com/([A-Za-z0-9._]+)', html)
+reserved={'p','reel','reels','stories','explore','accounts','direct','about','legal','privacy','terms','wix','wixstudio','squarespace','wordpress','shopify'}
 for ig in igs:
-    if ig not in ('p', 'reel', 'stories', 'explore', 'accounts', 'direct'):
+    if ig.lower() not in reserved:
         print('https://www.instagram.com/' + ig + '/')
         break
 " 2>/dev/null)
+        fi
         if [ -n "$FOUND_IG" ]; then
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=instagram&value=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$FOUND_IG'))")" > /dev/null
-            log "  Found & saved IG: $FOUND_IG"
+            local IG_RESP
+            IG_RESP=$(curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=instagram&force=true&value=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$FOUND_IG")")
+            if echo "$IG_RESP" | python3 -c "import json,sys; print('ok' if json.load(sys.stdin).get('status')=='ok' else 'no')" 2>/dev/null | grep -q '^ok$'; then
+                log "  Found & saved IG from website evidence: $FOUND_IG"
+            else
+                log "  [WARN] Instagram candidate did not persist: $FOUND_IG"
+            fi
+        fi
+    fi
+
+    local CURRENT_FB
+    CURRENT_FB=$(python3 -c "import json; print(json.load(open('$DETAIL_TMP')).get('venue',{}).get('facebook',''))" 2>/dev/null)
+    if [ -z "$CURRENT_FB" ] || [ "$CURRENT_FB" = "None" ]; then
+        local FOUND_FB="$DISCOVERED_FB"
+        if [ -n "$FOUND_FB" ]; then
+            local FB_RESP
+            FB_RESP=$(curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${VID}&field=facebook&force=true&value=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$FOUND_FB")")
+            if echo "$FB_RESP" | python3 -c "import json,sys; print('ok' if json.load(sys.stdin).get('status')=='ok' else 'no')" 2>/dev/null | grep -q '^ok$'; then
+                log "  Found & saved Facebook from website evidence: $FOUND_FB"
+            else
+                log "  [WARN] Facebook candidate did not persist: $FOUND_FB"
+            fi
         fi
     fi
 
@@ -271,8 +396,7 @@ for p in data.get('people', []):
                         ENRICH_STATUS=$(echo "$ENRICH_RESP" | python3 -c "import json,sys; p=json.loads(sys.stdin.read()).get('person',{}); print(p.get('email_status',''))" 2>/dev/null)
                         if [ -n "$ENRICH_EMAIL" ] && [ "$ENRICH_EMAIL" != "None" ] && [ "$ENRICH_EMAIL" != "" ]; then
                             log "  [Apollo] Got email: $ENRICH_EMAIL ($ENRICH_STATUS)"
-                            curl -sL "${APPS_SCRIPT_URL}?action=add_contact&venue_id=${VID}&name=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$PNAME'))")&email=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$ENRICH_EMAIL'))")&title=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$PTITLE'))")&source=postcheck_apollo" > /dev/null
-                            log "  [Apollo] Saved: $PNAME <$ENRICH_EMAIL>"
+                            log "  CANDIDATE: $PNAME <$ENRICH_EMAIL> ($PTITLE) (postcheck_apollo — needs Executor verification)"
                         else
                             log "  [Apollo] No email returned for $PNAME"
                         fi
@@ -329,7 +453,7 @@ for p in data.get('people', []):
                 local LI_NAME_ENC LI_TITLE_ENC
                 LI_NAME_ENC=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$LI_NAME'))")
                 LI_TITLE_ENC=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$LI_TITLE'))")
-                curl -sL "${APPS_SCRIPT_URL}?action=add_contact&venue_id=${VID}&name=${LI_NAME_ENC}&title=${LI_TITLE_ENC}&source=linkedin-postcheck" > /dev/null
+                log "  CANDIDATE: $LI_NAME ($LI_TITLE) (linkedin-postcheck — needs Executor verification)"
                 LI_ADDED=$((LI_ADDED + 1))
             fi
         done <<< "$LI_RESULTS"

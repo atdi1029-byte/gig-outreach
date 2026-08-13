@@ -769,33 +769,43 @@ function addContact_(params) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(CONTACTS);
 
-  // Reject generic emails unless explicitly flagged
+  // Generic venue mailboxes are useful discovery results (events@, catering@,
+  // reservations@, etc.). They may be saved only when the caller explicitly
+  // marks them is_generic=true; this keeps them visible without pretending a
+  // role mailbox is a named person.
   var GENERIC_PREFIXES = [
     'info', 'manager', 'admin', 'office', 'contact', 'sales',
-    'events', 'hello', 'support', 'reservations', 'frontdesk',
-    'catering', 'eat', 'dine', 'host', 'general', 'mail'
+    'events', 'event', 'privateevents', 'private-events', 'hello', 'support',
+    'reservations', 'booking', 'bookings', 'frontdesk', 'catering',
+    'groups', 'weddings', 'meetings', 'eat', 'dine', 'host', 'general', 'mail'
   ];
   var emailLocal = (params.email || '').split('@')[0].toLowerCase();
-  if (GENERIC_PREFIXES.indexOf(emailLocal) !== -1 && params.is_generic !== 'true') {
+  var explicitGeneric = params.is_generic === 'true';
+  var isGenericMailbox = GENERIC_PREFIXES.indexOf(emailLocal) !== -1;
+  if (isGenericMailbox && !explicitGeneric) {
     return jsonResponse_({
       status: 'error',
-      message: 'Generic email (' + emailLocal + '@) cannot be a contact. Use update_venue to store venue-level emails, or pass is_generic=true to override.'
+      message: 'Generic email (' + emailLocal + '@) requires is_generic=true.'
     });
   }
 
   // Reject contacts without a real person name
   var name = (params.name || '').trim();
-  if (!name) {
+  if (!name && explicitGeneric) {
+    name = emailLocal.replace(/[._-]+/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+    params.name = name || 'Venue Contact';
+  }
+  if (!name && !explicitGeneric) {
     return jsonResponse_({ status: 'error', message: 'Contact must have a name.' });
   }
-  // Reject if name equals the email prefix, title, or is a generic role word
+
+  // Named-person contacts still get strict fake-name validation. Generic
+  // mailboxes intentionally use role labels such as "Events" or "Catering".
   var FAKE_NAMES = ['manager', 'admin', 'owner', 'chef', 'host', 'staff',
     'catering', 'events', 'private events', 'general', 'front desk', 'reception'];
-  if (FAKE_NAMES.indexOf(name.toLowerCase()) !== -1) {
+  if (!explicitGeneric && FAKE_NAMES.indexOf(name.toLowerCase()) !== -1) {
     return jsonResponse_({ status: 'error', message: 'Contact name "' + name + '" looks like a role, not a person. Provide a real first and last name.' });
   }
-  // Allow email prefix as name — pipeline uses this when no person name is available
-  // The contact still gets saved so the email is accessible in the app
 
   // Check for duplicate email at same venue
   var data = sheet.getDataRange().getValues();

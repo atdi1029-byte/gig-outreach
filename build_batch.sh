@@ -646,6 +646,39 @@ if len(batch) < COUNT:
     if topup_count < 0: topup_count = 0
     print(f"  Top-up: {topup_count}")
 
+# =========================================================
+# ENFORCE LOCAL-FIRST CAP: max 10% PA/DE/WV
+# User lives in MD — DC/MD/VA are the core zone.
+# PA/DE/WV are edge-of-radius filler only.
+# =========================================================
+core_states = {'DC', 'VA', 'MD'}
+edge_max = max(2, int(COUNT * 0.10))  # ~10%, min 2
+edge_venues = [v for v in batch
+               if v.get('state', '') not in core_states]
+if len(edge_venues) > edge_max:
+    # Keep only the best edge venues, drop the rest
+    edge_venues.sort(key=quality_sort_key)
+    edge_to_drop = set(
+        v.get('venue_id') for v in edge_venues[edge_max:]
+    )
+    batch = [v for v in batch
+             if v.get('venue_id') not in edge_to_drop]
+    used -= edge_to_drop
+    # Backfill with core-state venues
+    remaining = [v for v in pool
+                 if v.get('venue_id') not in used
+                 and v.get('state', '') in core_states]
+    remaining.sort(key=quality_sort_key)
+    for v in remaining:
+        if len(batch) >= COUNT:
+            break
+        batch.append(v)
+        used.add(v.get('venue_id'))
+    dropped = len(edge_to_drop) - (COUNT - len(batch))
+    print(f"  Local-first cap: dropped {len(edge_to_drop)} "
+          f"edge-of-radius venues (PA/DE/WV), "
+          f"kept {edge_max}")
+
 # Final sort: best composite score first
 batch.sort(key=quality_sort_key)
 

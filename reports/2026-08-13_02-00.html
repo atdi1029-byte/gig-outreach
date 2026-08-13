@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; August 13, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif;
+background: #0c1a22; color: #e0e0e0;
+padding: 40px; max-width: 900px;
+margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem;
+margin-bottom: 5px;
+border-bottom: 2px solid #6ecfcf;
+padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 30px;
+font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem;
+margin: 30px 0 15px;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse;
+margin: 15px 0; font-size: 0.9rem; }
+  th { background: #1a2e3a; color: #6ecfcf;
+padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px;
+border-bottom: 1px solid #1a2e3a;
+vertical-align: top; }
+  .stat-grid { display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a;
+border-radius: 8px; padding: 15px;
+text-align: center; }
+  .stat-box .num { font-size: 2rem;
+font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.85rem;
+color: #999; margin-top: 4px; }
+  .win { background: #1a2a1a;
+border-left: 4px solid #4caf50;
+padding: 10px 14px; margin: 8px 0;
+border-radius: 0 6px 6px 0; }
+  .win strong { color: #4caf50; }
+  .valid { color: #4caf50; }
+  .closed { color: #e85050; }
+  .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
+  .skip { color: #888; }
+  a { color: #6ecfcf; text-decoration: none; }
+  .review-box { background: #1a1a2a;
+border: 2px solid #e8944c;
+border-radius: 8px; padding: 20px;
+margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none;
+padding: 0; }
+  .review-item { display: flex;
+justify-content: space-between;
+align-items: center; padding: 10px 0;
+border-bottom: 1px solid #1a2e3a; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .contact-count {
+font-size: 1.4rem; font-weight: bold;
+color: #e85050; min-width: 40px;
+text-align: center; }
+  .review-item .venue-type { color: #888;
+font-size: 0.8rem; }
+  td.emails-zero { color: #e85050;
+font-weight: bold; font-size: 1.1rem; }
+  td.emails-good { color: #4caf50;
+font-weight: bold; font-size: 1.1rem; }
+  details { margin: 30px 0; }
+  details summary { color: #e8944c;
+font-size: 1.3rem; cursor: pointer;
+padding: 10px 0; font-weight: bold;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  details summary:hover { color: #f0a060; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">August 13, 2026 &mdash;
+Diversified batch via build_batch.sh (25 venues).
+Washington DC, Alexandria VA, McLean VA,
+Haymarket VA, Middleburg VA, Leesburg VA,
+Annapolis MD, Bethesda MD, Kensington MD,
+Ellicott City MD, Severna Park MD, Glen Burnie MD,
+Solomons MD, La Plata MD,
+Blue Bell PA, Ivyland PA, Havertown PA, Glenside PA,
+King of Prussia PA.
+<br>Past gig seeds exhausted (all 70 discovered).
+Taste discovery added 202 new venues from 25 queries.
+<br>No new taste votes since Aug 6.
+</div>
+
+<!-- Stats -->
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">25</div>
+    <div class="label">Venues Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">14</div>
+    <div class="label">Legit Venues</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">11</div>
+    <div class="label">Needs Review / Skip</div>
+  </div>
+</div>
+
+<!-- Needs Your Review -->
+<div class="review-box">
+  <h2>Needs Your Review (0&ndash;1 contacts)</h2>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2956"
+>Inn at Evergreen</a></div>
+      <div class="venue-type">
+hotel | Haymarket VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-EVEN-2976"
+>Middleburg Manor</a></div>
+      <div class="venue-type">
+event_venue | Middleburg VA</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-2971"
+>1313 West - Luxury Boutique Hotel</a></div>
+      <div class="venue-type">
+hotel | Annapolis MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-2889"
+>Capitol Cigar and Tobacco</a></div>
+      <div class="venue-type">
+wine_bar | Bethesda MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-705"
+>DRY 85</a></div>
+      <div class="venue-type">
+wine_bar | Annapolis MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-2740"
+>Facci Ristorante of Turf Valley</a></div>
+      <div class="venue-type">
+restaurant | Ellicott City MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-1593"
+>Knowles Station Wine &amp; Co</a></div>
+      <div class="venue-type">
+restaurant | Kensington MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name"><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-COUN-400"
+>Hawthorne Country Club</a></div>
+      <div class="venue-type">
+country_club | La Plata MD</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+</div>
+
+<!-- Key Wins -->
+<h2>Key Wins</h2>
+
+<div class="win">
+  <strong>Llanerch Country Club
+  (Havertown PA)</strong>
+  &mdash; 14 verified contacts with @llanerchcc.org
+  emails. Pipeline found 13, manual check added
+  Ashley Murosky (Banquet Manager,
+  amurosky@llanerchcc.org) &mdash; KEY contact for
+  event entertainment bookings. Est. 1931 club.
+  FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>Spring Mill Country Club
+  (Ivyland PA)</strong>
+  &mdash; 7 verified contacts. Erik Travers
+  (Owner/GM), Jamie Walters (Co-Owner). Full staff
+  found via Apollo. City corrected from King of
+  Prussia. FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>Arts Club of Washington
+  (Dupont Circle DC)</strong>
+  &mdash; Historic James Monroe House (est. 1916).
+  4 contacts: Yann Henrotte (GM,
+  yann@artsclubofwashington.org), Christina Jin
+  (Gallery Admin). Already hosts live jazz, music,
+  poetry readings &mdash; excellent classical guitar
+  fit. FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>North Hills Country Club
+  (Glenside PA)</strong>
+  &mdash; Managed by Invited (ClubCorp). Manual check
+  discovered WRONG WEBSITE in sheet (northhillscc.com
+  = NY club). Correct site identified. Found 3 strong
+  contacts: Michael Reilly (GM,
+  mike.reilly@clubcorp.com), Kristen Williams (Event
+  Sales Director), Russell Danyluk (Membership Dir).
+  2 wrong-business contacts deleted. FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>Blue Bell Inn
+  (Blue Bell PA)</strong>
+  &mdash; Fine dining restaurant est. 1743 with 12
+  private dining rooms. Pipeline had 0 contacts &mdash;
+  manual check found Scott Dougherty (Owner,
+  scott@bluebellinn.com) and Ryan Karle (Dir of Ops,
+  ryan@bluebellinn.com). City corrected from Bryn
+  Mawr. Category is "hotel" but should be restaurant.
+  FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>The Garden Alexandria
+  (Alexandria VA)</strong>
+  &mdash; Pipeline had 0 contacts &mdash; manual check
+  found James Bellucci (Venue Manager/Events,
+  james@buildmo.com) and Brad Halsey (CEO/Founder,
+  brad@buildmo.com). Owned by Building Momentum
+  (veteran-owned). Co-building community space
+  with events. FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>O Museum in The Mansion
+  (Washington DC)</strong>
+  &mdash; Five interconnected townhouses at 2020 O St
+  NW with 100+ rooms and 80 secret doors. Manual
+  check found H.H. Leonards (Founder,
+  hh@omansion.com). Unique venue for private events.
+  City corrected from Georgetown. FB/IG verified.
+</div>
+
+<div class="win">
+  <strong>McBride Gallery
+  (Annapolis MD)</strong>
+  &mdash; Established gallery since 1980. Manual check
+  found Cynthia McBride (Owner,
+  cynthia@mcbridegallery.com). Annapolis art scene
+  venue. FB/IG verified.
+</div>
+
+<!-- All Venues Table -->
+<h2>All Venues</h2>
+<table>
+<tr>
+  <th>Venue</th>
+  <th>Type</th>
+  <th>Location</th>
+  <th>Contacts</th>
+  <th>Status</th>
+</tr>
+
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-COUN-1830"
+>Llanerch Country Club</a></td>
+  <td>country_club</td>
+  <td>Havertown PA</td>
+  <td class="emails-good">14</td>
+  <td>Ashley Murosky (Banquet Mgr) added via
+  manual check. Est. 1931 club. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-COUN-2071"
+>Spring Mill Country Club</a></td>
+  <td>country_club</td>
+  <td>Ivyland PA</td>
+  <td class="emails-good">7</td>
+  <td>Erik Travers (Owner/GM), Jamie Walters
+  (Co-Owner). City fixed from King of Prussia.
+  FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-PRIV-108"
+>Arts Club of Washington</a></td>
+  <td>private_club</td>
+  <td>Dupont Circle DC</td>
+  <td class="emails-good">4</td>
+  <td>Yann Henrotte (GM), Christina Jin (Gallery
+  Admin) added. Historic James Monroe House.
+  Hosts live music. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-COUN-1829"
+>North Hills Country Club</a></td>
+  <td>country_club</td>
+  <td>Glenside PA</td>
+  <td class="emails-good">4</td>
+  <td><span class="purple">WRONG WEBSITE fixed
+  (northhillscc.com = NY club)</span>. Michael
+  Reilly (GM), Kristen Williams (Event Sales Dir),
+  Russell Danyluk added. 2 wrong-business contacts
+  deleted. Invited/ClubCorp managed.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2639"
+>Morrison-Clark Historic Inn</a></td>
+  <td>hotel</td>
+  <td>Washington DC</td>
+  <td class="emails-good">2</td>
+  <td>Denia Lopez (Dir of Operations). 114-room
+  historic inn. City fixed from Georgetown.
+  IG added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2936"
+>Capitol Hill Hotel</a></td>
+  <td>hotel</td>
+  <td>Washington DC</td>
+  <td class="emails-good">2</td>
+  <td>Gwendy Ampig (Dir Sales), Norman Robinson
+  (Asst GM). City fixed from Alexandria VA to
+  Washington DC. FB/IG added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=PA-HOTE-2376"
+>Blue Bell Inn</a></td>
+  <td>hotel</td>
+  <td>Blue Bell PA</td>
+  <td class="emails-good">2</td>
+  <td>Scott Dougherty (Owner) + Ryan Karle (Dir
+  Ops) added via manual check. Fine dining est.
+  1743, 12 private rooms. City fixed from Bryn
+  Mawr. FB/IG added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-EVEN-2974"
+>The Garden Alexandria</a></td>
+  <td>event_venue</td>
+  <td>Alexandria VA</td>
+  <td class="emails-good">2</td>
+  <td>James Bellucci (Venue Mgr) + Brad Halsey
+  (CEO) added via manual check. Building Momentum
+  co-building space. FB/IG added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-3208"
+>The Little Towns Children's Museum</a></td>
+  <td>restaurant</td>
+  <td>North Bethesda MD</td>
+  <td class="emails-good">2</td>
+  <td><span class="junk">WRONG CATEGORY: children's
+  museum/indoor playground, NOT a restaurant or
+  music venue</span>. Pipeline contact "play" is
+  a generic email prefix. Recommend SKIP.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=DC-EVEN-2572"
+>O Museum in The Mansion</a></td>
+  <td>event_venue</td>
+  <td>Washington DC</td>
+  <td class="emails-good">1</td>
+  <td>H.H. Leonards (Founder, hh@omansion.com)
+  added via manual check. 2020 O St NW, 100+
+  rooms, 80 secret doors. City fixed from
+  Georgetown. FB/IG added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-706"
+>49 West Coffeehouse Wine Bar Gallery</a></td>
+  <td>wine_bar</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">1</td>
+  <td>Brian Cahalan (Co-Owner) found via manual
+  check but email not yet added (pipeline had
+  venue email only). FB added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-717"
+>McBride Gallery</a></td>
+  <td>art_gallery</td>
+  <td>Annapolis MD</td>
+  <td class="emails-good">1</td>
+  <td>Cynthia McBride (Owner,
+  cynthia@mcbridegallery.com) added via manual
+  check. Gallery since 1980. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-HOTE-2956"
+>Inn at Evergreen</a></td>
+  <td>hotel</td>
+  <td>Haymarket VA</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>1826 Manor House, part of Evergreen CC.
+  City fixed from McLean. Innkeeper "Carol"
+  mentioned in reviews, no last name. IG added.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-EVEN-2976"
+>Middleburg Manor</a></td>
+  <td>event_venue</td>
+  <td>Middleburg VA</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Under new ownership by Unified Wedding
+  Services. Wix site. Only 3 Google reviews.
+  info@middleburgmanor.com (generic). No named
+  contacts. IG found.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-2971"
+>1313 West - Luxury Boutique Hotel</a></td>
+  <td>hotel</td>
+  <td>Annapolis MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>7-room luxury boutique. Founders Clinton
+  Ramsden + Cody Monroe (USNA grads), Grace Mauro
+  (Guest Experience Mgr) &mdash; all identified
+  but NO emails found. Part of Severn Grove
+  Hospitality. IG found.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-2889"
+>Capitol Cigar and Tobacco</a></td>
+  <td>wine_bar</td>
+  <td>Bethesda MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>No contacts found by pipeline or manual
+  check. Apollo returned 0 results.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-705"
+>DRY 85</a></td>
+  <td>wine_bar</td>
+  <td>Annapolis MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>No contacts found. Apollo returned 0
+  results.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-2740"
+>Facci Ristorante of Turf Valley</a></td>
+  <td>restaurant</td>
+  <td>Ellicott City MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Italian restaurant at Turf Valley Resort.
+  No contacts found.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-2707"
+>Ferndale Community Club</a></td>
+  <td>restaurant</td>
+  <td>Glen Burnie MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td><span class="junk">WRONG CATEGORY: nonprofit
+  community hall with bingo nights</span>. Website
+  DOWN (DNS failure). IG in sheet belongs to a
+  CHURCH. City fixed from Severna Park.
+  Recommend SKIP.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-2666"
+>Jessica Zheng's East West Bistro</a></td>
+  <td>restaurant</td>
+  <td>Pasadena MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Casual Chinese &amp; sushi bar. Owner Jessica
+  Zheng, no email found. City fixed from Severna
+  Park. Vibe may not suit classical guitar.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-1593"
+>Knowles Station Wine &amp; Co</a></td>
+  <td>restaurant</td>
+  <td>Kensington MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Owner Ki Yoon identified, no email found.
+  City fixed from Bethesda. Wine bar with
+  potential. FB/IG verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-COUN-400"
+>Hawthorne Country Club</a></td>
+  <td>country_club</td>
+  <td>La Plata MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td>Dave Eaton (PGA Golf Pro) identified, no
+  email. Member-owned, small staff. FB/IG
+  verified.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-398"
+>Charles Street Brasserie</a></td>
+  <td>restaurant</td>
+  <td>Solomons MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td><span class="closed">CLOSED</span> (Yelp,
+  May 2026). Website down (DNS failure). Replaced
+  by "Trifecta" restaurant. Pipeline contact
+  "trifecta120" is FB handle, not a person.
+  Recommend removal.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3275"
+>Stone Gables Bed &amp; Breakfast</a></td>
+  <td>restaurant</td>
+  <td>Leesburg VA</td>
+  <td class="emails-zero">&mdash;</td>
+  <td><span class="closed">CLOSED</span> (Yelp,
+  June 2026). Owner Wayne Tharp Sr. now "Happily
+  Retired." Website timed out. Former 1823
+  stone barn B&amp;B. Recommend removal.</td>
+</tr>
+<tr>
+  <td><a href=
+"https://atdi1029-byte.github.io/gig-outreach/?venue=MD-ART_-2770"
+>Heineman Myers Contemporary Art</a></td>
+  <td>art_gallery</td>
+  <td>Bethesda MD</td>
+  <td class="emails-zero">&mdash;</td>
+  <td><span class="closed">LIKELY CLOSED</span>.
+  Website now a fashion/beauty blog. Gallery was
+  active ~2008. FB is wrong business (media co).
+  Recommend removal.</td>
+</tr>
+</table>
+
+<!-- Data Quality Actions -->
+<details>
+  <summary>Data Quality Actions Taken (25 fixes)</summary>
+
+  <div class="incident">
+  <strong>10 city corrections:</strong>
+  Morrison-Clark (Georgetown&rarr;Washington),
+  O Museum (Georgetown&rarr;Washington),
+  Capitol Hill Hotel (Alexandria VA&rarr;
+  Washington DC), Inn at Evergreen (McLean&rarr;
+  Haymarket), Blue Bell Inn (Bryn Mawr&rarr;
+  Blue Bell), Ferndale CC (Severna Park&rarr;
+  Glen Burnie), East West Bistro (Severna Park&rarr;
+  Pasadena), Knowles Station (Bethesda&rarr;
+  Kensington), Spring Mill CC (King of Prussia&rarr;
+  Ivyland), North Hills CC (Haverford&rarr;Glenside).
+  </div>
+
+  <div class="incident">
+  <strong>2 wrong-business contacts deleted:</strong>
+  C-3888 "colleen" and C-3889 "francesca" at North
+  Hills CC &mdash; both had @northhillscc.com emails
+  belonging to the Manhasset, NY club, not the
+  Glenside PA venue.
+  </div>
+
+  <div class="incident">
+  <strong>1 wrong website corrected:</strong>
+  North Hills CC (northhillscc.com&rarr;
+  invitedclubs.com/clubs/north-hills-country-club).
+  Original domain belonged to NY club.
+  </div>
+
+  <div class="incident">
+  <strong>11 new verified contacts added</strong>
+  via manual check: H.H. Leonards (O Museum),
+  James Bellucci + Brad Halsey (The Garden ALX),
+  Scott Dougherty + Ryan Karle (Blue Bell Inn),
+  Cynthia McBride (McBride Gallery),
+  Ashley Murosky (Llanerch CC),
+  Michael Reilly + Kristen Williams + Russell Danyluk
+  (North Hills CC), Christina Jin (Arts Club DC).
+  </div>
+
+  <div class="incident">
+  <strong>Social media updates:</strong> 15 venues
+  received Facebook/Instagram additions or
+  corrections. Key: Morrison-Clark IG, O Museum
+  FB/IG, Capitol Hill Hotel FB/IG, The Garden FB/IG,
+  Blue Bell Inn FB/IG, North Hills CC FB/IG,
+  Arts Club FB/IG, 49 West FB.
+  </div>
+</details>
+
+<!-- Flagged Venues -->
+<details>
+  <summary>Flagged / Closed / Junk (7 venues)</summary>
+
+  <div class="incident">
+  <strong>Stone Gables B&amp;B (VA-REST-3275)</strong>
+  &mdash; <span class="closed">CLOSED</span>.
+  Yelp listing updated June 2026. Owner Wayne Tharp
+  now "Happily Retired." Website down. Recommend
+  marking as closed.
+  </div>
+
+  <div class="incident">
+  <strong>Charles Street Brasserie (MD-REST-398)</strong>
+  &mdash; <span class="closed">CLOSED</span>.
+  Website DNS failure. Replaced by "Trifecta" under
+  new ownership. Recommend removal.
+  </div>
+
+  <div class="incident">
+  <strong>Heineman Myers Art (MD-ART_-2770)</strong>
+  &mdash; <span class="closed">LIKELY CLOSED</span>.
+  Website now a fashion blog. Last verifiable gallery
+  activity ~2008. Recommend removal.
+  </div>
+
+  <div class="incident">
+  <strong>The Little Towns Museum
+  (MD-REST-3208)</strong> &mdash;
+  <span class="junk">WRONG CATEGORY</span>.
+  Children's museum / indoor playground. Not a
+  music venue. Pipeline contact "play" is a generic
+  email prefix. Recommend SKIP.
+  </div>
+
+  <div class="incident">
+  <strong>Ferndale Community Club
+  (MD-REST-2707)</strong> &mdash;
+  <span class="junk">WRONG CATEGORY</span>.
+  Nonprofit community hall (bingo nights, hall
+  rentals). Website down. IG belongs to a church.
+  Recommend SKIP.
+  </div>
+
+  <div class="incident">
+  <strong>Jessica Zheng's East West Bistro
+  (MD-REST-2666)</strong> &mdash;
+  <span class="junk">VIBE CONCERN</span>.
+  Casual Chinese &amp; sushi bar. May not suit
+  classical guitar. No contacts found.
+  </div>
+
+  <div class="incident">
+  <strong>Middleburg Manor (VA-EVEN-2976)</strong>
+  &mdash; Under new ownership by "Unified Wedding
+  Services." Very small (3 reviews). May be
+  primarily a wedding venue. No named contacts.
+  </div>
+</details>
+
+<!-- Taste Discovery -->
+<h2>Taste Discovery</h2>
+<p>202 new venues added from 25 taste queries, covering
+historic inns (DC/VA/PA/MD), French restaurants
+(Georgetown/Bethesda), country clubs,
+wineries, wine bars, art galleries,
+museums and event venues across the target area.
+Pool replenished for all venue categories.</p>
+
+<!-- Taste Review -->
+<h2>Taste Review</h2>
+<p>No new venue votes or notes since Aug 6.
+Taste system unchanged.</p>
+
+<h2>Apollo Credits</h2>
+<p>~100 credits used this run.
+ZeroBounce: ~1,350 credits remaining.</p>
+
+</body>
+</html>

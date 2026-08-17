@@ -28,6 +28,11 @@ APOLLO_API_KEY="${APOLLO_API_KEY:-}"
 APOLLO_API_BASE="https://api.apollo.io/api/v1"
 APOLLO_CREDITS_USED=0
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ZB_GUARD="${SCRIPT_DIR}/zerobounce_guard.py"
+ZB_RUN_ID="${ZB_RUN_ID:-pipeline-$(date +%Y%m%dT%H%M%S)-$$}"
+export ZB_RUN_ID
+ZB_VENUE_CREDITS=0
+MAX_ZB_PER_VENUE=${MAX_ZB_PER_VENUE:-40}
 LOG_FILE="${SCRIPT_DIR}/pipeline.log"
 # Discovery evidence is append-only: candidates are retained even when verification
 # later rejects them, so a "miss" can be audited instead of disappearing.
@@ -61,7 +66,11 @@ try:
     with open('$tmpf') as f: d = json.load(f)
     emails = set()
     for c in d.get('contacts', []):
-        if c.get('email'): emails.add(c['email'].lower())
+        if c.get('email'):
+            # Skip deferred contacts so they get re-verified when ZB is available
+            if c.get('verified') == 'deferred':
+                continue
+            emails.add(c['email'].lower())
     print('|||'.join(emails))
 except Exception as e: print('', file=__import__('sys').stderr); print('')
 " 2>/dev/null)
@@ -90,11 +99,12 @@ name_known() {
     echo "$KNOWN_NAMES" | tr '|||' '\n' | grep -qi "^${name_lower}$" 2>/dev/null
 }
 
-ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_exhausted"
-APOLLO_EXHAUSTED_FLAG="/tmp/pipeline_apollo_exhausted"
+ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_paused_$$"
+APOLLO_EXHAUSTED_FLAG="/tmp/pipeline_apollo_exhausted_$$"
 MAX_APOLLO=${MAX_APOLLO:-300}  # Max Apollo credits per run (default 300, set MAX_APOLLO=N to override)
 VENUE_DOMAIN=""  # Set per-venue in run_venue() — used by verify_and_push to filter off-domain emails
 rm -f "$ZB_EXHAUSTED_FLAG" "$APOLLO_EXHAUSTED_FLAG" /tmp/pipeline_step1_fb.txt /tmp/pipeline_step1_ig.txt /tmp/pipeline_seen_orgs
+log "[ZB SAFE] Guard enabled — default caps: ${ZB_MAX_PER_RUN:-5}/run, ${ZB_MAX_PER_DAY:-10}/day, reserve ${ZB_MIN_BALANCE:-500} credits (paid verification is OFF unless .env sets ZB_ENABLED=1)"
 
 check_apollo_credits() {
     if [ -z "$APOLLO_API_KEY" ]; then return 0; fi
@@ -109,20 +119,30 @@ check_apollo_credits() {
 }
 
 check_zb_credits() {
-    if [ -z "$ZEROBOUNCE_KEY" ]; then return 0; fi
-    if [ -f "$ZB_EXHAUSTED_FLAG" ]; then return 1; fi
-    local credits
-    credits=$(curl -s --max-time 10 "https://api.zerobounce.net/v2/getcredits?api_key=$ZEROBOUNCE_KEY" | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('Credits',-1))" 2>/dev/null)
-    if [ "$credits" = "-1" ] || [ -z "$credits" ]; then
-        log "  [WARN] Could not check ZeroBounce credits"
-        return 0
-    fi
-    log "  [ZB] Credits remaining: $credits"
-    if [ "$credits" -lt 5 ] 2>/dev/null; then
-        log "  [STOP] ZeroBounce credits exhausted ($credits remaining). Stopping pipeline."
-        echo "exhausted" > "$ZB_EXHAUSTED_FLAG"
+    # Cost guard: this is a no-charge budget/balance check. A failed check pauses
+    # paid verification only; website/social discovery must continue.
+    if [ ! -x "$ZB_GUARD" ]; then
+        log "  [ZB SAFE] Guard missing — paid ZeroBounce verification disabled"
+        echo "paused" > "$ZB_EXHAUSTED_FLAG"
         return 1
     fi
+    local info
+    info=$(python3 "$ZB_GUARD" budget --run-id "$ZB_RUN_ID" 2>/dev/null || true)
+    if [ -z "$info" ]; then
+        log "  [ZB SAFE] Could not read ZeroBounce budget — paid verification disabled (fail closed)"
+        echo "paused" > "$ZB_EXHAUSTED_FLAG"
+        return 1
+    fi
+    local parsed allowed reason run_used run_limit day_used day_limit credits reserve
+    parsed=$(printf '%s' "$info" | python3 -c 'import json,sys; d=json.load(sys.stdin); print("\t".join(str(d.get(k,"")) for k in ("allowed","reason","run_used","run_limit","day_used","day_limit","credits_remaining","reserve")))' 2>/dev/null || true)
+    IFS=$'\t' read -r allowed reason run_used run_limit day_used day_limit credits reserve <<< "$parsed"
+    log "  [ZB SAFE] run ${run_used:-0}/${run_limit:-?}, today ${day_used:-0}/${day_limit:-?}, balance ${credits:-unknown}, reserve ${reserve:-?}"
+    if [ "$allowed" != "True" ] && [ "$allowed" != "true" ]; then
+        log "  [ZB SAFE] Paid verification paused: ${reason:-guard_denied}. Discovery will continue."
+        echo "paused" > "$ZB_EXHAUSTED_FLAG"
+        return 1
+    fi
+    rm -f "$ZB_EXHAUSTED_FLAG"
     return 0
 }
 
@@ -212,20 +232,88 @@ verify_and_push() {
         fi
     fi
 
-    if [ -f "$ZB_EXHAUSTED_FLAG" ]; then
-        log "  [CANDIDATE] $email_lower — ZeroBounce credits exhausted; retained in candidate log"
-        record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "verification_deferred_zb_exhausted"
+    # Per-venue cap check
+    if [ "$ZB_VENUE_CREDITS" -ge "$MAX_ZB_PER_VENUE" ] 2>/dev/null; then
+        log "  [ZB SAFE] Venue cap reached ($ZB_VENUE_CREDITS/$MAX_ZB_PER_VENUE) — saving unverified"
+        zb_status="deferred"
+        zb_reason="venue_cap_reached"
+    fi
+
+    # Every paid lookup goes through the persistent cost guard. Cache hits cost
+    # zero credits; new lookups are blocked by per-run/day caps and reserve floor.
+    local zb_json zb_status zb_reason zb_charged zb_cached zb_run_used zb_run_limit zb_day_used zb_day_limit
+    if [ "$zb_status" = "deferred" ] 2>/dev/null; then
+        # Already hit venue cap — skip to save
+        :
+    elif [ ! -x "$ZB_GUARD" ]; then
+        log "  [ZB SAFE] Guard missing — deferring $email_lower rather than spending"
+        record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "verification_deferred_guard_missing"
+        return
+    fi
+    zb_json=$(python3 "$ZB_GUARD" verify "$email_lower" --source "$source" --run-id "$ZB_RUN_ID" 2>/dev/null || true)
+    if [ -z "$zb_json" ]; then
+        log "  [ZB SAFE] Guard failed — deferring $email_lower (no direct API fallback)"
+        record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "verification_deferred_guard_error"
+        return
+    fi
+    local zb_parsed
+    zb_parsed=$(printf '%s' "$zb_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); print("\t".join(str(d.get(k,"")) for k in ("status","reason","charged","cached","run_used","run_limit","day_used","day_limit")))' 2>/dev/null || true)
+    IFS=$'\t' read -r zb_status zb_reason zb_charged zb_cached zb_run_used zb_run_limit zb_day_used zb_day_limit <<< "$zb_parsed"
+    [ -z "$zb_status" ] && zb_status="deferred"
+    # Track per-venue credits
+    if [ "$zb_charged" = "True" ] || [ "$zb_charged" = "true" ]; then
+        ZB_VENUE_CREDITS=$((ZB_VENUE_CREDITS + 1))
+    fi
+    log "  [ZB SAFE] $email_lower → $zb_status (${zb_reason:-unknown}; charged=${zb_charged:-False}; cache=${zb_cached:-False}; venue ${ZB_VENUE_CREDITS}/${MAX_ZB_PER_VENUE}; run ${zb_run_used:-0}/${zb_run_limit:-?})"
+
+    if [ "$zb_status" = "deferred" ] || [ "$zb_status" = "pending" ]; then
+        case "$zb_reason" in
+            run_budget_reached|day_budget_reached|reserve_reached|credit_check_failed)
+                echo "paused" > "$ZB_EXHAUSTED_FLAG"
+                ;;
+        esac
+        # Save deferred contacts to the sheet as unverified — verify later when credits available
+        local save_name="$name"
+        if [ -z "$save_name" ] || [ "$save_name" = "None" ]; then
+            save_name=$(python3 - "$email_lower" <<'PYEOF'
+import re, sys
+local = sys.argv[1].split('@',1)[0]
+local = re.sub(r'[-_.]+', ' ', local).strip()
+print(' '.join(w.capitalize() for w in local.split()) or sys.argv[1])
+PYEOF
+)
+        fi
+        local encoded
+        encoded=$(python3 - "$venue_id" "$save_name" "$title" "$email_lower" "$source" "deferred" "$is_generic" <<'PYEOF'
+import sys, urllib.parse
+venue_id, name, title, email, source, verified, is_generic = sys.argv[1:8]
+print(urllib.parse.urlencode({
+    'action': 'add_contact',
+    'venue_id': venue_id,
+    'name': name,
+    'title': title,
+    'email': email,
+    'source': source,
+    'verified': verified,
+    'is_generic': is_generic,
+}))
+PYEOF
+)
+        local api_response
+        api_response=$(curl -sL "${APPS_SCRIPT_URL}?${encoded}")
+        local api_ok
+        api_ok=$(echo "$api_response" | python3 -c "import json,sys; d=json.load(sys.stdin); print('yes' if d.get('status') == 'ok' else 'no')" 2>/dev/null || echo "no")
+        if [ "$api_ok" = "yes" ]; then
+            log "  ✓ Saved (unverified): ${save_name:-$email_lower} <$email_lower>"
+            KNOWN_EMAILS="${KNOWN_EMAILS}|||${email_lower}"
+            echo "1" >> /tmp/pipeline_contacts_count
+        else
+            log "  [API ERROR] Could not save deferred contact: ${save_name:-$email_lower} <$email_lower>"
+        fi
+        record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "saved_deferred:${zb_reason:-unknown}"
         return
     fi
 
-    local zb_status
-    if [ -z "$ZEROBOUNCE_KEY" ]; then
-        zb_status="unknown"
-    else
-        zb_status=$(curl -s --max-time 15 "https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_KEY&email=$email_lower" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('status','unknown'))" 2>/dev/null)
-        [ -z "$zb_status" ] && zb_status="unknown"
-    fi
-    log "  $email_lower → $zb_status"
 
     if [ "$zb_status" = "valid" ]; then
         local save_name="$name"
@@ -284,7 +372,7 @@ PYEOF
         log "  [CANDIDATE] $email_lower — ZeroBounce status is $zb_status; retained for review"
         record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "verification:$zb_status"
     fi
-    sleep 1
+    if [ "$zb_charged" = "True" ] || [ "$zb_charged" = "true" ]; then sleep 1; fi
 }
 
 # =================================================================
@@ -1005,12 +1093,15 @@ urls=[]
 for p in d.get('pages',[]):
     u=(p.get('url') or '').strip()
     if u and u.rstrip('/') != home: urls.append(u)
-# Hash states are separate browser states even though HTTP fetch ignores the fragment.
-urls.extend(d.get('fragment_states',[]))
+# Fragment states (#sub-nav-1, #content, etc.) are the same HTTP page — skip them.
+# They bloat the crawl queue and waste time re-fetching identical HTML.
 seen=set()
 for u in urls:
-    if u and u not in seen:
-        seen.add(u); print(u)
+    if not u: continue
+    # Strip fragment before dedup — page.com/events#nav1 == page.com/events#nav2
+    defragged = urlunsplit(urlsplit(u)._replace(fragment=''))
+    if defragged and defragged not in seen:
+        seen.add(defragged); print(defragged)
 PYEOF
 )
         subpages=$(printf '%s\n%s\n' "$subpages" "$recursive_subpages" | awk 'NF && !seen[$0]++')
@@ -3726,14 +3817,14 @@ else: print('')
         log "  Website check: HTTP $HTTP_CODE ✓"
     fi
 
-    # Check ZeroBounce credits before spending time on this venue
+    # Check ZeroBounce budget, but NEVER skip discovery because verification is paused.
     if ! check_zb_credits; then
-        log "  [ABORT] Skipping $venue — ZeroBounce credits too low"
-        return
+        log "  [ZB SAFE] Continuing venue discovery with paid verification paused"
     fi
 
     # Load existing contacts once
     load_existing "$venue_id"
+    ZB_VENUE_CREDITS=0  # Reset per-venue ZB counter
     log "  Known emails: $(echo "$KNOWN_EMAILS" | tr '|||' '\n' | grep -c .)"
     log "  Known names: $(echo "$KNOWN_NAMES" | tr '|||' '\n' | grep -c .)"
 
@@ -3991,10 +4082,6 @@ filtered.sort(key=lambda r: (taste_rank(r), -r.get('recommendation_score', 0)))
 for i, r in enumerate(filtered):
     print(f\"{i}|{r['name']}|{r['venue_id']}|{r.get('recommendation_score',0)}\")
 " 2>/dev/null | while IFS='|' read -r IDX NAME VID SCORE; do
-        if [ -f "$ZB_EXHAUSTED_FLAG" ] && [ -f "$APOLLO_EXHAUSTED_FLAG" ]; then
-            log "[STOP] Both ZeroBounce and Apollo exhausted — skipping remaining smart picks"
-            break
-        fi
         CURRENT=$(cat "$SHARED_COUNT_FILE")
         if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
             log "[BUDGET] Shared limit of $MAX_SP reached — stopping smart picks"
@@ -4098,10 +4185,6 @@ for i, venue in enumerate(untouched):
     city = venue.get('city', '')
     print(f'{i}|{name}|{vid}|{web}|{city}')
 " 2>/dev/null | while IFS='|' read -r IDX NAME VID WEB CITY; do
-            if [ -f "$ZB_EXHAUSTED_FLAG" ] && [ -f "$APOLLO_EXHAUSTED_FLAG" ]; then
-                log "[STOP] Both ZeroBounce and Apollo exhausted — skipping remaining untouched venues"
-                break
-            fi
             CURRENT=$(cat "$SHARED_COUNT_FILE")
             if [ "$MAX_SP" -gt 0 ] && [ "$CURRENT" -ge "$MAX_SP" ]; then
                 log "[BUDGET] Shared limit of $MAX_SP reached — stopping untouched phase"

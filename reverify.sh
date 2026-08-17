@@ -7,6 +7,11 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 [ -f "$SCRIPT_DIR/.env" ] && source "$SCRIPT_DIR/.env"
 APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec"
 ZEROBOUNCE_KEY="${ZEROBOUNCE_KEY:-}"
+ZB_GUARD="$SCRIPT_DIR/zerobounce_guard.py"
+ZB_RUN_ID="${ZB_RUN_ID:-reverify-$(date +%Y%m%dT%H%M%S)-$$}"
+export ZB_RUN_ID
+# Reverification is intentionally extra-conservative unless the caller sets a cap.
+if [ -z "${ZB_MAX_PER_RUN+x}" ]; then export ZB_MAX_PER_RUN="${ZB_REVERIFY_MAX_PER_RUN:-5}"; fi
 DRY_RUN=0
 if [ "$1" = "--dry-run" ]; then DRY_RUN=1; fi
 
@@ -15,12 +20,17 @@ if [ -z "$ZEROBOUNCE_KEY" ]; then
     exit 1
 fi
 
-# Check credits first
-CREDITS=$(curl -s --max-time 10 "https://api.zerobounce.net/v2/getcredits?api_key=$ZEROBOUNCE_KEY" | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('Credits',-1))" 2>/dev/null)
-echo "ZeroBounce credits available: $CREDITS"
-
-if [ "$CREDITS" -lt 10 ] 2>/dev/null; then
-    echo "ERROR: Not enough credits ($CREDITS). Need at least 10."
+# Check the shared ZeroBounce cost guard first (no paid validation here).
+BUDGET_JSON=$(python3 "$ZB_GUARD" budget --run-id "$ZB_RUN_ID" 2>/dev/null || true)
+if [ -z "$BUDGET_JSON" ]; then
+    echo "ERROR: ZeroBounce guard unavailable. Refusing to spend credits."
+    exit 1
+fi
+BUDGET_ALLOWED=$(printf '%s' "$BUDGET_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get('allowed',False))" 2>/dev/null || echo False)
+BUDGET_SUMMARY=$(printf '%s' "$BUDGET_JSON" | python3 -c 'import json,sys; d=json.load(sys.stdin); print("run {}/{}; today {}/{}; balance {}; reserve {}".format(d.get("run_used",0),d.get("run_limit","?"),d.get("day_used",0),d.get("day_limit","?"),d.get("credits_remaining","unknown"),d.get("reserve","?")))' 2>/dev/null || echo unknown)
+echo "ZeroBounce safe budget: $BUDGET_SUMMARY"
+if [ "$BUDGET_ALLOWED" != "True" ] && [ "$BUDGET_ALLOWED" != "true" ]; then
+    echo "ERROR: Paid verification is currently blocked by the cost guard."
     exit 1
 fi
 
@@ -78,19 +88,18 @@ if unknowns:
             continue
         fi
 
-        # Check credits before each email
-        if [ "$TOTAL_REVERIFIED" -gt 0 ] && [ $((TOTAL_REVERIFIED % 50)) -eq 0 ]; then
-            CUR_CREDITS=$(curl -s --max-time 10 "https://api.zerobounce.net/v2/getcredits?api_key=$ZEROBOUNCE_KEY" | python3 -c "import json,sys; d=json.loads(sys.stdin.read()); print(d.get('Credits',-1))" 2>/dev/null)
-            echo "  [ZB] Credits remaining: $CUR_CREDITS"
-            if [ "$CUR_CREDITS" -lt 5 ] 2>/dev/null; then
-                echo "  [STOP] Credits exhausted. Stopping."
-                exit 1
-            fi
+        # Re-verify through the shared guard. This script may retry cached unknowns,
+        # but is still capped (default 5 paid reverifications per run).
+        ZB_JSON=$(python3 "$ZB_GUARD" verify "$EMAIL" --source "reverify" --run-id "$ZB_RUN_ID" --retry-unknown 2>/dev/null || true)
+        ZB_STATUS=$(printf '%s' "$ZB_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get('status','deferred'))" 2>/dev/null || echo deferred)
+        ZB_REASON=$(printf '%s' "$ZB_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get('reason','unknown'))" 2>/dev/null || echo guard_error)
+        ZB_CHARGED=$(printf '%s' "$ZB_JSON" | python3 -c "import json,sys; print(json.load(sys.stdin).get('charged',False))" 2>/dev/null || echo False)
+        echo "  [ZB SAFE] $EMAIL → $ZB_STATUS ($ZB_REASON; charged=$ZB_CHARGED)"
+        if [ "$ZB_STATUS" = "deferred" ]; then
+            echo "  [STOP] Verification deferred by cost guard. Leaving remaining unknowns untouched."
+            break
         fi
 
-        # Re-verify
-        ZB_STATUS=$(curl -s --max-time 15 "https://api.zerobounce.net/v2/validate?api_key=$ZEROBOUNCE_KEY&email=$EMAIL" | python3 -c "import json,sys; print(json.loads(sys.stdin.read()).get('status','unknown'))" 2>/dev/null)
-        if [ -z "$ZB_STATUS" ]; then ZB_STATUS="unknown"; fi
 
         TOTAL_REVERIFIED=$((TOTAL_REVERIFIED + 1))
 
@@ -107,7 +116,7 @@ if unknowns:
             TOTAL_STILL_UNKNOWN=$((TOTAL_STILL_UNKNOWN + 1))
         fi
 
-        sleep 1
+        if [ "$ZB_CHARGED" = "True" ] || [ "$ZB_CHARGED" = "true" ]; then sleep 1; fi
     done
     echo ""
     sleep 0.3

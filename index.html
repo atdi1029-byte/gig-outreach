@@ -2151,11 +2151,11 @@ function renderTopPicks() {
     const pending = an.filter(p =>
         venueHasPending((p.venue || p).venue_id));
     // Category tiers — high-value gig venues first
-    const tier1 = ['country_club','fine_dining','wine_bar',
-        'winery','hotel','yacht_club','private_club','spa'];
-    const tier2 = ['restaurant','event','event_venue',
-        'farmers_market'];
-    const tier3 = ['museum','recreation','other'];
+    const tier1 = ['restaurant','country_club','fine_dining',
+        'wine_bar','winery','hotel','yacht_club',
+        'private_club','spa'];
+    const tier2 = ['farmers_market','museum','recreation'];
+    const tier3 = ['event','event_venue','other'];
     function catTier(cat) {
         const c = (cat || 'other').toLowerCase()
             .replace(/[\s\/]/g, '_');

@@ -1241,6 +1241,8 @@ let navStack = ['viewHome'];
 // Track locally-confirmed sent contacts so a loadDashboard overwrite
 // doesn't erase marks made during an in-flight refresh.
 const _localSentContacts = new Set(); // keys: "contactId|venueId"
+const _localSentIG = new Set(); // venue IDs with IG marked sent
+const _localSentFB = new Set(); // venue IDs with FB marked sent
 let currentState = '';
 let currentCategory = '';
 
@@ -1666,7 +1668,7 @@ function jsonpFetch(url, cb) {
     window[cbName] = function(resp) { done=true; delete window[cbName]; script.remove(); cb(null, resp); };
     script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;
     script.onerror = function() { if(!done) { delete window[cbName]; script.remove(); cb('Failed'); } };
-    setTimeout(function() { if(!done) { delete window[cbName]; script.remove(); cb('Timeout'); } }, 30000);
+    setTimeout(function() { if(!done) { delete window[cbName]; script.remove(); cb('Timeout'); } }, 60000);
     document.head.appendChild(script);
 }
 
@@ -2033,12 +2035,19 @@ function markEmailSent(contactId, venueId, category, btn) {
 function markIGSent(venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
+    // Persist to Contacts sheet (find first contact for this venue)
+    var vc = (dashboardData ? dashboardData.contacts : []).find(function(c) { return c.venue_id === venueId; });
+    if (vc) {
+        fireGet(buildUrl({ action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId, field: 'ig_dm_sent', value: 'true' }), function() {});
+    }
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'instagram' }), function(res) {
+        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
         var row = btn.closest('.detail-action-row');
         var label = row ? row.previousElementSibling : null;
         if (label && label.classList.contains('detail-section-label')) label.remove();
         if (row) row.remove();
         showToast('IG DM marked!');
+        _localSentIG.add(venueId);
         if (dashboardData) {
             var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
             if (dv) dv.ig_dm_sent = true;
@@ -2050,12 +2059,19 @@ function markIGSent(venueId, btn) {
 function markFBSent(venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     btn.textContent = '...';
+    // Persist to Contacts sheet (find first contact for this venue)
+    var vc = (dashboardData ? dashboardData.contacts : []).find(function(c) { return c.venue_id === venueId; });
+    if (vc) {
+        fireGet(buildUrl({ action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId, field: 'fb_msg_sent', value: 'true' }), function() {});
+    }
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'facebook' }), function(res) {
+        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
         var row = btn.closest('.detail-action-row');
         var label = row ? row.previousElementSibling : null;
         if (label && label.classList.contains('detail-section-label')) label.remove();
         if (row) row.remove();
         showToast('FB msg marked!');
+        _localSentFB.add(venueId);
         if (dashboardData) {
             var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
             if (dv) dv.fb_msg_sent = true;
@@ -2746,6 +2762,12 @@ function loadDashboard() {
                     if (_localSentContacts.has(c.contact_id + '|' + c.venue_id)) {
                         c.email_sent = 'true';
                     }
+                });
+            }
+            if (_localSentIG.size > 0 || _localSentFB.size > 0) {
+                (dashboardData.venues || []).forEach(function(v) {
+                    if (_localSentIG.has(v.venue_id)) v.ig_dm_sent = true;
+                    if (_localSentFB.has(v.venue_id)) v.fb_msg_sent = true;
                 });
             }
             renderTopPicks();

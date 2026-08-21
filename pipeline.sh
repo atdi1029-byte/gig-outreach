@@ -1247,13 +1247,15 @@ print(json.dumps({'contacts':contacts, 'facebook':fb, 'instagram':ig, 'has_form'
 " <<< "$sub_html" 2>/dev/null)
                     if [ -n "$sub_result" ] && [ "$sub_result" != "null" ]; then
                         log "  [CURL FALLBACK] Subpage parsed via curl"
-                        # Check for contact form in curl fallback
+                        # Check for contact form in curl fallback — only on contact-related pages
                         if [ -z "$contact_form" ] || [ "$contact_form" = "None" ] || [ "$contact_form" = "" ]; then
-                            local curl_has_form
-                            curl_has_form=$(python3 -c "import json; print('yes' if json.loads('$sub_result').get('has_form') else 'no')" 2>/dev/null)
-                            if [ "$curl_has_form" = "yes" ]; then
-                                contact_form="$subpage"
-                                log "  [CONTACT FORM] Found on subpage (curl): $subpage"
+                            if echo "$subpage" | grep -qiE '/contact|/inquir|/get-in-touch|/reach-us|/book.*event|/private.*event|/private.*dining'; then
+                                local curl_has_form
+                                curl_has_form=$(python3 -c "import json; print('yes' if json.loads('$sub_result').get('has_form') else 'no')" 2>/dev/null)
+                                if [ "$curl_has_form" = "yes" ]; then
+                                    contact_form="$subpage"
+                                    log "  [CONTACT FORM] Found on subpage (curl): $subpage"
+                                fi
                             fi
                         fi
                     fi
@@ -1299,9 +1301,12 @@ for c in d.get('contacts', []):
             fi
 
             # Check subpage for contact form if we haven't found one yet
+            # Only check pages whose URL contains contact-related keywords to avoid
+            # false positives from newsletter signups, login forms, reservation widgets, etc.
             if [ -z "$contact_form" ] || [ "$contact_form" = "None" ] || [ "$contact_form" = "" ]; then
-                local sub_has_form
-                sub_has_form=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "
+                if echo "$subpage" | grep -qiE '/contact|/inquir|/get-in-touch|/reach-us|/book.*event|/private.*event|/private.*dining'; then
+                    local sub_has_form
+                    sub_has_form=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "
 (function(){
   var forms = document.querySelectorAll(\"form\");
   for(var i=0;i<forms.length;i++){
@@ -1315,9 +1320,10 @@ for c in d.get('contacts', []):
   }
   return \"no\";
 })()"' 2>/dev/null)
-                if [ "$sub_has_form" = "yes" ]; then
-                    contact_form="$subpage"
-                    log "  [CONTACT FORM] Found on subpage: $subpage"
+                    if [ "$sub_has_form" = "yes" ]; then
+                        contact_form="$subpage"
+                        log "  [CONTACT FORM] Found on subpage: $subpage"
+                    fi
                 fi
             fi
 
@@ -3542,12 +3548,12 @@ step5_google_fallback() {
     found_site=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
 
     if [ -n "$found_site" ] && [ "$found_site" != "missing value" ] && [ "$found_site" != "" ]; then
-        # Normalize scheme
-        if ! echo "$found_site" | grep -qE '^https?://'; then
-            found_site="https://$found_site"
+        # Google can return directories/tourism pages first. Choose only a URL that
+        # plausibly belongs to this exact venue.
+        found_site=$(python3 "${SCRIPT_DIR}/venue_quality.py" choose-website "$venue" "$found_site" 2>/dev/null)
+        if [ -z "$found_site" ]; then
+            log "  [FALLBACK] Search results did not contain a trustworthy venue website"
         fi
-        # Take only the first URL if multiple were returned (pipe-separated)
-        found_site=$(echo "$found_site" | cut -d'|' -f1)
         local found_domain
         found_domain=$(python3 -c "from urllib.parse import urlparse; print(urlparse('${found_site}').netloc.lower().replace('www.',''))" 2>/dev/null)
         if [ -n "$found_domain" ] && [ "$found_domain" != "$VENUE_DOMAIN" ]; then
@@ -3685,51 +3691,11 @@ except Exception as e:
         local ALL_SITES
         ALL_SITES=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
         if [ -n "$ALL_SITES" ] && [ "$ALL_SITES" != "None" ] && [ "$ALL_SITES" != "missing value" ] && [ "$ALL_SITES" != "" ]; then
-            # Loop through pipe-separated candidates, take first domain match
-            local FOUND_SITE=""
-            IFS='|' read -ra SITE_LIST <<< "$ALL_SITES"
-            for candidate in "${SITE_LIST[@]}"; do
-                [ -z "$candidate" ] && continue
-                DOMAIN_OK=$(python3 - "$venue" "$candidate" << 'PYEOF'
-import sys, re
-from urllib.parse import urlparse
-venue_name = sys.argv[1]
-url = sys.argv[2]
-domain = urlparse(url).netloc.lower().replace('www.','')
-# Extract meaningful words from venue name (skip stop words)
-stop = {'the','a','an','and','of','at','in','by','on','for','to',
-        'hotel','inn','resort','lodge','restaurant','winery','vineyard',
-        'club','country','golf','bar','bistro','cafe','tavern','grill',
-        'pub','lounge','spa','marina','museum','gallery','theater','theatre'}
-all_words = re.sub(r'[^a-z\s]','',venue_name.lower()).split()
-words = [w for w in all_words if w not in stop and len(w) > 2]
-# Build acronym from ALL words (including stop words) — catches TAYC, AAAS, etc.
-acronym = ''.join(w[0] for w in all_words if w)
-if not words:
-    print('ok')  # nothing to check, allow it
-else:
-    # Check full word OR any prefix of 5+ chars (catches metro→metropolitan, etc.)
-    def matches(w, domain):
-        if w in domain: return True
-        # prefix match 4+ chars (e.g. "zeph" from "zephaniah" matches "zephwine.com")
-        for n in range(4, len(w)+1):
-            if w[:n] in domain: return True
-        return False
-    # Also accept if domain base equals the venue acronym (e.g. tayc.com for Tred Avon Yacht Club)
-    domain_base = domain.split('.')[0]
-    if any(matches(w, domain) for w in words) or (len(acronym) >= 3 and domain_base == acronym):
-        print('ok')
-    else:
-        print('reject')
-PYEOF
-)
-                if [ "$DOMAIN_OK" = "reject" ]; then
-                    log "  [LOOKUP] Skipping '$candidate' — domain mismatch"
-                else
-                    FOUND_SITE="$candidate"
-                    break
-                fi
-            done
+            # Require a plausible official-site match. The old matcher accepted weak
+            # token overlaps and could attach an unrelated Google result to a venue.
+            local FOUND_SITE
+            FOUND_SITE=$(python3 "${SCRIPT_DIR}/venue_quality.py" choose-website "$venue" "$ALL_SITES" 2>/dev/null)
+
 
             if [ -n "$FOUND_SITE" ]; then
                 website="$FOUND_SITE"
@@ -3768,26 +3734,8 @@ PYEOF
     CURRENT_CAT=$(curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${venue_id}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('category',''))" 2>/dev/null)
     if [ "$CURRENT_CAT" = "restaurant" ]; then
         local CORRECT_CAT
-        CORRECT_CAT=$(python3 -c "
-nl = '''$venue'''.lower()
-hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
-               'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
-               'the line ', 'the jefferson', 'yours truly',
-               'ritz-carlton', 'four seasons', 'fairmont', 'mandarin',
-               'st. regis', 'w hotel', 'westin', 'hyatt', 'marriott',
-               'hilton', 'intercontinental', 'kimpton', 'rosewood',
-               'peninsula', 'langham', 'omni', 'loews']
-winery = ['winery', 'vineyard']
-club = ['country club', 'golf club']
-museum = ['museum', 'gallery']
-yacht = ['yacht club', 'sailing club']
-if any(t in nl for t in hotel_names): print('hotel')
-elif any(t in nl for t in winery): print('winery')
-elif any(t in nl for t in club): print('country_club')
-elif any(t in nl for t in museum): print('museum')
-elif any(t in nl for t in yacht): print('yacht_club')
-else: print('')
-" 2>/dev/null)
+        CORRECT_CAT=$(python3 "${SCRIPT_DIR}/venue_quality.py" category "restaurant" "$venue" 2>/dev/null)
+        [ "$CORRECT_CAT" = "restaurant" ] && CORRECT_CAT=""
         if [ -n "$CORRECT_CAT" ]; then
             log "  [FIX] Name-based category: $CORRECT_CAT (was restaurant) — updating sheet"
             curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=category&value=${CORRECT_CAT}" > /dev/null
@@ -3996,7 +3944,7 @@ if [ "$1" = "--smart-picks" ]; then
 import json
 with open('$SP_FILE') as f:
     recs = json.load(f).get('recommendations', [])
-filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted')]
+filtered = [r for r in recs if r.get('status','') not in ('pipelined','contacted','needs_review')]
 print(len(filtered))
 " 2>/dev/null)
     if [ -n "$REMAINING" ]; then
@@ -4037,48 +3985,65 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     'real estate','insurance','law firm','accounting firm',
     'church','mosque','synagogue','temple']
 
-# Taste-matched categories — pipeline these FIRST
-# Matches alex_taste.md ranking exactly
-FRENCH_EURO = ['french','bistro','brasserie','boucherie','chaumiere','auberge',
-    'la ferme','le chat','le comptoir','le refuge','petit louis',
-    'european','portuguese','trattoria','ristorante','osteria']
-TIER1_CATS = ['private_club','country_club','yacht_club']
-TIER2_CATS = ['hotel','winery','wine_bar','art_gallery','museum']
+# Luxury-fit gate — Smart Picks should look like a private concierge list,
+# not a generic local-business ranking.
+FINE_DINING = ['fine dining','michelin','tasting menu','prix fixe','white tablecloth',
+    'french','brasserie','boucherie','auberge','ristorante','trattoria','osteria',
+    'italian','spanish','argentinian','steakhouse','chophouse','prime','sommelier','wine pairing']
+LUXURY_HOTEL = ['five star','5-star','5 star','luxury','boutique','historic','ritz-carlton',
+    'four seasons','rosewood','mandarin oriental','st. regis','waldorf','fairmont','pendry',
+    'salamander','peninsula','langham','conrad','sofitel']
+WINE_SIGNALS = ['wine bar','enoteca','vinoteca','sommelier','wine lounge','wine cellar','wine program']
+ESTATE_SIGNALS = ['estate','chateau','vineyard','tasting room','reserve','winery']
+CLUB_CATS = {'private_club','country_club','yacht_club'}
+ALLOWED_CATS = CLUB_CATS | {'hotel','resort','wine_bar','restaurant','rest','fine_dining','winery'}
+
+def has_any(text, words):
+    return any(w in text for w in words)
+
+def luxury_fit(r):
+    cat = str(r.get('category','')).lower()
+    if cat not in ALLOWED_CATS: return False
+    if str(r.get('status','')).lower() == 'needs_review': return False
+    if r.get('venue_vote','') == 'down': return False
+    name = str(r.get('name','')).lower()
+    notes = str(r.get('notes','')).lower() if r.get('notes') else ''
+    text = name + ' ' + notes
+    try: upscale = int(float(r.get('upscale_score',0) or 0))
+    except: upscale = 0
+    if r.get('venue_vote','') == 'up': return True
+    if cat in CLUB_CATS: return True
+    if cat in ('restaurant','rest','fine_dining'):
+        return upscale >= 4 and has_any(text, FINE_DINING)
+    if cat in ('hotel','resort'):
+        return upscale >= 4 and (upscale >= 5 or has_any(text, LUXURY_HOTEL))
+    if cat == 'wine_bar':
+        return upscale >= 4 or has_any(text, WINE_SIGNALS)
+    if cat == 'winery':
+        return upscale >= 4 and has_any(text, ESTATE_SIGNALS)
+    return False
 
 def taste_rank(r):
-    \"\"\"Lower = better. Taste-matched venues pipeline first.\"\"\"
-    cat = r.get('category','').lower()
-    name = r.get('name','').lower()
-    notes = str(r.get('notes','')).lower() if r.get('notes') else ''
-    nametext = name + ' ' + notes
-    vote = r.get('venue_vote','')
-
-    # Thumbs up = always top priority
-    if vote == 'up': return 0
-
-    # French/European restaurants = rank 1
-    if any(kw in nametext for kw in FRENCH_EURO): return 1
-
-    # Private clubs, country clubs, yacht clubs = rank 2
-    if cat in TIER1_CATS: return 2
-
-    # Hotels, wineries, wine bars, galleries = rank 3
-    if cat in TIER2_CATS: return 3
-
-    # Regular restaurants in good areas = rank 4
-    if cat in ('restaurant','rest'): return 4
-
-    # Everything else = rank 5
-    return 5
+    """Lower = better, after passing the luxury-fit gate."""
+    cat = str(r.get('category','')).lower()
+    text = (str(r.get('name','')) + ' ' + str(r.get('notes','') or '')).lower()
+    if r.get('venue_vote','') == 'up': return 0
+    if cat in CLUB_CATS: return 1
+    if cat in ('hotel','resort') and has_any(text, LUXURY_HOTEL): return 2
+    if cat == 'wine_bar': return 2
+    if cat in ('restaurant','rest','fine_dining') and has_any(text, FINE_DINING): return 3
+    if cat == 'winery': return 4
+    return 9
 
 filtered = []
 for r in recs:
-    if r.get('status','') in ('pipelined','contacted'): continue
+    if r.get('status','') in ('pipelined','contacted','needs_review'): continue
     name_lower = r.get('name','').lower()
     if any(j in name_lower for j in JUNK):
         continue
-    # Skip thumbs down
+    # Skip thumbs down and anything that is not genuinely high-end.
     if r.get('venue_vote','') == 'down': continue
+    if not luxury_fit(r): continue
     filtered.append(r)
 
 # Sort by taste rank FIRST, then recommendation_score as tiebreaker
@@ -4182,6 +4147,28 @@ JUNK = ['bakery','coffee','koffee','mall','westfield','lingerie','bustiere',
     ' cafe','cafe ','slice','cupcake','smoothie','juice bar',
     'acai','poke bowl','bubble tea','boba']
 untouched = [v for v in untouched if not any(j in v.get('name','').lower() for j in JUNK)]
+# Shared-budget untouched phase follows the same high-end standard as Smart Picks.
+def luxury_untouched(v):
+    cat = str(v.get('category','')).lower()
+    if cat not in {'private_club','country_club','yacht_club','hotel','resort','wine_bar','restaurant','fine_dining','winery'}:
+        return False
+    if str(v.get('status','')).lower() == 'needs_review' or v.get('venue_vote','') == 'down':
+        return False
+    text = (str(v.get('name','')) + ' ' + str(v.get('notes','') or '')).lower()
+    try: upscale = int(float(v.get('upscale_score',0) or 0))
+    except: upscale = 0
+    if v.get('venue_vote','') == 'up': return True
+    if cat in {'private_club','country_club','yacht_club'}: return True
+    fine = ['fine dining','michelin','tasting menu','french','brasserie','boucherie','auberge',
+            'ristorante','trattoria','osteria','italian','spanish','argentinian','steakhouse','chophouse','prime']
+    luxury_hotel = ['five star','5-star','5 star','luxury','boutique','historic','ritz-carlton','four seasons',
+                    'rosewood','mandarin oriental','st. regis','waldorf','fairmont','pendry','salamander','peninsula','langham']
+    if cat in {'restaurant','fine_dining'}: return upscale >= 4 and any(x in text for x in fine)
+    if cat in {'hotel','resort'}: return upscale >= 4 and (upscale >= 5 or any(x in text for x in luxury_hotel))
+    if cat == 'wine_bar': return upscale >= 4
+    if cat == 'winery': return upscale >= 4 and any(x in text for x in ['estate','chateau','vineyard','tasting room','reserve','winery'])
+    return False
+untouched = [v for v in untouched if luxury_untouched(v)]
 untouched.sort(key=action_score, reverse=True)
 for i, venue in enumerate(untouched):
     vid = venue.get('venue_id', '')
@@ -4399,3 +4386,6 @@ print('NOT_FOUND')
 
     run_venue "$VENUE" "$VENUE_ID" "$WEBSITE" "$CITY"
 fi
+
+# Clean up .ics files auto-downloaded by Squarespace venue sites
+rm -f ~/Downloads/*.ics 2>/dev/null

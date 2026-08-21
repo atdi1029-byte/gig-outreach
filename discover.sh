@@ -564,8 +564,17 @@ def map_category(cat, name='', website=''):
     # Strip city names that cause false positives
     nl_clean = nl
     for fc in ['falls church', 'church hill', 'church creek',
-               'church point', 'chapel hill']:
+               'church point', 'chapel hill', 'churchill']:
         nl_clean = nl_clean.replace(fc, ' ')
+    # Strong venue identity beats a generic Google type like "Restaurant".
+    if any(t in nl for t in ['country club', 'golf club', 'golf & country', 'golf and country', 'hunt club', 'field club']): return 'country_club'
+    if any(t in nl for t in [' city club', ' town club', 'cosmos club', 'university club', 'army navy club', 'metropolitan club', 'social club']): return 'private_club'
+    if any(t in nl for t in [' yacht ', 'yacht club']): return 'yacht_club'
+    if re.search(r'\bwine\s*bar\b', nl): return 'wine_bar'
+    early_hotels = [' hotel ', ' inn ', ' resort ', ' lodge ', 'waldorf', 'conrad', 'sofitel', 'pendry', 'salamander',
+                    'ritz-carlton', 'four seasons', 'fairmont', 'mandarin', 'st. regis', 'westin', 'hyatt', 'marriott',
+                    'hilton', 'intercontinental', 'kimpton', 'rosewood', 'peninsula', 'langham', 'omni', 'loews']
+    if any(t in nl for t in early_hotels): return 'hotel'
     # --- Category-string matches (Google Maps type) ---
     if any(t in cl for t in ['hotel', 'inn', 'resort', 'lodge']): return 'hotel'
     if any(t in cl for t in ['winery', 'vineyard']): return 'winery'
@@ -573,6 +582,7 @@ def map_category(cat, name='', website=''):
     if any(t in cl for t in ['distillery', 'cidery']): return 'distillery'
     if any(t in cl for t in ['country club', 'golf club']): return 'country_club'
     if 'wine bar' in cl: return 'wine_bar'
+    if any(t in cl for t in ['restaurant', 'fine dining', 'steakhouse', 'brasserie', 'bistro']): return 'restaurant'
     if 'art gallery' in cl: return 'art_gallery'
     if any(t in cl for t in ['museum', 'gallery']): return 'museum'
     if any(t in cl for t in ['event', 'banquet', 'wedding', 'booking agent',
@@ -620,6 +630,7 @@ def map_category(cat, name='', website=''):
     if re.search(r'\b(?:arts? center|arts? institute)\b', nl): return 'art_gallery'
     # --- Name-based: breweries / distilleries ---
     if re.search(r'\bbrewer(?:y|ies)\b', nl): return 'brewery'
+    if re.search(r'\bbrewing\b', nl): return 'brewery'
     if re.search(r'\bdistiller(?:y|ies)\b', nl): return 'distillery'
     if re.search(r'\bcidery\b', nl): return 'distillery'
     # --- Name-based: recreation ---
@@ -661,7 +672,7 @@ def map_category(cat, name='', website=''):
     # --- Name-based: malls/shopping ---
     if any(t in nl for t in [' mall ', 'shopping center',
                               'shopping centre']): return 'shopping'
-    return 'restaurant'
+    return 'other'
 
 def pre_score(venue):
     score = 0
@@ -670,6 +681,7 @@ def pre_score(venue):
     if our_cat in tier1_cats: score += 30
     elif our_cat in tier2_cats: score += 20
     elif our_cat in tier3_cats: score += 10
+    else: score -= 60  # unknown types stay quarantined; never promote as generic restaurants
 
     location = venue.get('location', '')
     state_match = state_re.search(location)
@@ -696,6 +708,11 @@ def pre_score(venue):
     if reviews > 1000: score += 5
     elif reviews > 500: score += 3
 
+    price = str(venue.get('price','') or '').strip()
+    if len(price) >= 4: score += 15
+    elif len(price) == 3: score += 10
+    elif len(price) == 1: score -= 5
+
     cat_lower = cat.lower()
     if any(s in cat_lower for s in skip_cats): score -= 50
 
@@ -719,6 +736,7 @@ for venue in results:
 
     rating = venue.get('rating', '')
     reviews = venue.get('reviews', '')
+    price = str(venue.get('price', '') or '').strip()
     location = venue.get('location', '')
 
     city = ''
@@ -733,16 +751,20 @@ for venue in results:
     if not state and query_state:
         state = query_state
 
-    upscale = 3
-    if rating:
-        r = float(rating)
-        if r >= 4.7: upscale = 5
-        elif r >= 4.4: upscale = 4
-        elif r >= 4.0: upscale = 3
-        else: upscale = 2
-    if reviews and int(reviews) > 1000: upscale = min(5, upscale + 1)
+    # upscale_score now measures luxury/price positioning, not just star rating.
+    if len(price) >= 4: upscale = 5
+    elif len(price) == 3: upscale = 4
+    elif len(price) == 2: upscale = 3
+    elif len(price) == 1: upscale = 2
+    else:
+        r = float(rating or 0)
+        upscale = 4 if r >= 4.7 else 3 if r >= 4.4 else 2 if r else 3
+    name_text = (name + ' ' + query).lower()
+    if our_cat in ('country_club','private_club','yacht_club'): upscale = max(upscale, 4)
+    if our_cat == 'hotel' and any(x in name_text for x in ['luxury','five star','5-star','ritz-carlton','four seasons','rosewood','st. regis','waldorf','fairmont','pendry','salamander','mandarin']): upscale = 5
+    if our_cat == 'restaurant' and any(x in name_text for x in ['fine dining','michelin','tasting menu','french','brasserie','ristorante','steakhouse','chophouse']): upscale = max(upscale, 4)
 
-    notes = f"Google Maps '{cat}'. {rating}* ({reviews} reviews). Pre-score: {score}. Taste query: {query}"
+    notes = f"Google Maps '{cat}'. Price: {price or 'n/a'}. {rating}* ({reviews} reviews). Pre-score: {score}. Taste query: {query}"
 
     params = {
         'action': 'add_venue',
@@ -789,37 +811,10 @@ PYEOF2
             osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_Q}\""
             sleep 3
             FOUND_WEB_RAW=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${JS_DIR}/extract_cite.js"'")' 2>/dev/null)
-            # extract_cite.js returns up to 5 URLs joined by "|" — try each until one matches
+            # Require a plausible official-site match; do not accept the first non-directory result.
             FOUND_WEB=""
             if [ -n "$FOUND_WEB_RAW" ] && [ "$FOUND_WEB_RAW" != "missing value" ]; then
-                FOUND_WEB=$(python3 -c "
-import sys
-from urllib.parse import urlparse
-
-junk = {'facebook.com','yelp.com','tripadvisor.com','google.com',
-        'wikipedia.org','instagram.com','twitter.com','youtube.com',
-        'linkedin.com','airbnb.com','vrbo.com','eventbrite.com',
-        'meetup.com','opentable.com','doordash.com','grubhub.com',
-        'fox5dc.com','fox.com','dcpreservation.org','visitmaryland.org',
-        'yellowpages.com','travelocity.com','hotels.com','booking.com',
-        'expedia.com','resy.com','zomato.com','foursquare.com',
-        'mapquest.com','bbb.org','chamberofcommerce.com','ubereats.com'}
-junk_tlds = ['.edu','.gov','.mil']
-
-urls = '''$FOUND_WEB_RAW'''.split('|')
-for url in urls:
-    url = url.strip()
-    if not url: continue
-    try:
-        parsed = urlparse(url)
-        domain = parsed.netloc.lower().replace('www.','')
-    except: continue
-    if not domain: continue
-    if any(j in domain or domain.endswith('.'+j) for j in junk): continue
-    if any(domain.endswith(t) for t in junk_tlds): continue
-    print(parsed._replace(query='',fragment='').geturl().rstrip('/'))
-    sys.exit(0)
-" 2>/dev/null)
+                FOUND_WEB=$(python3 "${SCRIPT_DIR}/venue_quality.py" choose-website "$VNAME" "$FOUND_WEB_RAW" 2>/dev/null)
             fi
             if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
                 log "    Website: $FOUND_WEB"
@@ -1045,8 +1040,17 @@ def map_category(cat, name='', website=''):
     # Strip city names that cause false positives
     nl_clean = nl
     for fc in ['falls church', 'church hill', 'church creek',
-               'church point', 'chapel hill']:
+               'church point', 'chapel hill', 'churchill']:
         nl_clean = nl_clean.replace(fc, ' ')
+    # Strong venue identity beats a generic Google type like "Restaurant".
+    if any(t in nl for t in ['country club', 'golf club', 'golf & country', 'golf and country', 'hunt club', 'field club']): return 'country_club'
+    if any(t in nl for t in [' city club', ' town club', 'cosmos club', 'university club', 'army navy club', 'metropolitan club', 'social club']): return 'private_club'
+    if any(t in nl for t in [' yacht ', 'yacht club']): return 'yacht_club'
+    if re.search(r'\bwine\s*bar\b', nl): return 'wine_bar'
+    early_hotels = [' hotel ', ' inn ', ' resort ', ' lodge ', 'waldorf', 'conrad', 'sofitel', 'pendry', 'salamander',
+                    'ritz-carlton', 'four seasons', 'fairmont', 'mandarin', 'st. regis', 'westin', 'hyatt', 'marriott',
+                    'hilton', 'intercontinental', 'kimpton', 'rosewood', 'peninsula', 'langham', 'omni', 'loews']
+    if any(t in nl for t in early_hotels): return 'hotel'
     # --- Category-string matches (Google Maps type) ---
     if any(t in cl for t in ['hotel', 'inn', 'resort', 'lodge']): return 'hotel'
     if any(t in cl for t in ['winery', 'vineyard']): return 'winery'
@@ -1054,6 +1058,7 @@ def map_category(cat, name='', website=''):
     if any(t in cl for t in ['distillery', 'cidery']): return 'distillery'
     if any(t in cl for t in ['country club', 'golf club']): return 'country_club'
     if 'wine bar' in cl: return 'wine_bar'
+    if any(t in cl for t in ['restaurant', 'fine dining', 'steakhouse', 'brasserie', 'bistro']): return 'restaurant'
     if 'art gallery' in cl: return 'art_gallery'
     if any(t in cl for t in ['museum', 'gallery']): return 'museum'
     if any(t in cl for t in ['event', 'banquet', 'wedding', 'booking agent',
@@ -1096,6 +1101,7 @@ def map_category(cat, name='', website=''):
     if re.search(r'\bmuseum\b', nl): return 'museum'
     if re.search(r'\b(?:arts? center|arts? institute)\b', nl): return 'art_gallery'
     if re.search(r'\bbrewer(?:y|ies)\b', nl): return 'brewery'
+    if re.search(r'\bbrewing\b', nl): return 'brewery'
     if re.search(r'\bdistiller(?:y|ies)\b', nl): return 'distillery'
     if re.search(r'\bcidery\b', nl): return 'distillery'
     rec_names = [' swim ', 'swimming', 'tennis ', 'golf institute',
@@ -1126,7 +1132,7 @@ def map_category(cat, name='', website=''):
     if re.search(r'\bspa\b', nl) and 'spanish' not in nl: return 'spa'
     if any(t in nl for t in [' mall ', 'shopping center',
                               'shopping centre']): return 'shopping'
-    return 'restaurant'
+    return 'other'
 
 # Skip types - not useful for classical guitar gigs
 skip_cats = ['pub', 'irish pub', 'sports bar', 'fast food', 'pizza',
@@ -1154,6 +1160,7 @@ for card in cards:
     cat = card.get('category', '').strip()
     rating = card.get('rating', '')
     reviews = card.get('reviews', '')
+    price = str(card.get('price', '') or '').strip()
 
     if not name or len(name) < 3:
         continue
@@ -1206,19 +1213,23 @@ for card in cards:
 
     # Determine our category (use map_category with name fallback)
     our_cat = map_category(cat, name)
+    if our_cat == 'other':
+        print(f"  SKIP (unclassified): {name} -- {cat}")
+        continue
 
-    # Upscale score from rating + review count
-    upscale = 3
-    if rating:
-        r = float(rating)
-        if r >= 4.7: upscale = 5
-        elif r >= 4.4: upscale = 4
-        elif r >= 4.0: upscale = 3
-        else: upscale = 2
-    # Boost for high review count (popular = bigger audience)
-    if reviews and int(reviews) > 1000: upscale = min(5, upscale + 1)
+    # Upscale score is price/luxury positioning, not a popularity score.
+    if len(price) >= 4: upscale = 5
+    elif len(price) == 3: upscale = 4
+    elif len(price) == 2: upscale = 3
+    elif len(price) == 1: upscale = 2
+    else:
+        r = float(rating or 0)
+        upscale = 4 if r >= 4.7 else 3 if r >= 4.4 else 2 if r else 3
+    if our_cat in ('country_club','private_club','yacht_club'): upscale = max(upscale, 4)
+    nlux = name.lower()
+    if our_cat == 'hotel' and any(x in nlux for x in ['ritz-carlton','four seasons','rosewood','st. regis','waldorf','fairmont','pendry','salamander','mandarin','peninsula','langham']): upscale = 5
 
-    notes = f"Google Maps '{cat}'. {rating}★ ({reviews} reviews). Discovered from: {source_venue}"
+    notes = f"Google Maps '{cat}'. Price: {price or 'n/a'}. {rating}★ ({reviews} reviews). Discovered from: {source_venue}"
 
     # Parse location into city/state/address
     import re
@@ -1283,37 +1294,11 @@ PYEOF
         sleep 3
         FOUND_WEB_RAW=
         FOUND_WEB_RAW=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"${SCRIPT_DIR}/js/extract_cite.js"'")' 2>/dev/null)
-        # Try each URL until one matches the venue name
+        # Require the result URL to actually match the venue. A non-directory result
+        # is not enough: tourism sites and unrelated businesses used to slip through here.
         FOUND_WEB=""
         if [ -n "$FOUND_WEB_RAW" ] && [ "$FOUND_WEB_RAW" != "missing value" ]; then
-            FOUND_WEB=$(python3 -c "
-import sys
-from urllib.parse import urlparse
-
-junk = {'facebook.com','yelp.com','tripadvisor.com','google.com',
-        'wikipedia.org','instagram.com','twitter.com','youtube.com',
-        'linkedin.com','airbnb.com','vrbo.com','eventbrite.com',
-        'meetup.com','opentable.com','doordash.com','grubhub.com',
-        'fox5dc.com','fox.com','dcpreservation.org','visitmaryland.org',
-        'yellowpages.com','travelocity.com','hotels.com','booking.com',
-        'expedia.com','resy.com','zomato.com','foursquare.com',
-        'mapquest.com','bbb.org','chamberofcommerce.com','ubereats.com'}
-junk_tlds = ['.edu','.gov','.mil']
-
-urls = '''$FOUND_WEB_RAW'''.split('|')
-for url in urls:
-    url = url.strip()
-    if not url: continue
-    try:
-        parsed = urlparse(url)
-        domain = parsed.netloc.lower().replace('www.','')
-    except: continue
-    if not domain: continue
-    if any(j in domain or domain.endswith('.'+j) for j in junk): continue
-    if any(domain.endswith(t) for t in junk_tlds): continue
-    print(parsed._replace(query='',fragment='').geturl().rstrip('/'))
-    sys.exit(0)
-" 2>/dev/null)
+            FOUND_WEB=$(python3 "${SCRIPT_DIR}/venue_quality.py" choose-website "$VNAME" "$FOUND_WEB_RAW" 2>/dev/null)
         fi
         if [ -n "$FOUND_WEB" ] && [ "$FOUND_WEB" != "missing value" ] && [ "$FOUND_WEB" != "" ]; then
             log "    Website: $FOUND_WEB"
@@ -1393,6 +1378,10 @@ fi
 
 log ""
 log "=== Discovery Complete — Total new venues: $TOTAL_ADDED ==="
+
+# Clean up .ics files auto-downloaded by Squarespace venue sites
+rm -f ~/Downloads/*.ics 2>/dev/null
+
 echo ""
 echo "Next steps:"
 echo "  1. Run pipeline on new venues to find contacts + emails"

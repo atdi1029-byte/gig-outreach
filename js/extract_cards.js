@@ -40,23 +40,26 @@
                     var chunk = card ? card.textContent : '';
                     var rating = '';
                     var reviews = '';
+                    var price = '';
                     var category = '';
                     var location = '';
                     var rm = chunk.match(/([0-9]\.[0-9])/);
                     if (rm) rating = rm[1];
                     var revm = chunk.match(/\(([0-9,]+)\)/);
                     if (revm) reviews = revm[1].replace(/,/g,'');
+                    var pm = chunk.match(/(?:^|\s|·)(\${1,4})(?=\s|·|$)/);
+                    if (pm) price = pm[1];
                     var catParts = chunk.split('\n');
                     for (var cp = 0; cp < catParts.length; cp++) {
                         var pt = catParts[cp].trim();
-                        if (pt.length > 2 && pt.length < 30 && pt !== nm && !pt.match(/^[0-9]/) && !pt.match(/^\(/) && pt.indexOf('star') === -1) {
+                        if (pt.length > 2 && pt.length < 30 && pt !== nm && !pt.match(/^[0-9]/) && !pt.match(/^\(/) && !pt.match(/^\${1,4}$/) && pt.indexOf('star') === -1) {
                             category = pt;
                             break;
                         }
                     }
                     location = extractLocation(catParts, nm);
                     seen[nm] = true;
-                    results.push(JSON.stringify({name:nm, rating:rating, reviews:reviews, category:category, location:location}));
+                    results.push(JSON.stringify({name:nm, rating:rating, reviews:reviews, price:price, category:category, location:location}));
                     break;
                 }
             }
@@ -79,16 +82,19 @@
         var chunk2 = fullText.substring(after, end);
         var rating2 = '';
         var reviews2 = '';
+        var price2 = '';
         var category2 = '';
         var location2 = '';
         var rm2 = chunk2.match(/([0-9]\.[0-9])/);
         if (rm2) rating2 = rm2[1];
         var revm2 = chunk2.match(/\(([0-9,]+)\)/);
         if (revm2) reviews2 = revm2[1].replace(/,/g,'');
+        var pm2 = chunk2.match(/(?:^|\s|·)(\${1,4})(?=\s|·|$)/);
+        if (pm2) price2 = pm2[1];
         var catMatch = chunk2.match(/\)[\s]*([A-Za-z][A-Za-z ]+)/);
         if (catMatch) category2 = catMatch[1].trim();
         location2 = extractLocation(chunk2.split('\n'), names[i2]);
-        results2.push(JSON.stringify({name:names[i2], rating:rating2, reviews:reviews2, category:category2, location:location2}));
+        results2.push(JSON.stringify({name:names[i2], rating:rating2, reviews:reviews2, price:price2, category:category2, location:location2}));
     }
     return '[' + results2.join(',') + ']';
 })()

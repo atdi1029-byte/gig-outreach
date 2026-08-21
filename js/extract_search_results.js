@@ -47,13 +47,18 @@
         var revm = text.match(/\(([0-9,]+)\)/);
         if (revm) reviews = revm[1].replace(/,/g, '');
 
+        // Price level is a luxury signal and must NOT be mistaken for category.
+        var price = '';
+        var pm = text.match(/(?:^|\s|·)(\${1,4})(?=\s|·|$)/);
+        if (pm) price = pm[1];
+
         // Category: look for known type patterns in card text
         var category = '';
         var lines = text.split(/[\n·]/);
         for (var l = 0; l < lines.length; l++) {
             var ln = lines[l].trim();
             if (ln.length > 2 && ln.length < 45 && ln !== name &&
-                !/^[0-9]/.test(ln) && !/^\(/.test(ln) &&
+                !/^[0-9]/.test(ln) && !/^\(/.test(ln) && !/^\${1,4}$/.test(ln) &&
                 ln.indexOf('star') === -1 && ln.indexOf('Closed') === -1 &&
                 ln.indexOf('Open') === -1 && ln.indexOf('hours') === -1 &&
                 ln.indexOf('ago') === -1 && ln !== rating) {
@@ -83,6 +88,7 @@
             name: name,
             rating: rating,
             reviews: reviews,
+            price: price,
             category: category,
             location: location
         });

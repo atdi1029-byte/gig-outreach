@@ -2168,54 +2168,164 @@ function toggleTopPicks() {
     list.classList.remove('collapsed');
 }
 
+function _topPickCat(v) {
+    const raw = String((v && v.category) || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+    const name = (' ' + String((v && v.name) || '').toLowerCase() + ' ');
+    // Repair obvious legacy misclassification in-memory so old REST rows do not
+    // masquerade as restaurants while the sheet cleanup catches up.
+    if (/(country club|golf & country|golf and country|hunt club|field club)/.test(name)) return 'country_club';
+    if (/(yacht club|sailing club)/.test(name)) return 'yacht_club';
+    if (/(city club|town club|cosmos club|university club|army navy club|metropolitan club|social club)/.test(name)) return 'private_club';
+    if (/wine\s*bar/.test(name)) return 'wine_bar';
+    if (/(ritz-carlton|four seasons|rosewood|mandarin|st\.? regis|waldorf|fairmont|pendry|salamander|peninsula|langham|conrad|sofitel)/.test(name)) return 'hotel';
+    if (/\b(hotel|resort|lodge)\b/.test(name) || /\binn\b/.test(name)) return 'hotel';
+    return raw;
+}
+
+function _topPickWebsitePlausible(v) {
+    const raw = String((v && v.website) || '').trim();
+    if (!raw) return true; // missing is better than a confidently wrong URL
+    let u;
+    try { u = new URL(/^https?:\/\//i.test(raw) ? raw : 'https://' + raw); }
+    catch (_) { return false; }
+    const host = u.hostname.toLowerCase().replace(/^www\./, '');
+    const blocked = [
+        'yelp.com','tripadvisor.com','opentable.com','resy.com','zomato.com','foursquare.com',
+        'mapquest.com','yellowpages.com','bbb.org','chamberofcommerce.com','manta.com',
+        'eventbrite.com','theknot.com','weddingwire.com','partyslate.com',
+        'doordash.com','grubhub.com','ubereats.com','booking.com','expedia.com','hotels.com',
+        'travelocity.com','kayak.com','airbnb.com','vrbo.com','facebook.com','instagram.com',
+        'linkedin.com','wikipedia.org','google.com','visitmaryland.org','washington.org'
+    ];
+    if (blocked.some(d => host === d || host.endsWith('.' + d))) return false;
+    if (/^(visit|tourism|discover|explore)/.test(host.split('.')[0])) return false;
+
+    const parentHotels = ['marriott.com','hilton.com','hyatt.com','ihg.com','fourseasons.com',
+        'rosewoodhotels.com','mandarinoriental.com','fairmont.com','accor.com','omnihotels.com',
+        'loewshotels.com','kimptonhotels.com','ritzcarlton.com'];
+    const name = String((v && v.name) || '').toLowerCase();
+    const stop = new Set(['the','and','of','at','in','by','for','hotel','hotels','inn','resort','lodge',
+        'restaurant','winery','vineyard','club','country','golf','bar','bistro','cafe','grill','grille',
+        'spa','museum','gallery','event','venue','fine','dining','house']);
+    const weak = new Set(['washington','maryland','virginia','baltimore','annapolis','bethesda','alexandria',
+        'georgetown','leesburg','middleburg','easton','wilmington','potomac','mclean','fairfax','arlington']);
+    const tokens = (name.match(/[a-z0-9]+/g) || []).filter(w => w.length >= 4 && !stop.has(w) && !weak.has(w));
+    const hay = (host + u.pathname).toLowerCase().replace(/[^a-z0-9]/g, '');
+    const domainHay = host.replace(/[^a-z0-9]/g, '');
+    const domainMatches = tokens.filter(t => domainHay.includes(t));
+    if (domainMatches.length >= 1 && domainMatches.some(t => t.length >= 5)) return true;
+    if (domainMatches.length >= 2) return true;
+    const anywhereMatches = tokens.filter(t => hay.includes(t));
+    if (parentHotels.some(d => host === d || host.endsWith('.' + d)) && anywhereMatches.length >= 1) return true;
+
+    // Initialisms are common for private/country/yacht clubs.
+    const words = name.match(/[a-z0-9]+/g) || [];
+    const initials = words.filter(w => !['the','and','of','at','in','by','for'].includes(w)).map(w => w[0]).join('');
+    const base = host.split('.')[0];
+    if (initials.length >= 3 && (base === initials || base === initials + 'cc' || base === initials + 'club')) return true;
+    return tokens.length === 0; // don't reject a short brand we cannot safely compare
+}
+
+function _topPickLuxuryScore(v) {
+    if (!v) return -1;
+    const cat = _topPickCat(v);
+    const status = String(v.status || '').toLowerCase();
+    if (status === 'needs_review' || String(v.venue_vote || '') === 'down') return -1;
+    if (!_topPickWebsitePlausible(v)) return -1;
+
+    const allowed = new Set(['restaurant','fine_dining','hotel','resort','country_club','private_club',
+        'yacht_club','wine_bar','winery']);
+    if (!allowed.has(cat)) return -1;
+
+    const text = (String(v.name || '') + ' ' + String(v.notes || '')).toLowerCase();
+    const upscale = Number(v.upscale_score || 0);
+    const junk = ['bakery','coffee','koffee','pizza','taco','burger','deli','sandwich','ramen','noodle',
+        'sushi','sports bar','pub','hookah','karaoke','nightclub','ice cream','gelato','smoothie','juice',
+        'bagel','donut','food court','clubhouse','swim club','swimming','tennis academy','golf academy',
+        'recreation club','liquor store','wine store','wine shop','hampton inn','comfort inn','fairfield inn',
+        'holiday inn','days inn','la quinta','hilton garden','residence inn','courtyard by'];
+    if (junk.some(x => text.includes(x))) return -1;
+
+    const fineDining = ['fine dining','michelin','tasting menu','chef-driven','white tablecloth','prix fixe',
+        'french','brasserie','boucherie','auberge','ristorante','trattoria','osteria','italian','spanish',
+        'argentinian','steakhouse','chophouse','prime','sommelier','wine pairing','gastronomic'];
+    const luxuryHotel = ['five star','5-star','5 star','luxury','boutique','historic','grand hotel','ritz-carlton',
+        'four seasons','rosewood','mandarin oriental','st. regis','waldorf','fairmont','pendry','salamander',
+        'peninsula','langham','conrad','sofitel'];
+    const luxuryClub = ['country club','private club','yacht club','hunt club','city club','metropolitan club',
+        'university club','army navy','golf & country','golf and country'];
+    const wineSignals = ['wine bar','enoteca','vinoteca','sommelier','wine lounge','wine cellar','wine program'];
+    const estateSignals = ['estate','chateau','vineyard','tasting room','reserve','winery'];
+    const has = arr => arr.some(x => text.includes(x));
+
+    // Hard gates: Top Picks is intentionally allowed to return fewer than 10.
+    if (cat === 'restaurant' || cat === 'fine_dining') {
+        if (upscale < 4) return -1;
+        if (!has(fineDining) && String(v.venue_vote || '') !== 'up') return -1;
+    } else if (cat === 'hotel' || cat === 'resort') {
+        if (upscale < 4 && !has(luxuryHotel)) return -1;
+        if (!has(luxuryHotel) && upscale < 5 && String(v.venue_vote || '') !== 'up') return -1;
+    } else if (cat === 'wine_bar') {
+        if (upscale < 4 && !has(wineSignals) && String(v.venue_vote || '') !== 'up') return -1;
+    } else if (cat === 'winery') {
+        if (upscale < 4 || (!has(estateSignals) && String(v.venue_vote || '') !== 'up')) return -1;
+    } else if (['country_club','private_club','yacht_club'].includes(cat)) {
+        if (!has(luxuryClub) && String(v.venue_vote || '') !== 'up') return -1;
+    }
+
+    const base = { country_club: 112, private_club: 110, yacht_club: 108,
+        hotel: 106, resort: 104, wine_bar: 102, fine_dining: 100,
+        restaurant: 96, winery: 88 }[cat] || 0;
+    let score = base + Math.min(5, upscale) * 5;
+    if (has(fineDining)) score += 16;
+    if (has(luxuryHotel)) score += 18;
+    if (has(luxuryClub)) score += 14;
+    if (has(wineSignals)) score += 12;
+    if (has(estateSignals)) score += 8;
+    if (String(v.venue_vote || '') === 'up') score += 30;
+    if (String(v.zone_priority || '') === 'green') score += 5;
+    return score;
+}
+
 function renderTopPicks() {
     const el = document.getElementById('topPicksList');
     const badge = document.getElementById('topPicksBadge');
     const an = (dashboardData && dashboardData.actionNeeded) || [];
-    const pending = an.filter(p =>
-        venueHasPending((p.venue || p).venue_id));
-    // Category tiers — high-value gig venues first
-    const tier1 = ['restaurant','country_club','fine_dining',
-        'wine_bar','winery','hotel','yacht_club',
-        'private_club','spa'];
-    const tier2 = ['farmers_market','museum','recreation'];
-    const tier3 = ['event','event_venue','other'];
-    function catTier(cat) {
-        const c = (cat || 'other').toLowerCase()
-            .replace(/[\s\/]/g, '_');
-        if (tier1.includes(c)) return 0;
-        if (tier2.includes(c)) return 1;
-        return 2;
-    }
-    // Sort by tier, then by upscale_score descending
+    const pending = an.filter(p => {
+        const v = p.venue || p;
+        return venueHasPending(v.venue_id) && _topPickLuxuryScore(v) >= 0;
+    });
+
     pending.sort((a, b) => {
         const va = a.venue || a, vb = b.venue || b;
-        const ta = catTier(va.category);
-        const tb = catTier(vb.category);
-        if (ta !== tb) return ta - tb;
-        return (vb.upscale_score || 0) - (va.upscale_score || 0);
+        return _topPickLuxuryScore(vb) - _topPickLuxuryScore(va);
     });
-    // Pick top 10, max 3 per category, max 3 per state
+
+    // Luxury list, not a quota. Never fill empty slots with mediocre venues.
+    // Restaurants are capped at 2 so the list feels like a high-end portfolio,
+    // not another restaurant search page.
+    const caps = { restaurant: 2, fine_dining: 2, hotel: 3, resort: 2,
+        country_club: 3, private_club: 2, yacht_club: 2, wine_bar: 2, winery: 1 };
     const all = [];
     const catCount = {};
     const stCount = {};
     for (const p of pending) {
         if (all.length >= 10) break;
         const v = p.venue || p;
-        const cat = (v.category || 'other').toLowerCase()
-            .replace(/[\s\/]/g, '_');
-        const st = (v.state || '').toUpperCase();
+        const cat = _topPickCat(v);
+        const st = String(v.state || '').toUpperCase();
         if (st === 'PA') continue;
-        if ((catCount[cat] || 0) >= 3) continue;
-        if ((stCount[st] || 0) >= 3) continue;
+        if ((catCount[cat] || 0) >= (caps[cat] || 1)) continue;
+        if (st && (stCount[st] || 0) >= 4) continue;
         all.push(p);
         catCount[cat] = (catCount[cat] || 0) + 1;
-        stCount[st] = (stCount[st] || 0) + 1;
+        if (st) stCount[st] = (stCount[st] || 0) + 1;
     }
+
     badge.textContent = all.length;
     if (all.length === 0) {
         el.innerHTML = '<div class="empty-state">' +
-            'No top picks yet. Run the scraper!</div>';
+            'No verified luxury picks yet. Better to show none than random venues.</div>';
         return;
     }
     el.innerHTML = all.map(renderVenueCard).join('');
@@ -2225,7 +2335,7 @@ function renderVenueCard(item) {
     const v = item.venue;
     const contacts = item.contacts || [];
     const pendingEmails = (item.pendingEmails || []).filter(c => (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown'));
-    const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+    const cat = _topPickCat(v);
 
     let actionCount = pendingEmails.length;
     if (item.igPending && v.instagram) actionCount++;
@@ -2234,7 +2344,7 @@ function renderVenueCard(item) {
     let html = `<div class="venue-card" data-zone="${v.zone_priority || 'default'}">`;
     html += `<div class="venue-header" onclick="openVenueDetail('${esc(v.venue_id)}')"><div class="venue-header-left">`;
     html += `<div class="venue-top"><span class="venue-name venue-link">${esc(v.name)}</span>`;
-    html += `<span class="category-badge ${cat}">${esc(v.category || 'Other').toUpperCase()}</span>`;
+    html += `<span class="category-badge ${cat}">${esc(cat.replace(/_/g, ' ')).toUpperCase()}</span>`;
     if (v.zone_priority === 'green' || v.zone_priority === 'yellow') html += `<span class="zone-dot ${v.zone_priority}"></span>`;
     html += `</div><div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}`;
     if (isResurfaced(v)) html += `<span class="recontact-badge">${esc(resurfaceLabel(v))}</span>`;

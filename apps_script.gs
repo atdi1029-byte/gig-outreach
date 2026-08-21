@@ -242,6 +242,7 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     var venue = venues[v];
     if (venue.status === 'contacted') continue;
     if (venue.status === 'untouched') continue;
+    if (venue.status === 'needs_review') continue; // quarantined discovery data must never become a Top Pick
     if (pastGigVenueIds[venue.venue_id]) continue;
     // Substring match: skip if venue name contains a past gig name or vice versa
     var vnLower = String(venue.name || '').toLowerCase().trim();
@@ -358,7 +359,7 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     var vote = String(v.venue_vote || '');
 
     // Assign taste rank (lower = better, 1-10 matching the taste profile)
-    var tasteRank = 6; // default: nice restaurant
+    var tasteRank = 99; // unknown/unproven venues never get a Top-Pick boost
 
     // Check for junk first — always last
     var isJunk = false;
@@ -367,24 +368,30 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     }
     if (isJunk || vote === 'down') {
       tasteRank = 99;
-    } else if (cat === 'restaurant' || cat === 'rest') {
-      // Check if French/European
+    } else if (cat === 'restaurant' || cat === 'rest' || cat === 'fine_dining') {
+      // Restaurants must prove they are upscale; a high Google rating alone is not luxury.
       var isFrenchEuro = false;
+      var isFineDining = false;
+      var vUpscaleRank = Number(v.upscale_score || 0);
       for (var nb = 0; nb < nameBoostWords.length; nb++) {
         if (nameText.indexOf(nameBoostWords[nb]) > -1) { isFrenchEuro = true; break; }
       }
-      if (isFrenchEuro) tasteRank = 1;  // #1 French/European
-      else tasteRank = 6;               // #6 nice restaurant
+      for (var ng = 0; ng < nameGoodWords.length; ng++) {
+        if (nameText.indexOf(nameGoodWords[ng]) > -1) { isFineDining = true; break; }
+      }
+      if (isFrenchEuro && vUpscaleRank >= 4) tasteRank = 1;
+      else if (isFineDining && vUpscaleRank >= 4) tasteRank = 5;
+      else tasteRank = 99;
     } else if (cat === 'private_club') {
-      tasteRank = 2;                     // #2 historic private clubs
+      tasteRank = 2;                     // private clubs are intrinsically high-end targets
     } else if (cat === 'country_club') {
       tasteRank = 3;                     // #3 country clubs
-    } else if (cat === 'hotel') {
-      tasteRank = 4;                     // #4 luxury hotels
+    } else if (cat === 'hotel' || cat === 'resort') {
+      tasteRank = Number(v.upscale_score || 0) >= 4 ? 3 : 99; // only upscale hotels/resorts
     } else if (cat === 'winery') {
-      tasteRank = 5;                     // #5 wineries
+      tasteRank = Number(v.upscale_score || 0) >= 4 ? 5 : 99;
     } else if (cat === 'wine_bar') {
-      tasteRank = 5;                     // #5 wine bars (same tier as wineries)
+      tasteRank = Number(v.upscale_score || 0) >= 4 ? 3 : 99;
     } else if (cat === 'art_gallery' || cat === 'museum') {
       tasteRank = 5;                     // #5 art/museum
     } else if (cat === 'yacht_club') {
@@ -1865,6 +1872,7 @@ function getRecommendations_() {
     if (isPastGig) continue;
     var vVote = String(row[21] || '');
     var vStatus = String(row[12]) || 'untouched';
+    if (vStatus === 'needs_review') continue; // website/category not verified yet
     if (vVote === 'down') continue; // explicitly rejected = always excluded
     var vCat = String(row[2]).toLowerCase();
     var vUpscale = Number(row[10]) || 3;
@@ -1962,6 +1970,8 @@ function getRecommendations_() {
       status: vStatus,
       distance_miles: vDist,
       venue_vote: vVote,
+      website: String(row[3] || ''),
+      notes: String(row[15] || ''),
       recommendation_score: totalScore,
       score_breakdown: {
         category: catPts,

@@ -554,46 +554,111 @@ if q_state_match:
     city_words = [w for w in words if w.lower() not in type_words]
     query_city = ' '.join(city_words).strip()
 
-def map_category(cat, name=''):
+def map_category(cat, name='', website=''):
+    import re
     cl = cat.lower()
-    nl = name.lower()
+    nl = ' ' + name.lower() + ' '
+    wl = (website or '').lower()
+    # Strip city names that cause false positives
+    nl_clean = nl
+    for fc in ['falls church', 'church hill', 'church creek',
+               'church point', 'chapel hill']:
+        nl_clean = nl_clean.replace(fc, ' ')
+    # --- Category-string matches (Google Maps type) ---
     if any(t in cl for t in ['hotel', 'inn', 'resort', 'lodge']): return 'hotel'
     if any(t in cl for t in ['winery', 'vineyard']): return 'winery'
+    if any(t in cl for t in ['brewery', 'brewpub']): return 'brewery'
+    if any(t in cl for t in ['distillery', 'cidery']): return 'distillery'
     if any(t in cl for t in ['country club', 'golf club']): return 'country_club'
     if 'wine bar' in cl: return 'wine_bar'
+    if 'art gallery' in cl: return 'art_gallery'
     if any(t in cl for t in ['museum', 'gallery']): return 'museum'
     if any(t in cl for t in ['event', 'banquet', 'wedding', 'booking agent',
                               'entertainment agency', 'party', 'catering']): return 'event'
     if any(t in cl for t in ['yacht', 'sailing']): return 'yacht_club'
     if any(t in cl for t in ['private club', 'social club', "women's club",
                               "woman's club", 'civic club', 'fraternal']): return 'private_club'
-    if 'spa' in cl: return 'spa'
+    if 'spa' in cl and 'spanish' not in cl: return 'spa'
     if any(t in cl for t in ['farmers market', 'farm stand', 'farmer']): return 'farmers_market'
+    if any(t in cl for t in ['senior living', 'assisted living',
+                              'retirement']): return 'senior_living'
     if any(t in cl for t in ['swim', 'pool', 'tennis', 'golf', 'recreation',
                               'athletic', 'fitness', 'gym', 'canoe', 'kayak',
                               'paddle', 'marina', 'boat']): return 'recreation'
-    # Name-based fallback: catch hotels Google Maps labels as restaurants
-    hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
-                   'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
-                   'the line ', 'the jefferson', 'yours truly',
+    if any(t in cl for t in ['theater', 'theatre', 'cinema',
+                              'performing arts']): return 'theater'
+    if any(t in cl for t in ['library']): return 'library'
+    # --- Name-based fallback: hotels ---
+    hotel_names = [' hotel ', ' inn ', ' resort ', ' lodge ', ' suites ',
+                   'waldorf', 'conrad', 'sofitel', 'pendry', 'salamander',
+                   'lyle ', 'the line ', 'the jefferson', 'yours truly',
                    'ritz-carlton', 'four seasons', 'fairmont', 'mandarin',
                    'st. regis', 'w hotel', 'westin', 'hyatt', 'marriott',
                    'hilton', 'intercontinental', 'kimpton', 'rosewood',
-                   'peninsula', 'langham', 'omni', 'loews']
+                   'peninsula', 'langham', 'omni', 'loews',
+                   'bed & breakfast', 'bed and breakfast', 'b&b']
     if any(t in nl for t in hotel_names): return 'hotel'
-    # Name-based fallback: catch recreation venues Google Maps labels wrong
-    rec_names = ['swim', 'swimming', 'pool ', ' pool', 'tennis', 'golf institute',
-                 'golf academy', 'recreation club', 'rec club', 'canoe', 'kayak',
-                 'paddle', 'marina ', 'boat club', 'athletic']
+    # --- Name-based: country clubs ---
+    cc_names = ['country club', 'golf & country', 'golf and country',
+                'hunt club', 'field club']
+    if any(t in nl for t in cc_names): return 'country_club'
+    # --- Name-based: private clubs ---
+    pc_names = ['club of ', ' city club', ' town club', ' circle club',
+                "woman's club", "women's club", 'cosmos club',
+                'university club', 'army navy club', 'metropolitan club',
+                ' yacht club', 'sailing club', 'boat club',
+                'democratic club', 'republican club',
+                'supper club', 'social club']
+    if any(t in nl for t in pc_names): return 'private_club'
+    # --- Name-based: yacht clubs ---
+    if any(t in nl for t in [' yacht ', 'yacht club']): return 'yacht_club'
+    # --- Name-based: art galleries / museums ---
+    if re.search(r'\bgaller(?:y|ies)\b', nl): return 'art_gallery'
+    if re.search(r'\bmuseum\b', nl): return 'museum'
+    if re.search(r'\b(?:arts? center|arts? institute)\b', nl): return 'art_gallery'
+    # --- Name-based: breweries / distilleries ---
+    if re.search(r'\bbrewer(?:y|ies)\b', nl): return 'brewery'
+    if re.search(r'\bdistiller(?:y|ies)\b', nl): return 'distillery'
+    if re.search(r'\bcidery\b', nl): return 'distillery'
+    # --- Name-based: recreation ---
+    rec_names = [' swim ', 'swimming', 'tennis ', 'golf institute',
+                 'golf academy', 'recreation club', 'rec club',
+                 ' canoe ', ' kayak ', 'paddle ', 'athletic ',
+                 'dragon boat', 'rowing club', 'fitness']
     if any(t in nl for t in rec_names): return 'recreation'
-    # Name-based fallback: catch event venues Google Maps mislabels
-    event_names = ['farm', 'mansion', 'estate', 'manor', 'sanctuary',
-                   'garden', 'chapel', 'barn ', ' barn', 'pavilion',
-                   "woman's club", "women's club", 'civic club']
+    # --- Name-based: event venues ---
+    event_names = [' mansion ', ' manor ', ' pavilion ',
+                   ' ballroom ', ' banquet hall', ' civic club']
     if any(t in nl for t in event_names): return 'event_venue'
-    # Name-based fallback: catch private clubs
-    club_names = ['club of', 'city club', 'town club', 'circle club']
-    if any(t in nl for t in club_names): return 'private_club'
+    if 'vfw' in nl or 'veterans of foreign wars' in nl: return 'event_venue'
+    # --- Name-based: wineries ---
+    if re.search(r'\bwiner(?:y|ies)\b', nl): return 'winery'
+    if re.search(r'\bvineyard\b', nl): return 'winery'
+    # --- Name-based: wine bars (not "Restaurant and Wine Bar") ---
+    if re.search(r'\bwine\s*bar\b', nl) and 'restaurant' not in nl:
+        return 'wine_bar'
+    # --- Name-based: theaters ---
+    if re.search(r'\btheat(?:er|re)\b', nl): return 'theater'
+    if re.search(r'\bcinema\b', nl): return 'theater'
+    # --- Name-based: churches (using cleaned name to avoid city false positives) ---
+    if any(t in nl_clean for t in [' church ', ' cathedral ', ' basilica ']):
+        return 'church'
+    if any(t in nl_clean for t in [' synagogue ', ' congregation ']):
+        return 'synagogue'
+    # --- Name-based: senior living ---
+    if any(t in nl for t in ['senior', 'assisted living', 'retirement',
+                              'elder care']): return 'senior_living'
+    # --- Name-based: libraries (not "Library Bar") ---
+    if re.search(r'\blibrar(?:y|ies)\b', nl) and not any(
+            t in nl for t in ['bar', 'pub', 'lounge', 'tavern']):
+        return 'library'
+    # --- Name-based: farmers markets ---
+    if re.search(r'\bfarmers?\s*market\b', nl): return 'farmers_market'
+    # --- Name-based: spas ---
+    if re.search(r'\bspa\b', nl) and 'spanish' not in nl: return 'spa'
+    # --- Name-based: malls/shopping ---
+    if any(t in nl for t in [' mall ', 'shopping center',
+                              'shopping centre']): return 'shopping'
     return 'restaurant'
 
 def pre_score(venue):
@@ -970,44 +1035,95 @@ existing_file.close()
 api = '$APPS_SCRIPT_URL'
 source_venue = '''$VENUE_NAME'''
 
-def map_category(cat, name=''):
+def map_category(cat, name='', website=''):
+    import re
     cl = cat.lower()
-    nl = name.lower()
+    nl = ' ' + name.lower() + ' '
+    wl = (website or '').lower()
+    # Strip city names that cause false positives
+    nl_clean = nl
+    for fc in ['falls church', 'church hill', 'church creek',
+               'church point', 'chapel hill']:
+        nl_clean = nl_clean.replace(fc, ' ')
+    # --- Category-string matches (Google Maps type) ---
     if any(t in cl for t in ['hotel', 'inn', 'resort', 'lodge']): return 'hotel'
     if any(t in cl for t in ['winery', 'vineyard']): return 'winery'
+    if any(t in cl for t in ['brewery', 'brewpub']): return 'brewery'
+    if any(t in cl for t in ['distillery', 'cidery']): return 'distillery'
     if any(t in cl for t in ['country club', 'golf club']): return 'country_club'
     if 'wine bar' in cl: return 'wine_bar'
+    if 'art gallery' in cl: return 'art_gallery'
     if any(t in cl for t in ['museum', 'gallery']): return 'museum'
     if any(t in cl for t in ['event', 'banquet', 'wedding', 'booking agent',
                               'entertainment agency', 'party', 'catering']): return 'event'
     if any(t in cl for t in ['yacht', 'sailing']): return 'yacht_club'
     if any(t in cl for t in ['private club', 'social club', "women's club",
                               "woman's club", 'civic club', 'fraternal']): return 'private_club'
-    if 'spa' in cl: return 'spa'
+    if 'spa' in cl and 'spanish' not in cl: return 'spa'
     if any(t in cl for t in ['farmers market', 'farm stand', 'farmer']): return 'farmers_market'
+    if any(t in cl for t in ['senior living', 'assisted living',
+                              'retirement']): return 'senior_living'
     if any(t in cl for t in ['swim', 'pool', 'tennis', 'golf', 'recreation',
                               'athletic', 'fitness', 'gym', 'canoe', 'kayak',
                               'paddle', 'marina', 'boat']): return 'recreation'
-    hotel_names = ['hotel', 'inn ', ' inn', 'resort', 'lodge', 'waldorf',
-                   'conrad', 'sofitel', 'pendry', 'salamander', 'lyle',
-                   'the line ', 'the jefferson', 'yours truly',
+    if any(t in cl for t in ['theater', 'theatre', 'cinema',
+                              'performing arts']): return 'theater'
+    if any(t in cl for t in ['library']): return 'library'
+    # --- Name-based fallback: hotels ---
+    hotel_names = [' hotel ', ' inn ', ' resort ', ' lodge ', ' suites ',
+                   'waldorf', 'conrad', 'sofitel', 'pendry', 'salamander',
+                   'lyle ', 'the line ', 'the jefferson', 'yours truly',
                    'ritz-carlton', 'four seasons', 'fairmont', 'mandarin',
                    'st. regis', 'w hotel', 'westin', 'hyatt', 'marriott',
                    'hilton', 'intercontinental', 'kimpton', 'rosewood',
-                   'peninsula', 'langham', 'omni', 'loews']
+                   'peninsula', 'langham', 'omni', 'loews',
+                   'bed & breakfast', 'bed and breakfast', 'b&b']
     if any(t in nl for t in hotel_names): return 'hotel'
-    rec_names = ['swim', 'swimming', 'pool ', ' pool', 'tennis', 'golf institute',
-                 'golf academy', 'recreation club', 'rec club', 'canoe', 'kayak',
-                 'paddle', 'marina ', 'boat club', 'athletic']
+    cc_names = ['country club', 'golf & country', 'golf and country',
+                'hunt club', 'field club']
+    if any(t in nl for t in cc_names): return 'country_club'
+    pc_names = ['club of ', ' city club', ' town club', ' circle club',
+                "woman's club", "women's club", 'cosmos club',
+                'university club', 'army navy club', 'metropolitan club',
+                ' yacht club', 'sailing club', 'boat club',
+                'democratic club', 'republican club',
+                'supper club', 'social club']
+    if any(t in nl for t in pc_names): return 'private_club'
+    if any(t in nl for t in [' yacht ', 'yacht club']): return 'yacht_club'
+    if re.search(r'\bgaller(?:y|ies)\b', nl): return 'art_gallery'
+    if re.search(r'\bmuseum\b', nl): return 'museum'
+    if re.search(r'\b(?:arts? center|arts? institute)\b', nl): return 'art_gallery'
+    if re.search(r'\bbrewer(?:y|ies)\b', nl): return 'brewery'
+    if re.search(r'\bdistiller(?:y|ies)\b', nl): return 'distillery'
+    if re.search(r'\bcidery\b', nl): return 'distillery'
+    rec_names = [' swim ', 'swimming', 'tennis ', 'golf institute',
+                 'golf academy', 'recreation club', 'rec club',
+                 ' canoe ', ' kayak ', 'paddle ', 'athletic ',
+                 'dragon boat', 'rowing club', 'fitness']
     if any(t in nl for t in rec_names): return 'recreation'
-    # Name-based fallback: catch event venues Google Maps mislabels
-    event_names = ['farm', 'mansion', 'estate', 'manor', 'sanctuary',
-                   'garden', 'chapel', 'barn ', ' barn', 'pavilion',
-                   "woman's club", "women's club", 'civic club']
+    event_names = [' mansion ', ' manor ', ' pavilion ',
+                   ' ballroom ', ' banquet hall', ' civic club']
     if any(t in nl for t in event_names): return 'event_venue'
-    # Name-based fallback: catch private clubs
-    club_names = ['club of', 'city club', 'town club', 'circle club']
-    if any(t in nl for t in club_names): return 'private_club'
+    if 'vfw' in nl or 'veterans of foreign wars' in nl: return 'event_venue'
+    if re.search(r'\bwiner(?:y|ies)\b', nl): return 'winery'
+    if re.search(r'\bvineyard\b', nl): return 'winery'
+    if re.search(r'\bwine\s*bar\b', nl) and 'restaurant' not in nl:
+        return 'wine_bar'
+    if re.search(r'\btheat(?:er|re)\b', nl): return 'theater'
+    if re.search(r'\bcinema\b', nl): return 'theater'
+    if any(t in nl_clean for t in [' church ', ' cathedral ', ' basilica ']):
+        return 'church'
+    if any(t in nl_clean for t in [' synagogue ', ' congregation ']):
+        return 'synagogue'
+    if any(t in nl for t in ['senior', 'assisted living', 'retirement',
+                              'elder care']): return 'senior_living'
+    if re.search(r'\blibrar(?:y|ies)\b', nl) and not any(
+            t in nl for t in ['bar', 'pub', 'lounge', 'tavern']):
+        return 'library'
+    if re.search(r'\bfarmers?\s*market\b', nl): return 'farmers_market'
+    if re.search(r'\bspa\b', nl) and 'spanish' not in nl: return 'spa'
+    if any(t in nl for t in [' mall ', 'shopping center',
+                              'shopping centre']): return 'shopping'
     return 'restaurant'
 
 # Skip types - not useful for classical guitar gigs

@@ -378,6 +378,14 @@ body {
 .category-badge.church { background: #674ea7; color: #fff; }
 .category-badge.luxury_retail { background: #c9a227; color: #000; }
 .category-badge.mall { background: #e88b4d; color: #fff; }
+.category-badge.brewery { background: #d4a017; color: #fff; }
+.category-badge.distillery { background: #a0522d; color: #fff; }
+.category-badge.library { background: #4682b4; color: #fff; }
+.category-badge.tea_room { background: #c48a69; color: #fff; }
+.category-badge.synagogue { background: #674ea7; color: #fff; }
+.category-badge.bar { background: #c0392b; color: #fff; }
+.category-badge.event_space { background: #e74c3c; color: #fff; }
+.category-badge.music_venue { background: #e056a0; color: #fff; }
 
 .zone-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .zone-dot.green { background: var(--zone-green); }
@@ -1621,7 +1629,7 @@ function getTemplate(category) {
 
 // === CONSTANTS ===
 const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
-const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', event_venue: 'Event Venues', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', farmers_market: 'Farmers Markets', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents' };
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', event_venue: 'Event Venues', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', farmers_market: 'Farmers Markets', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents', brewery: 'Breweries', distillery: 'Distilleries', library: 'Libraries', tea_room: 'Tea Rooms', synagogue: 'Synagogues', bar: 'Bars', event_space: 'Event Spaces', music_venue: 'Music Venues' };
 
 const STATE_IMAGES = {
     MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
@@ -1954,7 +1962,7 @@ function voteVenueDetail(venueId, vote, btn) {
 function changeVenueCategory(venueId, selectEl) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     const newCat = selectEl.value;
-    const CAT_COLORS_MAP = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', farmers_market:'#8bc34a', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#c9a227', mall:'#e88b4d' };
+    const CAT_COLORS_MAP = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', farmers_market:'#8bc34a', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#c9a227', mall:'#e88b4d', brewery:'#d4a017', distillery:'#a0522d', library:'#4682b4', tea_room:'#c48a69', synagogue:'#674ea7', bar:'#c0392b', event_space:'#e74c3c', music_venue:'#e056a0' };
     const bg = CAT_COLORS_MAP[newCat] || '#555';
     const fg = ['restaurant','wedding_venue','spa','luxury_retail'].includes(newCat) ? '#000' : '#fff';
     selectEl.style.backgroundColor = bg;

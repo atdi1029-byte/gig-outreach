@@ -639,3 +639,33 @@
 - **Yacht clubs confirmed as strong fit** — Annapolis Yacht Club joins the list. Maritime/sailing clubs = wealthy, educated members, exactly the target audience.
 - **Annapolis continues clustering** — Eastport YC in today's batch + Annapolis YC vote = the Annapolis maritime scene is a goldmine.
 - **All prior patterns hold** — French/European, Italian, Spanish wine bars, wine bars, clubs, DC hotels, historic venues, yacht clubs. No French or Italian restaurant has ever received a negative vote.
+
+---
+
+## Aug 21, 2026 — Post-Pipeline Review (4 new votes)
+
+### DC Dragon Boat Club (private_club, Georgetown DC) — NEGATIVE (thumbs down, no notes)
+- **Extracted:** Dragon boat club = sports/athletic club, not the kind of private club that fits. Wrong crowd for classical guitar.
+- **Action:** Not added. Sports/athletic clubs ≠ private social clubs. Category "private_club" needs vetting — not all clubs are equal.
+
+### Morrison-Clark Historic Inn & Restaurant (hotel, Washington DC) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Historic inn + restaurant in DC. Name says it all — "Historic" is the #1 keyword.
+- **Action:** Added to taste_venues.txt. DC historic inns = reliable.
+
+### Tino's Italian Bistro & Wine Bar (wine_bar, Ellicott City MD) — POSITIVE (thumbs up, no notes)
+- **Extracted:** Italian bistro + wine bar in Ellicott City. Combines two strong categories.
+- **Action:** Added to taste_venues.txt. Italian wine bars = double positive.
+
+### La Panetteria Restaurant (restaurant, Bethesda MD) — POSITIVE
+> "Argentinian upscale restaurant! Id like more of these"
+- **Extracted:** NEW CUISINE SIGNAL — Argentinian restaurants explicitly called out as good fit. Upscale + Bethesda = strong combo. User wants MORE of this category.
+- **Action:** Added to taste_venues.txt. Argentinian/South American upscale restaurants = new target category.
+
+---
+
+## Updated Patterns (Aug 21)
+- **Argentinian/South American restaurants = NEW positive category** — La Panetteria: "Id like more of these." User explicitly requests more Argentinian upscale restaurants. Adds to French/Italian/European/Spanish as confirmed cuisines.
+- **Sports/athletic clubs ≠ social clubs** — Dragon Boat Club negative. Private clubs are great when they're social/dining clubs, but athletic/sports clubs are wrong crowd. Need to distinguish.
+- **Historic inns still bulletproof** — Morrison-Clark positive. "Historic" keyword remains the #1 predictor of a positive vote.
+- **Italian wine bars = strong combo** — Tino's combines two proven categories (Italian + wine bar) in one venue.
+- **All prior patterns hold** — French/European, Italian, Argentinian (NEW), Spanish wine bars, wine bars, clubs (social, not athletic), DC hotels, historic venues, yacht clubs.

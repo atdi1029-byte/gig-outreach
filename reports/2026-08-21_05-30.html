@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; August 21, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif;
+background: #0c1a22; color: #e0e0e0;
+padding: 40px; max-width: 900px;
+margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem;
+margin-bottom: 5px;
+border-bottom: 2px solid #6ecfcf;
+padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 30px;
+font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem;
+margin: 30px 0 15px;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  table { width: 100%; border-collapse: collapse;
+margin: 15px 0; font-size: 0.9rem; }
+  th { background: #1a2e3a; color: #6ecfcf;
+padding: 10px 12px; text-align: left; }
+  td { padding: 8px 12px;
+border-bottom: 1px solid #1a2e3a;
+vertical-align: top; }
+  .stat-grid { display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 15px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a;
+border-radius: 8px; padding: 15px;
+text-align: center; }
+  .stat-box .num { font-size: 2rem;
+font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.85rem;
+color: #999; margin-top: 4px; }
+  .win { background: #1a2a1a;
+border-left: 4px solid #4caf50;
+padding: 10px 14px; margin: 8px 0;
+border-radius: 0 6px 6px 0; }
+  .win strong { color: #4caf50; }
+  .valid { color: #4caf50; }
+  .closed { color: #e85050; }
+  .junk { color: #ff9800; }
+  .purple { color: #e040e0; }
+  .skip { color: #888; }
+  a { color: #6ecfcf; text-decoration: none; }
+  .review-box { background: #1a1a2a;
+border: 2px solid #e8944c;
+border-radius: 8px; padding: 20px;
+margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none;
+padding: 0; }
+  .review-item { display: flex;
+justify-content: space-between;
+align-items: center; padding: 10px 0;
+border-bottom: 1px solid #1a2e3a; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .contact-count {
+font-size: 1.4rem; font-weight: bold;
+color: #e85050; min-width: 40px;
+text-align: center; }
+  .review-item .venue-type { color: #888;
+font-size: 0.8rem; }
+  td.emails-zero { color: #e85050;
+font-weight: bold; font-size: 1.1rem; }
+  td.emails-good { color: #4caf50;
+font-weight: bold; font-size: 1.1rem; }
+  details { margin: 30px 0; }
+  details summary { color: #e8944c;
+font-size: 1.3rem; cursor: pointer;
+padding: 10px 0; font-weight: bold;
+border-left: 4px solid #e8944c;
+padding-left: 12px; }
+  details summary:hover { color: #f0a060; }
+  .incident { background: #2a1a2a;
+border-left: 4px solid #e040e0;
+padding: 10px 14px; margin: 6px 0;
+border-radius: 0 6px 6px 0;
+font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<h1>Outreach Run Report</h1>
+<div class="date">August 21, 2026 &mdash;
+Diversified batch via build_batch.sh (27 venues).
+DC (Georgetown, Dupont Circle),
+VA (McLean, Leesburg, Middleburg, Herndon),
+MD (Bethesda), PA (Malvern, Philadelphia).
+<br>Past gig seeds exhausted (all 73 discovered).
+Art gallery heavy batch (6 galleries, 4 wineries,
+4 clubs, 3 hotels/B&amp;Bs, 2 museums, 8 restaurants).
+<br>4 new taste votes processed (3 positive,
+1 negative). New signal: Argentinian restaurants.</div>
+
+<div class="stat-grid">
+  <div class="stat-box">
+    <div class="num">27</div>
+    <div class="label">Venues Processed</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">21</div>
+    <div class="label">Pipelined</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">4</div>
+    <div class="label">Invalid / Wrong</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">9</div>
+    <div class="label">Agent Contacts Added</div>
+  </div>
+</div>
+
+<div class="review-box">
+  <h2>Needs Your Review (0-1 contacts)</h2>
+  <div class="review-item">
+    <div>
+      <div class="venue-name">
+        <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2773">PFA Gallery</a>
+      </div>
+      <div class="venue-type">art gallery |
+      Dupont Circle DC &mdash; Director Mandy Cooper
+      left in 2024. Founder Luis Pazo identified
+      but no email. Contact form only.</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name">
+        <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2713">The Museum at Dumbarton Oaks</a>
+      </div>
+      <div class="venue-type">museum |
+      Georgetown DC &mdash; Major museum/research
+      institution (Harvard-run). No events contacts
+      found. May be too institutional.</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name">
+        <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3266">Manassas Junction B&amp;B</a>
+      </div>
+      <div class="venue-type">hotel | Manassas VA
+      (was Reston &mdash; corrected). Owner Ann
+      Hempen identified, no email. IG was wrong
+      (marketing agency).</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name">
+        <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1912">SkyHigh at Four Seasons</a>
+      </div>
+      <div class="venue-type">rooftop bar |
+      Philadelphia PA &mdash; Rooftop at Four Seasons
+      Hotel. Beverage Dir Dawn Trabing found but no
+      email. Phone: (215) 419-5059.</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name">
+        <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2362">Seaford Yacht Club</a>
+      </div>
+      <div class="venue-type">yacht club |
+      Yorktown VA (was McLean &mdash; corrected).
+      Generic role emails only (commodore@,
+      juniorsailing@). No person names found.</div>
+    </div>
+    <div class="contact-count">0</div>
+  </div>
+  <div class="review-item">
+    <div>
+      <div class="venue-name">
+        <a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2722">SPILT Art Gallery</a>
+      </div>
+      <div class="venue-type">art gallery |
+      Georgetown DC &mdash; Founded by Eric Hilton
+      (Thievery Corp). Only contact
+      ellingtonrobinson@gmail.com may not be
+      connected to gallery.</div>
+    </div>
+    <div class="contact-count">1</div>
+  </div>
+</div>
+
+<h2>Key Wins</h2>
+
+<div class="win">
+  <strong>The Phillips Collection</strong>
+  (Dupont Circle DC) &mdash; 45 contacts at this
+  renowned art museum. Key events staff:
+  Event Rentals dept, Hilary Katz, Lauren Sharrock,
+  Miranda Burr. Director Jonathan Binstock.
+  Hosts concerts and private events &mdash;
+  excellent fit for classical guitar.
+</div>
+
+<div class="win">
+  <strong>Stone Tower Winery</strong>
+  (Leesburg VA) &mdash; 18 contacts including
+  Lacey Huber, Jessica Cloonan (Events),
+  Brynn Stierle, James Phillips (Winemaker),
+  Kathleen Collins. Premier Loudoun winery
+  with beautiful architecture.
+</div>
+
+<div class="win">
+  <strong>Wagshal's Grand Bodega</strong>
+  (Bethesda MD) &mdash; Owner William Fuchs,
+  GM Matthew Tucker, Catering Manager Priscila
+  Aliaga all found via manual check. 11 total
+  contacts. Upscale deli/market with event space.
+</div>
+
+<div class="win">
+  <strong>801 Chophouse</strong>
+  (Tysons VA) &mdash; 10 contacts. GM Noel Burke
+  identified. Steakhouse chain but Tysons location
+  has private dining rooms. City corrected from
+  McLean to Tysons.
+</div>
+
+<div class="win">
+  <strong>International Arts &amp; Artists</strong>
+  (Dupont Circle DC) &mdash; 8 contacts at this
+  arts nonprofit. Runs Hillyer gallery with rotating
+  exhibitions and events. CEO Greg Houston,
+  gallery staff including Nicole Byers, Alissa
+  McGuire. Hosts "Auction on the Alley" events.
+</div>
+
+<div class="win">
+  <strong>Rappahannock River Yacht Club</strong>
+  (Great Falls VA) &mdash; 7 contacts from pipeline
+  BUT all are WRONG BUSINESS &mdash; website is
+  Virginia's River Realm tourism site. Contacts
+  include a brewery, art center, and yoga studio.
+  Moved to needs_review. All data invalid.
+</div>
+
+<div class="win">
+  <strong>Hidden View Bed &amp; Breakfast</strong>
+  (Hillsboro VA) &mdash; Owner Cheri Shields found
+  via Apollo (cheri.shields@hiddenviewbnb.com).
+  Pipeline had zero contacts &mdash; manual check
+  rescued this venue.
+</div>
+
+<div class="win">
+  <strong>Granite Heights Winery</strong>
+  (Warrenton VA) &mdash; Owner Toni Kilyk found
+  via Apollo (toni@gh.wine). Pipeline had zero
+  contacts &mdash; manual check rescued. City
+  corrected from Herndon. FB added.
+</div>
+
+<h2>All Venues</h2>
+<table>
+<tr><th>Venue</th><th>Category</th>
+<th>Location</th><th>Contacts</th>
+<th>Status</th></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2764">International Arts &amp; Artists</a></td>
+<td>arts org</td><td>Dupont Circle DC</td>
+<td class="emails-good">8</td>
+<td class="valid">Pipelined &mdash; Hillyer gallery,
+hosts events. Category should be arts_organization.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2739">Joan Hisaoka Gallery</a></td>
+<td>art gallery</td><td>Dupont Circle DC</td>
+<td class="emails-good">1</td>
+<td class="valid">Pipelined &mdash; Sara Khambalia
+(Gallery Dir at Smith Center). Website DNS may
+have lapsed.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2279">Oasis Boat Club</a></td>
+<td>boat club</td><td>Georgetown DC</td>
+<td class="emails-good">1</td>
+<td class="junk">Pipelined &mdash; GM Kenny Repka
+added. DC Wharf boat club (Oasis Marinas).
+FB/IG were Alliance Marine Co (mgmt company).
+Not ideal for live music.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2692">OLIO E PIU</a></td>
+<td>restaurant</td><td>Georgetown DC</td>
+<td class="emails-good">6</td>
+<td class="junk">Pipelined &mdash; Italian chain w/
+NYC, Chicago, DC locations. Most contacts are
+for OTHER locations (bryantpark@olioepiu.nyc,
+contact_chicago@). Only contact_dc@ and
+eventsdc@ are relevant.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2773">PFA Gallery</a></td>
+<td>art gallery</td><td>Dupont Circle DC</td>
+<td class="emails-zero">0</td>
+<td class="junk">Needs review &mdash; Director left
+2024. FB was broken (sharer.php), removed.
+Founder Luis Pazo, no email found.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2722">SPILT Art Gallery</a></td>
+<td>art gallery</td><td>Georgetown DC</td>
+<td class="emails-good">1</td>
+<td class="junk">Pipelined &mdash; Founded by Eric
+Hilton (Thievery Corp). Contact may be unrelated.
+No staff directory found.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2713">Dumbarton Oaks</a></td>
+<td>museum</td><td>Georgetown DC</td>
+<td class="emails-zero">0</td>
+<td class="junk">Needs review &mdash; Harvard-run
+museum/research institute. May be too
+institutional for freelance bookings.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2718">The Phillips Collection</a></td>
+<td>museum</td><td>Dupont Circle DC</td>
+<td class="emails-good">45</td>
+<td class="valid">Pipelined &mdash; major art museum.
+Category should be museum, not restaurant.
+Hosts concerts and private events.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2731">Touchstone Gallery</a></td>
+<td>art gallery</td><td>Dupont Circle DC</td>
+<td class="emails-good">2</td>
+<td class="valid">Pipelined &mdash; Exec Director
+Abbey Alison McClain confirmed. Mary Ott
+(postcheck). Longest-running artist-owned
+cooperative in DC.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2734">Vika Gallery</a></td>
+<td>art gallery</td><td>Dupont Circle DC</td>
+<td class="emails-good">2</td>
+<td class="valid">Pipelined &mdash; Founder Devika
+Strother (full name confirmed) and Gallery
+Director Tony Hardy added.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2744">von ammon co</a></td>
+<td>art gallery</td><td>Dupont Circle DC</td>
+<td class="emails-good">3</td>
+<td class="valid">Pipelined &mdash; contemporary
+art gallery (was listed as restaurant).
+Todd Ammon, Robert Loomis. Website fixed
+to vonammon.net.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3086">246 Thai Street</a></td>
+<td>Thai restaurant</td><td>Herndon VA</td>
+<td class="emails-good">3</td>
+<td class="junk">Pipelined &mdash; contacts have
+UK domain emails (zaapthai.co.uk). Wrong
+business data from Apollo. Family-owned Thai
+restaurant, opened Mar 2026.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3052">801 Chophouse</a></td>
+<td>steakhouse chain</td><td>Tysons VA</td>
+<td class="emails-good">10</td>
+<td class="junk">Pipelined &mdash; chain with 5+
+locations. Most emails are for Denver, Des Moines,
+KC, etc. GM Noel Burke identified for Tysons
+but no personal email. City corrected to Tysons.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2256">Belmont Country Club</a></td>
+<td>country club</td><td>Ashburn VA</td>
+<td class="emails-good">2</td>
+<td class="valid">Pipelined &mdash; Rhonda Lo Presti
+(Event Sales Dir) added. belmonthoa.org is the
+HOA site, not the club. City corrected from
+McLean to Ashburn. Run by Invited Clubs.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2374">Fort Loudoun Yacht Club</a></td>
+<td>yacht club</td><td>Knoxville TN</td>
+<td class="emails-zero">&mdash;</td>
+<td class="closed">WRONG CITY &mdash; this club is
+in Knoxville, TN, not Leesburg VA. Completely
+out of range. All contacts are TN-based.
+Moved to needs_review.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3187">Granite Heights Winery</a></td>
+<td>winery</td><td>Warrenton VA</td>
+<td class="emails-good">1</td>
+<td class="valid">Pipelined &mdash; owner Toni Kilyk
+found (toni@gh.wine). City corrected from
+Herndon. FB added. Zero pipeline contacts
+rescued by manual check.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3277">Hidden View B&amp;B</a></td>
+<td>B&amp;B</td><td>Hillsboro VA</td>
+<td class="emails-good">1</td>
+<td class="valid">Pipelined &mdash; owner Cheri
+Shields found (cheri.shields@hiddenviewbnb.com).
+Zero pipeline contacts rescued by manual check.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3266">Manassas Junction B&amp;B</a></td>
+<td>B&amp;B</td><td>Manassas VA</td>
+<td class="emails-zero">0</td>
+<td class="junk">Needs review &mdash; owner Ann
+Hempen identified, no email. City corrected
+from Reston. IG was wrong account (marketing
+agency) &mdash; corrected.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3169">Negus Winery</a></td>
+<td>winery</td><td>Alexandria VA</td>
+<td class="emails-good">1</td>
+<td class="junk">Pipelined &mdash; only info@ email,
+no person name. Founder Gize Negussie identified
+but no personal email. City corrected from
+Herndon to Alexandria. Honey wine winery.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1476">October One Vineyard</a></td>
+<td>winery</td><td>Leesburg VA</td>
+<td class="emails-good">1</td>
+<td class="valid">Pipelined &mdash; owner Bob Rupy
+found (bob@octoberonevineyard.com). FB added.
+Zero pipeline contacts rescued by manual check.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2355">Rappahannock River YC</a></td>
+<td>yacht club</td><td>Great Falls VA</td>
+<td class="emails-zero">&mdash;</td>
+<td class="closed">WRONG BUSINESS &mdash; website
+is Virginia's River Realm tourism site. All 7
+pipeline contacts are for unrelated businesses
+(brewery, art center, yoga). Moved to
+needs_review.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2362">Seaford Yacht Club</a></td>
+<td>yacht club</td><td>Yorktown VA</td>
+<td class="emails-zero">0</td>
+<td class="junk">Pipelined &mdash; generic role
+emails only. City corrected from McLean to
+Yorktown. No person names found.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-1481">Stone Tower Winery</a></td>
+<td>winery</td><td>Leesburg VA</td>
+<td class="emails-good">18</td>
+<td class="valid">Pipelined &mdash; premier Loudoun
+winery. Lacey Huber, Jessica Cloonan (Events),
+James Phillips (Winemaker), Kathleen Collins.
+Beautiful architecture, strong fit.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3273">The Boyd B&amp;B</a></td>
+<td>B&amp;B</td><td>Middleburg VA</td>
+<td class="emails-good">2</td>
+<td class="valid">Pipelined &mdash; owner Jennifer
+Moore (full name confirmed). Historic B&amp;B
+est. 1780 in Middleburg. FB is valid (numerical
+ID format).</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1873">General Warren Inn</a></td>
+<td>historic inn</td><td>Malvern PA</td>
+<td class="emails-good">2</td>
+<td class="valid">Pipelined &mdash; Patrick Byrne
+and Timothy Gemmell verified. Historic inn
+est. 1745. FB URL with extra 'e' is correct.
+Main Line PA &mdash; strong fit.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=PA-REST-1912">SkyHigh at Four Seasons</a></td>
+<td>rooftop bar</td><td>Philadelphia PA</td>
+<td class="emails-zero">0</td>
+<td class="junk">Needs review &mdash; rooftop at
+Four Seasons. Beverage Dir Dawn Trabing found,
+no email. Phone only.</td></tr>
+
+<tr><td><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-1615">Wagshal's Grand Bodega</a></td>
+<td>market/deli</td><td>Bethesda MD</td>
+<td class="emails-good">11</td>
+<td class="valid">Pipelined &mdash; owner William
+Fuchs, GM Matthew Tucker, Catering Mgr Priscila
+Aliaga all added via manual check. Upscale
+market with event space.</td></tr>
+
+</table>
+
+<details>
+<summary>Flagged Venues &amp; Issues (6)</summary>
+
+<div class="incident">
+  <strong>Fort Loudoun Yacht Club</strong> &mdash;
+  Located in Knoxville, TN, NOT Leesburg VA.
+  Completely out of range. All contacts are
+  TN-based. Pipeline website and data are for
+  the correct club but wrong geography.
+  Moved to needs_review.
+</div>
+
+<div class="incident">
+  <strong>Rappahannock River Yacht Club</strong>
+  &mdash; Website virginiasriverrealm.com is a
+  tourism promotion site, not a yacht club. All 7
+  pipeline contacts are for random businesses
+  (Good Luck Cellars, Maltese Brewing, RAL Art
+  Center, yoga studio). Completely wrong business.
+  Moved to needs_review.
+</div>
+
+<div class="incident">
+  <strong>OLIO E PIU</strong> &mdash; Italian chain
+  with NYC, Chicago, DC locations. Pipeline saved
+  emails for ALL locations. bryantpark@olioepiu.nyc
+  and contact_chicago@ are irrelevant. Only
+  contact_dc@ and eventsdc@ matter.
+</div>
+
+<div class="incident">
+  <strong>246 Thai Street</strong> &mdash; Pipeline
+  saved UK-domain emails (greg@zaapthai.co.uk,
+  anna@zaapthai.co.uk) from Apollo. Zaap Thai is
+  a UK restaurant chain, not this family-owned
+  Herndon VA restaurant. Wrong-business contacts.
+</div>
+
+<div class="incident">
+  <strong>801 Chophouse</strong> &mdash; Steakhouse
+  chain. Pipeline saved location emails for Denver,
+  Des Moines, KC, Leawood, Minneapolis. Only the
+  Tysons location is relevant. GM Noel Burke
+  identified but no personal email.
+</div>
+
+<div class="incident">
+  <strong>Belmont Country Club</strong> &mdash;
+  Pipeline used belmonthoa.org (the HOA website),
+  not the actual country club. Run by Invited Clubs.
+  Rhonda Lo Presti (Event Sales Dir) found and
+  added via manual check. City corrected from
+  McLean to Ashburn.
+</div>
+</details>
+
+<details>
+<summary>Corrections Applied (12)</summary>
+<table>
+<tr><th>Venue</th><th>Field</th>
+<th>Old</th><th>New</th></tr>
+<tr><td>Belmont CC</td><td>City</td>
+<td>McLean</td><td>Ashburn</td></tr>
+<tr><td>Granite Heights</td><td>City</td>
+<td>Herndon</td><td>Warrenton</td></tr>
+<tr><td>Manassas Junction</td><td>City</td>
+<td>Reston</td><td>Manassas</td></tr>
+<tr><td>Negus Winery</td><td>City</td>
+<td>Herndon</td><td>Alexandria</td></tr>
+<tr><td>Seaford YC</td><td>City</td>
+<td>McLean</td><td>Yorktown</td></tr>
+<tr><td>801 Chophouse</td><td>City</td>
+<td>McLean</td><td>Tysons</td></tr>
+<tr><td>von ammon</td><td>Website</td>
+<td>vonammon.co</td><td>vonammon.net</td></tr>
+<tr><td>PFA Gallery</td><td>Facebook</td>
+<td>sharer.php (broken)</td><td>(removed)</td></tr>
+<tr><td>Granite Heights</td><td>Facebook</td>
+<td>(none)</td><td>fb.com/ghwine/</td></tr>
+<tr><td>October One</td><td>Facebook</td>
+<td>(none)</td><td>fb.com/OctoberOneVineyard/</td></tr>
+<tr><td>Manassas Junction</td><td>Instagram</td>
+<td>manassasmarketing</td>
+<td>manassasjunction</td></tr>
+<tr><td>Fort Loudoun YC</td><td>Facebook</td>
+<td>ajax/ (broken)</td><td>(removed)</td></tr>
+</table>
+</details>
+
+<details>
+<summary>Taste Review (4 new votes)</summary>
+<p>4 new votes since Aug 6:</p>
+<table>
+<tr><th>Venue</th><th>Vote</th><th>Notes</th></tr>
+<tr><td>Morrison-Clark Historic Inn</td>
+<td class="valid">UP</td>
+<td>DC historic inn &mdash; "historic" keyword
+still #1 predictor</td></tr>
+<tr><td>Tino's Italian Bistro &amp; Wine Bar</td>
+<td class="valid">UP</td>
+<td>Italian + wine bar combo in Ellicott City</td></tr>
+<tr><td>La Panetteria Restaurant</td>
+<td class="valid">UP</td>
+<td>"Argentinian upscale restaurant! Id like more
+of these" &mdash; NEW CATEGORY SIGNAL</td></tr>
+<tr><td>DC Dragon Boat Club</td>
+<td class="closed">DOWN</td>
+<td>Sports/athletic club, wrong crowd</td></tr>
+</table>
+<p><strong>New pattern:</strong> Argentinian/South American
+upscale restaurants added to target categories.
+Sports/athletic clubs distinguished from social clubs
+(negative signal).</p>
+<p><strong>Files updated:</strong> taste_notes.md (Aug 21
+section + pattern analysis), taste_venues.txt (+3:
+Morrison-Clark, Tino's, La Panetteria).</p>
+</details>
+
+<h2>Pipeline Stats</h2>
+<table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>Total venues</td><td>27</td></tr>
+<tr><td>Pipelined (with contacts)</td><td>21</td></tr>
+<tr><td>Needs review (no contacts)</td><td>4</td></tr>
+<tr><td>Wrong business / out of range</td><td>2</td></tr>
+<tr><td>Agent contacts added</td><td>9</td></tr>
+<tr><td>City corrections</td><td>6</td></tr>
+<tr><td>Social media fixes</td><td>6</td></tr>
+<tr><td>Venues rescued (0 &rarr; 1+ contact)</td>
+<td>4</td></tr>
+<tr><td>Pipeline runtime</td><td>~4.5 hours</td></tr>
+<tr><td>New taste votes processed</td><td>4</td></tr>
+</table>
+
+</body>
+</html>

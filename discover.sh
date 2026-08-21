@@ -518,8 +518,10 @@ skip_names = ['cottage', 'apartment', 'vacation rental', 'retreat',
 
 tier1_cats = ['country_club', 'private_club', 'yacht_club']
 tier2_cats = ['restaurant', 'winery', 'hotel', 'wine_bar', 'museum',
-              'event', 'resort', 'art_gallery', 'spa']
-tier3_cats = ['golf_club', 'senior_living', 'wedding_venue', 'corporate', 'farmers_market']
+              'event', 'resort', 'art_gallery', 'spa', 'brewery', 'distillery',
+              'event_venue', 'theater', 'music_venue', 'library']
+tier3_cats = ['golf_club', 'senior_living', 'wedding_venue', 'corporate',
+              'farmers_market', 'tea_room', 'bar', 'synagogue', 'church']
 
 sweet_spots = set([
     'georgetown', 'dupont circle', 'kalorama', 'cleveland park',

@@ -2834,10 +2834,13 @@ for line in lines:
             'WINE': 'winery', 'HOTE': 'hotel', 'COUN': 'country_club',
             'REST': 'restaurant', 'EVEN': 'event', 'MUSE': 'museum',
             'RESO': 'resort', 'SENI': 'senior_living', 'GOLF': 'golf_club',
-            'YACH': 'yacht_club', 'ARTG': 'art_gallery', 'LUXU': 'luxury_apts',
-            'WEDD': 'wedding_venue', 'CORP': 'corporate', 'SPAA': 'spa',
-            'PRIV': 'private_club', 'CHUR': 'church', 'MALL': 'mall',
-            'WINE': 'winery', 'GROC': 'grocery_market',
+            'YACH': 'yacht_club', 'ARTG': 'art_gallery', 'ART_': 'art_gallery',
+            'LUXU': 'luxury_apts', 'WEDD': 'wedding_venue', 'CORP': 'corporate',
+            'SPAA': 'spa', 'PRIV': 'private_club', 'CHUR': 'church',
+            'MALL': 'mall', 'GROC': 'grocery_market', 'BREW': 'brewery',
+            'DIST': 'distillery', 'LIBR': 'library', 'TEAR': 'tea_room',
+            'SYNA': 'synagogue', 'BARR': 'bar', 'MUSI': 'music_venue',
+            'FARM': 'farmers_market', 'THEA': 'theater',
         }
         parts = current_venue['venue_id'].split('-')
         if len(parts) >= 2:
@@ -2871,7 +2874,11 @@ for line in lines:
                     'WINE': 'winery', 'HOTE': 'hotel', 'COUN': 'country_club',
                     'REST': 'restaurant', 'EVEN': 'event', 'MUSE': 'museum',
                     'PRIV': 'private_club', 'GOLF': 'golf_club', 'YACH': 'yacht_club',
-                    'ART_': 'art_gallery',
+                    'ARTG': 'art_gallery', 'ART_': 'art_gallery', 'RESO': 'resort',
+                    'SENI': 'senior_living', 'LUXU': 'luxury_apts', 'SPAA': 'spa',
+                    'CHUR': 'church', 'BREW': 'brewery', 'DIST': 'distillery',
+                    'LIBR': 'library', 'SYNA': 'synagogue', 'BARR': 'bar',
+                    'MUSI': 'music_venue', 'FARM': 'farmers_market', 'THEA': 'theater',
                 }
                 current_venue['category'] = cat_map.get(parts[1], parts[1].lower())
 
@@ -3897,14 +3904,12 @@ for e in sorted(emails):
     # LinkedIn — skip only if SKIP_LINKEDIN=1
     if [ "${SKIP_LINKEDIN:-0}" != "1" ]; then
         step4_linkedin "$venue" "$venue_id"
-        # If LinkedIn found 0 people, keep linkedin_pending=true so manual check retries
+        # LinkedIn ran — clear pending regardless of result count
         local LI_FOUND_FILE="/tmp/pipeline_li_found_count"
         local LI_FOUND_COUNT=$(cat "$LI_FOUND_FILE" 2>/dev/null || echo "0")
-        if [ "$LI_FOUND_COUNT" -gt 0 ]; then
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
-        else
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
-            log "  LinkedIn found 0 — marking linkedin_pending=true for manual retry"
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
+        if [ "$LI_FOUND_COUNT" -eq 0 ]; then
+            log "  LinkedIn found 0 — cleared pending (scrape already ran)"
         fi
     else
         log ""

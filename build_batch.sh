@@ -107,7 +107,9 @@ target_cats = {
     'restaurant', 'hotel', 'winery', 'wine_bar',
     'country_club', 'private_club', 'art_gallery',
     'yacht_club', 'museum', 'event', 'event_venue',
-    'music_venue', 'bar', 'club', 'gallery'
+    'music_venue', 'bar', 'club', 'gallery', 'brewery',
+    'distillery', 'library', 'theater', 'tea_room',
+    'spa', 'resort', 'event_space', 'church', 'synagogue'
 }
 
 skip_names = [

@@ -3104,8 +3104,23 @@ async function openReportsView() {
 
 function toggleReportReviewed(file) {
     const reviewed = getReviewedReports();
-    setReportReviewed(file, !reviewed[file]);
+    const marking = !reviewed[file];
+    setReportReviewed(file, marking);
     _gatedVenueIds = null; // invalidate gate cache
+    // When marking reviewed, promote needs_review venues to untouched
+    if (marking && BASE_URL && reportManifest && dashboardData) {
+        const report = reportManifest.find(r => r.file === file);
+        if (report && Array.isArray(report.venue_ids)) {
+            const venues = (dashboardData.venues || []);
+            for (const vid of report.venue_ids) {
+                const v = venues.find(x => x.venue_id === vid);
+                if (v && v.status === 'needs_review') {
+                    v.status = 'untouched';
+                    fireGet(buildUrl({ action: 'update_venue', venue_id: vid, field: 'status', value: 'untouched' }));
+                }
+            }
+        }
+    }
     openReportsView();
     // Re-render home view so venue counts update
     if (dashboardData) renderStateGrid();

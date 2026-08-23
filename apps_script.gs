@@ -117,11 +117,19 @@ function buildOutreachSentMaps_(outreachData) {
 // sentMaps comes from buildOutreachSentMaps_.
 function buildVenues_(venueData, sentMaps) {
   var venues = [];
+  // Find dynamic columns by header name (taste_score, priority_override)
+  var headers = venueData[0] || [];
+  var tasteScoreCol = -1, priorityOverrideCol = -1;
+  for (var h = 0; h < headers.length; h++) {
+    var hName = String(headers[h]).toLowerCase().replace(/[_ ]/g, '');
+    if (hName === 'tastescore') tasteScoreCol = h;
+    if (hName === 'priorityoverride') priorityOverrideCol = h;
+  }
   for (var i = 1; i < venueData.length; i++) {
     var row = venueData[i];
     if (!row[0]) continue;
     var vid = String(row[0]);
-    venues.push({
+    var v = {
       venue_id:       vid,
       name:           String(row[1]),
       category:       String(row[2]),
@@ -149,7 +157,10 @@ function buildVenues_(venueData, sentMaps) {
       contact_form_sent: !!sentMaps.form[vid],
       ig_dm_sent: !!sentMaps.ig[vid],
       fb_msg_sent: !!sentMaps.fb[vid]
-    });
+    };
+    if (tasteScoreCol >= 0) v.taste_score = Number(row[tasteScoreCol]) || 0;
+    if (priorityOverrideCol >= 0) v.priority_override = Number(row[priorityOverrideCol]) || 0;
+    venues.push(v);
   }
   return venues;
 }
@@ -281,144 +292,199 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     }
   }
 
-  // Load taste tiers for scoring
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
-  var tasteSheet = ss.getSheetByName(TASTE);
-  var categoryTiers = {};
-  var sweetSpotCities = {};
-  if (tasteSheet) {
-    var tData = tasteSheet.getDataRange().getValues();
-    for (var ti = 1; ti < tData.length; ti++) {
-      var tType = String(tData[ti][0]).toLowerCase();
-      var tKey = String(tData[ti][1]).toLowerCase().trim();
-      var tVal = String(tData[ti][2]);
-      if (tType === 'tier') categoryTiers[tKey] = Number(tVal) || 3;
-      else if (tType === 'location') sweetSpotCities[tKey] = true;
-    }
-  }
+  // =========================================================
+  // TOP PICK SCORE — separate from taste_score
+  // taste_score = "is this venue a good fit?" (general quality)
+  // top_pick_score = "of all good fits, which to chase first?"
+  //
+  // Formula: taste_score + priority bonuses - risk penalties
+  // Gate: taste_score < 60 can NEVER be a top pick
+  // priority_override = 1 forces venue to the top
+  // =========================================================
 
-  // Taste tier points: tier 1 = 50, tier 2 = 30, tier 3 = 10, tier 4 = -20
-  var tierPts = { 1: 50, 2: 30, 3: 10, 4: -20 };
-
-  // Name-based taste boost for restaurants — French/European score like tier 1,
-  // upscale/fine dining like tier 2, junk like tier 4
-  var nameBoostWords = [
-    'french', 'bistro', 'brasserie', 'boucherie', 'chaumiere', 'auberge',
-    'la ferme', 'le chat', 'le comptoir', 'le refuge', 'petit louis',
-    'european', 'portuguese', 'italia', 'trattoria', 'ristorante', 'osteria'
-  ];
-  var nameGoodWords = [
-    'fine dining', 'steakhouse', 'prime', 'chophouse', 'grille',
-    'tavern', 'inn ', ' inn', 'manor', 'estate'
-  ];
-  var nameJunkWords = [
+  var junkWords = [
     'ice cream', 'gelato', 'frozen', 'toast', 'bakery', 'pastry',
     'slice', 'cupcake', 'smoothie', 'juice', 'bagel', 'donut',
     'cafe', 'coffee', 'deli', 'sandwich', 'pizza', 'taco', 'burger',
     'pub', 'irish', 'beer garden', 'sports bar', 'hookah',
     'sweets', 'candy', 'dessert', 'acai', 'poke', 'bubble tea',
     'chicken', 'ramen', 'noodle', 'kebab', 'gyro', 'sushi',
-    'clubhouse', 'pool', 'swim', 'tennis', 'golf', 'recreation',
-    'liquor', 'wine shop', 'wine store', 'spirits'
+    'clubhouse', 'pool', 'swim', 'tennis', 'golf simulator',
+    'recreation', 'liquor', 'wine shop', 'wine store', 'spirits'
   ];
 
-  // Venue type ranking — matches alex_taste.md exactly
-  // 1. Upscale French/European restaurants
-  // 2. Historic private clubs
-  // 3. Upscale country clubs with wine dinners
-  // 4. Luxury boutique hotels
-  // 5. Mountain/architectural wineries
-  // 6. Nice restaurants in upscale areas
-  // 7. Wine bars in wealthy neighborhoods
-  // 8. Eastern Shore venues
-  // 9. Average wineries
-  // 10. Sports-focused country clubs
-  var nameBoostWords = [
-    'french', 'bistro', 'brasserie', 'boucherie', 'chaumiere', 'auberge',
-    'la ferme', 'le chat', 'le comptoir', 'le refuge', 'petit louis',
-    'european', 'portuguese', 'italia', 'trattoria', 'ristorante', 'osteria'
-  ];
-  var nameJunkWords = [
-    'ice cream', 'gelato', 'frozen', 'toast', 'bakery', 'pastry',
-    'slice', 'cupcake', 'smoothie', 'juice', 'bagel', 'donut',
-    'cafe', 'coffee', 'deli', 'sandwich', 'pizza', 'taco', 'burger',
-    'pub', 'irish', 'beer garden', 'sports bar', 'hookah',
-    'sweets', 'candy', 'dessert', 'acai', 'poke', 'bubble tea',
-    'chicken', 'ramen', 'noodle', 'kebab', 'gyro', 'sushi',
-    'clubhouse', 'pool', 'swim', 'tennis', 'golf', 'recreation',
-    'liquor', 'wine shop', 'wine store', 'spirits'
-  ];
+  // Affluent target areas — venues here get a location bonus
+  var affluentAreas = {
+    'georgetown': true, 'dupont circle': true, 'potomac': true,
+    'chevy chase': true, 'bethesda': true, 'great falls': true,
+    'mclean': true, 'alexandria': true, 'middleburg': true,
+    'st. michaels': true, 'st michaels': true, 'easton': true,
+    'gibson island': true, 'roland park': true, 'annapolis': true,
+    'gladwyne': true, 'bryn mawr': true, 'greenville': true,
+    'vienna': true, 'falls church': true, 'leesburg': true
+  };
 
-  // Score = taste rank (primary), distance as tiebreaker within same rank
   actionNeeded.forEach(function(item) {
     var v = item.venue;
     var cat = String(v.category || '').toLowerCase();
     var name = String(v.name || '').toLowerCase();
     var notes = String(v.notes || '').toLowerCase();
-    var nameText = name + ' ' + notes;
+    var text = name + ' ' + notes;
     var vote = String(v.venue_vote || '');
+    var tasteScore = Number(v.taste_score || 0);
+    var upscale = Number(v.upscale_score || 0);
+    var city = String(v.city || '').toLowerCase().trim();
+    var reasons = [];
 
-    // Assign taste rank (lower = better, 1-10 matching the taste profile)
-    var tasteRank = 99; // unknown/unproven venues never get a Top-Pick boost
+    // Hard gate: taste_score < 60 = never a top pick
+    if (tasteScore < 60 || vote === 'down') {
+      item.top_pick_score = -1;
+      item.top_pick_reasons = ['below taste threshold'];
+      return;
+    }
 
-    // Check for junk first — always last
+    // Check for junk names
     var isJunk = false;
-    for (var nj = 0; nj < nameJunkWords.length; nj++) {
-      if (name.indexOf(nameJunkWords[nj]) > -1) { isJunk = true; break; }
+    for (var nj = 0; nj < junkWords.length; nj++) {
+      if (name.indexOf(junkWords[nj]) > -1) { isJunk = true; break; }
     }
-    if (isJunk || vote === 'down') {
-      tasteRank = 99;
-    } else if (cat === 'restaurant' || cat === 'rest' || cat === 'fine_dining') {
-      // Restaurants must prove they are upscale; a high Google rating alone is not luxury.
-      var isFrenchEuro = false;
-      var isFineDining = false;
-      var vUpscaleRank = Number(v.upscale_score || 0);
-      for (var nb = 0; nb < nameBoostWords.length; nb++) {
-        if (nameText.indexOf(nameBoostWords[nb]) > -1) { isFrenchEuro = true; break; }
-      }
-      for (var ng = 0; ng < nameGoodWords.length; ng++) {
-        if (nameText.indexOf(nameGoodWords[ng]) > -1) { isFineDining = true; break; }
-      }
-      if (isFrenchEuro && vUpscaleRank >= 4) tasteRank = 1;
-      else if (isFineDining && vUpscaleRank >= 4) tasteRank = 5;
-      else tasteRank = 99;
-    } else if (cat === 'private_club') {
-      tasteRank = 2;                     // private clubs are intrinsically high-end targets
-    } else if (cat === 'country_club') {
-      tasteRank = 3;                     // #3 country clubs
-    } else if (cat === 'hotel' || cat === 'resort') {
-      tasteRank = Number(v.upscale_score || 0) >= 4 ? 3 : 99; // only upscale hotels/resorts
-    } else if (cat === 'winery') {
-      tasteRank = Number(v.upscale_score || 0) >= 4 ? 5 : 99;
-    } else if (cat === 'wine_bar') {
-      tasteRank = Number(v.upscale_score || 0) >= 4 ? 3 : 99;
-    } else if (cat === 'art_gallery' || cat === 'museum') {
-      tasteRank = 5;                     // #5 art/museum
-    } else if (cat === 'yacht_club') {
-      tasteRank = 3;                     // same as country clubs
-    } else if (cat === 'event' || cat === 'event_venue') {
-      tasteRank = 7;                     // events lower
+    if (isJunk) {
+      item.top_pick_score = -1;
+      item.top_pick_reasons = ['junk venue type'];
+      return;
     }
 
-    // Vote boost: thumbs up moves venue up 2 ranks
-    if (vote === 'up' && tasteRank > 1) tasteRank = Math.max(1, tasteRank - 2);
+    // Start with taste_score as base
+    var score = tasteScore;
+    reasons.push('taste:' + tasteScore);
 
-    // Taste score: 0-100 (rank 1 = best = 100, rank 7 = ~14, junk = 0)
-    var tasteScore = (tasteRank >= 99) ? 0 : Math.max(0, (8 - tasteRank) / 7 * 100);
-    // Distance score: 0-100 (closer = higher)
+    // --- PRIORITY BONUSES ---
+
+    // +15 private / country / university / city / yacht club
+    if (/private.?club|country.?club|university.?club|city.?club|yacht.?club/.test(cat) ||
+        /country club|private club|yacht club|city club|university club|hunt club|metropolitan club|army navy/.test(text)) {
+      score += 15;
+      reasons.push('+15 club');
+    }
+
+    // +12 proven live-music or recurring-events venue
+    if (/live music|concert series|music program|live entertainment|recurring event|weekly music|jazz night/.test(text)) {
+      score += 12;
+      reasons.push('+12 live music/events');
+    }
+
+    // +10 French / Italian / wine-forward fine dining
+    if (/french|bistro|brasserie|boucherie|auberge|chez |provenc/.test(text)) {
+      score += 10;
+      reasons.push('+10 French');
+    } else if (/trattoria|osteria|ristorante/.test(text)) {
+      score += 10;
+      reasons.push('+10 Italian fine');
+    } else if (/wine bar|enoteca|vinoteca|wine program|sommelier/.test(text)) {
+      score += 10;
+      reasons.push('+10 wine-forward');
+    }
+
+    // +10 luxury / historic / destination property
+    if (/luxury|five star|5.star|ritz.carlton|four seasons|rosewood|mandarin|st\.? regis|waldorf|fairmont|pendry|salamander/.test(text)) {
+      score += 10;
+      reasons.push('+10 luxury');
+    } else if (/historic|colonial|victorian|manor|estate|mansion|chateau/.test(text)) {
+      score += 10;
+      reasons.push('+10 historic/estate');
+    }
+
+    // +8 affluent target area
+    if (affluentAreas[city]) {
+      score += 8;
+      reasons.push('+8 affluent area');
+    }
+
+    // +8 clear events/private-dining decision maker found
+    var contacts = item.pendingEmails || [];
+    var hasDecisionMaker = false;
+    for (var ci = 0; ci < contacts.length; ci++) {
+      var title = String(contacts[ci].title || '').toLowerCase();
+      if (/event|general manager|owner|director|manager|banquet|catering|private dining/.test(title)) {
+        hasDecisionMaker = true;
+        break;
+      }
+    }
+    if (hasDecisionMaker) {
+      score += 8;
+      reasons.push('+8 decision maker');
+    }
+
+    // +6 verified direct contact (has valid email)
+    if (contacts.length > 0) {
+      score += 6;
+      reasons.push('+6 has contact');
+    }
+
+    // +5 strong website/social evidence of entertainment
+    if (/private event|event space|private dining|banquet|reception|wedding venue/.test(text)) {
+      score += 5;
+      reasons.push('+5 event evidence');
+    }
+
+    // --- RISK PENALTIES ---
+
+    // -15 chain / corporate generic
+    if (/founding farmers|cheesecake factory|capital grille|ruth.s chris|mortons|flemings/.test(name) ||
+        /marriott|hilton|hyatt|holiday inn|best western|comfort inn|hampton inn/.test(name)) {
+      score -= 15;
+      reasons.push('-15 chain');
+    }
+
+    // -15 uncertain category/location
+    if (cat === 'unknown' || cat === 'other') {
+      score -= 15;
+      reasons.push('-15 uncertain category');
+    }
+
+    // -20 weak contactability (no emails, no socials)
+    if (contacts.length === 0 && !v.instagram && !v.facebook && !v.contact_form) {
+      score -= 20;
+      reasons.push('-20 no contacts');
+    }
+
+    // -30 obviously wrong format
+    if (/theater|theatre|bowling|arcade|gym|crossfit|karaoke|nightclub/.test(text)) {
+      score -= 30;
+      reasons.push('-30 wrong format');
+    }
+
+    // Vote boost
+    if (vote === 'up') {
+      score += 20;
+      reasons.push('+20 thumbs up');
+    }
+
+    // Distance bonus (closer = better, max +10)
     var dist = v.distance_miles ? Number(v.distance_miles) : 50;
-    var distScore = Math.max(0, 100 - dist);
+    var distBonus = Math.round(Math.max(0, Math.min(10, (80 - dist) / 8)));
+    if (distBonus > 0) {
+      score += distBonus;
+      reasons.push('+' + distBonus + ' proximity');
+    }
 
-    // State priority: DC/MD/VA first, everything else pushed down
+    // State priority: core states get small boost
     var vState = String(v.state || '').toUpperCase();
-    var statePts = (vState === 'DC' || vState === 'MD' || vState === 'VA') ? 50 : 0;
+    if (vState === 'DC') { score += 5; reasons.push('+5 DC'); }
+    else if (vState === 'VA' || vState === 'MD') { score += 3; reasons.push('+3 ' + vState); }
 
-    // Blend: taste + distance + state priority
-    item._topPickScore = tasteScore + distScore + statePts;
+    // Priority override: dream venue jumps to top
+    if (v.priority_override === 1) {
+      score += 500;
+      reasons.push('+500 PRIORITY OVERRIDE');
+    }
+
+    item.top_pick_score = score;
+    item.top_pick_reasons = reasons;
   });
 
   actionNeeded.sort(function(a, b) {
-    return (b._topPickScore || 0) - (a._topPickScore || 0);
+    return (b.top_pick_score || 0) - (a.top_pick_score || 0);
   });
 
   return actionNeeded;
@@ -548,7 +614,12 @@ function serveDashboardJSON_() {
   var stats = getVenueStats_(venues, contacts);
   var pastGigVenueIds = getPastGigVenueIds_(ss);
   var actionNeeded = buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds);
-  var topPicks = actionNeeded.slice(0, 10);
+  // Top Picks: only venues with top_pick_score > 0 (taste >= 60 + passed all gates)
+  // No category quotas, no hard cap — show the best venues globally
+  var topPicks = [];
+  for (var tp = 0; tp < actionNeeded.length; tp++) {
+    if ((actionNeeded[tp].top_pick_score || 0) > 0) topPicks.push(actionNeeded[tp]);
+  }
   var breakdowns = buildBreakdowns_(venues);
   var recentOutreach = getRecentOutreach_(outreachData);
   var gigs = loadGigs_(ss);
@@ -619,6 +690,13 @@ function serveVenueDetail_(params) {
   // Find venue
   var vSheet = ss.getSheetByName(VENUES);
   var vData = vSheet.getDataRange().getValues();
+  var vHeaders = vData[0] || [];
+  var tsCol = -1, poCol = -1;
+  for (var vh = 0; vh < vHeaders.length; vh++) {
+    var vhName = String(vHeaders[vh]).toLowerCase().replace(/[_ ]/g, '');
+    if (vhName === 'tastescore') tsCol = vh;
+    if (vhName === 'priorityoverride') poCol = vh;
+  }
   var venue = null;
   for (var i = 1; i < vData.length; i++) {
     if (String(vData[i][0]) === venueId) {
@@ -636,6 +714,8 @@ function serveVenueDetail_(params) {
         venue_feedback: String(row[22] || ''),
         check_status: String(row[23] || '')
       };
+      if (tsCol >= 0) venue.taste_score = Number(row[tsCol]) || 0;
+      if (poCol >= 0) venue.priority_override = Number(row[poCol]) || 0;
       break;
     }
   }
@@ -2061,7 +2141,7 @@ function setupSheets() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
 
   var tabs = {
-    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date', 'contact_form', 'linkedin_pending', 'venue_vote', 'venue_feedback', 'check_status'],
+    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date', 'contact_form', 'linkedin_pending', 'venue_vote', 'venue_feedback', 'check_status', 'taste_score', 'priority_override'],
     'Contacts': ['contact_id', 'venue_id', 'name', 'title', 'email', 'source', 'verified', 'verified_date', 'email_sent', 'email_sent_date', 'ig_dm_sent', 'fb_msg_sent'],
     'Outreach Log': ['timestamp', 'venue_id', 'contact_id', 'channel', 'template_used'],
     'Config': ['key', 'value'],

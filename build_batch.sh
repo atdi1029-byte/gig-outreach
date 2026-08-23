@@ -139,7 +139,24 @@ skip_names = [
     'swim club', 'pool club', 'tennis club',
     'ice rink', 'skating',
     'rifle', 'pistol', 'gun club', 'shooting',
-    'foundation', 'association'
+    'foundation', 'association',
+    # Maintenance / HOA / management entities (not venues)
+    'maintenance', ' hoa', 'homeowner', 'property management',
+    'management company', 'leasing office',
+    # Boat clubs / dragon boats / rowing (wrong crowd)
+    'boat club', 'dragon boat', 'rowing club', 'canoe club',
+    'kayak club', 'paddl',
+    # Wrong cuisine for classical guitar
+    'thai ', ' thai', 'sushi', 'ramen', 'pho ',
+    'dim sum', 'dumpling', 'noodle house',
+    'korean bbq', 'korean fried', 'bibimbap',
+    'teppanyaki', 'hibachi', 'teriyaki',
+    'shawarma', 'kebab', 'falafel',
+    'poke bowl', 'acai', 'boba', 'bubble tea',
+    'wings ', 'wing house', 'wing stop',
+    # Farmers markets / outdoor markets
+    'farmers market', 'flea market', 'outdoor market',
+    'farm stand',
 ]
 
 chain_names = [
@@ -153,7 +170,9 @@ chain_names = [
     'shake shack', 'wingstop', 'buffalo wild wings',
     'paris baguette', 'kitchen + kocktails',
     'planta ', 'grocery', 'bakery', 'baking company',
-    'shawarma', 'kebab', 'falafel', 'food truck',
+    'food truck',
+    # Steakhouse / chophouse chains
+    '801 chophouse', 'chophouse', 'steakhouse',
     'ice cream', 'frozen yogurt', 'donut', 'doughnut',
     'pizza hut', 'dominos', 'papa john',
     'la madeleine', 'maggiano', 'patisserie',
@@ -549,7 +568,9 @@ print(f"  Skipped (duplicate site): {skipped_dupe_site}")
 print(f"  Skipped (website mismatch): {skipped_website_mismatch}")
 
 # =========================================================
-# RANKING: confidence * upscale_score
+# RANKING: TASTE SCORE
+# Scores every venue against the taste profile so the best
+# gig opportunities get picked first. No more alphabetical.
 # =========================================================
 state_priority = {'DC': 0, 'VA': 1, 'MD': 2, 'DE': 3, 'WV': 4, 'PA': 5}
 
@@ -558,8 +579,137 @@ french_kw = [
     'paris', 'chez', 'la ', 'le ', 'les ', "l'", 'au ',
     'aux ', 'du ', 'des ', 'trattoria', 'osteria',
     'ristorante', 'enoteca', 'european', 'mediterranean',
-    'portuguese'
+    'portuguese', 'tapas', 'bodega', 'cantina',
+    'argentinian', 'latin', 'spanish', 'barcelona'
 ]
+
+# Cuisine / vibe keywords that signal great fit
+tier1_cuisine_kw = [
+    'french', 'bistro', 'brasserie', 'chez',
+    'trattoria', 'osteria', 'ristorante', 'italian',
+    'spanish', 'tapas', 'barcelona', 'wine bar',
+    'argentinian', 'latin', 'european', 'mediterranean',
+    'portuguese', 'provenc'
+]
+tier2_cuisine_kw = [
+    'steakhouse', 'seafood', 'oyster', 'farm to table',
+    'prix fixe', 'tasting menu', 'fine dining',
+    'cocktail', 'speakeasy', 'lounge'
+]
+
+# Vibe keywords from taste profile
+vibe_kw = [
+    'historic', 'cozy', 'intimate', 'upscale', 'elegant',
+    'boutique', 'luxury', 'manor', 'estate', 'mansion',
+    'colonial', 'victorian', 'antique', 'charming',
+    'waterfront', 'harbor', 'wharf', 'vineyard'
+]
+
+# Prime locations (from taste profile sweet spots)
+prime_cities = {
+    # DC - Tier 1
+    'georgetown': 10, 'dupont circle': 10,
+    'washington': 8, 'capitol hill': 7,
+    'logan circle': 7, 'penn quarter': 7,
+    'adams morgan': 6, 'u street': 6,
+    # MD - Tier 1
+    'potomac': 9, 'chevy chase': 9, 'bethesda': 9,
+    'roland park': 8, 'annapolis': 8,
+    'easton': 8, 'st. michaels': 9, 'st michaels': 9,
+    'ellicott city': 7, 'towson': 6,
+    'severna park': 6, 'gibson island': 8,
+    'oxford': 7, 'chestertown': 7,
+    'havre de grace': 6, 'frederick': 6,
+    # VA - Tier 1
+    'great falls': 9, 'mclean': 9, 'alexandria': 9,
+    'vienna': 8, 'middleburg': 9, 'leesburg': 7,
+    'reston': 7, 'falls church': 7, 'tysons': 7,
+    'purcellville': 6, 'warrenton': 6,
+    # PA/DE - Tier 2
+    'gladwyne': 7, 'bryn mawr': 7, 'malvern': 7,
+    'kennett square': 7, 'west chester': 6,
+    'wilmington': 6, 'greenville': 7,
+    'rehoboth beach': 5, 'lancaster': 5,
+    # WV
+    'shepherdstown': 5, 'charles town': 5,
+}
+
+# Category scores from taste profile tiers
+cat_scores = {
+    # Tier 1 - Actively hunt
+    'restaurant': 5,       # base; boosted by cuisine kw
+    'private_club': 9,
+    'country_club': 8,
+    'yacht_club': 8,
+    'hotel': 7,
+    'winery': 7,
+    'wine_bar': 8,
+    # Tier 2 - Good fillers
+    'event_venue': 4,
+    'event': 4,
+    'music_venue': 6,
+    # Tier 3 - Lower priority
+    'art_gallery': 3,
+    'museum': 3,
+    'gallery': 3,
+    'bar': 3,
+    'brewery': 2,
+    'distillery': 2,
+    'spa': 1,
+    'church': 1,
+    'synagogue': 1,
+    'library': 1,
+    'tea_room': 2,
+    'resort': 5,
+}
+
+def taste_score(v):
+    """Score venue against taste profile. Higher = better fit.
+    Range roughly 0-50. Replaces the broken upscale_score."""
+    score = 0.0
+    name = (v.get('name', '') or '').lower()
+    cat = category_key(v)
+    city = (v.get('city', '') or '').lower().strip()
+    notes = (v.get('notes', '') or '').lower()
+    text = name + ' ' + notes
+
+    # 1. Category base score (0-9)
+    score += cat_scores.get(cat, 2)
+
+    # 2. Cuisine/style keywords (0-12)
+    t1_hits = sum(1 for k in tier1_cuisine_kw if k in text)
+    t2_hits = sum(1 for k in tier2_cuisine_kw if k in text)
+    score += min(t1_hits * 4, 12)  # tier1: 4pts each, max 12
+    score += min(t2_hits * 2, 6)   # tier2: 2pts each, max 6
+
+    # 3. Location score (0-10)
+    score += prime_cities.get(city, 0)
+
+    # 4. Vibe keywords (0-8)
+    vibe_hits = sum(1 for k in vibe_kw if k in text)
+    score += min(vibe_hits * 2, 8)
+
+    # 5. French/European name patterns (0-6)
+    fr_hits = sum(1 for k in french_kw if k in name)
+    score += min(fr_hits * 3, 6)
+
+    # 6. Penalties
+    # Art galleries / museums without event keywords
+    if cat in ('art_gallery', 'museum', 'gallery'):
+        if not any(k in text for k in ['event', 'concert',
+            'music', 'reception', 'rental', 'private']):
+            score -= 5  # no evidence of events = bad fit
+
+    # Generic/unknown restaurants without cuisine signal
+    if cat == 'restaurant':
+        if not any(k in text for k in tier1_cuisine_kw +
+                   tier2_cuisine_kw + vibe_kw):
+            score -= 3  # no signal = unknown quality
+
+    # Confidence adjustment
+    score *= data_confidence(v)
+
+    return round(score, 1)
 
 def is_french(v):
     nl = v.get('name', '').lower()
@@ -577,13 +727,12 @@ def safe_upscale_score(v):
         return 0.0
 
 def composite_score(v):
-    """Confidence-weighted quality score."""
-    return data_confidence(v) * safe_upscale_score(v)
+    """Taste-driven quality score."""
+    return taste_score(v)
 
 def quality_sort_key(v):
     return (
-        -composite_score(v),
-        -safe_upscale_score(v),
+        -taste_score(v),
         state_priority.get(v.get('state', ''), 9),
         (v.get('name', '') or '').lower()
     )
@@ -690,8 +839,8 @@ batch.sort(key=quality_sort_key)
 print(f"\n=== BATCH: {len(batch)} venues (best score first) ===")
 flagged = []
 for i, v in enumerate(batch):
+    ts = taste_score(v)
     conf = data_confidence(v)
-    comp = composite_score(v)
     flag = ""
     if conf < 0.8:
         flag = " *** SUSPICIOUS"
@@ -700,8 +849,7 @@ for i, v in enumerate(batch):
           f"{v.get('name','')} | "
           f"{v.get('category','')} | "
           f"{v.get('city','')} {v.get('state','')} | "
-          f"score={v.get('upscale_score','')} "
-          f"conf={conf:.1f} comp={comp:.1f}{flag}")
+          f"taste={ts} conf={conf:.1f}{flag}")
 
 if flagged:
     print(f"\n!!! {len(flagged)} SUSPICIOUS venues flagged "

@@ -568,304 +568,228 @@ print(f"  Skipped (duplicate site): {skipped_dupe_site}")
 print(f"  Skipped (website mismatch): {skipped_website_mismatch}")
 
 # =========================================================
-# RANKING: TASTE SCORE
-# Scores every venue against the taste profile so the best
-# gig opportunities get picked first. No more alphabetical.
+# RANKING: TASTE SCORE (0-100)
+# Uses shared venue_classifier.py + taste_score.py
+# Sorts globally by taste score. No more alphabetical.
 # =========================================================
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))
+    if '__file__' in dir() else os.getcwd())
+try:
+    from venue_classifier import classify as vc_classify
+    from taste_score import score as ts_score
+    HAS_SCORER = True
+except ImportError:
+    HAS_SCORER = False
+    print("WARNING: venue_classifier.py or taste_score.py "
+          "not found. Falling back to basic scoring.")
+
 state_priority = {'DC': 0, 'VA': 1, 'MD': 2, 'DE': 3, 'WV': 4, 'PA': 5}
 
-french_kw = [
-    'french', 'bistro', 'brasserie', 'provenc', 'lyon',
-    'paris', 'chez', 'la ', 'le ', 'les ', "l'", 'au ',
-    'aux ', 'du ', 'des ', 'trattoria', 'osteria',
-    'ristorante', 'enoteca', 'european', 'mediterranean',
-    'portuguese', 'tapas', 'bodega', 'cantina',
-    'argentinian', 'latin', 'spanish', 'barcelona'
-]
+# Minimum taste score to be included in a batch.
+# If not enough venues above threshold, batch shrinks.
+MIN_TASTE_SCORE = 25
 
-# Cuisine / vibe keywords that signal great fit
-tier1_cuisine_kw = [
-    'french', 'bistro', 'brasserie', 'chez',
-    'trattoria', 'osteria', 'ristorante', 'italian',
-    'spanish', 'tapas', 'barcelona', 'wine bar',
-    'argentinian', 'latin', 'european', 'mediterranean',
-    'portuguese', 'provenc'
-]
-tier2_cuisine_kw = [
-    'steakhouse', 'seafood', 'oyster', 'farm to table',
-    'prix fixe', 'tasting menu', 'fine dining',
-    'cocktail', 'speakeasy', 'lounge'
-]
+# Maximum diversity caps (NOT minimums).
+# A category only gets selected if its venues score well.
+# These prevent any single category from dominating.
+MAX_RESTAURANTS_PCT = 0.50     # max 50% restaurants
+MAX_CLUBS_PCT = 0.30           # max 30% clubs
+MAX_HOTELS_PCT = 0.30          # max 30% hotels
+MAX_WINERIES_PCT = 0.25        # max 25% wineries
+MAX_GALLERIES_PCT = 0.10       # max 10% galleries/museums
+MAX_EVENTS_PCT = 0.15          # max 15% event venues
 
-# Vibe keywords from taste profile
-vibe_kw = [
-    'historic', 'cozy', 'intimate', 'upscale', 'elegant',
-    'boutique', 'luxury', 'manor', 'estate', 'mansion',
-    'colonial', 'victorian', 'antique', 'charming',
-    'waterfront', 'harbor', 'wharf', 'vineyard'
-]
+def get_taste_score(v):
+    """Get taste score using shared modules."""
+    if HAS_SCORER:
+        c = vc_classify(v.get('name',''), v.get('category',''),
+                        v.get('notes',''))
+        s, reasons = ts_score(v, c)
+        return s, reasons, c
+    else:
+        # Fallback: basic score
+        return float(v.get('upscale_score', 0) or 0), [], {}
 
-# Prime locations (from taste profile sweet spots)
-prime_cities = {
-    # DC - Tier 1
-    'georgetown': 10, 'dupont circle': 10,
-    'washington': 8, 'capitol hill': 7,
-    'logan circle': 7, 'penn quarter': 7,
-    'adams morgan': 6, 'u street': 6,
-    # MD - Tier 1
-    'potomac': 9, 'chevy chase': 9, 'bethesda': 9,
-    'roland park': 8, 'annapolis': 8,
-    'easton': 8, 'st. michaels': 9, 'st michaels': 9,
-    'ellicott city': 7, 'towson': 6,
-    'severna park': 6, 'gibson island': 8,
-    'oxford': 7, 'chestertown': 7,
-    'havre de grace': 6, 'frederick': 6,
-    # VA - Tier 1
-    'great falls': 9, 'mclean': 9, 'alexandria': 9,
-    'vienna': 8, 'middleburg': 9, 'leesburg': 7,
-    'reston': 7, 'falls church': 7, 'tysons': 7,
-    'purcellville': 6, 'warrenton': 6,
-    # PA/DE - Tier 2
-    'gladwyne': 7, 'bryn mawr': 7, 'malvern': 7,
-    'kennett square': 7, 'west chester': 6,
-    'wilmington': 6, 'greenville': 7,
-    'rehoboth beach': 5, 'lancaster': 5,
-    # WV
-    'shepherdstown': 5, 'charles town': 5,
-}
+def get_classified_category(v):
+    """Get category from classifier, not raw sheet data."""
+    if HAS_SCORER:
+        c = vc_classify(v.get('name',''), v.get('category',''),
+                        v.get('notes',''))
+        return c.get('primary_category', 'unknown')
+    return (v.get('category','') or '').lower().replace(' ','_')
 
-# Category scores from taste profile tiers
-cat_scores = {
-    # Tier 1 - Actively hunt
-    'restaurant': 5,       # base; boosted by cuisine kw
-    'private_club': 9,
-    'country_club': 8,
-    'yacht_club': 8,
-    'hotel': 7,
-    'winery': 7,
-    'wine_bar': 8,
-    # Tier 2 - Good fillers
-    'event_venue': 4,
-    'event': 4,
-    'music_venue': 6,
-    # Tier 3 - Lower priority
-    'art_gallery': 3,
-    'museum': 3,
-    'gallery': 3,
-    'bar': 3,
-    'brewery': 2,
-    'distillery': 2,
-    'spa': 1,
-    'church': 1,
-    'synagogue': 1,
-    'library': 1,
-    'tea_room': 2,
-    'resort': 5,
-}
-
-def taste_score(v):
-    """Score venue against taste profile. Higher = better fit.
-    Range roughly 0-50. Replaces the broken upscale_score."""
-    score = 0.0
-    name = (v.get('name', '') or '').lower()
-    cat = category_key(v)
-    city = (v.get('city', '') or '').lower().strip()
-    notes = (v.get('notes', '') or '').lower()
-    text = name + ' ' + notes
-
-    # 1. Category base score (0-9)
-    score += cat_scores.get(cat, 2)
-
-    # 2. Cuisine/style keywords (0-12)
-    t1_hits = sum(1 for k in tier1_cuisine_kw if k in text)
-    t2_hits = sum(1 for k in tier2_cuisine_kw if k in text)
-    score += min(t1_hits * 4, 12)  # tier1: 4pts each, max 12
-    score += min(t2_hits * 2, 6)   # tier2: 2pts each, max 6
-
-    # 3. Location score (0-10)
-    score += prime_cities.get(city, 0)
-
-    # 4. Vibe keywords (0-8)
-    vibe_hits = sum(1 for k in vibe_kw if k in text)
-    score += min(vibe_hits * 2, 8)
-
-    # 5. French/European name patterns (0-6)
-    fr_hits = sum(1 for k in french_kw if k in name)
-    score += min(fr_hits * 3, 6)
-
-    # 6. Penalties
-    # Art galleries / museums without event keywords
-    if cat in ('art_gallery', 'museum', 'gallery'):
-        if not any(k in text for k in ['event', 'concert',
-            'music', 'reception', 'rental', 'private']):
-            score -= 5  # no evidence of events = bad fit
-
-    # Generic/unknown restaurants without cuisine signal
-    if cat == 'restaurant':
-        if not any(k in text for k in tier1_cuisine_kw +
-                   tier2_cuisine_kw + vibe_kw):
-            score -= 3  # no signal = unknown quality
-
-    # Confidence adjustment
-    score *= data_confidence(v)
-
-    return round(score, 1)
-
-def is_french(v):
-    nl = v.get('name', '').lower()
-    notes = v.get('notes', '') or ''
-    return any(k in nl or k in notes.lower() for k in french_kw)
-
-def category_key(v):
-    return (v.get('category', '') or '').strip().lower() \
-        .replace(' ', '_').replace('-', '_')
-
-def safe_upscale_score(v):
-    try:
-        return float(v.get('upscale_score', 0) or 0)
-    except (TypeError, ValueError):
-        return 0.0
-
-def composite_score(v):
-    """Taste-driven quality score."""
-    return taste_score(v)
-
-def quality_sort_key(v):
-    return (
-        -taste_score(v),
-        state_priority.get(v.get('state', ''), 9),
-        (v.get('name', '') or '').lower()
-    )
-
-# Group by normalized category
-by_cat = defaultdict(list)
+# =========================================================
+# SCORE ALL VENUES IN POOL
+# =========================================================
+scored_pool = []
 for v in pool:
-    by_cat[category_key(v)].append(v)
+    ts, reasons, classification = get_taste_score(v)
+    cat = classification.get('primary_category', 'unknown') \
+        if classification else (v.get('category','') or '').lower()
+    scored_pool.append({
+        'venue': v,
+        'taste_score': ts,
+        'reasons': reasons,
+        'classified_cat': cat,
+        'tags': classification.get('venue_tags', []) if classification else [],
+    })
 
+# Sort by taste score descending (highest first)
+scored_pool.sort(key=lambda x: (
+    -x['taste_score'],
+    state_priority.get(x['venue'].get('state',''), 9),
+    (x['venue'].get('name','') or '').lower()
+))
+
+print(f"\nScored pool: {len(scored_pool)} venues")
+above_threshold = sum(1 for s in scored_pool
+                      if s['taste_score'] >= MIN_TASTE_SCORE)
+print(f"Above threshold ({MIN_TASTE_SCORE}+): {above_threshold}")
+
+# Score distribution
+for lo, hi in [(60,100),(50,60),(40,50),(30,40),(25,30),(0,25)]:
+    n = sum(1 for s in scored_pool if lo <= s['taste_score'] < hi)
+    print(f"  {lo:3d}-{hi:3d}: {n:4d} venues")
+
+# =========================================================
+# SELECT BATCH: highest taste scores, with diversity CAPS
+# =========================================================
 batch = []
 used = set()
+cat_counts = defaultdict(int)
 
-def pick(cats, count, label, filter_fn=None):
-    added = 0
-    p = []
-    for c in cats:
-        p.extend(by_cat.get(c, []))
-    if filter_fn:
-        p = [v for v in p if filter_fn(v)]
-    p.sort(key=quality_sort_key)
-    for v in p:
-        if added >= count:
-            break
-        vid = v.get('venue_id', '')
-        if vid in used:
-            continue
-        used.add(vid)
-        batch.append(v)
-        added += 1
-    print(f"  {label}: {added}/{count}")
+def cat_group(cat):
+    """Map classified category to cap group."""
+    if cat in ('restaurant', 'bar', 'cafe'): return 'restaurant'
+    if cat in ('country_club', 'private_club', 'yacht_club'): return 'club'
+    if cat in ('hotel', 'resort'): return 'hotel'
+    if cat in ('winery', 'wine_bar'): return 'winery'
+    if cat in ('art_gallery', 'museum', 'gallery'): return 'gallery'
+    if cat in ('event_venue', 'event', 'music_venue'): return 'event'
+    return 'other'
 
-# Diversified picks
-fr_count = max(1, int(COUNT * 0.30))
-cl_count = max(1, int(COUNT * 0.20))
-ho_count = max(1, int(COUNT * 0.20))
-wi_count = max(1, int(COUNT * 0.15))
-wc_count = COUNT - fr_count - cl_count - ho_count - wi_count
+def at_cap(group, current_batch_size):
+    """Check if adding one more of this group would exceed cap."""
+    if current_batch_size == 0: return False
+    caps = {
+        'restaurant': MAX_RESTAURANTS_PCT,
+        'club': MAX_CLUBS_PCT,
+        'hotel': MAX_HOTELS_PCT,
+        'winery': MAX_WINERIES_PCT,
+        'gallery': MAX_GALLERIES_PCT,
+        'event': MAX_EVENTS_PCT,
+    }
+    cap = caps.get(group, 0.20)  # default 20% for unknown groups
+    max_count = max(2, int(COUNT * cap))
+    return cat_counts.get(group, 0) >= max_count
 
-pick(['restaurant'], fr_count,
-     'French/European restaurants', is_french)
-pick(['country_club', 'private_club', 'yacht_club',
-      'golf_club'], cl_count, 'Clubs')
-pick(['hotel', 'hotel_restaurant',
-      'luxury_hotel_restaurant',
-      'boutique_hotel_restaurant',
-      'historic_inn_restaurant'], ho_count, 'Hotels')
-pick(['winery', 'wine_bar'], wi_count, 'Wineries/Wine Bars')
-pick(['art_gallery', 'museum', 'event',
-      'event_venue'], wc_count, 'Wild Cards')
+for entry in scored_pool:
+    if len(batch) >= COUNT:
+        break
+    v = entry['venue']
+    ts = entry['taste_score']
+    cat = entry['classified_cat']
 
-# Top up with best remaining
+    # Minimum quality threshold
+    if ts < MIN_TASTE_SCORE:
+        break  # everything below here is worse, stop
+
+    vid = v.get('venue_id', '')
+    if vid in used:
+        continue
+
+    # Diversity cap check
+    group = cat_group(cat)
+    if at_cap(group, len(batch)):
+        continue  # skip, but keep looking for other categories
+
+    used.add(vid)
+    batch.append(entry)
+    cat_counts[group] = cat_counts.get(group, 0) + 1
+
+# Report category distribution
+print(f"\nBatch category distribution:")
+for group, count in sorted(cat_counts.items(),
+                           key=lambda x: -x[1]):
+    pct = (count / len(batch) * 100) if batch else 0
+    print(f"  {group}: {count} ({pct:.0f}%)")
+
 if len(batch) < COUNT:
-    remaining = [v for v in pool
-                 if v.get('venue_id') not in used]
-    remaining.sort(key=quality_sort_key)
-    for v in remaining:
-        if len(batch) >= COUNT:
-            break
-        batch.append(v)
-        used.add(v.get('venue_id'))
-    topup_count = len(batch) - (fr_count + cl_count + ho_count + wi_count + wc_count)
-    if topup_count < 0: topup_count = 0
-    print(f"  Top-up: {topup_count}")
+    print(f"\nNOTE: Only {len(batch)} venues above threshold "
+          f"(requested {COUNT}). Not filling with junk.")
 
 # =========================================================
 # ENFORCE LOCAL-FIRST CAP: max 10% PA/DE/WV
-# User lives in MD — DC/MD/VA are the core zone.
-# PA/DE/WV are edge-of-radius filler only.
 # =========================================================
 core_states = {'DC', 'VA', 'MD'}
-edge_max = max(2, int(COUNT * 0.10))  # ~10%, min 2
-edge_venues = [v for v in batch
-               if v.get('state', '') not in core_states]
-if len(edge_venues) > edge_max:
-    # Keep only the best edge venues, drop the rest
-    edge_venues.sort(key=quality_sort_key)
+edge_max = max(2, int(COUNT * 0.10))
+edge_entries = [e for e in batch
+                if e['venue'].get('state','') not in core_states]
+if len(edge_entries) > edge_max:
+    edge_entries.sort(key=lambda e: -e['taste_score'])
     edge_to_drop = set(
-        v.get('venue_id') for v in edge_venues[edge_max:]
+        e['venue'].get('venue_id') for e in edge_entries[edge_max:]
     )
-    batch = [v for v in batch
-             if v.get('venue_id') not in edge_to_drop]
+    batch = [e for e in batch
+             if e['venue'].get('venue_id') not in edge_to_drop]
     used -= edge_to_drop
-    # Backfill with core-state venues
-    remaining = [v for v in pool
-                 if v.get('venue_id') not in used
-                 and v.get('state', '') in core_states]
-    remaining.sort(key=quality_sort_key)
-    for v in remaining:
+    # Backfill with core-state venues above threshold
+    for entry in scored_pool:
         if len(batch) >= COUNT:
             break
-        batch.append(v)
+        v = entry['venue']
+        if v.get('venue_id') in used:
+            continue
+        if v.get('state','') not in core_states:
+            continue
+        if entry['taste_score'] < MIN_TASTE_SCORE:
+            break
+        group = cat_group(entry['classified_cat'])
+        if at_cap(group, len(batch)):
+            continue
         used.add(v.get('venue_id'))
-    dropped = len(edge_to_drop) - (COUNT - len(batch))
+        batch.append(entry)
+        cat_counts[group] = cat_counts.get(group, 0) + 1
     print(f"  Local-first cap: dropped {len(edge_to_drop)} "
           f"edge-of-radius venues (PA/DE/WV), "
           f"kept {edge_max}")
 
-# Final sort: best composite score first
-batch.sort(key=quality_sort_key)
+# Final sort: best taste score first
+batch.sort(key=lambda e: (
+    -e['taste_score'],
+    state_priority.get(e['venue'].get('state',''), 9),
+    (e['venue'].get('name','') or '').lower()
+))
 
 # =========================================================
 # OUTPUT
 # =========================================================
-print(f"\n=== BATCH: {len(batch)} venues (best score first) ===")
-flagged = []
-for i, v in enumerate(batch):
-    ts = taste_score(v)
-    conf = data_confidence(v)
-    flag = ""
-    if conf < 0.8:
-        flag = " *** SUSPICIOUS"
-        flagged.append(v)
+print(f"\n=== BATCH: {len(batch)} venues "
+      f"(by taste score, min {MIN_TASTE_SCORE}) ===")
+for i, entry in enumerate(batch):
+    v = entry['venue']
+    ts = entry['taste_score']
+    cat = entry['classified_cat']
+    tag_str = ', '.join(entry.get('tags', [])[:4])
     print(f"{i+1}. [{v.get('venue_id','')}] "
           f"{v.get('name','')} | "
-          f"{v.get('category','')} | "
+          f"{cat} | "
           f"{v.get('city','')} {v.get('state','')} | "
-          f"taste={ts} conf={conf:.1f}{flag}")
-
-if flagged:
-    print(f"\n!!! {len(flagged)} SUSPICIOUS venues flagged "
-          f"(low data confidence):")
-    for v in flagged:
-        domain = v.get('website','').lower() \
-            .replace('https://','').replace('http://','') \
-            .replace('www.','').split('/')[0]
-        print(f"  - {v.get('name','')} → {domain} "
-              f"(conf={data_confidence(v):.1f})")
+          f"taste={ts}")
+    if DRY_RUN:
+        for r in entry.get('reasons', []):
+            print(f"     {r}")
+        if tag_str:
+            print(f"     tags: {tag_str}")
 
 if DRY_RUN:
     print(f"\n[DRY RUN] Batch NOT saved. "
           f"Review above, then run without --dry-run.")
 else:
+    # Extract venue dicts for pipeline
+    batch_venues = [e['venue'] for e in batch]
     with open('/tmp/pipeline_batch.json', 'w') as f:
-        json.dump(batch, f, indent=2)
+        json.dump(batch_venues, f, indent=2)
     print(f"\nSaved to /tmp/pipeline_batch.json")
 PYEOF

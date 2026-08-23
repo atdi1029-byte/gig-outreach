@@ -466,13 +466,24 @@ PYEOF
         # Pre-score, filter, and add venues
         RESULTS_TMP="/tmp/taste_search_results.json"
         echo "$RESULTS_JSON" > "$RESULTS_TMP"
-        ADDED_REAL=$(python3 - "$RESULTS_TMP" "$EXISTING_FILE" "$APPS_SCRIPT_URL" "$QUERY" << 'PYEOF2'
-import json, sys, urllib.parse, subprocess, re
+        ADDED_REAL=$(python3 - "$RESULTS_TMP" "$EXISTING_FILE" "$APPS_SCRIPT_URL" "$QUERY" "$SCRIPT_DIR" << 'PYEOF2'
+import json, sys, urllib.parse, subprocess, re, os
 
 results_file = sys.argv[1]
 existing_file = sys.argv[2]
 api = sys.argv[3]
 query = sys.argv[4]
+script_dir = sys.argv[5] if len(sys.argv) > 5 else '.'
+
+# Import shared classifier + scorer
+sys.path.insert(0, script_dir)
+try:
+    from venue_classifier import classify as vc_classify
+    from taste_score import score as ts_score
+    HAS_SCORER = True
+except ImportError:
+    HAS_SCORER = False
+    print("WARNING: venue_classifier.py or taste_score.py not found")
 
 with open(results_file) as f:
     results = json.loads(f.read())
@@ -751,7 +762,17 @@ for venue in results:
     if not state and query_state:
         state = query_state
 
-    # upscale_score now measures luxury/price positioning, not just star rating.
+    # Use shared classifier if available
+    if HAS_SCORER:
+        classification = vc_classify(name, cat, '')
+        our_cat = classification['primary_category']
+        # Skip non-venues caught by classifier
+        if our_cat in ('other', 'recreation', 'theater',
+                       'spa', 'unknown'):
+            print(f"  SKIP (classified {our_cat}): {name} -- {cat}")
+            continue
+
+    # Google rating preserved as upscale_score (raw signal)
     if len(price) >= 4: upscale = 5
     elif len(price) == 3: upscale = 4
     elif len(price) == 2: upscale = 3
@@ -759,12 +780,19 @@ for venue in results:
     else:
         r = float(rating or 0)
         upscale = 4 if r >= 4.7 else 3 if r >= 4.4 else 2 if r else 3
-    name_text = (name + ' ' + query).lower()
-    if our_cat in ('country_club','private_club','yacht_club'): upscale = max(upscale, 4)
-    if our_cat == 'hotel' and any(x in name_text for x in ['luxury','five star','5-star','ritz-carlton','four seasons','rosewood','st. regis','waldorf','fairmont','pendry','salamander','mandarin']): upscale = 5
-    if our_cat == 'restaurant' and any(x in name_text for x in ['fine dining','michelin','tasting menu','french','brasserie','ristorante','steakhouse','chophouse']): upscale = max(upscale, 4)
 
     notes = f"Google Maps '{cat}'. Price: {price or 'n/a'}. {rating}* ({reviews} reviews). Pre-score: {score}. Taste query: {query}"
+
+    # Calculate taste score before adding
+    venue_for_score = {
+        'name': name, 'category': our_cat,
+        'city': city, 'state': state,
+        'notes': notes, 'upscale_score': upscale
+    }
+    if HAS_SCORER:
+        ts, reasons = ts_score(venue_for_score, classification)
+    else:
+        ts = upscale * 10  # fallback
 
     params = {
         'action': 'add_venue',
@@ -774,6 +802,7 @@ for venue in results:
         'state': state,
         'address': location if location else name,
         'upscale_score': str(upscale),
+        'taste_score': str(ts),
         'source': f'taste:{query[:60]}',
         'notes': notes,
         'status': 'needs_review'

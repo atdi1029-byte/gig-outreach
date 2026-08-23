@@ -756,16 +756,12 @@ for venue in results:
         parts = before_state.split(',')
         city = parts[-1].strip() if parts else ''
         if city and city[0].isdigit(): city = ''
-    # Fallback to query-derived STATE only (not city).
-    # Query city must NEVER be stored as venue's actual city.
+    # Query city AND state are provenance only — NEVER venue location.
     # A search for "country club Georgetown DC" should not make
-    # every result have city=Georgetown.
-    if not state and query_state:
-        state = query_state
-    # If we couldn't parse city from Google location, leave blank
-    # rather than using the search query city (which is wrong).
-    if not city:
-        city = ''  # will be flagged as needs_review
+    # every result have city=Georgetown or state=DC.
+    # Actual location comes only from Google Place address.
+    # If we can't parse city/state from the location field,
+    # leave them blank — they'll be flagged as needs_review.
 
     # Use shared classifier if available
     if HAS_SCORER:

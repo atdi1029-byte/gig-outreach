@@ -52,6 +52,7 @@ function doGet(e) {
   if (action === 'stats')           return serveStats_();
   if (action === 'config')          return serveConfig_();
   if (action === 'calc_distances')  return calcDistances_();
+  if (action === 'migrate_schema')  return migrateSchema_(e.parameter);
   if (action === 'add_gig')         return addGig_(e.parameter);
   if (action === 'update_gig')      return updateGig_(e.parameter);
   if (action === 'delete_gig')      return deleteGig_(e.parameter);
@@ -691,11 +692,15 @@ function serveVenueDetail_(params) {
   var vSheet = ss.getSheetByName(VENUES);
   var vData = vSheet.getDataRange().getValues();
   var vHeaders = vData[0] || [];
-  var tsCol = -1, poCol = -1;
+  var tsCol = -1, poCol = -1, trCol = -1, tsvCol = -1, ccCol = -1, lcCol = -1;
   for (var vh = 0; vh < vHeaders.length; vh++) {
     var vhName = String(vHeaders[vh]).toLowerCase().replace(/[_ ]/g, '');
     if (vhName === 'tastescore') tsCol = vh;
     if (vhName === 'priorityoverride') poCol = vh;
+    if (vhName === 'tastereasons') trCol = vh;
+    if (vhName === 'tastescoreversion') tsvCol = vh;
+    if (vhName === 'classificationconfidence') ccCol = vh;
+    if (vhName === 'locationconfidence') lcCol = vh;
   }
   var venue = null;
   for (var i = 1; i < vData.length; i++) {
@@ -716,6 +721,10 @@ function serveVenueDetail_(params) {
       };
       if (tsCol >= 0) venue.taste_score = Number(row[tsCol]) || 0;
       if (poCol >= 0) venue.priority_override = Number(row[poCol]) || 0;
+      if (trCol >= 0) venue.taste_reasons = String(row[trCol] || '');
+      if (tsvCol >= 0) venue.taste_score_version = String(row[tsvCol] || '');
+      if (ccCol >= 0) venue.classification_confidence = Number(row[ccCol]) || 0;
+      if (lcCol >= 0) venue.location_confidence = Number(row[lcCol]) || 0;
       break;
     }
   }
@@ -2137,11 +2146,46 @@ function loadMonthly_() {
 // setupSheets — Run ONCE to create all required tabs + headers
 // Go to Apps Script editor → Run → setupSheets
 // ---------------------------------------------------------------
+// ---------------------------------------------------------------
+// migrateSchema_ — Add missing columns to existing sheets
+// Called via ?action=migrate_schema
+// Safe to run multiple times — only adds columns that don't exist
+// ---------------------------------------------------------------
+function migrateSchema_(params) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var venueSheet = ss.getSheetByName('Venues');
+  if (!venueSheet) return jsonResponse_({ status: 'error', message: 'Venues sheet not found' });
+
+  var headers = venueSheet.getRange(1, 1, 1, venueSheet.getLastColumn()).getValues()[0];
+  var headerNames = headers.map(function(h) { return String(h).toLowerCase().trim(); });
+
+  var expectedCols = ['taste_score', 'taste_score_version', 'taste_reasons',
+                      'classification_confidence', 'location_confidence', 'priority_override'];
+  var added = [];
+
+  for (var i = 0; i < expectedCols.length; i++) {
+    if (headerNames.indexOf(expectedCols[i]) === -1) {
+      var newCol = venueSheet.getLastColumn() + 1;
+      venueSheet.getRange(1, newCol).setValue(expectedCols[i]);
+      venueSheet.getRange(1, newCol).setFontWeight('bold');
+      added.push(expectedCols[i]);
+    }
+  }
+
+  return jsonResponse_({
+    status: 'ok',
+    message: added.length > 0
+      ? 'Added columns: ' + added.join(', ')
+      : 'All columns already exist',
+    added: added
+  });
+}
+
 function setupSheets() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
 
   var tabs = {
-    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date', 'contact_form', 'linkedin_pending', 'venue_vote', 'venue_feedback', 'check_status', 'taste_score', 'priority_override'],
+    'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date', 'contact_form', 'linkedin_pending', 'venue_vote', 'venue_feedback', 'check_status', 'taste_score', 'taste_score_version', 'taste_reasons', 'classification_confidence', 'location_confidence', 'priority_override'],
     'Contacts': ['contact_id', 'venue_id', 'name', 'title', 'email', 'source', 'verified', 'verified_date', 'email_sent', 'email_sent_date', 'ig_dm_sent', 'fb_msg_sent'],
     'Outreach Log': ['timestamp', 'venue_id', 'contact_id', 'channel', 'template_used'],
     'Config': ['key', 'value'],

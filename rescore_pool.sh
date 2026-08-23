@@ -151,9 +151,40 @@ if [ "$APPLY" = "1" ]; then
     count=0
     errors=0
     while IFS=$'\t' read -r vid new_score new_cat reasons; do
-        # Write taste_score as new field
-        result=$(curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=taste_score&value=${new_score}" 2>/dev/null)
+        # Skip if already scored (idempotent restart)
+        existing=$(curl -sL --max-time 15 "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${vid}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('venue',{}).get('taste_score',0))" 2>/dev/null)
+        if [ "$existing" = "$new_score" ] 2>/dev/null; then
+            count=$((count + 1))
+            if [ $((count % 200)) -eq 0 ]; then
+                echo "  ... $count / $total (skipping already scored)"
+            fi
+            continue
+        fi
+
+        # Write taste_score
+        result=$(curl -sL --max-time 30 "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=taste_score&value=${new_score}" 2>/dev/null)
         status=$(echo "$result" | python3 -c "import json,sys; print(json.load(sys.stdin).get('status',''))" 2>/dev/null)
+
+        if [ "$status" != "ok" ]; then
+            # Retry once after 3 seconds
+            sleep 3
+            result=$(curl -sL --max-time 30 "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=taste_score&value=${new_score}" 2>/dev/null)
+            status=$(echo "$result" | python3 -c "import json,sys; print(json.load(sys.stdin).get('status',''))" 2>/dev/null)
+            if [ "$status" != "ok" ]; then
+                echo "  FAIL: $vid taste_score=$new_score (after retry)"
+                errors=$((errors + 1))
+                # Stop on 20+ total errors
+                if [ "$errors" -ge 20 ]; then
+                    echo "  ABORTING: 20+ errors"
+                    break
+                fi
+                continue
+            fi
+        fi
+
+        # Write taste_reasons (pass via stdin to avoid quote/encoding issues)
+        reasons_enc=$(echo "$reasons" | python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.stdin.read().strip()))")
+        curl -sL --max-time 15 "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=taste_reasons&value=${reasons_enc}" > /dev/null 2>&1
 
         # Update category if reclassified
         cur_cat=$(curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${vid}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('venue',{}).get('category',''))" 2>/dev/null)
@@ -162,10 +193,6 @@ if [ "$APPLY" = "1" ]; then
         fi
 
         count=$((count + 1))
-        if [ "$status" != "ok" ]; then
-            echo "  FAIL: $vid ($new_score) — $status"
-            errors=$((errors + 1))
-        fi
         # Progress every 100
         if [ $((count % 100)) -eq 0 ]; then
             echo "  ... $count / $total updated"

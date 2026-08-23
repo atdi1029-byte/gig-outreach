@@ -756,11 +756,16 @@ for venue in results:
         parts = before_state.split(',')
         city = parts[-1].strip() if parts else ''
         if city and city[0].isdigit(): city = ''
-    # Fallback to query-derived city/state when location is empty
-    if not city and query_city:
-        city = query_city
+    # Fallback to query-derived STATE only (not city).
+    # Query city must NEVER be stored as venue's actual city.
+    # A search for "country club Georgetown DC" should not make
+    # every result have city=Georgetown.
     if not state and query_state:
         state = query_state
+    # If we couldn't parse city from Google location, leave blank
+    # rather than using the search query city (which is wrong).
+    if not city:
+        city = ''  # will be flagged as needs_review
 
     # Use shared classifier if available
     if HAS_SCORER:
@@ -1240,13 +1245,26 @@ for card in cards:
         print(f"  SKIP (out of area): {name} -- {state_match_check.group(1)}")
         continue
 
-    # Determine our category (use map_category with name fallback)
-    our_cat = map_category(cat, name)
-    if our_cat == 'other':
-        print(f"  SKIP (unclassified): {name} -- {cat}")
+    # Classify using shared classifier if available
+    try:
+        import os as _os2
+        _sd2 = _os2.path.dirname(_os2.path.abspath(__file__)) \
+            if '__file__' in dir() else _os2.getcwd()
+        import sys as _sys2
+        _sys2.path.insert(0, _sd2)
+        from venue_classifier import classify as _vc2
+        from taste_score import score as _ts2
+        _cls2 = _vc2(name, cat, '')
+        our_cat = _cls2['primary_category']
+    except ImportError:
+        our_cat = map_category(cat, name)
+        _cls2 = None
+
+    if our_cat in ('other', 'recreation', 'theater', 'unknown'):
+        print(f"  SKIP (classified {our_cat}): {name} -- {cat}")
         continue
 
-    # Upscale score is price/luxury positioning, not a popularity score.
+    # Upscale score: Google rating as raw signal (preserved separately)
     if len(price) >= 4: upscale = 5
     elif len(price) == 3: upscale = 4
     elif len(price) == 2: upscale = 3
@@ -1254,9 +1272,6 @@ for card in cards:
     else:
         r = float(rating or 0)
         upscale = 4 if r >= 4.7 else 3 if r >= 4.4 else 2 if r else 3
-    if our_cat in ('country_club','private_club','yacht_club'): upscale = max(upscale, 4)
-    nlux = name.lower()
-    if our_cat == 'hotel' and any(x in nlux for x in ['ritz-carlton','four seasons','rosewood','st. regis','waldorf','fairmont','pendry','salamander','mandarin','peninsula','langham']): upscale = 5
 
     notes = f"Google Maps '{cat}'. Price: {price or 'n/a'}. {rating}★ ({reviews} reviews). Discovered from: {source_venue}"
 

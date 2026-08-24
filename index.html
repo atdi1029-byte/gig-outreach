@@ -2243,13 +2243,14 @@ function renderTopPicks() {
     const topPicks = (dashboardData && dashboardData.topPicks) || [];
     const all = topPicks.filter(p => {
         const v = p.venue || p;
-        return venueHasPending(v.venue_id) && (p.top_pick_score || 0) > 0;
+        // Report gate still applies, but no venueHasPending — server already filtered
+        return !isVenueGated(v.venue_id) && (p.top_pick_score || 0) > 0;
     });
 
     badge.textContent = all.length;
     if (all.length === 0) {
         el.innerHTML = '<div class="empty-state">' +
-            'No top picks yet. Venues need taste_score &ge; 60 to qualify.</div>';
+            'No top picks yet. Run the pipeline to find actionable venues.</div>';
         return;
     }
     el.innerHTML = all.map((item, idx) => {

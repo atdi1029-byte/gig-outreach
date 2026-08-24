@@ -337,8 +337,10 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
     var city = String(v.city || '').toLowerCase().trim();
     var reasons = [];
 
-    // Hard gate: taste_score < 60 = never a top pick
-    if (tasteScore < 60 || vote === 'down') {
+    // Hard gate: downvoted venues never become top picks
+    // Venues WITH a taste_score below 60 are also excluded
+    // Venues WITHOUT a taste_score (0) still get scored via bonuses
+    if (vote === 'down' || (tasteScore > 0 && tasteScore < 60)) {
       item.top_pick_score = -1;
       item.top_pick_reasons = ['below taste threshold'];
       return;
@@ -355,9 +357,9 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
       return;
     }
 
-    // Start with taste_score as base
-    var score = tasteScore;
-    reasons.push('taste:' + tasteScore);
+    // Start with taste_score as base; unscored venues get a neutral base of 50
+    var score = tasteScore > 0 ? tasteScore : 50;
+    reasons.push(tasteScore > 0 ? 'taste:' + tasteScore : 'base:50 (unscored)');
 
     // --- PRIORITY BONUSES ---
 
@@ -491,6 +493,171 @@ function buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds) {
   return actionNeeded;
 }
 
+// Build Top Picks from ALL showable venues (same pool as Browse Venues)
+function buildTopPicks_(venues, contactsByVenue, pastGigVenueIds) {
+  var junkWords = [
+    'ice cream', 'gelato', 'frozen', 'toast', 'bakery', 'pastry',
+    'slice', 'cupcake', 'smoothie', 'juice', 'bagel', 'donut',
+    'cafe', 'coffee', 'deli', 'sandwich', 'pizza', 'taco', 'burger',
+    'pub', 'irish', 'beer garden', 'sports bar', 'hookah',
+    'sweets', 'candy', 'dessert', 'acai', 'poke', 'bubble tea',
+    'chicken', 'ramen', 'noodle', 'kebab', 'gyro', 'sushi',
+    'clubhouse', 'pool', 'swim', 'tennis', 'golf simulator',
+    'recreation', 'liquor', 'wine shop', 'wine store', 'spirits'
+  ];
+  var affluentAreas = {
+    'georgetown': true, 'dupont circle': true, 'potomac': true,
+    'chevy chase': true, 'bethesda': true, 'great falls': true,
+    'mclean': true, 'alexandria': true, 'middleburg': true,
+    'st. michaels': true, 'st michaels': true, 'easton': true,
+    'gibson island': true, 'roland park': true, 'annapolis': true,
+    'gladwyne': true, 'bryn mawr': true, 'greenville': true,
+    'vienna': true, 'falls church': true, 'leesburg': true
+  };
+
+  var results = [];
+
+  for (var i = 0; i < venues.length; i++) {
+    var venue = venues[i];
+    // Same exclusions as Browse Venues
+    if (venue.status === 'contacted') continue;
+    if (pastGigVenueIds[venue.venue_id]) continue;
+    var vnLower = String(venue.name || '').toLowerCase().trim();
+    var pgNames = pastGigVenueIds._namesList || [];
+    var matchedPg = false;
+    for (var pn = 0; pn < pgNames.length; pn++) {
+      if (vnLower.indexOf(pgNames[pn]) > -1 || pgNames[pn].indexOf(vnLower) > -1) {
+        matchedPg = true; break;
+      }
+    }
+    if (matchedPg) continue;
+
+    var vc = contactsByVenue[venue.venue_id] || [];
+    var cat = String(venue.category || '').toLowerCase();
+    var name = String(venue.name || '').toLowerCase();
+    var notes = String(venue.notes || '').toLowerCase();
+    var text = name + ' ' + notes;
+    var vote = String(venue.venue_vote || '');
+    var tasteScore = Number(venue.taste_score || 0);
+    var city = String(venue.city || '').toLowerCase().trim();
+    var reasons = [];
+
+    // Hard gates
+    if (vote === 'down') continue;
+    if (tasteScore > 0 && tasteScore < 60) continue;
+
+    // Junk name filter
+    var isJunk = false;
+    for (var nj = 0; nj < junkWords.length; nj++) {
+      if (name.indexOf(junkWords[nj]) > -1) { isJunk = true; break; }
+    }
+    if (isJunk) continue;
+
+    // Base score
+    var score = tasteScore > 0 ? tasteScore : 50;
+    reasons.push(tasteScore > 0 ? 'taste:' + tasteScore : 'base:50');
+
+    // Find pending emails
+    var pendingEmails = [];
+    for (var cc = 0; cc < vc.length; cc++) {
+      var ver = vc[cc].verified;
+      if ((ver === 'valid' || ver === 'catch-all' || ver === 'unknown') && !vc[cc].email_sent) {
+        pendingEmails.push(vc[cc]);
+      }
+    }
+
+    // Check if venue has any actionable channel
+    var hasIg = venue.instagram && venue.instagram.length > 5 && !venue.ig_dm_sent;
+    var hasFb = venue.facebook && venue.facebook.length > 5 && !venue.fb_msg_sent;
+    var hasCf = venue.contact_form && venue.contact_form.length > 5;
+    var hasAction = pendingEmails.length > 0 || hasIg || hasFb || hasCf;
+
+    // +15 club
+    if (/private.?club|country.?club|university.?club|city.?club|yacht.?club/.test(cat) ||
+        /country club|private club|yacht club|city club|university club|hunt club|metropolitan club|army navy/.test(text)) {
+      score += 15; reasons.push('+15 club');
+    }
+    // +12 live music
+    if (/live music|concert series|music program|live entertainment|recurring event|weekly music|jazz night/.test(text)) {
+      score += 12; reasons.push('+12 live music');
+    }
+    // +10 French/Italian/wine
+    if (/french|bistro|brasserie|boucherie|auberge|chez |provenc/.test(text)) {
+      score += 10; reasons.push('+10 French');
+    } else if (/trattoria|osteria|ristorante/.test(text)) {
+      score += 10; reasons.push('+10 Italian fine');
+    } else if (/wine bar|enoteca|vinoteca|wine program|sommelier/.test(text)) {
+      score += 10; reasons.push('+10 wine-forward');
+    }
+    // +10 luxury/historic
+    if (/luxury|five star|5.star|ritz.carlton|four seasons|rosewood|mandarin|st\.? regis|waldorf|fairmont|pendry|salamander/.test(text)) {
+      score += 10; reasons.push('+10 luxury');
+    } else if (/historic|colonial|victorian|manor|estate|mansion|chateau/.test(text)) {
+      score += 10; reasons.push('+10 historic');
+    }
+    // +8 affluent area
+    if (affluentAreas[city]) { score += 8; reasons.push('+8 affluent'); }
+    // +8 decision maker
+    var hasDecisionMaker = false;
+    for (var ci = 0; ci < pendingEmails.length; ci++) {
+      var title = String(pendingEmails[ci].title || '').toLowerCase();
+      if (/event|general manager|owner|director|manager|banquet|catering|private dining/.test(title)) {
+        hasDecisionMaker = true; break;
+      }
+    }
+    if (hasDecisionMaker) { score += 8; reasons.push('+8 decision maker'); }
+    // +6 has contact
+    if (pendingEmails.length > 0) { score += 6; reasons.push('+6 has email'); }
+    // +5 event evidence
+    if (/private event|event space|private dining|banquet|reception|wedding venue/.test(text)) {
+      score += 5; reasons.push('+5 events');
+    }
+    // -15 chain
+    if (/founding farmers|cheesecake factory|capital grille|ruth.s chris|mortons|flemings/.test(name) ||
+        /marriott|hilton|hyatt|holiday inn|best western|comfort inn|hampton inn/.test(name)) {
+      score -= 15; reasons.push('-15 chain');
+    }
+    // -15 uncertain category
+    if (cat === 'unknown' || cat === 'other') { score -= 15; reasons.push('-15 unknown cat'); }
+    // -20 no contacts at all
+    if (pendingEmails.length === 0 && !venue.instagram && !venue.facebook && !venue.contact_form) {
+      score -= 20; reasons.push('-20 no contacts');
+    }
+    // -30 wrong format
+    if (/theater|theatre|bowling|arcade|gym|crossfit|karaoke|nightclub/.test(text)) {
+      score -= 30; reasons.push('-30 wrong format');
+    }
+    // Vote boost
+    if (vote === 'up') { score += 20; reasons.push('+20 thumbs up'); }
+    // Distance
+    var dist = venue.distance_miles ? Number(venue.distance_miles) : 50;
+    var distBonus = Math.round(Math.max(0, Math.min(10, (80 - dist) / 8)));
+    if (distBonus > 0) { score += distBonus; reasons.push('+' + distBonus + ' proximity'); }
+    // State
+    var vState = String(venue.state || '').toUpperCase();
+    if (vState === 'DC') { score += 5; reasons.push('+5 DC'); }
+    else if (vState === 'VA' || vState === 'MD') { score += 3; reasons.push('+3 ' + vState); }
+    // Priority override
+    if (venue.priority_override === 1) { score += 500; reasons.push('+500 PRIORITY'); }
+
+    if (score <= 0) continue;
+
+    results.push({
+      venue: venue,
+      contacts: vc,
+      pendingEmails: pendingEmails,
+      igPending: hasIg,
+      fbPending: hasFb,
+      top_pick_score: score,
+      top_pick_reasons: reasons
+    });
+  }
+
+  results.sort(function(a, b) { return (b.top_pick_score || 0) - (a.top_pick_score || 0); });
+  // Cap at top 50 to keep response size reasonable
+  return results.slice(0, 50);
+}
+
 // Build state and category breakdowns from the venues array.
 function buildBreakdowns_(venues) {
   var stateBreakdown = {};
@@ -615,12 +782,8 @@ function serveDashboardJSON_() {
   var stats = getVenueStats_(venues, contacts);
   var pastGigVenueIds = getPastGigVenueIds_(ss);
   var actionNeeded = buildActionNeeded_(venues, contactsByVenue, pastGigVenueIds);
-  // Top Picks: only venues with top_pick_score > 0 (taste >= 60 + passed all gates)
-  // No category quotas, no hard cap — show the best venues globally
-  var topPicks = [];
-  for (var tp = 0; tp < actionNeeded.length; tp++) {
-    if ((actionNeeded[tp].top_pick_score || 0) > 0) topPicks.push(actionNeeded[tp]);
-  }
+  // Top Picks: score ALL showable venues (same pool as Browse Venues)
+  var topPicks = buildTopPicks_(venues, contactsByVenue, pastGigVenueIds);
   var breakdowns = buildBreakdowns_(venues);
   var recentOutreach = getRecentOutreach_(outreachData);
   var gigs = loadGigs_(ss);

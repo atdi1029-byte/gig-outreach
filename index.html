@@ -4080,10 +4080,9 @@ document.addEventListener('DOMContentLoaded', () => {
         var ls = document.getElementById('levelSection');
         if (ls) ls.classList.add('expanded');
     }
-    // Load reviewed reports from cloud + report manifest before dashboard renders
-    loadReviewedReportsFromCloud().then(() => {
-        return loadReportManifest();
-    }).then(() => { _gatedVenueIds = null; loadDashboard(); })
+    // Load reviewed reports + report manifest in parallel, then render dashboard
+    Promise.all([loadReviewedReportsFromCloud(), loadReportManifest()])
+    .then(() => { _gatedVenueIds = null; loadDashboard(); })
     .catch(() => { _gatedVenueIds = null; loadDashboard(); });
 
     // Deep link: ?venue=VENUE_ID opens venue detail directly

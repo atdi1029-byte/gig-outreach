@@ -349,6 +349,14 @@ body {
 
 .venue-city { font-size: 0.7rem; color: var(--text-dim); }
 
+.show-more-btn {
+    width: 100%; padding: 0.6rem; margin-top: 0.25rem;
+    background: var(--card-bg); border: 1px solid var(--border);
+    color: var(--accent); border-radius: 8px; cursor: pointer;
+    font-size: 0.8rem; font-weight: 600;
+}
+.show-more-btn:hover { background: var(--border); }
+
 /* === BADGES === */
 .category-badge {
     font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
@@ -2253,17 +2261,36 @@ function renderTopPicks() {
             'No top picks yet. Run the pipeline to find actionable venues.</div>';
         return;
     }
-    el.innerHTML = all.map((item, idx) => {
+    window._topPicksAll = all;
+    window._topPicksPage = 1;
+    _renderTopPicksPage();
+}
+
+function _renderTopPicksPage() {
+    const el = document.getElementById('topPicksList');
+    const PAGE_SIZE = 10;
+    const all = window._topPicksAll || [];
+    const end = window._topPicksPage * PAGE_SIZE;
+    const visible = all.slice(0, end);
+    el.innerHTML = visible.map((item, idx) => {
         const score = item.top_pick_score || 0;
         const reasons = (item.top_pick_reasons || []).join(', ');
         let html = renderVenueCard(item);
-        // Inject rank + score after venue-name span
         const scoreBadge = '<span class="top-pick-score" title="' + esc(reasons) + '">' + score + '</span>';
         const rankBadge = '<span class="top-pick-rank">#' + (idx + 1) + '</span>';
         html = html.replace('</span><span class="category-badge',
             '</span>' + rankBadge + scoreBadge + '<span class="category-badge');
         return html;
     }).join('');
+    const remaining = all.length - end;
+    if (remaining > 0) {
+        el.innerHTML += '<button class="show-more-btn" onclick="showMoreTopPicks()">Show More (' + remaining + ' remaining)</button>';
+    }
+}
+
+function showMoreTopPicks() {
+    window._topPicksPage = (window._topPicksPage || 1) + 1;
+    _renderTopPicksPage();
 }
 
 function renderVenueCard(item) {

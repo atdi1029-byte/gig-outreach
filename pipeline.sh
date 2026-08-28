@@ -2010,6 +2010,19 @@ def score_candidate(c):
         s += 50
     return s
 
+# Helper: enrich organization by domain (primary method — mixed_companies/search is deprecated)
+def enrich_org_by_domain(domain):
+    """Use organizations/enrich endpoint which still works reliably."""
+    if not domain:
+        return []
+    resp = requests.get("${APOLLO_API_BASE}/organizations/enrich",
+        headers=headers, params={"domain": domain})
+    if resp.status_code == 200:
+        org = resp.json().get("organization")
+        if org:
+            return [org]
+    return []
+
 # Helper: search companies with optional location filter
 def search_companies(params):
     """Search with location filter first, fall back without if no matches."""
@@ -2028,36 +2041,45 @@ def search_companies(params):
     data = resp.json()
     return data.get("accounts", []) + data.get("organizations", [])
 
-# 1. Search full venue name
-for a in search_companies({"q_organization_name": venue_name, "per_page": 5}):
-    if name_matches(a.get("name", ""), venue_name):
-        all_candidates.append(a)
-
-# 2. Search cleaned name (brand suffixes stripped)
-if clean_name != venue_name:
-    seen_ids = {c.get("id") for c in all_candidates}
-    for a in search_companies({"q_organization_name": clean_name, "per_page": 5}):
-        if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
-            all_candidates.append(a)
-
-# 3. Domain search
+# PRIMARY: Try organizations/enrich by domain first (most reliable endpoint)
 if website_domain:
-    resp2 = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
-        headers=headers,
-        json={"q_organization_domains_list": [website_domain], "per_page": 5})
-    data2 = resp2.json()
-    seen_ids = {c.get("id") for c in all_candidates}
-    for a in (data2.get("accounts", []) + data2.get("organizations", [])):
-        if a.get("id") not in seen_ids and not is_chain(a.get("name", "")):
+    for org in enrich_org_by_domain(website_domain):
+        if not is_chain(org.get("name", "")):
+            all_candidates.append(org)
+
+# FALLBACK: If enrich didn't find anything, try mixed_companies/search
+if not all_candidates:
+    # 1. Search full venue name
+    for a in search_companies({"q_organization_name": venue_name, "per_page": 5}):
+        if name_matches(a.get("name", ""), venue_name):
             all_candidates.append(a)
 
-# 4. Short name fallback (first 3 distinctive words)
-words = [w for w in re.sub(r'[^a-z\s]', '', venue_name.lower()).split()
-         if w not in {'the', 'a', 'an', 'and', 'of', 'at', 'in', 'by', 'hotel'}]
-if len(words) >= 2:
-    short_name = ' '.join(words[:3])
-    seen_ids = {c.get("id") for c in all_candidates}
-    for a in search_companies({"q_organization_name": short_name, "per_page": 5}):
+    # 2. Search cleaned name (brand suffixes stripped)
+    if clean_name != venue_name and not all_candidates:
+        seen_ids = {c.get("id") for c in all_candidates}
+        for a in search_companies({"q_organization_name": clean_name, "per_page": 5}):
+            if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
+                all_candidates.append(a)
+
+    # 3. Domain search via mixed_companies (may return empty on new API)
+    if website_domain and not all_candidates:
+        resp2 = requests.post("${APOLLO_API_BASE}/mixed_companies/search",
+            headers=headers,
+            json={"q_organization_domains_list": [website_domain], "per_page": 5})
+        data2 = resp2.json()
+        seen_ids = {c.get("id") for c in all_candidates}
+        for a in (data2.get("accounts", []) + data2.get("organizations", [])):
+            if a.get("id") not in seen_ids and not is_chain(a.get("name", "")):
+                all_candidates.append(a)
+
+    # 4. Short name fallback (first 3 distinctive words)
+    if not all_candidates:
+        words = [w for w in re.sub(r'[^a-z\s]', '', venue_name.lower()).split()
+                 if w not in {'the', 'a', 'an', 'and', 'of', 'at', 'in', 'by', 'hotel'}]
+        if len(words) >= 2:
+            short_name = ' '.join(words[:3])
+            seen_ids = {c.get("id") for c in all_candidates}
+            for a in search_companies({"q_organization_name": short_name, "per_page": 5}):
         if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
             all_candidates.append(a)
 

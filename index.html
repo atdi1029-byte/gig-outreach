@@ -1123,14 +1123,7 @@ body {
             <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.2rem"><span id="linkedinPendingCount">0</span> venues need LinkedIn scraping — tap for instructions</div>
         </div>
 
-        <!-- TOP PICKS -->
-        <div class="section">
-            <div class="section-header" onclick="toggleTopPicks()">
-                <span class="section-title">Top Picks</span>
-                <span class="section-badge" id="topPicksBadge">0</span>
-            </div>
-            <div id="topPicksList" class="collapsed"></div>
-        </div>
+        <!-- TOP PICKS removed — cream section now lives inside each state view -->
 
         <!-- BROWSE VENUES -->
         <div class="section" id="browseSection">
@@ -2179,163 +2172,6 @@ function skipForm(venueId, el) {
     });
 }
 
-// === RENDER: HOME — Top Picks ===
-function toggleTopPicks() {
-    const list = document.getElementById('topPicksList');
-    list.classList.remove('collapsed');
-}
-
-function _topPickCat(v) {
-    const raw = String((v && v.category) || 'other').toLowerCase().replace(/[\s\/]/g, '_');
-    const name = (' ' + String((v && v.name) || '').toLowerCase() + ' ');
-    // Repair obvious legacy misclassification in-memory so old REST rows do not
-    // masquerade as restaurants while the sheet cleanup catches up.
-    if (/(country club|golf & country|golf and country|hunt club|field club)/.test(name)) return 'country_club';
-    if (/(yacht club|sailing club)/.test(name)) return 'yacht_club';
-    if (/(city club|town club|cosmos club|university club|army navy club|metropolitan club|social club)/.test(name)) return 'private_club';
-    if (/wine\s*bar/.test(name)) return 'wine_bar';
-    if (/(ritz-carlton|four seasons|rosewood|mandarin|st\.? regis|waldorf|fairmont|pendry|salamander|peninsula|langham|conrad|sofitel)/.test(name)) return 'hotel';
-    if (/\b(hotel|resort|lodge)\b/.test(name) || /\binn\b/.test(name)) return 'hotel';
-    return raw;
-}
-
-function _topPickWebsitePlausible(v) {
-    const raw = String((v && v.website) || '').trim();
-    if (!raw) return true; // missing is better than a confidently wrong URL
-    let u;
-    try { u = new URL(/^https?:\/\//i.test(raw) ? raw : 'https://' + raw); }
-    catch (_) { return false; }
-    const host = u.hostname.toLowerCase().replace(/^www\./, '');
-    const blocked = [
-        'yelp.com','tripadvisor.com','opentable.com','resy.com','zomato.com','foursquare.com',
-        'mapquest.com','yellowpages.com','bbb.org','chamberofcommerce.com','manta.com',
-        'eventbrite.com','theknot.com','weddingwire.com','partyslate.com',
-        'doordash.com','grubhub.com','ubereats.com','booking.com','expedia.com','hotels.com',
-        'travelocity.com','kayak.com','airbnb.com','vrbo.com','facebook.com','instagram.com',
-        'linkedin.com','wikipedia.org','google.com','visitmaryland.org','washington.org'
-    ];
-    if (blocked.some(d => host === d || host.endsWith('.' + d))) return false;
-    if (/^(visit|tourism|discover|explore)/.test(host.split('.')[0])) return false;
-
-    const parentHotels = ['marriott.com','hilton.com','hyatt.com','ihg.com','fourseasons.com',
-        'rosewoodhotels.com','mandarinoriental.com','fairmont.com','accor.com','omnihotels.com',
-        'loewshotels.com','kimptonhotels.com','ritzcarlton.com'];
-    const name = String((v && v.name) || '').toLowerCase();
-    const stop = new Set(['the','and','of','at','in','by','for','hotel','hotels','inn','resort','lodge',
-        'restaurant','winery','vineyard','club','country','golf','bar','bistro','cafe','grill','grille',
-        'spa','museum','gallery','event','venue','fine','dining','house']);
-    const weak = new Set(['washington','maryland','virginia','baltimore','annapolis','bethesda','alexandria',
-        'georgetown','leesburg','middleburg','easton','wilmington','potomac','mclean','fairfax','arlington']);
-    const tokens = (name.match(/[a-z0-9]+/g) || []).filter(w => w.length >= 4 && !stop.has(w) && !weak.has(w));
-    const hay = (host + u.pathname).toLowerCase().replace(/[^a-z0-9]/g, '');
-    const domainHay = host.replace(/[^a-z0-9]/g, '');
-    const domainMatches = tokens.filter(t => domainHay.includes(t));
-    if (domainMatches.length >= 1 && domainMatches.some(t => t.length >= 5)) return true;
-    if (domainMatches.length >= 2) return true;
-    const anywhereMatches = tokens.filter(t => hay.includes(t));
-    if (parentHotels.some(d => host === d || host.endsWith('.' + d)) && anywhereMatches.length >= 1) return true;
-
-    // Initialisms are common for private/country/yacht clubs.
-    const words = name.match(/[a-z0-9]+/g) || [];
-    const initials = words.filter(w => !['the','and','of','at','in','by','for'].includes(w)).map(w => w[0]).join('');
-    const base = host.split('.')[0];
-    if (initials.length >= 3 && (base === initials || base === initials + 'cc' || base === initials + 'club')) return true;
-    return tokens.length === 0; // don't reject a short brand we cannot safely compare
-}
-
-function renderTopPicks() {
-    const el = document.getElementById('topPicksList');
-    const badge = document.getElementById('topPicksBadge');
-    // Top Picks come pre-scored and sorted from the API (top_pick_score)
-    // No category quotas, no hard cap — best venues globally by desirability
-    const topPicks = (dashboardData && dashboardData.topPicks) || [];
-    const all = topPicks.filter(p => {
-        const v = p.venue || p;
-        // Report gate still applies, but no venueHasPending — server already filtered
-        return !isVenueGated(v.venue_id) && (p.top_pick_score || 0) > 0;
-    });
-
-    badge.textContent = all.length;
-    if (all.length === 0) {
-        el.innerHTML = '<div class="empty-state">' +
-            'No top picks yet. Run the pipeline to find actionable venues.</div>';
-        return;
-    }
-    window._topPicksAll = all;
-    window._topPicksPage = 1;
-    _renderTopPicksPage();
-}
-
-function _renderTopPicksPage() {
-    const el = document.getElementById('topPicksList');
-    const PAGE_SIZE = 10;
-    const all = window._topPicksAll || [];
-    const end = window._topPicksPage * PAGE_SIZE;
-    const visible = all.slice(0, end);
-    el.innerHTML = visible.map((item, idx) => {
-        const score = item.top_pick_score || 0;
-        const reasons = (item.top_pick_reasons || []).join(', ');
-        let html = renderVenueCard(item);
-        const scoreBadge = '<span class="top-pick-score" title="' + esc(reasons) + '">' + score + '</span>';
-        const rankBadge = '<span class="top-pick-rank">#' + (idx + 1) + '</span>';
-        html = html.replace('</span><span class="category-badge',
-            '</span>' + rankBadge + scoreBadge + '<span class="category-badge');
-        return html;
-    }).join('');
-    const remaining = all.length - end;
-    if (remaining > 0) {
-        el.innerHTML += '<button class="show-more-btn" onclick="showMoreTopPicks()">Show More (' + remaining + ' remaining)</button>';
-    }
-}
-
-function showMoreTopPicks() {
-    window._topPicksPage = (window._topPicksPage || 1) + 1;
-    _renderTopPicksPage();
-}
-
-function renderVenueCard(item) {
-    const v = item.venue;
-    const contacts = item.contacts || [];
-    const pendingEmails = (item.pendingEmails || []).filter(c => (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown'));
-    const cat = _topPickCat(v);
-
-    let actionCount = pendingEmails.length;
-    if (item.igPending && v.instagram) actionCount++;
-    if (item.fbPending && v.facebook) actionCount++;
-
-    let html = `<div class="venue-card" data-zone="${v.zone_priority || 'default'}">`;
-    html += `<div class="venue-header" onclick="openVenueDetail('${esc(v.venue_id)}')"><div class="venue-header-left">`;
-    html += `<div class="venue-top"><span class="venue-name venue-link">${esc(v.name)}</span>`;
-    html += `<span class="category-badge ${cat}">${esc(cat.replace(/_/g, ' ')).toUpperCase()}</span>`;
-    if (v.zone_priority === 'green' || v.zone_priority === 'yellow') html += `<span class="zone-dot ${v.zone_priority}"></span>`;
-    html += `</div><div class="venue-city">${esc(v.city || '')}${v.city && v.state ? ', ' : ''}${esc(v.state || '')}`;
-    if (isResurfaced(v)) html += `<span class="recontact-badge">${esc(resurfaceLabel(v))}</span>`;
-    html += `</div>`;
-    html += `</div>`;
-    if (actionCount > 0) html += `<span class="venue-action-count">${actionCount}</span>`;
-    html += `<span class="venue-chevron" onclick="event.stopPropagation();this.closest('.venue-card').classList.toggle('expanded')">&#9654;</span></div>`;
-
-    html += `<div class="venue-details" onclick="event.stopPropagation()">`;
-    for (const c of pendingEmails) {
-        html += `<div class="action-row"><span class="contact-email">${esc(c.email)}</span>`;
-        html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
-        html += `<a class="btn-gmail" href="${buildGmailLink(c.email, cat)}" target="_blank" rel="noopener noreferrer">Gmail</a>`;
-        html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(v.venue_id)}','${cat}',this)">Sent</button></div>`;
-    }
-    if (item.igPending && v.instagram) {
-        html += `<div class="action-row"><span class="social-label">Instagram</span>`;
-        html += `<button class="btn-action btn-open" onclick="openIGWithTemplate('${esc(v.instagram)}','${cat}')">Open + Copy</button>`;
-        html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(v.venue_id)}',this)">Sent</button></div>`;
-    }
-    if (item.fbPending && v.facebook) {
-        html += `<div class="action-row"><span class="social-label">Facebook</span>`;
-        html += `<button class="btn-action btn-open" onclick="openFBWithTemplate('${esc(v.facebook)}','${cat}')">Open + Copy</button>`;
-        html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(v.venue_id)}',this)">Sent</button></div>`;
-    }
-    html += `</div></div>`;
-    return html;
-}
-
 // === RENDER: HOME — State Grid ===
 function renderStateGrid() {
     const el = document.getElementById('stateGrid');
@@ -2351,6 +2187,51 @@ function renderStateGrid() {
     }).join('') + '</div>';
 }
 
+// === TASTE CATEGORY MATCHING ===
+function _isCreamVenue(v) {
+    const name = (' ' + (v.name || '').toLowerCase() + ' ');
+    const cat = (v.category || '').toLowerCase().replace(/[\s\/]/g, '_');
+    const city = (v.city || '').toLowerCase();
+
+    // 1. Upscale French/European restaurants
+    if (/(french|bistro|brasserie|boucherie|chaumiere|auberge|comptoir|piquette|parc|cavalier|ferme|yaca|fete|refuge|sel |chez |la |le |l')/i.test(v.name || '')
+        && (cat === 'restaurant' || cat === 'hotel')) return true;
+
+    // 2. Spanish restaurants & wine bars
+    if (/(spanish|tapas|barcelona|flamenco|andaluz|bodega|alma cocina)/i.test(v.name || '')
+        && cat === 'restaurant') return true;
+
+    // 3. Historic private clubs
+    if (cat === 'private_club' || /(university club|maryland club|cosmos club|sulgrave|metropolitan club|city club|l'hirondelle)/i.test(v.name || '')) return true;
+
+    // 4. Upscale country clubs with wine dinners
+    if (cat === 'country_club' || cat === 'yacht_club' || cat === 'golf_club') return true;
+
+    // 5. Luxury boutique hotels
+    if (cat === 'hotel' || cat === 'resort') return true;
+
+    // 6. Mountain/architectural wineries + 10. Average wineries
+    if (cat === 'winery') return true;
+
+    // 7. Nice restaurants in upscale areas
+    const upscaleAreas = ['alexandria','bethesda','reston','st michaels',
+        'saint michaels','potomac','mclean','georgetown','easton',
+        'middleburg','leesburg','chevy chase','annapolis','vienna',
+        'great falls','kensington'];
+    if (cat === 'restaurant' && upscaleAreas.some(a => city.includes(a))) return true;
+
+    // 8. Wine bars in wealthy neighborhoods
+    if (cat === 'wine_bar') return true;
+
+    // 9. Eastern Shore venues
+    const easterShore = ['st michaels','saint michaels','easton','oxford',
+        'tilghman','cambridge','chestertown','rock hall','kent island',
+        'stevensville','grasonville','queen anne'];
+    if (easterShore.some(a => city.includes(a))) return true;
+
+    return false;
+}
+
 // === VIEW: STATE (categories) ===
 function openState(state) {
     currentState = state;
@@ -2363,12 +2244,38 @@ function openState(state) {
         catCounts[cat] = (catCounts[cat] || 0) + 1;
     });
 
+    // Cream of the crop — top 10 venues matching taste categories
+    const cream = venues.filter(v => _isCreamVenue(v)).slice(0, 10);
+
     // Only show categories that have pending venues
     const allCats = ['agent', 'winery', 'museum', 'hotel', 'country_club', 'event', 'event_venue', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'farmers_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
     const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0);
     const el = document.getElementById('stateBody');
 
-    el.innerHTML = '<div class="category-grid">' + activeCats.map(c => {
+    let html = '';
+
+    // Cream section
+    if (cream.length > 0) {
+        html += '<div style="margin-bottom:1rem">';
+        html += '<div style="font-size:0.85rem;font-weight:700;color:var(--text-bright);margin-bottom:0.5rem;padding:0 0.2rem">Cream of the Crop</div>';
+        html += cream.map(v => {
+            const statusClass = isResurfaced(v) ? 'resurfaced' : (v.status || 'untouched').replace(/\s/g, '_');
+            const statusText = isResurfaced(v) ? 'Re-contact' : statusClass.replace('_', ' ');
+            const dist = v.distance_miles ? `${v.distance_miles} mi · ${formatDrive(v.drive_minutes)}` : '';
+            const catLabel = CATEGORY_LABELS[(v.category || '').toLowerCase().replace(/[\s\/]/g, '_')] || v.category || '';
+            return `<div class="venue-list-item" onclick="openVenueDetail('${esc(v.venue_id)}')">
+                <div>
+                    <div class="venue-list-name">${esc(v.name)}</div>
+                    <div class="venue-list-city">${esc(v.city || '')}${catLabel ? ' · ' + esc(catLabel) : ''}${dist ? ' · ' + dist : ''}</div>
+                </div>
+                <span class="status-pill ${statusClass}">${statusText}</span>
+            </div>`;
+        }).join('');
+        html += '</div>';
+    }
+
+    // Category grid
+    html += '<div class="category-grid">' + activeCats.map(c => {
         const count = catCounts[c];
         return `<div class="category-card" style="background-image:url('${CATEGORY_IMAGES[c] || ''}')" onclick="openCategory('${c}')">
             <span class="category-card-count">${count}</span>
@@ -2376,6 +2283,7 @@ function openState(state) {
         </div>`;
     }).join('') + '</div>';
 
+    el.innerHTML = html;
     navigateTo('viewState');
 }
 
@@ -2821,7 +2729,7 @@ function renderWeeklyGoals() {
 
 // === MAIN LOAD ===
 function loadDashboard() {
-    if (!API_URL) { renderTopPicks([]); renderStateGrid(); return; }
+    if (!API_URL) { renderStateGrid(); return; }
 
     // Skip auto-refresh while viewing a venue detail — prevents the venue from vanishing mid-work
     const onDetail = navStack[navStack.length - 1] === 'viewDetail';
@@ -2850,7 +2758,6 @@ function loadDashboard() {
                     if (_localSentFB.has(v.venue_id)) v.fb_msg_sent = true;
                 });
             }
-            renderTopPicks();
             renderStateGrid();
             updateGigsCount();
             renderWeeklyGoals();

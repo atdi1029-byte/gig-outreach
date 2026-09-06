@@ -1,36 +1,179 @@
-#!/usr/bin/env bash
-# mark_step.sh — thin wrapper around run_ledger.py
+#!/bin/bash
+# =============================================================
+# mark_step.sh — write to the per-run ledger
+#
+# The ledger is reports/runs/<RUN_ID>.jsonl (one JSON line per event).
+# verify_run.sh reads it, together with the run log, to decide
+# whether a run is actually finished.
 #
 # Usage:
-#   ./mark_step.sh RUN_ID VENUE_ID step [--status done|skip|blocked] [--evidence "..."]
-#   ./mark_step.sh RUN_ID RUN step [--status done|skip|blocked] [--evidence "..."]
-#   ./mark_step.sh --batch /tmp/pipeline_batch.json   (creates new run)
+#   ./mark_step.sh --batch /tmp/pipeline_batch.json [RUN_ID]
+#       Register every venue in the batch. Creates the run, writes
+#       reports/runs/CURRENT so later calls don't need the RUN_ID.
+#       RUN_ID defaults to run-YYYYMMDD-HHMM.
 #
-# Examples:
-#   ./mark_step.sh run-20260906-1430 VA-REST-123 contact_pages --evidence "homepage+/contact: events@…"
-#   ./mark_step.sh run-20260906-1430 VA-REST-123 fb_checked --status skip --evidence "no page"
-#   ./mark_step.sh run-20260906-1430 RUN taste_review --evidence "3 new votes"
+#   ./mark_step.sh VENUE_ID STEP [done|BLOCKED] ["note"]
+#       Record a manual per-venue step. STEP is one of:
+#         web fb ig linkedin apollo status contacts
+#       Default status is "done". BLOCKED needs a note.
+#
+#   ./mark_step.sh --run STEP [done|BLOCKED] ["note"]
+#       Record a run-level step: taste_review report postcheck
+#
+#   ./mark_step.sh --show
+#       Print the current run's ledger.
+#
+# Set RUN_ID=... in the environment to target a run other than CURRENT.
+# =============================================================
 
-set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+RUNS_DIR="${SCRIPT_DIR}/reports/runs"
+mkdir -p "$RUNS_DIR"
 
-# --batch mode: create a new run
-if [[ "${1:-}" == "--batch" ]]; then
-  BATCH_FILE="${2:?Usage: mark_step.sh --batch <batch.json>}"
-  RUN_ID="run-$(date +%Y%m%d-%H%M)"
-  python3 "$SCRIPT_DIR/run_ledger.py" init "$RUN_ID" "$BATCH_FILE"
-  echo "$RUN_ID" > "$SCRIPT_DIR/reports/runs/.current"
-  echo "Current run: $RUN_ID"
-  exit 0
-fi
+python3 - "$RUNS_DIR" "$@" <<'PY'
+import json, os, sys, datetime
 
-RUN_ID="${1:?Usage: mark_step.sh <run_id> <venue_id|RUN> <step> [--status X] [--evidence \"...\"]}"
-ENTITY="${2:?}"
-STEP="${3:?}"
-shift 3
+runs_dir = sys.argv[1]
+args = sys.argv[2:]
 
-if [[ "$ENTITY" == "RUN" ]]; then
-  python3 "$SCRIPT_DIR/run_ledger.py" run "$RUN_ID" "$STEP" "$@"
-else
-  python3 "$SCRIPT_DIR/run_ledger.py" mark "$RUN_ID" "$ENTITY" "$STEP" "$@"
-fi
+MANUAL_STEPS = ['web', 'fb', 'ig', 'linkedin', 'apollo', 'status', 'contacts']
+RUN_STEPS = ['taste_review', 'report', 'postcheck']
+STATUSES = ['done', 'BLOCKED']
+
+current_file = os.path.join(runs_dir, 'CURRENT')
+
+
+def die(msg):
+    print(f"[mark_step] ERROR: {msg}", file=sys.stderr)
+    sys.exit(2)
+
+
+def now():
+    return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+
+def current_run():
+    rid = os.environ.get('RUN_ID', '').strip()
+    if rid:
+        return rid
+    if os.path.exists(current_file):
+        rid = open(current_file).read().strip()
+        if rid:
+            return rid
+    die("no current run. Register a batch first: ./mark_step.sh --batch /tmp/pipeline_batch.json")
+
+
+def ledger_path(rid):
+    return os.path.join(runs_dir, f"{rid}.jsonl")
+
+
+def append(rid, entry):
+    entry = dict(entry)
+    entry['ts'] = now()
+    entry['run_id'] = rid
+    with open(ledger_path(rid), 'a') as f:
+        f.write(json.dumps(entry) + '\n')
+
+
+def load(rid):
+    p = ledger_path(rid)
+    if not os.path.exists(p):
+        return []
+    out = []
+    for line in open(p):
+        line = line.strip()
+        if line:
+            try:
+                out.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+    return out
+
+
+if not args or args[0] in ('-h', '--help'):
+    print(open(sys.argv[0]).read() if os.path.exists(sys.argv[0]) else __doc__ or '')
+    print("See header comment in mark_step.sh for usage.")
+    sys.exit(0)
+
+# ---------------------------------------------------------------- --batch
+if args[0] == '--batch':
+    if len(args) < 2:
+        die("usage: --batch /tmp/pipeline_batch.json [RUN_ID]")
+    batch_file = args[1]
+    rid = args[2] if len(args) > 2 else os.environ.get('RUN_ID', '').strip() \
+        or 'run-' + datetime.datetime.now().strftime('%Y%m%d-%H%M')
+    try:
+        batch = json.load(open(batch_file))
+    except Exception as e:
+        die(f"cannot read {batch_file}: {e}")
+    if not isinstance(batch, list) or not batch:
+        die("batch file is empty or not a list")
+    if os.path.exists(ledger_path(rid)):
+        die(f"run {rid} already exists ({ledger_path(rid)}). Pick another RUN_ID.")
+    append(rid, {'type': 'run', 'step': 'start', 'status': 'done',
+                 'note': f'batch file {batch_file}', 'count': len(batch)})
+    for v in batch:
+        append(rid, {
+            'type': 'venue', 'step': 'registered', 'status': 'done',
+            'venue_id': v.get('venue_id', ''), 'venue_name': v.get('name', ''),
+            'website': v.get('website', ''), 'city': v.get('city', ''),
+            'state': v.get('state', ''),
+        })
+    with open(current_file, 'w') as f:
+        f.write(rid + '\n')
+    print(f"[mark_step] run {rid}: registered {len(batch)} venues")
+    print(f"[mark_step] ledger: {ledger_path(rid)}")
+    print(f"[mark_step] run log should be: {os.path.join(runs_dir, rid + '.log')}")
+    print(f"export RUN_ID={rid}")
+    sys.exit(0)
+
+# ---------------------------------------------------------------- --show
+if args[0] == '--show':
+    rid = current_run()
+    rows = load(rid)
+    print(f"run {rid}: {len(rows)} entries")
+    for r in rows:
+        who = r.get('venue_id') or '(run)'
+        print(f"  {r.get('ts','')}  {who:16s} {r.get('step',''):12s} "
+              f"{r.get('status',''):8s} {r.get('note','')}")
+    sys.exit(0)
+
+# ---------------------------------------------------------------- --run
+if args[0] == '--run':
+    if len(args) < 2:
+        die("usage: --run STEP [done|BLOCKED] [note]")
+    step = args[1]
+    if step not in RUN_STEPS:
+        die(f"unknown run step '{step}'. Allowed: {', '.join(RUN_STEPS)}")
+    status = args[2] if len(args) > 2 else 'done'
+    note = args[3] if len(args) > 3 else ''
+    if status not in STATUSES:
+        die(f"status must be one of {STATUSES}")
+    if status == 'BLOCKED' and not note:
+        die("BLOCKED needs a reason: ./mark_step.sh --run STEP BLOCKED \"why\"")
+    rid = current_run()
+    append(rid, {'type': 'run', 'step': step, 'status': status, 'note': note})
+    print(f"[mark_step] {rid}: run step {step} = {status} {note}")
+    sys.exit(0)
+
+# ---------------------------------------------------------------- venue step
+if len(args) < 2:
+    die("usage: VENUE_ID STEP [done|BLOCKED] [note]")
+venue_id, step = args[0], args[1]
+status = args[2] if len(args) > 2 else 'done'
+note = args[3] if len(args) > 3 else ''
+if step not in MANUAL_STEPS:
+    die(f"unknown step '{step}'. Allowed: {', '.join(MANUAL_STEPS)}")
+if status not in STATUSES:
+    die(f"status must be one of {STATUSES}")
+if status == 'BLOCKED' and not note:
+    die("BLOCKED needs a reason: ./mark_step.sh VENUE_ID STEP BLOCKED \"why\"")
+rid = current_run()
+registered = {r.get('venue_id') for r in load(rid) if r.get('step') == 'registered'}
+if venue_id not in registered:
+    die(f"{venue_id} is not registered in run {rid}. "
+        f"Registered: {', '.join(sorted(v for v in registered if v)) or 'none'}")
+append(rid, {'type': 'venue', 'venue_id': venue_id, 'step': step,
+             'status': status, 'note': note})
+print(f"[mark_step] {rid}: {venue_id} {step} = {status} {note}")
+PY

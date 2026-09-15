@@ -1261,6 +1261,7 @@ let navStack = ['viewHome'];
 const _localSentContacts = new Set(); // keys: "contactId|venueId"
 const _localSentIG = new Set(); // venue IDs with IG marked sent
 const _localSentFB = new Set(); // venue IDs with FB marked sent
+const _localSentForm = new Set(); // venue IDs with contact form marked sent
 let currentState = '';
 let currentCategory = '';
 
@@ -2112,7 +2113,7 @@ function skipIG(venueId, el) {
         showToast('IG skipped');
         if (dashboardData) {
             var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-            if (dv) dv.ig_dm_sent = true;
+            if (dv) dv.ig_dm_skipped = true;
         }
     });
 }
@@ -2130,7 +2131,7 @@ function skipFB(venueId, el) {
         showToast('FB skipped');
         if (dashboardData) {
             var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-            if (dv) dv.fb_msg_sent = true;
+            if (dv) dv.fb_msg_skipped = true;
         }
     });
 }
@@ -2146,10 +2147,12 @@ function markFormSent(venueId, btn) {
                 row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span>';
             }
             showToast('Contact form marked!');
+            _localSentForm.add(venueId);
             if (dashboardData) {
                 var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
                 if (dv) dv.contact_form_sent = true;
             }
+            renderLevelBar();
         });
     }
 }
@@ -2167,7 +2170,7 @@ function skipForm(venueId, el) {
         showToast('Contact form skipped');
         if (dashboardData) {
             var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-            if (dv) dv.contact_form_sent = true;
+            if (dv) dv.contact_form_skipped = true;
         }
     });
 }
@@ -2487,7 +2490,7 @@ function openVenueDetail(venueId) {
 
     // Instagram (only show if we have it AND not yet sent)
     if (venue.instagram) {
-        if (!venue.ig_dm_sent) {
+        if (!venue.ig_dm_sent && !venue.ig_dm_skipped) {
             html += `<div class="detail-section-label" style="background:${catColor}">Instagram</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
@@ -2499,7 +2502,7 @@ function openVenueDetail(venueId) {
 
     // Facebook (only show if we have it AND not yet sent)
     if (venue.facebook) {
-        if (!venue.fb_msg_sent) {
+        if (!venue.fb_msg_sent && !venue.fb_msg_skipped) {
             html += `<div class="detail-section-label" style="background:${catColor}">Facebook</div>`;
             const fc = contacts[0] || { contact_id: '' };
             html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
@@ -2514,6 +2517,8 @@ function openVenueDetail(venueId) {
         html += `<div class="detail-section-label" style="background:${catColor}">Contact Form</div>`;
         if (venue.contact_form_sent) {
             html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span></div>`;
+        } else if (venue.contact_form_skipped) {
+            // Skipped — don't show buttons
         } else {
             html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
             html += `<button class="btn-action btn-copy" onclick="copyText(getTemplate(currentDetailCat).subject);showToast('Subject copied!')">Subject</button>`;
@@ -2612,20 +2617,20 @@ function venueHasPending(venueId) {
     // Also keep visible if user already sent on any channel (don't auto-hide before Mark Done)
     if (venue.status === 'researched') {
         if (contacts.some(c => c.email && (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown') && !c.email_sent)) return true;
-        if (venue.instagram && venue.instagram.length > 5) return true;
-        if (venue.facebook && venue.facebook.length > 5) return true;
-        if (venue.contact_form && venue.contact_form.length > 5) return true;
+        if (venue.instagram && venue.instagram.length > 5 && !venue.ig_dm_sent && !venue.ig_dm_skipped) return true;
+        if (venue.facebook && venue.facebook.length > 5 && !venue.fb_msg_sent && !venue.fb_msg_skipped) return true;
+        if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent && !venue.contact_form_skipped) return true;
         if (venue.ig_dm_sent || venue.fb_msg_sent || venue.contact_form_sent) return true;
         return false;
     }
     // Has unsent verified emails?
     if (contacts.some(c => c.email && (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown') && !c.email_sent)) return true;
     // Has Instagram not yet DM'd?
-    if (venue.instagram && venue.instagram.length > 5 && !venue.ig_dm_sent) return true;
+    if (venue.instagram && venue.instagram.length > 5 && !venue.ig_dm_sent && !venue.ig_dm_skipped) return true;
     // Has Facebook not yet messaged?
-    if (venue.facebook && venue.facebook.length > 5 && !venue.fb_msg_sent) return true;
+    if (venue.facebook && venue.facebook.length > 5 && !venue.fb_msg_sent && !venue.fb_msg_skipped) return true;
     // Has contact form?
-    if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent) return true;
+    if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent && !venue.contact_form_skipped) return true;
     // Has LinkedIn pending? (only if not already contacted)
     if (venue.linkedin_pending && venue.status !== 'contacted') return true;
     // If user has sent ANY channel, keep venue visible
@@ -2752,10 +2757,11 @@ function loadDashboard() {
                     }
                 });
             }
-            if (_localSentIG.size > 0 || _localSentFB.size > 0) {
+            if (_localSentIG.size > 0 || _localSentFB.size > 0 || _localSentForm.size > 0) {
                 (dashboardData.venues || []).forEach(function(v) {
                     if (_localSentIG.has(v.venue_id)) v.ig_dm_sent = true;
                     if (_localSentFB.has(v.venue_id)) v.fb_msg_sent = true;
+                    if (_localSentForm.has(v.venue_id)) v.contact_form_sent = true;
                 });
             }
             renderStateGrid();

@@ -112,3 +112,15 @@ MD-REST-3216 AU Museum at Katzen (REPAIRED: website was "https://4.5K+", city Ch
   8. National UMC — "Jazz at Wesley" series already books musicians; weddings
   9. Grand Oaks / Palisades Village — senior programming with holiday parties and dinners
   10. Avalon at Foxhall / Berkshire — large buildings with resident-event budgets
+
+## Round 15: "Are you sure?" re-check (2026-09-22)
+Re-ran Wesley Heights / Foxhall Square / AU-venue / embassy / live-music searches to catch anything missed.
+- **Shemali's** (Foxhall Square, 3301 New Mexico Ave Ste 117) — Lebanese, but casual/counter, closes 6pm, closed Sun, no official website (only a community gotoeat.net page) → SKIP
+- "Semolina", "Gute Leute", "Simona Cafe", "Detour Coffee", "Reyna Market" — Yelp delivery-radius noise, none are in Wesley Heights/SV → SKIP
+- The Bridge Cafe / Terrace Dining Room / Davenport Coffee — AU student dining → SKIP
+- AU Greenberg Theatre (4200 Wisconsin Ave) — AU-owned but physically in Tenleytown → leave for Tenleytown sweep
+- Bender Arena / Constitution Hall / Kogod lecture halls — all booked through AU Conference & Guest Services (DC-EVEN-2590, already added)
+- Kenwood Golf & Country Club — 1 mi past Westmoreland Circle, already in sheet 3× (MD-COUN-899/1322 contacted, DC-REST-2175)
+- Embassy residences (Korea 4801 Glenbrook Rd, etc.) — residences only, no bookable office → SKIP
+- 4000 Massachusetts Ave co-op / The Colonnade / Sutton Towers — resident-run condo boards, no events staff → SKIP
+- Chef Geoff's New Mexico Ave — TripAdvisor reviewers mention a **Sunday Jazz Brunch** → already books live music; flagged as higher priority

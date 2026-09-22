@@ -1,5 +1,5 @@
 # Spring Valley DC Sweep — 2026-09-21
-# COMPLETE — 21 venues (20 added + 1 existing record repaired). All written to sheet with website + status=untouched, read-back verified 0 gaps. Tracker key: Washington DC::Spring Valley
+# COMPLETE — 22 venues (21 added + 1 existing record repaired). All written to sheet with website + status=untouched, read-back verified 0 gaps. Tracker key: Washington DC::Spring Valley
 # Scope: Spring Valley proper (Mass Ave 4400–4900 corridor, AU campus) + immediate boundary (Nebraska Ave, Westmoreland Circle, Loughboro/MacArthur corner, New Mexico Ave in Wesley Heights)
 
 ## READY TO ADD (website verified, correct neighborhood, classical guitar appropriate)
@@ -124,3 +124,13 @@ Re-ran Wesley Heights / Foxhall Square / AU-venue / embassy / live-music searche
 - Embassy residences (Korea 4801 Glenbrook Rd, etc.) — residences only, no bookable office → SKIP
 - 4000 Massachusetts Ave co-op / The Colonnade / Sutton Towers — resident-run condo boards, no events staff → SKIP
 - Chef Geoff's New Mexico Ave — TripAdvisor reviewers mention a **Sunday Jazz Brunch** → already books live music; flagged as higher priority
+
+## Round 16: "for sure everything?" restaurant enumeration (2026-09-22)
+Cross-checked Yelp's full Spring Valley restaurant list (pages 1–2, 20 results) against the sheet. Everything tagged "Spring Valley" is either already added or excluded — with ONE addition:
+| # | Name | Website | Address | City | State | Category |
+|---|------|---------|---------|------|-------|----------|
+| 22 | Paellas & Cos (Chef Ruben) | paellasandcos.com | Spring Valley | Washington | DC | event_planner |
+- **Paellas & Cos (#22, DC-EVEN-2591)** — Spanish personal chef based in Spring Valley, interactive paella parties for private events. Spanish guitar + paella party = obvious pairing. (415) 359-7934.
+- Yelp results NOT in Spring Valley (other neighborhoods, leave for their own sweeps): Bistro Metzger, 2D Noodles, Shinwa Izakaya (Tenleytown); Claudio's Table, Sweet Agave, Et Voila (Palisades); Rosemary Bistro, Muchas Gracias (Chevy Chase); Gregorio's (Bethesda); Aura Bar (Friendship Heights); Acqua Bistecca (City Ridge, already in sheet).
+- Yelp Spring Valley results excluded: Bluestone Lane (coffee chain), The Bridge Cafe (AU student café), Wagshal's deli (covered via Spring Valley Catering), Pitmasters BBQ (counter BBQ), Paris Baguette / Starbucks / Compass / Playa Bowls (chains).
+**FINAL: 22 venues.**

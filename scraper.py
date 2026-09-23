@@ -15,8 +15,9 @@ import sys
 
 # === CONFIG ===
 APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec"
-ZEROBOUNCE_API_KEY = "7a47396026644791a236621ebe3d2584"
-ZEROBOUNCE_URL = "https://api.zerobounce.net/v2/validate"
+# ZeroBounce calls MUST go through zerobounce_guard.py — no direct API access.
+# The old ZEROBOUNCE_API_KEY and ZEROBOUNCE_URL have been removed.
+# Use zerobounce_guard.verify_email() for all verification.
 USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 HEADERS = {"User-Agent": USER_AGENT}
 
@@ -192,23 +193,19 @@ def scrape_facebook_email(fb_url):
 
 
 def verify_email(email):
-    """Verify an email via ZeroBounce API. Returns 'valid', 'invalid', or 'unknown'."""
-    if not ZEROBOUNCE_API_KEY:
-        print("  [SKIP] No ZeroBounce API key — skipping verification")
-        return 'pending'
+    """Delegate to zerobounce_guard.py — the ONLY permitted ZeroBounce path.
 
+    Returns the status string (e.g. 'valid', 'invalid', 'do_not_mail', 'unknown').
+    Respects ZB_ENABLED, run/day caps, dedup cache, and all guard protections.
+    """
     try:
-        resp = requests.get(ZEROBOUNCE_URL, params={
-            "api_key": ZEROBOUNCE_API_KEY,
-            "email": email,
-            "ip_address": ""
-        }, timeout=30)
-        data = resp.json()
-        status = data.get("status", "unknown").lower()
-        print(f"  [VERIFY] {email} → {status}")
+        from zerobounce_guard import verify_email as guarded_verify
+        result = guarded_verify(email, source="scraper")
+        status = result.get("status", "unknown")
+        print(f"  [VERIFY] {email} → {status} (via guard)")
         return status
     except Exception as e:
-        print(f"  [ERROR] ZeroBounce failed for {email}: {e}")
+        print(f"  [ERROR] ZeroBounce guard failed for {email}: {e}")
         return 'unknown'
 
 
@@ -259,7 +256,7 @@ def main():
     print("=" * 50)
     print(f"Max venues: {MAX_VENUES}")
     print(f"Apps Script URL: {'SET' if APPS_SCRIPT_URL else 'NOT SET (dry run)'}")
-    print(f"ZeroBounce key: {'SET' if ZEROBOUNCE_API_KEY else 'NOT SET'}")
+    print(f"ZeroBounce: routed through zerobounce_guard.py")
     print()
 
     # Step 1: Get all winery URLs

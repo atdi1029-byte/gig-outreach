@@ -160,11 +160,16 @@ def extract_socials(text: str) -> Dict[str, List[str]]:
     return found
 
 HIGH_VALUE_KEYWORDS = [
-    "private-event", "private_event", "private event", "events", "event", "wedding",
-    "cater", "banquet", "group-dining", "group dining", "private-dining", "private dining",
-    "meeting", "corporate", "sales", "book", "inquiry", "enquiry", "contact", "team",
-    "staff", "people", "leadership", "about", "press", "media", "rental", "party",
-    "celebration", "hospitality", "venue", "groups", "special-events", "special events",
+    # Tier 1: Pages most likely to have named contacts / booking info
+    "contact", "contact-us", "get-in-touch", "team", "staff", "people", "leadership",
+    "board", "directory", "our-team", "about",
+    # Tier 2: Event/booking overview pages
+    "private-event", "private_event", "private event", "private-dining", "private dining",
+    "special-events", "special events", "group-dining", "group dining",
+    "cater", "banquet", "rental", "wedding", "book",
+    # Tier 3: General pages (lower priority than contacts)
+    "events", "event", "inquiry", "enquiry", "meeting", "corporate", "sales",
+    "press", "media", "party", "celebration", "hospitality", "venue", "groups",
 ]
 
 # Good fallback paths. They are seeds only; callers still verify/fetch them.
@@ -228,6 +233,31 @@ def classify_url(url: str) -> str:
     if ext in ASSET_EXTENSIONS:
         return "asset"
     return "page"
+
+
+# Patterns that indicate a detail/listing page (blog post, event, news article, etc.)
+# These are individual items, not overview/navigation pages.
+_DETAIL_PATTERN = re.compile(
+    r"/(?:event|blog|post|news|article|listing|recipe|product|item|gallery|photo|menu-item)"
+    r"[s]?[/-]\d",
+    re.I,
+)
+
+
+def _route_family(url: str) -> Optional[str]:
+    """Return a route-family key for detail-page URLs, or None for unique pages.
+
+    Groups URLs like /event-6788310, /event-6505231 into family "/event-".
+    This lets the crawler cap how many pages from one family it visits.
+    """
+    path = urlparse(url).path
+    m = _DETAIL_PATTERN.search(path)
+    if not m:
+        return None
+    # Extract the prefix up to and including the separator before digits
+    prefix = m.group(0)
+    # Strip the trailing digit(s) to get the family key
+    return re.sub(r"\d+$", "", prefix)
 
 
 def score_url(url: str, anchor_text: str = "") -> int:
@@ -497,6 +527,9 @@ def static_crawl(base_url: str, max_pages: int = 25, max_depth: int = 2, timeout
     attempts = 0
     successful_pages = 0
     max_attempts = max(max_pages * 4, max_pages + 20)
+    route_family_counts: Dict[str, int] = {}  # e.g. "/event-" → how many visited
+    ROUTE_FAMILY_CAP = 3  # max pages per URL pattern family
+
     while queue and successful_pages < max_pages and attempts < max_attempts:
         # Relevance first, then depth. A second-hop "private events" page should beat
         # dozens of guessed /about-/staff paths that may all be 404/soft-404 pages.
@@ -510,6 +543,12 @@ def static_crawl(base_url: str, max_pages: int = 25, max_depth: int = 2, timeout
         seen.add(key)
         if classify_url(key) != "page":
             continue
+        # Route-family dedup: skip detail pages (e.g. /event-NNN) once we've
+        # visited enough from that family. This prevents 30+ event/blog/news
+        # detail pages from consuming the entire crawl budget.
+        family = _route_family(key)
+        if family and route_family_counts.get(family, 0) >= ROUTE_FAMILY_CAP:
+            continue
         attempts += 1
         resp = _fetch(session, key, timeout)
         if resp is None:
@@ -520,6 +559,8 @@ def static_crawl(base_url: str, max_pages: int = 25, max_depth: int = 2, timeout
             pdf_urls.add(resp.url)
             continue
         successful_pages += 1
+        if family:
+            route_family_counts[family] = route_family_counts.get(family, 0) + 1
         html = resp.text
         page_emails = extract_emails(html)
         page_socials = extract_socials(html)
@@ -572,10 +613,19 @@ def static_crawl(base_url: str, max_pages: int = 25, max_depth: int = 2, timeout
     }
     visited_fetch_urls.discard(None)
     unvisited_pages = []
+    high_priority_unvisited = []
+    # Threshold: anything scoring within the top tiers (contact/staff/team/about/private-events)
+    HIGH_PRIORITY_THRESHOLD = 15
     for candidate in sorted(discovered_pages, key=lambda u: (score_url(u), len(u), u)):
         fetch_candidate = normalize_url(candidate.split("#", 1)[0], base, keep_fragment=False)
         if fetch_candidate and fetch_candidate not in visited_fetch_urls:
             unvisited_pages.append(candidate)
+            if score_url(candidate) < HIGH_PRIORITY_THRESHOLD:
+                high_priority_unvisited.append(candidate)
+
+    if high_priority_unvisited:
+        for hp in high_priority_unvisited:
+            print(f"  [HIGH_PRIORITY_UNVISITED] {hp} (score={score_url(hp)})")
 
     return {
         "base": base,
@@ -592,6 +642,8 @@ def static_crawl(base_url: str, max_pages: int = 25, max_depth: int = 2, timeout
         "discovered_pages": sorted(discovered_pages, key=lambda u: (score_url(u), len(u), u)),
         "fragment_states": sorted(fragment_states, key=lambda u: (score_url(u), len(u), u)),
         "unvisited_pages": unvisited_pages,
+        "high_priority_unvisited": high_priority_unvisited,
+        "route_families_capped": {k: v for k, v in route_family_counts.items() if v >= ROUTE_FAMILY_CAP},
         "coverage": {
             "max_pages": max_pages,
             "max_depth": max_depth,
@@ -602,6 +654,7 @@ def static_crawl(base_url: str, max_pages: int = 25, max_depth: int = 2, timeout
             "failed_page_count": sum(1 for p in pages if not p.get("ok")),
             "max_attempts": max_attempts,
             "unvisited_page_count": len(unvisited_pages),
+            "high_priority_unvisited_count": len(high_priority_unvisited),
             "pdf_count": len(pdf_results),
             "sitemap_count": len(seeds.get("sitemaps_checked", [])),
             "fragment_state_count": len(fragment_states),

@@ -232,6 +232,7 @@ verify_and_push() {
         fi
     fi
 
+    local zb_json zb_status zb_reason zb_charged zb_cached zb_run_used zb_run_limit zb_day_used zb_day_limit
     # Per-venue cap check
     if [ "$ZB_VENUE_CREDITS" -ge "$MAX_ZB_PER_VENUE" ] 2>/dev/null; then
         log "  [ZB SAFE] Venue cap reached ($ZB_VENUE_CREDITS/$MAX_ZB_PER_VENUE) — saving unverified"
@@ -241,7 +242,6 @@ verify_and_push() {
 
     # Every paid lookup goes through the persistent cost guard. Cache hits cost
     # zero credits; new lookups are blocked by per-run/day caps and reserve floor.
-    local zb_json zb_status zb_reason zb_charged zb_cached zb_run_used zb_run_limit zb_day_used zb_day_limit
     if [ "$zb_status" = "deferred" ] 2>/dev/null; then
         # Already hit venue cap — skip to save
         :
@@ -667,7 +667,7 @@ return JSON.stringify({contacts:contactList, facebook:fb, instagram:ig, contact_
 JSEOF
 
     # Clean up stale temp files from any previous venue
-    rm -f /tmp/pipeline_contact_page_scrape.json
+    rm -f /tmp/pipeline_contact_page_scrape.json /tmp/pipeline_web_method
 
     # Open website in Chrome and scrape
     log "  Opening in Chrome: $website"
@@ -789,6 +789,7 @@ print(json.dumps({'contacts': contacts, 'facebook': fb, 'instagram': ig, 'contac
 " <<< "$curl_html" 2>/dev/null)
             if [ -n "$scrape_result" ] && [ "$scrape_result" != "null" ]; then
                 log "  [CURL FALLBACK] Success — parsed HTML directly"
+                echo "curl" > /tmp/pipeline_web_method
             else
                 log "  [ERROR] Both Chrome and curl fallback failed. Skipping website."
                 return
@@ -800,6 +801,7 @@ print(json.dumps({'contacts': contacts, 'facebook': fb, 'instagram': ig, 'contac
     fi
 
     echo "$scrape_result" > /tmp/pipeline_scrape.json
+    [ -f /tmp/pipeline_web_method ] || echo "chrome" > /tmp/pipeline_web_method
 
     # Parse main page results
     local email_count fb ig contact_form
@@ -876,7 +878,9 @@ print(json.dumps({'contacts': contacts, 'facebook': fb, 'instagram': ig, 'contac
                 log "  [SOCIAL] Instagram recovered from contact page: $ig"
             fi
         fi
-        if [ "$has_form" != "yes" ]; then
+        if [ "$has_form" != "yes" ] && [ "$(cat /tmp/pipeline_web_method 2>/dev/null)" = "curl" ]; then
+            log "  ⚠ Chrome unavailable — keeping curl-found contact form unverified: $contact_form"
+        elif [ "$has_form" != "yes" ]; then
             # Keep the URL if it looks like a contact page — Wix/JS sites
             # won't render forms for the validator but the URL is still useful
             if echo "$contact_form" | grep -qiE '/contact|/inquir|/book|/event'; then
@@ -1533,7 +1537,8 @@ print('match' if any(w in handle for w in words) else 'no')
     fi
 
     # Dedupe by email and verify+push each contact with name/title
-    python3 -c "
+    local _step1_contacts
+    _step1_contacts=$(python3 -c "
 seen = set()
 results = []
 for line in open('/tmp/pipeline_all_contacts.txt'):
@@ -1547,10 +1552,13 @@ for line in open('/tmp/pipeline_all_contacts.txt'):
     elif name and not any(r[1] for r in results if r[0] == email):
         results = [(e,n,t) if e != email else (email,name,title) for e,n,t in results]
 for email, name, title in sorted(results):
-    print(f'{email}|||{name}|||{title}')
-" 2>/dev/null | while IFS='|||' read -r email name title; do
+    print(email + '\\t' + name.replace('\\t',' ') + '\\t' + title.replace('\\t',' '))
+" 2>/dev/null)
+    # Tab-delimited: IFS='|||' silently split on every '|' and blanked the name.
+    # Process substitution (not a pipe) so verify_and_push's counters persist.
+    while IFS=$'\t' read -r email name title; do
         [ -n "$email" ] && verify_and_push "$email" "$venue_id" "$name" "$title" "website"
-    done
+    done < <(printf '%s\n' "$_step1_contacts")
 }
 
 # =================================================================
@@ -1890,9 +1898,9 @@ JSEOF
     fi
 
     # Dedupe and verify+push each email
-    echo "$SOCIAL_EMAILS" | tr '|' '\n' | sort -u | while read -r email; do
+    while read -r email; do
         [ -n "$email" ] && verify_and_push "$email" "$venue_id" "" "" "social"
-    done
+    done < <(echo "$SOCIAL_EMAILS" | tr '|' '\n' | sort -u)
 }
 
 # =================================================================
@@ -2080,8 +2088,8 @@ if not all_candidates:
             short_name = ' '.join(words[:3])
             seen_ids = {c.get("id") for c in all_candidates}
             for a in search_companies({"q_organization_name": short_name, "per_page": 5}):
-        if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
-            all_candidates.append(a)
+                if a.get("id") not in seen_ids and name_matches(a.get("name", ""), venue_name):
+                    all_candidates.append(a)
 
 # Pick the best candidate by score
 best = None
@@ -2110,6 +2118,7 @@ PYEOF
     FOUND=$(python3 -c "import json; print(json.load(open('$apollo_co_tmpf'))['found'])")
     if [ "$FOUND" = "False" ]; then
         log "  [WARN] No company found in Apollo for '$venue' (tried name + domain)"
+        echo "none" > /tmp/pipeline_apollo_verdict
         # Still set domain from website for Step 4 LinkedIn enrichment
         APOLLO_DOMAIN="$WEBSITE_DOMAIN"
         log "  Using website domain for enrichment: $APOLLO_DOMAIN"
@@ -2119,6 +2128,24 @@ PYEOF
     ORG_NAME=$(python3 -c "import json; print(json.load(open('$apollo_co_tmpf'))['name'])")
     local ORG_ID=$(python3 -c "import json; print(json.load(open('$apollo_co_tmpf'))['org_id'])")
     log "  Found: $ORG_NAME (domain: $DOMAIN, org_id: $ORG_ID)"
+
+    # Wrong-company guard: a name search can return a different business
+    # (Lyle DC -> The Jefferson, Sofitel -> a pharma company). Enriching those
+    # spends credits and files strangers under this venue. Require the Apollo
+    # domain to share a base with the venue website before touching people.
+    if [ -n "$WEBSITE_DOMAIN" ] && [ -n "$DOMAIN" ] && [ "$DOMAIN" != "None" ]; then
+        local _wb _ab
+        _wb=$(echo "$WEBSITE_DOMAIN" | sed 's/^www\.//; s/\..*//' | tr -cd 'a-z0-9')
+        _ab=$(echo "$DOMAIN" | sed 's/^www\.//; s/\..*//' | tr -cd 'a-z0-9')
+        if [ "$_wb" != "$_ab" ] && ! echo "$_wb" | grep -q "$_ab" && ! echo "$_ab" | grep -q "$_wb"; then
+            log "  [APOLLO MISMATCH] Org domain $DOMAIN does not match venue site $WEBSITE_DOMAIN — not enriching a different company"
+            echo "FLAG:Apollo matched a different company for this venue: $ORG_NAME ($DOMAIN) vs site $WEBSITE_DOMAIN — people search skipped" >> /tmp/pipeline_flags.txt
+            echo "mismatch:$DOMAIN" > /tmp/pipeline_apollo_verdict
+            APOLLO_DOMAIN="$WEBSITE_DOMAIN"
+            return
+        fi
+    fi
+    echo "ok:$DOMAIN" > /tmp/pipeline_apollo_verdict
 
     # Skip if this org was already processed this run (prevents duplicate contacts across venues)
     local SEEN_ORGS_FILE="/tmp/pipeline_seen_orgs"
@@ -2509,9 +2536,31 @@ end tell' 2>/dev/null)
         done
 
         if [ "$COUNT" = "0" ] || [ -z "$COUNT" ]; then
-            log "  No results on page $PAGE — stopping."
+            if [ "$PAGE" = "1" ]; then
+                # Empty first page is almost never "no staff" — it's a login wall,
+                # the commercial-use limit, or Chrome not rendering. Record it so
+                # the venue stays linkedin_pending instead of looking finished.
+                local _li_url
+                _li_url=$(osascript -e 'tell application "Google Chrome" to get URL of active tab of front window' 2>/dev/null)
+                if echo "$_li_url" | grep -qiE 'login|authwall|checkpoint|uas/'; then
+                    log "  [LINKEDIN WALL] Redirected to $_li_url — not logged in / rate limited"
+                    echo "wall" > /tmp/pipeline_li_verdict
+                    LINKEDIN_WALLED=1
+                else
+                    log "  [LINKEDIN EMPTY] Page 1 returned 0 results — treating as unverified, venue stays pending"
+                    echo "empty" > /tmp/pipeline_li_verdict
+                    LINKEDIN_EMPTY_STREAK=$((LINKEDIN_EMPTY_STREAK + 1))
+                    if [ "$LINKEDIN_EMPTY_STREAK" -ge 3 ]; then
+                        log "  [LINKEDIN WALL] 3 venues in a row with empty page 1 — assuming rate limit for the rest of this run"
+                        LINKEDIN_WALLED=1
+                    fi
+                fi
+            else
+                log "  No results on page $PAGE — stopping."
+            fi
             break
         fi
+        [ "$PAGE" = "1" ] && { echo "found:$COUNT" > /tmp/pipeline_li_verdict; LINKEDIN_EMPTY_STREAK=0; }
         log "  Found $COUNT results"
 
         # Extract people with names and titles (text-based parsing)
@@ -3871,16 +3920,29 @@ for e in sorted(emails):
         fi
     fi
 
-    # LinkedIn — skip only if SKIP_LINKEDIN=1
-    if [ "${SKIP_LINKEDIN:-0}" != "1" ]; then
+    # LinkedIn — skip only if SKIP_LINKEDIN=1, or once this run has hit the wall
+    rm -f /tmp/pipeline_li_verdict
+    if [ "${SKIP_LINKEDIN:-0}" != "1" ] && [ "${LINKEDIN_WALLED:-0}" != "1" ]; then
         step4_linkedin "$venue" "$venue_id"
-        # LinkedIn ran — clear pending regardless of result count
-        local LI_FOUND_FILE="/tmp/pipeline_li_found_count"
-        local LI_FOUND_COUNT=$(cat "$LI_FOUND_FILE" 2>/dev/null || echo "0")
-        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
-        if [ "$LI_FOUND_COUNT" -eq 0 ]; then
-            log "  LinkedIn found 0 — cleared pending (scrape already ran)"
-        fi
+        local LI_VERDICT
+        LI_VERDICT=$(cat /tmp/pipeline_li_verdict 2>/dev/null || echo "unknown")
+        case "$LI_VERDICT" in
+            found:*)
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=false" > /dev/null
+                ;;
+            *)
+                # empty / wall / unknown: the search did not actually happen. Keep it pending.
+                curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
+                log "  LinkedIn verdict '$LI_VERDICT' — kept linkedin_pending=true for retry"
+                echo "FLAG:LinkedIn did not return results ($LI_VERDICT) — venue kept linkedin_pending" >> /tmp/pipeline_flags.txt
+                ;;
+        esac
+    elif [ "${LINKEDIN_WALLED:-0}" = "1" ]; then
+        log ""
+        log "========== STEP 4: LinkedIn (SKIPPED — wall hit earlier this run) =========="
+        curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${venue_id}&field=linkedin_pending&value=true" > /dev/null
+        echo "wall" > /tmp/pipeline_li_verdict
+        log "  Marked linkedin_pending=true"
     else
         log ""
         log "========== STEP 4: LinkedIn (SKIPPED — SKIP_LINKEDIN=1) =========="
@@ -3934,6 +3996,18 @@ SKIPPED_VENUES_FILE="/tmp/pipeline_skipped_venues"
 rm -f "$SKIPPED_VENUES_FILE"
 echo "" >> "$LOG_FILE"
 log "=== Pipeline started $(date '+%Y-%m-%d %H:%M:%S') ==="
+LINKEDIN_WALLED=0
+LINKEDIN_EMPTY_STREAK=0
+# Chrome probe: if JavaScript-from-Apple-Events is off (Chrome resets it on
+# updates), every website scrape silently degrades to curl. Say so once, loudly.
+CHROME_JS_OK=0
+_probe=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "1+1"' 2>/dev/null)
+if [ "$_probe" = "2" ]; then
+    CHROME_JS_OK=1
+    log "[CHROME] JavaScript from Apple Events: OK"
+else
+    log "[CHROME] WARNING: Chrome did not execute JavaScript (got '${_probe:-nothing}'). Enable View > Developer > Allow JavaScript from Apple Events. Website scrapes will fall back to curl (no JS, no names) until fixed."
+fi
 
 if [ "$1" = "--smart-picks" ]; then
     log "ERROR: --smart-picks is disabled because it bypasses build_batch.sh validation."
@@ -4324,7 +4398,6 @@ print(v.get('city',''))
         log ""
         log "########## VENUE [$((i+1))/$TOTAL]: $NAME ##########"
         # Skip venues already pipelined or contacted
-        local VSTATUS
         VSTATUS=$(curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${VID}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('status',''))" 2>/dev/null)
         if [ "$VSTATUS" = "pipelined" ] || [ "$VSTATUS" = "contacted" ]; then
             log "  [SKIP] Already $VSTATUS — skipping"

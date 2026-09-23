@@ -12,10 +12,14 @@
 #       reports/runs/CURRENT so later calls don't need the RUN_ID.
 #       RUN_ID defaults to run-YYYYMMDD-HHMM.
 #
-#   ./mark_step.sh VENUE_ID STEP [done|BLOCKED] ["note"]
+#   ./mark_step.sh VENUE_ID STEP [done|BLOCKED] "note"
 #       Record a manual per-venue step. STEP is one of:
 #         web fb ig linkedin apollo status contacts
-#       Default status is "done". BLOCKED needs a note.
+#       Default status is "done". EVERY mark needs a note that shows the
+#       work happened: a number ("3 emails", "0 people"), a URL, or a
+#       finding word (none / not found / closed / open / wall / quota).
+#       A bare "done" is rejected — that's the rubber-stamp this file exists
+#       to prevent.
 #
 #   ./mark_step.sh --run STEP [done|BLOCKED] ["note"]
 #       Record a run-level step: taste_review report postcheck
@@ -39,6 +43,38 @@ args = sys.argv[2:]
 MANUAL_STEPS = ['web', 'fb', 'ig', 'linkedin', 'apollo', 'status', 'contacts']
 RUN_STEPS = ['taste_review', 'report', 'postcheck']
 STATUSES = ['done', 'BLOCKED']
+
+import re
+# What counts as evidence in a note, per step. The note must match at least one.
+EVIDENCE = {
+    'web':      r'\d|https?://|none|not found|no email|no contact',
+    'fb':       r'facebook\.com|fb\.com|none|not found|no\s+(fb|facebook|page)',
+    'ig':       r'instagram\.com|@\w+|none|not found|no\s+(ig|insta|instagram|page)',
+    'linkedin': r'\d|none|no employees|no people|wall|quota|login|rate limit|blocked',
+    'apollo':   r'\d|none|no domain|no company|not in apollo|skipped|mismatch',
+    'status':   r'\bopen\b|closed|renamed|moved|permanently|temporarily|reopen|unknown|for sale',
+    'contacts': r'\d|none|zero|no email',
+}
+EVIDENCE_HINT = {
+    'web':      'e.g. "2 emails, contact form /contact" or "none"',
+    'fb':       r'facebook\.com|fb\.com|none|not found|no\s+(fb|facebook|page)',
+    'ig':       r'instagram\.com|@\w+|none|not found|no\s+(ig|insta|instagram|page)',
+    'linkedin': 'e.g. "6 people, 2 events staff" or BLOCKED "login wall"',
+    'apollo':   'e.g. "3 enriched" or "none — no domain"',
+    'status':   'e.g. "open, hours on site" or "closed June 2026"',
+    'contacts': 'e.g. "3 added, 1 pending" or "none"',
+}
+
+
+def check_evidence(step, status, note):
+    if status == 'BLOCKED':
+        if len(note.strip()) < 4:
+            die(f'BLOCKED needs a reason in words ({EVIDENCE_HINT.get(step, "")})')
+        return
+    pat = EVIDENCE.get(step)
+    if pat and not re.search(pat, note or '', re.I):
+        die(f"'{step}' marked done but the note shows no evidence "
+            f"({EVIDENCE_HINT.get(step, '')}). If you didn't do it, mark BLOCKED with why.")
 
 current_file = os.path.join(runs_dir, 'CURRENT')
 
@@ -168,6 +204,7 @@ if status not in STATUSES:
     die(f"status must be one of {STATUSES}")
 if status == 'BLOCKED' and not note:
     die("BLOCKED needs a reason: ./mark_step.sh VENUE_ID STEP BLOCKED \"why\"")
+check_evidence(step, status, note)
 rid = current_run()
 registered = {r.get('venue_id') for r in load(rid) if r.get('step') == 'registered'}
 if venue_id not in registered:

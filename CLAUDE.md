@@ -4,6 +4,10 @@ Read this before doing anything in this repo. A "pipeline run" means ALL steps
 below, in order, for EVERY venue in the batch. The run is not done until
 `./verify_run.sh` prints `MISSING: 0`.
 
+## First command of every session
+`./verify_run.sh` — if it prints MISSING > 0, you are resuming that run, not
+starting a new one. Finish it before building another batch.
+
 ## Rules that override everything else
 - Never skip a step silently. If a step cannot run (Chrome closed, credits out,
   site down), record it with `./mark_step.sh <venue_id> <step> BLOCKED "<reason>"`
@@ -12,6 +16,15 @@ below, in order, for EVERY venue in the batch. The run is not done until
   and the run log, not from what you remember doing.
 - Long commands run in the background (see step 3). Do not hold a tool call open
   for more than a few minutes.
+- Never `cat` a log. `tail -20` and `grep` only. The ledger and `verify_run.sh`
+  are the source of truth, not what you remember from earlier in the chat.
+- Every `mark_step.sh` call needs a note with evidence: a count, a URL, or a
+  finding ("no FB page", "closed 2025", "login wall"). The script rejects bare
+  marks. If you didn't open the page, the honest mark is BLOCKED with why.
+- A step the pipeline ran but that came back empty or degraded is NOT done.
+  `verify_run.sh` shows these as `!` and in DEGRADED: LinkedIn empty page, Apollo
+  matched a different company, website scraped by curl only. Each needs your
+  manual pass (with a count) or a BLOCKED with the reason.
 - Do not edit `pipeline.sh` during a run.
 - Do not send anything. Sending is manual, always.
 
@@ -24,6 +37,9 @@ below, in order, for EVERY venue in the batch. The run is not done until
 - [ ] `python3 zerobounce_guard.py budget` — note credits. Note Apollo credits.
 - [ ] `bash -n pipeline.sh build_batch.sh postcheck.sh` — all pass.
 - [ ] `RUN_ID=run-$(date +%Y%m%d-%H%M)` — use this ID for the whole run.
+- [ ] The pipeline probes Chrome itself and logs `[CHROME] WARNING` if JavaScript
+      from Apple Events is off. If that line appears in the run log, stop and tell
+      Alex before continuing — every website scrape will be curl-only until fixed.
 
 ## 1. Discovery (only when the untouched pool is thin, or Alex asks)
 - `./discover.sh --taste` or `./sweep.sh "City ST"`.
@@ -52,7 +68,9 @@ For each venue, in Chrome, and mark each one with `./mark_step.sh`:
 - `fb`       Facebook page > About > Contact info
 - `ig`       Instagram profile — bio email, contact button
 - `linkedin` LinkedIn people search for the venue name, "Current" employees only,
-             first 3 pages. Target events/catering/sales/GM/owner titles.
+             first 3 pages. Target events/catering/sales/GM/owner titles. The note
+             must have a count ("7 people, 2 relevant"). If LinkedIn shows a login
+             wall or the search limit, mark BLOCKED "login wall" — never done.
 - `apollo`   Apollo enrich for any named person found with no email
 - `status`   Confirm the venue is open (not closed, renovating, or renamed)
 - `contacts` Every found email is added via the app/API and ZeroBounce-verified;
@@ -67,8 +85,11 @@ For each venue, in Chrome, and mark each one with `./mark_step.sh`:
 
 ## 6. Gate — definition of done
 - `./verify_run.sh $RUN_ID`
-- It lists every venue x step that is missing. Fix or mark BLOCKED, then re-run
-  until it prints `MISSING: 0`. Do not proceed to step 7 before that.
+- It checks evidence, not marks: the run log, the web-coverage files, and the
+  sheet's contact counts. It lists every venue x step that is missing or
+  contradicted. Fix or mark BLOCKED, then re-run until it prints `MISSING: 0`.
+  Do not proceed to step 7 before that.
+- DEGRADED items don't block, but they go in the report word for word.
 
 ## 7. Report
 - Generate the HTML report and update `reports/manifest.json`

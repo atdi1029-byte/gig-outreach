@@ -1129,6 +1129,7 @@ body {
         <div class="section" id="browseSection">
             <div class="section-header" style="cursor:default">
                 <span class="section-title">Browse Venues</span>
+                <span id="syncStatus" style="margin-left:auto;font-size:0.7rem;color:var(--text-dim)">Loading venues…</span>
             </div>
             <div id="stateGrid"></div>
         </div>
@@ -1250,11 +1251,18 @@ body {
 // === CONFIG ===
 const API_URL = 'https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec?action=dashboard';
 const BASE_URL = 'https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec';
-const REFRESH_INTERVAL = 60000;
+// The dashboard payload is ~5MB and takes the backend ~8s to build, so poll
+// gently: every 3 min while visible, never while hidden.
+const REFRESH_INTERVAL = 3 * 60000;
+const DASHBOARD_TIMEOUT = 120000;
 
 // === STATE ===
 let dashboardData = null;
 let refreshTimer = null;
+let _dashInFlight = false;
+let _dashFetchedAt = 0;     // last successful network load
+let _dashFailures = 0;
+let _gateReady = Promise.resolve();
 let navStack = ['viewHome'];
 // Track locally-confirmed sent contacts so a loadDashboard overwrite
 // doesn't erase marks made during an in-flight refresh.
@@ -1265,14 +1273,20 @@ const _localSentForm = new Set(); // venue IDs with contact form marked sent
 let currentState = '';
 let currentCategory = '';
 
+// localStorage read that survives a missing/corrupt value or blocked storage
+function lsJSON(key, fallback) {
+    try { const v = localStorage.getItem(key); const p = v ? JSON.parse(v) : null; return p == null ? fallback : p; }
+    catch (e) { console.warn('Bad localStorage value for ' + key, e); return fallback; }
+}
+
 // === TITLE WORD FILTER (skip + star) ===
-function getSkipWords() { return JSON.parse(localStorage.getItem('outreach_skip_words') || '[]'); }
+function getSkipWords() { return lsJSON('outreach_skip_words', []); }
 function saveSkipWords(words) {
     localStorage.setItem('outreach_skip_words', JSON.stringify(words));
     // Sync to sheet so pipeline.sh can read them
     if (BASE_URL) fireGet(buildUrl({ action: 'save_skip_words', words: JSON.stringify(words) }));
 }
-function getStarWords() { return JSON.parse(localStorage.getItem('outreach_star_words') || '[]'); }
+function getStarWords() { return lsJSON('outreach_star_words', []); }
 function saveStarWords(words) { localStorage.setItem('outreach_star_words', JSON.stringify(words)); }
 
 function addSkipWord(word) {
@@ -1680,14 +1694,16 @@ const CATEGORY_IMAGES = {
 };
 
 // === API HELPERS ===
-function jsonpFetch(url, cb) {
+function jsonpFetch(url, cb, timeoutMs) {
     var cbName = '_goCb_' + Date.now() + '_' + Math.random().toString(36).substr(2,5);
     var script = document.createElement('script');
     var done = false;
-    window[cbName] = function(resp) { done=true; delete window[cbName]; script.remove(); cb(null, resp); };
+    // A late response after a timeout calls a no-op instead of throwing
+    var fail = function(msg) { if(!done) { done=true; window[cbName] = function() { delete window[cbName]; }; script.remove(); cb(msg); } };
+    window[cbName] = function(resp) { if(done) return; done=true; delete window[cbName]; script.remove(); cb(null, resp); };
     script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;
-    script.onerror = function() { if(!done) { delete window[cbName]; script.remove(); cb('Failed'); } };
-    setTimeout(function() { if(!done) { delete window[cbName]; script.remove(); cb('Timeout'); } }, 60000);
+    script.onerror = function() { fail('Failed'); };
+    setTimeout(function() { fail('Timeout'); }, timeoutMs || 60000);
     document.head.appendChild(script);
 }
 
@@ -2600,11 +2616,33 @@ function isVenueGated(venueId) {
     return getGatedVenueIds().has(venueId);
 }
 
+// Lookup maps over dashboardData. venueHasPending runs once per venue on
+// every render, and scanning the full venues + contacts arrays each time
+// made rendering O(venues x contacts). Rebuilt whenever the arrays change.
+let _dataIdx = { venues: null, contacts: null, vLen: -1, cLen: -1, venueById: new Map(), contactsByVenue: new Map() };
+function dataIndex() {
+    const venues = (dashboardData && dashboardData.venues) || [];
+    const contacts = (dashboardData && dashboardData.contacts) || [];
+    const idx = _dataIdx;
+    if (idx.venues !== venues || idx.contacts !== contacts || idx.vLen !== venues.length || idx.cLen !== contacts.length) {
+        const venueById = new Map();
+        for (const v of venues) if (!venueById.has(v.venue_id)) venueById.set(v.venue_id, v);
+        const contactsByVenue = new Map();
+        for (const c of contacts) {
+            const list = contactsByVenue.get(c.venue_id);
+            if (list) list.push(c); else contactsByVenue.set(c.venue_id, [c]);
+        }
+        _dataIdx = { venues, contacts, vLen: venues.length, cLen: contacts.length, venueById, contactsByVenue };
+    }
+    return _dataIdx;
+}
+
 function venueHasPending(venueId) {
     // Report gate: hide venues from unreviewed reports
     if (isVenueGated(venueId)) return false;
-    const contacts = ((dashboardData && dashboardData.contacts) || []).filter(c => c.venue_id === venueId);
-    const venue = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === venueId);
+    const idx = dataIndex();
+    const contacts = idx.contactsByVenue.get(venueId) || [];
+    const venue = idx.venueById.get(venueId);
     if (!venue) return false;
     // Resurfaced venues (contacted 2.5+ years ago) are treated as untouched
     if (isResurfaced(venue)) return true;
@@ -2732,52 +2770,143 @@ function renderWeeklyGoals() {
     el.innerHTML = html;
 }
 
+// === DASHBOARD CACHE (IndexedDB) ===
+// The last payload is kept so the app opens instantly while the ~5MB
+// refresh runs in the background. It lives in IndexedDB because
+// localStorage is only ~5MB and shared by every atdi1029-byte.github.io app.
+const DASH_DB = 'outreach_cache';
+function _dashDb() {
+    return new Promise(function(resolve, reject) {
+        if (!window.indexedDB) return reject(new Error('no indexedDB'));
+        const req = indexedDB.open(DASH_DB, 1);
+        req.onupgradeneeded = function() { req.result.createObjectStore('kv'); };
+        req.onsuccess = function() { resolve(req.result); };
+        req.onerror = function() { reject(req.error); };
+        req.onblocked = function() { reject(new Error('blocked')); };
+    });
+}
+function readCachedDashboard() {
+    return _dashDb().then(function(db) {
+        return new Promise(function(resolve) {
+            const r = db.transaction('kv', 'readonly').objectStore('kv').get('dashboard');
+            r.onsuccess = function() { resolve(r.result || null); };
+            r.onerror = function() { resolve(null); };
+        });
+    }).catch(function() { return null; });
+}
+function writeCachedDashboard(data) {
+    _dashDb().then(function(db) {
+        db.transaction('kv', 'readwrite').objectStore('kv').put({ savedAt: Date.now(), data: data }, 'dashboard');
+    }).catch(function(e) { console.warn('Dashboard cache write failed:', e); });
+}
+
+function setSyncStatus(text, isError) {
+    const el = document.getElementById('syncStatus');
+    if (!el) return;
+    el.textContent = text || '';
+    el.style.color = isError ? '#e67e22' : 'var(--text-dim)';
+    el.style.cursor = isError ? 'pointer' : 'default';
+    el.onclick = isError ? function() { window._forceRefresh = true; loadDashboard(); } : null;
+}
+
+function _ago(ms) {
+    const m = Math.round(ms / 60000);
+    if (m < 1) return 'just now';
+    if (m < 60) return m + 'm ago';
+    const h = Math.round(m / 60);
+    return h < 48 ? h + 'h ago' : Math.round(h / 24) + 'd ago';
+}
+
+// Render a dashboard payload (from the network or the cache).
+function applyDashboard(data, fromCache) {
+    dashboardData = data;
+    // Re-apply any locally confirmed sent marks that arrived during
+    // this fetch (prevents race where marks are wiped by stale data)
+    if (_localSentContacts.size > 0) {
+        (dashboardData.contacts || []).forEach(function(c) {
+            if (_localSentContacts.has(c.contact_id + '|' + c.venue_id)) {
+                c.email_sent = 'true';
+            }
+        });
+    }
+    if (_localSentIG.size > 0 || _localSentFB.size > 0 || _localSentForm.size > 0) {
+        (dashboardData.venues || []).forEach(function(v) {
+            if (_localSentIG.has(v.venue_id)) v.ig_dm_sent = true;
+            if (_localSentFB.has(v.venue_id)) v.fb_msg_sent = true;
+            if (_localSentForm.has(v.venue_id)) v.contact_form_sent = true;
+        });
+    }
+    // One failing widget shouldn't blank the whole home screen
+    [renderStateGrid, updateGigsCount, renderWeeklyGoals, renderLevelBar, checkLinkedInReminder].forEach(function(fn) {
+        try { fn(); } catch (e) { console.error('Render error in ' + fn.name + ':', e); }
+    });
+    // Deep link: ?venue=VENUE_ID opens detail page
+    // (saved data may predate a newly added venue — then wait for fresh data)
+    const urlVenue = new URLSearchParams(window.location.search).get('venue');
+    if (urlVenue && navStack[navStack.length - 1] !== 'viewDetail' &&
+        (!fromCache || dataIndex().venueById.has(urlVenue))) {
+        openVenueDetail(urlVenue);
+        history.replaceState(null, '', window.location.pathname);
+    }
+}
+
+function scheduleRefresh(delay) {
+    clearTimeout(refreshTimer);
+    // Hidden tabs don't poll; visibilitychange restarts it
+    if (document.visibilityState === 'hidden') return;
+    refreshTimer = setTimeout(loadDashboard, delay);
+}
+
 // === MAIN LOAD ===
+let _dashQueued = false;
 function loadDashboard() {
     if (!API_URL) { renderStateGrid(); return; }
 
     // Skip auto-refresh while viewing a venue detail — prevents the venue from vanishing mid-work
     const onDetail = navStack[navStack.length - 1] === 'viewDetail';
     if (onDetail && !window._forceRefresh) {
-        clearTimeout(refreshTimer);
-        refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
+        scheduleRefresh(REFRESH_INTERVAL);
         return;
     }
     window._forceRefresh = false;
 
+    // One request at a time; a call made mid-flight (e.g. after an edit)
+    // runs once the current one lands so it sees the edit.
+    if (_dashInFlight) { _dashQueued = true; return; }
+    _dashInFlight = true;
+    if (!dashboardData) setSyncStatus('Loading venues…');
+
     jsonpFetch(API_URL, function(err, data) {
-        if (!err && data && data.status === 'ok') {
-            dashboardData = data;
-            // Re-apply any locally confirmed sent marks that arrived during
-            // this fetch (prevents race where marks are wiped by stale data)
-            if (_localSentContacts.size > 0) {
-                (dashboardData.contacts || []).forEach(function(c) {
-                    if (_localSentContacts.has(c.contact_id + '|' + c.venue_id)) {
-                        c.email_sent = 'true';
-                    }
-                });
+        const ok = !err && data && data.status === 'ok';
+        if (!ok) err = err || (data && data.message) || 'Bad response';
+        // Render only after the report gate data is in, so gated venues never flash
+        _gateReady.then(function() {
+            _dashInFlight = false;
+            if (ok) {
+                _dashFetchedAt = Date.now();
+                _dashFailures = 0;
+                try {
+                    applyDashboard(data);
+                    setSyncStatus('');
+                } catch (e) {
+                    console.error('Dashboard render error:', e);
+                    setSyncStatus('Display error: ' + e.message, true);
+                }
+                setTimeout(function() { writeCachedDashboard(data); }, 0);
+            } else {
+                _dashFailures++;
+                console.error('Dashboard load error:', err);
+                const retryS = Math.min(15 * Math.pow(2, _dashFailures - 1), 180);
+                setSyncStatus((dashboardData ? 'Showing saved data — ' : '') +
+                    'couldn\'t reach server (' + err + '). Retrying in ' + retryS + 's — tap to retry', true);
+                _dashQueued = false;
+                scheduleRefresh(retryS * 1000);
+                return;
             }
-            if (_localSentIG.size > 0 || _localSentFB.size > 0 || _localSentForm.size > 0) {
-                (dashboardData.venues || []).forEach(function(v) {
-                    if (_localSentIG.has(v.venue_id)) v.ig_dm_sent = true;
-                    if (_localSentFB.has(v.venue_id)) v.fb_msg_sent = true;
-                    if (_localSentForm.has(v.venue_id)) v.contact_form_sent = true;
-                });
-            }
-            renderStateGrid();
-            updateGigsCount();
-            renderWeeklyGoals();
-            renderLevelBar();
-            checkLinkedInReminder();
-            // Deep link: ?venue=VENUE_ID opens detail page
-            const urlVenue = new URLSearchParams(window.location.search).get('venue');
-            if (urlVenue) { openVenueDetail(urlVenue); history.replaceState(null, '', window.location.pathname); }
-        } else {
-            console.error('Dashboard load error:', err);
-        }
-        clearTimeout(refreshTimer);
-        refreshTimer = setTimeout(loadDashboard, REFRESH_INTERVAL);
-    });
+            if (_dashQueued) { _dashQueued = false; loadDashboard(); return; }
+            scheduleRefresh(REFRESH_INTERVAL);
+        });
+    }, DASHBOARD_TIMEOUT);
 }
 
 // === REPORTS VIEW ===
@@ -2798,7 +2927,7 @@ async function loadReportManifest() {
 
 // === TEMPLATE PREVIEWER (temporary) ===
 let tplChannel = 'email';
-let tplApproved = JSON.parse(localStorage.getItem('tpl_approved') || '{}');
+let tplApproved = lsJSON('tpl_approved', {});
 
 function openTemplatePreviewer() {
     const sel = document.getElementById('tplCategory');
@@ -2891,17 +3020,21 @@ function loadReviewedReportsFromCloud() {
     if (!BASE_URL) return Promise.resolve();
     return new Promise(function(resolve) {
         jsonpFetch(buildUrl({ action: 'get_reviewed_reports' }), function(err, json) {
-            if (!err && json && json.reviewed) {
-                var local = getReviewedReports();
-                var merged = Object.assign({}, json.reviewed, local);
-                localStorage.setItem('outreach_reviewed_reports', JSON.stringify(merged));
-                _reviewedReportsCache = merged;
-                if (Object.keys(merged).length > Object.keys(json.reviewed).length) {
-                    fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(merged) }));
+            // resolve() must always run — the dashboard render waits on it
+            try {
+                if (!err && json && json.reviewed) {
+                    var local = getReviewedReports();
+                    var merged = Object.assign({}, json.reviewed, local);
+                    safeLocalSave('outreach_reviewed_reports', JSON.stringify(merged));
+                    _reviewedReportsCache = merged;
+                    _gatedVenueIds = null; // may arrive after the gate timeout
+                    if (Object.keys(merged).length > Object.keys(json.reviewed).length) {
+                        fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(merged) }));
+                    }
                 }
-            }
+            } catch (e) { console.error('Reviewed reports sync error:', e); }
             resolve();
-        });
+        }, 15000);
     });
 }
 
@@ -3043,7 +3176,7 @@ function getMonthKey() {
 }
 
 function getMonthlyTasks() {
-    const data = JSON.parse(localStorage.getItem(MONTHLY_KEY) || '{}');
+    const data = lsJSON(MONTHLY_KEY, {});
     const currentMonth = getMonthKey();
     if (data.month !== currentMonth) {
         // New month — use saved defaults
@@ -3056,7 +3189,7 @@ function getMonthlyTasks() {
             return task;
         });
         const fresh = { month: currentMonth, tasks: tasks };
-        localStorage.setItem(MONTHLY_KEY, JSON.stringify(fresh));
+        safeLocalSave(MONTHLY_KEY, JSON.stringify(fresh));
         return fresh;
     }
     return data;
@@ -3709,7 +3842,7 @@ function renderSmartPicks(recs, profile) {
     const allFiltered = recs.filter(r => {
         if (gigVenueIds.has(r.venue_id)) return false;
         if (gigNames.has(stripThe(r.name))) return false;
-        const v = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
+        const v = dataIndex().venueById.get(r.venue_id);
         if (v && v.status === 'pipelined') return false;
         if (v && v.status === 'contacted' && !isResurfaced(v)) return false;
         return true;
@@ -3761,7 +3894,7 @@ function renderSmartPicks(recs, profile) {
         html += `<div class="smart-pick-name">${esc(r.name)}</div>`;
         html += `<div class="smart-pick-meta"><span class="category-badge ${cat}">${esc((r.category || '').toUpperCase())}</span> ${esc(r.city || '')}${r.state ? ', ' + esc(r.state) : ''}${r.distance_miles ? ' · ' + r.distance_miles + ' mi' : ''}</div>`;
         html += `</div></div>`;
-        const spVenue = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === r.venue_id);
+        const spVenue = dataIndex().venueById.get(r.venue_id);
         if (spVenue && isResurfaced(spVenue)) {
             html += `<div class="smart-pick-reason" style="color:#e8944c">${esc(resurfaceLabel(spVenue))}</div>`;
         } else if (reasons.length > 0) {
@@ -3971,7 +4104,7 @@ function renderLevelBar() {
             header.classList.remove('evolve');
         }, 1500);
     }
-    localStorage.setItem('outreach_level', String(info.level));
+    safeLocalSave('outreach_level', String(info.level));
 }
 
 function toggleLevel() {
@@ -3983,33 +4116,51 @@ function toggleLevel() {
 
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
-    renderMonthlyTasks(); // Show local immediately
-    // If local already has data, unlock sync immediately
-    var _localTasks = localStorage.getItem(MONTHLY_KEY) || '{}';
-    if (_localTasks !== '{}') _monthlyReady = true;
-    loadMonthlyFromCloud(function() { _monthlyReady = true; }); // Unlock after cloud pull
-    // Restore level bar expanded state
-    if (localStorage.getItem('outreach_level_expanded') === '1') {
-        var ls = document.getElementById('levelSection');
-        if (ls) ls.classList.add('expanded');
-    }
-    // Load reviewed reports + report manifest in parallel, then render dashboard
-    Promise.all([loadReviewedReportsFromCloud(), loadReportManifest()])
-    .then(() => { _gatedVenueIds = null; loadDashboard(); })
-    .catch(() => { _gatedVenueIds = null; loadDashboard(); });
+    // Report gate data: reviewed reports (cloud) + report manifest. Capped at
+    // 8s so a slow backend can't hold the dashboard render hostage.
+    const manifestReady = loadReportManifest();
+    _gateReady = Promise.race([
+        Promise.all([loadReviewedReportsFromCloud(), manifestReady]),
+        new Promise(r => setTimeout(r, 8000))
+    ]).catch(() => {}).then(() => { _gatedVenueIds = null; });
 
-    // Deep link: ?venue=VENUE_ID opens venue detail directly
-    const urlParams = new URLSearchParams(window.location.search);
-    const deepVenue = urlParams.get('venue');
-    if (deepVenue) {
-        setTimeout(() => openVenueDetail(deepVenue), 1500);
-    }
+    // Start the slow dashboard fetch now, in parallel with the gate calls.
+    // Deep links (?venue=ID) open from applyDashboard once data is in.
+    loadDashboard();
+
+    // Meanwhile show the last saved dashboard, gated by the local reviewed list
+    Promise.all([readCachedDashboard(), Promise.race([manifestReady, new Promise(r => setTimeout(r, 3000))])])
+    .then(([cached]) => {
+        if (!cached || !cached.data || dashboardData) return; // network already won
+        _gatedVenueIds = null;
+        applyDashboard(cached.data, true);
+        if (_dashInFlight) setSyncStatus('Updating… (saved ' + _ago(Date.now() - cached.savedAt) + ')');
+    })
+    .catch(e => console.warn('Cached dashboard render failed:', e));
+
+    try {
+        renderMonthlyTasks(); // Show local immediately
+        // If local already has data, unlock sync immediately
+        var _localTasks = localStorage.getItem(MONTHLY_KEY) || '{}';
+        if (_localTasks !== '{}') _monthlyReady = true;
+        loadMonthlyFromCloud(function() { _monthlyReady = true; }); // Unlock after cloud pull
+        // Restore level bar expanded state
+        if (localStorage.getItem('outreach_level_expanded') === '1') {
+            var ls = document.getElementById('levelSection');
+            if (ls) ls.classList.add('expanded');
+        }
+    } catch (e) { console.error('Init error:', e); }
 });
 
-// Refresh dashboard when app resumes from background
+// Pause polling while hidden; on return, refresh if the data is over a minute old
 document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') { clearTimeout(refreshTimer); return; }
     // Only refresh on tab-return if NOT viewing a venue detail
-    if (document.visibilityState === 'visible' && navStack[navStack.length - 1] !== 'viewDetail') loadDashboard();
+    if (navStack[navStack.length - 1] === 'viewDetail') { scheduleRefresh(REFRESH_INTERVAL); return; }
+    if (_dashInFlight) return; // its callback schedules the next refresh
+    const age = Date.now() - _dashFetchedAt;
+    if (age > 60000) loadDashboard();
+    else scheduleRefresh(REFRESH_INTERVAL - age);
 });
 
 if ('serviceWorker' in navigator) {

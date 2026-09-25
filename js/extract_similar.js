@@ -1,14 +1,20 @@
 (function() {
     var headers = document.querySelectorAll('h2');
     var targetH2 = null;
+    var headerText = '';
     for (var h = 0; h < headers.length; h++) {
         var t = headers[h].textContent.trim().toLowerCase();
         if (t.indexOf('similar') > -1 && (t.indexOf('hotel') > -1 || t.indexOf('nearby') > -1)) {
             targetH2 = headers[h];
+            headerText = t;
             break;
         }
     }
     if (!targetH2) return '[]';
+    // Google's own section label is the only type evidence these cards carry:
+    // "Similar hotels nearby" -> Hotel; a generic "similar places" section -> unknown,
+    // so the classifier decides from the name instead of calling a restaurant a hotel.
+    var category = headerText.indexOf('hotel') > -1 ? 'Hotel' : '';
     var section = targetH2.parentElement.parentElement;
     var nameEls = section.querySelectorAll('span.GgK1If');
     var names = [];
@@ -39,10 +45,10 @@
         if (start === -1) continue;
         var after = start + names[i2].length;
         var end = (i2 < names.length - 1) ? fullText.indexOf(names[i2+1], after) : fullText.length;
+        if (end === -1) end = fullText.length;
         var chunk = fullText.substring(after, end);
         var rating = '';
         var reviews = '';
-        var category = 'Hotel';
         var rm = chunk.match(/([0-9]\.[0-9])/);
         if (rm) rating = rm[1];
         var revm = chunk.match(/\(([0-9,]+)\)/);

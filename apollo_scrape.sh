@@ -14,6 +14,19 @@
 # =============================================================
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# DEPRECATED. This Chrome scraper reads whichever email is on the page, so it can
+# attach the wrong address to a person, and it spends Apollo reveals + ZeroBounce
+# credits. The pipeline's Apollo API step (pipeline.sh step 3/4, or the Apollo MCP
+# tools) is the supported path.
+if [ "${1:-}" != "--i-know-this-is-deprecated" ]; then
+    echo "$(basename "$0") is DEPRECATED and refuses to run: it can attach the wrong email to a person."
+    echo "Use the pipeline's Apollo API step (./pipeline.sh ... step 3/4) or the Apollo MCP tools instead."
+    echo "To run it anyway: $0 --i-know-this-is-deprecated \"Venue Name\" VENUE_ID"
+    exit 2
+fi
+shift
+. "$SCRIPT_DIR/env_check.sh" || exit 1
 [ -f "$SCRIPT_DIR/.env" ] && source "$SCRIPT_DIR/.env"
 ZB_GUARD="$SCRIPT_DIR/zerobounce_guard.py"
 ZB_RUN_ID="${ZB_RUN_ID:-apollo-scrape-$(date +%Y%m%dT%H%M%S)-$$}"

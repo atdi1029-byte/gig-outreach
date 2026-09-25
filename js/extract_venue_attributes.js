@@ -2,7 +2,7 @@
     var result = {category: '', price: '', attributes: []};
     var seen = {};
 
-    // Skip these — navigation items, not venue attributes
+    // Skip these - navigation items, not venue attributes
     var skipWords = [
         'review', 'direction', 'photo', 'send to', 'share',
         'save', 'add a', 'write', 'claim', 'overview', 'about',

@@ -1,37 +1,42 @@
 #!/bin/bash
 # =============================================================
-# Re-score Pool — reclassify + taste score ALL untouched venues
+# Re-score Pool — recompute taste_score for ALL untouched venues
 #
 # Usage:
-#   ./rescore_pool.sh              — dry run (preview only)
-#   ./rescore_pool.sh --apply      — update the sheet
-#   ./rescore_pool.sh --limit 50   — preview first N
+#   ./rescore_pool.sh                 — preview only (default)
+#   ./rescore_pool.sh --limit 50      — preview; list the top 50
+#   ./rescore_pool.sh --apply         — write taste_score + taste_reasons for
+#                                       every row whose score changed
+#   ./rescore_pool.sh --apply --limit 50   — write at most 50 changed rows
 #
 # Steps:
-#   1. Reclassify all untouched venues (venue_classifier.py)
-#   2. Calculate taste scores (taste_score.py)
-#   3. Write taste_score as a NEW field (not overwriting upscale_score)
+#   1. Classify every untouched venue (venue_classifier.py)
+#   2. Score it (taste_score.py — the same score build_batch ranks by)
+#   3. Write taste_score / taste_reasons (and taste_score_version when the
+#      sheet has that column). NEVER writes the category column: classifier
+#      output is not a correction (Aug 23 rescore turned clubs into 'unknown').
 #
-# Safe to run multiple times — idempotent.
+# Before any write it saves every row it will change (old + new values) to
+# reports/rescore-backups/rescore-<stamp>.json. Rows whose stored score already
+# matches are skipped, so re-running after an interruption resumes.
 # =============================================================
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-source "$SCRIPT_DIR/.env" 2>/dev/null || true
-APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec"
+. "$SCRIPT_DIR/env_check.sh" || exit 1
+[ -f "$SCRIPT_DIR/.env" ] && source "$SCRIPT_DIR/.env"
+APPS_SCRIPT_URL="${APPS_SCRIPT_URL:-https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec}"
 
 APPLY=0
 LIMIT=0
-LIMIT_NEXT=0
-for arg in "$@"; do
-    case "$arg" in
-        --apply) APPLY=1 ;;
-        --limit) LIMIT_NEXT=1 ;;
-        *)
-            if [ "$LIMIT_NEXT" = "1" ]; then
-                LIMIT=$arg
-                LIMIT_NEXT=0
-            fi
-            ;;
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --apply) APPLY=1; shift ;;
+        --limit)
+            LIMIT="${2:-}"; shift 2 || { echo "ERROR: --limit needs a number" >&2; exit 2; }
+            if ! [[ "$LIMIT" =~ ^[0-9]+$ ]] || [ "$LIMIT" -lt 1 ]; then
+                echo "ERROR: --limit must be a positive number." >&2; exit 2
+            fi ;;
+        *) echo "ERROR: unknown argument: $1 (use --apply, --limit N)" >&2; exit 2 ;;
     esac
 done
 
@@ -39,167 +44,229 @@ if [ "$APPLY" = "0" ]; then
     echo "[DRY RUN] Preview only. Use --apply to update the sheet."
 fi
 
+WORK_DIR=$(mktemp -d "${TMPDIR:-/tmp}/rescore.XXXXXX") || { echo "ERROR: mktemp failed" >&2; exit 1; }
+trap 'rm -rf "$WORK_DIR"' EXIT
+
+fetch() {  # fetch ACTION OUTFILE
+    local try
+    for try in 1 2 3; do
+        if curl -fsSL --max-time 180 "${APPS_SCRIPT_URL}?action=$1" -o "$2" 2>/dev/null &&
+           python3 -c "import json,sys; d=json.load(open(sys.argv[1])); sys.exit(0 if d.get('status') == 'ok' else 1)" "$2" 2>/dev/null; then
+            return 0
+        fi
+        sleep $((try * 5))
+    done
+    echo "ERROR: could not fetch ?action=$1 ($(head -c 200 "$2" 2>/dev/null))" >&2
+    return 1
+}
+
 echo "Fetching all venues..."
-curl -sL "${APPS_SCRIPT_URL}?action=venues" -o /tmp/rescore_venues.json
+fetch venues "$WORK_DIR/venues.json" || exit 1
+fetch dashboard "$WORK_DIR/dashboard.json" || exit 1
 
-cd "$SCRIPT_DIR"
+cd "$SCRIPT_DIR" || exit 1
 
-python3 << 'PYEOF'
-import json, sys, os
+APPLY="$APPLY" LIMIT="$LIMIT" SCRIPT_DIR="$SCRIPT_DIR" WORK_DIR="$WORK_DIR" \
+APPS_SCRIPT_URL="$APPS_SCRIPT_URL" python3 - <<'PYEOF'
+import json, os, sys, time
+import urllib.parse, urllib.request
+from collections import Counter
+from datetime import datetime
 
-sys.path.insert(0, os.environ.get('SCRIPT_DIR', '.'))
-sys.path.insert(0, '.')
+SCRIPT_DIR = os.environ['SCRIPT_DIR']
+sys.path.insert(0, SCRIPT_DIR)
+APPLY = os.environ['APPLY'] == '1'
+LIMIT = int(os.environ['LIMIT'] or 0)
+API = os.environ['APPS_SCRIPT_URL']
+WORK = os.environ['WORK_DIR']
 
-APPLY = int(os.environ.get('APPLY', '0'))
-LIMIT = int(os.environ.get('LIMIT', '0'))
+from venue_classifier import classify, ID_CODE_MAP, GENERIC_SLUGS
+from taste_score import score as taste_score, SCORE_VERSION
 
-from venue_classifier import classify
-from taste_score import score as taste_score
-
-with open('/tmp/rescore_venues.json') as f:
-    venues = json.load(f).get('venues', [])
+venues = json.load(open(os.path.join(WORK, 'venues.json'))).get('venues', [])
+dash = json.load(open(os.path.join(WORK, 'dashboard.json')))
+if not venues:
+    print("ERROR: ?action=venues returned no venues", file=sys.stderr)
+    sys.exit(3)
+# Old backend: ?action=venues lacks notes/address/taste_score; the dashboard has them.
+RICH = ('notes', 'address', 'distance_miles', 'drive_minutes', 'taste_score',
+        'taste_reasons', 'taste_score_version', 'venue_vote', 'check_status')
+if not any('notes' in v for v in venues[:50]):
+    dv = {v.get('venue_id'): v for v in (dash.get('venues') or [])}
+    print("WARN: ?action=venues has no notes/taste_score (old Apps Script backend); "
+          "using the dashboard's copy until the backend is redeployed.")
+    for v in venues:
+        for k in RICH:
+            if k not in v and k in (dv.get(v.get('venue_id')) or {}):
+                v[k] = dv[v['venue_id']][k]
+if not any('notes' in v for v in venues[:50]):
+    print("ERROR: no source returns venue notes; scores would be name-only. Aborting.",
+          file=sys.stderr)
+    sys.exit(3)
+HAS_REASONS = any('taste_reasons' in v for v in venues[:50])
+HAS_VERSION = any('taste_score_version' in v for v in venues[:50])
 
 untouched = [v for v in venues if v.get('status') == 'untouched']
 print(f"Total venues: {len(venues)}")
 print(f"Untouched: {len(untouched)}")
 
-# Classify + score all
+
+def num(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):
+        return None
+
+
 results = []
 for v in untouched:
-    c = classify(v.get('name',''), v.get('category',''),
-                 v.get('notes',''))
+    c = classify(v.get('name', ''), v.get('category', ''), v.get('notes', ''),
+                 v.get('website', ''), v.get('venue_id', ''))
     ts, reasons = taste_score(v, c)
+    reasons_str = ' | '.join(reasons)
+    old = num(v.get('taste_score'))
+    changed = old is None or str(v.get('taste_score', '')).strip() == '' or abs(old - ts) > 0.05
+    if not changed and HAS_REASONS and (v.get('taste_reasons') or '') != reasons_str:
+        changed = True
     results.append({
-        'venue_id': v['venue_id'],
-        'name': v.get('name', ''),
+        'venue_id': v['venue_id'], 'name': v.get('name', ''),
         'raw_category': v.get('category', ''),
         'classified_category': c['primary_category'],
-        'category_changed': v.get('category','') != c['primary_category'],
-        'tags': c['venue_tags'],
+        'source': c['classification_source'],
         'confidence': c['classification_confidence'],
-        'taste_score': ts,
-        'reasons': reasons,
-        'city': v.get('city', ''),
-        'state': v.get('state', ''),
+        'tags': c['venue_tags'], 'taste_score': ts, 'reasons': reasons,
+        'reasons_str': reasons_str, 'old_score': v.get('taste_score', ''),
+        'old_reasons': v.get('taste_reasons', ''), 'changed': changed,
+        'city': v.get('city', ''), 'state': v.get('state', ''),
     })
-
-# Sort by taste score descending
 results.sort(key=lambda x: -x['taste_score'])
 
-# Stats
-print(f"\nScore distribution:")
-for lo, hi in [(60,100),(50,60),(40,50),(30,40),(25,30),(15,25),(0,15)]:
+print(f"\nScore distribution (taste_score {SCORE_VERSION}):")
+for lo, hi in [(60, 101), (50, 60), (40, 50), (30, 40), (25, 30), (1, 25), (0, 1)]:
     n = sum(1 for r in results if lo <= r['taste_score'] < hi)
-    print(f"  {lo:3d}-{hi:3d}: {n:4d} venues")
+    print(f"  {lo:3d}-{min(hi, 100):3d}: {n:4d} venues")
 
-# Category reclassification stats
-changed = [r for r in results if r['category_changed']]
-print(f"\nCategory reclassifications: {len(changed)} / {len(results)}")
-from collections import Counter
-reclass = Counter()
-for r in changed:
-    reclass[f"{r['raw_category']} -> {r['classified_category']}"] += 1
-for change, count in reclass.most_common(20):
+todo = [r for r in results if r['changed']]
+print(f"\nScores that differ from the sheet: {len(todo)} / {len(results)}")
+
+# The category column is never written; show disagreements for a human.
+disagree = [r for r in results
+            if (r['raw_category'] or '').lower().replace(' ', '_') != r['classified_category']]
+print(f"Category disagreements (NOT written): {len(disagree)}")
+for change, count in Counter(f"{r['raw_category']} -> {r['classified_category']}"
+                             for r in disagree).most_common(12):
     print(f"  {change}: {count}")
+# Rows whose generic category cell contradicts the type code in their venue_id:
+# most likely overwritten by an earlier rescore. Listed for a manual data repair.
+damaged = []
+for r in results:
+    code = r['venue_id'].split('-')[1].upper() if r['venue_id'].count('-') >= 2 else ''
+    cell = (r['raw_category'] or '').lower()
+    if code in ID_CODE_MAP and cell in GENERIC_SLUGS | {''} and ID_CODE_MAP[code] != cell:
+        damaged.append(r)
+if damaged:
+    print(f"Possible earlier category overwrites (generic cell vs venue_id code): {len(damaged)}")
+    for r in damaged[:15]:
+        print(f"  {r['venue_id']:16s} {r['name'][:40]:40s} cell={r['raw_category'] or '(blank)'} "
+              f"-> id suggests {ID_CODE_MAP[r['venue_id'].split('-')[1].upper()]}")
 
-# Show top N
 show_n = LIMIT if LIMIT > 0 else 30
 print(f"\n=== TOP {show_n} by taste score ===")
 for r in results[:show_n]:
-    reclass_mark = " *RECLASS*" if r['category_changed'] else ""
-    tag_str = ', '.join(r['tags'][:4])
-    print(f"  {r['taste_score']:5.0f}  {r['venue_id']:20s}  "
-          f"{r['name']:40s}  [{r['classified_category']}]  "
-          f"{r['city']} {r['state']}{reclass_mark}")
+    mark = " *CHANGED*" if r['changed'] else ""
+    print(f"  {r['taste_score']:5.0f}  {r['venue_id']:20s}  {r['name'][:40]:40s}  "
+          f"[{r['classified_category']}]  {r['city']} {r['state']}{mark}")
     for reason in r['reasons']:
         print(f"         {reason}")
 
-# Show bottom 10
 print(f"\n=== BOTTOM 10 ===")
 for r in results[-10:]:
-    reclass_mark = " *RECLASS*" if r['category_changed'] else ""
-    print(f"  {r['taste_score']:5.0f}  {r['venue_id']:20s}  "
-          f"{r['name']:40s}  [{r['classified_category']}]  "
-          f"{r['city']} {r['state']}{reclass_mark}")
-
-# Show reclassified examples
-print(f"\n=== RECLASSIFICATION EXAMPLES (first 15) ===")
-for r in changed[:15]:
-    print(f"  {r['name']:40s}  "
-          f"{r['raw_category']:15s} -> {r['classified_category']:15s}  "
-          f"(conf={r['confidence']:.2f})")
-
-# Write update file
-if APPLY or True:  # always write for bash loop
-    with open('/tmp/rescore_updates.tsv', 'w') as f:
-        for r in results:
-            reasons_str = ' | '.join(r['reasons'])
-            f.write(f"{r['venue_id']}\t{r['taste_score']}\t"
-                    f"{r['classified_category']}\t{reasons_str}\n")
-    print(f"\nWrote {len(results)} updates to /tmp/rescore_updates.tsv")
+    print(f"  {r['taste_score']:5.0f}  {r['venue_id']:20s}  {r['name'][:40]:40s}  "
+          f"[{r['classified_category']}]  {r['city']} {r['state']}")
 
 if not APPLY:
-    print(f"\n[DRY RUN] Would update {len(results)} venues. "
-          f"Run with --apply to execute.")
+    n = min(len(todo), LIMIT) if LIMIT else len(todo)
+    print(f"\n[DRY RUN] Would update {n} venues. Run with --apply to execute.")
+    sys.exit(0)
+
+todo = todo[:LIMIT] if LIMIT else todo
+if not todo:
+    print("\nNothing to update.")
+    sys.exit(0)
+
+backup_dir = os.path.join(SCRIPT_DIR, 'reports', 'rescore-backups')
+os.makedirs(backup_dir, exist_ok=True)
+backup = os.path.join(backup_dir, f"rescore-{datetime.now().strftime('%Y%m%d-%H%M%S')}.json")
+with open(backup, 'w') as f:
+    json.dump({'score_version': SCORE_VERSION, 'rows': [
+        {'venue_id': r['venue_id'], 'name': r['name'], 'old_taste_score': r['old_score'],
+         'old_taste_reasons': r['old_reasons'], 'new_taste_score': r['taste_score'],
+         'new_taste_reasons': r['reasons_str']} for r in todo]}, f, indent=1)
+print(f"\nBackup of {len(todo)} rows (old + new values): {backup}")
+
+
+def update(vid, field, value):
+    q = urllib.parse.urlencode({'action': 'update_venue', 'venue_id': vid,
+                                'field': field, 'value': value})
+    for attempt in (1, 2):
+        try:
+            with urllib.request.urlopen(f"{API}?{q}", timeout=30) as resp:
+                d = json.loads(resp.read().decode('utf-8'))
+            if d.get('status') == 'ok':
+                return True, ''
+            err = str(d.get('message') or d)[:120]
+        except Exception as e:
+            err = f"{type(e).__name__}: {e}"[:120]
+        if attempt == 1:
+            time.sleep(3)
+    return False, err
+
+
+print(f"\nApplying {len(todo)} score updates to sheet...")
+print("(Writing taste_score + taste_reasons; category is never written)")
+done, errors = 0, 0
+written = {}
+for i, r in enumerate(todo, 1):
+    fields = [('taste_score', str(r['taste_score'])), ('taste_reasons', r['reasons_str'])]
+    if HAS_VERSION:
+        fields.append(('taste_score_version', SCORE_VERSION))
+    ok_all = True
+    for field, value in fields:
+        ok, err = update(r['venue_id'], field, value)
+        if not ok:
+            print(f"  FAIL: {r['venue_id']} {field} ({err})")
+            ok_all = False
+            break
+    if ok_all:
+        done += 1
+        written[r['venue_id']] = r['taste_score']
+    else:
+        errors += 1
+        if errors >= 20:
+            print("  ABORTING: 20+ errors")
+            break
+    if i % 100 == 0:
+        print(f"  ... {i} / {len(todo)} processed")
+
+# Read back once: a fresh snapshot must show the new scores.
+mismatch = []
+try:
+    with urllib.request.urlopen(f"{API}?action=dashboard", timeout=180) as resp:
+        fresh = {v.get('venue_id'): v for v in json.loads(resp.read().decode('utf-8')).get('venues', [])}
+    for vid, want in written.items():
+        got = num((fresh.get(vid) or {}).get('taste_score'))
+        if got is None or abs(got - want) > 0.05:
+            mismatch.append(vid)
+    print(f"Read-back: {len(written) - len(mismatch)} / {len(written)} confirmed")
+    for vid in mismatch[:20]:
+        print(f"  NOT CONFIRMED: {vid}")
+except Exception as e:
+    print(f"WARN: read-back failed ({e}); re-run the preview to confirm.")
+
+print("")
+print("=== RESCORE COMPLETE ===")
+print(f"Updated: {done - len(mismatch)} / {len(todo)}")
+if errors or mismatch:
+    print(f"Errors: {errors + len(mismatch)}")
+sys.exit(1 if (errors or mismatch) else 0)
 PYEOF
-
-if [ "$APPLY" = "1" ]; then
-    total=$(wc -l < /tmp/rescore_updates.tsv)
-    echo ""
-    echo "Applying $total score updates to sheet..."
-    echo "(Writing taste_score + classified category)"
-    count=0
-    errors=0
-    while IFS=$'\t' read -r vid new_score new_cat reasons; do
-        # Skip if already scored (idempotent restart)
-        existing=$(curl -sL --max-time 15 "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${vid}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('venue',{}).get('taste_score',0))" 2>/dev/null)
-        if [ "$existing" = "$new_score" ] 2>/dev/null; then
-            count=$((count + 1))
-            if [ $((count % 200)) -eq 0 ]; then
-                echo "  ... $count / $total (skipping already scored)"
-            fi
-            continue
-        fi
-
-        # Write taste_score
-        result=$(curl -sL --max-time 30 "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=taste_score&value=${new_score}" 2>/dev/null)
-        status=$(echo "$result" | python3 -c "import json,sys; print(json.load(sys.stdin).get('status',''))" 2>/dev/null)
-
-        if [ "$status" != "ok" ]; then
-            # Retry once after 3 seconds
-            sleep 3
-            result=$(curl -sL --max-time 30 "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=taste_score&value=${new_score}" 2>/dev/null)
-            status=$(echo "$result" | python3 -c "import json,sys; print(json.load(sys.stdin).get('status',''))" 2>/dev/null)
-            if [ "$status" != "ok" ]; then
-                echo "  FAIL: $vid taste_score=$new_score (after retry)"
-                errors=$((errors + 1))
-                # Stop on 20+ total errors
-                if [ "$errors" -ge 20 ]; then
-                    echo "  ABORTING: 20+ errors"
-                    break
-                fi
-                continue
-            fi
-        fi
-
-        # Write taste_reasons (pass via stdin to avoid quote/encoding issues)
-        reasons_enc=$(echo "$reasons" | python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.stdin.read().strip()))")
-        curl -sL --max-time 15 "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=taste_reasons&value=${reasons_enc}" > /dev/null 2>&1
-
-        # Update category if reclassified
-        cur_cat=$(curl -sL "${APPS_SCRIPT_URL}?action=venue_detail&venue_id=${vid}" 2>/dev/null | python3 -c "import json,sys; print(json.load(sys.stdin).get('venue',{}).get('category',''))" 2>/dev/null)
-        if [ "$cur_cat" != "$new_cat" ] && [ -n "$new_cat" ]; then
-            curl -sL "${APPS_SCRIPT_URL}?action=update_venue&venue_id=${vid}&field=category&value=${new_cat}" > /dev/null 2>&1
-        fi
-
-        count=$((count + 1))
-        # Progress every 100
-        if [ $((count % 100)) -eq 0 ]; then
-            echo "  ... $count / $total updated"
-        fi
-    done < /tmp/rescore_updates.tsv
-    echo ""
-    echo "=== RESCORE COMPLETE ==="
-    echo "Updated: $((count - errors)) / $total"
-    [ "$errors" -gt 0 ] && echo "Errors: $errors"
-fi

@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # ============================================================
 # Gig Outreach — Frontend Template Smoke Tests
-# Extracts template JS from index.html, runs all checks
-# inside Node.js to avoid shell quoting issues with
-# apostrophes and special characters in template text.
+# Extracts the template JS from index.html and checks EVERY template
+# variant for every category inside Node (no sampling, no randomness:
+# Math.random is seeded, and each body/pitch variant is forced in turn),
+# so a failure is real and repeatable.
 # ============================================================
 set -euo pipefail
 
@@ -11,202 +12,166 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 INDEX="$PROJECT_DIR/index.html"
 
-GREEN='\033[0;32m'
-RED='\033[0;31m'
 CYAN='\033[0;36m'
 NC='\033[0m'
 
 echo -e "${CYAN}=== TEMPLATE SMOKE TESTS ===${NC}"
 echo ""
+command -v node >/dev/null 2>&1 || { echo "ERROR: node is not installed"; exit 1; }
 
-# Step 1: Extract template JS from index.html into a temp file
-TMPJS=$(mktemp /tmp/tpl_test_XXXXXX.js)
-trap "rm -f $TMPJS" EXIT
+node - "$INDEX" <<'JS'
+const fs = require('fs');
+const vm = require('vm');
 
-python3 -c "
-import re, sys
+const html = fs.readFileSync(process.argv[2], 'utf8');
+const m = html.match(/\/\/ === TEMPLATES ===([\s\S]+?)\/\/ === CONSTANTS ===/);
+if (!m) { console.error('ERROR: Could not extract template JS'); process.exit(1); }
 
-with open('$INDEX', 'r') as f:
-    html = f.read()
+// Seeded PRNG so the few remaining random choices (artist order, greeting) repeat exactly.
+let seed = 12345;
+const ctx = { console, __rand: () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; } };
+vm.createContext(ctx);
+vm.runInContext('Math.random = __rand;\n' + m[1] +
+  '\n;this.__t = { TEMPLATES, tplFor, generateEmail, generateIG, generateFB, getEnhancedTemplate,' +
+  ' EMAIL_BODIES, IG_BODIES, FB_BODIES, IG_FOLLOWUP, YOUTUBE_LINK, CONTACT_LINE };', ctx);
+const T = ctx.__t;
 
-match = re.search(r'// === TEMPLATES ===(.+?)// === CONSTANTS ===', html, re.DOTALL)
-if not match:
-    print('ERROR: Could not extract template JS', file=sys.stderr)
-    sys.exit(1)
-
-js = match.group(1)
-
-out = '// Extracted template code for testing\n'
-out += js
-out += r'''
-
-// === TEST HARNESS (all checks run inside Node) ===
-const categories = Object.keys(TEMPLATES);
-const testVenue = 'SPECIFIC_VENUE_NAME_12345';
-const testContact = 'John TestPerson';
-
-let pass = 0;
-let fail = 0;
+let pass = 0, fail = 0;
 const errors = [];
-
 function check(name, ok) {
-    if (ok) {
-        console.log('  \x1b[32mPASS\x1b[0m ' + name);
-        pass++;
-    } else {
-        console.log('  \x1b[31mFAIL\x1b[0m ' + name);
-        fail++;
-        errors.push(name);
-    }
+  if (ok) { pass++; return; }
+  console.log('  \x1b[31mFAIL\x1b[0m ' + name);
+  fail++;
+  errors.push(name);
+}
+function section(title, before) {
+  console.log('\x1b[36m--- ' + title + ' ---\x1b[0m  (' + (pass + fail - before) + ' checks)');
+}
+function count(hay, needle) { return hay.split(needle).length - 1; }
+
+// Force one variant: every pick() over this array now returns `item`.
+function only(arr, item, fn) {
+  const saved = arr.slice();
+  arr.length = 0; arr.push(item);
+  try { return fn(); } finally { arr.length = 0; saved.forEach(x => arr.push(x)); }
 }
 
-// --- Email Templates: no venue name leak, uses category label ---
-console.log('\x1b[36m--- Email Templates ---\x1b[0m');
+const VENUE = 'SPECIFIC_VENUE_NAME_12345';
+const CONTACT = 'John TestPerson';
+const PHONE = '410-794-6204';
+const categories = Object.keys(T.TEMPLATES);
+
+// --- Email: every body variant x every pitch, every category ---
+let before = pass + fail;
 for (const cat of categories) {
-    // Generate 5 times to cover random variants
-    let anyLeak = false;
-    let anyLabel = false;
-    for (let i = 0; i < 5; i++) {
-        const body = generateEmail(testVenue, testContact, cat);
-        if (body.includes('SPECIFIC_VENUE_NAME_12345')) anyLeak = true;
-        if (body.toLowerCase().includes('your ')) anyLabel = true;
+  if (cat === 'agent') continue;              // separate generator, checked below
+  const t = T.tplFor(cat);
+  const pitches = t.pitch.length ? t.pitch.slice() : [null];
+  T.EMAIL_BODIES.forEach((bodyFn, bi) => {
+    for (const pitch of pitches) {
+      const body = only(T.EMAIL_BODIES, bodyFn, () =>
+        pitch === null ? T.generateEmail(VENUE, CONTACT, cat) : only(t.pitch, pitch, () => T.generateEmail(VENUE, CONTACT, cat)));
+      const tag = `email/${cat}/body${bi}` + (pitch ? '/pitch' : '');
+      check(tag + ': no venue name leak', !body.includes(VENUE));
+      // generic reference: "your <label>", or the category's own pitch when it has no label
+      const generic = body.toLowerCase().includes('your ') || (t.nolabel && pitch && body.includes(pitch));
+      check(tag + ': refers to the venue generically', generic);
+      check(tag + ': YouTube link', body.includes(T.YOUTUBE_LINK));
+      check(tag + ': phone number', body.includes(PHONE));
+      check(tag + ': signed exactly once', count(body, 'Alexander Barnett') === 1);
+      check(tag + ': international venues', body.includes('Copacabana') || body.includes('Cadogan'));
+      check(tag + ': local venues', body.includes('Perry Cabin') || body.includes('Chez Francois'));
+      const first = body.split('\n')[0];
+      check(tag + ': greeting is generic or uses the first name', ['Hi!', 'Hey!'].includes(first) || first.includes('John'));
     }
-    check('email/' + cat + ': no venue name leak', !anyLeak);
-    check('email/' + cat + ': uses generic category label', anyLabel);
+  });
 }
+section('Email templates (every variant)', before);
 
-// --- IG Templates ---
-console.log('\n\x1b[36m--- IG Templates ---\x1b[0m');
+// --- Agent email (own generator): seeded, 20 draws ---
+before = pass + fail;
+for (let i = 0; i < 20; i++) {
+  const body = T.generateEmail(VENUE, CONTACT, 'agent');
+  check('email/agent#' + i + ': no venue name leak', !body.includes(VENUE));
+  check('email/agent#' + i + ': YouTube link + phone', body.includes(T.YOUTUBE_LINK) && body.includes(PHONE));
+  check('email/agent#' + i + ': signed exactly once', count(body, 'Alexander Barnett') === 1);
+}
+section('Agent email', before);
+
+// --- IG / FB first messages: every body variant, every category ---
+before = pass + fail;
 for (const cat of categories) {
-    let anyLeak = false;
-    for (let i = 0; i < 5; i++) {
-        const body = generateIG(testVenue, testContact, cat);
-        if (body.includes('SPECIFIC_VENUE_NAME_12345')) anyLeak = true;
-    }
-    check('ig/' + cat + ': no venue name leak', !anyLeak);
+  const t = T.tplFor(cat);
+  const pitches = t.pitch.length ? t.pitch.slice() : [null];
+  for (const [kind, bodies, gen] of [['ig', T.IG_BODIES, T.generateIG], ['fb', T.FB_BODIES, T.generateFB]]) {
+    bodies.forEach((bodyFn, bi) => {
+      for (const pitch of pitches) {
+        const body = only(bodies, bodyFn, () =>
+          pitch === null ? gen(VENUE, CONTACT, cat) : only(t.pitch, pitch, () => gen(VENUE, CONTACT, cat)));
+        const tag = `${kind}/${cat}/body${bi}` + (pitch ? '/pitch' : '');
+        check(tag + ': no venue name leak', !body.includes(VENUE));
+        // bug 9351920: "Alexander Barnett" appeared twice in IG/FB messages
+        check(tag + ': signed exactly once', count(body, 'Alexander Barnett') === 1);
+        if (kind === 'fb') {
+          // Facebook flags accounts that send links in a first message to strangers
+          check(tag + ': no links', !/https?:|youtube\.com|www\./i.test(body));
+        }
+      }
+    });
+  }
 }
+section('IG / FB templates (every variant)', before);
 
-// --- FB Templates ---
-console.log('\n\x1b[36m--- FB Templates ---\x1b[0m');
-for (const cat of categories) {
-    let anyLeak = false;
-    for (let i = 0; i < 5; i++) {
-        const body = generateFB(testVenue, testContact, cat);
-        if (body.includes('SPECIFIC_VENUE_NAME_12345')) anyLeak = true;
-    }
-    check('fb/' + cat + ': no venue name leak', !anyLeak);
-}
+// --- IG follow-up carries the playlist link (the first IG message doesn't) ---
+before = pass + fail;
+check('IG follow-up has the YouTube link', T.IG_FOLLOWUP.includes(T.YOUTUBE_LINK));
+check('IG follow-up has the contact line', T.IG_FOLLOWUP.includes(T.CONTACT_LINE));
+section('IG follow-up', before);
 
-// --- Enhanced Template Structure ---
-console.log('\n\x1b[36m--- Enhanced Template Structure ---\x1b[0m');
-const eEmail = getEnhancedTemplate('email', testVenue, testContact, 'winery');
-check('enhanced email has subject', eEmail.subject && eEmail.subject.length > 0);
-check('enhanced email has body', eEmail.body && eEmail.body.length > 0);
-
-const eIG = getEnhancedTemplate('ig', testVenue, testContact, 'restaurant');
+// --- Enhanced template structure ---
+before = pass + fail;
+const eEmail = T.getEnhancedTemplate('email', VENUE, CONTACT, 'winery');
+check('enhanced email has subject', !!(eEmail.subject && eEmail.subject.length > 0));
+check('enhanced email has body', !!(eEmail.body && eEmail.body.length > 0));
+const eIG = T.getEnhancedTemplate('ig', VENUE, CONTACT, 'restaurant');
 check('enhanced IG has empty subject (correct)', eIG.subject === '');
-check('enhanced IG has body', eIG.body && eIG.body.length > 0);
-
-const eFB = getEnhancedTemplate('fb', testVenue, testContact, 'hotel');
+check('enhanced IG has body', !!(eIG.body && eIG.body.length > 0));
+const eFB = T.getEnhancedTemplate('fb', VENUE, CONTACT, 'hotel');
 check('enhanced FB has empty subject (correct)', eFB.subject === '');
-check('enhanced FB has body', eFB.body && eFB.body.length > 0);
-
-// --- Greeting Safety ---
-// Bug: d05814d — greetings were using venue names
-console.log('\n\x1b[36m--- Greeting Safety ---\x1b[0m');
-for (let i = 0; i < 10; i++) {
-    const body = generateEmail(testVenue, testContact, 'winery');
-    const firstLine = body.split('\n')[0];
-    const ok = firstLine.includes('John') || firstLine.includes('Hi!') || firstLine.includes('Hey!');
-    if (!ok) {
-        check('email greeting uses first name or generic', false);
-        break;
-    }
-    if (i === 9) check('email greeting uses first name or generic', true);
-}
-
-// Venue-sounding names should be filtered
-const skipResult = generateEmail('Test Winery', 'Le Bistro', 'winery');
-const skipLine = skipResult.split('\n')[0];
-const usedBadName = skipLine.includes('Le') && skipLine.includes('Bistro');
-check('venue-sounding contact names filtered from greeting', !usedBadName);
-
-// Short names filtered
-const shortResult = generateEmail('Test Winery', 'Al', 'winery');
-const shortLine = shortResult.split('\n')[0];
-const usedShort = shortLine.includes('Al!') || shortLine.includes('Al,');
-check('short contact names (<3 chars) use generic greeting', !usedShort);
-
-// --- Email Content Requirements ---
-console.log('\n\x1b[36m--- Email Content Requirements ---\x1b[0m');
-// Check across multiple generations
-let hasYoutube = false, hasContact = false, hasSignoff = false;
-let hasIntl = false, hasLocal = false;
-for (let i = 0; i < 5; i++) {
-    const body = generateEmail('Test Winery', 'John Doe', 'winery');
-    if (body.toLowerCase().includes('youtube.com')) hasYoutube = true;
-    if (body.includes('410-794-6204')) hasContact = true;
-    if (body.includes('Alexander Barnett')) hasSignoff = true;
-    if (body.includes('Copacabana') || body.includes('Cadogan')) hasIntl = true;
-    if (body.includes('Perry Cabin') || body.includes('Chez Francois')) hasLocal = true;
-}
-check('email contains YouTube link', hasYoutube);
-check('email contains phone number', hasContact);
-check('email contains signoff name', hasSignoff);
-check('email contains international venues', hasIntl);
-check('email contains local venues', hasLocal);
-
-// --- FB No-Link Rule ---
-console.log('\n\x1b[36m--- FB No-Link Rule ---\x1b[0m');
-let fbHasLink = false;
-for (let i = 0; i < 10; i++) {
-    const body = generateFB('Test', 'John', 'winery');
-    if (body.toLowerCase().includes('youtube.com') || body.toLowerCase().includes('http')) {
-        fbHasLink = true;
-        break;
-    }
-}
-check('FB first message has no links', !fbHasLink);
-
-// --- IG has YouTube link (should have it) ---
-let igHasLink = false;
-for (let i = 0; i < 5; i++) {
-    const body = generateIG('Test', 'John', 'winery');
-    // IG may or may not have link depending on variant
-}
-
-// --- All categories have labels ---
-console.log('\n\x1b[36m--- Category Coverage ---\x1b[0m');
+check('enhanced FB has body', !!(eFB.body && eFB.body.length > 0));
 for (const cat of categories) {
-    const t = TEMPLATES[cat];
-    check(cat + ' has label', t.label && t.label.length > 0);
-    check(cat + ' has subjects', t.subject && t.subject.length > 0);
+  for (const subj of T.TEMPLATES[cat].subject) {
+    const s = only(T.TEMPLATES[cat].subject, subj, () => T.getEnhancedTemplate('email', "Joe's $1 Bar", CONTACT, cat).subject);
+    check(`subject/${cat}: {venue} filled and "$" kept literally`, !s.includes('{venue}') && (!subj.includes('{venue}') || s.includes("Joe's $1 Bar")));
+  }
 }
+section('Enhanced template structure + subjects', before);
 
-// === RESULTS ===
+// --- Greeting safety (bug d05814d: greeting used the venue name) ---
+before = pass + fail;
+const skipLine = T.generateEmail('Test Winery', 'Le Bistro', 'winery').split('\n')[0];
+check('venue-sounding contact names filtered from greeting', !(skipLine.includes('Le') && skipLine.includes('Bistro')));
+const shortLine = T.generateEmail('Test Winery', 'Al', 'winery').split('\n')[0];
+check('short contact names (<3 chars) use generic greeting', !(shortLine.includes('Al!') || shortLine.includes('Al,')));
+section('Greeting safety', before);
+
+// --- Every category has a label and subjects ---
+before = pass + fail;
+for (const cat of categories) {
+  const t = T.TEMPLATES[cat];
+  check(cat + ' has label', !!(t.label && t.label.length > 0));
+  check(cat + ' has subjects', !!(t.subject && t.subject.length > 0));
+}
+section('Category coverage', before);
+
 console.log('\n\x1b[36m========================================\x1b[0m');
-const total = pass + fail;
-console.log('  Total: ' + total + '  \x1b[32mPass: ' + pass + '\x1b[0m  \x1b[31mFail: ' + fail + '\x1b[0m');
+console.log('  Total: ' + (pass + fail) + '  \x1b[32mPass: ' + pass + '\x1b[0m  \x1b[31mFail: ' + fail + '\x1b[0m');
 console.log('\x1b[36m========================================\x1b[0m');
-
-if (errors.length > 0) {
-    console.log('\n\x1b[31mFailed tests:\x1b[0m');
-    for (const e of errors) console.log('  - ' + e);
+if (errors.length) {
+  console.log('\n\x1b[31mFailed tests:\x1b[0m');
+  for (const e of errors) console.log('  - ' + e);
+  console.log('\n\x1b[31m' + fail + ' TEMPLATE TEST(S) FAILED\x1b[0m');
+  process.exit(1);
 }
-
-console.log('');
-if (fail === 0) {
-    console.log('\x1b[32mALL TEMPLATE TESTS PASSED\x1b[0m');
-    process.exit(0);
-} else {
-    console.log('\x1b[31m' + fail + ' TEMPLATE TEST(S) FAILED\x1b[0m');
-    process.exit(1);
-}
-'''
-
-with open('$TMPJS', 'w') as f:
-    f.write(out)
-"
-
-# Step 2: Run all checks inside Node
-node "$TMPJS"
+console.log('\n\x1b[32mALL TEMPLATE TESTS PASSED\x1b[0m');
+JS

@@ -561,9 +561,21 @@ body {
 .status-pill.in_progress { background: #2a2a00; color: var(--gold); }
 .status-pill.contacted { background: #002a2a; color: var(--green); }
 .status-pill.resurfaced { background: #2a1a00; color: #e8944c; }
+.status-pill.dismissed { background: #222; color: #777; }
 .recontact-badge {
     font-size: 0.55rem; color: #e8944c; font-style: italic;
     margin-left: 0.3rem;
+}
+.verify-badge {
+    font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 0.1rem 0.35rem; border-radius: 4px;
+    background: #333; color: #bbb; flex-shrink: 0; white-space: nowrap;
+}
+.verify-badge.warn { background: rgba(240,160,48,0.18); color: var(--gold); }
+.verify-badge.bad { background: rgba(239,83,80,0.18); color: var(--red); }
+.api-status {
+    font-size: 0.7rem; color: var(--red); padding: 0.4rem 0.6rem; margin-bottom: 0.5rem;
+    border: 1px solid rgba(239,83,80,0.4); border-radius: 8px; background: rgba(239,83,80,0.08);
 }
 
 /* === TOAST === */
@@ -1117,7 +1129,7 @@ body {
         <!-- WEEKLY GOALS -->
         <div class="weekly-goals" id="weeklyGoals" style="display:none"></div>
 
-        <!-- LINKEDIN RETRY REMINDER (shows in April+) -->
+        <!-- LINKEDIN RETRY REMINDER (venues with linkedin_pending) -->
         <div id="linkedinReminder" style="display:none;background:#2d1f3d;border:1px solid #9b59b6;border-radius:10px;padding:0.8rem 1rem;margin:0.5rem 0;cursor:pointer" onclick="alert('Run this in terminal:\\n\\n./pipeline.sh --linkedin-retry\\n\\nThis will re-run LinkedIn on all venues that were skipped.')">
             <div style="font-size:0.85rem;color:#d4a5ff;font-weight:600">LinkedIn Quota Reset</div>
             <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.2rem"><span id="linkedinPendingCount">0</span> venues need LinkedIn scraping — tap for instructions</div>
@@ -1131,6 +1143,7 @@ body {
                 <span class="section-title">Browse Venues</span>
                 <span id="syncStatus" style="margin-left:auto;font-size:0.7rem;color:var(--text-dim)">Loading venues…</span>
             </div>
+            <div id="apiStatus" class="api-status" style="display:none"></div>
             <div id="stateGrid"></div>
         </div>
 
@@ -1180,15 +1193,6 @@ body {
         <span class="view-title" id="detailTitleText"></span>
     </div>
     <div class="view-inner" id="detailBody"></div>
-</div>
-
-<!-- ============ VIEW: COMPOSE ============ -->
-<div class="view" id="viewCompose">
-    <div class="view-header">
-        <button class="view-back" onclick="goBack()">&larr;</button>
-        <span class="view-title" id="composeTitleText">Compose</span>
-    </div>
-    <div class="view-inner" id="composeBody"></div>
 </div>
 
 <!-- ============ VIEW: PAST GIGS ============ -->
@@ -1266,10 +1270,13 @@ let _gateReady = Promise.resolve();
 let navStack = ['viewHome'];
 // Track locally-confirmed sent contacts so a loadDashboard overwrite
 // doesn't erase marks made during an in-flight refresh.
-const _localSentContacts = new Set(); // keys: "contactId|venueId"
+const _localSentContacts = new Map(); // "contactId|venueId" -> 'true' | 'skipped'
 const _localSentIG = new Set(); // venue IDs with IG marked sent
 const _localSentFB = new Set(); // venue IDs with FB marked sent
 const _localSentForm = new Set(); // venue IDs with contact form marked sent
+const _localSkippedIG = new Set(); // skips too: the old backend only reports them as "sent"
+const _localSkippedFB = new Set();
+const _localSkippedForm = new Set();
 let currentState = '';
 let currentCategory = '';
 
@@ -1280,18 +1287,51 @@ function lsJSON(key, fallback) {
 }
 
 // === TITLE WORD FILTER (skip + star) ===
-function getSkipWords() { return lsJSON('outreach_skip_words', []); }
+const SKIP_WORDS_KEY = 'outreach_skip_words';
+const SKIP_WORDS_BASE_KEY = 'outreach_skip_words_base'; // cloud list as of the last successful sync
+// Too common to filter on: one tap would hide most decision-maker titles.
+const FILTER_STOPWORDS = new Set(['of', 'the', 'and', 'for', 'to', 'at', 'in', 'on', 'an', 'or', 'de', 'la', 'le', 'du', 'del', 'with', 'by', '&']);
+function getSkipWords() { const w = lsJSON(SKIP_WORDS_KEY, []); return Array.isArray(w) ? w : []; }
 function saveSkipWords(words) {
-    localStorage.setItem('outreach_skip_words', JSON.stringify(words));
-    // Sync to sheet so pipeline.sh can read them
-    if (BASE_URL) fireGet(buildUrl({ action: 'save_skip_words', words: JSON.stringify(words) }));
+    writeJSON(SKIP_WORDS_KEY, words);
+    // pipeline.sh reads the cloud list before Apollo enrichment, so sync it (pull-merge-push)
+    syncSkipWords();
 }
-function getStarWords() { return lsJSON('outreach_star_words', []); }
-function saveStarWords(words) { localStorage.setItem('outreach_star_words', JSON.stringify(words)); }
+let _skipSyncBusy = false, _skipSyncAgain = false;
+function syncSkipWords() {
+    if (!BASE_URL) return;
+    if (_skipSyncBusy) { _skipSyncAgain = true; return; }
+    _skipSyncBusy = true;
+    const finish = () => { _skipSyncBusy = false; if (_skipSyncAgain) { _skipSyncAgain = false; syncSkipWords(); } };
+    jsonpFetch(buildUrl({ action: 'get_skip_words' }), function(err, json) {
+      try {
+        // No push without a successful pull: a failed pull must never overwrite the cloud list
+        if (err || !json || json.status !== 'ok' || !Array.isArray(json.words)) { finish(); return; }
+        const toMap = arr => { const m = {}; (arr || []).forEach(w => { if (typeof w === 'string' && w) m[w] = 1; }); return m; };
+        const local = getSkipWords();
+        const cloud = json.words.filter(w => typeof w === 'string' && w);
+        const merged = merge3(toMap(local), toMap(cloud), toMap(lsJSON(SKIP_WORDS_BASE_KEY, [])));
+        const ordered = local.filter(w => merged[w]).concat(cloud.filter(w => merged[w] && !local.includes(w)));
+        writeJSON(SKIP_WORDS_KEY, ordered);
+        if (mapsEqual(merged, toMap(cloud))) { writeJSON(SKIP_WORDS_BASE_KEY, cloud); finish(); return; }
+        fireGet(buildUrl({ action: 'save_skip_words', words: JSON.stringify(ordered) }), function(res) {
+            if (res.status === 'ok') writeJSON(SKIP_WORDS_BASE_KEY, ordered);
+            finish();
+        });
+      } catch (e) { console.error('Skip words sync error:', e); finish(); }
+    });
+}
+function getStarWords() { const w = lsJSON('outreach_star_words', []); return Array.isArray(w) ? w : []; }
+function saveStarWords(words) { writeJSON('outreach_star_words', words); }
 
+function filterWordOk(word) {
+    if (!word) return false;
+    if (word.length < 2 || FILTER_STOPWORDS.has(word)) { showToast('"' + word + '" is too common to filter on'); return false; }
+    return true;
+}
 function addSkipWord(word) {
-    word = word.toLowerCase().trim();
-    if (!word || word.length < 2) return;
+    word = String(word || '').toLowerCase().trim();
+    if (!filterWordOk(word)) { closeWordPopup(); return; }
     // Remove from stars if it was there
     saveStarWords(getStarWords().filter(w => w !== word));
     const words = getSkipWords();
@@ -1305,10 +1345,11 @@ function removeSkipWord(word) {
     showToast('Removed "' + word + '"');
 }
 function addStarWord(word) {
-    word = word.toLowerCase().trim();
-    if (!word || word.length < 2) return;
-    // Remove from skips if it was there
-    saveSkipWords(getSkipWords().filter(w => w !== word));
+    word = String(word || '').toLowerCase().trim();
+    if (!filterWordOk(word)) { closeWordPopup(); return; }
+    // Remove from skips if it was there (only then does the cloud list change)
+    const skips = getSkipWords();
+    if (skips.includes(word)) saveSkipWords(skips.filter(w => w !== word));
     const words = getStarWords();
     if (!words.includes(word)) { words.push(word); saveStarWords(words); }
     closeWordPopup();
@@ -1320,16 +1361,21 @@ function removeStarWord(word) {
     showToast('Unstarred "' + word + '"');
 }
 const SKIP_TITLES = ['chief business officer', 'rotating chef'];
+// Whole-word match, so skipping "art" no longer hides "Managing Partner"
+function titleHasWord(lowerTitle, word) {
+    const w = String(word).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp('(^|[^a-z0-9])' + w + '($|[^a-z0-9])').test(lowerTitle);
+}
 function shouldSkipContact(title) {
     if (!title) return false;
     const lower = title.toLowerCase();
     if (SKIP_TITLES.some(t => lower.includes(t))) return true;
-    return getSkipWords().some(w => lower.includes(w));
+    return getSkipWords().some(w => titleHasWord(lower, w));
 }
 function isStarredContact(title) {
     if (!title) return false;
     const lower = title.toLowerCase();
-    return getStarWords().some(w => lower.includes(w));
+    return getStarWords().some(w => titleHasWord(lower, w));
 }
 
 // Word popup — tap a word, choose ⭐ or ✕
@@ -1339,7 +1385,7 @@ function showWordPopup(word, el) {
     const popup = document.createElement('div');
     popup.className = 'word-popup';
     popup.id = 'wordPopup';
-    popup.innerHTML = `<button class="wp-star" onclick="addStarWord('${esc(word)}')">⭐</button><button class="wp-skip" onclick="addSkipWord('${esc(word)}')">✕</button>`;
+    popup.innerHTML = `<button class="wp-star" onclick="addStarWord(${jsArg(word)})">⭐</button><button class="wp-skip" onclick="addSkipWord(${jsArg(word)})">✕</button>`;
     document.body.appendChild(popup);
     // Position above the word
     popup.style.left = Math.min(rect.left, window.innerWidth - 100) + 'px';
@@ -1363,7 +1409,7 @@ function renderTitleWords(name, title) {
         const parts = title.split(/[\s,]+/).filter(w => w.length > 1);
         html += parts.map(w => {
             const isStarred = stars.includes(w.toLowerCase());
-            return `<span class="title-word${isStarred ? ' starred' : ''}" onclick="event.stopPropagation();showWordPopup('${esc(w.toLowerCase())}',this)">${esc(w)}</span>`;
+            return `<span class="title-word${isStarred ? ' starred' : ''}" onclick="event.stopPropagation();showWordPopup(${jsArg(w.toLowerCase())},this)">${esc(w)}</span>`;
         }).join(' ');
     }
     return html;
@@ -1464,8 +1510,28 @@ const TEMPLATES = {
     mall: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) for Holiday Events at your Mall!", "Classical Guitarist (Latin, Classical & Modern Arrangements) for Holiday Events at your Mall!", "Live guitar for holiday events at {venue}"], label: "Mall",
         pitch: [], setting: "for shoppers" },
     agent: { subject: ["Classical Guitarist Available for Bookings — Latin, Classical & Modern Pop", "Live Classical Guitar — Looking to Connect with {venue}", "Classical Guitarist for Your Events Roster"], label: "Agency",
-        pitch: ["weddings, galas, corporate events, private parties, and venue entertainment"], setting: "at your clients' events", isAgent: true }
+        pitch: ["weddings, galas, corporate events, private parties, and venue entertainment"], setting: "at your clients' events", isAgent: true },
+    brewery: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Brewery!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Brewery!"], label: "Brewery",
+        pitch: [], setting: "over a pint" },
+    distillery: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Distillery!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Distillery!"], label: "Distillery",
+        pitch: [], setting: "in your tasting room" },
+    bar: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Bar!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Bar!"], label: "Bar",
+        pitch: [], setting: "for your guests" },
+    tea_room: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Tea Room!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Tea Room!"], label: "Tea Room",
+        pitch: [], setting: "over afternoon tea" },
+    library: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Library!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Library!", "Classical guitar for events at {venue}"], label: "Library",
+        pitch: [], setting: "for your patrons" },
+    synagogue: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Synagogue!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Synagogue!", "Classical guitar for events at {venue}"], label: "Synagogue",
+        pitch: [], setting: "for your community" },
+    event_space: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Event Space!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Event Space!", "Classical guitar for events at {venue}"], label: "Event Space",
+        pitch: [], setting: "at your events" },
+    music_venue: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Venue!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Venue!"], label: "Venue",
+        pitch: [], setting: "at your venue" },
+    // Neutral fallback for unknown/other categories — never call a venue a winery by default
+    other: { subject: ["Classical Guitarist (Spanish, Brazilian & Modern Pop Arrangements) to Perform at your Venue!", "Classical Guitarist (Latin, Classical & Modern Arrangements) to Perform at your Venue!"], label: "Venue",
+        pitch: [], setting: "at your venue" }
 };
+function tplFor(cat) { return TEMPLATES[cat] || TEMPLATES.other; }
 const YOUTUBE_LINK = 'https://www.youtube.com/playlist?list=PLLzvJg19fOZ-MQ9HMUHnZ6UyPwsfQStPH';
 const CONTACT_LINE = 'alexbarnettclassical@gmail.com | 410-794-6204';
 
@@ -1497,7 +1563,7 @@ const VENUES_LOCAL = "- L'Auberge Chez Francois\n- The Inn at Perry Cabin\n- The
 const EMAIL_BODIES = [
     // A: Standard — full list, pitch in intro
     function(v, interest, interest2, pitch, cat) {
-        const t = TEMPLATES[cat] || TEMPLATES.winery;
+        const t = tplFor(cat);
         const suffix = (t.nolabel && pitch) ? '!' : ` at your ${t.label.toLowerCase()}!`;
         return [
             `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''}${suffix}`,
@@ -1511,7 +1577,7 @@ const EMAIL_BODIES = [
     },
     // B: Atmosphere — full list, atmosphere framing
     function(v, interest, interest2, pitch, cat) {
-        const t = TEMPLATES[cat] || TEMPLATES.winery;
+        const t = tplFor(cat);
         const suffix = (t.nolabel && pitch) ? '!' : ` at your ${t.label.toLowerCase()}!`;
         return [
             `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${pick(INTEREST)} come play${pitch ? ' for ' + pitch : ''}${suffix}`,
@@ -1526,7 +1592,7 @@ const EMAIL_BODIES = [
     // C: Short — full list, "came across" after intro
     function(v, interest, interest2, pitch, cat) {
         return [
-            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. I came across your ${(TEMPLATES[cat] || TEMPLATES.winery).label.toLowerCase()} and ${pick(INTEREST)} come play there${pitch ? ' for ' + pitch : ''}!`,
+            `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. I came across your ${tplFor(cat).label.toLowerCase()} and ${pick(INTEREST)} come play there${pitch ? ' for ' + pitch : ''}!`,
             '',
             "I've performed at venues around the world like:",
             VENUES_INTL,
@@ -1537,7 +1603,7 @@ const EMAIL_BODIES = [
     },
     // D: Event-focused — full list, specialize framing
     function(v, interest, interest2, pitch, cat) {
-        const t = TEMPLATES[cat] || TEMPLATES.winery;
+        const t = tplFor(cat);
         const suffix = (t.nolabel && pitch) ? '!' : ` at your ${t.label.toLowerCase()}!`;
         return [
             `I'm a classical guitarist based near Annapolis and I play Latin styles like Brazilian and Spanish music, classical repertoire, along with modern pop arrangements like ${pickArtists()}. ${interest} come play${pitch ? ' for ' + pitch : ''}${suffix}`,
@@ -1580,7 +1646,7 @@ function generateEmail(venueName, contactName, category) {
     const useName = firstName.length >= 3 && firstName.length <= 15
         && /^[a-z]+$/i.test(firstName) && !skipWords.test(firstName)
         && !skipPhrases.test(fullName);
-    const t = TEMPLATES[category] || TEMPLATES.winery;
+    const t = tplFor(category);
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const interest = pick(INTEREST);
     const interest2 = pick(INTEREST2);
@@ -1619,7 +1685,7 @@ const IG_FOLLOWUP = `Thanks so much for getting back to me! Here's a playlist of
 
 function generateIG(venueName, contactName, category) {
     if (category === 'agent') return pick(['Hi!', 'Hey!']) + `\n\nI'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements like ${pickArtists()}. I came across your agency and would love to connect about potential bookings.\n\nI perform regularly at places like L'Auberge Chez Francois, The Inn at Perry Cabin, and Army Navy Country Club.\n\nWould love to chat about being considered for your roster!\n\n— Alexander Barnett`;
-    const t = TEMPLATES[category] || TEMPLATES.winery;
+    const t = tplFor(category);
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const greeting = pick(['Hi!', 'Hey!']);
     const body = pick(IG_BODIES)(venueName, t.label, pitch);
@@ -1628,7 +1694,7 @@ function generateIG(venueName, contactName, category) {
 
 function generateFB(venueName, contactName, category) {
     if (category === 'agent') return pick(['Hi!', 'Hey!']) + `\n\nI'm a classical guitarist based near Annapolis — I play Latin styles like Brazilian and Spanish music, classical repertoire, and modern pop arrangements like ${pickArtists()}. I came across your agency and would love to connect about potential bookings.\n\nI perform regularly at places like L'Auberge Chez Francois, The Inn at Perry Cabin, and Army Navy Country Club.\n\nWould love to chat about being considered for your roster!\n\n— Alexander Barnett`;
-    const t = TEMPLATES[category] || TEMPLATES.winery;
+    const t = tplFor(category);
     const pitch = t.pitch.length ? pick(t.pitch) : null;
     const greeting = pick(['Hi!', 'Hey!']);
     const body = pick(FB_BODIES)(venueName, t.label, pitch);
@@ -1639,22 +1705,29 @@ function getEnhancedTemplate(channel, venueName, contactName, category) {
     if (channel === 'ig') return { subject: '', body: generateIG(venueName, contactName, category) };
     if (channel === 'ig_followup') return { subject: '', body: IG_FOLLOWUP };
     if (channel === 'fb') return { subject: '', body: generateFB(venueName, contactName, category) };
-    const t = TEMPLATES[category] || TEMPLATES.winery;
+    const t = tplFor(category);
+    // Function replacement: a "$" in a venue name must not be read as a replace pattern
+    const name = String(venueName || '').trim() || 'your venue';
     return {
-        subject: pick(t.subject).replace('{venue}', venueName),
+        subject: pick(t.subject).replace(/\{venue\}/g, () => name),
         body: generateEmail(venueName, contactName, category)
     };
 }
 
-// Legacy compat
-function getTemplate(category) {
-    const t = TEMPLATES[category] || TEMPLATES.winery;
-    return { subject: pick(t.subject), body: generateEmail('your venue', '', category) };
-}
-
 // === CONSTANTS ===
 const STATE_NAMES = { MD: 'Maryland', VA: 'Virginia', DC: 'Washington DC', WV: 'West Virginia', PA: 'Pennsylvania', DE: 'Delaware' };
-const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', event_venue: 'Event Venues', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', farmers_market: 'Farmers Markets', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents', brewery: 'Breweries', distillery: 'Distilleries', library: 'Libraries', tea_room: 'Tea Rooms', synagogue: 'Synagogues', bar: 'Bars', event_space: 'Event Spaces', music_venue: 'Music Venues' };
+const STATE_ORDER = ['MD', 'VA', 'DC', 'WV', 'PA', 'DE'];
+const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels', country_club: 'Country Clubs', event: 'Events', event_venue: 'Event Venues', restaurant: 'Restaurants', wine_bar: 'Wine Bars', resort: 'Resorts', senior_living: 'Senior Living', event_planner: 'Event Planners', golf_club: 'Golf Clubs', yacht_club: 'Yacht Clubs', art_gallery: 'Art Galleries', luxury_apts: 'Luxury Apts', grocery_market: 'Grocery/Market', farmers_market: 'Farmers Markets', wedding_venue: 'Wedding Venues', corporate: 'Corporate/Office', spa: 'Spas', private_club: 'Private Clubs', church: 'Churches', luxury_retail: 'Luxury Retail', mall: 'Malls', agent: 'Booking Agents', brewery: 'Breweries', distillery: 'Distilleries', library: 'Libraries', tea_room: 'Tea Rooms', synagogue: 'Synagogues', bar: 'Bars', event_space: 'Event Spaces', music_venue: 'Music Venues', other: 'Other' };
+// Sheet category -> grouping key. Unknown/blank is "other" (never "restaurant").
+function catKey(c) {
+    const k = String(c || '').toLowerCase().trim().replace(/[\s\/]+/g, '_');
+    return (!k || k === 'unknown') ? 'other' : k;
+}
+function catLabel(c) {
+    return CATEGORY_LABELS[c] || String(c || 'other').replace(/_/g, ' ').replace(/\b\w/g, ch => ch.toUpperCase());
+}
+function stateKey(v) { return String((v && v.state) || '').trim().toUpperCase(); }
+function stateLabel(s) { return STATE_NAMES[s] || s || 'Unknown state'; }
 
 const STATE_IMAGES = {
     MD: 'https://images.unsplash.com/photo-1569761316261-9a8696fa2ca3?w=400&q=80',
@@ -1698,22 +1771,101 @@ function jsonpFetch(url, cb, timeoutMs) {
     var cbName = '_goCb_' + Date.now() + '_' + Math.random().toString(36).substr(2,5);
     var script = document.createElement('script');
     var done = false;
-    // A late response after a timeout calls a no-op instead of throwing
-    var fail = function(msg) { if(!done) { done=true; window[cbName] = function() { delete window[cbName]; }; script.remove(); cb(msg); } };
-    window[cbName] = function(resp) { if(done) return; done=true; delete window[cbName]; script.remove(); cb(null, resp); };
+    // cb runs exactly once: an error followed by the timeout used to call it twice
+    function finish(err, resp) {
+        if (done) return;
+        done = true;
+        // A late response after a timeout still calls this name; keep a no-op there
+        window[cbName] = function() { delete window[cbName]; };
+        script.remove();
+        cb(err, resp);
+    }
+    window[cbName] = function(resp) { finish(null, resp); delete window[cbName]; };
     script.src = url + (url.includes('?') ? '&' : '?') + 'callback=' + cbName;
-    script.onerror = function() { fail('Failed'); };
-    setTimeout(function() { fail('Timeout'); }, timeoutMs || 60000);
+    script.onerror = function() { finish('Failed'); };
+    setTimeout(function() { finish('Timeout'); }, timeoutMs || 60000);
     document.head.appendChild(script);
 }
 
+// cb always gets an object; check res.status === 'ok' before claiming success.
 function fireGet(url, cb) {
+    cb = cb || function() {};
     jsonpFetch(url, function(err, data) {
         if (err) { showToast('Network error'); cb({ status: 'error', message: err }); return; }
         if (data && data.status === 'error') showToast('Error: ' + data.message);
         cb(data || { status: 'error' });
     });
 }
+
+// === SYNC HELPERS (cloud-sync pattern: pull, merge, then push) ===
+function writeJSON(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); return true; }
+    catch (e) { console.error('[Email] localStorage write failed:', key, e); return false; }
+}
+function sameVal(a, b) { return a === b || JSON.stringify(a) === JSON.stringify(b); }
+function mapsEqual(a, b) {
+    const ka = Object.keys(a || {}), kb = Object.keys(b || {});
+    return ka.length === kb.length && ka.every(k => Object.prototype.hasOwnProperty.call(b, k) && sameVal(a[k], b[k]));
+}
+// 3-way merge of flat maps against the last synced cloud copy (base):
+// keys this device added/changed/removed since base win; everything else follows the cloud,
+// so another device's un-review/un-skip sticks instead of being resurrected by a union.
+function merge3(local, cloud, base) {
+    local = local || {}; cloud = cloud || {}; base = base || {};
+    const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+    const out = {};
+    const keys = new Set([...Object.keys(local), ...Object.keys(cloud), ...Object.keys(base)]);
+    for (const k of keys) {
+        const inL = has(local, k), inB = has(base, k);
+        const localChanged = inL !== inB || (inL && !sameVal(local[k], base[k]));
+        if (localChanged) { if (inL) out[k] = local[k]; }
+        else if (has(cloud, k)) out[k] = cloud[k];
+    }
+    return out;
+}
+
+// === ESCAPING + URL SAFETY ===
+// For string arguments inside inline on* handlers. esc() alone is not enough: the HTML
+// parser decodes &#39; back to ' before the JS runs, so "O'Brien" broke the handler.
+function jsArg(s) { return esc(JSON.stringify(s == null ? '' : String(s))); }
+// Only http(s) may reach href/window.open. Bare domains ("clarityvienna.com") get https://
+// instead of resolving relative to github.io; javascript:/data: and non-URLs give ''.
+function safeHttpUrl(u) {
+    u = String(u || '').split('|')[0].trim();
+    if (!u) return '';
+    if (u.startsWith('//')) u = 'https:' + u;
+    else if (!/^[a-z][a-z0-9+.-]*:/i.test(u)) {
+        if (!/^[^\s\/?#]+\.[a-z]{2,}([\/?#:]|$)/i.test(u)) return '';
+        u = 'https://' + u;
+    }
+    try {
+        const p = new URL(u);
+        return (p.protocol === 'http:' || p.protocol === 'https:') ? p.href : '';
+    } catch (e) { return ''; }
+}
+
+// === EMAIL HELPERS ===
+// Legacy rows carry "%20" prefixes / "mailto:"; strip them for display, links and dedupe.
+function cleanEmail(e) {
+    let s = String(e || '').trim();
+    s = s.replace(/^mailto:/i, '').replace(/^(%20)+/i, '').trim();
+    return s;
+}
+function emailKey(e) { return cleanEmail(e).toLowerCase(); }
+const JUNK_EMAIL_DOMAINS = /(^|\.)(example\.com|domain\.com|mysite\.com|sentry\.wixpress\.com|sentry-next\.wixpress\.com|sentry\.io)$/i;
+function isJunkEmail(e) {
+    const s = emailKey(e);
+    if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(s)) return true;
+    const dom = s.split('@')[1];
+    return JUNK_EMAIL_DOMAINS.test(dom) || /\.(png|jpe?g|gif|webp|svg)$/i.test(dom);
+}
+// Only ZeroBounce "valid" and named role mailboxes ("role") count as verified (no badge).
+function isVerifiedStatus(v) { return v === 'valid' || v === 'role'; }
+// Sendable/actionable: verified, plus "unverified" = saved while ZeroBounce couldn't check it
+// (out of credits). It keeps its badge so Alex can decide; reverify.sh settles it later.
+function isSendableStatus(v) { return isVerifiedStatus(v) || v === 'unverified'; }
+const HIDDEN_EMAIL_STATUSES = new Set(['invalid', 'do_not_mail', 'abuse', 'spamtrap']); // never shown
+function isSentFlag(x) { return x === true || x === 'true'; }
 
 function buildUrl(params) {
     if (!BASE_URL) return '';
@@ -1744,8 +1896,9 @@ function showToast(msg) {
 // === OPEN EXTERNAL APP (forces Android to leave PWA) ===
 const isAndroid = /Android/i.test(navigator.userAgent);
 function openExternal(url, forceChrome) {
-    if (url && !url.startsWith('http') && !url.startsWith('mailto:')) {
-        url = 'https://' + url;
+    if (!/^mailto:/i.test(url || '')) {
+        url = safeHttpUrl(url);
+        if (!url) { showToast('Invalid link'); return; }
     }
     // On Android, force Facebook URLs to open in Chrome (not FB app)
     if (isAndroid && forceChrome && url.startsWith('http')) {
@@ -1770,200 +1923,63 @@ function openExternal(url, forceChrome) {
 
 // === GMAIL LINK ===
 const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-function buildGmailLink(email, category) {
-    const t = getTemplate(category);
-    if (isMobile) {
-        return `mailto:${email}?subject=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
-    }
-    return `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(t.subject)}&body=${encodeURIComponent(t.body)}`;
+// authuser pins the compose window to this account; /u/2/ alone depended on browser sign-in order
+const GMAIL_ACCOUNT = 'alexbarnettclassical@gmail.com';
+function gmailComposeUrl(email, subject, body) {
+    return `https://mail.google.com/mail/u/2/?authuser=${encodeURIComponent(GMAIL_ACCOUNT)}&view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 // === SOCIAL URL NORMALIZER ===
 function normalizeIGUrl(url) {
     if (!url) return '';
-    url = url.split('|')[0];
-    if (url.startsWith('http')) return url;
+    url = url.split('|')[0].trim();
+    if (/^https?:/i.test(url)) return url;
     if (url.startsWith('//')) return 'https:' + url;
+    if (/^(www\.)?instagram\.com\//i.test(url)) return 'https://' + url;
     return 'https://www.instagram.com/' + url.replace(/^@/, '');
 }
 function normalizeFBUrl(url) {
     if (!url) return '';
-    url = url.split('|')[0];
-    if (url.startsWith('http')) return url;
+    url = url.split('|')[0].trim();
+    if (/^https?:/i.test(url)) return url;
     if (url.startsWith('//')) return 'https:' + url;
+    // Bare page handle ("LeCavalierDE") -> facebook page; anything domain-like is left alone
+    if (/^[A-Za-z0-9.\-_]+$/.test(url) && !/\.[a-z]{2,}$/i.test(url)) return 'https://www.facebook.com/' + url;
     return url;
 }
-
-// === SOCIAL ACTIONS ===
-function openIGWithTemplate(igUrl, category) {
-    copyText(getTemplate(category).body);
-    openExternal(normalizeIGUrl(igUrl));
-}
-
-function openFBWithTemplate(fbUrl, category) {
-    copyText(getTemplate(category).body);
-    openExternal(normalizeFBUrl(fbUrl), true);
-}
-
-// === COMPOSE VIEW ===
-let composeState = {
-    channel: 'email', venueName: '', venueId: '',
-    contactName: '', contactId: '', contactEmail: '',
-    category: '', igUrl: '', fbUrl: '',
-    currentBody: '', currentSubject: ''
-};
-
-function openCompose(opts) {
-    Object.assign(composeState, opts);
-    composeState.channel = opts.channel || 'email';
-    renderCompose();
-    navigateTo('viewCompose');
-}
-
-function renderCompose() {
-    const s = composeState;
-    const cat = s.category;
-    const label = (TEMPLATES[cat] || { label: 'Venue' }).label;
-    const tmpl = getEnhancedTemplate(s.channel, s.venueName, s.contactName, cat);
-    s.currentBody = tmpl.body;
-    s.currentSubject = tmpl.subject;
-    document.getElementById('composeTitleText').textContent = 'Compose';
-
-    let html = '';
-    html += `<div class="compose-venue">${esc(s.venueName)}</div>`;
-    html += `<div class="compose-contact">`;
-    html += `<span class="category-badge ${esc(cat)}">${esc(label).toUpperCase()}</span>`;
-    if (s.contactName) html += ` &mdash; ${esc(s.contactName)}`;
-    if (s.contactEmail && s.channel === 'email') html += ` <span style="color:var(--text-dim);font-size:0.7rem">(${esc(s.contactEmail)})</span>`;
-    html += `</div>`;
-
-    // Channel tabs
-    const channels = [];
-    if (s.contactEmail) channels.push({ id: 'email', label: 'Email' });
-    if (s.igUrl) channels.push({ id: 'ig', label: 'IG DM' });
-    if (s.fbUrl) channels.push({ id: 'fb', label: 'FB Msg' });
-    if (channels.length === 0) channels.push({
-        id: s.channel,
-        label: s.channel === 'ig' ? 'IG DM' : s.channel === 'fb' ? 'FB Msg' : 'Email'
-    });
-    if (channels.length > 1) {
-        html += `<div class="compose-tabs">`;
-        for (const ch of channels) {
-            html += `<button class="compose-tab${ch.id === s.channel ? ' active' : ''}" onclick="switchComposeChannel('${ch.id}')">${ch.label}</button>`;
+// Stable key for one social page, used to spot the same IG/FB account on several venue rows
+function socialKey(url) {
+    const u = safeHttpUrl(url);
+    if (!u) return '';
+    try {
+        const p = new URL(u);
+        const host = p.hostname.toLowerCase().replace(/^(www|m|web|mobile)\./, '');
+        const path = p.pathname.toLowerCase().replace(/\/+$/, '');
+        if (!path) return '';
+        if (/\.php$/.test(path)) {
+            const id = p.searchParams.get('id') || '';
+            return id ? host + path + '?id=' + id : '';
         }
-        html += `</div>`;
-    }
-
-    // Subject line (email only)
-    if (s.channel === 'email' && s.currentSubject) {
-        html += `<div class="compose-subject"><span>Subject: </span>${esc(s.currentSubject)}</div>`;
-    }
-
-    // Message body
-    html += `<textarea class="compose-body" id="composeText" readonly>${esc(s.currentBody)}</textarea>`;
-
-    // Action buttons
-    html += `<div class="compose-actions">`;
-    html += `<button class="compose-btn compose-btn-regen" onclick="regenerateCompose()" title="New variation">&#8635;</button>`;
-    html += `<button class="compose-btn compose-btn-copy" onclick="copyCompose()">Copy</button>`;
-    if (s.channel === 'email' && s.contactEmail) {
-        html += `<button class="compose-btn compose-btn-open" onclick="copyAndOpenGmail()">Copy & Gmail</button>`;
-    } else if (s.channel === 'ig' && s.igUrl) {
-        html += `<button class="compose-btn compose-btn-open" onclick="copyAndOpenIG()">Copy & Open IG</button>`;
-    } else if (s.channel === 'fb' && s.fbUrl) {
-        html += `<button class="compose-btn compose-btn-open" onclick="copyAndOpenFB()">Copy & Open FB</button>`;
-    }
-    html += `</div>`;
-
-    // Mark Sent
-    html += `<button class="compose-btn-sent" id="composeSentBtn" onclick="composeSent()">Mark Sent</button>`;
-
-    // IG follow-up (show only for IG channel)
-    if (s.channel === 'ig') {
-        html += `<div class="compose-followup">`;
-        html += `<button class="compose-followup-btn" onclick="showIGFollowup()">Send Follow-Up (with video link)</button>`;
-        html += `</div>`;
-    }
-
-    document.getElementById('composeBody').innerHTML = html;
+        return host + path;
+    } catch (e) { return ''; }
 }
-
-function switchComposeChannel(ch) {
-    composeState.channel = ch;
-    renderCompose();
-}
-
-function regenerateCompose() {
-    renderCompose();
-    showToast('New variation!');
-}
-
-function copyCompose() {
-    const text = document.getElementById('composeText').value;
-    copyText(text);
-}
-
-function copyAndOpenGmail() {
-    const s = composeState;
-    const body = document.getElementById('composeText').value;
-    navigator.clipboard.writeText(body).catch(() => {});
-    const url = `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(s.contactEmail)}&su=${encodeURIComponent(s.currentSubject)}&body=${encodeURIComponent(body)}`;
-    openExternal(url);
-    showToast('Copied & opening Gmail');
-}
-
-function copyAndOpenIG() {
-    const text = document.getElementById('composeText').value;
-    navigator.clipboard.writeText(text).then(
-        () => showToast('Copied! Opening IG...')
-    ).catch(() => showToast('Opening IG...'));
-    openExternal(composeState.igUrl);
-}
-
-function copyAndOpenFB() {
-    const text = document.getElementById('composeText').value;
-    navigator.clipboard.writeText(text).then(
-        () => showToast('Copied! Opening FB...')
-    ).catch(() => showToast('Opening FB...'));
-    openExternal(composeState.fbUrl, true);
-}
-
-function composeSent() {
-    const s = composeState;
-    const btn = document.getElementById('composeSentBtn');
-    if (s.channel === 'email') {
-        markEmailSent(s.contactId, s.venueId, s.category, btn);
-    } else if (s.channel === 'ig') {
-        markIGSent(s.venueId, btn);
-    } else if (s.channel === 'fb') {
-        markFBSent(s.venueId, btn);
-    }
-}
-
-function showIGFollowup() {
-    composeState.channel = 'ig_followup';
-    const tmpl = getEnhancedTemplate('ig_followup', composeState.venueName, composeState.contactName, composeState.category);
-    composeState.currentBody = tmpl.body;
-    const ta = document.getElementById('composeText');
-    ta.value = tmpl.body;
-    showToast('Follow-up template loaded (with link)');
-}
+function igKey(v) { return socialKey(normalizeIGUrl((v && v.instagram) || '')); }
+function fbKey(v) { return socialKey(normalizeFBUrl((v && v.facebook) || '')); }
 
 // === VENUE VOTE ===
-function voteVenue(venueId, vote, btn) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    // Toggle: if already this vote, clear it
-    const row = btn.parentElement;
-    const wasActive = btn.classList.contains('vote-active-up') || btn.classList.contains('vote-active-down');
-    const finalVote = wasActive ? '' : vote;
-    row.querySelectorAll('.vote-btn').forEach(b => { b.classList.remove('vote-active-up','vote-active-down'); });
-    if (finalVote) btn.classList.add(finalVote === 'up' ? 'vote-active-up' : 'vote-active-down');
-    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_vote', value: finalVote }), function() {
-        showToast(finalVote ? (finalVote === 'up' ? 'Thumbs up!' : 'Thumbs down') : 'Vote cleared');
+function renderVoteRow(row, vote) {
+    const oldStatus = row.querySelector('span');
+    if (oldStatus) oldStatus.remove();
+    row.querySelectorAll('.vote-btn').forEach(b => {
+        b.classList.remove('vote-active-up', 'vote-active-down');
+        b.style.borderColor = 'transparent';
+        if (vote && b.dataset.vote === vote) {
+            b.classList.add(vote === 'up' ? 'vote-active-up' : 'vote-active-down');
+            b.style.borderColor = vote === 'up' ? 'var(--green)' : 'var(--red)';
+        }
     });
-    // Show feedback box
-    if (finalVote) toggleFeedbackBox(venueId, finalVote);
-    else document.getElementById('voteFeedbackBox').style.display = 'none';
+    if (vote === 'up') row.insertAdjacentHTML('beforeend', '<span style="font-size:0.85rem;color:var(--green)">Approved</span>');
+    else if (vote === 'down') row.insertAdjacentHTML('beforeend', '<span style="font-size:0.85rem;color:var(--red)">Rejected</span>');
 }
 
 function voteVenueDetail(venueId, vote, btn) {
@@ -1971,69 +1987,93 @@ function voteVenueDetail(venueId, vote, btn) {
     const row = btn.parentElement;
     const wasActive = btn.classList.contains('vote-active-up') || btn.classList.contains('vote-active-down');
     const finalVote = wasActive ? '' : vote;
-    row.querySelectorAll('.vote-btn').forEach(b => { b.classList.remove('vote-active-up','vote-active-down'); b.style.borderColor = 'transparent'; });
-    if (finalVote) {
-        btn.classList.add(finalVote === 'up' ? 'vote-active-up' : 'vote-active-down');
-        btn.style.borderColor = finalVote === 'up' ? 'var(--green)' : 'var(--red)';
-    }
-    // Remove old status text and add new
-    const oldStatus = row.querySelector('span');
-    if (oldStatus) oldStatus.remove();
-    if (finalVote === 'up') row.insertAdjacentHTML('beforeend', '<span style="font-size:0.85rem;color:var(--green)">Approved</span>');
-    else if (finalVote === 'down') row.insertAdjacentHTML('beforeend', '<span style="font-size:0.85rem;color:var(--red)">Rejected</span>');
-    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_vote', value: finalVote }), function() {
+    const dv = getIndex().venueById.get(venueId);
+    const prevVote = dv ? (dv.venue_vote || '') : '';
+    renderVoteRow(row, finalVote);
+    // Votes feed the taste review, so a failed save must not look saved
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_vote', value: finalVote }), function(res) {
+        if (res.status !== 'ok' || res.verified === false) {
+            if (row.isConnected) renderVoteRow(row, prevVote);
+            showToast('Vote NOT saved: ' + (res.message || 'network error'));
+            return;
+        }
+        if (dv) dv.venue_vote = finalVote;
         showToast(finalVote ? (finalVote === 'up' ? 'Thumbs up!' : 'Thumbs down') : 'Vote cleared');
     });
+}
+
+const CAT_COLORS_MAP = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', farmers_market:'#8bc34a', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#c9a227', mall:'#e88b4d', brewery:'#d4a017', distillery:'#a0522d', library:'#4682b4', tea_room:'#c48a69', synagogue:'#674ea7', bar:'#c0392b', event_space:'#e74c3c', music_venue:'#e056a0' };
+function paintCategorySelect(selectEl, cat) {
+    selectEl.style.backgroundColor = CAT_COLORS_MAP[cat] || '#555';
+    selectEl.style.color = ['restaurant','wedding_venue','spa','luxury_retail'].includes(cat) ? '#000' : '#fff';
 }
 
 function changeVenueCategory(venueId, selectEl) {
     if (!BASE_URL) { showToast('API not configured'); return; }
     const newCat = selectEl.value;
-    const CAT_COLORS_MAP = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', farmers_market:'#8bc34a', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#c9a227', mall:'#e88b4d', brewery:'#d4a017', distillery:'#a0522d', library:'#4682b4', tea_room:'#c48a69', synagogue:'#674ea7', bar:'#c0392b', event_space:'#e74c3c', music_venue:'#e056a0' };
-    const bg = CAT_COLORS_MAP[newCat] || '#555';
-    const fg = ['restaurant','wedding_venue','spa','luxury_retail'].includes(newCat) ? '#000' : '#fff';
-    selectEl.style.backgroundColor = bg;
-    selectEl.style.color = fg;
+    const v = getIndex().venueById.get(venueId);
+    const oldRaw = v ? v.category : '';
+    const oldCat = selectEl.dataset.cat || catKey(oldRaw);
+    paintCategorySelect(selectEl, newCat);
     currentDetailCat = newCat;
-    const v = (dashboardData.venues || []).find(v => v.venue_id === venueId);
     if (v) v.category = newCat;
     fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'category', value: newCat }), function(resp) {
-        if (resp.status === 'ok') {
-            showToast('Category updated to ' + (CATEGORY_LABELS[newCat] || newCat));
+        if (resp.status === 'ok' && resp.verified !== false) {
+            selectEl.dataset.cat = newCat;
+            showToast('Category updated to ' + catLabel(newCat));
+            return;
         }
+        // Revert so the app never shows a category the sheet doesn't have
+        if (v) v.category = oldRaw;
+        selectEl.value = oldCat;
+        paintCategorySelect(selectEl, oldCat);
+        if (currentDetailVenue && currentDetailVenue.venue_id === venueId) currentDetailCat = oldCat;
+        showToast('Category NOT saved: ' + (resp.message || 'network error'));
     });
 }
 
-function toggleFeedbackBox(venueId, vote) {
-    const box = document.getElementById('voteFeedbackBox');
-    box.style.display = box.style.display === 'none' ? 'block' : 'none';
-    if (box.style.display === 'block') document.getElementById('voteFeedbackText').focus();
+// === IN-FLIGHT GUARD ===
+// Mark/skip buttons stay disabled until the server answers; a second tap on a slow
+// update_contact/log_outreach used to log a second send and double-count the goals.
+const _inFlight = new Set();
+function beginAction(key, btn) {
+    if (_inFlight.has(key) || (btn && btn.disabled)) return false;
+    _inFlight.add(key);
+    if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = '...'; }
+    return true;
 }
-
-function saveFeedback(venueId) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    const text = document.getElementById('voteFeedbackText').value.trim();
-    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_feedback', value: text }), function() {
-        document.getElementById('voteFeedbackBox').style.display = 'none';
-        showToast('Feedback saved');
-    });
+function failAction(key, btn, msg) {
+    _inFlight.delete(key);
+    if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || btn.textContent; }
+    if (msg) showToast(msg);
+}
+function resMsg(res) { return (res && res.message) || 'network error'; }
+function removeSocialRow(el) {
+    const row = el.closest('.detail-action-row');
+    const label = row ? row.previousElementSibling : null;
+    if (label && label.classList.contains('detail-section-label')) label.remove();
+    if (row) row.remove();
+}
+function sentRowHtml(email, label) {
+    return `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(email)}</span><span class="detail-done">${esc(label)}</span></div>`;
 }
 
 // === SKIP CONTACT ===
 function skipContact(contactId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    el.textContent = '...';
     const vid = currentDetailVenue ? currentDetailVenue.venue_id : '';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: vid, field: 'email_sent', value: 'skipped' }), function(res) {
-        if (res && res.status === 'error') {
-            el.textContent = '✕';
-            showToast('Skip failed: ' + (res.message || 'unknown error'));
-            return;
-        }
+    const key = 'skip|' + contactId + '|' + vid;
+    if (!beginAction(key, el)) return;
+    // email lets the backend pick the right row when a contact_id is duplicated
+    const wrap = el.closest('.contact-wrapper');
+    const addr = wrap ? wrap.dataset.email : '';
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: vid, email: addr, field: 'email_sent', value: 'skipped' }), function(res) {
+        if (res.status !== 'ok') { failAction(key, el, 'Skip failed: ' + resMsg(res)); return; }
+        _inFlight.delete(key);
         updateLocalContact(contactId, vid, 'email_sent', 'skipped');
         const wrapper = el.closest('.contact-wrapper');
         if (wrapper) wrapper.remove();
-        else el.closest('.detail-action-row').remove();
+        else { const r = el.closest('.detail-action-row'); if (r) r.remove(); }
         showToast('Skipped');
     });
 }
@@ -2041,169 +2081,182 @@ function skipContact(contactId, el) {
 // === UPDATE LOCAL DATA ===
 function updateLocalContact(contactId, venueId, field, value) {
     // Remember email_sent marks so loadDashboard overwrites don't lose them
-    if (field === 'email_sent' && value === 'true') {
-        _localSentContacts.add(contactId + '|' + venueId);
+    if (field === 'email_sent' && (value === 'true' || value === 'skipped')) {
+        _localSentContacts.set(contactId + '|' + venueId, value);
     }
     if (!dashboardData) return;
     const c = (dashboardData.contacts || []).find(
         x => x.contact_id === contactId && x.venue_id === venueId
     );
     if (c) c[field] = value;
+    invalidateIndex();
 }
 
 // === MARK ACTIONS ===
 function markEmailSent(contactId, venueId, category, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    btn.textContent = '...';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, field: 'email_sent', value: 'true' }), function(res) {
-        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
+    const key = 'email|' + contactId + '|' + venueId;
+    if (!beginAction(key, btn)) return;
+    const wrap = btn.closest('.contact-wrapper');
+    const addr = wrap ? wrap.dataset.email : '';
+    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, email: addr, field: 'email_sent', value: 'true' }), function(res) {
+        if (res.status !== 'ok') { failAction(key, btn, 'Not marked: ' + resMsg(res)); return; }
+        _inFlight.delete(key);
         updateLocalContact(contactId, venueId, 'email_sent', 'true');
-        var wrapper = btn.closest('.contact-wrapper');
+        const wrapper = btn.closest('.contact-wrapper');
+        const sentKey = addr;
         if (wrapper) wrapper.remove();
-        else btn.closest('.detail-action-row').remove();
+        else { const r = btn.closest('.detail-action-row'); if (r) r.remove(); }
+        // Other rows with the same address (duplicate contact rows) must not offer a second email
+        if (sentKey) {
+            document.querySelectorAll('#detailBody .contact-wrapper').forEach(w => {
+                if (w.dataset.email !== sentKey) return;
+                const shown = (w.querySelector('.detail-email') || {}).textContent || sentKey;
+                w.outerHTML = sentRowHtml(shown, 'Sent');
+            });
+        }
         showToast('Marked as sent!');
         renderLevelBar();
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }), function() {});
+        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }), function(r2) {
+            if (r2.status !== 'ok') showToast('Marked sent, but the outreach log failed');
+        });
     });
 }
 
 function markIGSent(venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    btn.textContent = '...';
+    const key = 'ig|' + venueId;
+    if (!beginAction(key, btn)) return;
     // Persist to Contacts sheet (find first contact for this venue)
-    var vc = (dashboardData ? dashboardData.contacts : []).find(function(c) { return c.venue_id === venueId; });
+    var vc = (getIndex().contactsByVenue.get(venueId) || [])[0];
     if (vc) {
-        fireGet(buildUrl({ action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId, field: 'ig_dm_sent', value: 'true' }), function() {});
+        fireGet(buildUrl({ action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId, email: emailKey(vc.email), field: 'ig_dm_sent', value: 'true' }));
     }
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'instagram' }), function(res) {
-        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
-        var row = btn.closest('.detail-action-row');
-        var label = row ? row.previousElementSibling : null;
-        if (label && label.classList.contains('detail-section-label')) label.remove();
-        if (row) row.remove();
+        if (res.status !== 'ok') { failAction(key, btn, 'Not marked: ' + resMsg(res)); return; }
+        _inFlight.delete(key);
+        removeSocialRow(btn);
         showToast('IG DM marked!');
         _localSentIG.add(venueId);
-        if (dashboardData) {
-            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-            if (dv) dv.ig_dm_sent = true;
-        }
+        var dv = getIndex().venueById.get(venueId);
+        if (dv) dv.ig_dm_sent = true;
+        invalidateIndex();
         renderLevelBar();
     });
 }
 
 function markFBSent(venueId, btn) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    btn.textContent = '...';
+    const key = 'fb|' + venueId;
+    if (!beginAction(key, btn)) return;
     // Persist to Contacts sheet (find first contact for this venue)
-    var vc = (dashboardData ? dashboardData.contacts : []).find(function(c) { return c.venue_id === venueId; });
+    var vc = (getIndex().contactsByVenue.get(venueId) || [])[0];
     if (vc) {
-        fireGet(buildUrl({ action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId, field: 'fb_msg_sent', value: 'true' }), function() {});
+        fireGet(buildUrl({ action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId, email: emailKey(vc.email), field: 'fb_msg_sent', value: 'true' }));
     }
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'facebook' }), function(res) {
-        if (res && res.status === 'error') { btn.textContent = 'Sent'; return; }
-        var row = btn.closest('.detail-action-row');
-        var label = row ? row.previousElementSibling : null;
-        if (label && label.classList.contains('detail-section-label')) label.remove();
-        if (row) row.remove();
+        if (res.status !== 'ok') { failAction(key, btn, 'Not marked: ' + resMsg(res)); return; }
+        _inFlight.delete(key);
+        removeSocialRow(btn);
         showToast('FB msg marked!');
         _localSentFB.add(venueId);
-        if (dashboardData) {
-            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-            if (dv) dv.fb_msg_sent = true;
-        }
+        var dv = getIndex().venueById.get(venueId);
+        if (dv) dv.fb_msg_sent = true;
+        invalidateIndex();
         renderLevelBar();
     });
 }
 
 function skipIG(venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    el.textContent = '...';
-    el.disabled = true;
+    const key = 'igskip|' + venueId;
+    if (!beginAction(key, el)) return;
     // Write to outreach log AND update venue field for reliability
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'instagram_skip' }), function(res) {
-        if (res.status !== 'ok') { showToast('Failed to skip IG'); el.textContent = '✕'; el.disabled = false; return; }
-        var row = el.closest('.detail-action-row');
-        var label = row ? row.previousElementSibling : null;
-        if (label && label.classList.contains('detail-section-label')) label.remove();
-        if (row) row.remove();
+        if (res.status !== 'ok') { failAction(key, el, 'Failed to skip IG'); return; }
+        _inFlight.delete(key);
+        removeSocialRow(el);
         showToast('IG skipped');
-        if (dashboardData) {
-            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-            if (dv) dv.ig_dm_skipped = true;
-        }
+        _localSkippedIG.add(venueId);
+        var dv = getIndex().venueById.get(venueId);
+        if (dv) dv.ig_dm_skipped = true;
     });
 }
 
 function skipFB(venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    el.textContent = '...';
-    el.disabled = true;
+    const key = 'fbskip|' + venueId;
+    if (!beginAction(key, el)) return;
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'facebook_skip' }), function(res) {
-        if (res.status !== 'ok') { showToast('Failed to skip FB'); el.textContent = '✕'; el.disabled = false; return; }
-        var row = el.closest('.detail-action-row');
-        var label = row ? row.previousElementSibling : null;
-        if (label && label.classList.contains('detail-section-label')) label.remove();
-        if (row) row.remove();
+        if (res.status !== 'ok') { failAction(key, el, 'Failed to skip FB'); return; }
+        _inFlight.delete(key);
+        removeSocialRow(el);
         showToast('FB skipped');
-        if (dashboardData) {
-            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-            if (dv) dv.fb_msg_skipped = true;
-        }
+        _localSkippedFB.add(venueId);
+        var dv = getIndex().venueById.get(venueId);
+        if (dv) dv.fb_msg_skipped = true;
     });
 }
 
 function markFormSent(venueId, btn) {
-    btn.textContent = '...';
-    if (BASE_URL) {
-        var fc = (window._currentContacts || [])[0];
-        var cid = fc ? fc.contact_id : '';
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: cid, channel: 'contact_form' }), function(res) {
-            var row = btn.closest('.detail-action-row');
-            if (row) {
-                row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span>';
-            }
-            showToast('Contact form marked!');
-            _localSentForm.add(venueId);
-            if (dashboardData) {
-                var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-                if (dv) dv.contact_form_sent = true;
-            }
-            renderLevelBar();
-        });
-    }
+    if (!BASE_URL) { showToast('API not configured'); return; }
+    const key = 'form|' + venueId;
+    if (!beginAction(key, btn)) return;
+    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'contact_form' }), function(res) {
+        // Only show "Sent" once the send is actually in the Outreach Log
+        if (res.status !== 'ok') { failAction(key, btn, 'Not marked: ' + resMsg(res)); return; }
+        _inFlight.delete(key);
+        var row = btn.closest('.detail-action-row');
+        if (row) {
+            row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span>';
+        }
+        showToast('Contact form marked!');
+        _localSentForm.add(venueId);
+        var dv = getIndex().venueById.get(venueId);
+        if (dv) dv.contact_form_sent = true;
+        renderLevelBar();
+    });
 }
 
 function skipForm(venueId, el) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    el.textContent = '...';
-    el.disabled = true;
+    const key = 'formskip|' + venueId;
+    if (!beginAction(key, el)) return;
     fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'contact_form_skip' }), function(res) {
-        if (res.status !== 'ok') { showToast('Failed to skip form'); el.textContent = '✕'; el.disabled = false; return; }
+        if (res.status !== 'ok') { failAction(key, el, 'Failed to skip form'); return; }
+        _inFlight.delete(key);
         var row = el.closest('.detail-action-row');
-        var label = row ? row.previousElementSibling : null;
-        if (label && label.classList.contains('detail-section-label')) label.remove();
-        if (row) row.remove();
-        showToast('Contact form skipped');
-        if (dashboardData) {
-            var dv = dashboardData.venues.find(function(v) { return v.venue_id === venueId; });
-            if (dv) dv.contact_form_skipped = true;
+        if (row) {
+            row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Skipped</span>';
         }
+        showToast('Contact form skipped');
+        _localSkippedForm.add(venueId);
+        var dv = getIndex().venueById.get(venueId);
+        if (dv) dv.contact_form_skipped = true;
     });
 }
 
 // === RENDER: HOME — State Grid ===
 function renderStateGrid() {
     const el = document.getElementById('stateGrid');
-    const states = ['MD', 'VA', 'DC', 'WV', 'PA', 'DE'];
     const venues = (dashboardData && dashboardData.venues) || [];
+    const counts = {};
+    for (const v of venues) {
+        if (!venueHasPending(v.venue_id)) continue;
+        const s = stateKey(v);
+        counts[s] = (counts[s] || 0) + 1;
+    }
+    // The usual six always show; any other (or blank) state shows once it has pending venues
+    const states = STATE_ORDER.concat(Object.keys(counts).filter(s => !STATE_ORDER.includes(s)).sort());
 
     el.innerHTML = '<div class="state-grid">' + states.map(s => {
-        const count = venues.filter(v => v.state === s && venueHasPending(v.venue_id)).length;
-        return `<div class="state-card" style="background-image:url('${STATE_IMAGES[s] || ''}')" onclick="openState('${s}')">
-            <div class="state-card-name">${STATE_NAMES[s] || s}</div>
+        const count = counts[s] || 0;
+        return `<div class="state-card" style="background-image:url('${STATE_IMAGES[s] || ''}')" onclick="openState(${jsArg(s)})">
+            <div class="state-card-name">${esc(stateLabel(s))}</div>
             <div class="state-card-count">${count} venue${count !== 1 ? 's' : ''}</div>
         </div>`;
     }).join('') + '</div>';
+    renderApiStatus();
 }
 
 // === TASTE CATEGORY MATCHING ===
@@ -2251,24 +2304,43 @@ function _isCreamVenue(v) {
     return false;
 }
 
+// Venues with a logged past gig (by venue_id or name) — you already play there
+function pastGigMatcher() {
+    const gigs = ((dashboardData && dashboardData.gigs) || []).filter(g => g.venue_name !== '(DELETED)');
+    const norm = s => String(s || '').toLowerCase().trim().replace(/^the\s+/, '');
+    const ids = new Set(gigs.map(g => g.venue_id).filter(Boolean));
+    const names = new Set(gigs.map(g => norm(g.venue_name)).filter(Boolean));
+    return v => ids.has(v.venue_id) || names.has(norm(v.name));
+}
+
 // === VIEW: STATE (categories) ===
 function openState(state) {
     currentState = state;
-    document.getElementById('stateTitleText').textContent = STATE_NAMES[state] || state;
+    document.getElementById('stateTitleText').textContent = stateLabel(state);
 
-    const venues = ((dashboardData && dashboardData.venues) || []).filter(v => v.state === state && venueHasPending(v.venue_id));
+    const venues = ((dashboardData && dashboardData.venues) || []).filter(v => stateKey(v) === state && venueHasPending(v.venue_id));
     const catCounts = {};
     venues.forEach(v => {
-        const cat = (v.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+        const cat = catKey(v.category);
         catCounts[cat] = (catCounts[cat] || 0) + 1;
     });
 
-    // Cream of the crop — top 10 venues matching taste categories
-    const cream = venues.filter(v => _isCreamVenue(v)).slice(0, 10);
+    // Cream of the crop — the 10 best taste matches by taste_score (sheet order breaks ties).
+    // Thumbs-down, unreviewed (needs_review) and past-gig venues don't belong here.
+    const isPastGig = pastGigMatcher();
+    const cream = venues
+        .filter(v => _isCreamVenue(v) && v.venue_vote !== 'down' && v.status !== 'needs_review' && !isPastGig(v))
+        .map((v, i) => ({ v, i }))
+        .sort((a, b) => ((Number(b.v.taste_score) || 0) - (Number(a.v.taste_score) || 0)) || (a.i - b.i))
+        .slice(0, 10)
+        .map(x => x.v);
 
-    // Only show categories that have pending venues
+    // Categories with pending venues: the usual order first, then any other category the
+    // data has (bar, brewery, theater...), with "Other" last, so every counted venue is reachable
     const allCats = ['agent', 'winery', 'museum', 'hotel', 'country_club', 'event', 'event_venue', 'restaurant', 'wine_bar', 'resort', 'senior_living', 'event_planner', 'golf_club', 'yacht_club', 'art_gallery', 'luxury_apts', 'grocery_market', 'farmers_market', 'wedding_venue', 'corporate', 'spa', 'private_club', 'church', 'luxury_retail', 'mall'];
-    const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0);
+    const activeCats = allCats.filter(c => (catCounts[c] || 0) > 0)
+        .concat(Object.keys(catCounts).filter(c => !allCats.includes(c) && c !== 'other').sort());
+    if (catCounts.other) activeCats.push('other');
     const el = document.getElementById('stateBody');
 
     let html = '';
@@ -2281,13 +2353,13 @@ function openState(state) {
             const statusClass = isResurfaced(v) ? 'resurfaced' : (v.status || 'untouched').replace(/\s/g, '_');
             const statusText = isResurfaced(v) ? 'Re-contact' : statusClass.replace('_', ' ');
             const dist = v.distance_miles ? `${v.distance_miles} mi · ${formatDrive(v.drive_minutes)}` : '';
-            const catLabel = CATEGORY_LABELS[(v.category || '').toLowerCase().replace(/[\s\/]/g, '_')] || v.category || '';
-            return `<div class="venue-list-item" onclick="openVenueDetail('${esc(v.venue_id)}')">
+            const catLbl = catLabel(catKey(v.category));
+            return `<div class="venue-list-item" onclick="openVenueDetail(${jsArg(v.venue_id)})">
                 <div>
                     <div class="venue-list-name">${esc(v.name)}</div>
-                    <div class="venue-list-city">${esc(v.city || '')}${catLabel ? ' · ' + esc(catLabel) : ''}${dist ? ' · ' + dist : ''}</div>
+                    <div class="venue-list-city">${esc(v.city || '')}${catLbl ? ' · ' + esc(catLbl) : ''}${dist ? ' · ' + dist : ''}</div>
                 </div>
-                <span class="status-pill ${statusClass}">${statusText}</span>
+                <span class="status-pill ${esc(statusClass)}">${esc(statusText)}</span>
             </div>`;
         }).join('');
         html += '</div>';
@@ -2296,9 +2368,9 @@ function openState(state) {
     // Category grid
     html += '<div class="category-grid">' + activeCats.map(c => {
         const count = catCounts[c];
-        return `<div class="category-card" style="background-image:url('${CATEGORY_IMAGES[c] || ''}')" onclick="openCategory('${c}')">
+        return `<div class="category-card" style="background-color:#1a1a1a;background-image:url('${CATEGORY_IMAGES[c] || ''}')" onclick="openCategory(${jsArg(c)})">
             <span class="category-card-count">${count}</span>
-            <span class="category-card-name">${CATEGORY_LABELS[c] || c}</span>
+            <span class="category-card-name">${esc(catLabel(c))}</span>
         </div>`;
     }).join('') + '</div>';
 
@@ -2309,10 +2381,10 @@ function openState(state) {
 // === VIEW: CATEGORY (venue list) ===
 function openCategory(cat) {
     currentCategory = cat;
-    document.getElementById('categoryTitleText').textContent = (CATEGORY_LABELS[cat] || cat) + ' — ' + (STATE_NAMES[currentState] || currentState);
+    document.getElementById('categoryTitleText').textContent = catLabel(cat) + ' — ' + stateLabel(currentState);
 
     const venues = ((dashboardData && dashboardData.venues) || []).filter(v =>
-        v.state === currentState && (v.category || '').toLowerCase().replace(/[\s\/]/g, '_') === cat && venueHasPending(v.venue_id)
+        stateKey(v) === currentState && catKey(v.category) === cat && venueHasPending(v.venue_id)
     );
 
     const el = document.getElementById('categoryBody');
@@ -2324,12 +2396,12 @@ function openCategory(cat) {
             const statusClass = resurfaced ? 'resurfaced' : (v.status || 'untouched').replace(/\s/g, '_');
             const statusText = resurfaced ? 'Re-contact' : statusClass.replace('_', ' ');
             const dist = v.distance_miles ? `${v.distance_miles} mi · ${formatDrive(v.drive_minutes)}` : '';
-            return `<div class="venue-list-item" onclick="openVenueDetail('${esc(v.venue_id)}')">
+            return `<div class="venue-list-item" onclick="openVenueDetail(${jsArg(v.venue_id)})">
                 <div>
                     <div class="venue-list-name">${esc(v.name)}</div>
                     <div class="venue-list-city">${esc(v.city || '')}${dist ? ' · ' + dist : ''}${resurfaced ? ' · <span class="recontact-badge">' + esc(resurfaceLabel(v)) + '</span>' : ''}</div>
                 </div>
-                <span class="status-pill ${statusClass}">${statusText}</span>
+                <span class="status-pill ${esc(statusClass)}">${esc(statusText)}</span>
             </div>`;
         }).join('');
     }
@@ -2347,11 +2419,12 @@ function openComposeForContact(contactId, email, contactName, channel) {
     const cat = currentDetailCat;
     const tmpl = getEnhancedTemplate(channel, v.name, contactName || '', cat);
     if (channel === 'email' && email) {
+        email = cleanEmail(email);
         // Copy body, open Gmail with to/subject/body
         navigator.clipboard.writeText(tmpl.body).catch(() => {});
         const url = isMobile
             ? `mailto:${email}?subject=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`
-            : `https://mail.google.com/mail/u/2/?view=cm&to=${encodeURIComponent(email)}&su=${encodeURIComponent(tmpl.subject)}&body=${encodeURIComponent(tmpl.body)}`;
+            : gmailComposeUrl(email, tmpl.subject, tmpl.body);
         openExternal(url);
         showToast('Copied & opening Gmail');
     } else if (channel === 'ig' && v.instagram) {
@@ -2363,13 +2436,38 @@ function openComposeForContact(contactId, email, contactName, channel) {
     }
 }
 
+// Contact-form text uses the same generator as email, so {venue} is filled in
+function formTemplate() {
+    const v = currentDetailVenue || {};
+    return getEnhancedTemplate('email', v.name || '', '', currentDetailCat);
+}
+function copyFormSubject() {
+    copyText(formTemplate().subject);
+    showToast('Subject copied!');
+}
+function openContactForm(url) {
+    const u = safeHttpUrl(url);
+    if (!u) { showToast('Invalid form link'); return; }
+    copyText(formTemplate().body);
+    window.open(u, '_blank');
+    showToast('Message copied!');
+}
+
+// Label for "already contacted through another venue row" (same email / same IG or FB page)
+function viaLabel(prefix, otherVenueId, venueId, idx) {
+    if (!otherVenueId || otherVenueId === venueId) return prefix;
+    const other = idx.venueById.get(otherVenueId);
+    return prefix + ' via ' + (other ? other.name : otherVenueId);
+}
+
 function openVenueDetail(venueId) {
     if (!dashboardData) return;
-    const venue = (dashboardData.venues || []).find(v => v.venue_id === venueId);
+    const idx = getIndex();
+    const venue = idx.venueById.get(venueId);
     if (!venue) return;
 
-    const contacts = (dashboardData.contacts || []).filter(c => c.venue_id === venueId);
-    const cat = (venue.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
+    const contacts = idx.contactsByVenue.get(venueId) || [];
+    const cat = catKey(venue.category);
     currentDetailVenue = venue;
     currentDetailCat = cat;
     const CAT_COLORS = { winery:'#9b59b6', museum:'#3498db', hotel:'#e67e22', country_club:'#27ae60', event:'#e74c3c', restaurant:'#f39c12', wine_bar:'#8e44ad', resort:'#16a085', senior_living:'#2980b9', event_planner:'#c0392b', golf_club:'#2ecc71', yacht_club:'#1abc9c', art_gallery:'#e056a0', luxury_apts:'#8e7cc3', grocery_market:'#6aa84f', farmers_market:'#8bc34a', wedding_venue:'#d4a5a5', corporate:'#4a86c8', spa:'#76c7c0', private_club:'#b45f06', church:'#674ea7', luxury_retail:'#a64d79', mall:'#cc0000', agent:'#d4a017' };
@@ -2382,103 +2480,82 @@ function openVenueDetail(venueId) {
     // Meta
     html += `<div class="detail-meta">`;
     const allCats = Object.keys(CATEGORY_LABELS).sort();
+    // Keep the venue's own category in the list, or the select would show the first option instead
+    if (!allCats.includes(cat)) allCats.push(cat);
     const catBg = CAT_COLORS[cat] || '#555';
     const catFg = ['restaurant','wedding_venue','spa','luxury_retail'].includes(cat) ? '#000' : '#fff';
-    let catSelect = `<select class="category-select" style="background-color:${catBg};color:${catFg}" onchange="changeVenueCategory('${esc(venue.venue_id)}',this)">`;
+    let catSelect = `<select class="category-select" data-cat="${esc(cat)}" style="background-color:${catBg};color:${catFg}" onchange="changeVenueCategory(${jsArg(venue.venue_id)},this)">`;
     for (const c of allCats) {
-        catSelect += `<option value="${c}"${c === cat ? ' selected' : ''}>${(CATEGORY_LABELS[c] || c).toUpperCase()}</option>`;
+        catSelect += `<option value="${esc(c)}"${c === cat ? ' selected' : ''}>${esc(catLabel(c).toUpperCase())}</option>`;
     }
     catSelect += `</select>`;
     html += catSelect;
     html += `<span>${esc(venue.city || '')}${venue.city && venue.state ? ', ' : ''}${esc(venue.state || '')}</span>`;
     if (venue.zone_priority === 'green' || venue.zone_priority === 'yellow') html += `<span class="zone-dot ${venue.zone_priority}"></span>`;
-    if (venue.distance_miles) html += `<span style="color:var(--accent)">${venue.distance_miles} mi · ${formatDrive(venue.drive_minutes)}</span>`;
+    if (venue.distance_miles) html += `<span style="color:var(--accent)">${esc(venue.distance_miles)} mi · ${formatDrive(venue.drive_minutes)}</span>`;
     if (isResurfaced(venue)) html += `<span class="recontact-badge" style="font-size:0.7rem">${esc(resurfaceLabel(venue))}</span>`;
+    if (venue.status === 'dismissed') html += `<span class="status-pill dismissed">dismissed</span>`;
     html += `</div>`;
 
-    // Website
-    if (venue.website) html += `<a class="detail-website" href="${esc(venue.website)}" target="_blank">${esc(venue.website)}</a>`;
+    // Website (http/https only; bare domains get https:// instead of a relative github.io link)
+    const siteUrl = safeHttpUrl(venue.website);
+    if (siteUrl) html += `<a class="detail-website" href="${esc(siteUrl)}" target="_blank" rel="noopener">${esc(venue.website)}</a>`;
+    else if (venue.website) html += `<span class="detail-website" style="opacity:0.6">${esc(venue.website)}</span>`;
 
     // Vote buttons
     const curVote = venue.venue_vote || '';
     const curFeedback = venue.venue_feedback || '';
     html += `<div style="margin:0.5rem 0;display:flex;align-items:center;gap:0.5rem">`;
-    html += `<button class="vote-btn${curVote === 'up' ? ' vote-active-up' : ''}" onclick="voteVenueDetail('${esc(venue.venue_id)}','up',this)" style="border-color:${curVote === 'up' ? 'var(--green)' : 'transparent'}">👍</button>`;
-    html += `<button class="vote-btn${curVote === 'down' ? ' vote-active-down' : ''}" onclick="voteVenueDetail('${esc(venue.venue_id)}','down',this)" style="border-color:${curVote === 'down' ? 'var(--red)' : 'transparent'}">👎</button>`;
+    html += `<button class="vote-btn${curVote === 'up' ? ' vote-active-up' : ''}" data-vote="up" onclick="voteVenueDetail(${jsArg(venue.venue_id)},'up',this)" style="border-color:${curVote === 'up' ? 'var(--green)' : 'transparent'}">👍</button>`;
+    html += `<button class="vote-btn${curVote === 'down' ? ' vote-active-down' : ''}" data-vote="down" onclick="voteVenueDetail(${jsArg(venue.venue_id)},'down',this)" style="border-color:${curVote === 'down' ? 'var(--red)' : 'transparent'}">👎</button>`;
     if (curVote === 'up') html += `<span style="font-size:0.85rem;color:var(--green)">Approved</span>`;
     else if (curVote === 'down') html += `<span style="font-size:0.85rem;color:var(--red)">Rejected</span>`;
     html += `</div>`;
 
-    // Smart Pick score breakdown (if available)
-    const spData = allSmartPicks.find(s => s.venue_id === venueId);
-    if (spData) {
-        const sc = spData.recommendation_score;
-        const bd = spData.score_breakdown || {};
-        const scColor = sc >= 70 ? 'var(--gold)' : sc >= 40 ? 'var(--text)' : 'var(--text-dim)';
-        const tierNames = { 1: 'Dream', 2: 'Good', 3: 'Neutral', 4: 'Skip' };
-        const tier = bd.taste_tier >= 15 ? 1 : bd.taste_tier >= 5 ? 2 : bd.taste_tier <= -10 ? 4 : 3;
-        html += `<div style="margin:0.6rem 0;padding:0.6rem;background:rgba(240,160,48,0.08);border:1px solid rgba(240,160,48,0.2);border-radius:8px">`;
-        html += `<div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem">`;
-        html += `<span style="font-size:1.3rem;font-weight:700;color:${scColor}">${sc}</span>`;
-        html += `<span style="font-size:0.75rem;color:var(--text-dim)">Smart Pick Score</span>`;
-        html += `</div>`;
-        html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:0.2rem 0.8rem;font-size:0.7rem">`;
-        const bars = [
-            { label: 'Category', pts: bd.category, max: 40 },
-            { label: 'Upscale', pts: bd.upscale, max: 30 },
-            { label: 'Taste Tier', pts: bd.taste_tier, max: 20, note: tierNames[tier] },
-            { label: 'Location', pts: bd.location, max: 15, note: bd.location > 0 ? 'Sweet spot' : '' },
-            { label: 'Contacts', pts: bd.contact_quality, max: 10 },
-            { label: 'Zone', pts: bd.zone, max: 10 },
-            { label: 'Distance', pts: bd.distance, max: 10 },
-            { label: 'Vote', pts: bd.vote, max: 20 }
-        ];
-        for (const b of bars) {
-            if (b.pts === undefined) continue;
-            const pct = Math.max(0, Math.min(100, (b.pts / b.max) * 100));
-            const barColor = b.pts < 0 ? 'var(--red)' : b.pts > 0 ? 'var(--gold)' : '#555';
-            html += `<div style="display:flex;align-items:center;gap:0.3rem;padding:0.15rem 0">`;
-            html += `<span style="width:55px;color:var(--text-dim)">${b.label}</span>`;
-            html += `<div style="flex:1;height:6px;background:#222;border-radius:3px;overflow:hidden">`;
-            html += `<div style="width:${pct}%;height:100%;background:${barColor};border-radius:3px"></div></div>`;
-            html += `<span style="width:28px;text-align:right;color:${barColor}">${b.pts > 0 ? '+' : ''}${b.pts}</span>`;
-            if (b.note) html += `<span style="font-size:0.6rem;color:var(--gold)">${b.note}</span>`;
-            html += `</div>`;
-        }
-        html += `</div></div>`;
-    }
-
     // Notes input — editable feedback for learnings
     html += `<div style="margin:0.8rem 0">`;
     html += `<textarea id="detailNote" placeholder="Notes — why is this a good or bad fit?" style="width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#e0e0e0;border-radius:8px;padding:0.6rem;font-size:0.85rem;font-family:inherit;resize:vertical;min-height:2.5rem;max-height:8rem">${esc(curFeedback)}</textarea>`;
-    html += `<button onclick="saveDetailNote('${esc(venue.venue_id)}')" style="margin-top:0.4rem;background:none;border:1px solid var(--accent);color:var(--accent);padding:0.3rem 0.8rem;border-radius:6px;font-size:0.75rem;cursor:pointer">Save Note</button>`;
+    html += `<button onclick="saveDetailNote(${jsArg(venue.venue_id)})" style="margin-top:0.4rem;background:none;border:1px solid var(--accent);color:var(--accent);padding:0.3rem 0.8rem;border-radius:6px;font-size:0.75rem;cursor:pointer">Save Note</button>`;
     html += `</div>`;
 
-    // Emails
+    // Emails — valid/role are the verified ones; unverified/catch-all/unknown/deferred stay
+    // visible with a badge; invalid/do_not_mail stay hidden as before
     const skipWords = getSkipWords();
-    const emailContacts = contacts.filter(c => c.email && (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown'));
+    const emailContacts = contacts.filter(c => c.email && String(c.email).includes('@') && !HIDDEN_EMAIL_STATUSES.has(c.verified));
     let hiddenCount = 0;
     if (emailContacts.length > 0) {
         html += `<div class="detail-section-label" style="background:${catColor}">Emails</div>`;
         for (const c of emailContacts) {
-            const skipped = shouldSkipContact(c.title);
-            const starred = isStarredContact(c.title);
-            if (skipped) hiddenCount++;
-            if (c.email_sent) {
-                const doneLabel = c.email_sent === 'skipped' ? 'Skipped' : 'Sent';
-                html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.4">${esc(c.email)}</span><span class="detail-done">${doneLabel}</span></div>`;
-            } else if (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown') {
-                html += `<div class="contact-wrapper${skipped ? ' contact-skipped' : ''}${starred ? ' contact-starred' : ''}">`;
-                html += `<div class="detail-action-row"><span class="detail-email">${esc(c.email)}</span>`;
-                html += `<button class="btn-action btn-copy" onclick="copyText('${esc(c.email)}')">Copy</button>`;
-                html += `<button class="btn-action btn-gmail" onclick="openComposeForContact('${esc(c.contact_id)}','${esc(c.email)}','${esc(c.name || '')}','email')">Gmail</button>`;
-                html += `<button class="btn-action btn-sent" onclick="markEmailSent('${esc(c.contact_id)}','${esc(venue.venue_id)}','${cat}',this)">Sent</button>`;
-                html += `<button class="btn-action btn-del" onclick="skipContact('${esc(c.contact_id)}',this)">✕</button></div>`;
+            const shown = cleanEmail(c.email);
+            const k = emailKey(c.email);
+            const sentVia = c.email_sent ? undefined : idx.sentEmail.get(k);
+            if (c.email_sent === 'sent_elsewhere') {
+                // Marked by the backend when this address was emailed from another venue row
+                html += sentRowHtml(shown, viaLabel('Sent', idx.sentEmail.get(k), venueId, idx));
+            } else if (c.email_sent) {
+                html += sentRowHtml(shown, c.email_sent === 'skipped' ? 'Skipped' : 'Sent');
+            } else if (sentVia !== undefined) {
+                // Same address already emailed from another row: never offer a second cold email
+                html += sentRowHtml(shown, viaLabel('Sent', sentVia, venueId, idx));
+            } else {
+                const skipped = shouldSkipContact(c.title);
+                const starred = isStarredContact(c.title);
+                if (skipped) hiddenCount++;
+                const junk = isJunkEmail(c.email);
+                const badge = junk ? '<span class="verify-badge bad">junk</span>'
+                    : c.verified === 'role' ? '<span class="verify-badge">role</span>'
+                    : isVerifiedStatus(c.verified) ? ''
+                    : `<span class="verify-badge warn">${esc(c.verified || 'unverified')}</span>`;
+                html += `<div class="contact-wrapper${skipped ? ' contact-skipped' : ''}${starred ? ' contact-starred' : ''}" data-email="${esc(k)}">`;
+                html += `<div class="detail-action-row"><span class="detail-email">${esc(shown)}</span>${badge}`;
+                if (!junk) {
+                    html += `<button class="btn-action btn-copy" onclick="copyText(${jsArg(shown)})">Copy</button>`;
+                    html += `<button class="btn-action btn-gmail" onclick="openComposeForContact(${jsArg(c.contact_id)},${jsArg(shown)},${jsArg(c.name || '')},'email')">Gmail</button>`;
+                    html += `<button class="btn-action btn-sent" onclick="markEmailSent(${jsArg(c.contact_id)},${jsArg(venue.venue_id)},${jsArg(cat)},this)">Sent</button>`;
+                }
+                html += `<button class="btn-action btn-del" onclick="skipContact(${jsArg(c.contact_id)},this)">✕</button></div>`;
                 if (c.name || c.title) html += `<div class="detail-contact-name">${renderTitleWords(c.name, c.title)}</div>`;
                 html += `</div>`;
-            } else {
-                html += `<div class="detail-action-row"><span class="detail-email" style="opacity:0.5">${esc(c.email)}</span>`;
-                html += `<span style="font-size:0.6rem;color:var(--text-dim)">${c.verified || 'unverified'}</span></div>`;
             }
         }
         const starWords = getStarWords();
@@ -2489,12 +2566,22 @@ function openVenueDetail(venueId) {
             html += `<div class="hidden-count" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='flex'?'none':'flex'">${parts.join(', ')} — manage filters</div>`;
             html += `<div class="skip-words-bar" style="display:none">`;
             for (const w of starWords) {
-                html += `<span class="star-pill" onclick="removeStarWord('${esc(w)}');openVenueDetail('${esc(venueId)}')">⭐ ${esc(w)} ✕</span>`;
+                html += `<span class="star-pill" onclick="removeStarWord(${jsArg(w)});openVenueDetail(${jsArg(venueId)})">⭐ ${esc(w)} ✕</span>`;
             }
             for (const w of skipWords) {
-                html += `<span class="skip-pill" onclick="removeSkipWord('${esc(w)}');openVenueDetail('${esc(venueId)}')">${esc(w)} ✕</span>`;
+                html += `<span class="skip-pill" onclick="removeSkipWord(${jsArg(w)});openVenueDetail(${jsArg(venueId)})">${esc(w)} ✕</span>`;
             }
             html += `</div>`;
+        }
+    }
+
+    // Named people without an email (pending decision-makers) — for IG/FB/LinkedIn personalisation
+    const people = contacts.filter(c => !(c.email && String(c.email).includes('@')) && String(c.name || '').trim());
+    if (people.length > 0) {
+        html += `<div class="detail-section-label" style="background:${catColor}">People (no email)</div>`;
+        for (const c of people) {
+            html += `<div class="detail-action-row"><span class="detail-social-label">${renderTitleWords(c.name, c.title)}</span>`;
+            html += `<span class="verify-badge warn">${esc(c.verified || 'pending')}</span></div>`;
         }
     }
 
@@ -2508,11 +2595,16 @@ function openVenueDetail(venueId) {
     if (venue.instagram) {
         if (!venue.ig_dm_sent && !venue.ig_dm_skipped) {
             html += `<div class="detail-section-label" style="background:${catColor}">Instagram</div>`;
-            const fc = contacts[0] || { contact_id: '' };
-            html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
-            html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','ig')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markIGSent('${esc(venue.venue_id)}',this)">Sent</button>`;
-            html += `<button class="btn-action btn-del" onclick="skipIG('${esc(venue.venue_id)}',this)">✕</button></div>`;
+            const via = idx.sentIG.get(igKey(venue));
+            if (via !== undefined && via !== venueId) {
+                html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span><span class="detail-done">${esc(viaLabel('Already contacted', via, venueId, idx))}</span></div>`;
+            } else {
+                const fc = contacts[0] || { contact_id: '' };
+                html += `<div class="detail-action-row"><span class="detail-social-label">Instagram DM</span>`;
+                html += `<button class="btn-action btn-open" onclick="openComposeForContact(${jsArg(fc.contact_id)},'','','ig')">Open + Copy</button>`;
+                html += `<button class="btn-action btn-sent" onclick="markIGSent(${jsArg(venue.venue_id)},this)">Sent</button>`;
+                html += `<button class="btn-action btn-del" onclick="skipIG(${jsArg(venue.venue_id)},this)">✕</button></div>`;
+            }
         }
     }
 
@@ -2520,49 +2612,59 @@ function openVenueDetail(venueId) {
     if (venue.facebook) {
         if (!venue.fb_msg_sent && !venue.fb_msg_skipped) {
             html += `<div class="detail-section-label" style="background:${catColor}">Facebook</div>`;
-            const fc = contacts[0] || { contact_id: '' };
-            html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
-            html += `<button class="btn-action btn-open" onclick="openComposeForContact('${esc(fc.contact_id)}','','','fb')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markFBSent('${esc(venue.venue_id)}',this)">Sent</button>`;
-            html += `<button class="btn-action btn-del" onclick="skipFB('${esc(venue.venue_id)}',this)">✕</button></div>`;
+            const via = idx.sentFB.get(fbKey(venue));
+            if (via !== undefined && via !== venueId) {
+                html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span><span class="detail-done">${esc(viaLabel('Already contacted', via, venueId, idx))}</span></div>`;
+            } else {
+                const fc = contacts[0] || { contact_id: '' };
+                html += `<div class="detail-action-row"><span class="detail-social-label">Facebook Message</span>`;
+                html += `<button class="btn-action btn-open" onclick="openComposeForContact(${jsArg(fc.contact_id)},'','','fb')">Open + Copy</button>`;
+                html += `<button class="btn-action btn-sent" onclick="markFBSent(${jsArg(venue.venue_id)},this)">Sent</button>`;
+                html += `<button class="btn-action btn-del" onclick="skipFB(${jsArg(venue.venue_id)},this)">✕</button></div>`;
+            }
         }
     }
 
     // Contact Form (if available)
     if (venue.contact_form) {
+        const formUrl = safeHttpUrl(venue.contact_form);
         html += `<div class="detail-section-label" style="background:${catColor}">Contact Form</div>`;
         if (venue.contact_form_sent) {
             html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span></div>`;
         } else if (venue.contact_form_skipped) {
-            // Skipped — don't show buttons
+            html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span><span class="detail-done">Skipped</span></div>`;
+        } else if (!formUrl) {
+            html += `<div class="detail-action-row"><span class="detail-social-label" style="opacity:0.6">Website Form — not a valid link: ${esc(venue.contact_form)}</span>`;
+            html += `<button class="btn-action btn-del" onclick="skipForm(${jsArg(venue.venue_id)},this)">✕</button></div>`;
         } else {
             html += `<div class="detail-action-row"><span class="detail-social-label">Website Form</span>`;
-            html += `<button class="btn-action btn-copy" onclick="copyText(getTemplate(currentDetailCat).subject);showToast('Subject copied!')">Subject</button>`;
-            html += `<button class="btn-action btn-open" onclick="copyText(getTemplate(currentDetailCat).body);window.open('${esc(venue.contact_form)}','_blank');showToast('Message copied!')">Open + Copy</button>`;
-            html += `<button class="btn-action btn-sent" onclick="markFormSent('${esc(venue.venue_id)}',this)">Sent</button>`;
-            html += `<button class="btn-action btn-del" onclick="skipForm('${esc(venue.venue_id)}',this)">✕</button></div>`;
+            html += `<button class="btn-action btn-copy" onclick="copyFormSubject()">Subject</button>`;
+            html += `<button class="btn-action btn-open" onclick="openContactForm(${jsArg(formUrl)})">Open + Copy</button>`;
+            html += `<button class="btn-action btn-sent" onclick="markFormSent(${jsArg(venue.venue_id)},this)">Sent</button>`;
+            html += `<button class="btn-action btn-del" onclick="skipForm(${jsArg(venue.venue_id)},this)">✕</button></div>`;
         }
     }
 
     // If nothing actionable, show a message
-    const hasUnsent = emailContacts.some(c => !c.email_sent);
-    const igPending = venue.instagram && !venue.ig_dm_sent;
-    const fbPending = venue.facebook && !venue.fb_msg_sent;
+    const hasUnsent = emailContacts.some(c => !c.email_sent && !idx.sentEmail.has(emailKey(c.email)) && !isJunkEmail(c.email));
+    const igPending = socialPending(venue, 'ig', idx);
+    const fbPending = socialPending(venue, 'fb', idx);
+    const formPending = !!(venue.contact_form && safeHttpUrl(venue.contact_form) && !venue.contact_form_sent && !venue.contact_form_skipped);
     const liPending = venue.linkedin_pending;
-    if (!hasUnsent && !igPending && !fbPending && !liPending) {
-        if (emailContacts.length === 0 && !venue.instagram && !venue.facebook && !venue.contact_form) {
+    if (!hasUnsent && !igPending && !fbPending && !formPending && !liPending) {
+        if (emailContacts.length === 0 && people.length === 0 && !venue.instagram && !venue.facebook && !venue.contact_form) {
             html += `<div style="text-align:center;padding:2rem 1rem;color:var(--text-dim);font-size:0.8rem">Needs pipeline — no contacts scraped yet</div>`;
         } else {
             html += `<div style="text-align:center;padding:2rem 1rem;color:var(--green);font-size:0.8rem">All outreach complete</div>`;
         }
     }
 
-    // Mark Done / Reset buttons
+    // Mark Done / Un-mark buttons
     html += `<div style="text-align:center;padding:1.5rem 1rem;display:flex;gap:0.75rem;justify-content:center">`;
-    if (venue.status !== 'contacted' || isResurfaced(venue)) {
-        html += `<button onclick="markVenueDone('${esc(venue.venue_id)}')" style="background:none;border:1px solid var(--green);color:var(--green);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Mark Done</button>`;
+    if ((venue.status !== 'contacted' && venue.status !== 'dismissed') || isResurfaced(venue)) {
+        html += `<button onclick="markVenueDone(${jsArg(venue.venue_id)})" style="background:none;border:1px solid var(--green);color:var(--green);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Mark Done</button>`;
     } else {
-        html += `<button onclick="resetVenue('${esc(venue.venue_id)}')" style="background:none;border:1px solid var(--accent);color:var(--accent);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Reset — Re-scrape</button>`;
+        html += `<button onclick="resetVenue(${jsArg(venue.venue_id)})" style="background:none;border:1px solid var(--accent);color:var(--accent);padding:0.6rem 1.2rem;border-radius:8px;font-size:0.85rem;cursor:pointer">Un-mark Done</button>`;
     }
     html += `</div>`;
 
@@ -2590,21 +2692,75 @@ function resurfaceLabel(venue) {
     return 'Last contacted ' + months + ' months ago';
 }
 
+// === DATA INDEX ===
+// Built once per dashboard load (rebuilt after local edits) so a render is O(V + C)
+// instead of scanning every contact and venue for each venue.
+let _idx = null;
+function invalidateIndex() { _idx = null; }
+function getIndex() {
+    if (_idx) return _idx;
+    const venues = (dashboardData && dashboardData.venues) || [];
+    const contacts = (dashboardData && dashboardData.contacts) || [];
+    const venueById = new Map(), contactsByVenue = new Map();
+    // Addresses / social pages already contacted from any venue row -> that venue_id
+    const sentEmail = new Map(), sentIG = new Map(), sentFB = new Map();
+    for (const v of venues) {
+        if (!venueById.has(v.venue_id)) venueById.set(v.venue_id, v);
+        if (v.ig_dm_sent) { const k = igKey(v); if (k && !sentIG.has(k)) sentIG.set(k, v.venue_id); }
+        if (v.fb_msg_sent) { const k = fbKey(v); if (k && !sentFB.has(k)) sentFB.set(k, v.venue_id); }
+    }
+    for (const c of contacts) {
+        let list = contactsByVenue.get(c.venue_id);
+        if (!list) contactsByVenue.set(c.venue_id, list = []);
+        list.push(c);
+        if (isSentFlag(c.email_sent)) {
+            const k = emailKey(c.email);
+            if (k.includes('@') && !sentEmail.has(k)) sentEmail.set(k, c.venue_id);
+        }
+    }
+    _idx = { venueById, contactsByVenue, sentEmail, sentIG, sentFB };
+    return _idx;
+}
+
 // === REPORT GATE ===
-// Venues from unreviewed reports are hidden until user marks the report "done".
-// After 50 reviewed reports, the gate auto-disables.
-const REPORT_GATE_THRESHOLD = 50;
+// Venues listed in a report stay hidden until that report is marked reviewed.
+// The pipeline registers a run (status "running") at batch start and may add
+// batches to the same entry, so a running entry stays gated even if it was ticked.
+// A run that died never leaves "running"; after STALE_RUN_MS it is reviewable again.
+const STALE_RUN_MS = 24 * 3600 * 1000;
 let _gatedVenueIds = null;
+function reportVenueIds(r, key) {
+    const ids = r && r[key || 'venue_ids'];
+    const list = Array.isArray(ids) ? ids : (typeof ids === 'string' ? ids.split(',') : []);
+    return list.map(id => String(id || '').trim()).filter(Boolean);
+}
+// Start of a run: explicit timestamp fields, else the report file name (YYYY-MM-DD_HH-MM)
+function reportStartMs(r) {
+    for (const k of ['updated_at', 'started_at', 'started']) {
+        const t = r && r[k] ? Date.parse(r[k]) : NaN;
+        if (!isNaN(t)) return t;
+    }
+    const m = /(\d{4})-(\d{2})-(\d{2})_(\d{2})-(\d{2})/.exec((r && r.file) || '');
+    if (m) return new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]).getTime();
+    const d = r && r.date ? Date.parse(r.date + 'T00:00:00') : NaN;
+    return isNaN(d) ? Date.now() : d;
+}
+function isRunningReport(r) {
+    const s = String((r && r.status) || '').toLowerCase().replace(/[\s-]+/g, '_');
+    return s === 'running' || s === 'in_progress';
+}
+function isStaleRun(r) { return isRunningReport(r) && Date.now() - reportStartMs(r) > STALE_RUN_MS; }
+function isActiveRun(r) { return isRunningReport(r) && !isStaleRun(r); }
 
 function getGatedVenueIds() {
     if (_gatedVenueIds !== null) return _gatedVenueIds;
     const reviewed = getReviewedReports();
-    // Collect venue_ids from unreviewed reports — venues stay hidden until report is confirmed
     const gated = new Set();
     if (reportManifest && Array.isArray(reportManifest)) {
         for (const r of reportManifest) {
-            if (!reviewed[r.file] && Array.isArray(r.venue_ids)) {
-                for (const id of r.venue_ids) gated.add(id);
+            if (!r) continue;
+            if (!reviewed[r.file] || isActiveRun(r)) {
+                for (const id of reportVenueIds(r)) gated.add(id);
             }
         }
     }
@@ -2616,59 +2772,43 @@ function isVenueGated(venueId) {
     return getGatedVenueIds().has(venueId);
 }
 
-// Lookup maps over dashboardData. venueHasPending runs once per venue on
-// every render, and scanning the full venues + contacts arrays each time
-// made rendering O(venues x contacts). Rebuilt whenever the arrays change.
-let _dataIdx = { venues: null, contacts: null, vLen: -1, cLen: -1, venueById: new Map(), contactsByVenue: new Map() };
-function dataIndex() {
-    const venues = (dashboardData && dashboardData.venues) || [];
-    const contacts = (dashboardData && dashboardData.contacts) || [];
-    const idx = _dataIdx;
-    if (idx.venues !== venues || idx.contacts !== contacts || idx.vLen !== venues.length || idx.cLen !== contacts.length) {
-        const venueById = new Map();
-        for (const v of venues) if (!venueById.has(v.venue_id)) venueById.set(v.venue_id, v);
-        const contactsByVenue = new Map();
-        for (const c of contacts) {
-            const list = contactsByVenue.get(c.venue_id);
-            if (list) list.push(c); else contactsByVenue.set(c.venue_id, [c]);
-        }
-        _dataIdx = { venues, contacts, vLen: venues.length, cLen: contacts.length, venueById, contactsByVenue };
-    }
-    return _dataIdx;
+// Unsent, sendable (valid/role/unverified), not junk, and not already emailed from another row
+function contactPending(c, idx) {
+    if (!c.email || c.email_sent || !isSendableStatus(c.verified) || isJunkEmail(c.email)) return false;
+    return !idx.sentEmail.has(emailKey(c.email));
+}
+function socialPending(venue, which, idx) {
+    const isIG = which === 'ig';
+    const url = isIG ? venue.instagram : venue.facebook;
+    if (!url || url.length <= 5) return false;
+    if (isIG ? (venue.ig_dm_sent || venue.ig_dm_skipped) : (venue.fb_msg_sent || venue.fb_msg_skipped)) return false;
+    // Same IG/FB account already messaged from another venue row (multi-location chains)
+    const via = (isIG ? idx.sentIG : idx.sentFB).get(isIG ? igKey(venue) : fbKey(venue));
+    return via === undefined || via === venue.venue_id;
 }
 
 function venueHasPending(venueId) {
     // Report gate: hide venues from unreviewed reports
     if (isVenueGated(venueId)) return false;
-    const idx = dataIndex();
-    const contacts = idx.contactsByVenue.get(venueId) || [];
+    const idx = getIndex();
     const venue = idx.venueById.get(venueId);
     if (!venue) return false;
+    const contacts = idx.contactsByVenue.get(venueId) || [];
     // Resurfaced venues (contacted 2.5+ years ago) are treated as untouched
     if (isResurfaced(venue)) return true;
-    // "contacted" = user marked done — hide it
-    if (venue.status === 'contacted') return false;
+    // "contacted" = marked done after outreach, "dismissed" = marked done with nothing sent,
+    // "closed" = the venue is gone — hide all three
+    if (venue.status === 'contacted' || venue.status === 'dismissed' || venue.status === 'closed') return false;
     // "pipelined" = pipeline ran but user hasn't reviewed/acted yet — always show
     // "sent" = all emails sent but user hasn't clicked Mark Done yet — keep visible
     if (venue.status === 'pipelined' || venue.status === 'sent') return true;
-    // "researched" = pipeline ran. Show if there's email/FB/IG/contact form to use.
-    // Also keep visible if user already sent on any channel (don't auto-hide before Mark Done)
-    if (venue.status === 'researched') {
-        if (contacts.some(c => c.email && (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown') && !c.email_sent)) return true;
-        if (venue.instagram && venue.instagram.length > 5 && !venue.ig_dm_sent && !venue.ig_dm_skipped) return true;
-        if (venue.facebook && venue.facebook.length > 5 && !venue.fb_msg_sent && !venue.fb_msg_skipped) return true;
-        if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent && !venue.contact_form_skipped) return true;
-        if (venue.ig_dm_sent || venue.fb_msg_sent || venue.contact_form_sent) return true;
-        return false;
-    }
     // Has unsent verified emails?
-    if (contacts.some(c => c.email && (c.verified === 'valid' || c.verified === 'catch-all' || c.verified === 'unknown') && !c.email_sent)) return true;
-    // Has Instagram not yet DM'd?
-    if (venue.instagram && venue.instagram.length > 5 && !venue.ig_dm_sent && !venue.ig_dm_skipped) return true;
-    // Has Facebook not yet messaged?
-    if (venue.facebook && venue.facebook.length > 5 && !venue.fb_msg_sent && !venue.fb_msg_skipped) return true;
-    // Has contact form?
-    if (venue.contact_form && venue.contact_form.length > 5 && !venue.contact_form_sent && !venue.contact_form_skipped) return true;
+    if (contacts.some(c => contactPending(c, idx))) return true;
+    // Has Instagram / Facebook not yet messaged?
+    if (socialPending(venue, 'ig', idx)) return true;
+    if (socialPending(venue, 'fb', idx)) return true;
+    // Has a usable contact form?
+    if (venue.contact_form && safeHttpUrl(venue.contact_form) && !venue.contact_form_sent && !venue.contact_form_skipped) return true;
     // Has LinkedIn pending? (only if not already contacted)
     if (venue.linkedin_pending && venue.status !== 'contacted') return true;
     // If user has sent ANY channel, keep venue visible
@@ -2770,6 +2910,56 @@ function renderWeeklyGoals() {
     el.innerHTML = html;
 }
 
+// Warning banner under Browse for problems that would otherwise look like "no venues"
+function renderApiStatus() {
+    const el = document.getElementById('apiStatus');
+    if (!el) return;
+    const msg = _reviewedPullFailed
+        ? 'Couldn\'t load reviewed reports from the cloud, so venues from reports stay hidden until it loads. Retrying.'
+        : '';
+    el.textContent = msg;
+    el.style.display = msg ? '' : 'none';
+}
+
+// Render a dashboard payload (from the network or the cache).
+function applyDashboard(data, fromCache) {
+    dashboardData = data;
+    invalidateIndex();
+    // Re-apply any locally confirmed sent/skip marks that arrived during
+    // this fetch (prevents race where marks are wiped by stale data)
+    if (_localSentContacts.size > 0) {
+        (dashboardData.contacts || []).forEach(function(c) {
+            const mark = _localSentContacts.get(c.contact_id + '|' + c.venue_id);
+            if (mark && c.email_sent !== 'true') c.email_sent = mark;
+        });
+    }
+    const localVenueMarks = [_localSentIG, _localSentFB, _localSentForm, _localSkippedIG, _localSkippedFB, _localSkippedForm];
+    if (localVenueMarks.some(s => s.size > 0)) {
+        (dashboardData.venues || []).forEach(function(v) {
+            if (_localSentIG.has(v.venue_id)) v.ig_dm_sent = true;
+            if (_localSentFB.has(v.venue_id)) v.fb_msg_sent = true;
+            if (_localSentForm.has(v.venue_id)) v.contact_form_sent = true;
+            // The deployed backend folds *_skip log rows into *_sent; a skip made here
+            // (only offered when nothing was sent yet) is not a send
+            if (_localSkippedIG.has(v.venue_id)) { v.ig_dm_skipped = true; if (!_localSentIG.has(v.venue_id)) v.ig_dm_sent = false; }
+            if (_localSkippedFB.has(v.venue_id)) { v.fb_msg_skipped = true; if (!_localSentFB.has(v.venue_id)) v.fb_msg_sent = false; }
+            if (_localSkippedForm.has(v.venue_id)) { v.contact_form_skipped = true; if (!_localSentForm.has(v.venue_id)) v.contact_form_sent = false; }
+        });
+    }
+    // One failing widget shouldn't blank the whole home screen
+    [renderStateGrid, updateGigsCount, renderWeeklyGoals, renderLevelBar, checkLinkedInReminder, renderApiStatus].forEach(function(fn) {
+        try { fn(); } catch (e) { console.error('Render error in ' + fn.name + ':', e); }
+    });
+    // Deep link: ?venue=VENUE_ID opens detail page
+    // (saved data may predate a newly added venue — then wait for fresh data)
+    const urlVenue = new URLSearchParams(window.location.search).get('venue');
+    if (urlVenue && navStack[navStack.length - 1] !== 'viewDetail' &&
+        (!fromCache || getIndex().venueById.has(urlVenue))) {
+        openVenueDetail(urlVenue);
+        history.replaceState(null, '', window.location.pathname);
+    }
+}
+
 // === DASHBOARD CACHE (IndexedDB) ===
 // The last payload is kept so the app opens instantly while the ~5MB
 // refresh runs in the background. It lives in IndexedDB because
@@ -2817,39 +3007,6 @@ function _ago(ms) {
     return h < 48 ? h + 'h ago' : Math.round(h / 24) + 'd ago';
 }
 
-// Render a dashboard payload (from the network or the cache).
-function applyDashboard(data, fromCache) {
-    dashboardData = data;
-    // Re-apply any locally confirmed sent marks that arrived during
-    // this fetch (prevents race where marks are wiped by stale data)
-    if (_localSentContacts.size > 0) {
-        (dashboardData.contacts || []).forEach(function(c) {
-            if (_localSentContacts.has(c.contact_id + '|' + c.venue_id)) {
-                c.email_sent = 'true';
-            }
-        });
-    }
-    if (_localSentIG.size > 0 || _localSentFB.size > 0 || _localSentForm.size > 0) {
-        (dashboardData.venues || []).forEach(function(v) {
-            if (_localSentIG.has(v.venue_id)) v.ig_dm_sent = true;
-            if (_localSentFB.has(v.venue_id)) v.fb_msg_sent = true;
-            if (_localSentForm.has(v.venue_id)) v.contact_form_sent = true;
-        });
-    }
-    // One failing widget shouldn't blank the whole home screen
-    [renderStateGrid, updateGigsCount, renderWeeklyGoals, renderLevelBar, checkLinkedInReminder].forEach(function(fn) {
-        try { fn(); } catch (e) { console.error('Render error in ' + fn.name + ':', e); }
-    });
-    // Deep link: ?venue=VENUE_ID opens detail page
-    // (saved data may predate a newly added venue — then wait for fresh data)
-    const urlVenue = new URLSearchParams(window.location.search).get('venue');
-    if (urlVenue && navStack[navStack.length - 1] !== 'viewDetail' &&
-        (!fromCache || dataIndex().venueById.has(urlVenue))) {
-        openVenueDetail(urlVenue);
-        history.replaceState(null, '', window.location.pathname);
-    }
-}
-
 function scheduleRefresh(delay) {
     clearTimeout(refreshTimer);
     // Hidden tabs don't poll; visibilitychange restarts it
@@ -2893,6 +3050,7 @@ function loadDashboard() {
                     setSyncStatus('Display error: ' + e.message, true);
                 }
                 setTimeout(function() { writeCachedDashboard(data); }, 0);
+                if (_reviewedPullFailed) retryReviewedPull();
             } else {
                 _dashFailures++;
                 console.error('Dashboard load error:', err);
@@ -2913,15 +3071,20 @@ function loadDashboard() {
 // Reports are loaded dynamically from reports/manifest.json
 let reportManifest = null;
 
-async function loadReportManifest() {
-    if (reportManifest !== null) return reportManifest;
+// force=true re-reads it (app resume, reports view) so a run registered at batch start gets gated
+async function loadReportManifest(force) {
+    if (reportManifest !== null && !force) return reportManifest;
     try {
         const resp = await fetch('reports/manifest.json?_=' + Date.now());
-        reportManifest = await resp.json();
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const data = await resp.json();
+        if (!Array.isArray(data)) throw new Error('manifest is not a list');
+        reportManifest = data;
     } catch (e) {
         console.warn('Failed to load report manifest:', e);
-        reportManifest = [];
+        if (reportManifest === null) reportManifest = []; // keep the last good copy on a failed refresh
     }
+    _gatedVenueIds = null;
     return reportManifest;
 }
 
@@ -3002,40 +3165,72 @@ function updateTplProgress() {
     }
 }
 
+const REVIEWED_KEY = 'outreach_reviewed_reports';
+const REVIEWED_BASE_KEY = 'outreach_reviewed_reports_base'; // cloud map as of the last successful sync
 let _reviewedReportsCache = null;
+let _reviewedPullFailed = false; // fresh device whose first pull failed: gate stays locked, banner says why
 function getReviewedReports() {
     if (_reviewedReportsCache) return _reviewedReportsCache;
-    try { return JSON.parse(localStorage.getItem('outreach_reviewed_reports') || '{}'); } catch(e) { return {}; }
+    const m = lsJSON(REVIEWED_KEY, {});
+    return (m && typeof m === 'object' && !Array.isArray(m)) ? m : {};
 }
 function setReportReviewed(file, reviewed) {
-    const data = getReviewedReports();
+    const data = Object.assign({}, getReviewedReports());
     if (reviewed) data[file] = Date.now();
     else delete data[file];
-    localStorage.setItem('outreach_reviewed_reports', JSON.stringify(data));
+    writeJSON(REVIEWED_KEY, data);
     _reviewedReportsCache = data;
-    // Sync to cloud
-    if (BASE_URL) fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(data) }));
+    syncReviewedReports();
+}
+// Pull, 3-way merge against the last synced copy, push only when the merge differs from the
+// cloud. An un-review on one device now sticks, and a failed pull never overwrites the cloud.
+let _reviewedSyncBusy = false;
+let _reviewedSyncWaiters = [];
+let _reviewedSyncAgain = false;
+function syncReviewedReports(done) {
+    if (!BASE_URL) { if (done) done(false); return; }
+    if (done) _reviewedSyncWaiters.push(done);
+    if (_reviewedSyncBusy) { _reviewedSyncAgain = true; return; }
+    _reviewedSyncBusy = true;
+    const finish = ok => {
+        _reviewedSyncBusy = false;
+        const waiters = _reviewedSyncWaiters;
+        _reviewedSyncWaiters = [];
+        waiters.forEach(fn => fn(ok));
+        if (_reviewedSyncAgain) { _reviewedSyncAgain = false; syncReviewedReports(); }
+    };
+    jsonpFetch(buildUrl({ action: 'get_reviewed_reports' }), function(err, json) {
+      // finish() must always run — the dashboard render waits on it
+      try {
+        const cloud = json && json.reviewed;
+        if (err || !json || json.status !== 'ok' || !cloud || typeof cloud !== 'object' || Array.isArray(cloud)) {
+            finish(false);
+            return;
+        }
+        _reviewedPullFailed = false;
+        const merged = merge3(getReviewedReports(), cloud, lsJSON(REVIEWED_BASE_KEY, {}));
+        writeJSON(REVIEWED_KEY, merged);
+        _reviewedReportsCache = merged;
+        _gatedVenueIds = null;
+        if (mapsEqual(merged, cloud)) { writeJSON(REVIEWED_BASE_KEY, cloud); finish(true); return; }
+        fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(merged) }), function(res) {
+            if (res.status === 'ok') writeJSON(REVIEWED_BASE_KEY, merged);
+            else showToast('Reviewed reports not synced: ' + resMsg(res));
+            finish(true);
+        });
+      } catch (e) { console.error('Reviewed reports sync error:', e); finish(false); }
+    }, 15000);
 }
 function loadReviewedReportsFromCloud() {
-    if (!BASE_URL) return Promise.resolve();
     return new Promise(function(resolve) {
-        jsonpFetch(buildUrl({ action: 'get_reviewed_reports' }), function(err, json) {
-            // resolve() must always run — the dashboard render waits on it
-            try {
-                if (!err && json && json.reviewed) {
-                    var local = getReviewedReports();
-                    var merged = Object.assign({}, json.reviewed, local);
-                    safeLocalSave('outreach_reviewed_reports', JSON.stringify(merged));
-                    _reviewedReportsCache = merged;
-                    _gatedVenueIds = null; // may arrive after the gate timeout
-                    if (Object.keys(merged).length > Object.keys(json.reviewed).length) {
-                        fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(merged) }));
-                    }
-                }
-            } catch (e) { console.error('Reviewed reports sync error:', e); }
+        syncReviewedReports(function(ok) {
+            if (!ok && Object.keys(getReviewedReports()).length === 0) _reviewedPullFailed = true;
             resolve();
-        }, 15000);
+        });
     });
+}
+function retryReviewedPull() {
+    syncReviewedReports(function(ok) { if (ok && dashboardData) renderStateGrid(); });
 }
 
 async function openReportsView() {
@@ -3043,15 +3238,15 @@ async function openReportsView() {
     const baseUrl = 'https://atdi1029-byte.github.io/gig-outreach/reports/';
 
     body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-dim)">Loading reports...</div>';
-    navigateTo('viewReports');
+    if (navStack[navStack.length - 1] !== 'viewReports') navigateTo('viewReports');
 
-    const reports = await loadReportManifest();
+    const reports = await loadReportManifest(true);
     const reviewed = getReviewedReports();
 
     // Dedupe by file name (keep first occurrence)
     const seen = new Set();
     const unique = (reports || []).filter(r => {
-        if (seen.has(r.file)) return false;
+        if (!r || seen.has(r.file)) return false;
         seen.add(r.file);
         return true;
     });
@@ -3065,7 +3260,7 @@ async function openReportsView() {
     if (unique.length === 0) {
         html += '<div style="text-align:center;padding:1rem;color:var(--text-dim);font-size:0.85rem">No reports yet.</div>';
     } else {
-        const unread = unique.filter(r => !reviewed[r.file]).length;
+        const unread = unique.filter(r => !reviewed[r.file] || isActiveRun(r)).length;
         if (unread > 0) {
             html += `<div style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.8rem">${unread} unreviewed</div>`;
         }
@@ -3073,7 +3268,7 @@ async function openReportsView() {
         // Group by month (YYYY-MM)
         const months = {};
         for (const r of unique) {
-            const key = r.date ? r.date.slice(0, 7) : 'other';
+            const key = r.date ? String(r.date).slice(0, 7) : 'other';
             if (!months[key]) months[key] = [];
             months[key].push(r);
         }
@@ -3088,45 +3283,59 @@ async function openReportsView() {
         for (const key of Object.keys(months).sort().reverse()) {
             const [yr, mo] = key.split('-');
             const label = mo ? `${monthNames[mo] || mo} ${yr}` : 'Other';
-            html += `<div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-dim);margin:1rem 0 0.4rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border)">${label}</div>`;
+            html += `<div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-dim);margin:1rem 0 0.4rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border)">${esc(label)}</div>`;
             for (const r of months[key]) {
-                const fileUrl = `${baseUrl}${r.file}`;
-                const isReviewed = !!reviewed[r.file];
+                const fileUrl = `${baseUrl}${encodeURI(String(r.file || ''))}`;
+                const running = isActiveRun(r);
+                const isReviewed = !!reviewed[r.file] && !running;
                 const opacity = isReviewed ? '0.5' : '1';
-                const badge = isReviewed
+                const badge = running
+                    ? '<span style="color:#e67e22;font-size:0.75rem;font-weight:700;margin-left:0.4rem">RUNNING</span>'
+                    : isStaleRun(r) && !isReviewed
+                    ? '<span style="color:var(--red);font-size:0.75rem;font-weight:700;margin-left:0.4rem">STALLED</span>'
+                    : isReviewed
                     ? '<span style="color:#4caf50;font-size:0.75rem;margin-left:0.4rem">Reviewed</span>'
                     : '<span style="color:var(--gold);font-size:0.75rem;font-weight:700;margin-left:0.4rem">NEW</span>';
+                const toggleTitle = running ? 'Run in progress' : (isReviewed ? 'Mark as unreviewed' : 'Mark as reviewed');
                 html += `<div style="display:flex;align-items:stretch;margin-bottom:0.5rem;opacity:${opacity}">
-                    <div onclick="window.open('${fileUrl}','_blank')" style="flex:1;cursor:pointer;background:var(--bg-card);border:1px solid var(--border);border-radius:8px 0 0 8px;padding:0.8rem">
+                    <div onclick="window.open(${jsArg(fileUrl)},'_blank')" style="flex:1;cursor:pointer;background:var(--bg-card);border:1px solid var(--border);border-radius:8px 0 0 8px;padding:0.8rem">
                         <div style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--gold)">${esc(r.title)}${badge}</div>
                         <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem">${esc(r.summary || '')}</div>
                     </div>
-                    <button onclick="toggleReportReviewed('${esc(r.file)}')" style="background:${isReviewed ? '#1a2e1a' : 'var(--bg-card)'};border:1px solid var(--border);border-left:none;border-radius:0 8px 8px 0;padding:0 0.8rem;cursor:pointer;font-size:1.1rem;color:${isReviewed ? '#4caf50' : '#555'}" title="${isReviewed ? 'Mark as unreviewed' : 'Mark as reviewed'}">${isReviewed ? '&#10003;' : '&#9675;'}</button>
+                    <button onclick="toggleReportReviewed(${jsArg(r.file)})" style="background:${isReviewed ? '#1a2e1a' : 'var(--bg-card)'};border:1px solid var(--border);border-left:none;border-radius:0 8px 8px 0;padding:0 0.8rem;cursor:pointer;font-size:1.1rem;color:${isReviewed ? '#4caf50' : '#555'}" title="${toggleTitle}">${running ? '&#8987;' : isReviewed ? '&#10003;' : '&#9675;'}</button>
                 </div>`;
             }
         }
     }
 
     body.innerHTML = html;
+    if (dashboardData) renderStateGrid();
 }
 
+// Markers the pipeline / manual check leave on venues it parked (see P4 status flow)
+const REVIEW_FLAG_RE = /pipeline|0 contacts|zero contacts|closed|dead|not a venue|not-a-venue|junk|motel|airbnb|vrbo|too far|out of area|quarantin|duplicate|wrong business|flag/i;
+function hasReviewFlag(v) { return REVIEW_FLAG_RE.test((v.check_status || '') + ' ' + (v.notes || '')); }
+
 function toggleReportReviewed(file) {
+    const report = (reportManifest || []).find(r => r && r.file === file);
+    if (isActiveRun(report)) { showToast('Run still in progress — review it when the report is done'); return; }
     const reviewed = getReviewedReports();
     const marking = !reviewed[file];
     setReportReviewed(file, marking);
     _gatedVenueIds = null; // invalidate gate cache
-    // When marking reviewed, promote needs_review venues to untouched
-    if (marking && BASE_URL && reportManifest && dashboardData) {
-        const report = reportManifest.find(r => r.file === file);
-        if (report && Array.isArray(report.venue_ids)) {
-            const venues = (dashboardData.venues || []);
-            for (const vid of report.venue_ids) {
-                const v = venues.find(x => x.venue_id === vid);
-                if (v && v.status === 'needs_review') {
-                    v.status = 'untouched';
-                    fireGet(buildUrl({ action: 'update_venue', venue_id: vid, field: 'status', value: 'untouched' }));
-                }
-            }
+    // Reviewing never changes the status of venues the pipeline processed: pipelined stays
+    // pipelined and zero-contact or flagged (closed/motel/...) needs_review stays needs_review.
+    // A report can opt discovery-verified venues in via promote_ids; those move to untouched
+    // only if still needs_review, with a real website and no park flag.
+    if (marking && BASE_URL && report && report.promote_ids && dashboardData) {
+        const idx = getIndex();
+        for (const vid of reportVenueIds(report, 'promote_ids')) {
+            const v = idx.venueById.get(vid);
+            if (!v || v.status !== 'needs_review' || !safeHttpUrl(v.website) || hasReviewFlag(v)) continue;
+            fireGet(buildUrl({ action: 'update_venue', venue_id: vid, field: 'status', value: 'untouched' }), function(res) {
+                if (res.status === 'ok' && res.verified !== false) { v.status = 'untouched'; invalidateIndex(); }
+                else showToast('Status not updated for ' + v.name);
+            });
         }
     }
     openReportsView();
@@ -3137,9 +3346,11 @@ function toggleReportReviewed(file) {
 // === LINKEDIN REMINDER ===
 function checkLinkedInReminder() {
     const venues = (dashboardData && dashboardData.venues) || [];
-    const pending = venues.filter(v => (v.notes || '').includes('LinkedIn pending'));
+    // The pipeline tracks this in the linkedin_pending column (--linkedin-retry reads the same flag)
+    const pending = venues.filter(v => v.linkedin_pending === true || String(v.linkedin_pending).toLowerCase() === 'true'
+        || (v.notes || '').includes('LinkedIn pending'));
     const el = document.getElementById('linkedinReminder');
-    if (pending.length > 0 && new Date().getMonth() >= 3) { // April = month 3
+    if (pending.length > 0) {
         el.style.display = '';
         document.getElementById('linkedinPendingCount').textContent = pending.length;
     } else {
@@ -3162,9 +3373,8 @@ const BUILTIN_DEFAULTS = [
 function titleCase(s) { return s.replace(/\b\w/g, c => c.toUpperCase()); }
 
 function getMonthlyDefaults() {
-    const stored = localStorage.getItem(MONTHLY_DEFAULTS_KEY);
-    if (stored) {
-        const parsed = JSON.parse(stored);
+    const parsed = lsJSON(MONTHLY_DEFAULTS_KEY, null);
+    if (Array.isArray(parsed)) {
         // Migrate old string format to object format
         return parsed.map(d => typeof d === 'string' ? { text: d } : d);
     }
@@ -3210,88 +3420,204 @@ function saveMonthlyDefaults(arr) {
     if (ok) syncMonthlyToCloud();
 }
 
+// Monthly sync follows the cloud-sync pattern: pull, merge against the last synced copy
+// (base), push only real data. The lock opens only after a successful pull or when this
+// device already had real tasks before the skeleton was created.
+const MONTHLY_BASE_KEY = 'outreach_monthly_base'; // {tasks, defaults} as last synced with the cloud
 let _syncTimer = null;
 let _monthlyReady = false;
-function syncMonthlyToCloud() {
-    if (!_monthlyReady) return;
-    // Debounce — wait 2s after last change before pushing
-    clearTimeout(_syncTimer);
-    _syncTimer = setTimeout(() => {
-        const tasks = localStorage.getItem(MONTHLY_KEY) || '{}';
-        const defaults = localStorage.getItem(MONTHLY_DEFAULTS_KEY) || '[]';
-        // Block pushing empty data after cache wipe
-        if (tasks === '{}' && (defaults === '[]' || defaults === '{}')) {
-            console.warn('[Monthly] BLOCKED — empty data, refusing cloud push');
-            return;
+let _monthlyFresh = false; // no real local tasks at startup (new device / cache wipe): cloud wins
+let _monthlySyncBusy = false, _monthlySyncAgain = false;
+
+function hasRealMonthly(obj) { return !!(obj && obj.month && Array.isArray(obj.tasks) && obj.tasks.length > 0); }
+function parseJSONSafe(s) {
+    if (s == null || s === '') return null;
+    if (typeof s !== 'string') return s;
+    try { return JSON.parse(s); } catch (e) { return null; }
+}
+function monthlyItemChanged(a, b) {
+    return !b || a.text !== b.text || !!a.done !== !!b.done || !sameVal(a.subtasks || [], b.subtasks || []);
+}
+// Merge a task (or subtask) list by id: what this device added/edited/deleted since base
+// wins, everything else follows the cloud. Cloud order first, local additions appended.
+function mergeMonthlyList(local, cloud, base) {
+    local = local || []; cloud = cloud || []; base = base || [];
+    const L = new Map(local.map(t => [t.id, t])), C = new Map(cloud.map(t => [t.id, t])), B = new Map(base.map(t => [t.id, t]));
+    const order = cloud.map(t => t.id).concat(local.map(t => t.id).filter(id => !C.has(id)));
+    const out = [];
+    for (const id of order) {
+        const l = L.get(id), c = C.get(id), b = B.get(id);
+        if (l && c) {
+            const pickField = f => (b && sameVal(l[f], b[f])) ? c[f] : l[f];
+            const m = Object.assign({}, c, { text: pickField('text'), done: !!pickField('done') });
+            if (l.subtasks || c.subtasks) {
+                m.subtasks = mergeMonthlyList(l.subtasks, c.subtasks, b && b.subtasks);
+                if (m.subtasks.length) m.done = m.subtasks.every(s => s.done); // parent follows subtasks, as the toggles do
+            }
+            out.push(m);
+        } else if (l) {
+            if (!b || monthlyItemChanged(l, b)) out.push(l); // gone from the cloud unless new/edited here
+        } else if (c) {
+            if (!b || monthlyItemChanged(c, b)) out.push(c); // deleted here unless new/edited in the cloud
         }
-        const url = buildUrl({
-            action: 'save_monthly',
-            tasks: tasks,
-            defaults: defaults
-        });
-        if (url) jsonpFetch(url, () => {});
-    }, 2000);
+    }
+    return out;
+}
+function mergeMonthlyTasks(local, cloud, base) {
+    if (!hasRealMonthly(cloud)) return local;
+    if (!hasRealMonthly(local)) return cloud;
+    if (local.month !== cloud.month) return local.month > cloud.month ? local : cloud;
+    const baseTasks = (base && base.month === local.month) ? base.tasks : null;
+    return { month: local.month, tasks: mergeMonthlyList(local.tasks, cloud.tasks, baseTasks) };
 }
 
-function loadMonthlyFromCloud(cb) {
+function syncMonthlyToCloud() {
+    // Debounce — wait 2s after last change before syncing
+    clearTimeout(_syncTimer);
+    _syncTimer = setTimeout(() => monthlySync(true), 2000);
+}
+
+function loadMonthlyFromCloud(cb) { monthlySync(true, cb); }
+
+function monthlySync(allowPush, cb) {
+    const done = ok => { if (cb) cb(ok); };
     const url = buildUrl({ action: 'load_monthly' });
-    if (!url) { if (cb) cb(); return; }
+    if (!url) { done(false); return; }
+    if (_monthlySyncBusy) { _monthlySyncAgain = true; done(false); return; }
+    _monthlySyncBusy = true;
+    const finish = ok => {
+        _monthlySyncBusy = false;
+        done(ok);
+        if (_monthlySyncAgain) { _monthlySyncAgain = false; monthlySync(true); }
+    };
     jsonpFetch(url, function(err, data) {
-        if (err || !data || data.status !== 'ok') { if (cb) cb(); return; }
-        if (data.tasks) {
-            try {
-                const cloud = JSON.parse(data.tasks);
-                const local = JSON.parse(localStorage.getItem(MONTHLY_KEY) || '{}');
-                // Cloud wins — overwrite local
-                if (cloud.month) {
-                    localStorage.setItem(MONTHLY_KEY, data.tasks);
-                }
-            } catch(e) {}
+      // finish() must always run, or every later sync would be skipped as "busy"
+      try {
+        // Failed pull: keep local as-is and never push blind
+        if (err || !data || data.status !== 'ok') { finish(false); return; }
+        const cloudTasks = parseJSONSafe(data.tasks);
+        const cloudDefs = parseJSONSafe(data.defaults);
+        const base = lsJSON(MONTHLY_BASE_KEY, null) || {};
+        const beforeTasks = localStorage.getItem(MONTHLY_KEY);
+        const beforeDefs = localStorage.getItem(MONTHLY_DEFAULTS_KEY);
+        const localTasks = parseJSONSafe(beforeTasks);
+        const localDefs = parseJSONSafe(beforeDefs);
+
+        // Defaults: an edit made here since the last sync wins; otherwise the cloud's list
+        const cloudDefsOk = Array.isArray(cloudDefs) && cloudDefs.length > 0;
+        const localDefsOk = Array.isArray(localDefs) && localDefs.length > 0;
+        const localDefsEdited = !_monthlyFresh && localDefsOk && base.defaults !== undefined && !sameVal(localDefs, base.defaults);
+        const defs = localDefsEdited ? localDefs : (cloudDefsOk ? cloudDefs : (localDefsOk ? localDefs : null));
+        if (defs) safeLocalSave(MONTHLY_DEFAULTS_KEY, JSON.stringify(defs));
+
+        // Tasks: cloud wins on a fresh device; otherwise per-task 3-way merge
+        let tasks = (_monthlyFresh || !hasRealMonthly(localTasks))
+            ? (hasRealMonthly(cloudTasks) ? cloudTasks : localTasks)
+            : mergeMonthlyTasks(localTasks, cloudTasks, base.tasks);
+        if (tasks) safeLocalSave(MONTHLY_KEY, JSON.stringify(tasks));
+        tasks = getMonthlyTasks(); // rolls into a new month from the merged defaults if needed
+
+        _monthlyFresh = false;
+        _monthlyReady = true;
+        if (localStorage.getItem(MONTHLY_KEY) !== beforeTasks || localStorage.getItem(MONTHLY_DEFAULTS_KEY) !== beforeDefs) {
+            renderMonthlyTasks();
         }
-        if (data.defaults) {
-            try {
-                const cloudDef = JSON.parse(data.defaults);
-                if (Array.isArray(cloudDef) && cloudDef.length > 0) {
-                    localStorage.setItem(MONTHLY_DEFAULTS_KEY, data.defaults);
-                }
-            } catch(e) {}
+
+        const params = { action: 'save_monthly' };
+        if (hasRealMonthly(tasks) && !sameVal(tasks, cloudTasks)) params.tasks = JSON.stringify(tasks);
+        // Never send an empty defaults list: it would wipe the custom defaults in the Sheet
+        if (defs && defs.length > 0 && !sameVal(defs, cloudDefs)) params.defaults = JSON.stringify(defs);
+        if (!allowPush || (!params.tasks && !params.defaults)) {
+            writeJSON(MONTHLY_BASE_KEY, { tasks: cloudTasks, defaults: cloudDefs });
+            finish(true);
+            return;
         }
-        renderMonthlyTasks();
-        if (cb) cb();
+        // Send both so the Sheet always holds a consistent pair
+        if (hasRealMonthly(tasks)) params.tasks = JSON.stringify(tasks);
+        if (defs && defs.length > 0) params.defaults = JSON.stringify(defs);
+        jsonpFetch(buildUrl(params), function(err2, res) {
+            if (!err2 && res && res.status === 'ok') {
+                writeJSON(MONTHLY_BASE_KEY, { tasks: params.tasks ? tasks : cloudTasks, defaults: params.defaults ? defs : cloudDefs });
+            } else {
+                console.warn('[Monthly] cloud save failed:', err2 || (res && res.message));
+                showToast('Monthly tasks not synced — will retry');
+            }
+            finish(true);
+        });
+      } catch (e) { console.error('[Monthly] sync error:', e); finish(false); }
     });
 }
 
 // === MARK VENUE DONE / RESET ===
+function venueHasVerifiedContact(venueId) {
+    return (getIndex().contactsByVenue.get(venueId) || []).some(c => c.email && isSendableStatus(c.verified));
+}
+
+// Un-mark Done: back to pipelined when the venue has verified contacts, else untouched.
+// (It never triggered a re-scrape: build_batch skips reported venues and venues with contacts.)
 function resetVenue(venueId) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: 'untouched' }), function(data) {
-        if (data.status === 'ok') {
-            showToast('Venue reset — ready to re-scrape');
-            setTimeout(() => { loadDashboard(); openVenueDetail(venueId); }, 500);
+    const newStatus = venueHasVerifiedContact(venueId) ? 'pipelined' : 'untouched';
+    // force: the new backend refuses contacted -> pipelined/untouched without it; this is an explicit user undo
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: newStatus, force: 'true' }), function(data) {
+        if (data.status !== 'ok' || data.verified === false) { showToast('Not saved: ' + resMsg(data)); return; }
+        const v = getIndex().venueById.get(venueId);
+        if (v) {
+            v.status = newStatus;
+            if (newStatus === 'untouched') v.contacted_date = '';
         }
+        invalidateIndex();
+        showToast('Venue un-marked (' + newStatus + ')');
+        // Re-render from the updated local data (loadDashboard skips while the detail view is open)
+        if (navStack[navStack.length - 1] === 'viewDetail' && window._currentVenueId === venueId) openVenueDetail(venueId);
+        renderStateGrid();
     });
 }
 
 function saveDetailNote(venueId) {
     const note = (document.getElementById('detailNote') || {}).value || '';
     if (!note.trim()) { showToast('Nothing to save'); return; }
-    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_feedback', value: note.trim() }), function() {
+    // Notes feed the taste review: only say "saved" once the Sheet confirms it
+    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'venue_feedback', value: note.trim() }), function(res) {
+        if (res.status !== 'ok' || res.verified === false) { showToast('Note NOT saved: ' + resMsg(res)); return; }
         showToast('Note saved');
-        const dv = ((dashboardData && dashboardData.venues) || []).find(v => v.venue_id === venueId);
+        const dv = getIndex().venueById.get(venueId);
         if (dv) dv.venue_feedback = note.trim();
     });
 }
 
+// "contacted" means outreach went out (it starts the 2.5-year resurface clock). Marking a
+// venue done with nothing sent records it as "dismissed" instead, so metrics stay honest.
 function markVenueDone(venueId) {
     if (!BASE_URL) { showToast('API not configured'); return; }
-    if (!confirm('Mark this venue as contacted? It will be hidden from action lists.')) return;
-    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: 'contacted' }), function(data) {
-        if (data.status === 'ok') {
-            showToast('Venue hidden!');
+    const idx = getIndex();
+    const v = idx.venueById.get(venueId);
+    // 'sent_elsewhere' = this person was already emailed from another venue row
+    const anySent = (idx.contactsByVenue.get(venueId) || []).some(c => isSentFlag(c.email_sent) || c.email_sent === 'sent_elsewhere')
+        || !!(v && (v.ig_dm_sent || v.fb_msg_sent || v.contact_form_sent));
+    const msg = anySent
+        ? 'Mark this venue as contacted? It will be hidden from action lists.'
+        : 'No outreach has been logged for this venue.\n\nDismiss it? It will be hidden from action lists (saved as "dismissed", not "contacted").';
+    if (!confirm(msg)) return;
+    const save = function(newStatus) {
+        fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: newStatus }), function(data) {
+            // A backend that doesn't know "dismissed" yet: keep the old behaviour rather than fail
+            if (newStatus === 'dismissed' && data.status === 'error' && /invalid status/i.test(data.message || '')) {
+                save('contacted');
+                return;
+            }
+            if (data.status !== 'ok' || data.verified === false) { showToast('Not saved: ' + resMsg(data)); return; }
+            if (v) {
+                v.status = newStatus;
+                if (newStatus === 'contacted') v.contacted_date = new Date().toISOString();
+            }
+            invalidateIndex();
+            showToast(newStatus === 'dismissed' ? 'Venue dismissed' : 'Venue hidden!');
             goBack();
             setTimeout(loadDashboard, 500);
-        }
-    });
+        });
+    };
+    save(anySent ? 'contacted' : 'dismissed');
 }
 
 function toggleMonthlyTask(id) {
@@ -3432,18 +3758,18 @@ function renderMonthlyTasks() {
     html += `</div>`;
     html += `<div class="monthly-body${wasOpen ? ' open' : ''}">`;
     for (const t of tasks) {
-        html += `<div class="monthly-task${t.done ? ' done' : ''}" onclick="toggleMonthlyTask(${t.id})">`;
+        html += `<div class="monthly-task${t.done ? ' done' : ''}" onclick="toggleMonthlyTask(${Number(t.id)})">`;
         html += `<span class="monthly-check">${t.done ? '&#10003;' : ''}</span>`;
         html += `<span class="monthly-task-text">${esc(t.text)}</span>`;
-        html += `<span class="monthly-add-sub" onclick="event.stopPropagation();addMonthlySubtask(${t.id})" title="Add subtask">+</span>`;
-        html += `<span class="monthly-edit" onclick="event.stopPropagation();editMonthlyTask(${t.id})">&#9998;</span>`;
+        html += `<span class="monthly-add-sub" onclick="event.stopPropagation();addMonthlySubtask(${Number(t.id)})" title="Add subtask">+</span>`;
+        html += `<span class="monthly-edit" onclick="event.stopPropagation();editMonthlyTask(${Number(t.id)})">&#9998;</span>`;
         html += `</div>`;
         if (t.subtasks && t.subtasks.length > 0) {
             for (const s of t.subtasks) {
-                html += `<div class="monthly-subtask${s.done ? ' done' : ''}" onclick="toggleMonthlySubtask(${t.id},${s.id})">`;
+                html += `<div class="monthly-subtask${s.done ? ' done' : ''}" onclick="toggleMonthlySubtask(${Number(t.id)},${Number(s.id)})">`;
                 html += `<span class="monthly-check">${s.done ? '&#10003;' : ''}</span>`;
                 html += `<span class="monthly-task-text">${esc(s.text)}</span>`;
-                html += `<span class="monthly-edit" onclick="event.stopPropagation();editMonthlySubtask(${t.id},${s.id})">&#9998;</span>`;
+                html += `<span class="monthly-edit" onclick="event.stopPropagation();editMonthlySubtask(${Number(t.id)},${Number(s.id)})">&#9998;</span>`;
                 html += `</div>`;
             }
         }
@@ -3586,9 +3912,24 @@ function scrollToTasks() {
 // === PAST GIGS ===
 let gigsData = []; // Cached from dashboard
 
+// Gig dates come back either as 'YYYY-MM-DD' or as a Date string from the Sheet
+// ("Mon Jan 01 2024 00:00:00 GMT-0500 ..."); appending T00:00:00 to the latter gave Invalid Date.
+function parseGigDate(s) {
+    s = String(s || '').trim();
+    if (!s) return null;
+    const d = /^\d{4}-\d{2}-\d{2}$/.test(s) ? new Date(s + 'T00:00:00') : new Date(s);
+    return isNaN(d.getTime()) ? null : d;
+}
+function gigDateInputValue(s) {
+    const d = parseGigDate(s);
+    if (!d) return '';
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
 function openGigsView() {
     const body = document.getElementById('gigsBody');
-    gigsData = (dashboardData && dashboardData.gigs) || [];
+    // Legacy soft-deleted rows stay in the sheet as '(DELETED)'
+    gigsData = ((dashboardData && dashboardData.gigs) || []).filter(g => g.venue_name !== '(DELETED)');
 
     if (gigsData.length === 0) {
         body.innerHTML = '<div class="gig-empty">No past gigs yet.<br>Tap "+ Add" to log your first gig!</div>';
@@ -3603,12 +3944,13 @@ function openGigsView() {
 function renderGigCard(g) {
     const scoreColor = g.overall_score >= 8 ? 'var(--green)' : g.overall_score >= 5 ? 'var(--gold)' : 'var(--red)';
     const cat = (g.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
-    const dateStr = g.date ? new Date(g.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
-    let html = `<div class="gig-card" onclick="showEditGigForm('${esc(g.gig_id)}')">`;
+    const gd = parseGigDate(g.date);
+    const dateStr = gd ? gd.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+    let html = `<div class="gig-card" onclick="showEditGigForm(${jsArg(g.gig_id)})">`;
     html += `<div class="gig-card-top">`;
     html += `<div><div class="gig-card-name">${esc(g.venue_name)}</div>`;
-    html += `<div class="gig-card-date">${dateStr}${g.category ? ' · ' : ''}<span class="category-badge ${cat}">${esc((g.category || '').toUpperCase())}</span></div></div>`;
-    html += `<div class="gig-card-score" style="color:${scoreColor}">${g.overall_score.toFixed(1)}</div>`;
+    html += `<div class="gig-card-date">${dateStr}${g.category ? ' · ' : ''}<span class="category-badge ${esc(cat)}">${esc((g.category || '').toUpperCase())}</span></div></div>`;
+    html += `<div class="gig-card-score" style="color:${scoreColor}">${(Number(g.overall_score) || 0).toFixed(1)}</div>`;
     html += `</div>`;
     html += `<div class="gig-card-ratings">`;
     html += `<span class="gig-rating-pill">Tips ${g.rating_tips}</span>`;
@@ -3664,7 +4006,7 @@ function renderGigForm(gig) {
 
     // Date
     html += `<div class="gig-form-field"><label>Date</label>`;
-    html += `<input type="date" id="gigDate" value="${gig ? gig.date : new Date().toISOString().split('T')[0]}"></div>`;
+    html += `<input type="date" id="gigDate" value="${esc(gig ? gigDateInputValue(gig.date) : gigDateInputValue(new Date().toString()))}"></div>`;
 
     // Category
     html += `<div class="gig-form-field"><label>Category</label>`;
@@ -3689,7 +4031,7 @@ function renderGigForm(gig) {
     }
 
     // Overall score display
-    const overall = gig ? gig.overall_score : 5;
+    const overall = gig ? (Number(gig.overall_score) || 0) : 5;
     const overallColor = overall >= 8 ? 'var(--green)' : overall >= 5 ? 'var(--gold)' : 'var(--red)';
     html += `<div class="rating-overall" id="gigOverall" style="color:${overallColor}">${overall.toFixed(1)}</div>`;
 
@@ -3698,12 +4040,12 @@ function renderGigForm(gig) {
     html += `<textarea id="gigNotes" placeholder="What made it good/bad?">${esc(gig ? gig.notes : '')}</textarea></div>`;
 
     // Save button
-    html += `<button class="gig-save-btn" onclick="saveGig('${isEdit ? esc(gig.gig_id) : ''}')">${isEdit ? 'Update Gig' : 'Save Gig'}</button>`;
+    html += `<button class="gig-save-btn" onclick="saveGig(${jsArg(isEdit ? gig.gig_id : '')})">${isEdit ? 'Update Gig' : 'Save Gig'}</button>`;
 
     // Delete button (edit only)
     if (isEdit) {
         html += `<div style="text-align:center;margin-top:0.75rem">`;
-        html += `<button class="gig-delete-btn" onclick="deleteGig('${esc(gig.gig_id)}')">Delete Gig</button>`;
+        html += `<button class="gig-delete-btn" onclick="deleteGig(${jsArg(gig.gig_id)})">Delete Gig</button>`;
         html += `</div>`;
     }
 
@@ -3794,183 +4136,17 @@ function saveGig(gigId) {
 
 function deleteGig(gigId) {
     if (!confirm('Delete this gig?')) return;
-    // Use update_gig with a special flag — or we add a delete_gig action
-    // For now, just mark as deleted by clearing the venue_name
     showToast('Deleting...');
-    fireGet(buildUrl({ action: 'update_gig', gig_id: gigId, venue_name: '(DELETED)' }), function(resp) {
-        showToast('Deleted');
-        goBack();
-        setTimeout(loadDashboard, 500);
+    const done = () => { showToast('Deleted'); goBack(); setTimeout(loadDashboard, 500); };
+    fireGet(buildUrl({ action: 'delete_gig', gig_id: gigId }), function(resp) {
+        if (resp.status === 'ok' && resp.deleted) { done(); return; }
+        if (resp.status === 'error' && !/unknown|action/i.test(resp.message || '')) { showToast('Delete failed: ' + resMsg(resp)); return; }
+        // A backend without delete_gig answers with the health check: fall back to the old soft delete
+        fireGet(buildUrl({ action: 'update_gig', gig_id: gigId, venue_name: '(DELETED)' }), function(r2) {
+            if (r2.status === 'ok') done();
+            else showToast('Delete failed: ' + resMsg(r2));
+        });
     });
-}
-
-// === SMART PICKS (Recommendation Engine) ===
-let smartPicksData = null;
-let allSmartPicks = [];
-
-function toggleSmartPicks() {
-    const list = document.getElementById('smartPicksList');
-    list.classList.toggle('collapsed');
-}
-
-function loadSmartPicks() {
-    // Only load if we have past gigs
-    const gigs = (dashboardData && dashboardData.gigs) || [];
-    if (gigs.length === 0) {
-        document.getElementById('smartPicksSection').style.display = 'none';
-        return;
-    }
-
-    jsonpFetch(buildUrl({ action: 'get_recommendations' }), function(err, data) {
-        if (err || !data || data.status !== 'ok') return;
-        smartPicksData = data;
-        renderSmartPicks(data.recommendations || [], data.profile || {});
-        renderTasteReport(data.taste_report || null);
-    });
-}
-
-function renderSmartPicks(recs, profile) {
-    const section = document.getElementById('smartPicksSection');
-    const list = document.getElementById('smartPicksList');
-    const badge = document.getElementById('smartPicksBadge');
-
-    // Exclude past gig venues — you already play there
-    const gigVenueIds = new Set(((dashboardData && dashboardData.gigs) || []).map(g => g.venue_id).filter(Boolean));
-    const stripThe = s => s.toLowerCase().trim().replace(/^the\s+/, '');
-    const gigNames = new Set(((dashboardData && dashboardData.gigs) || []).map(g => stripThe(g.venue_name)).filter(Boolean));
-    // Show top 8 recommendations that aren't past gigs or already contacted
-    const allFiltered = recs.filter(r => {
-        if (gigVenueIds.has(r.venue_id)) return false;
-        if (gigNames.has(stripThe(r.name))) return false;
-        const v = dataIndex().venueById.get(r.venue_id);
-        if (v && v.status === 'pipelined') return false;
-        if (v && v.status === 'contacted' && !isResurfaced(v)) return false;
-        return true;
-    });
-    const filtered = allFiltered.slice(0, 8);
-
-    if (allFiltered.length === 0) {
-        section.style.display = 'none';
-        return;
-    }
-
-    section.style.display = '';
-    badge.textContent = allFiltered.length;
-    allSmartPicks = allFiltered;
-
-    // Build "why" reason for each pick
-    const gigs = (dashboardData && dashboardData.gigs) || [];
-    const bestCat = profile.best_category || '';
-
-    list.innerHTML = filtered.map(r => {
-        const score = r.recommendation_score;
-        const scoreColor = score >= 70 ? 'var(--gold)' : score >= 40 ? 'var(--text)' : 'var(--text-dim)';
-        const cat = (r.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
-        const bd = r.score_breakdown || {};
-
-        // Build reason string
-        let reasons = [];
-        if (bd.category >= 20 && bestCat) {
-            // Find best gig in this category
-            const catGigs = gigs.filter(g => g.category.toLowerCase() === r.category.toLowerCase());
-            if (catGigs.length > 0) {
-                const best = catGigs.reduce((a, b) => a.overall_score > b.overall_score ? a : b);
-                reasons.push(`${CATEGORY_LABELS[cat] || r.category} scored ${best.overall_score.toFixed(1)}/10 at ${best.venue_name}`);
-            } else {
-                reasons.push(`Similar to your top category: ${bestCat}`);
-            }
-        }
-        if (bd.taste_tier >= 15) reasons.push('Dream venue type');
-        else if (bd.taste_tier >= 5) reasons.push('Great venue type');
-        if (bd.location >= 10) reasons.push('Wealthy area');
-        if (bd.zone >= 7) reasons.push('Great zone');
-        if (bd.distance >= 18) reasons.push('Ideal distance');
-        if (bd.contact_quality >= 7) reasons.push('Good contacts');
-
-        let html = `<div class="smart-pick-card" onclick="openVenueDetail('${esc(r.venue_id)}')">`;
-        html += `<div class="smart-pick-top">`;
-        html += `<div class="smart-pick-score" style="color:${scoreColor}">${score}</div>`;
-        html += `<div class="smart-pick-info">`;
-        html += `<div class="smart-pick-name">${esc(r.name)}</div>`;
-        html += `<div class="smart-pick-meta"><span class="category-badge ${cat}">${esc((r.category || '').toUpperCase())}</span> ${esc(r.city || '')}${r.state ? ', ' + esc(r.state) : ''}${r.distance_miles ? ' · ' + r.distance_miles + ' mi' : ''}</div>`;
-        html += `</div></div>`;
-        const spVenue = dataIndex().venueById.get(r.venue_id);
-        if (spVenue && isResurfaced(spVenue)) {
-            html += `<div class="smart-pick-reason" style="color:#e8944c">${esc(resurfaceLabel(spVenue))}</div>`;
-        } else if (reasons.length > 0) {
-            html += `<div class="smart-pick-reason">${esc(reasons[0])}</div>`;
-        }
-        html += `</div>`;
-        return html;
-    }).join('');
-    if (allFiltered.length > 8) {
-        list.innerHTML += `<div style="text-align:center;margin:0.5rem 0"><button onclick="openAllSmartPicks()" style="background:var(--gold);color:#111;border:none;border-radius:6px;padding:0.4rem 1.2rem;font-family:'Lato',sans-serif;font-weight:700;font-size:0.75rem;cursor:pointer">View All ${allFiltered.length} Picks</button></div>`;
-    }
-}
-
-function renderTasteReport(report) {
-    const el = document.getElementById('tasteReport');
-    if (!el || !report || !report.active) { if (el) el.style.display = 'none'; return; }
-    el.style.display = '';
-    const total = report.tier1_venues + report.tier2_venues + report.tier3_venues + report.tier4_venues;
-    el.innerHTML = `<div style="margin:0.4rem 0;padding:0.5rem 0.7rem;background:rgba(240,160,48,0.06);border:1px solid rgba(240,160,48,0.15);border-radius:8px;font-size:0.7rem;color:var(--text-dim)">
-        <div style="font-size:0.75rem;color:var(--gold);font-weight:700;margin-bottom:0.3rem">Taste Engine Active</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.15rem 0.6rem">
-        <span>Tier rules: <b style="color:var(--text)">${report.tier_count}</b> categories</span>
-        <span>Sweet spots: <b style="color:var(--text)">${report.location_count}</b> cities</span>
-        <span style="color:#4caf50">Dream tier: <b>${report.tier1_venues}</b> venues</span>
-        <span style="color:#4caf50">Good tier: <b>${report.tier2_venues}</b> venues</span>
-        <span style="color:#888">Neutral: <b>${report.tier3_venues}</b> venues</span>
-        <span style="color:#f44336">Skip tier: <b>${report.tier4_venues}</b> venues</span>
-        <span>Area matches: <b style="color:var(--gold)">${report.location_matches}</b> / ${total}</span>
-        <span>Notes left: <b style="color:var(--text)">${report.venues_with_feedback}</b> venues</span>
-        </div></div>`;
-}
-
-function openAllSmartPicks() {
-    const gigs = (dashboardData && dashboardData.gigs) || [];
-    const profile = (smartPicksData && smartPicksData.profile) || {};
-    const bestCat = profile.best_category || '';
-    let rows = allSmartPicks.map((r, i) => {
-        const score = r.recommendation_score;
-        const cat = (r.category || 'other').toLowerCase().replace(/[\s\/]/g, '_');
-        const bd = r.score_breakdown || {};
-        let reason = '';
-        if (bd.category >= 20 && bestCat) {
-            const catGigs = gigs.filter(g => g.category.toLowerCase() === r.category.toLowerCase());
-            if (catGigs.length > 0) {
-                const best = catGigs.reduce((a, b) => a.overall_score > b.overall_score ? a : b);
-                reason = `${CATEGORY_LABELS[cat] || r.category} scored ${best.overall_score.toFixed(1)}/10 at ${best.venue_name}`;
-            }
-        }
-        const scoreColor = score >= 70 ? '#f0a030' : score >= 40 ? '#e0e0e0' : '#888';
-        const catColors = {winery:'#9b59b6',museum:'#3498db',hotel:'#e67e22',country_club:'#27ae60',event:'#e74c3c',restaurant:'#f39c12',wine_bar:'#8e44ad',resort:'#16a085',senior_living:'#2980b9',event_planner:'#c0392b',golf_club:'#2ecc71',yacht_club:'#1abc9c',art_gallery:'#e056a0',luxury_apts:'#8e7cc3',grocery_market:'#6aa84f',farmers_market:'#8bc34a',wedding_venue:'#d4a5a5',corporate:'#4a86c8',spa:'#76c7c0',private_club:'#b45f06',church:'#674ea7',luxury_retail:'#a64d79',mall:'#cc0000'};
-        const catColor = catColors[cat] || '#666';
-        return `<tr>
-            <td style="color:${scoreColor};font-weight:700;font-size:1.1rem;text-align:center">${score}</td>
-            <td><strong>${r.name}</strong><br><span style="font-size:0.7rem;background:${catColor};padding:1px 6px;border-radius:3px;color:#fff">${(r.category||'').toUpperCase()}</span> <span style="color:#888;font-size:0.75rem">${r.city||''}${r.state?', '+r.state:''}</span></td>
-            <td style="text-align:center;color:#888">${r.distance_miles ? r.distance_miles+' mi' : '—'}</td>
-            <td style="text-align:center">${r.contact_count||0}</td>
-            <td style="text-align:center;font-size:0.7rem;color:${bd.taste_tier>0?'#4caf50':bd.taste_tier<0?'#f44336':'#666'}">${bd.taste_tier!==undefined?(bd.taste_tier>0?'+':'')+bd.taste_tier:'—'}</td>
-            <td style="text-align:center;font-size:0.7rem;color:${bd.location>0?'#4caf50':'#666'}">${bd.location>0?'+'+bd.location:'—'}</td>
-            <td style="color:#f0a030;font-size:0.7rem;font-style:italic">${reason}</td>
-        </tr>`;
-    }).join('');
-    const w = window.open('', '_blank');
-    w.document.write(`<!DOCTYPE html><html><head><title>All Smart Picks</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-body{background:#0a0a0a;color:#e0e0e0;font-family:'Lato',sans-serif;padding:1.5rem;margin:0}
-h1{font-family:'Cinzel',serif;color:#f0a030;margin-bottom:1rem;font-size:1.4rem}
-table{width:100%;border-collapse:collapse}
-th{text-align:left;padding:0.5rem;border-bottom:2px solid #333;color:#888;font-size:0.7rem;text-transform:uppercase}
-td{padding:0.5rem;border-bottom:1px solid #1a1a1a;vertical-align:top}
-tr:hover{background:rgba(240,160,48,0.05)}
-</style></head><body>
-<h1>Smart Picks — All ${allSmartPicks.length} Venues</h1>
-<table><thead><tr><th>Score</th><th>Venue</th><th>Distance</th><th>Contacts</th><th>Taste</th><th>Area</th><th>Why</th></tr></thead>
-<tbody>${rows}</tbody></table></body></html>`);
-    w.document.close();
 }
 
 function updateGigsCount() {
@@ -4139,35 +4315,51 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(e => console.warn('Cached dashboard render failed:', e));
 
     try {
+        // Decide "fresh device" BEFORE renderMonthlyTasks writes a skeleton into localStorage,
+        // otherwise a wiped cache looked like real data and could push the skeleton over the Sheet
+        _monthlyFresh = !hasRealMonthly(lsJSON(MONTHLY_KEY, null));
         renderMonthlyTasks(); // Show local immediately
-        // If local already has data, unlock sync immediately
-        var _localTasks = localStorage.getItem(MONTHLY_KEY) || '{}';
-        if (_localTasks !== '{}') _monthlyReady = true;
-        loadMonthlyFromCloud(function() { _monthlyReady = true; }); // Unlock after cloud pull
+        loadMonthlyFromCloud(); // pull-merge; nothing is pushed without a successful pull
         // Restore level bar expanded state
         if (localStorage.getItem('outreach_level_expanded') === '1') {
             var ls = document.getElementById('levelSection');
             if (ls) ls.classList.add('expanded');
         }
     } catch (e) { console.error('Init error:', e); }
+    syncSkipWords(); // pull the cloud skip list (pipeline.sh filters Apollo titles with it)
 });
 
-// Pause polling while hidden; on return, refresh if the data is over a minute old
+// Pause polling while hidden. On return: re-read the report manifest (a run may have
+// registered since), refresh if the data is over a minute old, and pull the small
+// synced lists (at most every 2 minutes).
+let _lastAuxSync = Date.now();
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible') { clearTimeout(refreshTimer); return; }
-    // Only refresh on tab-return if NOT viewing a venue detail
-    if (navStack[navStack.length - 1] === 'viewDetail') { scheduleRefresh(REFRESH_INTERVAL); return; }
-    if (_dashInFlight) return; // its callback schedules the next refresh
-    const age = Date.now() - _dashFetchedAt;
-    if (age > 60000) loadDashboard();
-    else scheduleRefresh(REFRESH_INTERVAL - age);
+    loadReportManifest(true).then(() => {
+        // Only refresh on tab-return if NOT viewing a venue detail
+        if (navStack[navStack.length - 1] === 'viewDetail') { scheduleRefresh(REFRESH_INTERVAL); return; }
+        if (_dashInFlight) return; // its callback schedules the next refresh
+        const age = Date.now() - _dashFetchedAt;
+        if (age > 60000) loadDashboard();
+        else { if (dashboardData) renderStateGrid(); scheduleRefresh(REFRESH_INTERVAL - age); }
+    });
+    if (Date.now() - _lastAuxSync > 120000) {
+        _lastAuxSync = Date.now();
+        monthlySync(true);
+        syncReviewedReports();
+        syncSkipWords();
+    }
 });
 
 if ('serviceWorker' in navigator) {
+    // clients.claim() on the very first install also fires controllerchange; only a change
+    // while a worker was already in control means an update is waiting
+    let _swControlled = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.register('service-worker.js').then(reg => {
         reg.update();
         // Show banner instead of force-reloading (don't nuke mid-session work)
         navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!_swControlled) { _swControlled = true; return; }
             if (document.querySelector('.sw-update-banner')) return;
             const banner = document.createElement('div');
             banner.className = 'sw-update-banner';

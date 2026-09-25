@@ -1,0 +1,253 @@
+#!/usr/bin/python3
+"""curl stand-in for the website-recall harness (put first on PATH).
+
+- Apps Script / Google script URLs never reach the network: they get a canned
+  {"status":"ok"} style answer and are logged to UW_API_LOG.
+- Everything else is served from the replay store (UW_STORE). In UW_NET=record the
+  real /usr/bin/curl fetches what is missing (same flags, so same UA and TLS stack)
+  and the response is stored; in UW_NET=replay a missing URL behaves like a 404.
+Emulates the flags pipeline.sh uses: -s -S -L -f -I -k --compressed -o -w -m/--max-time,
+-A, -H, -X, -d/--data*, --connect-timeout, -D.
+"""
+import json
+import os
+import subprocess
+import sys
+import tempfile
+from urllib.parse import parse_qs, urlsplit
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from store import Store, polite_wait  # noqa: E402
+
+REAL_CURL = os.environ.get("UW_REAL_CURL", "/usr/bin/curl")
+VAL_FLAGS = {"-o", "--output", "-w", "--write-out", "-m", "--max-time", "-A", "--user-agent", "-H", "--header",
+             "-X", "--request", "-d", "--data", "--data-raw", "--data-urlencode", "--data-binary", "-e", "--referer",
+             "--connect-timeout", "-D", "--dump-header", "-b", "--cookie", "-c", "--cookie-jar", "-u", "--user",
+             "-r", "--range", "--retry", "--retry-delay", "--max-redirs", "-F", "--form", "-x", "--proxy",
+             "--resolve", "-T", "--upload-file", "-K", "--config", "--max-filesize"}
+
+
+def parse(argv):
+    o = {"flags": set(), "vals": {}, "urls": [], "data": []}
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a in VAL_FLAGS:
+            v = argv[i + 1] if i + 1 < len(argv) else ""
+            o["vals"].setdefault(a, []).append(v)
+            if a.startswith("-d") or a.startswith("--data") or a in ("-F", "--form"):
+                o["data"].append(v)
+            i += 2
+            continue
+        if a.startswith("--"):
+            if "=" in a:
+                k, v = a.split("=", 1)
+                o["vals"].setdefault(k, []).append(v)
+            else:
+                o["flags"].add(a)
+        elif a.startswith("-") and len(a) > 1:
+            # combined short flags (-sL, -sSfL); a trailing value flag takes the next arg
+            chars = a[1:]
+            for j, ch in enumerate(chars):
+                f = "-" + ch
+                if f in VAL_FLAGS:
+                    rest = chars[j + 1:]
+                    if rest:
+                        v = rest
+                    else:
+                        i += 1
+                        v = argv[i] if i < len(argv) else ""
+                    o["vals"].setdefault(f, []).append(v)
+                    if f in ("-d", "-F"):
+                        o["data"].append(v)
+                    break
+                o["flags"].add(f)
+        else:
+            o["urls"].append(a)
+        i += 1
+    return o
+
+
+def val(o, *names):
+    for n in names:
+        if n in o["vals"]:
+            return o["vals"][n][-1]
+    return None
+
+
+def write_out(fmt, meta, body):
+    if fmt is None:
+        return ""
+    if fmt.startswith("@"):
+        try:
+            fmt = open(fmt[1:]).read()
+        except Exception:
+            fmt = ""
+    rep = {
+        "%{http_code}": "%03d" % int(meta.get("status") or 0),
+        "%{response_code}": "%03d" % int(meta.get("status") or 0),
+        "%{url_effective}": meta.get("final_url") or meta.get("url") or "",
+        "%{content_type}": meta.get("ctype") or "",
+        "%{size_download}": str(len(body or b"")),
+        "%{time_total}": "0.100000",
+        "%{redirect_url}": "",
+        "%{num_redirects}": "0" if (meta.get("final_url") or "") == (meta.get("url") or "") else "1",
+    }
+    for k, v in rep.items():
+        fmt = fmt.replace(k, v)
+    return fmt.replace("\\n", "\n").replace("\\t", "\t").replace("\\r", "\r")
+
+
+def fake_api(url, o):
+    qs = parse_qs(urlsplit(url).query)
+    for d in o["data"]:
+        try:
+            qs.update(parse_qs(d))
+        except Exception:
+            pass
+        try:
+            j = json.loads(d)
+            if isinstance(j, dict):
+                qs.update({k: [str(v)] for k, v in j.items()})
+        except Exception:
+            pass
+    params = {k: v[0] if len(v) == 1 else v for k, v in qs.items()}
+    action = params.get("action", "")
+    log = os.environ.get("UW_API_LOG")
+    if log:
+        with open(log, "a") as f:
+            f.write(json.dumps({"action": action, "params": params}) + "\n")
+    vid = params.get("venue_id", "")
+    if action == "venue_detail":
+        v = {}
+        try:
+            v = json.loads(os.environ.get("UW_VENUE_JSON", "{}"))
+        except Exception:
+            pass
+        return {"status": "ok", "venue": v, "contacts": []}
+    if action == "add_contact":
+        return {"status": "ok", "created": True, "contact_id": "UWTEST-1", "venue_id": vid}
+    if action == "update_venue":
+        return {"status": "ok", "verified": True, "venue_id": vid, "field": params.get("field", ""),
+                "value": params.get("value", "")}
+    if action == "venues":
+        return {"status": "ok", "venues": []}
+    return {"status": "ok"}
+
+
+def main():
+    o = parse(sys.argv[1:])
+    if "--version" in o["flags"] or "-V" in o["flags"]:
+        os.execv(REAL_CURL, [REAL_CURL, "--version"])
+    url = next((u for u in o["urls"] if "://" in u or "." in u), o["urls"][0] if o["urls"] else "")
+    if url and "://" not in url:
+        url = "http://" + url
+    outfile = val(o, "-o", "--output")
+    fmt = val(o, "-w", "--write-out")
+    silent = "-s" in o["flags"] or "--silent" in o["flags"]
+    host = urlsplit(url).netloc.lower()
+    api_hosts = [h for h in (urlsplit(os.environ.get("APPS_SCRIPT_URL", "")).netloc.lower(), "script.google.com",
+                             "script.googleusercontent.com", "apps-script.invalid") if h]
+    if host in api_hosts:
+        body = json.dumps(fake_api(url, o)).encode()
+        meta = {"status": 200, "url": url, "final_url": url, "ctype": "application/json"}
+        emit(o, outfile, fmt, meta, body)
+        return 0
+    st = Store()
+    head = "-I" in o["flags"] or "--head" in o["flags"]
+    meta, body, approx = (None, None, False)
+    if st.net != "live":
+        meta, body, approx = st.get("curl", url, fallback_kinds=("req",))
+    source = "store"
+    if meta is None and st.net in ("record", "live"):
+        meta, body = real_fetch(url, o)
+        source = "net"
+        if meta is not None and meta.get("status", 0) != -1:
+            st.put("curl", url, meta["final_url"], meta["status"], meta["ctype"], body)
+    st.log(via="curl", url=url, found=meta is not None, status=(meta or {}).get("status", 0),
+           source=source if meta is not None else "missing", approx=approx, head=head)
+    if meta is None:
+        # Not captured: behave like an unreachable page so replay stays deterministic.
+        meta = {"status": 404, "url": url, "final_url": url, "ctype": "text/html"}
+        body = b""
+    if int(meta.get("status") or 0) == 0:
+        if fmt is not None:
+            sys.stdout.write(write_out(fmt, {"status": 0, "url": url, "final_url": url}, b""))
+        return 6
+    if ("-f" in o["flags"] or "--fail" in o["flags"]) and int(meta["status"]) >= 400:
+        if fmt is not None:
+            sys.stdout.write(write_out(fmt, meta, b""))
+        return 22
+    if head:
+        hdr = "HTTP/1.1 %d\r\ncontent-type: %s\r\n\r\n" % (int(meta["status"]), meta.get("ctype") or "")
+        emit(o, outfile, fmt, meta, hdr.encode())
+        return 0
+    emit(o, outfile, fmt, meta, body)
+    return 0
+
+
+def emit(o, outfile, fmt, meta, body):
+    if outfile and outfile != "-":
+        if outfile != "/dev/null":
+            try:
+                open(outfile, "wb").write(body or b"")
+            except Exception:
+                pass
+    else:
+        sys.stdout.buffer.write(body or b"")
+    if fmt is not None:
+        sys.stdout.write(write_out(fmt, meta, body))
+    sys.stdout.flush()
+    dump = val(o, "-D", "--dump-header")
+    if dump:
+        try:
+            txt = "HTTP/1.1 %d\r\ncontent-type: %s\r\n\r\n" % (int(meta.get("status") or 0), meta.get("ctype") or "")
+            if dump == "-":
+                sys.stdout.write(txt)
+            else:
+                open(dump, "w").write(txt)
+        except Exception:
+            pass
+
+
+def real_fetch(url, o):
+    polite_wait(url)
+    td = tempfile.mkdtemp(prefix="uwcurl")
+    bodyf, hdrf = os.path.join(td, "b"), os.path.join(td, "h")
+    args = [REAL_CURL, "-s", "-L", "-o", bodyf, "-D", hdrf, "-w", "%{http_code}\\n%{url_effective}\\n%{content_type}"]
+    if "--compressed" in o["flags"]:
+        args.append("--compressed")
+    if "-k" in o["flags"] or "--insecure" in o["flags"]:
+        args.append("-k")
+    mt = val(o, "-m", "--max-time")
+    args += ["--max-time", str(max(float(mt or 15), 12))]
+    ua = val(o, "-A", "--user-agent")
+    if ua:
+        args += ["-A", ua]
+    for h in o["vals"].get("-H", []) + o["vals"].get("--header", []):
+        args += ["-H", h]
+    args.append(url)
+    try:
+        r = subprocess.run(args, capture_output=True, timeout=90)
+        lines = r.stdout.decode("utf-8", "ignore").split("\n")
+        status = int(lines[0] or 0) if lines and lines[0].strip().isdigit() else 0
+        final = lines[1] if len(lines) > 1 else url
+        ctype = lines[2] if len(lines) > 2 else ""
+        body = open(bodyf, "rb").read() if os.path.exists(bodyf) else b""
+        return {"status": status, "url": url, "final_url": final, "ctype": ctype}, body
+    except Exception:
+        return {"status": 0, "url": url, "final_url": url, "ctype": ""}, b""
+    finally:
+        for f in (bodyf, hdrf):
+            try:
+                os.unlink(f)
+            except OSError:
+                pass
+        try:
+            os.rmdir(td)
+        except OSError:
+            pass
+
+
+if __name__ == "__main__":
+    sys.exit(main())

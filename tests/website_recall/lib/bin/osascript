@@ -1,0 +1,146 @@
+#!/usr/bin/python3
+"""osascript stand-in for the website-recall harness (first on PATH).
+
+Translates the Chrome AppleScript that pipeline.sh sends into headless-Chrome CDP calls
+(lib/chromectl.mjs). It never talks to the real Chrome. UW_CHROME=off simulates the
+production failure mode where Chrome JavaScript is unavailable: navigation is recorded but
+every `execute ... javascript` returns nothing, so the pipeline takes its curl fallbacks.
+"""
+import json
+import os
+import re
+import subprocess
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+CTL = os.path.join(HERE, "..", "chromectl.mjs")
+NODE = os.environ.get("UW_NODE", "node")
+STATE = os.environ.get("UW_CHROME_STATE", "/tmp/uw_chrome")
+
+
+def ctl(*args):
+    r = subprocess.run([NODE, CTL] + list(args), capture_output=True, timeout=120)
+    if r.stderr:
+        sys.stderr.write(r.stderr.decode("utf-8", "ignore"))
+    return r.returncode, r.stdout.decode("utf-8", "ignore")
+
+
+def as_unescape(s):
+    return re.sub(r'\\(.)', lambda m: {"n": "\n", "t": "\t", "r": "\r"}.get(m.group(1), m.group(1)), s)
+
+
+def set_url_only(url):
+    os.makedirs(STATE, exist_ok=True)
+    p = os.path.join(STATE, "state.json")
+    try:
+        st = json.load(open(p))
+    except Exception:
+        st = {}
+    st["current_url"] = url
+    json.dump(st, open(p, "w"))
+
+
+def trace(rec):
+    t = os.environ.get("UW_TRACE")
+    if t:
+        with open(t, "a") as f:
+            f.write(json.dumps(rec) + "\n")
+
+
+VAL = r'(?:"((?:[^"\\]|\\.)*)"|\(?\s*item\s+(\d+)\s+of\s+argv\s*\)?)'
+
+
+def resolve(m, run_args, g=1):
+    if m.group(g) is not None:
+        return as_unescape(m.group(g))
+    n = int(m.group(g + 1))
+    return run_args[n - 1] if 0 < n <= len(run_args) else ""
+
+
+def main():
+    argv = sys.argv[1:]
+    scripts, lang, pos = [], "AppleScript", []
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a == "-e" and i + 1 < len(argv):
+            scripts.append(argv[i + 1])
+            i += 2
+            continue
+        if a == "-l" and i + 1 < len(argv):
+            lang = argv[i + 1]
+            i += 2
+            continue
+        if a == "-" or not a.startswith("-") or pos:
+            pos = argv[i:]
+            break
+        i += 1
+    # osascript [-e ...] [file|-] [args...]: without -e the first positional is the script
+    # ("-" = stdin); everything after it is `argv` for an `on run argv` handler.
+    run_args = []
+    if scripts:
+        run_args = pos
+    elif pos:
+        if pos[0] == "-":
+            scripts.append(sys.stdin.read())
+        else:
+            try:
+                scripts.append(open(pos[0]).read())
+            except Exception:
+                pass
+        run_args = pos[1:]
+    elif not sys.stdin.isatty():
+        scripts.append(sys.stdin.read())
+    src = "\n".join(scripts)
+    chrome_on = os.environ.get("UW_CHROME", "on") != "off"
+    trace({"via": "osascript", "script": src[:300], "chrome": chrome_on})
+    if lang.lower() != "applescript" or "Google Chrome" not in src:
+        return 0
+    m = re.search(r'set\s+URL\s+of\s+(?:active\s+tab|tab\s+\d+)[^"\n]*?\bto\s+' + VAL, src, re.I | re.S)
+    if m:
+        url = resolve(m, run_args)
+        if chrome_on:
+            ctl("nav", url)
+        else:
+            set_url_only(url)
+            trace({"via": "chrome", "url": url, "found": True, "source": "not_loaded", "chrome_off": True})
+        return 0
+    m = re.search(r'open\s+location\s+"((?:[^"\\]|\\.)*)"', src, re.I)
+    if m:
+        url = as_unescape(m.group(1))
+        if chrome_on:
+            ctl("nav", url)
+        else:
+            set_url_only(url)
+        return 0
+    if re.search(r"\bexecute\b", src, re.I) and re.search(r"\bjavascript\b", src, re.I):
+        if not chrome_on:
+            sys.stderr.write("execution error: Google Chrome got an error: Executing JavaScript through AppleScript is turned off. (12)\n")
+            return 1
+        m = re.search(r'read\s*\(?\s*POSIX\s+file\s+' + VAL, src, re.I)
+        if m:
+            rc, out = ctl("evalfile", resolve(m, run_args))
+        else:
+            m = re.search(r'javascript\s+"((?:[^"\\]|\\.)*)"', src, re.I | re.S)
+            if not m:
+                return 1
+            rc, out = ctl("eval", as_unescape(m.group(1)))
+        sys.stdout.write(out)
+        return 0
+    if re.search(r"\b(?:get\s+)?URL\s+of\s+active\s+tab", src, re.I):
+        rc, out = ctl("url")
+        sys.stdout.write(out)
+        return 0
+    if re.search(r"title\s+of\s+active\s+tab", src, re.I):
+        if chrome_on:
+            rc, out = ctl("eval", "document.title")
+            sys.stdout.write(out)
+        return 0
+    if re.search(r"count\s+(?:of\s+)?windows", src, re.I):
+        sys.stdout.write("1\n")
+        return 0
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

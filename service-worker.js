@@ -1,4 +1,4 @@
-const CACHE_NAME = 'outreach-v233';
+const CACHE_NAME = 'outreach-v234';
 const ASSETS = [
   './',
   './index.html',
@@ -21,17 +21,29 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
   // Never cache API requests
   if (e.request.url.includes('script.google.com')) return;
 
   // Network-first for HTML
   if (e.request.mode === 'navigate' || e.request.url.endsWith('.html')) {
+    // The app is one page: every ?venue=ID deep link shares the index.html entry,
+    // and other pages (reports) are keyed without their query string
+    const url = new URL(e.request.url);
+    const scope = new URL(self.registration.scope);
+    const isShell = url.origin === scope.origin &&
+      (url.pathname === scope.pathname || url.pathname === scope.pathname + 'index.html');
+    const key = isShell ? scope.pathname + 'index.html' : url.origin + url.pathname;
     e.respondWith(
       fetch(e.request).then(resp => {
-        const clone = resp.clone();
-        caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+        // Only cache real pages: never a 404/500, and never a redirected response
+        // (browsers refuse to serve those for a later navigation)
+        if (resp.ok && resp.type === 'basic' && !resp.redirected) {
+          const clone = resp.clone();
+          caches.open(CACHE_NAME).then(c => c.put(key, clone));
+        }
         return resp;
-      }).catch(() => caches.match(e.request))
+      }).catch(() => caches.match(key, { ignoreSearch: true }))
     );
     return;
   }

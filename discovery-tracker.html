@@ -561,85 +561,145 @@ let syncStatus = ''; // '', 'saving', 'saved', 'error'
 
 // ============================================================
 // CLOUD SYNC — JSONP GET (POST blocked by AdBlock Plus)
+// PULL-MERGE-PUSH: every save pulls first and 3-way merges against
+// the copy last seen in the cloud (BASE_KEY), so sweeps Claude writes
+// straight to the cloud survive a stale browser, and an uncheck here
+// (or on another device) sticks instead of being re-added by a union.
 // Save: only non-empty swept + non-zero venue counts
-// Load: restore from cloud when localStorage is empty
 // ============================================================
+const BASE_KEY = 'discovery_tracker_base';
+const JSONP_TIMEOUT_MS = 20000;
 function jsonp(url, cb) {
-  const name = '_dt_cb_' + Date.now();
+  const name = '_dt_cb_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
   const s = document.createElement('script');
-  window[name] = function(data) {
-    delete window[name];
-    document.head.removeChild(s);
+  let done = false;
+  // cb runs exactly once: success, script error or timeout
+  function finish(data) {
+    if (done) return;
+    done = true;
+    window[name] = function() { delete window[name]; }; // late reply after a timeout
+    try { document.head.removeChild(s); } catch(e) {}
     cb(data);
-  };
+  }
+  window[name] = function(data) { finish(data); delete window[name]; };
   s.src = url + (url.includes('?') ? '&' : '?') +
     'callback=' + name;
-  s.onerror = function() {
-    delete window[name];
-    try { document.head.removeChild(s); } catch(e) {}
-    cb(null);
-  };
+  s.onerror = function() { finish(null); };
+  setTimeout(function() { finish(null); }, JSONP_TIMEOUT_MS);
   document.head.appendChild(s);
 }
 
-let _discoveryReady = false;
-function cloudSave() {
-  if (!_discoveryReady) return;
-  // Trim: only swept cities and non-zero venue counts
-  const sweptTrimmed = Object.fromEntries(
-    Object.entries(swept).filter(([, v]) => v)
-  );
-  const venuesTrimmed = Object.fromEntries(
-    Object.entries(venuesCounts).filter(([, v]) => v > 0)
-  );
-  // Block pushing empty data after cache wipe
-  if (!Object.keys(sweptTrimmed).length && !Object.keys(venuesTrimmed).length) {
-    console.warn('[Discovery] BLOCKED — empty data, refusing cloud push');
-    return;
+// null = never synced on this browser (no base yet)
+function readBase() {
+  try {
+    const b = JSON.parse(localStorage.getItem(BASE_KEY));
+    return (b && typeof b === 'object') ? { swept: b.swept || {}, venues: b.venues || {} } : null;
+  } catch(e) { return null; }
+}
+function writeBase(sw, vc) {
+  try { localStorage.setItem(BASE_KEY, JSON.stringify({ swept: sw, venues: vc })); } catch(e) {}
+}
+function sameMap(a, b) {
+  const ka = Object.keys(a), kb = Object.keys(b);
+  return ka.length === kb.length && ka.every(k => Object.prototype.hasOwnProperty.call(b, k) && a[k] === b[k]);
+}
+// Keys changed here since base win; everything else follows the cloud.
+function merge3(local, cloud, base) {
+  const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+  const out = {};
+  const keys = new Set([...Object.keys(local), ...Object.keys(cloud), ...Object.keys(base)]);
+  for (const k of keys) {
+    const inL = has(local, k), inB = has(base, k);
+    const changed = inL !== inB || (inL && local[k] !== base[k]);
+    if (changed) { if (inL) out[k] = local[k]; }
+    else if (has(cloud, k)) out[k] = cloud[k];
   }
-  const sweptStr  = encodeURIComponent(
-    JSON.stringify(sweptTrimmed)
-  );
-  const venuesStr = encodeURIComponent(
-    JSON.stringify(venuesTrimmed)
-  );
-  const url = GAS_URL + '?action=save_discovery' +
-    '&swept=' + sweptStr + '&venues=' + venuesStr;
-  setSyncStatus('saving');
-  jsonp(url, function(res) {
-    if (res && res.status === 'ok') {
-      setSyncStatus('saved');
+  return out;
+}
+function trimSwept(o) { return Object.fromEntries(Object.entries(o || {}).filter(([, v]) => v)); }
+function trimVenues(o) {
+  return Object.fromEntries(Object.entries(o || {})
+    .map(([k, v]) => [k, Number(v) || 0]).filter(([, v]) => v > 0));
+}
+function parseMap(s) {
+  if (!s) return {};
+  try { const o = typeof s === 'string' ? JSON.parse(s) : s; return (o && typeof o === 'object' && !Array.isArray(o)) ? o : null; }
+  catch(e) { return null; }
+}
+
+let _discoveryReady = false;
+let _syncBusy = false, _syncAgain = false;
+// Pull the cloud, merge into local, re-render; push the merge back only
+// when it differs from the cloud (and allowPush). onDone(ok) — ok means
+// the pull worked; a failed pull never pushes.
+function cloudSync(allowPush, onDone) {
+  const done = ok => { if (onDone) onDone(ok); };
+  if (_syncBusy) { _syncAgain = _syncAgain || allowPush; done(false); return; }
+  _syncBusy = true;
+  const finish = ok => {
+    _syncBusy = false;
+    done(ok);
+    if (_syncAgain) { _syncAgain = false; cloudSync(true); }
+  };
+  jsonp(GAS_URL + '?action=load_discovery', function(res) {
+    const cs = res && res.status === 'ok' ? parseMap(res.swept) : null;
+    const cv = res && res.status === 'ok' ? parseMap(res.venues) : null;
+    if (!cs || !cv) { setSyncStatus('error'); finish(false); return; }
+    const cloudSwept = trimSwept(cs), cloudVenues = trimVenues(cv);
+    const base = readBase();
+    let mergedSwept, mergedVenues;
+    if (base) {
+      mergedSwept = trimSwept(merge3(trimSwept(swept), cloudSwept, trimSwept(base.swept)));
+      mergedVenues = trimVenues(merge3(trimVenues(venuesCounts), cloudVenues, trimVenues(base.venues)));
     } else {
-      setSyncStatus('error');
+      // First sync here: we can't tell what this browser changed, so keep every
+      // swept city from either side and the larger venue count
+      mergedSwept = Object.assign({}, trimSwept(swept), cloudSwept);
+      mergedVenues = Object.assign({}, trimVenues(venuesCounts));
+      for (const k in cloudVenues) mergedVenues[k] = Math.max(mergedVenues[k] || 0, cloudVenues[k]);
     }
+    const localChanged = !sameMap(mergedSwept, trimSwept(swept)) || !sameMap(mergedVenues, trimVenues(venuesCounts));
+    swept = mergedSwept;
+    venuesCounts = mergedVenues;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(swept));
+      localStorage.setItem(VENUES_KEY, JSON.stringify(venuesCounts));
+    } catch(e) { console.warn('[Discovery] local save failed', e); }
+    _discoveryReady = true;
+    if (localChanged) render();
+    const differs = !sameMap(mergedSwept, cloudSwept) || !sameMap(mergedVenues, cloudVenues);
+    if (!differs || !allowPush) {
+      writeBase(cloudSwept, cloudVenues);
+      setSyncStatus(differs ? '' : 'saved');
+      finish(true);
+      return;
+    }
+    // Block pushing empty data after cache wipe
+    if (!Object.keys(mergedSwept).length && !Object.keys(mergedVenues).length) {
+      console.warn('[Discovery] BLOCKED — empty data, refusing cloud push');
+      finish(true);
+      return;
+    }
+    const url = GAS_URL + '?action=save_discovery' +
+      '&swept=' + encodeURIComponent(JSON.stringify(mergedSwept)) +
+      '&venues=' + encodeURIComponent(JSON.stringify(mergedVenues));
+    setSyncStatus('saving');
+    jsonp(url, function(r2) {
+      if (r2 && r2.status === 'ok') {
+        writeBase(mergedSwept, mergedVenues);
+        setSyncStatus('saved');
+      } else {
+        setSyncStatus('error');
+      }
+      finish(true);
+    });
   });
 }
 
-function cloudLoad(onDone) {
-  const url = GAS_URL + '?action=load_discovery';
-  jsonp(url, function(res) {
-    if (!res || res.status !== 'ok') { onDone(); return; }
-    let changed = false;
-    if (res.swept) {
-      try {
-        const s = JSON.parse(res.swept);
-        if (Object.keys(s).length) { swept = s; changed = true; }
-      } catch(e) {}
-    }
-    if (res.venues) {
-      try {
-        const v = JSON.parse(res.venues);
-        if (Object.keys(v).length) {
-          venuesCounts = v; changed = true;
-        }
-      } catch(e) {}
-    }
-    if (changed) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(swept));
-      localStorage.setItem(VENUES_KEY, JSON.stringify(venuesCounts));
-    }
-    onDone();
-  });
+function cloudSave() {
+  // Lock: the first successful pull opens it. Until then (fresh browser whose
+  // pull failed) a save tries the pull first; it never pushes blind.
+  cloudSync(true);
 }
 
 function setSyncStatus(s) {
@@ -715,7 +775,7 @@ function render() {
       const isSw = !!swept[key];
       totalCities++;
       if (isSw) sweptCities++;
-      const vc = venuesCounts[key] || 0;
+      const vc = Number(venuesCounts[key]) || 0;
       totalVenues += vc;
       regionTotal++;
       if (isSw) regionSwept++;
@@ -835,27 +895,24 @@ document.querySelectorAll('.filter-btn')
 
 // ============================================================
 // INIT
-// Load from localStorage first. If empty (fresh browser /
-// cache cleared), pull from cloud then render.
+// Show local data right away, then always pull + merge from the
+// cloud (sweeps are recorded there directly). A failed pull leaves
+// the page usable and the push lock closed; the next save retries.
 // ============================================================
 load();
-const hasLocal = Object.keys(swept).length > 0 ||
-  Object.keys(venuesCounts).length > 0;
-if (hasLocal) {
-  _discoveryReady = true;
-  render();
-} else {
-  setSyncStatus('saving');
-  document.getElementById('sync-status').textContent =
-    'Loading…';
-  document.getElementById('sync-status').style.color =
-    '#888';
-  cloudLoad(function() {
-    _discoveryReady = true;
-    setSyncStatus('');
-    render();
-  });
-}
+render();
+setSyncStatus('saving');
+document.getElementById('sync-status').textContent = 'Loading…';
+cloudSync(true, function(ok) {
+  if (!ok) {
+    const el = document.getElementById('sync-status');
+    el.textContent = '⚠ Cloud load failed — changes will sync when it reconnects';
+    el.style.color = '#ef5350';
+  }
+});
+document.addEventListener('visibilitychange', function() {
+  if (document.visibilityState === 'visible') cloudSync(true);
+});
 </script>
 </body>
 </html>

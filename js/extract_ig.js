@@ -1,41 +1,45 @@
 (function() {
+    // Returns ALL candidate Instagram profile URLs as a JSON array string, deduped,
+    // in page order: '["https://www.instagram.com/venue/", ...]' ('[]' when none).
+    // Callers pick the one that matches the venue. Pure ASCII on purpose.
+    var RSAQUO = String.fromCharCode(8250);
+    // Posts, reels, stories and site pages are not profiles.
+    var reserved = ["explore","p","reel","reels","stories","accounts","about","directory",
+        "developer","legal","tv","share","embed","direct","privacy","terms","web",
+        "challenge","sharer","popular","emails","session","oauth","ar"];
     var results = [];
     var seen = {};
+
+    function add(handle) {
+        if (!handle) return;
+        var low = handle.toLowerCase();
+        if (reserved.indexOf(low) > -1) return;
+        if (low.length < 2 || /^\d+$/.test(low)) return;
+        if (!/^[a-z0-9._]+$/i.test(handle)) return;
+        if (seen[low]) return;
+        seen[low] = true;
+        results.push("https://www.instagram.com/" + handle + "/");
+    }
+
+    function fromUrl(href) {
+        var q = href.match(/[?&](?:q|url)=([^&]+)/);
+        if (q && href.indexOf("google.") > -1) {
+            try { href = decodeURIComponent(q[1]); } catch (e) {}
+        }
+        var m = href.match(/^https?:\/\/(?:www\.|m\.)?instagram\.com\/([A-Za-z0-9._]+)(?:[\/?#]|$)/i);
+        if (m) add(m[1]);
+    }
+
     var links = document.querySelectorAll("a[href]");
-    for (var i = 0; i < links.length; i++) {
-        var href = links[i].href || "";
-        var m = href.match(/https?:\/\/(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)\/?/);
-        if (m && m[1]) {
-            var handle = m[1].toLowerCase();
-            // Skip non-profile pages
-            if (["explore","p","reel","reels","stories","accounts",
-                 "about","directory","developer","legal"].indexOf(handle) > -1) continue;
-            if (handle.length < 2) continue;
-            if (!seen[handle]) {
-                seen[handle] = true;
-                results.push("https://www.instagram.com/" + m[1] + "/");
-            }
-            if (results.length >= 5) break;
-        }
+    for (var i = 0; i < links.length && results.length < 10; i++) {
+        fromUrl(links[i].href || "");
     }
-    // Fallback: check cite elements (Google results)
-    if (results.length < 5) {
-        var cites = document.querySelectorAll("cite");
-        for (var j = 0; j < cites.length; j++) {
-            var t = cites[j].textContent.trim();
-            var cm = t.match(/instagram\.com\/([a-zA-Z0-9._]+)/);
-            if (cm && cm[1]) {
-                var ch = cm[1].toLowerCase();
-                if (["explore","p","reel","reels","stories","accounts",
-                     "about","directory","developer","legal"].indexOf(ch) > -1) continue;
-                if (ch.length < 2) continue;
-                if (!seen[ch]) {
-                    seen[ch] = true;
-                    results.push("https://www.instagram.com/" + cm[1] + "/");
-                }
-                if (results.length >= 5) break;
-            }
-        }
+    // Fallback: cite elements (Google results), incl. "instagram.com > venue" breadcrumbs
+    var citeRe = new RegExp("instagram\\.com(?:/|\\s*(?:" + RSAQUO + "|>)\\s*)([A-Za-z0-9._]+)", "i");
+    var cites = document.querySelectorAll("cite");
+    for (var j = 0; j < cites.length && results.length < 10; j++) {
+        var cm = cites[j].textContent.trim().match(citeRe);
+        if (cm && cm[1]) add(cm[1]);
     }
-    return results.length > 0 ? results[0] : "";
+    return JSON.stringify(results);
 })()

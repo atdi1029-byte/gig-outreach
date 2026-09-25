@@ -1,0 +1,4 @@
+# Harness outputs, and the replay store (third-party site snapshots, large). Keep them local.
+runs/
+snapshots/
+__pycache__/

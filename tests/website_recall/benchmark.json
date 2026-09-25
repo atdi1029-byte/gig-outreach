@@ -1,0 +1,3958 @@
+{
+ "version": 1,
+ "built": "2026-09-25",
+ "note": "Items a human finds on each venue's own website. See MISS_TYPES.md in the sprint dir UW/.",
+ "venues": [
+  {
+   "venue_id": "MD-EVEN-879",
+   "name": "Woman's Club of Bethesda",
+   "website": "https://womansclubofbethesda.org",
+   "city": "Bethesda",
+   "state": "MD",
+   "category": "event_venue",
+   "why": [
+    "A:manual"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "president@womansclubofbethesda.org",
+     "name": "Mary Sherman",
+     "title": "Club President",
+     "page": "https://www.womansclubofbethesda.org/contact/",
+     "also_on": [
+      "https://www.womansclubofbethesda.org/member/home/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 2,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "membership@womansclubofbethesda.org",
+     "name": "Anne Herbster",
+     "title": "Membership Chair",
+     "page": "https://www.womansclubofbethesda.org/contact/",
+     "also_on": [
+      "https://www.womansclubofbethesda.org/our-mission/",
+      "https://www.womansclubofbethesda.org/clubs-history/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 3,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "rentals@womansclubofbethesda.org",
+     "name": "Diane Robertson",
+     "title": "Rental Coordinator",
+     "page": "https://www.womansclubofbethesda.org/contact/",
+     "also_on": [
+      "https://www.womansclubofbethesda.org/corporate-fundraisers/",
+      "https://www.womansclubofbethesda.org/venue/venue-online-payment/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 3,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "info@womansclubofbethesda.org",
+     "page": "https://www.womansclubofbethesda.org/venue/venue-online-payment/",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.womansclubofbethesda.org/rental-inquiry/",
+     "page": "https://www.womansclubofbethesda.org/contact/",
+     "accept": [
+      "https://www.womansclubofbethesda.org/contact/",
+      "https://www.womansclubofbethesda.org/contact-us",
+      "https://www.womansclubofbethesda.org/about",
+      "https://www.womansclubofbethesda.org/about-us",
+      "https://www.womansclubofbethesda.org/domestic-and-sexual-violence-awareness-and-prevention-program/",
+      "https://www.womansclubofbethesda.org/",
+      "https://www.womansclubofbethesda.org/club/",
+      "https://www.womansclubofbethesda.org/faqs/",
+      "https://www.womansclubofbethesda.org/shop/",
+      "https://www.womansclubofbethesda.org/venue/",
+      "https://www.womansclubofbethesda.org/?p=9150",
+      "https://www.womansclubofbethesda.org/?p=7493",
+      "https://www.womansclubofbethesda.org/?p=9145",
+      "https://www.womansclubofbethesda.org/pay-online/",
+      "https://www.womansclubofbethesda.org/our-mission/",
+      "https://www.womansclubofbethesda.org/member/home/",
+      "https://www.womansclubofbethesda.org/rentals-faqs/",
+      "https://www.womansclubofbethesda.org/clubs-history/",
+      "https://www.womansclubofbethesda.org/rental-inquiry/",
+      "https://www.womansclubofbethesda.org/special-occasions/",
+      "https://www.womansclubofbethesda.org/presidents-message/",
+      "https://www.womansclubofbethesda.org/corporate-fundraisers/",
+      "https://www.womansclubofbethesda.org/venue/venue-online-payment/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "PA-COUN-1830",
+   "name": "Llanerch Country Club",
+   "website": "https://www.llanerchcc.org/",
+   "city": "Havertown",
+   "state": "PA",
+   "category": "country_club",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "ewilliamson@llanerchcc.org",
+     "title": "Catering & Events",
+     "priority": "high",
+     "page": "https://www.llanerchcc.org/Events",
+     "also_on": [
+      "https://www.llanerchcc.org/Events.aspx",
+      "https://www.llanerchcc.org/events",
+      "https://www.llanerchcc.org/Contact_Us",
+      "https://www.llanerchcc.org/Contact_Us.aspx"
+     ],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr",
+      "cloudflare_href"
+     ],
+     "n_pages": 5
+    },
+    {
+     "kind": "email",
+     "value": "cwilkinson@llanerchcc.org",
+     "title": "COO/Director of Golf",
+     "priority": "high",
+     "page": "https://www.llanerchcc.org/Contact_Us",
+     "also_on": [
+      "https://www.llanerchcc.org/Contact_Us.aspx"
+     ],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "n_pages": 2
+    },
+    {
+     "kind": "email",
+     "value": "dferrari@llanerchcc.org",
+     "title": "Membership",
+     "page": "https://www.llanerchcc.org/Contact_Us",
+     "also_on": [
+      "https://www.llanerchcc.org/Contact_Us.aspx"
+     ],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "csmall@llanerchcc.org",
+     "title": "Golf Professional",
+     "page": "https://www.llanerchcc.org/Contact_Us",
+     "also_on": [
+      "https://www.llanerchcc.org/Contact_Us.aspx"
+     ],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "afrantz@llanerchcc.org",
+     "title": "Racquets Professional",
+     "page": "https://www.llanerchcc.org/Contact_Us",
+     "also_on": [
+      "https://www.llanerchcc.org/Contact_Us.aspx"
+     ],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "membership@llanerchcc.org",
+     "page": "https://www.llanerchcc.org/Contact_Us",
+     "also_on": [
+      "https://www.llanerchcc.org/Contact_Us.aspx",
+      "https://www.llanerchcc.org/Contact_Us/Directions",
+      "https://www.llanerchcc.org/Contact_Us/Directions.aspx",
+      "https://www.llanerchcc.org/Contact_Us/Directions/Area_Lodging",
+      "https://www.llanerchcc.org/Contact_Us/Directions/Area_Lodging.aspx",
+      "https://www.llanerchcc.org/Contact_Us/Guest_Forms",
+      "https://www.llanerchcc.org/Contact_Us/Guest_Forms.aspx",
+      "https://www.llanerchcc.org/Contact_Us/Membership",
+      "https://www.llanerchcc.org/Contact_Us/Membership.aspx",
+      "https://www.llanerchcc.org/Events",
+      "https://www.llanerchcc.org/Events.aspx",
+      "https://www.llanerchcc.org/events",
+      "https://www.llanerchcc.org/",
+      "https://www.llanerchcc.org/Golf",
+      "https://www.llanerchcc.org/Home",
+      "https://www.llanerchcc.org/Golf/Scorecard",
+      "https://www.llanerchcc.org/login.aspx?ReturnUrl=%2fMember_Central"
+     ],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 18,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.llanerchcc.org/Contact_Us/Membership.aspx",
+     "page": "https://www.llanerchcc.org/Contact_Us/Membership.aspx",
+     "accept": [
+      "https://www.llanerchcc.org/Contact_Us/Membership.aspx",
+      "https://www.llanerchcc.org/Contact_Us/Membership"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2764",
+   "name": "International Arts & Artists",
+   "website": "https://www.artsandartists.org",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "hillyerdirector@artsandartists.org",
+     "priority": "high",
+     "page": "https://www.artsandartists.org/about/staff/",
+     "also_on": [
+      "https://www.artsandartists.org/about/staff/29094-2/",
+      "https://www.artsandartists.org/about/staff/alissa-mcguire/",
+      "https://www.artsandartists.org/about/staff/farrar-lannon/",
+      "https://www.artsandartists.org/about/staff/gelila-kassa/",
+      "https://www.artsandartists.org/about/staff/gregory-houston/",
+      "https://www.artsandartists.org/about/staff/isabelle-baldwin/",
+      "https://www.artsandartists.org/about/staff/isham-simone/",
+      "https://www.artsandartists.org/about/staff/katie-larson/",
+      "https://www.artsandartists.org/about/staff/nicole-byers/",
+      "https://www.artsandartists.org/about/staff/rosa-jang/",
+      "https://www.artsandartists.org/about/staff/tabitha-bolen/",
+      "https://www.artsandartists.org/about/staff/tim-brown/",
+      "https://www.artsandartists.org/about/",
+      "https://www.artsandartists.org/about/board-of-directors/",
+      "https://www.artsandartists.org/about/board-of-directors/bart-oosterveld/",
+      "https://www.artsandartists.org/about/board-of-directors/gregoire-roos/",
+      "https://www.artsandartists.org/about/board-of-directors/lauren-tilstra/",
+      "https://www.artsandartists.org/about/board-of-directors/letitia-chambers/",
+      "https://www.artsandartists.org/about/board-of-directors/randy-pettipas/",
+      "https://www.artsandartists.org/about/board-of-directors/renato-miracco/",
+      "https://www.artsandartists.org/cultural-exchange-programs/about/",
+      "https://www.artsandartists.org/traveling-exhibition-service/about/",
+      "https://www.artsandartists.org/",
+      "https://www.artsandartists.org/exhibitions/duck-stamps/",
+      "https://www.artsandartists.org/cultural-exchange-programs/j-1-visa/"
+     ],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 28
+    },
+    {
+     "kind": "email",
+     "value": "info@artsandartists.org",
+     "page": "https://www.artsandartists.org/about/staff/",
+     "also_on": [
+      "https://www.artsandartists.org/about/staff/29094-2/",
+      "https://www.artsandartists.org/about/staff/alissa-mcguire/",
+      "https://www.artsandartists.org/about/staff/farrar-lannon/",
+      "https://www.artsandartists.org/about/staff/gelila-kassa/",
+      "https://www.artsandartists.org/about/staff/gregory-houston/",
+      "https://www.artsandartists.org/about/staff/isabelle-baldwin/",
+      "https://www.artsandartists.org/about/staff/isham-simone/",
+      "https://www.artsandartists.org/about/staff/katie-larson/",
+      "https://www.artsandartists.org/about/staff/nicole-byers/",
+      "https://www.artsandartists.org/about/staff/rosa-jang/",
+      "https://www.artsandartists.org/about/staff/tabitha-bolen/",
+      "https://www.artsandartists.org/about/staff/tim-brown/",
+      "https://www.artsandartists.org/about/",
+      "https://www.artsandartists.org/about/board-of-directors/",
+      "https://www.artsandartists.org/about/board-of-directors/bart-oosterveld/",
+      "https://www.artsandartists.org/about/board-of-directors/gregoire-roos/",
+      "https://www.artsandartists.org/about/board-of-directors/lauren-tilstra/",
+      "https://www.artsandartists.org/about/board-of-directors/letitia-chambers/",
+      "https://www.artsandartists.org/about/board-of-directors/randy-pettipas/",
+      "https://www.artsandartists.org/about/board-of-directors/renato-miracco/",
+      "https://www.artsandartists.org/cultural-exchange-programs/about/",
+      "https://www.artsandartists.org/traveling-exhibition-service/about/",
+      "https://www.artsandartists.org/",
+      "https://www.artsandartists.org/exhibitions/duck-stamps/",
+      "https://www.artsandartists.org/cultural-exchange-programs/j-1-visa/"
+     ],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 28,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "alissam@artsandartists.org",
+     "name": "Alissa McGuire",
+     "page": "https://www.artsandartists.org/about/staff/alissa-mcguire/",
+     "also_on": [],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "rosaj@artsandartists.org",
+     "name": "Rosa Jang",
+     "page": "https://www.artsandartists.org/about/staff/rosa-jang/",
+     "also_on": [],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "isabelleb@artsandartists.org",
+     "name": "Isabelle Baldwin",
+     "page": "https://www.artsandartists.org/about/staff/isabelle-baldwin/",
+     "also_on": [],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "tabithab@artsandartists.org",
+     "name": "Tabitha Bolen",
+     "page": "https://www.artsandartists.org/about/staff/tabitha-bolen/",
+     "also_on": [],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "farrarl@artsandartists.org",
+     "name": "Farrar Lannon",
+     "page": "https://www.artsandartists.org/about/staff/farrar-lannon/",
+     "also_on": [],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "nicoleb@artsandartists.org",
+     "name": "Nicole Byers",
+     "page": "https://www.artsandartists.org/about/staff/nicole-byers/",
+     "also_on": [],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-ART_-2608",
+   "name": "DTR Modern Galleries",
+   "website": "https://dtrmodern.com/",
+   "city": "Georgetown",
+   "state": "DC",
+   "category": "art_gallery",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "mgirard@dtrmodern.com",
+     "name": "Miranda Girard",
+     "title": "Executive Gallery Director",
+     "page": "http://www.dtrmodern.com/boston",
+     "also_on": [],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "christine@dtrmodern.com",
+     "title": "Assistant Director",
+     "priority": "high",
+     "page": "http://www.dtrmodern.com/boston",
+     "also_on": [],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "email",
+     "value": "georgetown@dtrmodern.com",
+     "priority": "high",
+     "page": "http://www.dtrmodern.com/events/canvas-cocktails-fall-showcase-dc",
+     "also_on": [],
+     "how": [
+      "js_rendered"
+     ],
+     "all_hows": [
+      "js_rendered"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "email",
+     "value": "info@dtrmodern.com",
+     "page": "http://www.dtrmodern.com/events/alanwalsh-montecarlo-manhattan",
+     "also_on": [
+      "http://www.dtrmodern.com/events/artmiami2025",
+      "http://www.dtrmodern.com/events/halimflowers-extenebrislux",
+      "http://www.dtrmodern.com/events/huntslonem-dreamingincolor-nyc",
+      "http://www.dtrmodern.com/events/huntslonem-palmbeach-2026",
+      "http://www.dtrmodern.com/events/huntslonem-palmbeach-2026-l97e3",
+      "http://www.dtrmodern.com/events/huntslonem-returns-toboston",
+      "http://www.dtrmodern.com/events/huntslonem-soloexhibition-palmbeach",
+      "http://www.dtrmodern.com/events/king-paris-harlem-fine-arts",
+      "http://www.dtrmodern.com/events/kozo-boston-soloexhibition",
+      "http://www.dtrmodern.com/events/kozo-palmbeach-soloexhibition",
+      "http://www.dtrmodern.com/events/kozo-venicebiennale-keithharing",
+      "http://www.dtrmodern.com/events/magne-furuholmen-nationalartsclub",
+      "http://www.dtrmodern.com/events/stevnnhall-springopening",
+      "http://www.dtrmodern.com/boston",
+      "http://www.dtrmodern.com/events/artistsinresidence-halimflowers-clarencejames",
+      "http://www.dtrmodern.com/"
+     ],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr",
+      "js_rendered"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 17,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2734",
+   "name": "Vika Gallery",
+   "website": "https://vikagallery.org",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "art_gallery",
+   "why": [
+    "A:manual_check",
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "devika@vikagallery.org",
+     "name": "Devika Strother",
+     "title": "Founder",
+     "page": "https://vikagallery.org/contact/",
+     "also_on": [],
+     "how": [
+      "obfuscated_text"
+     ],
+     "all_hows": [
+      "obfuscated_text"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "tony@vikagallery.org",
+     "name": "Tony Hardy",
+     "title": "Gallery Director",
+     "page": "https://vikagallery.org/contact/",
+     "also_on": [],
+     "how": [
+      "obfuscated_text"
+     ],
+     "all_hows": [
+      "obfuscated_text"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://vikagallery.org/contact/",
+     "page": "https://vikagallery.org/contact/",
+     "accept": [
+      "https://vikagallery.org/contact/",
+      "https://vikagallery.org/rentals/"
+     ],
+     "providers": [
+      "honeybook"
+     ],
+     "provider_host": "honeybook.com",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-1750",
+   "name": "The Vineyard Wine Bar",
+   "website": "https://www.vineyardwinebar.com",
+   "city": "Havre de Grace",
+   "state": "MD",
+   "category": "wine_bar",
+   "why": [
+    "A:user provided"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "joelertch@gmail.com",
+     "priority": "high",
+     "note": "owner Joe Lertch",
+     "page": "https://www.vineyardwinebar.com/contact.html",
+     "also_on": [
+      "https://www.vineyardwinebar.com/about.html",
+      "https://www.vineyardwinebar.com/",
+      "https://www.vineyardwinebar.com/search",
+      "https://www.vineyardwinebar.com/lunch.html",
+      "https://www.vineyardwinebar.com/apps/search",
+      "https://www.vineyardwinebar.com/dinner.html",
+      "https://www.vineyardwinebar.com/apps/search?q=",
+      "https://www.vineyardwinebar.com/the-wine-shop.html",
+      "https://www.vineyardwinebar.com/the-wine-press.html",
+      "https://www.vineyardwinebar.com/apps/search?q=&filter=page",
+      "https://www.vineyardwinebar.com/apps/search?q=&filter=upload",
+      "https://www.vineyardwinebar.com/apps/search?q=&filter=product",
+      "https://www.vineyardwinebar.com/apps/search?q=&filter=blog_post",
+      "https://www.vineyardwinebar.com/apps/search?q=&filter=blog_comment"
+     ],
+     "how": [
+      "cloudflare_href"
+     ],
+     "all_hows": [
+      "cloudflare_href"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 15
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1025",
+   "name": "Degrees Bistro",
+   "website": "https://www.degreesbistro.com",
+   "city": "Georgetown",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:manual"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "sasha.papantoniou@ritzcarlton.com",
+     "priority": "high",
+     "off_domain": true,
+     "page": "https://www.degreesbistro.com/",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "email",
+     "value": "wasgo.leads@ritzcarlton.com",
+     "off_domain": true,
+     "page": "https://www.degreesbistro.com/contact",
+     "also_on": [
+      "https://www.degreesbistro.com/contact-location",
+      "https://www.degreesbistro.com/contact-us",
+      "https://www.degreesbistro.com/our-team",
+      "https://www.degreesbistro.com/team",
+      "https://www.degreesbistro.com/staff",
+      "https://www.degreesbistro.com/about",
+      "https://www.degreesbistro.com/about-us",
+      "https://www.degreesbistro.com/private-events",
+      "https://www.degreesbistro.com/",
+      "https://www.degreesbistro.com/photos",
+      "https://www.degreesbistro.com/404error",
+      "https://www.degreesbistro.com/site-map",
+      "https://www.degreesbistro.com/our-menus",
+      "https://www.degreesbistro.com/accessibility"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 15,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1039",
+   "name": "Am\u00e9lie DC Bistro & Wine Bar",
+   "website": "https://www.ameliedc.com",
+   "city": "Am\u00e9lie",
+   "state": "DC",
+   "category": "wine_bar",
+   "why": [
+    "A:manual"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "dc@ameliewinebar.com",
+     "note": "sheet website ameliedc.com redirects to ameliewinebar.com",
+     "page": "https://www.ameliewinebar.com/dc/contact",
+     "also_on": [
+      "https://www.ameliewinebar.com/dc/about",
+      "https://www.ameliewinebar.com/dc/events",
+      "https://www.ameliewinebar.com/dc/reservations",
+      "https://www.ameliewinebar.com/uws/contact",
+      "https://www.ameliewinebar.com/dc/the-team",
+      "https://www.ameliewinebar.com/uws/the-team",
+      "https://www.ameliewinebar.com/uws/about",
+      "https://www.ameliewinebar.com/",
+      "https://www.ameliewinebar.com/dc",
+      "https://www.ameliewinebar.com/uws",
+      "https://www.ameliewinebar.com/dc/menus",
+      "https://www.ameliewinebar.com/dc/menus/lunch",
+      "https://www.ameliewinebar.com/dc/menus/brunch",
+      "https://www.ameliewinebar.com/dc/menus/dinner",
+      "https://www.ameliewinebar.com/dc/menus/drinks",
+      "https://www.ameliewinebar.com/wv/reservations",
+      "https://www.ameliewinebar.com/uws/reservations",
+      "https://www.ameliewinebar.com/dc/menus/prix-fixe",
+      "https://www.ameliewinebar.com/dc/menus/happy-hour"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text",
+      "script_json"
+     ],
+     "n_pages": 20,
+     "priority": "normal"
+    },
+    {
+     "kind": "person",
+     "name": "Eric Kole",
+     "title": "General Manager & Partner",
+     "page": "https://www.ameliewinebar.com/dc/the-team",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.ameliewinebar.com/uws/contact",
+     "page": "https://www.ameliewinebar.com/uws/contact",
+     "accept": [
+      "https://www.ameliewinebar.com/uws/contact",
+      "https://www.ameliewinebar.com/dc/contact",
+      "https://www.ameliewinebar.com/dc/events"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1045",
+   "name": "La Tomate",
+   "website": "https://www.latomatebistro.com",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@latomatebistro.com",
+     "page": "https://www.latomatebistro.com/contact/",
+     "also_on": [
+      "https://www.latomatebistro.com/news-item/join-the-la-tomate-team/",
+      "https://www.latomatebistro.com/about/",
+      "https://www.latomatebistro.com/privatedining/",
+      "https://www.latomatebistro.com/",
+      "https://www.latomatebistro.com/outdoordining/",
+      "https://www.latomatebistro.com/location-and-hours/",
+      "https://www.latomatebistro.com/news-item/planning-a-holiday-party/",
+      "https://www.latomatebistro.com/news-item/celebrate-with-us-la-tomate-holiday-hours/",
+      "https://www.latomatebistro.com/news-item/complimentary-prosecco-celebrating-39-years-of-la-tomate/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 10,
+     "priority": "normal"
+    },
+    {
+     "kind": "person",
+     "name": "Natalina Meggi",
+     "title": "Owner",
+     "page": "https://www.latomatebistro.com/privatedining/",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.latomatebistro.com/contact/",
+     "page": "https://www.latomatebistro.com/contact/",
+     "accept": [
+      "https://www.latomatebistro.com/contact/",
+      "https://www.latomatebistro.com/about/",
+      "https://www.latomatebistro.com/privatedining/",
+      "https://www.latomatebistro.com/",
+      "https://www.latomatebistro.com/outdoordining/",
+      "https://www.latomatebistro.com/location-and-hours/",
+      "https://www.latomatebistro.com/news-item/planning-a-holiday-party/",
+      "https://www.latomatebistro.com/news-item/celebrate-with-us-la-tomate-holiday-hours/",
+      "https://www.latomatebistro.com/news-item/complimentary-prosecco-celebrating-39-years-of-la-tomate/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-873",
+   "name": "Il Pizzico",
+   "website": "https://www.ilpizzico.com",
+   "city": "Rockville",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@ilpizzico.com",
+     "page": "https://www.ilpizzico.com/privacy-policy",
+     "also_on": [
+      "https://www.ilpizzico.com/contact",
+      "https://www.ilpizzico.com/contact-us",
+      "https://www.ilpizzico.com/our-team",
+      "https://www.ilpizzico.com/team",
+      "https://www.ilpizzico.com/staff",
+      "https://www.ilpizzico.com/about",
+      "https://www.ilpizzico.com/about-us",
+      "https://www.ilpizzico.com/private-events",
+      "https://www.ilpizzico.com/events",
+      "https://www.ilpizzico.com/",
+      "https://www.ilpizzico.com/cart",
+      "https://www.ilpizzico.com/wines",
+      "https://www.ilpizzico.com/search",
+      "https://www.ilpizzico.com/find-us",
+      "https://www.ilpizzico.com/gallery",
+      "https://www.ilpizzico.com/employment",
+      "https://www.ilpizzico.com/lunch-menu",
+      "https://www.ilpizzico.com/dinner-menu",
+      "https://www.ilpizzico.com/reservations"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 20,
+     "priority": "normal"
+    },
+    {
+     "kind": "person",
+     "name": "Enzo Livia",
+     "title": "Proprietor",
+     "page": "https://www.ilpizzico.com/about-us",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-MUSE-509",
+   "name": "St Michaels Museum",
+   "website": "https://www.stmichaelsmuseum.org",
+   "city": "St Michaels",
+   "state": "MD",
+   "category": "museum",
+   "why": [
+    "A:websearch"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@stmichaelsmuseum.org",
+     "page": "https://www.stmichaelsmuseum.org/contact-us",
+     "also_on": [
+      "https://www.stmichaelsmuseum.org/tours/private-tours",
+      "https://www.stmichaelsmuseum.org/events",
+      "https://www.stmichaelsmuseum.org/",
+      "https://www.stmichaelsmuseum.org/join",
+      "https://www.stmichaelsmuseum.org/media",
+      "https://www.stmichaelsmuseum.org/tours",
+      "https://www.stmichaelsmuseum.org/donate",
+      "https://www.stmichaelsmuseum.org/grants",
+      "https://www.stmichaelsmuseum.org/mission",
+      "https://www.stmichaelsmuseum.org/exhibits",
+      "https://www.stmichaelsmuseum.org/postcards",
+      "https://www.stmichaelsmuseum.org/governance",
+      "https://www.stmichaelsmuseum.org/plan-visit",
+      "https://www.stmichaelsmuseum.org/collections",
+      "https://www.stmichaelsmuseum.org/get-involved",
+      "https://www.stmichaelsmuseum.org/museum-history",
+      "https://www.stmichaelsmuseum.org/donating-objects",
+      "https://www.stmichaelsmuseum.org/tours/historic-st-michaels",
+      "https://www.stmichaelsmuseum.org/product/st-michaels-baseball-caps",
+      "https://www.stmichaelsmuseum.org/news/starting-july-18th-saturday-walking-tours-will-begin-at-10-15-am"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 21,
+     "priority": "normal"
+    },
+    {
+     "kind": "person",
+     "name": "Donald Dougherty",
+     "title": "President",
+     "page": "https://www.stmichaelsmuseum.org/governance",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.stmichaelsmuseum.org/contact-us",
+     "page": "https://www.stmichaelsmuseum.org/contact-us",
+     "accept": [
+      "https://www.stmichaelsmuseum.org/contact-us",
+      "https://www.stmichaelsmuseum.org/tours/private-tours",
+      "https://www.stmichaelsmuseum.org/events",
+      "https://www.stmichaelsmuseum.org/",
+      "https://www.stmichaelsmuseum.org/governance",
+      "https://www.stmichaelsmuseum.org/museum-history"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "PA-HOTE-2376",
+   "name": "Blue Bell Inn",
+   "website": "https://bluebellinn.com",
+   "city": "Blue Bell",
+   "state": "PA",
+   "category": "hotel",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@bluebellinn.com",
+     "page": "https://bluebellinn.com/about",
+     "also_on": [
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-about",
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-private-dining-rooms",
+      "https://bluebellinn.com/",
+      "https://bluebellinn.com/accessibility-page-01",
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-party",
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-historic",
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-food-menu",
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-drink-menu",
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-reservations-custom",
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-happy-hours-specials",
+      "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-upcoming-entertainment"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 12,
+     "priority": "normal"
+    },
+    {
+     "kind": "person",
+     "name": "Ryan Karle",
+     "title": "General Manager",
+     "page": "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-about",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "person",
+     "name": "Scott Dougherty",
+     "title": "Owner",
+     "page": "https://bluebellinn.com/blue-bell-blue-bell-blue-bell-inn-about",
+     "priority": "normal",
+     "how": [
+      "person_no_email"
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1057",
+   "name": "Caf\u00e9 du Parc",
+   "website": "https://cafeduparc.com/dupont-circle/",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "person",
+     "name": "Luca de Marchis",
+     "title": "Director of Food & Beverage",
+     "page": "https://cafeduparc.com/",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://cafeduparc.com/",
+     "page": "https://cafeduparc.com/",
+     "accept": [
+      "https://cafeduparc.com/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-ART_-2565",
+   "name": "Fathom Gallery",
+   "website": "https://fathomgallery.org/georgetown/",
+   "city": "Georgetown",
+   "state": "DC",
+   "category": "art_gallery",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@fathomvenuegroup.com",
+     "off_domain": true,
+     "priority": "high",
+     "note": "parent company domain",
+     "page": "https://fathomgallery.org/about/faq/",
+     "also_on": [
+      "https://fathomgallery.org/contact-us",
+      "https://fathomgallery.org/contact/",
+      "https://fathomgallery.org/our-team",
+      "https://fathomgallery.org/team",
+      "https://fathomgallery.org/staff",
+      "https://fathomgallery.org/about-us",
+      "https://fathomgallery.org/about/",
+      "https://fathomgallery.org/about/caterers/",
+      "https://fathomgallery.org/about/caterers/planittothet@gmail.com",
+      "https://fathomgallery.org/private-events",
+      "https://fathomgallery.org/events",
+      "https://fathomgallery.org/",
+      "https://fathomgallery.org/blog",
+      "https://fathomgallery.org/press/",
+      "https://fathomgallery.org/venue/",
+      "https://fathomgallery.org/georgetown/",
+      "https://fathomgallery.org/prospect-street/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 18
+    },
+    {
+     "kind": "person",
+     "name": "Emily Zalzal",
+     "title": "Managing Director",
+     "page": "https://fathomgallery.org/about/",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "person",
+     "name": "Meg Haverinen",
+     "title": "Director of Sales and Client Relations",
+     "page": "https://fathomgallery.org/about/",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://fathomgallery.org/contact/",
+     "page": "https://fathomgallery.org/contact/",
+     "accept": [
+      "https://fathomgallery.org/contact/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-WINE-817",
+   "name": "Vin Sur Vingt DC",
+   "website": "https://www.vsvwinebars.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "wine_bar",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@vsvwinebars.com",
+     "page": "https://www.vsvwinebars.com/contact/",
+     "also_on": [
+      "https://www.vsvwinebars.com/about/",
+      "https://www.vsvwinebars.com/private-events/",
+      "https://www.vsvwinebars.com/event/",
+      "https://www.vsvwinebars.com/",
+      "https://www.vsvwinebars.com/blog/",
+      "https://www.vsvwinebars.com/press/",
+      "https://www.vsvwinebars.com/blog/?p=2",
+      "https://www.vsvwinebars.com/reservations/",
+      "https://www.vsvwinebars.com/job-opportunity/",
+      "https://www.vsvwinebars.com/locations-and-menus/",
+      "https://www.vsvwinebars.com/location/vin-sur-vingt-wine-bar-nomad/",
+      "https://www.vsvwinebars.com/location/vin-sur-vingt-wine-bar-riverside/",
+      "https://www.vsvwinebars.com/location/vin-sur-vingt-wine-bar-logan-circle/",
+      "https://www.vsvwinebars.com/location/vin-sur-vingt-wine-bar-upper-west-side/",
+      "https://www.vsvwinebars.com/location/vin-sur-vingt-wine-bar-bistro-e-51st-st/",
+      "https://www.vsvwinebars.com/location/vin-sur-vingt-wine-bar-le-french-wine-shop/",
+      "https://www.vsvwinebars.com/news-item/looking-for-affordable-food-near-me-in-nomad-vin-sur-vingt-has-the-answer/",
+      "https://www.vsvwinebars.com/news-item/happy-hour-near-me-nomad-why-vin-sur-vingt-is-nomads-best-after-work-wine-destination/",
+      "https://www.vsvwinebars.com/news-item/affordable-food-near-me-upper-west-side-why-vin-sur-vingt-is-the-best-value-french-bistro/",
+      "https://www.vsvwinebars.com/news-item/affordable-food-near-me-washington-dc-why-vsv-is-dcs-best-value-dining-and-wine-experience/",
+      "https://www.vsvwinebars.com/news-item/wine-happy-hour-midtown-east-why-vin-sur-vingt-bistro-e-51st-st-is-a-hidden-gem-for-wine-lovers/",
+      "https://www.vsvwinebars.com/news-item/affordable-food-near-me-midtown-east-why-vin-sur-vingt-bistro-e-51st-st-is-best-value-french-bistro/",
+      "https://www.vsvwinebars.com/news-item/happy-hour-near-me-washington-dc-why-vin-sur-vingt-logan-circle-is-the-citys-best-after-work-destination/"
+     ],
+     "how": [
+      "entity_encoded"
+     ],
+     "all_hows": [
+      "entity_encoded"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 24,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.vsvwinebars.com/contact/",
+     "page": "https://www.vsvwinebars.com/contact/",
+     "accept": [
+      "https://www.vsvwinebars.com/contact/",
+      "https://www.vsvwinebars.com/private-events/",
+      "https://app.perfectvenue.com/venues/vin-sur-vingt/hello"
+     ],
+     "providers": [
+      "perfectvenue"
+     ],
+     "provider_host": "perfectvenue.com",
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2713",
+   "name": "The Museum at Dumbarton Oaks",
+   "website": "https://www.doaks.org/visit/plan",
+   "city": "Georgetown",
+   "state": "DC",
+   "category": "museum",
+   "why": [
+    "A:manual_check",
+    "C:recent_web<=0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "stainsv@doaks.org",
+     "name": "Valerie Stains",
+     "title": "Artistic Director",
+     "page": "https://www.doaks.org/events/music",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "events@doaks.org",
+     "page": "https://www.doaks.org/about/people/contact",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "concerts@doaks.org",
+     "page": "https://www.doaks.org/about/people/contact",
+     "also_on": [
+      "https://www.doaks.org/events/music"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "n_pages": 2,
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2718",
+   "name": "The Phillips Collection",
+   "website": "https://www.phillipscollection.org",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "museum",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "music@phillipscollection.org",
+     "page": "https://www.phillipscollection.org/contact",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "eventrentals@phillipscollection.org",
+     "page": "https://www.phillipscollection.org/about/rentals",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@phillipscollection.org",
+     "page": "https://www.phillipscollection.org/contact",
+     "also_on": [
+      "https://www.phillipscollection.org/event/2026-09-25-living-room"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "director@phillipscollection.org",
+     "priority": "high",
+     "page": "https://www.phillipscollection.org/contact",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1048",
+   "name": "Supra",
+   "website": "https://supradc.com",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "jonathan@supradc.com",
+     "name": "Jonathan Nelms",
+     "title": "Owner",
+     "page": "https://supradc.com/washington-shaw-supra-supras-at-supra",
+     "also_on": [
+      "https://supradc.com/washington-shaw-supra-travel-with-supra"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 2,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "events@supradc.com",
+     "page": "https://supradc.com/washington-shaw-supra-catering-by-supra",
+     "also_on": [
+      "https://supradc.com/washington-shaw-supra-party",
+      "https://supradc.com/washington-shaw-supra-job-listings"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text",
+      "script_json"
+     ],
+     "n_pages": 3,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "info@supradc.com",
+     "page": "https://supradc.com/private-events",
+     "also_on": [
+      "https://supradc.com/washington-shaw-supra-catering-by-supra",
+      "https://supradc.com/",
+      "https://supradc.com/accessibility-page-01",
+      "https://supradc.com/washington-shaw-supra-party",
+      "https://supradc.com/washington-shaw-supra-press",
+      "https://supradc.com/washington-shaw-supra-food-menu",
+      "https://supradc.com/washington-shaw-supra-job-listings",
+      "https://supradc.com/washington-shaw-supra-reservations",
+      "https://supradc.com/washington-shaw-supra-supras-at-supra",
+      "https://supradc.com/washington-shaw-supra-travel-with-supra",
+      "https://supradc.com/washington-shaw-supra-dc-restaurant-week"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 12,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://supradc.com/washington-shaw-supra-party",
+     "page": "https://supradc.com/washington-shaw-supra-party",
+     "accept": [
+      "https://supradc.com/washington-shaw-supra-party",
+      "https://api.tripleseat.com/v1/leads/ts_script.js?lead_form_id=8151&public_key=713697386702b8a67a2cd4545e8b8790fe40663e",
+      "https://www.tripleseat.com#"
+     ],
+     "providers": [
+      "tripleseat"
+     ],
+     "provider_host": "tripleseat.com",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1023",
+   "name": "maman",
+   "website": "https://mamannyc.com/locations/georgetown/",
+   "city": "Georgetown",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "events@mamannyc.com",
+     "page": "https://mamannyc.com/info/contact",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "catering@mamannyc.com",
+     "page": "https://mamannyc.com/info/contact",
+     "also_on": [
+      "https://mamannyc.com/catering",
+      "https://mamannyc.com/info/faq"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 3,
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://mamannyc.com/events",
+     "accept": [
+      "https://mamannyc.com/events",
+      "https://mamannyc.com/catering",
+      "https://mamannyc.tripleseat.com/party_request/23990",
+      "https://mamannyc.tripleseat.com/party_request/31367"
+     ],
+     "how": [
+      "third_party_form"
+     ],
+     "page": "https://mamannyc.com/events",
+     "providers": [
+      "tripleseat"
+     ],
+     "provider_host": "tripleseat.com",
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1615",
+   "name": "Wagshal's Grand Bodega",
+   "website": "https://www.wagshals.com",
+   "city": "Bethesda",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "anne@wagshals.com",
+     "priority": "high",
+     "page": "https://www.wagshals.com/events",
+     "also_on": [
+      "https://www.wagshals.com/events/2017/4/20/pitmasters-back-alley-bbq-and-flying-dog-dinner-pairing",
+      "https://www.wagshals.com/events/2017/4/20/pitmasters-back-alley-bbq-and-flying-dog-dinner-pairing?format=ical"
+     ],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "js_rendered",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 3
+    },
+    {
+     "kind": "email",
+     "value": "pam@wagshals.com",
+     "priority": "high",
+     "page": "https://www.wagshals.com/locations",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "email",
+     "value": "isabell@wagshals.com",
+     "priority": "high",
+     "page": "https://www.wagshals.com/locations",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "email",
+     "value": "wagshals@wagshals.com",
+     "page": "https://www.wagshals.com/events",
+     "also_on": [
+      "https://www.wagshals.com/events/2017/9/9/spring-valley-catering-backyard-cooking"
+     ],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "brian@wagshals.com",
+     "priority": "high",
+     "page": "https://www.wagshals.com/about-our-products",
+     "also_on": [
+      "https://www.wagshals.com/locations"
+     ],
+     "how": [
+      "script_json"
+     ],
+     "all_hows": [
+      "script_json"
+     ],
+     "n_pages": 2
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1481",
+   "name": "Stone Tower Winery",
+   "website": "https://www.stonetowerwinery.com",
+   "city": "Leesburg",
+   "state": "VA",
+   "category": "winery",
+   "why": [
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "events@stonetowerwinery.com",
+     "page": "https://www.stonetowerwinery.com/contact/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "info@stonetowerwinery.com",
+     "page": "https://www.stonetowerwinery.com/contact/",
+     "also_on": [
+      "https://www.stonetowerwinery.com/occasions/private-events/",
+      "https://www.stonetowerwinery.com/events/cellar-tour/",
+      "https://www.stonetowerwinery.com/events/estate-experience/",
+      "https://www.stonetowerwinery.com/events/signature-experience/",
+      "https://www.stonetowerwinery.com/visit/events/",
+      "https://www.stonetowerwinery.com/occasions/weddings/",
+      "https://www.stonetowerwinery.com/",
+      "https://www.stonetowerwinery.com/press/",
+      "https://www.stonetowerwinery.com/visit/menu/",
+      "https://www.stonetowerwinery.com/visit/tours/",
+      "https://www.stonetowerwinery.com/visit/groups/",
+      "https://shop.stonetowerwinery.com/Members/Dashboard",
+      "https://www.stonetowerwinery.com/memberships/clubs/",
+      "https://www.stonetowerwinery.com/occasions/corporate/",
+      "https://www.stonetowerwinery.com/visit/tasting-rooms/",
+      "https://www.stonetowerwinery.com/visit/accommodations/",
+      "https://www.stonetowerwinery.com/product/gift-membership/",
+      "https://www.stonetowerwinery.com/memberships/upcoming-releases/",
+      "https://www.stonetowerwinery.com/visit/groups/pergola-rental-policies/",
+      "https://shop.stonetowerwinery.com/index.cfm?method=memberLogin.showLogin",
+      "https://shop.stonetowerwinery.com/index.cfm?method=memberlogin.showLogin",
+      "https://www.stonetowerwinery.com/visit/groups/pergola-rental-pre-order-menu/",
+      "https://shop.stonetowerwinery.com/index.cfm?method=memberlogin.showLogin&referrerQueryString=method%3DmemberClubs.clubList%26originalMarketingURL%3DMembers%2FClub-List"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 24,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "reservations@stonetowerwinery.com",
+     "page": "https://www.stonetowerwinery.com/visit/groups/",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.stonetowerwinery.com/occasions/private-events/",
+     "page": "https://www.stonetowerwinery.com/occasions/private-events/",
+     "accept": [
+      "https://www.stonetowerwinery.com/occasions/private-events/",
+      "https://www.stonetowerwinery.com/occasions/weddings/",
+      "https://www.stonetowerwinery.com/visit/groups/",
+      "https://www.stonetowerwinery.com/occasions/corporate/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2403",
+   "name": "Old Farm Winery at Hartland",
+   "website": "https://oldfarmwineryhartland.com",
+   "city": "Aldie",
+   "state": "VA",
+   "category": "winery",
+   "why": [
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "events@oldfarmwineryhartland.com",
+     "page": "https://oldfarmwineryhartland.com/groupreservations/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "info@oldfarmwineryhartland.com",
+     "page": "https://oldfarmwineryhartland.com/contact-us",
+     "also_on": [
+      "https://oldfarmwineryhartland.com/contact/",
+      "https://oldfarmwineryhartland.com/our-team",
+      "https://oldfarmwineryhartland.com/team",
+      "https://oldfarmwineryhartland.com/staff",
+      "http://oldfarmwineryhartland.com/about-us/careers/utility-personnel/",
+      "http://oldfarmwineryhartland.com/about-us/careers/wine-sales-associate/",
+      "https://oldfarmwineryhartland.com/about-us/",
+      "https://oldfarmwineryhartland.com/about-us/careers/",
+      "https://oldfarmwineryhartland.com/about-us/the-people/",
+      "http://oldfarmwineryhartland.com/privateevent/",
+      "https://oldfarmwineryhartland.com/private-events/",
+      "https://oldfarmwineryhartland.com/private-events/social-corporate/",
+      "https://oldfarmwineryhartland.com/private-events/weddings/",
+      "https://oldfarmwineryhartland.com/events/",
+      "https://oldfarmwineryhartland.com/",
+      "http://oldfarmwineryhartland.com/visit/",
+      "https://oldfarmwineryhartland.com/calendar/",
+      "https://oldfarmwineryhartland.com/wine-club/",
+      "https://oldfarmwineryhartland.com/winery-faqs/",
+      "https://oldfarmwineryhartland.com/author/lcmadmin/",
+      "https://oldfarmwineryhartland.com/groupreservations/",
+      "http://oldfarmwineryhartland.com/collection/all-wines/",
+      "https://oldfarmwineryhartland.com/collection/all-wines/",
+      "https://oldfarmwineryhartland.com/collection/red-wines/",
+      "https://oldfarmwineryhartland.com/collection/specialty-wine/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 29,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "clubmanager@oldfarmwineryhartland.com",
+     "page": "https://oldfarmwineryhartland.com/wine-club/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "accept": [
+      "https://oldfarmwineryhartland.com/contact/",
+      "https://oldfarmwineryhartland.com/private-events/weddings/",
+      "https://oldfarmwineryhartland.com/private-events/social-corporate/",
+      "https://app.eventtemple.com/lead_intakes/6de5a5ba425579e3b4507dea9cdcdd49/3568/new"
+     ],
+     "note": "EventTemple private-event lead form iframe (#privateeventinquiry) on /private-events/social-corporate/ also counts",
+     "value": "https://oldfarmwineryhartland.com/contact/",
+     "page": "https://oldfarmwineryhartland.com/contact/",
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-845",
+   "name": "Corsica Wine Bar",
+   "website": "https://www.corsicawinebar.com",
+   "city": "Reston",
+   "state": "VA",
+   "category": "wine_bar",
+   "why": [
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "corsicareston@corsicawinebar.com",
+     "priority": "high",
+     "note": "Reston location; pipeline saved the Denver one",
+     "page": "https://www.corsicawinebar.com/reston/contact",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.corsicawinebar.com/reston/contact",
+     "page": "https://www.corsicawinebar.com/reston/contact",
+     "accept": [
+      "https://www.corsicawinebar.com/reston/contact",
+      "https://www.corsicawinebar.com/reston/private-events"
+     ],
+     "providers": [
+      "perfectvenue"
+     ],
+     "provider_host": "perfectvenue.com",
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2391",
+   "name": "Clyopatra Winery & Vineyard",
+   "website": "https://clyopatrawineryvineyard.com",
+   "city": "Laurel",
+   "state": "MD",
+   "category": "winery",
+   "why": [
+    "C:recent_web<=0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@clyopatrawineryvineyard.com",
+     "page": "https://clyopatrawineryvineyard.com/contact-us/",
+     "also_on": [
+      "https://clyopatrawineryvineyard.com/event-reservations/"
+     ],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://clyopatrawineryvineyard.com/contact-us/",
+     "page": "https://clyopatrawineryvineyard.com/contact-us/",
+     "accept": [
+      "https://clyopatrawineryvineyard.com/contact-us/",
+      "https://clyopatrawineryvineyard.com/event-reservations/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1456",
+   "name": "Boxwood Estate Winery",
+   "website": "https://boxwoodwinery.com",
+   "city": "Middleburg",
+   "state": "VA",
+   "category": "winery",
+   "why": [
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "contact@boxwoodwinery.com",
+     "page": "https://boxwoodwinery.com/",
+     "also_on": [
+      "https://boxwoodwinery.com/privacy-policy/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://boxwoodwinery.com/book-your-event/",
+     "page": "https://boxwoodwinery.com/book-your-event/",
+     "accept": [
+      "https://boxwoodwinery.com/book-your-event/",
+      "https://boxwoodwinery.com/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1034",
+   "name": "Bonne Vie Cafe and Bistro",
+   "website": "https://www.bonneviedc.com",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "hello@bonneviedc.com",
+     "page": "https://www.bonneviedc.com/contact",
+     "also_on": [
+      "https://www.bonneviedc.com/contact-us",
+      "https://www.bonneviedc.com/our-team",
+      "https://www.bonneviedc.com/team",
+      "https://www.bonneviedc.com/staff",
+      "https://www.bonneviedc.com/about",
+      "https://www.bonneviedc.com/about-us",
+      "https://www.bonneviedc.com/private-events",
+      "https://www.bonneviedc.com/events",
+      "https://www.bonneviedc.com/",
+      "https://www.bonneviedc.com/cafe",
+      "https://www.bonneviedc.com/cart",
+      "https://www.bonneviedc.com/jazz",
+      "https://www.bonneviedc.com/press",
+      "https://www.bonneviedc.com/dining",
+      "https://www.bonneviedc.com/search",
+      "https://www.bonneviedc.com/commanders",
+      "https://www.bonneviedc.com/jazzbrunch"
+     ],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 18,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-229",
+   "name": "The Morrow Washington DC, Curio Collection by Hilton",
+   "website": "https://www.themorrowhotel.com",
+   "city": "The Morrow Washington",
+   "state": "DC",
+   "category": "hotel",
+   "why": [
+    "A:manual"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@themorrowhotel.com",
+     "page": "https://www.themorrowhotel.com/contact-us",
+     "also_on": [
+      "https://www.themorrowhotel.com/events",
+      "https://www.themorrowhotel.com/events/rfp",
+      "https://www.themorrowhotel.com/happenings-events",
+      "https://www.themorrowhotel.com/happenings-events/calendar",
+      "https://www.themorrowhotel.com/happenings-events/calendar/daily/2026/08/30",
+      "https://www.themorrowhotel.com/happenings-events/calendar/daily/2026/08/31",
+      "https://www.themorrowhotel.com/happenings-events/calendar/daily/2026/09/1",
+      "https://www.themorrowhotel.com/happenings-events/calendar/daily/2026/09/10",
+      "https://www.themorrowhotel.com/happenings-events/calendar/daily/2026/09/11",
+      "https://www.themorrowhotel.com/happenings-events/calendar/daily/2026/09/12",
+      "https://www.themorrowhotel.com/happenings-events/experience",
+      "https://www.themorrowhotel.com/happenings-events/nearby",
+      "https://www.themorrowhotel.com/happenings-events/universities",
+      "https://www.themorrowhotel.com/happenings-events/wellness",
+      "https://www.themorrowhotel.com/morrow-weddings-dc",
+      "https://www.themorrowhotel.com/morrow-weddings/curated-offers",
+      "https://www.themorrowhotel.com/morrow-weddings/rfp",
+      "https://www.themorrowhotel.com/morrow-weddings/venues",
+      "https://www.themorrowhotel.com/morrow-weddings/wedding-menus",
+      "https://www.themorrowhotel.com/",
+      "https://www.themorrowhotel.com/our-hotel",
+      "https://www.themorrowhotel.com/offers/breakfast",
+      "https://www.themorrowhotel.com/offers/advance-purchase",
+      "https://www.themorrowhotel.com/offers/fall-campaign-2026",
+      "https://www.themorrowhotel.com/offers/presidential-pets-package"
+     ],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 28,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.themorrowhotel.com/events/rfp",
+     "page": "https://www.themorrowhotel.com/events/rfp",
+     "accept": [
+      "https://www.themorrowhotel.com/events/rfp",
+      "https://www.themorrowhotel.com/morrow-weddings/rfp",
+      "https://www.themorrowhotel.com/events",
+      "https://themorrow.tripleseat.com/party_request/40994",
+      "https://www.themorrowhotel.com/morrow-weddings-dc",
+      "https://www.themorrowhotel.com/morrow-weddings/venues"
+     ],
+     "providers": [
+      "tripleseat"
+     ],
+     "provider_host": "tripleseat.com",
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-942",
+   "name": "Gregorio Trattoria Potomac",
+   "website": "https://gregoriostrattoria.com/",
+   "city": "Potomac",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "C:recent_web<=0",
+    "B:webcov_web0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@gregoriostrattoria.com",
+     "page": "https://gregoriostrattoria.com/contact",
+     "also_on": [
+      "https://gregoriostrattoria.com/locations/reston",
+      "https://gregoriostrattoria.com/locations/bethesda",
+      "https://gregoriostrattoria.com/locations/cabin-john",
+      "https://gregoriostrattoria.com/locations/park-potomac"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 5,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://gregoriostrattoria.com/contact",
+     "page": "https://gregoriostrattoria.com/contact",
+     "accept": [
+      "https://gregoriostrattoria.com/contact",
+      "https://gregoriostrattoria.com/gregs-food-4-cause"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3266",
+   "name": "Manassas Junction Bed and Breakfast",
+   "website": "http://manassasjunction.com",
+   "city": "Manassas",
+   "state": "VA",
+   "category": "hotel",
+   "why": [
+    "C:recent_web<=0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "manassasxbb@verizon.net",
+     "priority": "high",
+     "page": "https://manassasjunction.com/about/",
+     "also_on": [
+      "https://manassasjunction.com/",
+      "https://manassasjunction.com/policies/",
+      "https://manassasjunction.com/amenities/"
+     ],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "n_pages": 4
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://manassasjunction.com/book-room/",
+     "page": "https://manassasjunction.com/book-room/",
+     "accept": [
+      "https://manassasjunction.com/book-room/",
+      "https://cavendo.wufoo.com/embed/zv8kzqw0rfchvm/def/entsource=wordpress",
+      "https://cavendo.wufoo.com/embed/zv8kzqw0rfchvm?embedKey=zv8kzqw0rfchvm905678&entsource=wordpress&referrer=&header=hide",
+      "http://cavendo.wufoo.com/forms/zv8kzqw0rfchvm",
+      "https://cavendo.wufoo.com/forms/zv8kzqw0rfchvm/def/entsource=wordpress"
+     ],
+     "providers": [
+      "wufoo"
+     ],
+     "provider_host": "wufoo.com",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3273",
+   "name": "The Boyd Bed & Breakfast",
+   "website": "https://theboyd1780.com",
+   "city": "Middleburg",
+   "state": "VA",
+   "category": "hotel",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "jennifer@theboyd1780.com",
+     "priority": "high",
+     "note": "owner Jennifer Moore",
+     "page": "https://theboyd1780.com/amenities",
+     "also_on": [
+      "https://theboyd1780.com/rooms/suite-1",
+      "https://theboyd1780.com/rooms/suite-2",
+      "https://theboyd1780.com/rooms/suite-3",
+      "https://theboyd1780.com/rooms/suite-4",
+      "https://theboyd1780.com/gift-certificates",
+      "https://theboyd1780.com/rooms/entire-home"
+     ],
+     "how": [
+      "script_json"
+     ],
+     "all_hows": [
+      "script_json"
+     ],
+     "n_pages": 7
+    },
+    {
+     "kind": "email",
+     "value": "info@theboyd1780.com",
+     "page": "https://theboyd1780.com/contact",
+     "also_on": [
+      "https://theboyd1780.com/about",
+      "https://theboyd1780.com/",
+      "https://theboyd1780.com/rooms",
+      "https://theboyd1780.com/policies",
+      "https://theboyd1780.com/amenities",
+      "https://theboyd1780.com/activities",
+      "https://theboyd1780.com/rooms/suite-1",
+      "https://theboyd1780.com/rooms/suite-2",
+      "https://theboyd1780.com/rooms/suite-3",
+      "https://theboyd1780.com/rooms/suite-4",
+      "https://theboyd1780.com/privacy-policy",
+      "https://theboyd1780.com/gift-certificates",
+      "https://theboyd1780.com/rooms/entire-home",
+      "https://theboyd1780.com/accessibility-statement",
+      "https://theboyd1780.com/rooms?utm_source=website&utm_medium=navigation",
+      "https://theboyd1780.com/contact-us",
+      "https://theboyd1780.com/our-team",
+      "https://theboyd1780.com/team",
+      "https://theboyd1780.com/staff",
+      "https://theboyd1780.com/about-us",
+      "https://theboyd1780.com/private-events",
+      "https://theboyd1780.com/events"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text",
+      "script_json"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 23,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "theboyd1780@gmail.com",
+     "page": "https://theboyd1780.com/amenities",
+     "also_on": [
+      "https://theboyd1780.com/rooms/suite-1",
+      "https://theboyd1780.com/rooms/suite-2",
+      "https://theboyd1780.com/rooms/suite-3",
+      "https://theboyd1780.com/rooms/suite-4",
+      "https://theboyd1780.com/gift-certificates",
+      "https://theboyd1780.com/rooms/entire-home"
+     ],
+     "how": [
+      "script_json"
+     ],
+     "all_hows": [
+      "script_json"
+     ],
+     "n_pages": 7,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3086",
+   "name": "246 Thai Street",
+   "website": "https://www.246thaistreet.com",
+   "city": "Herndon",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "C:recent_web<=0",
+    "B:webcov_web0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "246thaistreet@gmail.com",
+     "page": "https://www.246thaistreet.com/about/",
+     "also_on": [
+      "https://www.246thaistreet.com/catering/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2953",
+   "name": "Osteria Marzano",
+   "website": "https://www.osteriamarzano.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "C:recent_web<=0",
+    "B:webcov_web0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@osteriamarzano.com",
+     "page": "https://www.osteriamarzano.com/event/piemonte-cooking-class-september-2026/",
+     "also_on": [
+      "https://www.osteriamarzano.com/event/thanksgiving-italian-cooking-class-alexandria-va/",
+      "https://www.osteriamarzano.com/event/tuscan-cooking-class-october-17/"
+     ],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 3,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.osteriamarzano.com/contact/",
+     "page": "https://www.osteriamarzano.com/contact/",
+     "accept": [
+      "https://www.osteriamarzano.com/contact/",
+      "https://www.osteriamarzano.com/private-events/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2744",
+   "name": "von ammon",
+   "website": "https://vonammon.net",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "C:recent_web<=0",
+    "B:webcov_web0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@vonammon.net",
+     "page": "https://vonammon.net/contact",
+     "also_on": [
+      "https://vonammon.net/contact-us",
+      "https://vonammon.net/2026/06/24/teamviewer-2025-crack-x32x64-final/",
+      "https://vonammon.net/our-team",
+      "https://vonammon.net/staff",
+      "https://vonammon.net/about",
+      "https://vonammon.net/about-us",
+      "https://vonammon.net/private-events",
+      "https://vonammon.net/events",
+      "https://vonammon.net/",
+      "https://vonammon.net/exhibition/fg4/",
+      "https://vonammon.net/artist/alex-bag/",
+      "https://vonammon.net/exhibition/2053/",
+      "https://vonammon.net/artist/beth-collar/",
+      "https://vonammon.net/artist/chino-amobi/",
+      "https://vonammon.net/artist/helmut-lang/",
+      "https://vonammon.net/artist/jason-yates/",
+      "https://vonammon.net/artist/dinoschapman/",
+      "https://vonammon.net/artist/jacob-kassay/",
+      "https://vonammon.net/artist/banks-violette/",
+      "https://vonammon.net/artist/danny-mcdonald/",
+      "https://vonammon.net/artist/ignacio-gatica/",
+      "https://vonammon.net/exhibition/rob-pruitt/",
+      "https://vonammon.net/exhibition/focus-group/",
+      "https://vonammon.net/artist/africanus-okokon/",
+      "https://vonammon.net/artist/catharine-czudej/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 29,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2731",
+   "name": "Touchstone Gallery",
+   "website": "http://www.touchstonegallery.com",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "art_gallery",
+   "why": [
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "events@touchstonegallery.com",
+     "page": "https://www.touchstonegallery.com/rentals",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "info@touchstonegallery.com",
+     "page": "https://www.touchstonegallery.com/contact",
+     "also_on": [
+      "https://www.touchstonegallery.com/about",
+      "https://www.touchstonegallery.com/event-tickets/art-sound-funk",
+      "https://www.touchstonegallery.com/event-tickets/art-sound-salon-classical",
+      "https://www.touchstonegallery.com/event-tickets/art-sound-salon-jazz",
+      "https://www.touchstonegallery.com/events",
+      "https://www.touchstonegallery.com/events/2026/10/24/opening-reception-gale-wallar-and-patricia-williams",
+      "https://www.touchstonegallery.com/events/2026/11/7/1976-studio-sale",
+      "https://www.touchstonegallery.com/events/2026/3/1/50-for-50-visual-artist-spotlight-s-manya-stoumen-tolino",
+      "https://www.touchstonegallery.com/events/2026/3/1/50-for-50-visual-artist-spotlight-xenia-gray",
+      "https://www.touchstonegallery.com/events/2026/3/24/michael-lang-day",
+      "https://www.touchstonegallery.com/events/2026/4/11/slow-art-day",
+      "https://www.touchstonegallery.com/events/2026/4/25/mccain-mcmurray-amp-rosemary-luckett-artist-talks",
+      "https://www.touchstonegallery.com/events/2026/4/7/peak-bloom-party-amp-salvador-rubio-rivera-reception",
+      "https://www.touchstonegallery.com/events/2026/5/15/tfa-fellowship-info-session",
+      "https://www.touchstonegallery.com/events/2026/5/19/50-for-50-kira-belostotska",
+      "https://www.touchstonegallery.com/events/2026/5/19/50-for-50-oliver-jones-smith",
+      "https://www.touchstonegallery.com/",
+      "https://www.touchstonegallery.com/rentals",
+      "https://www.touchstonegallery.com/events/2026/10/24/opening-reception-gale-wallar-and-patricia-williams?format=ical",
+      "https://www.touchstonegallery.com/events/2026/11/7/1976-studio-sale?format=ical",
+      "https://www.touchstonegallery.com/events/2026/3/1/50-for-50-visual-artist-spotlight-s-manya-stoumen-tolino?format=ical"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "js_rendered",
+      "mailto",
+      "plain_text",
+      "script_json"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 22,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "exhibitions@touchstonegallery.com",
+     "page": "https://www.touchstonegallery.com/events",
+     "also_on": [
+      "https://www.touchstonegallery.com/events/2026/3/1/50-for-50-visual-artist-spotlight-s-manya-stoumen-tolino",
+      "https://www.touchstonegallery.com/events/2026/3/1/50-for-50-visual-artist-spotlight-xenia-gray",
+      "https://www.touchstonegallery.com/events/2026/4/11/slow-art-day",
+      "https://www.touchstonegallery.com/events/2026/4/25/mccain-mcmurray-amp-rosemary-luckett-artist-talks",
+      "https://www.touchstonegallery.com/events/2026/4/7/peak-bloom-party-amp-salvador-rubio-rivera-reception",
+      "https://www.touchstonegallery.com/events/2026/5/19/50-for-50-oliver-jones-smith",
+      "https://www.touchstonegallery.com/events/2026/3/1/50-for-50-visual-artist-spotlight-s-manya-stoumen-tolino?format=ical"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "js_rendered",
+      "mailto"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 8,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1415",
+   "name": "Mansion House Yacht Club",
+   "website": "https://www.mansionhouseyachtclub.com",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "yacht_club",
+   "why": [
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "commodore@mansionhouseyachtclub.com",
+     "title": "Commodore",
+     "priority": "high",
+     "page": "https://www.mansionhouseyachtclub.com/board-of-directors.html",
+     "also_on": [],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.mansionhouseyachtclub.com/contact.html",
+     "page": "https://www.mansionhouseyachtclub.com/contact.html",
+     "accept": [
+      "https://www.mansionhouseyachtclub.com/contact.html"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1216",
+   "name": "Light House Bistro",
+   "website": "https://www.lighthousebistro.org",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "A:user_found"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "catering@lighthousebistro.org",
+     "page": "https://www.lighthousebistro.org/private-event-space",
+     "also_on": [
+      "https://www.lighthousebistro.org/bestcatering"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 2,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "info@lighthousebistro.org",
+     "page": "https://www.lighthousebistro.org/contact",
+     "also_on": [
+      "https://www.lighthousebistro.org/contact-us",
+      "https://www.lighthousebistro.org/our-team",
+      "https://www.lighthousebistro.org/team",
+      "https://www.lighthousebistro.org/staff",
+      "https://www.lighthousebistro.org/about",
+      "https://www.lighthousebistro.org/about-us",
+      "https://www.lighthousebistro.org/private-event-space",
+      "https://www.lighthousebistro.org/private-events",
+      "https://www.lighthousebistro.org/events",
+      "https://www.lighthousebistro.org/bestcatering",
+      "https://www.lighthousebistro.org/",
+      "https://www.lighthousebistro.org/cart",
+      "https://www.lighthousebistro.org/home",
+      "https://www.lighthousebistro.org/granola",
+      "https://www.lighthousebistro.org/granola/p/gingersnap-granola",
+      "https://www.lighthousebistro.org/granola/p/cranberry-pecan-granola",
+      "https://www.lighthousebistro.org/granola/p/vanilla-almond-granola-8-oz",
+      "https://www.lighthousebistro.org/granola/p/39xi4yl3gilo1w7vj3mrrpi8qnns2l"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 19,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1217",
+   "name": "Bread and Butter Kitchen",
+   "website": "https://breadandbutterkitchen.com",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "A:user_found"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "catering@breadandbutterkitchen.com",
+     "page": "https://breadandbutterkitchen.com/catering/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "monica@breadandbutterkitchen.com",
+     "priority": "high",
+     "page": "https://breadandbutterkitchen.com/contact-us",
+     "also_on": [
+      "https://breadandbutterkitchen.com/contact/",
+      "https://breadandbutterkitchen.com/our-team",
+      "https://breadandbutterkitchen.com/team",
+      "https://breadandbutterkitchen.com/staff",
+      "https://breadandbutterkitchen.com/about-the-cafe/",
+      "https://breadandbutterkitchen.com/about-us",
+      "https://breadandbutterkitchen.com/private-events",
+      "https://breadandbutterkitchen.com/events",
+      "https://breadandbutterkitchen.com/catering/",
+      "https://breadandbutterkitchen.com/",
+      "https://breadandbutterkitchen.com/32157-2/",
+      "https://breadandbutterkitchen.com/farmers/",
+      "https://breadandbutterkitchen.com/the-cafe/",
+      "https://breadandbutterkitchen.com/my-account/",
+      "https://breadandbutterkitchen.com/veganmenu2025/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 16
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://breadandbutterkitchen.com/contact/",
+     "page": "https://breadandbutterkitchen.com/contact/",
+     "accept": [
+      "https://breadandbutterkitchen.com/contact/",
+      "https://breadandbutterkitchen.com/about-the-cafe/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1241",
+   "name": "Le Comptoir du Vin",
+   "website": "https://www.comptoirbaltimore.com",
+   "city": "Roland Park Baltimore",
+   "state": "MD",
+   "category": "wine_bar",
+   "why": [
+    "A:website /wine-club"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "comptoirwineguy@gmail.com",
+     "priority": "high",
+     "page": "https://www.comptoirbaltimore.com/wine-club",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "email",
+     "value": "comptoirbaltimore@gmail.com",
+     "page": "https://www.comptoirbaltimore.com/about",
+     "also_on": [
+      "https://www.comptoirbaltimore.com/",
+      "https://www.comptoirbaltimore.com/reservations",
+      "https://www.comptoirbaltimore.com/contact",
+      "https://www.comptoirbaltimore.com/contact-us",
+      "https://www.comptoirbaltimore.com/our-team",
+      "https://www.comptoirbaltimore.com/team",
+      "https://www.comptoirbaltimore.com/staff",
+      "https://www.comptoirbaltimore.com/about-us",
+      "https://www.comptoirbaltimore.com/private-events",
+      "https://www.comptoirbaltimore.com/back-bar-events",
+      "https://www.comptoirbaltimore.com/events",
+      "https://www.comptoirbaltimore.com/cart",
+      "https://www.comptoirbaltimore.com/menu",
+      "https://www.comptoirbaltimore.com/search",
+      "https://www.comptoirbaltimore.com/wine-club"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text",
+      "script_json"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 16,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-436",
+   "name": "Bordeleau Winery",
+   "website": "https://www.bordeleauwine.com/",
+   "city": "St. Michaels",
+   "state": "MD",
+   "category": "winery",
+   "why": [
+    "A:manual"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "events@bordeleauwine.com",
+     "page": "https://www.bordeleauwine.com/contact",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "sales@bordeleauwine.com",
+     "page": "https://www.bordeleauwine.com/contact",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "bordeleauwinery@bordeleauwine.com",
+     "page": "https://www.bordeleauwine.com/contact",
+     "also_on": [
+      "https://www.bordeleauwine.com/tasting-room",
+      "https://www.bordeleauwine.com/contact-us",
+      "https://www.bordeleauwine.com/our-team",
+      "https://www.bordeleauwine.com/team",
+      "https://www.bordeleauwine.com/staff",
+      "https://www.bordeleauwine.com/about",
+      "https://www.bordeleauwine.com/about-us",
+      "https://www.bordeleauwine.com/private-events",
+      "https://www.bordeleauwine.com/events",
+      "https://www.bordeleauwine.com/plan-an-event",
+      "https://www.bordeleauwine.com/",
+      "https://www.bordeleauwine.com/awards",
+      "https://www.bordeleauwine.com/gallery",
+      "https://www.bordeleauwine.com/site-map",
+      "https://www.bordeleauwine.com/wine-club",
+      "https://www.bordeleauwine.com/where-to-buy",
+      "https://www.bordeleauwine.com/privacy-policy",
+      "https://www.bordeleauwine.com/loyalty-program",
+      "https://www.bordeleauwine.com/non-maryland-customers"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 20,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.bordeleauwine.com/contact",
+     "page": "https://www.bordeleauwine.com/contact",
+     "accept": [
+      "https://www.bordeleauwine.com/contact",
+      "https://www.bordeleauwine.com/tasting-room"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-EVEN-2974",
+   "name": "The Garden Alexandria",
+   "website": "http://thegarden.net",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "event_venue",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "james@buildmo.com",
+     "priority": "high",
+     "off_domain": true,
+     "note": "Venue Manager",
+     "page": "https://www.thegarden.net/",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.thegarden.net/contact",
+     "page": "https://www.thegarden.net/contact",
+     "accept": [
+      "https://www.thegarden.net/contact",
+      "https://public.honeybook.com/public_contact_form_app/07c4a1d/index.html"
+     ],
+     "providers": [
+      "honeybook"
+     ],
+     "provider_host": "honeybook.com",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1149",
+   "name": "ArTeA Restaurant + Bar",
+   "website": "https://arteamclean.com",
+   "city": "McLean",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "A:manual"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "managers@artealounge.com",
+     "off_domain": true,
+     "priority": "high",
+     "page": "https://arteamclean.com/contact",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [
+      "header"
+     ],
+     "n_pages": 1
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-642",
+   "name": "Iron Gate Restaurant",
+   "website": "https://www.irongaterestaurantdc.com",
+   "city": "",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:curl website"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "manager@irongaterestaurantdc.com",
+     "priority": "high",
+     "page": "https://www.irongaterestaurantdc.com/private-dining",
+     "also_on": [
+      "https://www.irongaterestaurantdc.com/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 2
+    },
+    {
+     "kind": "email",
+     "value": "michael@neighborhoodrestaurantgroup.com",
+     "off_domain": true,
+     "page": "https://www.irongaterestaurantdc.com/private-dining",
+     "also_on": [
+      "https://www.irongaterestaurantdc.com/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 2,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.irongaterestaurantdc.com/private-dining",
+     "page": "https://www.irongaterestaurantdc.com/private-dining",
+     "accept": [
+      "https://www.irongaterestaurantdc.com/private-dining",
+      "https://neighborhoodrestaurantgroup.tripleseat.com/party_request/13710"
+     ],
+     "providers": [
+      "tripleseat"
+     ],
+     "provider_host": "tripleseat.com",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "PA-COUN-1829",
+   "name": "North Hills Country Club",
+   "website": "https://www.invitedclubs.com/clubs/north-hills-country-club",
+   "city": "Glenside",
+   "state": "PA",
+   "category": "country_club",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "northhills@invitedclubs.com",
+     "page": "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/",
+     "also_on": [
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/?i=0a573e07-fcbc-448e-859b-c348abafbf69&t=f99f1cc1-54e7-44fc-afd1-d17faaf98cad",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/host-an-event-form-private-events/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/host-an-event-form-private-events/?i=59ccb771-cf53-4c51-9d0f-3d86bdd5b62e&t=ef340f67-e5b4-4a55-b373-17c6daf3a000",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/host-an-event-form-golf/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/host-an-event-form-weddings/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership-inquiry/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership-inquiry/schedule-a-tour/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership/?i=d903ebc7-3c1e-415c-9c46-8339ba8a239f&t=f99f1cc1-54e7-44fc-afd1-d17faaf98cad",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership-inquiry/?i=f631f814-fd2b-4844-aa9b-b9d54db0da73&t=f99f1cc1-54e7-44fc-afd1-d17faaf98cad"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "n_pages": 11,
+     "priority": "normal"
+    },
+    {
+     "kind": "person",
+     "name": "Michael Reilly",
+     "title": "General Manager",
+     "page": "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "person",
+     "name": "Kristen Williams",
+     "title": "Event Sales Director",
+     "page": "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "person",
+     "name": "Russell Danyluk",
+     "title": "Membership Director",
+     "page": "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/",
+     "how": [
+      "person_no_email"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/",
+     "page": "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/",
+     "accept": [
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/contact-us/?i=0a573e07-fcbc-448e-859b-c348abafbf69&t=f99f1cc1-54e7-44fc-afd1-d17faaf98cad",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/host-an-event-form-private-events/?i=59ccb771-cf53-4c51-9d0f-3d86bdd5b62e&t=ef340f67-e5b4-4a55-b373-17c6daf3a000",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/host-an-event-form-private-events/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/host-an-event-form-weddings/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/host-an-event-form-golf/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership-inquiry/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership-inquiry/schedule-a-tour/",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership/?i=d903ebc7-3c1e-415c-9c46-8339ba8a239f&t=f99f1cc1-54e7-44fc-afd1-d17faaf98cad",
+      "https://www.invitedclubs.com/clubs/north-hills-country-club/membership-inquiry/?i=f631f814-fd2b-4844-aa9b-b9d54db0da73&t=f99f1cc1-54e7-44fc-afd1-d17faaf98cad"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-2970",
+   "name": "The Maryland Inn of the Historic Inns of Annapolis",
+   "website": "https://www.historicinnsofannapolis.com/stay/maryland-inn",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "hotel",
+   "why": [
+    "C:recent_web<=0",
+    "B:webcov_web0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "reservations@historicinnsofannapolis.com",
+     "page": "https://www.historicinnsofannapolis.com/contact-us",
+     "how": [
+      "mailto"
+     ],
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.historicinnsofannapolis.com/contact-us",
+     "page": "https://www.historicinnsofannapolis.com/contact-us",
+     "accept": [
+      "https://www.historicinnsofannapolis.com/contact-us",
+      "https://www.historicinnsofannapolis.com/contact"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ],
+   "access": "browser_only"
+  },
+  {
+   "venue_id": "DE-HOTE-2392",
+   "name": "Shorebreak Lodge",
+   "website": "https://shorebreaklodge.com",
+   "city": "Rehoboth Beach",
+   "state": "DE",
+   "category": "hotel",
+   "why": [
+    "A:manual"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "shorebreakrb@gmail.com",
+     "priority": "high",
+     "note": "owner Ben Winiarczyk",
+     "page": "https://shorebreaklodge.com/",
+     "also_on": [],
+     "how": [
+      "js_rendered"
+     ],
+     "all_hows": [
+      "js_rendered"
+     ],
+     "n_pages": 1
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-PRIV-108",
+   "name": "Arts Club of Washington",
+   "website": "http://artsclubofwashington.org",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "private_club",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "dining@artsclubofwashington.org",
+     "priority": "high",
+     "page": "https://artsclubofwashington.org/events/",
+     "also_on": [],
+     "how": [
+      "js_rendered"
+     ],
+     "all_hows": [
+      "js_rendered"
+     ],
+     "n_pages": 1
+    },
+    {
+     "kind": "email",
+     "value": "info@artsclubofwashington.org",
+     "page": "https://artsclubofwashington.org/events/",
+     "also_on": [],
+     "how": [
+      "js_rendered"
+     ],
+     "all_hows": [
+      "js_rendered"
+     ],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "gallery@artsclubofwashington.org",
+     "page": "https://artsclubofwashington.org/events/",
+     "also_on": [],
+     "how": [
+      "js_rendered"
+     ],
+     "all_hows": [
+      "js_rendered"
+     ],
+     "n_pages": 1,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-825",
+   "name": "Main and Market Annapolis",
+   "website": "http://www.mainandmarket.com",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "B:webcov_web0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "hello@mainandmarket.com",
+     "note": "only on catering.mainandmarket.com",
+     "page": "https://catering.mainandmarket.com/contact-us/",
+     "also_on": [
+      "https://catering.mainandmarket.com/catering-services/social-corporate-events/",
+      "https://catering.mainandmarket.com/catering-services/weddings/",
+      "https://catering.mainandmarket.com",
+      "https://catering.mainandmarket.com/",
+      "https://catering.mainandmarket.com/bakery-shop/",
+      "https://catering.mainandmarket.com/catering-services/",
+      "https://catering.mainandmarket.com/catering-services/school-lunch-program/",
+      "https://catering.mainandmarket.com/catering-services/venues/",
+      "https://catering.mainandmarket.com/catering-services/venues/resources/",
+      "https://catering.mainandmarket.com/privacy-policy/",
+      "https://catering.mainandmarket.com/terms-and-conditions/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 12,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://mainandmarket.com/contact-us/",
+     "page": "https://mainandmarket.com/contact-us/",
+     "accept": [
+      "https://mainandmarket.com/contact-us/",
+      "https://catering.mainandmarket.com/contact-us/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-HOTE-2565",
+   "name": "The Georgetown Inn",
+   "website": "https://www.georgetowninn.com/",
+   "city": "Georgetown",
+   "state": "DC",
+   "category": "hotel",
+   "why": [
+    "A:pipeline"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "georgetowninn@yourdchotels.com",
+     "off_domain": true,
+     "page": "https://www.georgetowninn.com/contact-us",
+     "also_on": [
+      "https://www.georgetowninn.com/about-us",
+      "https://www.georgetowninn.com/events-in-georgetown-dc",
+      "https://www.georgetowninn.com/",
+      "https://www.georgetowninn.com/gallery",
+      "https://www.georgetowninn.com/sitemap",
+      "https://www.georgetowninn.com/activities",
+      "https://www.georgetowninn.com/accessibility",
+      "https://www.georgetowninn.com/privacy-policy",
+      "https://www.georgetowninn.com/best-hotels-in-georgetown-dc",
+      "https://www.georgetowninn.com/georgetown-dc-accommodations",
+      "https://www.georgetowninn.com/restaurants-in-georgetown-dc",
+      "https://www.georgetowninn.com/things-to-do-in-georgetown-dc"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 13,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "mwinberg@yourdchotels.com",
+     "off_domain": true,
+     "priority": "high",
+     "page": "https://www.georgetowninn.com/contact-us",
+     "also_on": [
+      "https://www.georgetowninn.com/events-in-georgetown-dc"
+     ],
+     "how": [
+      "script_json"
+     ],
+     "all_hows": [
+      "script_json"
+     ],
+     "n_pages": 2
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-707",
+   "name": "Grapes Wine Bar",
+   "website": "https://winecellarsofannapolis.com/",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "wine_bar",
+   "why": [
+    "A:websearch"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@winecellarsofannapolis.com",
+     "page": "https://www.winecellarsofannapolis.com",
+     "also_on": [],
+     "how": [
+      "js_rendered"
+     ],
+     "all_hows": [
+      "js_rendered"
+     ],
+     "n_pages": 1,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-793",
+   "name": "Inn at Horn Point",
+   "website": "https://innathornpoint.com",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "hotel",
+   "why": [
+    "A:google search"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "innkeeper@innathornpoint.com",
+     "priority": "high",
+     "page": "https://innathornpoint.com/contact-us/",
+     "also_on": [
+      "https://innathornpoint.com/our-team",
+      "https://innathornpoint.com/team",
+      "https://innathornpoint.com/staff",
+      "https://innathornpoint.com/about-us/",
+      "https://innathornpoint.com/private-events",
+      "https://innathornpoint.com/events",
+      "https://innathornpoint.com",
+      "https://innathornpoint.com/",
+      "https://innathornpoint.com/blog/",
+      "https://innathornpoint.com/captiva/",
+      "https://innathornpoint.com/sequoia/",
+      "https://innathornpoint.com/eastport/",
+      "https://innathornpoint.com/location/",
+      "https://innathornpoint.com/policies/",
+      "https://innathornpoint.com/santamar/",
+      "https://innathornpoint.com/?sfid=1464",
+      "https://innathornpoint.com/breakfast/",
+      "https://innathornpoint.com/palisades/",
+      "https://innathornpoint.com/explore-annapolis/",
+      "https://innathornpoint.com/map-and-directions/",
+      "https://innathornpoint.com/?sfid=1464&sf_paged=2",
+      "https://innathornpoint.com/family-breakfast-to-go/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 23
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-EVEN-278",
+   "name": "Crystal View Farm, LLC",
+   "website": "https://www.crystalviewfarm.com",
+   "city": "Martinsburg",
+   "state": "WV",
+   "category": "event",
+   "why": [
+    "A:manual"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "cvfevents@gmail.com",
+     "page": "https://www.crystalviewfarm.com/contact",
+     "also_on": [
+      "https://www.crystalviewfarm.com/about",
+      "https://www.crystalviewfarm.com/aboutcrystalviewfarm",
+      "https://www.crystalviewfarm.com/",
+      "https://www.crystalviewfarm.com/gallery",
+      "https://www.crystalviewfarm.com/introduction-call"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 6,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.crystalviewfarm.com/contact",
+     "page": "https://www.crystalviewfarm.com/contact",
+     "accept": [
+      "https://www.crystalviewfarm.com/contact"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-EVEN-261",
+   "name": "Winding Creek Farm",
+   "website": "https://windingcreekfarmva.com",
+   "city": "Lovettsville",
+   "state": "VA",
+   "category": "event",
+   "why": [
+    "A:websearch"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "wcfarmevents@gmail.com",
+     "page": "https://windingcreekfarmva.com/contact-us",
+     "also_on": [
+      "https://windingcreekfarmva.com/about",
+      "https://windingcreekfarmva.com/",
+      "https://windingcreekfarmva.com/details",
+      "https://windingcreekfarmva.com/portfolio",
+      "https://windingcreekfarmva.com/recommended-vendors"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer"
+     ],
+     "n_pages": 6,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://windingcreekfarmva.com/contact-us",
+     "page": "https://windingcreekfarmva.com/contact-us",
+     "accept": [
+      "https://windingcreekfarmva.com/contact-us",
+      "https://public.honeybook.com/public_contact_form_app/07c4a1d/index.html"
+     ],
+     "providers": [
+      "honeybook"
+     ],
+     "provider_host": "honeybook.com",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1036",
+   "name": "Obelisk",
+   "website": "http://obeliskdc.com",
+   "city": "Dupont Circle",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "obeliskdc@gmail.com",
+     "page": "http://obeliskdc.com/contact",
+     "also_on": [
+      "http://obeliskdc.com/contact-us",
+      "http://obeliskdc.com/our-team",
+      "http://obeliskdc.com/team",
+      "http://obeliskdc.com/staff",
+      "http://obeliskdc.com/about",
+      "http://obeliskdc.com/about-us",
+      "http://obeliskdc.com/private-events",
+      "http://obeliskdc.com/events",
+      "http://obeliskdc.com/",
+      "http://obeliskdc.com/cart",
+      "http://obeliskdc.com/menu",
+      "http://obeliskdc.com/search",
+      "http://obeliskdc.com/reservations"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 14,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1191",
+   "name": "Knead Wine",
+   "website": "https://www.kneadwine.com",
+   "city": "Middleburg",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "A:website footer"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "team@kneadwine.com",
+     "page": "https://www.kneadwine.com/contact",
+     "also_on": [
+      "https://www.kneadwine.com/contact-us",
+      "https://www.kneadwine.com/our-team",
+      "https://www.kneadwine.com/team",
+      "https://www.kneadwine.com/staff",
+      "https://www.kneadwine.com/about",
+      "https://www.kneadwine.com/about-us",
+      "https://www.kneadwine.com/private-events",
+      "https://www.kneadwine.com/events",
+      "https://www.kneadwine.com/",
+      "https://www.kneadwine.com/cart",
+      "https://club.kneadwine.com/login/",
+      "https://club.kneadwine.com/terms/",
+      "https://club.kneadwine.com/signup/",
+      "https://club.kneadwine.com/credits/",
+      "https://club.kneadwine.com/privacy/",
+      "https://club.kneadwine.com/shipping/",
+      "https://club.kneadwine.com/club/start/",
+      "https://club.kneadwine.com/membership/",
+      "https://www.kneadwine.com/order-online",
+      "https://club.kneadwine.com/accessibility/"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 21,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1138",
+   "name": "Macon Bistro & Larder",
+   "website": "https://macondc.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "A:manual_check",
+    "C:recent_web<=0",
+    "B:webcov_web0"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "events.macon@gmail.com",
+     "page": "https://macondc.com/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1,
+     "priority": "high"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://macondc.com/",
+     "page": "https://macondc.com/",
+     "accept": [
+      "https://macondc.com/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2722",
+   "name": "SPILT Art Gallery",
+   "website": "https://www.spiltdc.com",
+   "city": "Georgetown",
+   "state": "DC",
+   "category": "art_gallery",
+   "why": [
+    "C:recent_web<=1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "info@spiltdc.com",
+     "page": "https://www.spiltdc.com/contact",
+     "also_on": [
+      "https://www.spiltdc.com/contact-us",
+      "https://www.spiltdc.com/our-team",
+      "https://www.spiltdc.com/team",
+      "https://www.spiltdc.com/staff",
+      "https://www.spiltdc.com/about",
+      "https://www.spiltdc.com/about-us",
+      "https://www.spiltdc.com/private-events",
+      "https://www.spiltdc.com/events",
+      "https://www.spiltdc.com/",
+      "https://www.spiltdc.com/cart",
+      "https://www.spiltdc.com/search",
+      "https://www.spiltdc.com/artists",
+      "https://www.spiltdc.com/katzworks",
+      "https://www.spiltdc.com/exhibitions",
+      "https://www.spiltdc.com/rozeal-works",
+      "https://www.spiltdc.com/russell-katz",
+      "https://www.spiltdc.com/cheryl-numark",
+      "https://www.spiltdc.com/conversations",
+      "https://www.spiltdc.com/robinsonworks",
+      "https://www.spiltdc.com/paul-myoda-works",
+      "https://www.spiltdc.com/rozeal-exhibition",
+      "https://www.spiltdc.com/ellington-robinson",
+      "https://www.spiltdc.com/current-exhibitions-1",
+      "https://www.spiltdc.com/paul-myoda-conversations"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "zones": [
+      "footer",
+      "header"
+     ],
+     "n_pages": 25,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1150",
+   "name": "Old House Cosmopolitan",
+   "website": "https://www.oldhousecosmopolitan.com",
+   "city": "McLean",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "A:website /contact-1"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "oldhousecosmopolitan@gmail.com",
+     "page": "https://www.oldhousecosmopolitan.com/contact-1",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto",
+      "plain_text"
+     ],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "contact_form",
+     "value": "https://www.oldhousecosmopolitan.com/contact-1",
+     "page": "https://www.oldhousecosmopolitan.com/contact-1",
+     "accept": [
+      "https://www.oldhousecosmopolitan.com/contact-1",
+      "https://www.oldhousecosmopolitan.com/contact"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3351",
+   "name": "Roberto's Ristorante Italiano",
+   "website": "https://robertosva.com",
+   "city": "Vienna",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "C:recent_web<=0"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://www.robertosva.com/contact/",
+     "page": "https://www.robertosva.com/contact/",
+     "accept": [
+      "https://www.robertosva.com/contact/",
+      "https://www.robertosva.com/events-catering/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3163",
+   "name": "Marcello Ristorante",
+   "website": "https://marcellinoristorante.com/",
+   "city": "Great Falls",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "C:recent_web<=0",
+    "B:webcov_web0"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://marcellinoristorante.com/contact/",
+     "page": "https://marcellinoristorante.com/contact/",
+     "accept": [
+      "https://marcellinoristorante.com/contact/",
+      "https://marcellinoristorante.com/private-dining/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "normal"
+    }
+   ]
+  }
+ ]
+}

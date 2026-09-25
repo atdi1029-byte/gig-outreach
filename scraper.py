@@ -3,7 +3,17 @@
 Gig Outreach Scraper — Maryland Wineries MVP
 Scrapes marylandwine.com directory, extracts emails + social links,
 verifies via ZeroBounce, pushes to Google Sheet via Apps Script.
+
+Venues are added as needs_review (discovery never creates untouched venues).
+Emails follow the pipeline's save policy (outreach_rules.check_email): junk,
+hard-reject and off-domain addresses are never paid for or saved; role
+mailboxes need a person name (this scraper has none, so they are logged);
+personal mailboxes are saved when ZeroBounce says valid, or as unverified when
+it couldn't check. Everything not saved goes to reports/discovery-candidates.jsonl.
 """
+
+import os
+from datetime import datetime, timezone
 
 import requests
 from bs4 import BeautifulSoup
@@ -32,8 +42,10 @@ JUNK_EMAIL_PATTERNS = [
     'hubspot', 'sendgrid', 'mandrillapp', 'zendesk'
 ]
 
-# Email prefixes to skip (generic inboxes that never get read)
-JUNK_EMAIL_PREFIXES = ['info@']
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, SCRIPT_DIR)
+import outreach_rules as R  # noqa: E402
+CANDIDATE_LOG = os.path.join(SCRIPT_DIR, 'reports', 'discovery-candidates.jsonl')
 
 # Max venues to scrape (set low for testing)
 MAX_VENUES = 2
@@ -91,7 +103,8 @@ def scrape_winery_detail(url):
         'instagram': '',
         'source': 'marylandwine.com',
         'upscale_score': '3',
-        'zone_priority': 'default'
+        'zone_priority': 'default',
+        'status': 'needs_review',
     }
 
     # Name — usually in h1 or h2
@@ -201,12 +214,54 @@ def verify_email(email):
     try:
         from zerobounce_guard import verify_email as guarded_verify
         result = guarded_verify(email, source="scraper")
-        status = result.get("status", "unknown")
-        print(f"  [VERIFY] {email} → {status} (via guard)")
+        status = result.get("status", "deferred")
+        print(f"  [VERIFY] {email} → {status} ({result.get('reason', '')}, via guard)")
         return status
     except Exception as e:
+        # a guard crash is "couldn't check", not an "unknown" verdict
         print(f"  [ERROR] ZeroBounce guard failed for {email}: {e}")
-        return 'unknown'
+        return 'deferred'
+
+
+def record_candidate(venue_id, email, source, disposition):
+    row = {'timestamp': datetime.now(timezone.utc).isoformat(), 'venue_id': venue_id, 'email': email,
+           'name': '', 'title': '', 'source': source, 'disposition': disposition, 'evidence_url': ''}
+    try:
+        os.makedirs(os.path.dirname(CANDIDATE_LOG), exist_ok=True)
+        with open(CANDIDATE_LOG, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(row) + '\n')
+    except OSError as e:
+        print(f"  [WARN] candidate log: {e}")
+
+
+def save_email(venue, email, source, on_venue_site):
+    """Apply the pipeline's save policy to one address. Returns the outcome word."""
+    chk = R.check_email(email, venue_domain=venue.get('website', ''), venue_name=venue['name'],
+                        found_on_venue_site=on_venue_site)
+    email = chk['email'] or email
+    if chk['action'] == 'reject':
+        record_candidate(venue['venue_id'], email, source, 'reject:' + chk['reason'])
+        return 'rejected (' + chk['reason'] + ')'
+    if chk['action'] == 'role':
+        # never sent to ZeroBounce; saved only with a real person name, which we don't have
+        record_candidate(venue['venue_id'], email, source, 'role_no_person_name')
+        return 'role mailbox, no name — logged'
+    status = verify_email(email)
+    time.sleep(1)  # Rate limit ZeroBounce
+    if status == 'valid':
+        verified = 'valid'
+    elif status == 'deferred':
+        verified = 'unverified'      # ZeroBounce couldn't check (e.g. out of credits): saved, re-check later
+    else:
+        record_candidate(venue['venue_id'], email, source, 'verification:' + status)
+        return 'not saved (ZeroBounce ' + status + ')'
+    resp = push_to_sheet('add_contact', {
+        'venue_id': venue['venue_id'], 'email': email, 'source': source, 'verified': verified,
+        'name': chk['name_hint'], 'title': ''})
+    if resp.get('status') != 'ok':
+        record_candidate(venue['venue_id'], email, source, 'api_save_failed')
+        return 'save FAILED: ' + str(resp.get('message', resp))[:120]
+    return 'duplicate' if resp.get('duplicate') else 'saved (' + verified + ')'
 
 
 def push_to_sheet(action, params):
@@ -283,9 +338,6 @@ def main():
         # Set zone priority
         venue['zone_priority'] = get_zone_priority(venue['city'])
 
-        # Generate venue_id
-        slug = re.sub(r'[^a-z0-9]', '', venue['name'].lower())[:8]
-        venue['venue_id'] = f"MD-WINE-{i+1:03d}-{slug}"
 
         print(f"  Name: {venue['name']}")
         print(f"  City: {venue['city']}")
@@ -294,34 +346,28 @@ def main():
         print(f"  Instagram: {venue['instagram']}")
         print(f"  Zone: {venue['zone_priority']}")
 
-        # Push venue to sheet
-        push_to_sheet('add_venue', venue)
+        # Push venue to sheet; contacts must use the id the sheet assigned
+        resp = push_to_sheet('add_venue', dict(venue))
+        if resp.get('status') != 'ok' or not resp.get('venue_id'):
+            print(f"  [ERROR] add_venue failed: {resp.get('message', resp)} — skipping this venue's contacts")
+            continue
+        venue['venue_id'] = resp['venue_id']
+        print(f"  Venue ID: {venue['venue_id']}" + (" (already in sheet)" if resp.get('duplicate') else ''))
 
         # Step 3: Scrape website for emails
         emails = scrape_website_emails(venue['website'])
 
-        # Also try Facebook about page
-        fb_emails = scrape_facebook_email(venue['facebook'])
-        for fe in fb_emails:
-            if fe not in emails:
-                emails.append(fe)
+        # Also try Facebook about page (not the venue's own site: weaker evidence)
+        fb_emails = [fe for fe in scrape_facebook_email(venue['facebook']) if fe not in emails]
 
-        print(f"  Emails found: {emails}")
+        print(f"  Emails found: {emails + fb_emails}")
 
-        # Step 4: Verify + push each email
+        # Step 4: policy check, verify, push each email
         for email in emails:
-            status = verify_email(email)
-            time.sleep(1)  # Rate limit ZeroBounce
-
-            contact = {
-                'venue_id': venue['venue_id'],
-                'email': email,
-                'source': 'website',
-                'verified': status,
-                'name': '',
-                'title': ''
-            }
-            push_to_sheet('add_contact', contact)
+            print(f"  {email}: {save_email(venue, email, 'website', True)}")
+        for email in fb_emails:
+            print(f"  {email}: {save_email(venue, email, 'facebook', False)}")
+        emails = emails + fb_emails
 
         results.append({
             'venue': venue['name'],

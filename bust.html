@@ -9,7 +9,8 @@
   const keys=await caches.keys();
   for(const k of keys) await caches.delete(k);
   document.body.innerHTML='<p>Cache cleared! Redirecting...</p>';
-  setTimeout(()=>location.href='./',1500);
+  // Cache-buster so GitHub Pages' HTTP cache can't hand back the old page
+  setTimeout(()=>location.href='./index.html?_='+Date.now(),1500);
 })();
 </script>
 </body></html>

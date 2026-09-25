@@ -2,7 +2,20 @@
 
 This patch makes ZeroBounce spending fail-safe instead of open-ended.
 
-## Default limits
+## Live settings (Sep 25 2026)
+
+Alex's `.env` sets `ZB_ENABLED=1`, `ZB_MAX_PER_RUN=500`, `ZB_MAX_PER_DAY=9999`,
+`ZB_MIN_BALANCE=100`, `ZB_FAIL_CLOSED=1`, with `ZB_RUN_ID` = the run's RUN_ID so the
+per-run cap covers all batches of a run. `./preflight.sh` prints the effective values
+and headroom. Role inboxes (info@, events@...) are never sent to ZeroBounce.
+
+When the guard can't verify (budget, reserve, no credits, outage), the address is
+**saved as `verified=unverified`** (Alex's decision, Sep 25 2026) and listed as
+"needs ZB check" in the report. After topping up credits:
+`./reverify.sh --unverified --dry-run` (shows the cost), then
+`./reverify.sh --unverified --limit N`. Cached verdicts are never paid for twice.
+
+## Code defaults (used only when .env doesn't set them)
 
 - **5 paid validation attempts per run** (`ZB_MAX_PER_RUN=5`)
 - **10 paid validation attempts total per UTC day** across all project copies (`ZB_MAX_PER_DAY=10`)

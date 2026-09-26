@@ -53,7 +53,7 @@ except ImportError:  # keep the module importable for callers that pass classifi
             re.escape(w[:-1]) + r"[a-z']*" if w.endswith('*') else re.escape(w)
             for w in words) + r")(?![a-z0-9])")
 
-SCORE_VERSION = '2026-09-25'
+SCORE_VERSION = '2026-09-26'
 TARGET_STATES = ('DC', 'MD', 'VA')   # P5; mirrors outreach_rules.TARGET_STATES
 
 # Batch floor (Apps Script TOP_PICK_MIN_TASTE mirrors this).
@@ -302,6 +302,10 @@ WRONG_VIBE_INDICATORS = [
     'gun club', 'shooting range', 'rifle',
     'farmers market', 'flea market',
     'food truck', 'food court',
+    # Sep 26 votes: Colvin Run Dance Hall, Salsa With Silvia Ballroom, Wagshal's
+    # ("a deli"), Vienna Inn ("more of a dive bar"), Tabu Social Club
+    'dance hall', 'ballroom', 'dance studio', 'deli', 'delicatessen',
+    'dive bar', 'swinger*',
 ]
 
 _RX_NON_VENUE = _rx(NON_VENUE_INDICATORS)

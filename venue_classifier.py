@@ -297,7 +297,8 @@ TAG_SIGNALS = {
                   'matchbox', 'busboys and poets', "carmine's", 'rosa mexicano',
                   'il fornaio', 'true food kitchen', 'cooper\'s hawk', 'coopers hawk',
                   'first watch', 'le pain quotidien', 'paul bakery', "bonchon",
-                  '801 chophouse', 'capital grille', 'chart house']),
+                  '801 chophouse', 'capital grille', 'chart house',
+                  'silver new american']),
     'chain_hotel': _rx([
         'doubletree', 'holiday inn', 'best western', 'comfort inn', 'comfort suites',
         'hampton inn', 'courtyard by', 'courtyard marriott', 'fairfield inn',

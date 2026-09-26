@@ -23,6 +23,7 @@ BLOCKED_DOMAINS = {
     'mapquest.com','yellowpages.com','bbb.org','chamberofcommerce.com','manta.com',
     'eventbrite.com','meetup.com','theknot.com','weddingwire.com','partyslate.com',
     'doordash.com','grubhub.com','ubereats.com','seamless.com','toasttab.com',
+    'menupages.com','singleplatform.com','allmenus.com',
     'booking.com','expedia.com','hotels.com','travelocity.com','kayak.com','priceline.com',
     'airbnb.com','vrbo.com','google.com','wikipedia.org','patch.com',
     'visitmaryland.org','dcpreservation.org','washington.org',

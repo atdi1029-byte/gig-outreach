@@ -118,6 +118,11 @@ except Exception as e:  # classifier missing/broken: nothing is classifiable, so
     vc_classify = None
     print(f"[discover] venue_classifier unavailable: {e}", file=sys.stderr)
 try:
+    from venue_classifier import junk_reason as vc_junk_reason
+except Exception as e:
+    vc_junk_reason = None
+    print(f"[discover] venue_classifier.junk_reason unavailable: {e}", file=sys.stderr)
+try:
     from taste_score import score as ts_score
 except Exception as e:
     ts_score = None
@@ -146,11 +151,26 @@ def one_line(s):
     return re.sub(r"[\t\r\n]+", " ", str(s or "")).strip()
 
 
+# Maps listing names carry brand and city tails the sheet row doesn't have:
+# "Canal House of Georgetown, a Tribute Portfolio Hotel" = "Canal House Georgetown",
+# "The Ritz-Carlton Georgetown, Washington, D.C." = "Ritz-Carlton Georgetown".
+BRAND_TAIL_RE = re.compile(
+    r"(,|\s-|\s\|)?\s*(an?\s+)?(tribute portfolio( hotel)?|tapestry collection( by hilton)?|"
+    r"curio collection( by hilton)?|autograph collection( hotels?)?|luxury collection( hotel)?|"
+    r"ascend hotel collection|destination by hyatt( hotel)?|jdv by hyatt|"
+    r"by (ihg|hilton|marriott|hyatt|wyndham|choice hotels))\b.*$")
+CITY_TAIL_RE = re.compile(r",\s*(washington(,?\s*d\.?\s*c\.?)?|d\.?\s*c\.?)\s*$")
+
+
 def norm_name(name):
     """'The Inn at Little Washington' / 'Inn at Little Washington' -> same key."""
     s = unicodedata.normalize("NFKD", str(name or "")).encode("ascii", "ignore").decode().lower()
+    s = BRAND_TAIL_RE.sub("", s)
+    s = CITY_TAIL_RE.sub("", s.strip())
+    s = re.sub(r"\bd\.\s*c\.?(?![a-z])", "dc", s)
     s = s.replace("&", " and ").replace("'", "")
     s = re.sub(r"[^a-z0-9]+", " ", s).strip()
+    s = re.sub(r" of ", " ", s)
     return re.sub(r"^the ", "", s)
 
 
@@ -182,6 +202,10 @@ def website_reject_reason(url):
     if reg in NEWS_HOSTS:
         return "news_site"
     if reg in AGGREGATOR_HOSTS:
+        return "aggregator"
+    # Booking clones: canal-house-of-georgetown-a-tribute-portfolio.hotel-washington-dc.net
+    bare = re.sub(r"^www\.", "", host)
+    if bare != reg and re.match(r"[a-z0-9-]+\.hotels?-[a-z0-9-]+\.[a-z]+$", bare):
         return "aggregator"
     return ""
 
@@ -346,6 +370,9 @@ def name_dup(idx, norm, city, state):
         return "skipped earlier this run: " + idx["run_skipped"][norm]
     city = (city or "").lower()
     for ecity, estate, vid in idx["names"].get(norm, []):
+        if state == "DC" and estate == "DC":
+            # Every DC venue is in Washington; rows say "Georgetown", "Dupont Circle"...
+            return vid or "existing"
         if city and ecity:
             if ecity == city:
                 return vid or "existing"
@@ -575,6 +602,12 @@ def cmd_filter(mode, results_path, index_path, context, out_path, context_loc=""
             our_cat, cls = classify(name, cat)
             if our_cat in SKIP_CLASSES:
                 print(f"  SKIP (classified {our_cat}): {name} -- {cat}")
+                continue
+            # Same gate build_batch uses: budget/extended-stay and mainstream chains,
+            # rentals, adult/nightlife... would only ever be skipped at batch time.
+            junk = vc_junk_reason(name, cat) if vc_junk_reason is not None else ""
+            if junk:
+                print(f"  SKIP (junk: {junk}): {name}")
                 continue
             price = str(v.get("price", "") or "").strip()
             score = pre_score(v, our_cat, state, q_state, q_city) if mode == "taste" else None

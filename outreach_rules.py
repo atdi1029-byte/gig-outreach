@@ -82,6 +82,7 @@ NON_VENUE_HOSTS = {
     "fox5dc.com", "washingtonpost.com", "washingtonian.com", "eater.com",
     "timeout.com", "yellowpages.com", "mapquest.com", "foursquare.com",
     "doordash.com", "ubereats.com", "grubhub.com", "toasttab.com",
+    "menupages.com", "seamless.com", "singleplatform.com", "allmenus.com",
 }
 
 PLACEHOLDER_EMAILS = {

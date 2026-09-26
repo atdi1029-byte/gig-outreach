@@ -14796,3 +14796,1468 @@
 [00:19:45] Cleaning up discovered_gigs.txt...
 [00:19:50] 
 [00:19:50] === Discovery Complete — Total new venues: 0 ===
+
+[00:54:27] === Venue Discovery Started ===
+[00:54:27] Fetching past gigs...
+[00:54:29] Found 70 past gigs
+[00:54:29] Fetching existing venues for dedup...
+[00:54:36] Existing venues: 4797 (unique names incl. past gigs: 4365, websites: 3238)
+[00:54:36]   SKIP (already discovered): L'Auberge Chez Francois
+[00:54:36]   SKIP (already discovered): The Inn at Perry Cabin
+[00:54:36]   SKIP (already discovered): The Maryland Club
+[00:54:36]   SKIP (already discovered): Black Ankle Vineyards
+[00:54:36]   SKIP (already discovered): Royal Restaurant
+[00:54:36]   SKIP (already discovered): Good Spirit Farm Winery
+[00:54:36]   SKIP (already discovered): Chesapeake Manor Vineyard
+[00:54:36]   SKIP (already discovered): Elkridge Furnace Inn
+[00:54:36]   SKIP (already discovered): Xella Winery and Vineyard
+[00:54:36]   SKIP (already discovered): Twin Oaks Tavern Winery
+[00:54:36]   SKIP (already discovered): Windridge Vineyards
+[00:54:36]   SKIP (already discovered): University Club
+[00:54:36]   SKIP (already discovered): The Farmhouse Tuscan
+[00:54:36]   SKIP (already discovered): Big Cork Vineyards
+[00:54:36]   SKIP (already discovered): Savage Mill Mall
+[00:54:36]   SKIP (already discovered): Trueman Vineyards
+[00:54:36]   SKIP (already discovered): Williams Gap Vineyard
+[00:54:36]   SKIP (already discovered): Hello Betty Bethesda
+[00:54:36]   SKIP (already discovered): The Madison Hotel
+[00:54:36]   SKIP (already discovered): Belle Haven Country Club
+[00:54:36]   SKIP (already discovered): Casanel Vineyards & Winery
+[00:54:36]   SKIP (already discovered): Chrysalis Vineyards at The Ag District
+[00:54:36]   SKIP (already discovered): Corteau Winery
+[00:54:36]   SKIP (already discovered): Penn Oaks Winery
+[00:54:36]   SKIP (already discovered): Pizza Pomodoro
+[00:54:36]   SKIP (already discovered): Hidden Brook Winery
+[00:54:36]   SKIP (already discovered): Simple Theory Wine Co
+[00:54:36]   SKIP (already discovered): Brightview Perry Hall
+[00:54:36]   SKIP (already discovered): Lake Anne Coffee House & Wine Bar
+[00:54:36]   SKIP (already discovered): Gaylord National Harbor
+[00:54:36]   SKIP (already discovered): Woodberry Kitchen
+[00:54:36]   SKIP (already discovered): Great Sage
+[00:54:36]   SKIP (already discovered): Cosmos Club DC
+[00:54:36]   SKIP (already discovered): Doukénie Winery
+[00:54:36]   SKIP (already discovered): State Plaza Hotel DC
+[00:54:36]   SKIP (already discovered): Hyatt Cambridge
+[00:54:36]   SKIP (already discovered): Greenhill Vineyards
+[00:54:36]   SKIP (already discovered): Loudoun Golf & Country Club
+[00:54:36]   SKIP (already discovered): Creek's Edge Winery
+[00:54:36]   SKIP (already discovered): The Milton Inn
+[00:54:36]   SKIP (already discovered): Country Club of Fairfax
+[00:54:36]   SKIP (already discovered): Century Club Hagerstown
+[00:54:36]   SKIP (already discovered): Rock Spring Farm
+[00:54:36]   SKIP (already discovered): Janemark Winery & Vineyard
+[00:54:36]   SKIP (already discovered): Alma Cocina Latina
+[00:54:36]   SKIP (already discovered): Omni Shoreham Hotel
+[00:54:36]   SKIP (already discovered): Knoxie's Table
+[00:54:36]   SKIP (already discovered): 1757 Golf Club
+[00:54:36]   SKIP (already discovered): Holly Hills Country Club
+[00:54:36]   SKIP (already discovered): Conrad Washington DC
+[00:54:36]   SKIP (already discovered): Pirouette Restaurant & Wine Shop
+[00:54:36]   SKIP (already discovered): Le Méridien Arlington
+[00:54:36]   SKIP (already discovered): Dulles Town Center
+[00:54:36]   SKIP (already discovered): Hidden Hills Farm and Vineyard
+[00:54:36]   SKIP (already discovered): Maritime Museum St Michaels
+[00:54:36]   SKIP (already discovered): Chartwell Golf & Country Club
+[00:54:36]   SKIP (already discovered): Ruse
+[00:54:36]   SKIP (already discovered): InGrano Bistro Bakery
+[00:54:36]   SKIP (already discovered): Kent Manor Inn
+[00:54:36]   SKIP (already discovered): Army Navy Country Club
+[00:54:36]   SKIP (already discovered): River Bend Country Club
+[00:54:36]   SKIP (already discovered): City Tavern DC
+[00:54:36]   SKIP (already discovered): Baltimore Country Club
+[00:54:36]   SKIP (already discovered): Vino and Pasta
+[00:54:36]   SKIP (already discovered): 50 West Vineyards
+[00:54:36]   SKIP (already discovered): The Galley Restaurant & Bar
+[00:54:36]   SKIP (already discovered): Wylder Hotel Tilghman Island
+[00:54:36]   SKIP (already discovered): Bistrot Lepic
+[00:54:36]   SKIP (already discovered): Sunset Hills Winery
+[00:54:36]   SKIP (already discovered): The Oaks Waterfront Hotel
+[00:54:36] Cleaning up discovered_gigs.txt...
+[00:54:41]   Cleanup done: removed 0, kept 73
+[00:54:41] 
+[00:54:41] === Discovery Complete — Total new venues: 0 ===
+
+[00:54:50] === Taste Discovery Mode Started ===
+[00:54:50] WARNING: taste_venues.txt changed after taste_keywords.json was built — run './discover.sh --learn' to refresh the profile.
+[00:54:50] MAX_QUERIES=29
+[00:54:50] Generating search queries from taste profile...
+[00:54:50]   generated=465 completed=301 remaining=164 profile=2026-03-26T16:21:17.447427 source_gigs=28
+[00:54:50] Generated 164 queries (29 will run this session)
+[00:54:50] Fetching existing venues + past gigs for dedup...
+[00:54:54] Existing venues + past gigs: 4365 (venues=4797 gigs=71 websites=3238)
+[00:54:54] 
+[00:54:54] === Taste Query [1/29]: fine art gallery St. Michaels MD ===
+[00:55:00]   Scrolling search results...
+[00:55:08]   Extracting results...
+[00:55:09]   FAILED: Chrome returned NO_PANEL (rc=0) — query NOT marked done
+[00:55:12] 
+[00:55:12] === Taste Query [2/29]: fine art gallery Easton MD ===
+[00:55:17]   Scrolling search results...
+[00:55:26]   Extracting results...
+[00:55:26]   Found 14 results
+[00:55:26]   SKIP (exists: MD-MUSE-551): Troika Gallery
+[00:55:26]   SKIP (exists: MD-ART_-597): The Trippe Gallery
+[00:55:26]   SKIP (exists: MD-REST-3303): Wildlife - Gallery of Fine Art, Photographed & Inspired by Nature
+[00:55:26]   SKIP (exists: MD-ART_-112): Academy Art Museum
+[00:55:26]   SKIP (exists: MD-REST-3301): STUDIO B GALLERY
+[00:55:26]   SKIP (exists: MD-REST-3302): The Zebra Gallery
+[00:55:26]   SKIP (exists: MD-EVEN-484): Zach Gallery
+[00:55:26]   SKIP (classified other): SFS Fiber Art -- No reviews
+[00:55:26]   SKIP (classified other): Flying Cloud Fine Art Posters -- Poster store
+[00:55:26]   [WEBSITE] Looking up: Easton Antiques & Art Gallery
+[00:55:31]   [WEBSITE] Looking up: 9S Studios
+[00:55:35]   [WEBSITE] Looking up: Spiralis Gallery
+[00:55:40]   [WEBSITE] Looking up: Le Hatchery
+[00:55:44]   [WEBSITE] Looking up: Savant HOME • Trouvé Gallery
+[00:56:17]   ADDED (score 55): Easton Antiques & Art Gallery (art_gallery, 4.4*, 17 reviews, location unknown) -> XX-ART_-001
+[00:56:17]     No matching website found — remains needs_review
+[00:56:17]   ADDED (score 60): 9S Studios (art_gallery, 5.0*, 2 reviews, location unknown) -> XX-ART_-002
+[00:56:17]     Website: https://www.9sstudios.com
+[00:56:17]     Website saved; city/state not confirmed from the listing — remains needs_review
+[00:56:17]   ADDED (score 40): Spiralis Gallery (art_gallery, *,  reviews, location unknown) -> XX-ART_-003
+[00:56:17]     Website: https://www.spiralisgallery.com
+[00:56:17]     Website saved; city/state not confirmed from the listing — remains needs_review
+[00:56:17]   ADDED (score 60): Le Hatchery (art_gallery, 4.8*, 8 reviews, location unknown) -> XX-ART_-004
+[00:56:17]     No matching website found — remains needs_review
+[00:56:17]   ADDED (score 40): Savant HOME • Trouvé Gallery (art_gallery, *,  reviews, location unknown) -> XX-ART_-005
+[00:56:17]     No matching website found — remains needs_review
+[00:56:17]   Added 5 new venues from query
+[00:56:23] 
+[00:56:23] === Taste Query [3/29]: fine art gallery Annapolis MD ===
+[00:56:30]   Scrolling search results...
+[00:56:36]   Extracting results...
+[00:56:36]   Found 22 results
+[00:56:36]   SKIP (exists: MD-ART_-782): Gallery 57 West
+[00:56:36]   SKIP (exists: MD-ART_-717): McBride Gallery
+[00:56:36]   SKIP (exists: MD-REST-3306): Jo Fleming Contemporary Art Gallery
+[00:56:36]   SKIP (exists: MD-ART_-813): Annapolis Marine Art Gallery
+[00:56:36]   SKIP (exists: MD-REST-3304): Annapolis Pearl Gallery
+[00:56:36]   SKIP (exists: MD-ART_-720): The Annapolis Collection Gallery
+[00:56:36]   SKIP (exists: MD-ART_-1646): Circle Gallery
+[00:56:36]   SKIP (classified other): Kim Hovell Fine Art -- Artist
+[00:56:36]   SKIP (classified other): Brenda Larson - Annapolis Contemporary Artist -- Artist
+[00:56:36]   SKIP (classified other): Art Things -- Art supply store
+[00:56:36]   SKIP (classified other): Atlantic Arts Inc -- No reviews
+[00:56:36]   [WEBSITE] Looking up: Main St Gallery Inc
+[00:56:41]   [WEBSITE] Looking up: Mitchell Art Museum at St. John’s College
+[00:56:45]   [WEBSITE] Looking up: Maryland Federation of Art
+[00:56:50]   [WEBSITE] Looking up: West Annapolis Artworks & Fine Framing
+[00:56:55]   [WEBSITE] Looking up: Nancy Hammond Editions
+[00:56:59]   [WEBSITE] Looking up: Art by Andrew French — Gallery & Studio
+[00:57:04]   [WEBSITE] Looking up: Local by Design Annapolis Mall
+[00:57:08]   [WEBSITE] Looking up: Annapolis Arts District
+[00:57:13]   [WEBSITE] Looking up: Lisa Masson Studio Gallery
+[00:57:18]   [WEBSITE] Looking up: Gallery 333
+[00:57:22]   [WEBSITE] Looking up: Local By Design Downtown
+[00:58:06]   ADDED (score 60): Main St Gallery Inc (art_gallery, 5.0*, 6 reviews, location unknown) -> XX-ART_-006
+[00:58:06]     No matching website found — remains needs_review
+[00:58:06]   SKIP (same website as MD-ART_-716): Mitchell Art Museum at St. John’s College -- sjc.edu
+[00:58:06]   ADDED (score 60): Maryland Federation of Art (art_gallery, 4.8*, 38 reviews, location unknown) -> XX-ART_-007
+[00:58:06]     No matching website found — remains needs_review
+[00:58:06]   ADDED (score 60): West Annapolis Artworks & Fine Framing (art_gallery, 4.9*, 27 reviews, location unknown) -> XX-ART_-008
+[00:58:06]     Website: http://westannapolisartworks.com
+[00:58:06]     Website saved; city/state not confirmed from the listing — remains needs_review
+[00:58:06]   ADDED (score 60): Nancy Hammond Editions (art_gallery, 4.7*, 33 reviews, location unknown) -> XX-ART_-009
+[00:58:06]     Website: http://www.nancyhammondeditions.com
+[00:58:06]     Website saved; city/state not confirmed from the listing — remains needs_review
+[00:58:06]   ADDED (score 40): Art by Andrew French — Gallery & Studio (art_gallery, *,  reviews, location unknown) -> XX-ART_-010
+[00:58:06]     Website: https://www.andrewfrenchart.com
+[00:58:06]     Website saved; city/state not confirmed from the listing — remains needs_review
+[00:58:06]   ADDED (score 45): Local by Design Annapolis Mall (art_gallery, 3.9*, 15 reviews, location unknown) -> XX-ART_-011
+[00:58:06]     Website: http://www.localbydesignannapolis.com
+[00:58:06]     Website saved; city/state not confirmed from the listing — remains needs_review
+[00:58:06]   ADDED (score 45): Annapolis Arts District (art_gallery, 3.8*, 6 reviews, location unknown) -> XX-ART_-012
+[00:58:06]     Website: http://www.annapolisartsdistrict.org
+[00:58:06]     Website saved; city/state not confirmed from the listing — remains needs_review
+[00:58:06]   ADDED (score 55): Lisa Masson Studio Gallery (art_gallery, 4.5*, 2 reviews, location unknown) -> XX-ART_-013
+[00:58:06]     Website: http://lisamassonphotography.com
+[00:58:06]     Website saved; city/state not confirmed from the listing — remains needs_review
+[00:58:06]   ADDED (score 60): Gallery 333 (art_gallery, 5.0*, 1 reviews, location unknown) -> XX-ART_-014
+[00:58:06]     No matching website found — remains needs_review
+[00:58:06]   SKIP (same website as XX-ART_-011): Local By Design Downtown -- localbydesignannapolis.com
+[00:58:06]   Added 9 new venues from query
+[00:58:11] 
+[00:58:11] === Taste Query [4/29]: fine art gallery Roland Park Baltimore MD ===
+[00:58:18]   Scrolling search results...
+[00:58:26]   Extracting results...
+[00:58:27]   Found 62 results
+[00:58:27]   SKIP (exists: MD-SENI-2953): The Gallery Roland Park
+[00:58:27]   SKIP (exists: MD-REST-3307): Renaissance Fine Arts
+[00:58:27]   SKIP (exists: MD-REST-3308): The Baltimore Art Gallery in Hampden
+[00:58:27]   SKIP (exists: MD-REST-3312): Galerie Myrtis
+[00:58:27]   SKIP (exists: MD-REST-3309): Maryland Art Place Inc
+[00:58:27]   SKIP (exists: MD-REST-3310): Highlandtown Gallery
+[00:58:27]   SKIP (exists: MD-REST-3313): Gallery Blue Door
+[00:58:27]   SKIP (classified other): Fine Arts Building -- Community college
+[00:58:27]   SKIP (exists: MD-ART_-114): Creative Alliance
+[00:58:27]   SKIP (classified other): Susan Washington Fine Art -- Artist
+[00:58:27]   SKIP (classified other): Regmi’s fine art Studio -- No reviews
+[00:58:27]   SKIP (classified other): ET Fine Arts -- No reviews
+[00:58:27]   SKIP (classified other): Lance Moore Fine Art -- Artist
+[00:58:27]   SKIP (classified other): Full Circle Fine Art Services -- Photo lab
+[00:58:27]   SKIP (type): Schuler School of Fine Art -- Art school
+[00:58:27]   SKIP (classified theater): Murphy Fine Arts Center -- Performing arts theater
+[00:58:27]   SKIP (exists: MD-MUSE-1650): Baltimore Museum of Art
+[00:58:27]   SKIP (classified other): HeARTwares by Art with a Heart -- Non-profit organization
+[00:58:27]   SKIP (classified other): Lake Roland Nature Council -- Nature preserve
+[00:58:27]   SKIP (exists: MD-MUSE-1648): Evergreen Museum & Library
+[00:58:27]   SKIP (classified other): Deborah Patterson, Artist -- Artist
+[00:58:27]   [WEBSITE] Looking up: Zo Gallery LLC
+
+[01:03:55] === Taste Discovery Mode Started ===
+[01:03:55] WARNING: taste_venues.txt changed after taste_keywords.json was built — run './discover.sh --learn' to refresh the profile.
+[01:03:55] MAX_QUERIES=26
+[01:03:55] Generating search queries from taste profile...
+[01:03:55]   generated=465 completed=303 remaining=162 profile=2026-03-26T16:21:17.447427 source_gigs=28
+[01:03:55] Generated 162 queries (26 will run this session)
+[01:03:55] Fetching existing venues + past gigs for dedup...
+[01:04:00] Existing venues + past gigs: 4379 (venues=4811 gigs=71 websites=3246)
+[01:04:00] 
+[01:04:00] === Taste Query [1/26]: fine art gallery St. Michaels MD ===
+[01:04:06]   Scrolling search results...
+[01:04:14]   Extracting results...
+[01:04:14]   Found 4 results
+[01:04:15]   SKIP (exists: MD-REST-3296): Studio 2 Saint Michaels
+[01:04:15]   SKIP (exists: MD-REST-3297): BEALL GALLERY marine art
+[01:04:15]   SKIP (exists: MD-REST-3298): Creative Xpressions
+[01:04:15]   SKIP (name): Bay Cottage
+[01:04:15]   Added 0 new venues from query
+[01:04:23] 
+[01:04:23] === Taste Query [2/26]: fine art gallery Roland Park Baltimore MD ===
+[01:04:27]   Scrolling search results...
+[01:04:35]   Extracting results...
+[01:04:35]   Found 62 results
+[01:04:35]   SKIP (exists: MD-SENI-2953): The Gallery Roland Park
+[01:04:35]   SKIP (exists: MD-REST-3307): Renaissance Fine Arts
+[01:04:35]   SKIP (exists: MD-REST-3308): The Baltimore Art Gallery in Hampden
+[01:04:35]   SKIP (exists: MD-REST-3312): Galerie Myrtis
+[01:04:35]   SKIP (exists: MD-REST-3309): Maryland Art Place Inc
+[01:04:35]   SKIP (exists: MD-REST-3310): Highlandtown Gallery
+[01:04:35]   SKIP (exists: MD-REST-3313): Gallery Blue Door
+[01:04:35]   SKIP (classified other): Fine Arts Building -- Community college
+[01:04:35]   SKIP (exists: MD-ART_-114): Creative Alliance
+[01:04:35]   SKIP (classified other): Susan Washington Fine Art -- Artist
+[01:04:35]   SKIP (classified other): Regmi’s fine art Studio -- No reviews
+[01:04:35]   SKIP (classified other): ET Fine Arts -- No reviews
+[01:04:35]   SKIP (classified other): Full Circle Fine Art Services -- Photo lab
+[01:04:35]   SKIP (classified other): Lance Moore Fine Art -- Artist
+[01:04:35]   SKIP (type): Schuler School of Fine Art -- Art school
+[01:04:35]   SKIP (classified theater): Murphy Fine Arts Center -- Performing arts theater
+[01:04:35]   SKIP (exists: MD-MUSE-1650): Baltimore Museum of Art
+[01:04:35]   SKIP (classified other): HeARTwares by Art with a Heart -- Non-profit organization
+[01:04:35]   SKIP (classified other): Lake Roland Nature Council -- Nature preserve
+[01:04:35]   SKIP (exists: MD-MUSE-1648): Evergreen Museum & Library
+[01:04:35]   SKIP (classified other): Deborah Patterson, Artist -- Artist
+[01:04:35]   [WEBSITE] Looking up: Zo Gallery LLC
+[01:04:40]   [WEBSITE] Looking up: James E. Lewis Museum of Art
+[01:04:44]   [WEBSITE] Looking up: Craig Flinner Gallery
+[01:04:49]   [WEBSITE] Looking up: Art Gallery of Fells Point
+[01:04:54]   [WEBSITE] Looking up: How Great Thou Art
+[01:04:58]   [WEBSITE] Looking up: C. Grimaldis Gallery
+[01:05:03]   [WEBSITE] Looking up: Exeter Gallery
+[01:05:07]   [WEBSITE] Looking up: Julio Fine Arts Gallery
+[01:05:12]   [WEBSITE] Looking up: The Alchemy of Art
+[01:05:17]   [WEBSITE] Looking up: Crystal Moll Gallery
+[01:05:21]   [WEBSITE] Looking up: UMBC Fine Arts Building
+[01:05:26]   [WEBSITE] Looking up: Winkel Gallery
+[01:05:30]   [WEBSITE] Looking up: American Visionary Art Museum
+[01:05:35]   [WEBSITE] Looking up: 20th Century Gallery
+[01:05:40]   [WEBSITE] Looking up: Rosenberg Gallery
+[01:05:44]   [WEBSITE] Looking up: Gallery CA
+[01:05:49]   [WEBSITE] Looking up: AREA 405
+[01:05:54]   [WEBSITE] Looking up: Pinkard Gallery
+[01:05:58]   [WEBSITE] Looking up: Aye Gallery & Altar Studio
+[01:06:03]   [WEBSITE] Looking up: The Art Gallery Xperience
+[01:06:07]   [WEBSITE] Looking up: Goya Contemporary Gallery & Goya-Girl Press
+[01:06:12]   [WEBSITE] Looking up: Andamento Studio & Gallery
+[01:06:17]   [WEBSITE] Looking up: Arting Gallery
+[01:06:21]   [WEBSITE] Looking up: Kelly L Walker Fine Art
+[01:06:26]   [WEBSITE] Looking up: Fleckenstein Gallery & Archival Framing
+[01:06:30]   [WEBSITE] Looking up: The Black Genius Art Show
+[01:06:35]   [WEBSITE] Looking up: Waller Gallery
+[01:06:40]   [WEBSITE] Looking up: Benson Originals Fine Art
+[01:06:44]   [WEBSITE] Looking up: Contemporary Art Gallery Online
+[01:06:49]   [WEBSITE] Looking up: New Door Creative Services
+[01:06:53]   [WEBSITE] Looking up: Bromo Seltzer Arts Tower
+[01:06:58]   [WEBSITE] Looking up: The Walters Art Museum
+[01:07:03]   [WEBSITE] Looking up: Quid Nunc Art Gallery
+[01:07:07]   [WEBSITE] Looking up: Highlandtown Arts District
+[01:07:12]   [WEBSITE] Looking up: Sideshow at the American Visionary Art Museum
+[01:07:16]   [WEBSITE] Looking up: Decker Gallery
+[01:07:21]   [WEBSITE] Looking up: Goldsmith & CO. Art Galleries
+[01:07:26]   [WEBSITE] Looking up: Baltimore Museum of Art Gift Shop
+[01:07:30]   [WEBSITE] Looking up: UMBC Center for Art, Design and Visual Culture (CADVC)
+[01:07:35]   [WEBSITE] Looking up: MONO PRACTICE
+[01:07:39]   [WEBSITE] Looking up: Metro Baltimore
+[01:13:36]   ADDED (score 60): Zo Gallery LLC (art_gallery, 4.9*, 16 reviews, Baltimore, MD) -> MD-ART_-2772
+[01:13:36]     Website: http://www.zogallery.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): James E. Lewis Museum of Art (museum, 5.0*, 20 reviews, Baltimore, MD) -> MD-MUSE-1657
+[01:13:36]     Website: https://www.jelmamuseum.org
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): Craig Flinner Gallery (art_gallery, 5.0*, 4 reviews, Baltimore, MD) -> MD-ART_-2773
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 50): Art Gallery of Fells Point (art_gallery, 4.3*, 3 reviews, Baltimore, MD) -> MD-ART_-2774
+[01:13:36]     Website: http://www.fellspointgallery.org
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): How Great Thou Art (art_gallery, 4.9*, 34 reviews, Baltimore, MD) -> MD-ART_-2775
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 50): C. Grimaldis Gallery (art_gallery, 4.3*, 16 reviews, Baltimore, MD) -> MD-ART_-2776
+[01:13:36]     Website: http://www.cgrimaldisgallery.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): Exeter Gallery (art_gallery, 4.9*, 10 reviews, location unknown) -> XX-ART_-015
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 40): Julio Fine Arts Gallery (art_gallery, *,  reviews, Baltimore, MD) -> MD-ART_-2777
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   SKIP (same website as MD-REST-2355): The Alchemy of Art -- squarespace.com
+[01:13:36]   ADDED (score 60): Crystal Moll Gallery (art_gallery, 5.0*, 22 reviews, Baltimore, MD) -> MD-ART_-2778
+[01:13:36]     Website: http://www.crystalmoll.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 55): UMBC Fine Arts Building (art_gallery, 4.4*, 143 reviews, Baltimore, MD) -> MD-ART_-2779
+[01:13:36]     Website: https://art.umbc.edu/visual-arts-at-umbc/facilities
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): Winkel Gallery (art_gallery, 4.8*, 16 reviews, Baltimore, MD) -> MD-ART_-2780
+[01:13:36]     Website: https://www.winkelgallery.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 65): American Visionary Art Museum (museum, 4.7*, 3257 reviews, Baltimore, MD) -> MD-MUSE-1658
+[01:13:36]     Website: https://www.avam.org
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 50): 20th Century Gallery (art_gallery, 4.0*, 2 reviews, location unknown) -> XX-ART_-016
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 60): Rosenberg Gallery (art_gallery, 4.7*, 7 reviews, location unknown) -> XX-ART_-017
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 60): Gallery CA (art_gallery, 4.8*, 9 reviews, Baltimore, MD) -> MD-ART_-2781
+[01:13:36]     Website: http://galleryca.org
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 50): AREA 405 (art_gallery, 4.3*, 39 reviews, Baltimore, MD) -> MD-ART_-2782
+[01:13:36]     Website: http://www.area405.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 40): Pinkard Gallery (art_gallery, *,  reviews, location unknown) -> XX-ART_-018
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 60): Aye Gallery & Altar Studio (art_gallery, 5.0*, 11 reviews, Baltimore, MD) -> MD-ART_-2783
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 60): The Art Gallery Xperience (art_gallery, 5.0*, 2 reviews, Baltimore, MD) -> MD-ART_-2784
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 50): Goya Contemporary Gallery & Goya-Girl Press (art_gallery, 4.0*, 9 reviews, Baltimore, MD) -> MD-ART_-2785
+[01:13:36]     Website: http://goyacontemporary.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): Andamento Studio & Gallery (art_gallery, 4.9*, 28 reviews, Baltimore, MD) -> MD-ART_-2786
+[01:13:36]     Website: https://www.andamentogallery.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 40): Arting Gallery (art_gallery, *,  reviews, Baltimore, MD) -> MD-ART_-2787
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 60): Kelly L Walker Fine Art (art_gallery, 5.0*, 2 reviews, Baltimore, MD) -> MD-ART_-2788
+[01:13:36]     Website: http://www.kellywalkerfineart.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): Fleckenstein Gallery & Archival Framing (art_gallery, 4.9*, 28 reviews, Baltimore, MD) -> MD-ART_-2789
+[01:13:36]     Website: https://www.fleckensteingallery.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): The Black Genius Art Show (art_gallery, 4.8*, 29 reviews, Baltimore, MD) -> MD-ART_-2790
+[01:13:36]     Website: http://www.theblackgeniusartshow.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 55): Waller Gallery (art_gallery, 4.5*, 8 reviews, Baltimore, MD) -> MD-ART_-2791
+[01:13:36]     Website: http://wallergallery.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 50): Benson Originals Fine Art (art_gallery, 4.0*, 1 reviews, Pikesville, MD) -> MD-ART_-2792
+[01:13:36]     Website: https://bensonoriginalsfineart.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): Contemporary Art Gallery Online (art_gallery, 5.0*, 3 reviews, location unknown) -> XX-ART_-019
+[01:13:36]     Website: https://www.contemporaryartgalleryonline.com
+[01:13:36]     Website saved; city/state not confirmed from the listing — remains needs_review
+[01:13:36]   ADDED (score 60): New Door Creative Services (art_gallery, 5.0*, 7 reviews, Baltimore, MD) -> MD-ART_-2793
+[01:13:36]     Website: http://www.newdoorcreative.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 55): Bromo Seltzer Arts Tower (art_gallery, 4.6*, 202 reviews, Baltimore, MD) -> MD-ART_-2794
+[01:13:36]     Website: http://www.bromoseltzertower.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 65): The Walters Art Museum (museum, 4.8*, 3961 reviews, Baltimore, MD) -> MD-MUSE-1659
+[01:13:36]     Website: https://thewalters.org
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): Quid Nunc Art Gallery (art_gallery, 5.0*, 3 reviews, Baltimore, MD) -> MD-ART_-2795
+[01:13:36]     Website: https://www.quid-nunc.art
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 45): Highlandtown Arts District (art_gallery, 3.5*, 2 reviews, Baltimore, MD) -> MD-ART_-2796
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   SKIP (same website as MD-REST-361): Sideshow at the American Visionary Art Museum -- wheree.com
+[01:13:36]   ADDED (score 60): Decker Gallery (art_gallery, 5.0*, 1 reviews, location unknown) -> XX-ART_-020
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   ADDED (score 60): Goldsmith & CO. Art Galleries (art_gallery, 5.0*, 3 reviews, Baltimore, MD) -> MD-ART_-2797
+[01:13:36]     Website: https://www.goldsmith.comcoartgalleries.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 60): Baltimore Museum of Art Gift Shop (museum, 4.8*, 4 reviews, Baltimore, MD) -> MD-MUSE-1660
+[01:13:36]     No matching website found — remains needs_review
+[01:13:36]   SKIP (same website as MD-ART_-2779): UMBC Center for Art, Design and Visual Culture (CADVC) -- umbc.edu
+[01:13:36]   ADDED (score 60): MONO PRACTICE (art_gallery, 5.0*, 2 reviews, Baltimore, MD) -> MD-ART_-2798
+[01:13:36]     Website: http://monopractice.com
+[01:13:36]     Promoted to untouched (website + location verified)
+[01:13:36]   ADDED (score 58): Metro Baltimore (art_gallery, 4.6*, 617 reviews, location unknown) -> XX-ART_-021
+[01:13:36]     Website: https://metrobmore.com
+[01:13:36]     Website saved; city/state not confirmed from the listing — remains needs_review
+[01:13:36]   Added 38 new venues from query
+[01:13:43] 
+[01:13:43] === Taste Query [3/26]: wine list luxury hotel Georgetown DC ===
+[01:13:48]   Scrolling search results...
+[01:13:55]   Extracting results...
+[01:13:55]   Found 14 results
+[01:13:55]   SKIP (exists: past gig): Conrad Washington, DC
+[01:13:55]   SKIP (exists: DC-REST-216): Four Seasons Hotel Washington, DC
+[01:13:55]   SKIP (exists: DC-HOTE-2632): The Graham Georgetown
+[01:13:55]   SKIP (type): The Ven at Embassy Row, Washington, D.C., a Tribute Portfolio Hotel -- Chic hotel with a rooftop pool
+[01:13:55]   SKIP (exists: DC-REST-1567): The Rooftop at the Graham
+[01:13:55]   SKIP (exists: DC-REST-223): Lyle Washington DC
+[01:13:55]   SKIP (type): The Westin Georgetown, Washington D.C. -- Modern hotel with a gym & a pool
+[01:13:55]   [WEBSITE] Looking up: Fairmont Washington D.C. Georgetown
+[01:14:00]   [WEBSITE] Looking up: The Ritz-Carlton Georgetown, Washington, D.C.
+[01:14:05]   [WEBSITE] Looking up: Rosewood Washington, D.C.
+[01:14:09]   [WEBSITE] Looking up: One Washington Circle DC, Tapestry Collection by Hilton
+[01:14:14]   [WEBSITE] Looking up: Park Hyatt Washington D.C.
+[01:14:18]   [WEBSITE] Looking up: Canal House of Georgetown, a Tribute Portfolio Hotel
+[01:14:23]   [WEBSITE] Looking up: The Watergate Hotel
+[01:15:24]   ADDED (score 60): Fairmont Washington D.C. Georgetown (hotel, 4.6*, 2042 reviews, Washington, DC) -> DC-HOTE-2664
+[01:15:24]     Website: https://www.fairmont.com/washington
+[01:15:24]     Promoted to untouched (website + location verified)
+[01:15:24]   ADDED (score 58): The Ritz-Carlton Georgetown, Washington, D.C. (hotel, 4.6*, 562 reviews, Washington, DC) -> DC-HOTE-2665
+[01:15:24]     Website: https://www.ritzcarlton.com/en/hotels/wasgo-the-ritz-carlton-georgetown-washington-dc/overview
+[01:15:24]     Promoted to untouched (website + location verified)
+[01:15:24]   SKIP (server duplicate: DC-HOTE-2633): Rosewood Washington, D.C.
+[01:15:24]   ADDED (score 55): One Washington Circle DC, Tapestry Collection by Hilton (hotel, 4.6*, 191 reviews, location unknown) -> XX-HOTE-631
+[01:15:24]     Website: https://akacircle.washingtoninhotel.com
+[01:15:24]     Website saved; city/state not confirmed from the listing — remains needs_review
+[01:15:24]   ADDED (score 60): Park Hyatt Washington D.C. (hotel, 4.5*, 1317 reviews, Washington, DC) -> DC-HOTE-2666
+[01:15:24]     Website: https://www.hyatt.com/park-hyatt/en-US/wasph-park-hyatt-washington-dc
+[01:15:24]     Promoted to untouched (website + location verified)
+[01:15:24]   ADDED (score 60): Canal House of Georgetown, a Tribute Portfolio Hotel (hotel, 4.8*, 234 reviews, Washington, DC) -> DC-HOTE-2667
+[01:15:24]     Website: https://canal-house-of-georgetown-a-tribute-portfolio.hotel-washington-dc.net
+[01:15:24]     Promoted to untouched (website + location verified)
+[01:15:24]   SKIP (same website as DC-REST-646): The Watergate Hotel -- thewatergatehotel.com
+[01:15:24]   Added 5 new venues from query
+[01:15:29] 
+[01:15:29] === Taste Query [4/26]: wine list luxury hotel Dupont Circle DC ===
+[01:15:35]   Scrolling search results...
+[01:15:43]   Extracting results...
+[01:15:44]   Found 41 results
+[01:15:44]   SKIP (exists: DC-REST-220): Waldorf Astoria Washington DC
+[01:15:44]   SKIP (type): Kimpton Carlyle Dupont Circle -- Upscale lodging with dining & a gym
+[01:15:44]   SKIP (exists: DC-REST-223): Lyle Washington DC
+[01:15:44]   SKIP (exists: DC-HOTE-2644): The Royal Sonesta Washington DC Dupont Circle
+[01:15:44]   SKIP (exists: DC-REST-218): The LINE DC
+[01:15:44]   SKIP (exists: DC-HOTE-145): Tabard Inn
+[01:15:44]   SKIP (exists: DC-HOTE-2666): Park Hyatt Washington D.C.
+[01:15:44]   SKIP (exists: skipped earlier this run: duplicate of DC-HOTE-2633): Rosewood Washington, D.C.
+[01:15:44]   SKIP (exists: DC-HOTE-2643): The Dupont Circle Hotel
+[01:15:44]   SKIP (classified other): SIXTY DC -- Free Wi-Fi
+[01:15:44]   SKIP (exists: DC-HOTE-2647): Hotel Madera
+[01:15:44]   SKIP (type): The Ven at Embassy Row, Washington, D.C., a Tribute Portfolio Hotel -- Chic hotel with a rooftop pool
+[01:15:44]   SKIP (exists: DC-HOTE-2638): The Mayflower Hotel, Autograph Collection
+[01:15:44]   SKIP (exists: DC-HOTE-2659): Maison Dupont
+[01:15:44]   SKIP (exists: DC-HOTE-1049): Tabard Inn Restaurant
+[01:15:44]   SKIP (exists: DC-HOTE-2653): Kimpton Banneker Hotel
+[01:15:44]   SKIP (exists: XX-HOTE-273): The Churchill Hotel Near Embassy Row
+[01:15:44]   SKIP (exists: DC-REST-216): Four Seasons Hotel Washington, DC
+[01:15:44]   SKIP (exists: DC-EVEN-2576): Swann House
+[01:15:44]   SKIP (type): The Beacon at Embassy Row -- Cosmopolitan lodging with a gym
+[01:15:44]   SKIP (exists: XX-HOTE-088): The Darcy
+[01:15:44]   SKIP (exists: DC-HOTE-2665): The Ritz-Carlton Georgetown, Washington, D.C.
+[01:15:44]   SKIP (type): The Baron Hotel -- Low-key lodging with a brick-walled pub
+[01:15:44]   SKIP (exists: DC-REST-2338): Lady Bird, THE Roof Top Event Space
+[01:15:44]   SKIP (exists: DC-REST-1036): Obelisk
+[01:15:44]   SKIP (exists: DC-REST-657): The Greenhouse
+[01:15:44]   SKIP (exists: DC-HOTE-2658): The Normandy Hotel
+[01:15:44]   SKIP (score 35): Tag Rooftop Bar at The Ven at Embassy Row -- Bar
+[01:15:44]   SKIP (exists: DC-REST-1249): The Mayflower Club
+[01:15:44]   SKIP (exists: XX-HOTE-091): Canopy by Hilton Washington DC Embassy Row
+[01:15:44]   SKIP (exists: DC-REST-654): Floriana
+[01:15:44]   SKIP (exists: DC-REST-2796): Firefly
+[01:15:44]   SKIP (exists: DC-REST-659): Certo!
+[01:15:44]   [WEBSITE] Looking up: InterContinental the Willard Washington D.C. by IHG
+[01:15:48]   [WEBSITE] Looking up: The Jefferson
+[01:15:53]   [WEBSITE] Looking up: Doyle
+
+[01:18:57] === Taste Discovery Mode Started ===
+[01:18:57] WARNING: taste_venues.txt changed after taste_keywords.json was built — run './discover.sh --learn' to refresh the profile.
+[01:18:57] MAX_QUERIES=23
+[01:18:57] Generating search queries from taste profile...
+[01:18:57]   generated=465 completed=306 remaining=159 profile=2026-03-26T16:21:17.447427 source_gigs=28
+[01:18:57] Generated 159 queries (23 will run this session)
+[01:18:57] Fetching existing venues + past gigs for dedup...
+[01:19:05] Existing venues + past gigs: 4393 (venues=4850 gigs=71 websites=3267)
+[01:19:05] 
+[01:19:05] === Taste Query [1/23]: wine list luxury hotel Dupont Circle DC ===
+[01:19:11]   Scrolling search results...
+[01:19:20]   Extracting results...
+[01:19:20]   Found 41 results
+[01:19:20]   SKIP (exists: VA-HOTE-2939): Thompson Washington D.C., by Hyatt
+[01:19:20]   SKIP (type): Kimpton Carlyle Dupont Circle -- Upscale lodging with dining & a gym
+[01:19:20]   SKIP (exists: DC-REST-223): Lyle Washington DC
+[01:19:20]   SKIP (exists: DC-HOTE-2644): The Royal Sonesta Washington DC Dupont Circle
+[01:19:20]   SKIP (exists: DC-REST-222): The Jefferson
+[01:19:20]   SKIP (exists: DC-REST-218): The LINE DC
+[01:19:20]   SKIP (exists: DC-HOTE-145): Tabard Inn
+[01:19:20]   SKIP (exists: DC-HOTE-2660): Park Hyatt Washington D.C.
+[01:19:20]   SKIP (exists: DC-HOTE-2643): The Dupont Circle Hotel
+[01:19:20]   SKIP (classified other): SIXTY DC -- Free Wi-Fi
+[01:19:20]   SKIP (exists: DC-HOTE-2647): Hotel Madera
+[01:19:20]   SKIP (exists: DC-HOTE-2645): The Ven at Embassy Row, Washington, D.C., a Tribute Portfolio Hotel
+[01:19:20]   SKIP (exists: DC-HOTE-2638): The Mayflower Hotel, Autograph Collection
+[01:19:20]   SKIP (exists: DC-HOTE-2659): Maison Dupont
+[01:19:20]   SKIP (exists: DC-HOTE-1049): Tabard Inn Restaurant
+[01:19:20]   SKIP (exists: DC-HOTE-2653): Kimpton Banneker Hotel
+[01:19:20]   SKIP (exists: XX-HOTE-273): The Churchill Hotel Near Embassy Row
+[01:19:20]   SKIP (exists: DC-REST-216): Four Seasons Hotel Washington, DC
+[01:19:20]   SKIP (exists: DC-EVEN-2576): Swann House
+[01:19:20]   SKIP (type): The Beacon at Embassy Row -- Cosmopolitan lodging with a gym
+[01:19:20]   SKIP (exists: XX-HOTE-088): The Darcy
+[01:19:20]   SKIP (exists: DC-HOTE-148): The Ritz-Carlton Georgetown, Washington, D.C.
+[01:19:20]   SKIP (type): The Baron Hotel -- Low-key lodging with a brick-walled pub
+[01:19:20]   SKIP (exists: DC-REST-2338): Lady Bird, THE Roof Top Event Space
+[01:19:20]   SKIP (exists: DC-REST-1036): Obelisk
+[01:19:20]   SKIP (exists: DC-REST-657): The Greenhouse
+[01:19:20]   SKIP (exists: DC-HOTE-2658): The Normandy Hotel
+[01:19:20]   SKIP (score 35): Tag Rooftop Bar at The Ven at Embassy Row -- Bar
+[01:19:20]   SKIP (exists: DC-REST-1249): The Mayflower Club
+[01:19:20]   SKIP (exists: XX-HOTE-091): Canopy by Hilton Washington DC Embassy Row
+[01:19:20]   SKIP (exists: DC-REST-654): Floriana
+[01:19:20]   SKIP (exists: DC-REST-2796): Firefly
+[01:19:20]   SKIP (exists: DC-REST-659): Certo!
+[01:19:20]   [WEBSITE] Looking up: InterContinental the Willard Washington D.C. by IHG
+[01:19:25]   [WEBSITE] Looking up: Doyle
+[01:19:29]   [WEBSITE] Looking up: Eurostars St Gregory
+[01:19:34]   [WEBSITE] Looking up: The St. Regis Washington, D.C.
+[01:19:38]   [WEBSITE] Looking up: Rosewood Washington, D.C.
+[01:19:43]   [WEBSITE] Looking up: The Hay-Adams
+[01:19:48]   [WEBSITE] Looking up: Quill at The Jefferson
+[01:19:52]   [WEBSITE] Looking up: Washington Marriott Georgetown
+[01:20:46]   SKIP (same website as XX-HOTE-631): InterContinental the Willard Washington D.C. by IHG -- washingtoninhotel.com
+[01:20:46]   ADDED (score 43): Doyle (bar, 4.3*, 509 reviews, Washington, DC) -> DC-BAR-001
+[01:20:46]     Website: https://doyle.bar
+[01:20:46]     Category 'bar' is a guess (sheet:bar) — remains needs_review
+[01:20:46]   SKIP (same website as DC-REST-1069): Eurostars St Gregory -- eurostarshotels.us
+[01:20:46]   ADDED (score 60): The St. Regis Washington, D.C. (hotel, 4.5*, 1288 reviews, Washington, DC) -> DC-HOTE-2668
+[01:20:46]     Website: https://www.marriott.com/en-us/hotels/wassx-the-st-regis-washington-dc/overview
+[01:20:46]     Promoted to untouched (website + location verified)
+[01:20:46]   SKIP (server duplicate: DC-HOTE-2633): Rosewood Washington, D.C.
+[01:20:46]   ADDED (score 60): The Hay-Adams (hotel, 4.6*, 1462 reviews, Washington, DC) -> DC-HOTE-2669
+[01:20:46]     Website: https://www.hayadams.com
+[01:20:46]     Promoted to untouched (website + location verified)
+[01:20:46]   SKIP (same website as DC-REST-222): Quill at The Jefferson -- jeffersondc.com
+[01:20:46]   ADDED (score 55): Washington Marriott Georgetown (hotel, 4.3*, 1962 reviews, Washington, DC) -> DC-HOTE-2670
+[01:20:46]     Website: https://www.marriott.com/en-us/hotels/waswe-washington-marriott-georgetown/overview
+[01:20:46]     Promoted to untouched (website + location verified)
+[01:20:46]   Added 4 new venues from query
+[01:20:53] 
+[01:20:53] === Taste Query [2/23]: wine list luxury hotel Potomac MD ===
+[01:20:58]   Scrolling search results...
+[01:21:05]   Extracting results...
+[01:21:06]   Found 3 results
+[01:21:06]   SKIP (exists: VA-HOTE-2895): The Ritz-Carlton, Tysons Corner
+[01:21:06]   SKIP (exists: XX-HOTE-091): Canopy by Hilton Washington DC Bethesda North
+[01:21:06]   SKIP (exists: DC-REST-235): Embassy Suites by Hilton Bethesda Washington DC
+[01:21:06]   Added 0 new venues from query
+[01:21:14] 
+[01:21:14] === Taste Query [3/23]: wine list luxury hotel Bethesda MD ===
+[01:21:21]   Scrolling search results...
+[01:21:27]   Extracting results...
+[01:21:27]   Found 9 results
+[01:21:27]   SKIP (exists: XX-HOTE-181): Residence Inn by Marriott Bethesda Downtown
+[01:21:27]   SKIP (exists: MD-HOTE-2766): Hyatt Regency Bethesda
+[01:21:27]   SKIP (exists: MD-REST-1592): Black's Bar & Kitchen
+[01:21:27]   SKIP (exists: MD-HOTE-1762): The Bethesdan Hotel, Tapestry Collection by Hilton
+[01:21:27]   SKIP (exists: MD-HOTE-1760): Bethesda Marriott
+[01:21:27]   SKIP (exists: DC-REST-235): Embassy Suites by Hilton Bethesda Washington DC
+[01:21:27]   SKIP (exists: MD-HOTE-1759): Marriott Bethesda Downtown at Marriott HQ
+[01:21:27]   SKIP (exists: MD-REST-925): Hip Flask Rooftop Bar
+[01:21:27]   [WEBSITE] Looking up: Bethesda North Marriott Hotel & Conference Center
+[01:21:45]   ADDED (score 55): Bethesda North Marriott Hotel & Conference Center (hotel, 4.3*, 2371 reviews, Rockville, MD) -> MD-HOTE-2993
+[01:21:45]     Website: https://www.marriott.com/en-us/hotels/wasbn-bethesda-north-marriott-hotel-and-conference-center/overview
+[01:21:45]     Promoted to untouched (website + location verified)
+[01:21:45]   Added 1 new venues from query
+[01:21:50] 
+[01:21:50] === Taste Query [4/23]: wine list luxury hotel Chevy Chase MD ===
+[01:21:55]   Scrolling search results...
+[01:22:01]   Extracting results...
+[01:22:01]   Found 52 results
+[01:22:01]   SKIP (exists: MD-HOTE-2766): Hyatt Regency Bethesda
+[01:22:01]   SKIP (exists: DC-REST-674): La Ferme Restaurant
+[01:22:01]   SKIP (exists: MD-HOTE-1759): Marriott Bethesda Downtown at Marriott HQ
+[01:22:01]   SKIP (exists: MD-WINE-1330): Uncorked Chevy Chase
+[01:22:01]   SKIP (exists: MD-HOTE-1762): The Bethesdan Hotel, Tapestry Collection by Hilton
+[01:22:01]   SKIP (exists: MD-REST-1315): The Capital Grille
+[01:22:01]   SKIP (exists: MD-REST-1316): Clyde's of Chevy Chase
+[01:22:01]   SKIP (exists: MD-HOTE-1760): Bethesda Marriott
+[01:22:01]   SKIP (exists: XX-HOTE-411): Courtyard by Marriott Bethesda Chevy Chase
+[01:22:01]   SKIP (type): Merriweather Lakehouse, Autograph Collection -- Informal hotel with dining & a pool
+[01:22:01]   SKIP (exists: MD-HOTE-2677): Turf Valley Resort
+[01:22:01]   SKIP (exists: MD-HOTE-2971): 1313 West - Luxury Boutique Hotel
+[01:22:01]   SKIP (exists: MD-HOTE-2972): 86 State Circle - Luxury Boutique Hotel
+[01:22:01]   SKIP (exists: VA-HOTE-2895): The Ritz-Carlton, Tysons Corner
+[01:22:01]   SKIP (exists: DC-REST-216): Four Seasons Hotel Washington, DC
+[01:22:01]   SKIP (type): 134 Prince - Luxury Boutique Hotel -- Elegant boutique hotel with breakfast
+[01:22:01]   SKIP (exists: DC-REST-218): The LINE DC
+[01:22:01]   SKIP (exists: skipped earlier this run: duplicate of DC-HOTE-2633): Rosewood Washington, D.C.
+[01:22:01]   SKIP (exists: DC-HOTE-148): The Ritz-Carlton Georgetown, Washington, D.C.
+[01:22:01]   SKIP (type): Global Luxury Suites in Downtown Bethesda -- Pool
+[01:22:01]   SKIP (exists: MD-REST-1087): Persimmon
+[01:22:01]   SKIP (exists: MD-REST-1140): Manoli Canoli
+[01:22:01]   SKIP (exists: MD-REST-1128): Bread & Chocolate
+[01:22:01]   SKIP (exists: DC-REST-237): Hilton Washington DC/Rockville Hotel & Executive Meeting Ctr
+[01:22:01]   SKIP (exists: MD-HOTE-013): The Wildset Hotel
+[01:22:01]   SKIP (exists: MD-HOTE-2974): American Inn of Bethesda
+[01:22:02]   SKIP (exists: MD-REST-1592): Black's Bar & Kitchen
+[01:22:02]   SKIP (exists: past gig): Inn At Perry Cabin
+[01:22:02]   SKIP (type): Four Seasons Hotel Baltimore -- Premium hotel with a spa & 2 pools
+[01:22:02]   SKIP (exists: MD-HOTE-1353): Hilton Garden Inn Bethesda Downtown
+[01:22:02]   SKIP (exists: MD-HOTE-2979): The Columbia Inn at Peralynna
+[01:22:02]   SKIP (exists: DC-REST-225): Pendry Washington DC - The Wharf
+[01:22:02]   SKIP (exists: MD-REST-884): Mon Ami Gabi
+[01:22:02]   SKIP (exists: MD-HOTE-2963): The Ivy Hotel
+[01:22:02]   SKIP (exists: DC-REST-1023): maman
+[01:22:02]   SKIP (exists: MD-REST-1596): Seventh State Restaurant and Lounge
+[01:22:02]   SKIP (exists: VA-REST-3018): Maggiano's Little Italy
+[01:22:02]   SKIP (exists: MD-HOTE-2964): Gramercy Mansion
+[01:22:02]   SKIP (name): Wisconsin Place Apartments
+[01:22:02]   SKIP (exists: XX-HOTE-532): Annapolis Waterfront Hotel, Autograph Collection
+[01:22:02]   SKIP (exists: XX-HOTE-273): The Churchill Hotel Near Embassy Row
+[01:22:02]   SKIP (exists: MD-REST-1587): Barrel & Crow
+[01:22:02]   SKIP (exists: MD-REST-2804): Benihana - Bethesda
+[01:22:02]   SKIP (exists: MD-REST-1613): PLANTA Bethesda
+[01:22:02]   [WEBSITE] Looking up: Holiday Inn Express Baltimore-Bwi Airport West by IHG
+[01:22:06]   [WEBSITE] Looking up: Hampton Inn & Suites Baltimore North/Timonium
+[01:22:11]   [WEBSITE] Looking up: The Ritz-Carlton, Pentagon City
+[01:22:15]   [WEBSITE] Looking up: Pendry Baltimore
+[01:22:20]   [WEBSITE] Looking up: Wellspring Manor & Spa
+[01:22:25]   [WEBSITE] Looking up: The Inn at Henderson's Wharf, an Ascend Collection Hotel
+[01:22:29]   [WEBSITE] Looking up: Kimpton Hotel Monaco Baltimore Inner Harbor
+[01:22:34]   [WEBSITE] Looking up: Morton's The Steakhouse
+[01:23:41]   ADDED (score 60): Holiday Inn Express Baltimore-Bwi Airport West by IHG (hotel, 4.4*, 1037 reviews, Hanover, MD) -> MD-HOTE-2994
+[01:23:41]     Website: https://www.ihg.com/holidayinnexpress/hotels/us/en/hanover/balhv/hoteldetail
+[01:23:41]     Promoted to untouched (website + location verified)
+[01:23:41]   ADDED (score 53): Hampton Inn & Suites Baltimore North/Timonium (hotel, 4.2*, 713 reviews, Timonium, MD) -> MD-HOTE-2995
+[01:23:41]     Website: https://www.hilton.com/en/hotels/bwitihx-hampton-suites-baltimore-north-timonium
+[01:23:41]     Promoted to untouched (website + location verified)
+[01:23:41]   ADDED (score 60): The Ritz-Carlton, Pentagon City (hotel, 4.4*, 1798 reviews, Arlington, VA) -> VA-HOTE-3029
+[01:23:41]     Website: https://www.ritzcarlton.com/en/hotels/waspc-the-ritz-carlton-pentagon-city/overview
+[01:23:41]     Promoted to untouched (website + location verified)
+[01:23:41]   SKIP (same website as DC-REST-225): Pendry Baltimore -- pendry.com
+[01:23:41]   ADDED (score 60): Wellspring Manor & Spa (event_venue, 4.9*, 199 reviews, location unknown) -> XX-EVEN-281
+[01:23:41]     Website: https://www.wellspringmanor.com
+[01:23:41]     Website saved; city/state not confirmed from the listing — remains needs_review
+[01:23:41]   ADDED (score 55): The Inn at Henderson's Wharf, an Ascend Collection Hotel (hotel, 4.5*, 401 reviews, Baltimore, MD) -> MD-HOTE-2996
+[01:23:41]     Website: https://www.hendersonswharf.com
+[01:23:41]     Promoted to untouched (website + location verified)
+[01:23:41]   ADDED (score 55): Kimpton Hotel Monaco Baltimore Inner Harbor (hotel, 4.1*, 2327 reviews, Baltimore, MD) -> MD-HOTE-2997
+[01:23:41]     Website: https://www.monaco-baltimore.com
+[01:23:41]     Promoted to untouched (website + location verified)
+[01:23:41]   SKIP (same website as MD-REST-1767): Morton's The Steakhouse -- mortons.com
+[01:23:41]   Added 6 new venues from query
+[01:23:49] 
+[01:23:49] === Taste Query [5/23]: wine list luxury hotel Great Falls VA ===
+[01:23:55]   Scrolling search results...
+[01:24:02]   Extracting results...
+[01:24:02]   Found 8 results
+[01:24:02]   SKIP (exists: DC-REST-235): Embassy Suites by Hilton Washington DC Convention Center
+[01:24:02]   SKIP (exists: DC-REST-234): Holiday Inn Express Washington DC Downtown by IHG
+[01:24:02]   SKIP (exists: VA-HOTE-861): Goodstone Inn & Restaurant
+[01:24:02]   SKIP (exists: past gig): L'Auberge Chez Francois
+[01:24:02]   SKIP (exists: VA-HOTE-804): Glen Gordon Manor
+[01:24:02]   SKIP (exists: VA-HOTE-2895): The Ritz-Carlton, Tysons Corner
+[01:24:02]   SKIP (exists: VA-REST-007): 2941 Restaurant
+[01:24:02]   [WEBSITE] Looking up: Davio's Northern Italian Steakhouse
+[01:24:07]   SKIP (same website as PA-REST-1918): Davio's Northern Italian Steakhouse -- davios.com
+[01:24:07]   Added 0 new venues from query
+[01:24:13] 
+[01:24:13] === Taste Query [6/23]: wine list luxury hotel McLean VA ===
+[01:24:20]   Scrolling search results...
+[01:24:27]   Extracting results...
+[01:24:27]   Found 13 results
+[01:24:28]   SKIP (exists: DC-HOTE-148): The Ritz-Carlton Georgetown, Washington, D.C.
+[01:24:28]   SKIP (exists: VA-HOTE-2960): Budget Inn Falls Church
+[01:24:28]   SKIP (exists: VA-HOTE-2895): The Ritz-Carlton, Tysons Corner
+[01:24:28]   SKIP (exists: VA-HOTE-2897): Hilton McLean Tysons Corner
+[01:24:28]   SKIP (exists: VA-HOTE-2949): Tysons Corner Marriott
+[01:24:28]   SKIP (exists: VA-REST-3221): Wren Tysons
+[01:24:28]   SKIP (exists: VA-REST-1156): ENTYSE, Wine Bar & Lounge
+[01:24:28]   SKIP (exists: VA-HOTE-3029): The Ritz-Carlton, Pentagon City
+[01:24:28]   SKIP (exists: PA-REST-2364): Fleming’s Prime Steakhouse & Wine Bar
+[01:24:28]   SKIP (exists: VA-HOTE-2942): The Watermark Hotel
+[01:24:28]   SKIP (exists: VA-HOTE-2899): Archer Hotel Tysons
+[01:24:28]   SKIP (exists: VA-HOTE-2947): Hyatt Regency Tysons Corner Center
+[01:24:28]   SKIP (exists: VA-HOTE-2900): The Westin Tysons Corner
+[01:24:28]   Added 0 new venues from query
+[01:24:36] 
+[01:24:36] === Taste Query [7/23]: wine list luxury hotel Alexandria VA ===
+[01:24:40]   Scrolling search results...
+[01:24:47]   Extracting results...
+[01:24:47]   Found 11 results
+[01:24:47]   SKIP (exists: VA-HOTE-3029): The Ritz-Carlton, Pentagon City
+[01:24:47]   SKIP (exists: VA-HOTE-2927): Harborside Hotel
+[01:24:47]   SKIP (exists: XX-HOTE-184): Morrison House Old Town Alexandria, Autograph Collection
+[01:24:47]   SKIP (exists: VA-HOTE-2910): Archer Hotel Old Town Alexandria
+[01:24:47]   SKIP (exists: VA-HOTE-2912): The Westin Alexandria Old Town
+[01:24:47]   SKIP (exists: VA-HOTE-2918): Hilton Alexandria Mark Center
+[01:24:47]   SKIP (exists: VA-REST-3245): Sheraton Suites Old Town Alexandria
+[01:24:47]   SKIP (exists: XX-HOTE-185): The Alexandrian Old Town Alexandria, Autograph Collection
+[01:24:47]   SKIP (exists: VA-REST-3243): The Satire, Autograph Collection
+[01:24:47]   SKIP (exists: VA-HOTE-2909): Hotel Heron Alexandria Old Town, Curio Collection by Hilton
+[01:24:47]   SKIP (exists: VA-HOTE-2911): Hotel Indigo Old Town Alexandria by IHG
+[01:24:47]   Added 0 new venues from query
+[01:24:52] 
+[01:24:52] === Taste Query [8/23]: wine list fine dining restaurant Georgetown DC ===
+[01:24:59]   Scrolling search results...
+[01:25:07]   Extracting results...
+[01:25:07]   Found 12 results
+[01:25:07]   SKIP (exists: DC-REST-1022): La Bohème
+[01:25:07]   SKIP (exists: DC-REST-638): River Club DC
+[01:25:07]   SKIP (exists: DC-REST-139): L'Avant-Garde
+[01:25:07]   SKIP (exists: DC-REST-1021): Lutèce.
+[01:25:07]   SKIP (classified other): The Saga by Seven Reasons Group -- Spanish
+[01:25:07]   SKIP (exists: DC-REST-1563): Osteria Mozza DC
+[01:25:07]   SKIP (exists: DC-REST-2681): Villa Yara
+[01:25:07]   SKIP (exists: DC-REST-637): La Grande Boucherie DC
+[01:25:07]   SKIP (exists: DC-REST-658): Rooster & Owl
+[01:25:07]   SKIP (exists: DC-REST-1574): The Lobby Lounge | Cocktail & Wine Bar
+[01:25:07]   SKIP (name): Cottage House Ethiopian Cuisine
+[01:25:08]   [WEBSITE] Looking up: Bourbon Lounge
+[01:25:12]   SKIP (same website as DC-REST-644): Bourbon Lounge -- bourbonsteakdc.com
+[01:25:12]   Added 0 new venues from query
+[01:25:17] 
+[01:25:17] === Taste Query [9/23]: wine list fine dining restaurant Dupont Circle DC ===
+[01:25:22]   Scrolling search results...
+[01:25:30]   Extracting results...
+[01:25:31]   Found 8 results
+[01:25:31]   SKIP (exists: DC-REST-637): La Grande Boucherie DC
+[01:25:31]   SKIP (exists: DC-REST-1033): Le Sel French Bistro
+[01:25:31]   SKIP (exists: DC-REST-658): Rooster & Owl
+[01:25:31]   SKIP (classified other): The Saga by Seven Reasons Group -- Spanish
+[01:25:31]   SKIP (exists: DC-REST-2786): Casamara
+[01:25:31]   SKIP (exists: DC-REST-139): L'Avant-Garde
+[01:25:31]   SKIP (exists: DC-REST-671): Ceibo
+[01:25:31]   SKIP (exists: DC-REST-659): Certo!
+[01:25:31]   Added 0 new venues from query
+[01:25:38] 
+[01:25:38] === Taste Query [10/23]: wine list fine dining restaurant Potomac MD ===
+[01:25:44]   Scrolling search results...
+[01:25:52]   Extracting results...
+[01:25:52]   Found 7 results
+[01:25:52]   SKIP (exists: MD-REST-1073): Gregorio's Trattoria
+[01:25:52]   SKIP (exists: MD-REST-3058): Mykonos Restaurant
+[01:25:52]   SKIP (exists: VA-REST-829): Jacques' Brasserie
+[01:25:52]   SKIP (exists: MD-REST-1766): Bouboulina
+[01:25:52]   SKIP (exists: DE-REST-2350): Heirloom
+[01:25:52]   SKIP (exists: MD-REST-1781): Melina
+[01:25:52]   [WEBSITE] Looking up: The Cafe in Glenstone
+[01:25:57]   SKIP (same website as MD-GALL-874): The Cafe in Glenstone -- glenstone.org
+[01:25:57]   Added 0 new venues from query
+[01:26:04] 
+[01:26:04] === Taste Query [11/23]: wine list fine dining restaurant Bethesda MD ===
+[01:26:11]   Scrolling search results...
+[01:26:17]   Extracting results...
+[01:26:17]   Found 14 results
+[01:26:17]   SKIP (exists: MD-REST-3062): Agora Bethesda | Mediterranean Restaurant
+[01:26:17]   SKIP (exists: MD-REST-886): Aventino Cucina
+[01:26:17]   SKIP (exists: MD-REST-1583): Six Ways to Sunday
+[01:26:17]   SKIP (exists: MD-REST-1584): Takumi Japanese Bistro & Bar
+[01:26:17]   SKIP (exists: MD-REST-1596): Seventh State Restaurant and Lounge
+[01:26:17]   SKIP (exists: MD-REST-1586): ON St. Elmo
+[01:26:17]   SKIP (exists: DC-REST-1050): Ruta Ukrainian Restaurant
+[01:26:17]   SKIP (exists: MD-REST-1090): Fialova
+[01:26:17]   SKIP (exists: MD-REST-1766): Bouboulina
+[01:26:17]   SKIP (exists: MD-REST-1781): Melina
+[01:26:17]   SKIP (exists: MD-REST-1591): Corella Café & Lounge
+[01:26:17]   SKIP (exists: DC-REST-658): Rooster & Owl
+[01:26:17]   SKIP (exists: MD-REST-2163): The Food Market
+[01:26:17]   SKIP (exists: MD-REST-2902): Sense of Thai Bethesda
+[01:26:17]   Added 0 new venues from query
+[01:26:24] 
+[01:26:24] === Taste Query [12/23]: wine list fine dining restaurant Chevy Chase MD ===
+[01:26:31]   Scrolling search results...
+[01:26:39]   Extracting results...
+[01:26:40]   Found 13 results
+[01:26:40]   SKIP (exists: MD-REST-3062): Agora Bethesda | Mediterranean Restaurant
+[01:26:40]   SKIP (exists: MD-REST-812): Elena James
+[01:26:40]   SKIP (exists: MD-REST-886): Aventino Cucina
+[01:26:40]   SKIP (exists: MD-REST-3068): Ro Sushi Co
+[01:26:40]   SKIP (exists: MD-REST-1135): The Bistro - Eat. Drink. Connect.®
+[01:26:40]   SKIP (exists: MD-REST-1136): Rosemary bistro cafe
+[01:26:40]   SKIP (exists: DC-REST-1050): Ruta Ukrainian Restaurant
+[01:26:40]   SKIP (exists: MD-REST-1090): Fialova
+[01:26:40]   SKIP (exists: MD-REST-1586): ON St. Elmo
+[01:26:40]   SKIP (exists: MD-REST-1596): Seventh State Restaurant and Lounge
+[01:26:40]   SKIP (exists: MD-REST-1584): Takumi Japanese Bistro & Bar
+[01:26:40]   SKIP (exists: MD-REST-2400): Dok Khao Thai Chevy Chase
+[01:26:40]   [WEBSITE] Looking up: Regina's Restaurant
+[01:26:50]   ADDED (score 60): Regina's Restaurant (restaurant, 4.7*, 333 reviews, Wheaton, MD) -> MD-REST-3322
+[01:26:50]     Website: https://reginasrestaurantmd.com
+[01:26:50]     Category 'restaurant' is a guess (name:restaurant) — remains needs_review
+[01:26:50]   Added 1 new venues from query
+[01:26:55] 
+[01:26:55] === Taste Query [13/23]: wine list fine dining restaurant Great Falls VA ===
+[01:27:00]   Scrolling search results...
+[01:27:08]   Extracting results...
+[01:27:08]   Found 5 results
+[01:27:08]   SKIP (exists: VA-REST-829): Jacques' Brasserie
+[01:27:08]   SKIP (exists: VA-REST-3214): The Cellar on Seneca
+[01:27:08]   SKIP (exists: VA-REST-3229): Clarity Reston
+[01:27:08]   SKIP (exists: DE-REST-2350): Heirloom
+[01:27:08]   SKIP (exists: VA-HOTE-676): Great Falls Lodge
+[01:27:08]   Added 0 new venues from query
+[01:27:16] 
+[01:27:16] === Taste Query [14/23]: wine list fine dining restaurant McLean VA ===
+[01:27:23]   Scrolling search results...
+[01:27:29]   Extracting results...
+[01:27:29]   Found 12 results
+[01:27:29]   SKIP (exists: VA-REST-3215): Town Kitchen & Bar
+[01:27:29]   SKIP (exists: VA-REST-1147): Divan Restaurant
+[01:27:29]   SKIP (exists: VA-REST-3217): Circa Bistro
+[01:27:29]   SKIP (exists: VA-REST-3221): Wren Tysons
+[01:27:29]   SKIP (exists: VA-REST-3216): Modan Restaurant
+[01:27:29]   SKIP (exists: VA-REST-3220): ENTYSE
+[01:27:29]   SKIP (exists: VA-REST-3057): Cafe ile
+[01:27:29]   SKIP (exists: VA-REST-3041): Randy's Prime Seafood and Steaks
+[01:27:29]   SKIP (exists: DE-REST-2350): Heirloom
+[01:27:29]   SKIP (exists: VA-REST-1175): Ellie Bird
+[01:27:29]   SKIP (exists: VA-REST-3046): SHō Sushi & Izakaya
+[01:27:29]   SKIP (exists: VA-REST-3052): 801 Chophouse
+[01:27:29]   Added 0 new venues from query
+[01:27:37] 
+[01:27:37] === Taste Query [15/23]: wine list fine dining restaurant Alexandria VA ===
+[01:27:44]   Scrolling search results...
+[01:27:50]   Extracting results...
+[01:27:51]   Found 7 results
+[01:27:51]   SKIP (exists: VA-REST-2884): Finn and Fire
+[01:27:51]   SKIP (exists: VA-REST-2878): Oak Steakhouse
+[01:27:51]   SKIP (exists: VA-REST-1700): Revel Restaurant
+[01:27:51]   SKIP (exists: VA-REST-3224): Kiln
+[01:27:51]   SKIP (exists: past gig): The Farmhouse Tuscan
+[01:27:51]   SKIP (exists: VA-REST-2955): Founding Farmers Alexandria
+[01:27:51]   [WEBSITE] Looking up: Akeno Sushi Bar@ Old Town
+[01:28:10]   ADDED (score 60): Akeno Sushi Bar@ Old Town (restaurant, 4.8*, 426 reviews, Alexandria, VA) -> VA-REST-3416
+[01:28:10]     Website: https://akenosushibar.com/akenosushibaroldtown
+[01:28:10]     Promoted to untouched (website + location verified)
+[01:28:10]   Added 1 new venues from query
+[01:28:16] 
+[01:28:16] === Taste Query [16/23]: wine list historic fine dining restaurant Georgetown DC ===
+[01:28:22]   Scrolling search results...
+[01:28:29]   Extracting results...
+[01:28:29]   Found 52 results
+[01:28:29]   SKIP (exists: DC-REST-2314): 1789 Restaurant
+[01:28:29]   SKIP (exists: DC-REST-1019): Chez Billy Sud
+[01:28:29]   SKIP (exists: DC-REST-1018): Apéro
+[01:28:29]   SKIP (exists: DC-REST-2293): Filomena Ristorante
+[01:28:29]   SKIP (exists: DC-REST-2297): Fiola Mare
+[01:28:29]   SKIP (exists: DC-REST-140): La Chaumiere
+[01:28:29]   SKIP (exists: DC-REST-1016): Bistrot Lepic & Wine Bar
+[01:28:29]   SKIP (exists: DC-REST-1551): Martin's Tavern
+[01:28:29]   SKIP (exists: DC-REST-139): L'Avant-Garde
+[01:28:29]   SKIP (exists: DC-REST-653): Jônt
+[01:28:29]   SKIP (exists: DC-REST-637): La Grande Boucherie DC
+[01:28:29]   SKIP (exists: DC-REST-1022): La Bohème
+[01:28:29]   SKIP (exists: MD-REST-1099): La Bonne Vache
+[01:28:29]   SKIP (exists: DC-REST-638): River Club DC
+[01:28:29]   SKIP (exists: DC-REST-1021): Lutèce.
+[01:28:29]   SKIP (exists: DC-REST-639): Imperfecto
+[01:28:29]   SKIP (exists: DC-REST-644): BOURBON STEAK
+[01:28:29]   SKIP (exists: DC-REST-1562): Clyde's of Georgetown
+[01:28:29]   SKIP (exists: DC-REST-641): Blue Duck Tavern
+[01:28:29]   SKIP (exists: DC-REST-1563): Osteria Mozza DC
+[01:28:29]   SKIP (exists: skipped earlier this run: same website as DC-REST-644): Bourbon Lounge
+[01:28:29]   SKIP (exists: DC-REST-1020): Brasserie Liberté
+[01:28:29]   SKIP (exists: DC-REST-2681): Villa Yara
+[01:28:29]   SKIP (exists: DC-REST-651): L'Annexe
+[01:28:29]   SKIP (exists: DC-REST-631): Sequoia DC
+[01:28:29]   SKIP (exists: DC-REST-658): Rooster & Owl
+[01:28:29]   SKIP (exists: DC-REST-2664): Peacock Café
+[01:28:29]   SKIP (exists: DC-HOTE-633): The Fountain Inn DC
+[01:28:29]   SKIP (exists: DC-REST-1559): Fitzgerald's
+[01:28:29]   SKIP (exists: DC-REST-1560): The Tombs
+[01:28:29]   SKIP (exists: DC-REST-655): Le DeSales
+[01:28:29]   SKIP (exists: DC-REST-1024): The Sovereign
+[01:28:29]   SKIP (exists: DC-WINE-137): Bar a Vin
+[01:28:29]   SKIP (exists: DC-REST-649): Flavio Restaurant DC
+[01:28:29]   SKIP (classified other): Founding Farmers Fishers & Bakers -- American
+[01:28:29]   SKIP (exists: DC-REST-1552): Bodega Spanish Tapas & Lounge
+[01:28:29]   SKIP (exists: DC-REST-650): The Dabney
+[01:28:29]   SKIP (exists: DC-REST-642): Iron Gate Restaurant
+[01:28:29]   SKIP (classified other): il Canale -- Italian
+[01:28:29]   SKIP (exists: DC-REST-1555): Sixty Vines Foggy Bottom
+[01:28:29]   SKIP (exists: DC-REST-1036): Obelisk
+[01:28:29]   SKIP (exists: DC-REST-646): Kingbird
+[01:28:29]   SKIP (exists: DC-REST-648): Ris
+[01:28:29]   SKIP (exists: DC-REST-1567): The Rooftop at the Graham
+[01:28:29]   SKIP (exists: DC-REST-645): Café Riggs
+[01:28:29]   SKIP (exists: DC-REST-2199): City Tavern
+[01:28:29]   SKIP (exists: DC-REST-1039): Amélie DC Bistro & Wine Bar
+[01:28:29]   [WEBSITE] Looking up: Georgetown Seafood
+[01:28:34]   [WEBSITE] Looking up: The Occidental
+[01:28:39]   [WEBSITE] Looking up: CUT D.C. by Wolfgang Puck
+[01:28:43]   [WEBSITE] Looking up: The Lafayette
+[01:28:48]   [WEBSITE] Looking up: Barbouzard
+[01:29:26]   ADDED (score 65): Georgetown Seafood (restaurant, 4.9*, 2894 reviews, Washington, DC) -> DC-REST-2819
+[01:29:26]     Website: http://www.georgetownseafood.com
+[01:29:26]     Promoted to untouched (website + location verified)
+[01:29:26]   ADDED (score 68): The Occidental (restaurant, 4.3*, 917 reviews, Washington, DC) -> DC-REST-2820
+[01:29:26]     Website: https://theoccidentaldc.com
+[01:29:26]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:29:26]   ADDED (score 65): CUT D.C. by Wolfgang Puck (restaurant, 4.1*, 193 reviews, Washington, DC) -> DC-REST-2821
+[01:29:26]     Website: https://wolfgangpuck.com/dining/cut-dc
+[01:29:26]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:29:26]   ADDED (score 70): The Lafayette (restaurant, 4.5*, 316 reviews, Washington, DC) -> DC-REST-2822
+[01:29:26]     No matching website found — remains needs_review
+[01:29:26]   ADDED (score 75): Barbouzard (restaurant, 4.7*, 496 reviews, Washington, DC) -> DC-REST-2823
+[01:29:26]     Website: https://www.barbouzard.com
+[01:29:26]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:29:26]   Added 5 new venues from query
+[01:29:32] 
+[01:29:32] === Taste Query [17/23]: wine list historic fine dining restaurant Dupont Circle DC ===
+[01:29:38]   Scrolling search results...
+[01:29:44]   Extracting results...
+[01:29:44]   Found 59 results
+[01:29:45]   SKIP (exists: DC-REST-642): Iron Gate Restaurant
+[01:29:45]   SKIP (exists: DC-REST-1036): Obelisk
+[01:29:45]   SKIP (exists: DC-REST-653): Jônt
+[01:29:45]   SKIP (exists: DC-REST-655): Le DeSales
+[01:29:45]   SKIP (exists: DC-REST-652): The Pembroke
+[01:29:45]   SKIP (exists: DC-REST-2314): 1789 Restaurant
+[01:29:45]   SKIP (exists: DC-REST-637): La Grande Boucherie DC
+[01:29:45]   SKIP (exists: DC-REST-654): Floriana
+[01:29:45]   SKIP (exists: DC-REST-1018): Apéro
+[01:29:45]   SKIP (exists: DC-REST-639): Imperfecto
+[01:29:45]   SKIP (exists: DC-REST-1019): Chez Billy Sud
+[01:29:45]   SKIP (exists: DC-REST-2322): Nero
+[01:29:45]   SKIP (exists: DC-REST-658): Rooster & Owl
+[01:29:45]   SKIP (exists: DC-HOTE-1049): Tabard Inn Restaurant
+[01:29:45]   SKIP (exists: DC-REST-659): Certo!
+[01:29:45]   SKIP (exists: DC-REST-2796): Firefly
+[01:29:45]   SKIP (exists: DC-REST-650): The Dabney
+[01:29:45]   SKIP (exists: DC-REST-1032): Bistrot Du Coin
+[01:29:45]   SKIP (exists: DC-REST-1033): Le Sel French Bistro
+[01:29:45]   SKIP (exists: DC-REST-657): The Greenhouse
+[01:29:45]   SKIP (exists: DC-REST-661): Vagabond Bar and Kitchen
+[01:29:45]   SKIP (exists: DC-REST-662): Annabelle
+[01:29:45]   SKIP (exists: DC-REST-663): Boqueria Dupont
+[01:29:45]   SKIP (exists: DC-REST-140): La Chaumiere
+[01:29:45]   SKIP (exists: DC-REST-2334): ala
+[01:29:45]   SKIP (exists: DC-REST-664): Agora Dc Mediterranean Restaurant
+[01:29:45]   SKIP (exists: DC-REST-139): L'Avant-Garde
+[01:29:45]   SKIP (exists: DC-REST-2332): Kramers
+[01:29:45]   SKIP (exists: DC-REST-2783): Lyle's
+[01:29:45]   SKIP (classified other): Astoria DC -- Chinese
+[01:29:45]   SKIP (exists: DC-REST-2340): Rosemarino D'Italia I Dupont Circle
+[01:29:45]   SKIP (exists: DC-REST-2822): The Lafayette
+[01:29:45]   SKIP (exists: DC-REST-2786): Casamara
+[01:29:45]   SKIP (exists: DC-REST-1045): La Tomate
+[01:29:45]   SKIP (exists: DC-REST-2820): The Occidental
+[01:29:45]   SKIP (exists: skipped earlier this run: same website as DC-REST-222): Quill at The Jefferson
+[01:29:45]   SKIP (exists: DC-REST-1041): Mikko Nordic Fine Food
+[01:29:45]   SKIP (exists: DC-REST-641): Blue Duck Tavern
+[01:29:45]   SKIP (exists: DC-REST-665): Rewind Diner
+[01:29:45]   SKIP (exists: DC-REST-1046): Bistro Cacao
+[01:29:45]   SKIP (exists: DC-REST-667): L'Ardente
+[01:29:45]   SKIP (exists: DC-REST-671): Ceibo
+[01:29:45]   SKIP (exists: VA-REST-3092): Pisco y Nazca Ceviche Gastrobar
+[01:29:45]   SKIP (classified other): The Palm - Washington, D.C. -- Steak
+[01:29:45]   SKIP (exists: DC-REST-1031): Le Diplomate
+[01:29:45]   SKIP (classified other): Seven Reasons -- Latin American
+[01:29:45]   SKIP (exists: DC-REST-643): Bazaar Meat by José Andrés
+[01:29:45]   SKIP (classified other): Mission Dupont Circle -- Mexican
+[01:29:45]   SKIP (exists: DC-REST-223): Lyle Washington DC
+[01:29:45]   SKIP (classified other): Amparo Fondita -- Mexican
+[01:29:45]   SKIP (classified other): Anju -- Korean
+[01:29:45]   SKIP (exists: DC-REST-1042): Residents Cafe & Bar
+[01:29:45]   [WEBSITE] Looking up: Annie's Paramount Steak House
+[01:29:49]   [WEBSITE] Looking up: The Golden Age
+[01:29:54]   [WEBSITE] Looking up: Hank’s Oyster Bar, Dupont Circle
+[01:29:59]   [WEBSITE] Looking up: Teddy & The Bully Bar
+[01:30:03]   [WEBSITE] Looking up: The Admiral
+[01:30:08]   [WEBSITE] Looking up: SURA Restaurant
+[01:30:12]   [WEBSITE] Looking up: Vin Sur Vingt Wine Bar - DC
+[01:30:49]   ADDED (score 60): Annie's Paramount Steak House (restaurant, 4.5*, 2084 reviews, Washington, DC) -> DC-REST-2824
+[01:30:49]     Website: http://www.anniesparamountdc.com
+[01:30:49]     Category 'restaurant' is a guess (name:steak house) — remains needs_review
+[01:30:49]   ADDED (score 65): The Golden Age (restaurant, 4.5*, 190 reviews, Washington, DC) -> DC-REST-2825
+[01:30:49]     Website: https://www.thegoldenagedc.com
+[01:30:49]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:30:49]   SKIP (same website as VA-REST-1665): Hank’s Oyster Bar, Dupont Circle -- hanksoysterbar.com
+[01:30:49]   ADDED (score 60): Teddy & The Bully Bar (bar, 4.4*, 1618 reviews, Washington, DC) -> DC-BAR-002
+[01:30:49]     Website: http://teddyandthebullybar.com
+[01:30:49]     Category 'bar' is a guess (name:bar) — remains needs_review
+[01:30:49]   ADDED (score 58): The Admiral (restaurant, 4.4*, 870 reviews, location unknown) -> XX-REST-629
+[01:30:49]     Website: https://www.theadmiraldc.com
+[01:30:49]     Website saved; city/state not confirmed from the listing — remains needs_review
+[01:30:49]   ADDED (score 55): SURA Restaurant (restaurant, 4.5*, 339 reviews, Washington, DC) -> DC-REST-2826
+[01:30:49]     Website: http://www.suradcrestaurant.com
+[01:30:49]     Category 'restaurant' is a guess (name:restaurant) — remains needs_review
+[01:30:49]   ADDED (score 55): Vin Sur Vingt Wine Bar - DC (wine_bar, 4.6*, 294 reviews, Washington, DC) -> DC-WINE-2607
+[01:30:49]     No matching website found — remains needs_review
+[01:30:49]   Added 6 new venues from query
+[01:30:55] 
+[01:30:55] === Taste Query [18/23]: wine list historic fine dining restaurant Potomac MD ===
+[01:31:01]   Scrolling search results...
+[01:31:07]   Extracting results...
+[01:31:07]   Found 49 results
+[01:31:07]   SKIP (exists: MD-REST-142): Old Angler's Inn
+[01:31:07]   SKIP (exists: past gig): L'Auberge Chez Francois
+[01:31:07]   SKIP (exists: DC-REST-674): La Ferme Restaurant
+[01:31:07]   SKIP (exists: past gig): The Milton Inn
+[01:31:07]   SKIP (exists: MD-REST-1806): Clyde's Tower Oaks Lodge
+[01:31:07]   SKIP (exists: VA-REST-008): Dante Ristorante
+[01:31:07]   SKIP (exists: MD-REST-2363): MoCo's Founding Farmers
+[01:31:07]   SKIP (exists: MD-REST-1073): Gregorio's Trattoria
+[01:31:07]   SKIP (exists: MD-REST-3058): Mykonos Restaurant
+[01:31:07]   SKIP (exists: VA-REST-829): Jacques' Brasserie
+[01:31:07]   SKIP (exists: MD-REST-944): King Street Oyster Bar
+[01:31:07]   SKIP (exists: VA-REST-852): Bistro L'Hermitage
+[01:31:07]   SKIP (exists: MD-REST-2445): The Smokehouse Restaurant at Antrim 1844
+[01:31:07]   SKIP (exists: DC-REST-2314): 1789 Restaurant
+[01:31:07]   SKIP (exists: VA-REST-007): 2941 Restaurant
+[01:31:07]   SKIP (exists: DC-REST-639): Imperfecto
+[01:31:07]   SKIP (exists: MD-REST-2718): Old Line Kitchen & Wine Bar
+[01:31:07]   SKIP (exists: MD-REST-986): Gringos & Mariachis
+[01:31:07]   SKIP (exists: MD-WINE-728): Cooper’s Hawk Winery & Restaurant
+[01:31:07]   SKIP (exists: MD-REST-1013): Tally Ho Restaurant
+[01:31:07]   SKIP (exists: MD-REST-1579): Quincy’s Potomac Bar & Grille
+[01:31:07]   SKIP (exists: MD-REST-898): Kema by KENAKI
+[01:31:07]   SKIP (exists: MD-REST-1592): Black's Bar & Kitchen
+[01:31:07]   SKIP (exists: MD-HOTE-126): Antrim 1844
+[01:31:07]   SKIP (exists: MD-REST-1596): Seventh State Restaurant and Lounge
+[01:31:07]   SKIP (exists: VA-REST-2316): Melting Pot
+[01:31:07]   SKIP (exists: MD-REST-1766): Bouboulina
+[01:31:07]   SKIP (exists: MD-REST-1805): Black Market Bistro
+[01:31:07]   SKIP (exists: MD-REST-1781): Melina
+[01:31:07]   SKIP (exists: DC-REST-2293): Filomena Ristorante
+[01:31:07]   SKIP (exists: MD-REST-688): Harry Browne's Restaurant
+[01:31:07]   SKIP (exists: MD-REST-1081): Bistro Provence
+[01:31:07]   SKIP (classified other): Kims' Yirasai -- Sushi
+[01:31:07]   SKIP (classified other): Duke's Grocery -- Modern British
+[01:31:07]   SKIP (exists: XX-REST-081): Seasons 52
+[01:31:07]   SKIP (exists: MD-REST-3186): Copper Canyon Grill
+[01:31:07]   SKIP (exists: MD-REST-1084): Julii
+[01:31:07]   SKIP (exists: MD-REST-873): Il Pizzico
+[01:31:07]   SKIP (exists: DE-REST-2350): Heirloom
+[01:31:07]   SKIP (exists: DC-REST-637): La Grande Boucherie DC
+[01:31:07]   [WEBSITE] Looking up: restaurant foraged. at patowmack farm
+[01:31:12]   [WEBSITE] Looking up: Salt & Vine
+[01:31:17]   [WEBSITE] Looking up: J. Gilbert's Wood-Fired Steaks & Seafood
+[01:31:21]   [WEBSITE] Looking up: Capo Italian Deli- Cabin John
+[01:31:26]   [WEBSITE] Looking up: O'Donnell's Market
+[01:31:31]   [WEBSITE] Looking up: Glenwood's (Stanford Grill - Rockville)
+[01:31:35]   [WEBSITE] Looking up: On The Rocks
+[01:31:40]   [WEBSITE] Looking up: La Canela Peruvian restaurant
+[01:31:44]   [WEBSITE] Looking up: The Farmhouse Gambrills
+[01:32:35]   ADDED (score 75): restaurant foraged. at patowmack farm (restaurant, 4.7*, 393 reviews, Lovettsville, VA) -> VA-REST-3417
+[01:32:35]     Website: http://www.patowmackfarm.com
+[01:32:35]     Category 'restaurant' is a guess (name:restaurant) — remains needs_review
+[01:32:35]   ADDED (score 80): Salt & Vine (restaurant, 4.7*, 2014 reviews, Olney, MD) -> MD-REST-3323
+[01:32:35]     Website: https://saltandvine.com/olney
+[01:32:35]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:32:35]   SKIP (same website as VA-REST-3026): J. Gilbert's Wood-Fired Steaks & Seafood -- jgilberts.com
+[01:32:35]   ADDED (score 45): Capo Italian Deli- Cabin John (restaurant, 4.0*, 124 reviews, Potomac, MD) -> MD-REST-3324
+[01:32:35]     Website: https://capodeli.com/cabinjohn
+[01:32:35]     Promoted to untouched (website + location verified)
+[01:32:35]   SKIP (same website as MD-REST-997): O'Donnell's Market -- odonnellsmarket.com
+[01:32:35]   SKIP (same website as MD-REST-893): Glenwood's (Stanford Grill - Rockville) -- glenwoodsdining.com
+[01:32:35]   ADDED (score 60): On The Rocks (restaurant, 4.7*, 63 reviews, Millersville, MD) -> MD-REST-3325
+[01:32:35]     Website: http://ontherocksmd.com
+[01:32:35]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:32:35]   ADDED (score 73): La Canela Peruvian restaurant (restaurant, 4.7*, 734 reviews, location unknown) -> XX-REST-630
+[01:32:35]     Website: https://lacanelaperu.com
+[01:32:35]     Website saved; city/state not confirmed from the listing — remains needs_review
+[01:32:35]   ADDED (score 60): The Farmhouse Gambrills (restaurant, 4.6*, 2162 reviews, Gambrills, MD) -> MD-REST-3326
+[01:32:35]     Website: http://www.farmhousegambrills.com
+[01:32:35]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:32:35]   Added 6 new venues from query
+[01:32:43] 
+[01:32:43] === Taste Query [19/23]: wine list historic fine dining restaurant Bethesda MD ===
+[01:32:49]   Scrolling search results...
+[01:32:55]   Extracting results...
+[01:32:55]   Found 58 results
+[01:32:55]   SKIP (exists: MD-REST-886): Aventino Cucina
+[01:32:55]   SKIP (exists: MD-REST-2379): ala | Bethesda
+[01:32:55]   SKIP (exists: MD-REST-1081): Bistro Provence
+[01:32:55]   SKIP (exists: MD-REST-1608): Bacchus of Lebanon
+[01:32:55]   SKIP (exists: MD-REST-884): Mon Ami Gabi
+[01:32:55]   SKIP (exists: MD-REST-1087): Persimmon
+[01:32:55]   SKIP (exists: MD-REST-1592): Black's Bar & Kitchen
+[01:32:55]   SKIP (exists: DC-REST-674): La Ferme Restaurant
+[01:32:55]   SKIP (exists: MD-REST-937): Pisco y Nazca Bethesda
+[01:32:55]   SKIP (exists: MD-REST-1583): Six Ways to Sunday
+[01:32:55]   SKIP (exists: MD-REST-1596): Seventh State Restaurant and Lounge
+[01:32:55]   SKIP (exists: MD-REST-1587): Barrel & Crow
+[01:32:55]   SKIP (exists: MD-REST-1594): The Salt Line
+[01:32:55]   SKIP (exists: MD-REST-1586): ON St. Elmo
+[01:32:55]   SKIP (exists: skipped earlier this run: same website as MD-REST-1767): Morton's The Steakhouse
+[01:32:55]   SKIP (exists: DC-REST-1050): Ruta Ukrainian Restaurant
+[01:32:55]   SKIP (exists: MD-REST-142): Old Angler's Inn
+[01:32:55]   SKIP (exists: MD-REST-2382): Medium Rare
+[01:32:55]   SKIP (exists: MD-REST-1585): BETH'S
+[01:32:55]   SKIP (exists: MD-REST-1605): Olazzo
+[01:32:55]   SKIP (exists: MD-REST-2163): The Food Market
+[01:32:55]   SKIP (exists: MD-REST-1090): Fialova
+[01:32:55]   SKIP (exists: MD-REST-1620): Cooper's Mill
+[01:32:55]   SKIP (exists: MD-REST-1094): La Panetteria Restaurant
+[01:32:55]   SKIP (exists: MD-REST-1772): Trattoria Sorrento
+[01:32:55]   SKIP (exists: MD-REST-1604): Hawkers Asian Street Food
+[01:32:55]   SKIP (exists: MD-REST-1093): Mussel Bar & Grille Bethesda
+[01:32:55]   SKIP (exists: MD-REST-1619): Guapo's Cocina & Bar
+[01:32:55]   SKIP (exists: MD-REST-1073): Gregorio's Trattoria
+[01:32:55]   SKIP (exists: MD-REST-1610): Raku
+[01:32:55]   SKIP (exists: MD-REST-1779): Delhi Spice
+[01:32:55]   SKIP (classified other): Q By Peter Chang -- Sichuan
+[01:32:55]   SKIP (exists: MD-REST-1624): Silver
+[01:32:55]   SKIP (exists: MD-REST-1609): Guardado's Restaurant
+[01:32:55]   SKIP (exists: MD-REST-1623): Pines of Rome
+[01:32:55]   SKIP (exists: MD-REST-1103): Tavira Restaurant
+[01:32:55]   SKIP (classified other): House of MILAE -- Korean
+[01:32:55]   SKIP (exists: DC-REST-1354): Le Chat Noir
+[01:32:55]   SKIP (exists: MD-REST-986): Gringos & Mariachis
+[01:32:55]   SKIP (exists: MD-REST-1315): The Capital Grille
+[01:32:55]   SKIP (exists: XX-REST-081): Seasons 52
+[01:32:55]   SKIP (exists: MD-REST-1781): Melina
+[01:32:55]   SKIP (exists: MD-REST-1314): Lia's
+[01:32:55]   SKIP (exists: MD-REST-1632): Peter's Carryout
+[01:32:55]   SKIP (classified other): Tacombi -- Mexican
+[01:32:55]   SKIP (exists: MD-REST-1131): Bethesda Crab House
+[01:32:55]   SKIP (exists: MD-REST-1084): Julii
+[01:32:55]   SKIP (classified other): House of Foong Lin -- Chinese
+[01:32:55]   SKIP (exists: MD-REST-2819): Pizzeria Da Marco
+[01:32:55]   SKIP (exists: MD-REST-1775): Passage to India
+[01:32:55]   SKIP (exists: MD-REST-2783): Hello Betty
+[01:32:55]   SKIP (type): Piccoli Piatti Pizzeria - Wildwood -- Pizza
+[01:32:55]   SKIP (exists: MD-REST-1780): Rakugaki
+[01:32:55]   SKIP (exists: MD-REST-1805): Black Market Bistro
+[01:32:55]   SKIP (exists: MD-REST-2804): Benihana - Bethesda
+[01:32:55]   SKIP (exists: MD-REST-1616): Tommy Joe's
+[01:32:56]   [WEBSITE] Looking up: True Food Kitchen
+[01:33:00]   [WEBSITE] Looking up: Virraaj Indian Cuisine
+[01:33:05]   SKIP (same website as VA-REST-3388): True Food Kitchen -- truefoodkitchen.com
+[01:33:05]   SKIP (same website as MD-REST-361): Virraaj Indian Cuisine -- wheree.com
+[01:33:05]   Added 0 new venues from query
+[01:33:12] 
+[01:33:12] === Taste Query [20/23]: wine list historic fine dining restaurant Chevy Chase MD ===
+[01:33:17]   Scrolling search results...
+[01:33:24]   Extracting results...
+[01:33:24]   Found 57 results
+[01:33:24]   SKIP (exists: DC-REST-674): La Ferme Restaurant
+[01:33:24]   SKIP (exists: MD-REST-1315): The Capital Grille
+[01:33:24]   SKIP (exists: MD-REST-1316): Clyde's of Chevy Chase
+[01:33:24]   SKIP (exists: MD-REST-1103): Tavira Restaurant
+[01:33:24]   SKIP (exists: MD-REST-1592): Black's Bar & Kitchen
+[01:33:24]   SKIP (exists: DC-REST-2314): 1789 Restaurant
+[01:33:24]   SKIP (exists: DC-REST-140): La Chaumiere
+[01:33:24]   SKIP (exists: MD-REST-1314): Lia's
+[01:33:24]   SKIP (exists: MD-REST-1118): Matisse
+[01:33:24]   SKIP (exists: MD-REST-812): Elena James
+[01:33:24]   SKIP (exists: MD-REST-1583): Six Ways to Sunday
+[01:33:24]   SKIP (exists: MD-REST-1087): Persimmon
+[01:33:24]   SKIP (exists: DC-REST-1354): Le Chat Noir
+[01:33:24]   SKIP (exists: skipped earlier this run: same website as MD-REST-1767): Morton's The Steakhouse
+[01:33:24]   SKIP (exists: MD-REST-1140): Manoli Canoli
+[01:33:24]   SKIP (exists: MD-REST-1138): Macon Bistro & Larder
+[01:33:24]   SKIP (exists: DC-REST-653): Jônt
+[01:33:24]   SKIP (exists: MD-REST-1596): Seventh State Restaurant and Lounge
+[01:33:24]   SKIP (exists: VA-REST-3018): Maggiano's Little Italy
+[01:33:24]   SKIP (exists: DC-REST-637): La Grande Boucherie DC
+[01:33:24]   SKIP (exists: MD-REST-1587): Barrel & Crow
+[01:33:24]   SKIP (exists: MD-REST-2382): Medium Rare
+[01:33:24]   SKIP (exists: MD-REST-1594): The Salt Line
+[01:33:24]   SKIP (exists: MD-REST-2379): ala | Bethesda
+[01:33:24]   SKIP (exists: DC-REST-655): Le DeSales
+[01:33:24]   SKIP (exists: MD-REST-884): Mon Ami Gabi
+[01:33:24]   SKIP (exists: MD-REST-1608): Bacchus of Lebanon
+[01:33:24]   SKIP (exists: MD-REST-1128): Bread & Chocolate
+[01:33:24]   SKIP (exists: MD-REST-1613): PLANTA Bethesda
+[01:33:24]   SKIP (exists: MD-REST-1081): Bistro Provence
+[01:33:24]   SKIP (exists: MD-REST-1090): Fialova
+[01:33:24]   SKIP (exists: DC-REST-1019): Chez Billy Sud
+[01:33:24]   SKIP (exists: DC-REST-1822): New Heights Restaurant
+[01:33:24]   SKIP (exists: MD-REST-2388): EuroAlcoUS
+[01:33:24]   SKIP (type): Little Beast -- Pizza
+[01:33:24]   SKIP (exists: DC-REST-2293): Filomena Ristorante
+[01:33:24]   SKIP (exists: MD-REST-1624): Silver
+[01:33:24]   SKIP (exists: DC-REST-1060): Barcelona Wine Bar
+[01:33:24]   SKIP (classified other): Chef Geoff's -- American
+[01:33:24]   SKIP (exists: skipped earlier this run: same website as VA-REST-3388): True Food Kitchen
+[01:33:24]   SKIP (exists: MD-REST-1073): Gregorio's Trattoria
+[01:33:24]   SKIP (classified other): Millie's -- American
+[01:33:24]   SKIP (exists: DC-REST-642): Iron Gate Restaurant
+[01:33:24]   SKIP (exists: MD-REST-1094): La Panetteria Restaurant
+[01:33:24]   SKIP (exists: MD-REST-1623): Pines of Rome
+[01:33:24]   SKIP (exists: DC-REST-2297): Fiola Mare
+[01:33:24]   SKIP (classified other): RPM Italian -- Italian
+[01:33:24]   SKIP (exists: MD-REST-1591): Corella Café & Lounge
+[01:33:24]   SKIP (exists: MD-REST-1605): Olazzo
+[01:33:24]   SKIP (exists: DC-REST-1016): Bistrot Lepic & Wine Bar
+[01:33:24]   SKIP (exists: MD-REST-1598): The Urban Winery of Silver Spring
+[01:33:25]   [WEBSITE] Looking up: Parthenon Restaurant & The Chevy Chase Lounge
+[01:33:29]   [WEBSITE] Looking up: J. Hollinger's Waterman's Chophouse
+[01:33:34]   [WEBSITE] Looking up: Meiwah Restaurant
+[01:33:38]   [WEBSITE] Looking up: Ocean Prime
+[01:33:43]   [WEBSITE] Looking up: Buck's Fishing & Camping
+[01:33:48]   [WEBSITE] Looking up: Vera Cocina & بار
+[01:34:27]   SKIP (same website as DC-REST-675): Parthenon Restaurant & The Chevy Chase Lounge -- parthenondc.com
+[01:34:27]   ADDED (score 50): J. Hollinger's Waterman's Chophouse (restaurant, 4.3*, 415 reviews, Silver Spring, MD) -> MD-REST-3327
+[01:34:27]     Website: https://jhollingers.com
+[01:34:27]     Category 'restaurant' is a guess (name:chophouse) — remains needs_review
+[01:34:27]   ADDED (score 48): Meiwah Restaurant (restaurant, 3.9*, 574 reviews, Chevy Chase, MD) -> MD-REST-3328
+[01:34:27]     Website: https://www.meiwahchevychase.com
+[01:34:27]     Category 'restaurant' is a guess (name:restaurant) — remains needs_review
+[01:34:27]   ADDED (score 75): Ocean Prime (restaurant, 4.6*, 2218 reviews, Washington, DC) -> DC-REST-2827
+[01:34:27]     Website: https://www.ocean-prime.com/locations-menus/washington-dc
+[01:34:27]     Promoted to untouched (website + location verified)
+[01:34:27]   ADDED (score 60): Buck's Fishing & Camping (restaurant, 4.3*, 304 reviews, Washington, DC) -> DC-REST-2828
+[01:34:27]     Website: http://www.bucksfishingandcamping.com
+[01:34:27]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:34:27]   ADDED (score 73): Vera Cocina & بار (restaurant, 4.5*, 746 reviews, Washington, DC) -> DC-REST-2829
+[01:34:27]     Website: https://veradc.com
+[01:34:27]     Category 'restaurant' is a guess (name:cocina) — remains needs_review
+[01:34:27]   Added 5 new venues from query
+[01:34:34] 
+[01:34:34] === Taste Query [21/23]: wine list historic fine dining restaurant Great Falls VA ===
+[01:34:40]   Scrolling search results...
+[01:34:48]   Extracting results...
+[01:34:49]   Found 49 results
+[01:34:49]   SKIP (exists: past gig): L'Auberge Chez Francois
+[01:34:49]   SKIP (exists: VA-REST-008): Dante Ristorante
+[01:34:49]   SKIP (exists: VA-REST-677): Trummer's Restaurant
+[01:34:49]   SKIP (exists: skipped earlier this run: same website as VA-REST-3026): J. Gilbert's Wood-Fired Steaks & Seafood
+[01:34:49]   SKIP (exists: VA-REST-829): Jacques' Brasserie
+[01:34:49]   SKIP (exists: VA-REST-3214): The Cellar on Seneca
+[01:34:49]   SKIP (classified other): Our Mom Eugenia - Great Falls -- Greek
+[01:34:49]   SKIP (exists: VA-HOTE-676): Great Falls Lodge
+[01:34:49]   SKIP (exists: MD-REST-142): Old Angler's Inn
+[01:34:49]   SKIP (exists: DE-REST-2350): Heirloom
+[01:34:49]   SKIP (exists: VA-REST-2436): Evelyn Rose
+[01:34:49]   SKIP (exists: VA-REST-1175): Ellie Bird
+[01:34:49]   SKIP (exists: VA-REST-007): 2941 Restaurant
+[01:34:49]   SKIP (exists: VA-REST-3417): restaurant foraged. at patowmack farm
+[01:34:49]   SKIP (name): Old Brogue Irish Pub
+[01:34:49]   SKIP (exists: VA-REST-1202): Tuscarora Mill Restaurant
+[01:34:49]   SKIP (exists: VA-REST-843): La Bonne Vie
+[01:34:49]   SKIP (exists: VA-HOTE-850): The Conservatory at Goodstone Inn
+[01:34:49]   SKIP (exists: VA-REST-995): Great Falls Wine Outlet
+[01:34:49]   SKIP (classified other): Oliver's Corner Butcher Shop -- Butcher shop
+[01:34:49]   SKIP (exists: VA-HOTE-2904): The Blue Door Kitchen and Inn
+[01:34:49]   SKIP (exists: VA-REST-852): Bistro L'Hermitage
+[01:34:49]   SKIP (exists: VA-REST-678): Village Grill
+[01:34:49]   SKIP (exists: VA-REST-2414): Sixty Vines Reston
+[01:34:49]   SKIP (exists: VA-REST-3380): PassionFish Reston
+[01:34:49]   SKIP (classified other): The Bungalow Lakehouse -- American
+[01:34:49]   SKIP (exists: MD-WINE-728): Cooper’s Hawk Winery & Restaurant
+[01:34:49]   SKIP (exists: VA-REST-2316): Melting Pot
+[01:34:49]   SKIP (type): Deli Italiano -- Pizza
+[01:34:49]   SKIP (exists: VA-REST-2988): Ingle Korean Steakhouse
+[01:34:49]   SKIP (exists: VA-REST-868): Lightfoot Restaurant
+[01:34:49]   SKIP (exists: VA-REST-3411): Lantern House Kitchen & Bar
+[01:34:49]   SKIP (exists: VA-REST-1185): Wildfire
+[01:34:49]   SKIP (exists: skipped earlier this run: same website as MD-REST-1767): Morton's The Steakhouse
+[01:34:49]   SKIP (exists: PA-REST-1854): Eddie V's Prime Seafood
+[01:34:49]   SKIP (exists: VA-REST-3100): Jackson's Mighty Fine Food and Lucky Lounge
+[01:34:49]   SKIP (exists: VA-REST-010): Clarity
+[01:34:49]   SKIP (exists: VA-REST-3028): Cafe Tatti
+[01:34:49]   SKIP (exists: VA-REST-2437): Zeffirelli Ristorante Italiano
+[01:34:49]   SKIP (exists: VA-REST-147): Cedar Knoll
+[01:34:49]   [WEBSITE] Looking up: TRIO Grill
+[01:34:53]   [WEBSITE] Looking up: Finn Thai Great Falls
+[01:34:58]   [WEBSITE] Looking up: Local Provisions
+[01:35:03]   [WEBSITE] Looking up: Pio Pio Peruvian Cuisine
+[01:35:07]   [WEBSITE] Looking up: Zamarod Restaurant
+[01:35:12]   [WEBSITE] Looking up: The Lost Fox
+[01:35:17]   [WEBSITE] Looking up: Field & Main Restaurant
+[01:35:21]   [WEBSITE] Looking up: The Black Sheep Restaurant
+[01:35:26]   [WEBSITE] Looking up: Market Table Bistro
+[01:36:19]   ADDED (score 73): TRIO Grill (restaurant, 4.6*, 971 reviews, Falls Church, VA) -> VA-REST-3418
+[01:36:19]     No matching website found — remains needs_review
+[01:36:19]   ADDED (score 60): Finn Thai Great Falls (restaurant, 4.7*, 182 reviews, Great Falls, VA) -> VA-REST-3419
+[01:36:19]     Website: https://finnthaigreatfalls.blizzfull.com
+[01:36:19]     Promoted to untouched (website + location verified)
+[01:36:19]   ADDED (score 63): Local Provisions (restaurant, 4.7*, 615 reviews, Sterling, VA) -> VA-REST-3420
+[01:36:19]     Website: http://localprovisionsva.com
+[01:36:19]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:36:19]   ADDED (score 60): Pio Pio Peruvian Cuisine (restaurant, 4.5*, 1016 reviews, Great Falls, VA) -> VA-REST-3421
+[01:36:19]     Website: https://www.piopioperu.com
+[01:36:19]     Category 'restaurant' is a guess (name:cuisine) — remains needs_review
+[01:36:19]   SKIP (same website as VA-REST-919): Zamarod Restaurant -- zamarod.com
+[01:36:19]   ADDED (score 58): The Lost Fox (restaurant, 4.5*, 894 reviews, Ashburn, VA) -> VA-REST-3422
+[01:36:19]     No matching website found — remains needs_review
+[01:36:19]   ADDED (score 73): Field & Main Restaurant (restaurant, 4.6*, 693 reviews, Marshall, VA) -> VA-REST-3423
+[01:36:19]     Website: https://www.fieldandmainrestaurant.com
+[01:36:19]     Category 'restaurant' is a guess (name:restaurant) — remains needs_review
+[01:36:19]   ADDED (score 65): The Black Sheep Restaurant (restaurant, 4.7*, 2588 reviews, location unknown) -> XX-REST-631
+[01:36:19]     Website: https://theblacksheeprestaurant.com
+[01:36:19]     Website saved; city/state not confirmed from the listing — remains needs_review
+[01:36:19]   ADDED (score 60): Market Table Bistro (restaurant, 4.7*, 247 reviews, location unknown) -> XX-REST-632
+[01:36:19]     Website: https://www.markettablebistro.com
+[01:36:19]     Website saved; city/state not confirmed from the listing — remains needs_review
+[01:36:19]   Added 8 new venues from query
+[01:36:27] 
+[01:36:27] === Taste Query [22/23]: wine list historic fine dining restaurant McLean VA ===
+[01:36:32]   Scrolling search results...
+[01:36:39]   Extracting results...
+[01:36:40]   Found 59 results
+[01:36:40]   SKIP (exists: skipped earlier this run: same website as VA-REST-3026): J. Gilbert's Wood-Fired Steaks & Seafood
+[01:36:40]   SKIP (exists: VA-REST-3028): Cafe Tatti
+[01:36:40]   SKIP (exists: VA-REST-1147): Divan Restaurant
+[01:36:40]   SKIP (exists: PA-REST-1854): Eddie V's Prime Seafood
+[01:36:40]   SKIP (exists: past gig): L'Auberge Chez Francois
+[01:36:40]   SKIP (exists: MD-REST-1315): The Capital Grille
+[01:36:40]   SKIP (exists: VA-REST-007): 2941 Restaurant
+[01:36:40]   SKIP (exists: VA-REST-3053): Capri Ristorante Italiano
+[01:36:40]   SKIP (exists: VA-REST-3215): Town Kitchen & Bar
+[01:36:40]   SKIP (exists: VA-REST-3316): Café Monet
+[01:36:40]   SKIP (exists: VA-REST-1151): Neutral Ground Bar + Kitchen
+[01:36:40]   SKIP (exists: VA-REST-1149): ArTeA Restaurant + Bar
+[01:36:40]   SKIP (exists: VA-REST-3375): The Italian Oven
+[01:36:40]   SKIP (exists: PA-REST-2364): Fleming’s Prime Steakhouse & Wine Bar
+[01:36:40]   SKIP (exists: VA-REST-2436): Evelyn Rose
+[01:36:40]   SKIP (exists: VA-REST-1156): ENTYSE, Wine Bar & Lounge
+[01:36:40]   SKIP (exists: VA-REST-3217): Circa Bistro
+[01:36:40]   SKIP (exists: VA-REST-1145): Aracosia
+[01:36:40]   SKIP (exists: VA-REST-2519): Matchbox
+[01:36:40]   SKIP (exists: VA-REST-1185): Wildfire
+[01:36:40]   SKIP (exists: VA-REST-1161): Pulcinella Italian Kitchen
+[01:36:40]   SKIP (exists: VA-REST-3370): Dal Grano
+[01:36:40]   SKIP (exists: VA-REST-3216): Modan Restaurant
+[01:36:40]   SKIP (exists: VA-REST-3057): Cafe ile
+[01:36:40]   SKIP (exists: VA-REST-3051): American Prime
+[01:36:40]   SKIP (exists: VA-REST-3220): ENTYSE
+[01:36:40]   SKIP (exists: VA-REST-3046): SHō Sushi & Izakaya
+[01:36:40]   SKIP (exists: VA-REST-1157): Agora Tysons Mediterranean Restaurant
+[01:36:40]   SKIP (exists: VA-REST-3221): Wren Tysons
+[01:36:40]   SKIP (exists: VA-REST-1164): Härth
+[01:36:40]   SKIP (exists: XX-REST-081): Seasons 52
+[01:36:40]   SKIP (exists: VA-REST-3032): Amoo's Restaurant
+[01:36:40]   SKIP (exists: VA-REST-1158): Mylos Grill
+[01:36:40]   SKIP (classified other): Listrani's -- Italian
+[01:36:40]   SKIP (exists: VA-REST-2988): Ingle Korean Steakhouse
+[01:36:40]   SKIP (exists: XX-REST-160): North Italia
+[01:36:40]   SKIP (exists: VA-REST-829): Jacques' Brasserie
+[01:36:40]   SKIP (exists: VA-REST-3041): Randy's Prime Seafood and Steaks
+[01:36:40]   SKIP (exists: VA-REST-3418): TRIO Grill
+[01:36:40]   SKIP (exists: VA-REST-1163): Cafe Renaissance
+[01:36:40]   SKIP (classified other): The Organic Butcher -- Butcher shop
+[01:36:40]   SKIP (exists: VA-REST-1175): Ellie Bird
+[01:36:40]   SKIP (exists: VA-REST-3060): Founding Farmers Tysons
+[01:36:40]   SKIP (exists: VA-REST-010): Clarity
+[01:36:40]   SKIP (exists: VA-REST-3029): Kazan Restaurant
+[01:36:40]   SKIP (classified other): Tysons Biergarten -- Beer Garden
+[01:36:40]   SKIP (exists: DE-REST-2350): Heirloom
+[01:36:40]   SKIP (classified other): The Palm - Tysons -- Steak
+[01:36:40]   SKIP (exists: DC-REST-140): La Chaumiere
+[01:36:40]   SKIP (exists: MD-REST-142): Old Angler's Inn
+[01:36:40]   SKIP (exists: VA-REST-008): Dante Ristorante
+[01:36:40]   SKIP (exists: VA-REST-2993): Nostos Restaurant
+[01:36:40]   SKIP (exists: VA-REST-830): LCD - La Côte D'Or Café
+[01:36:40]   SKIP (exists: VA-REST-3031): Tachibana Japanese Restaurant
+[01:36:40]   SKIP (exists: DC-REST-1571): Salt
+[01:36:40]   [WEBSITE] Looking up: Earls Kitchen + Bar
+[01:36:45]   [WEBSITE] Looking up: Chiang Mai Thai Cookhouse
+[01:36:49]   [WEBSITE] Looking up: Sorn Thai Restaurant & Bar
+[01:36:54]   [WEBSITE] Looking up: Esaan Thai McLean
+[01:37:22]   SKIP (same website as VA-REST-3064): Earls Kitchen + Bar -- earls.ca
+[01:37:22]   ADDED (score 55): Chiang Mai Thai Cookhouse (restaurant, 4.6*, 345 reviews, McLean, VA) -> VA-REST-3424
+[01:37:22]     Website: https://chiangmaithaimclean.com
+[01:37:22]     Promoted to untouched (website + location verified)
+[01:37:22]   ADDED (score 50): Sorn Thai Restaurant & Bar (restaurant, 4.3*, 149 reviews, McLean, VA) -> VA-REST-3425
+[01:37:22]     Website: http://www.sornthaiva.com
+[01:37:22]     Promoted to untouched (website + location verified)
+[01:37:22]   SKIP (same website as VA-REST-3055): Esaan Thai McLean -- esaanmclean.com
+[01:37:22]   Added 2 new venues from query
+[01:37:27] 
+[01:37:27] === Taste Query [23/23]: wine list historic fine dining restaurant Alexandria VA ===
+[01:37:32]   Scrolling search results...
+[01:37:40]   Extracting results...
+[01:37:40]   Found 59 results
+[01:37:40]   SKIP (exists: VA-REST-833): Josephine
+[01:37:40]   SKIP (exists: VA-REST-1697): Vermilion Restaurant & Bar
+[01:37:40]   SKIP (exists: VA-REST-834): Le Refuge
+[01:37:40]   SKIP (classified other): Ada's on the River -- American
+[01:37:40]   SKIP (exists: VA-REST-264): Bastille Brasserie & Bar
+[01:37:40]   SKIP (exists: VA-REST-1427): Landini Brothers Restaurant
+[01:37:40]   SKIP (exists: VA-REST-1689): The Warehouse
+[01:37:40]   SKIP (exists: VA-REST-1423): The Study at Morrison House
+[01:37:40]   SKIP (exists: VA-REST-1688): The Majestic by Santiago Lopez
+[01:37:40]   SKIP (exists: VA-REST-2878): Oak Steakhouse
+[01:37:40]   SKIP (exists: VA-REST-1410): Two Nineteen Restaurant
+[01:37:40]   SKIP (exists: VA-REST-1682): Virtue Feed & Grain
+[01:37:40]   SKIP (exists: VA-REST-1681): Vola’s Dockside Grill and Hi-Tide Lounge
+[01:37:40]   SKIP (exists: VA-REST-2884): Finn and Fire
+[01:37:40]   SKIP (exists: VA-REST-1652): BARCA Pier & Wine Bar
+[01:37:40]   SKIP (exists: MD-REST-685): Blackwall Hitch
+[01:37:40]   SKIP (exists: VA-REST-3224): Kiln
+[01:37:40]   SKIP (exists: VA-REST-2876): 1799 Prime Steak & Seafood
+[01:37:40]   SKIP (exists: VA-REST-2921): Union Street Public House
+[01:37:40]   SKIP (exists: VA-REST-1757): Thompson Italian
+[01:37:40]   SKIP (exists: VA-REST-1678): Hummingbird Bar and Kitchen
+[01:37:40]   SKIP (exists: VA-REST-1707): Laporta's Restaurant
+[01:37:40]   SKIP (exists: VA-REST-1655): BRUT Champagne & Wine Bar
+[01:37:40]   SKIP (exists: VA-REST-1150): Old House Cosmopolitan
+[01:37:40]   SKIP (exists: VA-REST-3225): Milk & Honey Southern Inspired Kitchen
+[01:37:40]   SKIP (exists: VA-REST-3416): Akeno Sushi Bar@ Old Town
+[01:37:40]   SKIP (exists: VA-REST-1442): The Light Horse Restaurant and Bar
+[01:37:40]   SKIP (exists: VA-REST-1659): Mason Social
+[01:37:40]   SKIP (classified other): Indochen Old Town -- Indian
+[01:37:40]   SKIP (exists: VA-REST-1665): Hank's Oyster Bar, Old Town
+[01:37:40]   SKIP (exists: VA-REST-2412): DCANTER - Old Town Alexandria, VA
+[01:37:40]   SKIP (exists: VA-REST-1662): Alice Comfort Cocktail
+[01:37:40]   SKIP (exists: VA-REST-1658): Casa Luna Bar
+[01:37:40]   SKIP (classified other): Epicure on King -- Italian
+[01:37:40]   SKIP (classified other): Elaine's -- Mediterranean
+[01:37:40]   SKIP (exists: VA-REST-2879): Taverna Cretekou
+[01:37:40]   SKIP (exists: VA-REST-1699): Chadwicks
+[01:37:40]   SKIP (exists: VA-REST-2885): Cooper Mill
+[01:37:40]   SKIP (classified other): Vintage - The Old Town Wine Shop -- Wine store
+[01:37:40]   SKIP (exists: VA-REST-1660): Old Hat Bar
+[01:37:40]   SKIP (exists: VA-REST-1685): Captain Gregory's
+[01:37:40]   SKIP (exists: VA-REST-2955): Founding Farmers Alexandria
+[01:37:40]   SKIP (exists: VA-REST-1651): Basin Street Lounge
+[01:37:40]   SKIP (exists: XX-REST-025): King & Rye
+[01:37:40]   SKIP (exists: VA-REST-1679): Daniel O'Connell's Irish Restaurant & Bar
+[01:37:40]   [WEBSITE] Looking up: Gadsby's Tavern
+[01:37:45]   [WEBSITE] Looking up: Jula's on the Potomac
+[01:37:49]   [WEBSITE] Looking up: Chart House
+[01:37:54]   [WEBSITE] Looking up: The Wharf
+[01:37:59]   [WEBSITE] Looking up: IL Porto Italian Ristorante
+[01:38:03]   [WEBSITE] Looking up: Mia's Italian Kitchen
+[01:38:08]   [WEBSITE] Looking up: La Fromagerie Cheese and Wine Bistro
+[01:38:13]   [WEBSITE] Looking up: Augie's Mussel House and Beer Garden
+[01:38:17]   [WEBSITE] Looking up: Nasime Japanese Restaurant
+[01:38:22]   [WEBSITE] Looking up: Vaso's Mediterranean Bistro
+[01:38:26]   [WEBSITE] Looking up: Trattoria Da Franco Ristorante
+[01:38:31]   [WEBSITE] Looking up: LaPluma Coffee & Wine
+[01:38:36]   [WEBSITE] Looking up: Fish Market Restaurant
+[01:38:40]   [WEBSITE] Looking up: Good Fortune
+[01:39:25]   ADDED (score 58): Gadsby's Tavern (restaurant, 4.4*, 806 reviews, Alexandria, VA) -> VA-REST-3426
+[01:39:25]     Website: http://www.gadsbystavernrestaurant.com
+[01:39:25]     Promoted to untouched (website + location verified)
+[01:39:25]   ADDED (score 65): Jula's on the Potomac (restaurant, 4.8*, 3654 reviews, Alexandria, VA) -> VA-REST-3427
+[01:39:25]     No matching website found — remains needs_review
+[01:39:25]   SKIP (same website as VA-REST-2877): Chart House -- chart-house.com
+[01:39:25]   SKIP (same website as VA-REST-2942): The Wharf -- wharfrestaurant.com
+[01:39:25]   SKIP (same website as VA-REST-811): IL Porto Italian Ristorante -- ilportoristorante.com
+[01:39:25]   ADDED (score 60): Mia's Italian Kitchen (restaurant, 4.5*, 4088 reviews, Alexandria, VA) -> VA-REST-3428
+[01:39:25]     Website: https://alexandria-va.miasitalian.com
+[01:39:25]     Category 'restaurant' is a guess (name:kitchen) — remains needs_review
+[01:39:25]   SKIP (same website as VA-REST-2891): La Fromagerie Cheese and Wine Bistro -- lafromagerieonline.com
+[01:39:25]   ADDED (score 55): Augie's Mussel House and Beer Garden (restaurant, 4.2*, 1255 reviews, Alexandria, VA) -> VA-REST-3429
+[01:39:25]     Website: https://www.eataugies.com
+[01:39:25]     Category 'restaurant' is a guess (sheet:restaurant) — remains needs_review
+[01:39:25]   SKIP (same website as VA-REST-2880): Nasime Japanese Restaurant -- nasimerestaurant.com
+[01:39:25]   ADDED (score 58): Vaso's Mediterranean Bistro (restaurant, 4.4*, 746 reviews, location unknown) -> XX-REST-633
+[01:39:25]     No matching website found — remains needs_review
+[01:39:25]   ADDED (score 65): Trattoria Da Franco Ristorante (restaurant, 4.2*, 195 reviews, Alexandria, VA) -> VA-REST-3430
+[01:39:25]     Website: https://trattoriadafranco305.com
+[01:39:25]     Category 'restaurant' is a guess (name:trattoria) — remains needs_review
+[01:39:25]   ADDED (score 45): LaPluma Coffee & Wine (cafe, 4.6*, 421 reviews, Alexandria, VA) -> VA-CAFE-001
+[01:39:25]     Website: https://laplumacoffeewine.com
+[01:39:25]     Category 'cafe' is a guess (name:coffee) — remains needs_review
+[01:39:25]   SKIP (same website as VA-REST-2943): Fish Market Restaurant -- fishmarketva.com
+[01:39:25]   SKIP (same website as VA-HOTE-2854): Good Fortune -- heronalexandria.com
+[01:39:25]   Added 7 new venues from query
+[01:39:30]   MAX_QUERIES=23 reached — stopping.
+[01:39:30] Calculating distances for new venues...
+[01:41:44]   Distances calculated: 239
+[01:41:44] 
+[01:41:44] === Taste Discovery Complete ===
+[01:41:44]   Queries run: 23
+[01:41:44]   Queries failed (will retry): 0
+[01:41:44]   Venues added: 52
+[01:41:44]   Queries remaining: 136

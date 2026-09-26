@@ -14,5 +14,17 @@
         var txt = (a.innerText || a.textContent || '').replace(/\s+/g, ' ').trim();
         out.address = txt.replace(/^address\s*:\s*/i, '');
     }
+    // Sep 2026 layout: the address row lost its data-attrid; it is now a
+    // data-dtype="d3ifr" row reading "Address: 416 6th St, Annapolis, MD 21403".
+    if (!out.address) {
+        var rows = document.querySelectorAll('[data-dtype="d3ifr"], .zloOqf');
+        for (var i = 0; i < rows.length; i++) {
+            var rt = (rows[i].innerText || rows[i].textContent || '').replace(/\s+/g, ' ').trim();
+            if (/^address\s*:/i.test(rt)) {
+                out.address = rt.replace(/^address\s*:\s*/i, '');
+                break;
+            }
+        }
+    }
     return JSON.stringify(out);
 })()

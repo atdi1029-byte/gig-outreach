@@ -669,3 +669,48 @@
 - **Historic inns still bulletproof** — Morrison-Clark positive. "Historic" keyword remains the #1 predictor of a positive vote.
 - **Italian wine bars = strong combo** — Tino's combines two proven categories (Italian + wine bar) in one venue.
 - **All prior patterns hold** — French/European, Italian, Argentinian (NEW), Spanish wine bars, wine bars, clubs (social, not athletic), DC hotels, historic venues, yacht clubs.
+
+---
+
+## Sep 26, 2026 — Taste Review (41 new votes, run outreach 29/29)
+
+### Strong positives (explicit notes)
+- **La Chaumière** (restaurant, Washington DC) — "Literally perfect! I would do amazing here, fancy French restaurant!" → French fine dining in DC is the bullseye. Added to taste_venues.txt.
+- **Bistro Provence** (restaurant, Bethesda MD) — "upscale french restauraunt!" → French + Bethesda. Added to taste_venues.txt.
+- **Rosemary bistro cafe** (restaurant, Washington DC) — "Exactly what I'm looking for, upscale French restaurant" → Added to taste_venues.txt.
+- **600 T** (restaurant, Washington DC) — "Looks like a nice classy place where I'd do well" → classy DC restaurant. Scorer gives only 28 (no cuisine/notes data on the row). Added to taste_venues.txt.
+- **Salamander Middleburg** (hotel, Middleburg VA) — "Fancy Hotel" → luxury resort hotel, Loudoun. Added to taste_venues.txt.
+- **The Red Fox Inn & Tavern** (hotel, Middleburg VA) — "upscale boutique hotel" → historic inn, Middleburg. Added to taste_venues.txt.
+- **Vin 909 Winecafe** (wine_bar, Annapolis MD) — "I dont think they have music, but wine bars are a good fit" → confirms wine bars are a fit even with no music program (don't filter on "has live music"). 
+- **Corteau Vineyards** (winery, Mechanicsville MD) / **Good Spirit Farm** (winery) — "I already play here" (+ "great venue") → both are existing gigs; nothing to learn beyond wineries = good.
+
+### Positives without notes
+- French/European: **Café du Parc** (Dupont Circle DC), **La Petite Auberge** (Middleburg VA), **Fiola Mare** (upscale Italian seafood, Georgetown) — Café du Parc, La Petite Auberge and Fiola Mare added to taste_venues.txt. Fiola Mare scores only 34 because its row has no cuisine data (Google category empty in notes).
+- Clubs: **Columbia Country Club** (Chevy Chase MD), **Woodmont Country Club** (Rockville MD), **Westwood Country Club** (McLean VA), **The Cannon Club** (Lothian MD), **Capitol Hill Club** (DC) — Columbia, Woodmont and Westwood added to taste_venues.txt. Out-of-area clubs also got thumbs up: Philadelphia CC, Radnor Valley CC, Merion Cricket Club (PA), Greenville CC (DE) — the club type is right even where the location is outside the target states.
+- Wine bars: **Era Wine Bar** (Dupont), **The Eastern Wine Bar** (DC), **West End Wine Bar** (Purcellville), **The Wine House** (Fairfax), **The Lobby Lounge** (Georgetown), **Bar Reverie** (Greenville DE). Era Wine Bar added to taste_venues.txt.
+- Wineries/hotels: **Boxwood Estate Winery** (Middleburg), **Mimslyn Inn** (Luray) — Boxwood added to taste_venues.txt.
+- **Guarisco Gallery** (art_gallery, Georgetown) — thumbs up. Scorer gives 25 (galleries need event evidence). A single gallery vote; not changing gallery scoring yet.
+
+### Negatives
+- **Wagshal's Grand Bodega** (Bethesda) — "A deli" → delis are wrong. Added 'deli'/'delicatessen' to name wrong-vibe list.
+- **The Peoples Drug** (Alexandria) — "Seems like a bar" → bar-first places are wrong even in good areas.
+- **Vienna Inn** (Vienna VA) — "More of a dive bar" → the "Inn" name made the classifier call it a hotel (score 53). Added 'dive bar' to wrong-vibe list. NOTE: a duplicate row **VA-HOTE-2959 "Vienna Inn" (McLean VA, untouched)** exists — excluded from this run's plan and flagged in the report.
+- **Bethesda Blues Jazz Supper Club** (Bethesda) — "ironically i dont want theatres" → 1938 Art Deco theater with 300 dinner seats. Third theater rejection (Bethesda Theater, Round House Theatre). Theaters/performance halls stay a hard skip even with dinner service.
+- **Colvin Run Dance Hall** (Great Falls) — "Square dancing hall"; **Salsa With Silvia Ballroom** (Bethesda) — thumbs down → dance halls/ballrooms/dance studios are wrong. Added 'dance hall', 'ballroom', 'dance studio' to wrong-vibe list.
+- **Tabu Social Club** (Catonsville) — "sex club" → "social club" in a name is not proof of a private club. Added 'swinger*' to wrong-vibe list (catches "Swingers" names).
+- **Oasis Boat Club** (Georgetown) — thumbs down → a boat club with 12 reviews is a recreation club, not a yacht club with dining (matches the Dragon Boat Club vote).
+- **Silver New American Brasserie** (Bethesda) — thumbs down → it's the Silver Diner company's concept. 'brasserie' gave it +18. Added 'silver new american' to the classifier chain list (-30).
+- **The Hamilton** (DC) — thumbs down → big (10k reviews) Clyde's-group music hall/restaurant; chain-group + concert venue.
+- **Ivy Hall Mansion** (Bryn Mawr PA) — thumbs down → wedding/event mansion (wedding-only venues = anti-target), and PA.
+
+### Changes made (Sep 26)
+- `taste_score.py` (SCORE_VERSION 2026-09-26): WRONG_VIBE_INDICATORS += dance hall, ballroom, dance studio, deli, delicatessen, dive bar, swinger*.
+- `venue_classifier.py`: chain list += 'silver new american'. Classifier self-test still 91/91.
+- `taste_venues.txt`: +16 venues (La Chaumière, Bistro Provence, Rosemary bistro cafe, 600 T, Salamander Middleburg, The Red Fox Inn & Tavern, Café du Parc, La Petite Auberge, Fiola Mare, Columbia Country Club, Woodmont Country Club, Westwood Country Club, Era Wine Bar, Boxwood Estate Winery, Vin 909 Winecafe, The Cannon Club). `--learn` NOT re-run this session (Chrome was busy with discovery + pipeline); re-run it with a backup of taste_keywords.json before the next --taste discovery.
+
+## Updated Patterns (Sep 26)
+- **French is still undefeated** — four more explicit French positives (La Chaumière, Bistro Provence, Rosemary, Café du Parc). No French restaurant has ever received a negative vote.
+- **Country clubs are a near-universal yes** — 9 club thumbs-up this round (including 4 outside the target states). Clubs with a social/dining identity, not sports/boat clubs.
+- **Name words lie** — "Inn" (Vienna Inn = dive bar), "Social Club" (Tabu = sex club), "Brasserie" (Silver = diner chain), "Bodega" (deli). Classification from the name alone keeps producing confident wrong picks; the rows these came from have empty Google categories.
+- **Theaters, dance halls, delis, dive bars = hard skips.**
+- **Data gap:** positives like 600 T and Fiola Mare score low because their notes have no cuisine or Google category (`Google Maps ''`). Better category capture in discovery would fix these scores more than any keyword tweak.

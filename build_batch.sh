@@ -354,6 +354,31 @@ for v in venues:
         if k:
             pipelined_keys.add(k)
 
+TYPE_WORDS = {'club', 'country', 'golf', 'yacht', 'inn', 'hotel', 'grill', 'grille', 'winery',
+              'vineyard', 'vineyards', 'tavern', 'resort', 'spa', 'museum', 'gallery'}
+
+
+def twin_names(a, b):
+    """same_venue_name, minus namesakes of another kind ('Capital Yacht Club' vs
+    'Capital Hotel') or another branch ('Archer Hotel Tysons' vs '... Alexandria')."""
+    if not same_venue_name(a, b):
+        return False
+    ta, tb = {t for t in a if t in TYPE_WORDS}, {t for t in b if t in TYPE_WORDS}
+    if ta and tb and not (ta <= tb or tb <= ta):
+        return False
+    la, lb = a[len(strip_loc(a)):], b[len(strip_loc(b)):]
+    return not (la and lb and la != lb)
+
+
+# Name twins of venues already worked (a discovery duplicate on a different brand URL:
+# "The Ritz-Carlton Georgetown, Washington, D.C." vs the contacted "Ritz-Carlton Georgetown").
+DONE_STATUSES = {'pipelined', 'contacted', 'dismissed', 'closed', 'researched', 'sent'}
+done_names = defaultdict(list)
+for v in venues:
+    if v.get('status', '') in DONE_STATUSES:
+        st = str(v.get('state', '') or '').strip().upper()
+        done_names[st].append((name_tokens(v.get('name', '')), v.get('venue_id', ''), v.get('name', '')))
+
 venues_with_contacts = {c.get('venue_id') for c in dash.get('contacts', []) if c.get('venue_id')}
 
 print(f"Total venues: {len(venues)}")
@@ -452,6 +477,11 @@ for v in venues:
         continue
     if key in pipelined_keys:
         skip('site already pipelined/contacted', v, key)
+        continue
+    twin = next((dn for dt, dv, dn in done_names.get(str(v.get('state', '') or '').strip().upper(), [])
+                 if dv != vid and twin_names(dt, vt)), None)
+    if twin:
+        skip('same name as a venue already worked', v, f"'{twin}'")
         continue
     state = str(v.get('state', '') or '').strip().upper()
     city = str(v.get('city', '') or '').strip()

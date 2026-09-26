@@ -576,6 +576,64 @@ def rank_key(e):
 
 for b in by_bucket:
     by_bucket[b].sort(key=rank_key)
+
+# ---------------------------------------------------------------- still open?
+# Two closed venues reached the Sep 26 run (a dead domain, a lapsed domain that now
+# redirects to a spam site). Check the site of every venue that could be picked and
+# drop dead or closed ones before the quotas are set. Unreachable-but-not-dead
+# (timeouts, bot walls) stays in: the pipeline handles those.
+CLOSED_TEXT = re.compile(r"permanently closed|closed permanently|closed for good|closed (?:its|our) doors|"
+                         r"clos(?:ed|ing) (?:its|our) doors|we have (?:officially )?closed|"
+                         r"no longer (?:open|in business|operating)|final (?:day|night) of service", re.I)
+PARKED_TEXT = re.compile(r"domain (?:name )?(?:is|may be) for sale|buy this domain|this domain has expired|"
+                         r"parked free|domain parking|hugedomains|afternic|sedo(?:parking)?\.com|dan\.com/buy", re.I)
+
+
+def site_check(url):
+    """'' if the site looks alive, else why it looks dead/closed."""
+    import requests
+    u = url if re.match(r'^https?://', url or '', re.I) else 'https://' + (url or '')
+    try:
+        r = requests.get(u, timeout=10, allow_redirects=True,
+                         headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
+                                  'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36'})
+    except requests.exceptions.ConnectionError as e:
+        msg = str(e)
+        if re.search(r'Name or service not known|nodename nor servname|NameResolution|Failed to resolve|getaddrinfo', msg):
+            return 'website DNS failure'
+        return ''
+    except Exception:
+        return ''
+    same = R.registrable_domain(r.url) == R.registrable_domain(u)
+    if r.status_code in (404, 410) and same:
+        return f'home page HTTP {r.status_code}'
+    if not same and r.status_code >= 400:
+        return f'site redirects to {R.registrable_domain(r.url)} (HTTP {r.status_code}); domain lapsed?'
+    text = (r.text or '')[:400000]
+    if PARKED_TEXT.search(text):
+        return 'parked / for-sale domain'
+    m = CLOSED_TEXT.search(re.sub(r'<[^>]+>', ' ', text))
+    if m:
+        return f'site says "{m.group(0)}"'
+    return ''
+
+
+if os.environ.get('BB_SITE_CHECK', '1') != '0' and not os.environ.get('BB_SNAPSHOT_DIR'):
+    from concurrent.futures import ThreadPoolExecutor
+    want = max(COUNT, 1)
+    check = []
+    for b in by_bucket:
+        check += by_bucket[b][:want + 6]
+    with ThreadPoolExecutor(max_workers=10) as ex:
+        verdicts = dict(zip([id(e) for e in check], ex.map(lambda e: site_check(e['venue'].get('website', '')), check)))
+    dead = [(e, verdicts[id(e)]) for e in check if verdicts.get(id(e))]
+    for e, why in dead:
+        skip('site dead or closed (pre-check)', e['venue'], why)
+        by_bucket[e['bucket']].remove(e)
+    print(f"  Site check: {len(check)} likely picks checked, {len(dead)} dead/closed dropped")
+    for e, why in dead:
+        print(f"      dropped {e['venue'].get('name','')} [{e['venue'].get('venue_id','')}] — {why}")
+
 print("  By bucket: " + ', '.join(f"{b} {len(by_bucket.get(b, []))}" for b in BUCKET_ORDER))
 
 # ---------------------------------------------------------------- quotas
@@ -586,16 +644,25 @@ for b in sorted(BUCKET_ORDER, key=lambda b: (-(raw[b] - quota[b]), BUCKET_ORDER.
     if sum(quota.values()) >= COUNT:
         break
     quota[b] += 1
-take = {b: min(quota[b], len(by_bucket.get(b, []))) for b in BUCKET_ORDER}
+# Quality first (Sep 26: the club quota took a golf simulator and a marina while The
+# St. Regis sat unpicked): a bucket fills its share only with STRONG venues; slots it
+# can't fill well go to buckets that still have strong venues, and only then to weak ones.
+STRONG = 50
+strong_n = {b: sum(1 for e in by_bucket.get(b, []) if e['taste_score'] >= STRONG) for b in BUCKET_ORDER}
+take = {b: min(quota[b], strong_n[b]) for b in BUCKET_ORDER}
 short = COUNT - sum(take.values())
-# Refill shortfalls from the prime buckets first, the wild card last.
-while short > 0:
-    spare = [b for b in BUCKET_ORDER if take[b] < len(by_bucket.get(b, []))]
-    if not spare:
-        break
-    b = min(spare, key=lambda b: (take[b] / max(BUCKET_SHARES[b], 1), BUCKET_ORDER.index(b)))
-    take[b] += 1
-    short -= 1
+for limit in (strong_n, {b: len(by_bucket.get(b, [])) for b in BUCKET_ORDER}):
+    while short > 0:
+        spare = [b for b in BUCKET_ORDER if take[b] < limit[b]]
+        if not spare:
+            break
+        b = min(spare, key=lambda b: (take[b] / max(BUCKET_SHARES[b], 1), BUCKET_ORDER.index(b)))
+        take[b] += 1
+        short -= 1
+moved = {b: quota[b] - take[b] for b in BUCKET_ORDER if take[b] != quota[b]}
+if moved:
+    print("  Quality-first mix: " + ', '.join(f"{b} {'gave' if n > 0 else 'took'} {abs(n)}"
+                                               for b, n in moved.items()))
 
 # Interleave so every batch of 8 carries a share of each bucket.
 seq, used = [], {b: 0 for b in BUCKET_ORDER}

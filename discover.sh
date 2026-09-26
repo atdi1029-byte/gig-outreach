@@ -720,6 +720,36 @@ def cmd_add(cands_path, lookups_path, index_path, api):
         conflict = ""
         kp = lk.get("kp") or {}
         kp_addr = one_line(kp.get("address", ""))
+        same_kp = bool(kp.get("title")) and (norm_name(kp.get("title", "")) == c["norm"]
+                                              or R.org_name_matches(kp.get("title", ""), name))
+        if same_kp and kp.get("permanently_closed"):
+            print(f"  SKIP (Google says permanently closed): {name}")
+            idx["run_skipped"][c["norm"]] = "permanently closed"
+            continue
+        if same_kp and not website and kp.get("website"):
+            kw = choose_website(name, kp["website"])
+            if kw and not website_reject_reason(kw):
+                website = kw
+        # The Maps card rarely shows the Google category any more; the panel subtitle does
+        # ("Restaurant", "French restaurant", "Art gallery"). It makes the category sure
+        # enough to promote, and the scorer reads cuisine from the notes.
+        kcat = one_line(kp.get("category", "")) if same_kp else ""
+        if kcat:
+            if "Google Maps ''" in c["notes"]:
+                c["notes"] = c["notes"].replace("Google Maps ''", f"Google Maps '{kcat}'", 1)
+            else:
+                c["notes"] = f"{c['notes']} Google category: {kcat}."
+            if c.get("cat_conf", 0) < 0.7:
+                kc, kcls = classify(name, kcat)
+                kconf = float((kcls or {}).get("classification_confidence") or 0)
+                # A bare Google type ("Restaurant") reads like a sheet slug to the
+                # classifier (0.6); from the panel it is Google's own assignment.
+                if kc not in SKIP_CLASSES and kconf < 0.7 and \
+                        kc.replace("_", " ") in kcat.lower():
+                    kconf = 0.75
+                if kc not in SKIP_CLASSES and kconf >= 0.7:
+                    c["category"], c["cat_conf"] = kc, kconf
+                    c["cat_source"] = (kcls or {}).get("classification_source", "")
         # Knowledge-panel address only when the panel is for this same business.
         if kp_addr and (norm_name(kp.get("title", "")) == c["norm"] or R.org_name_matches(kp.get("title", ""), name)):
             kcity, kstate = parse_location(kp_addr)

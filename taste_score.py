@@ -53,7 +53,7 @@ except ImportError:  # keep the module importable for callers that pass classifi
             re.escape(w[:-1]) + r"[a-z']*" if w.endswith('*') else re.escape(w)
             for w in words) + r")(?![a-z0-9])")
 
-SCORE_VERSION = '2026-09-26'
+SCORE_VERSION = '2026-09-26b'
 TARGET_STATES = ('DC', 'MD', 'VA')   # P5; mirrors outreach_rules.TARGET_STATES
 
 # Batch floor (Apps Script TOP_PICK_MIN_TASTE mirrors this).
@@ -459,6 +459,50 @@ def location_info(venue):
     return out
 
 
+# Adjectives in hand-written notes ("historic, luxurious, intimate mansion") used to be
+# worth up to 20 + 15 points, so a 4-room B&B with flowery notes outscored The St. Regis
+# (Sep 26 run). Keep them as a tiebreaker; objective prestige carries the weight.
+UPSCALE_CAP = 10
+AUDIENCE_CAP = 10
+PRESTIGE_NAMES = _rx(['st. regis', 'st regis', 'four seasons', 'ritz-carlton', 'ritz carlton',
+                      'rosewood', 'waldorf', 'park hyatt', 'mandarin oriental', 'fairmont',
+                      'salamander', 'relais', 'forbes five', 'forbes 5', 'five-star', 'five star',
+                      'michelin', 'james beard', 'aaa five', 'aaa 5', 'hay-adams', 'hay adams',
+                      'the jefferson', 'inn at little washington', 'inn at perry cabin'])
+SMALL_LODGING = re.compile(r"(?<![a-z0-9])(b ?& ?b|bed (?:and|&) breakfast|(?:[1-8]|one|two|three|four|"
+                           r"five|six|seven|eight) (?:guest )?(?:rooms|suites)(?![a-z]))")
+GOLF_ONLY = re.compile(r"(?<![a-z])golf (?:club|course|links|center|centre|academy|range)(?![a-z])")
+
+
+def _prestige(venue, cat, text, nl, notes):
+    """Objective quality: a prestige brand/award, Google prominence (many reviews at a
+    high rating), minus small lodging (B&Bs, 1-8 rooms) and golf-only clubs."""
+    pts, why = 0, []
+    hit = PRESTIGE_NAMES.search(text)
+    if hit:
+        pts += 10
+        why.append(f'prestige: {hit.group(0)}')
+    rating, reviews = google_rating(venue.get('notes', ''))
+    if rating is not None:
+        if reviews >= 1000 and rating >= 4.4:
+            pts += 8
+            why.append(f'landmark: {reviews} reviews at {rating}')
+        elif reviews >= 300 and rating >= 4.5:
+            pts += 5
+            why.append(f'well known: {reviews} reviews at {rating}')
+        elif reviews < 15:
+            pts -= 5
+            why.append(f'barely known: {reviews} reviews')
+    if cat in ('hotel', 'resort', 'inn', 'bed_and_breakfast') and SMALL_LODGING.search(text):
+        pts -= 6
+        why.append('small lodging (B&B / few rooms)')
+    if cat in ('country_club', 'golf_club', 'club', 'recreation') and GOLF_ONLY.search(nl) \
+            and 'country club' not in nl:
+        pts -= 4
+        why.append('golf-only club')
+    return pts, '; '.join(why)
+
+
 def _google_quality(venue, notes):
     rating, reviews = google_rating(venue.get('notes', ''))
     if rating is not None and reviews >= 5:
@@ -572,14 +616,14 @@ def score(venue, classification=None):
 
     # --- 3. UPSCALE / AMBIANCE (0-20) ---
     up = _hits(UPSCALE_KEYWORDS, text)
-    upscale_score = min(20, sum(p for _, p in up))
+    upscale_score = min(UPSCALE_CAP, sum(p for _, p in up))
     if up:
         reasons.append(f'+{upscale_score} upscale signals: '
                        f'{", ".join(k.rstrip("*") for k, _ in up[:4])}')
 
     # --- 4. AUDIENCE / CULTURAL FIT (0-15) ---
     au = _hits(AUDIENCE_KEYWORDS, text)
-    audience_score = min(15, sum(p for _, p in au))
+    audience_score = min(AUDIENCE_CAP, sum(p for _, p in au))
     if au:
         reasons.append(f'+{audience_score} audience fit: '
                        f'{", ".join(k.rstrip("*") for k, _ in au[:3])}')
@@ -596,6 +640,11 @@ def score(venue, classification=None):
     if google_score:
         reasons.append(f'+{google_score} {gwhy}')
 
+    # --- 7. PRESTIGE / PROMINENCE (0-18) and small-lodging, golf-only penalties ---
+    prestige, pwhy = _prestige(venue, cat, text, nl, notes)
+    if prestige:
+        reasons.append(f'{prestige:+d} {pwhy}')
+
     # --- TAG-BASED BOOSTS (from classifier) ---
     tag_boost = 0
     if 'music_fit_high' in tags or (luxury and 'music_fit_medium' in tags):
@@ -609,7 +658,7 @@ def score(venue, classification=None):
         reasons.append('-30 chain tag')
 
     total = type_score + loc_score + upscale_score + \
-        audience_score + event_score + google_score + tag_boost
+        audience_score + event_score + google_score + tag_boost + prestige
     return (round(min(100, max(0, total)), 1), reasons)
 
 

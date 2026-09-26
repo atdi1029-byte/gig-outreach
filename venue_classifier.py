@@ -298,7 +298,7 @@ TAG_SIGNALS = {
                   'il fornaio', 'true food kitchen', 'cooper\'s hawk', 'coopers hawk',
                   'first watch', 'le pain quotidien', 'paul bakery', "bonchon",
                   '801 chophouse', 'capital grille', 'chart house',
-                  'silver new american']),
+                  'silver new american', "guapo's", 'guapos']),
     'chain_hotel': _rx([
         'doubletree', 'holiday inn', 'best western', 'comfort inn', 'comfort suites',
         'hampton inn', 'courtyard by', 'courtyard marriott', 'fairfield inn',
@@ -322,7 +322,7 @@ TAG_SIGNALS = {
 MAINSTREAM_HOTEL = _rx(['marriott', 'hilton', 'hyatt', 'sheraton', 'westin', 'renaissance',
                         'omni', 'loews', 'le meridien', 'hotel indigo', 'wyndham',
                         'best western', 'sonesta', 'hotel harrington', 'club quarters',
-                        'graduate hotel', 'canopy by hilton', 'tapestry collection'])
+                        'graduate hotel', 'canopy by hilton', 'tapestry collection', 'gaylord'])
 LUXURY_BRAND = _rx(['ritz-carlton', 'ritz carlton', 'st. regis', 'st regis', 'park hyatt',
                     'conrad', 'waldorf', 'four seasons', 'rosewood', 'fairmont',
                     'mandarin oriental', 'kimpton', 'pendry', 'sofitel', 'intercontinental',
@@ -355,7 +355,8 @@ NON_EURO_CUISINE = _rx(['indian', 'bollywood', 'nepal*', 'himalayan', 'tandoor*'
                         'thai', 'asian', 'chinese', 'szechuan', 'japanese', 'sushi', 'ramen',
                         'korean', 'vietnamese', 'pho', 'mexican', 'tex-mex', 'taco*', 'cajun',
                         'caribbean', 'jamaican', 'ethiopian', 'soul food', 'bbq', 'burger*',
-                        'pizza', 'hibachi', 'teriyaki', 'filipino', 'pakistani'])
+                        'pizza', 'hibachi', 'teriyaki', 'filipino', 'pakistani', 'afghan', 'persian',
+                        'kabob*', 'kebab*'])
 EURO_TAGS = ('french', 'italian', 'spanish', 'european', 'latin_american')
 PRIME_RESTAURANT_TAGS = ('french', 'italian', 'spanish', 'european', 'latin_american',
                          'fine_dining', 'upscale', 'intimate', 'historic')

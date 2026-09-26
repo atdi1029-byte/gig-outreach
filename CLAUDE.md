@@ -63,6 +63,17 @@ run proves what it searched, lists what it missed, and ends with a verdict.
 - New venues land as `needs_review`. They become batch-eligible (`untouched`)
   only when the website matches, city/state come from the real listing and are
   in DC/MD/VA, and the category is confident. Unknown category = `other`.
+  The Google knowledge panel supplies the address, the Google category and the
+  website button, and Google's "permanently closed" skips a venue outright.
+- Good finds must not wait in needs_review for a manual review (Alex, Sep 26:
+  "if they are good finds just run them"). Before planning every run:
+  `/usr/bin/python3 verify_pool.py --apply` — re-checks needs_review venues
+  (not parked, no contacts, not in a report) by reading each venue's own website
+  over plain HTTP (schema.org address/type/cuisine, the address in the footer)
+  and promotes the verified ones. It NEVER opens Chrome. Preview without `--apply`.
+- Never start anything that drives Alex's Chrome (discover.sh, pipeline.sh,
+  backfill_websites.sh, sweep.sh --chrome) without asking him first — he may be
+  using the browser (Sep 26: "stop opening my fucking browser").
 - discover.sh exit codes: 1 setup error, 3 Chrome unreachable, 4 some searches
   failed (they'll be retried next time), 5 a pipeline run is using Chrome.
 
@@ -72,6 +83,12 @@ run proves what it searched, lists what it missed, and ends with a verdict.
   out, past gigs and thumbs-down venues excluded. Flag anything obviously wrong
   in the sheet instead of running it.
 - The run command below builds the real plan itself; `--dry-run` is the preview.
+- How picks are made (Sep 26 changes): the taste score weights objective quality
+  (prestige brands/awards, Google review volume) over adjectives in notes, and
+  marks down B&Bs / tiny inns and golf-only clubs. A bucket (clubs, wild cards...)
+  fills its share only with strong venues (score >= 50); slots it can't fill well
+  go to buckets that still have strong venues. Every likely pick's website is
+  checked first; dead, parked or "permanently closed" sites are dropped.
 
 ## 3. Run (background)
 - `RUN_ID=run-$(date +%Y%m%d-%H%M)`

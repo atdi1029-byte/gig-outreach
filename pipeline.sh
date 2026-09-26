@@ -2320,6 +2320,7 @@ def person_for(email):
 # of the website domain, or when it is the website's name under another TLD. One-off
 # vendor, PR, designer and parent-group inboxes never reach 2.
 AGENCY_LABEL = re.compile(r"(pr|media|marketing|agency|communications|comms|creative|design|digital|studios?|photo\w*|events?|coordinators|productions?)$")
+mail_alias = ""
 if shared != "true" and reg and not any(a != reg for a in alias_regs):
     site_label = reg.rsplit(".", 1)[0]
     on_site, per_dom, mailto_dom = 0, {}, {}
@@ -2339,7 +2340,6 @@ if shared != "true" and reg and not any(a != reg for a in alias_regs):
         per_dom[dreg] = per_dom.get(dreg, 0) + 1
         if any(m and (is_home(u) or CONTACTISH.search(urlsplit(u).path)) for u, m in own_hits):
             mailto_dom[dreg] = mailto_dom.get(dreg, 0) + 1
-    mail_alias = ""
     for dreg, n in sorted(per_dom.items(), key=lambda x: -x[1]):
         if dreg.rsplit(".", 1)[0] == site_label and len(site_label) >= 5:
             mail_alias = dreg
@@ -2350,8 +2350,82 @@ if shared != "true" and reg and not any(a != reg for a in alias_regs):
     if mail_alias:
         print("\x1f".join(["ALIAS", mail_alias]))
 
+# ---- Multi-location sites (Sep 26: 13 of Pisco y Nazca Bethesda's 16 saves belonged to
+# Doral, Kendall, Reston and DC). When the site has a section for the venue's own city
+# (/bethesda/...) and sibling sections built the same way (/doral/private-events), an
+# address seen only in a sibling section, or a location inbox named after a sibling
+# (doral@, pnkendall@), belongs to that other location.
+from collections import defaultdict as _dd
+_city = os.environ.get("WEB_CITY", "").lower().strip()
+_ck = {re.sub(r"[^a-z0-9]+", "-", _city).strip("-"), re.sub(r"[^a-z0-9]+", "", _city)} - {""}
+_seen = set()
+for _line in open(pages_f):
+    _d = json.loads(_line)
+    _seen.add(_d["result"].get("url") or _d["url"])
+    _seen.update(_d["result"].get("subpages") or [])
+if os.path.exists(crawl_f):
+    try:
+        _cd = json.load(open(crawl_f))
+        _seen.update(p.get("url", "") for p in _cd.get("pages", []) or [])
+        _seen.update(_cd.get("discovered_pages", []) or [])
+    except Exception:
+        pass
+_kids = _dd(set)
+for _u in _seen:
+    if not _u or not in_scope(_u):
+        continue
+    _parts = [x for x in urlsplit(_u).path.lower().split("/") if x]
+    if len(_parts) >= 2:
+        _kids[_parts[0]].add(_parts[1])
+_own = next((sec for sec in _kids for k in _ck if sec == k or sec.startswith(k + "-") or sec.endswith("-" + k)), "")
+NAV_SECTIONS = {"about", "about-us", "contact", "contact-us", "events", "event", "menu", "menus", "private-events",
+                "private-dining", "catering", "careers", "press", "news", "blog", "gallery", "shop", "store",
+                "gift-cards", "reservations", "locations", "location", "team", "our-team", "staff", "weddings",
+                "wp-content", "product", "products", "category", "tag", "services", "rooms", "dining", "spa"}
+LOC_SECTIONS = {sec for sec, kids in _kids.items()
+                if _own and sec != _own and sec not in NAV_SECTIONS and kids & _kids[_own]}
+_loc_tokens = {t for sec in LOC_SECTIONS for t in re.split(r"[-_]", sec) if len(t) >= 4} - \
+              {t for k in _ck for t in re.split(r"[-_]", k)} - {"private", "events", "dining", "catering"}
+
+
+def other_loc_page(u):
+    parts = [x for x in urlsplit(u).path.lower().split("/") if x]
+    return bool(parts) and parts[0] in LOC_SECTIONS
+
+
+# ---- Pages that list other businesses (a "Trusted Partners" vendor list, a press page):
+# 2+ outside addresses on one page. A free-mail or off-domain address seen only on such
+# pages is theirs, not the venue's (Level A's wedding photographer, Sep 26).
+_page_ext = _dd(set)
+for _e, _r in emails.items():
+    _dreg = R.registrable_domain(_e.split("@", 1)[1]) if "@" in _e else ""
+    if _dreg and _dreg not in (reg, mail_alias) and not any(_dreg == a for a in alias_regs):
+        for _u, _m, _k in _r["hits"]:
+            _page_ext[_u].add(_e)
+LIST_PAGES = {u for u, ext in _page_ext.items() if len(ext) >= 2}
+
+# ---- Page text glued onto an address ("soccer.cguevara@", "Channelrrodriguez@"): when a
+# shorter address on the same domain ends the longer one, the longer one is the glue.
+_by_dom = _dd(set)
+for _e in emails:
+    if "@" in _e:
+        _l, _dm = _e.split("@", 1)
+        _by_dom[_dm].add(_l)
+GLUED = set()
+for _dm, _locals in _by_dom.items():
+    for _l in _locals:
+        if any(o != _l and len(o) >= 4 and _l.endswith(o) and len(_l) - len(o) >= 3 for o in _locals):
+            GLUED.add(_l + "@" + _dm)
+
 named = set()
 for e, r in sorted(emails.items()):
+    if e in GLUED:
+        print("DROP\x1f%s\x1fpage_text_glued_to_address\x1f%s" % (e, r["hits"][0][0]))
+        continue
+    _loc_local = re.sub(r"[^a-z]", "", e.split("@")[0])
+    if _loc_tokens and any(t in _loc_local for t in _loc_tokens) and not any(k.replace("-", "") in _loc_local for k in _ck):
+        print("DROP\x1f%s\x1fother_location_inbox\x1f%s" % (e, r["hits"][0][0]))
+        continue
     hits = r["hits"]
     if not r["name"]:
         # tmead@ on the contact page + "Traci Mead, Executive Director" on the staff page.
@@ -2368,9 +2442,14 @@ for e, r in sorted(emails.items()):
     if not scoped:
         print("DROP\x1f%s\x1f%s\x1f%s" % (e, "shared_offprefix" if shared == "true" else "off_site_page", hits[0][0]))
         continue
-    if all(other_location(u) for u, _, _, _ in scoped):
+    if all(other_location(u) or other_loc_page(u) for u, _, _, _ in scoped):
         print("DROP\x1f%s\x1fother_location_page\x1f%s" % (e, scoped[0][0]))
         continue
+    _edreg = R.registrable_domain(e.split("@", 1)[1]) if "@" in e else ""
+    if _edreg not in (reg, mail_alias) and not any(_edreg == a for a in alias_regs):
+        # an outside address counts as the venue's only from pages that aren't lists
+        scoped = [x for x in scoped if x[0] not in LIST_PAGES] or \
+            [(u, m, k, "external") for u, m, k, _ in scoped]
     ev = "external"
     if any(ev2 == "venue_site" for _, _, _, ev2 in scoped): ev = "venue_site"
     if any(m and ev2 == "venue_site" and (is_home(u) or CONTACTISH.search(urlsplit(u).path)) for u, m, _, ev2 in scoped): ev = "venue_mailto"
@@ -2833,7 +2912,7 @@ PYEOF
 
     # --- Decide contacts, socials and contact form from everything seen (P1/P7) ---
     local decisions
-    decisions=$(_web_py_web_decide "$SCRIPT_DIR" "$WEB_DIR/pages.jsonl" "$static_crawl_json" "$WEB_DIR/pdfs.jsonl" \
+    decisions=$(WEB_CITY="$city" _web_py_web_decide "$SCRIPT_DIR" "$WEB_DIR/pages.jsonl" "$static_crawl_json" "$WEB_DIR/pdfs.jsonl" \
         "$site_prefix" "$site_shared" "$site_reg" "${home_final:-$website}" "$location_slug" "$venue")
     if [ -z "$decisions" ]; then
         log "  [ERROR] Website decision step crashed — contacts from this site were not processed (see $ERR_LOG)"
@@ -4204,10 +4283,16 @@ PYEOF
     log "  Searching for people at $ORG_NAME (org_id: $ORG_ID)..."
     local people_tmpf="/tmp/pipeline_people.json"
     RB_ORG_ID="$ORG_ID" RB_NATIONWIDE="$([ "$SINGLE" = "True" ] && echo 1 || echo 0)" \
+    RB_ORG_NAME="$ORG_NAME" RB_VENUE_NAME="$VENUE_NAME" SCRIPT_DIR="$SCRIPT_DIR" \
     APOLLO_API_KEY="$APOLLO_API_KEY" APOLLO_API_BASE="$APOLLO_API_BASE" \
         _rb_py "$venue_id apollo-people" python3 - > "$people_tmpf" <<'PYEOF'
 import json, os, sys
 import requests
+sys.path.insert(0, os.environ.get("SCRIPT_DIR", "."))
+try:
+    import outreach_rules as R
+except Exception:
+    R = None
 
 API = os.environ["APOLLO_API_BASE"]
 HEADERS = {"Content-Type": "application/json", "x-api-key": os.environ["APOLLO_API_KEY"]}
@@ -4220,10 +4305,13 @@ class ApolloError(Exception):
     pass
 
 
-def search_people(use_locations):
+def search_people(use_locations, by_name=""):
     results = []
     for page in (1, 2):
-        params = {"per_page": 25, "page": page, "organization_ids": [org_id]}
+        if by_name:
+            params = {"per_page": 25, "page": page, "q_keywords": by_name}
+        else:
+            params = {"per_page": 25, "page": page, "organization_ids": [org_id]}
         if use_locations:
             params["person_locations"] = locations_list
         try:
@@ -4251,6 +4339,18 @@ def search_people(use_locations):
 out = {"people": [], "nationwide": False, "error": ""}
 try:
     out["people"] = search_people(True)
+    # Apollo often files a club's staff under a duplicate org record (Sparrows Point:
+    # the matched org had 0 people, a search by the club's name found 18). Search by the
+    # name within MD/VA/DC and keep only people whose company is this venue.
+    if not out["people"] and R is not None:
+        vname = os.environ.get("RB_VENUE_NAME", "") or os.environ.get("RB_ORG_NAME", "")
+        for q in dict.fromkeys(x for x in (os.environ.get("RB_ORG_NAME", ""), vname) if x):
+            hits = [p for p in search_people(True, by_name=q)
+                    if p["org"] and (R.org_name_matches(p["org"], vname) or R.org_name_matches(vname, p["org"]))]
+            if hits:
+                out["people"] = hits
+                out["by_name"] = q
+                break
     # Nationwide fallback only for a small local org: for chains and multi-site
     # orgs it returns staff of other properties.
     if not out["people"] and os.environ.get("RB_NATIONWIDE") == "1":
@@ -4901,6 +5001,28 @@ if vw_list and vw_list[0] == "the":
 VENUE_RE = re.compile(r"(?:\bthe\W+)?\b" + r"\W+".join(map(re.escape, vw_list)) + r"\b", re.I) if vw_list else None
 
 
+# The venue's own name before a location tail: "Gibson's Inn at Gate One" -> "Gibson's
+# Inn". A partial match must carry every distinctive word of it, so "Partner at Gate
+# One" (a consultancy), "Speakeasy" (an API company, for Turncoat Speakeasy) or "Ivy
+# Hospitality" (Ohio, for The Ivy Hotel) no longer count as this venue (Sep 26 run).
+core = re.split(r"\s+(?:at|@)\s+|\s+[-\u2013\u2014|]\s+|,\s*", venue, maxsplit=1)[0]
+CORE = [w for w in words(core) if w not in STOP and w not in GENERIC and w not in place and len(w) >= 3]
+# Company-type words the venue's own name doesn't have mark another business.
+COMPANY_WORDS = {"hospitality", "consulting", "consultants", "management", "partners", "holdings",
+                 "capital", "realty", "realtors", "realtor", "properties", "group", "agency",
+                 "technologies", "technology", "software", "solutions", "ventures", "investments",
+                 "games", "media", "marketing", "communications", "company", "llc", "inc"}
+
+
+def core_ok(seg):
+    """The segment carries the venue's lead distinctive word ("turncoat", "gibsons",
+    "ivy") and no company-type word the venue's name lacks."""
+    segw = set(words(seg))
+    if any(w in segw for w in COMPANY_WORDS - vwords):
+        return False
+    return not CORE or CORE[0] in segw
+
+
 def names_venue(text):
     """(role, True) when the text names this venue: its full name as a phrase, or a
     segment that is this venue and nothing else (org-matches, no extra org words)."""
@@ -4917,7 +5039,8 @@ def names_venue(text):
             continue
         exact = "".join(segw) == "".join(w for w in words(venue) if w not in STOP)
         extra = [w for w in segw if w not in vwords and w not in GENERIC and w not in place and len(w) >= 3]
-        if exact or (R.org_name_matches(seg, venue) and not extra):
+        named = R.org_name_matches(seg, venue) or (core.strip() != venue.strip() and R.org_name_matches(seg, core))
+        if exact or (named and not extra and core_ok(seg)):
             return " ".join(p for p in parts[:i] if p).strip(" -|,"), True
     return "", False
 

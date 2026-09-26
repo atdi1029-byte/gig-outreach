@@ -26,5 +26,30 @@
             }
         }
     }
+    // Google category from the panel subtitle: "4.5 316 Google reviews · $100+ · Restaurant"
+    // or "4.7 33 Google reviews Art gallery in Annapolis, Maryland".
+    out.category = '';
+    var sub = document.querySelector('[data-attrid="subtitle"]');
+    if (sub) {
+        var st = (sub.innerText || sub.textContent || '').replace(/\s+/g, ' ').trim();
+        var parts = st.split(new RegExp('[' + String.fromCharCode(8231, 183, 8901) + '|]'));
+        for (var p = 0; p < parts.length; p++) {
+            var seg = parts[p].replace(/^.*Google reviews?/i, '').replace(/\s+in\s+[A-Z][^,]*,\s*[A-Za-z ]+$/, '').trim();
+            seg = seg.replace(/^\d-star\s+/i, '');            // "4-star hotel" -> "hotel"
+            if (!seg || /\$|\d/.test(seg) || /^(open|closed|opens|closes|temporarily closed)\b/i.test(seg)) continue;
+            if (/^[^\s]+\.[a-z]{2,}(\/|$)/i.test(seg)) continue;  // a domain, not a category
+            out.category = seg.slice(0, 60);
+            break;
+        }
+    }
+    out.permanently_closed = /permanently closed/i.test(body.slice(0, 20000)) &&
+        !!document.querySelector('[data-attrid="title"]');
+    // The panel's "Website" button
+    out.website = '';
+    var as = document.querySelectorAll('a');
+    for (var k = 0; k < as.length; k++) {
+        var tx = (as[k].innerText || '').trim();
+        if (/^website$/i.test(tx) && /^https?:/.test(as[k].href || '')) { out.website = as[k].href; break; }
+    }
     return JSON.stringify(out);
 })()

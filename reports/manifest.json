@@ -2,16 +2,20 @@
   {
     "file": "2026-09-26_01-44.html",
     "date": "2026-09-26",
-    "title": "September 26, 2026 \u2014 Run run-20260926-0144 in progress (8 venues so far)",
-    "summary": "Pipeline run run-20260926-0144 is in progress: 8 venues registered. They stay hidden in the app until this report is complete and reviewed.",
-    "venues": 8,
-    "verified_emails": 0,
-    "apollo_credits": 0,
-    "venue_ids": ["VA-REST-3029", "MD-REST-1526", "MD-HOTE-761", "MD-WINE-762", "MD-MUSE-763", "MD-REST-937", "MD-REST-2676", "VA-REST-3028"],
+    "title": "September 26, 2026 \u2014 Run run-20260926-0144 in progress (17 venues so far)",
+    "summary": "Pipeline run run-20260926-0144 is in progress: 17 venues registered. They stay hidden in the app until this report is complete and reviewed.",
+    "venues": 17,
+    "verified_emails": 49,
+    "apollo_credits": 12,
+    "venue_ids": ["VA-REST-3029", "MD-REST-1526", "MD-HOTE-761", "MD-WINE-762", "MD-MUSE-763", "MD-REST-937", "MD-REST-2676", "VA-REST-3028", "MD-REST-772", "MD-WINE-1330", "MD-ART", "-499", "MD-REST-494", "MD-REST-2690", "VA-REST-3063", "MD-HOTE-467", "DC-WINE-1635"],
     "run_id": "run-20260926-0144",
     "status": "running",
     "started_at": "2026-09-26T01:44:31-04:00",
-    "updated_at": "2026-09-26T01:44:31-04:00"
+    "updated_at": "2026-09-26T02:33:19-04:00",
+    "zb_credits_used": 50,
+    "clean": false,
+    "coverage_gaps": 2,
+    "misses": null
   },
   {
     "file": "2026-09-11_04-00.html",

@@ -376,7 +376,7 @@ Step 6: Next page, repeat until no more pages
 
 Step 7: Batch verify via ZeroBounce
   - Upload full temp CSV to ZeroBounce bulk verify
-  - ZeroBounce API key in scraper.py: 7a47396026644791a236621ebe3d2584
+  - ZeroBounce API key in scraper.py: <in .env — never commit keys>
 
 Step 8: Push valid emails to Google Sheet
   - Only valid emails get pushed via Apps Script `?action=add_contact`

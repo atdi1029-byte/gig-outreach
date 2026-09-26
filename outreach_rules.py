@@ -173,6 +173,9 @@ NAME_BOILERPLATE = {
     "send", "message", "opt", "get", "learn", "view", "inquire", "inquiry",
     "inquiries", "rsvp", "tickets", "request", "quote", "outing", "outings",
     "rate", "rates", "basic", "golf",
+    # page text seen as names (Sep 26 run: "Tournament Registration", "First Served
+    # Basis.", "Magdalena Buyout")
+    "registration", "tournament", "basis", "served", "buyout", "buyouts",
     # businesses that show up next to addresses (designer credits, agencies)
     "studio", "studios", "design", "designs", "designer", "media", "creative",
     "agency", "photography",

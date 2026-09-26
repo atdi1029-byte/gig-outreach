@@ -304,7 +304,18 @@ def path_extension(url: str) -> str:
     return "." + name.rsplit(".", 1)[-1]
 
 
+# Page-builder template parts and layout libraries (Themify, Elementor, Divi, Beaver
+# Builder, Oxygen, Brizy, reusable blocks) hold theme demo content such as "Sophia
+# Reynolds, Event Coordinator", not the venue's real pages.
+TEMPLATE_URL_RE = re.compile(
+    r"/(?:tbuilder[-_]layout[-_]part|tbuilder[-_]layout|elementor[-_]library|et_pb_layout|"
+    r"fl-builder-template|ct_template|brizy_template|wp-block|oceanwp_library|jet-theme-core)/"
+    r"|[?&](?:elementor_library|et_pb_layout|fl-builder-template|tbuilder_layout_part)=", re.I)
+
+
 def classify_url(url: str) -> str:
+    if TEMPLATE_URL_RE.search(url or ""):
+        return "asset"
     ext = path_extension(url)
     if ext in DOCUMENT_EXTENSIONS:
         return "pdf"

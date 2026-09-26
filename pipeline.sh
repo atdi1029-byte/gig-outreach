@@ -466,9 +466,25 @@ verify_and_push() {
     local email="$1" venue_id="$2" name="$3" title="$4" source="$5" evidence="${6:-external}"
     [ -z "$email" ] && return
 
+    # The venue's own mail domain can differ from its website's: the alias the web step
+    # found (@spcc1925.com for sparrowspointcc.com), or the same name under another TLD
+    # (rollingroadgc.com for rollingroadgc.org). Check against it and vouch for it on save.
+    local mail_dom="" edom
+    edom=$(printf '%s' "${email##*@}" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
+    if [ -n "$VENUE_DOMAIN" ] && [ "$VENUE_SHARED_DOMAIN" != "true" ] && [ "$edom" != "$VENUE_DOMAIN" ] \
+            && [ "${edom%.$VENUE_DOMAIN}" = "$edom" ]; then
+        if [ -n "${VENUE_MAIL_ALIAS:-}" ] && { [ "$edom" = "$VENUE_MAIL_ALIAS" ] || [ "${edom%.$VENUE_MAIL_ALIAS}" != "$edom" ]; }; then
+            mail_dom="$VENUE_MAIL_ALIAS"
+        else
+            local e_label="${edom%.*}" v_label="${VENUE_DOMAIN%.*}"
+            e_label="${e_label##*.}"; v_label="${v_label##*.}"
+            [ "${#v_label}" -ge 5 ] && [ "$e_label" = "$v_label" ] && [ "${edom##*.}" != "${VENUE_DOMAIN##*.}" ] && mail_dom="$edom"
+        fi
+    fi
+
     local checked
     checked=$(_py_check_email "$SCRIPT_DIR" "$email" "$name" "$title" "$evidence" \
-        "$VENUE_DOMAIN" "$VENUE_NAME" "$VENUE_SHARED_DOMAIN" "$OWN_EMAILS" "$OTHER_CITY_TOKENS")
+        "${mail_dom:-$VENUE_DOMAIN}" "$VENUE_NAME" "$VENUE_SHARED_DOMAIN" "$OWN_EMAILS" "$OTHER_CITY_TOKENS")
     local email_lower action reason is_role clean_name clean_title name_hint person_role
     IFS=$'\x1f' read -r email_lower action reason is_role clean_name clean_title name_hint person_role <<< "$checked"
     if [ -z "$action" ]; then
@@ -596,7 +612,8 @@ verify_and_push() {
     fi
 
     local verdict
-    verdict=$(_push_contact "$venue_id" "$clean_name" "$clean_title" "$email_lower" "$source" "$verified" "$is_generic")
+    verdict=$(PUSH_ALLOW_OFF_DOMAIN="${PUSH_ALLOW_OFF_DOMAIN:-${mail_dom:+true}}" \
+        _push_contact "$venue_id" "$clean_name" "$clean_title" "$email_lower" "$source" "$verified" "$is_generic")
     case "$verdict" in
         created*)
             local name_note="${verdict#created}"; name_note="${name_note#:}"
@@ -2007,7 +2024,7 @@ def in_scope(u):
     h = hp.split("/")[0]
     return (h == home_host or h == reg or h.endswith("." + reg) or hp.startswith(prefix)
             or h == home_reg or h.endswith("." + home_reg))
-SKIP = re.compile(r"\.(css|js|png|jpe?g|gif|svg|ico|webp|woff2?|ttf|eot|pdf|zip|mp3|mp4|mov|json|xml|txt|map|rss|ics)(\?|$)|/wp-content/|/wp-json|/wp-admin|/wp-login|/feed/?$|/cdn-cgi/|/cart|/checkout|/my-account|/account|/login|/signin|/register|[?&](add-to-cart|replytocom|share|sort|orderby|filter|products?|variant|currency|lang|format|print|amp|ical|outlook-ical)=|/tag/|/category/|/author/|/page/\d+|/@@|[?&]ajax", re.I)
+SKIP = re.compile(r"\.(css|js|png|jpe?g|gif|svg|ico|webp|woff2?|ttf|eot|pdf|zip|mp3|mp4|mov|json|xml|txt|map|rss|ics)(\?|$)|/wp-content/|/wp-json|/wp-admin|/tbuilder[-_]layout|/elementor[-_]library|/et_pb_layout|/fl-builder-template|/wp-block/|/wp-login|/feed/?$|/cdn-cgi/|/cart|/checkout|/my-account|/account|/login|/signin|/register|[?&](add-to-cart|replytocom|share|sort|orderby|filter|products?|variant|currency|lang|format|print|amp|ical|outlook-ical)=|/tag/|/category/|/author/|/page/\d+|/@@|[?&]ajax", re.I)
 STATE = re.compile(r"-(md|va|dc|pa|de|wv|ny|ca|fl|tx|nc|sc|ga|oh|il|ma|nj|ct|ri|nh|vt|me|mi|wi|mn|ia|mo|ks|ne|sd|nd|mt|wy|co|ut|nv|id|or|wa|ak|hi|al|ms|tn|ky|in|ar|la|ok|nm|az)$")
 # Music/entertainment pages rank high: that is where a venue names who books performers.
 PRIORITY = ["contact", "staff", "team", "people", "leadership", "directory", "management", "about", "music", "entertain",
@@ -2295,6 +2312,43 @@ def person_for(email):
         f, l = parts[0], parts[-1]
         if local in (f + l, f[:1] + l, f + l[:1], l + f[:1], l + f) or (local == f and len(f) >= 3): hits.append((n, t))
     return hits[0] if len(hits) == 1 else None
+
+# The venue's own mail domain can differ from its website domain: the club at
+# sparrowspointcc.com writes from @spcc1925.com, rollingroadgc.org from @rollingroadgc.com,
+# imperialchestertown.com from @thekitchenattheimperial.com. A domain counts when the
+# venue's own pages show at least 2 of its addresses (one a mailto) and more of them than
+# of the website domain, or when it is the website's name under another TLD. One-off
+# vendor, PR, designer and parent-group inboxes never reach 2.
+AGENCY_LABEL = re.compile(r"(pr|media|marketing|agency|communications|comms|creative|design|digital|studios?|photo\w*|events?|coordinators|productions?)$")
+if shared != "true" and reg and not any(a != reg for a in alias_regs):
+    site_label = reg.rsplit(".", 1)[0]
+    on_site, per_dom, mailto_dom = 0, {}, {}
+    for e, r in emails.items():
+        dom = e.split("@", 1)[1] if "@" in e else ""
+        dreg = R.registrable_domain(dom) if dom else ""
+        own_hits = [(u, m) for u, m, k in r["hits"] if in_scope(u)]
+        if not dreg or not own_hits:
+            continue
+        if dreg == reg:
+            on_site += 1
+            continue
+        if dreg in R.FREEMAIL_DOMAINS or R.is_shared_domain(dreg) or R.is_non_venue_host(dreg):
+            continue
+        if AGENCY_LABEL.search(dreg.rsplit(".", 1)[0]):
+            continue
+        per_dom[dreg] = per_dom.get(dreg, 0) + 1
+        if any(m and (is_home(u) or CONTACTISH.search(urlsplit(u).path)) for u, m in own_hits):
+            mailto_dom[dreg] = mailto_dom.get(dreg, 0) + 1
+    mail_alias = ""
+    for dreg, n in sorted(per_dom.items(), key=lambda x: -x[1]):
+        if dreg.rsplit(".", 1)[0] == site_label and len(site_label) >= 5:
+            mail_alias = dreg
+            break
+        if n >= 2 and mailto_dom.get(dreg, 0) >= 1 and n > on_site:
+            mail_alias = dreg
+            break
+    if mail_alias:
+        print("\x1f".join(["ALIAS", mail_alias]))
 
 named = set()
 for e, r in sorted(emails.items()):
@@ -2882,9 +2936,15 @@ PYEOF
     if [ -n "$home_final" ] && [ "$site_shared" != "true" ]; then
         final_reg=$(pyrun web_final_reg python3 -c 'import sys; sys.path.insert(0, sys.argv[1]); import outreach_rules as R; d = R.registrable_domain(sys.argv[2]); print("" if (R.is_shared_domain(d) or R.is_non_venue_host(d)) else d)' "$SCRIPT_DIR" "$home_final")
         [ "$final_reg" = "$site_reg" ] && final_reg=""
-        [ -z "$final_reg" ] && final_reg="$alias_reg"
         [ -n "$final_reg" ] && log "  [WEB] Website redirects to $final_reg — its addresses count as the venue's own domain"
     fi
+    if [ -z "$final_reg" ] && [ -n "$alias_reg" ] && [ "$site_shared" != "true" ]; then
+        final_reg="$alias_reg"
+        log "  [WEB] The venue's own pages use @$final_reg for its staff — those addresses count as the venue's own domain"
+    fi
+    # Apollo, LinkedIn and social finds on that domain count too (verify_and_push).
+    VENUE_MAIL_ALIAS="$final_reg"
+    export VENUE_MAIL_ALIAS
 
     # Dedupe by email and verify+push each contact with name/title and evidence (C2).
     local drop_n=0 cand_n=0 d_email d_name d_title d_ev d_src saved_domain
@@ -3814,6 +3874,10 @@ vreg = ""
 if website and website != "None" and not R.is_non_venue_host(website):
     vreg = R.registrable_domain(website)
 shared = bool(vreg) and (vreg in R.SHARED_BRAND_DOMAINS or os.environ.get("RB_SHARED") == "true")
+# The venue's own mail domain when it differs from the website's (found by the web step).
+mail_alias = os.environ.get("VENUE_MAIL_ALIAS", "").strip().lower()
+if not vreg or shared or mail_alias == vreg:
+    mail_alias = ""
 
 
 class ApolloError(Exception):
@@ -3918,7 +3982,7 @@ def gate(org):
     odom = org_domain(org)
     named = exact or R.org_name_matches(name, venue_name) or \
         (clean_name != venue_name and R.org_name_matches(name, clean_name))
-    if not named and not shared and vreg and odom == vreg:
+    if not named and not shared and vreg and odom in (vreg, mail_alias):
         # The org is on the venue's own domain: a short brand name ("Ambar" for "AMBAR
         # Restaurant, Capitol Hill", "Hambleton Inn" for "... Bed & Breakfast") may match
         # the other way round. Different businesses on a wrong sheet website still fail.
@@ -3930,7 +3994,7 @@ def gate(org):
         # The brand domain proves nothing about the property; only its city does.
         return (True, "name+location") if loc_match(org) else (False, "shared brand domain, city doesn't match")
     if vreg and odom:
-        return (True, "name+domain") if odom == vreg else (False, "different domain %s (venue %s)" % (odom, vreg))
+        return (True, "name+domain") if odom in (vreg, mail_alias) else (False, "different domain %s (venue %s)" % (odom, vreg))
     if loc_match(org):
         return True, "name+location"
     return False, "no domain or city evidence"
@@ -3980,7 +4044,10 @@ if vreg and not shared:
         org = call("GET", "/organizations/enrich", missing_ok=(404, 422), params={"domain": vreg}).get("organization")
         hits = [org] if org else []
         if not hits:
-            hits = companies({"q_organization_domains_list": [vreg], "per_page": 5})
+            hits = companies({"q_organization_domains_list": [vreg] + ([mail_alias] if mail_alias else []), "per_page": 5})
+        if not hits and mail_alias:
+            org = call("GET", "/organizations/enrich", missing_ok=(404, 422), params={"domain": mail_alias}).get("organization")
+            hits = [org] if org else []
         counts["domain"] = len(hits)
         status["domain"] = "ok"
         consider(hits, "domain")
@@ -7561,6 +7628,7 @@ PYEOF
 runner_set_venue_globals() {
     VENUE_NAME="$1"; VENUE_ID="$2"; VENUE_WEBSITE=""
     VENUE_DOMAIN=""; VENUE_SHARED_DOMAIN="false"; VENUE_SITE_PREFIX=""
+    VENUE_MAIL_ALIAS=""; export VENUE_MAIL_ALIAS
     RUNNER_SITE_VERDICT="none"
     if [ -n "$3" ]; then
         local v h r s p u

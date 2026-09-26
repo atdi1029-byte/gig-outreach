@@ -77,6 +77,9 @@ u=urlsplit(sys.argv[1] if "://" in sys.argv[1] else "https://"+sys.argv[1]); h=u
 h=h[4:] if h.startswith("www.") else h
 print(h + (u.path.rstrip("/") if sys.argv[2]=="true" else ""))' "$VWEB" "$VENUE_SHARED_DOMAIN" 2>/dev/null)"
     KNOWN_EMAILS=""; KNOWN_NAMES=""; ZB_VENUE_CREDITS=0
+    # load_existing isn't run here: stand in for an empty, readable sheet row, or the
+    # pipeline refuses to save socials/contact forms ("sheet's current value is unknown").
+    LOAD_EXISTING_OK="yes"; VENUE_EXISTING_FB=""; VENUE_EXISTING_IG=""; VENUE_EXISTING_FORM=""
     export VENUE_NAME VENUE_ID VENUE_WEBSITE VENUE_DOMAIN VENUE_SHARED_DOMAIN VENUE_SITE_PREFIX APOLLO_DOMAIN ERR_LOG
     rm -f "$WORK"/pipeline_* 2>/dev/null
     step1_website "$VNAME" "$VID" "$VWEB" "$VCITY"

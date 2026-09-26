@@ -1,0 +1,7332 @@
+{
+ "run_id": "run-20260926-0144",
+ "venues": {
+  "VA-REST-3029": {
+   "venue_id": "VA-REST-3029",
+   "name": "Kazan Restaurant",
+   "website": "",
+   "order": 1,
+   "attempts": 1,
+   "started": true,
+   "done": true,
+   "elapsed_min": 2,
+   "skip": "",
+   "log_status": "needs_review",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "5",
+      "visited": "home,contact,about,events",
+      "form": "yes",
+      "chrome_pages": "5",
+      "curl_pages": "0",
+      "static_pages": "6",
+      "pdfs": "0",
+      "emails": "1",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "team"
+     },
+     "raw": "[STEP] VA-REST-3029 web ok via=chrome pages=5 visited=home,contact,about,events form=yes chrome_pages=5 curl_pages=0 static_pages=6 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-3029 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_relevant_people",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "1",
+      "org": "Kazan_Restaurant",
+      "gate": "name+domain",
+      "people": "2",
+      "relevant": "0",
+      "skipped_titles": "1",
+      "over_cap": "0"
+     },
+     "raw": "[STEP] VA-REST-3029 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Kazan_Restaurant gate=name+domain people=2 relevant=0 skipped_titles=1 over_cap=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "2",
+      "results": "7",
+      "rejected": "7",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] VA-REST-3029 linkedin empty pages=2 results=7 rejected=7 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "1",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] VA-REST-3029 google empty results=1 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-3029 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "6",
+      "pages": "7",
+      "pages_cut": "0",
+      "visited": "home,contact,about,events",
+      "emails": "1",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "role_candidates": "1",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "none",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "2",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "2",
+      "li_relevant": "0",
+      "enrich": "skipped:no_pending"
+     },
+     "raw": "[STEP] VA-REST-3029 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=6 pages=7 pages_cut=0 visited=home,contact,about,events emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=1 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_foun"
+    }
+   },
+   "legacy": {
+    "web": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "social": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "apollo": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "linkedin": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "google": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "final": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    }
+   },
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [
+    {
+     "url": "https://kazanrestaurant.com",
+     "kind": "home",
+     "via": "chrome",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://www.kazanrestaurant.com/contact",
+     "kind": "form",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@kazanrestaurant.com"
+     ]
+    },
+    {
+     "url": "https://www.kazanrestaurant.com/about",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://www.kazanrestaurant.com/catering",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://www.kazanrestaurant.com/menu",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://www.kazanrestaurant.com/press",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    }
+   ],
+   "home": {
+    "url": "https://kazanrestaurant.com",
+    "via": "chrome",
+    "emails": 0,
+    "fb": "https://www.facebook.com/Kazan-Restaurant-115543531808980",
+    "ig": "https://www.instagram.com/kazanrestaurant"
+   },
+   "form": "https://www.kazanrestaurant.com/contact",
+   "crawl_summary": "pages=14 pdfs=2 emails=1 sitemaps=3 fragments=0 unvisited=0",
+   "batch_started": "2026-09-26 01:44:24",
+   "batch_ended": "2026-09-26 01:47:33",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-REST-1526": {
+   "venue_id": "MD-REST-1526",
+   "name": "Old Line Golf Club",
+   "website": "",
+   "order": 2,
+   "attempts": 1,
+   "started": true,
+   "done": true,
+   "elapsed_min": 3,
+   "skip": "",
+   "log_status": "needs_review",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "9",
+      "visited": "home,contact,about,events",
+      "form": "yes",
+      "chrome_pages": "9",
+      "curl_pages": "0",
+      "static_pages": "10",
+      "pdfs": "0",
+      "emails": "2",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "2",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "team"
+     },
+     "raw": "[STEP] MD-REST-1526 web ok via=chrome pages=9 visited=home,contact,about,events form=yes chrome_pages=9 curl_pages=0 static_pages=10 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "2",
+      "emails": "0",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-1526 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "ok",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "Old_Line_Golf_Club",
+      "gate": "name+domain",
+      "people": "1",
+      "relevant": "1",
+      "skipped_titles": "0",
+      "over_cap": "0",
+      "enriched": "1",
+      "saved": "0",
+      "pending": "1",
+      "deferred": "0",
+      "credits": "1"
+     },
+     "raw": "[STEP] MD-REST-1526 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=2 org=Old_Line_Golf_Club gate=name+domain people=1 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=1 deferred=0 credits=1"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "13",
+      "rejected": "13",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-REST-1526 linkedin empty pages=3 results=13 rejected=13 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "3",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-REST-1526 google empty results=3 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-1526 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "10",
+      "pages": "10",
+      "pages_cut": "0",
+      "visited": "home,contact,about,events",
+      "emails": "2",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "1",
+      "deferred": "0",
+      "rejected": "2",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "1",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "3",
+      "li_relevant": "0",
+      "enrich": "skipped:nothing_to_try"
+     },
+     "raw": "[STEP] MD-REST-1526 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=10 pages=10 pages_cut=0 visited=home,contact,about,events emails=2 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_fo"
+    }
+   },
+   "legacy": {
+    "web": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "social": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "apollo": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "linkedin": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "google": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "final": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    }
+   },
+   "saved": [],
+   "titles": {},
+   "pending": [
+    {
+     "name": "Kyle McDonnell",
+     "title": "Co-Founder",
+     "why": "no email available"
+    }
+   ],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [
+    {
+     "url": "https://www.oldlinegolfclub.com",
+     "kind": "home",
+     "via": "chrome",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/contact",
+     "kind": "form",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dev@altitude-marketing.co.uk",
+      "info@oldlinegc.com"
+     ]
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/about",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dev@altitude-marketing.co.uk",
+      "info@oldlinegc.com"
+     ]
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@oldlinegc.com"
+     ]
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/membership",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dev@altitude-marketing.co.uk",
+      "info@oldlinegc.com"
+     ]
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/experience",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dev@altitude-marketing.co.uk",
+      "info@oldlinegc.com"
+     ]
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/technology",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dev@altitude-marketing.co.uk",
+      "info@oldlinegc.com"
+     ]
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/instruction",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@oldlinegc.com"
+     ]
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/terms-and-conditions",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dev@altitude-marketing.co.uk",
+      "info@oldlinegc.com"
+     ]
+    },
+    {
+     "url": "https://www.oldlinegolfclub.com/book/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dev@altitude-marketing.co.uk",
+      "info@oldlinegc.com"
+     ]
+    }
+   ],
+   "home": {
+    "url": "https://www.oldlinegolfclub.com",
+    "via": "chrome",
+    "emails": 2,
+    "fb": "none",
+    "ig": "https://www.instagram.com/oldlinegolfclub"
+   },
+   "form": "https://www.oldlinegolfclub.com/contact",
+   "crawl_summary": "pages=18 pdfs=0 emails=2 sitemaps=3 fragments=20 unvisited=0",
+   "batch_started": "2026-09-26 01:44:24",
+   "batch_ended": "2026-09-26 01:51:37",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 1
+  },
+  "MD-HOTE-761": {
+   "venue_id": "MD-HOTE-761",
+   "name": "Gibson's Inn at Gate One",
+   "website": "",
+   "order": 3,
+   "attempts": 1,
+   "started": true,
+   "done": true,
+   "elapsed_min": 3,
+   "skip": "",
+   "log_status": "needs_review",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "18",
+      "visited": "home,contact,about,events",
+      "form": "yes",
+      "chrome_pages": "18",
+      "curl_pages": "0",
+      "static_pages": "0",
+      "pdfs": "0",
+      "emails": "1",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "1",
+      "pending": "0",
+      "fb": "0",
+      "ig": "0",
+      "blocked_pages": "0",
+      "missing": "team",
+      "static_crawl": "blocked"
+     },
+     "raw": "[STEP] MD-HOTE-761 web ok via=chrome pages=18 visited=home,contact,about,events form=yes chrome_pages=18 curl_pages=0 static_pages=0 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=1 pending=0 fb=0 ig=0 blocked_pages=0 missing=team static_crawl="
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "none",
+      "ig": "found",
+      "fb_search": "empty:rejected_2",
+      "ig_search": "ok:found_of_1",
+      "fb_pages": "0",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "0",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-HOTE-761 social ok fb=none ig=found fb_search=empty:rejected_2 ig_search=ok:found_of_1 fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_org",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "0"
+     },
+     "raw": "[STEP] MD-HOTE-761 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0"
+    },
+    "linkedin": {
+     "status": "ok",
+     "kv": {
+      "pages": "3",
+      "results": "26",
+      "rejected": "7",
+      "employees": "19",
+      "relevant": "19",
+      "saved": "0",
+      "pending": "4",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-HOTE-761 linkedin ok pages=3 results=26 rejected=7 employees=19 relevant=19 saved=0 pending=4 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "1",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-HOTE-761 google empty results=1 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-HOTE-761 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "failed",
+     "kv": {
+      "web": "failed",
+      "via": "crawl",
+      "crawl": "failed:no_pages",
+      "crawl_pages": "0",
+      "pages": "0",
+      "pages_cut": "0",
+      "visited": "none",
+      "emails": "0",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "none",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "0",
+      "apollo_via": "name",
+      "linkedin": "empty",
+      "li_results": "9",
+      "li_relevant": "3",
+      "enrich": "empty",
+      "reason": "web_failed"
+     },
+     "raw": "[STEP] MD-HOTE-761 postcheck failed web=failed via=crawl crawl=failed:no_pages crawl_pages=0 pages=0 pages_cut=0 visited=none emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_vi"
+    }
+   },
+   "legacy": {
+    "web": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "social": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "apollo": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "linkedin": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "google": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "final": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    }
+   },
+   "saved": [],
+   "titles": {},
+   "pending": [
+    {
+     "name": "Alex Zetter",
+     "title": "Partner",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Fiona Quinn",
+     "title": "Partner",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "James Cooper",
+     "title": "Partner",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Anthony Gaffney",
+     "title": "Partner",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Riley Burkett",
+     "title": "Client Director",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Isabelle Kearney",
+     "title": "Principal Consultant",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Mackenzie Korpi",
+     "title": "Management Consultant",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Grace Blundell",
+     "title": "Director",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Louise Daleman",
+     "title": "Experience strategy & design",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Victoria Gosalvez",
+     "title": "Manager",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Tom O'Brien",
+     "title": "Senior Resource Manager",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Antonia Brockman",
+     "title": "Manager",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Tom Haycock",
+     "title": "Senior Marketing Manager",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Anna Sherriff",
+     "title": "Life Sciences leader",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Sophie Di Clemente",
+     "title": "Principal",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Daragh Daly",
+     "title": "Operating Model and Digital Transformation Principal",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Sophie Bradley",
+     "title": "Director",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Karan Ingle",
+     "title": "Client Director & India Country Lead",
+     "why": "not in Apollo"
+    },
+    {
+     "name": "Lucy Jennings",
+     "title": "Manager",
+     "why": "not in Apollo"
+    }
+   ],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [
+    {
+     "url": "https://gibsonsinn.com/",
+     "kind": "home",
+     "via": "chrome",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://gibsonsinn.com/contact-us",
+     "kind": "form",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/about-us",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/rooms",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/blog",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/private-event-weekend-annapolis",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/fall-events-annapolis-2026",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/gallery",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/maryland-avenue-annapolis-guide",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/visit-midshipman-annapolis-fall",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/faqs",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/suites",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/penthouse",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/private-events-gibsons-inn-annapolis",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/vip-corporate-membership-annapolis",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/why-visit-annapolis-in-august",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/gate-one-visitor-guide-us-naval-academy",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    },
+    {
+     "url": "https://gibsonsinn.com/first-time-in-annapolis-a-tourists-guide-to-annapolis-written-by-a-local",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "guest@gibsonsinn.com"
+     ]
+    }
+   ],
+   "home": {
+    "url": "https://gibsonsinn.com/",
+    "via": "chrome",
+    "emails": 1,
+    "fb": "https://www.facebook.com/Gibsonsinn",
+    "ig": "https://www.instagram.com/gibsonsinnatgateone"
+   },
+   "form": "https://gibsonsinn.com/contact-us",
+   "crawl_summary": "pages=4 pdfs=0 emails=0 sitemaps=0 fragments=0 unvisited=0",
+   "batch_started": "2026-09-26 01:44:24",
+   "batch_ended": "2026-09-26 01:55:50",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-WINE-762": {
+   "venue_id": "MD-WINE-762",
+   "name": "The Vineyards at Dodon",
+   "website": "",
+   "order": 4,
+   "attempts": 1,
+   "started": true,
+   "done": true,
+   "elapsed_min": 5,
+   "skip": "",
+   "log_status": "pipelined",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "6",
+      "emails": "11",
+      "saved": "5",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "5",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "5",
+      "pending": "3",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-WINE-762 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=6 emails=11 saved=5 role=0 unverified=0 deferred=0 rejected=5 candidates=1 known=0 errors=0 people=5 pending=3 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-WINE-762 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "The_Vineyards_at_Dodon",
+      "gate": "name+domain",
+      "people": "7",
+      "relevant": "1",
+      "skipped_titles": "0",
+      "over_cap": "0",
+      "enriched": "1",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "1"
+     },
+     "raw": "[STEP] MD-WINE-762 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=2 org=The_Vineyards_at_Dodon gate=name+domain people=7 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "20",
+      "rejected": "19",
+      "employees": "1",
+      "relevant": "1",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "1"
+     },
+     "raw": "[STEP] MD-WINE-762 linkedin empty pages=3 results=20 rejected=19 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=1"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] MD-WINE-762 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "5",
+      "new": "5",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-WINE-762 final ok status=pipelined valid_contacts=5 new=5 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "5"
+     },
+     "raw": "[STEP] MD-WINE-762 postcheck skipped reason=has_contacts valid=5"
+    }
+   },
+   "legacy": {
+    "web": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "social": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "apollo": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "linkedin": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "final": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    }
+   },
+   "saved": [
+    {
+     "name": "Hannah Flaherty",
+     "email": "hannah@dodonvineyards.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Jen Daszczyszak",
+     "email": "jen@dodonvineyards.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Katie Sircovics",
+     "email": "katie@dodonvineyards.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Regina Mc Carthy",
+     "email": "regina@dodonvineyards.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Tom Croghan",
+     "email": "tom@dodonvineyards.com",
+     "verified": "valid",
+     "step": "web"
+    }
+   ],
+   "titles": {
+    "katie@dodonvineyards.com": "Operations Manager"
+   },
+   "pending": [
+    {
+     "name": "Richard Lefever",
+     "title": "Business Operations Intern",
+     "why": "no email"
+    }
+   ],
+   "zb_charged": 5,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [
+    {
+     "url": "https://www.dodonvineyards.com",
+     "kind": "home",
+     "via": "chrome",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://www.dodonvineyards.com/people",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "hannah@dodonvineyards.com",
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "jen@dodonvineyards.com",
+      "katie@dodonvineyards.com",
+      "regina@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/privateevents",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "hannah@dodonvineyards.com",
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/wc-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "regina@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/event-photos",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/visit-us",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "hannah@dodonvineyards.com",
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/tastings",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/moonvalleycsa",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "support@moonvalleyfarm.net"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/wine-menu-during-onsite-visits",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/vineyard",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/sustainability",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/winemaking",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/history",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/join-wine-club",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "jen@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/blog",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "tom@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/opeds",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/in-the-press",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/photo-gallery",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/Visit",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "hannah@dodonvineyards.com",
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/farm",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/wine-club",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "jen@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/news",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "tom@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/wine-2",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/partner-restaurants-shops",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/careers",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "jimmy@thebeanco.org",
+      "regina@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/donation-requests",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/text-only-site",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/security-shipping-refunds",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/trade-1",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com",
+      "regina@dodonvineyards.com"
+     ]
+    },
+    {
+     "url": "https://www.dodonvineyards.com/wc-events/districtpitfathersdaybbq",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@dodoncenter.org",
+      "info@dodonvineyards.com"
+     ]
+    }
+   ],
+   "home": {
+    "url": "https://www.dodonvineyards.com",
+    "via": "chrome",
+    "emails": 2,
+    "fb": "https://www.facebook.com/dodonvineyards",
+    "ig": "https://www.instagram.com/dodonvineyards"
+   },
+   "form": "",
+   "crawl_summary": "pages=48 pdfs=2 emails=7 sitemaps=1 fragments=46 unvisited=188",
+   "batch_started": "2026-09-26 01:44:24",
+   "batch_ended": "2026-09-26 02:02:02",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 2
+  },
+  "MD-MUSE-763": {
+   "venue_id": "MD-MUSE-763",
+   "name": "Annapolis Maritime Museum & Park",
+   "website": "",
+   "order": 5,
+   "attempts": 1,
+   "started": true,
+   "done": true,
+   "elapsed_min": 8,
+   "skip": "",
+   "log_status": "pipelined",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "6",
+      "emails": "31",
+      "saved": "23",
+      "role": "1",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "candidates": "7",
+      "known": "0",
+      "errors": "0",
+      "people": "9",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-MUSE-763 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=6 emails=31 saved=23 role=1 unverified=0 deferred=0 rejected=1 candidates=7 known=0 errors=0 people=9 pending=0 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-MUSE-763 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "ok",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "Annapolis_Maritime_Museum_&_Park",
+      "gate": "name+domain",
+      "people": "19",
+      "relevant": "2",
+      "skipped_titles": "5",
+      "over_cap": "0",
+      "enriched": "2",
+      "saved": "2",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "2"
+     },
+     "raw": "[STEP] MD-MUSE-763 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=2 org=Annapolis_Maritime_Museum_&_Park gate=name+domain people=19 relevant=2 skipped_titles=5 over_cap=0 enriched=2 saved=2 pending=0 deferred=0 credits=2"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "10",
+      "rejected": "8",
+      "employees": "2",
+      "relevant": "1",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "1"
+     },
+     "raw": "[STEP] MD-MUSE-763 linkedin empty pages=3 results=10 rejected=8 employees=2 relevant=1 saved=0 pending=0 deferred=0 credits=1"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] MD-MUSE-763 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "25",
+      "new": "25",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-MUSE-763 final ok status=pipelined valid_contacts=25 new=25 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "25"
+     },
+     "raw": "[STEP] MD-MUSE-763 postcheck skipped reason=has_contacts valid=25"
+    }
+   },
+   "legacy": {
+    "web": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "social": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "apollo": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "linkedin": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "final": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    }
+   },
+   "saved": [
+    {
+     "name": "Ainsley Condon",
+     "email": "acondon@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Amber Herr",
+     "email": "aherr@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Beth Haynes",
+     "email": "bhaynes@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Beth Hiltabidle",
+     "email": "bhiltabidle@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "bschneider812@icloud.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Susan Sanger",
+     "email": "community@amaritime.org",
+     "verified": "role",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "crogers@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "cswaim@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Donny Hundley",
+     "email": "dhundley@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Deaven Maull",
+     "email": "dmaull@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Garrett Middleton",
+     "email": "gmiddleton@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Heather Ritterpusch",
+     "email": "hritterpusch@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Janet Cogburn",
+     "email": "janetc@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Jessica Lyon",
+     "email": "jlyon@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Jaclyn Mertz",
+     "email": "jmertz@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Kathy Saunder",
+     "email": "ksaunder@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Kelly Swartout",
+     "email": "kswartout@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Lizzie Spokely",
+     "email": "lspokely@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "mduffy@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Paige Skrickus",
+     "email": "pskrickus@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Susan Thaxton",
+     "email": "sthaxton@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Wilma Lee",
+     "email": "wilmalee@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Zack Hoisington",
+     "email": "zhoisington@amaritime.org",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Mary Ostrye",
+     "email": "mostrye@amaritime.org",
+     "verified": "valid",
+     "step": "apollo"
+    },
+    {
+     "name": "Chelsea Grandinetti",
+     "email": "leadeducator@amaritime.org",
+     "verified": "valid",
+     "step": "apollo"
+    }
+   ],
+   "titles": {
+    "mostrye@amaritime.org": "Development Director",
+    "leadeducator@amaritime.org": "Lead Educator",
+    "ksaunder@amaritime.org": "Charter Development"
+   },
+   "pending": [],
+   "zb_charged": 27,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [
+    {
+     "url": "https://amaritime.org/",
+     "kind": "home",
+     "via": "chrome",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://amaritime.org/press-release-2018-boatyard-beach-bash-cancelled/",
+     "kind": "probe",
+     "via": "curl",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://amaritime.org/weddings-contact-us/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org",
+      "venue@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/wilma-lee-contact-us/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org",
+      "pskrickus@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/about/meet-the-staff",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acondon@amaritime.org",
+      "bhaynes@amaritime.org",
+      "bhiltabidle@amaritime.org",
+      "captain@amaritime.org",
+      "community@amaritime.org",
+      "dhundley@amaritime.org",
+      "dmaull@amaritime.org",
+      "education@amaritime.org",
+      "gmiddleton@amaritime.org",
+      "hritterpusch@amaritime.org",
+      "janetc@amaritime.org",
+      "jlyon@amaritime.org",
+      "jmertz@amaritime.org",
+      "ksaunder@amaritime.org",
+      "kswartout@amaritime.org",
+      "office@amaritime.org",
+      "outreach@amaritime"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/about",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/contact-us",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/meet-the-staff",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acondon@amaritime.org",
+      "bhaynes@amaritime.org",
+      "bhiltabidle@amaritime.org",
+      "captain@amaritime.org",
+      "community@amaritime.org",
+      "dhundley@amaritime.org",
+      "dmaull@amaritime.org",
+      "education@amaritime.org",
+      "gmiddleton@amaritime.org",
+      "hritterpusch@amaritime.org",
+      "janetc@amaritime.org",
+      "jlyon@amaritime.org",
+      "jmertz@amaritime.org",
+      "ksaunder@amaritime.org",
+      "kswartout@amaritime.org",
+      "office@amaritime.org",
+      "outreach@amaritime"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/event-calendar",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/visit-us/waterfront-event-venue",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org",
+      "wilmalee@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/corporate-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/corporate-events/wilma-lee-private-charter",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org",
+      "wilmalee@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/weddings",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/weddings/museum-campus-weddings",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/weddings/park-campus-weddings",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/weddings/wilma-lee-weddings",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/support/donate",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "kswartout@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/support/membership",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "development@amaritime.org",
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/about/our-history",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/about/meet-the-board",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/about/careers",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "crogers@amaritime.org",
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/about/volunteer",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "bhiltabidle@amaritime.org",
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/about/annual-reports",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/visit-us",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/visit-us/museum",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/visit-us/exhibits",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/visit-us/tours",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "museum@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/visit-us/park-campus",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/education-programs",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/skipjack-tours",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org",
+      "wilmalee@amaritime.org"
+     ]
+    },
+    {
+     "url": "https://amaritime.org/education-programs/for-parents",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "education@amaritime.org",
+      "office@amaritime.org"
+     ]
+    }
+   ],
+   "home": {
+    "url": "https://amaritime.org/",
+    "via": "chrome",
+    "emails": 2,
+    "fb": "https://www.facebook.com/AnnapolisMaritimeMuseumandPark",
+    "ig": "https://www.instagram.com/annapolismaritimemuseum"
+   },
+   "form": "",
+   "crawl_summary": "pages=48 pdfs=0 emails=25 sitemaps=12 fragments=1 unvisited=78",
+   "batch_started": "2026-09-26 01:44:24",
+   "batch_ended": "2026-09-26 02:11:18",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 3
+  },
+  "MD-REST-937": {
+   "venue_id": "MD-REST-937",
+   "name": "Pisco y Nazca Bethesda",
+   "website": "",
+   "order": 6,
+   "attempts": 1,
+   "started": true,
+   "done": true,
+   "elapsed_min": 7,
+   "skip": "",
+   "log_status": "pipelined",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,events",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "6",
+      "emails": "20",
+      "saved": "16",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "2",
+      "candidates": "2",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "about,team"
+     },
+     "raw": "[STEP] MD-REST-937 web ok via=chrome pages=31 visited=home,contact,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=6 emails=20 saved=16 role=0 unverified=0 deferred=0 rejected=2 candidates=2 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-937 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_people",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "Pisco_y_Nazca",
+      "gate": "name+domain",
+      "people": "0"
+     },
+     "raw": "[STEP] MD-REST-937 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=Pisco_y_Nazca gate=name+domain people=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "2",
+      "results": "10",
+      "rejected": "10",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-REST-937 linkedin empty pages=2 results=10 rejected=10 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] MD-REST-937 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "16",
+      "new": "16",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-937 final ok status=pipelined valid_contacts=16 new=16 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "16"
+     },
+     "raw": "[STEP] MD-REST-937 postcheck skipped reason=has_contacts valid=16"
+    }
+   },
+   "legacy": {
+    "web": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "social": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "apollo": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "linkedin": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "final": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    }
+   },
+   "saved": [
+    {
+     "name": "",
+     "email": "bethesda@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "dc@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "doral@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Daniel Vega",
+     "email": "dvega@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "eashton@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Eduardo Caballero",
+     "email": "ecaballero@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Jose Martin",
+     "email": "jmartin@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "kendall@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "pnbethesda@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "pndoral@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "pndupont@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "pnkendall@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "pnreston@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "",
+     "email": "reston@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Roberto Maquilon",
+     "email": "rmaquilon@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    },
+    {
+     "name": "Sheryl Kabick",
+     "email": "skabick@piscoynazca.com",
+     "verified": "valid",
+     "step": "web"
+    }
+   ],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 18,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [
+    {
+     "url": "https://piscoynazca.com/",
+     "kind": "home",
+     "via": "chrome",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://piscoynazca.com/contact-us",
+     "kind": "form",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/bethesda/private-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "bethesda@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/doral/private-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "doral@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/kendall/private-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "kendall@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/reston/private-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dc@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "reston@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/washington-dc/private-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dc@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/kendall-fl/private-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/catering-bethesda",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "bethesda@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/catering-doral",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "doral@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/catering-kendall",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "kendall@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/catering-reston",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "reston@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/catering-washington-dc",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dc@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/catering/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/reservations",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/order-online",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/bethesda",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "bethesda@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "pnbethesda@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/bethesda/menus",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/doral",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "doral@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "pndoral@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/doral/menus",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/kendall",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "kendall@piscoynazca.com",
+      "pnkendall@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/kendall/menus",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/reston",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "pnreston@piscoynazca.com",
+      "reston@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/reston/menus",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/reston-va/private-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/washington-dc",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dc@piscoynazca.com",
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "pndupont@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/washington-dc/menus",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "info@centurionrestaurantgroup.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/blog",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/in-the-news-2",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com",
+      "social@centurionrestaurantgroup.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/social",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://piscoynazca.com/careers",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    },
+    {
+     "url": "https://piscoynazca.com/gallery",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "dvega@piscoynazca.com",
+      "earce@piscoynazca.com",
+      "eashton@piscoynazca.com",
+      "ecaballero@piscoynazca.com",
+      "jmartin@piscoynazca.com",
+      "jtorrales@piscoynazca.com",
+      "rmaquilon@piscoynazca.com",
+      "skabick@piscoynazca.com"
+     ]
+    }
+   ],
+   "home": {
+    "url": "https://piscoynazca.com/",
+    "via": "chrome",
+    "emails": 8,
+    "fb": "https://www.facebook.com/piscogastrobar",
+    "ig": "https://www.instagram.com/piscogastrobar"
+   },
+   "form": "https://piscoynazca.com/contact-us",
+   "crawl_summary": "pages=40 pdfs=10 emails=14 sitemaps=3 fragments=28 unvisited=49",
+   "batch_started": "2026-09-26 01:44:24",
+   "batch_ended": "2026-09-26 02:19:18",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-REST-2676": {
+   "venue_id": "MD-REST-2676",
+   "name": "Rolling Road Golf Club",
+   "website": "",
+   "order": 7,
+   "attempts": 1,
+   "started": true,
+   "done": true,
+   "elapsed_min": 4,
+   "skip": "",
+   "log_status": "needs_review",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "15",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "15",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "1",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-REST-2676 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=15 saved=0 role=0 unverified=0 deferred=0 rejected=15 candidates=0 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-2676 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "ok",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "Rolling_Road_Golf_Club",
+      "gate": "name+domain",
+      "people": "19",
+      "relevant": "5",
+      "skipped_titles": "7",
+      "over_cap": "0",
+      "enriched": "5",
+      "saved": "0",
+      "pending": "1",
+      "deferred": "0",
+      "credits": "5"
+     },
+     "raw": "[STEP] MD-REST-2676 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=2 org=Rolling_Road_Golf_Club gate=name+domain people=19 relevant=5 skipped_titles=7 over_cap=0 enriched=5 saved=0 pending=1 deferred=0 credits=5"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "12",
+      "rejected": "11",
+      "employees": "1",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-REST-2676 linkedin empty pages=3 results=12 rejected=11 employees=1 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "2",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-REST-2676 google empty results=2 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-2676 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "ok",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "40",
+      "pages": "41",
+      "pages_cut": "23",
+      "visited": "home,contact,about,events,team",
+      "emails": "14",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "1",
+      "people": "1",
+      "deferred": "0",
+      "rejected": "16",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "ok",
+      "apollo_found": "21",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "3",
+      "li_relevant": "0",
+      "enrich": "skipped:nothing_to_try"
+     },
+     "raw": "[STEP] MD-REST-2676 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=41 pages_cut=23 visited=home,contact,about,events,team emails=14 saved=0 enriched=0 pending=1 people=1 deferred=0 rejected=16 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=ok apollo_"
+    }
+   },
+   "legacy": {
+    "web": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "social": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "apollo": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "linkedin": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "google": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "final": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    }
+   },
+   "saved": [],
+   "titles": {
+    "tdangelo@rollingroadgc.com": "Banquet Director",
+    "kbutcher@rollingroadgc.com": "Beverage Manager",
+    "kstocksdale@rollingroadgc.com": "Membership and Communications Director",
+    "cmadsen@rollingroadgc.com": "Assistant Superintendent"
+   },
+   "pending": [
+    {
+     "name": "Sandy Eisenhart",
+     "title": "Director of Catering",
+     "why": "no email available"
+    }
+   ],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [
+    {
+     "url": "https://www.rollingroadgc.org",
+     "kind": "home",
+     "via": "chrome",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Weddings_Events/Event_Inquiry",
+     "kind": "form",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/About_us",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Golf/Golf_Event_Schedule",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Weddings_Events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com",
+      "tdangelo@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Weddings_Events/Corporate_Events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com",
+      "tdangelo@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Weddings_Events/Weddings",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com",
+      "tdangelo@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/default.aspx",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Home",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/About_us/Our_Team",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acct@rollingroadgc.com",
+      "acowen@rollingroadgc.com",
+      "asorber@rollingroadgc.com",
+      "cfernandes@rollingroadgc.com",
+      "jhershner@rollingroadgc.com",
+      "jliu@rollingroadgc.com",
+      "jlutz@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com",
+      "mthomas@rollingroadgc.com",
+      "tdangelo@rollingroadgc.com",
+      "tdriscoll@rollingroadgc.com",
+      "tmaxwell@rollingroadgc.com",
+      "tsteindl@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/About_us/History",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/About_us/Employment",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com",
+      "tdriscoll@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Golf",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Golf/Professional_Staff_Instruction",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "asorber@rollingroadgc.com",
+      "jliu@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com",
+      "mthomas@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/inactive",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://www.rollingroadgc.org/GG_SSO_Page_-_LGA_Events.aspx",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/GG_SSO_Page_-_Men_s_Events.aspx",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/GG_SSO_Page_-_Mixed_Events.aspx",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Golf/Junior_Golf",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Golf/Scorecard",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Golf/Guest_Information",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "golfshop@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Golf/2025_Club_Championship",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Clubhouse",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Clubhouse/Dining",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Clubhouse/The_Cellar_at_814",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Clubhouse/Social_Activities",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Clubhouse/Rolling_Road_Clubhouse_News",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Pool",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Pool/Swim_Team",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Pool/Pool_(1)",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Weddings_Events/Golf_Outings",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com",
+      "tdangelo@rollingroadgc.com"
+     ]
+    },
+    {
+     "url": "https://www.rollingroadgc.org/Membership",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "acowen@rollingroadgc.com",
+      "kstocksdale@rollingroadgc.com",
+      "membership@rollingroadgc.com"
+     ]
+    }
+   ],
+   "home": {
+    "url": "https://www.rollingroadgc.org",
+    "via": "chrome",
+    "emails": 3,
+    "fb": "https://www.facebook.com/rolling.road",
+    "ig": "https://www.instagram.com/rollingroadgc"
+   },
+   "form": "https://www.rollingroadgc.org/Weddings_Events/Event_Inquiry",
+   "crawl_summary": "pages=53 pdfs=0 emails=14 sitemaps=0 fragments=98 unvisited=85",
+   "batch_started": "2026-09-26 01:44:24",
+   "batch_ended": "2026-09-26 02:24:45",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 5
+  },
+  "VA-REST-3028": {
+   "venue_id": "VA-REST-3028",
+   "name": "Cafe Tatti",
+   "website": "",
+   "order": 8,
+   "attempts": 1,
+   "started": true,
+   "done": true,
+   "elapsed_min": 5,
+   "skip": "",
+   "log_status": "pipelined",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,events",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "4",
+      "saved": "3",
+      "role": "3",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "about,team"
+     },
+     "raw": "[STEP] VA-REST-3028 web ok via=chrome pages=31 visited=home,contact,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=4 saved=3 role=3 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-3028 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "ok",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "1",
+      "org": "Cafe_Tatti",
+      "gate": "name+domain",
+      "people": "1",
+      "relevant": "1",
+      "skipped_titles": "0",
+      "over_cap": "0",
+      "enriched": "1",
+      "saved": "0",
+      "pending": "1",
+      "deferred": "0",
+      "credits": "1"
+     },
+     "raw": "[STEP] VA-REST-3028 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=Cafe_Tatti gate=name+domain people=1 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=1 deferred=0 credits=1"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "2",
+      "results": "5",
+      "rejected": "5",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] VA-REST-3028 linkedin empty pages=2 results=5 rejected=5 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] VA-REST-3028 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "3",
+      "new": "3",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-3028 final ok status=pipelined valid_contacts=3 new=3 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "3"
+     },
+     "raw": "[STEP] VA-REST-3028 postcheck skipped reason=has_contacts valid=3"
+    }
+   },
+   "legacy": {
+    "web": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "social": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "apollo": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "linkedin": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    },
+    "final": {
+     "ran": true,
+     "failed": [],
+     "skipped": "",
+     "via": ""
+    }
+   },
+   "saved": [
+    {
+     "name": "Sophia Reynolds",
+     "email": "catering@cafetatti.com",
+     "verified": "role",
+     "step": "web"
+    },
+    {
+     "name": "Sophia Reynolds",
+     "email": "events@cafetatti.com",
+     "verified": "role",
+     "step": "web"
+    },
+    {
+     "name": "Sophia Reynolds",
+     "email": "privatedining@cafetatti.com",
+     "verified": "role",
+     "step": "web"
+    }
+   ],
+   "titles": {},
+   "pending": [
+    {
+     "name": "Giovanni Carlo",
+     "title": "Chef & Owner",
+     "why": "no email available"
+    }
+   ],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [
+    {
+     "url": "https://cafetatti.com",
+     "kind": "home",
+     "via": "chrome",
+     "ok": true,
+     "emails": []
+    },
+    {
+     "url": "https://www.cafetatti.com/contact-us-2",
+     "kind": "form",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/tbuilder-layout-part/contact-form-section/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://www.cafetatti.com/private-events",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/tbuilder-layout-part/events-and-happenings/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://www.cafetatti.com/tbuilder-layout-part/plan-event/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "catering@cafetatti.com",
+      "events@cafetatti.com",
+      "privatedining@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/wedding/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://www.cafetatti.com/weddings/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/gift-card",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/lunch",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/dinner-menu",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/happy-hour-specials",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/wine-2",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/reservation",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/happenings",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/blogs",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/wedding/emily-james-3",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/wedding/emily-james-2",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/wedding/emily-james",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/blog/burrata-with-prosciutto",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/blog/beaujolais-nouveau-celebration-in-mclean",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/blog/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": null,
+     "emails": []
+    },
+    {
+     "url": "https://www.cafetatti.com/blog/french-dining-culture",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/career/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/online-order/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/product/rail-drinks",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/product/beaujolais-village-chateaux-de-carellle",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/product/pinot-noir",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/product/cabernet-sauvignon",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/opening-menu/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/reservation-test/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    },
+    {
+     "url": "https://www.cafetatti.com/404-page-not-found/",
+     "kind": "subpage",
+     "via": "chrome",
+     "ok": true,
+     "emails": [
+      "info@cafetatti.com"
+     ]
+    }
+   ],
+   "home": {
+    "url": "https://cafetatti.com",
+    "via": "chrome",
+    "emails": 1,
+    "fb": "https://www.facebook.com/Forkitissimocatering",
+    "ig": "https://www.instagram.com/forkitissimocatering"
+   },
+   "form": "https://www.cafetatti.com/contact-us-2",
+   "crawl_summary": "pages=49 pdfs=0 emails=4 sitemaps=8 fragments=68 unvisited=131",
+   "batch_started": "2026-09-26 01:44:24",
+   "batch_ended": "2026-09-26 02:30:33",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 1
+  },
+  "lines": {
+   "venue_id": "lines",
+   "name": "",
+   "website": "",
+   "order": 9,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "above": {
+     "status": "and",
+     "kv": {},
+     "raw": "WARNING: 1 venue(s) failed or degraded \u2014 see the [STEP] lines above and /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/python-errors.log"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-REST-772": {
+   "venue_id": "MD-REST-772",
+   "name": "",
+   "website": "",
+   "order": 10,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,events",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "2",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "contact,about,team"
+     },
+     "raw": "[STEP] MD-REST-772 web ok via=chrome pages=31 visited=home,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,about,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-772 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_org",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "0"
+     },
+     "raw": "[STEP] MD-REST-772 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0"
+    },
+    "linkedin": {
+     "status": "ok",
+     "kv": {
+      "pages": "3",
+      "results": "14",
+      "rejected": "13",
+      "employees": "1",
+      "relevant": "1",
+      "saved": "0",
+      "pending": "1",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-REST-772 linkedin ok pages=3 results=14 rejected=13 employees=1 relevant=1 saved=0 pending=1 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "2",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-REST-772 google empty results=2 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-772 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "40",
+      "pages": "38",
+      "pages_cut": "16",
+      "visited": "home,events",
+      "emails": "2",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "role_candidates": "1",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "none",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "0",
+      "apollo_via": "name",
+      "linkedin": "empty",
+      "li_results": "2",
+      "li_relevant": "0",
+      "enrich": "empty"
+     },
+     "raw": "[STEP] MD-REST-772 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=38 pages_cut=16 visited=home,events emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=1 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_v"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-WINE-1330": {
+   "venue_id": "MD-WINE-1330",
+   "name": "",
+   "website": "",
+   "order": 11,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,about,events",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "2",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "candidates": "2",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "0",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "contact,team"
+     },
+     "raw": "[STEP] MD-WINE-1330 web ok via=chrome pages=31 visited=home,about,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=2 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=contact,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "none",
+      "ig": "found",
+      "fb_search": "empty:rejected_6",
+      "ig_search": "website",
+      "fb_pages": "0",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "0",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-WINE-1330 social ok fb=none ig=found fb_search=empty:rejected_6 ig_search=website fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_org",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "0"
+     },
+     "raw": "[STEP] MD-WINE-1330 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "20",
+      "rejected": "20",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-WINE-1330 linkedin empty pages=3 results=20 rejected=20 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "5",
+      "emails": "0",
+      "site": "none",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-WINE-1330 google empty results=5 emails=0 site=none ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-WINE-1330 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "40",
+      "pages": "39",
+      "pages_cut": "17",
+      "visited": "home,about,events",
+      "emails": "2",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "role_candidates": "1",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "0",
+      "apollo_via": "name",
+      "linkedin": "empty",
+      "li_results": "9",
+      "li_relevant": "0",
+      "enrich": "skipped:no_pending"
+     },
+     "raw": "[STEP] MD-WINE-1330 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=39 pages_cut=17 visited=home,about,events emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=1 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 a"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-REST-494": {
+   "venue_id": "MD-REST-494",
+   "name": "",
+   "website": "",
+   "order": 12,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "11",
+      "visited": "home,contact,about,events",
+      "form": "yes",
+      "chrome_pages": "11",
+      "curl_pages": "0",
+      "static_pages": "13",
+      "pdfs": "4",
+      "emails": "2",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "2",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "team"
+     },
+     "raw": "[STEP] MD-REST-494 web ok via=chrome pages=11 visited=home,contact,about,events form=yes chrome_pages=11 curl_pages=0 static_pages=13 pdfs=4 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-494 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "org_mismatch",
+      "rejected_orgs": "1",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "2"
+     },
+     "raw": "[STEP] MD-REST-494 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=0 name_search=ok name_results=2"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "11",
+      "rejected": "10",
+      "employees": "1",
+      "relevant": "1",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-REST-494 linkedin empty pages=3 results=11 rejected=10 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "3",
+      "emails": "0",
+      "site": "other_domain",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-REST-494 google empty results=3 emails=0 site=other_domain ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-494 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "ok",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "13",
+      "pages": "13",
+      "pages_cut": "0",
+      "visited": "home,contact,events",
+      "emails": "2",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "1",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "2",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "none",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "4",
+      "apollo_via": "name",
+      "linkedin": "ok",
+      "li_results": "5",
+      "li_relevant": "1",
+      "enrich": "skipped:no_pending"
+     },
+     "raw": "[STEP] MD-REST-494 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=13 pages=13 pages_cut=0 visited=home,contact,events emails=2 saved=0 enriched=0 pending=1 people=0 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=4 apol"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-REST-2690": {
+   "venue_id": "MD-REST-2690",
+   "name": "",
+   "website": "",
+   "order": 13,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "12",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "12",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "2",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-REST-2690 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=12 saved=0 role=0 unverified=0 deferred=0 rejected=12 candidates=0 known=0 errors=0 people=2 pending=0 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-2690 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_people",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "Sparrows_Point",
+      "gate": "name+domain",
+      "people": "0"
+     },
+     "raw": "[STEP] MD-REST-2690 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=Sparrows_Point gate=name+domain people=0"
+    },
+    "linkedin": {
+     "status": "ok",
+     "kv": {
+      "pages": "3",
+      "results": "13",
+      "rejected": "11",
+      "employees": "2",
+      "relevant": "1",
+      "saved": "0",
+      "pending": "1",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-REST-2690 linkedin ok pages=3 results=13 rejected=11 employees=2 relevant=1 saved=0 pending=1 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "3",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-REST-2690 google empty results=3 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-2690 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "40",
+      "pages": "40",
+      "pages_cut": "17",
+      "visited": "home,about,events,team",
+      "emails": "11",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "8",
+      "deferred": "0",
+      "rejected": "11",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "18",
+      "apollo_via": "name",
+      "linkedin": "empty",
+      "li_results": "4",
+      "li_relevant": "0",
+      "enrich": "empty"
+     },
+     "raw": "[STEP] MD-REST-2690 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=40 pages_cut=17 visited=home,about,events,team emails=11 saved=0 enriched=0 pending=0 people=8 deferred=0 rejected=11 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_fo"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "VA-REST-3063": {
+   "venue_id": "VA-REST-3063",
+   "name": "",
+   "website": "",
+   "order": 14,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "10",
+      "visited": "home,contact",
+      "form": "yes",
+      "chrome_pages": "10",
+      "curl_pages": "0",
+      "static_pages": "11",
+      "pdfs": "0",
+      "emails": "2",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "2",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "about,events,team"
+     },
+     "raw": "[STEP] VA-REST-3063 web ok via=chrome pages=10 visited=home,contact form=yes chrome_pages=10 curl_pages=0 static_pages=11 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,events,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "1",
+      "ig_pages": "1",
+      "snippets": "2",
+      "emails": "0",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-3063 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=1 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "org_mismatch",
+      "rejected_orgs": "4",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "4"
+     },
+     "raw": "[STEP] VA-REST-3063 apollo empty reason=org_mismatch rejected_orgs=4 domain_search=ok domain_results=0 name_search=ok name_results=4"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "10",
+      "rejected": "10",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] VA-REST-3063 linkedin empty pages=3 results=10 rejected=10 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "1",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] VA-REST-3063 google empty results=1 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-3063 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "11",
+      "pages": "4",
+      "pages_cut": "0",
+      "visited": "home,contact",
+      "emails": "2",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "2",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "0",
+      "apollo_via": "name",
+      "linkedin": "empty",
+      "li_results": "6",
+      "li_relevant": "0",
+      "enrich": "skipped:no_pending"
+     },
+     "raw": "[STEP] VA-REST-3063 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=11 pages=4 pages_cut=0 visited=home,contact emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_v"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-HOTE-467": {
+   "venue_id": "MD-HOTE-467",
+   "name": "",
+   "website": "",
+   "order": 15,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "21",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "21",
+      "curl_pages": "0",
+      "static_pages": "31",
+      "pdfs": "1",
+      "emails": "2",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "0",
+      "ig": "0",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-HOTE-467 web ok via=chrome pages=21 visited=home,contact,about,events,team form=yes chrome_pages=21 curl_pages=0 static_pages=31 pdfs=1 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "empty",
+     "kv": {
+      "fb": "none",
+      "ig": "none",
+      "fb_search": "empty:rejected_1",
+      "ig_search": "empty:none",
+      "fb_pages": "0",
+      "ig_pages": "0",
+      "snippets": "0",
+      "emails": "0",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-HOTE-467 social empty fb=none ig=none fb_search=empty:rejected_1 ig_search=empty:none fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_people",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "0",
+      "org": "The_Bishops_House",
+      "gate": "name+domain",
+      "people": "0"
+     },
+     "raw": "[STEP] MD-HOTE-467 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=The_Bishops_House gate=name+domain people=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "10",
+      "rejected": "10",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-HOTE-467 linkedin empty pages=3 results=10 rejected=10 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "2",
+      "emails": "0",
+      "site": "same",
+      "ig": "none"
+     },
+     "raw": "[STEP] MD-HOTE-467 google empty results=2 emails=0 site=same ig=none"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-HOTE-467 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "31",
+      "pages": "20",
+      "pages_cut": "0",
+      "visited": "home,contact,about,events",
+      "emails": "2",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "role_candidates": "1",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "0",
+      "apollo_via": "name",
+      "linkedin": "empty",
+      "li_results": "5",
+      "li_relevant": "0",
+      "enrich": "skipped:no_pending"
+     },
+     "raw": "[STEP] MD-HOTE-467 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=31 pages=20 pages_cut=0 visited=home,contact,about,events emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=1 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_fou"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "DC-WINE-1635": {
+   "venue_id": "DC-WINE-1635",
+   "name": "",
+   "website": "",
+   "order": 16,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "4",
+      "visited": "home,contact,about",
+      "form": "yes",
+      "chrome_pages": "4",
+      "curl_pages": "0",
+      "static_pages": "5",
+      "pdfs": "0",
+      "emails": "3",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "2",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "3",
+      "pending": "1",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "events,team"
+     },
+     "raw": "[STEP] DC-WINE-1635 web ok via=chrome pages=4 visited=home,contact,about form=yes chrome_pages=4 curl_pages=0 static_pages=5 pdfs=0 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=1 known=0 errors=0 people=3 pending=1 fb=1 ig=1 blocked_pages=0 missing=events,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "1",
+      "ig_pages": "1",
+      "snippets": "2",
+      "emails": "0",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] DC-WINE-1635 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=1 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "org_mismatch",
+      "rejected_orgs": "1",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "1"
+     },
+     "raw": "[STEP] DC-WINE-1635 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=0 name_search=ok name_results=1"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "8",
+      "rejected": "8",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] DC-WINE-1635 linkedin empty pages=3 results=8 rejected=8 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "5",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] DC-WINE-1635 google empty results=5 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] DC-WINE-1635 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "5",
+      "pages": "5",
+      "pages_cut": "0",
+      "visited": "home,contact,about",
+      "emails": "3",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "6",
+      "deferred": "0",
+      "rejected": "2",
+      "role_candidates": "1",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "0",
+      "apollo_via": "name",
+      "linkedin": "empty",
+      "li_results": "3",
+      "li_relevant": "0",
+      "enrich": "empty"
+     },
+     "raw": "[STEP] DC-WINE-1635 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=5 pages=5 pages_cut=0 visited=home,contact,about emails=3 saved=0 enriched=0 pending=0 people=6 deferred=0 rejected=2 role_candidates=1 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apo"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "VA-REST-2260": {
+   "venue_id": "VA-REST-2260",
+   "name": "",
+   "website": "",
+   "order": 17,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "3",
+      "saved": "1",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "3",
+      "pending": "2",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "about"
+     },
+     "raw": "[STEP] VA-REST-2260 web ok via=chrome pages=31 visited=home,contact,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=3 saved=1 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=3 pending=2 fb=1 ig=1 blocked_pages=0 missing=about"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "2",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-2260 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "Bull_Run_Golf_Club",
+      "gate": "name+domain",
+      "people": "10",
+      "relevant": "1",
+      "skipped_titles": "3",
+      "over_cap": "0",
+      "enriched": "1",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "1"
+     },
+     "raw": "[STEP] VA-REST-2260 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=2 org=Bull_Run_Golf_Club gate=name+domain people=10 relevant=1 skipped_titles=3 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "13",
+      "rejected": "13",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] VA-REST-2260 linkedin empty pages=3 results=13 rejected=13 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] VA-REST-2260 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "1",
+      "new": "1",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-2260 final ok status=pipelined valid_contacts=1 new=1 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "1"
+     },
+     "raw": "[STEP] VA-REST-2260 postcheck skipped reason=has_contacts valid=1"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-REST-776": {
+   "venue_id": "MD-REST-776",
+   "name": "",
+   "website": "",
+   "order": 18,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "20",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "20",
+      "curl_pages": "0",
+      "static_pages": "23",
+      "pdfs": "0",
+      "emails": "1",
+      "saved": "1",
+      "role": "1",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "2",
+      "pending": "2",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-REST-776 web ok via=chrome pages=20 visited=home,contact,about,events,team form=yes chrome_pages=20 curl_pages=0 static_pages=23 pdfs=0 emails=1 saved=1 role=1 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=2 pending=2 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-776 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_org",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "0"
+     },
+     "raw": "[STEP] MD-REST-776 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "17",
+      "rejected": "17",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-REST-776 linkedin empty pages=3 results=17 rejected=17 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] MD-REST-776 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "1",
+      "new": "1",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-REST-776 final ok status=pipelined valid_contacts=1 new=1 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "1"
+     },
+     "raw": "[STEP] MD-REST-776 postcheck skipped reason=has_contacts valid=1"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-EVEN-474": {
+   "venue_id": "MD-EVEN-474",
+   "name": "",
+   "website": "",
+   "order": 19,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "6",
+      "emails": "12",
+      "saved": "1",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "10",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "5",
+      "pending": "2",
+      "fb": "1",
+      "ig": "0",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-EVEN-474 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=6 emails=12 saved=1 role=0 unverified=0 deferred=0 rejected=10 candidates=1 known=0 errors=0 people=5 pending=2 fb=1 ig=0 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "none",
+      "fb_search": "website",
+      "ig_search": "empty:none",
+      "fb_pages": "3",
+      "ig_pages": "0",
+      "snippets": "0",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-EVEN-474 social ok fb=found ig=none fb_search=website ig_search=empty:none fb_pages=3 ig_pages=0 snippets=0 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_org",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "0"
+     },
+     "raw": "[STEP] MD-EVEN-474 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "2",
+      "results": "11",
+      "rejected": "11",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-EVEN-474 linkedin empty pages=2 results=11 rejected=11 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] MD-EVEN-474 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "1",
+      "new": "1",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-EVEN-474 final ok status=pipelined valid_contacts=1 new=1 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "1"
+     },
+     "raw": "[STEP] MD-EVEN-474 postcheck skipped reason=has_contacts valid=1"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-HOTE-2963": {
+   "venue_id": "MD-HOTE-2963",
+   "name": "",
+   "website": "",
+   "order": 20,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "1",
+      "emails": "5",
+      "saved": "1",
+      "role": "1",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "candidates": "3",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-HOTE-2963 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=1 emails=5 saved=1 role=1 unverified=0 deferred=0 rejected=1 candidates=3 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-HOTE-2963 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "ok",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "1",
+      "org": "The_Ivy_Hotel",
+      "gate": "name+domain",
+      "people": "23",
+      "relevant": "7",
+      "skipped_titles": "9",
+      "over_cap": "0",
+      "enriched": "7",
+      "saved": "5",
+      "pending": "1",
+      "deferred": "0",
+      "credits": "7"
+     },
+     "raw": "[STEP] MD-HOTE-2963 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=The_Ivy_Hotel gate=name+domain people=23 relevant=7 skipped_titles=9 over_cap=0 enriched=7 saved=5 pending=1 deferred=0 credits=7"
+    },
+    "linkedin": {
+     "status": "ok",
+     "kv": {
+      "pages": "3",
+      "results": "10",
+      "rejected": "7",
+      "employees": "3",
+      "relevant": "2",
+      "saved": "0",
+      "pending": "1",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-HOTE-2963 linkedin ok pages=3 results=10 rejected=7 employees=3 relevant=2 saved=0 pending=1 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] MD-HOTE-2963 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "6",
+      "new": "6",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-HOTE-2963 final ok status=pipelined valid_contacts=6 new=6 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "6"
+     },
+     "raw": "[STEP] MD-HOTE-2963 postcheck skipped reason=has_contacts valid=6"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-WINE-1355": {
+   "venue_id": "MD-WINE-1355",
+   "name": "",
+   "website": "",
+   "order": 21,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "blocked",
+     "kv": {
+      "via": "chrome",
+      "pages": "1",
+      "visited": "home",
+      "form": "no",
+      "chrome_pages": "1",
+      "curl_pages": "0",
+      "static_pages": "0",
+      "pdfs": "0",
+      "emails": "0",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "0",
+      "ig": "0",
+      "blocked_pages": "0",
+      "missing": "contact,about,events,team",
+      "static_crawl": "blocked"
+     },
+     "raw": "[STEP] MD-WINE-1355 web blocked via=chrome pages=1 visited=home form=no chrome_pages=1 curl_pages=0 static_pages=0 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=contact,about,events,team static_cra"
+    },
+    "social": {
+     "status": "empty",
+     "kv": {
+      "fb": "none",
+      "ig": "none",
+      "fb_search": "empty:rejected_3",
+      "ig_search": "empty:none",
+      "fb_pages": "0",
+      "ig_pages": "0",
+      "snippets": "0",
+      "emails": "0",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-WINE-1355 social empty fb=none ig=none fb_search=empty:rejected_3 ig_search=empty:none fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_org",
+      "domain_search": "ok",
+      "domain_results": "0",
+      "name_search": "ok",
+      "name_results": "0"
+     },
+     "raw": "[STEP] MD-WINE-1355 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0"
+    },
+    "linkedin": {
+     "status": "ok",
+     "kv": {
+      "pages": "3",
+      "results": "26",
+      "rejected": "12",
+      "employees": "14",
+      "relevant": "8",
+      "saved": "0",
+      "pending": "3",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-WINE-1355 linkedin ok pages=3 results=26 rejected=12 employees=14 relevant=8 saved=0 pending=3 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "3",
+      "emails": "0",
+      "site": "none",
+      "ig": "none"
+     },
+     "raw": "[STEP] MD-WINE-1355 google empty results=3 emails=0 site=none ig=none"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-WINE-1355 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "failed",
+     "kv": {
+      "web": "failed",
+      "via": "crawl",
+      "crawl": "failed:no_pages",
+      "crawl_pages": "0",
+      "pages": "0",
+      "pages_cut": "0",
+      "visited": "none",
+      "emails": "0",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "none",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "0",
+      "apollo_via": "name",
+      "linkedin": "empty",
+      "li_results": "8",
+      "li_relevant": "0",
+      "enrich": "empty",
+      "reason": "web_failed"
+     },
+     "raw": "[STEP] MD-WINE-1355 postcheck failed web=failed via=crawl crawl=failed:no_pages crawl_pages=0 pages=0 pages_cut=0 visited=none emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_v"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "DC-REST-2667": {
+   "venue_id": "DC-REST-2667",
+   "name": "",
+   "website": "",
+   "order": 22,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "14",
+      "visited": "home,contact,events",
+      "form": "yes",
+      "chrome_pages": "14",
+      "curl_pages": "0",
+      "static_pages": "14",
+      "pdfs": "1",
+      "emails": "1",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "about,team"
+     },
+     "raw": "[STEP] DC-REST-2667 web ok via=chrome pages=14 visited=home,contact,events form=yes chrome_pages=14 curl_pages=0 static_pages=14 pdfs=1 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] DC-REST-2667 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_relevant_people",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "0",
+      "org": "KYOJIN",
+      "gate": "name+domain",
+      "people": "1",
+      "relevant": "0",
+      "skipped_titles": "0",
+      "over_cap": "0"
+     },
+     "raw": "[STEP] DC-REST-2667 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=KYOJIN gate=name+domain people=1 relevant=0 skipped_titles=0 over_cap=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "2",
+      "results": "8",
+      "rejected": "8",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] DC-REST-2667 linkedin empty pages=2 results=8 rejected=8 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "2",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] DC-REST-2667 google empty results=2 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] DC-REST-2667 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "14",
+      "pages": "17",
+      "pages_cut": "0",
+      "visited": "home,contact,events",
+      "emails": "1",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "3",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "5",
+      "li_relevant": "0",
+      "enrich": "skipped:no_pending"
+     },
+     "raw": "[STEP] DC-REST-2667 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=14 pages=17 pages_cut=0 visited=home,contact,events emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=3 "
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "VA-REST-1473": {
+   "venue_id": "VA-REST-1473",
+   "name": "",
+   "website": "",
+   "order": 23,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "4",
+      "visited": "home",
+      "form": "no",
+      "chrome_pages": "4",
+      "curl_pages": "0",
+      "static_pages": "5",
+      "pdfs": "0",
+      "emails": "2",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "2",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "contact,about,events,team"
+     },
+     "raw": "[STEP] VA-REST-1473 web ok via=chrome pages=4 visited=home form=no chrome_pages=4 curl_pages=0 static_pages=5 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,about,events,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-1473 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "The_Golf_Club_at_Lansdowne",
+      "gate": "name+domain",
+      "people": "27",
+      "relevant": "2",
+      "skipped_titles": "14",
+      "over_cap": "0",
+      "enriched": "2",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "2"
+     },
+     "raw": "[STEP] VA-REST-1473 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=2 org=The_Golf_Club_at_Lansdowne gate=name+domain people=27 relevant=2 skipped_titles=14 over_cap=0 enriched=2 saved=0 pending=0 deferred=0 credits=2"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "2",
+      "results": "5",
+      "rejected": "5",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] VA-REST-1473 linkedin empty pages=2 results=5 rejected=5 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "5",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] VA-REST-1473 google empty results=5 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-1473 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "5",
+      "pages": "5",
+      "pages_cut": "0",
+      "visited": "home",
+      "emails": "2",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "4",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "none",
+      "socials": "0",
+      "apollo": "ok",
+      "apollo_found": "25",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "2",
+      "li_relevant": "0",
+      "enrich": "skipped:no_pending"
+     },
+     "raw": "[STEP] VA-REST-1473 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=5 pages=5 pages_cut=0 visited=home emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=4 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=ok apollo_found=25 apollo_via=domain l"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "DC-REST-2571": {
+   "venue_id": "DC-REST-2571",
+   "name": "",
+   "website": "",
+   "order": 24,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "4",
+      "visited": "home",
+      "form": "yes",
+      "chrome_pages": "4",
+      "curl_pages": "0",
+      "static_pages": "0",
+      "pdfs": "4",
+      "emails": "9",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "9",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "contact,about,events,team"
+     },
+     "raw": "[STEP] DC-REST-2571 web ok via=chrome pages=4 visited=home form=yes chrome_pages=4 curl_pages=0 static_pages=0 pdfs=4 emails=9 saved=0 role=0 unverified=0 deferred=0 rejected=9 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,about,events,team"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] DC-REST-2571 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "1",
+      "org": "Osteria_Mozza_DC",
+      "gate": "name+domain",
+      "people": "11",
+      "relevant": "4",
+      "skipped_titles": "2",
+      "over_cap": "0",
+      "enriched": "4",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "4"
+     },
+     "raw": "[STEP] DC-REST-2571 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=1 org=Osteria_Mozza_DC gate=name+domain people=11 relevant=4 skipped_titles=2 over_cap=0 enriched=4 saved=0 pending=0 deferred=0 credits=4"
+    },
+    "linkedin": {
+     "status": "ok",
+     "kv": {
+      "pages": "3",
+      "results": "22",
+      "rejected": "20",
+      "employees": "2",
+      "relevant": "2",
+      "saved": "0",
+      "pending": "2",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] DC-REST-2571 linkedin ok pages=3 results=22 rejected=20 employees=2 relevant=2 saved=0 pending=2 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "5",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] DC-REST-2571 google empty results=5 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] DC-REST-2571 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "failed",
+     "kv": {
+      "web": "ok",
+      "via": "crawl",
+      "crawl": "failed:no_pages",
+      "crawl_pages": "0",
+      "pages": "1",
+      "pages_cut": "0",
+      "visited": "home",
+      "emails": "4",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "4",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "none",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "15",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "6",
+      "li_relevant": "0",
+      "enrich": "empty",
+      "reason": "crawl_failed_no_pages"
+     },
+     "raw": "[STEP] DC-REST-2571 postcheck failed web=ok via=crawl crawl=failed:no_pages crawl_pages=0 pages=1 pages_cut=0 visited=home emails=4 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=4 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=15 apollo_via="
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "DC-REST-2740": {
+   "venue_id": "DC-REST-2740",
+   "name": "",
+   "website": "",
+   "order": 25,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "55",
+      "saved": "2",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "51",
+      "candidates": "2",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] DC-REST-2740 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=55 saved=2 role=0 unverified=0 deferred=0 rejected=51 candidates=2 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] DC-REST-2740 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_people",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "1",
+      "org": "LONGVIEW_GALLERY",
+      "gate": "name+domain",
+      "people": "0"
+     },
+     "raw": "[STEP] DC-REST-2740 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=LONGVIEW_GALLERY gate=name+domain people=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "19",
+      "rejected": "19",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] DC-REST-2740 linkedin empty pages=3 results=19 rejected=19 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] DC-REST-2740 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "2",
+      "new": "2",
+      "deferred": "0"
+     },
+     "raw": "[STEP] DC-REST-2740 final ok status=pipelined valid_contacts=2 new=2 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "2"
+     },
+     "raw": "[STEP] DC-REST-2740 postcheck skipped reason=has_contacts valid=2"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-HOTE-350": {
+   "venue_id": "MD-HOTE-350",
+   "name": "",
+   "website": "",
+   "order": 26,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "6",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "3",
+      "candidates": "3",
+      "known": "0",
+      "errors": "0",
+      "people": "0",
+      "pending": "0",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-HOTE-350 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=6 saved=0 role=0 unverified=0 deferred=0 rejected=3 candidates=3 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-HOTE-350 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "ok",
+     "kv": {
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "2",
+      "org": "The_Inn_at_Herrington_Harbour",
+      "gate": "name+domain",
+      "people": "1",
+      "relevant": "1",
+      "skipped_titles": "0",
+      "over_cap": "0",
+      "enriched": "1",
+      "saved": "0",
+      "pending": "1",
+      "deferred": "0",
+      "credits": "1"
+     },
+     "raw": "[STEP] MD-HOTE-350 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=2 org=The_Inn_at_Herrington_Harbour gate=name+domain people=1 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=1 deferred=0 credits=1"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "15",
+      "rejected": "15",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-HOTE-350 linkedin empty pages=3 results=15 rejected=15 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "3",
+      "emails": "0",
+      "site": "other_domain",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-HOTE-350 google empty results=3 emails=0 site=other_domain ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-HOTE-350 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "empty",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "40",
+      "pages": "41",
+      "pages_cut": "19",
+      "visited": "home,contact,about,events",
+      "emails": "7",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "1",
+      "deferred": "0",
+      "rejected": "4",
+      "role_candidates": "2",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "2",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "3",
+      "li_relevant": "0",
+      "enrich": "skipped:nothing_to_try"
+     },
+     "raw": "[STEP] MD-HOTE-350 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=41 pages_cut=19 visited=home,contact,about,events emails=7 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=4 role_candidates=2 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_fo"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-WINE-686": {
+   "venue_id": "MD-WINE-686",
+   "name": "",
+   "website": "",
+   "order": 27,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "18",
+      "visited": "home,contact,events,team",
+      "form": "yes",
+      "chrome_pages": "18",
+      "curl_pages": "0",
+      "static_pages": "40",
+      "pdfs": "0",
+      "emails": "3",
+      "saved": "2",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "1",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "1",
+      "pending": "1",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "about"
+     },
+     "raw": "[STEP] MD-WINE-686 web ok via=chrome pages=18 visited=home,contact,events,team form=yes chrome_pages=18 curl_pages=0 static_pages=40 pdfs=0 emails=3 saved=2 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=1 pending=1 fb=1 ig=1 blocked_pages=0 missing=about"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-WINE-686 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_relevant_people",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "5",
+      "org": "Level_a_Small_Plates_Lounge",
+      "gate": "name+domain",
+      "people": "1",
+      "relevant": "0",
+      "skipped_titles": "0",
+      "over_cap": "0"
+     },
+     "raw": "[STEP] MD-WINE-686 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=5 org=Level_a_Small_Plates_Lounge gate=name+domain people=1 relevant=0 skipped_titles=0 over_cap=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "14",
+      "rejected": "14",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-WINE-686 linkedin empty pages=3 results=14 rejected=14 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "results": "0",
+      "emails": "0"
+     },
+     "raw": "[STEP] MD-WINE-686 google skipped reason=has_contacts results=0 emails=0"
+    },
+    "final": {
+     "status": "ok",
+     "kv": {
+      "status": "pipelined",
+      "valid_contacts": "2",
+      "new": "2",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-WINE-686 final ok status=pipelined valid_contacts=2 new=2 deferred=0"
+    },
+    "postcheck": {
+     "status": "skipped",
+     "kv": {
+      "reason": "has_contacts",
+      "valid": "2"
+     },
+     "raw": "[STEP] MD-WINE-686 postcheck skipped reason=has_contacts valid=2"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "MD-YACH-740": {
+   "venue_id": "MD-YACH-740",
+   "name": "",
+   "website": "",
+   "order": 28,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "31",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "31",
+      "curl_pages": "0",
+      "static_pages": "0",
+      "pdfs": "2",
+      "emails": "1",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "0",
+      "candidates": "1",
+      "known": "0",
+      "errors": "0",
+      "people": "5",
+      "pending": "5",
+      "fb": "0",
+      "ig": "0",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] MD-YACH-740 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=0 pdfs=2 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=5 pending=5 fb=0 ig=0 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "ok:found_of_3",
+      "ig_search": "ok:found_of_1",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-YACH-740 social ok fb=found ig=found fb_search=ok:found_of_3 ig_search=ok:found_of_1 fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "org_mismatch",
+      "rejected_orgs": "2",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "1"
+     },
+     "raw": "[STEP] MD-YACH-740 apollo empty reason=org_mismatch rejected_orgs=2 domain_search=ok domain_results=1 name_search=ok name_results=1"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "9",
+      "rejected": "9",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] MD-YACH-740 linkedin empty pages=3 results=9 rejected=9 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "5",
+      "emails": "0",
+      "site": "other_domain",
+      "ig": "known"
+     },
+     "raw": "[STEP] MD-YACH-740 google empty results=5 emails=0 site=other_domain ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] MD-YACH-740 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "failed",
+     "kv": {
+      "web": "ok",
+      "via": "crawl",
+      "crawl": "failed:no_pages",
+      "crawl_pages": "0",
+      "pages": "1",
+      "pages_cut": "0",
+      "visited": "home",
+      "emails": "1",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "0",
+      "people": "0",
+      "deferred": "0",
+      "rejected": "3",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "none",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "10",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "5",
+      "li_relevant": "2",
+      "enrich": "empty",
+      "reason": "crawl_failed_no_pages"
+     },
+     "raw": "[STEP] MD-YACH-740 postcheck failed web=ok via=crawl crawl=failed:no_pages crawl_pages=0 pages=1 pages_cut=0 visited=home emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=3 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=10 apollo_via=d"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  },
+  "VA-REST-3217": {
+   "venue_id": "VA-REST-3217",
+   "name": "",
+   "website": "",
+   "order": 29,
+   "attempts": 0,
+   "started": false,
+   "done": false,
+   "elapsed_min": null,
+   "skip": "",
+   "log_status": "",
+   "steps": {
+    "web": {
+     "status": "ok",
+     "kv": {
+      "via": "chrome",
+      "pages": "19",
+      "visited": "home,contact,about,events,team",
+      "form": "yes",
+      "chrome_pages": "19",
+      "curl_pages": "0",
+      "static_pages": "24",
+      "pdfs": "6",
+      "emails": "8",
+      "saved": "0",
+      "role": "0",
+      "unverified": "0",
+      "deferred": "0",
+      "rejected": "8",
+      "candidates": "0",
+      "known": "0",
+      "errors": "0",
+      "people": "4",
+      "pending": "1",
+      "fb": "1",
+      "ig": "1",
+      "blocked_pages": "0",
+      "missing": "none"
+     },
+     "raw": "[STEP] VA-REST-3217 web ok via=chrome pages=19 visited=home,contact,about,events,team form=yes chrome_pages=19 curl_pages=0 static_pages=24 pdfs=6 emails=8 saved=0 role=0 unverified=0 deferred=0 rejected=8 candidates=0 known=0 errors=0 people=4 pending=1 fb=1 ig=1 blocked_pages=0 missing=none"
+    },
+    "social": {
+     "status": "ok",
+     "kv": {
+      "fb": "found",
+      "ig": "found",
+      "fb_search": "website",
+      "ig_search": "website",
+      "fb_pages": "3",
+      "ig_pages": "1",
+      "snippets": "1",
+      "emails": "1",
+      "saved": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-3217 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0"
+    },
+    "apollo": {
+     "status": "empty",
+     "kv": {
+      "reason": "no_relevant_people",
+      "domain_search": "ok",
+      "domain_results": "1",
+      "name_search": "ok",
+      "name_results": "0",
+      "org": "CIRCA_at_Clarendon",
+      "gate": "name+domain",
+      "people": "1",
+      "relevant": "0",
+      "skipped_titles": "1",
+      "over_cap": "0"
+     },
+     "raw": "[STEP] VA-REST-3217 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=CIRCA_at_Clarendon gate=name+domain people=1 relevant=0 skipped_titles=1 over_cap=0"
+    },
+    "linkedin": {
+     "status": "empty",
+     "kv": {
+      "pages": "3",
+      "results": "9",
+      "rejected": "9",
+      "employees": "0",
+      "relevant": "0",
+      "saved": "0",
+      "pending": "0",
+      "deferred": "0",
+      "credits": "0"
+     },
+     "raw": "[STEP] VA-REST-3217 linkedin empty pages=3 results=9 rejected=9 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0"
+    },
+    "google": {
+     "status": "empty",
+     "kv": {
+      "results": "5",
+      "emails": "0",
+      "site": "same",
+      "ig": "known"
+     },
+     "raw": "[STEP] VA-REST-3217 google empty results=5 emails=0 site=same ig=known"
+    },
+    "final": {
+     "status": "empty",
+     "kv": {
+      "status": "needs_review",
+      "valid_contacts": "0",
+      "new": "0",
+      "deferred": "0"
+     },
+     "raw": "[STEP] VA-REST-3217 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+    },
+    "postcheck": {
+     "status": "ok",
+     "kv": {
+      "web": "ok",
+      "via": "pipeline_crawl",
+      "crawl": "ok",
+      "crawl_pages": "24",
+      "pages": "10",
+      "pages_cut": "0",
+      "visited": "home,contact,about,team",
+      "emails": "8",
+      "saved": "0",
+      "enriched": "0",
+      "pending": "3",
+      "people": "3",
+      "deferred": "0",
+      "rejected": "8",
+      "role_candidates": "0",
+      "unsaved_valid": "0",
+      "save_errors": "0",
+      "form": "kept",
+      "socials": "0",
+      "apollo": "empty",
+      "apollo_found": "1",
+      "apollo_via": "domain",
+      "linkedin": "empty",
+      "li_results": "4",
+      "li_relevant": "1",
+      "enrich": "empty"
+     },
+     "raw": "[STEP] VA-REST-3217 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=24 pages=10 pages_cut=0 visited=home,contact,about,team emails=8 saved=0 enriched=0 pending=3 people=3 deferred=0 rejected=8 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=1"
+    }
+   },
+   "legacy": {},
+   "saved": [],
+   "titles": {},
+   "pending": [],
+   "zb_charged": 0,
+   "zb_deferred": [],
+   "errors": [],
+   "notes": [],
+   "pages": [],
+   "home": {},
+   "form": "",
+   "crawl_summary": "",
+   "batch_started": "",
+   "batch_ended": "",
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "flags": [],
+   "apollo_candidates": [],
+   "watchdog": "",
+   "apollo_credits": 0
+  }
+ },
+ "batches": [
+  {
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "started": "",
+   "ended": "",
+   "venue_ids": [],
+   "mode": "",
+   "complete": false,
+   "postcheck": false,
+   "items": [],
+   "stopped": ""
+  },
+  {
+   "log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260926-0144.log",
+   "started": "2026-09-26 01:44:24",
+   "ended": "2026-09-26 04:20:00",
+   "venue_ids": [
+    "VA-REST-3029",
+    "MD-REST-1526",
+    "MD-HOTE-761",
+    "MD-WINE-762",
+    "MD-MUSE-763",
+    "MD-REST-937",
+    "MD-REST-2676",
+    "VA-REST-3028",
+    "lines",
+    "MD-REST-772",
+    "MD-WINE-1330",
+    "MD-REST-494",
+    "MD-REST-2690",
+    "VA-REST-3063",
+    "MD-HOTE-467",
+    "DC-WINE-1635",
+    "VA-REST-2260",
+    "MD-REST-776",
+    "MD-EVEN-474",
+    "MD-HOTE-2963",
+    "MD-WINE-1355",
+    "DC-REST-2667",
+    "VA-REST-1473",
+    "DC-REST-2571",
+    "DC-REST-2740",
+    "MD-HOTE-350",
+    "MD-WINE-686",
+    "MD-YACH-740",
+    "VA-REST-3217"
+   ],
+   "mode": "BATCH MODE: 5 venues",
+   "complete": true,
+   "postcheck": true,
+   "items": [],
+   "stopped": ""
+  }
+ ],
+ "saved_global": [
+  "acondon@amaritime.org",
+  "aherr@amaritime.org",
+  "bethesda@piscoynazca.com",
+  "bhaynes@amaritime.org",
+  "bhiltabidle@amaritime.org",
+  "bschneider812@icloud.com",
+  "catering@cafetatti.com",
+  "community@amaritime.org",
+  "crogers@amaritime.org",
+  "cswaim@amaritime.org",
+  "dc@piscoynazca.com",
+  "dhundley@amaritime.org",
+  "dmaull@amaritime.org",
+  "doral@piscoynazca.com",
+  "dvega@piscoynazca.com",
+  "eashton@piscoynazca.com",
+  "ecaballero@piscoynazca.com",
+  "events@cafetatti.com",
+  "gmiddleton@amaritime.org",
+  "hannah@dodonvineyards.com",
+  "hritterpusch@amaritime.org",
+  "janetc@amaritime.org",
+  "jen@dodonvineyards.com",
+  "jlyon@amaritime.org",
+  "jmartin@piscoynazca.com",
+  "jmertz@amaritime.org",
+  "katie@dodonvineyards.com",
+  "kendall@piscoynazca.com",
+  "ksaunder@amaritime.org",
+  "kswartout@amaritime.org",
+  "leadeducator@amaritime.org",
+  "lspokely@amaritime.org",
+  "mduffy@amaritime.org",
+  "mostrye@amaritime.org",
+  "pnbethesda@piscoynazca.com",
+  "pndoral@piscoynazca.com",
+  "pndupont@piscoynazca.com",
+  "pnkendall@piscoynazca.com",
+  "pnreston@piscoynazca.com",
+  "privatedining@cafetatti.com",
+  "pskrickus@amaritime.org",
+  "regina@dodonvineyards.com",
+  "reston@piscoynazca.com",
+  "rmaquilon@piscoynazca.com",
+  "skabick@piscoynazca.com",
+  "sthaxton@amaritime.org",
+  "tom@dodonvineyards.com",
+  "wilmalee@amaritime.org",
+  "zhoisington@amaritime.org"
+ ],
+ "idfix": {},
+ "file": "2026-09-26_01-44.html",
+ "updated_at": "2026-09-26T04:57:48-04:00"
+}

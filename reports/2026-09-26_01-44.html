@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; September 26, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Georgia', serif; background: #0c1a22; color: #e0e0e0;
+    padding: 40px; max-width: 980px; margin: 0 auto; line-height: 1.6; }
+  h1 { color: #6ecfcf; font-size: 1.8rem; margin-bottom: 5px;
+    border-bottom: 2px solid #6ecfcf; padding-bottom: 10px; }
+  .date { color: #999; margin-bottom: 20px; font-size: 0.95rem; }
+  h2 { color: #e8944c; font-size: 1.3rem; margin: 30px 0 15px;
+    border-left: 4px solid #e8944c; padding-left: 12px; }
+  h3 { color: #6ecfcf; font-size: 1.05rem; margin: 18px 0 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.85rem; }
+  th { background: #1a2e3a; color: #6ecfcf; padding: 8px 10px; text-align: left; }
+  td { padding: 6px 10px; border-bottom: 1px solid #1a2e3a; vertical-align: top; }
+  .tbl { overflow-x: auto; }
+  a { color: #6ecfcf; text-decoration: none; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 15px 0; }
+  .stat-box { background: #1a2e3a; border-radius: 8px; padding: 12px; text-align: center; }
+  .stat-box .num { font-size: 1.7rem; font-weight: bold; color: #6ecfcf; }
+  .stat-box .label { font-size: 0.8rem; color: #999; margin-top: 2px; }
+  .verdict { border-radius: 8px; padding: 16px 20px; margin: 10px 0 20px; font-size: 1.05rem; }
+  .verdict strong { font-size: 1.3rem; display: block; margin-bottom: 4px; }
+  .verdict.clean { background: #1a2a1a; border: 2px solid #4caf50; }
+  .verdict.clean strong { color: #4caf50; }
+  .verdict.dirty { background: #2a1a1a; border: 2px solid #e85050; }
+  .verdict.dirty strong { color: #e85050; }
+  .verdict.running, .verdict.pending { background: #2a2414; border: 2px solid #e8944c; }
+  .verdict.pending strong { color: #e8944c; }
+  .verdict.running strong { color: #e8944c; }
+  .review-box { background: #1a1a2a; border: 2px solid #e8944c; border-radius: 8px;
+    padding: 20px; margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none; padding: 0; }
+  .review-item { display: flex; justify-content: space-between; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px solid #1a2e3a; gap: 12px; }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-size: 1rem; }
+  .review-item .venue-type { color: #888; font-size: 0.8rem; }
+  .review-item ul { list-style: none; margin-top: 4px; font-size: 0.85rem; }
+  .review-item .contact-count { font-size: 1.4rem; font-weight: bold; color: #e85050;
+    min-width: 40px; text-align: center; }
+  .contact-count.good { color: #4caf50; }
+  .sev-fail { color: #e85050; }
+  .sev-warn { color: #ff9800; }
+  .sev-check { color: #6ecfcf; }
+  .ok { color: #4caf50; }
+  .empty { color: #999; }
+  .failed, .blocked, .missing { color: #e85050; font-weight: bold; }
+  .skipped { color: #d8b04c; }
+  .ran { color: #888; }
+  .cell small { display: block; color: #888; font-size: 0.72rem; line-height: 1.3; }
+  tr.gap td:first-child { border-left: 3px solid #e85050; }
+  td.emails-zero { color: #e85050; font-weight: bold; }
+  td.emails-good { color: #4caf50; font-weight: bold; }
+  details { margin: 24px 0; }
+  details summary { color: #e8944c; font-size: 1.15rem; cursor: pointer; padding: 8px 0;
+    font-weight: bold; border-left: 4px solid #e8944c; padding-left: 12px; }
+  details details { margin: 8px 0 8px 12px; }
+  details details summary { font-size: 0.95rem; color: #6ecfcf; border-left-color: #1a2e3a; }
+  .pill { display: inline-block; background: #1a2e3a; color: #6ecfcf; padding: 1px 8px;
+    border-radius: 12px; font-size: 0.75rem; margin-left: 6px; }
+  .muted { color: #888; font-size: 0.85rem; }
+  .placeholder { color: #e8944c; font-style: italic; }
+  pre { background: #08131a; border: 1px solid #1a2e3a; padding: 12px; overflow-x: auto;
+    font-size: 0.75rem; line-height: 1.35; white-space: pre; }
+  @media (max-width: 640px) {
+    body { padding: 16px; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    table { font-size: 0.78rem; }
+    td, th { padding: 5px 6px; }
+  }
+</style>
+</head>
+<body>
+<!-- report-status: running-stub -->
+<h1>Outreach Run Report</h1>
+<div class="date">September 26, 2026 &mdash; run <strong>run-20260926-0144</strong></div>
+<div class="verdict running"><strong>RUN IN PROGRESS</strong>Started 2026-09-26 01:44. 8 venues registered; they stay hidden in the app until the finished report is reviewed.</div>
+<h2>Venues in this run</h2>
+<ul style="margin-left:20px"><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3029">Kazan Restaurant</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-1526">Old Line Golf Club</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-HOTE-761">Gibson&#x27;s Inn at Gate One</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-WINE-762">The Vineyards at Dodon</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-MUSE-763">Annapolis Maritime Museum &amp; Park</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-937">Pisco y Nazca Bethesda</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-2676">Rolling Road Golf Club</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-3028">Cafe Tatti</a></li></ul>
+</body>
+</html>

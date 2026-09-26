@@ -25,6 +25,14 @@ run proves what it searched, lists what it missed, and ends with a verdict.
   - An email is saved only if it's on the venue's own domain, or a free-mail/ISP
     address linked to the venue (mailto on its site, or venue words in it).
     Off-domain = rejected and listed in the report, never saved.
+  - Exception (Alex, Sep 26 2026): the venue's own mail domain counts as its
+    domain even when it differs from the website's — a sibling TLD
+    (rollingroadgc.com for .org), the club's own mail domain (@spcc1925.com), or
+    the management company's domain when the venue's OWN site uses it for its
+    contacts (The Lodge → titanhospitality.com, Osteria Mozza → STARR, CIRCA →
+    eatmhg.com). Save those people (the pipeline passes allow_off_domain). A
+    parent group the venue's site doesn't use (Popal Group for Maison) stays
+    listed only.
   - Role inboxes (info@, events@, ...) are saved only with a real person's name
     attached (e.g. "Liz McQuay, Events Manager → events@"), as `verified=role`,
     and never cost a ZeroBounce credit.
@@ -91,6 +99,10 @@ The pipeline proves what it searched; the miss audit checks what it missed.
   different way: WebFetch the site (home, contact, about, events/private events,
   team/staff, footer), WebSearch "<venue> email", Apollo MCP (domain AND name),
   and the venue's Facebook/Instagram.
+- Don't flag or deprioritize a venue for having no events program or no live
+  music (Alex, Sep 26 2026: "Bishop's House has no events. that shouldnt stop
+  you"). Pitch it anyway; vibe flags are for the wrong crowd (sports bar, dive
+  bar, theater, deli), not for a missing events page.
 - Anything real the pipeline didn't have goes in
   `reports/runs/$RUN_ID.misses.jsonl`, one line per item:
   `{"venue_id":..., "kind":"email|contact|social|contact_form", "value":...,

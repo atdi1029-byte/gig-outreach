@@ -55,7 +55,9 @@ fi
     SCRIPT_DIR="$SD"; SCRIPT_DIR_EARLY="$SD"
     LOG_FILE="$OUT/pipeline.log"; CANDIDATE_LOG="$OUT/candidates.jsonl"; COVERAGE_DIR="$OUT/coverage"
     ERR_LOG="$OUT/python-errors.log"; APPS_SCRIPT_URL="https://apps-script.invalid/exec"
-    ZEROBOUNCE_KEY=""; APOLLO_API_KEY=""
+    # Exported and disabled, so no subprocess (guard, python block) can reach ZeroBounce or
+    # Apollo even if a stub is bypassed. The guard refuses with ZB_ENABLED=false.
+    export ZEROBOUNCE_KEY="benchmark-no-key" APOLLO_API_KEY="benchmark-no-key" ZB_ENABLED=false ZB_FAIL_CLOSED=true
     log() { printf '%s\n' "$*" >> "$OUT/step1.log"; }
     sleep() { :; }
     rand_delay() { :; }

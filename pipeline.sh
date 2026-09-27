@@ -6734,68 +6734,103 @@ def evaluate(run_id, vids, venues, sheet, sheet_err, cands, misses, ledger_reg, 
 
 # ------------------------------------------------------------------ rendering
 CSS = '''
+  :root { --paper: #F3ECDA; --snow: #FAF6EC; --ink: #232633; --ink2: #4A4843; --muted: #8C877B;
+    --rule: rgba(35,38,51,0.22); --rule2: rgba(35,38,51,0.45); --bero: #24408E; --pine: #3E6B5A;
+    --vermilion: #C4432A;
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", "Didot", Georgia, serif;
+    --sans: -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, sans-serif;
+    --mono: "SF Mono", Menlo, Consolas, monospace; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Georgia', serif; background: #0c1a22; color: #e0e0e0;
-    padding: 40px; max-width: 980px; margin: 0 auto; line-height: 1.6; }
-  h1 { color: #6ecfcf; font-size: 1.8rem; margin-bottom: 5px;
-    border-bottom: 2px solid #6ecfcf; padding-bottom: 10px; }
-  .date { color: #999; margin-bottom: 20px; font-size: 0.95rem; }
-  h2 { color: #e8944c; font-size: 1.3rem; margin: 30px 0 15px;
-    border-left: 4px solid #e8944c; padding-left: 12px; }
-  h3 { color: #6ecfcf; font-size: 1.05rem; margin: 18px 0 8px; }
-  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.85rem; }
-  th { background: #1a2e3a; color: #6ecfcf; padding: 8px 10px; text-align: left; }
-  td { padding: 6px 10px; border-bottom: 1px solid #1a2e3a; vertical-align: top; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink);
+    -webkit-font-smoothing: antialiased; padding: 36px 32px 60px; max-width: 980px;
+    margin: 0 auto; line-height: 1.55; font-size: 0.95rem; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: 1.9rem; letter-spacing: 0.01em;
+    margin-bottom: 4px; }
+  .date { color: var(--muted); font-size: 0.82rem; margin-bottom: 22px; letter-spacing: 0.01em; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 34px 0 12px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--rule2); }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; margin: 18px 0 6px; }
+  h4 { font-family: var(--serif); font-weight: 600; font-size: 0.95rem; margin: 12px 0 4px; }
+  p { margin: 6px 0; }
+  ul { margin: 6px 0 6px 20px; }
+  a { color: var(--bero); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: var(--mono); font-size: 0.85em; background: rgba(35,38,51,0.07);
+    padding: 0 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.86rem; }
+  th { font-weight: 600; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--rule2); }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
   .tbl { overflow-x: auto; }
-  a { color: #6ecfcf; text-decoration: none; }
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 15px 0; }
-  .stat-box { background: #1a2e3a; border-radius: 8px; padding: 12px; text-align: center; }
-  .stat-box .num { font-size: 1.7rem; font-weight: bold; color: #6ecfcf; }
-  .stat-box .label { font-size: 0.8rem; color: #999; margin-top: 2px; }
-  .verdict { border-radius: 8px; padding: 16px 20px; margin: 10px 0 20px; font-size: 1.05rem; }
-  .verdict strong { font-size: 1.3rem; display: block; margin-bottom: 4px; }
-  .verdict.clean { background: #1a2a1a; border: 2px solid #4caf50; }
-  .verdict.clean strong { color: #4caf50; }
-  .verdict.dirty { background: #2a1a1a; border: 2px solid #e85050; }
-  .verdict.dirty strong { color: #e85050; }
-  .verdict.running, .verdict.pending { background: #2a2414; border: 2px solid #e8944c; }
-  .verdict.pending strong { color: #e8944c; }
-  .verdict.running strong { color: #e8944c; }
-  .review-box { background: #1a1a2a; border: 2px solid #e8944c; border-radius: 8px;
-    padding: 20px; margin: 20px 0; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 14px 0 6px; }
+  .stat-box { background: var(--snow); border: 1px solid var(--rule2); border-radius: 8px;
+    padding: 14px 12px 12px; text-align: center;
+    box-shadow: inset 0 0 0 1px var(--snow), inset 0 0 0 2px rgba(35,38,51,0.18),
+      0 8px 22px rgba(40,32,20,0.08); }
+  .stat-box .num { font-family: var(--serif); font-weight: 600; font-size: 2.3rem; line-height: 1; }
+  .stat-box .label { font-size: 0.72rem; color: var(--muted); margin-top: 6px; letter-spacing: 0.05em;
+    text-transform: uppercase; }
+  .credits { color: var(--muted); font-size: 0.8rem; margin: 8px 0 18px; }
+  .verdict { border-radius: 8px; padding: 12px 16px; margin: 8px 0 18px; font-size: 0.9rem;
+    background: var(--snow); border: 1px solid var(--rule2); }
+  .verdict strong { font-family: var(--serif); font-size: 1.15rem; display: block; margin-bottom: 2px; }
+  .verdict .muted strong { font-family: var(--sans); font-size: inherit; display: inline; color: var(--ink2); }
+  .verdict.clean strong { color: var(--pine); }
+  .verdict.dirty strong { color: var(--vermilion); }
+  .verdict.running strong, .verdict.pending strong { color: var(--bero); }
+  .review-box { background: var(--snow); border: 1px solid var(--rule2); border-left: 4px solid var(--vermilion);
+    border-radius: 8px; padding: 16px 20px; margin: 20px 0; }
   .review-box h2 { margin-top: 0; border: none; padding: 0; }
-  .review-item { display: flex; justify-content: space-between; align-items: flex-start;
-    padding: 10px 0; border-bottom: 1px solid #1a2e3a; gap: 12px; }
+  .review-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid var(--rule); }
   .review-item:last-child { border-bottom: none; }
-  .review-item .venue-name { font-size: 1rem; }
-  .review-item .venue-type { color: #888; font-size: 0.8rem; }
-  .review-item ul { list-style: none; margin-top: 4px; font-size: 0.85rem; }
-  .review-item .contact-count { font-size: 1.4rem; font-weight: bold; color: #e85050;
-    min-width: 40px; text-align: center; }
-  .contact-count.good { color: #4caf50; }
-  .sev-fail { color: #e85050; }
-  .sev-warn { color: #ff9800; }
-  .sev-check { color: #6ecfcf; }
-  .ok { color: #4caf50; }
-  .empty { color: #999; }
-  .failed, .blocked, .missing { color: #e85050; font-weight: bold; }
-  .skipped { color: #d8b04c; }
-  .ran { color: #888; }
-  .cell small { display: block; color: #888; font-size: 0.72rem; line-height: 1.3; }
-  tr.gap td:first-child { border-left: 3px solid #e85050; }
-  td.emails-zero { color: #e85050; font-weight: bold; }
-  td.emails-good { color: #4caf50; font-weight: bold; }
-  details { margin: 24px 0; }
-  details summary { color: #e8944c; font-size: 1.15rem; cursor: pointer; padding: 8px 0;
-    font-weight: bold; border-left: 4px solid #e8944c; padding-left: 12px; }
+  .review-item .venue-name { font-family: var(--serif); font-size: 1rem; }
+  .review-item .venue-type { color: var(--ink2); font-size: 0.82rem; }
+  .review-item ul { list-style: none; margin: 3px 0 0; font-size: 0.82rem; }
+  .review-item .contact-count { font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+    color: var(--vermilion); min-width: 40px; text-align: center; }
+  .contact-count.good { color: var(--pine); }
+  .win { background: var(--snow); border-left: 4px solid var(--pine); padding: 9px 14px; margin: 8px 0;
+    border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+  .win strong { color: var(--pine); }
+  .valid { color: var(--pine); }
+  .closed { color: var(--vermilion); }
+  .junk { color: var(--ink2); }
+  .skip { color: var(--muted); }
+  .sev-fail { color: var(--vermilion); }
+  .sev-warn { color: var(--ink2); }
+  .sev-check { color: var(--bero); }
+  .ok { color: var(--pine); }
+  .empty { color: var(--muted); }
+  .failed, .blocked, .missing { color: var(--vermilion); font-weight: 600; }
+  .skipped { color: var(--ink2); }
+  .ran { color: var(--muted); }
+  .cell small { display: block; color: var(--muted); font-size: 0.72rem; line-height: 1.3; }
+  tr.gap td:first-child { border-left: 3px solid var(--vermilion); }
+  td.emails-zero { color: var(--vermilion); font-weight: 600; font-size: 1.05rem; font-family: var(--serif); }
+  td.emails-good { color: var(--pine); font-weight: 600; font-size: 1.05rem; font-family: var(--serif); }
+  .diff { background: var(--snow); border: 1px solid var(--rule2); border-radius: 8px; padding: 8px 12px;
+    margin: 4px 0 14px; font-family: var(--mono); font-size: 0.78rem; line-height: 1.5; overflow-x: auto; }
+  .diff div { white-space: pre-wrap; padding: 1px 6px; border-radius: 3px; }
+  .diff .add { color: var(--pine); background: rgba(62,107,90,0.10); }
+  .diff .del { color: var(--vermilion); background: rgba(196,67,42,0.10); }
+  .diff .chg { color: var(--bero); background: rgba(36,64,142,0.08); }
+  .diff .note, .diff .note span { color: var(--muted); }
+  .diff span.note { color: var(--muted); font-family: var(--sans); font-size: 0.78rem; }
+  .legend { color: var(--muted); font-size: 0.8rem; font-family: var(--mono); margin: 0 0 8px; }
+  details { margin: 14px 0; }
+  details summary { font-family: var(--serif); color: var(--ink); font-size: 1.05rem; cursor: pointer;
+    padding: 6px 0; font-weight: 600; }
+  details summary:hover { color: var(--bero); }
   details details { margin: 8px 0 8px 12px; }
-  details details summary { font-size: 0.95rem; color: #6ecfcf; border-left-color: #1a2e3a; }
-  .pill { display: inline-block; background: #1a2e3a; color: #6ecfcf; padding: 1px 8px;
-    border-radius: 12px; font-size: 0.75rem; margin-left: 6px; }
-  .muted { color: #888; font-size: 0.85rem; }
-  .placeholder { color: #e8944c; font-style: italic; }
-  pre { background: #08131a; border: 1px solid #1a2e3a; padding: 12px; overflow-x: auto;
-    font-size: 0.75rem; line-height: 1.35; white-space: pre; }
+  details details summary { font-size: 0.9rem; font-family: var(--sans); font-weight: 500; color: var(--ink2); }
+  details h2 { border: none; font-size: 1.05rem; margin: 10px 0 6px; }
+  .pill { display: inline-block; background: rgba(35,38,51,0.08); color: var(--ink2); padding: 1px 8px;
+    border-radius: 12px; font-size: 0.72rem; margin-left: 6px; font-family: var(--sans); font-weight: 400; }
+  .muted { color: var(--muted); font-size: 0.85rem; }
+  .placeholder { color: var(--vermilion); font-style: italic; }
+  pre { background: var(--snow); border: 1px solid var(--rule2); border-radius: 6px; padding: 12px;
+    overflow-x: auto; font-size: 0.74rem; line-height: 1.35; white-space: pre; font-family: var(--mono); }
   @media (max-width: 640px) {
     body { padding: 16px; }
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
@@ -6851,68 +6886,363 @@ def fam_cell(fam, key):
     return f'<td class="{cls}" style="text-align:center">{sym}</td>'
 
 
+# ------------------------------------------------------------------ report body
+# Layout (Alex, Sep 27 2026): the short report from the older runs, finance-widget colours,
+# a diff-style "Changes This Run" section, and all the evidence tables collapsed at the end.
+DIFF_FIELDS = (('city', 'city'), ('state', 'state'), ('category', 'category'), ('website', 'website'),
+               ('facebook', 'facebook'), ('instagram', 'instagram'), ('contact_form', 'contact form'))
+DECIDER_RE = re.compile(r'owner|general manager|\bgm\b|event|catering|banquet|sales|director|chef|manager|'
+                        r'membership|beverage|f&b|food|proprietor|partner|president|innkeeper|commodore|'
+                        r'curator|coordinator|sommelier', re.I)
+EMAIL_RE = re.compile(r'[\w.+-]+@[\w-]+(?:\.[\w-]+)+')
+
+
+def load_batch_snapshot(run_id):
+    """Venue fields as they were when the batches were planned: the 'before' side of the diff."""
+    import glob
+    out = {}
+    for p in sorted(glob.glob(os.path.join(RUNS_DIR, safe_name(run_id) + '.batch*.json'))):
+        try:
+            data = json.load(open(p, encoding='utf-8'))
+        except Exception as exc:
+            warn(f'batch file {os.path.basename(p)} unreadable: {exc}')
+            continue
+        for b in data if isinstance(data, list) else []:
+            vid = str((b or {}).get('venue_id') or '').strip()
+            if vid:
+                out.setdefault(vid, b)
+                out.setdefault(vid.replace(' ', ''), b)
+    return out
+
+
+def _norm_val(field, v):
+    s = str(v or '').strip()
+    if field in ('website', 'facebook', 'instagram', 'contact_form'):
+        s = re.sub(r'^https?://(www\.)?', '', s.lower()).rstrip('/')
+    elif field == 'category':
+        s = s.lower()
+    return s
+
+
+def short_source(src):
+    s = str(src or '').split(':', 1)[0].replace('_', ' ').strip()
+    return s or 'sheet'
+
+
+def contact_line(c, titles):
+    em = c.get('email') or ''
+    ttl = c.get('title') or titles.get(em.lower(), '')
+    name = c.get('name') or '(no name)'
+    ver = str(c.get('verified') or '')
+    return (f'+ {name}' + (f' ({ttl})' if ttl else '') + (f' <{em}>' if em else '') + f'  [{ver}]'
+            + (f'  via {short_source(c.get("source"))}' if c.get('source') else ''))
+
+
+def venue_changes(r, before):
+    """What the run changed on the sheet for one venue: [(cls, text, note)], cls in chg|add|del|note."""
+    lines, counts = [], {}
+    rec = r['rec'] or {}
+    have_before = before is not None
+    after = {'city': r['city'], 'state': r['state'], 'category': r['category'], 'website': r['site'],
+             'facebook': r['fb'], 'instagram': r['ig'], 'contact_form': '' if r['form'] == '(visited)' else r['form']}
+    if have_before:
+        for f, label in DIFF_FIELDS:
+            old, new = _norm_val(f, before.get(f)), _norm_val(f, after.get(f))
+            if old == new or not new:
+                continue
+            counts[f] = counts.get(f, 0) + 1
+            if not old:
+                lines.append(('add', f'+ {label}: {after.get(f)}', ''))
+            else:
+                lines.append(('chg', f'~ {label}: {before.get(f)} → {after.get(f)}', ''))
+        old_st, new_st = str(before.get('status') or '').strip(), str(r['status'] or '').strip()
+        if new_st and old_st != new_st:
+            counts['status:' + new_st] = counts.get('status:' + new_st, 0) + 1
+            cls = 'add' if new_st in ('pipelined', 'contacted') else ('del' if new_st in ('closed', 'dismissed') else 'chg')
+            mark = {'add': '+', 'del': '-'}.get(cls, '~')
+            lines.append((cls, f'{mark} status: {old_st or "(blank)"} → {new_st}', ''))
+    titles = rec.get('titles') or {}
+    new_emails = set()
+    for c in sorted(r['contacts'], key=lambda c: (str(c.get('verified')) not in USABLE, str(c.get('name') or ''))):
+        if not c.get('_new') or not c.get('email'):
+            continue
+        new_emails.add(c['email'].lower())
+        lines.append(('add', contact_line(c, titles),
+                      'needs a ZeroBounce check' if str(c.get('verified')) == 'unverified' else ''))
+    counts['contacts'] = len(new_emails)
+    for mi in r['misses']:
+        kind, val, cause = str(mi.get('kind') or ''), str(mi.get('value') or ''), str(mi.get('cause_guess') or '')
+        saved = mi.get('saved') is True
+        if kind == 'wrong_saved':
+            counts['wrong'] = counts.get('wrong', 0) + 1
+            lines.append(('del', f'- {val}', cause))
+        elif kind == 'audited':
+            lines.append(('note', f'· {val}', cause))
+        elif saved:
+            if kind in ('social', 'contact_form') and have_before:
+                continue  # already shown as a field change
+            if kind in ('contact', 'email') and any(x.lower() in new_emails for x in EMAIL_RE.findall(val)):
+                continue  # already shown as a new contact from the sheet
+            lines.append(('add', f'+ {val}', ('miss audit: ' + cause) if cause else 'miss audit'))
+        else:
+            counts['listed'] = counts.get('listed', 0) + 1
+            lines.append(('note', f'· {val}', 'listed, not saved' + (f': {cause}' if cause else '')))
+    order = {'chg': 0, 'del': 1, 'add': 2, 'note': 3}
+    lines.sort(key=lambda x: order[x[0]])
+    return lines, counts
+
+
+def loc_fix_text(r, before):
+    if not before:
+        return ''
+    bits = []
+    if r['city'] and _norm_val('city', before.get('city')) != _norm_val('city', r['city']):
+        bits.append(f'City: {before.get("city") or "?"} → {r["city"]}')
+    if r['state'] and _norm_val('state', before.get('state')) != _norm_val('state', r['state']):
+        bits.append(f'State: {before.get("state") or "?"} → {r["state"]}')
+    return '. '.join(bits)
+
+
+def clean_title(t):
+    t = re.sub(r'\s*\([^)]*\)', '', str(t or '')).strip(' ,;-')
+    t = re.sub(r'\s*[;/]\s.*$', '', t).strip(' ,;-')
+    return t[:48].rstrip()
+
+
+def deciders(r, limit=3):
+    titles = (r['rec'] or {}).get('titles') or {}
+    out, seen = [], set()
+    for c in r['contacts']:
+        if not c.get('email') or str(c.get('verified')) not in USABLE:
+            continue
+        ttl = clean_title(c.get('title') or titles.get(str(c.get('email')).lower(), ''))
+        nm = str(c.get('name') or '').strip()
+        if ttl and nm and nm.lower() not in seen and DECIDER_RE.search(ttl):
+            seen.add(nm.lower())
+            out.append(f'{ttl} ({nm})')
+    return out[:limit]
+
+
+NOISY_ISSUE_RE = re.compile(r'^(0 usable contacts|postcheck failed:|\d+ item\(s\) the pipeline missed)', re.I)
+
+
+def brief_issue(r):
+    """The most useful one-line hint for a zero-contact venue (no key=value dumps)."""
+    ranked = []
+    for sev, t in r['issues']:
+        if NOISY_ISSUE_RE.search(t) or 'missed' in t.lower():
+            continue
+        rank = ('fail', 'warn', 'check').index(sev) if sev in ('fail', 'warn', 'check') else 3
+        ranked.append((rank, '=' in t, t))
+    if not ranked:
+        return ''
+    ranked.sort()
+    return re.split(r';\s', ranked[0][2])[0][:140]
+
+
+def status_text(r, before):
+    rec = r['rec'] or {}
+    fix = loc_fix_text(r, before)
+    if r['skipped']:
+        return 'closed', 'SKIPPED — ' + (rec.get('skip') or 'no reason logged') + '.'
+    st = str(r['status'] or '')
+    if st in ('closed', 'dismissed'):
+        return 'closed', st.upper() + '.' + (f' {fix}.' if fix else '')
+    if r['usable'] >= 1:
+        who = deciders(r, 2)
+        txt = (f'Pipelined — {r["usable"]} contact{"s" if r["usable"] != 1 else ""}'
+               + (' incl. ' + ', '.join(who) if who else '') + '.')
+        cls = 'valid' if r['usable'] >= 2 else 'junk'
+    else:
+        txt, cls = 'No contacts found.', 'junk'
+        hint = brief_issue(r)
+        if hint:
+            txt += ' ' + hint.rstrip('.') + '.'
+    if fix:
+        txt += f' {fix}.'
+    if r.get('unverified'):
+        txt += f' {len(r["unverified"])} unverified (ZeroBounce check pending).'
+    return cls, txt
+
+
+def diff_block(lines):
+    out = ['<div class="diff">']
+    for cls, text, note in lines:
+        out.append(f'<div class="{cls}">{e(text)}' + (f' <span class="note">— {e(note)}</span>' if note else '') + '</div>')
+    out.append('</div>')
+    return '\n'.join(out)
+
+
+def report_when(entry, generated):
+    """The run's own date for headings and the manifest title (not the time the report was rebuilt)."""
+    for k in ('started_at', 'started'):
+        ts = iso_epoch((entry or {}).get(k))
+        if ts:
+            return datetime.fromtimestamp(ts)
+    try:
+        return datetime.strptime(str((entry or {}).get('date') or ''), '%Y-%m-%d')
+    except Exception:
+        return generated
+
+
+def zb_balance(stats):
+    for k, v in stats.get('table') or []:
+        if str(k).startswith('ZeroBounce guard'):
+            m = re.search(r'balance\s+(\S+)', str(v))
+            if m:
+                return m.group(1)
+    return ''
+
+
 def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batches, cand_err,
            status, keep_blocks, generated):
-    title = title_date(generated)
+    title = title_date(report_when(entry, generated))
     n_fail = sum(1 for i in items + run_rows if i['sev'] == 'fail')
     n_warn = sum(1 for i in items + run_rows if i['sev'] == 'warn')
     n_check = sum(1 for i in items + run_rows if i['sev'] == 'check')
     clean = n_fail == 0 and n_warn == 0
     legacy = all(r.get('legacy', True) for r in rows if r['rec'])
+    order_of = lambda r: r['rec'].get('order', 0) if r['rec'] else 0
+    before = load_batch_snapshot(run_id)
+    changes, dq = {}, {}
+    for r in rows:
+        bf = before.get(r['vid']) or before.get(str(r['vid']).replace(' ', ''))
+        lines, counts = venue_changes(r, bf)
+        changes[r['vid']] = (lines, bf)
+        for k, v in counts.items():
+            dq[k] = dq.get(k, 0) + v
+    processed = [r for r in rows if r['rec'] and not r['skipped']]
+    gone = lambda r: r['skipped'] or str(r['status']) in ('closed', 'dismissed')
     b = []
     b.append('<h1>Outreach Run Report</h1>')
     span = stats['span']
-    b.append(f'<div class="date">{e(title)} &mdash; run <strong>{e(run_id)}</strong> &mdash; {len(rows)} venues in '
+    b.append(f'<div class="date">{e(title)} &mdash; run {e(run_id)} &mdash; {len(rows)} venues in '
              f'{stats["nbatches"]} batch{"es" if stats["nbatches"] != 1 else ""}'
              + (f' &mdash; {e(span)}' if span else '') + '</div>')
 
     b.append('<!-- REPORT_BANNER -->')
 
     b.append('<div class="stat-grid">')
-    for num, label in ((len(rows), 'Venues'), (stats['pipelined'], 'Pipelined'), (stats['needs_review'], 'Needs review'),
-                       (stats['new'], 'New contacts'), (stats['gaps'], 'Coverage gaps'),
-                       ('&mdash;' if misses is None else len(misses), 'Missed items'),
-                       (stats['apollo'], 'Apollo credits'), (stats['zb'], 'ZB credits')):
+    for num, label in ((len(processed), 'Venues processed'), (stats['pipelined'], 'Pipelined'),
+                       (sum(1 for r in rows if gone(r) or (r['rec'] and r['usable'] == 0)), 'Flagged / no contacts'),
+                       (stats['new'], 'New contacts')):
         b.append(f'  <div class="stat-box"><div class="num">{num}</div><div class="label">{e(label)}</div></div>')
     b.append('</div>')
+    miss_txt = 'miss audit not run' if misses is None else f'{len(misses)} items missed by the pipeline at {stats["miss_venues"]} venues'
+    b.append(f'<div class="credits">Apollo {stats["apollo"]} credits &middot; ZeroBounce {stats["zb"]} credits'
+             + (f' (balance {e(zb_balance(stats))})' if zb_balance(stats) else '')
+             + f' &middot; coverage gaps {stats["gaps"]} &middot; {e(miss_txt)}</div>')
 
-    # ---- needs your eyes: only problems
-    by_vid = {}
-    for it in items:
-        by_vid.setdefault(it['vid'], []).append(it)
-    sev_rank = {'fail': 0, 'warn': 1, 'check': 2}
-    flagged = [r for r in rows if r['issues']]
-    flagged.sort(key=lambda r: (min(sev_rank[s] for s, _ in r['issues']), r['usable'], r['rec'].get('order', 0) if r['rec'] else 0))
+    # ---- needs your review: 0-1 contacts, closed, skipped
+    review = [r for r in rows if gone(r) or (r['rec'] and r['usable'] <= 1)]
+    review.sort(key=lambda r: (gone(r), r['usable'], order_of(r)))
     b.append('<div class="review-box">')
-    b.append(f'  <h2 id="needs-review">Needs Your Eyes</h2>')
-    if not flagged and not run_rows:
+    b.append('  <h2 id="needs-review">Needs Your Review</h2>')
+    b.append('  <p class="muted">Venues with 0-1 contacts, plus anything closed or skipped.</p>')
+    if not review and not run_rows:
         b.append('  <p class="ok"><!-- REPORT_NOTHING -->Nothing. Every venue ran every source cleanly.</p>')
-    b.append('<!-- REPORT_GATE -->')
+    for r in review:
+        loc = ' '.join(x for x in (r['city'], r['state']) if x)
+        cls, txt = status_text(r, changes[r['vid']][1])
+        b.append('  <div class="review-item"><div>')
+        b.append(f'    <div class="venue-name">{venue_link(r["vid"], r["name"])}</div>')
+        b.append(f'    <div class="venue-type">{e(r["category"] or "?")} | {e(loc or "?")} &mdash; '
+                 f'<span class="{cls}">{e(txt)}</span></div>')
+        cnt = '&mdash;' if (r['skipped'] or not r['rec']) else r['usable']
+        good = ' good' if r['usable'] > 1 else ''
+        b.append(f'    </div><div class="contact-count{good}">{cnt}</div></div>')
     if run_rows:
         b.append('  <div class="review-item"><div><div class="venue-name">Whole run</div><ul>')
         for it in run_rows:
             b.append(f'    <li class="sev-{it["sev"]}">{e(it["text"])}</li>')
         b.append('  </ul></div></div>')
-    for r in flagged:
-        loc = ' '.join(x for x in (r['city'], r['state']) if x)
-        b.append('  <div class="review-item"><div>')
-        b.append(f'    <div class="venue-name">{venue_link(r["vid"], r["name"])}</div>')
-        b.append(f'    <div class="venue-type">{e(r["category"] or "?")} | {e(loc or "?")} | {e(r["status"] or "?")}</div><ul>')
-        for sev, text in sorted(r['issues'], key=lambda x: sev_rank[x[0]]):
-            b.append(f'      <li class="sev-{sev}">{e(text)}</li>')
-        cnt = '&mdash;' if r['skipped'] else r['usable']
-        good = ' good' if r['usable'] > 1 else ''
-        b.append(f'    </ul></div><div class="contact-count{good}">{cnt}</div></div>')
+    b.append('<!-- REPORT_GATE -->')
     b.append('</div>')
 
-    # ---- misses
-    b.append('<h2 id="missed">Missed by the pipeline</h2>')
+    # ---- key wins
+    wins = [r for r in rows if r['new'] >= 4 or (r['new'] >= 2 and deciders(r, 1))]
+    wins.sort(key=lambda r: (-r['new'], order_of(r)))
+    if wins:
+        b.append('<h2 id="key-wins">Key Wins</h2>')
+        for r in wins[:8]:
+            loc = ' '.join(x for x in (r['city'], r['state']) if x)
+            who = deciders(r, 3)
+            fix = loc_fix_text(r, changes[r['vid']][1])
+            b.append(f'<div class="win"><strong>{venue_link(r["vid"], r["name"])}</strong>'
+                     + (f' ({e(loc)})' if loc else '') + f' &mdash; {r["new"]} new contact{"s" if r["new"] != 1 else ""}'
+                     + (' incl. ' + e(', '.join(who)) if who else '') + '.' + (f' {e(fix)}.' if fix else '') + '</div>')
+
+    # ---- changes this run (diff)
+    b.append('<h2 id="changes">Changes This Run</h2>')
+    b.append('<div class="legend">+ added &nbsp; ~ changed &nbsp; - removed / corrected &nbsp; &middot; found but not saved</div>')
+    changed = [r for r in rows if changes[r['vid']][0]]
+    if not before:
+        b.append(f'<p class="muted">No batch files for this run (reports/runs/{e(safe_name(run_id))}.batch*.json), '
+                 'so field changes (city, socials, status) cannot be diffed; new contacts and the miss audit are shown.</p>')
+    if not changed:
+        b.append('<p class="muted">Nothing changed on the sheet.</p>')
+    for r in sorted(changed, key=order_of):
+        loc = ' '.join(x for x in (r['city'], r['state']) if x)
+        b.append(f'<h3>{venue_link(r["vid"], r["name"])}<span class="pill">{e(r["category"] or "?")}</span>'
+                 + (f' <span class="muted">{e(loc)}</span>' if loc else '') + '</h3>')
+        b.append(diff_block(changes[r['vid']][0]))
+
+    # ---- all venues
+    b.append('<h2 id="all-venues">All Venues</h2>')
+    b.append('<div class="tbl"><table><tr><th>Venue</th><th>Category</th><th>Location</th><th>Contacts</th><th>Status</th></tr>')
+
+    def table_key(r):
+        grp = 2 if gone(r) else (0 if r['usable'] >= 1 else 1)
+        return (grp, -r['usable'], order_of(r))
+    for r in sorted(rows, key=table_key):
+        cls, txt = status_text(r, changes[r['vid']][1])
+        cnt = '&mdash;' if (r['skipped'] or not r['rec']) else r['usable']
+        ccls = 'emails-good' if r['usable'] else 'emails-zero'
+        loc = ' '.join(x for x in (r['city'], r['state']) if x)
+        b.append(f'<tr><td>{venue_link(r["vid"], r["name"])}</td><td>{e(r["category"])}</td><td>{e(loc)}</td>'
+                 f'<td class="{ccls}">{cnt}</td><td class="{cls}">{e(txt)}</td></tr>')
+    b.append('</table></div>')
+
+    # ---- data quality summary
+    b.append('<h2 id="data-quality">Data Quality Summary</h2>')
+    b.append('<div class="tbl"><table><tr><th>Action</th><th>Count</th></tr>')
+    dq_rows = [('City corrections', dq.get('city', 0)), ('State corrections', dq.get('state', 0)),
+               ('Category fixes', dq.get('category', 0)), ('Website fixes', dq.get('website', 0)),
+               ('Facebook URLs added/fixed', dq.get('facebook', 0)), ('Instagram URLs added/fixed', dq.get('instagram', 0)),
+               ('Contact forms added/fixed', dq.get('contact_form', 0)),
+               ('Venues set to pipelined', dq.get('status:pipelined', 0)),
+               ('Venues set to needs_review', dq.get('status:needs_review', 0)),
+               ('Venues set to closed', dq.get('status:closed', 0) + dq.get('status:dismissed', 0)),
+               ('New usable contacts', stats['new']), ('Wrong saves removed/corrected', dq.get('wrong', 0)),
+               ('Found but not saved (listed)', dq.get('listed', 0)),
+               ('Unverified contacts (ZeroBounce check pending)', stats['unverified']),
+               ('Apollo credits used', stats['apollo']), ('ZeroBounce credits used', stats['zb'])]
+    if zb_balance(stats):
+        dq_rows.append(('ZeroBounce balance', zb_balance(stats)))
+    if span:
+        dq_rows.append(('Runtime', span))
+    for k, v in dq_rows:
+        b.append(f'<tr><td>{e(k)}</td><td>{e(v)}</td></tr>')
+    b.append('</table></div>')
+
+    # ---- taste review + session notes (written by the session; survive regeneration)
+    b.append('<h2 id="taste-review">Taste Review</h2>')
+    b.append('<!-- TASTE_REVIEW:BEGIN -->' + keep_blocks.get('TASTE_REVIEW', '\n<p class="placeholder" data-placeholder="1">'
+             'Taste review pending: the session fills this in (runbook step 6).</p>\n') + '<!-- TASTE_REVIEW:END -->')
+    b.append('<!-- SESSION_NOTES:BEGIN -->' + keep_blocks.get('SESSION_NOTES', '\n') + '<!-- SESSION_NOTES:END -->')
+
+    # ---- evidence, collapsed
+    b.append('<h2 id="details">Details</h2>')
+    b.append('<p class="muted">The evidence behind the numbers: what the pipeline missed, which pages loaded, '
+             'what every source returned, every contact and candidate, and the gate output.</p>')
+
+    name_of = {r['vid']: r['name'] for r in rows}
+    b.append(f'<details><summary id="missed">Missed by the pipeline ({"not audited" if misses is None else len(misses)})</summary>')
     if misses is None:
         b.append(f'<p class="muted">The miss audit hasn\'t run yet (no reports/runs/{e(safe_name(run_id))}.misses.jsonl).</p>')
     elif not misses:
         b.append('<p class="ok">Audit ran: nothing missed.</p>')
     else:
-        name_of = {r['vid']: r['name'] for r in rows}
         b.append('<div class="tbl"><table><tr><th>Venue</th><th>Kind</th><th>What was missed</th><th>Where found</th><th>Likely cause</th></tr>')
         for mi in sorted(misses, key=lambda x: str(x.get('venue_id'))):
             vid = str(mi.get('venue_id') or '')
@@ -6923,15 +7253,15 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
         b.append('</table></div>')
     if misses_bad:
         b.append(f'<p class="sev-warn">{misses_bad} unreadable line(s) in the misses file.</p>')
+    b.append('</details>')
 
-    # ---- website coverage (the part Alex checks most)
-    b.append('<h2 id="website-coverage">Website coverage</h2>')
+    b.append('<details><summary id="website-coverage">Website coverage</summary>')
     b.append('<p class="muted">Pages the run actually opened on each venue\'s own site. &#10003; loaded, ? tried (no proof it loaded), '
              '&#10007; failed, &middot; not tried. Home / Contact / About / Events / Team, then the contact form.</p>')
     b.append('<div class="tbl"><table><tr><th>Venue</th><th>How</th><th>Pages ok/tried</th><th>H</th><th>C</th><th>A</th>'
              '<th>E</th><th>T</th><th>Form</th><th>Emails on site</th><th>Not visited</th></tr>')
     web_rows = [r for r in rows if r['rec'] and not r['skipped']]
-    web_rows.sort(key=lambda r: (-r['gaps'], r['usable'], r['rec'].get('order', 0)))
+    web_rows.sort(key=lambda r: (-r['gaps'], r['usable'], order_of(r)))
     for r in web_rows:
         pages = r.get('pages') or []
         okn = sum(1 for p in pages if p['ok'] or p['emails'])
@@ -6975,15 +7305,15 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
             b.append(f'<tr><td>{link}</td><td>{e(", ".join(p["how"]))}</td><td class="{ "ok" if res == "ok" else ("failed" if res == "failed" else "ran")}">{res}</td>'
                      f'<td>{e(", ".join(p["emails"]))}</td></tr>')
         b.append('</table></div></details>')
+    b.append('</details>')
 
-    # ---- per-source coverage
-    b.append('<h2 id="source-coverage">Source coverage</h2>')
+    b.append('<details><summary id="source-coverage">Source coverage</summary>')
     b.append('<p class="muted">One row per venue: every source the run tried and what it returned ([STEP] lines). '
              'Red = failed/blocked/missing, which is a coverage gap.</p>')
     extra = sorted({s for r in rows for s in (r['rec'].get('steps') or {}) if s not in COVER_COLS})
     cols = list(COVER_COLS) + extra
     b.append('<div class="tbl"><table><tr><th>Venue</th>' + ''.join(f'<th>{e(c)}</th>' for c in cols) + '<th>Contacts</th></tr>')
-    for r in sorted([r for r in rows if r['rec']], key=lambda r: (-r['gaps'], r['usable'], r['rec'].get('order', 0))):
+    for r in sorted([r for r in rows if r['rec']], key=lambda r: (-r['gaps'], r['usable'], order_of(r))):
         cls = ' class="gap"' if r['gaps'] else ''
         cnt_cls = 'emails-zero' if r['usable'] == 0 else 'emails-good'
         cnt = '&mdash;' if r['skipped'] else r['usable']
@@ -6992,18 +7322,22 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
             continue
         b.append(f'<tr{cls}><td>{venue_link(r["vid"], r["name"])}</td>' + ''.join(step_cell(r['rec'], c) for c in cols)
                  + f'<td class="{cnt_cls}">{cnt}</td></tr>')
-    b.append('</table></div>')
+    b.append('</table></div></details>')
 
-    # ---- everything else, collapsed
-    b.append('<details><summary>All venues &mdash; contacts and candidates (sorted by contact count)</summary>')
-    b.append('<div class="tbl"><table><tr><th>Venue</th><th>Category</th><th>Location</th><th>Contacts</th><th>New</th><th>Status</th></tr>')
-    for r in sorted(rows, key=lambda r: (r['usable'], r['rec'].get('order', 0) if r['rec'] else 0)):
-        cnt = '&mdash;' if r['skipped'] or not r['rec'] else r['usable']
-        cls = 'emails-zero' if not r['usable'] else 'emails-good'
-        b.append(f'<tr><td>{venue_link(r["vid"], r["name"])}</td><td>{e(r["category"])}</td><td>{e(" ".join(x for x in (r["city"], r["state"]) if x))}</td>'
-                 f'<td class="{cls}">{cnt}</td><td>{r["new"]}</td><td>{e(r["status"])}</td></tr>')
-    b.append('</table></div>')
-    for r in rows:
+    b.append('<details><summary>Per-venue problems (what the checks flagged)</summary>')
+    flagged = [r for r in rows if r['issues']]
+    if not flagged:
+        b.append('<p class="ok">Nothing flagged.</p>')
+    for r in flagged:
+        sev_rank = {'fail': 0, 'warn': 1, 'check': 2}
+        b.append(f'<h4>{venue_link(r["vid"], r["name"])}</h4><ul style="list-style:none;font-size:0.85rem">')
+        for sev, text in sorted(r['issues'], key=lambda x: sev_rank[x[0]]):
+            b.append(f'<li class="sev-{sev}">{e(text)}</li>')
+        b.append('</ul>')
+    b.append('</details>')
+
+    b.append('<details><summary>All venues &mdash; contacts and candidates</summary>')
+    for r in sorted(rows, key=lambda r: (-r['usable'], order_of(r))):
         rec = r['rec']
         b.append(f'<h3>{venue_link(r["vid"], r["name"])}<span class="pill">{e(r["category"] or "?")}</span></h3>')
         links = [f'<a href="{e(safe_url(u))}">{lbl}</a>' for lbl, u in
@@ -7067,12 +7401,9 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
         b.append(f'<tr><td>{e(k)}</td><td>{e(v)}</td></tr>')
     b.append('</table></div></details>')
 
-    b.append('<h2 id="taste-review">Taste Review</h2>')
-    b.append('<!-- TASTE_REVIEW:BEGIN -->' + keep_blocks.get('TASTE_REVIEW', '\n<p class="placeholder" data-placeholder="1">'
-             'Taste review pending: the session fills this in (runbook step 6).</p>\n') + '<!-- TASTE_REVIEW:END -->')
-    b.append('<!-- SESSION_NOTES:BEGIN -->' + keep_blocks.get('SESSION_NOTES', '\n') + '<!-- SESSION_NOTES:END -->')
-
+    b.append('<details><summary>Run gate (verify_run.sh)</summary>')
     b.append('<!-- verify_run:begin --><h2>Run gate (verify_run.sh)</h2><p class="muted">not embedded yet</p><!-- verify_run:end -->')
+    b.append('</details>')
     if cand_err:
         b.append(f'<p class="sev-warn">Candidate log: {e(cand_err)}</p>')
     logs = sorted({bb.get('log', '') for bb in batches if bb.get('log')})
@@ -7081,7 +7412,7 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
     info = {'n_fail': n_fail, 'n_warn': n_warn, 'n_check': n_check, 'legacy': legacy, 'status': status,
             'gaps': stats['gaps'], 'zero': stats['zero'], 'misses': None if misses is None else len(misses),
             'miss_venues': stats['miss_venues'], 'miss_rate': stats['miss_rate'], 'unverified': stats['unverified'],
-            'run_id': run_id, 'stopped': (batches[-1].get('stopped') if batches else '') or ''}
+            'run_id': run_id, 'stopped': (batches[-1].get('stopped') if batches else '') or '', 'dq': dq}
     return page_shell(title, '\n'.join(b)), info
 
 
@@ -7103,30 +7434,28 @@ def final_verdict(info, gate):
 
 def banner_html(info, gate):
     cls, word, n = final_verdict(info, gate)
+    g_n = (len(gate.get('missing_now') or []) + len(gate.get('review_items') or [])) if gate.get('ran') else 0
     if cls == 'running' and info.get('stopped'):
         head = 'RUN STOPPED &mdash; resumable'
-        text = (f"{info['stopped']}. Resume with ./pipeline.sh --resume {info['run_id']} (venues stay hidden in the app). "
-                f'{n} problem(s) so far.')
+        text = f"{info['stopped']}. Resume with ./pipeline.sh --resume {info['run_id']}; venues stay hidden in the app."
     elif cls == 'running':
-        head = 'RUN IN PROGRESS &mdash; results so far'
+        head = 'RUN IN PROGRESS'
         text = f'{n} problem(s) so far. More batches are still running; these venues stay hidden in the app.'
     elif info['legacy']:
         head = 'UNVERIFIED &mdash; old log format'
         text = f'{n} problem(s) detected from log text; per-source coverage cannot be proven for this log.'
     elif cls == 'pending':
-        head = 'CLEAN SO FAR &mdash; manual check marks pending'
-        text = ("The pipeline's own evidence shows no problem. The gate still waits for "
-                f"{len(gate.get('pending_marks') or [])} manual check mark(s) (session step), then re-run the report.")
+        head = 'CLEAN SO FAR'
+        text = (f"Nothing failed. The gate still waits for {len(gate.get('pending_marks') or [])} manual check "
+                'mark(s); then re-run the report.')
     elif cls == 'clean':
         head = 'CLEAN'
-        text = 'Every required source ran, nothing failed or looks wrong, and the gate agrees.' + \
-            (f" {info['n_check']} item(s) below are just for a quick look (zero contacts / skipped)." if info['n_check'] else '')
+        text = 'Every source ran, nothing failed or looks wrong, and the gate agrees.' + \
+            (f" {info['n_check']} item(s) are just for a quick look." if info['n_check'] else '')
     else:
-        g_n = len(gate.get('missing_now') or []) + len(gate.get('review_items') or []) if gate.get('ran') else 0
-        head = f'NOT CLEAN &mdash; {n} item(s) need your eyes' if n else 'NOT CLEAN &mdash; see the gate findings'
-        text = (f"{info['n_fail']} failure(s)/gap(s) and {info['n_warn']} warning(s) listed per venue"
-                + (f", {info['n_check']} more to look at" if info['n_check'] else '')
-                + (f"; the gate adds {g_n} finding(s) (collapsed below, mostly the same problems)." if g_n else '.'))
+        head = f'NOT CLEAN &mdash; {n} item(s) to look at' if n else 'NOT CLEAN &mdash; see the gate findings'
+        text = (f"{info['n_fail']} failure(s)/gap(s) and {info['n_warn']} warning(s), listed per venue under Details"
+                + (f"; {g_n} gate finding(s) are collapsed in Needs Your Review" if g_n else '') + '.')
     miss = ("miss audit hasn't run yet" if info['misses'] is None else
             f"{info['misses']} missed item(s) at {info['miss_venues']} venue(s) (miss rate {info['miss_rate']})")
     gate_line = (f"Gate (verify_run): {e(gate.get('verdict'))}" + (' &mdash; report/taste_review marks still to come' if
@@ -7322,14 +7651,16 @@ def cmd_report(log_path, run_id, csv):
     vcls, verdict, _ = final_verdict(info, gate)
     clean = vcls == 'clean'
     miss_part = 'miss audit not run' if misses is None else f'{len(misses)} missed'
-    title = (f'{title_date(generated)} \u2014 Run {run_id} ({len(rows)} venues) \u2014 {verdict}: '
-             f'{stats["pipelined"]} pipelined, {stats["needs_review"]} needs_review, {stats["new"]} new contacts, '
-             f'{stats["gaps"]} coverage gaps, {miss_part}')
-    summary = (f'{len(rows)} venues ({len(processed)} processed, {len(rows) - len(processed)} skipped/unprocessed) in '
-               f'{stats["nbatches"]} batch(es). {stats["pipelined"]} pipelined, {stats["needs_review"]} needs_review, '
-               f'{stats["zero"]} with 0 usable contacts. {stats["new"]} new usable contacts; '
-               f'{sum(r["usable"] for r in rows)} usable on the sheet. Coverage gaps: {stats["gaps"]}. '
-               f'Misses: {"audit not run yet" if misses is None else len(misses)}. Apollo {apollo} credits, ZeroBounce {zb} credits.'
+    dq = info.get('dq') or {}
+    fixes = [f'{dq[k]} {lbl}' for k, lbl in (('city', 'city fixes'), ('state', 'state fixes'), ('facebook', 'FB fixes'),
+                                             ('instagram', 'IG fixes'), ('contact_form', 'form fixes'),
+                                             ('wrong', 'wrong saves removed')) if dq.get(k)]
+    title = (f'{title_date(report_when(entry, generated))} — {len(rows)} venues — {stats["pipelined"]} pipelined, '
+             f'{stats["needs_review"]} needs review, {stats["new"]} new contacts — {verdict}')
+    summary = (f'{len(processed)} processed, {len(rows) - len(processed)} skipped; {stats["zero"]} with no contacts. '
+               f'{stats["new"]} new contacts ({sum(r["usable"] for r in rows)} usable on the sheet). '
+               + (', '.join(fixes) + '. ' if fixes else '')
+               + f'{miss_part} by the pipeline, {stats["gaps"]} coverage gaps. Apollo {apollo} cr, ZeroBounce {zb} cr.'
                + (f' Runtime {span}.' if span else '')
                + (f" Gate: {gate.get('verdict')}" if gate.get('ran') else ' Gate: verify_run did not run.'))
     stamp = generated.isoformat(timespec='seconds')

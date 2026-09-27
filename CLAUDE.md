@@ -148,6 +148,17 @@ The pipeline proves what it searched; the miss audit checks what it missed.
 ## 7. Report
 - The pipeline generates `reports/<date>.html` and the manifest entry
   automatically after each batch (with `venue_ids`, verdict, coverage, misses).
+- Layout (Alex, Sep 27 2026): short and readable, like the pre-September
+  reports. Order: verdict, four stat boxes, Needs Your Review (0-1 contacts,
+  closed, skipped), Key Wins, Changes This Run, All Venues table, Data Quality
+  Summary, Taste Review, Session Notes, then everything else collapsed under
+  Details (misses, website/source coverage, every contact and candidate, gate
+  output). Changes This Run is a diff: `+` added, `~` changed, `-` removed or
+  corrected, `·` found but not saved; "before" = the run's `.batchN.json`,
+  "after" = the sheet, plus new contacts and the misses file. Colours follow the
+  finance widget (`Widgets/tga-dss.html`: cream paper, ink, pine, vermilion).
+  Keep Session Notes to 4-8 short bullets. The renderer is `render()` inside
+  `pipeline.sh` (`_report_tool`).
 - After the miss audit and manual marks: `./pipeline.sh --report $RUN_ID`.
 - Write the taste review between `<!-- TASTE_REVIEW:BEGIN -->` and
   `<!-- TASTE_REVIEW:END -->`, and any session notes between the SESSION_NOTES

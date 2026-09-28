@@ -7037,7 +7037,52 @@ def brief_issue(r):
     if not ranked:
         return ''
     ranked.sort()
-    return re.split(r';\s', ranked[0][2])[0][:140]
+    return humanize_issue(re.split(r';\s', ranked[0][2])[0])[:140]
+
+
+HUMAN_ISSUES = (
+    (re.compile(r'^website crawl: 0 of \d+ pages loaded.*', re.I), 'The website blocked us or is down.'),
+    (re.compile(r'^website crawl: only (\d+) of (\d+) pages loaded.*', re.I), r'Only \1 of \2 website pages would load.'),
+    (re.compile(r'^(Facebook|Instagram) \S+: not a page URL.*', re.I), r'The \1 link on the sheet looks wrong.'),
+    (re.compile(r'^(Facebook|Instagram) \S+: .*(different|mismatch|not this venue).*', re.I), r'The \1 link may belong to a different business.'),
+    (re.compile(r'^apollo: matched a different company.*', re.I), 'Apollo matched a different company.'),
+    (re.compile(r'^apollo skipped.*shared brand domain.*', re.I), 'Apollo skipped: shared brand domain.'),
+    (re.compile(r'^(web|social|apollo|linkedin|google|postcheck) (failed|blocked)\b.*', re.I), r'The \1 step \2.'),
+    (re.compile(r'^outside the target area.*', re.I), 'Outside the target area.'),
+    (re.compile(r'^no usable website on the sheet.*', re.I), 'No usable website on the sheet.'),
+    (re.compile(r'^site blocked the crawl.*', re.I), 'The website blocked us.'),
+)
+
+
+def humanize_issue(text):
+    for pat, out in HUMAN_ISSUES:
+        if pat.search(text):
+            return pat.sub(out, text)
+    return text
+
+
+def plural(word, n):
+    if n == 1 or word.endswith('s') or word in ('recreation', 'unknown'):
+        return word
+    if word.endswith('y') and word[-2:-1] not in 'aeiou':
+        return word[:-1] + 'ies'
+    return word + 's'
+
+
+def human_span(batches):
+    """'Ran Sep 26, 1:44 AM to 4:20 AM (2h 35m).' from the batch windows."""
+    try:
+        starts = [datetime.strptime(b['started'], '%Y-%m-%d %H:%M:%S') for b in batches if b.get('started')]
+        ends = [datetime.strptime(b['ended'], '%Y-%m-%d %H:%M:%S') for b in batches if b.get('ended')]
+    except Exception:
+        return ''
+    if not starts or not ends:
+        return ''
+    a, z = min(starts), max(ends)
+    mins = max(0, int((z - a).total_seconds() // 60))
+    clock = lambda d: d.strftime('%-I:%M %p').lower()
+    day = a.strftime('%b %-d') if a.date() == z.date() else f'{a:%b %-d} to {z:%b %-d}'
+    return f'Ran {day}, {clock(a)} to {clock(z)} ({mins // 60}h {mins % 60:02d}m).'
 
 
 def status_text(r, before):
@@ -7116,22 +7161,30 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
     b = []
     b.append('<h1>Outreach Run Report</h1>')
     span = stats['span']
-    b.append(f'<div class="date">{e(title)} &mdash; run {e(run_id)} &mdash; {len(rows)} venues in '
-             f'{stats["nbatches"]} batch{"es" if stats["nbatches"] != 1 else ""}'
-             + (f' &mdash; {e(span)}' if span else '') + '</div>')
+    cats = {}
+    for r in rows:
+        c = str(r['category'] or 'unknown').replace('_', ' ')
+        cats[c] = cats.get(c, 0) + 1
+    cat_txt = ', '.join(f'{v} {plural(k, v)}' for k, v in sorted(cats.items(), key=lambda x: -x[1]))
+    states = sorted({r['state'] for r in rows if r['state']})
+    when = human_span(batches)
+    b.append(f'<div class="date">{e(title)} &mdash; {len(rows)} venues'
+             + (f' ({e(cat_txt)})' if cat_txt else '') + (f' across {e("/".join(states))}' if states else '')
+             + (f'. {e(when)}' if when else '') + '</div>')
 
     b.append('<!-- REPORT_BANNER -->')
 
     b.append('<div class="stat-grid">')
-    for num, label in ((len(processed), 'Venues processed'), (stats['pipelined'], 'Pipelined'),
-                       (sum(1 for r in rows if gone(r) or (r['rec'] and r['usable'] == 0)), 'Flagged / no contacts'),
-                       (stats['new'], 'New contacts')):
+    for num, label in ((len(processed), 'Venues processed'), (stats['pipelined'], 'Got contacts'),
+                       (stats['zero'], 'Came up empty'),
+                       (stats['new'], 'Contacts found')):
         b.append(f'  <div class="stat-box"><div class="num">{num}</div><div class="label">{e(label)}</div></div>')
     b.append('</div>')
-    miss_txt = 'miss audit not run' if misses is None else f'{len(misses)} items missed by the pipeline at {stats["miss_venues"]} venues'
-    b.append(f'<div class="credits">Apollo {stats["apollo"]} credits &middot; ZeroBounce {stats["zb"]} credits'
-             + (f' (balance {e(zb_balance(stats))})' if zb_balance(stats) else '')
-             + f' &middot; coverage gaps {stats["gaps"]} &middot; {e(miss_txt)}</div>')
+    miss_txt = ('The manual audit has not run yet.' if misses is None else
+                (f'The manual audit found {len(misses)} things the pipeline missed, across {stats["miss_venues"]} venues.'
+                 if misses else 'The manual audit found nothing the pipeline missed.'))
+    b.append(f'<div class="credits">Used {stats["apollo"]} Apollo credits and {stats["zb"]} ZeroBounce credits'
+             + (f' (ZeroBounce balance now {e(zb_balance(stats))})' if zb_balance(stats) else '') + f'. {e(miss_txt)}</div>')
 
     # ---- needs your review: 0-1 contacts, closed, skipped
     review = [r for r in rows if gone(r) or (r['rec'] and r['usable'] <= 1)]
@@ -7172,21 +7225,6 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
                      + (f' ({e(loc)})' if loc else '') + f' &mdash; {r["new"]} new contact{"s" if r["new"] != 1 else ""}'
                      + (' incl. ' + e(', '.join(who)) if who else '') + '.' + (f' {e(fix)}.' if fix else '') + '</div>')
 
-    # ---- changes this run (diff)
-    b.append('<h2 id="changes">Changes This Run</h2>')
-    b.append('<div class="legend">+ added &nbsp; ~ changed &nbsp; - removed / corrected &nbsp; &middot; found but not saved</div>')
-    changed = [r for r in rows if changes[r['vid']][0]]
-    if not before:
-        b.append(f'<p class="muted">No batch files for this run (reports/runs/{e(safe_name(run_id))}.batch*.json), '
-                 'so field changes (city, socials, status) cannot be diffed; new contacts and the miss audit are shown.</p>')
-    if not changed:
-        b.append('<p class="muted">Nothing changed on the sheet.</p>')
-    for r in sorted(changed, key=order_of):
-        loc = ' '.join(x for x in (r['city'], r['state']) if x)
-        b.append(f'<h3>{venue_link(r["vid"], r["name"])}<span class="pill">{e(r["category"] or "?")}</span>'
-                 + (f' <span class="muted">{e(loc)}</span>' if loc else '') + '</h3>')
-        b.append(diff_block(changes[r['vid']][0]))
-
     # ---- all venues
     b.append('<h2 id="all-venues">All Venues</h2>')
     b.append('<div class="tbl"><table><tr><th>Venue</th><th>Category</th><th>Location</th><th>Contacts</th><th>Status</th></tr>')
@@ -7210,8 +7248,8 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
                ('Category fixes', dq.get('category', 0)), ('Website fixes', dq.get('website', 0)),
                ('Facebook URLs added/fixed', dq.get('facebook', 0)), ('Instagram URLs added/fixed', dq.get('instagram', 0)),
                ('Contact forms added/fixed', dq.get('contact_form', 0)),
-               ('Venues set to pipelined', dq.get('status:pipelined', 0)),
-               ('Venues set to needs_review', dq.get('status:needs_review', 0)),
+               ('Venues that got contacts (pipelined)', dq.get('status:pipelined', 0)),
+               ('Venues left for review (needs review)', dq.get('status:needs_review', 0)),
                ('Venues set to closed', dq.get('status:closed', 0) + dq.get('status:dismissed', 0)),
                ('New usable contacts', stats['new']), ('Wrong saves removed/corrected', dq.get('wrong', 0)),
                ('Found but not saved (listed)', dq.get('listed', 0)),
@@ -7219,8 +7257,8 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
                ('Apollo credits used', stats['apollo']), ('ZeroBounce credits used', stats['zb'])]
     if zb_balance(stats):
         dq_rows.append(('ZeroBounce balance', zb_balance(stats)))
-    if span:
-        dq_rows.append(('Runtime', span))
+    if human_span(batches):
+        dq_rows.append(('Runtime', human_span(batches)))
     for k, v in dq_rows:
         b.append(f'<tr><td>{e(k)}</td><td>{e(v)}</td></tr>')
     b.append('</table></div>')
@@ -7412,7 +7450,8 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
     info = {'n_fail': n_fail, 'n_warn': n_warn, 'n_check': n_check, 'legacy': legacy, 'status': status,
             'gaps': stats['gaps'], 'zero': stats['zero'], 'misses': None if misses is None else len(misses),
             'miss_venues': stats['miss_venues'], 'miss_rate': stats['miss_rate'], 'unverified': stats['unverified'],
-            'run_id': run_id, 'stopped': (batches[-1].get('stopped') if batches else '') or '', 'dq': dq}
+            'run_id': run_id, 'stopped': (batches[-1].get('stopped') if batches else '') or '', 'dq': dq,
+            'pipelined': stats['pipelined'], 'closed': sum(1 for r in rows if str(r['status']) in ('closed', 'dismissed'))}
     return page_shell(title, '\n'.join(b)), info
 
 
@@ -7434,39 +7473,35 @@ def final_verdict(info, gate):
 
 def banner_html(info, gate):
     cls, word, n = final_verdict(info, gate)
-    g_n = (len(gate.get('missing_now') or []) + len(gate.get('review_items') or [])) if gate.get('ran') else 0
     if cls == 'running' and info.get('stopped'):
-        head = 'RUN STOPPED &mdash; resumable'
-        text = f"{info['stopped']}. Resume with ./pipeline.sh --resume {info['run_id']}; venues stay hidden in the app."
+        head = 'Run stopped'
+        text = f"{info['stopped']}. It can be resumed with ./pipeline.sh --resume {info['run_id']}; until then these venues stay hidden in the app."
     elif cls == 'running':
-        head = 'RUN IN PROGRESS'
-        text = f'{n} problem(s) so far. More batches are still running; these venues stay hidden in the app.'
+        head = 'Run still going'
+        text = 'More batches are running. These venues stay hidden in the app until the run finishes.'
     elif info['legacy']:
-        head = 'UNVERIFIED &mdash; old log format'
-        text = f'{n} problem(s) detected from log text; per-source coverage cannot be proven for this log.'
+        head = 'Old log format'
+        text = f'{n} possible problems were read from log text; this run cannot be fully verified.'
     elif cls == 'pending':
-        head = 'CLEAN SO FAR'
-        text = (f"Nothing failed. The gate still waits for {len(gate.get('pending_marks') or [])} manual check "
-                'mark(s); then re-run the report.')
+        head = 'Looks clean so far'
+        text = 'Nothing failed. The gate is still waiting on a few manual check marks, then the report gets rebuilt.'
     elif cls == 'clean':
-        head = 'CLEAN'
-        text = 'Every source ran, nothing failed or looks wrong, and the gate agrees.' + \
-            (f" {info['n_check']} item(s) are just for a quick look." if info['n_check'] else '')
+        head = 'Clean run'
+        text = 'Every venue ran every source and nothing looked wrong.'
     else:
-        head = f'NOT CLEAN &mdash; {n} item(s) to look at' if n else 'NOT CLEAN &mdash; see the gate findings'
-        text = (f"{info['n_fail']} failure(s)/gap(s) and {info['n_warn']} warning(s), listed per venue under Details"
-                + (f"; {g_n} gate finding(s) are collapsed in Needs Your Review" if g_n else '') + '.')
-    miss = ("miss audit hasn't run yet" if info['misses'] is None else
-            f"{info['misses']} missed item(s) at {info['miss_venues']} venue(s) (miss rate {info['miss_rate']})")
-    gate_line = (f"Gate (verify_run): {e(gate.get('verdict'))}" + (' &mdash; report/taste_review marks still to come' if
-                 any(m[0] == '(run)' and m[1] in PENDING_RUN_MARKS for m in gate.get('missing') or [] if len(m) >= 2) else '')
-                 if gate.get('ran') else f"Gate (verify_run) did not run: {e(gate.get('why'))}")
-    return (f'<div class="verdict {cls}"><strong>{head}</strong>{e(text)}<br><span class="muted">'
-            f"Coverage gaps: <strong>{info['gaps']}</strong> &middot; Misses: <strong>{e(miss)}</strong> &middot; "
-            f"Zero-contact venues: <strong>{info['zero']}</strong>"
-            + (f" &middot; Unverified: <strong>{info['unverified']}</strong> (saved, need a ZeroBounce check: {e(REVERIFY_HINT)})"
-               if info.get('unverified') else '')
-            + f"<br>{gate_line}</span></div>")
+        head = 'Run finished'
+        bits = []
+        if info.get('pipelined') is not None:
+            bits.append(f"{info['pipelined']} venues got contacts")
+        if info['zero']:
+            bits.append(f"{info['zero']} came up empty")
+        if info.get('closed'):
+            bits.append(f"{info['closed']} turned out to be closed")
+        text = (', '.join(bits) + '. ' if bits else '') + \
+            f"The automated checks flagged {n} things; the ones worth your time are in Needs Your Review, the rest are under Details."
+    if info.get('unverified'):
+        text += f" {info['unverified']} contacts are saved but still need a ZeroBounce check ({REVERIFY_HINT})."
+    return f'<div class="verdict {cls}"><strong>{head}</strong>{e(text)}</div>'
 
 
 def gate_html(gate):
@@ -7652,17 +7687,23 @@ def cmd_report(log_path, run_id, csv):
     clean = vcls == 'clean'
     miss_part = 'miss audit not run' if misses is None else f'{len(misses)} missed'
     dq = info.get('dq') or {}
-    fixes = [f'{dq[k]} {lbl}' for k, lbl in (('city', 'city fixes'), ('state', 'state fixes'), ('facebook', 'FB fixes'),
-                                             ('instagram', 'IG fixes'), ('contact_form', 'form fixes'),
-                                             ('wrong', 'wrong saves removed')) if dq.get(k)]
-    title = (f'{title_date(report_when(entry, generated))} — {len(rows)} venues — {stats["pipelined"]} pipelined, '
-             f'{stats["needs_review"]} needs review, {stats["new"]} new contacts — {verdict}')
-    summary = (f'{len(processed)} processed, {len(rows) - len(processed)} skipped; {stats["zero"]} with no contacts. '
-               f'{stats["new"]} new contacts ({sum(r["usable"] for r in rows)} usable on the sheet). '
-               + (', '.join(fixes) + '. ' if fixes else '')
-               + f'{miss_part} by the pipeline, {stats["gaps"]} coverage gaps. Apollo {apollo} cr, ZeroBounce {zb} cr.'
-               + (f' Runtime {span}.' if span else '')
-               + (f" Gate: {gate.get('verdict')}" if gate.get('ran') else ' Gate: verify_run did not run.'))
+    n_closed = sum(1 for r in rows if str(r['status']) in ('closed', 'dismissed'))
+    wins = sorted([r for r in rows if r['new'] >= 2], key=lambda r: -r['new'])[:4]
+    win_txt = ', '.join(f"{r['name']} ({r['new']})" for r in wins)
+    fixes = [f'{dq[k]} {lbl}' for k, lbl in (('city', 'city corrections'), ('state', 'state corrections'),
+                                             ('facebook', 'Facebook links'), ('instagram', 'Instagram links'),
+                                             ('contact_form', 'contact forms')) if dq.get(k)]
+    title = (f'{title_date(report_when(entry, generated))} \u2014 {len(rows)} venues \u2014 {stats["pipelined"]} got contacts, '
+             f'{stats["zero"]} came up empty, {stats["new"]} new contacts' + (f'. Key wins: {win_txt}' if win_txt else ''))
+    summary = (f'{len(processed)} venues processed' + (f', {len(rows) - len(processed)} skipped' if len(rows) > len(processed) else '')
+               + f'. {stats["pipelined"]} got contacts, {stats["zero"]} came up empty'
+               + (f', {n_closed} closed' if n_closed else '') + f'. {stats["new"]} new contacts. '
+               + (f'Fixed {", ".join(fixes)}. ' if fixes else '')
+               + (f'Removed {dq["wrong"]} wrong saves. ' if dq.get('wrong') else '')
+               + ('The manual audit has not run yet. ' if misses is None else
+                  (f'The manual audit found {len(misses)} things the pipeline missed. ' if misses else ''))
+               + f'Used {apollo} Apollo and {zb} ZeroBounce credits.'
+               + (f' {human_span(st["batches"])}' if human_span(st['batches']) else ''))
     stamp = generated.isoformat(timespec='seconds')
 
     def mutate(entries):

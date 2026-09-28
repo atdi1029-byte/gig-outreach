@@ -32,7 +32,11 @@ run proves what it searched, lists what it missed, and ends with a verdict.
     contacts (The Lodge → titanhospitality.com, Osteria Mozza → STARR, CIRCA →
     eatmhg.com). Save those people (the pipeline passes allow_off_domain). A
     parent group the venue's site doesn't use (Popal Group for Maison) stays
-    listed only.
+    listed only. A booking inbox the venue's own site publishes on the owner
+    group's domain (Flore Cafe -> events.catering@sistersgroupusa.com) counts
+    as the venue's own: pair it with the owner/GM name found elsewhere (press,
+    About page) and save it as `verified=role` (Alex, Sep 27 2026: "seems
+    perfect"). Do not leave it as listed-only.
   - Role inboxes (info@, events@, ...) are saved only with a real person's name
     attached (e.g. "Liz McQuay, Events Manager → events@"), as `verified=role`,
     and never cost a ZeroBounce credit.

@@ -1130,7 +1130,7 @@ body {
         <div class="weekly-goals" id="weeklyGoals" style="display:none"></div>
 
         <!-- LINKEDIN RETRY REMINDER (venues with linkedin_pending) -->
-        <div id="linkedinReminder" style="display:none;background:#2d1f3d;border:1px solid #9b59b6;border-radius:10px;padding:0.8rem 1rem;margin:0.5rem 0;cursor:pointer" onclick="alert('Run this in terminal:\\n\\n./pipeline.sh --linkedin-retry\\n\\nThis will re-run LinkedIn on all venues that were skipped.')">
+        <div id="linkedinReminder" style="display:none;background:#2d1f3d;border:1px solid #9b59b6;border-radius:10px;padding:0.8rem 1rem;margin:0.5rem 0;cursor:pointer" onclick="alert('Run this in terminal:\n\n./pipeline.sh --linkedin-retry\n\nThis will re-run LinkedIn on all venues that were skipped.')">
             <div style="font-size:0.85rem;color:#d4a5ff;font-weight:600">LinkedIn Quota Reset</div>
             <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.2rem"><span id="linkedinPendingCount">0</span> venues need LinkedIn scraping — tap for instructions</div>
         </div>
@@ -3340,8 +3340,12 @@ function toggleReportReviewed(file) {
 function checkLinkedInReminder() {
     const venues = (dashboardData && dashboardData.venues) || [];
     // The pipeline tracks this in the linkedin_pending column (--linkedin-retry reads the same flag)
-    const pending = venues.filter(v => v.linkedin_pending === true || String(v.linkedin_pending).toLowerCase() === 'true'
-        || (v.notes || '').includes('LinkedIn pending'));
+    // Mirror --linkedin-retry: it skips contacted / needs_review / closed venues,
+    // so counting them here leaves a badge the retry can never clear.
+    const LI_SKIP_STATUS = new Set(['contacted', 'needs_review', 'closed']);
+    const pending = venues.filter(v => (v.linkedin_pending === true || String(v.linkedin_pending).toLowerCase() === 'true'
+        || (v.notes || '').includes('LinkedIn pending'))
+        && !LI_SKIP_STATUS.has(String(v.status || '').toLowerCase()));
     const el = document.getElementById('linkedinReminder');
     if (pending.length > 0) {
         el.style.display = '';

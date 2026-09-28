@@ -6899,7 +6899,7 @@ def fam_cell(fam, key):
 # a diff-style "Changes This Run" section, and all the evidence tables collapsed at the end.
 DIFF_FIELDS = (('city', 'city'), ('state', 'state'), ('category', 'category'), ('website', 'website'),
                ('facebook', 'facebook'), ('instagram', 'instagram'), ('contact_form', 'contact form'))
-DECIDER_RE = re.compile(r'owner|general manager|\bgm\b|event|catering|banquet|sales|director|chef|manager|'
+DECIDER_RE = re.compile(r'owner|founder|general manager|\bgm\b|event|catering|banquet|sales|director|chef|manager|'
                         r'membership|beverage|f&b|food|proprietor|partner|president|innkeeper|commodore|'
                         r'curator|coordinator|sommelier', re.I)
 EMAIL_RE = re.compile(r'[\w.+-]+@[\w-]+(?:\.[\w-]+)+')

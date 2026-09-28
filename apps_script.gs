@@ -332,6 +332,26 @@ var PERSON_ROLE_LOCALS_ = setOf_([
   'proprietor', 'founder', 'cofounder', 'president'
 ]);
 
+// General inboxes nobody books gigs from (Alex, Sep 27 2026: "they always are a waste of
+// time"). Never saved, even with an owner's name attached. Mirrors outreach_rules.py
+// GENERAL_INBOX_TOKENS. Function inboxes (events@, catering@, chef@ ...) are not in here.
+var GENERAL_INBOX_ = setOf_([
+  'info', 'information', 'contact', 'contactus', 'hello', 'hi', 'mail', 'email',
+  'office', 'general', 'admin', 'administrator', 'enquiries', 'enquiry', 'inquiries',
+  'inquiry', 'frontdesk', 'front', 'reception', 'welcome', 'help', 'support',
+  'questions', 'stay', 'guest', 'guests', 'guestservices'
+]);
+
+function isGeneralInbox_(email) {
+  var e = normalizeEmail_(email);
+  if (!e) return false;
+  var local = e.split('@')[0];
+  var stripped = local.replace(/[\d._\-+]/g, '');
+  if (GENERAL_INBOX_[stripped]) return true;
+  var toks = localTokens_(local);
+  return toks.length === 1 && !!GENERAL_INBOX_[toks[0]];
+}
+
 function isRoleEmail_(email) {
   var e = normalizeEmail_(email);
   if (!e) return false;
@@ -1646,6 +1666,10 @@ function prepareContact_(ss, params) {
   if (email && params.allow_off_domain !== 'true') {
     var off = offDomainReason_(email, venueDomain);
     if (off) return { error: 'Rejected off-domain email ' + email + ' (venue website domain ' + venueDomain + '). Pass allow_off_domain=true if verified by hand.', reason: off };
+  }
+  if (email && isGeneralInbox_(email)) {
+    return { error: 'Rejected general inbox ' + email + ': info@/contact@/hello@-style inboxes are never saved as contacts.',
+             reason: 'general_inbox' };
   }
 
   var isRole = params.is_generic === 'true' || (email ? isRoleEmail_(email) : false);

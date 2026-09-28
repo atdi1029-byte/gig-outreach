@@ -275,6 +275,29 @@ def person_role_title(email):
     return PERSON_ROLE_TITLES.get(re.sub(r"[^a-z]", "", e.split("@", 1)[0]), "")
 
 
+# General inboxes nobody books gigs from (Alex, Sep 27 2026: "they always are a waste of
+# time"). Rejected outright, even when the site names the owner. Function inboxes such as
+# events@/catering@/chef@ stay in ROLE_TOKENS and are saved with a real person's name.
+GENERAL_INBOX_TOKENS = {
+    "info", "information", "contact", "contactus", "hello", "hi", "mail", "email",
+    "office", "general", "admin", "administrator", "enquiries", "enquiry", "inquiries",
+    "inquiry", "frontdesk", "front", "reception", "welcome", "help", "support",
+    "questions", "stay", "guest", "guests", "guestservices",
+}
+
+
+def is_general_inbox(email):
+    e = normalize_email(email)
+    if not e:
+        return False
+    local = e.split("@", 1)[0]
+    stripped = re.sub(r"[\d._\-+]", "", local)
+    if stripped in GENERAL_INBOX_TOKENS:
+        return True
+    toks = _local_tokens(local)
+    return len(toks) == 1 and toks[0] in GENERAL_INBOX_TOKENS
+
+
 def is_role_email(email):
     e = normalize_email(email)
     if not e:
@@ -467,6 +490,10 @@ def check_email(email, venue_domain="", venue_name="", found_on_venue_site=False
     r = junk_reason(e) or hard_reject_reason(e)
     if r:
         out["reason"] = r
+        return out
+    if is_general_inbox(e):
+        out["reason"] = "general_inbox"
+        out["is_role"] = True
         return out
     dom = e.split("@", 1)[1]
     vreg = registrable_domain(venue_domain) if venue_domain else ""

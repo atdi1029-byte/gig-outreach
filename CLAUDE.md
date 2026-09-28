@@ -37,9 +37,13 @@ run proves what it searched, lists what it missed, and ends with a verdict.
     as the venue's own: pair it with the owner/GM name found elsewhere (press,
     About page) and save it as `verified=role` (Alex, Sep 27 2026: "seems
     perfect"). Do not leave it as listed-only.
-  - Role inboxes (info@, events@, ...) are saved only with a real person's name
-    attached (e.g. "Liz McQuay, Events Manager → events@"), as `verified=role`,
-    and never cost a ZeroBounce credit.
+  - General inboxes (info@, contact@, hello@, office@, frontdesk@, reception@,
+    stay@, guest@, admin@ ...) are NEVER saved, even with an owner's name
+    attached (Alex, Sep 27 2026: "they always are a waste of time"). Function
+    inboxes that reach a specific person or team (events@, catering@,
+    privateevents@, banquets@, weddings@, sales@, chef@, owner@, gm@) are saved
+    only with a real person's name attached (e.g. "Liz McQuay, Events Manager
+    → events@"), as `verified=role`, and never cost a ZeroBounce credit.
   - Personal inboxes go through ZeroBounce: `valid` is saved. While ZeroBounce
     has no credits, they're saved as `verified=unverified` (shown in the app
     with a badge). After a top-up: `./reverify.sh --unverified --dry-run`, then

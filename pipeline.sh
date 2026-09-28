@@ -7396,6 +7396,7 @@ def render(run_id, entry, rows, items, run_rows, stats, misses, misses_bad, batc
                 ttl = c.get('title') or titles.get(em.lower(), '')
                 b.append(f'<tr><td>{e(c.get("name") or "(no name)")}</td><td>{e(ttl)}</td><td>{e(em or "—")}</td>'
                          + (f'<td class="sev-warn">unverified &mdash; needs ZB check</td>' if str(c.get('verified')) == 'unverified' else
+                            '<td class="ran">no email found (name only)</td>' if not em else
                             f'<td class="{"ok" if str(c.get("verified")) in USABLE else "ran"}">{e(c.get("verified"))}</td>')
                          + f'<td>{e(c.get("source"))}</td>'
                          f'<td>{"new" if c.get("_new") else ""}{(" <span class=sev-warn>&#9888; " + e("; ".join(probs)) + "</span>") if probs else ""}</td></tr>')

@@ -734,7 +734,9 @@ if not TOTAL:
     print(f"\nSaved to {os.environ['BATCH_FILE']}")
     sys.exit(0)
 
-out_dir = os.environ['OUT_DIR']
+# Absolute, so plan.json batch paths work from any cwd (pipeline.sh --plan joins
+# relative paths with the plan dir: a relative --out-dir doubled the path, Sep 28).
+out_dir = os.path.abspath(os.environ['OUT_DIR'])
 os.makedirs(out_dir, exist_ok=True)
 plan = {'created': datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'requested': TOTAL,
         'selected': len(seq), 'batch_size': MAX_BATCH, 'score_version': SCORE_VERSION,

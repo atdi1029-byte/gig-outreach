@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outreach Run Report &mdash; September 28, 2026</title>
+<style>
+  :root { --paper: #F3ECDA; --snow: #FAF6EC; --ink: #232633; --ink2: #4A4843; --muted: #8C877B;
+    --rule: rgba(35,38,51,0.22); --rule2: rgba(35,38,51,0.45); --bero: #24408E; --pine: #3E6B5A;
+    --vermilion: #C4432A;
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", "Didot", Georgia, serif;
+    --sans: -apple-system, "SF Pro Text", "Helvetica Neue", Helvetica, sans-serif;
+    --mono: "SF Mono", Menlo, Consolas, monospace; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink);
+    -webkit-font-smoothing: antialiased; padding: 36px 32px 60px; max-width: 980px;
+    margin: 0 auto; line-height: 1.55; font-size: 0.95rem; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: 1.9rem; letter-spacing: 0.01em;
+    margin-bottom: 4px; }
+  .date { color: var(--muted); font-size: 0.82rem; margin-bottom: 22px; letter-spacing: 0.01em; }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 1.35rem; margin: 34px 0 12px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--rule2); }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; margin: 18px 0 6px; }
+  h4 { font-family: var(--serif); font-weight: 600; font-size: 0.95rem; margin: 12px 0 4px; }
+  p { margin: 6px 0; }
+  ul { margin: 6px 0 6px 20px; }
+  a { color: var(--bero); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: var(--mono); font-size: 0.85em; background: rgba(35,38,51,0.07);
+    padding: 0 4px; border-radius: 3px; }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.86rem; }
+  th { font-weight: 600; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--rule2); }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .tbl { overflow-x: auto; }
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 14px 0 6px; }
+  .stat-box { background: var(--snow); border: 1px solid var(--rule2); border-radius: 8px;
+    padding: 14px 12px 12px; text-align: center;
+    box-shadow: inset 0 0 0 1px var(--snow), inset 0 0 0 2px rgba(35,38,51,0.18),
+      0 8px 22px rgba(40,32,20,0.08); }
+  .stat-box .num { font-family: var(--serif); font-weight: 600; font-size: 2.3rem; line-height: 1; }
+  .stat-box .label { font-size: 0.72rem; color: var(--muted); margin-top: 6px; letter-spacing: 0.05em;
+    text-transform: uppercase; }
+  .credits { color: var(--muted); font-size: 0.8rem; margin: 8px 0 18px; }
+  .verdict { border-radius: 8px; padding: 12px 16px; margin: 8px 0 18px; font-size: 0.9rem;
+    background: var(--snow); border: 1px solid var(--rule2); }
+  .verdict strong { font-family: var(--serif); font-size: 1.15rem; display: block; margin-bottom: 2px; }
+  .verdict .muted strong { font-family: var(--sans); font-size: inherit; display: inline; color: var(--ink2); }
+  .verdict.clean strong { color: var(--pine); }
+  .verdict.dirty strong { color: var(--vermilion); }
+  .verdict.running strong, .verdict.pending strong { color: var(--bero); }
+  .review-box { background: var(--snow); border: 1px solid var(--rule2); border-left: 4px solid var(--vermilion);
+    border-radius: 8px; padding: 16px 20px; margin: 20px 0; }
+  .review-box h2 { margin-top: 0; border: none; padding: 0; }
+  .review-item { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+    padding: 9px 0; border-bottom: 1px solid var(--rule); }
+  .review-item:last-child { border-bottom: none; }
+  .review-item .venue-name { font-family: var(--serif); font-size: 1rem; }
+  .review-item .venue-type { color: var(--ink2); font-size: 0.82rem; }
+  .review-item ul { list-style: none; margin: 3px 0 0; font-size: 0.82rem; }
+  .review-item .contact-count { font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+    color: var(--vermilion); min-width: 40px; text-align: center; }
+  .contact-count.good { color: var(--pine); }
+  .win { background: var(--snow); border-left: 4px solid var(--pine); padding: 9px 14px; margin: 8px 0;
+    border-radius: 0 6px 6px 0; font-size: 0.9rem; }
+  .win strong { color: var(--pine); }
+  .valid { color: var(--pine); }
+  .closed { color: var(--vermilion); }
+  .junk { color: var(--ink2); }
+  .skip { color: var(--muted); }
+  .sev-fail { color: var(--vermilion); }
+  .sev-warn { color: var(--ink2); }
+  .sev-check { color: var(--bero); }
+  .ok { color: var(--pine); }
+  .empty { color: var(--muted); }
+  .failed, .blocked, .missing { color: var(--vermilion); font-weight: 600; }
+  .skipped { color: var(--ink2); }
+  .ran { color: var(--muted); }
+  .cell small { display: block; color: var(--muted); font-size: 0.72rem; line-height: 1.3; }
+  tr.gap td:first-child { border-left: 3px solid var(--vermilion); }
+  td.emails-zero { color: var(--vermilion); font-weight: 600; font-size: 1.05rem; font-family: var(--serif); }
+  td.emails-good { color: var(--pine); font-weight: 600; font-size: 1.05rem; font-family: var(--serif); }
+  .diff { background: var(--snow); border: 1px solid var(--rule2); border-radius: 8px; padding: 8px 12px;
+    margin: 4px 0 14px; font-family: var(--mono); font-size: 0.78rem; line-height: 1.5; overflow-x: auto; }
+  .diff div { white-space: pre-wrap; padding: 1px 6px; border-radius: 3px; }
+  .diff .add { color: var(--pine); background: rgba(62,107,90,0.10); }
+  .diff .del { color: var(--vermilion); background: rgba(196,67,42,0.10); }
+  .diff .chg { color: var(--bero); background: rgba(36,64,142,0.08); }
+  .diff .note, .diff .note span { color: var(--muted); }
+  .diff span.note { color: var(--muted); font-family: var(--sans); font-size: 0.78rem; }
+  .legend { color: var(--muted); font-size: 0.8rem; font-family: var(--mono); margin: 0 0 8px; }
+  details { margin: 14px 0; }
+  details summary { font-family: var(--serif); color: var(--ink); font-size: 1.05rem; cursor: pointer;
+    padding: 6px 0; font-weight: 600; }
+  details summary:hover { color: var(--bero); }
+  details details { margin: 8px 0 8px 12px; }
+  details details summary { font-size: 0.9rem; font-family: var(--sans); font-weight: 500; color: var(--ink2); }
+  details h2 { border: none; font-size: 1.05rem; margin: 10px 0 6px; }
+  .pill { display: inline-block; background: rgba(35,38,51,0.08); color: var(--ink2); padding: 1px 8px;
+    border-radius: 12px; font-size: 0.72rem; margin-left: 6px; font-family: var(--sans); font-weight: 400; }
+  .muted { color: var(--muted); font-size: 0.85rem; }
+  .placeholder { color: var(--vermilion); font-style: italic; }
+  pre { background: var(--snow); border: 1px solid var(--rule2); border-radius: 6px; padding: 12px;
+    overflow-x: auto; font-size: 0.74rem; line-height: 1.35; white-space: pre; font-family: var(--mono); }
+  @media (max-width: 640px) {
+    body { padding: 16px; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    table { font-size: 0.78rem; }
+    td, th { padding: 5px 6px; }
+  }
+</style>
+</head>
+<body>
+<!-- report-status: running-stub -->
+<h1>Outreach Run Report</h1>
+<div class="date">September 28, 2026 &mdash; run <strong>run-20260928-0059</strong></div>
+<div class="verdict running"><strong>RUN IN PROGRESS</strong>Started 2026-09-28 01:02. 8 venues registered; they stay hidden in the app until the finished report is reviewed.</div>
+<h2>Venues in this run</h2>
+<ul style="margin-left:20px"><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2706">Del Mar</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2668">The St. Regis Washington, D.C.</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-WINE-2939">Wine Junction</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-REST-1356">Acqua Bistecca</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-HOTE-2669">The Hay-Adams</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=VA-REST-2409">Chain Bridge Cellars</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=DC-REST-2835">Gypsy Kitchen DC</a></li><li><a href="https://atdi1029-byte.github.io/gig-outreach/?venue=MD-CLUB-452">Links at Perry Cabin</a></li></ul>
+</body>
+</html>

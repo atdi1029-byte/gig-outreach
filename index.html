@@ -2575,15 +2575,8 @@ function openVenueDetail(venueId) {
         }
     }
 
-    // Named people without an email (pending decision-makers) — for IG/FB/LinkedIn personalisation
-    const people = contacts.filter(c => !(c.email && String(c.email).includes('@')) && String(c.name || '').trim());
-    if (people.length > 0) {
-        html += `<div class="detail-section-label" style="background:${catColor}">People (no email)</div>`;
-        for (const c of people) {
-            html += `<div class="detail-action-row"><span class="detail-social-label">${renderTitleWords(c.name, c.title)}</span>`;
-            html += `<span class="verify-badge warn">${esc(c.verified || 'pending')}</span></div>`;
-        }
-    }
+    // People without an email are not shown (Alex, Sep 27 2026): nothing to act on here.
+    // The pipeline no longer saves them; older name-only rows stay hidden.
 
     // LinkedIn pending (show above Instagram so it's visible)
     if (venue.linkedin_pending) {

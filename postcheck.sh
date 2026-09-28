@@ -507,6 +507,14 @@ PYEOF
 # Pending (email-less) contact: real unmasked first+last name and a decision-maker title only.
 pc_add_pending() {
     local name="$1" title="$2" source="$3" res clean ok resp st ver msg created dup updated
+    # Alex (Sep 27 2026): people without an email are NOT put on the sheet (he doesn't want
+    # them in the app). They stay in the log / candidate file for the report and the future
+    # zero-contact pass. SAVE_PENDING_PEOPLE=1 restores the old behaviour.
+    if [ "${SAVE_PENDING_PEOPLE:-0}" != "1" ]; then
+        log "  [PENDING] ${name:-?} (${title:-no title}): no email — not added to the sheet (name kept in the run log)"
+        record_candidate "" "$VENUE_ID" "$name" "$title" "$source" "not_saved:no_email_policy" "" contact "$name"
+        return
+    fi
     res=$(run_py pending-check python3 - "$SCRIPT_DIR" "$name" "$title" <<'PYEOF'
 import re, sys
 sys.path.insert(0, sys.argv[1])

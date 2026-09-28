@@ -42,6 +42,11 @@ run proves what it searched, lists what it missed, and ends with a verdict.
     `./reverify.sh --unverified --limit N`.
   - Names are never invented from email local parts (first.last is the only
     exception). Masked Apollo names (`Mc***y`) are enriched or skipped.
+  - People found WITHOUT an email are never put on the sheet (Alex, Sep 27
+    2026: he doesn't want them in the app). Pipeline, postcheck and the miss
+    audit keep them in the run log / candidate file / misses file only, so the
+    report's Details and the future zero-contact pass can still see them.
+    `SAVE_PENDING_PEOPLE=1` restores the old behaviour for a test.
   - Existing Facebook/Instagram/contact-form values on the sheet are never
     overwritten. Venue status is never demoted.
 - Target area: DC, MD, VA only; max ~2 hour drive from Pasadena, MD.

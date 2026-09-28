@@ -4623,6 +4623,14 @@ PYEOF
 # decision-maker title. The add_contact response is read, never discarded.
 _rb_save_pending() {
     local vid="$1" raw_name="$2" title="$3" src="$4" name sc resp verdict
+    # Alex (Sep 27 2026): people without an email are NOT put on the sheet (he doesn't want
+    # them in the app). The log line below keeps them in the report's "people found without
+    # an email" list and the candidate file. SAVE_PENDING_PEOPLE=1 restores the old behaviour.
+    if [ "${SAVE_PENDING_PEOPLE:-0}" != "1" ]; then
+        log "  --- $raw_name ($title): no email — not added to the sheet (name kept in the run log)"
+        record_candidate "person:$raw_name" "$vid" "$raw_name" "$title" "$src" "person_no_email"
+        return 1
+    fi
     name=$(_rb_py "$vid pending" python3 "$SCRIPT_DIR/outreach_rules.py" clean-name "$raw_name")
     if [ -z "$name" ]; then
         log "  [SKIP] '$raw_name' ($title): not a real first + last name — pending contact not saved"
@@ -7100,7 +7108,13 @@ def status_text(r, before):
         cls = 'valid' if r['usable'] >= 2 else 'junk'
     else:
         txt, cls = 'No contacts found.', 'junk'
-        hint = brief_issue(r)
+        wk = ((rec.get('steps') or {}).get('web') or {}).get('kv', {})
+        chrome_pages = int(wk.get('chrome_pages') or 0) if str(wk.get('chrome_pages', '')).isdigit() else 0
+        if wk.get('static_crawl') == 'blocked' and chrome_pages > 0:
+            found = 'only a general inbox' if str(wk.get('emails', '0')) not in ('', '0') else 'no email at all'
+            hint = f'Site blocks bots; the browser read {chrome_pages} pages and found {found}'
+        else:
+            hint = brief_issue(r)
         if hint:
             txt += ' ' + hint.rstrip('.') + '.'
     if fix:

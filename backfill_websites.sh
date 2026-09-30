@@ -117,9 +117,26 @@ if not any('notes' in v for v in venues[:50]):
 # needs_review rows parked for a reason must stay parked (same words the app uses).
 parked=re.compile(r'pipeline|0 contacts|zero contacts|closed|dead|not a venue|junk|motel|airbnb|'
                   r'vrbo|too far|out of area|quarantin|duplicate|wrong business|flag', re.I)
+# The night run calls this every night: a venue looked up in the last 14 days waits its turn,
+# so a few that Google can't place don't take the same slots night after night.
+recent=set()
+try:
+    import datetime
+    cut=(datetime.datetime.now()-datetime.timedelta(days=14)).isoformat()
+    for line in open(os.path.join(os.environ['SCRIPT_DIR'],'reports','backfill-candidates.jsonl')):
+        try:
+            r=json.loads(line)
+        except ValueError:
+            continue
+        if str(r.get('ts',''))>=cut:
+            recent.add(r.get('venue_id'))
+except OSError:
+    pass
 rows=[]
 for v in venues:
     if os.environ.get('ONLY_VENUE') and v.get('venue_id') != os.environ['ONLY_VENUE']:
+        continue
+    if not os.environ.get('ONLY_VENUE') and v.get('venue_id') in recent:
         continue
     status=v.get('status','')
     if status not in ('untouched','needs_review'):
@@ -280,6 +297,7 @@ PY
             candidates=$((candidates + 1))
         else
             echo "  No website match; remains needs_review"
+            [ "$APPLY" -eq 1 ] && log_candidate "$VID" "$NAME" "" none "no website match"
             failed=$((failed + 1))
         fi
         continue

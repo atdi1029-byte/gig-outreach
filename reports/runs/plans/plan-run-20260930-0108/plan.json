@@ -1,0 +1,160 @@
+{
+  "created": "2026-09-30 01:09:11",
+  "requested": 50,
+  "selected": 50,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "fine_dining": 24,
+    "hotel": 14,
+    "club": 6,
+    "wild": 5,
+    "wine": 1
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_01.json",
+      "venue_ids": [
+        "MD-REST-3147",
+        "MD-LUXU-1332",
+        "MD-REST-3145",
+        "MD-CLUB-449",
+        "MD-EVEN-1346",
+        "VA-REST-964",
+        "MD-REST-709",
+        "MD-REST-3168"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_02.json",
+      "venue_ids": [
+        "MD-HOTE-1762",
+        "MD-REST-2811",
+        "MD-REST-1337",
+        "DC-PRIV-111",
+        "DC-HOTE-2632",
+        "MD-REST-1336",
+        "VA-GALL-001",
+        "DC-REST-2707"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_03.json",
+      "venue_ids": [
+        "MD-HOTE-562",
+        "VA-REST-3426",
+        "MD-HOTE-2978",
+        "VA-REST-3033",
+        "DC-PRIV-112",
+        "MD-REST-711",
+        "MD-HOTE-2980",
+        "MD-REST-3171"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_04.json",
+      "venue_ids": [
+        "MD-REST-3005",
+        "MD-REST-733",
+        "DC-REST-2829",
+        "MD-HOTE-349",
+        "DC-REST-2830",
+        "DC-PRIV-113",
+        "MD-REST-812",
+        "MD-HOTE-3000"
+      ]
+    },
+    {
+      "index": 5,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_05.json",
+      "venue_ids": [
+        "MD-REST-1314",
+        "MD-HOTE-2999",
+        "VA-REST-3430",
+        "VA-EVEN-2995",
+        "VA-REST-826",
+        "MD-CLUB-489",
+        "VA-REST-1748",
+        "MD-REST-998"
+      ]
+    },
+    {
+      "index": 6,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_06.json",
+      "venue_ids": [
+        "MD-REST-896",
+        "MD-HOTE-790",
+        "MD-REST-2753",
+        "MD-REST-746",
+        "MD-REST-3125",
+        "VA-REST-919",
+        "VA-PRIV-007",
+        "MD-REST-1319"
+      ]
+    },
+    {
+      "index": 7,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_07.json",
+      "venue_ids": [
+        "MD-HOTE-2952",
+        "DC-REST-2668"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "MD-REST-3147",
+    "MD-LUXU-1332",
+    "MD-REST-3145",
+    "MD-CLUB-449",
+    "MD-EVEN-1346",
+    "VA-REST-964",
+    "MD-REST-709",
+    "MD-REST-3168",
+    "MD-HOTE-1762",
+    "MD-REST-2811",
+    "MD-REST-1337",
+    "DC-PRIV-111",
+    "DC-HOTE-2632",
+    "MD-REST-1336",
+    "VA-GALL-001",
+    "DC-REST-2707",
+    "MD-HOTE-562",
+    "VA-REST-3426",
+    "MD-HOTE-2978",
+    "VA-REST-3033",
+    "DC-PRIV-112",
+    "MD-REST-711",
+    "MD-HOTE-2980",
+    "MD-REST-3171",
+    "MD-REST-3005",
+    "MD-REST-733",
+    "DC-REST-2829",
+    "MD-HOTE-349",
+    "DC-REST-2830",
+    "DC-PRIV-113",
+    "MD-REST-812",
+    "MD-HOTE-3000",
+    "MD-REST-1314",
+    "MD-HOTE-2999",
+    "VA-REST-3430",
+    "VA-EVEN-2995",
+    "VA-REST-826",
+    "MD-CLUB-489",
+    "VA-REST-1748",
+    "MD-REST-998",
+    "MD-REST-896",
+    "MD-HOTE-790",
+    "MD-REST-2753",
+    "MD-REST-746",
+    "MD-REST-3125",
+    "VA-REST-919",
+    "VA-PRIV-007",
+    "MD-REST-1319",
+    "MD-HOTE-2952",
+    "DC-REST-2668"
+  ]
+}

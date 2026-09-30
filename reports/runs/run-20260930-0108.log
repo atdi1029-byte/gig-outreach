@@ -1,0 +1,137 @@
+[ZB SAFE] Guard enabled — run 0/300, today 0/400, reserve 100 credits (ok); run id run-20260930-0108
+[RUN] Building the run plan: ./build_batch.sh --total 50 --out-dir /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108
+Building a run of 50 venues (batches of <= 8)...
+Fetching venues + past gigs...
+Total venues: 5044
+Past gigs: 70 (by id 1, gig-venue domains 52)
+Venues with existing contacts: 704
+Already worked (old reports + run ledgers): 464   excluded by --exclude/current run: 30
+Target states: DC MD VA   scorer: taste_score 2026-09-26b
+
+Eligible pool: 928  (sweep finds: 844)
+  Sweep finds let past a taste/location gate: taste floor 633, prime evidence 502, category 204, junk gate 70, skip word 69, location 32
+  Skipped (status (not untouched)): 1539
+  Skipped (already in a report): 12
+  Skipped (no website): 33
+  Skipped (out of area (not DC/MD/VA)): 598
+  Skipped (bare brand homepage as website): 27
+  Skipped (below taste floor): 94
+  Skipped (blank/malformed city): 104
+  Skipped (duplicate site (kept the best row)): 67
+  Skipped (has contacts): 1
+  Skipped (junk gate): 131
+  Skipped (junk website): 65
+  Skipped (location not trustworthy): 171
+  Skipped (no prime evidence (generic restaurant, chain or non-European cuisine)): 333
+  Skipped (not a target category): 60
+  Skipped (past gig): 65
+  Skipped (same name as a venue already worked): 19
+  Skipped (site already pipelined/contacted): 390
+  Skipped (skip word): 48
+  Skipped (too far): 191
+  Skipped (website not verified as the venue's own): 168
+  PA/DE sweep finds held for last: 192
+  Site check: 196 likely picks checked, 6 dead/closed dropped
+      dropped Valletta Port [VA-REST-816] — site says "Permanently Closed"
+      dropped Michele’s [DC-REST-2831] — home page HTTP 404
+      dropped Filicori Zecchini Potomac [MD-REST-999] — website DNS failure
+      dropped Kimpton Hotel Palomar DC [DC-HOTE-825] — website DNS failure
+      dropped Harbor Club [MD-CLUB-488] — website DNS failure
+      dropped Georgetown Yacht Club [DC-REST-2632] — website DNS failure
+  By bucket: fine_dining 131, club 17, hotel 31, wine 33, wild 518
+  Quality-first mix: fine_dining took 8, club gave 4, hotel took 5, wine gave 8, wild gave 1
+
+Selected 50 of 50 requested: fine_dining 24/16, club 6/10, hotel 14/9, wine 1/9, wild 5/6
+NOTE: bucket(s) club, wine, wild ran short; filled from the other buckets.
+
+=== BATCH 1/7: 8 venues (taste floor 25, bucket floors {'fine_dining': 30, 'club': 30, 'hotel': 30, 'wine': 30, 'wild': 40}) ===
+1. [MD-REST-3147] Stella Notte | fine_dining / restaurant | Ellicott City MD (21 mi) | taste=57
+2. [MD-LUXU-1332] The Ritz-Carlton Residences Chevy Chase | hotel / hotel | Chevy Chase MD (39 mi) | taste=68
+3. [MD-REST-3145] Facci Ristorante | fine_dining / restaurant | Ellicott City MD (21 mi) | taste=54
+4. [MD-CLUB-449] Miles River Yacht Club | club / yacht_club | St. Michaels MD (57 mi) | taste=56
+5. [MD-EVEN-1346] Rock Creek Mansion | wild / event_venue | Bethesda MD (40 mi) | taste=53
+6. [VA-REST-964] Our Mom Eugenia | fine_dining / restaurant | Great Falls VA (53 mi) | taste=54
+7. [MD-REST-709] Severn Inn | hotel / hotel | Annapolis MD (14 mi) | taste=59
+8. [MD-REST-3168] GrillMarx Steakhouse | fine_dining / restaurant | Columbia MD (22 mi) | taste=53
+
+=== BATCH 2/7: 8 venues ===
+1. [MD-HOTE-1762] The Bethesdan Hotel | hotel / hotel | Bethesda MD (40 mi) | taste=59
+2. [MD-REST-2811] Guardado's Tapas Bar | fine_dining / restaurant | Bethesda MD (40 mi) | taste=53
+3. [MD-REST-1337] Junction Bistro Bar & Bakery | fine_dining / restaurant | Chevy Chase MD (41 mi) | taste=53
+4. [DC-PRIV-111] Cleveland Park Club | club / private_club | Washington DC (38 mi) | taste=52
+5. [DC-HOTE-2632] The Graham Georgetown | hotel / hotel | Washington DC (45 mi) | taste=59
+6. [MD-REST-1336] I'm Eddie Cano | fine_dining / restaurant | Chevy Chase MD (41 mi) | taste=53
+7. [VA-GALL-001] McLean Project for the Arts | wild / art_gallery | McLean VA (49 mi) | taste=53
+8. [DC-REST-2707] Bodega Spanish Tapas & Lounge | fine_dining / restaurant | Washington DC (45 mi) | taste=53
+
+=== BATCH 3/7: 8 venues ===
+1. [MD-HOTE-562] Miles River Guest House | hotel / hotel | Easton MD (48 mi) | taste=59
+2. [VA-REST-3426] Gadsby's Tavern | fine_dining / restaurant | Alexandria VA (46 mi) | taste=53
+3. [MD-HOTE-2978] The Inn at Mt. Ida | hotel / hotel | Ellicott City MD (21 mi) | taste=58
+4. [VA-REST-3033] Pikoteo | fine_dining / restaurant | McLean VA (49 mi) | taste=53
+5. [DC-PRIV-112] The Ridge Club at City Ridge | club / private_club | Washington DC (38 mi) | taste=52
+6. [MD-REST-711] Luna Blu | fine_dining / restaurant | Annapolis MD (14 mi) | taste=52
+7. [MD-HOTE-2980] Merriweather Lakehouse Hotel | hotel / hotel | Columbia MD (22 mi) | taste=58
+8. [MD-REST-3171] Victoria Gastro Pub | fine_dining / restaurant | Columbia MD (22 mi) | taste=52
+
+=== BATCH 4/7: 8 venues ===
+1. [MD-REST-3005] Sapwood Cellars Brewery | wine / winery | Columbia MD (18 mi) | taste=53
+2. [MD-REST-733] Rumhouse | wild / restaurant | Annapolis MD (14 mi) | taste=52
+3. [DC-REST-2829] Vera Cocina & بار | fine_dining / restaurant | Washington DC (36 mi) | taste=52
+4. [MD-HOTE-349] Rod N Reel Resort | hotel / hotel | Chesapeake Beach MD (41 mi) | taste=57
+5. [DC-REST-2830] Minetta Tavern DC | fine_dining / restaurant | Washington DC (36 mi) | taste=52
+6. [DC-PRIV-113] The Executive Branch | club / private_club | Washington DC (45 mi) | taste=52
+7. [MD-REST-812] Elena James | fine_dining / restaurant | Chevy Chase MD (38 mi) | taste=52
+8. [MD-HOTE-3000] The Children's Inn at NIH | hotel / hotel | Bethesda MD (40 mi) | taste=56
+
+=== BATCH 5/7: 8 venues ===
+1. [MD-REST-1314] Lia's | fine_dining / restaurant | Chevy Chase MD (38 mi) | taste=52
+2. [MD-HOTE-2999] Edmond J. Safra Family Lodge | hotel / hotel | Bethesda MD (42 mi) | taste=56
+3. [VA-REST-3430] Trattoria Da Franco Ristorante | fine_dining / restaurant | Alexandria VA (46 mi) | taste=52
+4. [VA-EVEN-2995] Cherry Hill Farmhouse | wild / event_venue | Falls Church VA (54 mi) | taste=51
+5. [VA-REST-826] Fratelli | fine_dining / restaurant | Alexandria VA (46 mi) | taste=52
+6. [MD-CLUB-489] The Easton Club | club / private_club | Easton MD (48 mi) | taste=52
+7. [VA-REST-1748] Pistones Italian Inn | hotel / hotel | Falls Church VA (54 mi) | taste=56
+8. [MD-REST-998] Boulangerie Christophe | fine_dining / restaurant | Potomac MD (47 mi) | taste=52
+
+=== BATCH 6/7: 8 venues ===
+1. [MD-REST-896] Mykonos Cabin John | fine_dining / restaurant | Potomac MD (47 mi) | taste=52
+2. [MD-HOTE-790] Laurel Grove Inn on the South River | hotel / hotel | Annapolis MD (21 mi) | taste=55
+3. [MD-REST-2753] Xenia Greek Kouzina | fine_dining / restaurant | Ellicott City MD (18 mi) | taste=51
+4. [MD-REST-746] Cantler's Riverside Inn | hotel / hotel | Annapolis MD (14 mi) | taste=54
+5. [MD-REST-3125] Birroteca | fine_dining / restaurant | Baltimore MD (21 mi) | taste=51
+6. [VA-REST-919] Zamarod Afghan Cuisine | wild / restaurant | Great Falls VA (53 mi) | taste=50
+7. [VA-PRIV-007] Lake Barcroft Association | club / private_club | Falls Church VA (54 mi) | taste=50
+8. [MD-REST-1319] Trattoria 5520 | fine_dining / restaurant | Chevy Chase MD (41 mi) | taste=51
+
+=== BATCH 7/7: 2 venues ===
+1. [MD-HOTE-2952] Yellow Rose of Talbot | hotel / hotel | Easton MD (48 mi) | taste=54
+2. [DC-REST-2668] Café Bonaparte | fine_dining / restaurant | Washington DC (45 mi) | taste=51
+
+Saved 7 batch files + plan.json to /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_01.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_02.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_03.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_04.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_05.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_06.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20260930-0108/batch_07.json  (2 venues)
+  (path also in /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/LATEST)
+=== Pipeline started 2026-09-30 01:09:11 ===
+[RUN] run_id=run-20260930-0108 mode=run log=/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20260930-0108.log
+PREFLIGHT OK: python3 works (/Library/Developer/CommandLineTools/usr/bin/python3 3.9.6)
+PREFLIGHT OK: .env has ZEROBOUNCE_KEY
+PREFLIGHT OK: .env has APOLLO_API_KEY
+PREFLIGHT OK: bash -n: 19 scripts parse
+PREFLIGHT OK: embedded python: checked 167 embedded python blocks in 19 scripts: 0 failed
+PREFLIGHT OK: 18 python files compile
+PREFLIGHT OK: outreach_rules self-test: 17 checks pass
+PREFLIGHT OK: venue_classifier self-test: 91 passed, 0 failed
+PREFLIGHT OK: js/*.js extractors parse (node --check)
+PREFLIGHT OK: Apps Script backend up (version 2026-09-25.1)
+PREFLIGHT OK: sheet readable (action=config)
+PREFLIGHT OK: ZeroBounce: enabled=True (.env), balance=1910, reserve=100 (.env), run 0/300 (.env), today 0/400 (.env), ~30 runs of headroom at 60/run
+PREFLIGHT OK: Apollo API key accepted (auth/health)
+PREFLIGHT FAIL: Chrome: View > Developer > Allow JavaScript from Apple Events is OFF
+PREFLIGHT FAIL: 1 check(s) failed (Chrome: View > Developer > Allow JavaScript from A); 13 ok, 0 warn
+[PREFLIGHT] FAIL (exit 1) — aborting. Fix the FAIL lines above, or set SKIP_PREFLIGHT=1 to bypass.

@@ -127,12 +127,19 @@ urlenc() {
 # api_get QUERY [MAX_TIME] — Apps Script GET with a timeout and one retry on a
 # transport failure. Writes are safe to retry: add_contact dedupes, update_venue is idempotent.
 api_get() {
-    local query="$1" max_time="${2:-45}" out
+    local query="$1" max_time="${2:-45}" out try
     out=$(curl -sL --max-time "$max_time" "${APPS_SCRIPT_URL}?${query}" 2>/dev/null)
     if [ -z "$out" ]; then
         sleep 3
         out=$(curl -sL --max-time "$max_time" "${APPS_SCRIPT_URL}?${query}" 2>/dev/null)
     fi
+    # LOCK_BUSY = another writer (a night deep-dive save, the app) held the backend's lock
+    # for 30s. Nothing was written, so the same request is simply sent again.
+    for try in 1 2 3 4; do
+        case "$out" in *LOCK_BUSY*) ;; *) break ;; esac
+        sleep $((try * 5))
+        out=$(curl -sL --max-time "$max_time" "${APPS_SCRIPT_URL}?${query}" 2>/dev/null)
+    done
     printf '%s' "$out"
 }
 
@@ -8060,7 +8067,7 @@ runner_update_venue() {
         log "  [WRITE] FAILED update_venue $field for $vid — could not encode the request"
         return 1
     fi
-    for try in 1 2; do
+    for try in 1 2 3 4 5; do
         resp=$(curl -sL --max-time 60 "${APPS_SCRIPT_URL}?${q}" 2>/dev/null)
         verdict=$(printf '%s' "$resp" | runner_py update_check python3 -c '
 import json, sys
@@ -8076,8 +8083,10 @@ else:
     print(str(d.get("message") or d)[:200])
 ')
         [ "$verdict" = "ok" ] && return 0
+        case "$verdict" in *LOCK_BUSY*) sleep $((try * 5)); continue ;; esac   # nothing written: resend
         [ "$verdict" != "no JSON response" ] && break
-        [ "$try" = 1 ] && sleep 3
+        [ "$try" -ge 2 ] && break
+        sleep 3
     done
     log "  [WRITE] FAILED update_venue $field=${value:0:80} for $vid: ${verdict:-no response}"
     return 1

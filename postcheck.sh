@@ -141,6 +141,13 @@ print(urllib.parse.urlencode([tuple(a.split('=', 1)) for a in sys.argv[1:]]))
 PYEOF
 ) || return 1
     curl -sL --max-time 90 "${APPS_SCRIPT_URL}?${qs}" -o "$out" 2>>"$ERR_LOG"
+    # LOCK_BUSY: another writer held the backend lock for 30s; nothing was written, resend
+    local try
+    for try in 1 2 3 4; do
+        grep -q 'LOCK_BUSY' "$out" 2>/dev/null || break
+        sleep $((try * 5))
+        curl -sL --max-time 90 "${APPS_SCRIPT_URL}?${qs}" -o "$out" 2>>"$ERR_LOG"
+    done
 }
 
 # Prints: status, verified, message, created, duplicate, updated (US-separated).

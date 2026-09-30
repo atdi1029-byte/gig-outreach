@@ -44,14 +44,24 @@ END_HEADINGS = re.compile(r"excluded|closed|removed|coming soon|top \d+|priority
 
 
 def api(params, timeout=60):
+    """GET the backend. Resends on a transport error, and on LOCK_BUSY (another writer held
+    the backend lock for 30s; nothing was written)."""
     url = API + "?" + urllib.parse.urlencode(params)
-    for attempt in (1, 2):
+    last = {"status": "error", "message": "no answer"}
+    for attempt in range(1, 6):
         try:
             with urllib.request.urlopen(url, timeout=timeout) as r:
-                return json.loads(r.read().decode("utf-8", "replace"))
-        except Exception:
-            time.sleep(3 * attempt)
-    return {"status": "error", "message": "no answer"}
+                last = json.loads(r.read().decode("utf-8", "replace"))
+        except Exception as exc:
+            last = {"status": "error", "message": f"no answer: {exc}"}
+            if attempt >= 2:
+                return last
+            time.sleep(3)
+            continue
+        if not (last.get("busy") or str(last.get("message") or "").startswith("LOCK_BUSY")):
+            return last
+        time.sleep(5 * attempt)
+    return last
 
 
 def norm(s):

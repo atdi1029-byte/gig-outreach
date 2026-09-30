@@ -44,16 +44,24 @@ OWN_EMAILS = {"atdi1029@gmail.com", "alexbarnettclassical@gmail.com", "abar89251
 
 
 def api(params, timeout=60):
+    """GET the backend. Resends on a transport error, and on LOCK_BUSY (another writer held
+    the backend lock for 30s; nothing was written)."""
     url = API + "?" + urllib.parse.urlencode(params)
-    last = None
-    for attempt in (1, 2):
+    last = {"status": "error", "message": "no answer"}
+    for attempt in range(1, 6):
         try:
             with urllib.request.urlopen(url, timeout=timeout) as r:
-                return json.loads(r.read().decode("utf-8", "replace"))
-        except Exception as exc:  # transport or non-JSON answer: one retry
-            last = exc
+                last = json.loads(r.read().decode("utf-8", "replace"))
+        except Exception as exc:
+            last = {"status": "error", "message": f"no answer: {exc}"}
+            if attempt >= 2:
+                return last
             time.sleep(3)
-    return {"status": "error", "message": f"no answer: {last}"}
+            continue
+        if not (last.get("busy") or str(last.get("message") or "").startswith("LOCK_BUSY")):
+            return last
+        time.sleep(5 * attempt)
+    return last
 
 
 def detail(vid):

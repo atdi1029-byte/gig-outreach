@@ -18,6 +18,7 @@ FINDINGS: a JSON list of {"venue_id", "website", "confidence": high|medium|low,
 Only venues in untouched / needs_review are touched. Safe to re-run: done rows are skipped.
 """
 import json
+import os
 import re
 import sys
 import threading
@@ -39,14 +40,24 @@ CHECKED_RX = re.compile(r"(?i)website checked \d{4}-\d{2}-\d{2}")
 
 
 def api(params, timeout=45):
+    """GET the backend. Resends on a transport error, and on LOCK_BUSY (another writer held
+    the backend lock for 30s; nothing was written)."""
     url = API + "?" + urllib.parse.urlencode(params)
-    for attempt in (1, 2):
+    last = {"status": "error", "message": "no answer"}
+    for attempt in range(1, 6):
         try:
             with urllib.request.urlopen(url, timeout=timeout) as r:
-                return json.loads(r.read().decode("utf-8", "replace"))
-        except Exception:
-            time.sleep(3 * attempt)
-    return {"status": "error", "message": "no answer"}
+                last = json.loads(r.read().decode("utf-8", "replace"))
+        except Exception as exc:
+            last = {"status": "error", "message": f"no answer: {exc}"}
+            if attempt >= 2:
+                return last
+            time.sleep(3)
+            continue
+        if not (last.get("busy") or str(last.get("message") or "").startswith("LOCK_BUSY")):
+            return last
+        time.sleep(5 * attempt)
+    return last
 
 
 def update(vid, field, value):
@@ -139,7 +150,8 @@ def main(argv):
         return 1
     tally = dict.fromkeys(("website", "same", "closed", "social", "skipped", "failed"), 0)
     lock = threading.Lock()
-    with ThreadPoolExecutor(max_workers=6) as ex:
+    # Apps Script serialises writes; more than a few threads only buys timeouts
+    with ThreadPoolExecutor(max_workers=int(os.environ.get("SAVE_WORKERS", "3"))) as ex:
         for out, t in ex.map(lambda r: handle(r, venues.get(r.get("venue_id")), apply), rows):
             with lock:
                 for line in out:

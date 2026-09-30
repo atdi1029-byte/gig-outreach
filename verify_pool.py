@@ -69,11 +69,18 @@ SCHEMA_TYPES = [  # schema.org @type -> a Google-style category the classifier k
 
 
 def api(params, tries=3):
-    for i in range(tries):
+    for i in range(tries + 3):
         try:
-            return requests.get(API, params=params, timeout=90).json()
+            d = requests.get(API, params=params, timeout=90).json()
         except Exception:
+            if i + 1 >= tries:
+                break
             time.sleep(3 * (i + 1))
+            continue
+        # LOCK_BUSY: another writer held the backend lock for 30s; nothing was written
+        if not (isinstance(d, dict) and (d.get("busy") or str(d.get("message") or "").startswith("LOCK_BUSY"))):
+            return d
+        time.sleep(5 * (i + 1))
     return {"status": "error", "message": "request failed"}
 
 

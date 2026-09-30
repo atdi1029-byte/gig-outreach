@@ -62,7 +62,11 @@ has to fix (ZeroBounce or Apollo out of credits, Chrome) plus one line about the
     `SAVE_PENDING_PEOPLE=1` restores the old behaviour for a test.
   - Existing Facebook/Instagram/contact-form values on the sheet are never
     overwritten. Venue status is never demoted.
-- Target area: DC, MD, VA only; max ~2 hour drive from Pasadena, MD.
+- Target area: DC, MD, VA; max ~2 hour drive from Pasadena, MD. Exception (Alex, Sep 29
+  2026, on the 207 Pennsylvania/Delaware sweep finds: "fix these last"): sweep finds in
+  PA/DE run too, whatever the distance, but only after every DC/MD/VA venue (build_batch
+  fills a run with them only when the DC/MD/VA queue can't; `outreach_rules.LAST_STATES`).
+  Other PA/DE discovery stays out.
 
 ## Night runs (automatic, since Sep 29 2026)
 Alex: "run by yourself at night, runs of 50, push everything after each run, go
@@ -131,7 +135,7 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
   soft junk (chains, apartments, casual food) and location trust (a known sweep city
   beats a bad geocode). It is still ranked, prime venues first, and the hard rules
   stay: DC/MD/VA only, 2-hour radius, closed, motels/budget chains, adult/nightlife,
-  thumbs-down, past gigs, venues or sites already worked. `verify_pool.py` trusts a
+  thumbs-down, past gigs, venues or sites already worked. PA/DE sweep finds queue last. `verify_pool.py` trusts a
   sweep find's city and category once its own site answers (or walls plain HTTP).
   Rules live in `outreach_rules.is_sweep_find` / `HARD_JUNK_RX`.
 - Every row under READY TO ADD in a `sweep_*.md` write-up gets on the sheet:
@@ -247,6 +251,7 @@ when Alex asks for a full audit, do it by hand as below.
 - `reverify.sh`        re-check unverified contacts after a ZeroBounce top-up
 - `save_websites.py`   write researched websites (sweep finds) with read-back
 - `import_sweep_files.py` sweep write-ups -> sheet (add missing, tag, promote)
+- `sweep_coverage.py`  where every sweep find stands (queue, worked, waiting, left out, why)
 - `repair_data.py`     plan and apply sheet repairs
 - `taste_review.py`    unprocessed votes → taste_notes.md
 - `discover.sh`        Google Maps discovery; `sweep.sh --chrome` = Chrome sweep

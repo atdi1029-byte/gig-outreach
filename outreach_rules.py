@@ -551,6 +551,17 @@ HARD_JUNK_RX = re.compile(r"closed|motel|budget|extended.?stay|adult|nightlife|f
                           r"vacation|rental|airbnb|vrbo", re.I)
 
 
+# Alex, Sep 29 2026, on the Pennsylvania/Delaware sweep finds: "fix these last". They run,
+# but only after every DC/MD/VA venue: planning fills a run with them only when the
+# DC/MD/VA queue can't. Other discovery outside DC/MD/VA stays out.
+LAST_STATES = ("PA", "DE")
+
+
+def sweep_state_ok(state, sweep):
+    st = (state or "").strip().upper()
+    return st in TARGET_STATES or (sweep and st in LAST_STATES)
+
+
 SWEEP_NOTE_RX = re.compile(r"\bsweep find\b", re.I)
 
 

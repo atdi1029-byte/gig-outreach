@@ -207,7 +207,7 @@ def decide(v, ev):
     if ev.get("unreachable"):
         # A sweep find behind a bot wall: the pipeline reads it with Chrome anyway
         site0 = (v.get("website") or "").strip()
-        if R.is_sweep_find(v) and state in R.TARGET_STATES and city and \
+        if R.is_sweep_find(v) and R.sweep_state_ok(state, True) and city and \
                 website_match_score(name, site0 if "://" in site0 else "https://" + site0) >= 6:
             return "ok", f"sweep find, site walled to plain HTTP | {city}, {state}", \
                 {"loc": ("", city, state), "extra": ""}
@@ -232,7 +232,7 @@ def decide(v, ev):
         loc = (street, lc, st)
         break
     sweep = R.is_sweep_find(v)
-    if not loc and sweep and state in R.TARGET_STATES and city:
+    if not loc and sweep and R.sweep_state_ok(state, True) and city:
         loc = ("", city, state)   # the sweep found it in this city (Alex, Sep 29)
     if not loc:
         return "keep", "no DC/MD/VA address on the site matching the sheet", {}
@@ -317,7 +317,7 @@ def main():
         vid = v.get("venue_id", "")
         if a.venue and vid != a.venue:
             continue
-        if v.get("status") != "needs_review" or str(v.get("state", "")).upper() not in R.TARGET_STATES:
+        if v.get("status") != "needs_review" or not R.sweep_state_ok(v.get("state"), R.is_sweep_find(v)):
             continue
         if vid in with_contacts or vid in reported:
             continue

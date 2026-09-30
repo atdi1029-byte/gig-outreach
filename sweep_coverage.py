@@ -31,6 +31,7 @@ PARKED = re.compile(r"pipeline|0 contacts|zero contacts|closed|dead|not a venue|
 # build_batch reason -> the group Alex sees
 GROUPS = [
     ("ready", "In the run queue", ()),
+    ("last", "In the run queue after every DC/MD/VA venue (Pennsylvania / Delaware)", ()),
     ("worked", "Already worked (contacts in the app, or run with nothing found)", ()),
     ("website", "Waiting for its own website (the night run looks these up in Chrome)",
      ("no website", "junk website", "bare brand homepage as website", "website not verified as the venue's own")),
@@ -61,7 +62,7 @@ def main(argv):
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=900)
     bb = json.load(open(out))
     os.unlink(out)
-    reasons, pool = bb["reasons"], set(bb["pool"])
+    reasons, pool, last = bb["reasons"], set(bb["pool"]), set(bb.get("last") or [])
     venues = api({"action": "venues"}).get("venues") or []
     sweep = [v for v in venues if R.is_sweep_find(v)]
 
@@ -69,7 +70,9 @@ def main(argv):
     for v in sweep:
         vid, st = v["venue_id"], v.get("status")
         why = reasons.get(vid, "")
-        if vid in pool:
+        if vid in last:
+            g = "last"
+        elif vid in pool:
             g = "ready"
         elif st in ("pipelined", "contacted", "sent"):
             g = "worked"
@@ -85,8 +88,8 @@ def main(argv):
                 g, why = "website", "no website"
             elif PARKED.search(notes):
                 g, why = "other", "parked: " + PARKED.search(notes).group(0)
-            elif str(v.get("state", "")).upper() not in R.TARGET_STATES:
-                g, why = "rules", "out of area (not DC/MD/VA)"
+            elif not R.sweep_state_ok(v.get("state"), True):
+                g, why = "rules", "out of area (not DC/MD/VA/PA/DE)"
             else:
                 g = "verify"
         else:

@@ -152,7 +152,7 @@ def main(argv):
                                       "value": "untouched"}).get("status") != "ok":
                         tally["failed"] += 1
                 continue
-            if state not in R.TARGET_STATES:
+            if not R.sweep_state_ok(state, True):   # DC/MD/VA, and PA/DE (run last)
                 continue
             own = h and h not in BRAND_HOMEPAGES and not R.is_non_venue_host(h)
             url = ("https://" + web if not web.startswith("http") else web) if own else ""

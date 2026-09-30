@@ -504,7 +504,8 @@ for v in venues:
         continue
     state = str(v.get('state', '') or '').strip().upper()
     city = str(v.get('city', '') or '').strip()
-    if state not in R.TARGET_STATES:
+    last = state in R.LAST_STATES   # PA/DE sweep finds: run last (Alex, Sep 29)
+    if not R.sweep_state_ok(state, sweep):
         skips['out of area (not DC/MD/VA)'].append(vid)
         continue
     if not city or city_is_malformed(city):
@@ -521,7 +522,7 @@ for v in venues:
     if sweep_city_ok and (loc['in_radius'] is not True or not loc['trusted']):
         loc = dict(loc, in_radius=True, trusted=True, miles=float(ref), why=f'sweep city ~{ref} mi')
         sweep_in['location'] += 1
-    if loc['in_radius'] is False:
+    if loc['in_radius'] is False and not (sweep and last):
         dist = f"{loc['minutes']:.0f} min" if loc['minutes'] else f"{loc['miles']:.0f} mi"
         skip('too far', v, f"{dist} from home")
         continue
@@ -601,7 +602,9 @@ if os.environ.get('BB_REASONS_OUT'):
             _m = re.search(r'\[([A-Z]{2}-[A-Z0-9_ ]+?-\d+)\]', str(_x))   # a few ids hold a space
             _why.setdefault(_m.group(1) if _m else str(_x), _k)
     with open(os.environ['BB_REASONS_OUT'], 'w') as _f:
-        json.dump({'reasons': _why, 'pool': [e['venue'].get('venue_id') for e in pool]}, _f)
+        json.dump({'reasons': _why, 'pool': [e['venue'].get('venue_id') for e in pool],
+                   'last': [e['venue'].get('venue_id') for e in pool
+                            if str(e['venue'].get('state', '')).strip().upper() in R.LAST_STATES]}, _f)
 
 print(f"\nEligible pool: {len(pool)}  (sweep finds: {sum(1 for e in pool if R.is_sweep_find(e['venue']))})")
 if sweep_in:
@@ -617,6 +620,11 @@ for reason in order + sorted(r for r in skips if r not in order):
         for ex in items[:4]:
             print(f"      e.g. {ex}")
 
+# PA/DE sweep finds wait until the DC/MD/VA queue can't fill a run (Alex, Sep 29: "last")
+pool_last = [e for e in pool if str(e['venue'].get('state', '')).strip().upper() in R.LAST_STATES]
+pool = [e for e in pool if e not in pool_last]
+if pool_last:
+    print(f"  PA/DE sweep finds held for last: {len(pool_last)}")
 by_bucket = defaultdict(list)
 for e in pool:
     by_bucket[e['bucket']].append(e)
@@ -728,6 +736,10 @@ while len(seq) < sum(take.values()):
     seq.append(by_bucket[b][used[b]])
     used[b] += 1
 
+if len(seq) < COUNT and pool_last:
+    extra = sorted(pool_last, key=rank_key)[:COUNT - len(seq)]
+    print(f"  Filled {len(extra)} slot(s) with PA/DE sweep finds (the DC/MD/VA queue ran short)")
+    seq += extra
 batches = [seq[i:i + MAX_BATCH] for i in range(0, len(seq), MAX_BATCH)] if TOTAL else [seq]
 
 mix = Counter(e['bucket'] for e in seq)

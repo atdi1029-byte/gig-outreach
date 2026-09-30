@@ -128,7 +128,7 @@ for v in venues:
         continue
     name=(v.get('name') or '').strip(); city=(v.get('city') or '').strip()
     state=(v.get('state') or '').strip().upper()
-    if not name or not city or state not in R.TARGET_STATES:
+    if not name or not city or not R.sweep_state_ok(state, R.is_sweep_find(v)):
         continue
     if len(city)>30 or re.search(r'\d{3,}|https?://|\.com|prices|near me|open now',city.lower()):
         continue
@@ -144,7 +144,8 @@ for v in venues:
         continue
     try: score=float(v.get('upscale_score',0) or 0)
     except (TypeError,ValueError): score=0
-    rows.append((0 if sweep else 1,-score,name.lower(),len(rows),v))
+    # sweep finds in DC/MD/VA first, then other DC/MD/VA rows, PA/DE sweep finds last
+    rows.append((2 if state in R.LAST_STATES else 0 if sweep else 1,-score,name.lower(),len(rows),v))
 for *_,v in sorted(rows, key=lambda r: r[:4])[:int(os.environ['LIMIT'])]:
     vals=[v.get('venue_id',''),v.get('name',''),v.get('city',''),v.get('state',''),v.get('category',''),str(v.get('upscale_score','')),v.get('status','')]
     print('\t'.join(str(x).replace('\t',' ').replace('\n',' ') for x in vals))

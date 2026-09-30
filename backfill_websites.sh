@@ -132,6 +132,19 @@ try:
             recent.add(r.get('venue_id'))
 except OSError:
     pass
+# A sweep find whose "website" is a brand homepage (marriott.com), a tourism/news page or a
+# listing gets looked up like a missing one; the result replaces it only when VERIFIED.
+BRAND_HOMES={'marriott.com','hilton.com','hyatt.com','ihg.com','ritzcarlton.com','fourseasons.com',
+             'citizenm.com','invitedclubs.com','sonesta.com','kimptonhotels.com','choicehotels.com',
+             'wyndhamhotels.com','sunriseseniorliving.com','brightviewseniorliving.com'}
+LISTING_PARTS=('visitannapolis.org','visitmaryland.org','virginia.org','visitvirginia.com','baltimore.org',
+               'eventbrite.com','meetup.com','dcpreservation.org','nextdoor.com','groupon.com')
+def replaceable_site(site):
+    reg=R.registrable_domain(site)
+    path=re.sub(r'^https?://[^/]+','',site.strip(),flags=re.I).strip('/')
+    host=R.host_of(site)
+    return ((reg in BRAND_HOMES or reg in R.SHARED_BRAND_DOMAINS) and not path) or \
+        R.is_non_venue_host(site) or any(p in host for p in LISTING_PARTS)
 rows=[]
 for v in venues:
     if os.environ.get('ONLY_VENUE') and v.get('venue_id') != os.environ['ONLY_VENUE']:
@@ -141,7 +154,8 @@ for v in venues:
     status=v.get('status','')
     if status not in ('untouched','needs_review'):
         continue
-    if (v.get('website') or '').strip():
+    site=(v.get('website') or '').strip()
+    if site and not (R.is_sweep_find(v) and replaceable_site(site)):
         continue
     name=(v.get('name') or '').strip(); city=(v.get('city') or '').strip()
     state=(v.get('state') or '').strip().upper()

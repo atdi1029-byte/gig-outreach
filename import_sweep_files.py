@@ -40,6 +40,7 @@ PARKED = re.compile(r"pipeline|0 contacts|zero contacts|closed|dead|not a venue|
 BRAND_HOMEPAGES = {"marriott.com", "hilton.com", "hyatt.com", "ihg.com", "ritzcarlton.com",
                    "fourseasons.com", "citizenm.com", "invitedclubs.com", "sonesta.com",
                    "kimptonhotels.com", "choicehotels.com", "wyndhamhotels.com", "accor.com"}
+DUPES_FILE = HERE / "reports" / "sweep_import_dupes.json"   # write-up row -> the row the backend matched
 END_HEADINGS = re.compile(r"excluded|closed|removed|coming soon|top \d+|priority|notes|already", re.I)
 
 
@@ -118,7 +119,11 @@ def main(argv):
     if not venues:
         print("could not read the venue list — nothing done")
         return 1
-    by_name, by_host = {}, {}
+    by_name, by_host, by_id = {}, {}, {v.get("venue_id"): v for v in venues}
+    try:
+        dupes = json.load(open(DUPES_FILE))
+    except (OSError, ValueError):
+        dupes = {}
     for v in venues:
         by_name.setdefault(norm(v.get("name")), []).append(v)
         if v.get("website"):
@@ -131,13 +136,17 @@ def main(argv):
             name, web = r.get("name", "").replace("*", "").strip(), r.get("website", "").strip()
             city, state = r.get("city", "").strip(), r.get("state", "").strip().upper()
             n, h = norm(name), host(web) if "." in web else ""
+            # Same state first. A row with no state is a stray discovery copy (it can't run),
+            # so it never stands in for the venue.
             same_state = lambda v: not state or str(v.get("state", "")).upper() == state
             hits = [v for v in by_name.get(n, []) if same_state(v)]
             if not hits and h and h not in BRAND_HOMEPAGES:
                 hits = [v for v in by_host.get(h, []) if same_state(v)]
+            if not hits and dupes.get(f"{n}|{state}") in by_id:
+                hits = [by_id[dupes[f"{n}|{state}"]]]   # the backend matched it before (other name/state)
             if not hits:
                 # "Seven" is "Seven Restaurant & Bar", "Masti (Hyatt Regency)" is "Masti at Hyatt
-                # Regency Reston": one name's words inside the other's, same city and state
+                # Regency Reston": the write-up's words inside the sheet name, same city and state
                 mine = tokens(name)
                 hits = [v for v in venues if mine and same_state(v) and norm(v.get("city")) == norm(city)
                         and mine <= tokens(v.get("name"))]
@@ -180,9 +189,29 @@ def main(argv):
                 print(f"         FAILED: {str(res.get('message') or res)[:120]}")
                 tally["failed"] += 1
             elif res.get("duplicate"):
-                print(f"         already there as {res.get('venue_id')} ({res.get('existing_status')})")
+                print(f"         already there as {res.get('venue_id')} ({res.get('existing_status')}) — "
+                      "remembered; marked as a sweep find on the next pass")
                 tally["added"] -= 1
                 tally["on_sheet"] += 1
+                if res.get("venue_id"):
+                    dupes[f"{n}|{state}"] = res["venue_id"]
+                    with open(DUPES_FILE, "w") as f:
+                        json.dump(dupes, f, indent=1)
+                    # A stray discovery copy with no city/state can't run: the sweep's verified
+                    # city/state complete it (blank cells only), then it is tagged + promoted
+                    old = by_id.get(res["venue_id"]) or {}
+                    if old and not str(old.get("state") or "").strip():
+                        vid0 = res["venue_id"]
+                        ok = api({"action": "update_venue", "venue_id": vid0, "field": "state", "value": state}).get("status") == "ok"
+                        if ok and city and not str(old.get("city") or "").strip():
+                            ok = api({"action": "update_venue", "venue_id": vid0, "field": "city", "value": city}).get("status") == "ok"
+                        notes0 = f"{old.get('notes') or ''} | Sweep find ({stem})".strip(" |")
+                        ok = ok and api({"action": "update_venue", "venue_id": vid0, "field": "notes", "value": notes0}).get("status") == "ok"
+                        if ok and old.get("status") == "needs_review" and (old.get("website") or "").strip():
+                            ok = api({"action": "update_venue", "venue_id": vid0, "field": "status", "value": "untouched"}).get("status") == "ok"
+                        print(f"         completed {vid0}: {city}, {state}, marked as a sweep find" + ("" if ok else " — FAILED"))
+                        if not ok:
+                            tally["failed"] += 1
     print(("APPLIED: " if apply else "PREVIEW: ") + " ".join(f"{k}={n}" for k, n in tally.items()))
     return 0
 

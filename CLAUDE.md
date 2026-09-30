@@ -79,8 +79,9 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
 - `night_run.sh`: checks (kill switch `.night_off`, ZeroBounce, Apollo >= 100 credits)
   → `reverify.sh --unverified` → `import_sweep_files.py --apply` (every READY TO ADD
   row of every `sweep_*.md` on the sheet, marked as a sweep find) →
-  `backfill_websites.sh --limit 20 --apply` (Chrome
-  finds missing websites, sweep finds first) → `verify_pool.py --apply --limit 400`
+  `backfill_websites.sh --limit 30 --apply` (Chrome
+  finds missing websites and replaces brand-homepage or listing pages, sweep finds first,
+  14-day rotation) → `verify_pool.py --apply --limit 400` → `--vouch-sweep-sites`
   → runs of 50
   (`pipeline.sh --run 50`, or `--resume` of a run a stop/the cutoff left unfinished;
   a resumed run doesn't count toward the 2 new runs) with `RUN_DEADLINE` = 8:00, so no

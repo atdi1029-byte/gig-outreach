@@ -50,6 +50,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$SCRIPT_DIR/env_check.sh" || exit 1
+. "$SCRIPT_DIR/chrome_guard.sh" || exit 1
 [ -f "$SCRIPT_DIR/.env" ] && source "$SCRIPT_DIR/.env"
 APPS_SCRIPT_URL="${APPS_SCRIPT_URL:-https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec}"
 LOG_FILE="${SCRIPT_DIR}/postcheck.log"
@@ -1501,6 +1502,9 @@ linkedin_pass() {
     running=$(with_timeout 20 osascript -e 'application "Google Chrome" is running' 2>>"$ERR_LOG")
     if [ "$running" != "true" ]; then
         LI_ST="failed:chrome_not_running"; log "  [LinkedIn] FAILED — Google Chrome is not running"; return
+    fi
+    if ! chrome_wait_alone "${CHROME_ALONE_NAV_WAIT_S:-300}"; then
+        LI_ST="failed:chrome_not_alone"; log "  [LinkedIn] FAILED — $CHROME_ALONE_DETAIL"; return
     fi
     log "  Searching LinkedIn for: $VENUE_NAME"
     q=$(run_py li-quote python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$VENUE_NAME") || { LI_ST="failed:encode"; return; }

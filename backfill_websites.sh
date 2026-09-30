@@ -16,6 +16,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$SCRIPT_DIR/env_check.sh" || exit 1
+. "$SCRIPT_DIR/chrome_guard.sh" || exit 1
 [ -f "$SCRIPT_DIR/.env" ] && source "$SCRIPT_DIR/.env"
 APPS_SCRIPT_URL="${APPS_SCRIPT_URL:-https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec}"
 
@@ -49,6 +50,10 @@ fi
 
 WORK_DIR=$(mktemp -d "${TMPDIR:-/tmp}/backfill.XXXXXX") || { echo "ERROR: mktemp failed" >&2; exit 1; }
 trap 'rm -rf "$WORK_DIR"' EXIT
+# The results are read together with the page's address, so a search that never
+# loaded can't hand over the previous venue's results (Sep 30: two venues got them)
+READ_JS="$WORK_DIR/read_search.js"
+{ printf 'location.href + "\\n" + '; cat "$EXTRACT_JS"; } > "$READ_JS"
 VENUES_JSON="$WORK_DIR/venues.json"
 LIST_TSV="$WORK_DIR/list.tsv"
 CANDIDATE_LOG="$SCRIPT_DIR/reports/backfill-candidates.jsonl"
@@ -94,6 +99,18 @@ import json, sys, datetime
 vid, name, url, result, why = sys.argv[1:6]
 print(json.dumps({'ts': datetime.datetime.now().isoformat(timespec='seconds'), 'venue_id': vid,
                   'name': name, 'url': url, 'result': result, 'why': why}))
+PY
+}
+
+is_search_for() {  # is_search_for PAGE_URL QUERY — 0 when Chrome shows Google's results for QUERY
+    python3 - "$1" "$2" <<'PY'
+import sys
+from urllib.parse import urlsplit, parse_qs
+u = urlsplit(sys.argv[1])
+q = (parse_qs(u.query).get('q') or [''])[0]
+norm = lambda s: ' '.join(s.split()).casefold()
+ok = bool(u.hostname) and 'google.' in u.hostname and u.path == '/search' and norm(q) == norm(sys.argv[2])
+sys.exit(0 if ok else 1)
 PY
 }
 
@@ -201,6 +218,13 @@ while IFS=$'\t' read -r VID NAME CITY STATE CATEGORY SCORE ORIG_STATUS; do
     echo ""
     echo "[$processed/$LIMIT] $NAME — $CITY, $STATE ($VID)"
 
+    # Another copy of Chrome would take every command (chrome_guard.sh): wait it out
+    if ! chrome_wait_alone; then
+        echo "STOP: $CHROME_ALONE_DETAIL"
+        processed=$((processed - 1))
+        break
+    fi
+
     # Existing missing-site records are not eligible for bulk outreach while
     # repair is in progress.
     if [ "$APPLY" -eq 1 ] && [ "$ORIG_STATUS" = "untouched" ]; then
@@ -218,11 +242,29 @@ print(urllib.parse.quote(sys.argv[1]))
 PY
 )
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\"" 2>/dev/null || true
-    sleep 6
-    FOUND_RAW=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"$EXTRACT_JS"'" as «class utf8»)' 2>/dev/null)
+    # Only results from THIS search count: the page's address must be it
+    FOUND_RAW=""; PAGE_URL=""; ON_SEARCH=0
+    for WAIT_S in 6 4 4; do
+        sleep "$WAIT_S"
+        PAGE_OUT=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript (read POSIX file "'"$READ_JS"'" as «class utf8»)' 2>/dev/null)
+        PAGE_URL="${PAGE_OUT%%$'\n'*}"
+        if is_search_for "$PAGE_URL" "$SEARCH_QUERY"; then
+            ON_SEARCH=1
+            case "$PAGE_OUT" in *$'\n'*) FOUND_RAW="${PAGE_OUT#*$'\n'}" ;; esac
+            break
+        fi
+    done
     if [ -z "$FOUND_RAW" ] || [ "$FOUND_RAW" = "missing value" ]; then
-        echo "  Chrome returned nothing (JS from Apple Events off, Google blocking, or no results)"
         failed=$((failed + 1))
+        if [ "$ON_SEARCH" = 1 ]; then
+            # A real results page without a usable link says nothing about Chrome
+            echo "  Google's results page had no usable links"
+            empty_streak=0
+            [ "$APPLY" -eq 1 ] && log_candidate "$VID" "$NAME" "" none "no usable links on Google"
+            continue
+        fi
+        SHOWN="${PAGE_URL:-nothing}"
+        echo "  Chrome didn't show this search (it showed: ${SHOWN:0:90}) — JS from Apple Events off, Google blocking, or the page never loaded"
         empty_streak=$((empty_streak + 1))
         if [ "$empty_streak" -ge 10 ]; then
             echo "STOP: ten consecutive misses; check Chrome/Apple Events or Google blocking."

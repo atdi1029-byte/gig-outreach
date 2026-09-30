@@ -25,7 +25,10 @@
 #      night_save.py writes what it found; commit + push.
 #   4. after the last run: one Claude session fixes the scraper for what the pipeline
 #      missed (phase fix, recall benchmark as the test), then commit + push.
-# A stop (credits, Chrome, preflight) ends the night; the app shows why.
+# A stop (credits, preflight) ends the night; the app shows why. A Chrome stop is first
+# tried again, CHROME_RETRIES times CHROME_RETRY_WAIT_S apart. The night needs Chrome to
+# itself: another copy of Chrome is waited for, then closed if a program started it
+# (CHROME_ALONE_KILL, chrome_guard.sh).
 # =============================================================
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -62,7 +65,13 @@ FIX_MAX_MIN="${FIX_MAX_MIN:-120}"
 FIX_LATEST="${FIX_LATEST:-1100}"                       # HHMM: no fix session starts later
 APOLLO_MIN_CREDITS="${APOLLO_MIN_CREDITS:-100}"
 MAX_RESUMES="${MAX_RESUMES:-2}"                        # stops (not cutoffs) before a run is dropped
+CHROME_RETRIES="${CHROME_RETRIES:-3}"                  # a Chrome stop is tried again this many times
+CHROME_RETRY_WAIT_S="${CHROME_RETRY_WAIT_S:-600}"      # ...this long apart, before the night gives up
 BACKFILL_LIMIT="${BACKFILL_LIMIT:-30}"                 # websites looked up per night (Chrome, ~45 s each)
+# The night needs Chrome to itself (Alex, Sep 30 2026: "we need to run alone"): the scripts
+# wait for another copy of Chrome to close, and at night then close a copy a program
+# started, such as a headless test browser (chrome_guard.sh)
+export CHROME_ALONE_KILL="${CHROME_ALONE_KILL:-1}"
 CLAUDE_BIN="${CLAUDE_BIN:-$(command -v claude || echo /usr/local/bin/claude)}"
 RUNS_DIR="$SCRIPT_DIR/reports/runs"
 STATE="$RUNS_DIR/night-state.json"
@@ -210,36 +219,55 @@ STOP_KIND=""
 classify_stop() {
     case "$1" in
         deadline:*) STOP_KIND="deadline" ;;
+        # chrome_guard.sh's words first: the copy it names may have been started by anything
+        *"another copy of Google Chrome"*|*"Google Chrome is not running"*) STOP_KIND="chrome" ;;
         *ZeroBounce*) STOP_KIND="zerobounce" ;;
         *Apollo*) STOP_KIND="apollo" ;;
         *Chrome*|*curl*|*watchdog*|*social/Google*) STOP_KIND="chrome" ;;
         *) STOP_KIND="error" ;;
     esac
 }
+google_block() { case "$1" in *social/Google*|*CAPTCHA*) return 0 ;; esac; return 1; }
 
+LAST_STARTED=1     # 0 when the last run couldn't start (preflight etc.): nothing registered
+LAST_RESUMABLE=1   # 0 when the last run won't resume (never started, or dropped)
+CHROME_TRIED=0     # Chrome stops tried again tonight
 alert_for_stop() {   # alert_for_stop RUN_ID "reason"
-    local rid="$1" reason="$2"
+    local rid="$1" reason="$2" next tried="" advice
+    next="Run $rid resumes next night."
+    if [ "$LAST_RESUMABLE" != 1 ]; then
+        next="The next night starts a fresh run."
+        [ "$LAST_STARTED" = 0 ] && next="No venues had started, so none were used up. $next"
+    fi
+    [ "$CHROME_TRIED" -gt 0 ] && tried=" Tried again $CHROME_TRIED time(s), $((CHROME_RETRY_WAIT_S / 60)) min apart."
     classify_stop "$reason"
     case "$STOP_KIND" in
         zerobounce)
             zb_check >/dev/null
-            status alert zerobounce stop "Night runs paused: ZeroBounce" "${ZB_DETAIL:-$reason}. Run $rid stopped and resumes first next night." ;;
+            status alert zerobounce stop "Night runs paused: ZeroBounce" "${ZB_DETAIL:-$reason}. $next" ;;
         apollo)
             apollo_check >/dev/null
             if [ -n "$APOLLO_LEFT" ] && [ "$APOLLO_LEFT" -lt "$APOLLO_MIN_CREDITS" ]; then
-                status alert apollo stop "Night runs paused: Apollo credits" "Apollo has $APOLLO_LEFT credits left (the floor is $APOLLO_MIN_CREDITS). Top up and the next night resumes run $rid."
+                status alert apollo stop "Night runs paused: Apollo credits" "Apollo has $APOLLO_LEFT credits left (the floor is $APOLLO_MIN_CREDITS). Top up and the next night picks up again. $next"
             else
                 status alert apollo warn "Apollo kept failing" "$reason. Credits left: ${APOLLO_LEFT:-unknown}. The next night tries again."
             fi ;;
         chrome)
-            case "$reason" in
-                *social/Google*|*CAPTCHA*)
-                    status alert chrome warn "Google started blocking searches" "$reason. Run $rid resumes next night; if it keeps happening, open Chrome and solve the Google check once." ;;
-                *)
-                    status alert chrome stop "Night run stopped: Chrome" "$reason. Leave Chrome open with View > Developer > Allow JavaScript from Apple Events on. Run $rid resumes next night." ;;
-            esac ;;
+            if google_block "$reason"; then
+                status alert chrome warn "Google started blocking searches" "$reason. $next If it keeps happening, open Chrome and solve the Google check once."
+            else
+                case "$reason" in
+                    *"another copy of Google Chrome"*)
+                        advice="The night run needs Chrome to itself: close the other copy of Chrome (usually a test browser a program opened)." ;;
+                    *"Google Chrome is not running"*)
+                        advice="Leave Chrome open at night." ;;
+                    *)
+                        advice="Leave Chrome open with View > Developer > Allow JavaScript from Apple Events on." ;;
+                esac
+                status alert chrome stop "Night run stopped: Chrome" "$reason.$tried $advice $next"
+            fi ;;
         error)
-            status alert error warn "Night run stopped" "$reason. Run $rid resumes next night." ;;
+            status alert error warn "Night run stopped" "$reason. $next" ;;
     esac
 }
 
@@ -388,6 +416,16 @@ health_check() {   # every script parses, embedded python compiles, offline craw
 }
 
 # ---------------------------------------------------------------- one run
+# What made a run fail: preflight's own FAIL lines (not its "aborting" summary), else the
+# last ERROR/FAIL line. Only the log's tail, so a resumed run's older lines don't count.
+run_fail_reason() {
+    local r
+    r=$(tail -n 80 "$1" 2>/dev/null | grep -E '^PREFLIGHT FAIL: ' | grep -vE '^PREFLIGHT FAIL: [0-9]+ check\(s\) failed' |
+        sed 's/^PREFLIGHT FAIL: //' | tail -3 | paste -s -d ';' - | sed 's/;/; /g')
+    [ -n "$r" ] || r=$(tail -n 80 "$1" 2>/dev/null | grep -E 'ERROR|FAIL' | tail -1)
+    printf '%s' "${r:0:240}"
+}
+
 LAST_RID=""
 LAST_STOP=""
 LAST_MODE=""
@@ -408,6 +446,8 @@ do_run() {   # returns 0 finished, 3 stopped (LAST_STOP has why), 4 pool empty, 
     LAST_RID="$rid"
     LAST_STOP=""
     LAST_MODE="$mode"
+    LAST_STARTED=1
+    LAST_RESUMABLE=1
     status run "$rid" "outcome=running" "started=$(date +%H:%M)"
     status_push "$rid started"
     # Output goes to the run's own log (pipeline.sh sees that and doesn't tee it twice)
@@ -423,8 +463,12 @@ do_run() {   # returns 0 finished, 3 stopped (LAST_STOP has why), 4 pool empty, 
             status run "$rid" "outcome=no venues left to run" "ended=$(date +%H:%M)"
             return 4
         fi
-        LAST_STOP="the run could not start (pipeline.sh exit $rc): $(grep -E 'ERROR|FAIL' "$RUNS_DIR/$rid.log" | tail -1 | cut -c1-200)"
-        status run "$rid" "outcome=could not start" "ended=$(date +%H:%M)"
+        local why
+        why=$(run_fail_reason "$RUNS_DIR/$rid.log")
+        LAST_STOP="the run could not start (pipeline.sh exit $rc): $why"
+        LAST_STARTED=0
+        LAST_RESUMABLE=0
+        status run "$rid" "outcome=could not start: ${why:0:140}" "ended=$(date +%H:%M)"
         return 1
     fi
     status clear-alert pool
@@ -438,20 +482,25 @@ do_run() {   # returns 0 finished, 3 stopped (LAST_STOP has why), 4 pool empty, 
         return 0
     fi
     LAST_STOP=$(head -1 "$RUNS_DIR/$rid.stopped" 2>/dev/null)
-    if [ -z "$LAST_STOP" ]; then
-        LAST_STOP="pipeline.sh exited $rc: $(grep -E 'PREFLIGHT FAIL|ERROR' "$RUNS_DIR/$rid.log" | tail -1 | cut -c1-200)"
-    fi
+    case "$LAST_STOP" in
+        "preflight failed"*) LAST_STOP="$LAST_STOP: $(run_fail_reason "$RUNS_DIR/$rid.log")" ;;
+        "") LAST_STOP="pipeline.sh exited $rc: $(run_fail_reason "$RUNS_DIR/$rid.log")" ;;
+    esac
     if [ ! -f "$RUNS_DIR/$rid.jsonl" ]; then
         # Nothing was registered: nothing to resume, the plan's venues are still in the pool
         state_set resume ""; state_set resume_reason ""; state_set resume_attempts ""
+        LAST_STARTED=0
+        LAST_RESUMABLE=0
         status run "$rid" "outcome=could not start: ${LAST_STOP:0:140}" "ended=$(date +%H:%M)"
         return 1
     fi
     classify_stop "$LAST_STOP"
     attempts="$(state_get resume_attempts)"; attempts=${attempts:-0}
-    [ "$STOP_KIND" != "deadline" ] && attempts=$((attempts + 1))
+    # Chrome being busy or closed isn't the run's fault: only other stops count toward dropping it
+    case "$STOP_KIND" in deadline|chrome) ;; *) attempts=$((attempts + 1)) ;; esac
     if [ "$attempts" -gt "$MAX_RESUMES" ]; then
         log "Run $rid stopped $attempts times ($LAST_STOP) — dropping it; venues it never started go back to the pool"
+        LAST_RESUMABLE=0
         state_set resume ""; state_set resume_reason ""; state_set resume_attempts ""
         status run "$rid" "outcome=dropped after $attempts stops: ${LAST_STOP:0:120}" "ended=$(date +%H:%M)"
         status alert error warn "A run was dropped" "Run $rid kept stopping ($LAST_STOP). The next night starts a fresh run."
@@ -563,7 +612,7 @@ guarded 900 /usr/bin/python3 verify_pool.py --vouch-sweep-sites --apply --limit 
 
 new_runs=0
 night_state="done"
-while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run doesn't count
+while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run, or one that couldn't start, doesn't count
     left=$(minutes_left)
     if [ "$left" -lt "$MIN_RUN_WINDOW_MIN" ]; then
         log "Only $left min before the cutoff — no more runs tonight"
@@ -571,22 +620,32 @@ while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run doesn't count
     fi
     do_run
     rc=$?
-    [ "$LAST_MODE" = "--run" ] && new_runs=$((new_runs + 1))
+    [ "$LAST_MODE" = "--run" ] && [ "$LAST_STARTED" = 1 ] && new_runs=$((new_runs + 1))
     if [ "$rc" = 4 ]; then
         log "No eligible venues left — the pool needs a sweep"
         status alert pool warn "Out of venues to run" "Every venue that passes the filters has been worked. A sweep of a new city refills the pool."
         git_sync "Night: pool empty" night_status.json
         break
     fi
+    run_stats=$(/usr/bin/python3 "$SCRIPT_DIR/night_zero.py" "$LAST_RID" --stats 2>/dev/null | tr ' ' ',')
     # shellcheck disable=SC2046
-    git_sync "Night run $LAST_RID: $(/usr/bin/python3 "$SCRIPT_DIR/night_zero.py" "$LAST_RID" --stats 2>/dev/null | tr ' ' ',')" \
-        night_status.json $(run_files "$LAST_RID")
+    git_sync "Night run $LAST_RID: ${run_stats:-${LAST_STOP:0:120}}" night_status.json $(run_files "$LAST_RID")
     [ -f "$RUNS_DIR/$LAST_RID.jsonl" ] && start_dive "$LAST_RID"
     [ "$rc" = 0 ] && continue
     classify_stop "$LAST_STOP"
     if [ "$STOP_KIND" = "deadline" ]; then
         log "Cutoff reached — $LAST_RID finishes next night"
         break
+    fi
+    # Chrome trouble often passes (another copy of Chrome, a hung tab): wait and try again
+    # before giving up the night. Google blocking searches isn't retried (more searches
+    # would only make it worse).
+    if [ "$STOP_KIND" = "chrome" ] && ! google_block "$LAST_STOP" && [ "$CHROME_TRIED" -lt "$CHROME_RETRIES" ] &&
+       [ $(( $(minutes_left) - CHROME_RETRY_WAIT_S / 60 )) -ge "$MIN_RUN_WINDOW_MIN" ]; then
+        CHROME_TRIED=$((CHROME_TRIED + 1))
+        log "Chrome problem ($LAST_STOP) — trying again in $((CHROME_RETRY_WAIT_S / 60)) min ($CHROME_TRIED of $CHROME_RETRIES)"
+        sleep "$CHROME_RETRY_WAIT_S"
+        continue
     fi
     log "Run stopped: $LAST_STOP"
     alert_for_stop "$LAST_RID" "$LAST_STOP"

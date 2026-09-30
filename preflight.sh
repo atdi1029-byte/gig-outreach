@@ -15,11 +15,14 @@
 # Everything here is free and read-only: syntax checks, a rules self-test,
 # GETs of the Apps Script health check + config, the ZeroBounce guard's
 # `budget` (a free credit-balance lookup, no validation), Apollo's free
-# /auth/health, and one `1+1` in Chrome's active tab.
+# /auth/health, and one `1+1` in Chrome's active tab once Alex's Chrome is
+# the only copy running (another copy is waited for, see chrome_guard.sh).
 #
 # Env: PREFLIGHT_ZB=require      FAIL (not WARN) when paid ZeroBounce
 #                                verification is paused (out of credits, ...)
 #      PREFLIGHT_APOLLO=warn     WARN (not FAIL) when the Apollo key is bad
+#      PREFLIGHT_CHROME_WAIT_S   how long to wait for another copy of Chrome
+#                                to close (default 300)
 #      ZB_RUN_ID                 run id whose ZeroBounce budget to report
 # =============================================================
 
@@ -35,7 +38,7 @@ while [ $# -gt 0 ]; do
         --no-chrome) CHROME=0 ;;
         --quick) QUICK=1 ;;
         --offline) OFFLINE=1 ;;
-        -h|--help) sed -n '2,24p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+        -h|--help) sed -n '2,27p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
         *) echo "PREFLIGHT FAIL: unknown argument '$1'"; exit 2 ;;
     esac
     shift
@@ -237,17 +240,25 @@ if needs pipeline && [ "$OFFLINE" = 0 ] && [ -n "$APOLLO_API_KEY" ]; then
 fi
 
 # ---------------------------------------------------------------- Chrome
+# Alex's Chrome must be the only copy: AppleScript goes to the newest copy, so a headless
+# or test copy started from the Chrome app would take the run's commands (chrome_guard.sh).
 if [ "$CHROME" = 1 ] && needs pipeline discover; then
-    if ! pgrep -x "Google Chrome" >/dev/null 2>&1; then
-        fail "Google Chrome is not running (open it, logged into LinkedIn/Google)"
+    if ! . "$SCRIPT_DIR/chrome_guard.sh"; then
+        fail "chrome_guard.sh is missing or broken"
     else
-        js=$(with_timeout 15 osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "1+1"' 2>&1)
-        case "$js" in
-            2|2.0) ok "Chrome runs JavaScript from Apple Events" ;;
-            *"turned off"*|*"Allow JavaScript"*) fail "Chrome: View > Developer > Allow JavaScript from Apple Events is OFF" ;;
-            *"front window"*|*"-1719"*|*"-1728"*) fail "Chrome has no open window" ;;
-            "") fail "Chrome did not answer within 15s (hung or a modal dialog is open)" ;;
-            *) fail "Chrome JavaScript check failed: $(echo "$js" | head -1 | cut -c1-120)" ;;
+        chrome_wait_alone "${PREFLIGHT_CHROME_WAIT_S:-300}"
+        case $? in
+            2) fail "$CHROME_ALONE_DETAIL — open it, logged into LinkedIn/Google" ;;
+            1) fail "Chrome is not ours alone — $CHROME_ALONE_DETAIL" ;;
+            *)
+                js=$(with_timeout 15 osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "1+1"' 2>&1)
+                case "$js" in
+                    2|2.0) ok "Chrome runs JavaScript from Apple Events" ;;
+                    *"turned off"*|*"Allow JavaScript"*) fail "Chrome: View > Developer > Allow JavaScript from Apple Events is OFF" ;;
+                    *"front window"*|*"-1719"*|*"-1728"*) fail "Chrome has no open window" ;;
+                    "") fail "Chrome did not answer within 15s (hung or a modal dialog is open)" ;;
+                    *) fail "Chrome JavaScript check failed: $(echo "$js" | head -1 | cut -c1-120)" ;;
+                esac ;;
         esac
     fi
 fi

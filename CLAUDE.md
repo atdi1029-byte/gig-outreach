@@ -22,6 +22,16 @@ has to fix (ZeroBounce or Apollo out of credits, Chrome) plus one line about the
 - Don't edit `pipeline.sh` during a run. Don't run two scripts that drive Chrome
   at once (pipeline, discover, sweep --chrome refuse while the pipeline holds
   `/tmp/pipeline.lock.d`).
+- Runs need Chrome to themselves (Alex, Sep 30 2026: "we need to run alone"). Never
+  start another copy of the Chrome app — no puppeteer, headless or CDP browser from
+  `/Applications/Google Chrome.app`, in any project. macOS sends AppleScript for "Google
+  Chrome" to the NEWEST running copy, so a headless test copy takes every command of
+  the run (navigations land in it, JavaScript "is turned off"): that stopped the Sep 30
+  night at 01:09. Test browsers use Chrome for Testing (`~/.cache/puppeteer`, a separate
+  app; `npx @puppeteer/browsers install chrome@stable --path ~/.cache/puppeteer`), as
+  the recall benchmark and the Books tests do. `chrome_guard.sh` is the net: every
+  Chrome-driving script waits for another copy to close, and at night closes a copy a
+  program started.
 - Do not send anything. Sending is manual, always, from the app.
 - Save policy (enforced by the code and the backend):
   - An email is saved only if it's on the venue's own domain, or a free-mail/ISP
@@ -92,9 +102,18 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
   fixes the scraper for what the pipeline missed, proves it with the recall benchmark,
   commits; `night_run.sh` reverts anything that breaks `health_check` → final push.
 - A stop (credits, Chrome, preflight) ends the night and sets the app alert in
-  `night_status.json`; the stopped run resumes first next night (dropped on its 3rd stop
-  that isn't the cutoff). An empty pool raises a "needs a sweep" alert. A launch
-  outside 00:30–03:30 (the Mac was asleep at 1:00) is skipped with an alert.
+  `night_status.json` with the real reason (preflight's own FAIL line, not its
+  summary); the stopped run resumes first next night (dropped on its 3rd stop that
+  isn't the cutoff or Chrome). A run that never started leaves nothing to resume and
+  doesn't count toward the 2 runs. An empty pool raises a "needs a sweep" alert. A
+  launch outside 00:30–03:30 (the Mac was asleep at 1:00) is skipped with an alert.
+- Chrome stops are tried again first: `CHROME_RETRIES` (3) times, `CHROME_RETRY_WAIT_S`
+  (600 s) apart, while an hour of the window is left (Google blocking searches is not
+  retried). The night needs Chrome to itself (Sep 30 2026, "we need to run alone"):
+  `CHROME_ALONE_KILL=1` makes the scripts close another copy of Chrome that a program
+  started (headless/automation flags) once they've waited for it (preflight 5 min,
+  between venues and backfill lookups 10 min, a page 5 min); a copy a person
+  started is never closed, it stops the run with a "close the other copy" alert.
 - Files: `reports/runs/night-YYYYMMDD.log` (the night), `reports/runs/<RUN_ID>.log`
   (the run), `reports/runs/night-state.json` (resume target, runs waiting for a fix
   session), `<RUN_ID>.zero.json` / `.deepdive.json` / `.deepdive-saved.json` /
@@ -249,6 +268,8 @@ when Alex asks for a full audit, do it by hand as below.
 - `build_batch.sh`     plans runs; `taste_score.py` + `venue_classifier.py` + `venue_quality.py`
 - `outreach_rules.py`  the shared save rules (apps_script.gs mirrors them)
 - `preflight.sh`       pre-run checks; `verify_run.sh` = the gate; `mark_step.sh` = the ledger
+- `chrome_guard.sh`    sourced by every Chrome-driving script: waits until Alex's Chrome is the
+                       only copy running (night runs then close a program-started copy)
 - `reverify.sh`        re-check unverified contacts after a ZeroBounce top-up
 - `save_websites.py`   write researched websites (sweep finds) with read-back
 - `import_sweep_files.py` sweep write-ups -> sheet (add missing, tag, promote)

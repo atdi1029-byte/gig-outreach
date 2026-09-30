@@ -17,8 +17,10 @@ about 90 minutes in total; the session is killed at 100.
 
 ## Hard rules
 - Never use Chrome: no `osascript`, no Claude-in-Chrome tools, no `pipeline.sh`,
-  `discover.sh`, `postcheck.sh`, `backfill_websites.sh` or `sweep.sh --chrome`.
-  (The recall benchmark's own headless Chrome is fine; it never touches Alex's.)
+  `discover.sh`, `postcheck.sh`, `backfill_websites.sh` or `sweep.sh --chrome`, and
+  never start a browser from `/Applications/Google Chrome.app` (puppeteer, headless,
+  CDP): macOS would send the running pipeline's Chrome commands to that copy. The recall
+  benchmark is fine: it runs Chrome for Testing, a separate app.
 - Never write to the sheet yourself (no `add_contact`/`update_venue` calls, no
   `repair_data.py --apply`). Findings go in the JSON file; `night_save.py` writes.
 - Never send anything. Never push (night_run.sh pushes). Never touch `.env`,

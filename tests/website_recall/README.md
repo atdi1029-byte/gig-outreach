@@ -25,7 +25,8 @@ harness output (`step1.log`, `vp.tsv` = what went to verify_and_push, `cand.tsv`
 
 Compare two runs item by item: `/usr/bin/python3 tests/website_recall/lib/compare.py RUN_A RUN_B`.
 
-Needs node 22+ (built-in WebSocket), Google Chrome, and `/usr/bin/python3` with requests + bs4.
+Needs node 22+ (built-in WebSocket), Chrome for Testing (`npx @puppeteer/browsers install chrome@stable --path ~/.cache/puppeteer`;
+never the Chrome app, whose copies would take a running pipeline's AppleScript), and `/usr/bin/python3` with requests + bs4.
 
 ## What it runs
 

@@ -11,14 +11,18 @@
 // answered from the replay store (UW_STORE). The main document is the rendered-DOM snapshot
 // (scripts disabled via CSP, so the page looks the way it did when recorded); everything else
 // is blocked. UW_NET=record/live: real network; record also snapshots the rendered DOM.
-// Never used with Alex's real Chrome: it always launches its own --user-data-dir.
+// Never used with Alex's real Chrome: it always launches its own --user-data-dir, and it runs
+// Chrome for Testing, never the Chrome app. macOS sends AppleScript for "Google Chrome" to
+// the newest running copy of that app, so even a headless copy of it takes over a pipeline
+// run's Chrome commands (Sep 30 2026 night). Chrome for Testing is a separate app.
+// Install once: npx @puppeteer/browsers install chrome@stable --path ~/.cache/puppeteer
 import { spawn, execFileSync } from 'node:child_process';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import zlib from 'node:zlib';
 
-const CHROME = process.env.UW_CHROME_BIN || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const STATE = process.env.UW_CHROME_STATE || '/tmp/uw_chrome';
 const NET = process.env.UW_NET || 'replay';
 const STORE = process.env.UW_STORE || '';
@@ -130,9 +134,30 @@ async function connect() {
   return { send, on: h => handlers.push(h), close: () => { try { ws.close(); } catch { } }, st };
 }
 
+// UW_CHROME_BIN, else the newest Chrome for Testing in ~/.cache/puppeteer. Never the Chrome app.
+function chromeBin() {
+  let bin = process.env.UW_CHROME_BIN || '';
+  if (!bin) {
+    const root = path.join(os.homedir(), '.cache', 'puppeteer', 'chrome');
+    const ver = d => (d.split('-')[1] || '').split('.').map(Number);
+    const newer = (a, b) => { const x = ver(a), y = ver(b); for (let i = 0; i < 4; i++) if ((x[i] || 0) !== (y[i] || 0)) return (y[i] || 0) - (x[i] || 0); return 0; };
+    const builds = fs.existsSync(root) ? fs.readdirSync(root).filter(d => d.startsWith('mac')).sort(newer) : [];
+    for (const d of builds) {
+      for (const sub of ['chrome-mac-arm64', 'chrome-mac-x64']) {
+        const p = path.join(root, d, sub, 'Google Chrome for Testing.app', 'Contents', 'MacOS', 'Google Chrome for Testing');
+        if (!bin && fs.existsSync(p)) bin = p;
+      }
+    }
+  }
+  if (!bin) throw new Error('Chrome for Testing is not installed. Run: npx @puppeteer/browsers install chrome@stable --path ~/.cache/puppeteer');
+  if (bin.includes('/Google Chrome.app/')) throw new Error(`${bin} is the Chrome app; a copy of it would take the pipeline's AppleScript. Use Chrome for Testing.`);
+  return bin;
+}
+
 async function launch() {
   const old = readState();
   if (old && old.pid) { try { process.kill(old.pid, 0); return old; } catch { } }
+  const CHROME = chromeBin();
   fs.mkdirSync(STATE, { recursive: true });
   const port = 9500 + Math.floor(Math.random() * 400);
   let ver = '124.0.0.0';
@@ -140,6 +165,7 @@ async function launch() {
   const ua = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Safari/537.36`;
   const args = ['--headless=new', `--remote-debugging-port=${port}`, `--user-data-dir=${path.join(STATE, 'profile')}`,
     '--no-first-run', '--no-default-browser-check', '--disable-extensions', '--disable-sync', '--mute-audio',
+    '--use-mock-keychain', '--password-store=basic',
     '--disable-background-networking', '--disable-component-update', '--window-size=1366,900', `--user-agent=${ua}`];
   if (NET === 'replay') args.push('--proxy-server=http://127.0.0.1:9', '--proxy-bypass-list=<-loopback>');
   args.push('about:blank');

@@ -32,6 +32,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # python3 on PATH can be an Intel-only build that dies with "Bad CPU type"; every
 # `python3 ... 2>/dev/null` would then read as "found nothing".
 . "$SCRIPT_DIR/env_check.sh" || exit 1
+# A second copy of Chrome takes every AppleScript command: wait it out (chrome_guard.sh)
+. "$SCRIPT_DIR/chrome_guard.sh" || exit 1
 APPS_SCRIPT_URL="${APPS_SCRIPT_URL:-https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec}"
 ZEROBOUNCE_KEY="${ZEROBOUNCE_KEY:-}"
 APOLLO_API_KEY="${APOLLO_API_KEY:-}"
@@ -1350,9 +1352,33 @@ try { return JSON.stringify(out); } catch(e){ return JSON.stringify({contacts:[]
 JSEOF
 }
 
+# chrome_alone [MAX_S] — wait until Alex's Chrome is the only copy (chrome_guard.sh; test
+# harnesses that lift functions out of this file don't load it, so it passes there).
+# After one failed wait, later calls for the same venue only look, so the waits don't
+# pile up page after page (a file: pages are scraped in subshells).
+chrome_alone() {
+    declare -F chrome_wait_alone >/dev/null || return 0
+    local flag="${TMPDIR:-/tmp}/pipeline_chrome_not_alone.$$" max="${1:-}"
+    [ -n "${VENUE_ID:-}" ] && [ "$(cat "$flag" 2>/dev/null)" = "$VENUE_ID" ] && max=0
+    if chrome_wait_alone ${max:+"$max"}; then
+        rm -f "$flag"
+        return 0
+    fi
+    printf '%s' "${VENUE_ID:-}" > "$flag"
+    return 1
+}
+
 # chrome_open URL — navigate the active tab. The URL goes in as argv, never into
 # AppleScript source, so a quote or ampersand in a crawled link can't break out.
+# While another copy of Chrome won't go away, the venue's pages are read with curl
+# (CHROME_JS_OFF) instead of from whatever page Alex's Chrome still shows.
 chrome_open() {
+    if ! chrome_alone "${CHROME_ALONE_NAV_WAIT_S:-300}"; then
+        CHROME_JS_OFF="yes"
+        CHROME_OFF_WHY="Chrome isn't ours alone: $CHROME_ALONE_DETAIL"
+        log "  [CHROME] $CHROME_OFF_WHY — reading this venue's pages with curl" >&2
+        return 1
+    fi
     local errf
     errf=$(mktemp "${TMPDIR:-/tmp}/pipeline_err.XXXXXX")
     osascript - "$1" >/dev/null 2>"$errf" <<'OSA'
@@ -1372,6 +1398,7 @@ OSA
 # a fixed long sleep, then give client-side rendering a moment.
 chrome_wait_ready() {
     local max="${1:-15}" settle="${2:-2}" i=0 st
+    [ "$CHROME_JS_OFF" = "yes" ] && return 0
     sleep 2
     while [ "$i" -lt "$max" ]; do
         st=$(osascript -e 'with timeout of 10 seconds' \
@@ -1387,7 +1414,9 @@ chrome_wait_ready() {
 # chrome_scrape — run the scrape JS in the active tab; prints its JSON or nothing.
 # The file is read as UTF-8 (plain `read` decodes MacRoman).
 CHROME_JS_OFF=""
+CHROME_OFF_WHY=""
 chrome_scrape() {
+    [ "$CHROME_JS_OFF" = "yes" ] && return 0
     [ -s "$SCRAPE_JS" ] || write_scrape_js
     local errf out
     errf=$(mktemp "${TMPDIR:-/tmp}/pipeline_err.XXXXXX")
@@ -2623,7 +2652,7 @@ step1_website() {
         scrape_result=$(chrome_scrape)
     fi
     if [[ "$scrape_result" != '{"contacts"'* ]]; then
-        [ "$CHROME_JS_OFF" = "yes" ] && log "  [CHROME] WARNING: JavaScript from Apple Events is off — website is being scraped by curl only"
+        [ "$CHROME_JS_OFF" = "yes" ] && log "  [CHROME] WARNING: ${CHROME_OFF_WHY:-JavaScript from Apple Events is off} — website is being scraped by curl only"
         log "  [WARN] Chrome scrape failed — trying curl fallback..."
         scrape_result=""
         [ -s "$WEB_DIR/home.html" ] && scrape_result=$(web_parse_html "${home_final:-$website}" "$WEB_DIR/home.html")
@@ -3244,7 +3273,9 @@ _rb_count_lines() {
 }
 
 # URLs and file paths reach AppleScript as arguments, never as source (P10).
+# Fails (1) while another copy of Chrome would take the command.
 _rb_chrome_nav() {
+    chrome_alone "${CHROME_ALONE_NAV_WAIT_S:-300}" || return 1
     osascript -e 'on run argv' \
         -e 'tell application "Google Chrome" to set URL of active tab of front window to (item 1 of argv)' \
         -e 'end run' "$1" >/dev/null 2>>"$(_rb_errlog)"
@@ -8215,6 +8246,7 @@ runner_load_state() {
 
 # --- Chrome (every call bounded by an AppleScript timeout; values go in via argv, P10) ---
 runner_chrome_nav() {
+    chrome_alone "${CHROME_ALONE_NAV_WAIT_S:-300}" || return 1
     osascript -e 'on run argv' -e "with timeout of ${RUNNER_OSA_TIMEOUT} seconds" \
         -e 'tell application "Google Chrome" to set URL of active tab of front window to (item 1 of argv)' \
         -e 'end timeout' -e 'end run' "$1" >/dev/null 2>>"$ERR_LOG"
@@ -8912,9 +8944,17 @@ runner_preflight() {
 # The old probe ran "1+1", which passed while every scrape came back empty.
 runner_chrome_probe() {
     local url="${1:-https://www.google.com/}" out try
+    CHROME_PROBE_WHY=""
     if [ "${SKIP_CHROME_PROBE:-0}" = "1" ]; then
         log "[CHROME] Probe skipped (SKIP_CHROME_PROBE=1)"
         return 0
+    fi
+    if ! chrome_alone; then
+        CHROME_JS_OK=0
+        CHROME_PROBE_WHY="$CHROME_ALONE_DETAIL"
+        log "[CHROME] FAIL: $CHROME_ALONE_DETAIL"
+        [ "${ALLOW_CURL_ONLY:-0}" = "1" ] && { log "[CHROME] ALLOW_CURL_ONLY=1 — continuing curl-only"; return 0; }
+        return 1
     fi
     if ! declare -F write_scrape_js >/dev/null; then
         if runner_chrome_alive; then
@@ -9376,7 +9416,7 @@ runner_run_batch() {
             log "[RUN] WARNING: could not read the Apollo credit balance — continuing (two failed Apollo steps in a row still stop the run)"
         fi
         if ! runner_chrome_probe "$(runner_probe_url)"; then
-            runner_stop "Chrome website-scrape probe failed before batch $bno"
+            runner_stop "Chrome website-scrape probe failed before batch $bno${CHROME_PROBE_WHY:+: $CHROME_PROBE_WHY}"
             runner_report 1
             return 3
         fi
@@ -9402,6 +9442,12 @@ runner_run_batch() {
             log "  [SKIP] Already $vstatus — skipping"
             log "[STEP] $vid final skipped reason=already_$vstatus status=$vstatus"
             continue
+        fi
+        # The venue needs Chrome to itself: wait out another copy (night runs close a
+        # program-started one after the wait), else stop, resumable
+        if ! chrome_alone && [ "${ALLOW_CURL_ONLY:-0}" != "1" ]; then
+            runner_stop "Chrome: $CHROME_ALONE_DETAIL (before venue $name ($vid))"
+            break
         fi
         if ! runner_chrome_alive; then
             sleep 10

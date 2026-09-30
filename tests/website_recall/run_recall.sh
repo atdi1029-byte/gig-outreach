@@ -36,7 +36,8 @@
 #   store_health.py                 per-venue status counts in the store (spots sites that blocked us)
 # benchmark.json items: kind email|person|contact_form, value, page, also_on, how (miss type), all_hows,
 #   priority, name/title (staff pairing), off_domain, accept/providers (forms).
-# Needs: node (>=22, built-in WebSocket), Google Chrome, /usr/bin/python3 with requests + bs4.
+# Needs: node (>=22, built-in WebSocket), Chrome for Testing (never the Chrome app: see lib/chromectl.mjs),
+# /usr/bin/python3 with requests + bs4.
 # Never touches the real Chrome profile, the sheet, or any paid API.
 HERE="$(cd "$(dirname "$0")" && pwd)"
 exec /usr/bin/python3 "$HERE/lib/runner.py" "$@"

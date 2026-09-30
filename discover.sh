@@ -39,6 +39,7 @@
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$SCRIPT_DIR/env_check.sh" || exit 1
+. "$SCRIPT_DIR/chrome_guard.sh" || exit 1
 source "$SCRIPT_DIR/.env" 2>/dev/null || true
 APPS_SCRIPT_URL="${APPS_SCRIPT_URL:-https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec}"
 JS_DIR="${SCRIPT_DIR}/js"
@@ -925,8 +926,13 @@ run_js_file() {
 
 # Point Chrome's active tab at a URL (passed as an argument, never spliced into
 # the AppleScript source). --activate brings Chrome to the front first.
+# Waits while another copy of Chrome would take the command (chrome_guard.sh).
 chrome_open() {
     local err
+    if ! chrome_wait_alone 300; then
+        log "  [CHROME] $CHROME_ALONE_DETAIL"
+        return 1
+    fi
     err=$(mktemp "$WORK_DIR/osa.XXXXXX")
     if [ "$1" = "--activate" ]; then
         shift
@@ -942,6 +948,10 @@ chrome_open() {
 # extraction comes back empty and would read as "no results".
 chrome_probe() {
     local out err
+    if ! chrome_wait_alone 300; then
+        log "ERROR: $CHROME_ALONE_DETAIL."
+        return 1
+    fi
     err=$(mktemp "$WORK_DIR/osa.XXXXXX")
     out=$(osascript -e 'tell application "Google Chrome" to execute active tab of front window javascript "\"ok:\" + document.readyState"' </dev/null 2>"$err")
     append_err "chrome probe" "$err"

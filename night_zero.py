@@ -23,7 +23,6 @@ RUNS = os.path.join(HERE, "reports", "runs")
 API = os.environ.get("APPS_SCRIPT_URL") or (
     "https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec")
 SENDABLE = {"valid", "role", "unverified", "verified"}
-FINAL_RE = re.compile(r"\[STEP\] (\S+) final (\w+)(.*)$")
 
 
 def api(params, timeout=180):
@@ -54,9 +53,11 @@ def run_venues(run_id):
     return out
 
 
-def run_log_finals(run_id):
-    """venue_id -> (result, kv dict, [every STEP line]) from the run log."""
+def run_log_finals(run_id, ids=()):
+    """venue_id -> (result, kv dict, [every STEP line]) from the run log. Ids are matched
+    against the run's own venue ids first: a few sheet ids contain a space (MD-ART -498)."""
     finals, steps = {}, {}
+    spaced = sorted((i for i in ids if " " in i), key=len, reverse=True)
     path = os.path.join(RUNS, f"{run_id}.log")
     try:
         with open(path, errors="replace") as f:
@@ -65,13 +66,14 @@ def run_log_finals(run_id):
                 if i < 0:
                     continue
                 s = line[i:].strip()
-                parts = s.split()
-                if len(parts) >= 3:
-                    steps.setdefault(parts[1], []).append(s[:600])
-                m = FINAL_RE.search(s)
+                rest = s[7:]
+                vid = next((x for x in spaced if rest.startswith(x + " ")), None) or rest.split(" ", 1)[0]
+                tail = rest[len(vid):].strip()
+                steps.setdefault(vid, []).append(s[:600])
+                m = re.match(r"final (\w+)(.*)$", tail)
                 if m:
-                    kv = dict(re.findall(r"(\w+)=(\S+)", m.group(3)))
-                    finals[m.group(1)] = (m.group(2), kv)
+                    kv = dict(re.findall(r"(\w+)=(\S+)", m.group(2)))
+                    finals[vid] = (m.group(1), kv)
     except OSError:
         pass
     return finals, steps
@@ -144,7 +146,7 @@ def main(argv):
     if not batch:
         print(f"no batch files for {run_id} in {RUNS}", file=sys.stderr)
         return 1
-    finals, steps = run_log_finals(run_id)
+    finals, steps = run_log_finals(run_id, list(batch))
     dash = api({"action": "dashboard"})
     if dash.get("status") != "ok":
         print(f"dashboard read failed: {str(dash)[:200]}", file=sys.stderr)

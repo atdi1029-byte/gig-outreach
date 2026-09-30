@@ -598,7 +598,7 @@ if os.environ.get('BB_REASONS_OUT'):
     _why = {}
     for _k, _lst in skips.items():
         for _x in _lst:
-            _m = re.search(r'\[([A-Z]{2}-[A-Z0-9_]+-\d+)\]', str(_x))
+            _m = re.search(r'\[([A-Z]{2}-[A-Z0-9_ ]+?-\d+)\]', str(_x))   # a few ids hold a space
             _why.setdefault(_m.group(1) if _m else str(_x), _k)
     with open(os.environ['BB_REASONS_OUT'], 'w') as _f:
         json.dump({'reasons': _why, 'pool': [e['venue'].get('venue_id') for e in pool]}, _f)

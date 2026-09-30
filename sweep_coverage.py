@@ -77,8 +77,8 @@ def main(argv):
             g = "closed"
         elif st == "needs_review":
             notes = f"{v.get('check_status') or ''} {v.get('notes') or ''}"
-            if re.search(r"PIPELINE: 0 contacts", notes):
-                g, why = "worked", "run, no contacts found"
+            if re.search(r"pipeline", notes, re.I):
+                g, why = "worked", "run before, no usable contact found"
             elif re.search(r"closed", notes, re.I):
                 g = "closed"
             elif not (v.get("website") or "").strip():

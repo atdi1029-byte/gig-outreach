@@ -134,36 +134,78 @@ body {
 }
 
 /* === POKEMON LEVEL BAR === */
+/* --poke / --poke-rgb / --poke-light are the current Pokemon's type color (set by renderLevelBar) */
 .level-section {
+    --poke: #f0a030; --poke-rgb: 240,160,48; --poke-light: #f6c678;
     margin-bottom: 0.75rem;
 }
 .level-header {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.6rem 0.8rem;
-    background: rgba(10,10,10,0.7);
-    border: 1px solid var(--border);
+    padding: 0.4rem 0.8rem 0.4rem 0.4rem;
+    background:
+        radial-gradient(circle at 15% 55%, rgba(var(--poke-rgb),0.45) 0%, rgba(var(--poke-rgb),0.12) 30%, transparent 58%),
+        linear-gradient(135deg, rgba(var(--poke-rgb),0.2), rgba(10,10,10,0) 60%),
+        rgba(10,10,10,0.78);
+    border: 1px solid rgba(var(--poke-rgb),0.5);
     border-radius: 10px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.6s, box-shadow 0.3s;
+}
+.level-stage {
+    position: relative;
+    width: 92px; height: 92px;
+    flex-shrink: 0;
+    display: flex; align-items: flex-end; justify-content: center;
 }
 .level-sprite {
-    width: 120px; height: 120px;
+    position: relative; z-index: 1;
+    width: 84px; height: 74px;
+    margin-bottom: 12px;
+    object-fit: contain;
     image-rendering: pixelated;
-    filter: drop-shadow(0 0 10px var(--accent));
+    filter: drop-shadow(0 0 8px rgba(var(--poke-rgb),0.85));
+    animation: pokeBob 2.4s ease-in-out infinite;
+}
+.level-ground {
+    position: absolute; bottom: 7px; left: 50%;
+    width: 58px; height: 10px; margin-left: -29px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.6), transparent 70%);
+    animation: pokeShadow 2.4s ease-in-out infinite;
+}
+@keyframes pokeBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+@keyframes pokeShadow {
+    0%, 100% { transform: scaleX(1); opacity: 0.9; }
+    50% { transform: scaleX(0.7); opacity: 0.5; }
+}
+.level-title {
+    display: flex; align-items: center; flex-wrap: wrap;
+    gap: 0.2rem 0.4rem;
+    margin-bottom: 0.3rem;
 }
 .level-pokemon {
     font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--poke-light);
     letter-spacing: 1px;
     text-transform: uppercase;
     white-space: nowrap;
+    text-shadow: 0 0 10px rgba(var(--poke-rgb),0.6);
 }
-.level-info { flex: 1; }
+.level-type {
+    font-size: 0.5rem; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: #111; background: var(--poke);
+    padding: 0.1rem 0.4rem; border-radius: 8px;
+}
+.level-info { flex: 1; min-width: 0; }
 .level-num {
     font-size: 0.6rem;
     color: var(--text-dim);
@@ -172,16 +214,101 @@ body {
     justify-content: space-between;
 }
 .level-progress {
-    height: 5px;
-    background: #222;
-    border-radius: 3px;
+    height: 7px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
     overflow: hidden;
 }
 .level-fill {
     height: 100%;
-    border-radius: 3px;
+    border-radius: 4px;
     transition: width 0.5s ease;
-    background: linear-gradient(90deg, #f06030, #f0a030);
+    background: linear-gradient(90deg, rgba(var(--poke-rgb),0.75), var(--poke-light));
+    box-shadow: 0 0 8px rgba(var(--poke-rgb),0.8);
+}
+.level-togo {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+}
+/* "Who's that Pokemon?": the next one as a silhouette */
+.level-next {
+    display: flex; flex-direction: column; align-items: center;
+    width: 46px; flex-shrink: 0;
+}
+.level-next img {
+    width: 46px; height: 46px;
+    image-rendering: pixelated;
+    filter: brightness(0) drop-shadow(0 0 3px rgba(var(--poke-rgb),0.9));
+}
+.level-next span {
+    font-family: 'Cinzel', serif; font-weight: 900;
+    font-size: 0.7rem; line-height: 1;
+    color: var(--poke-light);
+    margin-top: -2px;
+}
+/* Level-up reveal: silhouette, flash, then the new Pokemon in color with confetti */
+.poke-reveal {
+    --poke: #f0a030; --poke-rgb: 240,160,48; --poke-light: #f6c678;
+    position: fixed; inset: 0; z-index: 10000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(var(--poke-rgb),0.5), transparent 60%),
+        rgba(8,8,8,0.94);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    overflow: hidden; cursor: pointer;
+    animation: revealIn 0.3s ease;
+}
+@keyframes revealIn { from { opacity: 0; } to { opacity: 1; } }
+.poke-reveal-q {
+    font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: 1rem; letter-spacing: 2px; text-transform: uppercase;
+    color: #fff; margin-bottom: 1.2rem;
+    transition: opacity 0.4s;
+}
+.poke-reveal.shown .poke-reveal-q { opacity: 0.45; }
+.poke-reveal-sprite {
+    width: 190px; height: 170px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: brightness(0) drop-shadow(0 0 14px #fff);
+}
+.poke-reveal.shown .poke-reveal-sprite {
+    filter: drop-shadow(0 0 18px rgba(var(--poke-rgb),1));
+    animation: pokeBob 2.4s ease-in-out infinite;
+}
+.poke-reveal-name {
+    font-family: 'Cinzel', serif; font-weight: 900;
+    font-size: 1.8rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--poke-light);
+    text-shadow: 0 0 16px rgba(var(--poke-rgb),0.9);
+    margin-top: 1rem;
+    opacity: 0; transform: scale(0.6);
+    transition: opacity 0.4s, transform 0.4s cubic-bezier(.2,1.6,.4,1);
+}
+.poke-reveal-lv {
+    font-size: 0.8rem; color: var(--text-dim);
+    margin-top: 0.4rem;
+    opacity: 0; transition: opacity 0.4s 0.2s;
+}
+.poke-reveal.shown .poke-reveal-name { opacity: 1; transform: scale(1); }
+.poke-reveal.shown .poke-reveal-lv { opacity: 1; }
+.poke-reveal-flash {
+    position: absolute; inset: 0;
+    background: #fff; opacity: 0; pointer-events: none;
+}
+.poke-reveal.flash .poke-reveal-flash { animation: revealFlash 0.7s ease; }
+@keyframes revealFlash { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }
+.poke-confetti {
+    position: absolute; top: -14px;
+    width: 8px; height: 13px; border-radius: 2px;
+    pointer-events: none;
+    animation: confettiFall linear forwards;
+}
+@keyframes confettiFall { to { transform: translateY(110vh) rotate(720deg); } }
+@media (prefers-reduced-motion: reduce) {
+    .level-sprite, .level-ground, .poke-reveal.shown .poke-reveal-sprite { animation: none; }
+    .poke-confetti { display: none; }
 }
 .level-chevron {
     color: var(--text-dim);
@@ -1137,9 +1264,15 @@ body {
         <!-- POKEMON LEVEL -->
         <div class="level-section" id="levelSection" style="display:none">
             <div class="level-header" id="levelHeader" onclick="toggleLevel()">
-                <img class="level-sprite" id="levelSprite" src="" alt="">
-                <div class="level-pokemon" id="levelPokemon"></div>
+                <div class="level-stage">
+                    <img class="level-sprite" id="levelSprite" src="" alt="">
+                    <div class="level-ground"></div>
+                </div>
                 <div class="level-info">
+                    <div class="level-title">
+                        <span class="level-pokemon" id="levelPokemon"></span>
+                        <span class="level-type" id="levelType"></span>
+                    </div>
                     <div class="level-num">
                         <span id="levelLabel"></span>
                         <span id="levelCount"></span>
@@ -1147,6 +1280,11 @@ body {
                     <div class="level-progress">
                         <div class="level-fill" id="levelFill"></div>
                     </div>
+                    <div class="level-togo" id="levelToGo"></div>
+                </div>
+                <div class="level-next" id="levelNextWrap">
+                    <img id="levelNext" src="" alt="Next Pokémon">
+                    <span>?</span>
                 </div>
                 <span class="level-chevron">&#9654;</span>
             </div>
@@ -4008,6 +4146,50 @@ var POKEDEX = [
     'Moltres','Dratini','Dragonair','Dragonite','Mewtwo','Mew'
 ];
 
+// Type of each Pokemon, in Pokedex order (the second type when the first is Normal:
+// Pidgey is Flying, Jigglypuff is Fairy). The level card and the reveal take its color.
+var POKE_TYPES = (
+    'grass grass grass fire fire fire water water water bug bug bug bug bug bug '+
+    'flying flying flying normal normal flying flying poison poison electric electric ground ground poison poison '+
+    'poison poison poison poison fairy fairy fire fire fairy fairy poison poison grass grass grass '+
+    'bug bug bug bug ground ground normal normal water water fighting fighting fire fire water '+
+    'water water psychic psychic psychic fighting fighting fighting grass grass grass water water rock rock '+
+    'rock fire fire water water electric electric flying flying flying water water poison poison water '+
+    'water ghost ghost ghost rock psychic psychic water water electric electric grass grass ground ground '+
+    'fighting fighting normal poison poison ground ground normal grass normal water water water water water '+
+    'water psychic bug ice electric fire bug normal water water water normal normal water electric '+
+    'fire normal rock rock rock rock rock normal ice electric fire dragon dragon dragon psychic '+
+    'psychic'
+).split(' ');
+var POKE_TYPE_COLORS = {
+    normal: '#A8A77A', fire: '#EE8130', water: '#6390F0', electric: '#F7D02C', grass: '#7AC74C',
+    ice: '#96D9D6', fighting: '#C22E28', poison: '#A33EA1', ground: '#E2BF65', flying: '#A98FF3',
+    psychic: '#F95587', bug: '#A6B91A', rock: '#B6A136', ghost: '#735797', dragon: '#6F35FC',
+    dark: '#705746', steel: '#B7B7CE', fairy: '#D685AD'
+};
+var POKE_SPRITES = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
+function pokeStillUrl(id) { return POKE_SPRITES + id + '.png'; }
+// Animated pixel sprites (Pokemon Black/White), still sprite if one fails to load
+function pokeAnimUrl(id) { return POKE_SPRITES + 'versions/generation-v/black-white/animated/' + id + '.gif'; }
+function setPokeSprite(img, id, animated) {
+    var url = animated ? pokeAnimUrl(id) : pokeStillUrl(id);
+    if (img.dataset.pokeId === String(id)) return; // same Pokemon: don't restart the animation
+    img.dataset.pokeId = String(id);
+    img.onerror = function() {
+        img.onerror = null;
+        if (animated) img.src = pokeStillUrl(id);
+    };
+    img.src = url;
+}
+function setPokeColors(el, id) {
+    var hex = POKE_TYPE_COLORS[POKE_TYPES[id - 1]] || '#f0a030';
+    var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+    var lift = function(c) { return Math.round(c + (255 - c) * 0.45); };
+    el.style.setProperty('--poke', hex);
+    el.style.setProperty('--poke-rgb', r + ',' + g + ',' + b);
+    el.style.setProperty('--poke-light', 'rgb(' + lift(r) + ',' + lift(g) + ',' + lift(b) + ')');
+}
+
 function emailsForLevel(level) {
     if (level <= 1) return 0;
     return Math.round((level * level - 1) * 30000 / 22800);
@@ -4058,8 +4240,17 @@ function renderLevelBar() {
     var info = getLevelInfo(count);
     var pct = Math.min(100, Math.max(0, info.progress * 100));
     section.style.display = '';
-    document.getElementById('levelSprite').src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + info.pokeId + '.png';
+    setPokeColors(section, info.pokeId);
+    setPokeSprite(document.getElementById('levelSprite'), info.pokeId, true);
     document.getElementById('levelPokemon').textContent = info.name;
+    document.getElementById('levelType').textContent = POKE_TYPES[info.pokeId - 1] || '';
+    // The next Pokemon waits as a silhouette
+    var nextWrap = document.getElementById('levelNextWrap');
+    nextWrap.style.display = info.isMax ? 'none' : '';
+    if (!info.isMax) setPokeSprite(document.getElementById('levelNext'), info.pokeId + 1, false);
+    document.getElementById('levelToGo').textContent = info.isMax
+        ? 'All 151 caught!'
+        : (info.next - count) + ' more to Lv. ' + (info.level + 1);
     document.getElementById('levelLabel').textContent =
         'Lv. ' + info.level;
     document.getElementById('levelCount').textContent =
@@ -4093,12 +4284,49 @@ function renderLevelBar() {
     if (info.level > stored && stored > 0) {
         var header = document.getElementById('levelHeader');
         header.classList.add('evolve');
-        showToast(info.name + '! Lv. ' + info.level);
         setTimeout(function() {
             header.classList.remove('evolve');
         }, 1500);
+        showPokeReveal(info);
     }
-    safeLocalSave('outreach_level', String(info.level));
+    // Never lower it: the saved dashboard can lag the live count, and dropping back
+    // would replay the same level-up when the fresh data arrives
+    safeLocalSave('outreach_level', String(Math.max(info.level, stored || 0)));
+}
+
+// Level-up: "Who's that Pokemon?" silhouette, a flash, then the new one in color with confetti
+function showPokeReveal(info) {
+    if (document.querySelector('.poke-reveal')) return;
+    var el = document.createElement('div');
+    el.className = 'poke-reveal';
+    setPokeColors(el, info.pokeId);
+    el.innerHTML = '<div class="poke-reveal-flash"></div>' +
+        '<div class="poke-reveal-q">Who\'s that Pokémon?</div>' +
+        '<img class="poke-reveal-sprite" alt="">' +
+        '<div class="poke-reveal-name">' + esc(info.name) + '!</div>' +
+        '<div class="poke-reveal-lv">Lv. ' + info.level + ' · ' + info.emailCount + ' sent</div>';
+    setPokeSprite(el.querySelector('img'), info.pokeId, true);
+    document.body.appendChild(el);
+    var timers = [];
+    var close = function() { timers.forEach(clearTimeout); el.remove(); };
+    el.addEventListener('click', close);
+    timers.push(setTimeout(function() {
+        el.classList.add('flash');
+        timers.push(setTimeout(function() {
+            el.classList.add('shown');
+            var colors = [getComputedStyle(el).getPropertyValue('--poke').trim(), '#ffffff', '#f0a030', '#ffe066'];
+            for (var i = 0; i < 60; i++) {
+                var c = document.createElement('span');
+                c.className = 'poke-confetti';
+                c.style.left = (Math.random() * 100) + '%';
+                c.style.background = colors[i % colors.length];
+                c.style.animationDuration = (2.2 + Math.random() * 2) + 's';
+                c.style.animationDelay = (Math.random() * 0.6) + 's';
+                el.appendChild(c);
+            }
+        }, 140));
+    }, 1700));
+    timers.push(setTimeout(close, 9000));
 }
 
 function toggleLevel() {

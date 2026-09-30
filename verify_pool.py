@@ -43,7 +43,7 @@ sys.path.insert(0, HERE)
 import outreach_rules as R  # noqa: E402
 import taste_score as T  # noqa: E402
 from venue_classifier import classify, junk_reason  # noqa: E402
-from venue_quality import website_match_score  # noqa: E402
+from venue_quality import website_match_score, _distinctive_tokens  # noqa: E402
 
 API = os.environ.get("APPS_SCRIPT_URL") or (
     "https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec")
@@ -193,6 +193,14 @@ def score_of(v, extra_notes=""):
     return s, T.bucket(cls, vv) or ""
 
 
+def page_names_venue(name, ev):
+    """The site's own title/description names the venue (every distinctive word, up to 3):
+    how a sweep find's marketing domain (liveatavenel.com) proves it is the venue's site."""
+    toks = _distinctive_tokens(name)[:3]
+    hay = norm(f"{ev.get('title') or ''} {ev.get('desc') or ''} {ev.get('final') or ''}")
+    return bool(toks) and all(t in hay for t in toks)
+
+
 def decide(v, ev):
     name, state = v.get("name", ""), str(v.get("state") or "").strip().upper()
     city = (v.get("city") or "").strip()
@@ -210,6 +218,7 @@ def decide(v, ev):
         return "park", f'site says "{ev["closed"]}"', {}
     site = (v.get("website") or "").strip()
     checked = re.search(r"(?i)website checked \d{4}-\d{2}-\d{2}", v.get("notes") or "")  # save_websites.py
+    checked = checked or (R.is_sweep_find(v) and page_names_venue(name, ev))
     if website_match_score(name, ev["final"]) < 6 and not checked and \
             website_match_score(name, site if "://" in site else "https://" + site) < 6:
         return "keep", "website isn't clearly the venue's own", {}
@@ -265,7 +274,12 @@ def main():
     ap.add_argument("--limit", type=int, default=200)
     ap.add_argument("--min-score", type=float, default=25)
     ap.add_argument("--venue", default="")
+    ap.add_argument("--vouch-sweep-sites", action="store_true",
+                    help="untouched sweep finds whose domain doesn't spell their name: note "
+                         "'Website checked DATE' when their own page names them")
     a = ap.parse_args()
+    if a.vouch_sweep_sites:
+        return vouch_sweep_sites(a)
 
     dash = api({"action": "dashboard"})
     venues = dash.get("venues") or []
@@ -384,6 +398,39 @@ def main():
         print(f"Distances recalculated for {len(recalc)} moved venue(s): {str(r)[:120]}")
     print(f"\n{'Promoted' if a.apply else 'Would promote'}: {promoted} | parked (site dead/closed?): {parked} | "
           f"kept needs_review: {kept} | no website: {no_site}")
+
+
+def vouch_sweep_sites(a):
+    """build_batch skips an untouched venue whose domain doesn't spell its name; for a sweep
+    find, its page naming it is proof enough (Alex, Sep 29: every sweep find must be usable)."""
+    venues = api({"action": "venues"}).get("venues") or []
+    todo = []
+    for v in venues:
+        site = (v.get("website") or "").strip()
+        if v.get("status") != "untouched" or not site or not R.is_sweep_find(v):
+            continue
+        if re.search(r"(?i)website checked \d{4}-\d{2}-\d{2}", v.get("notes") or ""):
+            continue
+        if website_match_score(v.get("name", ""), site if "://" in site else "https://" + site) >= 6:
+            continue
+        todo.append(v)
+    todo = todo[:a.limit]
+    print(f"{len(todo)} untouched sweep finds whose domain doesn't spell their name"
+          f"{' — APPLY' if a.apply else ' — preview'}")
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        evs = list(ex.map(lambda v: evidence(v["website"]), todo))
+    ok = 0
+    for v, ev in zip(todo, evs):
+        good = not ev.get("unreachable") and not ev.get("dead") and not ev.get("closed") and \
+            page_names_venue(v.get("name", ""), ev)
+        print(f"{'VOUCH' if good else 'NO   '} {v['venue_id']:<14} {v.get('name', '')[:40]:<40} "
+              f"{v.get('website', '')[:50]} | {ev.get('title', '')[:50] or ev.get('dead') or ('unreachable' if ev.get('unreachable') else '')}")
+        if good:
+            ok += 1
+            if a.apply:
+                notes = f"{v.get('notes') or ''} | Website checked {time.strftime('%Y-%m-%d')} (page names the venue)"
+                api({"action": "update_venue", "venue_id": v["venue_id"], "field": "notes", "value": notes.strip(' |')})
+    print(f"\n{'Vouched' if a.apply else 'Would vouch'}: {ok} of {len(todo)}")
 
 
 if __name__ == "__main__":

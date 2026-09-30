@@ -558,6 +558,8 @@ guarded 1800 ./backfill_websites.sh --limit "$BACKFILL_LIMIT" --apply >> "$NIGHT
 # Good sweep / discovery finds become runnable (plain HTTP, never Chrome)
 log "verify_pool.py --apply (promote verified needs_review venues)"
 guarded 1200 /usr/bin/python3 verify_pool.py --apply --limit 400 >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py exited $? — going on"
+# ...and untouched sweep finds whose domain doesn't spell their name, once their page names them
+guarded 900 /usr/bin/python3 verify_pool.py --vouch-sweep-sites --apply --limit 300 >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py --vouch-sweep-sites exited $? — going on"
 
 new_runs=0
 night_state="done"

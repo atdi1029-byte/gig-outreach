@@ -66,7 +66,7 @@ SLUG_MAP = {
     'synagogue': 'synagogue', 'brewery': 'brewery', 'distillery': 'distillery',
     'spa': 'spa', 'theater': 'theater', 'recreation': 'recreation',
     'senior_living': 'senior_living', 'luxury_apts': 'luxury_apts',
-    'luxury_apartments': 'luxury_apts', 'event_planner': 'event_planner',
+    'luxury_apartments': 'luxury_apts', 'luxury_apartment': 'luxury_apts', 'event_planner': 'event_planner',
     'luxury_retail': 'shopping', 'mall': 'shopping', 'grocery_market': 'shopping',
     'farmers_market': 'farmers_market', 'community_center': 'other',
     'funeral_home': 'other', 'cigar_lounge': 'bar', 'agent': 'other',

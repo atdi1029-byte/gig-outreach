@@ -41,6 +41,17 @@ BRAND_HOMEPAGES = {"marriott.com", "hilton.com", "hyatt.com", "ihg.com", "ritzca
                    "fourseasons.com", "citizenm.com", "invitedclubs.com", "sonesta.com",
                    "kimptonhotels.com", "choicehotels.com", "wyndhamhotels.com", "accor.com"}
 DUPES_FILE = HERE / "reports" / "sweep_import_dupes.json"   # write-up row -> the row the backend matched
+# Sweep write-ups spell some categories their own way; the app groups tiles by the sheet
+# value, so "luxury_apartments" showed as a second Luxury Apts tile (fixed Sep 30 2026)
+CATEGORY_ALIASES = {"luxury_apartments": "luxury_apts", "luxury_apartment": "luxury_apts",
+                    "apartments": "luxury_apts", "gallery": "art_gallery"}
+
+
+def sheet_category(c):
+    k = re.sub(r"[\s/]+", "_", (c or "other").strip().lower())
+    return CATEGORY_ALIASES.get(k, k)
+
+
 END_HEADINGS = re.compile(r"excluded|closed|removed|coming soon|top \d+|priority|notes|already", re.I)
 
 
@@ -181,7 +192,7 @@ def main(argv):
             if not apply:
                 continue
             res = api({"action": "add_venue", "name": name, "website": url, "city": city, "state": state,
-                       "address": r.get("address", ""), "category": (r.get("category") or "other").lower(),
+                       "address": r.get("address", ""), "category": sheet_category(r.get("category")),
                        "status": status, "source": f"sweep:{stem}",
                        "notes": f"From the {stem} sweep write-up (added {time.strftime('%Y-%m-%d')}: it never reached the sheet)."},
                       timeout=120)

@@ -135,8 +135,7 @@ body {
 
 /* === POKEMON LEVEL BAR === */
 .level-section {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 .level-header {
     display: flex;
@@ -1073,7 +1072,7 @@ body {
 .weekly-goal-row:last-child { margin-bottom: 0; }
 .weekly-goal-label {
     font-size: 0.7rem; color: var(--text-dim);
-    width: 42px; flex-shrink: 0;
+    width: 58px; flex-shrink: 0;
 }
 .weekly-goal-bar {
     flex: 1; height: 14px;
@@ -1084,9 +1083,7 @@ body {
     height: 100%; border-radius: 7px;
     transition: width 0.5s ease; min-width: 2px;
 }
-.weekly-goal-fill.email { background: var(--accent); }
-.weekly-goal-fill.ig { background: #E4405F; }
-.weekly-goal-fill.fb { background: #1877F2; }
+.weekly-goal-fill { background: var(--accent); }
 .weekly-goal-count {
     font-size: 0.65rem; color: var(--text-dim);
     width: 50px; text-align: right; flex-shrink: 0;
@@ -1137,6 +1134,25 @@ body {
         <div id="nightAlert" class="night-alert" style="display:none"></div>
         <div id="nightLine" class="night-line" style="display:none"></div>
 
+        <!-- POKEMON LEVEL -->
+        <div class="level-section" id="levelSection" style="display:none">
+            <div class="level-header" id="levelHeader" onclick="toggleLevel()">
+                <img class="level-sprite" id="levelSprite" src="" alt="">
+                <div class="level-pokemon" id="levelPokemon"></div>
+                <div class="level-info">
+                    <div class="level-num">
+                        <span id="levelLabel"></span>
+                        <span id="levelCount"></span>
+                    </div>
+                    <div class="level-progress">
+                        <div class="level-fill" id="levelFill"></div>
+                    </div>
+                </div>
+                <span class="level-chevron">&#9654;</span>
+            </div>
+            <div class="level-details" id="levelDetails"></div>
+        </div>
+
         <!-- WEEKLY GOALS -->
         <div class="weekly-goals" id="weeklyGoals" style="display:none"></div>
 
@@ -1155,25 +1171,6 @@ body {
                 <span id="syncStatus" style="margin-left:auto;font-size:0.7rem;color:var(--text-dim)">Loading venues…</span>
             </div>
             <div id="stateGrid"></div>
-        </div>
-
-        <!-- POKEMON LEVEL -->
-        <div class="level-section" id="levelSection" style="display:none">
-            <div class="level-header" id="levelHeader" onclick="toggleLevel()">
-                <img class="level-sprite" id="levelSprite" src="" alt="">
-                <div class="level-pokemon" id="levelPokemon"></div>
-                <div class="level-info">
-                    <div class="level-num">
-                        <span id="levelLabel"></span>
-                        <span id="levelCount"></span>
-                    </div>
-                    <div class="level-progress">
-                        <div class="level-fill" id="levelFill"></div>
-                    </div>
-                </div>
-                <span class="level-chevron">&#9654;</span>
-            </div>
-            <div class="level-details" id="levelDetails"></div>
         </div>
     </div>
 </div>
@@ -1763,8 +1760,43 @@ const CATEGORY_IMAGES = {
     church: 'https://images.unsplash.com/photo-1438032005730-c779502df39b?w=400&h=250&fit=crop',
     luxury_retail: 'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=400&h=250&fit=crop',
     mall: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=250&fit=crop',
-    agent: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=250&fit=crop'
+    agent: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=400&h=250&fit=crop',
+    bar: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&h=250&fit=crop',
+    brewery: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&h=250&fit=crop',
+    theater: 'https://images.unsplash.com/photo-1503095396549-807759245b35?w=400&h=250&fit=crop',
+    library: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&h=250&fit=crop',
+    cafe: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=250&fit=crop',
+    tea_room: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=400&h=250&fit=crop',
+    florist: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=400&h=250&fit=crop',
+    caterer: 'https://images.unsplash.com/photo-1555244162-803834f70033?w=400&h=250&fit=crop',
+    festival: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=250&fit=crop',
+    community_center: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=400&h=250&fit=crop',
+    other: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=250&fit=crop',
+    // Wikimedia Commons photos kept in the repo (credits in img/categories/CREDITS.md)
+    distillery: 'img/categories/distillery.jpg',
+    cigar_lounge: 'img/categories/cigar_lounge.jpg',
+    synagogue: 'img/categories/synagogue.jpg',
+    funeral_home: 'img/categories/funeral_home.jpg'
 };
+// Categories the sheet spells another way share a picture
+const CATEGORY_IMAGE_ALIASES = {
+    luxury_apartments: 'luxury_apts', luxury_apartment: 'luxury_apts', gallery: 'art_gallery',
+    event_space: 'event_venue', shopping: 'mall', patisserie_cafe: 'cafe', recreation: 'golf_club',
+    annual_festival: 'festival', community_arts: 'museum'
+};
+// Any category gets a picture: exact key, alias, a word in the key, then the "other" photo
+function categoryImage(c) {
+    if (CATEGORY_IMAGES[c]) return CATEGORY_IMAGES[c];
+    if (CATEGORY_IMAGE_ALIASES[c]) return CATEGORY_IMAGES[CATEGORY_IMAGE_ALIASES[c]];
+    const words = [[/apart/, 'luxury_apts'], [/galler/, 'art_gallery'], [/cafe|coffee|bakery|patisser/, 'cafe'],
+        [/festival|fair/, 'festival'], [/golf|recreation|sport/, 'golf_club'], [/theat|cinema/, 'theater'],
+        [/brew/, 'brewery'], [/distill/, 'distillery'], [/wine/, 'wine_bar'], [/bar|pub|lounge|tavern/, 'bar'],
+        [/hotel|inn\b|lodge/, 'hotel'], [/church|chapel|cathedral/, 'church'], [/club/, 'private_club'],
+        [/museum|heritage|histor/, 'museum'], [/cater/, 'caterer'], [/community/, 'community_center'],
+        [/restaurant|bistro|grill|kitchen/, 'restaurant'], [/shop|retail|store|boutique/, 'luxury_retail']];
+    for (const [rx, key] of words) if (rx.test(c)) return CATEGORY_IMAGES[key];
+    return CATEGORY_IMAGES.other;
+}
 
 // === API HELPERS ===
 function jsonpFetch(url, cb, timeoutMs) {
@@ -2367,7 +2399,7 @@ function openState(state) {
     // Category grid
     html += '<div class="category-grid">' + activeCats.map(c => {
         const count = catCounts[c];
-        return `<div class="category-card" style="background-color:#1a1a1a;background-image:url('${CATEGORY_IMAGES[c] || ''}')" onclick="openCategory(${jsArg(c)})">
+        return `<div class="category-card" style="background-color:#1a1a1a;background-image:url('${categoryImage(c)}')" onclick="openCategory(${jsArg(c)})">
             <span class="category-card-count">${count}</span>
             <span class="category-card-name">${esc(catLabel(c))}</span>
         </div>`;
@@ -2817,34 +2849,22 @@ function renderWeeklyGoals() {
     const dc = dashboardData.dailyCounts || { email: 0, ig: 0, fb: 0 };
 
     el.style.display = '';
+    // Two totals only, today and this week (Alex, Sep 30 2026: "just show today and this
+    // week. not show facebook, insta, email"): emails + IG DMs + FB messages together
+    const sum = o => (Number(o.email) || 0) + (Number(o.ig) || 0) + (Number(o.fb) || 0);
     const bars = [
-        { label: 'Email', daily: dc.email, dGoal: goals.daily.email,
-          weekly: wc.email, wGoal: goals.weekly.email, cls: 'email' },
-        { label: 'IG', daily: dc.ig, dGoal: goals.daily.ig,
-          weekly: wc.ig, wGoal: goals.weekly.ig, cls: 'ig' },
-        { label: 'FB', daily: dc.fb, dGoal: goals.daily.fb,
-          weekly: wc.fb, wGoal: goals.weekly.fb, cls: 'fb' }
+        { label: 'Today', done: sum(dc), goal: sum(goals.daily) },
+        { label: 'This week', done: sum(wc), goal: sum(goals.weekly) }
     ];
 
-    let html = `<div class="weekly-goals-title">`;
-    html += `<span>Week ${week} Outreach</span>`;
-    const totalDaily = dc.email + dc.ig + dc.fb;
-    const totalWeekly = wc.email + wc.ig + wc.fb;
-    html += `<span style="font-size:0.7rem;color:var(--text-dim)">Today: ${totalDaily} · Week: ${totalWeekly}</span>`;
-    html += `</div>`;
-
+    let html = `<div class="weekly-goals-title"><span>Week ${week} Outreach</span></div>`;
     for (const b of bars) {
-        const wPct = Math.min(100, Math.round((b.weekly / b.wGoal) * 100));
-        const wDone = b.weekly >= b.wGoal;
-        const dDone = b.daily >= b.dGoal;
-        const dayText = dDone
-            ? `<span style="color:var(--green)">${b.daily}/${b.dGoal}</span>`
-            : `${b.daily}/${b.dGoal}`;
+        const pct = Math.min(100, Math.round((b.done / b.goal) * 100));
+        const met = b.done >= b.goal;
         html += `<div class="weekly-goal-row">`;
         html += `<span class="weekly-goal-label">${b.label}</span>`;
-        html += `<div class="weekly-goal-bar"><div class="weekly-goal-fill ${b.cls}" style="width:${wPct}%${wDone ? ';opacity:0.7' : ''}"></div></div>`;
-        html += `<span class="weekly-goal-count" style="width:35px;font-size:0.6rem">${dayText}</span>`;
-        html += `<span class="weekly-goal-count" style="${wDone ? 'color:var(--green)' : ''}">${b.weekly}/${b.wGoal}</span>`;
+        html += `<div class="weekly-goal-bar"><div class="weekly-goal-fill" style="width:${pct}%${met ? ';opacity:0.7' : ''}"></div></div>`;
+        html += `<span class="weekly-goal-count" style="${met ? 'color:var(--green)' : ''}">${b.done}/${b.goal}</span>`;
         html += `</div>`;
     }
     el.innerHTML = html;

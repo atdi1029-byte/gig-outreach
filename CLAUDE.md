@@ -73,7 +73,9 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
   with Terminal's permission. The Mac must be awake, plugged in, lid open, on the home
   network (ZeroBounce only accepts the home IP), Chrome open.
 - `night_run.sh`: checks (kill switch `.night_off`, ZeroBounce, Apollo >= 100 credits)
-  → `reverify.sh --unverified` → `backfill_websites.sh --limit 20 --apply` (Chrome
+  → `reverify.sh --unverified` → `import_sweep_files.py --apply` (every READY TO ADD
+  row of every `sweep_*.md` on the sheet, marked as a sweep find) →
+  `backfill_websites.sh --limit 20 --apply` (Chrome
   finds missing websites, sweep finds first) → `verify_pool.py --apply --limit 400`
   → runs of 50
   (`pipeline.sh --run 50`, or `--resume` of a run a stop/the cutoff left unfinished;
@@ -132,6 +134,12 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
   thumbs-down, past gigs, venues or sites already worked. `verify_pool.py` trusts a
   sweep find's city and category once its own site answers (or walls plain HTTP).
   Rules live in `outreach_rules.is_sweep_find` / `HARD_JUNK_RX`.
+- Every row under READY TO ADD in a `sweep_*.md` write-up gets on the sheet:
+  `import_sweep_files.py` (run each night) adds the missing ones with source
+  `sweep:<file>`, tags older rows found by other discovery with the note "Sweep find
+  (<file>)" (which `is_sweep_find` also honours) and promotes their needs_review rows
+  that have a website. On Sep 29, 45 finds (mostly Georgetown: Tudor Place, Dumbarton
+  House, Kreeger Museum, il Canale...) had never reached the sheet.
 - A sweep find without its own website can't run. Save the website with the venue.
   `save_websites.py FINDINGS.json [--apply]` writes researched websites (high
   confidence adds "Website checked DATE" to the notes, which lets a property page
@@ -238,6 +246,7 @@ when Alex asks for a full audit, do it by hand as below.
 - `preflight.sh`       pre-run checks; `verify_run.sh` = the gate; `mark_step.sh` = the ledger
 - `reverify.sh`        re-check unverified contacts after a ZeroBounce top-up
 - `save_websites.py`   write researched websites (sweep finds) with read-back
+- `import_sweep_files.py` sweep write-ups -> sheet (add missing, tag, promote)
 - `repair_data.py`     plan and apply sheet repairs
 - `taste_review.py`    unprocessed votes → taste_notes.md
 - `discover.sh`        Google Maps discovery; `sweep.sh --chrome` = Chrome sweep

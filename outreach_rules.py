@@ -551,9 +551,16 @@ HARD_JUNK_RX = re.compile(r"closed|motel|budget|extended.?stay|adult|nightlife|f
                           r"vacation|rental|airbnb|vrbo", re.I)
 
 
+SWEEP_NOTE_RX = re.compile(r"\bsweep find\b", re.I)
+
+
 def is_sweep_find(venue_or_source):
-    src = venue_or_source.get("source", "") if isinstance(venue_or_source, dict) else venue_or_source
-    return "sweep" in str(src or "").lower()
+    """A venue a sweep found: `source` says sweep, or import_sweep_files.py tagged an older
+    row (found earlier by other discovery) with the note "Sweep find (<sweep>)"."""
+    if isinstance(venue_or_source, dict):
+        return ("sweep" in str(venue_or_source.get("source") or "").lower()
+                or bool(SWEEP_NOTE_RX.search(str(venue_or_source.get("notes") or ""))))
+    return "sweep" in str(venue_or_source or "").lower()
 
 
 def _main(argv):

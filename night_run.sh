@@ -547,6 +547,10 @@ if /usr/bin/python3 -c 'import sys' && [ -x ./reverify.sh ]; then
     log "Re-checking contacts saved as unverified"
     guarded 900 ./reverify.sh --unverified --limit 60 >> "$NIGHT_LOG" 2>&1 || log "reverify.sh exited $? (see above)"
 fi
+# Every venue in a sweep write-up (sweep_*.md) must be on the sheet and marked as a sweep
+# find (Alex, Sep 29: "make sure you can access every place in the sweeps")
+log "import_sweep_files.py --apply (sweep write-ups -> sheet)"
+guarded 1200 /usr/bin/python3 import_sweep_files.py --apply >> "$NIGHT_LOG" 2>&1 || log "import_sweep_files.py exited $? — going on"
 # Venues saved without a website (sweep finds too, Alex Sep 29: "everything on the sweep
 # should be able to be used") get one from Google in Chrome, which is free at night
 log "backfill_websites.sh --apply (find missing websites, up to $BACKFILL_LIMIT)"

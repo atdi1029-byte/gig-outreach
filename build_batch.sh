@@ -171,7 +171,7 @@ import outreach_rules as R
 from venue_classifier import classify, junk_reason, TARGET_CATEGORIES
 from taste_score import (score as ts_score, location_info, bucket as ts_bucket,
                          BUCKET_SHARES, BUCKET_ORDER, BUCKET_MIN_SCORE, MIN_TASTE_SCORE,
-                         SCORE_VERSION)
+                         SCORE_VERSION, CITY_REF_MILES, MAX_DISTANCE_MILES, _city_key)
 from venue_quality import website_match_score, OFFICIAL_PARENT_DOMAINS, PLATFORM_DOMAINS
 
 
@@ -449,9 +449,14 @@ def skip(reason, v, detail=''):
 
 
 candidates = []
+sweep_in = Counter()   # sweep finds let through a gate that would have dropped them
 for v in venues:
     vid = str(v.get('venue_id', ''))
     name = str(v.get('name', '') or '')
+    # Sep 29 (Alex): "everything on the sweep should be able to be used". Sweep finds skip
+    # the taste gates below (category, skip words, prime evidence, taste floor, soft junk,
+    # location trust) and are still ranked; the hard rules stay.
+    sweep = R.is_sweep_find(v)
     if v.get('status', '') != 'untouched':
         skips['status (not untouched)'].append(vid)
         continue
@@ -509,46 +514,71 @@ for v in venues:
         skip('too far', v, city)
         continue
     loc = location_info(v)
+    # A sweep searched one known city: trust it over a bad geocode (Falls Church venues
+    # were stored as 6+ hours away) when that city is inside the radius.
+    ref = CITY_REF_MILES.get(_city_key(city))
+    sweep_city_ok = sweep and ref is not None and ref <= MAX_DISTANCE_MILES
+    if sweep_city_ok and (loc['in_radius'] is not True or not loc['trusted']):
+        loc = dict(loc, in_radius=True, trusted=True, miles=float(ref), why=f'sweep city ~{ref} mi')
+        sweep_in['location'] += 1
     if loc['in_radius'] is False:
         dist = f"{loc['minutes']:.0f} min" if loc['minutes'] else f"{loc['miles']:.0f} mi"
         skip('too far', v, f"{dist} from home")
         continue
     if loc['in_radius'] is None and not DEGRADED:
-        skip('no distance on record (location unverifiable)', v)
-        continue
+        if sweep:
+            sweep_in['location'] += 1
+        else:
+            skip('no distance on record (location unverifiable)', v)
+            continue
     if not loc['trusted'] and not DEGRADED:
-        skip('location not trustworthy', v, loc['why'])
-        continue
+        if sweep:
+            sweep_in['location'] += 1
+        else:
+            skip('location not trustworthy', v, loc['why'])
+            continue
     why = junk_reason(name, v.get('category', ''), v.get('notes', ''), website,
                       v.get('check_status', ''))
-    if why:
+    if why and not (sweep and not R.HARD_JUNK_RX.search(why)):
         skip('junk gate', v, why)
         continue
+    if why:
+        sweep_in['junk gate'] += 1
     if re.search(r'(?i)\bflag\b|flagged|needs review|quarantin', str(v.get('check_status', '') or '')):
         skip('flagged by a manual check', v, str(v.get('check_status', ''))[:60])
         continue
     c = classify(name, v.get('category', ''), v.get('notes', ''), website, vid)
     cat = c['primary_category']
     if cat not in TARGET_CATEGORIES or c['classification_confidence'] < 0.6:
-        skip('not a target category', v, f"{cat} ({c['classification_source']})")
-        continue
+        if not sweep:
+            skip('not a target category', v, f"{cat} ({c['classification_source']})")
+            continue
+        sweep_in['category'] += 1
     m = SKIP_WORDS.search(' ' + ' '.join(vt) + ' ')
     if m:
-        skip('skip word', v, m.group(0))
-        continue
+        if not sweep:
+            skip('skip word', v, m.group(0))
+            continue
+        sweep_in['skip word'] += 1
     wscore = website_match_score(name, website)
-    if wscore < 6:
+    # save_websites.py notes "Website checked <date>" when a person/agent confirmed the site
+    if wscore < 6 and not re.search(r'(?i)website checked \d{4}-\d{2}-\d{2}', str(v.get('notes') or '')):
         skip('website not verified as the venue\'s own', v, f"{host} (match {wscore})")
         continue
     ts, reasons = ts_score(v, c)
     b = ts_bucket(c, v)
     if not b:
-        skip('no prime evidence (generic restaurant, chain or non-European cuisine)', v, cat)
-        continue
+        if not sweep:
+            skip('no prime evidence (generic restaurant, chain or non-European cuisine)', v, cat)
+            continue
+        b = 'wild'   # ranked by score, so it waits behind the strong venues
+        sweep_in['prime evidence'] += 1
     floor = max(MIN_TASTE_SCORE, BUCKET_MIN_SCORE.get(b, MIN_TASTE_SCORE))
     if ts < floor:
-        skips[f'below taste floor'].append(vid)
-        continue
+        if not sweep:
+            skips[f'below taste floor'].append(vid)
+            continue
+        sweep_in['taste floor'] += 1
     candidates.append({'venue': v, 'taste_score': ts, 'reasons': reasons, 'bucket': b,
                        'classified_cat': cat, 'tags': c['venue_tags'], 'site_key': key,
                        'miles': loc['miles'], 'loc_why': loc['why']})
@@ -564,7 +594,10 @@ for e in dupes:
     skip('duplicate site (kept the best row)', e['venue'], e['site_key'])
 pool = [e for e in candidates if best_by_site[e['site_key']] is e]
 
-print(f"\nEligible pool: {len(pool)}")
+print(f"\nEligible pool: {len(pool)}  (sweep finds: {sum(1 for e in pool if R.is_sweep_find(e['venue']))})")
+if sweep_in:
+    print("  Sweep finds let past a taste/location gate: " +
+          ', '.join(f"{k} {n}" for k, n in sweep_in.most_common()))
 order = ['status (not untouched)', 'already in a report', 'no website', 'out of area (not DC/MD/VA)']
 for reason in order + sorted(r for r in skips if r not in order):
     items = skips.get(reason, [])

@@ -134,15 +134,18 @@ for v in venues:
         continue
     if status=='needs_review' and parked.search(str(v.get('check_status') or '')+' '+str(v.get('notes') or '')):
         continue
-    if junk_reason(name, v.get('category',''), v.get('notes',''), '', v.get('check_status','')):
+    # Sweep finds only skip hard junk (Alex, Sep 29: everything on the sweep is usable)
+    sweep=R.is_sweep_find(v)
+    jr=junk_reason(name, v.get('category',''), v.get('notes',''), '', v.get('check_status',''))
+    if jr and not (sweep and not R.HARD_JUNK_RX.search(jr)):
         continue
     c=classify(name, v.get('category',''), v.get('notes',''), '', v.get('venue_id',''))
-    if c['primary_category'] not in TARGET_CATEGORIES:
+    if c['primary_category'] not in TARGET_CATEGORIES and not sweep:
         continue
     try: score=float(v.get('upscale_score',0) or 0)
     except (TypeError,ValueError): score=0
-    rows.append((-score,name.lower(),len(rows),v))
-for _,__,___,v in sorted(rows)[:int(os.environ['LIMIT'])]:
+    rows.append((0 if sweep else 1,-score,name.lower(),len(rows),v))
+for *_,v in sorted(rows, key=lambda r: r[:4])[:int(os.environ['LIMIT'])]:
     vals=[v.get('venue_id',''),v.get('name',''),v.get('city',''),v.get('state',''),v.get('category',''),str(v.get('upscale_score','')),v.get('status','')]
     print('\t'.join(str(x).replace('\t',' ').replace('\n',' ') for x in vals))
 PY

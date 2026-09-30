@@ -197,13 +197,20 @@ def decide(v, ev):
     name, state = v.get("name", ""), str(v.get("state") or "").strip().upper()
     city = (v.get("city") or "").strip()
     if ev.get("unreachable"):
+        # A sweep find behind a bot wall: the pipeline reads it with Chrome anyway
+        site0 = (v.get("website") or "").strip()
+        if R.is_sweep_find(v) and state in R.TARGET_STATES and city and \
+                website_match_score(name, site0 if "://" in site0 else "https://" + site0) >= 6:
+            return "ok", f"sweep find, site walled to plain HTTP | {city}, {state}", \
+                {"loc": ("", city, state), "extra": ""}
         return "keep", "site unreachable (timeout/bot wall)", {}
     if ev.get("dead"):
         return "park", ev["dead"], {}
     if ev.get("closed"):
         return "park", f'site says "{ev["closed"]}"', {}
     site = (v.get("website") or "").strip()
-    if website_match_score(name, ev["final"]) < 6 and \
+    checked = re.search(r"(?i)website checked \d{4}-\d{2}-\d{2}", v.get("notes") or "")  # save_websites.py
+    if website_match_score(name, ev["final"]) < 6 and not checked and \
             website_match_score(name, site if "://" in site else "https://" + site) < 6:
         return "keep", "website isn't clearly the venue's own", {}
     loc = None
@@ -215,6 +222,9 @@ def decide(v, ev):
             continue
         loc = (street, lc, st)
         break
+    sweep = R.is_sweep_find(v)
+    if not loc and sweep and state in R.TARGET_STATES and city:
+        loc = ("", city, state)   # the sweep found it in this city (Alex, Sep 29)
     if not loc:
         return "keep", "no DC/MD/VA address on the site matching the sheet", {}
     gcat = ""
@@ -232,7 +242,7 @@ def decide(v, ev):
     conf = float(cls.get("classification_confidence") or 0)
     if gcat and our not in ("other", "unknown") and conf < 0.7:
         conf = 0.75  # the venue's own schema.org type
-    if conf < 0.7 or our in ("other", "unknown"):
+    if (conf < 0.7 or our in ("other", "unknown")) and not sweep:
         return "keep", f"category not sure ({our} {conf:.2f})", {}
     extra = []
     if gcat and gcat.lower() not in (v.get("notes") or "").lower():
@@ -243,8 +253,9 @@ def decide(v, ev):
         extra.append(f"Site: {ev['desc'][:140]}")
     extra_s = " ".join(extra)
     s1, b1 = score_of({**v, "city": loc[1] or city, "state": loc[2]}, extra_s)
-    if not b1 or b1 == "none":
+    if (not b1 or b1 == "none") and not sweep:
         return "keep", f"no batch bucket after rescoring (score {s1})", {}
+    b1 = b1 if b1 and b1 != "none" else "sweep find"
     return "ok", f"{s1:.0f} {b1} | {gcat or our} {cuisine} | {loc[1]}, {loc[2]}", {"loc": loc, "extra": extra_s}
 
 
@@ -258,6 +269,11 @@ def main():
 
     dash = api({"action": "dashboard"})
     venues = dash.get("venues") or []
+    # Sweep finds are recognised by `source`, which only ?action=venues carries
+    src = {x.get("venue_id"): x.get("source") for x in (api({"action": "venues"}).get("venues") or [])}
+    for v in venues:
+        if not v.get("source") and src.get(v.get("venue_id")):
+            v["source"] = src[v["venue_id"]]
     with_contacts = {c.get("venue_id") for c in dash.get("contacts") or []}
     reported = set()
     try:
@@ -295,11 +311,13 @@ def main():
             continue
         if done.get((norm(re.sub(r"^the ", "", (v.get("name") or "").lower())), str(v.get("state", "")).upper())):
             continue
-        if junk_reason(v.get("name", ""), v.get("category", ""), v.get("notes", ""),
-                       v.get("website", ""), v.get("check_status", "")):
+        sweep = R.is_sweep_find(v)
+        jr = junk_reason(v.get("name", ""), v.get("category", ""), v.get("notes", ""),
+                         v.get("website", ""), v.get("check_status", ""))
+        if jr and not (sweep and not R.HARD_JUNK_RX.search(jr)):
             continue
         s, _b = score_of(v)
-        if s < a.min_score:
+        if s < a.min_score and not sweep:
             continue
         if not (v.get("website") or "").strip() or R.is_non_venue_host(v.get("website", "")):
             no_site += 1

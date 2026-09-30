@@ -543,6 +543,19 @@ def in_target_area(state):
     return (state or "").strip().upper() in TARGET_STATES
 
 
+# Alex, Sep 29 2026: "everything on the sweep should be able to be used for you on the
+# pipeline". A sweep find was already hand-picked for fit, so planning skips the taste
+# gates for it (it is still ranked, prime venues first) and verify_pool trusts its city.
+# Hard rules (PA, closed, motels, thumbs-down, past gigs, worked venues) still apply.
+HARD_JUNK_RX = re.compile(r"closed|motel|budget|extended.?stay|adult|nightlife|fast food|"
+                          r"vacation|rental|airbnb|vrbo", re.I)
+
+
+def is_sweep_find(venue_or_source):
+    src = venue_or_source.get("source", "") if isinstance(venue_or_source, dict) else venue_or_source
+    return "sweep" in str(src or "").lower()
+
+
 def _main(argv):
     import argparse
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])

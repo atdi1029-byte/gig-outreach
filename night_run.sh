@@ -62,6 +62,7 @@ FIX_MAX_MIN="${FIX_MAX_MIN:-120}"
 FIX_LATEST="${FIX_LATEST:-1100}"                       # HHMM: no fix session starts later
 APOLLO_MIN_CREDITS="${APOLLO_MIN_CREDITS:-100}"
 MAX_RESUMES="${MAX_RESUMES:-2}"                        # stops (not cutoffs) before a run is dropped
+BACKFILL_LIMIT="${BACKFILL_LIMIT:-20}"                 # missing websites looked up per night (Chrome)
 CLAUDE_BIN="${CLAUDE_BIN:-$(command -v claude || echo /usr/local/bin/claude)}"
 RUNS_DIR="$SCRIPT_DIR/reports/runs"
 STATE="$RUNS_DIR/night-state.json"
@@ -546,9 +547,13 @@ if /usr/bin/python3 -c 'import sys' && [ -x ./reverify.sh ]; then
     log "Re-checking contacts saved as unverified"
     guarded 900 ./reverify.sh --unverified --limit 60 >> "$NIGHT_LOG" 2>&1 || log "reverify.sh exited $? (see above)"
 fi
+# Venues saved without a website (sweep finds too, Alex Sep 29: "everything on the sweep
+# should be able to be used") get one from Google in Chrome, which is free at night
+log "backfill_websites.sh --apply (find missing websites, up to $BACKFILL_LIMIT)"
+guarded 1800 ./backfill_websites.sh --limit "$BACKFILL_LIMIT" --apply >> "$NIGHT_LOG" 2>&1 || log "backfill_websites.sh exited $? — going on"
 # Good sweep / discovery finds become runnable (plain HTTP, never Chrome)
 log "verify_pool.py --apply (promote verified needs_review venues)"
-guarded 1200 /usr/bin/python3 verify_pool.py --apply >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py exited $? — going on"
+guarded 1200 /usr/bin/python3 verify_pool.py --apply --limit 400 >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py exited $? — going on"
 
 new_runs=0
 night_state="done"

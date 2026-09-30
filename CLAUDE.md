@@ -67,13 +67,15 @@ has to fix (ZeroBounce or Apollo out of credits, Chrome) plus one line about the
 ## Night runs (automatic, since Sep 29 2026)
 Alex: "run by yourself at night, runs of 50, push everything after each run, go
 deeper on 0-contact venues and fix the code, and if Apollo or ZeroBounce run out,
-stop and alert me in the app." Window: 1:00 to 8:00 (he picked "1am, stop by 8am").
+stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8am").
 - launchd (`~/Library/LaunchAgents/com.alexbarnett.outreach-night.plist`, installed
   by Alex) opens `night_run.command` in Terminal at 1:00, so Chrome automation runs
   with Terminal's permission. The Mac must be awake, plugged in, lid open, on the home
   network (ZeroBounce only accepts the home IP), Chrome open.
 - `night_run.sh`: checks (kill switch `.night_off`, ZeroBounce, Apollo >= 100 credits)
-  → `reverify.sh --unverified` → `verify_pool.py --apply` → runs of 50
+  → `reverify.sh --unverified` → `backfill_websites.sh --limit 20 --apply` (Chrome
+  finds missing websites, sweep finds first) → `verify_pool.py --apply --limit 400`
+  → runs of 50
   (`pipeline.sh --run 50`, or `--resume` of a run a stop/the cutoff left unfinished;
   a resumed run doesn't count toward the 2 new runs) with `RUN_DEADLINE` = 8:00, so no
   batch starts that can't end by then → after each run: commit + push, then a headless
@@ -121,6 +123,19 @@ stop and alert me in the app." Window: 1:00 to 8:00 (he picked "1am, stop by 8am
   (not parked, no contacts, not in a report or run ledger) by reading each venue's own website
   over plain HTTP (schema.org address/type/cuisine, the address in the footer)
   and promotes the verified ones. It NEVER opens Chrome. Preview without `--apply`.
+- Sweep finds are always usable (Alex, Sep 29 2026: "everything on the sweep should be
+  able to be used for you on the pipeline"). A venue whose `source` contains "sweep"
+  skips build_batch's taste gates: category, skip words, prime evidence, taste floor,
+  soft junk (chains, apartments, casual food) and location trust (a known sweep city
+  beats a bad geocode). It is still ranked, prime venues first, and the hard rules
+  stay: DC/MD/VA only, 2-hour radius, closed, motels/budget chains, adult/nightlife,
+  thumbs-down, past gigs, venues or sites already worked. `verify_pool.py` trusts a
+  sweep find's city and category once its own site answers (or walls plain HTTP).
+  Rules live in `outreach_rules.is_sweep_find` / `HARD_JUNK_RX`.
+- A sweep find without its own website can't run. Save the website with the venue.
+  `save_websites.py FINDINGS.json [--apply]` writes researched websites (high
+  confidence adds "Website checked DATE" to the notes, which lets a property page
+  pass the name-match check); the night run's backfill finds the rest.
 - Never start anything that drives Alex's Chrome (discover.sh, pipeline.sh,
   backfill_websites.sh, sweep.sh --chrome) without asking him first — he may be
   using the browser (Sep 26: "stop opening my fucking browser"). The night run
@@ -222,6 +237,7 @@ when Alex asks for a full audit, do it by hand as below.
 - `outreach_rules.py`  the shared save rules (apps_script.gs mirrors them)
 - `preflight.sh`       pre-run checks; `verify_run.sh` = the gate; `mark_step.sh` = the ledger
 - `reverify.sh`        re-check unverified contacts after a ZeroBounce top-up
+- `save_websites.py`   write researched websites (sweep finds) with read-back
 - `repair_data.py`     plan and apply sheet repairs
 - `taste_review.py`    unprocessed votes → taste_notes.md
 - `discover.sh`        Google Maps discovery; `sweep.sh --chrome` = Chrome sweep

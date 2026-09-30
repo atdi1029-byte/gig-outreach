@@ -229,6 +229,14 @@ remember_email() {
 ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_paused_$$"
 APOLLO_EXHAUSTED_FLAG="/tmp/pipeline_apollo_exhausted_$$"
 MAX_APOLLO=${MAX_APOLLO:-300}  # Max Apollo credits per run (default 300, set MAX_APOLLO=N to override)
+# Night runs (Alex, Sep 29 2026): no reports, and running out of ZeroBounce or Apollo stops
+# the run (resumable, night_run.sh raises the alert in the app) instead of saving emails as
+# unverified. RUN_DEADLINE (epoch seconds, set by night_run.sh) keeps a batch from
+# starting when it can't finish in time.
+PIPELINE_REPORTS="${PIPELINE_REPORTS:-0}"    # 1 = the old per-run HTML report + manifest gate
+STOP_ON_ZB_OUT="${STOP_ON_ZB_OUT:-1}"       # 0 = old behaviour: keep going, save as unverified
+APOLLO_MIN_CREDITS="${APOLLO_MIN_CREDITS:-100}"
+BATCH_EST_MIN="${BATCH_EST_MIN:-45}"        # minutes a batch of 8 needs (deadline check)
 ZB_BANNER=$(python3 "$ZB_GUARD" budget --no-balance --run-id "$ZB_RUN_ID" 2>>"$ERR_LOG" | \
     python3 -c 'import json,sys; d=json.load(sys.stdin); print("%s — run %s/%s, today %s/%s, reserve %s credits (%s)" % ("enabled" if d.get("enabled") else "DISABLED (unverified emails are saved as unverified)", d.get("run_used"), d.get("run_limit"), d.get("day_used"), d.get("day_limit"), d.get("reserve"), d.get("reason")))' 2>>"$ERR_LOG")
 log "[ZB SAFE] Guard ${ZB_BANNER:-budget unreadable (see $ERR_LOG)}; run id $ZB_RUN_ID"
@@ -250,16 +258,17 @@ check_apollo_credits() {
 check_zb_credits() {
     # Cost guard: this is a no-charge budget/balance check. A failed check pauses
     # paid verification only; website/social discovery must continue.
+    # The flag file holds the reason (night_run.sh turns it into the app alert).
     if [ ! -x "$ZB_GUARD" ]; then
         log "  [ZB SAFE] Guard missing — paid ZeroBounce verification disabled"
-        echo "paused" > "$ZB_EXHAUSTED_FLAG"
+        echo "guard_missing" > "$ZB_EXHAUSTED_FLAG"
         return 1
     fi
     local info
     info=$(pyrun zb_budget python3 "$ZB_GUARD" budget --run-id "$ZB_RUN_ID" || true)
     if [ -z "$info" ]; then
         log "  [ZB SAFE] Could not read ZeroBounce budget — paid verification disabled (fail closed)"
-        echo "paused" > "$ZB_EXHAUSTED_FLAG"
+        echo "budget_unreadable" > "$ZB_EXHAUSTED_FLAG"
         return 1
     fi
     local parsed allowed reason run_used run_limit day_used day_limit credits reserve
@@ -268,7 +277,7 @@ check_zb_credits() {
     log "  [ZB SAFE] run ${run_used:-0}/${run_limit:-?}, today ${day_used:-0}/${day_limit:-?}, balance ${credits:-unknown}, reserve ${reserve:-?}"
     if [ "$allowed" != "True" ] && [ "$allowed" != "true" ]; then
         log "  [ZB SAFE] Paid verification paused: ${reason:-guard_denied}. Discovery will continue."
-        echo "paused" > "$ZB_EXHAUSTED_FLAG"
+        echo "${reason:-guard_denied}" > "$ZB_EXHAUSTED_FLAG"
         return 1
     fi
     rm -f "$ZB_EXHAUSTED_FLAG"
@@ -569,8 +578,8 @@ verify_and_push() {
         log "  [ZB SAFE] $email_lower → $zb_status (${zb_reason:-unknown}; charged=${zb_charged:-False}; cache=${zb_cached:-False}; venue ${venue_zb}/${MAX_ZB_PER_VENUE}; run ${zb_run_used:-0}/${zb_run_limit:-?})"
         if [ "$zb_status" = "deferred" ] || [ "$zb_status" = "pending" ]; then
             case "$zb_reason" in
-                run_budget_reached|day_budget_reached|reserve_reached|credit_check_failed)
-                    echo "paused" > "$ZB_EXHAUSTED_FLAG" ;;
+                run_budget_reached|day_budget_reached|reserve_reached|credit_check_failed|disabled|no_api_key)
+                    echo "$zb_reason" > "$ZB_EXHAUSTED_FLAG" ;;
             esac
             # Alex (Sep 25): an address that passed every free check but could not be
             # checked by ZeroBounce is saved as `unverified`; reverify.sh re-checks it later.
@@ -8720,9 +8729,11 @@ Usage:
   ./pipeline.sh "Venue Name" [VENUE_ID [WEBSITE [CITY]]]
                                          one venue; without an ID the name must match exactly
   ./pipeline.sh --linkedin-retry         re-run LinkedIn for venues with linkedin_pending=true
-  ./pipeline.sh --report [RUN_ID]        rebuild a run's report (after manual marks / the miss audit)
+  ./pipeline.sh --report [RUN_ID]        build a run's HTML report on demand (reports are off by default)
 Env: RUN_ID, RUN_LOG, VENUE_TIMEOUT_MIN (25), POSTCHECK_TIMEOUT_MIN, SKIP_PREFLIGHT=1,
-     ALLOW_CURL_ONLY=1, ALLOW_DEGRADED=1, MAX_FAIL_STREAK (2), SKIP_LINKEDIN=1
+     ALLOW_CURL_ONLY=1, ALLOW_DEGRADED=1, MAX_FAIL_STREAK (2), SKIP_LINKEDIN=1,
+     RUN_DEADLINE (epoch s; no batch starts unless BATCH_EST_MIN (45) fits before it),
+     STOP_ON_ZB_OUT (1), APOLLO_MIN_CREDITS (100), PIPELINE_REPORTS=1 (old report + app gate)
 USAGE
 }
 
@@ -8841,6 +8852,31 @@ runner_stop() {
     log ""
     log "[RUN] STOPPED: $1"
     log "[RUN] Unfinished venues have no DONE: line. Fix the cause, then resume with: ./pipeline.sh --resume ${RUN_ID}"
+    # night_run.sh reads the reason from here to decide on the app alert
+    [ -n "${RUN_ID:-}" ] && printf '%s\n' "$1" > "${RUNS_DIR}/${RUN_ID}.stopped" 2>/dev/null
+}
+
+# RUN_DEADLINE (epoch seconds, set by night_run.sh): true while SECS more still fit.
+runner_before_deadline() {
+    case "${RUN_DEADLINE:-}" in ''|*[!0-9]*) return 0 ;; esac
+    [ $(( $(date +%s) + ${1:-0} )) -lt "$RUN_DEADLINE" ]
+}
+
+runner_deadline_stop() {
+    runner_stop "deadline: $(date -r "$RUN_DEADLINE" '+%H:%M' 2>/dev/null) cutoff — $1"
+}
+
+# Apollo credits left on the account; prints nothing when the API can't say.
+runner_apollo_balance() {
+    [ -n "${APOLLO_API_KEY:-}" ] || return 0
+    curl -s --max-time 30 -H "X-Api-Key: $APOLLO_API_KEY" -H "Cache-Control: no-cache" \
+        "${APOLLO_API_BASE}/users/api_profile?include_credit_usage=true" 2>/dev/null |
+        runner_py apollo_balance python3 -c 'import json, sys
+try:
+    v = json.load(sys.stdin).get("num_credits_remaining")
+    print(int(v) if v is not None else "")
+except Exception:
+    print("")'
 }
 
 # C6. --quick between batches of a multi-batch run.
@@ -9050,6 +9086,7 @@ runner_register_ledger() {
 # manifest_register_run prints the report path on stdout (its log lines go to stderr).
 runner_manifest_register() {
     local out rc
+    [ "$PIPELINE_REPORTS" = "1" ] || return 0   # reports are off (Sep 29): nothing is gated
     if ! declare -F manifest_register_run >/dev/null; then
         log "[REPORT] WARNING: manifest_register_run is not available — venues are not gated in the app until a report exists"
         return 0
@@ -9067,6 +9104,10 @@ runner_manifest_register() {
 # RUN_MORE_BATCHES=1 keeps the manifest entry "running" while more batches follow.
 runner_report() {
     local more="${1:-0}" rc
+    if [ "$PIPELINE_REPORTS" != "1" ]; then   # reports are off (Sep 29); --report RUN_ID still builds one
+        RUNNER_LAST_REPORT_MORE=0
+        return 0
+    fi
     if ! declare -F generate_report >/dev/null; then
         log "[REPORT] WARNING: generate_report is not available — no report written"
         return 1
@@ -9148,8 +9189,14 @@ runner_after_venue_checks() {
         RUNNER_STOP_REASON="Apollo credits exhausted or the per-batch cap (MAX_APOLLO=$MAX_APOLLO) was reached"
         return 1
     fi
-    # ZeroBounce paused/deferred is NOT a stop: those emails are saved as 'unverified'
-    # for ./reverify.sh (Alex, Sep 25). Apollo exhaustion, Chrome and hangs are.
+    # ZeroBounce out (no credits, a budget cap, key/IP refused) stops the run (Alex, Sep 29:
+    # "if we run out of apollo credits or zerobounce you stop"). The venue that hit it keeps
+    # its emails as 'unverified'; night_run.sh re-checks them once ZeroBounce is back.
+    # STOP_ON_ZB_OUT=0 restores the Sep 25 behaviour (keep going, save as unverified).
+    if [ "${STOP_ON_ZB_OUT:-1}" = "1" ] && [ -f "$ZB_EXHAUSTED_FLAG" ]; then
+        RUNNER_STOP_REASON="ZeroBounce unavailable ($(head -1 "$ZB_EXHAUSTED_FLAG" 2>/dev/null))"
+        return 1
+    fi
     if [ "$RUNNER_STREAK_TIMEOUT" -ge "$MAX_FAIL_STREAK" ]; then
         RUNNER_STOP_REASON="$RUNNER_STREAK_TIMEOUT venues in a row hit the ${VENUE_TIMEOUT_MIN}-minute watchdog (Chrome or a crawl is hanging)"
         return 1
@@ -9298,8 +9345,26 @@ runner_run_batch() {
     rm -f "$SKIPPED_VENUES_FILE"
 
     if [ ${#pending[@]} -gt 0 ]; then
-        if ! check_zb_credits; then
+        # A network blip reads like "can't check credits": look once more before stopping
+        if ! check_zb_credits && { [ "${STOP_ON_ZB_OUT:-1}" != "1" ] || { sleep 60; ! check_zb_credits; }; }; then
+            if [ "${STOP_ON_ZB_OUT:-1}" = "1" ]; then
+                runner_stop "ZeroBounce unavailable ($(head -1 "$ZB_EXHAUSTED_FLAG" 2>/dev/null)) before batch $bno"
+                runner_report 1
+                return 3
+            fi
             log "[RUN] ZeroBounce is paused: personal emails in batch $bno are saved as 'unverified' — run ./reverify.sh once credits are back"
+        fi
+        local apollo_left
+        apollo_left=$(runner_apollo_balance)
+        if [ -n "$apollo_left" ]; then
+            log "[RUN] Apollo credits left on the account: $apollo_left (stop below $APOLLO_MIN_CREDITS)"
+            if [ "$apollo_left" -lt "$APOLLO_MIN_CREDITS" ] 2>/dev/null; then
+                runner_stop "Apollo credits low: $apollo_left left (minimum $APOLLO_MIN_CREDITS) before batch $bno"
+                runner_report 1
+                return 3
+            fi
+        elif [ -n "${APOLLO_API_KEY:-}" ]; then
+            log "[RUN] WARNING: could not read the Apollo credit balance — continuing (two failed Apollo steps in a row still stop the run)"
         fi
         if ! runner_chrome_probe "$(runner_probe_url)"; then
             runner_stop "Chrome website-scrape probe failed before batch $bno"
@@ -9312,6 +9377,11 @@ runner_run_batch() {
     for idx in "${pending[@]}"; do
         n=$((n + 1))
         vid="${B_IDS[$idx]}"; name="${B_NAMES[$idx]}"; web="${B_WEBS[$idx]}"; city="${B_CITIES[$idx]}"
+        # A batch that started in time can still run long: never start a venue past the cutoff
+        if ! runner_before_deadline 0; then
+            runner_deadline_stop "stopped before venue $name ($vid)"
+            break
+        fi
         log ""
         log "########## VENUE [$((idx + 1))/$B_COUNT]: $name ##########"
         # Skip venues already pipelined or contacted (C5: status is nested under venue)
@@ -9431,6 +9501,10 @@ runner_run_plan() {
             log "[RUN] --max-batches $RUNNER_MAX_BATCHES reached; continue the plan with: ./pipeline.sh --resume $RUN_ID"
             return 0
         fi
+        if ! runner_before_deadline $((BATCH_EST_MIN * 60)); then
+            runner_deadline_stop "no time for plan batch $i/$total (a batch needs ~${BATCH_EST_MIN} min)"
+            return 3
+        fi
         if [ "$RUNNER_BATCHES_DONE" -gt 0 ] && ! runner_preflight --quick; then
             runner_stop "preflight failed between batches"
             return 3
@@ -9499,6 +9573,10 @@ PYEOF
             continue
         fi
         any=1
+        if ! runner_before_deadline $((BATCH_EST_MIN * 60)); then
+            runner_deadline_stop "no time to finish batch $bno (a batch needs ~${BATCH_EST_MIN} min)"
+            return 3
+        fi
         log "[RESUME] Finishing batch $bno"
         RUNNER_MORE_AFTER=0
         { [ "$bno" != "$last" ] || [ -f "${RUNS_DIR}/${RUN_ID}.plan" ]; } && RUNNER_MORE_AFTER=1
@@ -9835,7 +9913,9 @@ if [ -n "${RUN_ID:-}" ] && ! runner_valid_run_id "$RUN_ID"; then
     exit 1
 fi
 case "$RUNNER_MODE" in
-    --batch|--run|--plan|--resume) runner_setup_run_log ;;
+    --batch|--run|--plan|--resume)
+        runner_setup_run_log
+        rm -f "${RUNS_DIR}/${RUN_ID}.stopped" ;;   # a stale reason from an earlier stop
 esac
 
 echo "" >> "$LOG_FILE"

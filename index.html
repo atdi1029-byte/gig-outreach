@@ -573,10 +573,22 @@ body {
 }
 .verify-badge.warn { background: rgba(240,160,48,0.18); color: var(--gold); }
 .verify-badge.bad { background: rgba(239,83,80,0.18); color: var(--red); }
-.api-status {
-    font-size: 0.7rem; color: var(--red); padding: 0.4rem 0.6rem; margin-bottom: 0.5rem;
-    border: 1px solid rgba(239,83,80,0.4); border-radius: 8px; background: rgba(239,83,80,0.08);
+/* Night runs: alert banner (credits out, Chrome, missed night) + one line about last night */
+.night-alert {
+    position: relative; margin: 0.5rem 0; padding: 0.7rem 2rem 0.7rem 0.9rem; border-radius: 10px;
+    border: 1px solid rgba(239,83,80,0.55); background: rgba(239,83,80,0.12);
 }
+.night-alert.warn { border-color: rgba(240,160,48,0.55); background: rgba(240,160,48,0.1); }
+.night-alert-title { font-size: 0.85rem; font-weight: 700; color: var(--red); }
+.night-alert.warn .night-alert-title { color: var(--gold); }
+.night-alert-detail { font-size: 0.75rem; color: var(--text); margin-top: 0.25rem; line-height: 1.4; }
+.night-alert-when { font-size: 0.65rem; color: var(--text-dim); margin-top: 0.3rem; }
+.night-alert-x {
+    position: absolute; top: 0.35rem; right: 0.4rem; background: none; border: none;
+    color: var(--text-dim); font-size: 1rem; cursor: pointer; padding: 0.2rem 0.4rem;
+}
+.night-line { font-size: 0.7rem; color: var(--text-dim); margin: 0.35rem 0 0.2rem; }
+.night-line b { color: var(--text); font-weight: 600; }
 
 /* === TOAST === */
 .toast {
@@ -1086,7 +1098,6 @@ body {
     .home-header h1 .drop-cap { font-size: 2.6rem; }
     .venue-name { font-size: 0.8rem; }
     .monthly-section { /* visible on all screens — collapsible */ }
-    .reports-pill { display: inline-flex !important; }
     .pill-past-gigs, .pill-discovery { display: none !important; }
 }
 </style>
@@ -1105,16 +1116,12 @@ body {
         <!-- MONTHLY TASKS (desktop only, hidden on mobile via CSS) -->
         <div class="monthly-section" id="monthlySection"></div>
 
-        <!-- PAST GIGS + REPORTS BUTTONS -->
+        <!-- PAST GIGS + DISCOVERY BUTTONS -->
         <div class="gigs-pill-row">
             <button class="gigs-pill pill-past-gigs" onclick="openGigsView()">
                 <span class="gigs-pill-icon">&#9834;</span>
                 <span>Past Gigs</span>
                 <span class="gigs-pill-count" id="gigsCount">0</span>
-            </button>
-            <button class="gigs-pill reports-pill" onclick="openReportsView()">
-                <span class="gigs-pill-icon">&#9776;</span>
-                <span>Reports</span>
             </button>
             <button class="gigs-pill pill-discovery" onclick="window.open('discovery-tracker.html','_blank')">
                 <span class="gigs-pill-icon">&#9737;</span>
@@ -1125,6 +1132,10 @@ body {
                 <span>Templates</span>
             </button>
         </div>
+
+        <!-- NIGHT RUNS: alert + last night (night_status.json, written by night_run.sh) -->
+        <div id="nightAlert" class="night-alert" style="display:none"></div>
+        <div id="nightLine" class="night-line" style="display:none"></div>
 
         <!-- WEEKLY GOALS -->
         <div class="weekly-goals" id="weeklyGoals" style="display:none"></div>
@@ -1143,7 +1154,6 @@ body {
                 <span class="section-title">Browse Venues</span>
                 <span id="syncStatus" style="margin-left:auto;font-size:0.7rem;color:var(--text-dim)">Loading venues…</span>
             </div>
-            <div id="apiStatus" class="api-status" style="display:none"></div>
             <div id="stateGrid"></div>
         </div>
 
@@ -1214,15 +1224,6 @@ body {
     <div class="view-inner" id="gigFormBody"></div>
 </div>
 
-<!-- ============ VIEW: REPORTS ============ -->
-<div class="view" id="viewReports">
-    <div class="view-header">
-        <button class="view-back" onclick="goBack()">&larr;</button>
-        <span class="view-title">Reports</span>
-    </div>
-    <div class="view-inner" id="reportsBody"></div>
-</div>
-
 <!-- TEMPLATE PREVIEWER (temporary) -->
 <div class="view" id="viewTemplates">
     <div class="view-header">
@@ -1266,7 +1267,6 @@ let refreshTimer = null;
 let _dashInFlight = false;
 let _dashFetchedAt = 0;     // last successful network load
 let _dashFailures = 0;
-let _gateReady = Promise.resolve();
 let navStack = ['viewHome'];
 // Track locally-confirmed sent contacts so a loadDashboard overwrite
 // doesn't erase marks made during an in-flight refresh.
@@ -2256,7 +2256,6 @@ function renderStateGrid() {
             <div class="state-card-count">${count} venue${count !== 1 ? 's' : ''}</div>
         </div>`;
     }).join('') + '</div>';
-    renderApiStatus();
 }
 
 // === TASTE CATEGORY MATCHING ===
@@ -2715,56 +2714,6 @@ function getIndex() {
     return _idx;
 }
 
-// === REPORT GATE ===
-// Venues listed in a report stay hidden until that report is marked reviewed.
-// The pipeline registers a run (status "running") at batch start and may add
-// batches to the same entry, so a running entry stays gated even if it was ticked.
-// A run that died never leaves "running"; after STALE_RUN_MS it is reviewable again.
-const STALE_RUN_MS = 24 * 3600 * 1000;
-let _gatedVenueIds = null;
-function reportVenueIds(r, key) {
-    const ids = r && r[key || 'venue_ids'];
-    const list = Array.isArray(ids) ? ids : (typeof ids === 'string' ? ids.split(',') : []);
-    return list.map(id => String(id || '').trim()).filter(Boolean);
-}
-// Start of a run: explicit timestamp fields, else the report file name (YYYY-MM-DD_HH-MM)
-function reportStartMs(r) {
-    for (const k of ['updated_at', 'started_at', 'started']) {
-        const t = r && r[k] ? Date.parse(r[k]) : NaN;
-        if (!isNaN(t)) return t;
-    }
-    const m = /(\d{4})-(\d{2})-(\d{2})_(\d{2})-(\d{2})/.exec((r && r.file) || '');
-    if (m) return new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]).getTime();
-    const d = r && r.date ? Date.parse(r.date + 'T00:00:00') : NaN;
-    return isNaN(d) ? Date.now() : d;
-}
-function isRunningReport(r) {
-    const s = String((r && r.status) || '').toLowerCase().replace(/[\s-]+/g, '_');
-    return s === 'running' || s === 'in_progress';
-}
-function isStaleRun(r) { return isRunningReport(r) && Date.now() - reportStartMs(r) > STALE_RUN_MS; }
-function isActiveRun(r) { return isRunningReport(r) && !isStaleRun(r); }
-
-function getGatedVenueIds() {
-    if (_gatedVenueIds !== null) return _gatedVenueIds;
-    const reviewed = getReviewedReports();
-    const gated = new Set();
-    if (reportManifest && Array.isArray(reportManifest)) {
-        for (const r of reportManifest) {
-            if (!r) continue;
-            if (!reviewed[r.file] || isActiveRun(r)) {
-                for (const id of reportVenueIds(r)) gated.add(id);
-            }
-        }
-    }
-    _gatedVenueIds = gated;
-    return _gatedVenueIds;
-}
-
-function isVenueGated(venueId) {
-    return getGatedVenueIds().has(venueId);
-}
-
 // Unsent, sendable (valid/role/unverified), not junk, and not already emailed from another row
 function contactPending(c, idx) {
     if (!c.email || c.email_sent || !isSendableStatus(c.verified) || isJunkEmail(c.email)) return false;
@@ -2781,8 +2730,6 @@ function socialPending(venue, which, idx) {
 }
 
 function venueHasPending(venueId) {
-    // Report gate: hide venues from unreviewed reports
-    if (isVenueGated(venueId)) return false;
     const idx = getIndex();
     const venue = idx.venueById.get(venueId);
     if (!venue) return false;
@@ -2903,17 +2850,6 @@ function renderWeeklyGoals() {
     el.innerHTML = html;
 }
 
-// Warning banner under Browse for problems that would otherwise look like "no venues"
-function renderApiStatus() {
-    const el = document.getElementById('apiStatus');
-    if (!el) return;
-    const msg = _reviewedPullFailed
-        ? 'Couldn\'t load reviewed reports from the cloud, so venues from reports stay hidden until it loads. Retrying.'
-        : '';
-    el.textContent = msg;
-    el.style.display = msg ? '' : 'none';
-}
-
 // Render a dashboard payload (from the network or the cache).
 function applyDashboard(data, fromCache) {
     dashboardData = data;
@@ -2940,7 +2876,7 @@ function applyDashboard(data, fromCache) {
         });
     }
     // One failing widget shouldn't blank the whole home screen
-    [renderStateGrid, updateGigsCount, renderWeeklyGoals, renderLevelBar, checkLinkedInReminder, renderApiStatus].forEach(function(fn) {
+    [renderStateGrid, updateGigsCount, renderWeeklyGoals, renderLevelBar, checkLinkedInReminder].forEach(function(fn) {
         try { fn(); } catch (e) { console.error('Render error in ' + fn.name + ':', e); }
     });
     // Deep link: ?venue=VENUE_ID opens detail page
@@ -3029,56 +2965,99 @@ function loadDashboard() {
     jsonpFetch(API_URL, function(err, data) {
         const ok = !err && data && data.status === 'ok';
         if (!ok) err = err || (data && data.message) || 'Bad response';
-        // Render only after the report gate data is in, so gated venues never flash
-        _gateReady.then(function() {
-            _dashInFlight = false;
-            if (ok) {
-                _dashFetchedAt = Date.now();
-                _dashFailures = 0;
-                try {
-                    applyDashboard(data);
-                    setSyncStatus('');
-                } catch (e) {
-                    console.error('Dashboard render error:', e);
-                    setSyncStatus('Display error: ' + e.message, true);
-                }
-                setTimeout(function() { writeCachedDashboard(data); }, 0);
-                if (_reviewedPullFailed) retryReviewedPull();
-            } else {
-                _dashFailures++;
-                console.error('Dashboard load error:', err);
-                const retryS = Math.min(15 * Math.pow(2, _dashFailures - 1), 180);
-                setSyncStatus((dashboardData ? 'Showing saved data — ' : '') +
-                    'couldn\'t reach server (' + err + '). Retrying in ' + retryS + 's — tap to retry', true);
-                _dashQueued = false;
-                scheduleRefresh(retryS * 1000);
-                return;
+        _dashInFlight = false;
+        if (ok) {
+            _dashFetchedAt = Date.now();
+            _dashFailures = 0;
+            try {
+                applyDashboard(data);
+                setSyncStatus('');
+            } catch (e) {
+                console.error('Dashboard render error:', e);
+                setSyncStatus('Display error: ' + e.message, true);
             }
-            if (_dashQueued) { _dashQueued = false; loadDashboard(); return; }
-            scheduleRefresh(REFRESH_INTERVAL);
-        });
+            setTimeout(function() { writeCachedDashboard(data); }, 0);
+            loadNightStatus();
+        } else {
+            _dashFailures++;
+            console.error('Dashboard load error:', err);
+            const retryS = Math.min(15 * Math.pow(2, _dashFailures - 1), 180);
+            setSyncStatus((dashboardData ? 'Showing saved data — ' : '') +
+                'couldn\'t reach server (' + err + '). Retrying in ' + retryS + 's — tap to retry', true);
+            _dashQueued = false;
+            scheduleRefresh(retryS * 1000);
+            return;
+        }
+        if (_dashQueued) { _dashQueued = false; loadDashboard(); return; }
+        scheduleRefresh(REFRESH_INTERVAL);
     }, DASHBOARD_TIMEOUT);
 }
 
-// === REPORTS VIEW ===
-// Reports are loaded dynamically from reports/manifest.json
-let reportManifest = null;
-
-// force=true re-reads it (app resume, reports view) so a run registered at batch start gets gated
-async function loadReportManifest(force) {
-    if (reportManifest !== null && !force) return reportManifest;
-    try {
-        const resp = await fetch('reports/manifest.json?_=' + Date.now());
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        const data = await resp.json();
-        if (!Array.isArray(data)) throw new Error('manifest is not a list');
-        reportManifest = data;
-    } catch (e) {
-        console.warn('Failed to load report manifest:', e);
-        if (reportManifest === null) reportManifest = []; // keep the last good copy on a failed refresh
+// === NIGHT RUNS ===
+// night_run.sh runs the pipeline from 1:00 to 8:00 and pushes night_status.json: an alert
+// when a night stopped for something Alex has to fix (ZeroBounce/Apollo credits, Chrome),
+// and one line about the night. Contacts land on the sheet as they're found; no reports.
+let nightStatus = null;
+let _nightFetchedAt = 0;
+const NIGHT_DISMISS_KEY = 'outreach_night_alert_dismissed';
+function loadNightStatus(force) {
+    if (!force && Date.now() - _nightFetchedAt < 60000) return;
+    _nightFetchedAt = Date.now();
+    fetch('night_status.json?_=' + Date.now(), { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : null)
+        .then(d => { if (d && typeof d === 'object') { nightStatus = d; renderNightStatus(); } })
+        .catch(e => console.warn('night_status.json:', e));
+}
+function nightAlertKey(a) { return a ? String(a.kind) + '|' + String(a.since) : ''; }
+function nightWhen(iso) {
+    const t = Date.parse(iso || '');
+    if (isNaN(t)) return '';
+    const d = new Date(t);
+    const time = d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    const day = new Date(); day.setHours(0, 0, 0, 0);
+    if (t >= day.getTime()) return 'today ' + time;
+    if (t >= day.getTime() - 86400000) return 'yesterday ' + time;
+    return d.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' }) + ' ' + time;
+}
+function renderNightStatus() {
+    const box = document.getElementById('nightAlert');
+    const line = document.getElementById('nightLine');
+    if (!box || !line) return;
+    const d = nightStatus || {};
+    const a = d.alert;
+    let dismissed = '';
+    try { dismissed = localStorage.getItem(NIGHT_DISMISS_KEY) || ''; } catch (e) {}
+    if (a && a.title && nightAlertKey(a) !== dismissed) {
+        box.className = 'night-alert' + (a.level === 'warn' ? ' warn' : '');
+        box.innerHTML = `<button class="night-alert-x" onclick="dismissNightAlert()" title="Hide until something changes">&times;</button>
+            <div class="night-alert-title">${esc(a.title)}</div>
+            ${a.detail ? `<div class="night-alert-detail">${esc(a.detail)}</div>` : ''}
+            <div class="night-alert-when">${esc(nightWhen(a.since))}</div>`;
+        box.style.display = '';
+    } else {
+        box.style.display = 'none';
+        box.innerHTML = '';
     }
-    _gatedVenueIds = null;
-    return reportManifest;
+    const n = d.night;
+    let html = '';
+    if (n && n.started_at) {
+        const runs = Array.isArray(n.runs) ? n.runs : [];
+        const sum = k => runs.reduce((t, r) => t + (parseInt(r[k], 10) || 0), 0);
+        const fresh = Date.now() - Date.parse(n.started_at) < 14 * 3600 * 1000;
+        if (n.state === 'running' && fresh) {
+            html = `<b>Night run going</b> since ${esc(nightWhen(n.started_at))}` +
+                (sum('processed') ? ` · ${sum('processed')} venues done` : '');
+        } else {
+            const summary = n.note || (runs.length ? `${runs.length} run${runs.length > 1 ? 's' : ''} · ${sum('processed')} venues · ${sum('new_contacts')} new contacts` : '');
+            if (summary) html = `<b>Night run</b> ${esc(nightWhen(n.started_at))}: ${esc(summary)}`;
+        }
+    }
+    line.innerHTML = html;
+    line.style.display = html ? '' : 'none';
+}
+function dismissNightAlert() {
+    try { localStorage.setItem(NIGHT_DISMISS_KEY, nightAlertKey(nightStatus && nightStatus.alert)); } catch (e) {}
+    renderNightStatus();
 }
 
 // === TEMPLATE PREVIEWER (temporary) ===
@@ -3156,184 +3135,6 @@ function updateTplProgress() {
             return `<span style="display:inline-block;margin:2px 4px;padding:2px 8px;border-radius:12px;font-size:0.7rem;border:1px solid ${ok ? 'var(--green)' : 'var(--border-light)'};color:${ok ? 'var(--green)' : 'var(--text-dim)'}">${TEMPLATES[c].label}${ok ? ' \u2713' : ''}</span>`;
         }).join('');
     }
-}
-
-const REVIEWED_KEY = 'outreach_reviewed_reports';
-const REVIEWED_BASE_KEY = 'outreach_reviewed_reports_base'; // cloud map as of the last successful sync
-let _reviewedReportsCache = null;
-let _reviewedPullFailed = false; // fresh device whose first pull failed: gate stays locked, banner says why
-function getReviewedReports() {
-    if (_reviewedReportsCache) return _reviewedReportsCache;
-    const m = lsJSON(REVIEWED_KEY, {});
-    return (m && typeof m === 'object' && !Array.isArray(m)) ? m : {};
-}
-function setReportReviewed(file, reviewed) {
-    const data = Object.assign({}, getReviewedReports());
-    if (reviewed) data[file] = Date.now();
-    else delete data[file];
-    writeJSON(REVIEWED_KEY, data);
-    _reviewedReportsCache = data;
-    syncReviewedReports();
-}
-// Pull, 3-way merge against the last synced copy, push only when the merge differs from the
-// cloud. An un-review on one device now sticks, and a failed pull never overwrites the cloud.
-let _reviewedSyncBusy = false;
-let _reviewedSyncWaiters = [];
-let _reviewedSyncAgain = false;
-function syncReviewedReports(done) {
-    if (!BASE_URL) { if (done) done(false); return; }
-    if (done) _reviewedSyncWaiters.push(done);
-    if (_reviewedSyncBusy) { _reviewedSyncAgain = true; return; }
-    _reviewedSyncBusy = true;
-    const finish = ok => {
-        _reviewedSyncBusy = false;
-        const waiters = _reviewedSyncWaiters;
-        _reviewedSyncWaiters = [];
-        waiters.forEach(fn => fn(ok));
-        if (_reviewedSyncAgain) { _reviewedSyncAgain = false; syncReviewedReports(); }
-    };
-    jsonpFetch(buildUrl({ action: 'get_reviewed_reports' }), function(err, json) {
-      // finish() must always run — the dashboard render waits on it
-      try {
-        const cloud = json && json.reviewed;
-        if (err || !json || json.status !== 'ok' || !cloud || typeof cloud !== 'object' || Array.isArray(cloud)) {
-            finish(false);
-            return;
-        }
-        _reviewedPullFailed = false;
-        const merged = merge3(getReviewedReports(), cloud, lsJSON(REVIEWED_BASE_KEY, {}));
-        writeJSON(REVIEWED_KEY, merged);
-        _reviewedReportsCache = merged;
-        _gatedVenueIds = null;
-        if (mapsEqual(merged, cloud)) { writeJSON(REVIEWED_BASE_KEY, cloud); finish(true); return; }
-        fireGet(buildUrl({ action: 'save_reviewed_reports', data: JSON.stringify(merged) }), function(res) {
-            if (res.status === 'ok') writeJSON(REVIEWED_BASE_KEY, merged);
-            else showToast('Reviewed reports not synced: ' + resMsg(res));
-            finish(true);
-        });
-      } catch (e) { console.error('Reviewed reports sync error:', e); finish(false); }
-    }, 15000);
-}
-function loadReviewedReportsFromCloud() {
-    return new Promise(function(resolve) {
-        syncReviewedReports(function(ok) {
-            if (!ok && Object.keys(getReviewedReports()).length === 0) _reviewedPullFailed = true;
-            resolve();
-        });
-    });
-}
-function retryReviewedPull() {
-    syncReviewedReports(function(ok) { if (ok && dashboardData) renderStateGrid(); });
-}
-
-async function openReportsView() {
-    const body = document.getElementById('reportsBody');
-    const baseUrl = 'https://atdi1029-byte.github.io/gig-outreach/reports/';
-
-    body.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-dim)">Loading reports...</div>';
-    if (navStack[navStack.length - 1] !== 'viewReports') navigateTo('viewReports');
-
-    const reports = await loadReportManifest(true);
-    const reviewed = getReviewedReports();
-
-    // Dedupe by file name (keep first occurrence)
-    const seen = new Set();
-    const unique = (reports || []).filter(r => {
-        if (!r || seen.has(r.file)) return false;
-        seen.add(r.file);
-        return true;
-    });
-
-    let html = '';
-    html += `<div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);margin-bottom:0.5rem">Run Reports</div>`;
-    const gatedCount = getGatedVenueIds().size;
-    if (gatedCount > 0) {
-        html += `<div style="font-size:0.75rem;color:var(--red);margin-bottom:0.6rem">${gatedCount} venues hidden until reports confirmed</div>`;
-    }
-    if (unique.length === 0) {
-        html += '<div style="text-align:center;padding:1rem;color:var(--text-dim);font-size:0.85rem">No reports yet.</div>';
-    } else {
-        const unread = unique.filter(r => !reviewed[r.file] || isActiveRun(r)).length;
-        if (unread > 0) {
-            html += `<div style="font-size:0.8rem;color:var(--text-dim);margin-bottom:0.8rem">${unread} unreviewed</div>`;
-        }
-
-        // Group by month (YYYY-MM)
-        const months = {};
-        for (const r of unique) {
-            const key = r.date ? String(r.date).slice(0, 7) : 'other';
-            if (!months[key]) months[key] = [];
-            months[key].push(r);
-        }
-
-        const monthNames = {
-            '01':'January','02':'February','03':'March',
-            '04':'April','05':'May','06':'June',
-            '07':'July','08':'August','09':'September',
-            '10':'October','11':'November','12':'December'
-        };
-
-        for (const key of Object.keys(months).sort().reverse()) {
-            const [yr, mo] = key.split('-');
-            const label = mo ? `${monthNames[mo] || mo} ${yr}` : 'Other';
-            html += `<div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-dim);margin:1rem 0 0.4rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border)">${esc(label)}</div>`;
-            for (const r of months[key]) {
-                const fileUrl = `${baseUrl}${encodeURI(String(r.file || ''))}`;
-                const running = isActiveRun(r);
-                const isReviewed = !!reviewed[r.file] && !running;
-                const opacity = isReviewed ? '0.5' : '1';
-                const badge = running
-                    ? '<span style="color:#e67e22;font-size:0.75rem;font-weight:700;margin-left:0.4rem">RUNNING</span>'
-                    : isStaleRun(r) && !isReviewed
-                    ? '<span style="color:var(--red);font-size:0.75rem;font-weight:700;margin-left:0.4rem">STALLED</span>'
-                    : isReviewed
-                    ? '<span style="color:#4caf50;font-size:0.75rem;margin-left:0.4rem">Reviewed</span>'
-                    : '<span style="color:var(--gold);font-size:0.75rem;font-weight:700;margin-left:0.4rem">NEW</span>';
-                const toggleTitle = running ? 'Run in progress' : (isReviewed ? 'Mark as unreviewed' : 'Mark as reviewed');
-                html += `<div style="display:flex;align-items:stretch;margin-bottom:0.5rem;opacity:${opacity}">
-                    <div onclick="window.open(${jsArg(fileUrl)},'_blank')" style="flex:1;cursor:pointer;background:var(--bg-card);border:1px solid var(--border);border-radius:8px 0 0 8px;padding:0.8rem">
-                        <div style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--gold)">${esc(r.title)}${badge}</div>
-                        <div style="font-size:0.75rem;color:var(--text-dim);margin-top:0.3rem">${esc(r.summary || '')}</div>
-                    </div>
-                    <button onclick="toggleReportReviewed(${jsArg(r.file)})" style="background:${isReviewed ? '#1a2e1a' : 'var(--bg-card)'};border:1px solid var(--border);border-left:none;border-radius:0 8px 8px 0;padding:0 0.8rem;cursor:pointer;font-size:1.1rem;color:${isReviewed ? '#4caf50' : '#555'}" title="${toggleTitle}">${running ? '&#8987;' : isReviewed ? '&#10003;' : '&#9675;'}</button>
-                </div>`;
-            }
-        }
-    }
-
-    body.innerHTML = html;
-    if (dashboardData) renderStateGrid();
-}
-
-// Markers the pipeline / manual check leave on venues it parked (see P4 status flow)
-const REVIEW_FLAG_RE = /pipeline|0 contacts|zero contacts|closed|dead|not a venue|not-a-venue|junk|motel|airbnb|vrbo|too far|out of area|quarantin|duplicate|wrong business|flag/i;
-function hasReviewFlag(v) { return REVIEW_FLAG_RE.test((v.check_status || '') + ' ' + (v.notes || '')); }
-
-function toggleReportReviewed(file) {
-    const report = (reportManifest || []).find(r => r && r.file === file);
-    if (isActiveRun(report)) { showToast('Run still in progress — review it when the report is done'); return; }
-    const reviewed = getReviewedReports();
-    const marking = !reviewed[file];
-    setReportReviewed(file, marking);
-    _gatedVenueIds = null; // invalidate gate cache
-    // Reviewing never changes the status of venues the pipeline processed: pipelined stays
-    // pipelined and zero-contact or flagged (closed/motel/...) needs_review stays needs_review.
-    // A report can opt discovery-verified venues in via promote_ids; those move to untouched
-    // only if still needs_review, with a real website and no park flag.
-    if (marking && BASE_URL && report && report.promote_ids && dashboardData) {
-        const idx = getIndex();
-        for (const vid of reportVenueIds(report, 'promote_ids')) {
-            const v = idx.venueById.get(vid);
-            if (!v || v.status !== 'needs_review' || !safeHttpUrl(v.website) || hasReviewFlag(v)) continue;
-            fireGet(buildUrl({ action: 'update_venue', venue_id: vid, field: 'status', value: 'untouched' }), function(res) {
-                if (res.status === 'ok' && res.verified !== false) { v.status = 'untouched'; invalidateIndex(); }
-                else showToast('Status not updated for ' + v.name);
-            });
-        }
-    }
-    openReportsView();
-    // Re-render home view so venue counts update
-    if (dashboardData) renderStateGrid();
 }
 
 // === LINKEDIN REMINDER ===
@@ -4289,23 +4090,15 @@ function toggleLevel() {
 
 // === INIT ===
 document.addEventListener('DOMContentLoaded', () => {
-    // Report gate data: reviewed reports (cloud) + report manifest. Capped at
-    // 8s so a slow backend can't hold the dashboard render hostage.
-    const manifestReady = loadReportManifest();
-    _gateReady = Promise.race([
-        Promise.all([loadReviewedReportsFromCloud(), manifestReady]),
-        new Promise(r => setTimeout(r, 8000))
-    ]).catch(() => {}).then(() => { _gatedVenueIds = null; });
-
-    // Start the slow dashboard fetch now, in parallel with the gate calls.
-    // Deep links (?venue=ID) open from applyDashboard once data is in.
+    // Start the slow dashboard fetch now. Deep links (?venue=ID) open from
+    // applyDashboard once data is in.
     loadDashboard();
+    loadNightStatus(true);
 
-    // Meanwhile show the last saved dashboard, gated by the local reviewed list
-    Promise.all([readCachedDashboard(), Promise.race([manifestReady, new Promise(r => setTimeout(r, 3000))])])
-    .then(([cached]) => {
+    // Meanwhile show the last saved dashboard
+    readCachedDashboard()
+    .then(cached => {
         if (!cached || !cached.data || dashboardData) return; // network already won
-        _gatedVenueIds = null;
         applyDashboard(cached.data, true);
         if (_dashInFlight) setSyncStatus('Updating… (saved ' + _ago(Date.now() - cached.savedAt) + ')');
     })
@@ -4326,24 +4119,22 @@ document.addEventListener('DOMContentLoaded', () => {
     syncSkipWords(); // pull the cloud skip list (pipeline.sh filters Apollo titles with it)
 });
 
-// Pause polling while hidden. On return: re-read the report manifest (a run may have
-// registered since), refresh if the data is over a minute old, and pull the small
-// synced lists (at most every 2 minutes).
+// Pause polling while hidden. On return: re-read the night status, refresh if the data
+// is over a minute old, and pull the small synced lists (at most every 2 minutes).
 let _lastAuxSync = Date.now();
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible') { clearTimeout(refreshTimer); return; }
-    loadReportManifest(true).then(() => {
-        // Only refresh on tab-return if NOT viewing a venue detail
-        if (navStack[navStack.length - 1] === 'viewDetail') { scheduleRefresh(REFRESH_INTERVAL); return; }
-        if (_dashInFlight) return; // its callback schedules the next refresh
+    loadNightStatus();
+    // Only refresh on tab-return if NOT viewing a venue detail
+    if (navStack[navStack.length - 1] === 'viewDetail') { scheduleRefresh(REFRESH_INTERVAL); }
+    else if (!_dashInFlight) { // an in-flight load schedules the next refresh itself
         const age = Date.now() - _dashFetchedAt;
         if (age > 60000) loadDashboard();
         else { if (dashboardData) renderStateGrid(); scheduleRefresh(REFRESH_INTERVAL - age); }
-    });
+    }
     if (Date.now() - _lastAuxSync > 120000) {
         _lastAuxSync = Date.now();
         monthlySync(true);
-        syncReviewedReports();
         syncSkipWords();
     }
 });

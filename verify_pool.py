@@ -28,6 +28,7 @@ website stay needs_review (finding one needs a search engine).
 """
 import argparse
 import html as html_lib
+import glob
 import json
 import os
 import re
@@ -264,6 +265,18 @@ def main():
             reported |= set(e.get("venue_ids") or [])
     except (OSError, ValueError):
         pass
+    # Reports are off since Sep 29: venues a run registered in its ledger count too
+    for led in glob.glob(os.path.join(HERE, "reports", "runs", "*.jsonl")):
+        try:
+            for line in open(led):
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if isinstance(r, dict) and r.get("type") == "venue" and r.get("step") == "registered":
+                    reported.add(r.get("venue_id"))
+        except OSError:
+            pass
     done = {}
     for v in venues:
         if v.get("status") in ("pipelined", "contacted", "dismissed", "closed", "researched", "sent"):

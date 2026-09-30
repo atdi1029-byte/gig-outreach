@@ -3,9 +3,11 @@
 This file is the one source of truth for how a run works. The home CLAUDE.md and
 memory notes point here; if they disagree with this file, this file wins.
 
-A run = up to ~50 venues, split into batches of at most 8, under one RUN_ID, with
-one report. The goal is a run Alex can accept without reviewing it by hand: the
-run proves what it searched, lists what it missed, and ends with a verdict.
+A run = up to ~50 venues, split into batches of at most 8, under one RUN_ID.
+Since Sep 29 2026 runs happen by themselves every night (see "Night runs" below):
+no reports, no review gate. Contacts show in the app as soon as they're saved,
+and the app's home screen shows an alert when a night stops for something Alex
+has to fix (ZeroBounce or Apollo out of credits, Chrome) plus one line about the night.
 
 ## Rules that override everything else
 - `python3` on PATH is broken on this Mac (Intel-only build). Scripts fix this
@@ -14,8 +16,8 @@ run proves what it searched, lists what it missed, and ends with a verdict.
   site down), the run reports it as `failed`/`blocked`, or you record it with
   `./mark_step.sh <venue_id> <step> BLOCKED "<reason>"`. Blocked is allowed;
   unrecorded is not.
-- Never summarize from memory. The report is generated from the run log, the
-  sheet and `verify_run.sh`; don't hand-write numbers.
+- Never summarize from memory. Numbers come from the run log, the sheet and
+  `night_zero.py --stats`; don't hand-write them.
 - Never `cat` a log. `tail` and `grep` only.
 - Don't edit `pipeline.sh` during a run. Don't run two scripts that drive Chrome
   at once (pipeline, discover, sweep --chrome refuse while the pipeline holds
@@ -24,7 +26,7 @@ run proves what it searched, lists what it missed, and ends with a verdict.
 - Save policy (enforced by the code and the backend):
   - An email is saved only if it's on the venue's own domain, or a free-mail/ISP
     address linked to the venue (mailto on its site, or venue words in it).
-    Off-domain = rejected and listed in the report, never saved.
+    Off-domain = rejected and kept in the candidate log, never saved.
   - Exception (Alex, Sep 26 2026): the venue's own mail domain counts as its
     domain even when it differs from the website's — a sibling TLD
     (rollingroadgc.com for .org), the club's own mail domain (@spcc1925.com), or
@@ -44,20 +46,55 @@ run proves what it searched, lists what it missed, and ends with a verdict.
     privateevents@, banquets@, weddings@, sales@, chef@, owner@, gm@) are saved
     only with a real person's name attached (e.g. "Liz McQuay, Events Manager
     → events@"), as `verified=role`, and never cost a ZeroBounce credit.
-  - Personal inboxes go through ZeroBounce: `valid` is saved. While ZeroBounce
-    has no credits, they're saved as `verified=unverified` (shown in the app
-    with a badge). After a top-up: `./reverify.sh --unverified --dry-run`, then
-    `./reverify.sh --unverified --limit N`.
+  - Personal inboxes go through ZeroBounce: `valid` is saved. ZeroBounce
+    running out (no credits, a budget cap, key or IP refused) STOPS the run
+    (Alex, Sep 29 2026: "if we run out of apollo credits or zerobounce you
+    stop and make an alert on the app"). The venue that hit it keeps those
+    emails as `verified=unverified`; the next night re-checks them first
+    (`./reverify.sh --unverified --limit 60`). `STOP_ON_ZB_OUT=0` restores the
+    old keep-going behaviour for a manual run.
   - Names are never invented from email local parts (first.last is the only
     exception). Masked Apollo names (`Mc***y`) are enriched or skipped.
   - People found WITHOUT an email are never put on the sheet (Alex, Sep 27
-    2026: he doesn't want them in the app). Pipeline, postcheck and the miss
-    audit keep them in the run log / candidate file / misses file only, so the
-    report's Details and the future zero-contact pass can still see them.
+    2026: he doesn't want them in the app). Pipeline, postcheck and the deep
+    dive keep them in the run log / candidate file / findings files only, so the
+    zero-contact deep dive can still use them.
     `SAVE_PENDING_PEOPLE=1` restores the old behaviour for a test.
   - Existing Facebook/Instagram/contact-form values on the sheet are never
     overwritten. Venue status is never demoted.
 - Target area: DC, MD, VA only; max ~2 hour drive from Pasadena, MD.
+
+## Night runs (automatic, since Sep 29 2026)
+Alex: "run by yourself at night, runs of 50, push everything after each run, go
+deeper on 0-contact venues and fix the code, and if Apollo or ZeroBounce run out,
+stop and alert me in the app." Window: 1:00 to 8:00 (he picked "1am, stop by 8am").
+- launchd (`~/Library/LaunchAgents/com.alexbarnett.outreach-night.plist`, installed
+  by Alex) opens `night_run.command` in Terminal at 1:00, so Chrome automation runs
+  with Terminal's permission. The Mac must be awake, plugged in, lid open, on the home
+  network (ZeroBounce only accepts the home IP), Chrome open.
+- `night_run.sh`: checks (kill switch `.night_off`, ZeroBounce, Apollo >= 100 credits)
+  → `reverify.sh --unverified` → `verify_pool.py --apply` → runs of 50
+  (`pipeline.sh --run 50`, or `--resume` of a run a stop/the cutoff left unfinished;
+  a resumed run doesn't count toward the 2 new runs) with `RUN_DEADLINE` = 8:00, so no
+  batch starts that can't end by then → after each run: commit + push, then a headless
+  Claude session researches the run's zero-contact venues (`NIGHT_DEEPDIVE.md`, phase
+  RESEARCH) while the next run goes, `night_save.py` saves what it found under the
+  save policy, commit + push → after the last run, one Claude session (phase FIX)
+  fixes the scraper for what the pipeline missed, proves it with the recall benchmark,
+  commits; `night_run.sh` reverts anything that breaks `health_check` → final push.
+- A stop (credits, Chrome, preflight) ends the night and sets the app alert in
+  `night_status.json`; the stopped run resumes first next night (dropped on its 3rd stop
+  that isn't the cutoff). An empty pool raises a "needs a sweep" alert. A launch
+  outside 00:30–03:30 (the Mac was asleep at 1:00) is skipped with an alert.
+- Files: `reports/runs/night-YYYYMMDD.log` (the night), `reports/runs/<RUN_ID>.log`
+  (the run), `reports/runs/night-state.json` (resume target, runs waiting for a fix
+  session), `<RUN_ID>.zero.json` / `.deepdive.json` / `.deepdive-saved.json` /
+  `.deepdive.done`, `night-YYYYMMDD.fix-summary.json`.
+- `./night_run.sh --check` = the credit/setup checks only (safe any time).
+  `./night_run.sh --force` = a night now (still stops at the 8:00 cutoff).
+  Pause: `touch .night_off`; resume: `rm .night_off`.
+- Manual runs still work as below; `PIPELINE_REPORTS=1` or `./pipeline.sh --report
+  RUN_ID` builds the old HTML report on demand, but nothing gates the app any more.
 
 ## 0. Preflight
 - `./preflight.sh` — free and read-only. Checks python, every script parses
@@ -81,12 +118,13 @@ run proves what it searched, lists what it missed, and ends with a verdict.
 - Good finds must not wait in needs_review for a manual review (Alex, Sep 26:
   "if they are good finds just run them"). Before planning every run:
   `/usr/bin/python3 verify_pool.py --apply` — re-checks needs_review venues
-  (not parked, no contacts, not in a report) by reading each venue's own website
+  (not parked, no contacts, not in a report or run ledger) by reading each venue's own website
   over plain HTTP (schema.org address/type/cuisine, the address in the footer)
   and promotes the verified ones. It NEVER opens Chrome. Preview without `--apply`.
 - Never start anything that drives Alex's Chrome (discover.sh, pipeline.sh,
   backfill_websites.sh, sweep.sh --chrome) without asking him first — he may be
-  using the browser (Sep 26: "stop opening my fucking browser").
+  using the browser (Sep 26: "stop opening my fucking browser"). The night run
+  (1:00–8:00) is the standing exception he set up on Sep 29.
 - discover.sh exit codes: 1 setup error, 3 Chrome unreachable, 4 some searches
   failed (they'll be retried next time), 5 a pipeline run is using Chrome.
 
@@ -110,21 +148,23 @@ run proves what it searched, lists what it missed, and ends with a verdict.
     ledger, and logs everything to `reports/runs/$RUN_ID.log`.
   - Other modes: `--plan LATEST` (run an existing plan), `--batch FILE` (one
     batch of ≤8), `--resume [RUN_ID]` (re-run only unfinished venues, then
-    continue the plan), `--report [RUN_ID]` (regenerate the report),
+    continue the plan), `--report [RUN_ID]` (an HTML report on demand),
     `./pipeline.sh "Exact Venue Name"` or `VENUE_ID` (one venue).
 - Poll every few minutes: `tail -5 reports/runs/$RUN_ID.log`.
-- The run STOPS itself (exit 3, resumable) when Chrome fails, Apollo credits run
-  out, two venues in a row fall back to curl-only or get blocked, two venues in
-  a row time out, or the between-batch preflight fails. Fix the cause, then
-  `./pipeline.sh --resume $RUN_ID`. ZeroBounce running out does NOT stop it.
-- At each batch start the pipeline writes the report stub + manifest entry
-  (`status: running`) so the app hides those venues. The app only sees what's
-  on GitHub: commit and push `reports/manifest.json` and the stub report right
-  after each batch starts.
+- The run STOPS itself (exit 3, resumable) when Chrome fails, ZeroBounce is out
+  (no credits, a cap, key/IP refused), Apollo has fewer than `APOLLO_MIN_CREDITS`
+  (100) credits at a batch start or fails two venues in a row, two venues in a row
+  fall back to curl-only or get blocked, two venues in a row time out, the
+  between-batch preflight fails, or `RUN_DEADLINE` leaves no time for another batch
+  (`BATCH_EST_MIN`, 45). The reason is in `reports/runs/$RUN_ID.stopped`. Fix the
+  cause, then `./pipeline.sh --resume $RUN_ID`.
+- No report, no manifest entry (Sep 29): nothing is hidden in the app.
 - Each finished batch writes `reports/runs/$RUN_ID.batchN.done` (its venue_ids).
 
-## 4. Miss audit — after each batch
-The pipeline proves what it searched; the miss audit checks what it missed.
+## 4. Miss audit — the night deep dive does it for zero-contact venues
+At night, `NIGHT_DEEPDIVE.md` covers this for every venue that ended with no
+usable email, and turns each scraper miss into a tested fix. For a manual run, or
+when Alex asks for a full audit, do it by hand as below.
 - For each venue in the finished batch, independent agents re-search it a
   different way: WebFetch the site (home, contact, about, events/private events,
   team/staff, footer), WebSearch "<venue> email", Apollo MCP (domain AND name),
@@ -138,10 +178,10 @@ The pipeline proves what it searched; the miss audit checks what it missed.
   `{"venue_id":..., "kind":"email|contact|social|contact_form", "value":...,
   "source_url":..., "pipeline_had":false, "cause_guess":...}`. A venue with
   nothing missed gets `{"venue_id":..., "kind":"audited"}`.
-- Save real misses through the API (same save policy as above), then
+- Save real misses through the API (same save policy as above; `night_save.py
+  RUN_ID` does it from a `<RUN_ID>.deepdive.json` findings file), then
   `./mark_step.sh --run miss_audit "<N venues audited, M misses>"`.
-- Every miss with a cause is a bug to fix in the scraper. The miss rate per run
-  is how we know when Alex can stop reviewing.
+- Every miss with a cause is a bug to fix in the scraper.
 
 ## 5. Taste review
 - `/usr/bin/python3 taste_review.py` — lists votes/feedback not yet in
@@ -150,7 +190,7 @@ The pipeline proves what it searched; the miss audit checks what it missed.
   update `taste_score.py`. Then `/usr/bin/python3 taste_review.py --mark`.
 - `./mark_step.sh --run taste_review "<N reviewed>"` (or BLOCKED "no new votes").
 
-## 6. Gate
+## 6. Gate (optional since Sep 29 — nothing waits on it)
 - `./verify_run.sh $RUN_ID` — judges the run from evidence: the `[STEP]` lines,
   web-coverage files, the sheet, and the misses file. Last line is the verdict:
   `RUN CLEAN` or `RUN NOT CLEAN: N items need review (...)`.
@@ -158,29 +198,13 @@ The pipeline proves what it searched; the miss audit checks what it missed.
   (`./mark_step.sh <venue_id> <step> done|BLOCKED "<evidence>"`); nothing else
   needs manual marks. Re-run until `MISSING: 0`.
 
-## 7. Report
-- The pipeline generates `reports/<date>.html` and the manifest entry
-  automatically after each batch (with `venue_ids`, verdict, coverage, misses).
-- Layout (Alex, Sep 27 2026): short, readable, written for a person not a
-  coder. Order: one plain-sentence verdict, four tiles (venues processed, got
-  contacts, came up empty, contacts found), Needs Your Review (0-1 contacts,
-  closed, skipped), Key Wins, All Venues table, Data Quality Summary, Taste
-  Review, Session Notes (4-8 short bullets), then everything else collapsed under
-  Details (misses, website/source coverage, every contact and candidate, gate
-  output). No run ids, gate verdicts or step names above Details. Colours follow
-  the finance widget (`Widgets/tga-dss.html`: cream paper, ink, pine,
-  vermilion). Alex rejected a per-venue change log; he wants counts, not lists.
-  The renderer is `render()` inside `pipeline.sh` (`_report_tool`).
-- After the miss audit and manual marks: `./pipeline.sh --report $RUN_ID`.
-- Write the taste review between `<!-- TASTE_REVIEW:BEGIN -->` and
-  `<!-- TASTE_REVIEW:END -->`, and any session notes between the SESSION_NOTES
-  markers; both survive regeneration.
-- `./mark_step.sh --run report "reports/<file>.html"`, then
-  `./verify_run.sh $RUN_ID --embed-report reports/<file>.html`.
-- Commit and push the report, `reports/manifest.json` and
-  `reports/runs/$RUN_ID.report-state.json`.
-- Tell Alex: venues processed, contacts found, the verdict line, and anything
-  that looked wrong in the plan.
+## 7. Report — removed (Alex, Sep 29 2026: "get rid of reports")
+- No HTML report, no manifest entry, no review tick in the app. The app shows
+  new contacts right away, and `night_status.json` carries the night's alert and
+  one-line summary. `reports/manifest.json` and the old reports stay as history
+  (build_batch.sh and verify_pool.py still skip venues listed there, and any venue
+  a run ledger `reports/runs/*.jsonl` registered).
+- On demand only: `./pipeline.sh --report $RUN_ID` (or `PIPELINE_REPORTS=1` for a run).
 
 ## Data repair (only with Alex's OK)
 - `/usr/bin/python3 repair_data.py` builds a read-only plan
@@ -188,7 +212,10 @@ The pipeline proves what it searched; the miss audit checks what it missed.
   backups and read-back. Never run `--apply` without Alex's go-ahead.
 
 ## Where things are
-- `pipeline.sh`        the run: steps 1–5 per venue, batches, stop rules, report
+- `night_run.sh`       the night (launchd 1:00 → `night_run.command`); `night_status.py` = app status,
+                       `night_zero.py` = zero-contact list, `night_save.py` = saves deep-dive finds,
+                       `NIGHT_DEEPDIVE.md` = the Claude session's instructions
+- `pipeline.sh`        the run: steps 1–5 per venue, batches, stop rules (report only on demand)
 - `site_discovery.py`  static website crawl (emails, people, forms, PDFs)
 - `postcheck.sh`       second pass on zero-contact venues (saves under the same policy)
 - `build_batch.sh`     plans runs; `taste_score.py` + `venue_classifier.py` + `venue_quality.py`

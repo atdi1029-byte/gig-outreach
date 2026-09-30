@@ -1,4 +1,4 @@
-const CACHE_NAME = 'outreach-v236';
+const CACHE_NAME = 'outreach-v237';
 const ASSETS = [
   './',
   './index.html',
@@ -28,7 +28,7 @@ self.addEventListener('fetch', e => {
   // Network-first for HTML
   if (e.request.mode === 'navigate' || e.request.url.endsWith('.html')) {
     // The app is one page: every ?venue=ID deep link shares the index.html entry,
-    // and other pages (reports) are keyed without their query string
+    // and other pages are keyed without their query string
     const url = new URL(e.request.url);
     const scope = new URL(self.registration.scope);
     const isShell = url.origin === scope.origin &&

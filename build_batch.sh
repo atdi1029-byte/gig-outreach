@@ -154,7 +154,7 @@ fi
 SCRIPT_DIR="$SCRIPT_DIR" WORK_DIR="$WORK_DIR" COUNT="${COUNT:-0}" TOTAL="${TOTAL:-0}" \
 DRY_RUN="$DRY_RUN" OUT_DIR="$OUT_DIR" EXCLUDES="$EXCLUDES" BATCH_FILE="$BATCH_FILE" \
 MAX_BATCH="$MAX_BATCH" python3 - <<'PYEOF'
-import json, os, re, sys, unicodedata
+import glob, json, os, re, sys, unicodedata
 from collections import defaultdict, Counter
 from datetime import datetime
 
@@ -231,6 +231,20 @@ if os.path.exists(manifest_path):
     for entry in manifest if isinstance(manifest, list) else []:
         for vid in entry.get('venue_ids', []) or []:
             already_reported.add(str(vid))
+# Reports are off since Sep 29 (night runs): every venue a run registered in its ledger
+# (reports/runs/<RUN_ID>.jsonl) counts as worked, like a manifest entry used to.
+for led in glob.glob(os.path.join(SCRIPT_DIR, 'reports', 'runs', '*.jsonl')):
+    try:
+        with open(led) as f:
+            for line in f:
+                try:
+                    r = json.loads(line)
+                except ValueError:
+                    continue
+                if isinstance(r, dict) and r.get('type') == 'venue' and r.get('step') == 'registered' and r.get('venue_id'):
+                    already_reported.add(str(r['venue_id']))
+    except OSError as e:
+        die(f"run ledger {led} is unreadable ({e}); refusing to build a batch that could repeat worked venues.")
 
 
 def ids_from_file(path):
@@ -384,7 +398,7 @@ venues_with_contacts = {c.get('venue_id') for c in dash.get('contacts', []) if c
 print(f"Total venues: {len(venues)}")
 print(f"Past gigs: {len(gig_names)} (by id {len(gig_ids)}, gig-venue domains {len(gig_domains)})")
 print(f"Venues with existing contacts: {len(venues_with_contacts)}")
-print(f"Already in reports: {len(already_reported)}   excluded by --exclude/current run: {len(excluded_ids)}")
+print(f"Already worked (old reports + run ledgers): {len(already_reported)}   excluded by --exclude/current run: {len(excluded_ids)}")
 print(f"Target states: {' '.join(R.TARGET_STATES)}   scorer: taste_score {SCORE_VERSION}")
 
 JUNK_SITE_PARTS = ['fox5dc.com', 'fox.com', 'foxtv.com', 'nbcwashington.com', 'wusa9.com',

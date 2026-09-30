@@ -1,10 +1,16 @@
 {
- "alert": null,
+ "alert": {
+  "kind": "error",
+  "level": "warn",
+  "title": "Night run stopped",
+  "detail": "the run could not start (pipeline.sh exit 1): [PREFLIGHT] FAIL (exit 1) \u2014 aborting. Fix the FAIL lines above, or set SKIP_PREFLIGHT=1 to bypass.. Run run-20260930-0108 resumes next night.",
+  "since": "2026-09-30T01:09:19-04:00"
+ },
  "night": {
   "date": "2026-09-30",
   "started_at": "2026-09-30T01:00:05-04:00",
-  "finished_at": null,
-  "state": "running",
+  "finished_at": "2026-09-30T01:09:19-04:00",
+  "state": "stopped",
   "runs": [
    {
     "run_id": "run-20260930-0108",
@@ -13,8 +19,24 @@
     "ended": "01:09"
    }
   ],
-  "note": ""
+  "note": "No venues ran tonight"
  },
- "history": [],
- "updated_at": "2026-09-30T01:09:17-04:00"
+ "history": [
+  {
+   "date": "2026-09-30",
+   "started_at": "2026-09-30T01:00:05-04:00",
+   "finished_at": "2026-09-30T01:09:19-04:00",
+   "state": "stopped",
+   "runs": [
+    {
+     "run_id": "run-20260930-0108",
+     "outcome": "could not start",
+     "started": "01:08",
+     "ended": "01:09"
+    }
+   ],
+   "note": "No venues ran tonight"
+  }
+ ],
+ "updated_at": "2026-09-30T01:09:19-04:00"
 }

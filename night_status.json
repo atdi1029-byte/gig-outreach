@@ -1,5 +1,19 @@
 {
  "alert": null,
- "night": null,
- "history": []
+ "night": {
+  "date": "2026-09-30",
+  "started_at": "2026-09-30T01:00:05-04:00",
+  "finished_at": null,
+  "state": "running",
+  "runs": [
+   {
+    "run_id": "run-20260930-0108",
+    "outcome": "running",
+    "started": "01:08"
+   }
+  ],
+  "note": ""
+ },
+ "history": [],
+ "updated_at": "2026-09-30T01:08:37-04:00"
 }

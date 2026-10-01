@@ -2070,10 +2070,21 @@ function openExternal(url, forceChrome) {
         url = safeHttpUrl(url);
         if (!url) { showToast('Invalid link'); return; }
     }
-    // On Android, force Facebook URLs to open in Chrome (not FB app)
+    // On Android, force Facebook URLs to open in Chrome (not FB app).
+    // An intent aimed at Chrome itself (package=com.android.chrome, the July fix) is loaded as a
+    // plain link that still carries the tap, so Chrome handed it to the Facebook app anyway.
+    // An intent no app can open makes Chrome load S.browser_fallback_url instead and blocks app
+    // launches for the rest of that navigation (Chromium, Apr 2024), so Facebook stays in Chrome.
     if (isAndroid && forceChrome && url.startsWith('http')) {
         const parsed = new URL(url);
-        const intentUrl = `intent://${parsed.host}${parsed.pathname}${parsed.search}${parsed.hash}#Intent;scheme=https;package=com.android.chrome;end`;
+        const intentUrl = 'intent://' + parsed.host + parsed.pathname + parsed.search +
+            '#Intent;scheme=https;package=invalid.outreach.browseronly;S.browser_fallback_url=' +
+            encodeURIComponent(url) + ';end';
+        // Facebook opens in this window: put the venue in the URL so coming back reopens it
+        // (applyDashboard's ?venue= deep link) even if the app reloads
+        if (currentDetailVenue) {
+            history.replaceState(history.state, '', '?venue=' + encodeURIComponent(currentDetailVenue.venue_id));
+        }
         window.location.href = intentUrl;
         return;
     }
@@ -4412,8 +4423,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // Pause polling while hidden. On return: re-read the night status, refresh if the data
 // is over a minute old, and pull the small synced lists (at most every 2 minutes).
 let _lastAuxSync = Date.now();
+// Back from Facebook (openExternal) with the page still on the venue: drop its ?venue= mark
+function dropVenueMark() {
+    if (navStack[navStack.length - 1] === 'viewDetail' && new URLSearchParams(location.search).has('venue')) {
+        history.replaceState(history.state, '', location.pathname);
+    }
+}
+window.addEventListener('pageshow', e => { if (e.persisted) dropVenueMark(); });
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible') { clearTimeout(refreshTimer); return; }
+    dropVenueMark();
     showPendingReveal();
     loadNightStatus();
     // Only refresh on tab-return if NOT viewing a venue detail

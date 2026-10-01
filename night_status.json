@@ -9,8 +9,8 @@
  "night": {
   "date": "2026-10-01",
   "started_at": "2026-10-01T01:00:02-04:00",
-  "finished_at": null,
-  "state": "running",
+  "finished_at": "2026-10-01T01:26:21-04:00",
+  "state": "stopped",
   "runs": [
    {
     "run_id": "run-20261001-0109",
@@ -29,9 +29,34 @@
     "deep_dive": "done"
    }
   ],
-  "note": "No scraper fix was needed tonight: all three things the pipeline missed (the Ritz-Carlton Residences GM, the Stella Notte owner and its catering@ email) were off the venues' own websites, and Google's captcha blocked the searches that might have found them; the taste review logged 4 votes, added Talbot Country Club, The Ivy Hotel and The Inn at Henderson's Wharf to the favorites, and needed no scoring changes."
+  "note": "1 run \u00b7 2 venues \u00b7 0 with contacts \u00b7 0 new contacts \u00b7 1 more from the deep dive"
  },
  "history": [
+  {
+   "date": "2026-10-01",
+   "started_at": "2026-10-01T01:00:02-04:00",
+   "finished_at": "2026-10-01T01:26:21-04:00",
+   "state": "stopped",
+   "runs": [
+    {
+     "run_id": "run-20261001-0109",
+     "outcome": "stopped: social/Google searches failed or were blocked on 2 venues in a row (CAPTCHA?)",
+     "started": "01:09",
+     "venues": 8,
+     "processed": 2,
+     "skipped": 0,
+     "with_contacts": 0,
+     "zero": 2,
+     "new_contacts": 0,
+     "unfinished": 6,
+     "ended": "01:17",
+     "rescued_contacts": 1,
+     "rescued_venues": 1,
+     "deep_dive": "done"
+    }
+   ],
+   "note": "1 run \u00b7 2 venues \u00b7 0 with contacts \u00b7 0 new contacts \u00b7 1 more from the deep dive"
+  },
   {
    "date": "2026-09-30",
    "started_at": "2026-09-30T01:00:05-04:00",
@@ -48,5 +73,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-10-01T01:26:19-04:00"
+ "updated_at": "2026-10-01T01:26:21-04:00"
 }

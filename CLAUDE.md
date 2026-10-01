@@ -92,6 +92,8 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
   `backfill_websites.sh --limit 30 --apply` (Chrome
   finds missing websites and replaces brand-homepage or listing pages, sweep finds first,
   14-day rotation) → `verify_pool.py --apply --limit 400` → `--vouch-sweep-sites`
+  → `pipeline.sh --linkedin-retry` (venues still `linkedin_pending` from an earlier
+  wall or empty search, at most 30 min, stops at a wall; Sep 30 2026)
   → runs of 50
   (`pipeline.sh --run 50`, or `--resume` of a run a stop/the cutoff left unfinished;
   a resumed run doesn't count toward the 2 new runs) with `RUN_DEADLINE` = 8:00, so no

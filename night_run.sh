@@ -18,6 +18,7 @@
 # The night:
 #   1. checks: kill switch (.night_off), ZeroBounce, Apollo credits. Out = alert + stop.
 #   2. re-checks emails saved as unverified, promotes verified sweep finds (verify_pool.py)
+#      and gives LinkedIn another try on venues it skipped before (pipeline.sh --linkedin-retry)
 #   3. up to NIGHT_MAX_RUNS runs of RUN_SIZE (pipeline.sh --run, or --resume of a run a
 #      stop or the cutoff left unfinished). No batch starts that can't end by NIGHT_CUTOFF.
 #      After each run: commit + push, then a Claude session researches the run's
@@ -68,6 +69,7 @@ MAX_RESUMES="${MAX_RESUMES:-2}"                        # stops (not cutoffs) bef
 CHROME_RETRIES="${CHROME_RETRIES:-3}"                  # a Chrome stop is tried again this many times
 CHROME_RETRY_WAIT_S="${CHROME_RETRY_WAIT_S:-600}"      # ...this long apart, before the night gives up
 BACKFILL_LIMIT="${BACKFILL_LIMIT:-30}"                 # websites looked up per night (Chrome, ~45 s each)
+LI_RETRY_MAX_MIN="${LI_RETRY_MAX_MIN:-30}"             # LinkedIn retry of skipped venues, before the runs
 # The night needs Chrome to itself (Alex, Sep 30 2026: "we need to run alone"): the scripts
 # wait for another copy of Chrome to close, and at night then close a copy a program
 # started, such as a headless test browser (chrome_guard.sh)
@@ -609,6 +611,12 @@ log "verify_pool.py --apply (promote verified needs_review venues)"
 guarded 1200 /usr/bin/python3 verify_pool.py --apply --limit 400 >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py exited $? — going on"
 # ...and untouched sweep finds whose domain doesn't spell their name, once their page names them
 guarded 900 /usr/bin/python3 verify_pool.py --vouch-sweep-sites --apply --limit 300 >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py --vouch-sweep-sites exited $? — going on"
+# Venues whose LinkedIn search hit the wall or came back empty (linkedin_pending, the app's
+# "LinkedIn Quota Reset" card) get it again a day later, once LinkedIn has let up. Alex,
+# Sep 30 2026: "will you do this on the outreach run tonight?" The retry stops at a wall
+# and leaves the rest pending for the next night.
+log "pipeline.sh --linkedin-retry (venues LinkedIn skipped before, up to $LI_RETRY_MAX_MIN min)"
+guarded $((LI_RETRY_MAX_MIN * 60)) ./pipeline.sh --linkedin-retry >> "$NIGHT_LOG" 2>&1 || log "pipeline.sh --linkedin-retry exited $? — going on"
 
 new_runs=0
 night_state="done"

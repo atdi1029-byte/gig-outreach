@@ -1,0 +1,185 @@
+{
+ "generated": "2026-10-01T10:02:52",
+ "venues": [
+  {
+   "venue_id": "DC-REST-2801",
+   "urls": [],
+   "note": "Permanently closed: PoPville reported in Nov 2024 that Thaiphoon (2011 S St NW, Dupont) had closed and its phone was disconnected, and Yelp lists it as CLOSED. Its sites (thaiphoon.com has a bad certificate, thaiphoondupont.com returns 403) are dead."
+  },
+  {
+   "venue_id": "MD-REST-3184",
+   "urls": [
+    "https://www.savagemill.com/merchants/the-blind-pig-tavern/",
+    "https://www.divebarandgrille.com/pittsburgh-dive-bar-and-grille-events-savage-mill"
+   ],
+   "note": "No site of its own (blindpigtavern.com is a different Blind Pig in Athens, GA). The Savage Mill host page shows 8600 Foundry St, Savage MD 20763, open Thu-Sat, and points to divebarandgrille.com. The owner Dive Bar & Grille's Savage Mill events page lists 'Karaoke/Live Music in the Blind Pig'."
+  },
+  {
+   "venue_id": "MD-EVEN-543",
+   "urls": [
+    "https://www.lifestyleclubyourway.club/"
+   ],
+   "note": "Search results show lifestyleclubyourway.club as 'River House' at 28449 Clubhouse Dr, Easton MD 21601 (events and weddings, info@lifestyleclubyourway.club, 410-896-6455), but WebFetch got connection refused, so the page was not checked. The old riverhouseateastonclub.com returns HTTP 500 and now shows spam pages; do not use it. The golf course is listed as permanently closed, but the event venue looks active."
+  },
+  {
+   "venue_id": "VA-WINE-2947",
+   "urls": [],
+   "note": "Permanently closed: Reston Now (Feb 2019) says The Tasting Room at 1816 Library St, Reston Town Center, closed Mar 24 2019, and Yelp lists it as CLOSED. It was owned by Boxwood Winery, whose other locations are in Middleburg VA and National Harbor MD."
+  },
+  {
+   "venue_id": "MD-WINE-2900",
+   "urls": [
+    "https://www.thevinesykesville.com/",
+    "https://www.thevinesykesville.com/contact"
+   ],
+   "note": "Own site. The contact page shows 7615 Main Street, Sykesville, MD 21784 (wine and fair-trade gift shop)."
+  },
+  {
+   "venue_id": "DC-HOTE-2673",
+   "urls": [
+    "https://www.marriott.com/en-us/hotels/wastw-the-westin-georgetown-washington-dc/overview/",
+    "https://www.marriott.com/en-us/hotels/wastw-the-westin-georgetown-washington-dc/events/"
+   ],
+   "note": "Marriott property page (WebFetch got a 403). Search results show it is this hotel at 2350 M St NW, Washington DC 20037. The second URL is the hotel's own events/weddings page."
+  },
+  {
+   "venue_id": "MD-REST-3187",
+   "urls": [
+    "https://www.timbukturestaurant.com/",
+    "https://www.timbukturestaurant.com/private-dining-events/",
+    "https://www.timbukturestaurant.com/contact-us/"
+   ],
+   "note": "Own site, fetched. It shows Timbuktu Restaurant & Lounge, 1726 Dorsey Road, Hanover MD 21076."
+  },
+  {
+   "venue_id": "MD-REST-3158",
+   "urls": [
+    "https://www.tinositalianbistro.com/"
+   ],
+   "note": "Own site (WebFetch got a 403). Search results show tinositalianbistro.com as Tino's Italian Bistro & Wine Bar at 8775 Centre Park Dr, Columbia MD 21045. That is next to Ellicott City, but the site says Columbia, so the sheet city may need fixing."
+  },
+  {
+   "venue_id": "DC-EVEN-2581",
+   "urls": [
+    "https://thetoolboxdc.com/",
+    "https://thetoolboxdc.com/events/"
+   ],
+   "note": "Own site, fetched: a Pilates/art studio and event space with an Events section. Its location page says 'alley behind Connecticut Ave, off 19th and R St', which matches the 1627 Connecticut Ave NW (Dupont Circle) listings. No full street address appears on the site."
+  },
+  {
+   "venue_id": "DC-EVEN-2582",
+   "urls": [],
+   "note": "Not open and no site of its own. This is the Artechouse owners' planned revival of the Uptown Theater, 3426 Connecticut Ave NW. It has been closed since 2020, and a Dec 2025 PoPville update says the project has stalled with no opening date. artechouse.com is a different venue, so it is not given here."
+  },
+  {
+   "venue_id": "VA-REST-3401",
+   "urls": [],
+   "note": "Permanently closed. Yelp lists Vinifera (11750 Sunrise Valley Dr, Westin Reston Heights) as CLOSED and Gayot says it changed names. Harvest + Vine replaced it, but its Marriott page (marriott.com/.../5969294-harvest-vine.mi) now returns 'page no longer available'."
+  },
+  {
+   "venue_id": "MD-WINE-2899",
+   "urls": [],
+   "note": "No Ward Eight found in Columbia MD. The only match for the 'cozy cocktail lounge on Howard Street' description is Ward Eight at 629 Howard St, Evanston IL (wardeight.com), so this looks like a mis-geocoded record. Not this venue."
+  },
+  {
+   "venue_id": "DC-LUXU-002",
+   "urls": [
+    "https://www.wardmanpark.com/zephyr-apartments/",
+    "https://www.wardmanpark.com/zephyr-apartments/contact",
+    "https://www.greystar.com/zephyr-at-wardman-park-washington-dc/p_22641"
+   ],
+   "note": "Own property site, linked from Greystar's 'Visit property website' button. The page shows Zephyr at Wardman Park, 2601 Calvert St NW, Washington DC 20008, tel 202-952-4093. Greystar (the manager) property page is the fallback."
+  },
+  {
+   "venue_id": "MD-SENI-2966",
+   "urls": [],
+   "note": "No own website found. It is a 4-bed group home (Brightlife Care Group, 12674 Clarksville Pike, Clarksville MD 21029, 410-690-4433) that only shows up on senior-living directories. blifelalf.com is a different Bright Life ALF with a 305 (Florida) phone number, so not this venue."
+  },
+  {
+   "venue_id": "MD-SENI-1002",
+   "urls": [
+    "https://edenhomesofpotomac.com/",
+    "https://edenhomesofpotomac.com/contact-us"
+   ],
+   "note": "Own site. The home page shows Eden Homes of Potomac with 3 homes (9104 Rouen Ln, 11500 Gainsborough Rd, 8919 Liberty Ln), all Potomac MD 20854, tel 301-966-6521."
+  },
+  {
+   "venue_id": "MD-SENI-1011",
+   "urls": [],
+   "note": "No own website found. Only senior-living directories (Seniorly, Mirador Living, Boomershub, NewLifestyles, etc.) list it: a small 8-unit home at 13529 Magruder Farm Ct, Potomac MD 20854, phone (301) 947-1955"
+  },
+  {
+   "venue_id": "MD-EVEN-2972",
+   "urls": [
+    "https://www.bmoremenno.org/",
+    "https://www.bmoremenno.org/about/contact"
+   ],
+   "note": "Own site; fetched contact page shows North Baltimore Mennonite Church, 4615 Roland Ave, Baltimore MD 21210 (Roland Park)"
+  },
+  {
+   "venue_id": "MD-SENI-2965",
+   "urls": [
+    "https://www.chartercolumbia.com/",
+    "https://www.chartercolumbia.com/contact-us/"
+   ],
+   "note": "Renamed: Somerford Place Columbia is now Charter Senior Living of Columbia. Fetched homepage shows 8220 Snowden River Pkwy, Columbia MD 21045, the address directories give for Somerford Place. A rename for the sheet"
+  },
+  {
+   "venue_id": "MD-EVEN-804",
+   "urls": [
+    "https://www.historicinnsofannapolis.com/stay/governor-calvert-house",
+    "https://www.historicinnsofannapolis.com/meeting-events",
+    "https://www.historicinnsofannapolis.com/weddings"
+   ],
+   "note": "Property page on the Historic Inns of Annapolis site; fetched page calls Governor Calvert House the inns' centerpiece and check-in, 58 State Cir, Annapolis MD 21401"
+  },
+  {
+   "venue_id": "MD-EVEN-814",
+   "urls": [
+    "https://www.marylandhall.org/",
+    "https://marylandhall.org/rentals"
+   ],
+   "note": "Own site; fetched homepage shows Maryland Hall for the Creative Arts, 801 Chase St, Annapolis MD 21401, with a rentals page"
+  },
+  {
+   "venue_id": "MD-GOLF-796",
+   "urls": [
+    "https://usnagolf.com/",
+    "https://www.navymwrannapolis.com/programs/b5961d13-40cc-45cb-9485-9c3ce219078e",
+    "https://navysports.com/sports/2022/5/25/us-naval-academy-golf-club.aspx"
+   ],
+   "note": "usnagolf.com is the course's own site (footer: US Naval Academy Golf Course, run by the Naval Academy Golf Association); the navysports.com page gives 64 Greenbury Point Rd, Annapolis MD 21402 and links to usnagolf.com. The homepage itself shows no address."
+  },
+  {
+   "venue_id": "MD-GOLF-785",
+   "urls": [
+    "https://www.heritageharbour.org/heritage-harbour-community-amenities/golf-course/",
+    "https://www.heritageharbour.org/heritage-harbour-community-amenities/clubhouse-dining/",
+    "https://www.heritageharbour.org/contact-us/"
+   ],
+   "note": "No standalone club domain (only Facebook). The course belongs to the Heritage Harbour community (959 River Strand Loop, Annapolis MD); search shows its golf page gives 875 Harry S. Truman Pkwy, but the fetched copy showed no address. Not heritageharborgolf.com, which is a club in Lutz, FL."
+  },
+  {
+   "venue_id": "MD-REST-2998",
+   "urls": [
+    "https://bahamamikes.com/"
+   ],
+   "note": "Own site: Bahama Mike's Seafood Grill and Catering, 8154 Ritchie Hwy, Pasadena MD 21122. Same business, but the site says Pasadena, not Severna Park, so the sheet's city may need correcting. Single location only."
+  },
+  {
+   "venue_id": "VA-REST-1652",
+   "urls": [
+    "https://barcaalx.com/",
+    "https://barcaalx.com/private-events/"
+   ],
+   "note": "Own site: Barca Pier & Wine Bar, 2 Pioneer Mill Way, Alexandria VA 22314. Events inquiries go through a Tripleseat form for alexandriarestaurantpartners."
+  },
+  {
+   "venue_id": "MD-COUN-1326",
+   "urls": [
+    "https://www.columbiacc.org/"
+   ],
+   "note": "Own site: footer shows Columbia Country Club, 7900 Connecticut Ave, Chevy Chase MD 20815, (301) 951-5000."
+  }
+ ]
+}

@@ -1,0 +1,169 @@
+{
+ "generated": "2026-10-01T10:02:07",
+ "venues": [
+  {
+   "venue_id": "MD-EVEN-3003",
+   "urls": [
+    "https://www.cherryblossomhall.com/"
+   ],
+   "note": "CITY MISMATCH: the only Cherry Blossom Restaurant & Banquet Hall is at 46110 Lake Center Plaza, Sterling VA (Eventective mislists it under Clarksville MD); sheet city looks wrong"
+  },
+  {
+   "venue_id": "DC-HOTE-2675",
+   "urls": [
+    "https://www.marriott.com/en-us/hotels/waszg-citizenm-washington-dc-georgetown/overview/"
+   ],
+   "note": "Marriott property page WASZG, citizenM Washington DC Georgetown, 3401 K St NW (citizenm.com page now redirects to Marriott); WebFetch 403, confirmed via search results"
+  },
+  {
+   "venue_id": "DC-CHUR-007",
+   "urls": [
+    "https://cpcchurch.org/"
+   ],
+   "note": "own site; /about shows Cleveland Park Congregational UCC, 3400 Lowell St NW, Washington, DC 20016"
+  },
+  {
+   "venue_id": "DC-EVEN-2587",
+   "urls": [
+    "https://www.freshfarm.org/markets/cleveland-park"
+   ],
+   "note": "no own site; organizer FRESHFARM's market page, 3400 Connecticut Ave NW, Washington, DC"
+  },
+  {
+   "venue_id": "MD-EVEN-2953",
+   "urls": [
+    "https://www.collinsfuneralhome.com/"
+   ],
+   "note": "CITY MISMATCH: only Francis J. Collins Funeral Home, 500 University Blvd W, Silver Spring MD (no Bethesda location); WebFetch 403, address from search; a funeral home, not an event venue"
+  },
+  {
+   "venue_id": "VA-REST-3412",
+   "urls": [],
+   "note": "no own site found; only Yelp/RestaurantGuru listings and a 2022 ffxnow article (1633 Washington Plz N, Lake Anne); may be closed"
+  },
+  {
+   "venue_id": "VA-REST-3408",
+   "urls": [],
+   "note": "no own site; small office-building cafe at 1850 Centennial Park Dr, only on the Reston Station developer's tenant directory and listings"
+  },
+  {
+   "venue_id": "MD-WINE-2901",
+   "urls": [
+    "https://thecorkpub.com/"
+   ],
+   "note": "own site: 'The County Cork Wine Pub', 1716 Liberty Road, Eldersburg MD 21784 (Sykesville ZIP)"
+  },
+  {
+   "venue_id": "DC-REST-2803",
+   "urls": [
+    "https://dakshincuisine.com/"
+   ],
+   "note": "own site: 'Dakshin Cuisine', 3512 Connecticut Ave NW, Washington DC 20008 (Cleveland Park)"
+  },
+  {
+   "venue_id": "VA-REST-3036",
+   "urls": [
+    "https://houseofdhoom.com/"
+   ],
+   "note": "own site (dhoomtysons.com redirects here); says Tysons but 'WE'RE MOVING' to 11776 Fair Oaks Mall, Fairfax VA, Tysons spot marked closed: city may need to become Fairfax"
+  },
+  {
+   "venue_id": "MD-REST-3185",
+   "urls": [
+    "https://www.divebarandgrille.com/pittsburgh-dive-bar-and-grille-locations",
+    "https://www.divebarandgrille.com/"
+   ],
+   "note": "own site of a 6-location chain; locations page lists Savage Mill, 8600 Foundry St, Savage, MD 20763"
+  },
+  {
+   "venue_id": "DC-HOTE-2655",
+   "urls": [],
+   "note": "permanently closed: dupontatthecircle.com redirects to a GoDaddy for-sale page; 1604-1606 19th St NW is now Airbnb units"
+  },
+  {
+   "venue_id": "VA-WINE-2949",
+   "urls": [
+    "https://falconandfig.com/"
+   ],
+   "note": "CITY MISMATCH: own site, only location 1605 Village Market Blvd SE, Leesburg VA (no Reston location); opened May 2026 in the former Vino Bistro"
+  },
+  {
+   "venue_id": "DC-LUXU-008",
+   "urls": [
+    "https://dcprivateresidences.com/",
+    "https://www.fourseasons.com/residences/private_residences/washington-dc/"
+   ],
+   "note": "own sales site 'Four Seasons Private Residences - Washington, DC' (Georgetown, 1051-1055 29th St NW, delivering 2026); fourseasons.com residence page 403 on fetch"
+  },
+  {
+   "venue_id": "MD-REST-3159",
+   "urls": [
+    "https://francosofcatonsville.com/"
+   ],
+   "note": "CITY MISMATCH: own site, 'Located in the Heart of Catonsville', 803-805 Frederick Rd, Catonsville MD 21228; no Ellicott City location"
+  },
+  {
+   "venue_id": "MD-REST-3191",
+   "urls": [],
+   "note": "no own domain; only a Peblla online-ordering page (fukadocafe.peblla.com, an ordering platform like Toast) for Fukado Japanese Cafe, 6600 Baltimore National Pike Ste E, Catonsville"
+  },
+  {
+   "venue_id": "DC-CHUR-005",
+   "urls": [],
+   "note": "closed: congregation disbanded 2017, 1405 15th St NW empty since 2022, bought by Monument Realty (Jun 2025) for an unnamed restaurant/event space"
+  },
+  {
+   "venue_id": "VA-REST-3413",
+   "urls": [],
+   "note": "not open yet: Reston Town Center location still 'coming soon'; brand site grazienonnaxoxo.com lists only 1100 15th St NW, DC"
+  },
+  {
+   "venue_id": "VA-REST-3019",
+   "urls": [
+    "https://www.marriott.com/en-us/hotels/wasow-the-westin-reston-heights/dining/"
+   ],
+   "note": "CITY MISMATCH, likely duplicate of VA-REST-3409: the only Harvest + Vine is in The Westin Reston Heights, 11750 Sunrise Valley Dr, Reston VA (hotel dining page)"
+  },
+  {
+   "venue_id": "VA-REST-3409",
+   "urls": [
+    "https://www.marriott.com/en-us/hotels/wasow-the-westin-reston-heights/dining/"
+   ],
+   "note": "hotel dining page lists Harvest + Vine at 11750 Sunrise Valley Dr, Reston VA 20191; no own domain, its own Marriott restaurant page is gone"
+  },
+  {
+   "venue_id": "MD-SENI-2958",
+   "urls": [
+    "https://heartlandsatellicottcity.com",
+    "https://heartlandsatellicottcity.seniorlivingnearme.com/"
+   ],
+   "note": "own domain, redirects to operator-run subdomain showing HeartLands Senior Living at Ellicott City, 3004 North Ridge Road, Ellicott City, MD 21043"
+  },
+  {
+   "venue_id": "VA-EVEN-2989",
+   "urls": [
+    "https://historicjordansprings.com/"
+   ],
+   "note": "CITY MISMATCH: own site 'Historic Jordan Springs', 1160 Jordan Springs Road, Stephenson/Jordan Springs VA 22656 (near Winchester), not Reston"
+  },
+  {
+   "venue_id": "DC-HOTE-2652",
+   "urls": [],
+   "note": "permanently closed: since Apr 2021 the building at 1731 New Hampshire Ave NW is the Lyle hotel (lyledc.com), a different venue"
+  },
+  {
+   "venue_id": "DC-REST-2797",
+   "urls": [
+    "https://www.kramers.com/"
+   ],
+   "note": "own site (JS-rendered, WebFetch saw only the name); kramers.com at 1517 Connecticut Ave NW, Washington DC per its private-events PDF and washington.org"
+  },
+  {
+   "venue_id": "VA-EVEN-2993",
+   "urls": [
+    "https://lauralouiseeventsanddesign.com/"
+   ],
+   "note": "own site 'Laura Louise Events & Design', serves Virginia/DC, owner in Northern Virginia; no city on the page (listings say Loudoun or Fairfax, not Reston)"
+  }
+ ]
+}

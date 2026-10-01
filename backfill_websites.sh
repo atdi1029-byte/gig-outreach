@@ -13,6 +13,13 @@
 #   ./backfill_websites.sh --limit 25 --apply
 # Repair one venue:
 #   ./backfill_websites.sh --venue VA-REST-123 --apply
+#
+# The night run doesn't search Google in Chrome (Alex, Oct 1 2026: "you run discovery here
+# in terminal and then the rest in chrome"): it lists the venues, Claude finds their sites
+# with WebSearch (NIGHT_WEBSITES.md), and this script checks and saves those URLs with the
+# same rules, over plain HTTP:
+#   ./backfill_websites.sh --limit 20 --list-json LIST.json      the venues, no lookups
+#   ./backfill_websites.sh --candidates FOUND.json --apply        check + save Claude's URLs
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$SCRIPT_DIR/env_check.sh" || exit 1
@@ -30,6 +37,8 @@ GAP_MIN_S="${BACKFILL_GAP_MIN_S:-40}"
 GAP_MAX_S="${BACKFILL_GAP_MAX_S:-70}"
 APPLY=0
 ONLY_VENUE=""
+LIST_JSON=""
+CANDIDATES=""
 while [ "$#" -gt 0 ]; do
     case "$1" in
         --apply) APPLY=1; shift ;;
@@ -40,6 +49,15 @@ while [ "$#" -gt 0 ]; do
         --venue)
             ONLY_VENUE="${2:-}"
             shift 2 || { echo "ERROR: --venue needs a venue_id" >&2; exit 2; }
+            ;;
+        --list-json)
+            LIST_JSON="${2:-}"
+            shift 2 || { echo "ERROR: --list-json needs a file" >&2; exit 2; }
+            ;;
+        --candidates)
+            CANDIDATES="${2:-}"
+            shift 2 || { echo "ERROR: --candidates needs a file" >&2; exit 2; }
+            [ -s "$CANDIDATES" ] || { echo "ERROR: no candidates file at $CANDIDATES" >&2; exit 2; }
             ;;
         *) echo "ERROR: unknown argument: $1" >&2; exit 2 ;;
     esac
@@ -83,8 +101,15 @@ print(urllib.parse.urlencode({
 }))
 PY
 )
-    response=$(curl -fsSL --max-time 20 "${APPS_SCRIPT_URL}?${encoded}" 2>/dev/null) || return 1
-    echo "$response" | python3 -c "import json,sys; d=json.load(sys.stdin); raise SystemExit(0 if d.get('status') == 'ok' else 1)" 2>/dev/null
+    # Three tries: the backend answers LOCK_BUSY while another script is writing
+    local try
+    for try in 1 2 3; do
+        response=$(curl -fsSL --max-time 20 "${APPS_SCRIPT_URL}?${encoded}" 2>/dev/null) &&
+            echo "$response" | python3 -c "import json,sys; d=json.load(sys.stdin); raise SystemExit(0 if d.get('status') == 'ok' else 1)" 2>/dev/null &&
+            return 0
+        [ "$try" -lt 3 ] && sleep 5
+    done
+    return 1
 }
 
 verify_readback() {  # verify_readback VID WEBSITE STATUS
@@ -123,9 +148,20 @@ PY
 
 MODE="PREVIEW"
 [ "$APPLY" -eq 1 ] && MODE="APPLY"
-echo "Website backfill: $MODE mode, limit $LIMIT"
+# With --candidates only the venues in the file, if they still need a website
+ONLY_IDS=""
+if [ -n "$CANDIDATES" ]; then
+    ONLY_IDS=$(python3 -c 'import json,sys; print(",".join(str(v.get("venue_id","")) for v in json.load(open(sys.argv[1])).get("venues",[])))' "$CANDIDATES") ||
+        { echo "ERROR: $CANDIDATES is not a findings file ({\"venues\": [...]})" >&2; exit 2; }
+    LIMIT=100
+fi
+if [ -n "$CANDIDATES" ]; then
+    echo "Website backfill: $MODE mode, URLs from $CANDIDATES (no Chrome)"
+else
+    echo "Website backfill: $MODE mode, limit $LIMIT${LIST_JSON:+, list only -> $LIST_JSON}"
+fi
 
-ONLY_VENUE="$ONLY_VENUE" LIMIT="$LIMIT" SCRIPT_DIR="$SCRIPT_DIR" python3 - "$VENUES_JSON" "$WORK_DIR/dashboard.json" > "$LIST_TSV" <<'PY' || { echo "ERROR: could not build the venue list." >&2; exit 1; }
+ONLY_IDS="$ONLY_IDS" ONLY_VENUE="$ONLY_VENUE" LIMIT="$LIMIT" SCRIPT_DIR="$SCRIPT_DIR" python3 - "$VENUES_JSON" "$WORK_DIR/dashboard.json" > "$LIST_TSV" <<'PY' || { echo "ERROR: could not build the venue list." >&2; exit 1; }
 import json, os, re, sys
 sys.path.insert(0, os.environ['SCRIPT_DIR'])
 import outreach_rules as R
@@ -170,8 +206,11 @@ def replaceable_site(site):
     return ((reg in BRAND_HOMES or reg in R.SHARED_BRAND_DOMAINS) and not path) or \
         R.is_non_venue_host(site) or any(p in host for p in LISTING_PARTS)
 rows=[]
+only_ids=set(filter(None, os.environ.get('ONLY_IDS','').split(',')))
 for v in venues:
     if os.environ.get('ONLY_VENUE') and v.get('venue_id') != os.environ['ONLY_VENUE']:
+        continue
+    if only_ids and v.get('venue_id') not in only_ids:
         continue
     if not os.environ.get('ONLY_VENUE') and v.get('venue_id') in recent:
         continue
@@ -202,12 +241,27 @@ for v in venues:
     # sweep finds in DC/MD/VA first, then other DC/MD/VA rows, PA/DE sweep finds last
     rows.append((2 if state in R.LAST_STATES else 0 if sweep else 1,-score,name.lower(),len(rows),v))
 for *_,v in sorted(rows, key=lambda r: r[:4])[:int(os.environ['LIMIT'])]:
-    vals=[v.get('venue_id',''),v.get('name',''),v.get('city',''),v.get('state',''),v.get('category',''),str(v.get('upscale_score','')),v.get('status','')]
+    # '-' for an empty field: read splits on tabs and would run two empty ones together
+    vals=[v.get('venue_id',''),v.get('name',''),v.get('city',''),v.get('state',''),v.get('category','') or '-',str(v.get('upscale_score','') or '-'),v.get('status',''),(v.get('website') or '').strip() or '-']
     print('\t'.join(str(x).replace('\t',' ').replace('\n',' ') for x in vals))
 PY
 
 VENUE_COUNT=$(wc -l < "$LIST_TSV" | tr -d ' ')
 echo "Found $VENUE_COUNT eligible venues"
+if [ -n "$LIST_JSON" ]; then
+    python3 - "$LIST_TSV" "$LIST_JSON" <<'PY' || { echo "ERROR: could not write $LIST_JSON" >&2; exit 1; }
+import datetime, json, os, sys
+keys = ['venue_id','name','city','state','category','upscale_score','status','website']
+venues = [{k: ('' if x == '-' else x) for k, x in zip(keys, line.rstrip('\n').split('\t'))}
+          for line in open(sys.argv[1]) if line.strip()]
+tmp = sys.argv[2] + '.tmp'
+with open(tmp, 'w') as f:
+    json.dump({'generated': datetime.datetime.now().isoformat(timespec='seconds'), 'venues': venues}, f, indent=1)
+os.replace(tmp, sys.argv[2])
+PY
+    echo "Wrote $VENUE_COUNT venue(s) to $LIST_JSON"
+    exit 0
+fi
 if [ "$VENUE_COUNT" -eq 0 ]; then
     echo "No venues to process."
     exit 0
@@ -219,22 +273,46 @@ candidates=0
 failed=0
 empty_streak=0
 
-while IFS=$'\t' read -r VID NAME CITY STATE CATEGORY SCORE ORIG_STATUS; do
+while IFS=$'\t' read -r VID NAME CITY STATE CATEGORY SCORE ORIG_STATUS OLD_SITE; do
     [ -z "$VID" ] && continue
     processed=$((processed + 1))
     echo ""
-    echo "[$processed/$LIMIT] $NAME — $CITY, $STATE ($VID)"
+    echo "[$processed/$VENUE_COUNT] $NAME — $CITY, $STATE ($VID)"
+
+    if [ -n "$CANDIDATES" ]; then
+        # Claude's URLs for this venue (best first), pipe-joined like the Google results
+        RESEARCH=$(python3 - "$CANDIDATES" "$VID" <<'PY'
+import json, sys
+for v in json.load(open(sys.argv[1])).get('venues', []):
+    if v.get('venue_id') == sys.argv[2]:
+        urls = [u.strip() for u in (v.get('urls') or []) if isinstance(u, str) and u.strip()]
+        print('|'.join(urls[:5]))
+        print(str(v.get('note') or '').replace('\n', ' ')[:200])
+        break
+PY
+)
+        FOUND_RAW="${RESEARCH%%$'\n'*}"
+        RESEARCH_NOTE=""
+        case "$RESEARCH" in *$'\n'*) RESEARCH_NOTE="${RESEARCH#*$'\n'}" ;; esac
+        [ -n "$RESEARCH_NOTE" ] && echo "  Research: $RESEARCH_NOTE"
+        if [ -z "$FOUND_RAW" ]; then
+            echo "  Research found no website; remains as it is"
+            [ "$APPLY" -eq 1 ] && log_candidate "$VID" "$NAME" "" none "research found no website"
+            failed=$((failed + 1))
+            continue
+        fi
+    fi
 
     # Google is waited out, never searched through: the rest wait for the next night
     # (nothing was looked up, so they keep their place in the rotation)
-    if google_cooling; then
+    if [ -z "$CANDIDATES" ] && google_cooling; then
         echo "STOP: Google is blocking searches (CAPTCHA) until $GOOGLE_RETRY_AT — the rest wait for the next night."
         processed=$((processed - 1))
         break
     fi
 
     # Another copy of Chrome would take every command (chrome_guard.sh): wait it out
-    if ! chrome_wait_alone; then
+    if [ -z "$CANDIDATES" ] && ! chrome_wait_alone; then
         echo "STOP: $CHROME_ALONE_DETAIL"
         processed=$((processed - 1))
         break
@@ -250,6 +328,7 @@ while IFS=$'\t' read -r VID NAME CITY STATE CATEGORY SCORE ORIG_STATUS; do
         fi
     fi
 
+    if [ -z "$CANDIDATES" ]; then
     SEARCH_QUERY="\"$NAME\" \"$CITY\" $STATE official website"
     SEARCH_ENCODED=$(python3 - "$SEARCH_QUERY" <<'PY'
 import sys, urllib.parse
@@ -297,6 +376,7 @@ PY
         fi
         continue
     fi
+    fi   # Google search in Chrome
 
     # Prints "VERIFIED<TAB>url<TAB>why", "CANDIDATE<TAB>url<TAB>why" or nothing.
     FOUND=$(SCRIPT_DIR="$SCRIPT_DIR" python3 - "$NAME" "$CITY" "$FOUND_RAW" <<'PY'
@@ -374,7 +454,7 @@ PY
     if [ "$RESULT" != "VERIFIED" ]; then
         if [ -n "$FOUND_WEB" ]; then
             echo "  CANDIDATE (not saved): $FOUND_WEB — $WHY"
-            log_candidate "$VID" "$NAME" "$FOUND_WEB" candidate "$WHY"
+            [ "$APPLY" -eq 1 ] && log_candidate "$VID" "$NAME" "$FOUND_WEB" candidate "$WHY"
             candidates=$((candidates + 1))
         else
             echo "  No website match; remains needs_review"
@@ -385,7 +465,7 @@ PY
     fi
 
     echo "  VERIFIED: $FOUND_WEB ($WHY)"
-    log_candidate "$VID" "$NAME" "$FOUND_WEB" verified "$WHY"
+    [ "$APPLY" -eq 1 ] && log_candidate "$VID" "$NAME" "$FOUND_WEB" verified "$WHY"
     if [ "$APPLY" -eq 1 ]; then
         if api_update "$VID" website "$FOUND_WEB" && \
            api_update "$VID" status untouched && \

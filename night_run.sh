@@ -18,7 +18,9 @@
 # The night:
 #   1. checks: kill switch (.night_off), ZeroBounce, Apollo credits. Out = alert + stop.
 #   2. re-checks emails saved as unverified, promotes verified sweep finds (verify_pool.py)
-#      and gives LinkedIn another try on venues it skipped before (pipeline.sh --linkedin-retry)
+#      and gives LinkedIn another try on venues it skipped before (pipeline.sh --linkedin-retry).
+#      Missing websites: a Claude session looks them up with WebSearch in the background
+#      (NIGHT_WEBSITES.md), never Chrome; its URLs are checked and saved between runs.
 #   3. up to NIGHT_MAX_RUNS runs of RUN_SIZE (pipeline.sh --run, or --resume of a run a
 #      stop or the cutoff left unfinished). No batch starts that can't end by NIGHT_CUTOFF.
 #      After each run: commit + push, then a Claude session researches the run's
@@ -70,7 +72,8 @@ MAX_RESUMES="${MAX_RESUMES:-2}"                        # stops (not cutoffs) bef
 CHROME_RETRIES="${CHROME_RETRIES:-3}"                  # a Chrome stop is tried again this many times
 CHROME_RETRY_WAIT_S="${CHROME_RETRY_WAIT_S:-600}"      # ...this long apart, before the night gives up
 GOOGLE_RETRY_WAIT_S="${GOOGLE_RETRY_WAIT_S:-1800}"     # ...or this long when Google's CAPTCHA stopped it
-BACKFILL_LIMIT="${BACKFILL_LIMIT:-20}"                 # websites looked up per night (one Google search a minute)
+BACKFILL_LIMIT="${BACKFILL_LIMIT:-30}"                 # venues whose website Claude looks up per night
+WEBSITES_MAX_MIN="${WEBSITES_MAX_MIN:-45}"             # ...in a session killed after this long
 LI_RETRY_MAX_MIN="${LI_RETRY_MAX_MIN:-30}"             # LinkedIn retry of skipped venues, before the runs
 # The night needs Chrome to itself (Alex, Sep 30 2026: "we need to run alone"): the scripts
 # wait for another copy of Chrome to close, and at night then close a copy a program
@@ -276,14 +279,15 @@ alert_for_stop() {   # alert_for_stop RUN_ID "reason"
 }
 
 # ---------------------------------------------------------------- deep dive / fix sessions
-claude_session() {   # claude_session MAX_MIN OUTFILE PROMPT
+claude_session() {   # claude_session MAX_MIN OUTFILE PROMPT [CLAUDE ARGS...]
     local max="$1" out="$2" prompt="$3" rc
+    shift 3
     if [ ! -x "$CLAUDE_BIN" ]; then
         log "Claude CLI not found ($CLAUDE_BIN) — skipping the session"
         return 127
     fi
     guarded $((max * 60)) "$CLAUDE_BIN" -p "$prompt" --permission-mode auto --permission-prompts none \
-        --output-format json > "$out" 2>> "$NIGHT_LOG"
+        --output-format json "$@" > "$out" 2>> "$NIGHT_LOG"
     rc=$?
     log "Claude session ended (exit $rc): $(/usr/bin/python3 -c 'import json,sys
 try:
@@ -326,6 +330,7 @@ dive_run() {
 start_dive() {   # start_dive RUN_ID — background; one Claude session at a time
     local rid="$1" line
     wait_dive
+    apply_websites wait
     line=$(/usr/bin/python3 "$SCRIPT_DIR/night_zero.py" "$rid" 2>&1 | tail -1)
     log "Zero-contact check: $line"
     if ! /usr/bin/python3 -c 'import json,sys; sys.exit(0 if json.load(open(sys.argv[1])).get("venues") else 1)' \
@@ -418,6 +423,56 @@ health_check() {   # every script parses, embedded python compiles, offline craw
     bash tests/site_discovery_tests.sh >/dev/null 2>&1 || { log "site_discovery_tests failed"; ok=1; }
     bash tests/google_guard_tests.sh >/dev/null 2>&1 || { log "google_guard_tests failed"; ok=1; }
     return $ok
+}
+
+# ---------------------------------------------------------------- missing websites
+# Alex, Oct 1 2026: "you run discovery here in terminal and then the rest in chrome". The
+# old lookup searched Google in Chrome at 01:00, ~20 searches in 5 minutes, and Google's
+# CAPTCHA then blocked the pipeline's searches too: it ended the Sep 30 and Oct 1 nights.
+# Now Claude looks the websites up with WebSearch in the background while Chrome does the
+# runs, and backfill_websites.sh checks and saves its URLs (plain HTTP) between runs, so
+# no venue changes under a running pipeline.
+WEB_PID=""
+WEB_DONE=1
+WEB_LIST="$RUNS_DIR/websites-$(date +%Y%m%d).list.json"
+WEB_FOUND="$RUNS_DIR/websites-$(date +%Y%m%d).json"
+start_websites() {
+    local n
+    log "Missing websites: listing up to $BACKFILL_LIMIT venues"
+    if ! guarded 600 ./backfill_websites.sh --limit "$BACKFILL_LIMIT" --list-json "$WEB_LIST" >> "$NIGHT_LOG" 2>&1; then
+        log "backfill_websites.sh --list-json failed — no website lookups tonight"
+        return 0
+    fi
+    n=$(/usr/bin/python3 -c 'import json,sys; print(len(json.load(open(sys.argv[1])).get("venues") or []))' "$WEB_LIST" 2>/dev/null)
+    if [ "${n:-0}" -eq 0 ]; then
+        log "No venues need a website"
+        return 0
+    fi
+    rm -f "$WEB_FOUND"
+    log "Missing websites: Claude looks up $n in the terminal (WebSearch, no Chrome) while Chrome does the runs"
+    claude_session "$WEBSITES_MAX_MIN" "$RUNS_DIR/websites-$(date +%Y%m%d).session.json" \
+        "Night website research. Follow $SCRIPT_DIR/NIGHT_WEBSITES.md with LIST=\"$WEB_LIST\" and OUT=\"$WEB_FOUND\". Working directory: $SCRIPT_DIR. Now: $(date '+%Y-%m-%d %H:%M')." \
+        --disallowedTools "mcp__claude-in-chrome" "Bash(osascript:*)" "Bash(open:*)" &
+    WEB_PID=$!
+    WEB_DONE=0
+}
+
+apply_websites() {   # apply_websites [wait] — save the research's websites once it's done
+    [ "$WEB_DONE" = 1 ] && return 0
+    if kill -0 "$WEB_PID" 2>/dev/null; then
+        [ "${1:-}" = "wait" ] || return 0
+        log "Waiting for the website research to finish"
+    fi
+    wait "$WEB_PID" 2>/dev/null
+    WEB_DONE=1
+    if ! /usr/bin/python3 -m json.tool "$WEB_FOUND" >/dev/null 2>&1; then
+        log "Website research left no readable findings ($WEB_FOUND) — nothing to save"
+        return 0
+    fi
+    log "backfill_websites.sh --candidates --apply (check + save the websites Claude found)"
+    guarded 1800 ./backfill_websites.sh --candidates "$WEB_FOUND" --apply >> "$NIGHT_LOG" 2>&1 ||
+        log "backfill_websites.sh --candidates exited $? — going on"
+    git_sync "Night websites: missing websites looked up in the terminal" "$WEB_LIST" "$WEB_FOUND"
 }
 
 # ---------------------------------------------------------------- one run
@@ -608,11 +663,9 @@ fi
 log "import_sweep_files.py --apply (sweep write-ups -> sheet)"
 guarded 1200 /usr/bin/python3 import_sweep_files.py --apply >> "$NIGHT_LOG" 2>&1 || log "import_sweep_files.py exited $? — going on"
 # Venues saved without a website (sweep finds too, Alex Sep 29: "everything on the sweep
-# should be able to be used") get one from Google in Chrome, which is free at night. One
-# search a minute at most: 20 in 5 minutes got Google's CAPTCHA on Sep 30 and Oct 1, and the
-# block then took the pipeline's searches too. At a CAPTCHA it stops and the rest wait.
-log "backfill_websites.sh --apply (find missing websites, up to $BACKFILL_LIMIT)"
-guarded $((BACKFILL_LIMIT * 90 + 300)) ./backfill_websites.sh --limit "$BACKFILL_LIMIT" --apply >> "$NIGHT_LOG" 2>&1 || log "backfill_websites.sh exited $? — going on"
+# should be able to be used") get one from Claude's WebSearch, in the background, never
+# Chrome (see start_websites)
+start_websites
 # Good sweep / discovery finds become runnable (plain HTTP, never Chrome)
 log "verify_pool.py --apply (promote verified needs_review venues)"
 guarded 1200 /usr/bin/python3 verify_pool.py --apply --limit 400 >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py exited $? — going on"
@@ -633,6 +686,7 @@ while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run, or one that c
         log "Only $left min before the cutoff — no more runs tonight"
         break
     fi
+    apply_websites   # the research's websites, if it's done (never during a run)
     do_run
     rc=$?
     [ "$LAST_MODE" = "--run" ] && [ "$LAST_STARTED" = 1 ] && new_runs=$((new_runs + 1))
@@ -673,6 +727,7 @@ while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run, or one that c
     break
 done
 
+apply_websites wait
 wait_dive
 fix_session
 status note "$(/usr/bin/python3 - "$SCRIPT_DIR/night_status.json" <<'PYEOF'

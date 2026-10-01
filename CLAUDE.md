@@ -89,9 +89,14 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
 - `night_run.sh`: checks (kill switch `.night_off`, ZeroBounce, Apollo >= 100 credits)
   → `reverify.sh --unverified` → `import_sweep_files.py --apply` (every READY TO ADD
   row of every `sweep_*.md` on the sheet, marked as a sweep find) →
-  `backfill_websites.sh --limit 20 --apply` (Chrome
-  finds missing websites and replaces brand-homepage or listing pages, sweep finds first,
-  14-day rotation, one Google search every 40–70 s, stops at Google's CAPTCHA) → `verify_pool.py --apply --limit 400` → `--vouch-sweep-sites`
+missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discovery
+  here in terminal and then the rest in chrome"): `backfill_websites.sh --limit 30
+  --list-json` lists them (sweep finds first, brand-homepage or listing pages too, 14-day
+  rotation), a background Claude session finds their sites with WebSearch
+  (`NIGHT_WEBSITES.md`, `reports/runs/websites-YYYYMMDD.json`) while Chrome does the runs,
+  and `backfill_websites.sh --candidates FILE --apply` checks and saves its URLs (same
+  rules: the venue's own domain + its city on the page) between runs, never during one
+  → `verify_pool.py --apply --limit 400` → `--vouch-sweep-sites`
   → `pipeline.sh --linkedin-retry` (venues still `linkedin_pending` from an earlier
   wall or empty search, at most 30 min, stops at a wall; Sep 30 2026)
   → runs of 50
@@ -110,13 +115,15 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
   doesn't count toward the 2 runs. An empty pool raises a "needs a sweep" alert. A
   launch outside 00:30–03:30 (the Mac was asleep at 1:00) is skipped with an alert.
 - Google's CAPTCHA never ends a night (Oct 1 2026: it did, at 01:26, two nights running).
-  The backfill searched Google every ~13 s and got the "unusual traffic" page at about the
-  20th search; the pipeline then counted the blocked searches as Chrome failures and
-  stopped. Now `google_guard.sh` (shared by pipeline and backfill) stops all Google
-  searches for 45 min after a CAPTCHA (90, then 180 if Google still blocks), logs the
-  skipped ones as `[GOOGLE BLOCKED]`, and the run goes on with the website, Facebook,
-  Instagram, Apollo and LinkedIn steps; the deep dive's WebSearch covers the zero-contact
-  venues. Nothing clicks the CAPTCHA, and no search is made through it.
+  The website backfill searched Google in Chrome every ~13 s and got the "unusual
+  traffic" page at about the 20th search; the pipeline then counted the blocked searches
+  as Chrome failures and stopped. The lookups now run in the terminal (above), and
+  `google_guard.sh` (pipeline + a manual Chrome backfill) stops all Google searches for
+  45 min after a CAPTCHA (90, then 180 if Google still blocks), logs the skipped ones as
+  `[GOOGLE BLOCKED]`, and the run goes on with the website, Facebook, Instagram, Apollo
+  and LinkedIn steps; the deep dive's WebSearch covers the zero-contact venues. Nothing
+  clicks the CAPTCHA, and no search is made through it. A manual
+  `backfill_websites.sh` without `--candidates` still uses Chrome, one search every 40–70 s.
 - Chrome stops are tried again first: `CHROME_RETRIES` (3) times, `CHROME_RETRY_WAIT_S`
   (600 s) apart (`GOOGLE_RETRY_WAIT_S`, 1800 s, if a Google block still stopped a run),
   while an hour of the window is left. The night needs Chrome to itself (Sep 30 2026, "we need to run alone"):

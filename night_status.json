@@ -8,8 +8,16 @@
   "runs": [
    {
     "run_id": "run-20261001-0109",
-    "outcome": "running",
-    "started": "01:09"
+    "outcome": "stopped: social/Google searches failed or were blocked on 2 venues in a row (CAPTCHA?)",
+    "started": "01:09",
+    "venues": 8,
+    "processed": 2,
+    "skipped": 0,
+    "with_contacts": 0,
+    "zero": 2,
+    "new_contacts": 0,
+    "unfinished": 6,
+    "ended": "01:17"
    }
   ],
   "note": ""
@@ -31,5 +39,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-10-01T01:09:49-04:00"
+ "updated_at": "2026-10-01T01:17:28-04:00"
 }

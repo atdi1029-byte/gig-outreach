@@ -1,0 +1,393 @@
+[ZB SAFE] Guard enabled — run 0/300, today 0/400, reserve 100 credits (ok); run id run-20261001-0109
+[RUN] Building the run plan: ./build_batch.sh --total 50 --out-dir /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109
+Building a run of 50 venues (batches of <= 8)...
+Fetching venues + past gigs...
+Total venues: 5044
+Past gigs: 70 (by id 1, gig-venue domains 53)
+Venues with existing contacts: 704
+Already worked (old reports + run ledgers): 464   excluded by --exclude/current run: 30
+Target states: DC MD VA   scorer: taste_score 2026-09-26b
+
+Eligible pool: 928  (sweep finds: 844)
+  Sweep finds let past a taste/location gate: taste floor 633, prime evidence 502, category 204, skip word 69, junk gate 66, location 32
+  Skipped (status (not untouched)): 1542
+  Skipped (already in a report): 12
+  Skipped (no website): 27
+  Skipped (out of area (not DC/MD/VA)): 598
+  Skipped (bare brand homepage as website): 28
+  Skipped (below taste floor): 94
+  Skipped (blank/malformed city): 104
+  Skipped (duplicate site (kept the best row)): 67
+  Skipped (has contacts): 1
+  Skipped (junk gate): 131
+  Skipped (junk website): 65
+  Skipped (location not trustworthy): 171
+  Skipped (no prime evidence (generic restaurant, chain or non-European cuisine)): 333
+  Skipped (not a target category): 60
+  Skipped (past gig): 65
+  Skipped (same name as a venue already worked): 19
+  Skipped (site already pipelined/contacted): 392
+  Skipped (skip word): 48
+  Skipped (too far): 191
+  Skipped (website not verified as the venue's own): 168
+  PA/DE sweep finds held for last: 192
+  Site check: 196 likely picks checked, 6 dead/closed dropped
+      dropped Valletta Port [VA-REST-816] — site says "Permanently Closed"
+      dropped Michele’s [DC-REST-2831] — home page HTTP 404
+      dropped Filicori Zecchini Potomac [MD-REST-999] — website DNS failure
+      dropped Kimpton Hotel Palomar DC [DC-HOTE-825] — website DNS failure
+      dropped Harbor Club [MD-CLUB-488] — website DNS failure
+      dropped Georgetown Yacht Club [DC-REST-2632] — website DNS failure
+  By bucket: fine_dining 131, club 17, hotel 31, wine 33, wild 518
+  Quality-first mix: fine_dining took 8, club gave 4, hotel took 5, wine gave 8, wild gave 1
+
+Selected 50 of 50 requested: fine_dining 24/16, club 6/10, hotel 14/9, wine 1/9, wild 5/6
+NOTE: bucket(s) club, wine, wild ran short; filled from the other buckets.
+
+=== BATCH 1/7: 8 venues (taste floor 25, bucket floors {'fine_dining': 30, 'club': 30, 'hotel': 30, 'wine': 30, 'wild': 40}) ===
+1. [MD-REST-3147] Stella Notte | fine_dining / restaurant | Ellicott City MD (21 mi) | taste=57
+2. [MD-LUXU-1332] The Ritz-Carlton Residences Chevy Chase | hotel / hotel | Chevy Chase MD (39 mi) | taste=68
+3. [MD-REST-3145] Facci Ristorante | fine_dining / restaurant | Ellicott City MD (21 mi) | taste=54
+4. [MD-CLUB-449] Miles River Yacht Club | club / yacht_club | St. Michaels MD (57 mi) | taste=56
+5. [MD-EVEN-1346] Rock Creek Mansion | wild / event_venue | Bethesda MD (40 mi) | taste=53
+6. [VA-REST-964] Our Mom Eugenia | fine_dining / restaurant | Great Falls VA (53 mi) | taste=54
+7. [MD-REST-709] Severn Inn | hotel / hotel | Annapolis MD (14 mi) | taste=59
+8. [MD-REST-3168] GrillMarx Steakhouse | fine_dining / restaurant | Columbia MD (22 mi) | taste=53
+
+=== BATCH 2/7: 8 venues ===
+1. [MD-HOTE-1762] The Bethesdan Hotel | hotel / hotel | Bethesda MD (40 mi) | taste=59
+2. [MD-REST-2811] Guardado's Tapas Bar | fine_dining / restaurant | Bethesda MD (40 mi) | taste=53
+3. [MD-REST-1337] Junction Bistro Bar & Bakery | fine_dining / restaurant | Chevy Chase MD (41 mi) | taste=53
+4. [DC-PRIV-111] Cleveland Park Club | club / private_club | Washington DC (38 mi) | taste=52
+5. [DC-HOTE-2632] The Graham Georgetown | hotel / hotel | Washington DC (45 mi) | taste=59
+6. [MD-REST-1336] I'm Eddie Cano | fine_dining / restaurant | Chevy Chase MD (41 mi) | taste=53
+7. [VA-GALL-001] McLean Project for the Arts | wild / art_gallery | McLean VA (49 mi) | taste=53
+8. [DC-REST-2707] Bodega Spanish Tapas & Lounge | fine_dining / restaurant | Washington DC (45 mi) | taste=53
+
+=== BATCH 3/7: 8 venues ===
+1. [MD-HOTE-562] Miles River Guest House | hotel / hotel | Easton MD (48 mi) | taste=59
+2. [VA-REST-3426] Gadsby's Tavern | fine_dining / restaurant | Alexandria VA (46 mi) | taste=53
+3. [MD-HOTE-2978] The Inn at Mt. Ida | hotel / hotel | Ellicott City MD (21 mi) | taste=58
+4. [VA-REST-3033] Pikoteo | fine_dining / restaurant | McLean VA (49 mi) | taste=53
+5. [DC-PRIV-112] The Ridge Club at City Ridge | club / private_club | Washington DC (38 mi) | taste=52
+6. [MD-REST-711] Luna Blu | fine_dining / restaurant | Annapolis MD (14 mi) | taste=52
+7. [MD-HOTE-2980] Merriweather Lakehouse Hotel | hotel / hotel | Columbia MD (22 mi) | taste=58
+8. [MD-REST-3171] Victoria Gastro Pub | fine_dining / restaurant | Columbia MD (22 mi) | taste=52
+
+=== BATCH 4/7: 8 venues ===
+1. [MD-REST-3005] Sapwood Cellars Brewery | wine / winery | Columbia MD (18 mi) | taste=53
+2. [MD-REST-733] Rumhouse | wild / restaurant | Annapolis MD (14 mi) | taste=52
+3. [DC-REST-2829] Vera Cocina & بار | fine_dining / restaurant | Washington DC (36 mi) | taste=52
+4. [MD-HOTE-349] Rod N Reel Resort | hotel / hotel | Chesapeake Beach MD (41 mi) | taste=57
+5. [DC-REST-2830] Minetta Tavern DC | fine_dining / restaurant | Washington DC (36 mi) | taste=52
+6. [DC-PRIV-113] The Executive Branch | club / private_club | Washington DC (45 mi) | taste=52
+7. [MD-REST-812] Elena James | fine_dining / restaurant | Chevy Chase MD (38 mi) | taste=52
+8. [MD-HOTE-3000] The Children's Inn at NIH | hotel / hotel | Bethesda MD (40 mi) | taste=56
+
+=== BATCH 5/7: 8 venues ===
+1. [MD-REST-1314] Lia's | fine_dining / restaurant | Chevy Chase MD (38 mi) | taste=52
+2. [MD-HOTE-2999] Edmond J. Safra Family Lodge | hotel / hotel | Bethesda MD (42 mi) | taste=56
+3. [VA-REST-3430] Trattoria Da Franco Ristorante | fine_dining / restaurant | Alexandria VA (46 mi) | taste=52
+4. [VA-EVEN-2995] Cherry Hill Farmhouse | wild / event_venue | Falls Church VA (54 mi) | taste=51
+5. [VA-REST-826] Fratelli | fine_dining / restaurant | Alexandria VA (46 mi) | taste=52
+6. [MD-CLUB-489] The Easton Club | club / private_club | Easton MD (48 mi) | taste=52
+7. [VA-REST-1748] Pistones Italian Inn | hotel / hotel | Falls Church VA (54 mi) | taste=56
+8. [MD-REST-998] Boulangerie Christophe | fine_dining / restaurant | Potomac MD (47 mi) | taste=52
+
+=== BATCH 6/7: 8 venues ===
+1. [MD-REST-896] Mykonos Cabin John | fine_dining / restaurant | Potomac MD (47 mi) | taste=52
+2. [MD-HOTE-790] Laurel Grove Inn on the South River | hotel / hotel | Annapolis MD (21 mi) | taste=55
+3. [MD-REST-2753] Xenia Greek Kouzina | fine_dining / restaurant | Ellicott City MD (18 mi) | taste=51
+4. [MD-REST-746] Cantler's Riverside Inn | hotel / hotel | Annapolis MD (14 mi) | taste=54
+5. [MD-REST-3125] Birroteca | fine_dining / restaurant | Baltimore MD (21 mi) | taste=51
+6. [VA-REST-919] Zamarod Afghan Cuisine | wild / restaurant | Great Falls VA (53 mi) | taste=50
+7. [VA-PRIV-007] Lake Barcroft Association | club / private_club | Falls Church VA (54 mi) | taste=50
+8. [MD-REST-1319] Trattoria 5520 | fine_dining / restaurant | Chevy Chase MD (41 mi) | taste=51
+
+=== BATCH 7/7: 2 venues ===
+1. [MD-HOTE-2952] Yellow Rose of Talbot | hotel / hotel | Easton MD (48 mi) | taste=54
+2. [DC-REST-2668] Café Bonaparte | fine_dining / restaurant | Washington DC (45 mi) | taste=51
+
+Saved 7 batch files + plan.json to /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/batch_01.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/batch_02.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/batch_03.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/batch_04.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/batch_05.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/batch_06.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/batch_07.json  (2 venues)
+  (path also in /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/LATEST)
+=== Pipeline started 2026-10-01 01:10:17 ===
+[RUN] run_id=run-20261001-0109 mode=run log=/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261001-0109.log
+PREFLIGHT OK: python3 works (/Library/Developer/CommandLineTools/usr/bin/python3 3.9.6)
+PREFLIGHT OK: .env has ZEROBOUNCE_KEY
+PREFLIGHT OK: .env has APOLLO_API_KEY
+PREFLIGHT OK: bash -n: 20 scripts parse
+PREFLIGHT OK: embedded python: checked 168 embedded python blocks in 20 scripts: 0 failed
+PREFLIGHT OK: 18 python files compile
+PREFLIGHT OK: outreach_rules self-test: 17 checks pass
+PREFLIGHT OK: venue_classifier self-test: 91 passed, 0 failed
+PREFLIGHT OK: js/*.js extractors parse (node --check)
+PREFLIGHT OK: Apps Script backend up (version 2026-09-25.1)
+PREFLIGHT OK: sheet readable (action=config)
+PREFLIGHT OK: ZeroBounce: enabled=True (.env), balance=1910, reserve=100 (.env), run 0/300 (.env), today 0/400 (.env), ~30 runs of headroom at 60/run
+PREFLIGHT OK: Apollo API key accepted (auth/health)
+PREFLIGHT OK: Chrome runs JavaScript from Apple Events
+PREFLIGHT OK: all checks passed (pipeline; 14 ok, 0 warn)
+[PREFLIGHT] OK
+[RUN] Unattended run of plan /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/plan.json in batches of <= 8
+[RUN] Plan /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261001-0109/plan.json: 7 batch(es)
+
+[RUN] Plan batch 1/7 -> batch 1 of run run-20261001-0109
+  [mark_step] run run-20261001-0109: batch 1 registered 8 venues
+  [mark_step] ledger: /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261001-0109.jsonl
+  [mark_step] run log should be: /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261001-0109.log
+  export RUN_ID=run-20261001-0109
+
+BATCH MODE: 8 venues
+[RUN] run-20261001-0109 batch 1: MD-REST-3147,MD-LUXU-1332,MD-REST-3145,MD-CLUB-449,MD-EVEN-1346,VA-REST-964,MD-REST-709,MD-REST-3168 (8 to run; log /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261001-0109.log)
+  [ZB SAFE] run 0/300, today 0/400, balance 1910, reserve 100
+[RUN] Apollo credits left on the account: 2292 (stop below 100)
+[CHROME] JavaScript from Apple Events: OK (website scrape probe on https://stella-notte.com/ returned 933 bytes of JSON)
+
+########## VENUE [1/8]: Stella Notte ##########
+  [DOMAIN] Venue domain: stella-notte.com
+
+============================================================
+ PIPELINE: Stella Notte (MD-REST-3147)
+ Website: https://stella-notte.com/
+ Started: 2026-10-01 01:10:38
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 0/300, today 0/400, balance 1910, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://stella-notte.com/
+  Opening in Chrome: https://stella-notte.com/
+  Emails: 0 | FB: https://www.facebook.com/StellaNotteEllicottCity | IG: https://www.instagram.com/stellanotterestaurant | Contact Form: none
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=13 pdfs=0 emails=0 sitemaps=0 fragments=0 unvisited=0
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-3147.json
+  [PROBE] Found: https://stella-notte.com/about.html
+  [COVERAGE] Subpage queue: 5 in scope, rendering 5 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=0
+  Crawling subpage (1): https://stella-notte.com/about.html
+  Crawling subpage (2): https://stella-notte.com/cateringinhouse.html
+  Crawling subpage (3): https://stella-notte.com/cateringtogo.html
+  Crawling subpage (4): https://stella-notte.com/catering.html
+  Crawling subpage (5): https://stella-notte.com/index.html
+  Crawling subpage (6): https://stella-notte.com/menu.html
+  Crawling subpage (7): https://stella-notte.com/familymeals.html
+  ✓ Facebook from venue website matches the sheet: https://www.facebook.com/StellaNotteEllicottCity
+  ✓ Instagram from venue website matches the sheet: https://www.instagram.com/stellanotterestaurant
+[STEP] MD-REST-3147 web ok via=chrome pages=8 visited=home,about,events form=no chrome_pages=8 curl_pages=0 static_pages=5 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/StellaNotteEllicottCity/ | IG: https://www.instagram.com/stellanotterestaurant
+  Opening FB: https://www.facebook.com/StellaNotteEllicottCity
+  FB emails found: stellanotte@verizon.net
+  Opening FB: https://www.facebook.com/StellaNotteEllicottCity/about
+  Opening FB: https://www.facebook.com/StellaNotteEllicottCity/directory_contact_info
+  FB emails found: stellanotte@verizon.net
+  Opening IG: https://www.instagram.com/stellanotterestaurant
+  [IG] No email on page — trying Google snippet...
+  [GOOGLE BLOCKED] CAPTCHA/consent page instead of results for: "Stella Notte" instagram
+  [IG SNIPPET] Google blocked the search — snippet NOT checked
+  [REJECT] stellanotte@verizon.net — freemail_unlinked (source: social, evidence: external)
+[STEP] MD-REST-3147 social blocked fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=0 emails=1 saved=0 deferred=0 problems=ig_snippet:blocked:google_captcha
+  [APOLLO] Credits used this run: 0 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Stella Notte
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (1 results)
+  Found: Stella Notte (domain: stella-notte.com, org_id: 6730f52493cdbb0001e24e6d)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Stella Notte (org_id: 6730f52493cdbb0001e24e6d)...
+  Found 1 people total
+  [APOLLO] App title skip words loaded: racquets, tennis, golf, racquet, florist, busboy, server, farm, busser, 401k, caddie, fitness, squash, athletics, pickleball, proshop, controller
+  Skipped 1 people with no email (red ? on Apollo) and no decision-maker title
+  No new people to enrich.
+[STEP] MD-REST-3147 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Stella_Notte gate=name+domain people=1 relevant=0 skipped_titles=0 over_cap=0
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  Using domain: stella-notte.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 6s...
+  Found 7 results
+  [LINKEDIN SKIP] LinkedIn Member (Student athlete at Stevenson University, Cybersecurity and Digital Forensics Major, Criminal Justice Minor, Busser at Stella Notte restaurant) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Assistant Kitchen Manager at Stella Notte) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Bartender shift manager at Stella Notte Restaurant) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Bus Boy at Stella Notte) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Chief Solutionist at The Brothers That Just Do Gutters) — masked name
+  [LINKEDIN SKIP] Chase Thompson (Database Marketing Analyst at Live! Casino & Hotel Maryland) — headline doesn't name the venue
+  [LINKEDIN SKIP] Christian B. (Senior Cyber Hunt Specialist at Clear Ridge Defense) — not a person name
+  [delay] Waiting 3s...
+  LinkedIn page 2...
+  [delay] Waiting 5s...
+  Found 7 results
+  [LINKEDIN SKIP] Matthew Leone (Senior Government Account representative, MBA Supporting UiPath) — headline doesn't name the venue
+  [LINKEDIN SKIP] Lydia Shepard (Principal Faculty at The Chicago Mosaic School) — headline doesn't name the venue
+  [LINKEDIN SKIP] Griff Walker (Business Development Manager at EFI USA | Environmental Containment | Sustainable Resource Management) — headline doesn't name the venue
+  [LINKEDIN SKIP] Chuck Dunne (Sales Engineer at OnSIP) — headline doesn't name the venue
+  [LINKEDIN SKIP] Tyler Bendig (Small Business Founder/ Operations Manager  with Avenssg.com | Small Business Management) — headline doesn't name the venue
+  [LINKEDIN SKIP] Reilly D'Elia (Mortgage Loan Originator  at Union Bank of VT & NH) — headline doesn't name the venue
+  [LINKEDIN SKIP] LinkedIn Member (JD Candidate) — masked name
+  [delay] Waiting 3s...
+  LinkedIn page 3...
+  [delay] Waiting 8s...
+  Found 7 results
+  [LINKEDIN SKIP] Loris Donatelli (Musicista 🎸chitarrista 🎓 docente @civicamontesilvano e @accademiamusicaleangolana🪩 #chitarra #music) — headline doesn't name the venue
+  [LINKEDIN SKIP] LinkedIn Member (server at Romanos  Macaroni Grill) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (aspiring model actor and uber driver in your neighborhood) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Administrator – Stella Di Notte) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Sales Development Representative (SDR) | Lead Conversion | Upselling & Client Communication | Open to Remote Opportunities) — masked name
+  [LINKEDIN SKIP] Nicholas Stella (Loan Processor at First Federal Bank) — headline doesn't name the venue
+  [LINKEDIN SKIP] LinkedIn Member (Dolci presso Pasticceria stella del notte) — masked name
+  No new people found on LinkedIn.
+[STEP] MD-REST-3147 linkedin empty pages=3 results=21 rejected=21 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Stella Notte" contact Ellicott City
+  [GOOGLE BLOCKED] CAPTCHA/consent page instead of results for: "Stella Notte" contact Ellicott City
+  [FALLBACK] Google blocked the search (CAPTCHA) — no fallback website lookup
+  [FALLBACK] Instagram already found this run (https://www.instagram.com/stellanotterestaurant) — not re-searching
+[STEP] MD-REST-3147 google blocked results=0 emails=0 site=blocked ig=known reason=captcha
+  Setting status → needs_review (no verified contacts saved)
+[STEP] MD-REST-3147 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Stella Notte | 2 min | 01:13:00
+============================================================
+
+########## VENUE [2/8]: The Ritz-Carlton Residences Chevy Chase ##########
+  [DOMAIN] Venue domain: theresidenceschevychase.com
+
+============================================================
+ PIPELINE: The Ritz-Carlton Residences Chevy Chase (MD-LUXU-1332)
+ Website: https://www.theresidenceschevychase.com/
+ Started: 2026-10-01 01:13:38
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 0/300, today 0/400, balance 1910, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.theresidenceschevychase.com/
+  Opening in Chrome: https://www.theresidenceschevychase.com/
+  Validating contact form URL: https://www.theresidenceschevychase.com/contact
+  ✓ Real contact form confirmed
+  Emails: 0 | FB: https://www.facebook.com/TheResidencesChevyChase | IG: https://www.instagram.com/theresidenceschevychase | Contact Form: https://www.theresidenceschevychase.com/contact
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=35 pdfs=0 emails=0 sitemaps=7 fragments=13 unvisited=0
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-LUXU-1332.json
+  [COVERAGE] Subpage queue: 15 in scope, rendering 13 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=0
+  Crawling subpage (1): https://www.theresidenceschevychase.com/building-amenities
+  Crawling subpage (2): https://www.theresidenceschevychase.com/floorplans
+  Crawling subpage (3): https://www.theresidenceschevychase.com/gallery
+  Crawling subpage (4): https://www.theresidenceschevychase.com/community
+  Crawling subpage (5): https://www.theresidenceschevychase.com/experience-the-residences
+  Crawling subpage (6): https://www.theresidenceschevychase.com/services
+  Crawling subpage (7): https://www.theresidenceschevychase.com/features
+  Crawling subpage (8): https://www.theresidenceschevychase.com/the-ritz-carlton-lifestyle
+  Crawling subpage (9): https://www.theresidenceschevychase.com/real-estate-agents
+  Crawling subpage (10): https://www.theresidenceschevychase.com/floorplans/design-2/
+  Crawling subpage (11): https://www.theresidenceschevychase.com/floorplans/design-4/
+  Crawling subpage (12): https://www.theresidenceschevychase.com/floorplans/design-6/
+  Crawling subpage (13): https://www.theresidenceschevychase.com/floorplans/design-8/
+  [CONTACT FORM] Also found: https://mcwb.formstack.com/forms/ritz_carlton_residences_chevy_chase_thank
+  [CONTACT FORM] Also found: https://www.theresidenceschevychase.com/contact/
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/TheResidencesChevyChase
+  ✓ Instagram from venue website (trusted: header_footer): https://www.instagram.com/theresidenceschevychase
+  [CONTACT FORM] Also found: https://www.theresidenceschevychase.com/contact
+  [CONTACT FORM] Found: https://mcwb.formstack.com/forms/js.php/ritz_carlton_residences_chevy_chase_thank
+  ✓ Contact form URL saved
+[STEP] MD-LUXU-1332 web ok via=chrome pages=14 visited=home,contact form=yes chrome_pages=14 curl_pages=0 static_pages=13 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,events,team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/TheResidencesChevyChase | IG: https://www.instagram.com/theresidenceschevychase
+  Opening FB: https://www.facebook.com/TheResidencesChevyChase
+  Opening FB: https://www.facebook.com/TheResidencesChevyChase/about
+  Opening FB: https://www.facebook.com/TheResidencesChevyChase/directory_contact_info
+  FB emails found: rcresidences@chevychaselake.com
+  Opening IG: https://www.instagram.com/theresidenceschevychase
+  [IG] No email on page — trying Google snippet...
+  [GOOGLE BLOCKED] CAPTCHA/consent page instead of results for: "The Ritz-Carlton Residences Chevy Chase" instagram
+  [IG SNIPPET] Google blocked the search — snippet NOT checked
+  [REJECT] rcresidences@chevychaselake.com — off_domain:chevychaselake.com!=theresidenceschevychase.com (source: social, evidence: external)
+[STEP] MD-LUXU-1332 social blocked fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=0 emails=1 saved=0 deferred=0 problems=ig_snippet:blocked:google_captcha
+  [APOLLO] Credits used this run: 0 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: The Ritz-Carlton Residences Chevy Chase
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (0 results)
+  [APOLLO MISMATCH] 'The Ritz-Carlton Hotel Company, L.L.C.' (ritzcarlton.com) is not this venue — name doesn't match venue
+[STEP] MD-LUXU-1332 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0
+  Using website domain for enrichment: theresidenceschevychase.com
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  Using domain: theresidenceschevychase.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 7s...
+  Found 8 results
+  [LINKEDIN SKIP] Peter Frascarelli (General Manager, CMCA) — headline doesn't name the venue
+  [LINKEDIN SKIP] Larry Fisher (President - Family Wealth at Chevy Chase Trust) — headline doesn't name the venue
+  [LINKEDIN SKIP] Stacy Murchison (Senior Managing Director and Chief Marketing Officer) — current job is elsewhere
+  [LINKEDIN SKIP] Justin S. Liberti, CMT (Director at Chevy Chase Trust &  ASB Capital Management, CMT (Chartered Market Technician)) — not a person name
+  [LINKEDIN SKIP] Deborah Gandy (Senior Managing Director, Chevy Chase Trust) — current job is elsewhere
+  [LINKEDIN SKIP] Craig Pernick (Senior Managing Director, Chevy Chase Trust Company) — current job is elsewhere
+  [LINKEDIN SKIP] Michael S. Gildenhorn (Senior Managing Director, Director of Portfolio Management) — current job is elsewhere
+  [LINKEDIN SKIP] Alan Adler (Senior Portfolio Manager & Senior Relationship Manager) — current job is elsewhere
+  [delay] Waiting 4s...
+  LinkedIn page 2...
+  [delay] Waiting 8s...
+  Found 10 results
+  [LINKEDIN SKIP] Jeannette Owen Roegge (Chief Fiduciary Officer at Chevy Chase Trust) — headline doesn't name the venue
+  [LINKEDIN SKIP] Irena Mkhitaryan (Sr. Trust Officer | Wealth & Estate Management | Chevy Chase Trust) — current job is elsewhere
+  [LINKEDIN SKIP] Marc Wishkoff (Sr Managing Director @ Chevy Chase Trust | Investment Management) — current job is elsewhere
+  [LINKEDIN SKIP] Jeff Whitaker (President and CEO at Chevy Chase Trust | Investing in our next chapter in the D.C. area and beyond | Leading and growing a team of dedicated advisors, planners) — current job is elsewhere
+  [LINKEDIN SKIP] Kristen Barstow (Director at Chevy Chase Trust) — current job is elsewhere
+  [LINKEDIN SKIP] Eric M. (Managing Director, Trust Operations Manager at Chevy Chase Trust) — not a person name
+  [LINKEDIN SKIP] Elizabeth Kearns (Managing Director, Co-Head of Planning, Chevy Chase Trust) — current job is elsewhere
+  [LINKEDIN SKIP] Gregory K. Soueid (Managing Director and CTO at Chevy Chase Trust) — current job is elsewhere
+  [LINKEDIN SKIP] Susan Gordon Freed, CFP® (Managing Director at Chevy Chase Trust) — not a person name
+  [LINKEDIN SKIP] Radhika Nijhawan Roy (Digital Marketing | Creative Design | Events | Passionate About Books & Reader Communities) — current job is elsewhere
+  [delay] Waiting 5s...
+  LinkedIn page 3...
+  [delay] Waiting 6s...
+  Found 9 results
+  [LINKEDIN SKIP] Dan Ledwith, CFA (VP at Chevy Chase Trust) — not a person name
+  [LINKEDIN SKIP] Wendy M. Moyers, CFP ® (Managing Director, Wealth Advisor & Relationship Manager at Chevy Chase Trust) — not a person name
+  [LINKEDIN SKIP] Stefania Napolitano (Vice President Trust and Estate Attorney at Chevy Chase Trust) — current job is elsewhere
+  [LINKEDIN SKIP] Bobby Eubank, CFA (Thematic Research Analyst) — not a person name
+  [LINKEDIN SKIP] Jackie Fontana, CFP®, CDFA® (Director, Wealth Advisor and Relationship Manager @ Chevy Chase Trust) — not a person name
+  [LINKEDIN SKIP] Andrew Calvert (Associate, Investment Performance Analyst at Chevy Chase Trust) — headline doesn't name the venue
+  [LINKEDIN SKIP] Leah Byrne, CFP® (Vice President at Chevy Chase Trust) — not a person name
+  [LINKEDIN SKIP] Colleen Lussier (Senior Trust Officer/VP) — current job is elsewhere
+  [LINKEDIN SKIP] Leslie Smith (Senior Advisor at Chevy Chase Trust) — current job is elsewhere
+  No new people found on LinkedIn.
+[STEP] MD-LUXU-1332 linkedin empty pages=3 results=27 rejected=27 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "The Ritz-Carlton Residences Chevy Chase" contact Chevy Chase
+  [GOOGLE BLOCKED] CAPTCHA/consent page instead of results for: "The Ritz-Carlton Residences Chevy Chase" contact Chevy Chase
+  [FALLBACK] Google blocked the search (CAPTCHA) — no fallback website lookup
+  [FALLBACK] Instagram already found this run (https://www.instagram.com/theresidenceschevychase) — not re-searching
+[STEP] MD-LUXU-1332 google blocked results=0 emails=0 site=blocked ig=known reason=captcha
+  Setting status → needs_review (no verified contacts saved)
+[STEP] MD-LUXU-1332 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: The Ritz-Carlton Residences Chevy Chase | 3 min | 01:17:19
+============================================================
+
+[RUN] STOPPED: social/Google searches failed or were blocked on 2 venues in a row (CAPTCHA?)
+[RUN] Unfinished venues have no DONE: line. Fix the cause, then resume with: ./pipeline.sh --resume run-20261001-0109
+
+--- FLAGS raised in this batch ---
+  FLAG:Rejected email (freemail_unlinked): stellanotte@verizon.net (venue domain stella-notte.com, source: social)
+  FLAG:Rejected email (off_domain:chevychaselake.com!=theresidenceschevychase.com): rcresidences@chevychaselake.com (venue domain theresidenceschevychase.com, source: social)
+  FLAG:Apollo returned only other businesses for this venue (e.g. The Ritz-Carlton Hotel Company, L.L.C. (ritzcarlton.com)) — people search skipped

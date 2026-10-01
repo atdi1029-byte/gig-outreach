@@ -1,0 +1,108 @@
+{
+ "run_id": "run-20261001-0109",
+ "venues": [
+  {
+   "venue_id": "MD-REST-3147",
+   "name": "Stella Notte",
+   "website": "https://stella-notte.com/",
+   "city": "Ellicott City",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/StellaNotteEllicottCity/",
+   "instagram": "https://www.instagram.com/stellanotterestaurant",
+   "contact_form": "",
+   "notes": "Italian fine dining, wood-burning oven, private dining/catering. | Website checked 2026-09-29 | PIPELINE: 0 contacts run-20261001-0109",
+   "pipeline_result": "empty",
+   "pipeline_steps": [
+    "[STEP] MD-REST-3147 web ok via=chrome pages=8 visited=home,about,events form=no chrome_pages=8 curl_pages=0 static_pages=5 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,team",
+    "[STEP] MD-REST-3147 social blocked fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=0 emails=1 saved=0 deferred=0 problems=ig_snippet:blocked:google_captcha",
+    "[STEP] MD-REST-3147 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Stella_Notte gate=name+domain people=1 relevant=0 skipped_titles=0 over_cap=0",
+    "[STEP] MD-REST-3147 linkedin empty pages=3 results=21 rejected=21 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-3147 google blocked results=0 emails=0 site=blocked ig=known reason=captcha",
+    "[STEP] MD-REST-3147 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+   ],
+   "candidates": [
+    {
+     "email": "stellanotte@verizon.net",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "stellanotte@verizon.net",
+     "source": "social",
+     "disposition": "reject:freemail_unlinked"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-3147.json",
+     "base": "https://stella-notte.com/",
+     "pages_fetched": 13,
+     "pages_ok": 5,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-LUXU-1332",
+   "name": "The Ritz-Carlton Residences Chevy Chase",
+   "website": "https://www.theresidenceschevychase.com/",
+   "city": "Chevy Chase",
+   "state": "MD",
+   "category": "luxury_apts",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/TheResidencesChevyChase",
+   "instagram": "https://www.instagram.com/theresidenceschevychase",
+   "contact_form": "https://mcwb.formstack.com/forms/js.php/ritz_carlton_residences_chevy_chase_thank",
+   "notes": "65 luxury condos, staffed lobby, concierge, lounges, events. Completed 2023. | Website checked 2026-09-29 Site: The Ritz-Carlton Residences, Chevy Chase offer an iconic condominium experience in the Chevy Chase Lake community. Learn more about its uniq | PIPELINE: 0 contacts run-20261001-0109",
+   "pipeline_result": "empty",
+   "pipeline_steps": [
+    "[STEP] MD-LUXU-1332 web ok via=chrome pages=14 visited=home,contact form=yes chrome_pages=14 curl_pages=0 static_pages=13 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,events,team",
+    "[STEP] MD-LUXU-1332 social blocked fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=0 emails=1 saved=0 deferred=0 problems=ig_snippet:blocked:google_captcha",
+    "[STEP] MD-LUXU-1332 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] MD-LUXU-1332 linkedin empty pages=3 results=27 rejected=27 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-LUXU-1332 google blocked results=0 emails=0 site=blocked ig=known reason=captcha",
+    "[STEP] MD-LUXU-1332 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+   ],
+   "candidates": [
+    {
+     "email": "rcresidences@chevychaselake.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "rcresidences@chevychaselake.com",
+     "source": "social",
+     "disposition": "reject:off_domain:chevychaselake.com!=theresidenceschevychase.com"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-LUXU-1332.json",
+     "base": "https://www.theresidenceschevychase.com/",
+     "pages_fetched": 35,
+     "pages_ok": 13,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "formstack",
+       "page": "https://www.theresidenceschevychase.com/contact/",
+       "url": "https://mcwb.formstack.com/forms/js.php/ritz_carlton_residences_chevy_chase_thank"
+      },
+      {
+       "kind": "formstack",
+       "page": "https://www.theresidenceschevychase.com/contact/",
+       "url": "https://mcwb.formstack.com/forms/ritz_carlton_residences_chevy_chase_thank"
+      }
+     ],
+     "people": []
+    }
+   ]
+  }
+ ]
+}

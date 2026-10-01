@@ -1,0 +1,50 @@
+{
+ "run_id": "run-20261001-0109",
+ "dry_run": false,
+ "at": "2026-10-01T01:24:18-04:00",
+ "totals": {
+  "saved": 1,
+  "venues_rescued": 1,
+  "socials": 0,
+  "rejected": 1,
+  "errors": 0
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "MD-REST-3147",
+   "name": "Stella Notte",
+   "contacts": [
+    {
+     "email": "catering@stella-notte.com",
+     "name": "Dan Robinson",
+     "source_url": "https://patch.com/maryland/ellicottcity/frugal-finds-pick-a-nightstella-notte-has-a-deal-for-you",
+     "title": "Partner/Operator (Owner)",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-LUXU-1332",
+   "name": "The Ritz-Carlton Residences Chevy Chase",
+   "contacts": [
+    {
+     "email": "peter.frascarelli@ritzcarlton.com",
+     "name": "Peter Frascarelli",
+     "source_url": "https://www.linkedin.com/in/peter-frascarelli-0a835a9/",
+     "outcome": "rejected:off_domain:ritzcarlton.com!=theresidenceschevychase.com"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.theresidenceschevychase.com/contact/",
+     "outcome": "kept_existing"
+    }
+   ]
+  }
+ ]
+}

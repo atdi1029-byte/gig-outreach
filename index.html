@@ -4277,43 +4277,85 @@ function renderLevelBar() {
         ' outreach</span></div>';
     details.innerHTML = h;
 
-    // Level-up detection
-    var stored = parseInt(
+    // Level-up detection (kept in memory too, in case localStorage is full)
+    var stored = Math.max(parseInt(
         localStorage.getItem('outreach_level') || '0'
-    );
+    ) || 0, _levelSeen);
     if (info.level > stored && stored > 0) {
         var header = document.getElementById('levelHeader');
         header.classList.add('evolve');
         setTimeout(function() {
             header.classList.remove('evolve');
         }, 1500);
-        showPokeReveal(info);
+        _pendingReveal = Math.max(pendingRevealLevel(), info.level);
+        safeLocalSave(REVEAL_KEY, String(_pendingReveal));
     }
     // Never lower it: the saved dashboard can lag the live count, and dropping back
     // would replay the same level-up when the fresh data arrives
-    safeLocalSave('outreach_level', String(Math.max(info.level, stored || 0)));
+    _levelSeen = Math.max(info.level, stored);
+    safeLocalSave('outreach_level', String(_levelSeen));
+    showPendingReveal();
+}
+
+// A level-up waits here until Alex has actually seen the reveal (Alex, Oct 1 2026: "no
+// matter what show the evolution thing"). It survives the app going to the background
+// mid-reveal (Gmail, Instagram), being closed, or a reload; it shows over any page.
+var REVEAL_KEY = 'outreach_level_reveal';
+var _pendingReveal = 0;
+var _levelSeen = 0;
+function pendingRevealLevel() {
+    var saved = 0;
+    try { saved = parseInt(localStorage.getItem(REVEAL_KEY) || '0') || 0; } catch (e) {}
+    return Math.max(_pendingReveal, saved);
+}
+function clearPendingReveal(level) {
+    if (pendingRevealLevel() > level) return; // a higher level arrived meanwhile: still owed
+    _pendingReveal = 0;
+    try { localStorage.removeItem(REVEAL_KEY); } catch (e) {}
+}
+function showPendingReveal() {
+    var level = pendingRevealLevel();
+    if (!level || document.visibilityState === 'hidden') return;
+    var open = document.querySelector('.poke-reveal');
+    if (open) {
+        if (Number(open.dataset.level) >= level) return;
+        open.remove(); // jumped again mid-reveal: show the newest one
+    }
+    showPokeReveal(level);
 }
 
 // Level-up: "Who's that Pokemon?" silhouette, a flash, then the new one in color with confetti
-function showPokeReveal(info) {
-    if (document.querySelector('.poke-reveal')) return;
+function showPokeReveal(level) {
+    var name = POKEDEX[level - 1] || 'Mew';
+    var count = getEmailsSentCount();
     var el = document.createElement('div');
     el.className = 'poke-reveal';
-    setPokeColors(el, info.pokeId);
+    el.dataset.level = String(level);
+    setPokeColors(el, level);
     el.innerHTML = '<div class="poke-reveal-flash"></div>' +
         '<div class="poke-reveal-q">Who\'s that Pokémon?</div>' +
         '<img class="poke-reveal-sprite" alt="">' +
-        '<div class="poke-reveal-name">' + esc(info.name) + '!</div>' +
-        '<div class="poke-reveal-lv">Lv. ' + info.level + ' · ' + info.emailCount + ' sent</div>';
-    setPokeSprite(el.querySelector('img'), info.pokeId, true);
+        '<div class="poke-reveal-name">' + esc(name) + '!</div>' +
+        '<div class="poke-reveal-lv">Lv. ' + level + (count ? ' · ' + count + ' sent' : '') + '</div>';
+    setPokeSprite(el.querySelector('img'), level, true);
     document.body.appendChild(el);
     var timers = [];
-    var close = function() { timers.forEach(clearTimeout); el.remove(); };
+    var takeDown = function() {
+        timers.forEach(clearTimeout);
+        document.removeEventListener('visibilitychange', onHide);
+        el.remove();
+    };
+    var close = function() { takeDown(); clearPendingReveal(level); };
+    // Left the app before seeing it: take it down and play it from the start on return
+    var onHide = function() { if (document.visibilityState === 'hidden') takeDown(); };
+    document.addEventListener('visibilitychange', onHide);
     el.addEventListener('click', close);
     timers.push(setTimeout(function() {
         el.classList.add('flash');
         timers.push(setTimeout(function() {
             el.classList.add('shown');
+            // Three seconds with the name on screen counts as seen
+            timers.push(setTimeout(function() { clearPendingReveal(level); }, 3000));
             var colors = [getComputedStyle(el).getPropertyValue('--poke').trim(), '#ffffff', '#f0a030', '#ffe066'];
             for (var i = 0; i < 60; i++) {
                 var c = document.createElement('span');
@@ -4372,6 +4414,7 @@ document.addEventListener('DOMContentLoaded', () => {
 let _lastAuxSync = Date.now();
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible') { clearTimeout(refreshTimer); return; }
+    showPendingReveal();
     loadNightStatus();
     // Only refresh on tab-return if NOT viewing a venue detail
     if (navStack[navStack.length - 1] === 'viewDetail') { scheduleRefresh(REFRESH_INTERVAL); }

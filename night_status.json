@@ -1,11 +1,5 @@
 {
- "alert": {
-  "kind": "chrome",
-  "level": "warn",
-  "title": "Google started blocking searches",
-  "detail": "social/Google searches failed or were blocked on 2 venues in a row (CAPTCHA?). Run run-20261001-0109 resumes next night. If it keeps happening, open Chrome and solve the Google check once.",
-  "since": "2026-10-01T01:17:34-04:00"
- },
+ "alert": null,
  "night": {
   "date": "2026-10-01",
   "started_at": "2026-10-01T01:00:02-04:00",
@@ -73,5 +67,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-10-01T01:26:21-04:00"
+ "updated_at": "2026-10-01T09:41:55-04:00"
 }

@@ -714,3 +714,19 @@
 - **Name words lie** — "Inn" (Vienna Inn = dive bar), "Social Club" (Tabu = sex club), "Brasserie" (Silver = diner chain), "Bodega" (deli). Classification from the name alone keeps producing confident wrong picks; the rows these came from have empty Google categories.
 - **Theaters, dance halls, delis, dive bars = hard skips.**
 - **Data gap:** positives like 600 T and Fiola Mare score low because their notes have no cuisine or Google category (`Google Maps ''`). Better category capture in discovery would fix these scores more than any keyword tweak.
+
+---
+
+## Oct 1, 2026 — Taste Review (4 new votes, night FIX session)
+
+### Positives
+- **Talbot Country Club** (country_club, Easton MD) — "Eastern shore upscale place!" → clubs stay a near-universal yes, and the Eastern Shore (Easton) counts as upscale territory. Scorer agrees (53, club bucket). Added to taste_venues.txt.
+- **The Ivy Hotel** (hotel, Baltimore MD) — "Upscale hotel" → luxury boutique hotel in Mount Vernon, Baltimore. Scorer agrees (58). Added to taste_venues.txt.
+- **The Inn at Henderson's Wharf, an Ascend Collection Hotel** (hotel, Baltimore MD) — "Upscale hotel" → historic waterfront boutique inn in Fells Point. A Choice "Ascend Collection" flag doesn't make it a chain to avoid: Ascend is the independent/boutique flag. Scorer agrees (60). Added to taste_venues.txt.
+
+### Negatives
+- **Budget Inn Falls Church** (hotel, Falls Church VA) — "Budget inn" → motels/budget chains are wrong. Already a hard junk rule (-100, `budget inn`); the scorer agrees (0).
+
+### Changes made (Oct 1)
+- `taste_venues.txt`: +3 (Talbot Country Club, The Ivy Hotel, The Inn at Henderson's Wharf).
+- `taste_score.py`: none. All 4 votes match what the scorer already does.

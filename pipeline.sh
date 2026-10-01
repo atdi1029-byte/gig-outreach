@@ -34,6 +34,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$SCRIPT_DIR/env_check.sh" || exit 1
 # A second copy of Chrome takes every AppleScript command: wait it out (chrome_guard.sh)
 . "$SCRIPT_DIR/chrome_guard.sh" || exit 1
+# Google's CAPTCHA is waited out, not fought: one shared cooldown (google_guard.sh)
+. "$SCRIPT_DIR/google_guard.sh" || exit 1
 APPS_SCRIPT_URL="${APPS_SCRIPT_URL:-https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec}"
 ZEROBOUNCE_KEY="${ZEROBOUNCE_KEY:-}"
 APOLLO_API_KEY="${APOLLO_API_KEY:-}"
@@ -3311,17 +3313,26 @@ _rb_google_blocked() {
     return 1
 }
 
-# Returns 0 ok, 1 Chrome failed, 2 Google blocked the search.
+# Returns 0 ok, 1 Chrome failed, 2 Google blocked the search (or is cooling down after a
+# block: searching through it only makes it last longer, google_guard.sh).
 _rb_google_search() {
     local query="$1" enc
+    if google_cooling; then
+        log "  [GOOGLE BLOCKED] Google is cooling down after its CAPTCHA (until $GOOGLE_RETRY_AT) — not searched: $query"
+        GOOGLE_BLOCKED_HITS=$(( ${GOOGLE_BLOCKED_HITS:-0} + 1 ))
+        return 2
+    fi
     enc=$(_rb_py "google-search" python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$query") || return 1
     _rb_chrome_nav "https://www.google.com/search?q=${enc}" || return 1
     sleep 4
     if _rb_google_blocked; then
+        google_mark_blocked
         log "  [GOOGLE BLOCKED] CAPTCHA/consent page instead of results for: $query"
+        log "  [GOOGLE] No Google searches until $GOOGLE_RETRY_AT (block $GOOGLE_STRIKES tonight) — the run keeps going without them"
         GOOGLE_BLOCKED_HITS=$(( ${GOOGLE_BLOCKED_HITS:-0} + 1 ))
         return 2
     fi
+    google_mark_ok
     return 0
 }
 
@@ -9221,6 +9232,22 @@ runner_step_status() {
     echo "$st"
 }
 
+# The social step's status for the stop rule. Google's CAPTCHA isn't Chrome failing: the
+# searches wait it out (google_guard.sh) and the run goes on, so a social step blocked by
+# nothing but Google counts neither way (Oct 1 2026: it ended the night at 01:17).
+runner_social_status() {
+    local st line probs
+    st=$(runner_step_status "$1" social)
+    if [ "$st" = "blocked" ]; then
+        line=$(printf '%s\n' "$1" | grep -E "\[STEP\] [^ ]+ social " | tail -1)
+        probs=$(printf '%s\n' "$line" | sed -nE 's/.* problems=([^ ]*).*/\1/p')
+        if [ -n "$probs" ] && ! printf '%s\n' "$probs" | tr ',' '\n' | grep -qv ':blocked:google_captcha$'; then
+            st=""
+        fi
+    fi
+    echo "$st"
+}
+
 runner_streak() {
     case "$1" in
         failed|blocked|degraded) echo $(( $2 + 1 )) ;;
@@ -9255,7 +9282,7 @@ runner_after_venue_checks() {
     [ "${ALLOW_CURL_ONLY:-0}" = "1" ] && [ "$st" = "degraded" ] && st=""
     RUNNER_STREAK_WEB=$(runner_streak "$st" "$RUNNER_STREAK_WEB")
     RUNNER_STREAK_APOLLO=$(runner_streak "$(runner_step_status "$lines" apollo)" "$RUNNER_STREAK_APOLLO")
-    RUNNER_STREAK_SOCIAL=$(runner_streak "$(runner_step_status "$lines" social)" "$RUNNER_STREAK_SOCIAL")
+    RUNNER_STREAK_SOCIAL=$(runner_streak "$(runner_social_status "$lines")" "$RUNNER_STREAK_SOCIAL")
     if [ "$RUNNER_STREAK_WEB" -ge "$MAX_FAIL_STREAK" ]; then
         RUNNER_STOP_REASON="website scrape failed or fell back to curl on $RUNNER_STREAK_WEB venues in a row (Chrome JavaScript not working?)"
         return 1
@@ -9265,7 +9292,7 @@ runner_after_venue_checks() {
         return 1
     fi
     if [ "$RUNNER_STREAK_SOCIAL" -ge "$MAX_FAIL_STREAK" ]; then
-        RUNNER_STOP_REASON="social/Google searches failed or were blocked on $RUNNER_STREAK_SOCIAL venues in a row (CAPTCHA?)"
+        RUNNER_STOP_REASON="Facebook/Instagram lookups failed or were walled on $RUNNER_STREAK_SOCIAL venues in a row (Chrome not loading pages?)"
         return 1
     fi
     return 0

@@ -89,9 +89,9 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
 - `night_run.sh`: checks (kill switch `.night_off`, ZeroBounce, Apollo >= 100 credits)
   → `reverify.sh --unverified` → `import_sweep_files.py --apply` (every READY TO ADD
   row of every `sweep_*.md` on the sheet, marked as a sweep find) →
-  `backfill_websites.sh --limit 30 --apply` (Chrome
+  `backfill_websites.sh --limit 20 --apply` (Chrome
   finds missing websites and replaces brand-homepage or listing pages, sweep finds first,
-  14-day rotation) → `verify_pool.py --apply --limit 400` → `--vouch-sweep-sites`
+  14-day rotation, one Google search every 40–70 s, stops at Google's CAPTCHA) → `verify_pool.py --apply --limit 400` → `--vouch-sweep-sites`
   → `pipeline.sh --linkedin-retry` (venues still `linkedin_pending` from an earlier
   wall or empty search, at most 30 min, stops at a wall; Sep 30 2026)
   → runs of 50
@@ -109,9 +109,17 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
   isn't the cutoff or Chrome). A run that never started leaves nothing to resume and
   doesn't count toward the 2 runs. An empty pool raises a "needs a sweep" alert. A
   launch outside 00:30–03:30 (the Mac was asleep at 1:00) is skipped with an alert.
+- Google's CAPTCHA never ends a night (Oct 1 2026: it did, at 01:26, two nights running).
+  The backfill searched Google every ~13 s and got the "unusual traffic" page at about the
+  20th search; the pipeline then counted the blocked searches as Chrome failures and
+  stopped. Now `google_guard.sh` (shared by pipeline and backfill) stops all Google
+  searches for 45 min after a CAPTCHA (90, then 180 if Google still blocks), logs the
+  skipped ones as `[GOOGLE BLOCKED]`, and the run goes on with the website, Facebook,
+  Instagram, Apollo and LinkedIn steps; the deep dive's WebSearch covers the zero-contact
+  venues. Nothing clicks the CAPTCHA, and no search is made through it.
 - Chrome stops are tried again first: `CHROME_RETRIES` (3) times, `CHROME_RETRY_WAIT_S`
-  (600 s) apart, while an hour of the window is left (Google blocking searches is not
-  retried). The night needs Chrome to itself (Sep 30 2026, "we need to run alone"):
+  (600 s) apart (`GOOGLE_RETRY_WAIT_S`, 1800 s, if a Google block still stopped a run),
+  while an hour of the window is left. The night needs Chrome to itself (Sep 30 2026, "we need to run alone"):
   `CHROME_ALONE_KILL=1` makes the scripts close another copy of Chrome that a program
   started (headless/automation flags) once they've waited for it (preflight 5 min,
   between venues and backfill lookups 10 min, a page 5 min); a copy a person
@@ -203,7 +211,8 @@ stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8
 - The run STOPS itself (exit 3, resumable) when Chrome fails, ZeroBounce is out
   (no credits, a cap, key/IP refused), Apollo has fewer than `APOLLO_MIN_CREDITS`
   (100) credits at a batch start or fails two venues in a row, two venues in a row
-  fall back to curl-only or get blocked, two venues in a row time out, the
+  fall back to curl-only or get blocked (Google's CAPTCHA alone doesn't count: Google
+  is skipped until it lets up), two venues in a row time out, the
   between-batch preflight fails, or `RUN_DEADLINE` leaves no time for another batch
   (`BATCH_EST_MIN`, 45). The reason is in `reports/runs/$RUN_ID.stopped`. Fix the
   cause, then `./pipeline.sh --resume $RUN_ID`.
@@ -272,6 +281,7 @@ when Alex asks for a full audit, do it by hand as below.
 - `preflight.sh`       pre-run checks; `verify_run.sh` = the gate; `mark_step.sh` = the ledger
 - `chrome_guard.sh`    sourced by every Chrome-driving script: waits until Alex's Chrome is the
                        only copy running (night runs then close a program-started copy)
+- `google_guard.sh`    the shared Google cooldown after a CAPTCHA, and the backfill's pacing
 - `reverify.sh`        re-check unverified contacts after a ZeroBounce top-up
 - `save_websites.py`   write researched websites (sweep finds) with read-back
 - `import_sweep_files.py` sweep write-ups -> sheet (add missing, tag, promote)

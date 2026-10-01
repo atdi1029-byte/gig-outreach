@@ -17,10 +17,17 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "$SCRIPT_DIR/env_check.sh" || exit 1
 . "$SCRIPT_DIR/chrome_guard.sh" || exit 1
+# Google's CAPTCHA is shared with the pipeline: a block here means no Google for it either
+. "$SCRIPT_DIR/google_guard.sh" || exit 1
 [ -f "$SCRIPT_DIR/.env" ] && source "$SCRIPT_DIR/.env"
 APPS_SCRIPT_URL="${APPS_SCRIPT_URL:-https://script.google.com/macros/s/AKfycbxlZsGnG_pZG27FJjI8A_CWI5PZ1qs5tlyt2FbqlzfTm5sEvdQjStRDoobOkMOWzyBT/exec}"
 
 LIMIT=${MAX_BACKFILL:-25}
+# Seconds between two Google searches (random in the range). Oct 1 2026: one search every
+# ~13 s got Google's CAPTCHA at the 20th, two nights running, and the block then stopped the
+# pipeline's own searches. About one a minute is what the pipeline does without trouble.
+GAP_MIN_S="${BACKFILL_GAP_MIN_S:-40}"
+GAP_MAX_S="${BACKFILL_GAP_MAX_S:-70}"
 APPLY=0
 ONLY_VENUE=""
 while [ "$#" -gt 0 ]; do
@@ -218,6 +225,14 @@ while IFS=$'\t' read -r VID NAME CITY STATE CATEGORY SCORE ORIG_STATUS; do
     echo ""
     echo "[$processed/$LIMIT] $NAME — $CITY, $STATE ($VID)"
 
+    # Google is waited out, never searched through: the rest wait for the next night
+    # (nothing was looked up, so they keep their place in the rotation)
+    if google_cooling; then
+        echo "STOP: Google is blocking searches (CAPTCHA) until $GOOGLE_RETRY_AT — the rest wait for the next night."
+        processed=$((processed - 1))
+        break
+    fi
+
     # Another copy of Chrome would take every command (chrome_guard.sh): wait it out
     if ! chrome_wait_alone; then
         echo "STOP: $CHROME_ALONE_DETAIL"
@@ -241,6 +256,7 @@ import sys, urllib.parse
 print(urllib.parse.quote(sys.argv[1]))
 PY
 )
+    google_pace "$GAP_MIN_S" "$GAP_MAX_S"
     osascript -e "tell application \"Google Chrome\" to set URL of active tab of front window to \"https://www.google.com/search?q=${SEARCH_ENCODED}\"" 2>/dev/null || true
     # Only results from THIS search count: the page's address must be it
     FOUND_RAW=""; PAGE_URL=""; ON_SEARCH=0
@@ -250,9 +266,11 @@ PY
         PAGE_URL="${PAGE_OUT%%$'\n'*}"
         if is_search_for "$PAGE_URL" "$SEARCH_QUERY"; then
             ON_SEARCH=1
+            google_mark_ok
             case "$PAGE_OUT" in *$'\n'*) FOUND_RAW="${PAGE_OUT#*$'\n'}" ;; esac
             break
         fi
+        case "$PAGE_URL" in *google.*/sorry/*|*google.*/recaptcha/*) break ;; esac
     done
     if [ -z "$FOUND_RAW" ] || [ "$FOUND_RAW" = "missing value" ]; then
         failed=$((failed + 1))
@@ -263,6 +281,13 @@ PY
             [ "$APPLY" -eq 1 ] && log_candidate "$VID" "$NAME" "" none "no usable links on Google"
             continue
         fi
+        case "$PAGE_URL" in
+            *google.*/sorry/*|*google.*/recaptcha/*)
+                google_mark_blocked
+                echo "  Google showed its CAPTCHA (unusual traffic) instead of results"
+                echo "STOP: Google is blocking searches until $GOOGLE_RETRY_AT — stopping here so the block ends sooner; the rest wait for the next night."
+                break ;;
+        esac
         SHOWN="${PAGE_URL:-nothing}"
         echo "  Chrome didn't show this search (it showed: ${SHOWN:0:90}) — JS from Apple Events off, Google blocking, or the page never loaded"
         empty_streak=$((empty_streak + 1))

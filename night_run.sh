@@ -27,7 +27,8 @@
 #   4. after the last run: one Claude session fixes the scraper for what the pipeline
 #      missed (phase fix, recall benchmark as the test), then commit + push.
 # A stop (credits, preflight) ends the night; the app shows why. A Chrome stop is first
-# tried again, CHROME_RETRIES times CHROME_RETRY_WAIT_S apart. The night needs Chrome to
+# tried again, CHROME_RETRIES times CHROME_RETRY_WAIT_S apart. Google's CAPTCHA doesn't stop
+# a run: the scripts stop searching Google until it lets up and go on (google_guard.sh). The night needs Chrome to
 # itself: another copy of Chrome is waited for, then closed if a program started it
 # (CHROME_ALONE_KILL, chrome_guard.sh).
 # =============================================================
@@ -68,7 +69,8 @@ APOLLO_MIN_CREDITS="${APOLLO_MIN_CREDITS:-100}"
 MAX_RESUMES="${MAX_RESUMES:-2}"                        # stops (not cutoffs) before a run is dropped
 CHROME_RETRIES="${CHROME_RETRIES:-3}"                  # a Chrome stop is tried again this many times
 CHROME_RETRY_WAIT_S="${CHROME_RETRY_WAIT_S:-600}"      # ...this long apart, before the night gives up
-BACKFILL_LIMIT="${BACKFILL_LIMIT:-30}"                 # websites looked up per night (Chrome, ~45 s each)
+GOOGLE_RETRY_WAIT_S="${GOOGLE_RETRY_WAIT_S:-1800}"     # ...or this long when Google's CAPTCHA stopped it
+BACKFILL_LIMIT="${BACKFILL_LIMIT:-20}"                 # websites looked up per night (one Google search a minute)
 LI_RETRY_MAX_MIN="${LI_RETRY_MAX_MIN:-30}"             # LinkedIn retry of skipped venues, before the runs
 # The night needs Chrome to itself (Alex, Sep 30 2026: "we need to run alone"): the scripts
 # wait for another copy of Chrome to close, and at night then close a copy a program
@@ -256,7 +258,7 @@ alert_for_stop() {   # alert_for_stop RUN_ID "reason"
             fi ;;
         chrome)
             if google_block "$reason"; then
-                status alert chrome warn "Google started blocking searches" "$reason. $next If it keeps happening, open Chrome and solve the Google check once."
+                status alert chrome warn "Google kept blocking searches" "$reason.$tried $next Nothing to do: the block wears off by itself."
             else
                 case "$reason" in
                     *"another copy of Google Chrome"*)
@@ -414,6 +416,7 @@ health_check() {   # every script parses, embedded python compiles, offline craw
     for f in *.py; do /usr/bin/python3 -m py_compile "$f" 2>/dev/null || { log "py_compile failed: $f"; ok=1; }; done
     /usr/bin/python3 tests/check_heredocs.py pipeline.sh postcheck.sh build_batch.sh >/dev/null 2>&1 || { log "check_heredocs failed"; ok=1; }
     bash tests/site_discovery_tests.sh >/dev/null 2>&1 || { log "site_discovery_tests failed"; ok=1; }
+    bash tests/google_guard_tests.sh >/dev/null 2>&1 || { log "google_guard_tests failed"; ok=1; }
     return $ok
 }
 
@@ -592,6 +595,8 @@ if ! apollo_check; then
 fi
 status clear-alert zerobounce apollo asleep chrome error
 log "Credits OK. Cutoff ${NIGHT_CUTOFF:0:2}:${NIGHT_CUTOFF:2:2} ($(minutes_left) min from now)"
+. "$SCRIPT_DIR/google_guard.sh"
+google_cooling && log "Google is still blocking searches from an earlier CAPTCHA (until $GOOGLE_RETRY_AT) — the scripts skip Google until then"
 
 # Emails saved as unverified when ZeroBounce ran out get their real verdict now
 if /usr/bin/python3 -c 'import sys' && [ -x ./reverify.sh ]; then
@@ -603,9 +608,11 @@ fi
 log "import_sweep_files.py --apply (sweep write-ups -> sheet)"
 guarded 1200 /usr/bin/python3 import_sweep_files.py --apply >> "$NIGHT_LOG" 2>&1 || log "import_sweep_files.py exited $? — going on"
 # Venues saved without a website (sweep finds too, Alex Sep 29: "everything on the sweep
-# should be able to be used") get one from Google in Chrome, which is free at night
+# should be able to be used") get one from Google in Chrome, which is free at night. One
+# search a minute at most: 20 in 5 minutes got Google's CAPTCHA on Sep 30 and Oct 1, and the
+# block then took the pipeline's searches too. At a CAPTCHA it stops and the rest wait.
 log "backfill_websites.sh --apply (find missing websites, up to $BACKFILL_LIMIT)"
-guarded 1800 ./backfill_websites.sh --limit "$BACKFILL_LIMIT" --apply >> "$NIGHT_LOG" 2>&1 || log "backfill_websites.sh exited $? — going on"
+guarded $((BACKFILL_LIMIT * 90 + 300)) ./backfill_websites.sh --limit "$BACKFILL_LIMIT" --apply >> "$NIGHT_LOG" 2>&1 || log "backfill_websites.sh exited $? — going on"
 # Good sweep / discovery finds become runnable (plain HTTP, never Chrome)
 log "verify_pool.py --apply (promote verified needs_review venues)"
 guarded 1200 /usr/bin/python3 verify_pool.py --apply --limit 400 >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py exited $? — going on"
@@ -635,6 +642,8 @@ while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run, or one that c
         git_sync "Night: pool empty" night_status.json
         break
     fi
+    g_blocked=$(grep -c '\[GOOGLE BLOCKED\]' "$RUNS_DIR/$LAST_RID.log" 2>/dev/null)
+    [ "${g_blocked:-0}" -gt 0 ] && log "Google blocked or skipped $g_blocked search(es) in $LAST_RID (CAPTCHA cooldown) — the run went on without them"
     run_stats=$(/usr/bin/python3 "$SCRIPT_DIR/night_zero.py" "$LAST_RID" --stats 2>/dev/null | tr ' ' ',')
     # shellcheck disable=SC2046
     git_sync "Night run $LAST_RID: ${run_stats:-${LAST_STOP:0:120}}" night_status.json $(run_files "$LAST_RID")
@@ -646,13 +655,16 @@ while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run, or one that c
         break
     fi
     # Chrome trouble often passes (another copy of Chrome, a hung tab): wait and try again
-    # before giving up the night. Google blocking searches isn't retried (more searches
-    # would only make it worse).
-    if [ "$STOP_KIND" = "chrome" ] && ! google_block "$LAST_STOP" && [ "$CHROME_TRIED" -lt "$CHROME_RETRIES" ] &&
-       [ $(( $(minutes_left) - CHROME_RETRY_WAIT_S / 60 )) -ge "$MIN_RUN_WINDOW_MIN" ]; then
+    # before giving up the night. So does Google's CAPTCHA: the pipeline waits that out by
+    # itself now (google_guard.sh), so this only catches a run it still stopped (Oct 1 2026:
+    # a Google block ended the night at 01:26 with 6.5 hours left).
+    retry_wait="$CHROME_RETRY_WAIT_S"
+    google_block "$LAST_STOP" && retry_wait="$GOOGLE_RETRY_WAIT_S"
+    if [ "$STOP_KIND" = "chrome" ] && [ "$CHROME_TRIED" -lt "$CHROME_RETRIES" ] &&
+       [ $(( $(minutes_left) - retry_wait / 60 )) -ge "$MIN_RUN_WINDOW_MIN" ]; then
         CHROME_TRIED=$((CHROME_TRIED + 1))
-        log "Chrome problem ($LAST_STOP) — trying again in $((CHROME_RETRY_WAIT_S / 60)) min ($CHROME_TRIED of $CHROME_RETRIES)"
-        sleep "$CHROME_RETRY_WAIT_S"
+        log "Chrome problem ($LAST_STOP) — trying again in $((retry_wait / 60)) min ($CHROME_TRIED of $CHROME_RETRIES)"
+        sleep "$retry_wait"
         continue
     fi
     log "Run stopped: $LAST_STOP"

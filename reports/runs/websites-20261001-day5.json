@@ -1,0 +1,173 @@
+{
+ "generated": "2026-10-01T10:22:00",
+ "venues": [
+  {
+   "venue_id": "MD-REST-3086",
+   "urls": [],
+   "note": "no site of its own, only Facebook and listings (Yelp, TripAdvisor, YP); gaysseafood.com doesn't resolve; 1021 N Washington St, Easton MD 21601"
+  },
+  {
+   "venue_id": "VA-HOTE-2927",
+   "urls": [
+    "https://www.harborsidehotel.net/"
+   ],
+   "note": "own site, but the hotel is in Oxon Hill MD, not Alexandria VA: page shows 6400 Oxon Hill Rd, Oxon Hill, MD 20745 (near National Harbor)"
+  },
+  {
+   "venue_id": "VA-COUN-002",
+   "urls": [
+    "https://www.hiddencreekcc.com/"
+   ],
+   "note": "own site; page shows Hidden Creek Country Club, 1711 Clubhouse Road, Reston, VA 20190, with Weddings/Special Events pages and an event inquiry form"
+  },
+  {
+   "venue_id": "VA-REST-3182",
+   "urls": [
+    "https://www.hillsboroughwine.com/"
+   ],
+   "note": "own site (homepage reads 'Hillsborough Winery & Brewery'); the venue is at 36716 Charles Town Pike, Hillsboro VA 20132 (near Purcellville), not Herndon"
+  },
+  {
+   "venue_id": "MD-ART_-2775",
+   "urls": [],
+   "note": "permanently closed: Yelp lists 'How Great Thou Art - CLOSED' (1622 Thames St, Fells Point); HMDB says the artist Loring Cornish left Baltimore for Los Angeles"
+  },
+  {
+   "venue_id": "VA-REST-3427",
+   "urls": [
+    "https://julasotp.com/"
+   ],
+   "note": "own site; home page shows Jula's on the Potomac, 44 Canal Center Plaza Suite 401, Alexandria VA 22314 (private events through julasonthepotomac.tripleseat.com)"
+  },
+  {
+   "venue_id": "MD-REST-3206",
+   "urls": [
+    "https://www.kid-museum.org/"
+   ],
+   "note": "own site; page shows 3 Bethesda Metro Center Suite 140, Bethesda MD 20814. The venue is in Bethesda, not Potomac as the sheet says. Site has a rentals/private events page"
+  },
+  {
+   "venue_id": "VA-HOTE-2937",
+   "urls": [
+    "https://www.hotelgeorge.com/"
+   ],
+   "note": "no Kimpton George in Alexandria; the real hotel is at 15 E Street NW, Washington DC 20001 (Capitol Hill), and kimptongeorgehotel.com redirects to hotelgeorge.com. Sheet city is wrong: Washington DC"
+  },
+  {
+   "venue_id": "VA-REST-1669",
+   "urls": [
+    "https://www.kingsransomalx.com/"
+   ],
+   "note": "own site; shows King's Ransom, 728 King Street (2nd floor, above The Handover), Alexandria VA 22314, phone 571-319-0794"
+  },
+  {
+   "venue_id": "XX-ART_-004",
+   "urls": [],
+   "note": "likely permanently closed: old site lehatchery.gallery no longer resolves; Calico Gallery, which ran it, held a going-out-of-business sale; 125 Kemp Lane, Easton MD is now Big Rooster Mall, a different business"
+  },
+  {
+   "venue_id": "VA-REST-3084",
+   "urls": [
+    "https://www.hyatt.com/hyatt-regency/en-US/dulle-hyatt-regency-dulles/dining",
+    "https://www.hyatt.com/hyatt-regency/en-US/dulle-hyatt-regency-dulles"
+   ],
+   "note": "Lobby Bar is the atrium bar of Hyatt Regency Dulles, 2300 Dulles Corner Blvd, Herndon VA 20171; hyatt.com 403s to WebFetch, so confirmed from search snippets of the dining page"
+  },
+  {
+   "venue_id": "MD-HOTE-2953",
+   "urls": [],
+   "note": "no site of its own, only Facebook and directories; it is a tavern/bar, not a hotel, at 546 Center St, Pasadena MD 21122 (not Severna Park)"
+  },
+  {
+   "venue_id": "XX-ART_-006",
+   "urls": [
+    "https://mainstreetfineart.com/",
+    "https://mainstreetfineart.com/contact.html"
+   ],
+   "note": "own site; contact page shows Main Street Gallery, 216B Main Street, Annapolis MD 21401, 410-216-7166"
+  },
+  {
+   "venue_id": "XX-ART_-007",
+   "urls": [
+    "https://mdfedart.com/"
+   ],
+   "note": "own site (mdfedart.org redirects here); shows Circle Gallery, 18 State Circle, Annapolis MD 21401 and Avenue Gallery, 76 Maryland Ave"
+  },
+  {
+   "venue_id": "VA-REST-3242",
+   "urls": [
+    "https://morrisonhouse.com/",
+    "https://www.marriott.com/en-us/hotels/wasmh-morrison-house-old-town-alexandria-autograph-collection/overview/",
+    "https://morrisonhouse.com/the-study/"
+   ],
+   "note": "own domain shows Morrison House, 116 South Alfred St, Alexandria VA 22314, and its restaurant The Study; Marriott property page (wasmh) from search, marriott.com 403s to WebFetch"
+  },
+  {
+   "venue_id": "MD-EVEN-351",
+   "urls": [
+    "https://www.oldebretoninn.com/",
+    "https://www.oldebretoninn.com/about"
+   ],
+   "note": "own site; the page shows 21890 Society Hill Road, Leonardtown, Maryland 20650, (301) 475-2699 (the contact page is at /about)"
+  },
+  {
+   "venue_id": "MD-REST-3132",
+   "urls": [
+    "https://petitlouis.com/",
+    "https://petitlouis.com/group-and-event-dining/"
+   ],
+   "note": "own site (Foreman Wolf group); the homepage shows 4800 Roland Ave, Baltimore, MD 21210; private dining page included"
+  },
+  {
+   "venue_id": "VA-COUN-001",
+   "urls": [
+    "https://www.rbgcc.org/",
+    "https://www.rbgcc.org/contact-us"
+   ],
+   "note": "own club site; homepage and contact page show 375 Walker Road, Great Falls, Virginia 22066, clubhouse 703.759.3030"
+  },
+  {
+   "venue_id": "VA-COUN-003",
+   "urls": [
+    "https://www.invitedclubs.com/clubs/river-creek-club",
+    "https://www.rivercreekclub.com/"
+   ],
+   "note": "the club's own domain rivercreekclub.com 301-redirects to its page on the Invited (owner/manager) site, which shows 43800 Olympic Blvd, Leesburg, VA 20176, 703-779-2022"
+  },
+  {
+   "venue_id": "VA-REST-1680",
+   "urls": [
+    "https://www.rusticorestaurant.com/"
+   ],
+   "note": "own site (Neighborhood Restaurant Group); the page reads 'Rustico Restaurant | Alexandria VA' and shows 827 Slaters Lane, Alexandria VA 22314; no separate location page"
+  },
+  {
+   "venue_id": "MD-ART_-2784",
+   "urls": [],
+   "note": "no site of its own; listings show a hookah bar/art gallery at 833 N Howard St, Baltimore MD 21201 with no website; theartgalleryxperience.com doesn't resolve, theartgalleryexp.com is a different business in Conyers GA"
+  },
+  {
+   "venue_id": "MD-EVEN-365",
+   "urls": [
+    "https://www.thefenwickinn.com/",
+    "https://www.thefenwickinn.com/contact"
+   ],
+   "note": "own site; contact page shows The Fenwick Inn, 41685 Fenwick St, Leonardtown MD 20650"
+  },
+  {
+   "venue_id": "DC-REST-1254",
+   "urls": [
+    "https://thegatheringspot.club/dc-gathers",
+    "https://thegatheringspot.club/"
+   ],
+   "note": "own site with a DC location page (DC GATHERS event space); the page gives no street address, listings put the DC club at 1720 I St NW, Washington DC"
+  },
+  {
+   "venue_id": "MD-EVEN-387",
+   "urls": [
+    "https://thepavilionatweatherly.com/"
+   ],
+   "note": "own site (403s to WebFetch); Charles County Chamber listing gives this URL with 14145 Banks O'dee Rd, Newburg MD 20664, and search snippets of the site say Newburg MD"
+  }
+ ]
+}

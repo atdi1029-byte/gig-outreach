@@ -1,31 +1,28 @@
 {
- "alert": null,
+ "alert": {
+  "kind": "zerobounce",
+  "level": "stop",
+  "title": "Night runs paused: ZeroBounce",
+  "detail": "ZeroBounce is refusing this internet address (174.254.197.148). The Mac isn't on your home network, or your home IP changed: whitelist it in ZeroBounce.",
+  "since": "2026-10-02T01:01:05-04:00"
+ },
  "night": {
-  "date": "2026-10-01",
-  "started_at": "2026-10-01T01:00:02-04:00",
-  "finished_at": "2026-10-01T01:26:21-04:00",
+  "date": "2026-10-02",
+  "started_at": "2026-10-02T01:00:04-04:00",
+  "finished_at": "2026-10-02T01:01:05-04:00",
   "state": "stopped",
-  "runs": [
-   {
-    "run_id": "run-20261001-0109",
-    "outcome": "stopped: social/Google searches failed or were blocked on 2 venues in a row (CAPTCHA?)",
-    "started": "01:09",
-    "venues": 8,
-    "processed": 2,
-    "skipped": 0,
-    "with_contacts": 0,
-    "zero": 2,
-    "new_contacts": 0,
-    "unfinished": 6,
-    "ended": "01:17",
-    "rescued_contacts": 1,
-    "rescued_venues": 1,
-    "deep_dive": "done"
-   }
-  ],
-  "note": "1 run \u00b7 2 venues \u00b7 0 with contacts \u00b7 0 new contacts \u00b7 1 more from the deep dive"
+  "runs": [],
+  "note": ""
  },
  "history": [
+  {
+   "date": "2026-10-02",
+   "started_at": "2026-10-02T01:00:04-04:00",
+   "finished_at": "2026-10-02T01:01:05-04:00",
+   "state": "stopped",
+   "runs": [],
+   "note": ""
+  },
   {
    "date": "2026-10-01",
    "started_at": "2026-10-01T01:00:02-04:00",
@@ -67,5 +64,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-10-01T09:41:55-04:00"
+ "updated_at": "2026-10-02T01:01:05-04:00"
 }

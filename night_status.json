@@ -3,18 +3,26 @@
   "kind": "zerobounce",
   "level": "stop",
   "title": "Night runs paused: ZeroBounce",
-  "detail": "ZeroBounce is refusing this internet address (174.254.197.148). The Mac isn't on your home network, or your home IP changed: whitelist it in ZeroBounce.",
+  "detail": "ZeroBounce is refusing this internet address (174.219.240.226). The Mac isn't on your home network, or your home IP changed: whitelist it in ZeroBounce.",
   "since": "2026-10-02T01:01:05-04:00"
  },
  "night": {
-  "date": "2026-10-02",
-  "started_at": "2026-10-02T01:00:04-04:00",
-  "finished_at": "2026-10-02T01:01:05-04:00",
+  "date": "2026-10-03",
+  "started_at": "2026-10-03T01:00:04-04:00",
+  "finished_at": "2026-10-03T01:01:06-04:00",
   "state": "stopped",
   "runs": [],
   "note": ""
  },
  "history": [
+  {
+   "date": "2026-10-03",
+   "started_at": "2026-10-03T01:00:04-04:00",
+   "finished_at": "2026-10-03T01:01:06-04:00",
+   "state": "stopped",
+   "runs": [],
+   "note": ""
+  },
   {
    "date": "2026-10-02",
    "started_at": "2026-10-02T01:00:04-04:00",
@@ -64,5 +72,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-10-02T01:01:05-04:00"
+ "updated_at": "2026-10-03T01:01:06-04:00"
 }

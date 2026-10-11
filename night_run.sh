@@ -30,11 +30,13 @@
 #      missed (phase fix, recall benchmark as the test), then commit + push.
 #   5. the rest of the night goes to the family tree (Alex, Oct 11 2026: "if we have time
 #      after 1 run of 50 and fixing itself it uses its energy on the family tree", then "after
-#      the email spend what ever time is left on ancestry stuff", "allow it"): Codex-1
-#      (FamilySearch) starts and is killed at the cutoff; one Claude session (sonnet, Claude in
-#      Chrome, FamilyTree/NIGHT_ANCESTRY.md) works Ancestry read-only until 10 min before the
+#      the email spend what ever time is left on ancestry stuff", "allow it"): one Claude session (sonnet, Claude in
+#      Chrome, FamilyTree/NIGHT_ANCESTRY.md) works Ancestry read-only until 65 min before the
 #      cutoff (minus the update's time); then one Claude session without Chrome
 #      (FamilyTree/LEAD_UPDATE.md, ~45 min, done by 07:45) checks, merges and publishes.
+#      Codex runs 24/7 on its own (Alex, Oct 11: "i want codex to be running 24/7"). Codex-1 is the
+#      one in Chrome, so it pauses while the email work runs: CODEX_PAUSE exists from the start of
+#      the night until the email work is done (FamilyTree/tools/codex_worker.sh waits on it).
 # A stop (credits, preflight) ends the night; the app shows why. A Chrome stop is first
 # tried again, CHROME_RETRIES times CHROME_RETRY_WAIT_S apart. Google's CAPTCHA doesn't stop
 # a run: the scripts stop searching Google until it lets up and go on (google_guard.sh). The night needs Chrome to
@@ -287,31 +289,20 @@ alert_for_stop() {   # alert_for_stop RUN_ID "reason"
 
 # ---------------------------------------------------------------- family tree after the outreach
 FAMILY_TREE="${FAMILY_TREE:-$HOME/Documents/Code/Claude/FamilyTree}"
-family_tree_shift() {   # Codex-1 (FamilySearch, in Chrome) until NIGHT_CUTOFF, once the outreach is done
-    local ft="$FAMILY_TREE" pidf left pid
-    [ "$MODE" = "night" ] || { log "Family tree: only on a real night (mode $MODE) — skipped"; return 0; }
-    [ -x "$ft/tools/codex_worker.sh" ] || { log "Family tree: no $ft/tools/codex_worker.sh — skipped"; return 0; }
-    [ -f "$ft/STOP_WORKERS" ] && { log "Family tree: STOP_WORKERS is on — skipped"; return 0; }
-    left=$(minutes_left)
-    [ "$left" -ge 20 ] || { log "Family tree: only $left min before the cutoff — skipped"; return 0; }
-    pidf="$ft/logs/workers/Codex-1.pid"
-    if [ -n "$(cat "$pidf" 2>/dev/null)" ] && kill -0 "$(cat "$pidf")" 2>/dev/null; then
-        log "Family tree: Codex-1 is already going (PID $(cat "$pidf"))"
-    else
-        (cd "$ft" && nohup tools/codex_worker.sh Codex-1 >/dev/null 2>&1 &)
-        sleep 3
-        log "Family tree: Codex-1 started (PID $(cat "$pidf" 2>/dev/null)), $left min until the ${NIGHT_CUTOFF:0:2}:${NIGHT_CUTOFF:2:2} cutoff"
+CODEX_PAUSE="$SCRIPT_DIR/.codex1_pause"   # Codex-1 (Chrome) waits while this exists
+codex_pause() {   # Chrome must be the email run's alone: pause Codex-1 and end its current session
+    local pidf="$FAMILY_TREE/logs/workers/Codex-1.pid" sup c
+    date '+%Y-%m-%d %H:%M' > "$CODEX_PAUSE"
+    sup=$(cat "$pidf" 2>/dev/null)
+    if [ -n "$sup" ] && kill -0 "$sup" 2>/dev/null; then
+        for c in $(pgrep -P "$sup" 2>/dev/null); do kill $(proc_tree "$c") 2>/dev/null; done
+        log "Codex-1 paused for the email run (its current session ended; the supervisor waits)"
     fi
-    pid=$(cat "$pidf" 2>/dev/null)
-    [ -n "$pid" ] || return 0
-    # At the cutoff Chrome is Alex's again: stop the supervisor and the Codex session under it
-    nohup /bin/bash -c '
-        sleep $(( '"$(deadline_epoch)"' - $(date +%s) ))
-        tree() { local p="$1" c; echo "$p"; for c in $(pgrep -P "$p" 2>/dev/null); do tree "$c"; done; }
-        kill -0 '"$pid"' 2>/dev/null || exit 0
-        kill $(tree '"$pid"') 2>/dev/null
-        echo "[$(date "+%m-%d %H:%M")] stopped at the outreach night cutoff (night_run.sh)" >> "'"$ft"'/logs/workers/Codex-1.log"
-    ' >/dev/null 2>&1 &
+}
+family_tree_shift() {   # after the email work: Ancestry (Claude, Chrome), then the lead update (Claude, no Chrome)
+    local ft="$FAMILY_TREE"
+    rm -f "$CODEX_PAUSE"; log "Family tree: Codex-1 may use Chrome again (pause lifted)"
+    [ "$MODE" = "night" ] || { log "Family tree: only on a real night (mode $MODE) — skipped"; return 0; }
     # ...then Ancestry: one read-only Claude session in Chrome, leaving time for the lead update
     local upd_min=45 anc_left anc_out upd_left ymd
     ymd=$(date -v+1d +%Y-%m-%d)   # the lead names a night file after the next day (11 Oct evening -> 2026-10-12)
@@ -678,7 +669,7 @@ if ! mkdir "$LOCK_DIR" 2>/dev/null; then
     rm -rf "$LOCK_DIR"; mkdir "$LOCK_DIR" || exit 1
 fi
 echo $$ > "$LOCK_DIR/pid"
-trap 'rmdir "$GIT_LOCK" 2>/dev/null; rm -rf "$LOCK_DIR"' EXIT
+trap 'rmdir "$GIT_LOCK" 2>/dev/null; rm -rf "$LOCK_DIR"; rm -f "$CODEX_PAUSE"' EXIT
 
 log "================ Night run $(date '+%Y-%m-%d %H:%M') (mode $MODE) ================"
 
@@ -701,6 +692,7 @@ if [ -d "$PIPE_LOCK" ] && [ -n "$(cat "$PIPE_LOCK/pid" 2>/dev/null)" ] && kill -
 fi
 
 status start
+codex_pause
 if ! zb_check && ! { log "Checking ZeroBounce again in 60s (a network blip looks the same)"; sleep 60; zb_check; }; then
     status alert zerobounce stop "Night runs paused: ZeroBounce" "$ZB_DETAIL"
     status finish stopped

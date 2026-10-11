@@ -108,16 +108,14 @@ missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discove
   save policy, commit + push → after the last run, one Claude session (phase FIX)
   fixes the scraper for what the pipeline missed, proves it with the recall benchmark,
   commits; `night_run.sh` reverts anything that breaks `health_check` → final push
-  → the rest of the night goes to the family tree (Alex, Oct 11 2026: "if we have time
-  after 1 run of 50 and fixing itself it uses its energy on the family tree"):
-  `family_tree_shift` starts Codex-1 (`FamilyTree/tools/codex_worker.sh Codex-1`, the
-  FamilySearch worker, uses Chrome) once the outreach is done and kills it at 8:00. It
-  is skipped on `--force`, when `FamilyTree/STOP_WORKERS` exists, or with < 20 min left.
-  Then one headless Claude session (sonnet, `--chrome`) works Ancestry read-only from
-  `FamilyTree/NIGHT_ANCESTRY.md` (file `handoff/ancestry_night_<tomorrow>.md`), ending ~65 min
-  before the cutoff; then one more (sonnet, Chrome tools disallowed, <= 45 min, done by 07:45)
-  follows `FamilyTree/LEAD_UPDATE.md` (check, merge up to 3 finds, publish). Alex approved
-  both on Oct 11 2026 ("allow it"); a step without time left is skipped.
+  → the rest of the night goes to the family tree (Alex, Oct 11 2026): one headless Claude
+  session (sonnet, `--chrome`) works Ancestry read-only from `FamilyTree/NIGHT_ANCESTRY.md`
+  (file `handoff/ancestry_night_<tomorrow>.md`), ending ~65 min before the cutoff; then one
+  more (sonnet, Chrome tools disallowed, <= 45 min, done by 07:45) follows
+  `FamilyTree/LEAD_UPDATE.md` (check, merge up to 3 finds, publish). A step without time left
+  is skipped. Codex is NOT part of the night: it runs 24/7 on its own ("i want codex to be
+  running 24/7"); `codex_pause` writes `.codex1_pause` at the start of the night so Codex-1
+  (the only Codex worker in Chrome) waits until the email work is done.
 - A stop (credits, Chrome, preflight) ends the night and sets the app alert in
   `night_status.json` with the real reason (preflight's own FAIL line, not its
   summary); the stopped run resumes first next night (dropped on its 3rd stop that

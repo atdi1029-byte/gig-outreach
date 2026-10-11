@@ -99,20 +99,25 @@ missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discove
   → `verify_pool.py --apply --limit 400` → `--vouch-sweep-sites`
   → `pipeline.sh --linkedin-retry` (venues still `linkedin_pending` from an earlier
   wall or empty search, at most 30 min, stops at a wall; Sep 30 2026)
-  → runs of 50
+  → one run of 50 (`NIGHT_MAX_RUNS=1` since Oct 11 2026; was 2)
   (`pipeline.sh --run 50`, or `--resume` of a run a stop/the cutoff left unfinished;
-  a resumed run doesn't count toward the 2 new runs) with `RUN_DEADLINE` = 8:00, so no
+  a resumed run doesn't count toward the new runs) with `RUN_DEADLINE` = 8:00, so no
   batch starts that can't end by then → after each run: commit + push, then a headless
   Claude session researches the run's zero-contact venues (`NIGHT_DEEPDIVE.md`, phase
   RESEARCH) while the next run goes, `night_save.py` saves what it found under the
   save policy, commit + push → after the last run, one Claude session (phase FIX)
   fixes the scraper for what the pipeline missed, proves it with the recall benchmark,
-  commits; `night_run.sh` reverts anything that breaks `health_check` → final push.
+  commits; `night_run.sh` reverts anything that breaks `health_check` → final push
+  → the rest of the night goes to the family tree (Alex, Oct 11 2026: "if we have time
+  after 1 run of 50 and fixing itself it uses its energy on the family tree"):
+  `family_tree_shift` starts Codex-1 (`FamilyTree/tools/codex_worker.sh Codex-1`, the
+  FamilySearch worker, uses Chrome) once the outreach is done and kills it at 8:00. It
+  is skipped on `--force`, when `FamilyTree/STOP_WORKERS` exists, or with < 20 min left.
 - A stop (credits, Chrome, preflight) ends the night and sets the app alert in
   `night_status.json` with the real reason (preflight's own FAIL line, not its
   summary); the stopped run resumes first next night (dropped on its 3rd stop that
   isn't the cutoff or Chrome). A run that never started leaves nothing to resume and
-  doesn't count toward the 2 runs. An empty pool raises a "needs a sweep" alert. A
+  doesn't count toward the runs. An empty pool raises a "needs a sweep" alert. A
   launch outside 00:30–03:30 (the Mac was asleep at 1:00) is skipped with an alert.
 - Google's CAPTCHA never ends a night (Oct 1 2026: it did, at 01:26, two nights running).
   The website backfill searched Google in Chrome every ~13 s and got the "unusual

@@ -28,6 +28,9 @@
 #      night_save.py writes what it found; commit + push.
 #   4. after the last run: one Claude session fixes the scraper for what the pipeline
 #      missed (phase fix, recall benchmark as the test), then commit + push.
+#   5. the rest of the night goes to the family tree (Alex, Oct 11 2026: "if we have time
+#      after 1 run of 50 and fixing itself it uses its energy on the family tree"): Codex-1,
+#      the FamilySearch worker, starts once the outreach is done and is stopped at the cutoff.
 # A stop (credits, preflight) ends the night; the app shows why. A Chrome stop is first
 # tried again, CHROME_RETRIES times CHROME_RETRY_WAIT_S apart. Google's CAPTCHA doesn't stop
 # a run: the scripts stop searching Google until it lets up and go on (google_guard.sh). The night needs Chrome to
@@ -59,7 +62,7 @@ fi
 export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 
 RUN_SIZE="${RUN_SIZE:-50}"
-NIGHT_MAX_RUNS="${NIGHT_MAX_RUNS:-2}"
+NIGHT_MAX_RUNS="${NIGHT_MAX_RUNS:-1}"   # Alex, Oct 11 2026: one run of 50, then the family tree
 NIGHT_START_EARLIEST="${NIGHT_START_EARLIEST:-0030}"   # HHMM: a launch outside this
 NIGHT_START_LATEST="${NIGHT_START_LATEST:-0330}"       # window is a missed night
 NIGHT_CUTOFF="${NIGHT_CUTOFF:-0800}"                   # HHMM: Chrome is Alex's again
@@ -276,6 +279,35 @@ alert_for_stop() {   # alert_for_stop RUN_ID "reason"
         error)
             status alert error warn "Night run stopped" "$reason. $next" ;;
     esac
+}
+
+# ---------------------------------------------------------------- family tree after the outreach
+FAMILY_TREE="${FAMILY_TREE:-$HOME/Documents/Code/Claude/FamilyTree}"
+family_tree_shift() {   # Codex-1 (FamilySearch, in Chrome) until NIGHT_CUTOFF, once the outreach is done
+    local ft="$FAMILY_TREE" pidf left pid
+    [ "$MODE" = "night" ] || { log "Family tree: only on a real night (mode $MODE) — skipped"; return 0; }
+    [ -x "$ft/tools/codex_worker.sh" ] || { log "Family tree: no $ft/tools/codex_worker.sh — skipped"; return 0; }
+    [ -f "$ft/STOP_WORKERS" ] && { log "Family tree: STOP_WORKERS is on — skipped"; return 0; }
+    left=$(minutes_left)
+    [ "$left" -ge 20 ] || { log "Family tree: only $left min before the cutoff — skipped"; return 0; }
+    pidf="$ft/logs/workers/Codex-1.pid"
+    if [ -n "$(cat "$pidf" 2>/dev/null)" ] && kill -0 "$(cat "$pidf")" 2>/dev/null; then
+        log "Family tree: Codex-1 is already going (PID $(cat "$pidf"))"
+    else
+        (cd "$ft" && nohup tools/codex_worker.sh Codex-1 >/dev/null 2>&1 &)
+        sleep 3
+        log "Family tree: Codex-1 started (PID $(cat "$pidf" 2>/dev/null)), $left min until the ${NIGHT_CUTOFF:0:2}:${NIGHT_CUTOFF:2:2} cutoff"
+    fi
+    pid=$(cat "$pidf" 2>/dev/null)
+    [ -n "$pid" ] || return 0
+    # At the cutoff Chrome is Alex's again: stop the supervisor and the Codex session under it
+    nohup /bin/bash -c '
+        sleep $(( '"$(deadline_epoch)"' - $(date +%s) ))
+        tree() { local p="$1" c; echo "$p"; for c in $(pgrep -P "$p" 2>/dev/null); do tree "$c"; done; }
+        kill -0 '"$pid"' 2>/dev/null || exit 0
+        kill $(tree '"$pid"') 2>/dev/null
+        echo "[$(date "+%m-%d %H:%M")] stopped at the outreach night cutoff (night_run.sh)" >> "'"$ft"'/logs/workers/Codex-1.log"
+    ' >/dev/null 2>&1 &
 }
 
 # ---------------------------------------------------------------- deep dive / fix sessions
@@ -748,4 +780,5 @@ PYEOF
 status finish "$night_state"
 status_push "night finished"
 log "================ Night done $(date '+%H:%M') ================"
+family_tree_shift
 exit 0

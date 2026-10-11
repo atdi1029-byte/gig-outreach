@@ -101,7 +101,7 @@ missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discove
   wall or empty search, at most 30 min, stops at a wall; Sep 30 2026)
   → one run of 50 (`NIGHT_MAX_RUNS=1` since Oct 11 2026; was 2)
   (`pipeline.sh --run 50`, or `--resume` of a run a stop/the cutoff left unfinished;
-  a resumed run doesn't count toward the new runs) with `RUN_DEADLINE` = 8:00, so no
+  a resumed run counts as the night's run since Oct 11 2026) with `RUN_DEADLINE` = 8:00, so no
   batch starts that can't end by then → after each run: commit + push, then a headless
   Claude session researches the run's zero-contact venues (`NIGHT_DEEPDIVE.md`, phase
   RESEARCH) while the next run goes, `night_save.py` saves what it found under the
@@ -117,7 +117,7 @@ missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discove
   `night_status.json` with the real reason (preflight's own FAIL line, not its
   summary); the stopped run resumes first next night (dropped on its 3rd stop that
   isn't the cutoff or Chrome). A run that never started leaves nothing to resume and
-  doesn't count toward the runs. An empty pool raises a "needs a sweep" alert. A
+  doesn't count toward the night's run. An empty pool raises a "needs a sweep" alert. A
   launch outside 00:30–03:30 (the Mac was asleep at 1:00) is skipped with an alert.
 - Google's CAPTCHA never ends a night (Oct 1 2026: it did, at 01:26, two nights running).
   The website backfill searched Google in Chrome every ~13 s and got the "unusual

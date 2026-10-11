@@ -712,7 +712,7 @@ guarded $((LI_RETRY_MAX_MIN * 60)) ./pipeline.sh --linkedin-retry >> "$NIGHT_LOG
 
 new_runs=0
 night_state="done"
-while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run, or one that couldn't start, doesn't count
+while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a run that couldn't start doesn't count; a resumed one does (Oct 11 2026)
     left=$(minutes_left)
     if [ "$left" -lt "$MIN_RUN_WINDOW_MIN" ]; then
         log "Only $left min before the cutoff — no more runs tonight"
@@ -721,7 +721,8 @@ while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a resumed run, or one that c
     apply_websites   # the research's websites, if it's done (never during a run)
     do_run
     rc=$?
-    [ "$LAST_MODE" = "--run" ] && [ "$LAST_STARTED" = 1 ] && new_runs=$((new_runs + 1))
+    # Alex, Oct 11 2026: "1 run of 50" a night, so finishing a leftover run is the night's run too
+    [ "$LAST_STARTED" = 1 ] && new_runs=$((new_runs + 1))
     if [ "$rc" = 4 ]; then
         log "No eligible venues left — the pool needs a sweep"
         status alert pool warn "Out of venues to run" "Every venue that passes the filters has been worked. A sweep of a new city refills the pool."

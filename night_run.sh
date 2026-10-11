@@ -29,8 +29,12 @@
 #   4. after the last run: one Claude session fixes the scraper for what the pipeline
 #      missed (phase fix, recall benchmark as the test), then commit + push.
 #   5. the rest of the night goes to the family tree (Alex, Oct 11 2026: "if we have time
-#      after 1 run of 50 and fixing itself it uses its energy on the family tree"): Codex-1,
-#      the FamilySearch worker, starts once the outreach is done and is stopped at the cutoff.
+#      after 1 run of 50 and fixing itself it uses its energy on the family tree", then "after
+#      the email spend what ever time is left on ancestry stuff", "allow it"): Codex-1
+#      (FamilySearch) starts and is killed at the cutoff; one Claude session (sonnet, Claude in
+#      Chrome, FamilyTree/NIGHT_ANCESTRY.md) works Ancestry read-only until 10 min before the
+#      cutoff (minus the update's time); then one Claude session without Chrome
+#      (FamilyTree/LEAD_UPDATE.md, ~45 min, done by 07:45) checks, merges and publishes.
 # A stop (credits, preflight) ends the night; the app shows why. A Chrome stop is first
 # tried again, CHROME_RETRIES times CHROME_RETRY_WAIT_S apart. Google's CAPTCHA doesn't stop
 # a run: the scripts stop searching Google until it lets up and go on (google_guard.sh). The night needs Chrome to
@@ -308,6 +312,35 @@ family_tree_shift() {   # Codex-1 (FamilySearch, in Chrome) until NIGHT_CUTOFF, 
         kill $(tree '"$pid"') 2>/dev/null
         echo "[$(date "+%m-%d %H:%M")] stopped at the outreach night cutoff (night_run.sh)" >> "'"$ft"'/logs/workers/Codex-1.log"
     ' >/dev/null 2>&1 &
+    # ...then Ancestry: one read-only Claude session in Chrome, leaving time for the lead update
+    local upd_min=45 anc_left anc_out upd_left ymd
+    ymd=$(date -v+1d +%Y-%m-%d)   # the lead names a night file after the next day (11 Oct evening -> 2026-10-12)
+    anc_left=$(( $(minutes_left) - 15 - upd_min ))
+    if [ ! -f "$ft/NIGHT_ANCESTRY.md" ]; then
+        log "Family tree: no NIGHT_ANCESTRY.md - no Ancestry session"
+    elif [ "$anc_left" -lt 20 ]; then
+        log "Family tree: only $anc_left min for Ancestry - skipped"
+    else
+        anc_out="$ft/handoff/ancestry_night_$ymd.md"
+        [ -e "$anc_out" ] && anc_out="$ft/handoff/ancestry_night_${ymd}_b.md"
+        log "Family tree: Ancestry session (sonnet, Chrome) for up to $anc_left min -> $anc_out"
+        ( cd "$ft" && claude_session "$anc_left" "$RUNS_DIR/night-$(date +%Y%m%d).ancestry-session.json" \
+            "Night Ancestry run for Alex's family tree. Follow $ft/NIGHT_ANCESTRY.md exactly (hard rules first). Write your night file to $anc_out. Working directory: $ft. Now: $(date '+%Y-%m-%d %H:%M'); write the STOP POINT / RESUME LIST and stop by $(date -r $(( $(deadline_epoch) - (20 + upd_min) * 60 )) '+%H:%M')." \
+            --model sonnet --chrome )
+    fi
+    # ...and the lead update: no Chrome, ~45 min, killed by 07:45; skipped if Ancestry overran
+    upd_left=$(( $(minutes_left) - 15 ))
+    [ "$upd_left" -gt "$upd_min" ] && upd_left=$upd_min
+    if [ ! -f "$ft/LEAD_UPDATE.md" ]; then
+        log "Family tree: no LEAD_UPDATE.md - no lead update"
+    elif [ "$upd_left" -lt 15 ]; then
+        log "Family tree: only $upd_left min left - lead update skipped tonight"
+    else
+        log "Family tree: lead update (sonnet, no Chrome) for up to $upd_left min"
+        ( cd "$ft" && claude_session "$upd_left" "$RUNS_DIR/night-$(date +%Y%m%d).lead-update-session.json" \
+            "Nightly lead update for Alex's family tree. Follow $ft/LEAD_UPDATE.md exactly. Do NOT use Chrome or any browser. Write handoff/lead_update_$(date +%Y-%m-%d).md. Working directory: $ft. Now: $(date '+%Y-%m-%d %H:%M'); finish by $(date -r $(( $(deadline_epoch) - 15 * 60 )) '+%H:%M')." \
+            --model sonnet --disallowedTools 'mcp__claude-in-chrome__*' )
+    fi
 }
 
 # ---------------------------------------------------------------- deep dive / fix sessions

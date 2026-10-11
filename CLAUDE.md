@@ -113,6 +113,11 @@ missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discove
   `family_tree_shift` starts Codex-1 (`FamilyTree/tools/codex_worker.sh Codex-1`, the
   FamilySearch worker, uses Chrome) once the outreach is done and kills it at 8:00. It
   is skipped on `--force`, when `FamilyTree/STOP_WORKERS` exists, or with < 20 min left.
+  Then one headless Claude session (sonnet, `--chrome`) works Ancestry read-only from
+  `FamilyTree/NIGHT_ANCESTRY.md` (file `handoff/ancestry_night_<tomorrow>.md`), ending ~65 min
+  before the cutoff; then one more (sonnet, Chrome tools disallowed, <= 45 min, done by 07:45)
+  follows `FamilyTree/LEAD_UPDATE.md` (check, merge up to 3 finds, publish). Alex approved
+  both on Oct 11 2026 ("allow it"); a step without time left is skipped.
 - A stop (credits, Chrome, preflight) ends the night and sets the app alert in
   `night_status.json` with the real reason (preflight's own FAIL line, not its
   summary); the stopped run resumes first next night (dropped on its 3rd stop that

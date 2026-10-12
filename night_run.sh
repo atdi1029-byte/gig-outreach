@@ -37,7 +37,8 @@
 #      Codex runs 24/7 on its own (Alex, Oct 11: "i want codex to be running 24/7"). Codex-1 is the
 #      one in Chrome, so it pauses while the email work runs: CODEX_PAUSE exists from the start of
 #      the night until the email work is done (FamilyTree/tools/codex_worker.sh waits on it).
-# A stop (credits, preflight) ends the night; the app shows why. A Chrome stop is first
+# A stop (credits, preflight) ends the email part of the night; the app shows why, and the
+# family tree shift still runs. A Chrome stop is first
 # tried again, CHROME_RETRIES times CHROME_RETRY_WAIT_S apart. Google's CAPTCHA doesn't stop
 # a run: the scripts stop searching Google until it lets up and go on (google_guard.sh). The night needs Chrome to
 # itself: another copy of Chrome is waited for, then closed if a program started it
@@ -697,12 +698,14 @@ if ! zb_check && ! { log "Checking ZeroBounce again in 60s (a network blip looks
     status alert zerobounce stop "Night runs paused: ZeroBounce" "$ZB_DETAIL"
     status finish stopped
     status_push "stopped (ZeroBounce)"
+    family_tree_shift   # Oct 12 2026: a credit stop skips the email, not the family tree (it lost the 12 Oct night)
     exit 0
 fi
 if ! apollo_check; then
     status alert apollo stop "Night runs paused: Apollo credits" "Apollo has $APOLLO_LEFT credits left (the floor is $APOLLO_MIN_CREDITS). Top up and the next night starts again."
     status finish stopped
     status_push "stopped (Apollo)"
+    family_tree_shift
     exit 0
 fi
 status clear-alert zerobounce apollo asleep chrome error

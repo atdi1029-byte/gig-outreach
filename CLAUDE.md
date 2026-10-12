@@ -116,7 +116,8 @@ missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discove
   is skipped. Codex is NOT part of the night: it runs 24/7 on its own ("i want codex to be
   running 24/7"); `codex_pause` writes `.codex1_pause` at the start of the night so Codex-1
   (the only Codex worker in Chrome) waits until the email work is done.
-- A stop (credits, Chrome, preflight) ends the night and sets the app alert in
+- A stop (credits, Chrome, preflight) ends the email part of the night (the family tree
+  shift still runs, even after a ZeroBounce/Apollo check fails at 1:00 — Oct 12 2026) and sets the app alert in
   `night_status.json` with the real reason (preflight's own FAIL line, not its
   summary); the stopped run resumes first next night (dropped on its 3rd stop that
   isn't the cutoff or Chrome). A run that never started leaves nothing to resume and

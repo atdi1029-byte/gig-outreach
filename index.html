@@ -725,6 +725,12 @@ body {
     z-index: 999; transition: transform 0.3s ease; pointer-events: none;
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
+.outbox-status {
+    position: fixed; bottom: 0.6rem; left: 0.6rem; z-index: 998;
+    background: rgba(20,20,20,0.85); color: var(--text-dim); border: 1px solid var(--border-light);
+    font-size: 0.7rem; padding: 0.25rem 0.7rem; border-radius: 12px; cursor: pointer;
+}
+.outbox-status.err { color: #e67e22; border-color: #e67e22; }
 
 /* === TEMPLATE PREVIEWER === */
 .tpl-ch-btn { flex:1; padding:0.5rem; background:var(--bg-card); color:var(--text-dim); border:1px solid var(--border-light); border-radius:8px; font-size:0.8rem; cursor:pointer; }
@@ -1386,6 +1392,7 @@ body {
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
+<div class="outbox-status" id="outboxStatus" style="display:none" onclick="retryOutboxNow()"></div>
 
 <script>
 // === CONFIG ===
@@ -1403,15 +1410,6 @@ let _dashInFlight = false;
 let _dashFetchedAt = 0;     // last successful network load
 let _dashFailures = 0;
 let navStack = ['viewHome'];
-// Track locally-confirmed sent contacts so a loadDashboard overwrite
-// doesn't erase marks made during an in-flight refresh.
-const _localSentContacts = new Map(); // "contactId|venueId" -> 'true' | 'skipped'
-const _localSentIG = new Set(); // venue IDs with IG marked sent
-const _localSentFB = new Set(); // venue IDs with FB marked sent
-const _localSentForm = new Set(); // venue IDs with contact form marked sent
-const _localSkippedIG = new Set(); // skips too: the old backend only reports them as "sent"
-const _localSkippedFB = new Set();
-const _localSkippedForm = new Set();
 let currentState = '';
 let currentCategory = '';
 
@@ -1551,11 +1549,14 @@ function renderTitleWords(name, title) {
 }
 
 // === NAVIGATION ===
-function showView(viewId) {
+// Each view's scroll spot, so Back returns to the same place in a list
+const _viewScroll = {};
+function showView(viewId, restoreScroll) {
+    const cur = document.querySelector('.view.active');
+    if (cur) _viewScroll[cur.id] = cur.scrollTop;
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById(viewId).classList.add('active');
-    // Scroll to top
-    document.getElementById(viewId).scrollTop = 0;
+    document.getElementById(viewId).scrollTop = restoreScroll ? (_viewScroll[viewId] || 0) : 0;
 }
 
 function navigateTo(viewId) {
@@ -1579,7 +1580,14 @@ window.addEventListener('popstate', function(e) {
     } else {
         navStack = ['viewHome'];
     }
-    showView(navStack[navStack.length - 1]);
+    // Lists are rebuilt on Back so venues finished on the detail page drop out
+    const to = navStack[navStack.length - 1];
+    try {
+        if (to === 'viewCategory' && currentCategory) openCategory(currentCategory, true);
+        else if (to === 'viewState' && currentState) openState(currentState, true);
+        else if (to === 'viewHome' && dashboardData) renderStateGrid();
+    } catch (err) { console.error('Back re-render failed:', err); }
+    showView(to, true);
     // At home — push guard so next back bounces instead of exiting
     if (navStack.length <= 1) {
         history.pushState({ stack: ['viewHome'], guard: true }, '');
@@ -2213,22 +2221,178 @@ function changeVenueCategory(venueId, selectEl) {
     });
 }
 
-// === IN-FLIGHT GUARD ===
-// Mark/skip buttons stay disabled until the server answers; a second tap on a slow
-// update_contact/log_outreach used to log a second send and double-count the goals.
-const _inFlight = new Set();
-function beginAction(key, btn) {
-    if (_inFlight.has(key) || (btn && btn.disabled)) return false;
-    _inFlight.add(key);
-    if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = '...'; }
+// === OUTBOX ===
+// Sent / skip / Mark Done taps show at once and save in the background. Each Apps Script
+// write takes 5-15 s (an email is two writes), and Android often kills the app while Gmail
+// or Facebook is open, so waiting on the server made every tap slow and lost some of them:
+// sent venues came back and had to be gone through again (Alex, Oct 26 2026). Every tap is
+// queued in localStorage: unsent work resumes on the next open, and each mark is laid over
+// every dashboard (saved or fresh) until a dashboard fetched after the save has it.
+const OUTBOX_KEY = 'outreach_outbox_v1';
+const OUTBOX_KEEP_MS = 3 * 86400000; // a saved mark is dropped after 3 days even without a fresh load
+let _outbox = lsJSON(OUTBOX_KEY, []);
+if (!Array.isArray(_outbox)) _outbox = [];
+let _outboxBusy = false, _outboxTimer = null, _outboxFails = 0, _outboxError = '';
+
+function saveOutbox() { writeJSON(OUTBOX_KEY, _outbox); renderOutboxStatus(); }
+function outboxPending() { return _outbox.filter(o => !o.doneAt); }
+function resMsg(res) { return (res && res.message) || 'network error'; }
+
+function findMarkContact(op, data) {
+    const list = ((data && data.contacts) || []).filter(x => x.contact_id === op.contactId && x.venue_id === op.venueId);
+    return list.find(x => op.email && emailKey(x.email) === op.email) || list[0] || null;
+}
+
+// Lay one queued tap over a dashboard payload. Field marks are idempotent; the today/week
+// counters are bumped once per payload (data._marked survives in the saved dashboard).
+function applyMark(op, data) {
+    if (!data) return;
+    if (op.kind === 'email' || op.kind === 'skip') {
+        const c = findMarkContact(op, data);
+        if (c && !isSentFlag(c.email_sent)) c.email_sent = op.kind === 'email' ? 'true' : 'skipped';
+    } else {
+        const v = (data.venues || []).find(x => x.venue_id === op.venueId);
+        if (!v) return;
+        if (op.kind === 'ig') v.ig_dm_sent = true;
+        else if (op.kind === 'fb') v.fb_msg_sent = true;
+        else if (op.kind === 'form') v.contact_form_sent = true;
+        else if (op.kind === 'igskip') v.ig_dm_skipped = true;
+        else if (op.kind === 'fbskip') v.fb_msg_skipped = true;
+        else if (op.kind === 'formskip') v.contact_form_skipped = true;
+        else if (op.kind === 'status') {
+            v.status = op.value;
+            if (op.value === 'contacted') v.contacted_date = new Date(op.at).toISOString();
+            else if (op.value === 'untouched') v.contacted_date = '';
+        }
+    }
+    const ch = { email: 'email', ig: 'ig', fb: 'fb' }[op.kind];
+    data._marked = data._marked || {};
+    if (ch && !data._marked[op.id]) {
+        data._marked[op.id] = 1;
+        if (data.weeklyCounts) data.weeklyCounts[ch] = (Number(data.weeklyCounts[ch]) || 0) + 1;
+        if (data.dailyCounts && new Date(op.at).toDateString() === new Date().toDateString()) {
+            data.dailyCounts[ch] = (Number(data.dailyCounts[ch]) || 0) + 1;
+        }
+    }
+}
+function applyOutboxMarks(data) { _outbox.forEach(op => applyMark(op, data)); }
+
+// The server refused a tap for good (e.g. an ambiguous contact): put the item back
+function revertMark(op, msg) {
+    if (dashboardData) {
+        if (op.kind === 'email' || op.kind === 'skip') {
+            const c = findMarkContact(op, dashboardData);
+            if (c) c.email_sent = op.prev == null ? '' : op.prev;
+        } else {
+            const v = (dashboardData.venues || []).find(x => x.venue_id === op.venueId);
+            if (v && op.prev) Object.assign(v, op.prev);
+        }
+        invalidateIndex();
+    }
+    showToast('Not saved: ' + (op.label || 'a mark') + ' (' + msg + ')');
+    if (navStack[navStack.length - 1] === 'viewDetail' && window._currentVenueId === op.venueId) openVenueDetail(op.venueId);
+    try { renderStateGrid(); renderLevelBar(); renderWeeklyGoals(); } catch (e) {}
+}
+
+// Queue a tap: mark it locally now, save it in the background.
+// steps = the API calls in order; optional steps may be refused without blocking the rest.
+function queueMark(op) {
+    if (!BASE_URL) { showToast('API not configured'); return false; }
+    // Double tap, or the same mark already queued: nothing new to save
+    if (op.kind !== 'status' && _outbox.some(o => o.kind === op.kind && o.venueId === op.venueId &&
+        (o.contactId || '') === (op.contactId || '') && (o.email || '') === (op.email || ''))) return false;
+    op.id = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    op.at = Date.now();
+    op.step = 0;
+    const v = getIndex().venueById.get(op.venueId);
+    op.label = op.label || (v ? v.name : op.venueId);
+    if (op.kind === 'email' || op.kind === 'skip') {
+        const c = findMarkContact(op, dashboardData);
+        op.prev = c ? c.email_sent : '';
+    } else if (v) {
+        const f = { ig: 'ig_dm_sent', fb: 'fb_msg_sent', form: 'contact_form_sent', igskip: 'ig_dm_skipped',
+            fbskip: 'fb_msg_skipped', formskip: 'contact_form_skipped' }[op.kind];
+        op.prev = f ? { [f]: v[f] || false } : { status: v.status, contacted_date: v.contacted_date || '' };
+    }
+    _outbox.push(op);
+    applyMark(op, dashboardData);
+    invalidateIndex();
+    saveOutbox();
+    flushOutbox();
     return true;
 }
-function failAction(key, btn, msg) {
-    _inFlight.delete(key);
-    if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || btn.textContent; }
-    if (msg) showToast(msg);
+
+// Send queued taps one at a time (each write takes the script lock anyway). Network errors,
+// timeouts and a busy lock retry with backoff for as long as it takes; op_id lets the backend
+// drop a log row it already wrote when a timed-out call is sent again.
+function flushOutbox() {
+    clearTimeout(_outboxTimer);
+    if (_outboxBusy || !BASE_URL) return;
+    const op = _outbox.find(o => !o.doneAt);
+    if (!op) { _outboxFails = 0; _outboxError = ''; renderOutboxStatus(); return; }
+    _outboxBusy = true;
+    renderOutboxStatus();
+    const step = op.steps[op.step];
+    jsonpFetch(buildUrl(Object.assign({ op_id: op.id + '.' + op.step }, step.params)), function(err, res) {
+        _outboxBusy = false;
+        const msg = err || resMsg(res);
+        const ok = !err && res && res.status === 'ok' && res.verified !== false;
+        const transient = !!err || !res || res.busy ||
+            /LOCK_BUSY|timed? ?out|try again|too many|Service invoked|Exceeded maximum|Internal error/i.test(msg);
+        if (ok || (step.optional && !transient)) {
+            op.step++;
+            if (op.step >= op.steps.length) op.doneAt = Date.now();
+            _outboxFails = 0; _outboxError = '';
+            saveOutbox();
+            flushOutbox();
+            return;
+        }
+        // A backend that doesn't know "dismissed" yet: keep the old behaviour rather than fail
+        if (op.kind === 'status' && op.value === 'dismissed' && /invalid status/i.test(msg)) {
+            op.value = 'contacted';
+            step.params.value = 'contacted';
+            applyMark(op, dashboardData);
+            invalidateIndex();
+            saveOutbox();
+            flushOutbox();
+            return;
+        }
+        // A failed read-back gets two more tries before it counts as refused
+        const readBackMiss = !transient && res.verified === false && (op.tries = (op.tries || 0) + 1) < 3;
+        if (transient || readBackMiss) {
+            _outboxFails++;
+            _outboxError = msg;
+            renderOutboxStatus();
+            _outboxTimer = setTimeout(flushOutbox, Math.min(5000 * Math.pow(2, _outboxFails - 1), 120000));
+            return;
+        }
+        _outbox.splice(_outbox.indexOf(op), 1);
+        saveOutbox();
+        revertMark(op, msg);
+        flushOutbox();
+    }, 90000);
 }
-function resMsg(res) { return (res && res.message) || 'network error'; }
+
+// A dashboard fetched after a mark was saved already has it; older marks stop being laid over
+function pruneOutbox(fetchStartedAt) {
+    const n = _outbox.length;
+    _outbox = _outbox.filter(o => !o.doneAt || (o.doneAt > fetchStartedAt && Date.now() - o.doneAt < OUTBOX_KEEP_MS));
+    if (_outbox.length !== n) saveOutbox();
+}
+
+function renderOutboxStatus() {
+    const el = document.getElementById('outboxStatus');
+    if (!el) return;
+    const n = outboxPending().length;
+    if (!n) { el.style.display = 'none'; return; }
+    el.style.display = '';
+    el.classList.toggle('err', !!_outboxError);
+    el.textContent = _outboxError
+        ? n + ' not saved yet — retrying (' + _outboxError + ') · tap'
+        : 'Saving ' + n + '…';
+}
+function retryOutboxNow() { _outboxFails = 0; flushOutbox(); }
+
 function removeSocialRow(el) {
     const row = el.closest('.detail-action-row');
     const label = row ? row.previousElementSibling : null;
@@ -2241,180 +2405,93 @@ function sentRowHtml(email, label) {
 
 // === SKIP CONTACT ===
 function skipContact(contactId, el) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
     const vid = currentDetailVenue ? currentDetailVenue.venue_id : '';
-    const key = 'skip|' + contactId + '|' + vid;
-    if (!beginAction(key, el)) return;
     // email lets the backend pick the right row when a contact_id is duplicated
     const wrap = el.closest('.contact-wrapper');
     const addr = wrap ? wrap.dataset.email : '';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: vid, email: addr, field: 'email_sent', value: 'skipped' }), function(res) {
-        if (res.status !== 'ok') { failAction(key, el, 'Skip failed: ' + resMsg(res)); return; }
-        _inFlight.delete(key);
-        updateLocalContact(contactId, vid, 'email_sent', 'skipped');
-        const wrapper = el.closest('.contact-wrapper');
-        if (wrapper) wrapper.remove();
-        else { const r = el.closest('.detail-action-row'); if (r) r.remove(); }
-        showToast('Skipped');
-    });
-}
-
-// === UPDATE LOCAL DATA ===
-function updateLocalContact(contactId, venueId, field, value) {
-    // Remember email_sent marks so loadDashboard overwrites don't lose them
-    if (field === 'email_sent' && (value === 'true' || value === 'skipped')) {
-        _localSentContacts.set(contactId + '|' + venueId, value);
-    }
-    if (!dashboardData) return;
-    const c = (dashboardData.contacts || []).find(
-        x => x.contact_id === contactId && x.venue_id === venueId
-    );
-    if (c) c[field] = value;
-    invalidateIndex();
+    queueMark({ kind: 'skip', venueId: vid, contactId: contactId, email: addr, steps: [
+        { params: { action: 'update_contact', contact_id: contactId, venue_id: vid, email: addr, field: 'email_sent', value: 'skipped' } }
+    ] });
+    if (wrap) wrap.remove();
+    else { const r = el.closest('.detail-action-row'); if (r) r.remove(); }
+    showToast('Skipped');
 }
 
 // === MARK ACTIONS ===
 function markEmailSent(contactId, venueId, category, btn) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    const key = 'email|' + contactId + '|' + venueId;
-    if (!beginAction(key, btn)) return;
     const wrap = btn.closest('.contact-wrapper');
     const addr = wrap ? wrap.dataset.email : '';
-    fireGet(buildUrl({ action: 'update_contact', contact_id: contactId, venue_id: venueId, email: addr, field: 'email_sent', value: 'true' }), function(res) {
-        if (res.status !== 'ok') { failAction(key, btn, 'Not marked: ' + resMsg(res)); return; }
-        _inFlight.delete(key);
-        updateLocalContact(contactId, venueId, 'email_sent', 'true');
-        const wrapper = btn.closest('.contact-wrapper');
-        const sentKey = addr;
-        if (wrapper) wrapper.remove();
-        else { const r = btn.closest('.detail-action-row'); if (r) r.remove(); }
-        // Other rows with the same address (duplicate contact rows) must not offer a second email
-        if (sentKey) {
-            document.querySelectorAll('#detailBody .contact-wrapper').forEach(w => {
-                if (w.dataset.email !== sentKey) return;
-                const shown = (w.querySelector('.detail-email') || {}).textContent || sentKey;
-                w.outerHTML = sentRowHtml(shown, 'Sent');
-            });
-        }
-        showToast('Marked as sent!');
-        renderLevelBar();
-        fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category }), function(r2) {
-            if (r2.status !== 'ok') showToast('Marked sent, but the outreach log failed');
+    queueMark({ kind: 'email', venueId: venueId, contactId: contactId, email: addr, steps: [
+        { params: { action: 'update_contact', contact_id: contactId, venue_id: venueId, email: addr, field: 'email_sent', value: 'true' } },
+        { params: { action: 'log_outreach', venue_id: venueId, contact_id: contactId, channel: 'email', template_used: category } }
+    ] });
+    if (wrap) wrap.remove();
+    else { const r = btn.closest('.detail-action-row'); if (r) r.remove(); }
+    // Other rows with the same address (duplicate contact rows) must not offer a second email
+    if (addr) {
+        document.querySelectorAll('#detailBody .contact-wrapper').forEach(w => {
+            if (w.dataset.email !== addr) return;
+            const shown = (w.querySelector('.detail-email') || {}).textContent || addr;
+            w.outerHTML = sentRowHtml(shown, 'Sent');
         });
-    });
+    }
+    showToast('Marked as sent!');
+    renderLevelBar();
+}
+
+// IG/FB: the log row is what counts; the contact flag is kept too (first contact of the venue)
+function markSocial(kind, venueId, btn) {
+    const vc = (getIndex().contactsByVenue.get(venueId) || [])[0];
+    const channel = { ig: 'instagram', fb: 'facebook', form: 'contact_form',
+        igskip: 'instagram_skip', fbskip: 'facebook_skip', formskip: 'contact_form_skip' }[kind];
+    const steps = [];
+    if (vc && (kind === 'ig' || kind === 'fb')) {
+        steps.push({ optional: true, params: { action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId,
+            email: emailKey(vc.email), field: kind === 'ig' ? 'ig_dm_sent' : 'fb_msg_sent', value: 'true' } });
+    }
+    steps.push({ params: { action: 'log_outreach', venue_id: venueId, contact_id: '', channel: channel } });
+    queueMark({ kind: kind, venueId: venueId, steps: steps });
 }
 
 function markIGSent(venueId, btn) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    const key = 'ig|' + venueId;
-    if (!beginAction(key, btn)) return;
-    // Persist to Contacts sheet (find first contact for this venue)
-    var vc = (getIndex().contactsByVenue.get(venueId) || [])[0];
-    if (vc) {
-        fireGet(buildUrl({ action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId, email: emailKey(vc.email), field: 'ig_dm_sent', value: 'true' }));
-    }
-    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'instagram' }), function(res) {
-        if (res.status !== 'ok') { failAction(key, btn, 'Not marked: ' + resMsg(res)); return; }
-        _inFlight.delete(key);
-        removeSocialRow(btn);
-        showToast('IG DM marked!');
-        _localSentIG.add(venueId);
-        var dv = getIndex().venueById.get(venueId);
-        if (dv) dv.ig_dm_sent = true;
-        invalidateIndex();
-        renderLevelBar();
-    });
+    markSocial('ig', venueId, btn);
+    removeSocialRow(btn);
+    showToast('IG DM marked!');
+    renderLevelBar();
 }
 
 function markFBSent(venueId, btn) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    const key = 'fb|' + venueId;
-    if (!beginAction(key, btn)) return;
-    // Persist to Contacts sheet (find first contact for this venue)
-    var vc = (getIndex().contactsByVenue.get(venueId) || [])[0];
-    if (vc) {
-        fireGet(buildUrl({ action: 'update_contact', contact_id: vc.contact_id, venue_id: venueId, email: emailKey(vc.email), field: 'fb_msg_sent', value: 'true' }));
-    }
-    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'facebook' }), function(res) {
-        if (res.status !== 'ok') { failAction(key, btn, 'Not marked: ' + resMsg(res)); return; }
-        _inFlight.delete(key);
-        removeSocialRow(btn);
-        showToast('FB msg marked!');
-        _localSentFB.add(venueId);
-        var dv = getIndex().venueById.get(venueId);
-        if (dv) dv.fb_msg_sent = true;
-        invalidateIndex();
-        renderLevelBar();
-    });
+    markSocial('fb', venueId, btn);
+    removeSocialRow(btn);
+    showToast('FB msg marked!');
+    renderLevelBar();
 }
 
 function skipIG(venueId, el) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    const key = 'igskip|' + venueId;
-    if (!beginAction(key, el)) return;
-    // Write to outreach log AND update venue field for reliability
-    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'instagram_skip' }), function(res) {
-        if (res.status !== 'ok') { failAction(key, el, 'Failed to skip IG'); return; }
-        _inFlight.delete(key);
-        removeSocialRow(el);
-        showToast('IG skipped');
-        _localSkippedIG.add(venueId);
-        var dv = getIndex().venueById.get(venueId);
-        if (dv) dv.ig_dm_skipped = true;
-    });
+    markSocial('igskip', venueId, el);
+    removeSocialRow(el);
+    showToast('IG skipped');
 }
 
 function skipFB(venueId, el) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    const key = 'fbskip|' + venueId;
-    if (!beginAction(key, el)) return;
-    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'facebook_skip' }), function(res) {
-        if (res.status !== 'ok') { failAction(key, el, 'Failed to skip FB'); return; }
-        _inFlight.delete(key);
-        removeSocialRow(el);
-        showToast('FB skipped');
-        _localSkippedFB.add(venueId);
-        var dv = getIndex().venueById.get(venueId);
-        if (dv) dv.fb_msg_skipped = true;
-    });
+    markSocial('fbskip', venueId, el);
+    removeSocialRow(el);
+    showToast('FB skipped');
 }
 
 function markFormSent(venueId, btn) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    const key = 'form|' + venueId;
-    if (!beginAction(key, btn)) return;
-    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'contact_form' }), function(res) {
-        // Only show "Sent" once the send is actually in the Outreach Log
-        if (res.status !== 'ok') { failAction(key, btn, 'Not marked: ' + resMsg(res)); return; }
-        _inFlight.delete(key);
-        var row = btn.closest('.detail-action-row');
-        if (row) {
-            row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span>';
-        }
-        showToast('Contact form marked!');
-        _localSentForm.add(venueId);
-        var dv = getIndex().venueById.get(venueId);
-        if (dv) dv.contact_form_sent = true;
-        renderLevelBar();
-    });
+    markSocial('form', venueId, btn);
+    const row = btn.closest('.detail-action-row');
+    if (row) row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Sent</span>';
+    showToast('Contact form marked!');
+    renderLevelBar();
 }
 
 function skipForm(venueId, el) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
-    const key = 'formskip|' + venueId;
-    if (!beginAction(key, el)) return;
-    fireGet(buildUrl({ action: 'log_outreach', venue_id: venueId, contact_id: '', channel: 'contact_form_skip' }), function(res) {
-        if (res.status !== 'ok') { failAction(key, el, 'Failed to skip form'); return; }
-        _inFlight.delete(key);
-        var row = el.closest('.detail-action-row');
-        if (row) {
-            row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Skipped</span>';
-        }
-        showToast('Contact form skipped');
-        _localSkippedForm.add(venueId);
-        var dv = getIndex().venueById.get(venueId);
-        if (dv) dv.contact_form_skipped = true;
-    });
+    markSocial('formskip', venueId, el);
+    const row = el.closest('.detail-action-row');
+    if (row) row.innerHTML = '<span class="detail-social-label">Website Form</span><span class="detail-done">Skipped</span>';
+    showToast('Contact form skipped');
 }
 
 // === RENDER: HOME — State Grid ===
@@ -2494,7 +2571,7 @@ function pastGigMatcher() {
 }
 
 // === VIEW: STATE (categories) ===
-function openState(state) {
+function openState(state, stay) {
     currentState = state;
     document.getElementById('stateTitleText').textContent = stateLabel(state);
 
@@ -2555,11 +2632,11 @@ function openState(state) {
     }).join('') + '</div>';
 
     el.innerHTML = html;
-    navigateTo('viewState');
+    if (!stay) navigateTo('viewState');
 }
 
 // === VIEW: CATEGORY (venue list) ===
-function openCategory(cat) {
+function openCategory(cat, stay) {
     currentCategory = cat;
     document.getElementById('categoryTitleText').textContent = catLabel(cat) + ' — ' + stateLabel(currentState);
 
@@ -2586,7 +2663,7 @@ function openCategory(cat) {
         }).join('');
     }
 
-    navigateTo('viewCategory');
+    if (!stay) navigateTo('viewCategory');
 }
 
 // === VIEW: VENUE DETAIL ===
@@ -3023,27 +3100,8 @@ function renderWeeklyGoals() {
 function applyDashboard(data, fromCache) {
     dashboardData = data;
     invalidateIndex();
-    // Re-apply any locally confirmed sent/skip marks that arrived during
-    // this fetch (prevents race where marks are wiped by stale data)
-    if (_localSentContacts.size > 0) {
-        (dashboardData.contacts || []).forEach(function(c) {
-            const mark = _localSentContacts.get(c.contact_id + '|' + c.venue_id);
-            if (mark && c.email_sent !== 'true') c.email_sent = mark;
-        });
-    }
-    const localVenueMarks = [_localSentIG, _localSentFB, _localSentForm, _localSkippedIG, _localSkippedFB, _localSkippedForm];
-    if (localVenueMarks.some(s => s.size > 0)) {
-        (dashboardData.venues || []).forEach(function(v) {
-            if (_localSentIG.has(v.venue_id)) v.ig_dm_sent = true;
-            if (_localSentFB.has(v.venue_id)) v.fb_msg_sent = true;
-            if (_localSentForm.has(v.venue_id)) v.contact_form_sent = true;
-            // The deployed backend folds *_skip log rows into *_sent; a skip made here
-            // (only offered when nothing was sent yet) is not a send
-            if (_localSkippedIG.has(v.venue_id)) { v.ig_dm_skipped = true; if (!_localSentIG.has(v.venue_id)) v.ig_dm_sent = false; }
-            if (_localSkippedFB.has(v.venue_id)) { v.fb_msg_skipped = true; if (!_localSentFB.has(v.venue_id)) v.fb_msg_sent = false; }
-            if (_localSkippedForm.has(v.venue_id)) { v.contact_form_skipped = true; if (!_localSentForm.has(v.venue_id)) v.contact_form_sent = false; }
-        });
-    }
+    // Taps not yet on the server (or saved after this payload was fetched) stay marked
+    applyOutboxMarks(dashboardData);
     // One failing widget shouldn't blank the whole home screen
     [renderStateGrid, updateGigsCount, renderWeeklyGoals, renderLevelBar, checkLinkedInReminder].forEach(function(fn) {
         try { fn(); } catch (e) { console.error('Render error in ' + fn.name + ':', e); }
@@ -3131,6 +3189,7 @@ function loadDashboard() {
     _dashInFlight = true;
     if (!dashboardData) setSyncStatus('Loading venues…');
 
+    const fetchStartedAt = Date.now();
     jsonpFetch(API_URL, function(err, data) {
         const ok = !err && data && data.status === 'ok';
         if (!ok) err = err || (data && data.message) || 'Bad response';
@@ -3138,6 +3197,7 @@ function loadDashboard() {
         if (ok) {
             _dashFetchedAt = Date.now();
             _dashFailures = 0;
+            pruneOutbox(fetchStartedAt);
             try {
                 applyDashboard(data);
                 setSyncStatus('');
@@ -3523,22 +3583,14 @@ function venueHasVerifiedContact(venueId) {
 // Un-mark Done: back to pipelined when the venue has verified contacts, else untouched.
 // (It never triggered a re-scrape: build_batch skips reported venues and venues with contacts.)
 function resetVenue(venueId) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
     const newStatus = venueHasVerifiedContact(venueId) ? 'pipelined' : 'untouched';
     // force: the new backend refuses contacted -> pipelined/untouched without it; this is an explicit user undo
-    fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: newStatus, force: 'true' }), function(data) {
-        if (data.status !== 'ok' || data.verified === false) { showToast('Not saved: ' + resMsg(data)); return; }
-        const v = getIndex().venueById.get(venueId);
-        if (v) {
-            v.status = newStatus;
-            if (newStatus === 'untouched') v.contacted_date = '';
-        }
-        invalidateIndex();
-        showToast('Venue un-marked (' + newStatus + ')');
-        // Re-render from the updated local data (loadDashboard skips while the detail view is open)
-        if (navStack[navStack.length - 1] === 'viewDetail' && window._currentVenueId === venueId) openVenueDetail(venueId);
-        renderStateGrid();
-    });
+    queueMark({ kind: 'status', venueId: venueId, value: newStatus, steps: [
+        { params: { action: 'update_venue', venue_id: venueId, field: 'status', value: newStatus, force: 'true' } }
+    ] });
+    showToast('Venue un-marked (' + newStatus + ')');
+    if (navStack[navStack.length - 1] === 'viewDetail' && window._currentVenueId === venueId) openVenueDetail(venueId);
+    renderStateGrid();
 }
 
 function saveDetailNote(venueId) {
@@ -3556,7 +3608,6 @@ function saveDetailNote(venueId) {
 // "contacted" means outreach went out (it starts the 2.5-year resurface clock). Marking a
 // venue done with nothing sent records it as "dismissed" instead, so metrics stay honest.
 function markVenueDone(venueId) {
-    if (!BASE_URL) { showToast('API not configured'); return; }
     const idx = getIndex();
     const v = idx.venueById.get(venueId);
     // 'sent_elsewhere' = this person was already emailed from another venue row
@@ -3566,25 +3617,12 @@ function markVenueDone(venueId) {
         ? 'Mark this venue as contacted? It will be hidden from action lists.'
         : 'No outreach has been logged for this venue.\n\nDismiss it? It will be hidden from action lists (saved as "dismissed", not "contacted").';
     if (!confirm(msg)) return;
-    const save = function(newStatus) {
-        fireGet(buildUrl({ action: 'update_venue', venue_id: venueId, field: 'status', value: newStatus }), function(data) {
-            // A backend that doesn't know "dismissed" yet: keep the old behaviour rather than fail
-            if (newStatus === 'dismissed' && data.status === 'error' && /invalid status/i.test(data.message || '')) {
-                save('contacted');
-                return;
-            }
-            if (data.status !== 'ok' || data.verified === false) { showToast('Not saved: ' + resMsg(data)); return; }
-            if (v) {
-                v.status = newStatus;
-                if (newStatus === 'contacted') v.contacted_date = new Date().toISOString();
-            }
-            invalidateIndex();
-            showToast(newStatus === 'dismissed' ? 'Venue dismissed' : 'Venue hidden!');
-            goBack();
-            setTimeout(loadDashboard, 500);
-        });
-    };
-    save(anySent ? 'contacted' : 'dismissed');
+    const newStatus = anySent ? 'contacted' : 'dismissed';
+    queueMark({ kind: 'status', venueId: venueId, value: newStatus, steps: [
+        { params: { action: 'update_venue', venue_id: venueId, field: 'status', value: newStatus } }
+    ] });
+    showToast(newStatus === 'dismissed' ? 'Venue dismissed' : 'Venue hidden!');
+    goBack();
 }
 
 function toggleMonthlyTask(id) {
@@ -4395,6 +4433,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // applyDashboard once data is in.
     loadDashboard();
     loadNightStatus(true);
+    flushOutbox(); // taps left unsaved when the app was closed
 
     // Meanwhile show the last saved dashboard
     readCachedDashboard()
@@ -4430,10 +4469,12 @@ function dropVenueMark() {
     }
 }
 window.addEventListener('pageshow', e => { if (e.persisted) dropVenueMark(); });
+window.addEventListener('online', retryOutboxNow);
 document.addEventListener('visibilitychange', () => {
     if (document.visibilityState !== 'visible') { clearTimeout(refreshTimer); return; }
     dropVenueMark();
     showPendingReveal();
+    retryOutboxNow();
     loadNightStatus();
     // Only refresh on tab-return if NOT viewing a venue detail
     if (navStack[navStack.length - 1] === 'viewDetail') { scheduleRefresh(REFRESH_INTERVAL); }

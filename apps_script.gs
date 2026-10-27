@@ -15,7 +15,7 @@ var PROGRESS    = 'Progress';
 var PAST_GIGS   = 'Past Gigs';
 
 // Bump on every deploy. preflight.sh compares the live value with this file.
-var BACKEND_VERSION = '2026-09-25.1';
+var BACKEND_VERSION = '2026-10-26.1';
 
 // Generate next unique contact ID. Must be called inside withLock_: the
 // high-water mark in Script Properties keeps IDs from being reused after the
@@ -2439,12 +2439,20 @@ function logOutreach_(params) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(OUTREACH);
 
+  // The PWA retries a timed-out call with the same op_id: a row already written for it
+  // is not logged (or counted) twice
+  var opId = String(params.op_id || '');
+  if (opId && outreachOpLogged_(sheet, opId)) {
+    return jsonResponse_({ status: 'ok', logged: true, duplicate: true, propagated: 0 });
+  }
+
   sheet.appendRow([
     new Date(),
     params.venue_id || '',
     params.contact_id || '',
     params.channel || 'email',
-    safeCell_(params.template_used || '')
+    safeCell_(params.template_used || ''),
+    opId
   ]);
 
   // Increment total counter in Config
@@ -2480,6 +2488,19 @@ function logOutreach_(params) {
   }
 
   return jsonResponse_({ status: 'ok', logged: true, propagated: propagated });
+}
+
+// True when one of the last 500 Outreach Log rows carries this op_id (column F)
+function outreachOpLogged_(sheet, opId) {
+  if (String(sheet.getRange(1, 6).getValue()) === '') sheet.getRange(1, 6).setValue('op_id');
+  var last = sheet.getLastRow();
+  if (last < 2) return false;
+  var n = Math.min(500, last - 1);
+  var vals = sheet.getRange(last - n + 1, 6, n, 1).getValues();
+  for (var i = vals.length - 1; i >= 0; i--) {
+    if (String(vals[i][0]) === opId) return true;
+  }
+  return false;
 }
 
 // ---------------------------------------------------------------
@@ -3225,7 +3246,7 @@ function setupSheets() {
   var tabs = {
     'Venues': ['venue_id', 'name', 'category', 'website', 'city', 'county', 'state', 'address', 'facebook', 'instagram', 'upscale_score', 'zone_priority', 'status', 'source', 'scraped_date', 'notes', 'distance_miles', 'drive_minutes', 'contacted_date', 'contact_form', 'linkedin_pending', 'venue_vote', 'venue_feedback', 'check_status', 'taste_score', 'taste_score_version', 'taste_reasons', 'classification_confidence', 'location_confidence', 'priority_override'],
     'Contacts': ['contact_id', 'venue_id', 'name', 'title', 'email', 'source', 'verified', 'verified_date', 'email_sent', 'email_sent_date', 'ig_dm_sent', 'fb_msg_sent'],
-    'Outreach Log': ['timestamp', 'venue_id', 'contact_id', 'channel', 'template_used'],
+    'Outreach Log': ['timestamp', 'venue_id', 'contact_id', 'channel', 'template_used', 'op_id'],
     'Config': ['key', 'value'],
     'Templates': ['category', 'subject', 'body'],
     'Progress': ['state', 'category', 'last_scraped', 'venues_found', 'status'],

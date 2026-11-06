@@ -69,7 +69,7 @@ fi
 export PATH="/usr/local/bin:/opt/homebrew/bin:$PATH"
 
 RUN_SIZE="${RUN_SIZE:-50}"
-NIGHT_MAX_RUNS="${NIGHT_MAX_RUNS:-1}"   # Alex, Oct 11 2026: one run of 50, then the family tree
+NIGHT_MAX_RUNS="${NIGHT_MAX_RUNS:-2}"   # Alex, Nov 6 2026: "like 1 or 2 email runs"; the family tree is tabled
 NIGHT_START_EARLIEST="${NIGHT_START_EARLIEST:-0030}"   # HHMM: a launch outside this
 NIGHT_START_LATEST="${NIGHT_START_LATEST:-0330}"       # window is a missed night
 NIGHT_CUTOFF="${NIGHT_CUTOFF:-0800}"                   # HHMM: Chrome is Alex's again
@@ -302,7 +302,8 @@ codex_pause() {   # Chrome must be the email run's alone: pause Codex-1 and end 
 }
 family_tree_shift() {   # after the email work: Ancestry (Claude, Chrome), then the lead update (Claude, no Chrome)
     local ft="$FAMILY_TREE"
-    rm -f "$CODEX_PAUSE"; log "Family tree: Codex-1 may use Chrome again (pause lifted)"
+    rm -f "$CODEX_PAUSE"
+    log "Family tree: tabled (Alex, Nov 6 2026), no Ancestry session or lead update"; return 0
     [ "$MODE" = "night" ] || { log "Family tree: only on a real night (mode $MODE) — skipped"; return 0; }
     # ...then Ancestry: one read-only Claude session in Chrome, leaving time for the lead update
     local upd_min=45 anc_left anc_out upd_left ymd

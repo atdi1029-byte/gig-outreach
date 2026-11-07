@@ -1,18 +1,12 @@
 {
- "alert": {
-  "kind": "zerobounce",
-  "level": "stop",
-  "title": "Night runs paused: ZeroBounce",
-  "detail": "ZeroBounce is refusing this internet address (100.18.47.95). The Mac isn't on your home network, or your home IP changed: whitelist it in ZeroBounce.",
-  "since": "2026-10-02T01:01:05-04:00"
- },
+ "alert": null,
  "night": {
-  "date": "2026-10-12",
-  "started_at": "2026-10-12T01:00:02-04:00",
-  "finished_at": "2026-10-12T01:01:03-04:00",
-  "state": "stopped",
+  "date": "2026-11-06",
+  "started_at": "2026-11-06T23:10:01-05:00",
+  "finished_at": null,
+  "state": "running",
   "runs": [],
-  "note": "Night runs are paused (.night_off)."
+  "note": "Outreach running 24/7 until the credits run out"
  },
  "history": [
   {
@@ -80,5 +74,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-06T01:00:05-05:00"
+ "updated_at": "2026-11-06T23:13:22-05:00"
 }

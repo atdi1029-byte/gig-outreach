@@ -69,6 +69,11 @@
     "rescued_contacts": 15,
     "rescued_venues": 4,
     "deep_dive": "done"
+   },
+   {
+    "run_id": "run-20261107-1354",
+    "outcome": "running",
+    "started": "13:54"
    }
   ],
   "note": "Six scraper fixes went in from the last four rounds (no recall benchmark losses): staff on outside mail domains like Trump National's, inboxes paired with the one person who runs them, Apollo names added to nameless contacts, numeric Facebook links, parked /lander domains, and sayhello@/food@ inboxes."
@@ -139,5 +144,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-07T13:40:08-05:00"
+ "updated_at": "2026-11-07T13:54:49-05:00"
 }

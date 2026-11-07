@@ -2583,10 +2583,14 @@ function openState(state, stay) {
     });
 
     // Cream of the crop — the 10 best taste matches by taste_score (sheet order breaks ties).
-    // Thumbs-down, unreviewed (needs_review) and past-gig venues don't belong here.
+    // Thumbs-down, unreviewed (needs_review) and past-gig venues don't belong here, nor the
+    // kinds of place that matched by town alone (Nov 6 2026: a senior-living home and a
+    // theater in Easton were cream)
     const isPastGig = pastGigMatcher();
+    const notCream = /^(senior_living|church|luxury_apts|theater|theatre|grocery_market|farmers_market|mall|luxury_retail|corporate|agent|event_planner|brewery|bar|cafe)$/;
     const cream = venues
-        .filter(v => _isCreamVenue(v) && v.venue_vote !== 'down' && v.status !== 'needs_review' && !isPastGig(v))
+        .filter(v => _isCreamVenue(v) && v.venue_vote !== 'down' && v.status !== 'needs_review' && !isPastGig(v)
+            && !notCream.test(catKey(v.category)))
         .map((v, i) => ({ v, i }))
         .sort((a, b) => ((Number(b.v.taste_score) || 0) - (Number(a.v.taste_score) || 0)) || (a.i - b.i))
         .slice(0, 10)

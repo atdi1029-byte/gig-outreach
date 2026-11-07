@@ -1,0 +1,52 @@
+{
+  "run_id": "run-20261107-0342",
+  "batch": 3,
+  "venue_ids": [
+    "MD-WINE-345",
+    "MD-HOTE-366",
+    "MD-REST-544",
+    "DC-REST-2817",
+    "MD-HOTE-347",
+    "DC-REST-1282",
+    "DC-WINE-2608",
+    "MD-REST-561"
+  ],
+  "final": {
+    "MD-WINE-345": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "MD-HOTE-366": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "MD-REST-544": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "DC-REST-2817": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "MD-HOTE-347": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "DC-REST-1282": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "DC-WINE-2608": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "MD-REST-561": {
+      "result": "empty",
+      "status": "needs_review"
+    }
+  },
+  "finished_at": "2026-11-07 05:42:09",
+  "run_log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261107-0342.log",
+  "report": "",
+  "batch_file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261107-0342.batch3.json"
+}

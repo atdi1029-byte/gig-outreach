@@ -1,0 +1,92 @@
+{
+  "created": "2026-11-07 03:42:39",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "hotel": 9,
+    "fine_dining": 6,
+    "club": 4,
+    "wine": 4,
+    "wild": 2
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-0342/batch_01.json",
+      "venue_ids": [
+        "VA-HOTE-2979",
+        "MD-REST-562",
+        "MD-REST-1511",
+        "MD-WINE-708",
+        "MD-REST-909",
+        "VA-REST-3040",
+        "MD-WEDD-754",
+        "MD-EVEN-365"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-0342/batch_02.json",
+      "venue_ids": [
+        "MD-COUN-551",
+        "DC-WINE-2605",
+        "MD-EVEN-351",
+        "MD-REST-338",
+        "MD-HOTE-615",
+        "DC-REST-2565",
+        "VA-HOTE-3015",
+        "MD-COUN-1327"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-0342/batch_03.json",
+      "venue_ids": [
+        "MD-WINE-345",
+        "MD-HOTE-366",
+        "MD-REST-544",
+        "DC-REST-2817",
+        "MD-HOTE-347",
+        "DC-REST-1282",
+        "DC-WINE-2608",
+        "MD-REST-561"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-0342/batch_04.json",
+      "venue_ids": [
+        "MD-HOTE-448"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "VA-HOTE-2979",
+    "MD-REST-562",
+    "MD-REST-1511",
+    "MD-WINE-708",
+    "MD-REST-909",
+    "VA-REST-3040",
+    "MD-WEDD-754",
+    "MD-EVEN-365",
+    "MD-COUN-551",
+    "DC-WINE-2605",
+    "MD-EVEN-351",
+    "MD-REST-338",
+    "MD-HOTE-615",
+    "DC-REST-2565",
+    "VA-HOTE-3015",
+    "MD-COUN-1327",
+    "MD-WINE-345",
+    "MD-HOTE-366",
+    "MD-REST-544",
+    "DC-REST-2817",
+    "MD-HOTE-347",
+    "DC-REST-1282",
+    "DC-WINE-2608",
+    "MD-REST-561",
+    "MD-HOTE-448"
+  ]
+}

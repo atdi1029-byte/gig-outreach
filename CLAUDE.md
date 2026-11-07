@@ -195,6 +195,7 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
   Washington, the Willard, Masseria, Caves Valley). Before any town sweep, run the region-wide
   best-of sweeps by kind (sweep_dream_*.md, terminal sessions, WebSearch only). With DREAM_FIRST,
   build_batch runs their venues first (source or notes "dream-...").
+  Check `discovery_log.md` before any search and add a row after it, so no search is run twice.
 - Pool check: `./build_batch.sh --total 50 --dry-run` prints how many eligible
   venues exist per bucket (fine dining, clubs, hotels, wine, wild cards).
 - `./discover.sh --taste` (Chrome, Google Maps) or the WebSearch sweep procedure

@@ -757,7 +757,7 @@ while len(seq) < sum(take.values()):
 # DREAM_FIRST: venues from the region-wide dream sweeps (sweep_dream_*.md, source or notes "dream-...", Nov 7 2026: The Inn at
 # Little Washington, the Willard...) go first, whatever their bucket or score
 if os.environ.get('DREAM_FIRST') == '1':
-    dream = sorted((e for b in by_bucket for e in by_bucket[b] if re.search(r'dream2?-(dining|hotels|clubs-wine|lists|estates)', str(e['venue'].get('source') or '') + ' ' + str(e['venue'].get('notes') or ''))), key=rank_key)
+    dream = sorted((e for b in by_bucket for e in by_bucket[b] if re.search(r'dream[0-9]?-[a-z-]+-2026', str(e['venue'].get('source') or '') + ' ' + str(e['venue'].get('notes') or ''))), key=rank_key)
     seq = (dream + [e for e in seq if e not in dream])[:COUNT]
 
 if len(seq) < COUNT and pool_last:

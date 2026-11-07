@@ -6,7 +6,7 @@ the alert as a banner on the home screen, plus one line about last night.
 
     night_status.py start                       a new night begins (keeps any alert)
     night_status.py alert KIND LEVEL TITLE [DETAIL]
-                                                KIND: zerobounce apollo chrome pool asleep error
+                                                KIND: zerobounce apollo chrome pool asleep error claude
                                                 LEVEL: stop (red, needs Alex) | warn (amber, FYI)
     night_status.py clear-alert [KIND ...]      clear the alert (only if it is one of KINDs)
     night_status.py run RUN_ID key=value ...    add/update one run of this night
@@ -25,7 +25,7 @@ from datetime import datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 PATH = os.environ.get("NIGHT_STATUS_FILE") or os.path.join(HERE, "night_status.json")
 HISTORY_MAX = 21
-KINDS = {"zerobounce", "apollo", "chrome", "pool", "asleep", "error"}
+KINDS = {"zerobounce", "apollo", "chrome", "pool", "asleep", "error", "claude"}
 
 
 def now():

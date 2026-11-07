@@ -145,7 +145,7 @@ v = d.get(sys.argv[2], "")
 print(" ".join(v) if isinstance(v, list) else v)
 PYEOF
 }
-state_set() {   # state_set KEY VALUE   (VALUE "" deletes; KEY fix_pending takes a space list)
+state_set() {   # state_set KEY VALUE   (VALUE "" deletes; a KEY ending in _pending takes a space list)
     /usr/bin/python3 - "$STATE" "$1" "$2" <<'PYEOF'
 import json, os, sys
 p, k, v = sys.argv[1:4]
@@ -153,7 +153,7 @@ try:
     d = json.load(open(p))
 except (OSError, ValueError):
     d = {}
-if k == "fix_pending":
+if k.endswith("_pending"):
     v = [x for x in v.split() if x]
 if v in ("", []):
     d.pop(k, None)
@@ -164,6 +164,8 @@ json.dump(d, open(tmp, "w"), indent=1)
 os.replace(tmp, p)
 PYEOF
 }
+pending_add() { local cur; cur="$(state_get "$1")"; case " $cur " in *" $2 "*) ;; *) state_set "$1" "$cur $2" ;; esac; }
+pending_del() { local cur x out=""; cur="$(state_get "$1")"; for x in $cur; do [ "$x" = "$2" ] || out="$out $x"; done; state_set "$1" "$out"; }
 
 deadline_epoch() {   # today's NIGHT_CUTOFF (a night always starts after midnight); the burn has none
     [ "$MODE" = "burn" ] && { echo $(( $(date +%s) + 86400 )); return; }
@@ -383,6 +385,38 @@ except Exception as e: print("no result:", e)' "$out" 2>/dev/null)"
     return $rc
 }
 
+# Does Claude answer at all? A one-line haiku session; fails when Claude is out of credits,
+# rate-limited or logged out (Alex, Nov 6 2026: his Claude plan ends in a couple of weeks)
+claude_ok() {
+    [ -x "$CLAUDE_BIN" ] || return 1
+    guarded 180 "$CLAUDE_BIN" -p 'Reply with exactly: ok' --model haiku --output-format json \
+        --permission-mode auto --permission-prompts none 2>/dev/null |
+        /usr/bin/python3 -c 'import json,sys
+try:
+    d = json.loads(sys.stdin.read())
+    sys.exit(0 if not d.get("is_error") and "ok" in str(d.get("result") or "").lower() else 1)
+except Exception:
+    sys.exit(1)'
+}
+
+# The burn waits while Claude is out, so ZeroBounce and Apollo credits are never spent on
+# rounds nobody audits; when Claude answers again, the audits it missed run first.
+claude_wait() {
+    log "Claude is out of credits (or not answering) — the burn waits, checking every 30 min"
+    status alert claude stop "Outreach paused: Claude is out of credits" "The rounds wait so ZeroBounce and Apollo credits aren't spent on venues nobody audits. It checks every 30 minutes and goes on by itself when Claude works again."
+    status_push "burn waiting for Claude"
+    while ! claude_ok; do sleep 1800; done
+    log "Claude answers again — catching up the audits it missed: $(state_get audit_pending)"
+    status clear-alert claude
+    status note "Outreach running again"
+    status_push "Claude back"
+    local rid
+    for rid in $(state_get audit_pending); do
+        start_dive "$rid"
+        wait_dive
+    done
+}
+
 # Research one run's zero-contact venues, save the finds, push. Runs in the background.
 code_dirty() { git status --porcelain --untracked-files=no -- '*.sh' '*.py' '*.js' 'tests' | awk '{print $2}' | sort; }
 
@@ -393,6 +427,15 @@ dive_run() {
     pre=$(code_dirty)
     claude_session "$DEEPDIVE_MAX_MIN" "$RUNS_DIR/$rid.deepdive-session.json" \
         "Night deep dive, phase RESEARCH$scope, RUN_ID=$rid. Follow $SCRIPT_DIR/NIGHT_DEEPDIVE.md (sections 'Hard rules' and '1. Research'). Do NOT do the code-fix or taste-review steps now: another session does them after the last run, and a pipeline may be running right now, so do not edit any code. Working directory: $SCRIPT_DIR. Now: $(date '+%Y-%m-%d %H:%M')."
+    local drc=$?
+    # Claude ran out mid-audit (or never started): what it wrote is saved below, the rest
+    # of the run waits in audit_pending until Claude answers again (claude_wait)
+    if { [ "$drc" != 0 ] || [ ! -s "$RUNS_DIR/$rid.deepdive.json" ]; } && ! claude_ok; then
+        log "Deep dive ($rid): Claude is out — the audit of this run waits for it"
+        pending_add audit_pending "$rid"
+    else
+        pending_del audit_pending "$rid"
+    fi
     # Research never edits code: put back anything it changed anyway
     post=$(code_dirty)
     for f in $(comm -13 <(echo "$pre") <(echo "$post")); do
@@ -426,6 +469,7 @@ start_dive() {   # start_dive RUN_ID — background; one Claude session at a tim
     if ! /usr/bin/python3 -c 'import json,sys; sys.exit(0 if json.load(open(sys.argv[1])).get("venues") else 1)' \
          "$RUNS_DIR/$rid.zero.json" 2>/dev/null; then
         log "No zero-contact venues left to research in $rid"
+        pending_del audit_pending "$rid"
         return 0
     fi
     dive_run "$rid" &
@@ -490,7 +534,11 @@ fix_session() {
             status alert error warn "A night code fix was undone" "The scraper change from last night broke a check, so it was reverted. Nothing else changed."
         fi
     fi
-    state_set fix_pending ""
+    if [ "$rc" != 0 ] && ! claude_ok; then
+        log "Fix session: Claude is out — these runs keep waiting for a fix session: $runs"
+    else
+        state_set fix_pending ""
+    fi
     git_sync "Night fix session: taste review + status" night_status.json taste_notes.md taste_venues.txt \
         reports/taste_review_marker.json "$RUNS_DIR/$tag.fix-summary.json"
     return $rc
@@ -801,6 +849,11 @@ burn_loop() {
             while [ -f "$BURN_PAUSE" ]; do sleep 60; done
             log "Pause lifted — going on"
             status note "Outreach running again"
+        fi
+        if [ -n "$(state_get audit_pending)" ] || ! claude_ok; then
+            claude_ok || claude_wait
+            local p
+            for p in $(state_get audit_pending); do start_dive "$p"; wait_dive; done
         fi
         apply_websites
         do_run

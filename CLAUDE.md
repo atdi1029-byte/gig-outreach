@@ -169,6 +169,10 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
 - ZeroBounce (below its floor) or Apollo (< 100) out = the end: `.burn_done`, an app alert,
   final push; night runs stay off (`.night_off`). Other stops (Chrome, Google, network,
   ZeroBounce refusing the IP) are tried again 6 times in a row (10–30 min apart), then alert.
+- Claude out of credits (or not answering): before each round a one-line haiku check; if it
+  fails the burn waits (app alert "Outreach paused: Claude is out of credits", re-checks every
+  30 min) so no ZeroBounce/Apollo credits go to unaudited rounds. Audits Claude missed wait in
+  `night-state.json` `audit_pending` and run first when it's back; fix_pending is kept too.
 - Log: `reports/runs/burn-YYYYMMDD-HHMM.log`. Another burn later: `rm .burn_done`.
 
 ## 0. Preflight

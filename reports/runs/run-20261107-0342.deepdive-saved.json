@@ -1,0 +1,732 @@
+{
+ "run_id": "run-20261107-0342",
+ "dry_run": false,
+ "at": "2026-11-07T10:19:57-05:00",
+ "totals": {
+  "saved": 21,
+  "venues_rescued": 6,
+  "socials": 2,
+  "rejected": 9,
+  "errors": 2,
+  "flagged": 6
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "VA-HOTE-2979",
+   "name": "JW Marriott Reston Station",
+   "contacts": [
+    {
+     "email": "cchang@jwreston.com",
+     "name": "Christine Chang",
+     "source_url": "http://www.linkedin.com/in/christine-chang-b58980326",
+     "title": "Luxury Events Manager (Apollo: Event Planning Manager)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "ccassinelli@jwreston.com",
+     "name": "Camilla Cassinelli",
+     "source_url": "http://www.linkedin.com/in/camilla-cassinelli",
+     "title": "Catering Sales Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "vle@jwreston.com",
+     "name": "Vy Le",
+     "source_url": "http://www.linkedin.com/in/vyle0102",
+     "title": "Catering & Private Events Specialist",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "kbrabrook@jwreston.com",
+     "name": "Kristen Brabrook",
+     "source_url": "http://www.linkedin.com/in/kristen-brabrook-b2b8113a",
+     "title": "Restaurant & Bar General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Nora Tan",
+     "source_url": "http://www.linkedin.com/in/nora-tan-3b2053b",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-562",
+   "name": "La Bodega",
+   "contacts": [
+    {
+     "email": "gc@rudefoodco.com",
+     "name": "GC DiVanna",
+     "source_url": "https://edibledelmarva.ediblecommunities.com/eat/rude-awakening-easton",
+     "title": "General Manager, La Bodega / Rude Food Co",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "tim@rudefoodco.com",
+     "name": "Timothy Cureton",
+     "source_url": "https://www.rudefoodco.com/about",
+     "title": "Co-founder / Owner, Rude Food Co",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Brett Cureton",
+     "source_url": "https://www.rudefoodco.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-1511",
+   "name": "United States Naval Academy Golf Club",
+   "contacts": [
+    {
+     "email": "mburke@pga.com",
+     "name": "Mike Burke",
+     "source_url": "https://usnagolf.com/class-outings-reunions",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Pat Owen",
+     "source_url": "https://navysports.com/sports/2018/5/23/ot-navy-golf-association-html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-909",
+   "name": "Comus Inn",
+   "contacts": [
+    {
+     "email": "kelly@h2-collective.com",
+     "name": "Kelly Lloyd",
+     "source_url": "https://www.thecomusinn.com/",
+     "title": "Regional Operations Manager, H2 Collective (Comus Inn's restaurant group)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "events@thecomusrestaurant.com",
+     "name": "Stephanie Houk",
+     "source_url": "https://www.thecomusinn.com/",
+     "title": "Event Sales Manager",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "soiree@h2-collective.com",
+     "name": "Lilienne Conklin",
+     "source_url": "https://h2-collective.com/",
+     "title": "Private Event Director, H2 Collective (Comus Inn's restaurant group)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Cheryl Cox",
+     "source_url": "http://www.linkedin.com/in/cheryl-cox-5190a56",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Doug Yurechko",
+     "source_url": "https://visitmontgomery.com/blog/eat-drink/chef-sammy-d-is-coming-to-comus-inn-shares-local-recipe/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-3040",
+   "name": "La Omri",
+   "contacts": [
+    {
+     "email": "ramzi.iskandar@irgdc.com",
+     "name": "Ramzi Iskandar",
+     "source_url": "https://www.ffxnow.com/2026/03/05/mediterranean-restaurant-with-bar-coming-to-capital-one-center/",
+     "outcome": "rejected:off_domain:irgdc.com!=laomri.com"
+    },
+    {
+     "email": "",
+     "name": "Mike Saadi",
+     "source_url": "https://www.ffxnow.com/2026/03/05/mediterranean-restaurant-with-bar-coming-to-capital-one-center/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-338",
+   "name": "La Vela Italian Restaurant",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-615",
+   "name": "Harrison's Chesapeake House",
+   "contacts": [
+    {
+     "email": "kdow@wylderhotels.com",
+     "name": "KD Dow",
+     "source_url": "http://www.linkedin.com/in/kd-dow-5823b0322",
+     "title": "Director of Sales, Weddings & Events (Apollo title: Sales Director, Wylder Hotel",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "kgoldberg@wylderhotels.com",
+     "name": "Keith Goldberg",
+     "source_url": "http://www.linkedin.com/in/keith-goldberg-540216182",
+     "title": "General Manager, Wylder Hotel Tilghman Island (Apollo; also listed as Beverage D",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "nwebb@wylderhotels.com",
+     "name": "Nicole Webb",
+     "source_url": "http://www.linkedin.com/in/nicole-webb-685327177",
+     "title": "Assistant General Manager, Wylder Hotel Tilghman Island",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Olivia Meyer",
+     "source_url": "http://www.linkedin.com/in/olivia-meyer-51940b265",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Christopher Garcia",
+     "source_url": "http://www.linkedin.com/in/christopher-garcia-948a0099",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "John Flannigan",
+     "source_url": "https://www.hotel-online.com/news/historic-harrisons-chesapeake-house-reborn-as-wylder-hotel-tilghman-island",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/wylderhoteltilghmanisland/",
+     "outcome": "error:write_failed"
+    },
+    {
+     "field": "instagram",
+     "value": "https://www.instagram.com/wylderhotelti/",
+     "outcome": "error:write_failed"
+    },
+    {
+     "field": "contact_form",
+     "value": "https://wylderhotels.tripleseat.com/booking_request/21008",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2565",
+   "name": "Ox & Olive",
+   "contacts": [
+    {
+     "email": "andrew@hivehospitality.com",
+     "name": "Andrew Elder",
+     "source_url": "https://www.oxandolive.com/about/",
+     "outcome": "rejected:off_domain:hivehospitality.com!=oxandolivedc.com"
+    },
+    {
+     "email": "ryan@hivehospitality.com",
+     "name": "Ryan Ratino",
+     "source_url": "https://www.oxandolive.com/about/",
+     "outcome": "rejected:off_domain:hivehospitality.com!=oxandolivedc.com"
+    },
+    {
+     "email": "will@hivehospitality.com",
+     "name": "Will Patton",
+     "source_url": "https://www.oxandolive.com/about/",
+     "outcome": "rejected:off_domain:hivehospitality.com!=oxandolivedc.com"
+    },
+    {
+     "email": "",
+     "name": "Joe McDevitt",
+     "source_url": "https://www.oxandolive.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Kudzanai Mutetwa",
+     "source_url": "https://www.oxandolive.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Todd Nichols",
+     "source_url": "https://www.oxandolive.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.oxandolive.com/private-events/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-HOTE-3015",
+   "name": "The Leesburg Colonial Inn",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-366",
+   "name": "Solomons Inn Resort & Marina",
+   "contacts": [
+    {
+     "email": "lbaines@solomonsinn.com",
+     "name": "Lee Baines",
+     "source_url": "https://newsmakeralert.com/SolomonsInnRM-050125.html",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-544",
+   "name": "Osteria Alfredo",
+   "contacts": [
+    {
+     "email": "alfredo460@yahoo.com",
+     "name": "Alfredo Ferretti",
+     "source_url": "https://talbotworks.org/?p=22508",
+     "outcome": "rejected:freemail_unlinked"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-347",
+   "name": "Back Creek Inn",
+   "contacts": [
+    {
+     "email": "backcreekinn@comcast.net",
+     "name": "Carol Pennock",
+     "source_url": "https://www.backcreekinn.com/about/",
+     "outcome": "rejected:zerobounce_abuse"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-1282",
+   "name": "Trump National Golf Club Washington DC",
+   "contacts": [
+    {
+     "email": "brooklyn.torian@trumpgolf.com",
+     "name": "Brooklyn Torian",
+     "source_url": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+     "title": "Events Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "trent.kathmann@trumpgolf.com",
+     "name": "Trent Kathmann",
+     "source_url": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "stephen.pluta@trumpgolf.com",
+     "name": "Steve Pluta",
+     "source_url": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+     "title": "Clubhouse Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "jorge.arica@trumpgolf.com",
+     "name": "Jorge Arica",
+     "source_url": "http://www.linkedin.com/in/jorge-luis-arica-35aa481a2",
+     "title": "Senior Food and Beverage Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Dallas Sperling",
+     "source_url": "http://www.linkedin.com/in/dallas-sperling-35b063139",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Johanna Torija",
+     "source_url": "http://www.linkedin.com/in/johanna-torija-156475133",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Liliana Crespin",
+     "source_url": "http://www.linkedin.com/in/liliana-ramos-crespin-063aa5225",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-561",
+   "name": "Weather Gage",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Paul Prager",
+     "source_url": "https://washingtonian.com/2021/01/15/paul-prager-king-easton-new-york-energy-mogul-remaking-eastern-shore-town/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Stephen Loffredo",
+     "source_url": "https://thedailyrecord.com/2026/09/28/bluepoint-hospitality-easton-restaurants-hospital/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-448",
+   "name": "Black Walnut Point Inn",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Bob Zuber",
+     "source_url": "https://iloveinns.com/black-walnut-point-inn-id9807.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tracy Zuber",
+     "source_url": "https://iloveinns.com/black-walnut-point-inn-id9807.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-WINE-708",
+   "name": "Curate Annapolis",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Joel Bunker",
+     "source_url": "https://builderguru.com/?p=4282",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Colleen Bunker",
+     "source_url": "https://builderguru.com/?p=4282",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "sayhello@curateannapolis.com",
+     "reason": "Right business, but no person attached and it works as a general inbox (a hello@ variant the general-inbox rule did not catch). Also: MapQuest lists Curate as permanently closed; see summary."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WEDD-754",
+   "name": "Whitehall",
+   "contacts": [
+    {
+     "email": "paige@honeywoodrentals.com",
+     "name": "Paige Skrickus",
+     "source_url": "https://whitehallmd.com/management",
+     "title": "Whitehall Venue Manager (Honeywood Event + Tent)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "karis@honeywoodrentals.com",
+     "name": "Karis King",
+     "source_url": "https://honeywoodrentals.com/whitehall",
+     "title": "Business Owner, Honeywood Event + Tent (manages Whitehall)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-365",
+   "name": "The Fenwick Inn",
+   "contacts": [
+    {
+     "email": "thefenwickinn@gmail.com",
+     "name": "Trisha Simpson",
+     "source_url": "https://www.thefenwickinn.com/about",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Daniel Simpson",
+     "source_url": "https://www.thefenwickinn.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-COUN-551",
+   "name": "Prospect Bay Country Club",
+   "contacts": [
+    {
+     "email": "gm@prospectbaycc.com",
+     "name": "Jon Vodehnal",
+     "source_url": "https://www.prospectbay.com/Our_Club/Staff",
+     "outcome": "known"
+    },
+    {
+     "email": "ttipton@prospectbaycc.com",
+     "name": "Tom Tipton",
+     "source_url": "https://www.prospectbay.com/Our_Club/Staff",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "sbutler@prospectbaycc.com",
+     "reason": "Right business, possibly stale: Apollo still lists Stephanie Butler as Food & Beverage Director, but the club's own staff page gives that title to Ray Chen and does not list her. Not a name-match failure."
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-WINE-2605",
+   "name": "Calvert Woodley Fine Wines",
+   "contacts": [
+    {
+     "email": "joseph@calvertwoodley.com",
+     "name": "Joseph Park",
+     "source_url": "http://www.linkedin.com/in/joseph-park-b9848b94",
+     "outcome": "known"
+    },
+    {
+     "email": "will@calvertwoodley.com",
+     "name": "Will Murck",
+     "source_url": "http://www.linkedin.com/in/willmurck",
+     "outcome": "known"
+    },
+    {
+     "email": "schuyler@calvertwoodley.com",
+     "name": "Schuyler Jones",
+     "source_url": "",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "wine@calvertwoodley.com",
+     "reason": "Saved with the name 'Administrative Assistant', which is a job title. The Apollo record behind it is first name 'Calvert', last name masked Wo***y, so it is the store, not a person. Function inbox with no real person."
+    },
+    {
+     "email": "beer@calvertwoodley.com",
+     "reason": "Function inbox with no person attached. On /pages/beermudgeon it is the question address for a beer column signed only 'Jon'; no last name found."
+    },
+    {
+     "email": "joseph@calvertwoodley.com",
+     "reason": "Conflicting owner, same business: Apollo returned this address for Joseph Park (General Manager, enriched today, verified) and, in the pipeline's candidates, for Joseph Riley (Retail Sales Manager). The address alone can't settle which Joseph reads it; Park's title is the better fit but check before addressing a pitch."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-EVEN-351",
+   "name": "Olde Breton Inn",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Bill Bailey",
+     "source_url": "https://www.bark.com/en/us/company/baileys-party-rentals/2gQda/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-COUN-1327",
+   "name": "Eagle's Nest Country Club",
+   "contacts": [
+    {
+     "email": "jennifer.nehila@invitedclubs.com",
+     "name": "Jennifer Nehila",
+     "source_url": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/who-we-are/our-team",
+     "outcome": "rejected:shared_brand_domain:invitedclubs.com"
+    },
+    {
+     "email": "david.benson@invitedclubs.com",
+     "name": "David Benson",
+     "source_url": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/who-we-are/our-team",
+     "outcome": "rejected:shared_brand_domain:invitedclubs.com"
+    },
+    {
+     "email": "",
+     "name": "Amy Rusek",
+     "source_url": "https://www.linkedin.com/in/amy-rusek-2a8a535",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dillon O'Maille",
+     "source_url": "https://www.linkedin.com/in/dillon-o-maille-7b6684301",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-WINE-345",
+   "name": "Vaughan Cheese Counter & Bar",
+   "contacts": [
+    {
+     "email": "megan@vaughancheese.com",
+     "name": "Megan Vaughan",
+     "source_url": "https://boldjourney.com/?p=944987",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2817",
+   "name": "Chef Geoff's (New Mexico Ave)",
+   "contacts": [
+    {
+     "email": "kevine@chefgeoff.com",
+     "name": "Kevin Ettenson",
+     "source_url": "https://www.linkedin.com/in/kevin-ettenson-a7b1b890",
+     "title": "Director of Operations",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "events@chefgeoff.com",
+     "name": "Amy Cooney",
+     "source_url": "https://www.chefgeoff.com/events",
+     "title": "Private Events Director",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Tasha Wroten",
+     "source_url": "https://www.linkedin.com/in/tasha-wroten",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "geoff@chefgeoff.com",
+     "name": "Geoff Tracy",
+     "source_url": "https://www.chefgeoff.com/",
+     "outcome": "known"
+    },
+    {
+     "email": "chris@chefgeoff.com",
+     "name": "Chris Tracy",
+     "source_url": "https://www.chefgeoff.com/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-WINE-2608",
+   "name": "Florer\u00eda Atl\u00e1ntico",
+   "contacts": [
+    {
+     "email": "rikka@atlantisgeorgetown.com",
+     "name": "Rikka Johnson",
+     "source_url": "https://www.floreriaatlanticodc.com/menu",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Alex Resnik",
+     "source_url": "https://www.thegeorgetowndish.com/articles/floreria-atlantico-and-brasero-atlantico-now-open",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Renato Giovannoni",
+     "source_url": "https://blog.resy.com/2026/07/floreria-atlantico-washington-dc/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Manuela Carbone",
+     "source_url": "https://www.thegeorgetowndish.com/articles/floreria-atlantico-and-brasero-atlantico-now-open",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jael Kleiman",
+     "source_url": "https://blog.resy.com/2026/07/floreria-atlantico-washington-dc/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "rikka@atlantisgeorgetown.com",
+     "reason": "NOT a wrong-business contact: it passes the name-match gate (the venue's own site publishes this address as its 'Inquires' mailto, and info@ on the same domain). Flagged as possibly stale: Apollo says Rikka Johnson's Director of Operations role here ended Mar 2026, and she now works elsewhere. The site's home and contact pages have moved to info@, though /menu, /floreria-menu and /sign-up still show rikka@."
+    }
+   ]
+  }
+ ]
+}

@@ -724,14 +724,23 @@ for limit in (strong_n, {b: len(by_bucket.get(b, [])) for b in BUCKET_ORDER}):
         take[b] += 1
         short -= 1
 # DREAM_FIRST (.env; Alex, Nov 7 2026: "we need to focus on those first in the pool"): no mix,
-# the dream kinds run until they're gone: luxury hotels, European/fine dining (casual names last), clubs, wine, the rest
+# the dream kinds run until they're gone: luxury hotels, then European/fine dining (casual names last), clubs and wine 2:1:1, the rest last
 if os.environ.get('DREAM_FIRST') == '1':
     casual = re.compile(r'pizz|bakery|pantry|gourmet|raw bar|deli\b|market', re.I)
     by_bucket['fine_dining'] = sorted(by_bucket.get('fine_dining', []), key=lambda e: bool(casual.search(e['venue'].get('name') or '')))
-    left = COUNT
-    for b in ('hotel', 'fine_dining', 'club', 'wine', 'wild'):
-        take[b] = min(left, len(by_bucket.get(b, [])))
-        left -= take[b]
+    n = {b: len(by_bucket.get(b, [])) for b in BUCKET_ORDER}
+    take = {b: 0 for b in BUCKET_ORDER}
+    take['hotel'] = min(COUNT, n['hotel'])
+    left = COUNT - take['hotel']
+    # The rest 2:1:1, so upscale clubs and wineries don't wait behind every plain restaurant
+    while left > 0:
+        spare = [b for b in ('fine_dining', 'club', 'wine') if take[b] < n[b]]
+        if not spare:
+            break
+        b = min(spare, key=lambda b: take[b] / {'fine_dining': 2, 'club': 1, 'wine': 1}[b])
+        take[b] += 1
+        left -= 1
+    take['wild'] = min(left, n['wild'])
 moved = {b: quota[b] - take[b] for b in BUCKET_ORDER if take[b] != quota[b]}
 if moved:
     print("  Quality-first mix: " + ', '.join(f"{b} {'gave' if n > 0 else 'took'} {abs(n)}"

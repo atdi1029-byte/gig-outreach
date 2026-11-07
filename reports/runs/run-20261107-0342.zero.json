@@ -1,0 +1,3869 @@
+{
+ "run_id": "run-20261107-0342",
+ "venues": [
+  {
+   "venue_id": "VA-HOTE-2979",
+   "name": "JW Marriott Reston Station",
+   "website": "https://www.marriott.com/en-us/hotels/wasrj-jw-marriott-reston-station/overview",
+   "city": "Reston",
+   "state": "VA",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/JWMarriottRestonStation",
+   "instagram": "https://www.instagram.com/jwrestonstation/",
+   "contact_form": "",
+   "notes": "Google Maps ''. 4.6* (134 reviews). Pre-score: 55. Taste query: historic inn Reston VA | Sweep find (reston-2026-09-15) | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-HOTE-2979 web ok via=chrome pages=7 visited=home,events form=no chrome_pages=7 curl_pages=0 static_pages=0 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=2 pending=0 fb=1 ig=0 blocked_pages=0 missing=contact,about,team static_crawl=blocked",
+    "[STEP] VA-HOTE-2979 social ok fb=found ig=found fb_search=website ig_search=ok:found_of_1 fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-HOTE-2979 apollo skipped reason=shared_domain domain_search=skipped:shared_domain domain_results=0 name_search=ok name_results=2",
+    "[STEP] VA-HOTE-2979 linkedin empty pages=3 results=15 rejected=10 employees=5 relevant=5 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-HOTE-2979 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] VA-HOTE-2979 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-HOTE-2979 postcheck failed web=failed via=crawl crawl=failed:no_pages crawl_pages=0 pages=0 pages_cut=0 visited=none emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=skipped:shared_domain apollo_found=- apollo_via=- linkedin=empty li_results=5 li_relevant=1 enrich=skipped:no_pending reason=web_failed"
+   ],
+   "candidates": [
+    {
+     "email": "person:expand icon",
+     "name": "Expand Icon",
+     "title": "Executive level",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:exclusive access",
+     "name": "EXCLUSIVE ACCESS",
+     "title": "EXECUTIVE",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "hotelsales@jwreston.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "hotelsales@jwreston.com",
+     "source": "social",
+     "disposition": "reject:off_domain:jwreston.com!=marriott.com"
+    },
+    {
+     "email": "person:christine chang",
+     "name": "Christine Chang",
+     "title": "Luxury Events Manager",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:vy le",
+     "name": "Vy Le",
+     "title": "Catering & Private Events Specialist",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:camilla cassinelli",
+     "name": "Camilla Cassinelli",
+     "title": "Catering Sales Manager",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:kylan rients",
+     "name": "Kylan Rients",
+     "title": "Senior Banquet Manager",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:leslie diaz-nolasco",
+     "name": "Leslie Diaz-Nolasco",
+     "title": "Front Desk Representative",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "contact",
+     "name": "Christine Chang",
+     "title": "Luxury Events Manager at JW Marriott Reston Station",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:no_email_policy"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-HOTE-2979.json",
+     "base": "https://www.marriott.com/en-us/hotels/wasrj-jw-marriott-reston-station/overview",
+     "pages_fetched": 1,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-HOTE-2979.json",
+     "base": "https://www.marriott.com/en-us/hotels/wasrj-jw-marriott-reston-station/overview",
+     "pages_fetched": 1,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-562",
+   "name": "La Bodega",
+   "website": "https://www.rudefoodco.com/rude-bodega",
+   "city": "Easton",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/rudeburger",
+   "instagram": "https://www.instagram.com/rude.burger",
+   "contact_form": "",
+   "notes": "Authentic Latin American, OpenTable \"Best Overall Eastern Shore\" + Best Food + Best Value. Margaritas, upscale Latin in downtown Easton. B-tier calendar filler. | Website checked 2026-09-29 | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-562 web ok via=chrome pages=10 visited=home,about,events form=no chrome_pages=10 curl_pages=0 static_pages=9 pdfs=6 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=2 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,team",
+    "[STEP] MD-REST-562 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-562 apollo empty reason=org_mismatch rejected_orgs=5 domain_search=ok domain_results=1 name_search=ok name_results=5",
+    "[STEP] MD-REST-562 linkedin empty pages=3 results=10 rejected=4 employees=6 relevant=6 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-562 google empty results=3 emails=0 site=none ig=known",
+    "[STEP] MD-REST-562 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-562 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=9 pages=9 pages_cut=0 visited=home,about,events emails=3 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=1 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=1 apollo_via=name linkedin=empty li_results=5 li_relevant=3 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "catering@rudefoodco.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "catering@rudefoodco.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "info@rudefoodco.com",
+     "name": "Cookie Settings",
+     "title": "RUDE FOOD DOOD",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@rudefoodco.com",
+     "name": "Cookie Settings",
+     "title": "RUDE FOOD DOOD",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "ninfo@rudefoodco.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "ninfo@rudefoodco.com",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "info@rudefoodco.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@rudefoodco.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:ken katz",
+     "name": "Ken Katz",
+     "title": "Co-Owner",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:alfonso zayco javier",
+     "name": "Alfonso Zayco Javier",
+     "title": "Founder & President",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:bilal munir",
+     "name": "Bilal Munir",
+     "title": "Operations Manager",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:frederick capers",
+     "name": "Frederick Capers",
+     "title": "CEO: KL Creations, LLC. Lead Singer/Front Man/Producer:",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:bianca javier",
+     "name": "Bianca Javier",
+     "title": "Marketing & Events",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:sergio david cerro",
+     "name": "Sergio David Cerro",
+     "title": "Presidente C\u00e1mara Argentina de Vinotecas y Afines Expovinos Bragado Vinoteca",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "catering@rudefoodco.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.rudefoodco.com/curatedcatering"
+    },
+    {
+     "kind": "email",
+     "email": "catering@rudefoodco.com",
+     "source": "postcheck_website",
+     "disposition": "role_no_name",
+     "evidence_url": "https://www.rudefoodco.com/curatedcatering"
+    },
+    {
+     "kind": "email",
+     "email": "info@rudefoodco.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.rudefoodco.com/rude-bodega"
+    },
+    {
+     "kind": "email",
+     "email": "info@rudefoodco.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.rudefoodco.com/rude-bodega"
+    },
+    {
+     "kind": "email",
+     "email": "ninfo@rudefoodco.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.rudefoodco.com/"
+    },
+    {
+     "kind": "email",
+     "email": "ninfo@rudefoodco.com",
+     "source": "postcheck_website",
+     "disposition": "verification:invalid",
+     "evidence_url": "https://www.rudefoodco.com/"
+    },
+    {
+     "kind": "contact",
+     "name": "Bianca Javier",
+     "title": "Marketing & Events at La Bodega Vinos y Cervezas",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:location_unverified"
+    },
+    {
+     "kind": "contact",
+     "name": "Bilal Munir",
+     "title": "Operations Manager at La Bodega Catalogue Services",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:location_unverified"
+    },
+    {
+     "kind": "contact",
+     "name": "Ken Katz",
+     "title": "Co-Owner - La Bodega/Buenos Dias Pupusas",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:location_unverified"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-562.json",
+     "base": "https://www.rudefoodco.com/rude-bodega",
+     "pages_fetched": 17,
+     "pages_ok": 9,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-562.json",
+     "base": "https://www.rudefoodco.com/rude-bodega",
+     "pages_fetched": 17,
+     "pages_ok": 9,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1511",
+   "name": "United States Naval Academy Golf Club",
+   "website": "https://usnagolf.com",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "country_club",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/USNA-Golf-Course-171825526518192",
+   "instagram": "https://www.instagram.com/usnagolf",
+   "contact_form": "https://usnagolf.com/contact",
+   "notes": "Google Maps ''. 4.5* (30 reviews). Pre-score: 55. Taste query: private club Annapolis MD Site: Naval Academy Golf Club | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-1511 web ok via=chrome pages=30 visited=home,contact,team form=no chrome_pages=30 curl_pages=0 static_pages=40 pdfs=1 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,events",
+    "[STEP] MD-REST-1511 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-1511 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=6 org=United_States_Naval_Academy_Golf_Club gate=name+domain people=2 relevant=0 skipped_titles=1 over_cap=0",
+    "[STEP] MD-REST-1511 linkedin empty pages=3 results=23 rejected=11 employees=12 relevant=8 saved=0 pending=0 deferred=0 credits=7",
+    "[STEP] MD-REST-1511 google empty results=5 emails=0 site=same ig=known",
+    "[STEP] MD-REST-1511 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-1511 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=3 pages_cut=0 visited=home,contact,team emails=1 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=saved socials=0 apollo=empty apollo_found=3 apollo_via=domain linkedin=empty li_results=7 li_relevant=2 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "mburke@pga.com",
+     "name": "CLASS OUTINGS-REUNIONS",
+     "title": "NAVY GOLF MEMBERSHIP",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "mburke@pga.com",
+     "name": "CLASS OUTINGS-REUNIONS",
+     "title": "NAVY GOLF MEMBERSHIP",
+     "source": "website",
+     "disposition": "reject:off_domain:pga.com!=usnagolf.com"
+    },
+    {
+     "email": "usnagolfclub@gmail.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "usnagolfclub@gmail.com",
+     "source": "social",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "person:elizabeth schaffner",
+     "name": "Elizabeth Schaffner",
+     "title": "Experienced Physical Education Instructor and Operations Manager",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "murphmccarthy@2000.usna.com",
+     "name": "Murph McCarthy",
+     "title": "Head Women's Rugby Coach",
+     "source": "linkedin+apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "murphmccarthy@2000.usna.com",
+     "name": "Murph McCarthy",
+     "title": "Head Women's Rugby Coach",
+     "source": "linkedin+apollo",
+     "disposition": "reject:off_domain:usna.com!=usnagolf.com"
+    },
+    {
+     "email": "person:joseph amplo",
+     "name": "Joseph Amplo",
+     "title": "Head Lacrosse Coach",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:ashley ingram",
+     "name": "Ashley Ingram",
+     "title": "Assistant Head Coach/Offensive Line Coach",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:brooks wilson",
+     "name": "Brooks Wilson",
+     "title": "Assistant Coach Men's Soccer",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:dixon smith",
+     "name": "Dixon Smith",
+     "title": "Director of Competitive Sailing",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:gavin hickie",
+     "name": "Gavin Hickie",
+     "title": "Director of Rugby",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:gretchen benz",
+     "name": "Gretchen Benz",
+     "title": "Athletic Trainer Athletic Association",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "mburke@pga.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://usnagolf.com/class-outings-reunions"
+    },
+    {
+     "kind": "email",
+     "email": "mburke@pga.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:pga.com!=usnagolf.com",
+     "evidence_url": "https://usnagolf.com/class-outings-reunions"
+    },
+    {
+     "kind": "contact",
+     "name": "Class Outings-Reunions",
+     "title": "Membership",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://usnagolf.com/contact"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:ambiguous_footer_links"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:ambiguous_footer_links"
+    },
+    {
+     "kind": "contact",
+     "name": "Mike Burke",
+     "title": "Head Golf Professional - Men's Associate Head Golf Coach at United States Naval Academy",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:no_email_policy"
+    },
+    {
+     "kind": "email",
+     "email": "murphmccarthy@2000.usna.com",
+     "name": "Murph McCarthy",
+     "title": "Head Women's Rugby Coach at United States Naval Academy",
+     "source": "postcheck_linkedin+apollo",
+     "disposition": "discovered"
+    },
+    {
+     "kind": "email",
+     "email": "murphmccarthy@2000.usna.com",
+     "name": "Murph McCarthy",
+     "title": "Head Women's Rugby Coach at United States Naval Academy",
+     "source": "postcheck_linkedin+apollo",
+     "disposition": "reject:off_domain:usna.com!=usnagolf.com"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-1511.json",
+     "base": "https://usnagolf.com/",
+     "pages_fetched": 53,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-1511.json",
+     "base": "https://usnagolf.com/",
+     "pages_fetched": 53,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-708",
+   "name": "Curate Annapolis",
+   "website": "https://curateannapolis.com/",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "bar",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/curateannnapolis",
+   "instagram": "https://www.instagram.com/curateannapolis",
+   "contact_form": "https://curateannapolis.com/2019/09/23/hello-world/",
+   "notes": "Wine bar in Annapolis.",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "sayhello@curateannapolis.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-WINE-708 web ok via=chrome pages=26 visited=home,contact,about,events form=yes chrome_pages=26 curl_pages=0 static_pages=40 pdfs=0 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] MD-WINE-708 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-WINE-708 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] MD-WINE-708 linkedin empty pages=3 results=13 rejected=13 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-WINE-708 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-WINE-708 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] MD-WINE-708 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "sayhello@curateannapolis.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "sayhello@curateannapolis.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "wineclub@curateannapolis.com",
+     "title": "Sommelier-guided wine tasting",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "wineclub@curateannapolis.com",
+     "title": "Sommelier-guided wine tasting",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "sayhello@curateannapolis.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "sayhello@curateannapolis.com",
+     "source": "social",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-WINE-708.json",
+     "base": "https://curateannapolis.com/",
+     "pages_fetched": 50,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://curateannapolis.com/2019/09/23/hello-world/",
+       "url": "https://curateannapolis.com/2019/09/23/hello-world/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://curateannapolis.com/2022/03/11/5-course-meal-wine-pairing-march-11th/",
+       "url": "https://curateannapolis.com/2022/03/11/5-course-meal-wine-pairing-march-11th/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://curateannapolis.com/2022/07/07/july-13th-wine-tasting-event/",
+       "url": "https://curateannapolis.com/2022/07/07/july-13th-wine-tasting-event/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://curateannapolis.com/2022/09/22/september-23rd-taste-of-the-cape-event-with-brian-norman/",
+       "url": "https://curateannapolis.com/2022/09/22/september-23rd-taste-of-the-cape-event-with-brian-norman/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://curateannapolis.com/2022/11/02/were-thankful-for-november-wine-events/",
+       "url": "https://curateannapolis.com/2022/11/02/were-thankful-for-november-wine-events/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-909",
+   "name": "Comus Inn",
+   "website": "https://thecomusrestaurant.com/",
+   "city": "Dickerson",
+   "state": "MD",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/thecomusinn",
+   "instagram": "https://www.instagram.com/thecomusinn",
+   "contact_form": "https://www.tripleseat.com",
+   "notes": "Historic farmhouse Sugarloaf views live music | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-909 web ok via=chrome pages=19 visited=home,contact,about,events form=yes chrome_pages=19 curl_pages=0 static_pages=40 pdfs=0 emails=4 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=3 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] MD-REST-909 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-909 apollo failed reason=people_search_http_422 domain_search=ok domain_results=1 name_search=ok name_results=3 org=The_Comus_Inn gate=name+domain",
+    "[STEP] MD-REST-909 linkedin empty pages=3 results=13 rejected=13 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-909 google empty results=2 emails=0 site=other_domain ig=known",
+    "[STEP] MD-REST-909 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-909 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=4 pages_cut=0 visited=home,contact,about,events emails=3 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=2 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=9 apollo_via=domain linkedin=empty li_results=3 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "doug@thecomusinn.com",
+     "name": "Doug Yurechko",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "doug@thecomusinn.com",
+     "name": "Doug Yurechko",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "events@thecomusrestaurant.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "events@thecomusrestaurant.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "kelly@h2-collective.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "kelly@h2-collective.com",
+     "source": "website",
+     "disposition": "reject:off_domain:h2-collective.com!=thecomusrestaurant.com"
+    },
+    {
+     "email": "music@thecomusrestaurant.com",
+     "title": "Music Inquiries",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "music@thecomusrestaurant.com",
+     "title": "Music Inquiries",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "person:jr tiernan",
+     "name": "JR Tiernan",
+     "title": "Executive Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "events@thecomusrestaurant.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "events@thecomusrestaurant.com",
+     "source": "social",
+     "disposition": "role_no_name"
+    },
+    {
+     "kind": "email",
+     "email": "events@thecomusrestaurant.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.thecomusinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "events@thecomusrestaurant.com",
+     "source": "postcheck_website",
+     "disposition": "role_no_name",
+     "evidence_url": "https://www.thecomusinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "kelly@h2-collective.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.thecomusinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "kelly@h2-collective.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:h2-collective.com!=thecomusrestaurant.com",
+     "evidence_url": "https://www.thecomusinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "music@thecomusrestaurant.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.thecomusinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "music@thecomusrestaurant.com",
+     "source": "postcheck_website",
+     "disposition": "role_no_name",
+     "evidence_url": "https://www.thecomusinn.com/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-909.json",
+     "base": "https://www.thecomusinn.com/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "tripleseat",
+       "page": "https://www.thecomusinn.com/private-events-1",
+       "url": "https://www.thecomusinn.com/private-events-1"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.thecomusinn.com/private-events-1",
+       "url": "https://www.tripleseat.com"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-909.json",
+     "base": "https://www.thecomusinn.com/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "tripleseat",
+       "page": "https://www.thecomusinn.com/private-events-1",
+       "url": "https://www.thecomusinn.com/private-events-1"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.thecomusinn.com/private-events-1",
+       "url": "https://www.tripleseat.com"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3040",
+   "name": "La Omri",
+   "website": "https://www.laomri.com/",
+   "city": "Tysons",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "",
+   "instagram": "https://www.instagram.com/laomritysons/",
+   "contact_form": "https://laomri.com/",
+   "notes": "Opening late 2026. 7500sqft Mediterranean fine dining + nightlife. Capital One Center. Ground floor opportunity. | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-3040 web ok via=chrome pages=2 visited=home form=yes chrome_pages=2 curl_pages=0 static_pages=3 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=contact,about,events,team",
+    "[STEP] VA-REST-3040 social ok fb=none ig=found fb_search=empty:rejected_6 ig_search=ok:found_of_1 fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-3040 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] VA-REST-3040 linkedin empty pages=3 results=13 rejected=12 employees=1 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-REST-3040 google empty results=5 emails=0 site=same ig=known",
+    "[STEP] VA-REST-3040 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-3040 postcheck empty web=empty via=pipeline_crawl crawl=ok crawl_pages=3 pages=1 pages_cut=0 visited=home emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=3 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-3040.json",
+     "base": "https://www.laomri.com/",
+     "pages_fetched": 11,
+     "pages_ok": 3,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://laomri.com/",
+       "url": "https://laomri.com/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-3040.json",
+     "base": "https://www.laomri.com/",
+     "pages_fetched": 11,
+     "pages_ok": 3,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://laomri.com/",
+       "url": "https://laomri.com/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WEDD-754",
+   "name": "Whitehall",
+   "website": "https://whitehallmd.com/",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "event_venue",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/p/Whitehall-Annapolis-Weddings-61558527930038",
+   "instagram": "https://www.instagram.com/whitehalleventsmd",
+   "contact_form": "https://whitehallmd.com/annapolis-maryland-wedding-venue/",
+   "notes": "National Historic Landmark (1764). Finest example of Palladian architecture in the US. 115 acres, 1.5 miles Chesapeake Bay shoreline \u2014 last major open waterfront in Annapolis. Same architect as Maryland State House. Non-profit foundation hosts weddings, corporate receptions. Extremely high-end. Would be a dream gig. | Website checked 2026-09-29",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "whitehalleventsmd@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-WEDD-754 web ok via=chrome pages=6 visited=home,contact,events,team form=yes chrome_pages=6 curl_pages=0 static_pages=7 pdfs=0 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about static_crawl=throttled",
+    "[STEP] MD-WEDD-754 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] MD-WEDD-754 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=2 org=Whitehall gate=name+domain people=47 relevant=16 skipped_titles=9 over_cap=0 enriched=16 saved=0 pending=0 deferred=0 credits=16",
+    "[STEP] MD-WEDD-754 linkedin empty pages=3 results=17 rejected=12 employees=5 relevant=4 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-WEDD-754 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-WEDD-754 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] MD-WEDD-754 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "info@whitehallmd.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@whitehallmd.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "whitehalleventsmd@gmail.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "whitehalleventsmd@gmail.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:ruth gunn",
+     "name": "Ruth Gunn",
+     "title": "General Manager",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "deborah.rosene@whitehalltownship.org",
+     "name": "Deborah Rosene",
+     "title": "President - Whitehall Twsp Environmental Advisory Committee",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "deborah.rosene@whitehalltownship.org",
+     "name": "Deborah Rosene",
+     "title": "President - Whitehall Twsp Environmental Advisory Committee",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.org!=whitehallmd.com"
+    },
+    {
+     "email": "bbrewster@whitehall-products.com",
+     "name": "Bob Brewster",
+     "title": "Business Teacher",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "bbrewster@whitehall-products.com",
+     "name": "Bob Brewster",
+     "title": "Business Teacher",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehall-products.com!=whitehallmd.com"
+    },
+    {
+     "email": "dwoodis@whitehalltownship.com",
+     "name": "Derek Woodis",
+     "title": "Codes Enforcement Officer/Inspector",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "dwoodis@whitehalltownship.com",
+     "name": "Derek Woodis",
+     "title": "Codes Enforcement Officer/Inspector",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "jbowman@whitehalltownship.com",
+     "name": "Jenna Durgin",
+     "title": "Permits Clerk",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jbowman@whitehalltownship.com",
+     "name": "Jenna Durgin",
+     "title": "Permits Clerk",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "lbruder@whitehalltownship.com",
+     "name": "Larissa Bruder",
+     "title": "Executive Secretary",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "lbruder@whitehalltownship.com",
+     "name": "Larissa Bruder",
+     "title": "Executive Secretary",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "psweeney@whitehalltownship.com",
+     "name": "Pat Sweeney",
+     "title": "Executive Secretary to the Mayor",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "psweeney@whitehalltownship.com",
+     "name": "Pat Sweeney",
+     "title": "Executive Secretary to the Mayor",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "dhower@teamster773.org",
+     "name": "Dennis Hower",
+     "title": "Commissioner",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "dhower@teamster773.org",
+     "name": "Dennis Hower",
+     "title": "Commissioner",
+     "source": "apollo",
+     "disposition": "reject:off_domain:teamster773.org!=whitehallmd.com"
+    },
+    {
+     "email": "jmeyers@whitehalltownship.com",
+     "name": "John Meyers",
+     "title": "Deputy Mayor",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jmeyers@whitehalltownship.com",
+     "name": "John Meyers",
+     "title": "Deputy Mayor",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "tkoren@whitehalltownship.com",
+     "name": "Tina Koren",
+     "title": "Whitehall Township Tax Collector/Treasurer",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "tkoren@whitehalltownship.com",
+     "name": "Tina Koren",
+     "title": "Whitehall Township Tax Collector/Treasurer",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "cgober@whitehalltownship.com",
+     "name": "Colleen Gober",
+     "title": "TAX Collector/treasurer at Whitehall Township",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "cgober@whitehalltownship.com",
+     "name": "Colleen Gober",
+     "title": "TAX Collector/treasurer at Whitehall Township",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "lrackus@whitehalltownship.com",
+     "name": "Lee Rackus",
+     "title": "Bureau Chief Planning",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "lrackus@whitehalltownship.com",
+     "name": "Lee Rackus",
+     "title": "Bureau Chief Planning",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "dwilliams@whitehalltownship.com",
+     "name": "David Williams",
+     "title": "Administrative Specialist",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "dwilliams@whitehalltownship.com",
+     "name": "David Williams",
+     "title": "Administrative Specialist",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "jrackus@whitehalltownship.com",
+     "name": "John Rackus",
+     "title": "Public Works Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jrackus@whitehalltownship.com",
+     "name": "John Rackus",
+     "title": "Public Works Director",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "andy@whitehalltownship.org",
+     "name": "Andy Millen",
+     "title": "Investigator",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "andy@whitehalltownship.org",
+     "name": "Andy Millen",
+     "title": "Investigator",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.org!=whitehallmd.com"
+    },
+    {
+     "email": "cpantoni@whitehalltownship.com",
+     "name": "Cherylanne Pantoni",
+     "title": "Tax Clerk",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "cpantoni@whitehalltownship.com",
+     "name": "Cherylanne Pantoni",
+     "title": "Tax Clerk",
+     "source": "apollo",
+     "disposition": "reject:off_domain:whitehalltownship.com!=whitehallmd.com"
+    },
+    {
+     "email": "person:ricky knight",
+     "name": "Ricky Knight",
+     "title": "Managing Director",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:wylliam becker",
+     "name": "Wylliam Becker",
+     "title": "Operations Manager of",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:joy allison",
+     "name": "Joy Allison",
+     "title": "Growing",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:katy crothall",
+     "name": "Katy Crothall",
+     "title": "Head of Talent and Leadership Development",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-WEDD-754.json",
+     "base": "https://whitehallmd.com/",
+     "pages_fetched": 20,
+     "pages_ok": 7,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://whitehallmd.com/annapolis-maryland-wedding-venue/",
+       "url": "https://whitehallmd.com/annapolis-maryland-wedding-venue/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-EVEN-365",
+   "name": "The Fenwick Inn",
+   "website": "https://www.thefenwickinn.com",
+   "city": "Leonardtown",
+   "state": "MD",
+   "category": "hotel",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/thefenwickinn",
+   "instagram": "https://www.instagram.com/thefenwickinn",
+   "contact_form": "https://www.thefenwickinn.com/contact",
+   "notes": "Historic 1933 event venue in downtown Leonardtown. Art collection, outdoor Booker Pavilion. Weddings and celebrations. 4.7* (20 reviews). Intimate historic setting.",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "title": "Wedding Venue",
+     "email": "thefenwickinn@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-EVEN-365 web ok via=chrome pages=14 visited=home,contact,about,events form=yes chrome_pages=14 curl_pages=0 static_pages=19 pdfs=0 emails=1 saved=1 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] MD-EVEN-365 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-EVEN-365 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=0 name_search=ok name_results=1",
+    "[STEP] MD-EVEN-365 linkedin empty pages=3 results=21 rejected=11 employees=10 relevant=9 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-EVEN-365 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-EVEN-365 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] MD-EVEN-365 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "thefenwickinn@gmail.com",
+     "name": "Service Description",
+     "title": "Wedding Venue",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "thefenwickinn@gmail.com",
+     "title": "Wedding Venue",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "thefenwickinn@gmail.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "thefenwickinn@gmail.com",
+     "source": "social",
+     "disposition": "already_known"
+    },
+    {
+     "email": "person:sam marley",
+     "name": "Sam Marley",
+     "title": "Beauty events sales manager",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:amy byers",
+     "name": "Amy Byers",
+     "title": "Head of Restaurant Operations",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:monika fraczek",
+     "name": "Monika Fraczek",
+     "title": "Hospitality Manager",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:douglas boyd",
+     "name": "Douglas Boyd",
+     "title": "Talent Lead",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:mel cassell",
+     "name": "Mel Cassell",
+     "title": "Buying Manager Food Wine and Gifts",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:rob hinsley",
+     "name": "Rob Hinsley",
+     "title": "Head of People",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:alex baker",
+     "name": "Alex Baker",
+     "title": "Head of Marketing & Communications",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:kieran mcbride",
+     "name": "Kieran McBride",
+     "title": "Store Director",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:kate gammons",
+     "name": "Kate Gammons",
+     "title": "Head of People Partnering",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-EVEN-365.json",
+     "base": "https://www.thefenwickinn.com/",
+     "pages_fetched": 27,
+     "pages_ok": 19,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.thefenwickinn.com/contact",
+       "url": "https://www.thefenwickinn.com/contact"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-COUN-551",
+   "name": "Prospect Bay Country Club",
+   "website": "https://www.prospectbay.com",
+   "city": "Grasonville",
+   "state": "MD",
+   "category": "country_club",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/prospectbaycountryclub",
+   "instagram": "https://www.instagram.com/prospectbaycountryclub",
+   "contact_form": "https://www.prospectbay.com/Contact.aspx",
+   "notes": "Private social club Grasonville MD (near Easton). 500+ members. Golfing, swimming, tennis, social events and dining. Worth contacting for wine dinners/events. Google category: Event venue.",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Ashen Anania",
+     "email": "aanania@prospectbaycc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Evan Rutherford",
+     "title": "Assistant Golf Professional",
+     "email": "erutherford@prospectbaycc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "title": "General Manager",
+     "email": "gm@prospectbaycc.com",
+     "verified": "role",
+     "source": "website"
+    },
+    {
+     "name": "Joy Haschen",
+     "title": "Event and Sales Director",
+     "email": "jhaschen@prospectbaycc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Jon Vodehnal",
+     "title": "General Manager",
+     "email": "jvodehnal@prospectbaycc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Lynn Hirschauer",
+     "title": "Administrator",
+     "email": "lhirschauer@prospectbaycc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Ray Chen",
+     "title": "Food and Beverage Director",
+     "email": "rchen@prospectbaycc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "ttipton@prospectbaycc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Stephanie Butler",
+     "title": "Food & Beverage Director",
+     "email": "sbutler@prospectbaycc.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-COUN-551 web ok via=chrome pages=22 visited=home,contact,about,events,team form=yes chrome_pages=22 curl_pages=0 static_pages=23 pdfs=0 emails=17 saved=8 role=1 unverified=0 deferred=0 rejected=9 candidates=0 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] MD-COUN-551 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-COUN-551 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=2 org=Prospect_Bay_Country_Club gate=name+domain people=8 relevant=1 skipped_titles=3 over_cap=0 enriched=1 saved=1 pending=0 deferred=0 credits=1",
+    "[STEP] MD-COUN-551 linkedin empty pages=3 results=14 rejected=14 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-COUN-551 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-COUN-551 final ok status=pipelined valid_contacts=9 new=9 deferred=0",
+    "[STEP] MD-COUN-551 postcheck skipped reason=has_contacts valid=9"
+   ],
+   "candidates": [
+    {
+     "email": "aanania@prospectbaycc.com",
+     "name": "Ashen Anania",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "aanania@prospectbaycc.com",
+     "name": "Ashen Anania",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "billhorney3@gmail.com",
+     "name": "Billy Horney",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "billhorney3@gmail.com",
+     "name": "Billy Horney",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "bplampkins@gmail.com",
+     "name": "Ben Lampkins",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "bplampkins@gmail.com",
+     "name": "Ben Lampkins",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "chrisgaines748@yahoo.com",
+     "name": "Chris Gaines",
+     "title": "President",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "chrisgaines748@yahoo.com",
+     "name": "Chris Gaines",
+     "title": "President",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "cynthia.betsher@gmail.com",
+     "name": "Cynthia Betsher",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "cynthia.betsher@gmail.com",
+     "name": "Cynthia Betsher",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "danmc869@aol.com",
+     "name": "Dan McCabe",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "danmc869@aol.com",
+     "name": "Dan McCabe",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "demstillers@yahoo.com",
+     "name": "Jim Tranquill",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "demstillers@yahoo.com",
+     "name": "Jim Tranquill",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "erutherford@prospectbaycc.com",
+     "name": "Evan Rutherford",
+     "title": "Assistant Golf Professional",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "erutherford@prospectbaycc.com",
+     "name": "Evan Rutherford",
+     "title": "Assistant Golf Professional",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "gm@prospectbaycc.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "gm@prospectbaycc.com",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "saved_role"
+    },
+    {
+     "email": "grichardson030@gmail.com",
+     "name": "Greg Richardson",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "grichardson030@gmail.com",
+     "name": "Greg Richardson",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "janwwood@gmail.com",
+     "name": "Jan Orlinski",
+     "title": "President",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "janwwood@gmail.com",
+     "name": "Jan Orlinski",
+     "title": "President",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "jhaschen@prospectbaycc.com",
+     "name": "Joy Haschen",
+     "title": "Event and Sales Director",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "jhaschen@prospectbaycc.com",
+     "name": "Joy Haschen",
+     "title": "Event and Sales Director",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "jimmysisk54@gmail.com",
+     "name": "Jim Sisk",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jimmysisk54@gmail.com",
+     "name": "Jim Sisk",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "jvodehnal@prospectbaycc.com",
+     "name": "Jon Vodehnal",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "jvodehnal@prospectbaycc.com",
+     "name": "Jon Vodehnal",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "lhirschauer@prospectbaycc.com",
+     "name": "Lynn Hirschauer",
+     "title": "Administrator",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "lhirschauer@prospectbaycc.com",
+     "name": "Lynn Hirschauer",
+     "title": "Administrator",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "rchen@prospectbaycc.com",
+     "name": "Ray Chen",
+     "title": "Food and Beverage Director",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "rchen@prospectbaycc.com",
+     "name": "Ray Chen",
+     "title": "Food and Beverage Director",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "ttipton@prospectbaycc.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "ttipton@prospectbaycc.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:richard bennett",
+     "name": "Richard Bennett",
+     "title": "Owner",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "gm@prospectbaycc.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "gm@prospectbaycc.com",
+     "source": "social",
+     "disposition": "already_known"
+    },
+    {
+     "email": "sbutler@prospectbaycc.com",
+     "name": "Stephanie Butler",
+     "title": "Food & Beverage Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "sbutler@prospectbaycc.com",
+     "name": "Stephanie Butler",
+     "title": "Food & Beverage Director",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-COUN-551.json",
+     "base": "https://www.prospectbay.com/",
+     "pages_fetched": 32,
+     "pages_ok": 23,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.prospectbay.com/Contact.aspx",
+       "url": "https://www.prospectbay.com/Contact.aspx"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.prospectbay.com/Employment.aspx",
+       "url": "https://www.prospectbay.com/Employment.aspx"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.prospectbay.com/Membership",
+       "url": "https://www.prospectbay.com/Membership"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.prospectbay.com/Weddings_Events",
+       "url": "https://www.prospectbay.com/Weddings_Events"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.prospectbay.com/contact",
+       "url": "https://www.prospectbay.com/contact"
+      }
+     ],
+     "people": [
+      {
+       "name": "Jim Tranquill",
+       "page": "https://www.prospectbay.com/Our_Club/Board_of_Directors",
+       "title": "President"
+      },
+      {
+       "name": "Jan Orlinski",
+       "page": "https://www.prospectbay.com/Our_Club/Board_of_Directors",
+       "title": "Vice President"
+      },
+      {
+       "name": "Job Title",
+       "page": "https://www.prospectbay.com/Employment.aspx",
+       "title": "Supervisor's Name"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-WINE-2605",
+   "name": "Calvert Woodley Fine Wines",
+   "website": "https://www.calvertwoodley.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "wine_bar",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/CalvertWoodley",
+   "instagram": "https://www.instagram.com/calvertwoodley",
+   "contact_form": "",
+   "notes": "Website checked 2026-09-29",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "andy@calvertwoodley.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "beer@calvertwoodley.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "joseph@calvertwoodley.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "kristen@calvertwoodley.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "schuyler@calvertwoodley.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "will@calvertwoodley.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Mark Rudden",
+     "title": "Manager",
+     "email": "mark@calvertwoodley.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Administrative Assistant",
+     "email": "wine@calvertwoodley.com",
+     "verified": "role",
+     "source": "apollo"
+    },
+    {
+     "name": "Karly McDonald",
+     "title": "Marketing Manager",
+     "email": "karly@calvertwoodley.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Maria Rios",
+     "title": "Administrative Assistant",
+     "email": "maria@calvertwoodley.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Geoff Romine",
+     "title": "Manager at Cheese Department La Cheeserie",
+     "email": "geoff@calvertwoodley.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Rudi Johnson",
+     "title": "Office Administrator",
+     "email": "rudi@calvertwoodley.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-WINE-2605 web ok via=chrome pages=25 visited=home,contact,about,events form=no chrome_pages=25 curl_pages=0 static_pages=40 pdfs=0 emails=16 saved=6 role=0 unverified=0 deferred=0 rejected=8 candidates=2 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] DC-WINE-2605 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-WINE-2605 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=2 org=Calvert_Woodley_Fine_Wines_&_Spirits gate=name+domain people=16 relevant=10 skipped_titles=0 over_cap=0 enriched=10 saved=6 pending=0 deferred=0 credits=10",
+    "[STEP] DC-WINE-2605 linkedin empty pages=3 results=16 rejected=16 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-WINE-2605 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-WINE-2605 final ok status=pipelined valid_contacts=12 new=12 deferred=0",
+    "[STEP] DC-WINE-2605 postcheck skipped reason=has_contacts valid=12"
+   ],
+   "candidates": [
+    {
+     "email": "accessibility@cityhive.net",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "accessibility@cityhive.net",
+     "source": "website",
+     "disposition": "reject:off_domain:cityhive.net!=calvertwoodley.com"
+    },
+    {
+     "email": "amaurya@cityhive.net",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "amaurya@cityhive.net",
+     "source": "website",
+     "disposition": "reject:off_domain:cityhive.net!=calvertwoodley.com"
+    },
+    {
+     "email": "andy@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "andy@calvertwoodley.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "beer@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "beer@calvertwoodley.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "contact@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "contact@calvertwoodley.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "copyright@cityhive.net",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "copyright@cityhive.net",
+     "source": "website",
+     "disposition": "reject:off_domain:cityhive.net!=calvertwoodley.com"
+    },
+    {
+     "email": "info@cityhive.net",
+     "name": "On Web",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@cityhive.net",
+     "name": "On Web",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "jayd.patel316@gmail.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jayd.patel316@gmail.com",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "joseph@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "joseph@calvertwoodley.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "kristen@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "kristen@calvertwoodley.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "legal@cityhive.net",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "legal@cityhive.net",
+     "source": "website",
+     "disposition": "reject:hard_reject:legal"
+    },
+    {
+     "email": "noamc@cityhive.net",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "noamc@cityhive.net",
+     "source": "website",
+     "disposition": "reject:off_domain:cityhive.net!=calvertwoodley.com"
+    },
+    {
+     "email": "schuyler@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "schuyler@calvertwoodley.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "shipping@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "shipping@calvertwoodley.com",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "will@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "will@calvertwoodley.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "wine@calvertwoodley.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "wine@calvertwoodley.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "person:october picks",
+     "name": "October Picks",
+     "title": "SOMMELIER SELECTION",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "contact@calvertwoodley.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "contact@calvertwoodley.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "will@calvertwoodley.com",
+     "name": "Will Murck",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "will@calvertwoodley.com",
+     "name": "Will Murck",
+     "source": "apollo",
+     "disposition": "already_known"
+    },
+    {
+     "email": "joseph@calvertwoodley.com",
+     "name": "Joseph Riley",
+     "title": "Retail Sales Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "joseph@calvertwoodley.com",
+     "name": "Joseph Riley",
+     "title": "Retail Sales Manager",
+     "source": "apollo",
+     "disposition": "already_known"
+    },
+    {
+     "email": "schuyler@calvertwoodley.com",
+     "name": "Schuyler Jones",
+     "title": "Retail Operator",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-WINE-2605.json",
+     "base": "https://www.calvertwoodley.com/",
+     "pages_fetched": 49,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-EVEN-351",
+   "name": "Olde Breton Inn",
+   "website": "https://www.oldebretoninn.com",
+   "city": "Leonardtown",
+   "state": "MD",
+   "category": "hotel",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/oldebretoninn",
+   "instagram": "",
+   "contact_form": "https://www.oldebretoninn.com/contact-artesia",
+   "notes": "Historic 1700s mansion overlooking Breton Bay. Seats 150. Sophisticated venue with Bailey's Catering. Gazebo overlooks Potomac River. 30 years of events. PRIME historic venue.",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "oldebretoninn@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-EVEN-351 web ok via=chrome pages=11 visited=home,contact,about,events form=yes chrome_pages=11 curl_pages=0 static_pages=13 pdfs=0 emails=1 saved=1 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=0 blocked_pages=0 missing=team",
+    "[STEP] MD-EVEN-351 social ok fb=found ig=none fb_search=website ig_search=empty:rejected_2 fb_pages=3 ig_pages=0 snippets=0 emails=1 saved=0 deferred=0",
+    "[STEP] MD-EVEN-351 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=Olde_Breton_Inn gate=name+domain people=0",
+    "[STEP] MD-EVEN-351 linkedin empty pages=3 results=20 rejected=20 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-EVEN-351 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-EVEN-351 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] MD-EVEN-351 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "oldebretoninn@gmail.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "oldebretoninn@gmail.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "oldebretoninn@gmail.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "oldebretoninn@gmail.com",
+     "source": "social",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-EVEN-351.json",
+     "base": "https://www.oldebretoninn.com/",
+     "pages_fetched": 21,
+     "pages_ok": 13,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.oldebretoninn.com/contact-artesia",
+       "url": "https://www.oldebretoninn.com/contact-artesia"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-338",
+   "name": "La Vela Italian Restaurant",
+   "website": "https://www.lavelaitalian.com/",
+   "city": "Solomons",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/lavelaitalian",
+   "instagram": "https://www.instagram.com/lavelaitalian",
+   "contact_form": "https://www.lavelaitalian.com/",
+   "notes": "Southern Italian cuisine with yacht club atmosphere. Waterfront overlooking Back Creek and Solomons Harbor. 4.5* (386 reviews). Upscale Italian = great classical guitar fit. | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-338 web ok via=chrome pages=1 visited=home form=yes chrome_pages=1 curl_pages=0 static_pages=1 pdfs=4 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,about,events,team",
+    "[STEP] MD-REST-338 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-338 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=La_Vela gate=name+domain people=1 relevant=0 skipped_titles=1 over_cap=0",
+    "[STEP] MD-REST-338 linkedin empty pages=3 results=16 rejected=16 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-338 google empty results=3 emails=0 site=same ig=known",
+    "[STEP] MD-REST-338 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-338 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=1 pages=1 pages_cut=0 visited=home emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=3 apollo_via=domain linkedin=empty li_results=3 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@lavelaitalian.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@lavelaitalian.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-338.json",
+     "base": "https://www.lavelaitalian.com/",
+     "pages_fetched": 9,
+     "pages_ok": 1,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.lavelaitalian.com/",
+       "url": "https://www.lavelaitalian.com/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-338.json",
+     "base": "https://www.lavelaitalian.com/",
+     "pages_fetched": 9,
+     "pages_ok": 1,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.lavelaitalian.com/",
+       "url": "https://www.lavelaitalian.com/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-615",
+   "name": "Harrison's Chesapeake House",
+   "website": "https://www.chesapeakehouse.com",
+   "city": "Tilghman Island",
+   "state": "MD",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "notes": "Historic watermen's hotel and restaurant on Tilghman Island, traditional Chesapeake Eastern Shore experience, 15 min from St Michaels | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-HOTE-615 web empty via=chrome pages=30 visited=home,contact,about,events,team form=no chrome_pages=30 curl_pages=0 static_pages=30 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=none",
+    "[STEP] MD-HOTE-615 social empty fb=none ig=none fb_search=empty:rejected_5 ig_search=empty:none fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0",
+    "[STEP] MD-HOTE-615 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] MD-HOTE-615 linkedin empty pages=3 results=21 rejected=21 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-HOTE-615 google empty results=5 emails=0 site=none ig=none",
+    "[STEP] MD-HOTE-615 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-HOTE-615 postcheck empty web=empty via=pipeline_crawl crawl=ok crawl_pages=30 pages=1 pages_cut=0 visited=home,contact,about,events,team emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=7 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-HOTE-615.json",
+     "base": "https://www.chesapeakehouse.com/",
+     "pages_fetched": 31,
+     "pages_ok": 30,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-HOTE-615.json",
+     "base": "https://www.chesapeakehouse.com/",
+     "pages_fetched": 31,
+     "pages_ok": 30,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2565",
+   "name": "Ox & Olive",
+   "website": "https://www.oxandolivedc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "",
+   "instagram": "https://www.instagram.com/oxandolive.dc/",
+   "contact_form": "",
+   "notes": "New May 2026, Michelin chef Ryan Ratino, 50-seat steakhouse. Sweep find. | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2565 web empty via=chrome pages=31 visited=home,contact,about,events,team form=no chrome_pages=31 curl_pages=0 static_pages=31 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=none",
+    "[STEP] DC-REST-2565 social ok fb=none ig=found fb_search=empty:rejected_10 ig_search=ok:found_of_1 fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] DC-REST-2565 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] DC-REST-2565 linkedin empty pages=3 results=19 rejected=19 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2565 google empty results=4 emails=0 site=other_domain ig=known",
+    "[STEP] DC-REST-2565 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2565 postcheck empty web=empty via=pipeline_crawl crawl=ok crawl_pages=31 pages=1 pages_cut=0 visited=home,contact,about,events,team emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=4 li_relevant=2 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "kind": "contact",
+     "name": "Karin Andersson",
+     "title": "Co-founder & Head of Retail Partnerships at The Real Olive Company | Award-winning organic olives & EVO oil | NPD | Partnering with UK retailers, delis & foodse",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:location_unverified"
+    },
+    {
+     "kind": "contact",
+     "name": "Christoph Haxel",
+     "title": "Business Development Manager / Greek Olive Oil  at OLIFE.health /  Pure Greek Olive Oil \u2013 Taste the Tradition 100% Natural. 100% Greek. 100% Delicious.",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:location_unverified"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2565.json",
+     "base": "https://www.oxandolivedc.com/",
+     "pages_fetched": 31,
+     "pages_ok": 31,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2565.json",
+     "base": "https://www.oxandolivedc.com/",
+     "pages_fetched": 31,
+     "pages_ok": 31,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-HOTE-3015",
+   "name": "The Leesburg Colonial Inn",
+   "website": "http://www.theleesburgcolonialinn.com",
+   "city": "Leesburg",
+   "state": "VA",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/TheColonialInn/",
+   "instagram": "",
+   "contact_form": "https://www.theleesburgcolonialinn.com/contact-us",
+   "notes": "Google Maps ''. 4.0* (185 reviews). Pre-score: 50. Taste query: historic inn Leesburg VA | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-HOTE-3015 web ok via=chrome pages=17 visited=home,contact form=yes chrome_pages=17 curl_pages=0 static_pages=28 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=about,events,team",
+    "[STEP] VA-HOTE-3015 social ok fb=found ig=none fb_search=ok:found_of_4 ig_search=empty:rejected_5 fb_pages=3 ig_pages=0 snippets=0 emails=1 saved=0 deferred=0",
+    "[STEP] VA-HOTE-3015 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=The_Leesburg_Colonial_Inn gate=name+domain people=0",
+    "[STEP] VA-HOTE-3015 linkedin empty pages=3 results=13 rejected=12 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-HOTE-3015 google empty results=1 emails=0 site=same ig=none",
+    "[STEP] VA-HOTE-3015 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-HOTE-3015 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=28 pages=29 pages_cut=5 visited=home,contact emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=6 li_relevant=1 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "innkeeper@theleesburgcolonialinn.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "innkeeper@theleesburgcolonialinn.com",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "info@colonialinnolympia.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@colonialinnolympia.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:diego blat",
+     "name": "Diego Blat",
+     "title": "Head of Investments",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "innkeeper@theleesburgcolonialinn.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.theleesburgcolonialinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "innkeeper@theleesburgcolonialinn.com",
+     "source": "postcheck_website",
+     "disposition": "verification:do_not_mail",
+     "evidence_url": "https://www.theleesburgcolonialinn.com/"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:no_venue_evidence"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:no_venue_evidence"
+    },
+    {
+     "kind": "contact",
+     "name": "Diego Blat",
+     "title": "Head of Investments at Colonial",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:location_unverified"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-HOTE-3015.json",
+     "base": "http://www.theleesburgcolonialinn.com/",
+     "pages_fetched": 36,
+     "pages_ok": 28,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.theleesburgcolonialinn.com/contact-us/",
+       "url": "https://www.theleesburgcolonialinn.com/contact-us/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.theleesburgcolonialinn.com/",
+       "url": "https://www.theleesburgcolonialinn.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.theleesburgcolonialinn.com/author/admin/",
+       "url": "https://www.theleesburgcolonialinn.com/author/admin/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.theleesburgcolonialinn.com/eat-drink-and-be-merry/",
+       "url": "https://www.theleesburgcolonialinn.com/eat-drink-and-be-merry/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.theleesburgcolonialinn.com/faq-items/class-aptent-taciti-sociosqu-ad-litora-torquent-per-conubia-nostra-pers/",
+       "url": "https://www.theleesburgcolonialinn.com/faq-items/class-aptent-taciti-sociosqu-ad-litora-torquent-per-conubia-nostra-pers/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-HOTE-3015.json",
+     "base": "http://www.theleesburgcolonialinn.com/",
+     "pages_fetched": 36,
+     "pages_ok": 28,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.theleesburgcolonialinn.com/contact-us/",
+       "url": "https://www.theleesburgcolonialinn.com/contact-us/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.theleesburgcolonialinn.com/",
+       "url": "https://www.theleesburgcolonialinn.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.theleesburgcolonialinn.com/author/admin/",
+       "url": "https://www.theleesburgcolonialinn.com/author/admin/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.theleesburgcolonialinn.com/eat-drink-and-be-merry/",
+       "url": "https://www.theleesburgcolonialinn.com/eat-drink-and-be-merry/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.theleesburgcolonialinn.com/faq-items/class-aptent-taciti-sociosqu-ad-litora-torquent-per-conubia-nostra-pers/",
+       "url": "https://www.theleesburgcolonialinn.com/faq-items/class-aptent-taciti-sociosqu-ad-litora-torquent-per-conubia-nostra-pers/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-COUN-1327",
+   "name": "Eagle's Nest Country Club",
+   "website": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/",
+   "city": "Phoenix",
+   "state": "MD",
+   "category": "country_club",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/eaglesnestcountryclub",
+   "instagram": "https://www.instagram.com/eaglesnestcountryclub",
+   "contact_form": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started/host-an-event-form-golf",
+   "notes": "Invited Clubs network. Fine dining, wine tastings, galas. Private rooms 10-220. | Website checked 2026-09-29 Site: Discover Eagle's Nest Country Club. Enjoy 18 holes of championship golf, fine dining, racquet sports, swimming pools, and an active social c",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "eaglesnest@invitedclubs.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-COUN-1327 web ok via=chrome pages=18 visited=home,contact,events,team form=yes chrome_pages=18 curl_pages=0 static_pages=23 pdfs=0 emails=1 saved=1 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=3 pending=0 fb=1 ig=1 blocked_pages=0 missing=about",
+    "[STEP] MD-COUN-1327 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-COUN-1327 apollo skipped reason=shared_domain domain_search=skipped:shared_domain domain_results=0 name_search=ok name_results=6",
+    "[STEP] MD-COUN-1327 linkedin empty pages=3 results=18 rejected=16 employees=2 relevant=2 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-COUN-1327 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-COUN-1327 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] MD-COUN-1327 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "eaglesnest@invitedclubs.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "eaglesnest@invitedclubs.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:david benson",
+     "name": "David Benson",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:robert roney",
+     "name": "Robert Roney",
+     "title": "Membership Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:jennifer nehila",
+     "name": "Jennifer Nehila",
+     "title": "Event Sales Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "eaglesnest@invitedclubs.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "eaglesnest@invitedclubs.com",
+     "source": "social",
+     "disposition": "already_known"
+    },
+    {
+     "email": "person:joseph gallup",
+     "name": "Joseph Gallup",
+     "title": "1st Assistant",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:annalee reddell",
+     "name": "Annalee Reddell",
+     "title": "Hostess",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-COUN-1327.json",
+     "base": "https://www.invitedclubs.com/clubs/eagles-nest-country-club",
+     "pages_fetched": 23,
+     "pages_ok": 23,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started",
+       "url": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started/host-an-event-form-golf",
+       "url": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started/host-an-event-form-golf"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started/host-an-event-form-private-events",
+       "url": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started/host-an-event-form-private-events"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started/host-an-event-form-weddings",
+       "url": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/get-started/host-an-event-form-weddings"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/membership",
+       "url": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/membership"
+      }
+     ],
+     "people": [
+      {
+       "name": "David Benson",
+       "page": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/contact-us",
+       "title": "General Manager"
+      },
+      {
+       "name": "Robert Roney",
+       "page": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/contact-us",
+       "title": "General Manager"
+      },
+      {
+       "name": "Jennifer Nehila",
+       "page": "https://www.invitedclubs.com/clubs/eagles-nest-country-club/contact-us",
+       "title": "Membership Director"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-345",
+   "name": "Vaughan Cheese Counter & Bar",
+   "website": "https://vaughancheese.com/",
+   "city": "North Beach",
+   "state": "MD",
+   "category": "bar",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/VaughanCheese",
+   "instagram": "https://www.instagram.com/vaughan_cheese",
+   "contact_form": "https://vaughancheese.com/pages/contact-vaughan-cheese",
+   "notes": "Artisan cheese + wine bar. Charcuterie boards, wines by the glass, craft cocktails. Intimate, sophisticated vibe. Wine bar = good classical guitar crowd.",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "cheese@vaughancheese.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "megan@vaughancheese.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Tyler Vaughan",
+     "title": "Owner",
+     "email": "tyler@vaughancheese.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-WINE-345 web ok via=chrome pages=18 visited=home,contact,about,events,team form=yes chrome_pages=18 curl_pages=0 static_pages=2 pdfs=1 emails=2 saved=2 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none static_crawl=throttled",
+    "[STEP] MD-WINE-345 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-WINE-345 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=0 org=Vaughan_Cheese gate=name+domain people=2 relevant=2 skipped_titles=0 over_cap=0 enriched=2 saved=1 pending=0 deferred=0 credits=2",
+    "[STEP] MD-WINE-345 linkedin empty pages=3 results=16 rejected=16 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-WINE-345 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-WINE-345 final ok status=pipelined valid_contacts=3 new=3 deferred=0",
+    "[STEP] MD-WINE-345 postcheck skipped reason=has_contacts valid=3"
+   ],
+   "candidates": [
+    {
+     "email": "cheese@vaughancheese.com",
+     "name": "Local Pickup",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "cheese@vaughancheese.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "megan@vaughancheese.com",
+     "name": "Vaughan Cheese",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "megan@vaughancheese.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "cheese@vaughancheese.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "cheese@vaughancheese.com",
+     "source": "social",
+     "disposition": "already_known"
+    },
+    {
+     "email": "tyler@vaughancheese.com",
+     "name": "Tyler Vaughan",
+     "title": "Owner",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "tyler@vaughancheese.com",
+     "name": "Tyler Vaughan",
+     "title": "Owner",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "megan@vaughancheese.com",
+     "name": "Megan Vaughan",
+     "title": "Owner",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "megan@vaughancheese.com",
+     "name": "Megan Vaughan",
+     "title": "Owner",
+     "source": "apollo",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-WINE-345.json",
+     "base": "https://vaughancheese.com/",
+     "pages_fetched": 14,
+     "pages_ok": 2,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://vaughancheese.com/pages/our-story",
+       "url": "https://vaughancheese.com/pages/our-story"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-366",
+   "name": "Solomons Inn Resort & Marina",
+   "website": "https://www.solomonsresort.com/",
+   "city": "Solomons",
+   "state": "MD",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/SolomonsInnResortandMarina/",
+   "instagram": "https://www.instagram.com/solomonsinnresort",
+   "contact_form": "https://www.solomonsresort.com/form-builder/rfp-meetings-events",
+   "notes": "113-room waterfront resort. 20,000+ sq ft event space. New Lodge restaurant opening spring 2026. Weddings, banquets, events. Major venue. | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-HOTE-366 web ok via=chrome pages=21 visited=home,contact,events,team form=yes chrome_pages=21 curl_pages=0 static_pages=24 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=about",
+    "[STEP] MD-HOTE-366 social ok fb=found ig=found fb_search=ok:found_of_3 ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] MD-HOTE-366 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=Solomons_Inn_Resort_and_Marina_Hotel gate=name+domain people=0",
+    "[STEP] MD-HOTE-366 linkedin empty pages=3 results=14 rejected=14 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-HOTE-366 google empty results=5 emails=0 site=same ig=known",
+    "[STEP] MD-HOTE-366 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-HOTE-366 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=24 pages=8 pages_cut=0 visited=home,contact,events emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=4 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-HOTE-366.json",
+     "base": "https://www.solomonsresort.com/",
+     "pages_fetched": 32,
+     "pages_ok": 24,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.solomonsresort.com/form-builder/media",
+       "url": "https://www.solomonsresort.com/form-builder/media"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.solomonsresort.com/form-builder/reservations",
+       "url": "https://www.solomonsresort.com/form-builder/reservations"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.solomonsresort.com/form-builder/rfp-meetings-events",
+       "url": "https://www.solomonsresort.com/form-builder/rfp-meetings-events"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-HOTE-366.json",
+     "base": "https://www.solomonsresort.com/",
+     "pages_fetched": 32,
+     "pages_ok": 24,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.solomonsresort.com/form-builder/media",
+       "url": "https://www.solomonsresort.com/form-builder/media"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.solomonsresort.com/form-builder/reservations",
+       "url": "https://www.solomonsresort.com/form-builder/reservations"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.solomonsresort.com/form-builder/rfp-meetings-events",
+       "url": "https://www.solomonsresort.com/form-builder/rfp-meetings-events"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-544",
+   "name": "Osteria Alfredo",
+   "website": "https://osteria-alfredo-takeaway.square.site/",
+   "city": "Easton",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/osteriaalfredo/",
+   "instagram": "",
+   "contact_form": "",
+   "notes": "Trattoria-style Italian, 210 Marlboro Ave Easton. \"One of the most successful Italian restaurants on the Eastern Shore\" since 2007. B-tier calendar filler. | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-544 web ok via=chrome pages=2 visited=home form=no chrome_pages=2 curl_pages=0 static_pages=2 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=contact,about,events,team",
+    "[STEP] MD-REST-544 social ok fb=found ig=none fb_search=ok:found_of_3 ig_search=empty:rejected_3 fb_pages=3 ig_pages=0 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] MD-REST-544 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] MD-REST-544 linkedin empty pages=3 results=11 rejected=11 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-544 google empty results=2 emails=0 site=same ig=none",
+    "[STEP] MD-REST-544 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-544 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=2 pages=1 pages_cut=0 visited=home emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=1 apollo_via=name linkedin=empty li_results=4 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "alfredo460@yahoo.com",
+     "name": "Osteria Alfredo",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "alfredo460@yahoo.com",
+     "name": "Osteria Alfredo",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "hi@mystore.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "hi@mystore.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "hi@mystore.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://osteria-alfredo-takeaway.square.site/"
+    },
+    {
+     "kind": "email",
+     "email": "hi@mystore.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://osteria-alfredo-takeaway.square.site/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-544.json",
+     "base": "https://osteria-alfredo-takeaway.square.site/",
+     "pages_fetched": 10,
+     "pages_ok": 2,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-544.json",
+     "base": "https://osteria-alfredo-takeaway.square.site/",
+     "pages_fetched": 10,
+     "pages_ok": 2,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2817",
+   "name": "Chef Geoff's (New Mexico Ave)",
+   "website": "https://www.chefgeoff.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/chefgeoffsrestaurant",
+   "instagram": "https://www.instagram.com/chefgeoffsrestaurant",
+   "contact_form": "https://www.chefgeoff.com/events-inquiry-form",
+   "notes": "Spring Valley DC sweep 2026-09-21. Reviewers mention Sunday Jazz Brunch \u2014 already books live music. Private dining, free parking after 5pm.",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "chris@chefgeoff.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "title": "Chef",
+     "email": "geoff@chefgeoff.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Reward Dollars",
+     "email": "rewards@chefgeoff.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Amy Cooney",
+     "title": "Private Events Director",
+     "email": "amyc@chefgeoff.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2817 web ok via=chrome pages=31 visited=home,contact,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=6 emails=5 saved=3 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=about",
+    "[STEP] DC-REST-2817 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2817 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=0 org=Chef_Geoff's gate=name+domain people=4 relevant=3 skipped_titles=0 over_cap=0 enriched=3 saved=1 pending=0 deferred=0 credits=3",
+    "[STEP] DC-REST-2817 linkedin empty pages=1 results=2 rejected=2 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2817 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-REST-2817 final ok status=pipelined valid_contacts=4 new=4 deferred=0",
+    "[STEP] DC-REST-2817 postcheck skipped reason=has_contacts valid=4"
+   ],
+   "candidates": [
+    {
+     "email": "catherine.jones@hhmhotels.com",
+     "name": "Catherine Jones",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "catherine.jones@hhmhotels.com",
+     "name": "Catherine Jones",
+     "source": "website",
+     "disposition": "reject:off_domain:hhmhotels.com!=chefgeoff.com"
+    },
+    {
+     "email": "chris@chefgeoff.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "chris@chefgeoff.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "events@chefgeoff.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "events@chefgeoff.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "geoff@chefgeoff.com",
+     "title": "Chef",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "geoff@chefgeoff.com",
+     "title": "Chef",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "rewards@chefgeoff.com",
+     "name": "Reward Dollars",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "rewards@chefgeoff.com",
+     "name": "Reward Dollars",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:cateringdaily deals",
+     "name": "CateringDaily Deals",
+     "title": "Chef Geoff's (New Mexico Ave)",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "info@chefgeoff.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@chefgeoff.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "amyc@chefgeoff.com",
+     "name": "Amy Cooney",
+     "title": "Private Events Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "amyc@chefgeoff.com",
+     "name": "Amy Cooney",
+     "title": "Private Events Director",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "chris@chefgeoff.com",
+     "name": "Chris Tracy",
+     "title": "Co-Owner",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "chris@chefgeoff.com",
+     "name": "Chris Tracy",
+     "title": "Co-Owner",
+     "source": "apollo",
+     "disposition": "already_known"
+    },
+    {
+     "email": "geoff@chefgeoff.com",
+     "name": "Geoff Tracy",
+     "title": "President",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "geoff@chefgeoff.com",
+     "name": "Geoff Tracy",
+     "title": "President",
+     "source": "apollo",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2817.json",
+     "base": "https://www.chefgeoff.com/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "tripleseat",
+       "page": "https://www.chefgeoff.com/banquets-weddings",
+       "url": "https://www.chefgeoff.com/banquets-weddings"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.chefgeoff.com/cateringform",
+       "url": "https://www.chefgeoff.com/cateringform"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.chefgeoff.com/cgevents",
+       "url": "https://www.chefgeoff.com/cgevents"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.chefgeoff.com/contact",
+       "url": "https://www.chefgeoff.com/contact"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.chefgeoff.com/events-inquiry-form",
+       "url": "https://www.chefgeoff.com/events-inquiry-form"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-347",
+   "name": "Back Creek Inn",
+   "website": "https://www.backcreekinn.com/",
+   "city": "Solomons",
+   "state": "MD",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/back.inn",
+   "instagram": "",
+   "contact_form": "https://www.backcreekinn.com/package/boat-rental/",
+   "notes": "Historic B&B in Solomons. Beautiful gardens, waterfront island walk. 4.9* (83 reviews). Intimate boutique inn, perfect classical guitar setting. | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-HOTE-347 web ok via=chrome pages=31 visited=home,contact,about,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=0 blocked_pages=0 missing=team",
+    "[STEP] MD-HOTE-347 social ok fb=found ig=none fb_search=website ig_search=empty:rejected_2 fb_pages=3 ig_pages=0 snippets=0 emails=1 saved=0 deferred=0",
+    "[STEP] MD-HOTE-347 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=1",
+    "[STEP] MD-HOTE-347 linkedin empty pages=3 results=23 rejected=23 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-HOTE-347 google empty results=3 emails=0 site=same ig=none",
+    "[STEP] MD-HOTE-347 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-HOTE-347 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=37 pages_cut=13 visited=home,contact,about,events emails=3 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=8 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "backcreekinn@comcast.net",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "backcreekinn@comcast.net",
+     "source": "website",
+     "disposition": "verification:abuse"
+    },
+    {
+     "email": "billing@thinkreservations.com",
+     "source": "website",
+     "disposition": "reject:off_site_page",
+     "evidence_url": "https://secure.thinkreservations.com/backcreekinn/reservations"
+    },
+    {
+     "email": "hello@backcreekinn.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "hello@backcreekinn.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "backcreekinn@comcast.net",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "backcreekinn@comcast.net",
+     "source": "social",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "kind": "email",
+     "email": "backcreekinn@comcast.net",
+     "name": "Back Creek Inn Policies",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.backcreekinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "backcreekinn@comcast.net",
+     "name": "Back Creek Inn Policies",
+     "source": "postcheck_website",
+     "disposition": "verification:abuse",
+     "evidence_url": "https://www.backcreekinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "hello@backcreekinn.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.backcreekinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "hello@backcreekinn.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.backcreekinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "billing@thinkreservations.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://secure.thinkreservations.com/backcreekinn/reservations"
+    },
+    {
+     "kind": "email",
+     "email": "billing@thinkreservations.com",
+     "source": "postcheck_website",
+     "disposition": "reject:hard_reject:billing",
+     "evidence_url": "https://secure.thinkreservations.com/backcreekinn/reservations"
+    },
+    {
+     "kind": "contact",
+     "name": "Longer Stays",
+     "title": "look for rate details upon booking",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.backcreekinn.com/about/policies/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-HOTE-347.json",
+     "base": "https://www.backcreekinn.com/",
+     "pages_fetched": 57,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.backcreekinn.com/guest-book/",
+       "url": "https://www.backcreekinn.com/guest-book/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.backcreekinn.com/",
+       "url": "https://www.backcreekinn.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.backcreekinn.com/about/",
+       "url": "https://www.backcreekinn.com/about/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.backcreekinn.com/about/policies/",
+       "url": "https://www.backcreekinn.com/about/policies/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.backcreekinn.com/area-adventures/",
+       "url": "https://www.backcreekinn.com/area-adventures/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-HOTE-347.json",
+     "base": "https://www.backcreekinn.com/",
+     "pages_fetched": 57,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.backcreekinn.com/guest-book/",
+       "url": "https://www.backcreekinn.com/guest-book/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.backcreekinn.com/",
+       "url": "https://www.backcreekinn.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.backcreekinn.com/about/",
+       "url": "https://www.backcreekinn.com/about/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.backcreekinn.com/about/policies/",
+       "url": "https://www.backcreekinn.com/about/policies/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.backcreekinn.com/area-adventures/",
+       "url": "https://www.backcreekinn.com/area-adventures/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1282",
+   "name": "Trump National Golf Club Washington DC",
+   "website": "https://www.trumpnationaldc.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "country_club",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/TrumpGolfWashingtonDC",
+   "instagram": "https://www.instagram.com/trumpgolfdc",
+   "contact_form": "https://docs.google.com/forms/d/e/1FAIpQLScm0wR5l2jIuylaHwT314XeTu-ITzM7_eMaV4AkhkCbTr1UCA/viewform?usp=header",
+   "notes": "Google Maps ''. 4.0* (148 reviews). Pre-score: 40. Taste query: private club Potomac MD Site: Trump National Golf Club Washington D.C is a family oriented private club offering members two world-class golf courses, a state-of-the-art | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-1282 web ok via=chrome pages=31 visited=home,contact,about,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=15 saved=0 role=0 unverified=0 deferred=0 rejected=15 candidates=0 known=0 errors=0 people=2 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] DC-REST-1282 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-1282 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=6 org=Trump_National_Golf_Club_Washington,_D.C. gate=name+domain people=33 relevant=11 skipped_titles=14 over_cap=0 enriched=11 saved=0 pending=0 deferred=0 credits=11",
+    "[STEP] DC-REST-1282 linkedin empty pages=3 results=15 rejected=9 employees=6 relevant=5 saved=0 pending=0 deferred=0 credits=4",
+    "[STEP] DC-REST-1282 google empty results=3 emails=0 site=same ig=known",
+    "[STEP] DC-REST-1282 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-1282 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=14 pages_cut=0 visited=home,contact,about,events emails=10 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=11 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=25 apollo_via=domain linkedin=empty li_results=4 li_relevant=1 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "brad.enie@trumpgolf.com",
+     "name": "Brad Enie",
+     "title": "Director of Grounds",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "brad.enie@trumpgolf.com",
+     "name": "Brad Enie",
+     "title": "Director of Grounds",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "brooklyn.torian@trumpgolf.com",
+     "name": "Brooklyn Torian",
+     "title": "Events Manager",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "brooklyn.torian@trumpgolf.com",
+     "name": "Brooklyn Torian",
+     "title": "Events Manager",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "copyright@trumporg.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "copyright@trumporg.com",
+     "source": "website",
+     "disposition": "reject:off_domain:trumporg.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "feedback@trumporg.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "feedback@trumporg.com",
+     "source": "website",
+     "disposition": "reject:off_domain:trumporg.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "john.munuo@trumpgolf.com",
+     "name": "John Munuo",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "john.munuo@trumpgolf.com",
+     "name": "John Munuo",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "john.oleary@trumpgolf.com",
+     "name": "John O'Leary",
+     "title": "Director of Golf",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "john.oleary@trumpgolf.com",
+     "name": "John O'Leary",
+     "title": "Director of Golf",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "kyla.walgren@trumpgolf.com",
+     "name": "Kyla Walgren",
+     "title": "Director of Racquets",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "kyla.walgren@trumpgolf.com",
+     "name": "Kyla Walgren",
+     "title": "Director of Racquets",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "privacy@trumporg.com",
+     "title": "The Trump Organization, c/o Privacy Administrator",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "privacy@trumporg.com",
+     "title": "The Trump Organization, c/o Privacy Administrator",
+     "source": "website",
+     "disposition": "reject:hard_reject:privacy"
+    },
+    {
+     "email": "sarah.giles@trumpgolf.com",
+     "name": "Sarah Giles",
+     "title": "Director of Membership",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "sarah.giles@trumpgolf.com",
+     "name": "Sarah Giles",
+     "title": "Director of Membership",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "stephen.pluta@trumpgolf.com",
+     "name": "Steve Pluta",
+     "title": "Clubhouse Manager",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "stephen.pluta@trumpgolf.com",
+     "name": "Steve Pluta",
+     "title": "Clubhouse Manager",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "trent.kathmann@trumpgolf.com",
+     "name": "Trent Kathmann",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "trent.kathmann@trumpgolf.com",
+     "name": "Trent Kathmann",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "trumpcard@trumphotels.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "trumpcard@trumphotels.com",
+     "source": "website",
+     "disposition": "reject:off_domain:trumphotels.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "twas_accountsreceivable@trumpgolf.com",
+     "name": "Member Accounts",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "twas_accountsreceivable@trumpgolf.com",
+     "name": "Member Accounts",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "twas_employment@trumpgolf.com",
+     "name": "Employment Opportunities",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "twas_employment@trumpgolf.com",
+     "name": "Employment Opportunities",
+     "source": "website",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "unsubscribe@trumporg.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "unsubscribe@trumporg.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:unsubscribe"
+    },
+    {
+     "email": "person:grand ballroom",
+     "name": "Grand Ballroom",
+     "title": "CONTACT AN EVENT SPECIALIST",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:outdoor stone patio",
+     "name": "Outdoor Stone Patio",
+     "title": "Contact an Event Specialist",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "sarah.giles@trumpgolf.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "sarah.giles@trumpgolf.com",
+     "source": "social",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "brooklyn.torian@trumpgolf.com",
+     "name": "Brooklyn Torian",
+     "title": "Director of Events",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "brooklyn.torian@trumpgolf.com",
+     "name": "Brooklyn Torian",
+     "title": "Director of Events",
+     "source": "apollo",
+     "disposition": "reject:off_domain:trumpgolf.com!=trumpnationaldc.com"
+    },
+    {
+     "email": "person:dallas sperling",
+     "name": "Dallas Sperling",
+     "title": "Director of Events and Catering",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:johanna torija",
+     "name": "Johanna Torija",
+     "title": "Event Sales Manager",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:liliana crespin",
+     "name": "Liliana Crespin",
+     "title": "Banquet Manager",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "trent.kathmann@trumpgolf.com",
+     "name": "Trent Kathmann",
+     "title": "General Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-1282.json",
+     "base": "https://www.trumpnationaldc.com/",
+     "pages_fetched": 50,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.trumpnationaldc.com/contact",
+       "url": "https://www.trumpnationaldc.com/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.trumpnationaldc.com/golf/outings/inquiry-form",
+       "url": "https://www.trumpnationaldc.com/golf/outings/inquiry-form"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.trumpnationaldc.com/request-event-information",
+       "url": "https://www.trumpnationaldc.com/request-event-information"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.trumpnationaldc.com/request-membership-information",
+       "url": "https://www.trumpnationaldc.com/request-membership-information"
+      },
+      {
+       "kind": "google_forms",
+       "page": "https://www.trumpnationaldc.com/liv-golf-virginia-ticket-sales-2026-1",
+       "url": "https://docs.google.com/forms/d/e/1FAIpQLScm0wR5l2jIuylaHwT314XeTu-ITzM7_eMaV4AkhkCbTr1UCA/viewform?usp=header"
+      }
+     ],
+     "people": [
+      {
+       "name": "Grand Ballroom",
+       "page": "https://www.trumpnationaldc.com/weddings-events",
+       "title": "Contact an Event Specialist"
+      },
+      {
+       "name": "Outdoor Stone Patio",
+       "page": "https://www.trumpnationaldc.com/weddings-events",
+       "title": "Contact an Event Specialist"
+      },
+      {
+       "name": "Trent Kathmann",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "General Manager"
+      },
+      {
+       "name": "Brooklyn Torian",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "Events Manager"
+      },
+      {
+       "name": "Steve Pluta",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "Clubhouse Manager"
+      },
+      {
+       "name": "Kyla Walgren",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "Director of Racquets"
+      },
+      {
+       "name": "John O'Leary",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "Director of Golf"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-1282.json",
+     "base": "https://www.trumpnationaldc.com/",
+     "pages_fetched": 50,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.trumpnationaldc.com/contact",
+       "url": "https://www.trumpnationaldc.com/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.trumpnationaldc.com/golf/outings/inquiry-form",
+       "url": "https://www.trumpnationaldc.com/golf/outings/inquiry-form"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.trumpnationaldc.com/request-event-information",
+       "url": "https://www.trumpnationaldc.com/request-event-information"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.trumpnationaldc.com/request-membership-information",
+       "url": "https://www.trumpnationaldc.com/request-membership-information"
+      },
+      {
+       "kind": "google_forms",
+       "page": "https://www.trumpnationaldc.com/liv-golf-virginia-ticket-sales-2026-1",
+       "url": "https://docs.google.com/forms/d/e/1FAIpQLScm0wR5l2jIuylaHwT314XeTu-ITzM7_eMaV4AkhkCbTr1UCA/viewform?usp=header"
+      }
+     ],
+     "people": [
+      {
+       "name": "Grand Ballroom",
+       "page": "https://www.trumpnationaldc.com/weddings-events",
+       "title": "Contact an Event Specialist"
+      },
+      {
+       "name": "Outdoor Stone Patio",
+       "page": "https://www.trumpnationaldc.com/weddings-events",
+       "title": "Contact an Event Specialist"
+      },
+      {
+       "name": "Trent Kathmann",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "General Manager"
+      },
+      {
+       "name": "Brooklyn Torian",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "Events Manager"
+      },
+      {
+       "name": "Steve Pluta",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "Clubhouse Manager"
+      },
+      {
+       "name": "Kyla Walgren",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "Director of Racquets"
+      },
+      {
+       "name": "John O'Leary",
+       "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+       "title": "Director of Golf"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-WINE-2608",
+   "name": "Florer\u00eda Atl\u00e1ntico",
+   "website": "https://floreriaatlanticodc.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "wine_bar",
+   "status": "pipelined",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.floreriaatlanticodc.com/contact",
+   "notes": "From the georgetown-2026-09-10 sweep write-up (added 2026-09-29: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "rikka@atlantisgeorgetown.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-WINE-2608 web ok via=chrome pages=17 visited=home,contact,about,events form=yes chrome_pages=17 curl_pages=0 static_pages=20 pdfs=1 emails=3 saved=1 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=team",
+    "[STEP] DC-WINE-2608 social empty fb=none ig=none fb_search=empty:rejected_9 ig_search=empty:rejected_1 fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0",
+    "[STEP] DC-WINE-2608 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=Floreria_Atlantico_&_Brasero_Atlantico_Georgetown gate=name+domain people=1 relevant=0 skipped_titles=0 over_cap=0",
+    "[STEP] DC-WINE-2608 linkedin empty pages=3 results=23 rejected=23 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-WINE-2608 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-WINE-2608 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] DC-WINE-2608 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "info@atlantisgeorgetown.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@atlantisgeorgetown.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "johnr@leadingdc.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "johnr@leadingdc.com",
+     "source": "website",
+     "disposition": "reject:off_domain:leadingdc.com!=floreriaatlanticodc.com"
+    },
+    {
+     "email": "rikka@atlantisgeorgetown.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "rikka@atlantisgeorgetown.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-WINE-2608.json",
+     "base": "https://floreriaatlanticodc.com/",
+     "pages_fetched": 28,
+     "pages_ok": 20,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.floreriaatlanticodc.com/contact",
+       "url": "https://www.floreriaatlanticodc.com/contact"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-561",
+   "name": "Weather Gage",
+   "website": "https://weathergagecoffee.com/",
+   "city": "Easton",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/weathergagecoffee",
+   "instagram": "https://www.instagram.com/wgcoffee",
+   "contact_form": "",
+   "notes": "Contemporary upscale cafe and bar by Bluepoint Hospitality. La Colombe coffee + house-made baked goods + cocktails. Downtown Easton educated crowd. B-tier calendar filler. | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-561 web ok via=chrome pages=5 visited=home form=no chrome_pages=5 curl_pages=0 static_pages=5 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,about,events,team",
+    "[STEP] MD-REST-561 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] MD-REST-561 apollo empty reason=org_mismatch rejected_orgs=2 domain_search=ok domain_results=0 name_search=ok name_results=2",
+    "[STEP] MD-REST-561 linkedin empty pages=3 results=20 rejected=20 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-561 google empty results=4 emails=0 site=same ig=known",
+    "[STEP] MD-REST-561 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-561 postcheck empty web=empty via=pipeline_crawl crawl=ok crawl_pages=5 pages=1 pages_cut=0 visited=home emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=8 apollo_via=name linkedin=empty li_results=4 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "kind": "social",
+     "source": "postcheck_website:instagram",
+     "disposition": "social_not_saved:no_venue_evidence"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-561.json",
+     "base": "https://weathergagecoffee.com/",
+     "pages_fetched": 13,
+     "pages_ok": 5,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-561.json",
+     "base": "https://weathergagecoffee.com/",
+     "pages_fetched": 13,
+     "pages_ok": 5,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-448",
+   "name": "Black Walnut Point Inn",
+   "website": "https://www.blackwalnutpointinn.com/",
+   "city": "Tilghman Island",
+   "state": "MD",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/Black-Walnut-Point-Inn-131140920237000",
+   "instagram": "https://www.instagram.com/black_walnut_point_inn",
+   "contact_form": "https://blackwalnutpointinn.com/contact-us",
+   "notes": "Remote waterfront inn on Tilghman Island. Peaceful setting. Events possible. | PIPELINE: 0 contacts run-20261107-0342",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-HOTE-448 web ok via=chrome pages=11 visited=home,contact,about,events form=yes chrome_pages=11 curl_pages=0 static_pages=12 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] MD-HOTE-448 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-HOTE-448 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=Black_Walnut_Point_Inn gate=name+domain people=0",
+    "[STEP] MD-HOTE-448 linkedin empty pages=3 results=15 rejected=15 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-HOTE-448 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] MD-HOTE-448 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-HOTE-448 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=12 pages=16 pages_cut=0 visited=home,contact,about,events emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=5 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "stay@blackwalnutpointinn.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "stay@blackwalnutpointinn.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "stay@blackwalnutpointinn.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "stay@blackwalnutpointinn.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "stay@blackwalnutpointinn.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://blackwalnutpointinn.com/"
+    },
+    {
+     "kind": "email",
+     "email": "stay@blackwalnutpointinn.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://blackwalnutpointinn.com/"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:no_venue_evidence"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-HOTE-448.json",
+     "base": "https://www.blackwalnutpointinn.com/",
+     "pages_fetched": 21,
+     "pages_ok": 12,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-HOTE-448.json",
+     "base": "https://www.blackwalnutpointinn.com/",
+     "pages_fetched": 21,
+     "pages_ok": 12,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  }
+ ]
+}

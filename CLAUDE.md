@@ -189,6 +189,12 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
   stops the run (resumable) if it fails.
 
 ## 1. Discovery (only when the pool is thin, or Alex asks)
+- **Best-of first (Nov 7 2026).** Town-by-town and past-gig discovery filled the sheet with 5,000 ordinary
+  places and missed the region's best: one region-wide pass over Michelin, Washingtonian, Baltimore and
+  NoVa magazine lists and Forbes hotels found 52 elite venues never on the sheet (The Inn at Little
+  Washington, the Willard, Masseria, Caves Valley). Before any town sweep, run the region-wide
+  best-of sweeps by kind (sweep_dream_*.md, terminal sessions, WebSearch only). With DREAM_FIRST,
+  build_batch runs their venues first (source or notes "dream-...").
 - Pool check: `./build_batch.sh --total 50 --dry-run` prints how many eligible
   venues exist per bucket (fine dining, clubs, hotels, wine, wild cards).
 - `./discover.sh --taste` (Chrome, Google Maps) or the WebSearch sweep procedure

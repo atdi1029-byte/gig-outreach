@@ -9583,6 +9583,11 @@ runner_run_plan() {
             log "[RUN] --max-batches $RUNNER_MAX_BATCHES reached; continue the plan with: ./pipeline.sh --resume $RUN_ID"
             return 0
         fi
+        # Alex's pause switch for the 24/7 burn (night_run.sh --burn): stop before the next batch
+        if [ -f "${SCRIPT_DIR}/.burn_pause" ]; then
+            runner_stop "paused by Alex (.burn_pause) before plan batch $i/$total"
+            return 3
+        fi
         if ! runner_before_deadline $((BATCH_EST_MIN * 60)); then
             runner_deadline_stop "no time for plan batch $i/$total (a batch needs ~${BATCH_EST_MIN} min)"
             return 3
@@ -9655,6 +9660,10 @@ PYEOF
             continue
         fi
         any=1
+        if [ -f "${SCRIPT_DIR}/.burn_pause" ]; then
+            runner_stop "paused by Alex (.burn_pause) before batch $bno"
+            return 3
+        fi
         if ! runner_before_deadline $((BATCH_EST_MIN * 60)); then
             runner_deadline_stop "no time to finish batch $bno (a batch needs ~${BATCH_EST_MIN} min)"
             return 3

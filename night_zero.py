@@ -3,6 +3,8 @@
 
     night_zero.py RUN_ID            writes reports/runs/RUN_ID.zero.json, prints a summary
     night_zero.py RUN_ID --stats    prints the run's numbers as key=value (for night_status.py)
+    night_zero.py RUN_ID --all      every finished venue, not only the zeros (the burn's full
+                                    audit, night_run.sh --burn); each carries existing_contacts
 
 A venue is "zero" when the pipeline finished it (final ok / empty / failed) and the sheet
 has no sendable email contact for it (verified valid / role / unverified). Venues already
@@ -152,10 +154,12 @@ def main(argv):
         print(f"dashboard read failed: {str(dash)[:200]}", file=sys.stderr)
         return 1
     venues = {v.get("venue_id"): v for v in dash.get("venues") or []}
-    sendable = {}
+    sendable, existing = {}, {}
     for c in dash.get("contacts") or []:
         if c.get("email") and str(c.get("verified", "")).strip().lower() in SENDABLE:
             sendable[c.get("venue_id")] = sendable.get(c.get("venue_id"), 0) + 1
+        existing.setdefault(c.get("venue_id"), []).append(
+            {k: c.get(k) for k in ("name", "title", "email", "verified", "source") if c.get(k)})
 
     finished = [v for v in batch if v in finals and finals[v][0] in ("ok", "empty", "failed")]
     skipped = [v for v in batch if v in finals and finals[v][0] == "skipped"]
@@ -175,7 +179,7 @@ def main(argv):
         return 0
 
     already = done_ids(run_id)
-    todo = [v for v in zero if v not in already]
+    todo = [v for v in (finished if "--all" in argv[1:] else zero) if v not in already]
     cands = candidates(run_id, set(todo))
     out = {"run_id": run_id, "venues": []}
     for vid in todo:
@@ -194,6 +198,7 @@ def main(argv):
             "contact_form": v.get("contact_form") or "",
             "notes": (v.get("notes") or "")[:400],
             "pipeline_result": finals[vid][0],
+            "existing_contacts": existing.get(vid, [])[:15],
             "pipeline_steps": steps.get(vid, [])[-25:],
             "candidates": cands.get(vid, []),
             "coverage": coverage(vid),
@@ -204,7 +209,7 @@ def main(argv):
         json.dump(out, f, indent=1)
     os.replace(tmp, path)
     print(f"{run_id}: {len(batch)} venues, {len(finished)} finished, {len(with_contacts)} with contacts, "
-          f"{len(zero)} zero ({len(todo)} not yet deep-dived) -> {os.path.relpath(path, HERE)}")
+          f"{len(zero)} zero ({len(todo)} to research now) -> {os.path.relpath(path, HERE)}")
     return 0
 
 

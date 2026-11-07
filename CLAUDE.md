@@ -150,6 +150,27 @@ missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discove
 - Manual runs still work as below; `PIPELINE_REPORTS=1` or `./pipeline.sh --report
   RUN_ID` builds the old HTML report on demand, but nothing gates the app any more.
 
+## The burn: 24/7 until the credits run out (Nov 6 2026)
+Alex: "do the whole outreach flow on repeat until my credits run out and then not do the
+outreach stuff for a couple months", "which ever runs out first ill probably stop".
+- Start: `open burn_run.command` (Terminal, for Chrome's permission) = `./night_run.sh --burn`.
+  Chrome is the burn's alone around the clock while it runs. The 1:00 launchd night exits
+  while the burn holds the lock.
+- Rounds of 25 (`BURN_RUN_SIZE`), back to back, no cutoff, `.night_off` ignored; ZeroBounce's
+  day cap is raised to 5000 for it (the 100-credit floor still holds).
+- After each round a Claude session audits EVERY venue of it (`night_zero.py --all`,
+  NIGHT_DEEPDIVE.md "Burn: full audit") while the next round runs; `night_save.py` saves.
+  Wrong-business contacts it finds are listed in `<RUN_ID>.deepdive-saved.json`
+  (`flagged`), never deleted automatically.
+- Every 4 rounds (`BURN_FIX_EVERY`): the fix session turns the misses into scraper fixes
+  (recall benchmark, health check, revert if broken), then the pool prep runs again.
+- Pause: `touch .burn_pause` — the pipeline stops before its next batch (≤ ~45 min) and the
+  burn waits; `rm .burn_pause` and the same run picks up where it stopped.
+- ZeroBounce (below its floor) or Apollo (< 100) out = the end: `.burn_done`, an app alert,
+  final push; night runs stay off (`.night_off`). Other stops (Chrome, Google, network,
+  ZeroBounce refusing the IP) are tried again 6 times in a row (10–30 min apart), then alert.
+- Log: `reports/runs/burn-YYYYMMDD-HHMM.log`. Another burn later: `rm .burn_done`.
+
 ## 0. Preflight
 - `./preflight.sh` — free and read-only. Checks python, every script parses
   (including embedded python), classifier and rules self-tests, the Apps Script

@@ -120,7 +120,10 @@ def main(argv):
         v = d.get("venue") or {}
         before = sendable_count(d)
         have = {R.normalize_email(c.get("email")) for c in d.get("contacts") or [] if c.get("email")}
-        vr = {"venue_id": vid, "name": v.get("name"), "contacts": [], "socials": []}
+        # Wrong-business contacts the full audit flagged are listed for Alex, never deleted here
+        vr = {"venue_id": vid, "name": v.get("name"), "contacts": [], "socials": [],
+              "flagged": fv.get("flag_contacts") or []}
+        totals["flagged"] = totals.get("flagged", 0) + len(vr["flagged"])
         saved_here = 0
         for c in fv.get("contacts") or []:
             email = R.normalize_email(c.get("email") or "")

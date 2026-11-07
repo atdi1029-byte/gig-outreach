@@ -14,6 +14,18 @@
 #   ./night_run.sh --dive RUN_ID
 #                             only the deep dive of one run's zero-contact venues (research,
 #                             save, push): no pipeline, no Chrome. A test of the Claude step.
+#   ./night_run.sh --burn     the 24/7 burn (Alex, Nov 6 2026: "do the whole outreach flow on
+#                             repeat until my credits run out and then not do the outreach stuff
+#                             for a couple months", "which ever runs out first ill probably stop").
+#                             Rounds of BURN_RUN_SIZE (25) back to back, any hour, .night_off
+#                             ignored. After each round a Claude session audits EVERY venue of it
+#                             (not only the zeros) while the next round runs; every BURN_FIX_EVERY
+#                             (4) rounds the fix session turns zero-contact misses into scraper
+#                             fixes and the pool prep runs again. Pause: touch .burn_pause (stops
+#                             before the next batch; rm it and the same run picks up where it
+#                             stopped). ZeroBounce or Apollo out of credits ends it for good:
+#                             .burn_done + app alert, and night runs stay off. Start it in
+#                             Terminal: open burn_run.command
 #
 # The night:
 #   1. checks: kill switch (.night_off), ZeroBounce, Apollo credits. Out = alert + stop.
@@ -54,8 +66,9 @@ case "${1:-}" in
     --check) MODE="check" ;;
     --force) MODE="force" ;;
     --dive) MODE="dive"; DIVE_ONLY="${2:-}" ;;
+    --burn) MODE="burn" ;;
     "") ;;
-    *) echo "usage: $0 [--check|--force|--dive RUN_ID]"; exit 2 ;;
+    *) echo "usage: $0 [--check|--force|--dive RUN_ID|--burn]"; exit 2 ;;
 esac
 
 # Keep the Mac awake for the whole night (idle, disk and, on power, system sleep)
@@ -89,10 +102,22 @@ LI_RETRY_MAX_MIN="${LI_RETRY_MAX_MIN:-30}"             # LinkedIn retry of skipp
 # wait for another copy of Chrome to close, and at night then close a copy a program
 # started, such as a headless test browser (chrome_guard.sh)
 export CHROME_ALONE_KILL="${CHROME_ALONE_KILL:-1}"
+BURN_FIX_EVERY="${BURN_FIX_EVERY:-4}"          # burn: fix session + pool prep every N rounds
+BURN_RETRIES="${BURN_RETRIES:-6}"              # burn: non-credit stops tried again this many times in a row
+BURN_PAUSE="$SCRIPT_DIR/.burn_pause"
+BURN_DONE="$SCRIPT_DIR/.burn_done"
+if [ "$MODE" = "burn" ]; then
+    RUN_SIZE="${BURN_RUN_SIZE:-25}"
+    NIGHT_MAX_RUNS=1000000
+    DEEPDIVE_MAX_MIN="${BURN_AUDIT_MAX_MIN:-150}"   # a full audit of 25 venues, not only the zeros
+    # .env's 400-a-day ZeroBounce cap would stop the burn every day; the balance floor still holds
+    export ZB_MAX_PER_DAY="${BURN_ZB_MAX_PER_DAY:-5000}"
+fi
 CLAUDE_BIN="${CLAUDE_BIN:-$(command -v claude || echo /usr/local/bin/claude)}"
 RUNS_DIR="$SCRIPT_DIR/reports/runs"
 STATE="$RUNS_DIR/night-state.json"
 NIGHT_LOG="$RUNS_DIR/night-$(date +%Y%m%d).log"
+[ "$MODE" = "burn" ] && NIGHT_LOG="$RUNS_DIR/burn-$(date +%Y%m%d-%H%M).log"
 LOCK_DIR="/tmp/night_run.lock.d"
 GIT_LOCK="/tmp/night_git.lock.d"
 PIPE_LOCK="/tmp/pipeline.lock.d"
@@ -140,7 +165,8 @@ os.replace(tmp, p)
 PYEOF
 }
 
-deadline_epoch() {   # today's NIGHT_CUTOFF (a night always starts after midnight)
+deadline_epoch() {   # today's NIGHT_CUTOFF (a night always starts after midnight); the burn has none
+    [ "$MODE" = "burn" ] && { echo $(( $(date +%s) + 86400 )); return; }
     date -j -f "%Y%m%d%H%M%S" "$(date +%Y%m%d)${NIGHT_CUTOFF}00" +%s
 }
 minutes_left() { echo $(( ( $(deadline_epoch) - $(date +%s) ) / 60 )); }
@@ -189,11 +215,13 @@ status_push() { git_sync "Night status: $1" night_status.json; }
 
 # ---------------------------------------------------------------- checks
 ZB_DETAIL=""
+ZB_REASON=""
 zb_check() {   # 0 = ZeroBounce usable. Sets ZB_DETAIL to a plain explanation otherwise.
     local out allowed reason credits raw
     out=$(/usr/bin/python3 "$SCRIPT_DIR/zerobounce_guard.py" budget --run-id "night-check-$$" 2>/dev/null)
     allowed=$(printf '%s' "$out" | /usr/bin/python3 -c 'import json,sys; d=json.load(sys.stdin); print(d.get("allowed"), d.get("reason"), d.get("credits_remaining"))' 2>/dev/null)
     read -r allowed reason credits <<< "$allowed"
+    ZB_REASON="$reason"
     [ "$allowed" = "True" ] && { log "ZeroBounce OK (balance $credits)"; return 0; }
     case "$reason" in
         reserve_reached) ZB_DETAIL="ZeroBounce is out of credits (balance ${credits:-0}, the floor is ${ZB_MIN_BALANCE:-100}). Top up and the next night picks up where this one stopped." ;;
@@ -236,6 +264,7 @@ STOP_KIND=""
 classify_stop() {
     case "$1" in
         deadline:*) STOP_KIND="deadline" ;;
+        "paused by Alex"*) STOP_KIND="pause" ;;
         # chrome_guard.sh's words first: the copy it names may have been started by anything
         *"another copy of Google Chrome"*|*"Google Chrome is not running"*) STOP_KIND="chrome" ;;
         *ZeroBounce*) STOP_KIND="zerobounce" ;;
@@ -358,11 +387,12 @@ except Exception as e: print("no result:", e)' "$out" 2>/dev/null)"
 code_dirty() { git status --porcelain --untracked-files=no -- '*.sh' '*.py' '*.js' 'tests' | awk '{print $2}' | sort; }
 
 dive_run() {
-    local rid="$1" saved pre post f
-    log "Deep dive ($rid): researching zero-contact venues"
+    local rid="$1" saved pre post f scope="" what="zero-contact venues"
+    [ "$MODE" = "burn" ] && { scope=" FULL AUDIT (every venue of the run, see 'Burn: full audit')"; what="every venue (full audit)"; }
+    log "Deep dive ($rid): researching $what"
     pre=$(code_dirty)
     claude_session "$DEEPDIVE_MAX_MIN" "$RUNS_DIR/$rid.deepdive-session.json" \
-        "Night deep dive, phase RESEARCH, RUN_ID=$rid. Follow $SCRIPT_DIR/NIGHT_DEEPDIVE.md (sections 'Hard rules' and '1. Research'). Do NOT do the code-fix or taste-review steps now: another session does them after the last run, and a pipeline may be running right now, so do not edit any code. Working directory: $SCRIPT_DIR. Now: $(date '+%Y-%m-%d %H:%M')."
+        "Night deep dive, phase RESEARCH$scope, RUN_ID=$rid. Follow $SCRIPT_DIR/NIGHT_DEEPDIVE.md (sections 'Hard rules' and '1. Research'). Do NOT do the code-fix or taste-review steps now: another session does them after the last run, and a pipeline may be running right now, so do not edit any code. Working directory: $SCRIPT_DIR. Now: $(date '+%Y-%m-%d %H:%M')."
     # Research never edits code: put back anything it changed anyway
     post=$(code_dirty)
     for f in $(comm -13 <(echo "$pre") <(echo "$post")); do
@@ -389,7 +419,9 @@ start_dive() {   # start_dive RUN_ID — background; one Claude session at a tim
     local rid="$1" line
     wait_dive
     apply_websites wait
-    line=$(/usr/bin/python3 "$SCRIPT_DIR/night_zero.py" "$rid" 2>&1 | tail -1)
+    local all=""
+    [ "$MODE" = "burn" ] && all="--all"
+    line=$(/usr/bin/python3 "$SCRIPT_DIR/night_zero.py" "$rid" $all 2>&1 | tail -1)
     log "Zero-contact check: $line"
     if ! /usr/bin/python3 -c 'import json,sys; sys.exit(0 if json.load(open(sys.argv[1])).get("venues") else 1)' \
          "$RUNS_DIR/$rid.zero.json" 2>/dev/null; then
@@ -433,9 +465,11 @@ fix_session() {
         return 0
     fi
     head_before=$(git rev-parse HEAD)
+    local tag="night-$(date +%Y%m%d)"
+    [ "$MODE" = "burn" ] && tag="burn-$(date +%Y%m%d-%H%M)"   # several fix sessions a day
     log "Fix session for: $runs"
-    claude_session "$FIX_MAX_MIN" "$RUNS_DIR/night-$(date +%Y%m%d).fix-session.json" \
-        "Night deep dive, phase FIX, RUN_IDS=\"$runs\". Follow $SCRIPT_DIR/NIGHT_DEEPDIVE.md: 'Hard rules', '2. Fix what the pipeline missed' for the misses in reports/runs/<RUN_ID>.misses.jsonl of those runs (on_venue_site true first), '3. Taste review', and '4. Summary' written to reports/runs/night-$(date +%Y%m%d).fix-summary.json. Working directory: $SCRIPT_DIR. Now: $(date '+%Y-%m-%d %H:%M')."
+    claude_session "$FIX_MAX_MIN" "$RUNS_DIR/$tag.fix-session.json" \
+        "Night deep dive, phase FIX, RUN_IDS=\"$runs\". Follow $SCRIPT_DIR/NIGHT_DEEPDIVE.md: 'Hard rules', '2. Fix what the pipeline missed' for the misses in reports/runs/<RUN_ID>.misses.jsonl of those runs (on_venue_site true first), '3. Taste review', and '4. Summary' written to reports/runs/$tag.fix-summary.json. Working directory: $SCRIPT_DIR. Now: $(date '+%Y-%m-%d %H:%M')."
     rc=$?
     # The tree must be clean and healthy whatever the session did
     local dirty
@@ -449,7 +483,7 @@ fix_session() {
             local n
             n=$(git rev-list --count "$head_before..HEAD")
             log "Fix session committed $n change(s); health check passed"
-            status note "$(fix_note)"
+            status note "$(fix_note "$RUNS_DIR/$tag.fix-summary.json")"
         else
             log "Health check FAILED after the fix session — reverting its commits"
             git revert --no-edit "$head_before..HEAD" >/dev/null 2>&1 || { git revert --abort 2>/dev/null; git reset -q --hard "$head_before"; }
@@ -458,12 +492,12 @@ fix_session() {
     fi
     state_set fix_pending ""
     git_sync "Night fix session: taste review + status" night_status.json taste_notes.md taste_venues.txt \
-        reports/taste_review_marker.json "$RUNS_DIR/night-$(date +%Y%m%d).fix-summary.json"
+        reports/taste_review_marker.json "$RUNS_DIR/$tag.fix-summary.json"
     return $rc
 }
 
-fix_note() {
-    /usr/bin/python3 - "$RUNS_DIR/night-$(date +%Y%m%d).fix-summary.json" <<'PYEOF' 2>/dev/null
+fix_note() {   # fix_note SUMMARY_FILE
+    /usr/bin/python3 - "$1" <<'PYEOF' 2>/dev/null
 import json, sys
 try:
     d = json.load(open(sys.argv[1]))
@@ -614,8 +648,8 @@ do_run() {   # returns 0 finished, 3 stopped (LAST_STOP has why), 4 pool empty, 
     fi
     classify_stop "$LAST_STOP"
     attempts="$(state_get resume_attempts)"; attempts=${attempts:-0}
-    # Chrome being busy or closed isn't the run's fault: only other stops count toward dropping it
-    case "$STOP_KIND" in deadline|chrome) ;; *) attempts=$((attempts + 1)) ;; esac
+    # Chrome being busy or closed isn't the run's fault, nor is Alex's pause: only other stops count toward dropping it
+    case "$STOP_KIND" in deadline|chrome|pause) ;; *) attempts=$((attempts + 1)) ;; esac
     if [ "$attempts" -gt "$MAX_RESUMES" ]; then
         log "Run $rid stopped $attempts times ($LAST_STOP) — dropping it; venues it never started go back to the pool"
         LAST_RESUMABLE=0
@@ -624,7 +658,9 @@ do_run() {   # returns 0 finished, 3 stopped (LAST_STOP has why), 4 pool empty, 
         status alert error warn "A run was dropped" "Run $rid kept stopping ($LAST_STOP). The next night starts a fresh run."
     else
         state_set resume "$rid"; state_set resume_reason "$LAST_STOP"; state_set resume_attempts "$attempts"
-        if [ "$STOP_KIND" = "deadline" ]; then
+        if [ "$STOP_KIND" = "pause" ]; then
+            status run "$rid" "outcome=paused by Alex; picks up where it stopped" "ended=$(date +%H:%M)"
+        elif [ "$STOP_KIND" = "deadline" ]; then
             status run "$rid" "outcome=paused at the ${NIGHT_CUTOFF:0:2}:${NIGHT_CUTOFF:2:2} cutoff; finishes next night" "ended=$(date +%H:%M)"
         else
             status run "$rid" "outcome=stopped: ${LAST_STOP:0:140}" "ended=$(date +%H:%M)"
@@ -682,7 +718,11 @@ if [ "$MODE" = "night" ] && { [ "$now" -lt "$NIGHT_START_EARLIEST" ] || [ "$now"
     status_push "missed night"
     exit 0
 fi
-if [ -f "$SCRIPT_DIR/.night_off" ]; then
+if [ "$MODE" = "burn" ] && [ -f "$BURN_DONE" ]; then
+    log "The burn already ended ($(head -1 "$BURN_DONE")) — rm .burn_done to start another"
+    exit 0
+fi
+if [ "$MODE" != "burn" ] && [ -f "$SCRIPT_DIR/.night_off" ]; then
     log "Kill switch .night_off is on — skipping"
     status note "Night runs are paused (.night_off)."
     status_push "paused"
@@ -714,6 +754,8 @@ log "Credits OK. Cutoff ${NIGHT_CUTOFF:0:2}:${NIGHT_CUTOFF:2:2} ($(minutes_left)
 . "$SCRIPT_DIR/google_guard.sh"
 google_cooling && log "Google is still blocking searches from an earlier CAPTCHA (until $GOOGLE_RETRY_AT) — the scripts skip Google until then"
 
+# The pool prep before the runs (the burn repeats it every BURN_FIX_EVERY rounds)
+prep_pool() {
 # Emails saved as unverified when ZeroBounce ran out get their real verdict now
 if /usr/bin/python3 -c 'import sys' && [ -x ./reverify.sh ]; then
     log "Re-checking contacts saved as unverified"
@@ -738,9 +780,95 @@ guarded 900 /usr/bin/python3 verify_pool.py --vouch-sweep-sites --apply --limit 
 # and leaves the rest pending for the next night.
 log "pipeline.sh --linkedin-retry (venues LinkedIn skipped before, up to $LI_RETRY_MAX_MIN min)"
 guarded $((LI_RETRY_MAX_MIN * 60)) ./pipeline.sh --linkedin-retry >> "$NIGHT_LOG" 2>&1 || log "pipeline.sh --linkedin-retry exited $? — going on"
+}
+prep_pool
+
+# ---------------------------------------------------------------- the burn (--burn)
+burn_over() {   # burn_over KIND DETAIL — a credit ran out: the burn ends for good
+    log "Out of $1 credits — the burn is over"
+    echo "$(date '+%Y-%m-%d %H:%M') $1 out of credits" > "$BURN_DONE"
+    status alert "$1" stop "Outreach finished: $1 ran out" "$2 The 24/7 runs have stopped for good and night runs stay off (.night_off). Every contact found is in the app."
+    git_sync "Burn finished: $1 out of credits" night_status.json
+}
+
+burn_loop() {
+    local rounds=0 tries=0 rc retry_wait run_stats
+    while :; do
+        if [ -f "$BURN_PAUSE" ]; then
+            log "Paused (.burn_pause) — waiting for it to be removed"
+            status note "Outreach paused by Alex (.burn_pause); it picks up where it stopped."
+            status_push "burn paused"
+            while [ -f "$BURN_PAUSE" ]; do sleep 60; done
+            log "Pause lifted — going on"
+            status note "Outreach running again"
+        fi
+        apply_websites
+        do_run
+        rc=$?
+        [ "$LAST_STARTED" = 1 ] && rounds=$((rounds + 1))
+        if [ "$rc" = 4 ]; then
+            log "No eligible venues left — the pool needs a sweep"
+            status alert pool warn "Out of venues to run" "Every venue that passes the filters has been worked. A sweep of a new city refills the pool."
+            git_sync "Burn: pool empty" night_status.json
+            return 0
+        fi
+        run_stats=$(/usr/bin/python3 "$SCRIPT_DIR/night_zero.py" "$LAST_RID" --stats 2>/dev/null | tr ' ' ',')
+        # shellcheck disable=SC2046
+        git_sync "Burn run $LAST_RID: ${run_stats:-${LAST_STOP:0:120}}" night_status.json $(run_files "$LAST_RID")
+        [ -f "$RUNS_DIR/$LAST_RID.jsonl" ] && start_dive "$LAST_RID"
+        if [ "$rc" = 0 ]; then
+            tries=0
+            log "Round $rounds done ($LAST_RID)"
+            if [ $((rounds % BURN_FIX_EVERY)) -eq 0 ]; then
+                wait_dive
+                fix_session
+                apply_websites wait
+                prep_pool
+            fi
+            continue
+        fi
+        classify_stop "$LAST_STOP"
+        case "$STOP_KIND" in
+            pause|deadline) continue ;;   # the top of the loop waits out the pause
+            zerobounce)
+                zb_check >/dev/null
+                if [ "$ZB_REASON" = "reserve_reached" ]; then
+                    burn_over zerobounce "$ZB_DETAIL"
+                    return 1
+                fi ;;
+            apollo)
+                apollo_check >/dev/null
+                if [ -n "$APOLLO_LEFT" ] && [ "$APOLLO_LEFT" -lt "$APOLLO_MIN_CREDITS" ]; then
+                    burn_over apollo "Apollo has $APOLLO_LEFT credits left (the floor is $APOLLO_MIN_CREDITS)."
+                    return 1
+                fi ;;
+        esac
+        # Not a credit running out (Chrome, Google, the network, ZeroBounce refusing the IP):
+        # wait and pick the run up again, BURN_RETRIES times in a row before giving up
+        retry_wait="$CHROME_RETRY_WAIT_S"
+        google_block "$LAST_STOP" && retry_wait="$GOOGLE_RETRY_WAIT_S"
+        case "$STOP_KIND" in zerobounce|apollo) retry_wait=1800 ;; esac
+        if [ "$tries" -lt "$BURN_RETRIES" ]; then
+            tries=$((tries + 1))
+            log "Stopped ($LAST_STOP) — trying again in $((retry_wait / 60)) min ($tries of $BURN_RETRIES)"
+            sleep "$retry_wait"
+            continue
+        fi
+        log "Run stopped $tries times in a row: $LAST_STOP"
+        alert_for_stop "$LAST_RID" "$LAST_STOP"
+        return 1
+    done
+}
 
 new_runs=0
 night_state="done"
+if [ "$MODE" = "burn" ]; then
+    log "Burn: rounds of $RUN_SIZE until ZeroBounce or Apollo runs out (pause: touch .burn_pause)"
+    status note "Outreach running 24/7 until the credits run out"
+    status_push "burn started"
+    burn_loop || night_state="stopped"
+    NIGHT_MAX_RUNS=0   # skips the night loop below
+fi
 while [ "$new_runs" -lt "$NIGHT_MAX_RUNS" ]; do   # a run that couldn't start doesn't count; a resumed one does (Oct 11 2026)
     left=$(minutes_left)
     if [ "$left" -lt "$MIN_RUN_WINDOW_MIN" ]; then
@@ -810,5 +938,6 @@ PYEOF
 status finish "$night_state"
 status_push "night finished"
 log "================ Night done $(date '+%H:%M') ================"
+[ "$MODE" = "burn" ] && exit 0
 family_tree_shift
 exit 0

@@ -1,0 +1,89 @@
+{
+  "created": "2026-11-07 01:28:03",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "fine_dining": 16,
+    "hotel": 9
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-0127/batch_01.json",
+      "venue_ids": [
+        "DC-REST-2829",
+        "MD-HOTE-3000",
+        "DC-REST-2830",
+        "MD-REST-812",
+        "MD-HOTE-2999",
+        "MD-REST-1314",
+        "VA-REST-1748",
+        "VA-REST-3430"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-0127/batch_02.json",
+      "venue_ids": [
+        "MD-REST-998",
+        "MD-HOTE-790",
+        "MD-REST-896",
+        "MD-REST-2753",
+        "MD-REST-746",
+        "MD-REST-3125",
+        "MD-REST-1319",
+        "MD-REST-3130"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-0127/batch_03.json",
+      "venue_ids": [
+        "DC-REST-2668",
+        "VA-REST-837",
+        "MD-HOTE-2962",
+        "MD-REST-479",
+        "DC-HOTE-2653",
+        "MD-REST-1228",
+        "MD-REST-3336",
+        "DC-HOTE-2656"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-0127/batch_04.json",
+      "venue_ids": [
+        "MD-REST-1000"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "DC-REST-2829",
+    "MD-HOTE-3000",
+    "DC-REST-2830",
+    "MD-REST-812",
+    "MD-HOTE-2999",
+    "MD-REST-1314",
+    "VA-REST-1748",
+    "VA-REST-3430",
+    "MD-REST-998",
+    "MD-HOTE-790",
+    "MD-REST-896",
+    "MD-REST-2753",
+    "MD-REST-746",
+    "MD-REST-3125",
+    "MD-REST-1319",
+    "MD-REST-3130",
+    "DC-REST-2668",
+    "VA-REST-837",
+    "MD-HOTE-2962",
+    "MD-REST-479",
+    "DC-HOTE-2653",
+    "MD-REST-1228",
+    "MD-REST-3336",
+    "DC-HOTE-2656",
+    "MD-REST-1000"
+  ]
+}

@@ -518,7 +518,10 @@ for v in venues:
     # A sweep searched one known city: trust it over a bad geocode (Falls Church venues
     # were stored as 6+ hours away) when that city is inside the radius.
     ref = CITY_REF_MILES.get(_city_key(city))
-    sweep_city_ok = sweep and ref is not None and ref <= MAX_DISTANCE_MILES
+    # ...but never over a measured drive time, and Washington VA is not Washington DC (Nov 7 2026: The Inn
+    # at Little Washington, 2h27 away, passed as 39 miles)
+    sweep_city_ok = (sweep and ref is not None and ref <= MAX_DISTANCE_MILES and not loc.get('minutes')
+                     and not (_city_key(city).startswith('washington') and state != 'DC'))
     if sweep_city_ok and (loc['in_radius'] is not True or not loc['trusted']):
         loc = dict(loc, in_radius=True, trusted=True, miles=float(ref), why=f'sweep city ~{ref} mi')
         sweep_in['location'] += 1

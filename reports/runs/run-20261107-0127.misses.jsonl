@@ -1,0 +1,7 @@
+{"venue_id": "DC-REST-2830", "kind": "contact_form", "value": "https://minettataverndc.com/private-events", "source_url": "https://minettataverndc.com/private-events", "pipeline_had": false, "cause_guess": "saved the Tripleseat embed's bare host (https://www.tripleseat.com) instead of the venue page that hosts the form", "on_venue_site": true, "how": "third_party_form"}
+{"venue_id": "MD-REST-812", "kind": "audited"}
+{"venue_id": "MD-HOTE-2999", "kind": "audited"}
+{"venue_id": "MD-REST-1228", "kind": "audited"}
+{"venue_id": "MD-REST-3336", "kind": "audited"}
+{"venue_id": "DC-HOTE-2656", "kind": "email", "value": "kathleen.nowak@kimptonhotels.com", "source_url": "https://www.kimptonrougehotel.com/html/weddings-washington-dc/", "pipeline_had": false, "cause_guess": "off_domain rule: kimptonhotels.com is the management/brand domain the venue's own site uses for its contacts; pipeline did not pass allow_off_domain", "on_venue_site": true, "how": "mailto"}
+{"venue_id": "DC-HOTE-2656", "kind": "email", "value": "audrey.washington@kimptonhotels.com", "source_url": "https://www.kimptonrougehotel.com/meetings/washington-dc-social-events/", "pipeline_had": false, "cause_guess": "off_domain rule: kimptonhotels.com is the management/brand domain the venue's own site uses for its contacts; pipeline did not pass allow_off_domain", "on_venue_site": true, "how": "mailto"}

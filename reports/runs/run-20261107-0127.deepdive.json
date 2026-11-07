@@ -1,0 +1,214 @@
+{
+ "run_id": "run-20261107-0127",
+ "venues": [
+  {
+   "venue_id": "DC-REST-2830",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://minettataverndc.com/private-events",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "minettataverndc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Minetta Tavern DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Minetta Tavern",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Only events@minettataverndc.com (private events, no person name) plus info@/press@. Apollo DC org (6aeee4bd...) has 0 people; 'Minetta Tavern' name hit is the NYC original (minettatavernny.com), rejected. No GM or events manager named on the site or in press/LinkedIn snippets. Better contact_form is the venue's own Tripleseat page /private-events (the sheet has bare tripleseat.com)."
+  },
+  {
+   "venue_id": "MD-REST-812",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Colin McClimans",
+     "title": "Chef / Co-owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.ramw.org/restaurant/elena-james",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Danilo Simic",
+     "title": "Co-owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.ramw.org/restaurant/elena-james",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.elenajamescc.com/blank-1",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "elenajamescc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Elena James",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Site shows only info@elenajamescc.com (general, rejected); private dining page (/blank-3) sends to the Book Event form /blank-1. Owners are Colin McClimans and Danilo Simic (Nina May / Opal group) per RAMW and Washingtonian, but no email on the venue domain. Apollo org has 0 people; the pipeline's Apollo 'Elena' hits were unrelated people."
+  },
+  {
+   "venue_id": "MD-HOTE-2999",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "edmondjsafra.org",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Edmond J. Safra Family Lodge",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Safra Family Lodge",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "WRONG WEBSITE + not a gig venue: edmondjsafra.org is the Edmond J. Safra Philanthropic Foundation (Apollo org in Skokie IL; all the off-domain emails come from its press PDFs). The Lodge itself is the free NIH Clinical Center patient-family residence in Bethesda (cc.nih.gov, team inbox cc-famlodge@cc.nih.gov, no named person). Recommend parking/excluding the venue."
+  },
+  {
+   "venue_id": "MD-REST-1228",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "keratsinigreekkitchen.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Keratsini Greek Kitchen",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "6736ccd516ce080001848a15",
+     "search_type": "people",
+     "result_count": 0
+    }
+   ],
+   "summary": "Single-page site (phone/address only, no email, no staff); Apollo org matches but has 0 people; web searches found no owner/manager name. keratsinikitchen@outlook.com (from social) not shown on the site and no name attached, so not usable."
+  },
+  {
+   "venue_id": "MD-REST-3336",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "alfioslatrattoriamd.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Alfio's La Trattoria",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "66f03f2103aa230001527964",
+     "search_type": "people",
+     "result_count": 0
+    }
+   ],
+   "summary": "Site is a Slice template (phone/address only). Apollo's 'Alfio's La Trattoria' org uses skipsdc.com (Skip's On The Avenue, DC), and alfios.com now 301-redirects to skipsdc.com, so it's a different business: rejected, and alfios@alfios.com is off-domain with no name. No owner/manager found on the web."
+  },
+  {
+   "venue_id": "DC-HOTE-2656",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kathleen Nowak",
+     "title": "Director of Sales & Marketing",
+     "email": "kathleen.nowak@kimptonhotels.com",
+     "source": "website",
+     "source_url": "https://www.kimptonrougehotel.com/html/weddings-washington-dc/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Audrey Washington",
+     "title": "Catering and Conference Services Manager",
+     "email": "audrey.washington@kimptonhotels.com",
+     "source": "website",
+     "source_url": "https://www.kimptonrougehotel.com/meetings/washington-dc-social-events/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "kimptonrougehotel.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "rougehotel.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Kimpton Rouge Hotel",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Hotel Rouge",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "672d902181d63a00012ffd02",
+     "search_type": "people",
+     "result_count": 3
+    }
+   ],
+   "summary": "The hotel's own site publishes two named kimptonhotels.com (Kimpton management/brand domain) contacts: Kathleen Nowak, Director of Sales & Marketing (weddings page) and Audrey Washington, Catering & Conference Services Manager (social events page). The pipeline rejected both as off-domain; they should save with allow_off_domain. Apollo Hotel Rouge org has only receptionist/cook/controller (masked), none matched. Note: the instagram on file (instagram.com/kimpton) is the brand account, not this property."
+  }
+ ]
+}

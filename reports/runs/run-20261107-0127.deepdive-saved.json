@@ -1,0 +1,96 @@
+{
+ "run_id": "run-20261107-0127",
+ "dry_run": false,
+ "at": "2026-11-07T03:47:10-05:00",
+ "totals": {
+  "saved": 0,
+  "venues_rescued": 0,
+  "socials": 0,
+  "rejected": 2,
+  "errors": 0,
+  "flagged": 0
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-REST-2830",
+   "name": "Minetta Tavern DC",
+   "contacts": [],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://minettataverndc.com/private-events",
+     "outcome": "kept_existing"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-812",
+   "name": "Elena James",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Colin McClimans",
+     "source_url": "https://www.ramw.org/restaurant/elena-james",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Danilo Simic",
+     "source_url": "https://www.ramw.org/restaurant/elena-james",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.elenajamescc.com/blank-1",
+     "outcome": "kept_existing"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-2999",
+   "name": "Edmond J. Safra Family Lodge",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1228",
+   "name": "Keratsini Greek Kitchen",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3336",
+   "name": "Alfio's La Trattoria",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-HOTE-2656",
+   "name": "Kimpton Rouge Hotel",
+   "contacts": [
+    {
+     "email": "kathleen.nowak@kimptonhotels.com",
+     "name": "Kathleen Nowak",
+     "source_url": "https://www.kimptonrougehotel.com/html/weddings-washington-dc/",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "audrey.washington@kimptonhotels.com",
+     "name": "Audrey Washington",
+     "source_url": "https://www.kimptonrougehotel.com/meetings/washington-dc-social-events/",
+     "outcome": "rejected:zerobounce_invalid"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ]
+}

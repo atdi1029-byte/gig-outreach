@@ -1,0 +1,469 @@
+{
+ "run_id": "run-20261106-2316",
+ "dry_run": false,
+ "at": "2026-11-07T01:38:15-05:00",
+ "totals": {
+  "saved": 6,
+  "venues_rescued": 2,
+  "socials": 2,
+  "rejected": 7,
+  "errors": 2,
+  "flagged": 1
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-REST-655",
+   "name": "Le DeSales",
+   "contacts": [
+    {
+     "email": "billy@ledesales.com",
+     "name": "Erdene Billy",
+     "source_url": "apollo org Le DeSales (ledesales.com)",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-1762",
+   "name": "The Bethesdan Hotel",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Kimberly Barber",
+     "source_url": "apollo:57d463aba6da985386bc98db",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Aleena James",
+     "source_url": "apollo:5d625611a3ae61a1972d166c",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Hisham Ahmed",
+     "source_url": "linkedin (pipeline)",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dora An***n (masked)",
+     "source_url": "apollo:686983953e1d280001d986df",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-PRIV-111",
+   "name": "Cleveland Park Club",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-GALL-001",
+   "name": "McLean Project for the Arts",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Ken Avis",
+     "source_url": "https://www.mpaart.org/mpaartfestmusic",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "mpaclay@mpaart.org",
+     "reason": "Same business, but saved under the name 'MPA Clay' (the clay studio inbox), which is not a real person. Review it; don't treat it as a wrong-business contact."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2811",
+   "name": "Guardado's Tapas Bar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Nicolas Guardado",
+     "source_url": "https://www.opentable.com/r/guardados",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/guardados.resturant",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-HOTE-2632",
+   "name": "The Graham Georgetown",
+   "contacts": [
+    {
+     "email": "basma.ettalhy@grahamhotelgeorgetown.com",
+     "name": "Basma Ettalhy",
+     "source_url": "https://thegrahamgeorgetown.com/meeting-events/",
+     "title": "Sales & Catering",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "m.bahtiyar@grahamhotelgeorgetown.com",
+     "name": "Mehmet Bahtiyar",
+     "source_url": "apollo:68c5414f11e523000123c85c",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Mesut Naghizadeh",
+     "source_url": "apollo:645ba3018940290001876d55",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-1337",
+   "name": "Junction Bistro Bar & Bakery",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Noe Landini",
+     "source_url": "https://bethesdamagazine.com/2026/09/02/junction-bistro-bar-bakery-closed-chevy-chase/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-PRIV-112",
+   "name": "The Ridge Club at City Ridge",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-733",
+   "name": "Rumhouse",
+   "contacts": [
+    {
+     "email": "richard@rumhouseannapolis.com",
+     "name": "Richard Grow",
+     "source_url": "http://www.linkedin.com/in/richardgrow",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "natasha@rumhouseannapolis.com",
+     "name": "Natasha de Bourg",
+     "source_url": "http://www.linkedin.com/in/natasha-de-bourg-0b6ab0240",
+     "title": "Executive Chef",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Coryse Brathwaite Zebovitz",
+     "source_url": "https://newsamericasnow.com/caribbean-born-celebrity-chef-heads-rumhouse-maryland",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Edward Zebovitz",
+     "source_url": "https://newsamericasnow.com/caribbean-born-celebrity-chef-heads-rumhouse-maryland",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-1336",
+   "name": "I'm Eddie Cano",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Massimo Papetti",
+     "source_url": "https://imeddiecano.com/noi",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-562",
+   "name": "Miles River Guest House",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2707",
+   "name": "Bodega Spanish Tapas & Lounge",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Joe Idrissi",
+     "source_url": "https://capitolhillcorner.org/2021/04/16/bodegon-spanish-tapas-coming-to-barracks-row/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Sonya Znati",
+     "source_url": "https://www.opentable.com/bodega-spanish-tapas-and-lounge",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/399086636810326",
+     "outcome": "error:write_failed"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-PRIV-113",
+   "name": "The Executive Branch",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3005",
+   "name": "Sapwood Cellars Brewery",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Michael Tonsmeire",
+     "source_url": "https://sapwoodcellars.com/our-story/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-2978",
+   "name": "The Inn at Mt. Ida",
+   "contacts": [
+    {
+     "email": "mtida@howardcountymd.gov",
+     "name": "Kim Pruim",
+     "source_url": "https://bookmtida.com/book",
+     "outcome": "rejected:zerobounce_unknown"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3426",
+   "name": "Gadsby's Tavern",
+   "contacts": [
+    {
+     "email": "tvayo@gadsbystavernrestaurant.com",
+     "name": "Tricia Vayo",
+     "source_url": "https://www.gadsbystavernrestaurant.com/group-menus/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-EVEN-2995",
+   "name": "Cherry Hill Farmhouse",
+   "contacts": [
+    {
+     "email": "hirwin@fallschurchva.gov",
+     "name": "Holly Irwin",
+     "source_url": "https://cherryhillfallschurch.org/Friends",
+     "title": "Cherry Hill Farmhouse Supervisor (City of Falls Church Arts & Humanities Coordin",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3033",
+   "name": "Pikoteo",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Manuel Iguina",
+     "source_url": "https://www.arlingtonmagazine.com/restaurant-review-pikoteo-mclean-va/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Roberto Hernandez",
+     "source_url": "https://northernvirginiamag.com/food-and-drink/reviews/2026/07/17/taste-the-smoke-of-san-juan-at-mcleans-pikoteo/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Vince Watson",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-2980",
+   "name": "Merriweather Lakehouse Hotel",
+   "contacts": [
+    {
+     "email": "madelyn.poknis@merriweatherlakehouse.com",
+     "name": "Madelyn Poknis",
+     "source_url": "apollo:69672c9bac7bed0001dc1efd",
+     "outcome": "rejected:off_domain:merriweatherlakehouse.com!=marriott.com"
+    },
+    {
+     "email": "patricia.diorio@merriweatherlakehouse.com",
+     "name": "Patty Diorio",
+     "source_url": "apollo:57e0dcffa6da987dccfe93de",
+     "outcome": "rejected:off_domain:merriweatherlakehouse.com!=marriott.com"
+    },
+    {
+     "email": "christo.blanc@merriweatherlakehouse.com",
+     "name": "Christo Blanc",
+     "source_url": "apollo:5d6241a380f93e3dfb770fe6",
+     "outcome": "rejected:off_domain:merriweatherlakehouse.com!=marriott.com"
+    },
+    {
+     "email": "",
+     "name": "Jeff Sweet",
+     "source_url": "https://lodgingmagazine.com/merriweather-lakehouse-hotel-names-meyer-jabara-hotels-as-manager/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://merriweatherlakehouse.com/events/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-711",
+   "name": "Luna Blu",
+   "contacts": [
+    {
+     "email": "erin@lunabluofannapolis.com",
+     "name": "Erin Dryden",
+     "source_url": "https://lunabluofannapolis.com/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-919",
+   "name": "Zamarod Afghan Cuisine",
+   "contacts": [
+    {
+     "email": "zamarod10123@gmail.com",
+     "name": "Dor Niaz",
+     "source_url": "https://www.facebook.com/zamarodAfghancuisine",
+     "outcome": "rejected:freemail_unlinked"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-PRIV-007",
+   "name": "Lake Barcroft Association",
+   "contacts": [
+    {
+     "email": "ayakodoi@gmail.com",
+     "name": "Akayio Doi",
+     "source_url": "https://lakebarcroft.org/community/clubs-groups",
+     "title": "Music on the Lake house concert series contact (site spelling; email suggests Ay",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "trotterk2001@yahoo.com",
+     "name": "Ken Trotter",
+     "source_url": "https://lakebarcroft.org/community/clubs-groups",
+     "title": "Music on the Lake house concert series contact",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "lbamanager@lakebarcroft.org",
+     "name": "Katie Musser",
+     "source_url": "https://lakebarcroft.org/association/association-contacts",
+     "outcome": "rejected:zerobounce_unknown"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/groups/LakeBarcroft/",
+     "outcome": "error:write_failed"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-349",
+   "name": "Rod N Reel Resort",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Mary Lanham",
+     "source_url": "https://smnewsnet.com/?p=559727",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3171",
+   "name": "Victoria Gastro Pub",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Rachael Mull",
+     "source_url": "https://www.baltimoremagazine.com/2015/3/10/victoria-gastro-pub-owners-open-new-brewery",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tori Marriner Buscher",
+     "source_url": "https://www.baltimoremagazine.com/2015/3/10/victoria-gastro-pub-owners-open-new-brewery",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ]
+}

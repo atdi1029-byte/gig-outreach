@@ -1,11 +1,5 @@
 {
- "alert": {
-  "kind": "claude",
-  "level": "stop",
-  "title": "Outreach paused: Claude is out of credits",
-  "detail": "The rounds wait so ZeroBounce and Apollo credits aren't spent on venues nobody audits. It checks every 30 minutes and goes on by itself when Claude works again.",
-  "since": "2026-11-07T05:47:25-05:00"
- },
+ "alert": null,
  "night": {
   "date": "2026-11-06",
   "started_at": "2026-11-06T23:10:01-05:00",
@@ -127,5 +121,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-07T05:47:30-05:00"
+ "updated_at": "2026-11-07T09:48:11-05:00"
 }

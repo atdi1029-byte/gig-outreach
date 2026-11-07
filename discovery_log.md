@@ -14,11 +14,11 @@ the sheet, and it skips venues already there.
 | 2026-11-07 | sweep_dream_clubs_wine_2026-11-07.md | elite city clubs, country clubs, wine bars, estate wineries | 33 found | |
 | 2026-11-07 | sweep_dream2_lists_2026-11-07.md | full Michelin Guide DC list, Washingtonian 100, Baltimore mag best, NoVa mag best (about 130 already on the sheet) | 14 found | Baltimore and NoVa magazine pages refused fetching; AAA 2026 PDFs unreadable |
 | 2026-11-07 | sweep_dream2_estates_2026-11-07.md | event estates, mansions, hotel piano bars, embassy and cultural venues, Annapolis, Middleburg, Hunt Country, Eastern Shore | 13 found | George Peabody Library, Decatur House (sites didn't load) |
-| 2026-11-07 | sweep_dream3_awards_2026-11-07.md | Wine Spectator awards, James Beard, OpenTable romantic/top 100, Relais & Châteaux, AAA Diamonds | running | |
-| 2026-11-07 | sweep_dream3_stays_2026-11-07.md | Forbes, Condé Nast, T+L, Historic Hotels of America, Select Registry, wedding guides' estates | running | |
-| 2026-11-07 | sweep_dream3_clubs_2026-11-07.md | Platinum Clubs, Golf Digest/Golfweek private, historic city clubs, VA Governor's Cup, MD Comptroller's Cup, best wine bars | running | |
+| 2026-11-07 | sweep_dream3_awards_2026-11-07.md | Wine Spectator awards, James Beard, OpenTable romantic/top 100, Relais & Châteaux, AAA Diamonds | 7 found (almost every award venue was already on the sheet) | closed: Métier, Kinship, Tail Up Goat, Gravitas, Cranes |
+| 2026-11-07 | sweep_dream3_stays_2026-11-07.md | Forbes, Condé Nast, T+L, Historic Hotels of America, Select Registry, wedding guides' estates | 10 found | Sagamore Pendry, Airlie (403) |
+| 2026-11-07 | sweep_dream3_clubs_2026-11-07.md | Platinum Clubs, Golf Digest/Golfweek private, historic city clubs, VA Governor's Cup, MD Comptroller's Cup, best wine bars | 3 found (sheet already had nearly all) | |
 
-The dream-dining, hotels and clubs searches overlap, and all three put 52 new venues on the sheet. dream2 added 27.
+The dream-dining, hotels and clubs searches overlap, and all three put 52 new venues on the sheet. dream2 added 27, and dream3 18. By dream3 the best-of lists were close to used up: most names were already on the sheet.
 
 ## Town sweeps
 

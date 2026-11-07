@@ -730,3 +730,29 @@
 ### Changes made (Oct 1)
 - `taste_venues.txt`: +3 (Talbot Country Club, The Ivy Hotel, The Inn at Henderson's Wharf).
 - `taste_score.py`: none. All 4 votes match what the scorer already does.
+
+---
+
+## Nov 7, 2026 — Taste Review (16 new votes, burn FIX session)
+
+### Positives
+- **Oxford Community Center** (event, Oxford MD) — "Already play here" → an existing gig, not a target to pitch. Scorer says 39 (floor 40), which doesn't matter for a place Alex already plays.
+- **Cece's Roland Park** (restaurant, Baltimore MD) — "European, Roland park fancy restaurant" → European + a fancy neighborhood. Scorer agrees (54). Added to taste_venues.txt.
+- **Osteria Mozza** (restaurant, Washington DC) — "Upscale Italian restaurant". Scorer agrees (66). Added to taste_venues.txt.
+- **La Fromagerie** (restaurant, Alexandria VA) — thumbs up, no note. Scorer agrees (47, european from the name).
+- **The Ritz-Carlton, Tysons Corner** (hotel, McLean VA) and **The Ritz-Carlton, Pentagon City** (hotel, Arlington VA) — "5 star hotel" both. Scorer agrees (73, 62). Added to taste_venues.txt.
+- **Park Hyatt Washington DC** (hotel, Washington DC) — thumbs up, no note. Scorer agrees (61). Added to taste_venues.txt.
+- **Swann House** (hotel, Washington DC) — "Boutique hotel". Scorer DISAGREES (38, floor 40): nothing in its record says boutique. Added to taste_venues.txt.
+- **Congressional Country Club** (country_club) and **The Golf Club at Lansdowne** (recreation, Leesburg VA) — thumbs up, no notes. Clubs stay a near-universal yes, a golf-first one included. Scorer agrees (59, 52). Congressional added to taste_venues.txt.
+- **River Club DC** (restaurant) — thumbs up, no note. Scorer DISAGREES (23): "river club" reads as an unknown area, not a place. One vote, no change.
+- **The Maple Room Restaurant & Lounge** (restaurant, Vienna VA) — thumbs up, no note. Scorer DISAGREES (33). One vote, no change.
+
+### Negatives
+- **St Andrew Episcopal School** (event_venue, Potomac MD) — thumbs down. Already -100 (school).
+- **Great Falls Swim & Tennis Club** (private_club, Great Falls VA) — thumbs down. Already -100 (tennis club): sports clubs stay wrong, social clubs stay right.
+- **The Little Towns Children's Museum** (museum, Bethesda MD) — thumbs down, no note. Scorer agrees: 31, below the floor.
+- **246 Thai Street** (restaurant, Herndon VA) — thumbs down, no note. Scorer agrees (25).
+
+### Changes made (Nov 7)
+- `taste_venues.txt`: +7 (Cece's Roland Park, Osteria Mozza, The Ritz-Carlton Tysons Corner, The Ritz-Carlton Pentagon City, Park Hyatt Washington DC, Swann House, Congressional Country Club).
+- `taste_score.py`: none. The three scorer disagreements are one-offs, not a repeated pattern.

@@ -1,0 +1,47 @@
+{
+ "run_id": "run-20261106-2316 run-20261107-0127 run-20261107-0342 run-20261107-1019",
+ "venues_researched": 0,
+ "venues_with_finds": 0,
+ "contacts_found": 0,
+ "misses": 143,
+ "fixes": [
+  {
+   "commit": "8ea43ef",
+   "what": "mail alias from 3+ personal addresses on one outside domain, for Cloudflare-protected staff pages (@trumpgolf.com on Trump National)"
+  },
+  {
+   "commit": "8ea43ef",
+   "what": "function inbox with no name takes the one person the site names for it (catering@autenticoperu.com -> Danny Pain)"
+  },
+  {
+   "commit": "8ea43ef",
+   "what": "a name found later fills the empty name on the saved contact, with read-back (Apollo names dropped as already_known)"
+  },
+  {
+   "commit": "8ea43ef",
+   "what": "Facebook pages linked by numeric id (Trattoria Da Franco)"
+  },
+  {
+   "commit": "8ea43ef",
+   "what": "JS redirect to /lander counts as a parked domain in build_batch and verify_pool (Ox & Olive, Harrison's Chesapeake House)"
+  },
+  {
+   "commit": "8ea43ef",
+   "what": "sayhello@ is a general inbox, food@ is a function inbox"
+  }
+ ],
+ "reverted": [],
+ "taste_reviewed": 16,
+ "not_fixed": [
+  "outside domains with a single address on the venue's site (alexrestpart.com, grkouzina.com, h2-collective, pga.com, county and city .gov): left to the deep dive's allow_off_domain",
+  "brand domains such as kimptonhotels.com: stay excluded from the alias on purpose, since its Apollo finds could belong to other hotels",
+  "owners named only in prose (Carol Pennock, Trisha Simpson, Ridia Dearie, Nic Alexander): people extractor not changed",
+  "/groups/ Facebook links, PDF metadata, Marriott pages that block the crawl: not changed"
+ ],
+ "caveats": [
+  "name backfill is tested offline with a stubbed backend only; its first real writes come in the next round",
+  "apps_script.gs GENERIC_PREFIXES not updated for food@/sayhello@ (off limits to this session): the pipeline's own check handles them first, the backend mirror is out of sync",
+  "parked venues are now skipped in planning, but their wrong website stays on the sheet until the backfill or someone corrects it"
+ ],
+ "note": "Six scraper fixes went in from the last four rounds (no recall benchmark losses): staff on outside mail domains like Trump National's, inboxes paired with the one person who runs them, Apollo names added to nameless contacts, numeric Facebook links, parked /lander domains, and sayhello@/food@ inboxes."
+}

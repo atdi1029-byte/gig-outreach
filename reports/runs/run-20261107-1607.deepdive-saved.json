@@ -1,0 +1,457 @@
+{
+ "run_id": "run-20261107-1607",
+ "dry_run": false,
+ "at": "2026-11-07T18:20:54-05:00",
+ "totals": {
+  "saved": 2,
+  "venues_rescued": 2,
+  "socials": 2,
+  "rejected": 6,
+  "errors": 0,
+  "flagged": 4
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "MD-REST-971",
+   "name": "Fontina Grille",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-HOTE-2954",
+   "name": "Meeting House Boutique Hotel",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-897",
+   "name": "Mykonos Grill Rockville",
+   "contacts": [
+    {
+     "email": "manager@mykonosgrill.com",
+     "name": "Angelo Mitsotakis",
+     "source_url": "https://mykonos-grill.com/about/",
+     "title": "General Manager & Owner",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-3177",
+   "name": "7556 Main Street Bistro",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Keith Watson",
+     "source_url": "https://7556mainstreet.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2837",
+   "name": "il Canale",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Abderrahaman Mouhssine",
+     "source_url": "http://www.linkedin.com/in/abderrahaman-mouhssine-950b371b",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Joe Farruggio",
+     "source_url": "https://ilcanale.com/washington-dc-georgetown-il-canale-our-story",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Giorgio Greco",
+     "source_url": "https://www.thegeorgetowndish.com/articles/il-canale-hosts-georgetown-dish",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-HOTE-3017",
+   "name": "Stone Manor Boutique Inn",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2842",
+   "name": "OTTO Neo Mediterranean",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Sevki Kulkara",
+     "source_url": "https://www.thegeorgetowndish.com/articles/otto-now-open-georgetown",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Kenan Atmaca",
+     "source_url": "https://www.thegeorgetowndish.com/articles/otto-now-open-georgetown",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3375",
+   "name": "The Italian Oven",
+   "contacts": [
+    {
+     "email": "theitalianovenmclean@gmail.com",
+     "name": "Robert Esposito",
+     "source_url": "https://www.tysonsreporter.com/2021/06/22/the-italian-oven-returns-to-mclean-after-20-years/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "theitalianovenmclean@gmail.com",
+     "reason": "Right business (venue mailto, banquet-request inbox on /banquet), but the saved name 'Italian Oven McLean' is not a person; owner Robert Esposito (Tysons Reporter 2021: owns and manages it) can be attached. Keep the email."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3202",
+   "name": "Wilson House Bed & Breakfast",
+   "contacts": [
+    {
+     "email": "wilson-house@usa.net",
+     "name": "Guy Thomas",
+     "source_url": "https://wilson-house.net/contact-us/",
+     "outcome": "rejected:off_domain:usa.net!=wilson-house.net"
+    },
+    {
+     "email": "",
+     "name": "Clelia Thomas",
+     "source_url": "https://wilson-house.net/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3376",
+   "name": "Rocco's Italian Restaurant",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-806",
+   "name": "Capsize OXMD",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-724",
+   "name": "Galliano Italian Restaurant",
+   "contacts": [
+    {
+     "email": "waughchapel@gallianoitalianrestaurant.com",
+     "name": "Leslie Ramirez",
+     "source_url": "http://www.linkedin.com/in/leslie-ramirez-1561a6214",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Brian Hovermale",
+     "source_url": "https://www.wmar2news.com/open/galliano-italian-restaurant-wine-bar-is-open-for-business",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jamie Kujawski",
+     "source_url": "https://www.citybiz.co/article/2868/galliano-italian-restaurant-wine-bar-opens-new-york-city-trendy-dining-concept-at-maple-lawn/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Lino DiMeo",
+     "source_url": "https://www.citybiz.co/article/2868/galliano-italian-restaurant-wine-bar-opens-new-york-city-trendy-dining-concept-at-maple-lawn/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "waughchapel@gallianoitalianrestaurant.com",
+     "reason": "Right business (the Gambrills location inbox; the site and OpenTable list it for private events), but the saved name 'Chapel Lake Drive' is the street address, not a person. Attach GM Leslie Ramirez (Apollo high-confidence match: General Manager, Galliano Italian Restaurant & Wine Bar since 2022, based in Annapolis). Keep the email."
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-HOTE-240",
+   "name": "The Anchorage Bed & Breakfast, Weddings and Events",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2225",
+   "name": "DuPont Italian Kitchen",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Michael Askarinam",
+     "source_url": "https://dupontitaliankitchen.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tony Askarinam",
+     "source_url": "https://dupontitaliankitchen.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1013",
+   "name": "Tally Ho Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Youlla Vellios",
+     "source_url": "https://m.connectionnewspapers.com/news/2007/apr/24/it-runs-in-the-family",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1741",
+   "name": "Bellissimo Restaurant",
+   "contacts": [
+    {
+     "email": "bellissimorestaurant5@gmail.com",
+     "name": "Mary Killay Lavayen",
+     "source_url": "https://bellissimorestaurant.com/",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "",
+     "name": "Omar Lavayen",
+     "source_url": "https://bellissimorestaurant.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-HOTE-239",
+   "name": "Cambridge House Bed and Breakfast",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jim Benson",
+     "source_url": "https://iloveinns.com/cambridge-house-id25282.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-748",
+   "name": "Middleton Tavern",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Christina Nokes",
+     "source_url": "https://middletontavern.com/annapolis-downtown-middleton-tavern-banquet-menu",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jerry Hardesty",
+     "source_url": "https://www.beveragejournalinc.com/new/easyblog/entry/middleton-tavern",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Teddy Goebels",
+     "source_url": "http://www.linkedin.com/in/teddy-goebels-7878809",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://tmt.spotapps.co/private-parties?spot_id=76089",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "middletontavern2@gmail.com",
+     "reason": "Right business (venue's own mailto, keep the email), but the saved name 'Entertainment Middleton' / title 'November Entertainment' is not a person: it was parsed from an events-listing label. Rename/attach to a real person (Banquet Director Christina Nokes runs events) or blank the name."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3123",
+   "name": "Gertrude's Chesapeake Kitchen",
+   "contacts": [
+    {
+     "email": "emily@gertrudesbaltimore.com",
+     "name": "Emily Villarreal",
+     "source_url": "https://www.opentable.com/r/gertrudes-baltimore",
+     "title": "Director of Private Events",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Ardian Dulaku",
+     "source_url": "http://www.linkedin.com/in/ardian-dulaku-9ab726223",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Karsten Hartig",
+     "source_url": "http://www.linkedin.com/in/karsten-hartig-79852547",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "John Shields",
+     "source_url": "https://www.baltimoremagazine.com/directory/restaurant/gertrudes-chesapeake-kitchen/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-HOTE-3033",
+   "name": "Ironclad Inn",
+   "contacts": [
+    {
+     "email": "kara@ironcladdistillery.com",
+     "name": "Kara King",
+     "source_url": "http://www.linkedin.com/in/kara-king-a023246",
+     "outcome": "rejected:off_domain:ironcladdistillery.com!=ironcladinn.com"
+    },
+    {
+     "email": "",
+     "name": "Stephen King",
+     "source_url": "https://www.potomaclocal.com/2024/01/23/newport-news-based-ironclad-distillery-co-acquires-historic-kenmore-inn-in-fredericksburg-for-2-4-million/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2829",
+   "name": "La Brasa",
+   "contacts": [
+    {
+     "email": "labrasa_rockville@comcast.net",
+     "name": "Emilio Campos",
+     "source_url": "https://www.labrasarockville.com/about-us",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "",
+     "name": "Lucy Campos",
+     "source_url": "https://www.labrasarockville.com/about-us",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-588",
+   "name": "Accanto",
+   "contacts": [
+    {
+     "email": "emily@piazzaitalianmarket.com",
+     "name": "Emily Chandler",
+     "source_url": "https://cambridgespy.org/2025/09/06/a-new-restaurant-besides-piazza-a-chat-with-emily-chandler/",
+     "outcome": "rejected:off_domain:piazzaitalianmarket.com!=accanto-easton.com"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-341",
+   "name": "Heritage 485",
+   "contacts": [
+    {
+     "email": "michaelbenson@heritage485.com",
+     "name": "Michael Benson",
+     "source_url": "https://southernmarylandchronicle.com/2019/07/23/somd-taste-and-sip-encounters-with-lynne-omeara-heritage-485",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "David Benson",
+     "source_url": "https://mdcountrycaterers.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-HOTE-3034",
+   "name": "The Richard Johnston Inn & 1890 Caroline House",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3113",
+   "name": "Cypriana",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Vasso Yiannouris",
+     "source_url": "https://cypriana.com/baltimore-hampden-cypriana-restaurant-about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://tmt.spotapps.co/private-parties?spot_id=74692",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "wecare@cypriana.com",
+     "reason": "Right business, but saved with no person name: it's the customer-care/allergen-guide inbox (header mailto, 'Contact us by email wecare@'), effectively a general inbox. Policy: general inboxes and nameless contacts are not contacts."
+    }
+   ]
+  }
+ ]
+}

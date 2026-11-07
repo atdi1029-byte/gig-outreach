@@ -1,0 +1,1127 @@
+{
+ "run_id": "run-20261107-1607",
+ "venues": [
+  {
+   "venue_id": "MD-REST-971",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "fontinagrille.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Fontina Grille",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Existing contact Ali Abduljabbar (Owner Operator, ali@fontinagrille.com) passes the name-match gate (Apollo org Fontina Grille, own domain; press also names him owner). Apollo has only him; site has only info@ (general) and a contact form; no events/GM person with email found (a diner review mentions a manager 'Jad', unverified). Socials/form already filled. Press: restaurant relocating to The Laureate at Westside at Shady Grove, fall 2026."
+  },
+  {
+   "venue_id": "VA-HOTE-2954",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "mh421.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Meeting House Boutique Hotel",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "michelle@mh421.com is the venue's own group-booking contact (listed under CONTACT on /groupbook with 571-378-1143), so it belongs to this business. Apollo email match returns 'Michelle Arjona' but with match_confidence=none and no employment history, and no web source confirms the surname, so no name is supplied. Apollo has no people for mh421.com (the pipeline's 24 'Meeting House' people were churches/museums, all correctly rejected). No hotel Facebook page exists that I could find. Note: the saved Instagram is godfreysbakerycafe, the hotel's attached bakery cafe (linked from mh421.com, same building and owners), not a hotel account; left as is. Godfrey's site names only Chef Godfrey McKenzie (no email)."
+  },
+  {
+   "venue_id": "MD-REST-897",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Angelo Mitsotakis",
+     "title": "General Manager & Owner",
+     "email": "manager@mykonosgrill.com",
+     "source": "website",
+     "source_url": "https://mykonos-grill.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "mykonos-grill.com, mykonosgrill.com",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "Mykonos Grill (Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Angelo Mitsotakis @ mykonosgrill.com",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Saveable: Angelo Mitsotakis (GM & Owner) at manager@mykonosgrill.com, the venue's own sibling mail domain, mailto'd on its site and confirmed by Apollo. WARNING: the site's 11/03/2026 post says the Rockville location CLOSED PERMANENTLY and moved to 'Mykonos restaurant', 7965 Tuckerman Ln, Potomac MD 20854 (240-614-7986), same owners and menu. The venue record should be updated or retired."
+  },
+  {
+   "venue_id": "MD-REST-3177",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Keith Watson",
+     "title": "Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://7556mainstreet.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "7556mainstreet.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "7556 Main Street Bistro",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Keith Watson @ 7556mainstreet.com",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No saveable email. Owner Keith Watson is named on the home page; Apollo has nothing. The only email is sykesvilledandelionbakery@gmail.com, which the pipeline pulled from the bistro's Facebook page. Watson ran 'Dandelion' restaurants, and one press snippet says Dandelion Bakery opened a restaurant next door on Main St ('Dandelion & 7556 Cafe'). The link is likely, but the address doesn't contain the venue's name and the venue's site doesn't mailto it, so it was left unsaved for Alex to judge. The site's only email is the web developer's admin@countywebsite.com."
+  },
+  {
+   "venue_id": "DC-REST-2837",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Abderrahaman Mouhssine",
+     "title": "Manager",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/abderrahaman-mouhssine-950b371b",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Joe Farruggio",
+     "title": "Owner / Founder",
+     "email": "",
+     "source": "website",
+     "source_url": "https://ilcanale.com/washington-dc-georgetown-il-canale-our-story",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Giorgio Greco",
+     "title": "Manager (per Georgetown Dish, undated)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.thegeorgetowndish.com/articles/il-canale-hosts-georgetown-dish",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "ilcanale.com",
+     "search_type": "domain",
+     "result_count": 4
+    },
+    {
+     "query": "il Canale (Washington, DC)",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "Farruggio (owner, DC/MD/VA)",
+     "search_type": "name",
+     "result_count": 15
+    }
+   ],
+   "summary": "alessandro@ilcanale.com is on the venue's own domain (pipeline saw it on several ilcanale.com pages, likely JS-rendered); keep it, but no surname or role for Alessandro could be found. Apollo: enriched Manager Abderrahaman Mouhssine (Il Canale since 2010, email unavailable); owner Joe Farruggio has no findable email. No new saveable email; socials/form already filled."
+  },
+  {
+   "venue_id": "VA-HOTE-3017",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "virginiabandb.net",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Stone Manor Boutique Inn",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "All 3 existing contacts belong to Stone Manor (own domain; Apollo org name+domain match). manisha@ is Manisha Shah, property manager/co-owner who runs weddings & events (name could be added to the nameless saved contact); parth@ is Executive Chef Parth Shah (saved title is garbled: 'Executive Chef: Parth Shah ( )'); Prashant Shah is President. No better decision-maker exists. Socials/form already filled."
+  },
+  {
+   "venue_id": "DC-REST-2842",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Sevki Kulkara",
+     "title": "General Manager / Owner",
+     "email": "",
+     "source": "apollo",
+     "source_url": "https://www.thegeorgetowndish.com/articles/otto-now-open-georgetown",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Kenan Atmaca",
+     "title": "Chef",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.thegeorgetowndish.com/articles/otto-now-open-georgetown",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "eatatotto.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Otto Neo Mediterranean",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Sevki Kulkara (OTTO Neo Mediterranean)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Kenan Atmaca (OTTO Neo Mediterranean)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No saveable email. The only address on the site is info@eatatotto.com, a general inbox; the sitemap lists 9 pages, none with other emails. GM/owner Sevki Kulkara (Apollo: owner, email unavailable) and chef Kenan Atmaca were found without emails. No Facebook page found; the site's social icons point to bare facebook.com."
+  },
+  {
+   "venue_id": "VA-REST-3375",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Robert Esposito",
+     "title": "Owner",
+     "email": "theitalianovenmclean@gmail.com",
+     "source": "press",
+     "source_url": "https://www.tysonsreporter.com/2021/06/22/the-italian-oven-returns-to-mclean-after-20-years/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "theitalianovenmclean@gmail.com",
+     "reason": "Right business (venue mailto, banquet-request inbox on /banquet), but the saved name 'Italian Oven McLean' is not a person; owner Robert Esposito (Tysons Reporter 2021: owns and manages it) can be attached. Keep the email."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "theitalianovenmclean.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "The Italian Oven McLean (people keywords)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Italian Oven McLean (org name)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Italian Oven + person_locations Virginia",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "theitalianovenmclean.com (org domain)",
+     "search_type": "domain",
+     "result_count": 0
+    }
+   ],
+   "summary": "Existing gmail is the venue's own banquet inbox (passes the gate) but has no person name; owner Robert Esposito found in press. Apollo: only Rene Balderas, Restaurant Manager (no email, the pipeline already had him); Esposito enriched with no match. Socials and form already filled."
+  },
+  {
+   "venue_id": "MD-REST-3202",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Guy Thomas",
+     "title": "Co-owner / Innkeeper",
+     "email": "wilson-house@usa.net",
+     "source": "website",
+     "source_url": "https://wilson-house.net/contact-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Clelia Thomas",
+     "title": "Co-owner / Innkeeper",
+     "email": "",
+     "source": "website",
+     "source_url": "https://wilson-house.net/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "wilson-house.net",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Wilson House Bed and Breakfast",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Owner-run B&B (2100 Mount Royal Terrace, Reservoir Hill); owners Guy & Clelia Thomas on /about/; their only mailbox wilson-house@usa.net is a venue mailto rejected only because usa.net isn't in FREEMAIL_DOMAINS (bug); Apollo has nothing; no Instagram found."
+  },
+  {
+   "venue_id": "VA-REST-3376",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "roccositalian.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Rocco's Italian Restaurant McLean",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "org name Rocco's Italian Restaurant (VA) -> org 59bba0dea6da98e77384962d 'Rocco's Italian Restaurant In Mclean, Va' (roccositalian.com)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at org 59bba0dea6da98e77384962d",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Rocco's Italian Restaurant, person location McLean VA",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Single-page site (home, menu.php, one PDF) with no emails, only phone + jotform + ezCater; owners are the Juliano family (3rd gen) but no current individual named anywhere; Apollo only has a waitress; domain has GoDaddy MX but no address published anywhere. Nothing saveable."
+  },
+  {
+   "venue_id": "MD-REST-806",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "capsizeoxmd.com",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "Capsize OXMD",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "LIKELY CLOSED/DEFUNCT: capsizeoxmd.com is now a Network Solutions parking page (A 208.91.197.27, no MX, page is a consentmanager/l.cdn-fileserver parking template - the pipeline's 30 'ok' pages were parked pages); business listed for sale ($799k) on rofo; absent from the 2026 Oxford Business Association member list (Scottish Highland Creamery now runs the 314 Tilghman St window). Old third-party listings show info@ and tom@capsizeoxmd.com but the domain has no mail server, so nothing is saveable. Apollo: only a Host and an 'Aspiring Accountant'. Recommend parking the venue / marking website dead."
+  },
+  {
+   "venue_id": "MD-REST-724",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Leslie Ramirez",
+     "title": "General Manager",
+     "email": "waughchapel@gallianoitalianrestaurant.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/leslie-ramirez-1561a6214",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Brian Hovermale",
+     "title": "Co-owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.wmar2news.com/open/galliano-italian-restaurant-wine-bar-is-open-for-business",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jamie Kujawski",
+     "title": "Co-owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.citybiz.co/article/2868/galliano-italian-restaurant-wine-bar-opens-new-york-city-trendy-dining-concept-at-maple-lawn/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Lino DiMeo",
+     "title": "Co-owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.citybiz.co/article/2868/galliano-italian-restaurant-wine-bar-opens-new-york-city-trendy-dining-concept-at-maple-lawn/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "waughchapel@gallianoitalianrestaurant.com",
+     "reason": "Right business (the Gambrills location inbox; the site and OpenTable list it for private events), but the saved name 'Chapel Lake Drive' is the street address, not a person. Attach GM Leslie Ramirez (Apollo high-confidence match: General Manager, Galliano Italian Restaurant & Wine Bar since 2022, based in Annapolis). Keep the email."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "gallianoitalianrestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Galliano Italian Restaurant (people keywords)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Galliano Italian Restaurant (org name)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Galliano + person_locations Maryland",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "gallianoitalianrestaurant.com (org domain)",
+     "search_type": "domain",
+     "result_count": 0
+    }
+   ],
+   "summary": "Saved inbox passes the gate but is named after the street; GM Leslie Ramirez is the decision-maker to attach. Owners (Hovermale, Kujawski, DiMeo) enriched with no email. Note: the sheet's Instagram (instagram.com/gallianoitalianrestaurant) is the Maple Lawn account; the Gambrills one is instagram.com/gallianorestaurant.waughchapel (not overwritten). The Facebook is correct for Gambrills."
+  },
+  {
+   "venue_id": "XX-HOTE-240",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "anchorage1800.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "The Anchorage Trappe (people keywords)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Anchorage Bed and Breakfast (org name)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "anchorage1800.com (org domain)",
+     "search_type": "domain",
+     "result_count": 0
+    }
+   ],
+   "summary": "The existing anchorageonchoptank@gmail.com is the venue's own mailto (passes the gate) but has no name. Owners are 'Michelle and Woody' per reviews; no surnames found anywhere, so nothing new to save. The site also publishes anchorage1800venue@gmail.com for 2027-28 wedding pricing (venue words in it), but no person name goes with it. Apollo: the only org match was Anchorage Inn B&B in WA (anchorage-inn.com), rejected. No Facebook, Instagram or contact form found (site, Talbot tourism listing, searches; The Knot returned 403)."
+  },
+  {
+   "venue_id": "DC-REST-2225",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michael Askarinam",
+     "title": "Co-founder/owner (since 1986)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://dupontitaliankitchen.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Tony Askarinam",
+     "title": "Co-founder/owner (since 1986)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://dupontitaliankitchen.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "dupontitaliankitchen.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "DuPont Italian Kitchen",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Askarinam (owner surname)",
+     "search_type": "name",
+     "result_count": 22
+    }
+   ],
+   "summary": "Founders Michael and Tony Askarinam are named on the About page but no email belongs to either. catering@ appears with no named person, and the site names no manager. askarinam@yahoo.com (owner surname, from social) can't be tied to one brother and has no venue words, so it was left out, as were Apollo's 22 Askarinam people (none at this restaurant). Private-events form is at /private-events/ (sheet has /contact-us)."
+  },
+  {
+   "venue_id": "MD-REST-1013",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Youlla Vellios",
+     "title": "Owner/operator (per 2007 press; Vellios family still owns it per venue site)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://m.connectionnewspapers.com/news/2007/apr/24/it-runs-in-the-family",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "tallyhorestaurant.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Tally Ho Restaurant",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "No email anywhere: the one-page site has phone only (catering by phone), no contact form, and nothing in search; Apollo has only a Bar Manager (Morgan Du***n, no email, not a decision-maker, not enriched). The owner family is Vellios (Pete & Youlla founded it); no email for them."
+  },
+  {
+   "venue_id": "VA-REST-1741",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Mary Killay Lavayen",
+     "title": "Co-owner (holiday and private party planning)",
+     "email": "bellissimorestaurant5@gmail.com",
+     "source": "facebook",
+     "source_url": "https://bellissimorestaurant.com/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "Name+title from the venue's own homepage (private-party contact, call/text 202-262-3726); Gmail with the venue name came from the venue's social profile (pipeline candidate, rejected as freemail_unlinked). The policy allows free-mail that clearly contains venue words. Which owner reads this Gmail is not stated; ZeroBounce should check it."
+    },
+    {
+     "name": "Omar Lavayen",
+     "title": "Co-owner and Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://bellissimorestaurant.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "bellissimorestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Bellissimo Restaurant (Virginia)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Bellissimo (Fairfax, VA)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Homepage names co-owners Omar Lavayen (chef) and Mary Killay Lavayen (private parties); the venue-name Gmail from social, paired with Mary, is the only saveable email. Apollo has no people (the earlier pipeline owners Lingenfelter/Margulis/Don Hughes belong to other Bellissimo businesses)."
+  },
+  {
+   "venue_id": "XX-HOTE-239",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jim Benson",
+     "title": "Innkeeper/Owner",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://iloveinns.com/cambridge-house-id25282.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "cambridgehousebandb.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Cambridge House Bed and Breakfast",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Benson Cambridge House (Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Tiny 6-room B&B run by Jim and Marianne Benson; only info@ (general inbox, rejected). Site refused connections today; no Facebook/Instagram found anywhere; Apollo has nothing. Nothing saveable."
+  },
+  {
+   "venue_id": "MD-REST-748",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Christina Nokes",
+     "title": "Banquet Director (Corporate Secretary)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://middletontavern.com/annapolis-downtown-middleton-tavern-banquet-menu",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jerry Hardesty",
+     "title": "Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.beveragejournalinc.com/new/easyblog/entry/middleton-tavern",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Teddy Goebels",
+     "title": "Manager",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/teddy-goebels-7878809",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://tmt.spotapps.co/private-parties?spot_id=76089",
+   "flag_contacts": [
+    {
+     "email": "middletontavern2@gmail.com",
+     "reason": "Right business (venue's own mailto, keep the email), but the saved name 'Entertainment Middleton' / title 'November Entertainment' is not a person: it was parsed from an events-listing label. Rename/attach to a real person (Banquet Director Christina Nokes runs events) or blank the name."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "middletontavern.com",
+     "search_type": "domain",
+     "result_count": 18
+    },
+    {
+     "query": "Middleton Tavern (person_locations Maryland)",
+     "search_type": "name",
+     "result_count": 11
+    }
+   ],
+   "summary": "Existing gmail is the venue's own mailto but saved under a fake name; Banquet Director Christina Nokes (site) and owner Jerry Hardesty (press) have no email anywhere; Apollo GM 'Nigel Mack' rejected (Middleton Tavern, South Australia); Apollo Aaron Shulman email already failed ZB; SpotHopper party form added."
+  },
+  {
+   "venue_id": "MD-REST-3123",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Emily Villarreal",
+     "title": "Director of Private Events",
+     "email": "emily@gertrudesbaltimore.com",
+     "source": "websearch",
+     "source_url": "https://www.opentable.com/r/gertrudes-baltimore",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Ardian Dulaku",
+     "title": "General Manager",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/ardian-dulaku-9ab726223",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Karsten Hartig",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/karsten-hartig-79852547",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "John Shields",
+     "title": "Chef/Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.baltimoremagazine.com/directory/restaurant/gertrudes-chesapeake-kitchen/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "gertrudesbaltimore.com",
+     "search_type": "domain",
+     "result_count": 9
+    },
+    {
+     "query": "Gertrude's Chesapeake Kitchen",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Found Director of Private Events Emily Villarreal -> emily@gertrudesbaltimore.com (own domain, via OpenTable profile; WeddingWire reviews confirm an events coordinator 'Emily'). Needs ZeroBounce. Apollo GM Ardian Dulaku and Exec Chef Karsten Hartig have no email. Gmail addresses on the site are old event sponsors (rightly rejected)."
+  },
+  {
+   "venue_id": "VA-HOTE-3033",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kara King",
+     "title": "Co-Owner & Creative Director (Ironclad Distillery; listed inn contact)",
+     "email": "kara@ironcladdistillery.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/kara-king-a023246",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Stephen King",
+     "title": "Founder & President (Ironclad Distillery and Ironclad Inn)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.potomaclocal.com/2024/01/23/newport-news-based-ironclad-distillery-co-acquires-historic-kenmore-inn-in-fredericksburg-for-2-4-million/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "ironcladinn.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Ironclad Inn",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Ironclad Inn (org search)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "ironcladdistillery.com",
+     "search_type": "domain",
+     "result_count": 0
+    }
+   ],
+   "summary": "Inn is owned by the King family (Ironclad Distillery). Site and event brochure only publish reservations@ironcladinn.com (no name). Kara King is the listed inn contact (fxbg.com) and Apollo has her verified kara@ironcladdistillery.com, but that is the owner-group domain the inn's site links to yet never uses for contacts, so per policy it is listed-only (allow_off_domain false) unless Alex OKs it."
+  },
+  {
+   "venue_id": "MD-REST-2829",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Emilio Campos",
+     "title": "Co-Owner",
+     "email": "labrasa_rockville@comcast.net",
+     "source": "apollo",
+     "source_url": "https://www.labrasarockville.com/about-us",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "Owners Lucy and Emilio Campos are named on the venue's own About page. Apollo people_match (La Brasa Latin Cuisine org, labrasarockville.com, Rockville) returns this Comcast address for Emilio; the local part 'labrasa_rockville' holds the venue name. The pipeline saw the same address on Facebook and rejected it as freemail_unlinked."
+    },
+    {
+     "name": "Lucy Campos",
+     "title": "Co-Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.labrasarockville.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "labrasarockville.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "La Brasa (people keywords, MD)",
+     "search_type": "name",
+     "result_count": 6
+    },
+    {
+     "query": "La Brasa Latin Cuisine (org)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "org 66d43dcce042a300011be8f9 people",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Campos La Brasa",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Lucy Campos @labrasarockville.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Emilio Campos @labrasarockville.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "The site has no email. Owners Lucy and Emilio Campos are named on the About page. Apollo links Emilio to labrasa_rockville@comcast.net, a venue-named ISP address (not on the site, so the save rule may still reject it). Apollo's 'La Brasa' people are Sardi's Pollo a la Brasa and were rejected."
+  },
+  {
+   "venue_id": "MD-REST-588",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Emily Chandler",
+     "title": "Owner (Accanto and Piazza Italian Market)",
+     "email": "emily@piazzaitalianmarket.com",
+     "source": "apollo",
+     "source_url": "https://cambridgespy.org/2025/09/06/a-new-restaurant-besides-piazza-a-chat-with-emily-chandler/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "Owner confirmed by the Spy interview, which is linked from Accanto's own press page. Apollo says verified, but the address is on Piazza's domain, which Accanto's site never publishes, so it stays listed only under the save policy."
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "accanto-easton.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Accanto (people keywords, MD)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Accanto (org, Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Piazza Italian Market (sister/parent)",
+     "search_type": "name",
+     "result_count": 4
+    },
+    {
+     "query": "people_match Emily Chandler @accanto-easton.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Emily Chandler (Piazza id)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "The site shows only info@ (a general inbox) and no people. The owner is Emily Chandler (Piazza Italian Market, next door). Her only email is emily@piazzaitalianmarket.com, off the venue's domain and not used by Accanto's site, so there is nothing saveable. The 'Accanto' with owners Mastromano and chef Baldwin is a different restaurant in Richmond, VA."
+  },
+  {
+   "venue_id": "MD-REST-341",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michael Benson",
+     "title": "Chef / Owner",
+     "email": "michaelbenson@heritage485.com",
+     "source": "apollo",
+     "source_url": "https://southernmarylandchronicle.com/2019/07/23/somd-taste-and-sip-encounters-with-lynne-omeara-heritage-485",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "Press (2019/2020 Southern Maryland Chronicle) names Mike Benson as chef-owner. Apollo people_match: employer Heritage 485, Prince Frederick MD, email_status verified, on the venue's own domain. Apollo's match_confidence was low, so it needs ZeroBounce."
+    },
+    {
+     "name": "David Benson",
+     "title": "Founder/Owner, Maryland Country Caterers (parent company)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://mdcountrycaterers.com/about/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "heritage485.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Heritage 485 (people keywords)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Heritage 485 (org)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "mdcountrycaterers.com (parent)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Maryland Country Caterers (parent)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Benson caterers (MD)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Michael Benson @heritage485.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "Chef-owner Mike Benson (from press) gets michaelbenson@heritage485.com from Apollo people_match: verified, on the venue's domain. The parent company is Maryland Country Caterers (founder David Benson, no email). The site still posts a Holiday-meal-to-go-2026 image, so it looks open. The LinkedIn find Ryan Yemm is not this venue."
+  },
+  {
+   "venue_id": "VA-HOTE-3034",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "therichardjohnstoninn.com",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "Richard Johnston Inn",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "Elizabeth Odle (verify existing contact)",
+     "search_type": "name",
+     "result_count": 5
+    }
+   ],
+   "summary": "Existing Elizabeth (Liz) Odle, Hospitality Manager, liz@ on own domain passes the gate (Alignable lists Liz Odle for the inn); site names no staff, only info@ (general, rejected); Apollo has only 'Richard Jo***n' Manager (namesake, junk) and an Assistant Innkeeper without email; old Innsite listing names Charles Leopold (stale, no email); socials and inquiry form already on sheet."
+  },
+  {
+   "venue_id": "MD-REST-3113",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Vasso Yiannouris",
+     "title": "Co-founder",
+     "email": "",
+     "source": "website",
+     "source_url": "https://cypriana.com/baltimore-hampden-cypriana-restaurant-about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://tmt.spotapps.co/private-parties?spot_id=74692",
+   "flag_contacts": [
+    {
+     "email": "wecare@cypriana.com",
+     "reason": "Right business, but saved with no person name: it's the customer-care/allergen-guide inbox (header mailto, 'Contact us by email wecare@'), effectively a general inbox. Policy: general inboxes and nameless contacts are not contacts."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "cypriana.com",
+     "search_type": "domain",
+     "result_count": 6
+    },
+    {
+     "query": "Cypriana",
+     "search_type": "name",
+     "result_count": 42
+    }
+   ],
+   "summary": "catering@ paired with Executive Chef/Owner Maria Kaimakis (site) is right business and the best decision-maker; wecare@ flagged (nameless customer-care inbox); Apollo domain search returns only staff (intern, server, busser), name search otherwise other people named Cypriana (rejected); SpotHopper private-party form added."
+  }
+ ]
+}

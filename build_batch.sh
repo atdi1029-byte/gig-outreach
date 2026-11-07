@@ -754,6 +754,12 @@ while len(seq) < sum(take.values()):
     seq.append(by_bucket[b][used[b]])
     used[b] += 1
 
+# DREAM_FIRST: venues from the region-wide dream sweeps (sweep_dream_*.md, source or notes "dream-...", Nov 7 2026: The Inn at
+# Little Washington, the Willard...) go first, whatever their bucket or score
+if os.environ.get('DREAM_FIRST') == '1':
+    dream = sorted((e for b in by_bucket for e in by_bucket[b] if re.search(r'dream-(dining|hotels|clubs-wine)', str(e['venue'].get('source') or '') + ' ' + str(e['venue'].get('notes') or ''))), key=rank_key)
+    seq = (dream + [e for e in seq if e not in dream])[:COUNT]
+
 if len(seq) < COUNT and pool_last:
     extra = sorted(pool_last, key=rank_key)[:COUNT - len(seq)]
     print(f"  Filled {len(extra)} slot(s) with PA/DE sweep finds (the DC/MD/VA queue ran short)")

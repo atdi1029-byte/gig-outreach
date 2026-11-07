@@ -56,8 +56,16 @@
    },
    {
     "run_id": "run-20261107-1019",
-    "outcome": "running",
-    "started": "10:19"
+    "outcome": "finished",
+    "started": "10:19",
+    "venues": 25,
+    "processed": 25,
+    "skipped": 0,
+    "with_contacts": 16,
+    "zero": 9,
+    "new_contacts": 31,
+    "unfinished": 0,
+    "ended": "12:24"
    }
   ],
   "note": "Outreach running again"
@@ -128,5 +136,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-07T10:19:58-05:00"
+ "updated_at": "2026-11-07T12:24:43-05:00"
 }

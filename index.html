@@ -1864,7 +1864,16 @@ const CATEGORY_LABELS = { winery: 'Wineries', museum: 'Museums', hotel: 'Hotels'
 // Sheet category -> grouping key. Unknown/blank is "other" (never "restaurant").
 function catKey(c) {
     const k = String(c || '').toLowerCase().trim().replace(/[\s\/]+/g, '_');
+    if (k === 'event') return 'event_venue';   // one tile (Nov 7 2026): two tiles with one picture
     return (!k || k === 'unknown') ? 'other' : k;
+}
+// needs_review is the bot's holding pen, not homework for Alex (Nov 7 2026): the pill says why it waits
+function waitingReason(v) {
+    if (/PIPELINE: 0 contacts/.test(v.notes || '')) return 'no contact found';
+    if (!v.website) return 'no website';
+    if (!v.city || !v.state) return 'no location';
+    if (!['DC', 'MD', 'VA'].includes(v.state)) return 'out of area';
+    return 'not verified yet';
 }
 function catLabel(c) {
     return CATEGORY_LABELS[c] || String(c || 'other').replace(/_/g, ' ').replace(/\b\w/g, ch => ch.toUpperCase());
@@ -2655,7 +2664,7 @@ function openCategory(cat, stay) {
         el.innerHTML = venues.map(v => {
             const resurfaced = isResurfaced(v);
             const statusClass = resurfaced ? 'resurfaced' : (v.status || 'untouched').replace(/\s/g, '_');
-            const statusText = resurfaced ? 'Re-contact' : statusClass.replace('_', ' ');
+            const statusText = resurfaced ? 'Re-contact' : statusClass === 'needs_review' ? 'Waiting: ' + waitingReason(v) : statusClass.replace('_', ' ');
             const dist = v.distance_miles ? `${v.distance_miles} mi · ${formatDrive(v.drive_minutes)}` : '';
             return `<div class="venue-list-item" onclick="openVenueDetail(${jsArg(v.venue_id)})">
                 <div>

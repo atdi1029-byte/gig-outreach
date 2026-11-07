@@ -1,0 +1,680 @@
+{
+ "run_id": "run-20261107-1019",
+ "dry_run": false,
+ "at": "2026-11-07T12:40:36-05:00",
+ "totals": {
+  "saved": 15,
+  "venues_rescued": 4,
+  "socials": 2,
+  "rejected": 4,
+  "errors": 0,
+  "flagged": 8
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "VA-REST-985",
+   "name": "Autentico Peruvian",
+   "contacts": [
+    {
+     "email": "catering@autenticoperu.com",
+     "name": "Danny Pain",
+     "source_url": "https://autenticoperu.com/wp-content/uploads/2026/09/Catering-Menu-NEW_compressed.pdf",
+     "title": "Owner/Chef",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-3127",
+   "name": "Restaurante Tio Pepe",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Miguel Sanz",
+     "source_url": "https://www.pressreader.com/usa/baltimore-sun-sunday/20171126/282488594041728",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Emiliano Sanz",
+     "source_url": "https://www.pressreader.com/usa/baltimore-sun-sunday/20171126/282488594041728",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2639",
+   "name": "NAUTI BUOY YACHT CLUB",
+   "contacts": [
+    {
+     "email": "nautibuoytours@gmail.com",
+     "name": "Nic Alexander",
+     "source_url": "https://nbyachtclub.com/about-us/",
+     "title": "Founder",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-2296"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3075",
+   "name": "VinoBLU\u00ae Event Wine Bar",
+   "contacts": [
+    {
+     "email": "events@barvinoblu.com",
+     "name": "Wakeya Henry",
+     "source_url": "https://www.barvinoblu.com/about",
+     "title": "Founder & Managing Director",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Akeila Nelson",
+     "source_url": "https://www.barvinoblu.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "April Cohen",
+     "source_url": "https://www.barvinoblu.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-HOTE-2638",
+   "name": "The Mayflower Hotel, Autograph Collection",
+   "contacts": [
+    {
+     "email": "dominic.sanchez@themayflowerhotel.com",
+     "name": "Dominic Sanchez",
+     "source_url": "http://www.linkedin.com/in/dominicjsanchez",
+     "title": "Director of Catering Sales",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "sara.malloy@themayflowerhotel.com",
+     "name": "Sara Malloy",
+     "source_url": "http://www.linkedin.com/in/sara-malloy-ba37077",
+     "title": "Director of Sales & Marketing",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Tyrel Brown",
+     "source_url": "http://www.linkedin.com/in/tyrel-brown-1896131a5",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Shelly DiMeglio",
+     "source_url": "https://www.travelmarketreport.com/hotels-resorts/articles/the-mayflower-hotel-100-years-of-history-in-washington-d-c",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "http://www.marriott.com/meetings/group-travel/schedule-groupBooking.mi?marshaCode=wasak&directRFP=true?RFPmvtON=true",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-3432",
+   "name": "Palette 22",
+   "contacts": [
+    {
+     "email": "taylor@alexrestpart.com",
+     "name": "Taylor Gaffney",
+     "source_url": "https://arlington.palette22.com/",
+     "title": "Private Events + Catering",
+     "verified": "valid",
+     "outcome": "duplicate:XX-REST-026"
+    },
+    {
+     "email": "harriet@alexrestpart.com",
+     "name": "Harriet Rush",
+     "source_url": "http://www.linkedin.com/in/harriet-rush-30000310a",
+     "title": "Senior Event Sales Manager, Alexandria Restaurant Partners",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Emily Klassen",
+     "source_url": "https://www.alexandriarestaurantpartners.com/our-team/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Scott Bogue",
+     "source_url": "https://patch.com/virginia/arlington-va/palette-22s-open-kitchen-concept-brings-global-street-food-life",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-HOTE-348",
+   "name": "Blue Heron Bed & Breakfast",
+   "contacts": [
+    {
+     "email": "blueheronbandb@msn.com",
+     "name": "Regan Simpson",
+     "source_url": "https://calvertcountymd.gov/3268/Bed-Breakfasts",
+     "outcome": "rejected:freemail_unlinked"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1752",
+   "name": "Bacco Italian and Wine Bar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Nayai Gilbert",
+     "source_url": "http://www.linkedin.com/in/nayai-gilbert-5554a4278",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jonathan Blair",
+     "source_url": "https://www.baccoitalianwinebar.com/about-us",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2666",
+   "name": "Reverie DC",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Johnny Spero",
+     "source_url": "http://www.linkedin.com/in/johnny-spero-33983247",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2276",
+   "name": "District Yacht Club Inc",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Victor Fenwick",
+     "source_url": "https://districtyachtclub.org/OfficerList.htm",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dexter Hardy",
+     "source_url": "https://siviq.co/nonprofits/organizations/900103981/district-yacht-club",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Matthew Bynum",
+     "source_url": "https://siviq.co/nonprofits/organizations/900103981/district-yacht-club",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-2997",
+   "name": "Kimpton Hotel Monaco Baltimore Inner Harbor",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jared Bailey",
+     "source_url": "https://www.hospitalitynet.org/appointment/79031121/jared-baile",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "sales@monaco-baltimore.com",
+     "reason": "Saved name 'No Ordinary Agenda' / title 'Inspired catering' is page marketing copy, not a person. The inbox itself is right: the site's event and wedding pages publish it. No source names who runs it. Rebecca Gisriel (Director, Sales & Marketing, already saved under her own email) is the likeliest candidate, but that is an inference, not something a source states."
+    },
+    {
+     "email": "mrigby@monaco-baltimore.com",
+     "reason": "Likely stale. Saved with no name; this is Michelle Rigby, former Director of Catering & Events. Apollo enrichment shows her time at the hotel ended 2026-02 and that she is now Event Coordinator at Checkerspot Brewing Co., a different business. The site's wedding-stories page still links the address as 'Contact Us', and ZeroBounce passed it, so the mailbox may still exist, but it probably no longer reaches her. Prospeo still lists her at the hotel."
+    },
+    {
+     "email": "talktous@monaco-baltimore.com",
+     "reason": "Behaves as a general guest inbox with no person attached (found via social). Not a literal match for the listed general prefixes, so flagged for a decision rather than treated as a clear policy breach."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-2904",
+   "name": "Chester River Wine & Cheese Co.",
+   "contacts": [
+    {
+     "email": "john@chesterrivergourmet.com",
+     "name": "John Laucik",
+     "source_url": "https://chesterrivergourmet.com/",
+     "title": "Co-owner",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3051",
+   "name": "American Prime",
+   "contacts": [
+    {
+     "email": "jim.sole@americanprimeco.com",
+     "name": "Jim Sole",
+     "source_url": "https://www.linkedin.com/company/american-prime",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "jyang@americanprimeco.com",
+     "name": "Joon Yang",
+     "source_url": "https://www.americanprimeco.com/vodka-happy-hour/",
+     "title": "Co-Owner / Managing Partner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Jon Mathieson",
+     "source_url": "https://www.americanprimeco.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3398",
+   "name": "Cafesano Italian & Mediterranean Bistro",
+   "contacts": [
+    {
+     "email": "paul@cafesano.com",
+     "name": "Paul Swinley",
+     "source_url": "https://www.pr.com/press-release/694054",
+     "title": "Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "gino@cafesano.com",
+     "name": "Gino Maza",
+     "source_url": "https://patch.com/virginia/reston/restons-cafesano-restaurant-expanding-big-time",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "catering@cafesano.com",
+     "reason": "Saved name 'To Reserve' is page text, not a person (title 'Outdoor Patio for Events in Dulles, VA' is a page heading). Real name of whoever runs this inbox not found; a function inbox needs a real person under the save policy."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-YACH-702",
+   "name": "Severn Sailing Association",
+   "contacts": [
+    {
+     "email": "madde@severnsailing.org",
+     "name": "Madde Vachon",
+     "source_url": "https://severnsailing.org/junior-coaches",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Bill Krafft",
+     "source_url": "https://www.severnsailing.org/board-of-governors",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Lisa Pline",
+     "source_url": "https://www.severnsailing.org/board-of-governors",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Eric Scherer",
+     "source_url": "https://severnsailing.org/junior-coaches",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "us29erclass@gmail.com",
+     "reason": "Wrong organization: the race-teams page gives it for boat charters from 'the Annapolis-based 29er Class President, Jim Bonham'. It is the US 29er class address, not Severn Sailing staff. Saved with title President and no name; the real name is Jim Bonham, but he is not a club decision-maker."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-727",
+   "name": "Inn at Pirates Cove",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Kristy Phipps",
+     "source_url": "http://www.linkedin.com/in/kristy-phipps-581a4a265",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Michael Galway",
+     "source_url": "https://www.piratescovemd.com/our-story/our-story-overview",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Anthony Clarke",
+     "source_url": "https://www.piratescovemd.com/our-story/our-story-overview",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Steve Hardison",
+     "source_url": "https://www.piratescovemd.com/our-story/our-story-overview",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "manager@piratescovemd.com",
+     "reason": "Saved name 'West River' is not a person (the river the venue sits on). The address itself is real and is the venue's published event inbox (plan-an-event page). No source ties a named person to it. Owners per the venue's own site: Michael Galway and Anthony Clarke. Possible GM: Kristy Phipps, from Apollo only (Edgewater MD, next to Galesville), but her Apollo org 'Pirates Cove Restaurant' is recorded as Boonville MO / thecoveboonville.com with mixed staff, and no web source confirms her, so she is not paired with this inbox."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-2903",
+   "name": "The Retriever Bar",
+   "contacts": [
+    {
+     "email": "neyah@theretrieverbar.com",
+     "name": "Neyah White",
+     "source_url": "https://edibledelmarva.ediblecommunities.com/drink/homecoming-retriever-bar",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Thomas Kaylor",
+     "source_url": "https://edibledelmarva.ediblecommunities.com/drink/homecoming-retriever-bar",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-745",
+   "name": "Sailor Oyster Bar",
+   "contacts": [
+    {
+     "email": "sob196west@gmail.com",
+     "name": "Scott Herbst",
+     "source_url": "https://www.sailoroysterbar.com/",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Eleanore Aherne",
+     "source_url": "https://www.pressreader.com/usa/the-capital/20240227/281483576324290",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Brice Wesley",
+     "source_url": "http://www.linkedin.com/in/bricewesley",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Frank Schwartz",
+     "source_url": "https://www.chesapeakebaymagazine.com/welcome-home-sailor-an-1896-oyster-bar-comes-back-to-life/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Daniel Zegas",
+     "source_url": "https://www.sailoroysterbar.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3027",
+   "name": "Morningside Inn",
+   "contacts": [
+    {
+     "email": "lesli@morningside-inn.com",
+     "name": "Lesli Cochran",
+     "source_url": "http://www.linkedin.com/in/lesli-cochran-448556273",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Cleo Cochran",
+     "source_url": "https://morningside-inn.com/about-frederick-md-event-venue",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3166",
+   "name": "Glenwood's",
+   "contacts": [
+    {
+     "email": "djones@brrgrestaurants.com",
+     "name": "David Jones",
+     "source_url": "http://www.linkedin.com/in/david-jones-378a6880",
+     "title": "Managing Member/CEO, Blueridge Restaurant Group (owner of Glenwood's)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "ecooper@brrgrestaurants.com",
+     "name": "Erick Cooper",
+     "source_url": "http://www.linkedin.com/in/erick-cooper-8b5742114",
+     "title": "Director of Operations, Blueridge Restaurant Group",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Kathryn Ratti",
+     "source_url": "http://www.linkedin.com/in/kathryn-ratti-66718526",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Laura Walburn",
+     "source_url": "http://www.linkedin.com/in/laura-walburn-bb9395a2",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "akurisch@brrgrestaurants.com",
+     "reason": "Right company, wrong person: VP of Administration & HR. The venue's page only gives her address for job applications (https://glenwoodsdining.com/restaurant-management/). Not a booking contact."
+    },
+    {
+     "email": "rewards@brrgrestaurants.com",
+     "reason": "Loyalty program inbox with no person attached; not a booking contact."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-COUN-1331",
+   "name": "Bulle Rock Golf Club",
+   "contacts": [
+    {
+     "email": "food@bullerock.com",
+     "name": "Michael Mathious",
+     "source_url": "https://bullerockgc.com/contact-us/",
+     "outcome": "rejected:zerobounce_unknown"
+    },
+    {
+     "email": "rrounsaville@bullerock.com",
+     "name": "Rick Rounsaville",
+     "source_url": "http://www.linkedin.com/in/rick-rounsaville-52540a13",
+     "title": "Director of Golf/GM",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-375",
+   "name": "Pier450",
+   "contacts": [
+    {
+     "email": "peggy@pier450.com",
+     "name": "Peggy Binzel",
+     "source_url": "https://pier450.com/team/",
+     "title": "Owner & Proprietor",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Michael Burdish",
+     "source_url": "http://www.linkedin.com/in/michael-burdish-1528512b8",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-WINE-2900",
+   "name": "The Vine On Main Sykesville",
+   "contacts": [
+    {
+     "email": "thevineonmain@gmail.com",
+     "name": "Ridia Dearie",
+     "source_url": "https://www.thevinesykesville.com/about",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2819",
+   "name": "Georgetown Seafood",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-YACH-399",
+   "name": "Solomons Island Yacht Club",
+   "contacts": [
+    {
+     "email": "susanmogansmith@yahoo.com",
+     "name": "Susan Smith",
+     "source_url": "https://solomonsislandyachtclub.com/handlers/celinks.ashx?id=188407",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "fcsiyc@gmail.com",
+     "name": "Jim Kiley",
+     "source_url": "https://solomonsislandyachtclub.com/handlers/celinks.ashx?id=188407",
+     "title": "Fleet Captain",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "jpk333@gmail.com",
+     "name": "Jim Kiley",
+     "source_url": "https://solomonsislandyachtclub.com/content.aspx?page_id=22&club_id=322222&module_id=170251",
+     "outcome": "known"
+    },
+    {
+     "email": "townsenddk@comcast.net",
+     "name": "Diane Townsend",
+     "source_url": "https://solomonsislandyachtclub.com/handlers/celinks.ashx?id=130373",
+     "outcome": "rejected:zerobounce_unknown"
+    },
+    {
+     "email": "",
+     "name": "Tom Vandenberg",
+     "source_url": "https://solomonsislandyachtclub.com/handlers/celinks.ashx?id=188407",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Charles Mahanes",
+     "source_url": "https://solomonsislandyachtclub.com/handlers/celinks.ashx?id=188407",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Pat Farrar",
+     "source_url": "https://solomonsislandyachtclub.com/handlers/celinks.ashx?id=188407",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Kathleen Tyrrell",
+     "source_url": "https://solomonsislandyachtclub.com/content.aspx?page_id=4&club_id=322222",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/p/Solomons-Island-Yacht-Club-100066861455672/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  }
+ ]
+}

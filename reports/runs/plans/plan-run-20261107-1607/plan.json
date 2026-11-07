@@ -1,0 +1,89 @@
+{
+  "created": "2026-11-07 16:07:51",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "fine_dining": 18,
+    "hotel": 7
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-1607/batch_01.json",
+      "venue_ids": [
+        "MD-REST-971",
+        "VA-HOTE-2954",
+        "MD-REST-897",
+        "MD-REST-3177",
+        "DC-REST-2837",
+        "VA-HOTE-3017",
+        "DC-REST-2842",
+        "VA-REST-3375"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-1607/batch_02.json",
+      "venue_ids": [
+        "MD-REST-3202",
+        "VA-REST-3376",
+        "MD-REST-806",
+        "MD-REST-724",
+        "XX-HOTE-240",
+        "DC-REST-2225",
+        "MD-REST-1013",
+        "VA-REST-1741"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-1607/batch_03.json",
+      "venue_ids": [
+        "XX-HOTE-239",
+        "MD-REST-748",
+        "MD-REST-3123",
+        "VA-HOTE-3033",
+        "MD-REST-2829",
+        "MD-REST-588",
+        "MD-REST-341",
+        "VA-HOTE-3034"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-1607/batch_04.json",
+      "venue_ids": [
+        "MD-REST-3113"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "MD-REST-971",
+    "VA-HOTE-2954",
+    "MD-REST-897",
+    "MD-REST-3177",
+    "DC-REST-2837",
+    "VA-HOTE-3017",
+    "DC-REST-2842",
+    "VA-REST-3375",
+    "MD-REST-3202",
+    "VA-REST-3376",
+    "MD-REST-806",
+    "MD-REST-724",
+    "XX-HOTE-240",
+    "DC-REST-2225",
+    "MD-REST-1013",
+    "VA-REST-1741",
+    "XX-HOTE-239",
+    "MD-REST-748",
+    "MD-REST-3123",
+    "VA-HOTE-3033",
+    "MD-REST-2829",
+    "MD-REST-588",
+    "MD-REST-341",
+    "VA-HOTE-3034",
+    "MD-REST-3113"
+  ]
+}

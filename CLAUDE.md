@@ -176,6 +176,8 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
   fails the burn waits (app alert "Outreach paused: Claude is out of credits", re-checks every
   30 min) so no ZeroBounce/Apollo credits go to unaudited rounds. Audits Claude missed wait in
   `night-state.json` `audit_pending` and run first when it's back; fix_pending is kept too.
+- `export DREAM_FIRST=1` in `.env` (Alex, Nov 7 2026): build_batch drops the bucket mix and runs luxury hotels, then
+  European/fine dining (casual names last), clubs, wine, the rest. Remove the line to get the mix back.
 - Log: `reports/runs/burn-YYYYMMDD-HHMM.log`. Another burn later: `rm .burn_done`.
 
 ## 0. Preflight

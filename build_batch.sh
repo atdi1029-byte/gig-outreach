@@ -723,6 +723,15 @@ for limit in (strong_n, {b: len(by_bucket.get(b, [])) for b in BUCKET_ORDER}):
         b = min(spare, key=lambda b: (take[b] / max(BUCKET_SHARES[b], 1), BUCKET_ORDER.index(b)))
         take[b] += 1
         short -= 1
+# DREAM_FIRST (.env; Alex, Nov 7 2026: "we need to focus on those first in the pool"): no mix,
+# the dream kinds run until they're gone: luxury hotels, European/fine dining (casual names last), clubs, wine, the rest
+if os.environ.get('DREAM_FIRST') == '1':
+    casual = re.compile(r'pizz|bakery|pantry|gourmet|raw bar|deli\b|market', re.I)
+    by_bucket['fine_dining'] = sorted(by_bucket.get('fine_dining', []), key=lambda e: bool(casual.search(e['venue'].get('name') or '')))
+    left = COUNT
+    for b in ('hotel', 'fine_dining', 'club', 'wine', 'wild'):
+        take[b] = min(left, len(by_bucket.get(b, [])))
+        left -= take[b]
 moved = {b: quota[b] - take[b] for b in BUCKET_ORDER if take[b] != quota[b]}
 if moved:
     print("  Quality-first mix: " + ', '.join(f"{b} {'gave' if n > 0 else 'took'} {abs(n)}"

@@ -157,7 +157,10 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
   Chrome is the burn's alone around the clock while it runs. The 1:00 launchd night exits
   while the burn holds the lock.
 - Rounds of 25 (`BURN_RUN_SIZE`), back to back, no cutoff, `.night_off` ignored; ZeroBounce's
-  day cap is raised to 5000 for it (the 100-credit floor still holds).
+  day cap is raised to 5000 for it in `.env` itself (pipeline.sh re-sources `.env`, so an
+  exported override doesn't survive; the 100-credit floor still holds). Set `.env` back to
+  `ZB_MAX_PER_DAY=400` when the burn ends. Never put a `#` comment on a `.env` value line:
+  zerobounce_guard.py's parser reads it into the value and falls back to a cap of 10.
 - After each round a Claude session audits EVERY venue of it (`night_zero.py --all`,
   NIGHT_DEEPDIVE.md "Burn: full audit") while the next round runs; `night_save.py` saves.
   Wrong-business contacts it finds are listed in `<RUN_ID>.deepdive-saved.json`

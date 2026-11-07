@@ -1,0 +1,640 @@
+{
+ "run_id": "run-20261107-1354",
+ "dry_run": false,
+ "at": "2026-11-07T16:23:16-05:00",
+ "totals": {
+  "saved": 12,
+  "venues_rescued": 1,
+  "socials": 0,
+  "rejected": 4,
+  "errors": 0,
+  "flagged": 18
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "XX-REST-630",
+   "name": "La Canela Peruvian restaurant",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-COUN-003",
+   "name": "River Creek Club",
+   "contacts": [
+    {
+     "email": "patricia.wheeling@invitedclubs.com",
+     "name": "Patricia Wheeling",
+     "source_url": "https://www.invitedclubs.com/clubs/river-creek-club/host-an-event",
+     "title": "Event Sales Director",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "jeffrey.darnell@invitedclubs.com",
+     "name": "Jeffrey Darnell",
+     "source_url": "https://www.invitedclubs.com/clubs/river-creek-club/host-an-event",
+     "title": "Event Sales Coordinator",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "peter.miller@invitedclubs.com",
+     "name": "Peter Miller",
+     "source_url": "https://www.invitedclubs.com/clubs/river-creek-club/contact-us",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "justin.schramm@invitedclubs.com",
+     "name": "Justin Schramm",
+     "source_url": "https://www.invitedclubs.com/clubs/river-creek-club/contact-us",
+     "title": "Clubhouse Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "tara.wagoner@invitedclubs.com",
+     "name": "Tara Wagoner",
+     "source_url": "https://www.invitedclubs.com/clubs/river-creek-club/contact-us",
+     "title": "Membership Sales Director",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Mary Adeline Lemons",
+     "source_url": "https://www.invitedclubs.com/clubs/river-creek-club/host-an-event",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rachael Rutherford",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-HOTE-2937",
+   "name": "Kimpton George Hotel",
+   "contacts": [
+    {
+     "email": "allan.bella@ihg.com",
+     "name": "Allan Bella",
+     "source_url": "https://www.hotel-online.com/news/allan-bella-named-general-manager-for-kimpton-hotel-george",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "hillary.metzger@kimptonhotels.com",
+     "name": "Hillary Metzger",
+     "source_url": "https://www.hotelgeorge.com/washington-dc-hotel-deals/business-travel",
+     "title": "Business travel and corporate rate contact",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Stephane Vogel",
+     "source_url": "https://www.hospitalitynet.org/appointment/79029569/stephane-vogel",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "sales@hotelgeorge.com",
+     "reason": "Right inbox (the hotel's published events address), but saved under the name \"Union Station\", which is scraped page text, not a person. No named person runs it, so the policy's real-name requirement is not met."
+    },
+    {
+     "email": "talktous@hotelgeorge.com",
+     "reason": "General guest inbox with no person attached (the contact page's \"Email Us\" link); the record shows no name for it."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-867",
+   "name": "The Wine Kitchen",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Cara Beach",
+     "source_url": "https://www.thewinekitchen.com/events-lbg",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Calhoun Ryan",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jason Miller",
+     "source_url": "https://www.thewinekitchen.com/our-story-leesburgwk",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Michael Mercer",
+     "source_url": "https://www.thewinekitchen.com/our-story-leesburgwk",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-HOTE-088",
+   "name": "The Darcy",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Erich Hosbach",
+     "source_url": "https://www.hospitalitynet.org/appointment/79032082/erich-hosbach",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "frontoffice@thedarcyhotel.com",
+     "reason": "Saved name 'Island Ave NW' is a fragment of the hotel's street address, not a person, and the address is the hotel's front-desk general inbox."
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-REST-419",
+   "name": "Green Pig Bistro",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Marcos Crisostomo",
+     "source_url": "https://greenpigbistro.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Angelique Villar",
+     "source_url": "https://greenpigbistro.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Fitzgerald Lewis",
+     "source_url": "https://www.arlingtonmagazine.com/fitzgerald-lewis-restaurants/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2336",
+   "name": "Baltimore Yacht Club",
+   "contacts": [
+    {
+     "email": "dining@baltimoreyachtclub.org",
+     "name": "Cali Cross",
+     "source_url": "https://www.baltimoreyachtclub.org/contact",
+     "title": "Dining Room Manager",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Tom Malone",
+     "source_url": "https://www.baltimoreyachtclub.org/files/September%202026%20Spray.pdf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "manager@baltimoreyachtclub.org",
+     "reason": "Saved as Jacob Hux, General Manager, but he has left: the club's Spray newsletters name Hux as GM in Nov 2025 and Paul V. Glomp III as GM in May-June, July and Sep 2026. The site's contact page is stale. Replace the name; the direct address for the GM is pglomp@."
+    },
+    {
+     "email": "pglomp@baltimoreyachtclub.org",
+     "reason": "Good contact, but saved with no name. It is Paul V. Glomp III, General Manager (signed with this address in the May-June 2026 Spray; signs as GM in Sep 2026). Best person to write to; add the name and title by hand, night_save skips known emails."
+    },
+    {
+     "email": "chef@baltimoreyachtclub.org",
+     "reason": "Saved with no name. Current Executive Chef is Tom Caswell (Sep 2026 Spray); Chef Michael Brown left in summer 2026 and 'Chef Filly' on the contact page is stale. The newsletter does not print this address for Caswell: the pairing comes from the contact page's Executive Chef row."
+    },
+    {
+     "email": "bookkeeper@baltimoreyachtclub.org",
+     "reason": "Saved with no name and not a booking contact: this is Cyndi Plona, Bookkeeper."
+    },
+    {
+     "email": "marina@baltimoreyachtclub.org",
+     "reason": "Saved with no name and not a booking contact: this is Zach Wasmer, Dockmaster."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-3003",
+   "name": "Hollerstown Hill Bed & Breakfast",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-WINE-497",
+   "name": "Cascia Vineyards",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3172",
+   "name": "Roggenart European Bakery Bistro",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Brody Tennant",
+     "source_url": "https://www.wmar2news.com/news/region/baltimore-county/bakery-in-catonsville-opens-in-a-familiar-place",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3371",
+   "name": "7 West Bistro Grille",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Anatoli Stanev",
+     "source_url": "http://www.linkedin.com/in/anatoli-stanev-aba23076",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2967",
+   "name": "Hartge Yacht Harbor",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Brad Wells",
+     "source_url": "https://marinas.com/view/marina/63c5g",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-3002",
+   "name": "10 Clarke Bed & Breakfast",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Violet Pasquale",
+     "source_url": "https://www.10clarke.com/contact-us.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-WINE-412",
+   "name": "Jubilee Farm & Vineyard",
+   "contacts": [
+    {
+     "email": "jim.jubileefarmvineyard@icloud.com",
+     "name": "Jim Grube",
+     "source_url": "https://jubilee-farm-vineyard.square.site",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "jubileefarmvineyard@icloud.com",
+     "name": "Jim Grube",
+     "source_url": "https://www.visitstmarysmd.com/directory/jubilee-farm-vineyard",
+     "outcome": "rejected:freemail_unlinked"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "caneycreekcatering@gmail.com",
+     "reason": "Third-party vendor on the venue's preferred-vendors page, not venue staff: Caney Creek caterer (Bobby Bonner)."
+    },
+    {
+     "email": "classiccoord@gmail.com",
+     "reason": "Third-party vendor on the venue's preferred-vendors page, not venue staff: Brianna Eckrich, The Classic Coord, wedding coordinator; the saved name 'Coord DOC' is also not a person."
+    },
+    {
+     "email": "heatherborror@gmail.com",
+     "reason": "Third-party vendor on the venue's preferred-vendors page, not venue staff: Heather Borror, My Flower Girl, florist."
+    },
+    {
+     "email": "jescusic@gmail.com",
+     "reason": "Third-party vendor on the venue's preferred-vendors page, not venue staff: Jessica Cusic, hair stylist."
+    },
+    {
+     "email": "kellertransportation@comcast.net",
+     "reason": "Third-party vendor on the venue's preferred-vendors page, not venue staff: Keller Transportation, transport company."
+    },
+    {
+     "email": "ritabcatering@yahoo.com",
+     "reason": "Third-party vendor on the venue's preferred-vendors page, not venue staff: Rita B caterer (Missy Bailey)."
+    },
+    {
+     "email": "wibs83@hotmail.com",
+     "reason": "Third-party vendor on the venue's preferred-vendors page, not venue staff: Heather Hall, hair stylist."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-EVEN-2994",
+   "name": "Historic Oakland Manor",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Lori Tracy",
+     "source_url": "https://www.historic-oakland.com/wp-content/uploads/2016/01/Ballroom-Floor-Plan-Setup-for-80.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dani Brass",
+     "source_url": "https://www.columbiatowncenter.org/about-us/meet-the-team/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Lyn Locke",
+     "source_url": "https://www.columbiatowncenter.org/about-us/meet-the-team/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3443",
+   "name": "Sfizi Cafe",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Lino Ricciardi",
+     "source_url": "https://www.fcnp.com/2017/08/31/best-of-falls-church-2017-editors-picks-best-restaurant-video-augmented-ambiance/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2345",
+   "name": "Bodkin Yacht Club Inc.",
+   "contacts": [
+    {
+     "email": "bodkinycrearcommodore@gmail.com",
+     "name": "Rob Rhue",
+     "source_url": "https://www.bodkinyachtclub.com/Officers-Board",
+     "title": "Rear Commodore (runs clubhouse operations: bars, kitchen)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "bodkinycvicecommodore@gmail.com",
+     "name": "Dennis Deener",
+     "source_url": "https://www.bodkinyachtclub.com/Officers-Board",
+     "title": "Vice Commodore (organizes club events)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "bodkinyccommodore@gmail.com",
+     "name": "Bill Crawford",
+     "source_url": "https://www.bodkinyachtclub.com/Officers-Board",
+     "title": "Commodore",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "bodkinycommodore@gmail.com",
+     "name": "Bill Crawford",
+     "source_url": "https://www.bodkinyachtclub.com/Officers-Board",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "bodkinycsecretary@gmail.com",
+     "name": "Cory Golden",
+     "source_url": "https://www.bodkinyachtclub.com/Officers-Board",
+     "title": "Secretary",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Irene Thompson",
+     "source_url": "https://www.bodkinyachtclub.com/Officers-Board",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Paul Geppert",
+     "source_url": "https://www.bodkinyachtclub.com/Officers-Board",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "bycmembership1@gmail.com",
+     "reason": "Saved under a role, not a person: the Officers page names Becky Andrew as Membership Chair. It is the club's right address but a membership inbox, not events; rename the contact to Becky Andrew."
+    },
+    {
+     "email": "",
+     "reason": "Not a contact: the venue's saved Facebook, facebook.com/wildapricot, is the site builder's account, not the club's. Clear that field; no real club page was found."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3160",
+   "name": "The Woodstock Inn",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Roman Braglio",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-WINE-2902",
+   "name": "Lands Point Winery & Vineyards",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Dave Smack",
+     "source_url": "https://www.landspointwinery.com/about-the-winery",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Eileen Smack",
+     "source_url": "https://www.landspointwinery.com/about-the-winery",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3181",
+   "name": "The Fishmonger's Daughter",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Damye Hahn",
+     "source_url": "https://baltimorefishbowl.com/stories/faidleys-legacy-catonsville-roots-the-fishmongers-daughter-opens/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Will Hahn",
+     "source_url": "https://baltimorefishbowl.com/stories/faidleys-legacy-catonsville-roots-the-fishmongers-daughter-opens/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Scott Bacon",
+     "source_url": "https://baltimorefishbowl.com/stories/faidleys-legacy-catonsville-roots-the-fishmongers-daughter-opens/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Julia Hahn",
+     "source_url": "https://www.thebanner.com/culture/food-drink/fishmongers-daughter-catonsville-faidleys-seafood-6NX3S4GHYBFPVNPLY7MOKUBIYQ/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2576",
+   "name": "Tony and Joe's Seafood Place",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Erica Stevens",
+     "source_url": "https://opentable.com.mx/tony-and-joes-seafood-place",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dean Cibel",
+     "source_url": "https://georgetowner.com/?p=93748",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "David Stein",
+     "source_url": "https://georgetowner.com/?p=93748",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2327",
+   "name": "Bush River Yacht Club",
+   "contacts": [
+    {
+     "email": "hallrentals@bushriveryc.org",
+     "name": "Lisa Van Blargan",
+     "source_url": "https://bushriveryc.org/wp-content/uploads/2025/01/Event-Venue-Flyer-791x1024.png",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Wes Street",
+     "source_url": "https://bushriveryc.org/brycabout/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3346",
+   "name": "Up on Market (Inn on Market)",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Michele Fontaine",
+     "source_url": "https://citylifestyle.com/articles/up-on-market-and-the-inn-on-market",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Francis Skrobiszewski",
+     "source_url": "https://citylifestyle.com/articles/up-on-market-and-the-inn-on-market",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "David Manning",
+     "source_url": "https://citylifestyle.com/articles/up-on-market-and-the-inn-on-market",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1715",
+   "name": "King's Tavern & Wine Bar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Fabian Saeidi",
+     "source_url": "http://www.kingstavernandwinebar.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1238",
+   "name": "Marie Louise Bistro",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Marie Ransome",
+     "source_url": "https://www.thebanner.com/culture/food-drink/marie-louise-bistro-closed-mount-vernon-HTDQLT3EWNAITOC3CWJPQDUFNI/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "marielouisecatering@comcast.net",
+     "reason": "VENUE CLOSED: The Baltimore Banner (Nov 4 2026) reports the bistro has closed, confirmed by owner Marie Ransome. The address is really on the venue's contact page, but has no person attached and nothing says the catering business continues."
+    }
+   ]
+  }
+ ]
+}

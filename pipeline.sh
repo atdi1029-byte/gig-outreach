@@ -74,6 +74,7 @@ APOLLO_DOMAIN=""
 KNOWN_EMAILS_FILE="/tmp/pipeline_known_emails.txt"
 KNOWN_NAMES_FILE="/tmp/pipeline_known_names.txt"
 KNOWN_DEFERRED_FILE="/tmp/pipeline_known_deferred.tsv"
+KNOWN_NAMELESS_FILE="/tmp/pipeline_known_nameless.txt"
 DEFERRED_COUNT_FILE="/tmp/pipeline_deferred_count"
 SCRAPE_JS="/tmp/pipeline_website_scrape.js"
 MAX_WEB_PAGES=${MAX_WEB_PAGES:-30}   # Chrome renders per venue, highest-value pages first
@@ -153,7 +154,7 @@ api_get() {
 _py_load_existing() {
     pyrun load_existing python3 - "$@" <<'PYEOF'
 import json, sys
-src, ef, nf, df = sys.argv[1:5]
+src, ef, nf, df, nl = sys.argv[1:6]
 US = "\x1f"
 try:
     d = json.load(open(src))
@@ -163,9 +164,11 @@ except Exception as e:
 if not isinstance(d, dict) or d.get("status") == "error":
     print("ERR" + US + "venue_detail error: %s" % (d.get("message", "") if isinstance(d, dict) else "bad shape"))
     sys.exit(0)
-emails, names, deferred = [], [], []
+emails, names, deferred, nameless = [], [], [], []
 for c in d.get("contacts", []) or []:
     e = str(c.get("email") or "").strip().lower()
+    if e and not str(c.get("name") or "").strip():
+        nameless.append(e)
     if e:
         # Deferred/unverified rows are re-checked when seen again and upgraded in place.
         if str(c.get("verified") or "") in ("deferred", "unverified"):
@@ -178,6 +181,7 @@ for c in d.get("contacts", []) or []:
 open(ef, "w").write("".join(e + "\n" for e in emails))
 open(nf, "w").write("".join(n + "\n" for n in names))
 open(df, "w").write("".join("%s\t%s\n" % x for x in deferred))
+open(nl, "w").write("".join(e + "\n" for e in nameless))
 v = d.get("venue") or {}
 clean = lambda s: str(s or "").replace(US, " ").replace("\n", " ").strip()
 print(US.join(["OK", "|||".join(emails), "|||".join(names),
@@ -192,13 +196,13 @@ load_existing() {
     local venue_id="$1"
     local tmpf="/tmp/pipeline_venue_detail.json"
     rm -f "$tmpf"
-    : > "$KNOWN_EMAILS_FILE"; : > "$KNOWN_NAMES_FILE"; : > "$KNOWN_DEFERRED_FILE"
+    : > "$KNOWN_EMAILS_FILE"; : > "$KNOWN_NAMES_FILE"; : > "$KNOWN_DEFERRED_FILE"; : > "$KNOWN_NAMELESS_FILE"
     KNOWN_EMAILS=""; KNOWN_NAMES=""
     VENUE_EXISTING_FB=""; VENUE_EXISTING_IG=""; VENUE_EXISTING_FORM=""
     LOAD_EXISTING_OK="no"
     api_get "action=venue_detail&venue_id=$(urlenc "$venue_id")" 45 > "$tmpf"
     local parsed
-    parsed=$(_py_load_existing "$tmpf" "$KNOWN_EMAILS_FILE" "$KNOWN_NAMES_FILE" "$KNOWN_DEFERRED_FILE")
+    parsed=$(_py_load_existing "$tmpf" "$KNOWN_EMAILS_FILE" "$KNOWN_NAMES_FILE" "$KNOWN_DEFERRED_FILE" "$KNOWN_NAMELESS_FILE")
     local tag rest
     tag="${parsed%%$'\x1f'*}"
     if [ "$tag" = "OK" ]; then
@@ -235,6 +239,75 @@ remember_email() {
     local e="$1"
     KNOWN_EMAILS="${KNOWN_EMAILS:+${KNOWN_EMAILS}|||}${e}"
     printf '%s\n' "$e" >> "$KNOWN_EMAILS_FILE"
+}
+
+# Prints contact_id<US>title of the venue's row for EMAIL when that row has no name yet.
+# A personal mailbox takes only a name that fits it (megan@ -> Megan Vaughan). Prints
+# nothing when the row is gone, already named, or the name is someone else's.
+_py_nameless_row() {
+    pyrun nameless_row python3 - "$@" <<'PYEOF'
+import json, re, sys
+src, email, name, action = sys.argv[1:5]
+try:
+    d = json.load(open(src))
+except Exception:
+    sys.exit(0)
+for c in (d.get("contacts") or []) if isinstance(d, dict) else []:
+    if str(c.get("email") or "").strip().lower() != email or str(c.get("name") or "").strip():
+        continue
+    compact = re.sub(r"[^a-z]", "", email.split("@", 1)[0])
+    parts = [re.sub(r"[^a-z]", "", p.lower()) for p in name.split()]
+    first, last = parts[0], parts[-1]
+    if action == "verify" and not (first in compact or (len(last) >= 3 and last in compact) or compact.startswith(first[:1] + last)):
+        break
+    print("\x1f".join([str(c.get("contact_id") or ""), str(c.get("title") or "").replace("\n", " ")]))
+    break
+PYEOF
+}
+
+_py_row_has_name() {
+    pyrun nameless_row python3 - "$@" <<'PYEOF'
+import json, sys
+src, email, name = sys.argv[1:4]
+try:
+    d = json.load(open(src))
+except Exception:
+    sys.exit(0)
+rows = [c for c in d.get("contacts") or [] if str(c.get("email") or "").strip().lower() == email]
+print("yes" if any(str(c.get("name") or "").strip().lower() == name.lower() for c in rows) else "no")
+PYEOF
+}
+
+# The website step often saves an address with no name and Apollo names it later in the
+# same run (Megan Vaughan, Will Murck, Geoff Tracy, Nov 7 2026): the address was already
+# known, so the name was dropped. Fill the empty name in place, then read it back.
+# Never replaces a name, and never adds a person the venue already lists on another row.
+_backfill_contact_name() {
+    local email="$1" venue_id="$2" name="$3" title="$4" action="$5"
+    [ -n "$name" ] && [ -s "$KNOWN_NAMELESS_FILE" ] || return 0
+    case "$action" in verify|role) ;; *) return 0 ;; esac
+    grep -Fxq -- "$email" "$KNOWN_NAMELESS_FILE" || return 0
+    name_known "$name" && return 0
+    local detail="/tmp/pipeline_backfill_detail.json" row cid old_title ok
+    api_get "action=venue_detail&venue_id=$(urlenc "$venue_id")" 45 > "$detail"
+    row=$(_py_nameless_row "$detail" "$email" "$name" "$action")
+    [ -n "$row" ] || return 0
+    IFS=$'\x1f' read -r cid old_title <<< "$row"
+    [ -n "$cid" ] || return 0
+    api_get "action=update_contact&contact_id=$(urlenc "$cid")&venue_id=$(urlenc "$venue_id")&email=$(urlenc "$email")&field=name&value=$(urlenc "$name")" 45 >/dev/null
+    api_get "action=venue_detail&venue_id=$(urlenc "$venue_id")" 45 > "$detail"
+    ok=$(_py_row_has_name "$detail" "$email" "$name")
+    if [ "$ok" != "yes" ]; then
+        log "  [NAME] Could not add the name '$name' to $email (the server refused it or the read-back failed)"
+        return 0
+    fi
+    if [ -n "$title" ] && [ -z "$old_title" ]; then
+        api_get "action=update_contact&contact_id=$(urlenc "$cid")&venue_id=$(urlenc "$venue_id")&email=$(urlenc "$email")&field=title&value=$(urlenc "$title")" 45 >/dev/null
+    fi
+    log "  ✓ Name added to saved contact: $name <$email>"
+    grep -Fxv -- "$email" "$KNOWN_NAMELESS_FILE" > "$KNOWN_NAMELESS_FILE.tmp" || true; mv "$KNOWN_NAMELESS_FILE.tmp" "$KNOWN_NAMELESS_FILE"
+    KNOWN_NAMES="${KNOWN_NAMES:+${KNOWN_NAMES}|||}$(printf '%s' "$name" | tr '[:upper:]' '[:lower:]')"
+    printf '%s\n' "$name" | tr '[:upper:]' '[:lower:]' >> "$KNOWN_NAMES_FILE"
 }
 
 ZB_EXHAUSTED_FLAG="/tmp/pipeline_zb_paused_$$"
@@ -520,6 +593,7 @@ verify_and_push() {
     if email_known "$email_lower"; then
         log "  [SKIP] $email_lower — already in sheet"
         record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "already_known"
+        _backfill_contact_name "$email_lower" "$venue_id" "$clean_name" "$clean_title" "$action"
         vap_outcome known
         return
     fi
@@ -651,6 +725,8 @@ verify_and_push() {
             if [ -n "$clean_name" ]; then
                 KNOWN_NAMES="${KNOWN_NAMES:+${KNOWN_NAMES}|||}$(printf '%s' "$clean_name" | tr '[:upper:]' '[:lower:]')"
                 printf '%s\n' "$clean_name" | tr '[:upper:]' '[:lower:]' >> "$KNOWN_NAMES_FILE"
+            else
+                printf '%s\n' "$email_lower" >> "$KNOWN_NAMELESS_FILE"
             fi
             case "$verified" in role) vap_outcome role ;; unverified) vap_outcome unverified ;; *) vap_outcome saved ;; esac
             ;;
@@ -1095,6 +1171,8 @@ function normFb(href){
     if(first === 'profile.php'){ var id = u.searchParams.get('id'); return id && /^\d+$/.test(id) ? 'https://www.facebook.com/profile.php?id=' + id : ''; }
     if(first === 'pages'){ return (parts.length >= 3 && /^\d+$/.test(parts[parts.length-1])) ? 'https://www.facebook.com/' + parts.slice(0, 3).join('/') : ''; }
     if(first === 'pg' && parts.length >= 2) first = parts[1].toLowerCase(), parts = parts.slice(1);
+    // SpotHopper and similar sites link the page by its id: facebook.com/399086636810326
+    if(parts.length === 1 && /^\d{9,}$/.test(first)) return 'https://www.facebook.com/' + first;
     if(FB_SKIP[first] || /^\d+$/.test(first) || first.length < 3 || /\.php$/.test(first)) return '';
     return 'https://www.facebook.com/' + parts[0];
 }
@@ -1714,6 +1792,7 @@ def norm_fb(href):
     if first == "pages":
         return "https://www.facebook.com/" + "/".join(parts[:3]) if len(parts) >= 3 and parts[-1].isdigit() else ""
     if first == "pg" and len(parts) >= 2: parts = parts[1:]; first = parts[0].lower()
+    if len(parts) == 1 and re.fullmatch(r"\d{9,}", first): return "https://www.facebook.com/" + first
     if first in FB_SKIP or first.isdigit() or len(first) < 3 or first.endswith(".php"): return ""
     return "https://www.facebook.com/" + parts[0]
 def norm_ig(href):
@@ -2360,17 +2439,40 @@ def person_for(email):
         if local in (f + l, f[:1] + l, f + l[:1], l + f[:1], l + f) or (local == f and len(f) >= 3): hits.append((n, t))
     return hits[0] if len(hits) == 1 else None
 
+# A function inbox with no name beside it reaches whoever runs that function (Alex, Sep 27
+# 2026, Flore Cafe: pair the inbox with the owner/GM found elsewhere, "seems perfect").
+# Only when the site names exactly one such person: events@ -> the events/catering/sales
+# person, else the one owner or GM; gm@ -> the General Manager. Two owners = no guess.
+def runner_of(email):
+    local = re.sub(r"[^a-z]", "", email.split("@")[0])
+    if R.is_general_inbox(email) or not R.is_role_email(email): return None
+    vwords = set(re.findall(r"[a-z]+", R._fold(venue).lower()))
+    staff = [(n, t) for n, t, _ in people.values() if R.clean_person_name(n) and not re.search(r"(?i)assistant|\bsous\b", t)
+             and not all(w in vwords for w in re.findall(r"[a-z]+", R._fold(n).lower()))]
+    boss = [x for x in staff if re.search(r"(?i)\b(owner|co-?owner|proprietor|founder|general manager|gm)\b", x[1])]
+    if local in ("gm", "generalmanager"):
+        hits = [x for x in staff if re.search(r"(?i)\b(general manager|gm)\b", x[1])]
+    elif re.search(r"event|cater|wedding|banquet|privatedining|groupsales|^sales", local):
+        job = re.compile(r"(?i)(event|cater|wedding|banquet|private dining|sales).*(manager|director|coordinator|planner|specialist|supervisor)|"
+                         r"(manager|director|coordinator|planner|specialist|supervisor).*(event|cater|wedding|banquet|private dining|sales)")
+        hits = [x for x in staff if job.search(x[1])] or boss
+    else:
+        return None
+    return hits[0] if len(hits) == 1 else None
+
 # The venue's own mail domain can differ from its website domain: the club at
 # sparrowspointcc.com writes from @spcc1925.com, rollingroadgc.org from @rollingroadgc.com,
 # imperialchestertown.com from @thekitchenattheimperial.com. A domain counts when the
 # venue's own pages show at least 2 of its addresses (one a mailto) and more of them than
 # of the website domain, or when it is the website's name under another TLD. One-off
-# vendor, PR, designer and parent-group inboxes never reach 2.
+# vendor, PR, designer and parent-group inboxes never reach 2. A staff page protected by
+# Cloudflare has no plain mailto (trumpnationaldc.com -> @trumpgolf.com, Nov 7 2026): 3 or
+# more personal addresses on the domain count without one.
 AGENCY_LABEL = re.compile(r"(pr|media|marketing|agency|communications|comms|creative|design|digital|studios?|photo\w*|events?|coordinators|productions?)$")
 mail_alias = ""
 if shared != "true" and reg and not any(a != reg for a in alias_regs):
     site_label = reg.rsplit(".", 1)[0]
-    on_site, per_dom, mailto_dom = 0, {}, {}
+    on_site, per_dom, mailto_dom, person_dom = 0, {}, {}, {}
     for e, r in emails.items():
         dom = e.split("@", 1)[1] if "@" in e else ""
         dreg = R.registrable_domain(dom) if dom else ""
@@ -2385,13 +2487,15 @@ if shared != "true" and reg and not any(a != reg for a in alias_regs):
         if AGENCY_LABEL.search(dreg.rsplit(".", 1)[0]):
             continue
         per_dom[dreg] = per_dom.get(dreg, 0) + 1
+        if not R.is_role_email(e):
+            person_dom[dreg] = person_dom.get(dreg, 0) + 1
         if any(m and (is_home(u) or CONTACTISH.search(urlsplit(u).path)) for u, m in own_hits):
             mailto_dom[dreg] = mailto_dom.get(dreg, 0) + 1
     for dreg, n in sorted(per_dom.items(), key=lambda x: -x[1]):
         if dreg.rsplit(".", 1)[0] == site_label and len(site_label) >= 5:
             mail_alias = dreg
             break
-        if n >= 2 and mailto_dom.get(dreg, 0) >= 1 and n > on_site:
+        if n >= 2 and n > on_site and (mailto_dom.get(dreg, 0) >= 1 or person_dom.get(dreg, 0) >= 3):
             mail_alias = dreg
             break
     if mail_alias:
@@ -2501,6 +2605,10 @@ for e, r in sorted(emails.items()):
     if any(ev2 == "venue_site" for _, _, _, ev2 in scoped): ev = "venue_site"
     if any(m and ev2 == "venue_site" and (is_home(u) or CONTACTISH.search(urlsplit(u).path)) for u, m, _, ev2 in scoped): ev = "venue_mailto"
     src = next((u for u, m, _, _ in scoped if m), scoped[0][0])
+    if not r["name"] and shared != "true" and (_edreg in (reg, mail_alias) or _edreg in alias_regs):
+        runner = runner_of(e)
+        if runner:
+            r["name"], r["title"] = runner
     print("\x1f".join(["CONTACT", e, r["name"].replace("\x1f", " "), r["title"].replace("\x1f", " "), ev, src]))
     if r["name"]: named.add(r["name"].lower())
 # Named decision-makers with no email on the site -> pending-contact candidates (P3 filters them).

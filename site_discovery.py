@@ -193,6 +193,9 @@ def _canonical_social(url: str) -> Optional[Tuple[str, str]]:
             return ("facebook", f"https://www.facebook.com/p/{parts[1]}/")
         if first == "pg" and len(parts) >= 2:
             first, parts = parts[1].lower(), parts[1:]
+        # A page linked by its id: facebook.com/399086636810326 (SpotHopper sites).
+        if len(parts) == 1 and re.fullmatch(r"\d{9,}", first):
+            return ("facebook", f"https://www.facebook.com/{first}/")
         if first in FB_RESERVED or first.isdigit() or len(first) < 2:
             return None
         return ("facebook", f"https://www.facebook.com/{parts[0]}/")

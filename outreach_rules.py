@@ -151,7 +151,8 @@ ROLE_TOKENS = {
     "education", "tours", "tour", "visit", "visitors", "farm", "hotel", "inn",
     "desk", "operations", "ops", "director", "gallery", "museum", "partners",
     "partnerships", "hospitality", "accounts", "account", "billing", "owner",
-    "owners", "management", "mgmt", "hq", "corporate", "weddingsales",
+    "owners", "management", "mgmt", "hq", "corporate", "weddingsales", "food",
+    "foodandbeverage", "fandb", "fnb",
 }
 
 # Words that mean a scraped "name" is page boilerplate, not a person.
@@ -282,7 +283,7 @@ GENERAL_INBOX_TOKENS = {
     "info", "information", "contact", "contactus", "hello", "hi", "mail", "email",
     "office", "general", "admin", "administrator", "enquiries", "enquiry", "inquiries",
     "inquiry", "frontdesk", "front", "reception", "welcome", "help", "support",
-    "questions", "stay", "guest", "guests", "guestservices",
+    "questions", "stay", "guest", "guests", "guestservices", "sayhello", "sayhi",
 }
 
 

@@ -58,7 +58,7 @@ ADDR = re.compile(r"(\d{1,6}[^\n<>|]{2,60}?),?\s+([A-Z][A-Za-z .'-]{2,30}),\s*(D
 CLOSED_TEXT = re.compile(r"permanently closed|closed permanently|closed for good|clos(?:ed|ing) (?:its|our) doors|"
                          r"we have (?:officially )?closed|no longer (?:open|in business|operating)", re.I)
 PARKED_TEXT = re.compile(r"domain (?:name )?(?:is|may be) for sale|buy this domain|this domain has expired|"
-                         r"parked free|hugedomains|afternic", re.I)
+                         r"parked free|hugedomains|afternic|location\.href\s*=\s*\W?/lander", re.I)
 SCHEMA_TYPES = [  # schema.org @type -> a Google-style category the classifier knows
     (r"bedandbreakfast", "bed and breakfast"), (r"hotel|lodgingbusiness|resort|motel", "hotel"),
     (r"winery", "winery"), (r"barorpub|nightclub", "bar"), (r"brewery", "brewery"),

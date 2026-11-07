@@ -650,7 +650,7 @@ CLOSED_TEXT = re.compile(r"permanently closed|closed permanently|closed for good
                          r"clos(?:ed|ing) (?:its|our) doors|we have (?:officially )?closed|"
                          r"no longer (?:open|in business|operating)|final (?:day|night) of service", re.I)
 PARKED_TEXT = re.compile(r"domain (?:name )?(?:is|may be) for sale|buy this domain|this domain has expired|"
-                         r"parked free|domain parking|hugedomains|afternic|sedo(?:parking)?\.com|dan\.com/buy", re.I)
+                         r"parked free|domain parking|hugedomains|afternic|sedo(?:parking)?\.com|dan\.com/buy|location\.href\s*=\s*\W?/lander", re.I)
 
 
 def site_check(url):

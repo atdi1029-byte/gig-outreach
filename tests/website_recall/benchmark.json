@@ -3953,6 +3953,114 @@
      "priority": "normal"
     }
    ]
+  },
+  {
+   "venue_id": "DC-REST-1282",
+   "name": "Trump National Golf Club Washington DC",
+   "website": "https://www.trumpnationaldc.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "country_club",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "brooklyn.torian@trumpgolf.com",
+     "name": "Brooklyn Torian",
+     "title": "Events Manager",
+     "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+     "also_on": [],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "trent.kathmann@trumpgolf.com",
+     "name": "Trent Kathmann",
+     "title": "General Manager",
+     "page": "https://www.trumpnationaldc.com/default.aspx?p=dynamicmodule&pageid=100112&ssid=100126&vnf=1",
+     "also_on": [],
+     "how": [
+      "cloudflare_attr"
+     ],
+     "all_hows": [
+      "cloudflare_attr"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-985",
+   "name": "Autentico Peruvian",
+   "website": "https://autenticoperu.com/",
+   "city": "Great Falls",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "catering@autenticoperu.com",
+     "name": "Danny Pain",
+     "title": "Owner/Chef",
+     "page": "https://autenticoperu.com/wp-content/uploads/2026/09/Catering-Menu-NEW_compressed.pdf",
+     "also_on": [],
+     "how": [
+      "pdf"
+     ],
+     "all_hows": [
+      "pdf"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "staff_pairing": true,
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3430",
+   "name": "Trattoria Da Franco Ristorante",
+   "website": "https://trattoriadafranco305.com",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "trattoriadafranco2022@gmail.com",
+     "page": "https://trattoriadafranco305.com/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "normal"
+    }
+   ]
   }
  ]
 }

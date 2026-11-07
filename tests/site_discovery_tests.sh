@@ -339,3 +339,72 @@ for text, want in cases.items():
 print('PASS: location parsing (DC quadrants are not Nebraska)')
 PY
 rm -f "$OUT" "$ERR"
+
+# ---- Night fixes, Nov 7 2026 ----------------------------------------------------------
+cd "$SCRIPT_DIR" || exit 1
+/usr/bin/python3 - <<'PY' || exit 1
+import re
+import outreach_rules as R
+import site_discovery as S
+page = "https://www.facebook.com/399086636810326"
+assert S._canonical_social(page) == ("facebook", page + "/"), S._canonical_social(page)
+assert S._canonical_social("https://www.facebook.com/12345") is None
+assert S._canonical_social("https://www.facebook.com/399086636810326/posts/1") is None
+assert R.check_email("sayhello@venue.com", "venue.com")["reason"] == "general_inbox"
+assert R.check_email("food@venue.com", "venue.com")["action"] == "role"
+src = open("build_batch.sh").read() + open("verify_pool.py").read()
+assert src.count(r"location\.href\s*=\s*\W?/lander") == 2
+print("PASS: numeric Facebook pages, sayhello@ and food@ inboxes, /lander parked check")
+PY
+
+# Name backfill: the real functions, with the backend stubbed by a file.
+T=$(mktemp -d)
+KNOWN_NAMELESS_FILE="$T/nameless"; KNOWN_NAMES_FILE="$T/names"; KNOWN_NAMES=""
+pyrun() { shift; "$@"; }
+log() { echo "$*" >> "$T/log"; }
+urlenc() { /usr/bin/python3 -c 'import sys,urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$1"; }
+name_known() { grep -Fxqi -- "$1" "$KNOWN_NAMES_FILE" 2>/dev/null; }
+python3() { /usr/bin/python3 "$@"; }
+api_get() {   # the stub backend: update_contact changes the row, venue_detail prints it
+    echo "$1" >> "$T/calls"
+    case "$1" in
+        *field=name*) [ "${REFUSE:-}" = 1 ] || sed -i '' 's/"name":""/"name":"Megan Vaughan"/' "$T/row.json" ;;
+        action=venue_detail*) cat "$T/row.json" ;;
+    esac
+}
+eval "$(awk '/^_py_nameless_row\(\) \{/,/^}/; /^_py_row_has_name\(\) \{/,/^}/; /^_backfill_contact_name\(\) \{/,/^}/' pipeline.sh | sed 's#/tmp/pipeline_backfill_detail.json#'"$T"'/detail.json#')"
+reset_row() { : > "$T/calls"; : > "$T/log"; : > "$KNOWN_NAMES_FILE"; echo "${1:-megan@v.com}" > "$KNOWN_NAMELESS_FILE"
+    echo '{"contacts":[{"contact_id":"C1","email":"megan@v.com","name":"","title":""}]}' > "$T/row.json"; }
+
+reset_row
+_backfill_contact_name megan@v.com V1 "Megan Vaughan" "Owner" verify
+grep -q 'field=name&value=Megan%20Vaughan' "$T/calls" || { echo "FAIL: name not written"; exit 1; }
+grep -q 'field=title&value=Owner' "$T/calls" || { echo "FAIL: empty title not filled"; exit 1; }
+grep -q 'Name added' "$T/log" || { echo "FAIL: not logged"; exit 1; }
+[ -s "$KNOWN_NAMELESS_FILE" ] && { echo "FAIL: still listed as nameless"; exit 1; }
+
+reset_row
+_backfill_contact_name megan@v.com V1 "Joseph Riley" "Owner" verify
+grep -q 'field=' "$T/calls" && { echo "FAIL: a name that doesn't fit the mailbox was written"; exit 1; }
+
+reset_row events@v.com
+_backfill_contact_name megan@v.com V1 "Megan Vaughan" "Owner" verify
+[ -s "$T/calls" ] && { echo "FAIL: called the backend for a row that already has a name"; exit 1; }
+
+reset_row
+echo "megan vaughan" > "$KNOWN_NAMES_FILE"
+_backfill_contact_name megan@v.com V1 "Megan Vaughan" "Owner" verify
+[ -s "$T/calls" ] && { echo "FAIL: the person is already on another row"; exit 1; }
+
+reset_row
+_backfill_contact_name megan@v.com V1 "Megan Vaughan" "Owner" reject
+[ -s "$T/calls" ] && { echo "FAIL: a rejected address was touched"; exit 1; }
+
+reset_row
+REFUSE=1 _backfill_contact_name megan@v.com V1 "Megan Vaughan" "Owner" verify
+grep -q 'Could not add' "$T/log" || { echo "FAIL: a failed read-back counted as done"; exit 1; }
+grep -q 'field=title' "$T/calls" && { echo "FAIL: title written after the name failed"; exit 1; }
+[ -s "$KNOWN_NAMELESS_FILE" ] || { echo "FAIL: dropped from nameless after a failure"; exit 1; }
+rm -rf "$T"
+unset -f python3
+echo 'PASS: name backfill (fills only empty names that fit the mailbox, reads back)'

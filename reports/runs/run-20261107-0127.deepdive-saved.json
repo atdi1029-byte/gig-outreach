@@ -1,92 +1,408 @@
 {
  "run_id": "run-20261107-0127",
  "dry_run": false,
- "at": "2026-11-07T03:47:10-05:00",
+ "at": "2026-11-07T10:01:58-05:00",
  "totals": {
-  "saved": 0,
-  "venues_rescued": 0,
-  "socials": 0,
-  "rejected": 2,
-  "errors": 0,
-  "flagged": 0
+  "saved": 2,
+  "venues_rescued": 1,
+  "socials": 3,
+  "rejected": 0,
+  "errors": 1,
+  "flagged": 2
  },
  "zerobounce_out": "",
  "venues": [
   {
-   "venue_id": "DC-REST-2830",
-   "name": "Minetta Tavern DC",
-   "contacts": [],
-   "socials": [
+   "venue_id": "DC-REST-2829",
+   "name": "Vera Cocina & \u0628\u0627\u0631",
+   "contacts": [
     {
-     "field": "contact_form",
-     "value": "https://minettataverndc.com/private-events",
-     "outcome": "kept_existing"
+     "email": "milena@veradc.com",
+     "name": "Milena Mijuskovic",
+     "source_url": "https://veradc.com/faqs",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Nayef Issa",
+     "source_url": "https://www.themediaprince.com/single-post/milena-miju\u0161kovic-is-on-the-rise-in-culture",
+     "outcome": "not_saved:no_email"
     }
    ],
+   "socials": [],
    "flagged": []
   },
   {
-   "venue_id": "MD-REST-812",
-   "name": "Elena James",
+   "venue_id": "MD-HOTE-3000",
+   "name": "The Children's Inn at NIH",
    "contacts": [
     {
+     "email": "diane.kendrick@nih.gov",
+     "name": "Diane Kendrick",
+     "source_url": "https://childrensinn.org/wp-content/uploads/2025/11/Corporate-Partnership-Program-2025-2026.pdf",
+     "outcome": "known"
+    },
+    {
+     "email": "meghan.arbegast@nih.gov",
+     "name": "Meghan Arbegast",
+     "source_url": "https://www.childrensinn.org/get-involved/volunteer",
+     "outcome": "known"
+    },
+    {
      "email": "",
-     "name": "Colin McClimans",
-     "source_url": "https://www.ramw.org/restaurant/elena-james",
+     "name": "Jennie Lucca",
+     "source_url": "https://www.childrensinn.org/about/leadership",
      "outcome": "not_saved:no_email"
     },
     {
      "email": "",
-     "name": "Danilo Simic",
-     "source_url": "https://www.ramw.org/restaurant/elena-james",
+     "name": "Ashley Domm",
+     "source_url": "https://www.childrensinn.org/about/leadership",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1314",
+   "name": "Lia's",
+   "contacts": [
+    {
+     "email": "amyc@chefgeoff.com",
+     "name": "Amy Cooney",
+     "source_url": "http://www.linkedin.com/in/amy-cooney-bb79ba5a",
+     "title": "Private Events Director, Chef Geoff's (owner group of LIA'S)",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-2817"
+    },
+    {
+     "email": "geoff@chefgeoff.com",
+     "name": "Geoff Tracy",
+     "source_url": "http://www.linkedin.com/in/chefgeoff",
+     "title": "President, Chef Geoff's; opened LIA'S in 2006",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-2817"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1748",
+   "name": "Pistones Italian Inn",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Telemaco Bonaduce",
+     "source_url": "https://www.pistoneitalianinn.com/",
      "outcome": "not_saved:no_email"
     }
    ],
    "socials": [
     {
-     "field": "contact_form",
-     "value": "https://www.elenajamescc.com/blank-1",
-     "outcome": "kept_existing"
+     "field": "instagram",
+     "value": "https://www.instagram.com/pistoneitalianinn/",
+     "outcome": "saved"
     }
    ],
    "flagged": []
   },
   {
-   "venue_id": "MD-HOTE-2999",
-   "name": "Edmond J. Safra Family Lodge",
-   "contacts": [],
-   "socials": [],
-   "flagged": []
-  },
-  {
-   "venue_id": "MD-REST-1228",
-   "name": "Keratsini Greek Kitchen",
-   "contacts": [],
-   "socials": [],
-   "flagged": []
-  },
-  {
-   "venue_id": "MD-REST-3336",
-   "name": "Alfio's La Trattoria",
-   "contacts": [],
-   "socials": [],
-   "flagged": []
-  },
-  {
-   "venue_id": "DC-HOTE-2656",
-   "name": "Kimpton Rouge Hotel",
+   "venue_id": "VA-REST-3430",
+   "name": "Trattoria Da Franco Ristorante",
    "contacts": [
     {
-     "email": "kathleen.nowak@kimptonhotels.com",
-     "name": "Kathleen Nowak",
-     "source_url": "https://www.kimptonrougehotel.com/html/weddings-washington-dc/",
-     "outcome": "rejected:zerobounce_invalid"
+     "email": "trattoriadafranco2022@gmail.com",
+     "name": "Franco Abbruzzetti",
+     "source_url": "https://www.alxnow.com/2023/05/08/85-year-old-trattoria-da-franco-owner-says-hes-got-at-least-five-years-left-in-old-town/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/1190985590761128",
+     "outcome": "error:write_failed"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-998",
+   "name": "Boulangerie Christophe",
+   "contacts": [
+    {
+     "email": "boulangeriechristophe@yahoo.com",
+     "name": "Didier Martin",
+     "source_url": "https://georgetowner.com/?p=272269",
+     "outcome": "known"
     },
     {
-     "email": "audrey.washington@kimptonhotels.com",
-     "name": "Audrey Washington",
-     "source_url": "https://www.kimptonrougehotel.com/meetings/washington-dc-social-events/",
-     "outcome": "rejected:zerobounce_invalid"
+     "email": "",
+     "name": "Stephane Grattier",
+     "source_url": "https://www.boulangeriechristophe.com/about-6",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Karim Machmour",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-790",
+   "name": "Laurel Grove Inn on the South River",
+   "contacts": [
+    {
+     "email": "relax@laurelgroveinn.net",
+     "name": "Tiffany O'Donnell",
+     "source_url": "https://www.laurelgroveinn.net/annapolis-bed-and-breakfast",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Tom O'Donnell",
+     "source_url": "https://iloveinns.com/laurel-grove-inn-on-the-south-river-id39843.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-896",
+   "name": "Mykonos Cabin John",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Angelo Mitsotakis",
+     "source_url": "https://citylifestyle.com/articles/aegean-excellence",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rodi Tzani",
+     "source_url": "https://citylifestyle.com/articles/aegean-excellence",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/p/Mykonos-Restaurant-Potomac-61553302775794/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2753",
+   "name": "Xenia Greek Kouzina",
+   "contacts": [
+    {
+     "email": "angela@grkouzina.com",
+     "name": "Angela Morales",
+     "source_url": "https://xeniagreekcouzina.com/private-events/",
+     "title": "Restaurant Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "George Aligeorgas",
+     "source_url": "https://www.baltimoremagazine.com/section/fooddrink/review-xenia-greek-kouzina-columbia/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-746",
+   "name": "Cantler's Riverside Inn",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Dan Donnelly",
+     "source_url": "https://whatsupmag.com/dining/crab-stuffed-portobello-mushrooms/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3125",
+   "name": "Birroteca",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Michael Moran",
+     "source_url": "https://www.opentable.co.uk/r/birroteca-baltimore",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Robbin Haas",
+     "source_url": "https://www.citipeek.com/print/71220/directory/406",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1319",
+   "name": "Trattoria 5520",
+   "contacts": [],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.marriott.com/meetings-events/rfp/event-profile.mi?marshaCode=wasvy",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3130",
+   "name": "The Valley Inn",
+   "contacts": [
+    {
+     "email": "andrew.haynes@atlasrestaurantgroup.com",
+     "name": "Andrew Haynes",
+     "source_url": "https://thevalleyinnmd.com/wp-content/uploads/2026/07/TVI_PD_Brochure_020926-1.pdf",
+     "title": "Events Coordinator, Atlas Restaurant Group (Apollo title; the venue's private di",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Jeza Hopkins",
+     "source_url": "https://thevalleyinn.us/private-dining.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2668",
+   "name": "Caf\u00e9 Bonaparte",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-837",
+   "name": "Fontaine Caffe & Creperie",
+   "contacts": [
+    {
+     "email": "stacey@fontainecaffe.com",
+     "name": "Stacey Wharam",
+     "source_url": "https://alexandriastylebook.squarespace.com/alexandria-stylebook/fontaine-caffe",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-2962",
+   "name": "Inn at the Colonnade Baltimore",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Julia Schaefer",
+     "source_url": "https://weddingwire.com/biz/inn-at-the-colonnade-a-doubletree-by-hilton-hotel-baltimore/e0f2d1d914f39ea1.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rob Breeden",
+     "source_url": "http://www.linkedin.com/in/robertbreeden",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-479",
+   "name": "Chesapeake Landing Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Erin Spurry",
+     "source_url": "https://www.facebook.com/Chesapeake-Landing-Restaurant-148113791898293",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Joe Spurry Sr.",
+     "source_url": "https://talbotspy.org/talbot-county-community-impact-winner-chesapeake-landing-restaurant/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-HOTE-2653",
+   "name": "Kimpton Banneker Hotel",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Walter Silva",
+     "source_url": "https://hospitalitynet.org/appointment/79025921.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "McColbert Evrard",
+     "source_url": "https://hotelexecutive.com/newswire/70724/the-kimpton-banneker-appoints-food-beverage-leadership",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dennis Hernandez",
+     "source_url": "https://www.hotelexecutive.com/newswire/67889/valor-hospitality-appoints-leadership-team-for-kimpton-banneker-hotel-opening-early-2021",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "sales@thebanneker.com",
+     "reason": "Right business, but the saved name 'Meeting Promotions' and title 'Washington DC restaurant with private rooms' are page text, not a real person. The inbox itself is the hotel's real events address (book-a-meeting, weddings, private dining, celebrations pages)."
+    },
+    {
+     "email": "talktous@thebanneker.com",
+     "reason": "Right business, but it is the hotel's general guest inbox from the contact page, with no person attached. Saved as verified=valid with no name."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1000",
+   "name": "Wild Tomato Cabin John",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Damian Salvatore",
+     "source_url": "https://wildtomatorestaurant.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Stephanie Salvatore",
+     "source_url": "https://wildtomatorestaurant.com/about/",
+     "outcome": "not_saved:no_email"
     }
    ],
    "socials": [],

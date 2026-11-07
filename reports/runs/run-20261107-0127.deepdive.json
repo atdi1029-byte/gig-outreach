@@ -2,52 +2,25 @@
  "run_id": "run-20261107-0127",
  "venues": [
   {
-   "venue_id": "DC-REST-2830",
-   "researched": true,
-   "contacts": [],
-   "facebook": "",
-   "instagram": "",
-   "contact_form": "https://minettataverndc.com/private-events",
-   "flag_contacts": [],
-   "apollo_searches": [
-    {
-     "query": "minettataverndc.com",
-     "search_type": "domain",
-     "result_count": 1
-    },
-    {
-     "query": "Minetta Tavern DC",
-     "search_type": "name",
-     "result_count": 0
-    },
-    {
-     "query": "Minetta Tavern",
-     "search_type": "name",
-     "result_count": 1
-    }
-   ],
-   "summary": "Only events@minettataverndc.com (private events, no person name) plus info@/press@. Apollo DC org (6aeee4bd...) has 0 people; 'Minetta Tavern' name hit is the NYC original (minettatavernny.com), rejected. No GM or events manager named on the site or in press/LinkedIn snippets. Better contact_form is the venue's own Tripleseat page /private-events (the sheet has bare tripleseat.com)."
-  },
-  {
-   "venue_id": "MD-REST-812",
+   "venue_id": "DC-REST-2829",
    "researched": true,
    "contacts": [
     {
-     "name": "Colin McClimans",
-     "title": "Chef / Co-owner",
-     "email": "",
-     "source": "press",
-     "source_url": "https://www.ramw.org/restaurant/elena-james",
-     "found_on_venue_site": false,
+     "name": "Milena Mijuskovic",
+     "title": "Events Director",
+     "email": "milena@veradc.com",
+     "source": "website",
+     "source_url": "https://veradc.com/faqs",
+     "found_on_venue_site": true,
      "venue_mailto": false,
      "allow_off_domain": false
     },
     {
-     "name": "Danilo Simic",
+     "name": "Nayef Issa",
      "title": "Co-owner",
      "email": "",
      "source": "press",
-     "source_url": "https://www.ramw.org/restaurant/elena-james",
+     "source_url": "https://www.themediaprince.com/single-post/milena-mijuškovic-is-on-the-rise-in-culture",
      "found_on_venue_site": false,
      "venue_mailto": false,
      "allow_off_domain": false
@@ -55,125 +28,107 @@
    ],
    "facebook": "",
    "instagram": "",
-   "contact_form": "https://www.elenajamescc.com/blank-1",
-   "flag_contacts": [],
-   "apollo_searches": [
-    {
-     "query": "elenajamescc.com",
-     "search_type": "domain",
-     "result_count": 1
-    },
-    {
-     "query": "Elena James",
-     "search_type": "name",
-     "result_count": 0
-    }
-   ],
-   "summary": "Site shows only info@elenajamescc.com (general, rejected); private dining page (/blank-3) sends to the Book Event form /blank-1. Owners are Colin McClimans and Danilo Simic (Nina May / Opal group) per RAMW and Washingtonian, but no email on the venue domain. Apollo org has 0 people; the pipeline's Apollo 'Elena' hits were unrelated people."
-  },
-  {
-   "venue_id": "MD-HOTE-2999",
-   "researched": true,
-   "contacts": [],
-   "facebook": "",
-   "instagram": "",
    "contact_form": "",
    "flag_contacts": [],
    "apollo_searches": [
     {
-     "query": "edmondjsafra.org",
-     "search_type": "domain",
-     "result_count": 1
-    },
-    {
-     "query": "Edmond J. Safra Family Lodge",
-     "search_type": "name",
-     "result_count": 0
-    },
-    {
-     "query": "Safra Family Lodge",
-     "search_type": "name",
-     "result_count": 0
-    }
-   ],
-   "summary": "WRONG WEBSITE + not a gig venue: edmondjsafra.org is the Edmond J. Safra Philanthropic Foundation (Apollo org in Skokie IL; all the off-domain emails come from its press PDFs). The Lodge itself is the free NIH Clinical Center patient-family residence in Bethesda (cc.nih.gov, team inbox cc-famlodge@cc.nih.gov, no named person). Recommend parking/excluding the venue."
-  },
-  {
-   "venue_id": "MD-REST-1228",
-   "researched": true,
-   "contacts": [],
-   "facebook": "",
-   "instagram": "",
-   "contact_form": "",
-   "flag_contacts": [],
-   "apollo_searches": [
-    {
-     "query": "keratsinigreekkitchen.com",
-     "search_type": "domain",
-     "result_count": 1
-    },
-    {
-     "query": "Keratsini Greek Kitchen",
-     "search_type": "name",
-     "result_count": 1
-    },
-    {
-     "query": "6736ccd516ce080001848a15",
-     "search_type": "people",
-     "result_count": 0
-    }
-   ],
-   "summary": "Single-page site (phone/address only, no email, no staff); Apollo org matches but has 0 people; web searches found no owner/manager name. keratsinikitchen@outlook.com (from social) not shown on the site and no name attached, so not usable."
-  },
-  {
-   "venue_id": "MD-REST-3336",
-   "researched": true,
-   "contacts": [],
-   "facebook": "",
-   "instagram": "",
-   "contact_form": "",
-   "flag_contacts": [],
-   "apollo_searches": [
-    {
-     "query": "alfioslatrattoriamd.com",
+     "query": "veradc.com",
      "search_type": "domain",
      "result_count": 0
     },
     {
-     "query": "Alfio's La Trattoria",
+     "query": "Vera Cocina",
      "search_type": "name",
-     "result_count": 1
-    },
-    {
-     "query": "66f03f2103aa230001527964",
-     "search_type": "people",
      "result_count": 0
     }
    ],
-   "summary": "Site is a Slice template (phone/address only). Apollo's 'Alfio's La Trattoria' org uses skipsdc.com (Skip's On The Avenue, DC), and alfios.com now 301-redirects to skipsdc.com, so it's a different business: rejected, and alfios@alfios.com is off-domain with no name. No owner/manager found on the web."
+   "summary": "milena@veradc.com is the events lead but is saved with no name and a junk title: add name Milena Mijuskovic, Events Director (Tock listing title; pipeline's LinkedIn+Apollo said Events Manager). Saved contact_form is the bare https://www.tripleseat.com; the real form is https://party-request.tripleseat.com/venues/MlXFcX7O/ (not overwritten, for the main session to decide). events@veracocinadc.com from the site's blog not proposed: no person runs it by name and that domain has no MX or A record in DNS. GM is Fatema (no surname found), so not listed. salasonidos@ is an inbox for table reservations with no person attached. No wrong-business contacts."
   },
   {
-   "venue_id": "DC-HOTE-2656",
+   "venue_id": "MD-HOTE-3000",
    "researched": true,
    "contacts": [
     {
-     "name": "Kathleen Nowak",
-     "title": "Director of Sales & Marketing",
-     "email": "kathleen.nowak@kimptonhotels.com",
+     "name": "Diane Kendrick",
+     "title": "Associate Director, Strategic Partnerships & Events",
+     "email": "diane.kendrick@nih.gov",
      "source": "website",
-     "source_url": "https://www.kimptonrougehotel.com/html/weddings-washington-dc/",
+     "source_url": "https://childrensinn.org/wp-content/uploads/2025/11/Corporate-Partnership-Program-2025-2026.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Meghan Arbegast",
+     "title": "Volunteer Program and Host an Event contact",
+     "email": "meghan.arbegast@nih.gov",
+     "source": "website",
+     "source_url": "https://www.childrensinn.org/get-involved/volunteer",
      "found_on_venue_site": true,
      "venue_mailto": true,
      "allow_off_domain": true
     },
     {
-     "name": "Audrey Washington",
-     "title": "Catering and Conference Services Manager",
-     "email": "audrey.washington@kimptonhotels.com",
+     "name": "Jennie Lucca",
+     "title": "Chief Executive Officer",
+     "email": "",
      "source": "website",
-     "source_url": "https://www.kimptonrougehotel.com/meetings/washington-dc-social-events/",
+     "source_url": "https://www.childrensinn.org/about/leadership",
      "found_on_venue_site": true,
-     "venue_mailto": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Ashley Domm",
+     "title": "Chief Philanthropy & Communications Officer",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.childrensinn.org/about/leadership",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "childrensinn.org",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Children's Inn at NIH",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "No new emails, only better titles for the two people who actually handle events: Diane Kendrick (saved with no title; PDF says Manager, Corporate Partnerships & Events, Apollo says Associate Director, Strategic Partnerships & Events) and Meghan Arbegast (saved as 'Host an Event'). nih.gov addresses are published by the Inn's own site, so not flagged. Apollo enrichment skipped: remaining has_email staff are not events or decision-maker titles. Apollo also lists a masked Meghan Sm***h, Associate Director, Volunteer Services and Community Outreach, possibly the same Meghan under another surname, unconfirmed. Saved angellsae@nih.gov looks like a nameless duplicate of samuel.angell@nih.gov (inference from the local part only). Note this is a non-profit family residence, not a hotel."
+  },
+  {
+   "venue_id": "MD-REST-1314",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Amy Cooney",
+     "title": "Private Events Director, Chef Geoff's (owner group of LIA'S)",
+     "email": "amyc@chefgeoff.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/amy-cooney-bb79ba5a",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Geoff Tracy",
+     "title": "President, Chef Geoff's; opened LIA'S in 2006",
+     "email": "geoff@chefgeoff.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/chefgeoff",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
      "allow_off_domain": true
     }
    ],
@@ -183,32 +138,817 @@
    "flag_contacts": [],
    "apollo_searches": [
     {
-     "query": "kimptonrougehotel.com",
+     "query": "liasrestaurant.com (org lookup)",
      "search_type": "domain",
      "result_count": 0
     },
     {
-     "query": "rougehotel.com",
-     "search_type": "domain",
-     "result_count": 1
-    },
-    {
-     "query": "Kimpton Rouge Hotel",
+     "query": "Lia's Restaurant (org lookup)",
      "search_type": "name",
      "result_count": 0
     },
     {
-     "query": "Hotel Rouge",
+     "query": "LIA'S, Maryland (org lookup)",
      "search_type": "name",
-     "result_count": 1
+     "result_count": 0
     },
     {
-     "query": "672d902181d63a00012ffd02",
-     "search_type": "people",
-     "result_count": 3
+     "query": "people at liasrestaurant.com + chefgeoff.com",
+     "search_type": "domain",
+     "result_count": 4
+    },
+    {
+     "query": "people: LIA'S Restaurant Chevy Chase",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people: Sarah Chef Geoff's",
+     "search_type": "name",
+     "result_count": 0
     }
    ],
-   "summary": "The hotel's own site publishes two named kimptonhotels.com (Kimpton management/brand domain) contacts: Kathleen Nowak, Director of Sales & Marketing (weddings page) and Audrey Washington, Catering & Conference Services Manager (social events page). The pipeline rejected both as off-domain; they should save with allow_off_domain. Apollo Hotel Rouge org has only receptionist/cook/controller (masked), none matched. Note: the instagram on file (instagram.com/kimpton) is the brand account, not this property."
+   "summary": "Owner group's Private Events Director and President found via Apollo (both email_status verified, catch-all false). allow_off_domain: LIA'S own site publishes chefgeoff.com addresses (rewards@ and cgrewards@ on /faq, seen today; events@chefgeoff.com in the Fall 2026 events PDF per the pipeline record; the PDF has no extractable text, so I did not see that one myself). Nothing states Amy Cooney personally handles LIA'S events, only the group title, so she is NOT paired with events@liasrestaurant.com, which stays unnamed. A manager called Theresa appears in an OpenTable review, no surname."
+  },
+  {
+   "venue_id": "VA-REST-1748",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Telemaco Bonaduce",
+     "title": "Chef/Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.pistoneitalianinn.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "https://www.instagram.com/pistoneitalianinn/",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "pistoneitalianinn.com (org lookup)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Pistone's Italian Inn (org lookup)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at pistoneitalianinn.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "No usable email: the whole 7-page sitemap shows only info@ (general inbox, not listed). Apollo matched the owner but email_status is unavailable; its one indexed employee is an irrelevant title. Found the Instagram the pipeline rejected: handle matches the domain, bio says fine Italian restaurant in Falls Church, VA (seen in a search snippet, profile not opened)."
+  },
+  {
+   "venue_id": "VA-REST-3430",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Franco Abbruzzetti",
+     "title": "Owner",
+     "email": "trattoriadafranco2022@gmail.com",
+     "source": "press",
+     "source_url": "https://www.alxnow.com/2023/05/08/85-year-old-trattoria-da-franco-owner-says-hes-got-at-least-five-years-left-in-old-town/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/1190985590761128",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "trattoriadafranco305.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Trattoria Da Franco",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Owner name found for the existing nameless gmail: the address is a mailto on the venue's site, the name comes from May 2023 press (he bought the restaurant back in 2022), so it may be dated. Apollo's only org match is trattoriadafranco.de, a different business, rejected. Facebook is linked from the venue's own footer. The site's script config says a generic contact form is active, but no form was seen in the static HTML, so contact_form is left empty."
+  },
+  {
+   "venue_id": "MD-REST-998",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Didier Martin",
+     "title": "Owner",
+     "email": "boulangeriechristophe@yahoo.com",
+     "source": "press",
+     "source_url": "https://georgetowner.com/?p=272269",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Stephane Grattier",
+     "title": "Master Baker, associate",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.boulangeriechristophe.com/about-6",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Karim Machmour",
+     "title": "General Manager",
+     "email": "",
+     "source": "apollo",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "boulangeriechristophe.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Boulangerie Christophe",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Owner name found for the yahoo inbox the site publishes for catering: the venue's About page says the Grattiers became associates with Didier Martin in 2020, and 'owner' comes from a Georgetowner search snippet, page not opened. Older press names founder Christophe Roux. Karim Machmour is listed without email because ZeroBounce already marked his Apollo address invalid. Apollo people search (13) showed no owner, no new enrichment run; no new email found."
+  },
+  {
+   "venue_id": "MD-HOTE-790",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Tiffany O'Donnell",
+     "title": "Innkeeper",
+     "email": "relax@laurelgroveinn.net",
+     "source": "website",
+     "source_url": "https://www.laurelgroveinn.net/annapolis-bed-and-breakfast",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Tom O'Donnell",
+     "title": "Innkeeper",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://iloveinns.com/laurel-grove-inn-on-the-south-river-id39843.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "laurelgroveinn.net",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Laurel Grove Inn",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Innkeeper Tiffany O'Donnell is named on the venue's own page and confirmed by Apollo (email_status unavailable), so she can be attached to relax@. The comcast address was not seen directly by this audit (Facebook is walled, directories mask it): it comes from the pipeline's Facebook scrape in the run log, and has the venue's name in it. Tom O'Donnell is from an undated directory only. MAIN SESSION: laurelgroveinn@comcast.net not submitted: seen only in the pipeline's Facebook scrape, not tied to a person."
+  },
+  {
+   "venue_id": "MD-REST-896",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Angelo Mitsotakis",
+     "title": "Owner and General Manager",
+     "email": "",
+     "source": "apollo",
+     "source_url": "https://citylifestyle.com/articles/aegean-excellence",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rodi Tzani",
+     "title": "Co-Owner and Marketing Manager",
+     "email": "",
+     "source": "press",
+     "source_url": "https://citylifestyle.com/articles/aegean-excellence",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/p/Mykonos-Restaurant-Potomac-61553302775794/",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "mykonosgrill.com (org lookup)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Mykonos Grill (org lookup; accepted MYKONOS GRILL, rejected mykonos-grill-restaurant.com and Mykonos Grill Bonn)",
+     "search_type": "name",
+     "result_count": 3
+    },
+    {
+     "query": "people at mykonosgrill.com",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "people: Angelo Mitsotakis",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "LOW CONFIDENCE email: Apollo match_confidence low, no email_status or LinkedIn, and the domain is catch-all, so ZeroBounce may reject it; manager@ is a function inbox and nothing shows he reads it. Ownership and GM role are solid from press. Website on record is dead: mykonosgrill.com returns 403 'Active domain connection for this domain not found' (WordPress.com domain disconnected), and it is the Rockville sibling's domain. OpenTable reportedly lists the Facebook page as the Potomac restaurant's website (search summary; OpenTable timed out, and the page's cached copy said unavailable). No own site, Instagram or contact form found. MAIN SESSION: manager@mykonosgrill.com not submitted: low-confidence Apollo match on a dead domain, and as a function inbox it would skip ZeroBounce."
+  },
+  {
+   "venue_id": "MD-REST-2753",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Angela Morales",
+     "title": "Restaurant Manager",
+     "email": "angela@grkouzina.com",
+     "source": "apollo",
+     "source_url": "https://xeniagreekcouzina.com/private-events/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "George Aligeorgas",
+     "title": "Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.baltimoremagazine.com/section/fooddrink/review-xenia-greek-kouzina-columbia/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "xeniagreekcouzina.com (org lookup)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Xenia Greek Kouzina (org lookup)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at grkouzina.com, xeniagreekcouzina.com",
+     "search_type": "domain",
+     "result_count": 6
+    },
+    {
+     "query": "people: Xenia Greek Kouzina + owner/GM/events/private dining/catering titles",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people: Torres Xenia Greek Kouzina",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "grkouzina.com is the venue's own mail domain: its private-events page publishes 'contact our Private Dining Manager at Torres@grkouzina.com', and the pipeline wrongly rejected it as off-domain. Angela Morales's email was returned by Apollo in the pipeline run (taken from candidates, not re-enriched, not yet ZeroBounce-checked). Torres is NOT listed as a contact: no first name found anywhere; Alex could get it by calling 410-740-2500. Owner George Aligeorgas: Baltimore Magazine via search snippet (the page returned 403 to WebFetch), no email; a people_match on him returned no email. xenia@grkouzina.com left out: no real person. Sheet city is Ellicott City but the site, Apollo and listings all say 8850 Columbia 100 Pkwy, Columbia, MD 21045: fix the city. Sheet contact_form is the generic https://www.tripleseat.com; see misses for the real one."
+  },
+  {
+   "venue_id": "MD-REST-746",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Dan Donnelly",
+     "title": "General Manager (press from 2013; Apollo also lists him as current at Cantler's, low match confidence)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://whatsupmag.com/dining/crab-stuffed-portobello-mushrooms/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "cantlers.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Cantler's Riverside Inn",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at cantlers.com",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "people at org Cantler's Riverside Inn",
+     "search_type": "name",
+     "result_count": 5
+    },
+    {
+     "query": "Dan Donnelly Cantler",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Found GM Dan Donnelly by name only. Apollo match returned only a low-confidence personal ISP address (not on venue domain, not linked to the venue), deliberately left out. Site has 5 pages and only jcantlers@aol.com; nothing ties that address to a named person, so existing contact stays unnamed. Apollo staff are servers and hosts."
+  },
+  {
+   "venue_id": "MD-REST-3125",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michael Moran",
+     "title": "Private party contact (per OpenTable, no job title given)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.opentable.co.uk/r/birroteca-baltimore",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Robbin Haas",
+     "title": "Owner / Executive Chef (older sources, may be out of date)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.citipeek.com/print/71220/directory/406",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "bmorebirroteca.com (org lookup)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Birroteca (org lookup; 3 returned, 1 accepted, Birroteca Doppio Malto and La Birroteca Beer Bunny rejected as different businesses)",
+     "search_type": "name",
+     "result_count": 3
+    },
+    {
+     "query": "people at bmorebirroteca.com",
+     "search_type": "domain",
+     "result_count": 11
+    },
+    {
+     "query": "people: Birroteca + owner/GM/AGM/events titles, Maryland",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people: Michael Moran Birroteca",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people: Robbin Haas, Maryland",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No usable email. /our-team (the unvisited high-priority page) has 35 staff but no emails; it shows Josh as General Manager and Erin as Assistant GM, first names only. josh@, shawn@ and chris@bmorebirroteca.com all already failed ZeroBounce (invalid). Shawn Whetzel (Apollo, ZoomInfo) is likely a stale GM since the site names Josh. Michael Moran is OpenTable's private party contact, seen in search snippets only (the page timed out on fetch). Apollo people_match on Moran and Haas returned match_confidence none and no email: those records just echo the input, so they do not confirm either person. Baltimore Magazine also mentions owner JR Rockstroh, date and context unconfirmed, so ownership is unsettled. proteam@mopro.com and tanyahaas2@mopro.com are not venue contacts: Mopro is the site's marketing software vendor per Apollo's tech list, and no page links Tanya Haas to the venue. ZoomInfo's Nicole Buffone and Joseph Loeb had no other corroboration and are left out. Sheet Facebook value has embed junk appended; the clean URL is https://www.facebook.com/Birroteca (left unchanged, existing values are not overwritten)."
+  },
+  {
+   "venue_id": "MD-REST-1319",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.marriott.com/meetings-events/rfp/event-profile.mi?marshaCode=wasvy",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "Trattoria 5520 (org lookup)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Courtyard Bethesda Chevy Chase (org lookup)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people: Courtyard Bethesda Chevy Chase + GM/sales/events/F&B titles, MD and DC",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Nothing to save. No domain search: the venue has no domain of its own, only shared marriott.com. Trattoria 5520 is the breakfast-only restaurant of the Courtyard Bethesda Chevy Chase (6:30-10:00 AM weekdays, 7:30-10:30 AM weekends), so a weak fit for an evening gig. The sheet's website URL returned Marriott's not-found page to WebFetch; the current page is https://www.marriott.com/en-us/hotels/wasvy-courtyard-bethesda-chevy-chase/dining. No staff names or emails on Marriott pages or in searches. Donohoe Hospitality has managed the hotel since Jan 2021; no hotel GM or sales name found. A 2007-era chamber listing names Walter Burton and Lawrence Jones with no titles: unverified, left out. No Instagram found. The contact_form is the hotel's property-specific RFP form, not the restaurant's own."
+  },
+  {
+   "venue_id": "MD-REST-3130",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Andrew Haynes",
+     "title": "Events Coordinator, Atlas Restaurant Group (Apollo title; the venue's private dining brochure names him as the booking contact)",
+     "email": "andrew.haynes@atlasrestaurantgroup.com",
+     "source": "website",
+     "source_url": "https://thevalleyinnmd.com/wp-content/uploads/2026/07/TVI_PD_Brochure_020926-1.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Jeza Hopkins",
+     "title": "Private Event Manager (older site pages in search snippets only; not on the current site, not found in Apollo, may have left)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://thevalleyinn.us/private-dining.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "thevalleyinnmd.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Valley Inn (Maryland)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at thevalleyinnmd.com",
+     "search_type": "domain",
+     "result_count": 24
+    },
+    {
+     "query": "Andrew Haynes Atlas Restaurant Group",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "Jeza Hopkins (Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Brochure PDF names Andrew Haynes with andrew.haynes@ on the owner group domain (pipeline rejected it as glued text; the PDF text is clean), and gives the unnamed haynes@ a person. Rejected Apollo's GM Sarah Salivonchik: her email is on valleyinn.com, a Waterville Valley NH hotel, a different business, and she is located in Boston. events@thevalleyinn.us not offered: the old domain redirects to the current site, which no longer publishes it, and its named manager looks stale."
+  },
+  {
+   "venue_id": "DC-REST-2668",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "cafebonaparte.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Cafe Bonaparte",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at cafebonaparte.com (Host/Bartender, Bar boy only; no decision-maker)",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "lutecedc.com (successor business, context only)",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "VENUE CLOSED/REPLACED, no contact saved: Cafe Bonaparte at 1522 Wisconsin Ave NW became Lutece (Popal Group) in 2020, and Email/sweep_georgetown_2026-09-10.md already lists it as closed. cafebonaparte.com is now a different business (footer '(c) 2025 Cafe Bonaparte - Indonesia', +62 phone), so the sheet's website and contact_form are wrong; facebook/instagram on the record are unverified. Lutece's own site (lutecedc.com) shows only info@ and a Popal Group event form; GM named as David Sales in recent press, Elizabeth Parker in Apollo (has_email false, not enriched). Suggest parking this row and working Lutece as its own venue."
+  },
+  {
+   "venue_id": "VA-REST-837",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Stacey Wharam",
+     "title": "Manager (press, c. 2021; a 2019 Old Town Crier issue calls Stacy the General Manager; ownership changed around then, current role unconfirmed)",
+     "email": "stacey@fontainecaffe.com",
+     "source": "press",
+     "source_url": "https://alexandriastylebook.squarespace.com/alexandria-stylebook/fontaine-caffe",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "fontainecaffe.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Fontaine Caffe & Creperie",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at fontainecaffe.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "No new email. Press gives a full name for the existing stacey@ contact. Apollo's only person is Andres Za*** (masked), Director of Operations, no email on file, not enriched since the title is outside the allowed list and it would return no email. Site names no staff; only other address is info@ (general, excluded). Current owner not found; Kyong Yi is the founder in an undated Patch post."
+  },
+  {
+   "venue_id": "MD-HOTE-2962",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Julia Schaefer",
+     "title": "Director of Catering",
+     "email": "",
+     "source": "apollo",
+     "source_url": "https://weddingwire.com/biz/inn-at-the-colonnade-a-doubletree-by-hilton-hotel-baltimore/e0f2d1d914f39ea1.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rob Breeden",
+     "title": "Director of Sales & Marketing",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/robertbreeden",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "hilton.com (shared brand domain; Hilton parent and other hotels returned, rejected)",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "Inn at the Colonnade",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at org 556d6e0c73696411b6a60d01",
+     "search_type": "name",
+     "result_count": 6
+    },
+    {
+     "query": "Stephen Nyitrai",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Decision-makers found but no personal email: Apollo people_match returned email_status unavailable for both Julia Schaefer (title confirmed on WeddingWire; catering line 410-554-7569) and Rob Breeden. hilton.com pages 403 to WebFetch. Only addresses seen: bwicu_ds@hilton.com (pipeline, from Facebook, property inbox, not paired because nothing shows who runs it) and BWICU_DT_Hotel@hilton.com (Trip.com, general hotel inbox, not a contact)."
+  },
+  {
+   "venue_id": "MD-REST-479",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Erin Spurry",
+     "title": "Oversees the restaurant (owner family)",
+     "email": "",
+     "source": "facebook",
+     "source_url": "https://www.facebook.com/Chesapeake-Landing-Restaurant-148113791898293",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Joe Spurry Sr.",
+     "title": "Founder",
+     "email": "",
+     "source": "press",
+     "source_url": "https://talbotspy.org/talbot-county-community-impact-winner-chesapeake-landing-restaurant/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "chesapeakelandingrestaurant.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Chesapeake Landing Restaurant",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people at chesapeakelandingrestaurant.com (Server only)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Spurry Chesapeake Landing",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Owner family named in press (Erin Spurry runs the restaurant, 2023 article). Email is a judgment call: chesapeakelanding@yahoo.com comes only from the pipeline's Facebook extraction (pipeline.log); I could not see it first-hand, and Facebook and every page of the venue's site (about, contact, catering, home) were walled or 403 to WebFetch; only sitemap.xml loaded. The Erin pairing is mine: the page does not tie her to that mailbox. Unverified by ZeroBounce. MAIN SESSION: chesapeakelanding@yahoo.com not submitted: the pairing with Erin Spurry is a guess and the address was not seen first-hand."
+  },
+  {
+   "venue_id": "DC-HOTE-2653",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Walter Silva",
+     "title": "Executive Chef, oversees Le Sel, Lady Bird and private events (appointed Mar 2023; current status unconfirmed)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://hospitalitynet.org/appointment/79025921.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "McColbert Evrard",
+     "title": "Director of Food and Beverage (appointed 2023; current status unconfirmed)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://hotelexecutive.com/newswire/70724/the-kimpton-banneker-appoints-food-beverage-leadership",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Dennis Hernandez",
+     "title": "Director of Sales and Marketing (named at the 2021 opening; current status unconfirmed)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.hotelexecutive.com/newswire/67889/valor-hospitality-appoints-leadership-team-for-kimpton-banneker-hotel-opening-early-2021",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "sales@thebanneker.com",
+     "reason": "Right business, but the saved name 'Meeting Promotions' and title 'Washington DC restaurant with private rooms' are page text, not a real person. The inbox itself is the hotel's real events address (book-a-meeting, weddings, private dining, celebrations pages)."
+    },
+    {
+     "email": "talktous@thebanneker.com",
+     "reason": "Right business, but it is the hotel's general guest inbox from the contact page, with no person attached. Saved as verified=valid with no name."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "thebanneker.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Kimpton Banneker Hotel",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at domain thebanneker.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people at org Kimpton Banneker Hotel (id 66e67311bed1eb0001d2b939)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people keywords Kimpton Banneker Hotel, Washington DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people keyword Banneker with GM/sales/catering/event/F&B titles, Washington DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "leseldc.com (hotel restaurant site): org returned is SEESALT, rejected as a different business",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "No new person with an email. Site names no staff, sales@thebanneker.com is the only events inbox, Apollo has 0 people at the org. Past names from press have no email; ex-GM Raeshawna Scott now shows at Goodstone Inn per Apollo. Job posts show HHM managing by 2026, Valor earlier, so 2021-2023 names may be stale. No Apollo credits spent."
+  },
+  {
+   "venue_id": "MD-REST-1000",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Damian Salvatore",
+     "title": "Owner / Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://wildtomatorestaurant.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Stephanie Salvatore",
+     "title": "Co-founder / Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://wildtomatorestaurant.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "wildtomatorestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Wild Tomato (Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No email exists anywhere public: all 12 sitemap pages, catering, contact form, sister Sal's Italian Kitchen site, listings and Apollo show only phone 301-229-0680. Owners Damian and Stephanie Salvatore named, no email. A different Wild Tomato exists in Forest Hill/Bel Air MD (Steve Sumner) and in Door County WI: not this venue."
   }
  ]
 }

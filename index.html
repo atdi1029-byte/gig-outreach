@@ -3018,8 +3018,11 @@ function venueHasPending(venueId) {
     // Untouched = the bot hasn't run it yet: nothing for Alex to do, so it stays out of the lists even when
     // discovery saved its Instagram, Facebook or form (Nov 8 2026: "can you hide untouched then?"),
     // unless Alex already started on it
-    if ((venue.status || 'untouched') === 'untouched' &&
-        !(contacts.some(c => c.email_sent) || venue.ig_dm_sent || venue.fb_msg_sent || venue.contact_form_sent)) return false;
+    // The same for a venue waiting on the bot (no website, not verified...): only "no contact found" is
+    // Alex's, since its form or social pages are worth a try
+    const started = contacts.some(c => c.email_sent) || venue.ig_dm_sent || venue.fb_msg_sent || venue.contact_form_sent;
+    if (!started && ((venue.status || 'untouched') === 'untouched' ||
+        (venue.status === 'needs_review' && waitingReason(venue) !== 'no contact found'))) return false;
     // Has Instagram / Facebook not yet messaged?
     if (socialPending(venue, 'ig', idx)) return true;
     if (socialPending(venue, 'fb', idx)) return true;

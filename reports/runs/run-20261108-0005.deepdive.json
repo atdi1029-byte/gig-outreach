@@ -1,0 +1,1368 @@
+{
+ "run_id": "run-20261108-0005",
+ "venues": [
+  {
+   "venue_id": "DC-REST-2869",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Rose Previte",
+     "title": "Owner / Founder, No White Plates (Maydan's group)",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo person 6a116c218a9dc40001d93b17",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Chris Walker",
+     "title": "Director of Business Administration and Operations, No White Plates (Maydan GM 2021-2025)",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo person 5ab9a7a4a6da98b770c4c828",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Drew Hairston",
+     "title": "Corporate Beverage Director (Maydan DC Beverage Director)",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo person 5de04f8899079c0001552756",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "meet@maydandc.com",
+     "reason": "General inbox (meet@ is the site-wide contact address) saved with no person name and title \"Chef\"; not a person contact under the save policy. Same business, so not wrong-business: review only."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "meetatmaydan.com, maydandc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Maydan (Washington, DC)",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people at org Maydane (maydandc.com) + Maydan (meetatmaydan.com)",
+     "search_type": "domain",
+     "result_count": 12
+    }
+   ],
+   "summary": "No new saveable email. Site has only meet@maydandc.com (already saved; it's a general inbox with no name and 'Chef' as title, worth reviewing) and events@maydandc.com (no person tied to it). Apollo: owner Rose Previte's verified email is rose@nowhiteplates.com, the group's domain, which Maydan's site never uses, so off-domain and not saved. Chris Walker (ops director, ex-GM) and Drew Hairston (beverage director) have no email. The 'Maydane' Apollo org mixes in Moroccan staff, so Omar Bourezgui is probably not this venue."
+  },
+  {
+   "venue_id": "MD-PRIV-2897",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jonathan Williams",
+     "title": "Sous Chef",
+     "email": "jonathan@esb.org",
+     "source": "website",
+     "source_url": "https://www.esb.org/about-the-esb/personnel",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "contact_updates": [
+    {
+     "email": "j@esb.org",
+     "name": "J Austin Bitner",
+     "title": "Executive Director",
+     "source_url": "https://www.esb.org/about-the-esb/personnel"
+    },
+    {
+     "email": "gellwood@esb.org",
+     "name": "Georgie Ellwood",
+     "title": "Accountant",
+     "source_url": "https://www.esb.org/about-the-esb/personnel"
+    },
+    {
+     "email": "chef@esb.org",
+     "name": "Koven Bryant",
+     "title": "Executive Chef",
+     "source_url": "https://www.esb.org/about-the-esb/personnel"
+    },
+    {
+     "email": "stucker@esb.org",
+     "name": "Shae Tucker",
+     "title": "Member Dining & Events Manager",
+     "source_url": "https://www.esb.org/about-the-esb/personnel"
+    },
+    {
+     "email": "danielle@esb.org",
+     "name": "Danielle Richardson",
+     "title": "Banquets Captain",
+     "source_url": "https://www.esb.org/about-the-esb/personnel"
+    },
+    {
+     "email": "chris@esb.org",
+     "name": "Chris Mackall",
+     "title": "Lead Porter",
+     "source_url": "https://www.esb.org/about-the-esb/personnel"
+    },
+    {
+     "email": "kay@esb.org",
+     "name": "Kay Clifton",
+     "title": "Bartender",
+     "source_url": "https://www.esb.org/about-the-esb/personnel"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "associatesocietycouncilesb@verizon.net",
+     "reason": "Not a person ('Society Council') and off-domain verizon.net: the ESB Associate Society Council (a body of affiliated engineering societies), not club/venue staff"
+    },
+    {
+     "email": "heritage@esb.org",
+     "reason": "No person name: Garrett-Jacobs Mansion Endowment Fund function inbox; the trustees page names no one who runs it"
+    },
+    {
+     "email": "dale@esb.org",
+     "reason": "Stale, not wrong-business: Dale Whitehead was Executive Director around 2016 (esb.org Organ Committee event page); the current personnel page lists J Austin Bitner as Executive Director"
+    },
+    {
+     "email": "jon@esb.org",
+     "reason": "Possibly stale: not on the current personnel page, which gives the sous chef as Jonathan Williams at jonathan@esb.org; it validated in ZeroBounce, so keep unless it bounces"
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "esb.org",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Engineers Club Baltimore",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "org 54a1203f69702d8aa1152602 (Engineers Club of Baltimore) people",
+     "search_type": "domain",
+     "result_count": 8
+    }
+   ],
+   "summary": "Apollo org passes the name match. The best events contact, Shae Tucker (Member Dining & Events Manager, stucker@), is already saved. One new person: Jonathan Williams, Sous Chef (jonathan@esb.org, Cloudflare-protected on the personnel page). Several saved contacts are missing names or titles (see contact_updates). Flagged: the 'Society Council' verizon address (not a person, off-domain), heritage@ (no name), dale@ (former ED). Socials and contact form were already filled. Apollo's F&B person (Krystal At***n) has no email."
+  },
+  {
+   "venue_id": "MD-REST-3385",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Emma Hoey",
+     "title": "Entertainment Manager, Atlas Restaurant Group (books Tagliata's live music)",
+     "email": "emma.hoey@atlasrestaurantgroup.com",
+     "source": "apollo",
+     "source_url": "apollo person 57d702ffa6da98290601e82c; https://www.tagliatarestaurant.com/live-music/ (performer inquiries go to music@atlasrestaurantgroup.com)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "tagliatarestaurant.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Tagliata",
+     "search_type": "name",
+     "result_count": 3
+    },
+    {
+     "query": "people at org Tagliata (67347878f7cb3d00011486e8)",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "atlasrestaurantgroup.com + 'entertainment'",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "atlasrestaurantgroup.com + 'Tagliata'",
+     "search_type": "domain",
+     "result_count": 0
+    }
+   ],
+   "summary": "Nicole Manning (Private Dining Manager) is still on the private-dining page. New: Emma Hoey, Atlas Restaurant Group's Entertainment Manager, who books the group's live music, at emma.hoey@atlasrestaurantgroup.com. Apollo guessed that email from the name pattern (extrapolated), so it needs ZeroBounce. Tagliata's own site publishes atlasrestaurantgroup.com addresses (nicole.manning@, music@), so allow_off_domain applies. Tagliata's own Apollo org lists only a sous chef and a busser."
+  },
+  {
+   "venue_id": "MD-REST-3386",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Stelios Spiliadis",
+     "title": "Partner / Co-owner",
+     "email": "stelios@theblackolive.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/stelios-spiliadis-6914a435",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Connie Fulco",
+     "title": "Events Coordinator for The Black Olive and Olive Room",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/connie-fulco-5470aa7a",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "theblackolive.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Black Olive (Baltimore, MD)",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people at org The Black Olive 56dd1737f3e5bb1ae100167c",
+     "search_type": "domain",
+     "result_count": 15
+    },
+    {
+     "query": "people at org Black Olive Restaurant 5da3cb3a8842ae0001cf7e56",
+     "search_type": "name",
+     "result_count": 12
+    }
+   ],
+   "summary": "Existing dimitris@ (Dimitris Spiliadis, owner; Apollo verified) is right. New: co-owner Stelios Spiliadis stelios@theblackolive.com (Apollo verified, venue domain). Events Coordinator Connie Fulco has no email. The Apollo GM (George Hicks, Greenville SC) and AGM (Michael Mickle, FL, extrapolated email) look like a different Black Olive and were left out. Sheet facebook is the junk value 'https://www.facebook.com/pages'; the real page is https://www.facebook.com/pages/category/Greek-Restaurant/The-Black-Olive-119497100757 (not filled because the field isn't empty). /private-events is a 404; the live page is /Black-Olive-private-events, and it has a phone number only."
+  },
+  {
+   "venue_id": "MD-REST-3382",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "theruxtonsteakhouse.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "The Ruxton",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "Ruxton Steakhouse",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people keyword 'Ruxton Steakhouse' in Baltimore/Maryland",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people at atlasrestaurantgroup.com, keyword Ruxton",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people at atlasrestaurantgroup.com with private dining/events/sales titles",
+     "search_type": "domain",
+     "result_count": 8
+    }
+   ],
+   "summary": "Nothing new. The Baltimore private-dining brochure (Ruxton_PD_Brochure_053126.pdf) names April Lichtenberg <April@AtlasRestaurantGroup.com> as the booking contact. That confirms both existing April contacts, all published by the venue's own site. The nameless april@atlasrestaurantgroup.com row can take the name April Lichtenberg (Private Dining Sales, per Apollo). Apollo's 'The Ruxton Group' is a UK engineering firm (rejected). There is no Ruxton org in Apollo. Atlas group-wide events people (Directors of Events, Private Dining Managers) are not tied to The Ruxton Baltimore, so they were left out. The executive chef, per OpenTable, is Austin Shamosh (no email). Socials and the form are already on file."
+  },
+  {
+   "venue_id": "MD-REST-3389",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "April Lichtenberg",
+     "title": "Private Dining Sales (Atlas Restaurant Group), booking contact in Azumi Baltimore's private dining brochure",
+     "email": "april@atlasrestaurantgroup.com",
+     "source": "website",
+     "source_url": "https://azumirestaurant.com/baltimore/wp-content/uploads/sites/2/2026/02/Azumi_PDB_012626.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "houston@azumirestaurant.com",
+     "reason": "Inbox of the Houston location (from https://azumirestaurant.com/houston/contact/), not Azumi Baltimore. The name 'Azumi Houston' is the location name, not a person. The pipeline itself rejected it as other_location_inbox, but postcheck saved it anyway."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "azumirestaurant.com, azumibaltimore.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Azumi (Maryland)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at org AZUMI 55923a8b736964186fbde200",
+     "search_type": "name",
+     "result_count": 6
+    },
+    {
+     "query": "people keyword Azumi in Baltimore/Maryland",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Azumi Baltimore's own private-dining brochure (Azumi_PDB_012626.pdf) gives April Lichtenberg <April@AtlasRestaurantGroup.com> as the booking contact. Atlas owns the venue and the venue's site publishes this address, so allow_off_domain applies (same as The Ruxton). The pipeline rejected it as off-domain. Flag the saved houston@azumirestaurant.com (Houston location inbox, invented name). Apollo's domain match 'Azumind' is a market-research org, the wrong business. The name match AZUMI (725 Aliceanna St) is right, but its people are mixed: the CEO 'Roi Tran' is in Marseille, and there are no decision-makers. Kristen Hladky (Private Dining Manager) works at the Houston location, so she was excluded."
+  },
+  {
+   "venue_id": "MD-REST-3384",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Tony Foreman",
+     "title": "Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.cgeno.com/our-people",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "cgeno.com (org lookup)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Cinghiale (org lookup)",
+     "search_type": "name",
+     "result_count": 4
+    },
+    {
+     "query": "people at cgeno.com",
+     "search_type": "domain",
+     "result_count": 2
+    }
+   ],
+   "summary": "Nothing new: Abbe Gould (Private Dining Manager, events@cgeno.com) already saved and still current; site only adds info@ (general) and Tony Foreman/Lindsay Willey without emails; Apollo org 'Cinghiale - Osteria' has only a server and a host; no Foreman Wolf group email published on the site."
+  },
+  {
+   "venue_id": "MD-REST-3381",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "charlestonrestaurant.com (org lookup)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Charleston Restaurant (org lookup)",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people at charlestonrestaurant.com",
+     "search_type": "domain",
+     "result_count": 5
+    }
+   ],
+   "summary": "Nothing new: Abbe Gould (events@charlestonrestaurant.com) already saved; contact page only adds info@; Apollo 'Kathy Britzius, Director' enriched to kathy@charlestonrestaurant.com but she is 'Director at Charleston Restaurant Association' (DC-based, a different org; email only extrapolated) so rejected; other Apollo people are bar/kitchen staff."
+  },
+  {
+   "venue_id": "MD-MUSE-1674",
+   "researched": true,
+   "contacts": [],
+   "contact_updates": [
+    {
+     "email": "agilliland@historiclondontown.org",
+     "name": "Anne-Marie Gilliland",
+     "title": "Director of Public Programs",
+     "source_url": "https://historiclondontown.org/about/staff/",
+     "note": "the name is stored in the title field with zero-width characters"
+    },
+    {
+     "email": "executivedirector@historiclondontown.org",
+     "name": "Kristin DeMarco",
+     "title": "Executive Director",
+     "source_url": "https://historiclondontown.org/about/staff/"
+    },
+    {
+     "email": "gardens@historiclondontown.org",
+     "name": "Justin Schmitz",
+     "title": "Director of Horticulture",
+     "source_url": "https://historiclondontown.org/about/staff/"
+    },
+    {
+     "email": "gardens01@historiclondontown.org",
+     "name": "Brandon Hillen",
+     "title": "Head Horticulturist",
+     "source_url": "https://historiclondontown.org/about/staff/"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "londontown@historiclondontown.org",
+     "reason": "General inbox: the only address on the contact page, with no person attached; general inboxes are never saved"
+    },
+    {
+     "email": "developmentdirector@historiclondontown.org",
+     "reason": "No person name: role inbox; the current staff page lists no Development Director"
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "historiclondontown.org",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Historic London Town",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "org 665fe0c8e0695e0001003f48 (Historic London Town and Gardens) people",
+     "search_type": "domain",
+     "result_count": 9
+    }
+   ],
+   "summary": "Apollo org passes the name match and no saved contact belongs to another business. The rentals decision-maker, Lizzie Spokley (Venue Manager, lizzie@), and the events contacts (Amber Cockey on events@ and amber@, Kristin DeMarco ED) are already saved. Nothing new with an email: Apollo's Robyn Weatherholtz (Event Manager) has no email and is not on the staff page. The venue also runs a wedding site, londontownweddings.com (form at /contact). Flagged: londontown@ (general inbox) and developmentdirector@ (no name). Socials and contact form were already filled."
+  },
+  {
+   "venue_id": "MD-EVEN-3048",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Bernard Myers",
+     "title": "Site Manager (former Executive Director), The Grand Baltimore",
+     "email": "bmyers@thegrandbaltimore.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/bernard-myers-14b59655",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Eric Diaz",
+     "title": "Director of Food and Beverage",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/eric-diaz-a1767412a",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "thegrandbaltimore.com (org lookup)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Grand Baltimore (org lookup)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at thegrandbaltimore.com",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "Bernard Myers @ thegrandbaltimore.com (people match)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "The saved nameless contact bmyers@thegrandbaltimore.com ('Head of State') is Bernard Myers: Apollo/LinkedIn shows him as Site Manager - The Grand Baltimore (since 2026-03), Executive Director there 2022-2026, Director of Banquets at The Grand 2015-18; the existing contact should get his name and title. Eric Diaz, Director of F&B, has no email in Apollo. The site's About-page 'people' (Willam Doe, Jack Black, John Cena, Emma Doe, Jane Watson) are WordPress theme placeholders, not staff."
+  },
+  {
+   "venue_id": "MD-REST-3388",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Binda Singh",
+     "title": "Owner (co-founder, with Ananda)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://peerces.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Keir Singh",
+     "title": "Owner (co-founder)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://peerces.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "peerces.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Peerce's",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at org 'The Grille At Peerce's' (thegrilleatpeerces.com, earlier operator at the same address, rejected as a different org)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people domain peerces.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people keyword Peerce's (Maryland)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "Ananda (Maryland) org search, for the sister restaurant",
+     "search_type": "name",
+     "result_count": 4
+    },
+    {
+     "query": "match Binda Singh / Keir Singh",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "No saveable contact. The owners are Binda and Keir Singh (about-us page), but Apollo only gives Keir hello@peerces.com (a general inbox) and Binda anandaatmaplelawn@gmail.com (the free-mail box of the sister restaurant Ananda; Peerce's site doesn't link it). Events go through Tripleseat (form on file) and a third-party planner, Plan It Perfect. The event PDFs are image-only. No events manager is named anywhere."
+  },
+  {
+   "venue_id": "MD-EVEN-3045",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Brenna Kupferman",
+     "title": "Director of Business Development",
+     "email": "bkupferman@liriodendron.com",
+     "source": "website",
+     "source_url": "https://liriodendron.com/about-2/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "liriodendron.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Liriodendron",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people @ liriodendron.com (THE LIRIODENDRON FOUNDATION INC)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match bkupferman@liriodendron.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "Name gate passed (Apollo org THE LIRIODENDRON FOUNDATION INC = liriodendron.com). Saved bkupferman@ has no name on the sheet: it is Brenna Kupferman, Business Development (venue /about-2/ staff blurb + Apollo match); she may be stale (Apollo also lists her at ActionAid USA since 2020), but ZB says valid. Cathy Dermott (saved) is Executive Director since 2023 and runs rentals. events@ has no named owner other than Cathy; Apollo has only a payroll manager. No new emails."
+  },
+  {
+   "venue_id": "VA-MUSE-008",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Nicole Ryan",
+     "title": "Vice President of Business Enterprise and Guest Engagement (venue rentals / event team lead)",
+     "email": "nicole.ryan@gunstonhall.org",
+     "source": "website",
+     "source_url": "https://gunstonhall.org/visit/venue-rental/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "gunstonhall.org",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Gunston Hall",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people @ gunstonhall.org (combined domain people search)",
+     "search_type": "domain",
+     "result_count": 11
+    }
+   ],
+   "summary": "Name-match gate passed: every saved contact is @gunstonhall.org and on the venue's own contact page; Apollo org 'Gunston Hall - George Mason's Historic Home' matches (Gunston Hall Realty/gunstonhallapts.com rejected). The rentals lead is Nicole Ryan (VP Business Enterprise & Guest Engagement, decoded from Cloudflare links on /visit/venue-rental/), with Britt Fiocca (Guest Engagement Manager / Sales & Rental Associate, already saved). The run log says Nicole was added along with Towanda Vaughan, Nicholas Slabinski, Sandra Vieira and shopgunstonhall@gmail.com, but existing_contacts is cut at 15 (night_zero.py [:15]), so they don't show here. Nicole is re-listed in case she's missing; the backend dedupes. Notes: archaeology@ (David Shonyo, Archaeologist) and shopgunstonhall@gmail.com are saved without a person name."
+  },
+  {
+   "venue_id": "DC-REST-2868",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Nobu Yamazaki",
+     "title": "Owner/Chef",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo person 54a4c6ff7468692cf072a362; en.wikipedia.org/wiki/Sushi_Taro",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "sushitaro.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Sushi Taro",
+     "search_type": "name",
+     "result_count": 4
+    },
+    {
+     "query": "people at org Sushi Taro (54a1bcf474686945fa10960c)",
+     "search_type": "domain",
+     "result_count": 4
+    },
+    {
+     "query": "people_match Nobu Yamazaki @ sushitaro.com",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Nothing new. Group reservations go to taro@sushitaro.com, already saved. Per Apollo that's manager Jin Yamazaki's inbox; the sheet entry has no name, so add 'Jin Yamazaki, Manager' to it. Owner Nobu Yamazaki has no email in Apollo or on the web. Other Apollo results (Taro Sushi Brooklyn and Brazil) are different businesses and were rejected."
+  },
+  {
+   "venue_id": "VA-REST-3479",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Allison Linane",
+     "title": "Director of Private Events & Sales",
+     "email": "a.linane@villagiogroup.com",
+     "source": "apollo",
+     "source_url": "https://trattoriavillagio.com/about-us",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Pedro De Souza",
+     "title": "General Manager",
+     "email": "p.desouza@villagiogroup.com",
+     "source": "apollo",
+     "source_url": "https://trattoriavillagio.com/about-us",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "trattoriavillagio.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Trattoria Villagio",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at org Trattoria Villagio (55eeb701f3e5bb3c59001827)",
+     "search_type": "domain",
+     "result_count": 19
+    },
+    {
+     "query": "people at owner org Villagio Hospitality Group (villagiogroup.com, 5d659a4a40db970952ae3ade)",
+     "search_type": "domain",
+     "result_count": 40
+    },
+    {
+     "query": "match Allison Linane @ villagiogroup.com",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "match Pedro De Souza (id 64e8c0cbb621280001ba88e7)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Two decision-makers, both named on the venue's own about-us page, with Apollo-verified emails on the owner group's domain villagiogroup.com. The venue's site publishes info@villagiogroup.com as its contact, so allow_off_domain applies. Allison Linane (events director; on LinkedIn 'Events and Sales at Villagio Hospitality Group', at Trattoria Villagio since 2013) and Pedro De Souza (GM; Apollo headline 'General Manager at Trattoria Villagio', based in Clifton). The pipeline had both names but missed the emails because it searched only the venue's own Apollo org, not the owner group's."
+  },
+  {
+   "venue_id": "VA-WINE-2969",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Amy Payette",
+     "title": "Director of Marketing (owners' daughter)",
+     "email": "grayghostvineyards@gmail.com",
+     "source": "websearch",
+     "source_url": "https://www.virginiawine.org/events/live-music-by-john-sweet-at-gray-ghost",
+     "found_on_venue_site": false,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Al Kellert",
+     "title": "Owner / Winemaker",
+     "email": "",
+     "source": "website",
+     "source_url": "https://grayghostvineyards.com/history",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "grayghostvineyards.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Gray Ghost Vineyards",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at org Gray Ghost Vineyards (5592321373696418f615c200)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people keyword 'Gray Ghost Vineyards'",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "bulk_match Amy Payette + Al Kellert @ grayghostvineyards.com",
+     "search_type": "domain",
+     "result_count": 2
+    }
+   ],
+   "summary": "Family winery (Al Kellert, owner/winemaker; Cheryl Kellert died recently). The saved venue gmail grayghostvineyards@gmail.com has no name: Virginia Wine's listing gives it with Amy K Payette (daughter, Director of Marketing per Apollo). Apollo's other emails can't be used: amykpayette@yahoo.com (free-mail the site doesn't link) and replies@grayghostvineyards.com for Al (a newsletter reply inbox). The site has no other emails and no staff page. Name gate passed."
+  },
+  {
+   "venue_id": "VA-COUN-010",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Allison Huppert",
+     "title": "Director of Catering & Events",
+     "email": "allison@rtjgc.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/allison-huppert-0858baa0",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "TJ Ledford",
+     "title": "Director of Food and Beverage",
+     "email": "tledford@rtjgc.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/tj-ledford-1642bb235",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jamie Minniear",
+     "title": "Clubhouse Manager",
+     "email": "jminniear@rtjgc.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/jamie-minniear-b6135516a",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Adam Burkhardt",
+     "title": "Food and Beverage Manager",
+     "email": "aburkhardt@rtjgc.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/adam-burkhardt-034a2b153",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Trever Travis",
+     "title": "Executive Chef",
+     "email": "ttravis@rtjgc.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/trever-travis-56543b13",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "rtjgc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Robert Trent Jones Golf Club",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people at orgs 55ef9246f3e5bb11e50018e2 + 673ab197da359b00014fd0c2 + 670f6a6edcb73000016f33c2",
+     "search_type": "name",
+     "result_count": 70
+    }
+   ],
+   "summary": "5 new decision-makers from Apollo, all Apollo-verified on rtjgc.com: Allison Huppert (Director of Catering & Events, the best person to pitch), TJ Ledford (Director of F&B), Jamie Minniear (Clubhouse Manager), Adam Burkhardt (F&B Manager), Trever Travis (Executive Chef). Existing contacts are correct (mfreitag = Matt Freitag, Director of Golf; nicky = Nicole McIlvaine, Membership & Marketing Director). No facebook/instagram: the private club's own policy bans social media about the club (rtjgc.com/technology-and-social-media) and its site links none. The only site form is a member /survey, not a contact form."
+  },
+  {
+   "venue_id": "VA-EVEN-3024",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Aisha Hatami",
+     "title": "Senior Event Consultant (WeddingWire team listing; Apollo: Administrative Coordinator, The Manors VA)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.weddingwire.com/biz/raspberry-plain-manor-leesburg/8cd259e62ce47450.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Alida Hamilton",
+     "title": "Venue Supervisor",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.weddingwire.com/biz/raspberry-plain-manor-leesburg/8cd259e62ce47450.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Patty Frank",
+     "title": "Event Consultant/Manager, Foxchase Manor and Rose Hill Manor (sister venues, The Manors VA)",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/patty-frank-02084746",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "raspberryplainmanor.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Raspberry Plain Manor",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "themanorsva.com (group mail domain used by the venue site)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Manors VA",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people at org Raspberry Plain + Foxchase Manor(themanorsva.com)",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "people at galacuisine.com/foxchasemanor.com/rosehillmanor.com/middleburgmanor.com",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "match Aisha Hatami / Alida Hamilton / Laura Kim @themanorsva.com",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "match Patty Frank (Foxchase Manor and Rose Hill Manor)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "No saveable email. Venue is one of six run by The Manors, LLC (themanorsva.com); every site (Raspberry Plain, Rose Hill, Foxchase, Middleburg, group site, sitemaps) publishes only info@ inboxes. Named staff found (Aisha Hatami, Senior Event Consultant; Alida Hamilton, Venue Supervisor; Patty Frank, event consultant at sister venues; Laura Kim, coordinator in testimonials; owner Maria Gu***a in Apollo) but Apollo has no email for any of them. sammy@galacuisine.com appears only in Squarespace account metadata on foxchasemanor.com, not as a published contact: not saveable. Socials/form already on file."
+  },
+  {
+   "venue_id": "VA-EVEN-3022",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Margaret Salazar-Porzio",
+     "title": "Executive Director of Oatlands",
+     "email": "msalazar-porzio@savingplaces.org",
+     "source": "apollo",
+     "source_url": "https://oatlands.org/margaret-salazar-porzio-ph-d/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Lori Kimball",
+     "title": "Senior Manager of Programs and Education",
+     "email": "",
+     "source": "website",
+     "source_url": "https://oatlands.org/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "oatlands.org",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Oatlands",
+     "search_type": "name",
+     "result_count": 26
+    },
+    {
+     "query": "people @ oatlands.org (combined domain people search)",
+     "search_type": "domain",
+     "result_count": 5
+    },
+    {
+     "query": "Salazar-Porzio (keyword people search)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "savingplaces.org + Oatlands",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Lori Kimball @ savingplaces.org (people_match)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The National Trust (savingplaces.org) has run Oatlands since 2024, and the venue's own site publishes savingplaces.org staff email (tdrash@ on /admission-hours/photography-rentals/), so that domain counts as the venue's. Apollo lists Executive Director Margaret Salazar-Porzio under the National Trust org, not under the Oatlands org: msalazar-porzio@savingplaces.org, Apollo verified, high match confidence. The site names no rentals or wedding coordinator: weddings are case by case through info@oatlands.org (a general inbox). Rejected in the name gate: Oatlands Park Hotel (UK), Oatlands Golf Club (AU), etc."
+  },
+  {
+   "venue_id": "VA-REST-3480",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Priyank Vira",
+     "title": "General Manager / President",
+     "email": "pvira@celebrationva.com",
+     "source": "apollo",
+     "source_url": "https://northernvirginiamag.com/food/reviews/2020/09/04/celebration-by-rupa-vira-brings-a-taste-of-whimsy-to-indian-cuisine-in-ashburn/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rupa Vira",
+     "title": "Chef / Owner",
+     "email": "rupa.vira@celebrationva.com",
+     "source": "apollo",
+     "source_url": "https://celebrationva.com/catering/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "celebrationva.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Celebration by Rupa Vira",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people at org 674b185415f7240001850ea0 (Celebration by Rupa Vira)",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "bulk_match Priyank/Rupa/Sharad Vira @celebrationva.com",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Existing GM Sheila Desai passes the name-match gate (Apollo org = this venue; press/reviews name 'Sheila' on the team). Added owner-family: Priyank Vira (GM per NoVa Mag 2020, Apollo President, pvira@ verified) and Chef-owner Rupa Vira (rupa.vira@ verified). Both via Apollo, on the venue domain (domain is catch-all; Apollo verdict allow). Site has no published emails beyond contact@ (general). Sharad Vira (co-owner per Patch) not in Apollo."
+  },
+  {
+   "venue_id": "VA-WINE-2962",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jean Schneider",
+     "title": "Barrel Club / Membership (Apollo matched jean@ to her with low confidence; email left off so a guessed name is not attached)",
+     "email": "",
+     "source": "apollo",
+     "source_url": "https://www.effinghammanor.com/barrel-club",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "effinghammanor.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Effingham Manor",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people @ effinghammanor.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people keyword 'Effingham Manor' (1 hit: The Manor Tavern bartender, rejected: different business)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match jean@effinghammanor.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "All 4 saved contacts pass the name gate: Jennifer Villatoro, Events Director (named on the /weddings page; events@ + jennifer@), Chris Pearmund, managing partner (the site says he and his partners bought the estate in 2015), and jean@. The saved jean@ (barrel club) has no name; Apollo matches it to Jean Schneider (low confidence). FYI: the whole Meriwether/Pearmund portfolio, Effingham included, has been for sale since July 2026, so the owners may change. No new emails."
+  },
+  {
+   "venue_id": "MD-REST-3383",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Caroline Benkert",
+     "title": "Proprietor",
+     "email": "cbenkert@restaurantsassafras.com",
+     "source": "apollo",
+     "source_url": "https://www.restaurantsassafras.com/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Paul Edward",
+     "title": "Chef and Proprietor",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.restaurantsassafras.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "eat@restaurantsassafras.com",
+     "reason": "Not wrong-business (venue's own domain), but the saved name 'Authorized Customers' is not a person and eat@ is the restaurant's general inbox (used on the FAQ for allergy notes and ticket transfers). Fails the general-inbox / real-name rule; review rather than auto-delete. Proprietors are Paul Edward and Caroline Benkert."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "restaurantsassafras.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Sassafras (Maryland)",
+     "search_type": "name",
+     "result_count": 3
+    },
+    {
+     "query": "people at domain restaurantsassafras.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Sassafras Betterton (people keywords)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Paul Edward Sassafras (people keywords)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "bulk_match Paul Edward / Caroline Benkert @restaurantsassafras.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "Site names Paul Edward (Chef & Proprietor) and Caroline Benkert (Proprietor). Apollo match returned cbenkert@restaurantsassafras.com (verified, not catch-all) - email is on the venue's own domain and the person is named on the venue site, though Apollo wrongly links her to an unrelated 'Sassafras' software/eatery org in NH (the 3 Maryland name-search orgs - a marina, a farm, a lounge - are all different businesses, rejected). No email for Paul Edward. No Facebook page found for the Betterton restaurant (only other Sassafras pages); left empty. Saved eat@ contact named 'Authorized Customers' is a general inbox with a fake name."
+  },
+  {
+   "venue_id": "MD-REST-3387",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Loic Jaffres",
+     "title": "Chef/Owner (original; site may be stale)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.cafedesartistes.ws/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "cafedesartistes.ws",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Cafe des Artistes (HQ Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people keyword 'Cafe des Artistes' in Maryland",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "LIKELY CLOSED. Café des Artistes was at 41655 Fenwick St (the historic Duke Building). Social Coffeehouse & Cocktail Bar (owner Sean Coogan) moved into the Duke Building at that address in April 2024 (thebaynet.com 'the new social coffeehouse is here'; visitstmarysmd.com). A 2016 report said the Jaffres sold to Chef Brian Wilson. cafedesartistes.ws is an old static site: no emails, no contact page, no socials. Apollo has no org (one line cook). Nothing to save; consider parking or removing the venue."
+  },
+  {
+   "venue_id": "VA-REST-3477",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Louis Patierno",
+     "title": "Chef / Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.middleburglife.com/?p=3371",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Lydia Patierno",
+     "title": "Owner (front of house)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.middleburglife.com/?p=3371",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "girasoleva.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Girasole (Virginia)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people domain girasoleva.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people at org Panino Restaurant (girasole-panino.com, the owners' earlier restaurant)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "match Louis Patierno / Lydia Patierno",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "No saveable contact. The owners are Lou and Lydia Patierno ('Chef Lou' and 'Lydia' on the site, full names from the press). Apollo gives Lou info@girasoleva.com (a general inbox) and Lydia l.patierno@girasole-panino.com, which is off-domain: that domain belongs to their old restaurant Panino, its site errors (520) and it has no MX record, so it's likely dead. A sitemap crawl of girasoleva.com found no other email. The site has only an HTML contact form (on file)."
+  },
+  {
+   "venue_id": "MD-EVEN-3047",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "mountharmon.org",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Mount Harmon",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people @ mountharmon.org (combined domain people search)",
+     "search_type": "domain",
+     "result_count": 0
+    }
+   ],
+   "summary": "Nothing new. The staff page lists only Paige Howard (ED), Pamela Hamlen and Lois Sessa, all already saved. Weddings and rentals go only to info@mountharmon.org (a general inbox), and the site names no wedding coordinator (the 'day-of coordinator' is a package item, not a named person). The wedding-book PDFs are image-only and couldn't be OCR'd here because of the broken Intel poppler. Apollo has the org 'FRIENDS OF MOUNT HARMON INC' (matches) but no people; Mount Harmony Baptist Church was rejected. The board (Stephen Isaacson, President, etc.) has no emails."
+  }
+ ]
+}

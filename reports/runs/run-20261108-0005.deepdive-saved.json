@@ -1,0 +1,506 @@
+{
+ "run_id": "run-20261108-0005",
+ "dry_run": false,
+ "at": "2026-11-08T02:46:55-05:00",
+ "totals": {
+  "saved": 11,
+  "venues_rescued": 1,
+  "socials": 0,
+  "rejected": 3,
+  "errors": 0,
+  "flagged": 9
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-REST-2869",
+   "name": "Mayd\u0101n",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Rose Previte",
+     "source_url": "apollo person 6a116c218a9dc40001d93b17",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Chris Walker",
+     "source_url": "apollo person 5ab9a7a4a6da98b770c4c828",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Drew Hairston",
+     "source_url": "apollo person 5de04f8899079c0001552756",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "meet@maydandc.com",
+     "reason": "General inbox (meet@ is the site-wide contact address) saved with no person name and title \"Chef\"; not a person contact under the save policy. Same business, so not wrong-business: review only."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-PRIV-2897",
+   "name": "Engineers Club at the Garrett-Jacobs Mansion (Engineering Society of Baltimore)",
+   "contacts": [
+    {
+     "email": "jonathan@esb.org",
+     "name": "Jonathan Williams",
+     "source_url": "https://www.esb.org/about-the-esb/personnel",
+     "outcome": "rejected:zerobounce_invalid"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "associatesocietycouncilesb@verizon.net",
+     "reason": "Not a person ('Society Council') and off-domain verizon.net: the ESB Associate Society Council (a body of affiliated engineering societies), not club/venue staff"
+    },
+    {
+     "email": "heritage@esb.org",
+     "reason": "No person name: Garrett-Jacobs Mansion Endowment Fund function inbox; the trustees page names no one who runs it"
+    },
+    {
+     "email": "dale@esb.org",
+     "reason": "Stale, not wrong-business: Dale Whitehead was Executive Director around 2016 (esb.org Organ Committee event page); the current personnel page lists J Austin Bitner as Executive Director"
+    },
+    {
+     "email": "jon@esb.org",
+     "reason": "Possibly stale: not on the current personnel page, which gives the sous chef as Jonathan Williams at jonathan@esb.org; it validated in ZeroBounce, so keep unless it bounces"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3385",
+   "name": "Tagliata",
+   "contacts": [
+    {
+     "email": "emma.hoey@atlasrestaurantgroup.com",
+     "name": "Emma Hoey",
+     "source_url": "apollo person 57d702ffa6da98290601e82c; https://www.tagliatarestaurant.com/live-music/ (performer inquiries go to music@atlasrestaurantgroup.com)",
+     "title": "Entertainment Manager, Atlas Restaurant Group (books Tagliata's live music)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3386",
+   "name": "The Black Olive",
+   "contacts": [
+    {
+     "email": "stelios@theblackolive.com",
+     "name": "Stelios Spiliadis",
+     "source_url": "http://www.linkedin.com/in/stelios-spiliadis-6914a435",
+     "title": "Partner / Co-owner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Connie Fulco",
+     "source_url": "http://www.linkedin.com/in/connie-fulco-5470aa7a",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3382",
+   "name": "The Ruxton",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3389",
+   "name": "Azumi",
+   "contacts": [
+    {
+     "email": "april@atlasrestaurantgroup.com",
+     "name": "April Lichtenberg",
+     "source_url": "https://azumirestaurant.com/baltimore/wp-content/uploads/sites/2/2026/02/Azumi_PDB_012626.pdf",
+     "title": "Private Dining Sales (Atlas Restaurant Group), booking contact in Azumi Baltimor",
+     "verified": "valid",
+     "outcome": "duplicate:MD-REST-3382"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "houston@azumirestaurant.com",
+     "reason": "Inbox of the Houston location (from https://azumirestaurant.com/houston/contact/), not Azumi Baltimore. The name 'Azumi Houston' is the location name, not a person. The pipeline itself rejected it as other_location_inbox, but postcheck saved it anyway."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3384",
+   "name": "Cinghiale",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Tony Foreman",
+     "source_url": "https://www.cgeno.com/our-people",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3381",
+   "name": "Charleston Restaurant",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-MUSE-1674",
+   "name": "Historic London Town & Gardens",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "londontown@historiclondontown.org",
+     "reason": "General inbox: the only address on the contact page, with no person attached; general inboxes are never saved"
+    },
+    {
+     "email": "developmentdirector@historiclondontown.org",
+     "reason": "No person name: role inbox; the current staff page lists no Development Director"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-EVEN-3048",
+   "name": "The Grand Baltimore",
+   "contacts": [
+    {
+     "email": "bmyers@thegrandbaltimore.com",
+     "name": "Bernard Myers",
+     "source_url": "http://www.linkedin.com/in/bernard-myers-14b59655",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Eric Diaz",
+     "source_url": "http://www.linkedin.com/in/eric-diaz-a1767412a",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3388",
+   "name": "Peerce's",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Binda Singh",
+     "source_url": "https://peerces.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Keir Singh",
+     "source_url": "https://peerces.com/about-us",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3045",
+   "name": "The Liriodendron",
+   "contacts": [
+    {
+     "email": "bkupferman@liriodendron.com",
+     "name": "Brenna Kupferman",
+     "source_url": "https://liriodendron.com/about-2/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-MUSE-008",
+   "name": "Gunston Hall",
+   "contacts": [
+    {
+     "email": "nicole.ryan@gunstonhall.org",
+     "name": "Nicole Ryan",
+     "source_url": "https://gunstonhall.org/visit/venue-rental/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2868",
+   "name": "Sushi Taro",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Nobu Yamazaki",
+     "source_url": "apollo person 54a4c6ff7468692cf072a362; en.wikipedia.org/wiki/Sushi_Taro",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3479",
+   "name": "Trattoria Villagio",
+   "contacts": [
+    {
+     "email": "a.linane@villagiogroup.com",
+     "name": "Allison Linane",
+     "source_url": "https://trattoriavillagio.com/about-us",
+     "title": "Director of Private Events & Sales",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "p.desouza@villagiogroup.com",
+     "name": "Pedro De Souza",
+     "source_url": "https://trattoriavillagio.com/about-us",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-WINE-2969",
+   "name": "Gray Ghost Vineyards",
+   "contacts": [
+    {
+     "email": "grayghostvineyards@gmail.com",
+     "name": "Amy Payette",
+     "source_url": "https://www.virginiawine.org/events/live-music-by-john-sweet-at-gray-ghost",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Al Kellert",
+     "source_url": "https://grayghostvineyards.com/history",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-COUN-010",
+   "name": "Robert Trent Jones Golf Club",
+   "contacts": [
+    {
+     "email": "allison@rtjgc.com",
+     "name": "Allison Huppert",
+     "source_url": "http://www.linkedin.com/in/allison-huppert-0858baa0",
+     "title": "Director of Catering & Events",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "tledford@rtjgc.com",
+     "name": "TJ Ledford",
+     "source_url": "http://www.linkedin.com/in/tj-ledford-1642bb235",
+     "title": "Director of Food and Beverage",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "jminniear@rtjgc.com",
+     "name": "Jamie Minniear",
+     "source_url": "http://www.linkedin.com/in/jamie-minniear-b6135516a",
+     "title": "Clubhouse Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "aburkhardt@rtjgc.com",
+     "name": "Adam Burkhardt",
+     "source_url": "http://www.linkedin.com/in/adam-burkhardt-034a2b153",
+     "title": "Food and Beverage Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "ttravis@rtjgc.com",
+     "name": "Trever Travis",
+     "source_url": "http://www.linkedin.com/in/trever-travis-56543b13",
+     "title": "Executive Chef",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-EVEN-3024",
+   "name": "Raspberry Plain Manor",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Aisha Hatami",
+     "source_url": "https://www.weddingwire.com/biz/raspberry-plain-manor-leesburg/8cd259e62ce47450.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Alida Hamilton",
+     "source_url": "https://www.weddingwire.com/biz/raspberry-plain-manor-leesburg/8cd259e62ce47450.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Patty Frank",
+     "source_url": "http://www.linkedin.com/in/patty-frank-02084746",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-EVEN-3022",
+   "name": "Oatlands",
+   "contacts": [
+    {
+     "email": "msalazar-porzio@savingplaces.org",
+     "name": "Margaret Salazar-Porzio",
+     "source_url": "https://oatlands.org/margaret-salazar-porzio-ph-d/",
+     "title": "Executive Director of Oatlands",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Lori Kimball",
+     "source_url": "https://oatlands.org/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3480",
+   "name": "Celebration by Rupa Vira",
+   "contacts": [
+    {
+     "email": "pvira@celebrationva.com",
+     "name": "Priyank Vira",
+     "source_url": "https://northernvirginiamag.com/food/reviews/2020/09/04/celebration-by-rupa-vira-brings-a-taste-of-whimsy-to-indian-cuisine-in-ashburn/",
+     "title": "General Manager / President",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "rupa.vira@celebrationva.com",
+     "name": "Rupa Vira",
+     "source_url": "https://celebrationva.com/catering/",
+     "outcome": "rejected:zerobounce_invalid"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-WINE-2962",
+   "name": "Effingham Manor",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jean Schneider",
+     "source_url": "https://www.effinghammanor.com/barrel-club",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3383",
+   "name": "Sassafras",
+   "contacts": [
+    {
+     "email": "cbenkert@restaurantsassafras.com",
+     "name": "Caroline Benkert",
+     "source_url": "https://www.restaurantsassafras.com/",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Paul Edward",
+     "source_url": "https://www.restaurantsassafras.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "eat@restaurantsassafras.com",
+     "reason": "Not wrong-business (venue's own domain), but the saved name 'Authorized Customers' is not a person and eat@ is the restaurant's general inbox (used on the FAQ for allergy notes and ticket transfers). Fails the general-inbox / real-name rule; review rather than auto-delete. Proprietors are Paul Edward and Caroline Benkert."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3387",
+   "name": "Caf\u00e9 des Artistes",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Loic Jaffres",
+     "source_url": "https://www.cafedesartistes.ws/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3477",
+   "name": "Girasole",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Louis Patierno",
+     "source_url": "https://www.middleburglife.com/?p=3371",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Lydia Patierno",
+     "source_url": "https://www.middleburglife.com/?p=3371",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3047",
+   "name": "Mount Harmon Plantation",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  }
+ ]
+}

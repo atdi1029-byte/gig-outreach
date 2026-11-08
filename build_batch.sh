@@ -298,7 +298,10 @@ def site_key(url):
     if reg in R.SHARED_BRAND_DOMAINS or reg in OFFICIAL_PARENT_DOMAINS:
         u = re.sub(r'^[a-z]+://', '', (url or '').strip().lower()).split('?')[0].split('#')[0]
         u = re.sub(r'^www\.', '', u).rstrip('/')
-        return u if '/' in u else ''    # bare brand homepage identifies nothing
+        if '/' in u:
+            return u
+        # its own subdomain identifies it (peabodyevents.library.jhu.edu); the brand homepage doesn't
+        return u if u != reg else ''
     return reg
 
 
@@ -484,7 +487,8 @@ for v in venues:
     host = R.host_of(website)
     if (not re.fullmatch(r'[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}', host or '')
             or R.is_non_venue_host(website) or any(j in host for j in JUNK_SITE_PARTS)
-            or host.endswith(JUNK_TLDS)):
+            or (host.endswith(JUNK_TLDS) and 'website checked' not in str(v.get('notes') or '').lower())):
+        # a .edu/.gov venue checked by hand is real (Nov 8 2026: the Folger, the George Peabody Library)
         skip('junk website', v, host)
         continue
     key = site_key(website)

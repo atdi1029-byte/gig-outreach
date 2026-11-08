@@ -61,7 +61,8 @@ fi
     log() { printf '%s\n' "$*" >> "$OUT/step1.log"; }
     sleep() { :; }
     rand_delay() { :; }
-    verify_and_push() { printf '%s\t%s\t%s\t%s\t%s\t%s\n' "${1:-}" "${2:-}" "${3:-}" "${4:-}" "${5:-}" "${6:-}" >> "$OUT/vp.tsv"; }
+    # Columns 7-8: the domain the address is checked against, and whether the push may be off-domain.
+    verify_and_push() { printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "${1:-}" "${2:-}" "${3:-}" "${4:-}" "${5:-}" "${6:-}" "${VENUE_DOMAIN:-}" "${PUSH_ALLOW_OFF_DOMAIN:-}" >> "$OUT/vp.tsv"; }
     record_candidate() { printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\n' "${1:-}" "${2:-}" "${3:-}" "${4:-}" "${5:-}" "${6:-}" "${7:-}" >> "$OUT/cand.tsv"; }
     # C1 per-venue globals (normally set by run_venue).
     VENUE_NAME="$VNAME"; VENUE_ID="$VID"; VENUE_WEBSITE="$VWEB"; APOLLO_DOMAIN=""

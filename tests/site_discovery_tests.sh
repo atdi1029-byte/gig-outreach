@@ -408,3 +408,37 @@ grep -q 'field=title' "$T/calls" && { echo "FAIL: title written after the name f
 rm -rf "$T"
 unset -f python3
 echo 'PASS: name backfill (fills only empty names that fit the mailbox, reads back)'
+
+# Linked inquiry forms on booking services count whatever the button says; ordering links,
+# menus, scripts and bare credit hosts do not (Fiola, Ama, Middleton Tavern, 7 West; Nov 7 2026).
+/usr/bin/python3 - "$SCRIPT_DIR" <<'PY' 2>/dev/null || { echo "FAIL: linked provider forms"; exit 1; }
+import sys; sys.path.insert(0, sys.argv[1])
+import site_discovery as S
+h = ('<a href="https://fabiotrabocchi.tripleseat.com/party_request/3601">Plan an event</a>'
+     '<a href="https://www.toasttab.com/ama/v3">Order online</a><a href="https://www.toasttab.com/invoice/lead?rx=1">Private events</a>'
+     '<a href="https://form.jotform.com">x</a><a href="https://tmt.spotapps.co/private-parties?spot_id=1">Parties</a>'
+     '<a href="https://tmt.spotapps.co/menu?spot_id=1">Menu</a><script src="https://www.toasttab.com/widget.js"></script>'
+     '<a href="https://static.spotapps.co/web/x--com/custom/catering_menu.pdf">Catering menu</a>')
+got = sorted(f["url"] for f in S.detect_contact_forms(h, "https://x.com/"))
+assert got == ["https://fabiotrabocchi.tripleseat.com/party_request/3601", "https://tmt.spotapps.co/private-parties?spot_id=1",
+               "https://www.toasttab.com/invoice/lead?rx=1"], got
+PY
+echo 'PASS: linked provider forms (Tripleseat, SpotHopper, Toast lead; no ordering/menu/bare-host links)'
+
+# The venue's own mail domain: the same name with/without hyphens counts (mykonosgrill.com
+# for mykonos-grill.com, Nov 7 2026), like the same name under another TLD.
+T=$(mktemp -d)
+eval "$(awk '/^verify_and_push\(\) \{/,/^}/' pipeline.sh)"
+_py_check_email() { echo "$6" > "$T/dom"; printf '%s\x1freject\x1ftest\x1ffalse\x1f\x1f\x1f\x1f\n' "$2"; }
+log() { :; }; record_candidate() { :; }; vap_outcome() { :; }; email_known() { return 1; }; KNOWN_DEFERRED_FILE=/dev/null
+VENUE_SHARED_DOMAIN=false; VENUE_MAIL_ALIAS=""; VENUE_NAME="Mykonos Grill"; OWN_EMAILS=""; OTHER_CITY_TOKENS=""; ERR_LOG=/dev/null
+for c in "manager@mykonosgrill.com mykonos-grill.com mykonosgrill.com" \
+         "a@rollingroadgc.com rollingroadgc.org rollingroadgc.com" \
+         "a@otherplace.com mykonos-grill.com mykonos-grill.com" \
+         "a@ab.com a-b.com a-b.com"; do
+    set -- $c; VENUE_DOMAIN="$2"; : > "$T/dom"
+    verify_and_push "$1" V1 "" "" website venue_site
+    [ "$(cat "$T/dom")" = "$3" ] || { echo "FAIL: $1 on $2 checked against $(cat "$T/dom"), want $3"; exit 1; }
+done
+rm -rf "$T"; unset -f _py_check_email log record_candidate vap_outcome verify_and_push email_known
+echo 'PASS: sibling mail domains (hyphenless name, other TLD)'

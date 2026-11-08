@@ -2833,12 +2833,15 @@
      "page": "https://breadandbutterkitchen.com/contact/",
      "accept": [
       "https://breadandbutterkitchen.com/contact/",
-      "https://breadandbutterkitchen.com/about-the-cafe/"
+      "https://breadandbutterkitchen.com/about-the-cafe/",
+      "https://www.toasttab.com/invoice/lead?rx=799e5299-aa87-4f3e-9eb4-29620f5626c0&ot=a4a1ed86-f0da-4b98-ab95-e1fca31868ed",
+      "https://www.toasttab.com/invoice/lead?rx=799e5299-aa87-4f3e-9eb4-29620f5626c0&ot=af34632a-6af7-4964-acef-030572bcfe0a"
      ],
      "how": [
       "native_form"
      ],
-     "priority": "normal"
+     "priority": "normal",
+     "note": "Nov 7 2026: the Toast catering lead form linked from /catering is an inquiry form, which ranks above /contact/"
     }
    ]
   },
@@ -4049,6 +4052,402 @@
      "kind": "email",
      "value": "trattoriadafranco2022@gmail.com",
      "page": "https://trattoriadafranco305.com/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2854",
+   "name": "Fiola",
+   "website": "https://www.fioladc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://fabiotrabocchi.tripleseat.com/party_request/3601",
+     "page": "https://www.fioladc.com/private-events",
+     "accept": [
+      "https://fabiotrabocchi.tripleseat.com/party_request/3601"
+     ],
+     "providers": [
+      "tripleseat"
+     ],
+     "provider_host": "tripleseat.com",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2876",
+   "name": "Ama",
+   "website": "https://www.amarestaurant.bar/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://www.toasttab.com/invoice/lead?rx=3bd2efbd-3909-490a-8c81-e49a1062c04d",
+     "page": "https://www.amarestaurant.bar/",
+     "accept": [
+      "https://www.toasttab.com/invoice/lead?rx=3bd2efbd-3909-490a-8c81-e49a1062c04d"
+     ],
+     "providers": [
+      "toast"
+     ],
+     "provider_host": "toasttab.com/invoice/lead",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2866",
+   "name": "Isla Restaurant",
+   "website": "https://www.isladc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://app.perfectvenue.com/venues/ISLA/hello",
+     "page": "https://isladc.com/events/",
+     "accept": [
+      "https://app.perfectvenue.com/venues/ISLA/hello"
+     ],
+     "providers": [
+      "perfectvenue"
+     ],
+     "provider_host": "perfectvenue.com",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-748",
+   "name": "Middleton Tavern",
+   "website": "https://middletontavern.com/",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://tmt.spotapps.co/private-parties?spot_id=76089",
+     "page": "https://middletontavern.com/",
+     "accept": [
+      "https://tmt.spotapps.co/private-parties?spot_id=76089"
+     ],
+     "providers": [
+      "spothopper"
+     ],
+     "provider_host": "spotapps.co",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3113",
+   "name": "Cypriana",
+   "website": "https://cypriana.com",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://tmt.spotapps.co/private-parties?spot_id=74692",
+     "page": "https://cypriana.com/baltimore-hampden-cypriana-restaurant-about",
+     "accept": [
+      "https://tmt.spotapps.co/private-parties?spot_id=74692"
+     ],
+     "providers": [
+      "spothopper"
+     ],
+     "provider_host": "spotapps.co",
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-COUN-003",
+   "name": "River Creek Club",
+   "website": "https://www.rivercreekclub.com",
+   "city": "Leesburg",
+   "state": "VA",
+   "category": "country_club",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "Patricia.Wheeling@invitedclubs.com",
+     "name": "Patricia Wheeling",
+     "title": "",
+     "page": "https://www.invitedclubs.com/clubs/river-creek-club/host-an-event",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "off_domain": true
+    },
+    {
+     "kind": "email",
+     "value": "Jeffrey.Darnell@invitedclubs.com",
+     "name": "Jeffrey Darnell",
+     "title": "",
+     "page": "https://www.invitedclubs.com/clubs/river-creek-club/host-an-event",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "off_domain": true
+    },
+    {
+     "kind": "email",
+     "value": "Peter.Miller@invitedclubs.com",
+     "name": "Peter Miller",
+     "title": "",
+     "page": "https://www.invitedclubs.com/clubs/river-creek-club/contact-us",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "off_domain": true
+    },
+    {
+     "kind": "email",
+     "value": "Justin.Schramm@invitedclubs.com",
+     "name": "Justin Schramm",
+     "title": "",
+     "page": "https://www.invitedclubs.com/clubs/river-creek-club/contact-us",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "off_domain": true
+    },
+    {
+     "kind": "email",
+     "value": "Tara.Wagoner@invitedclubs.com",
+     "name": "Tara Wagoner",
+     "title": "",
+     "page": "https://www.invitedclubs.com/clubs/river-creek-club/contact-us",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "off_domain": true
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-EVEN-2602",
+   "name": "Meridian International Center (Meridian House & White-Meyer House)",
+   "website": "https://meridian.org/rental/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "event_venue",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "eventrentals@meridian.org",
+     "name": "Joseph Richter",
+     "title": "Director of Events Sales & Services",
+     "page": "https://meridian.org/rental/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2859",
+   "name": "Elmina",
+   "website": "https://www.elminarestaurant.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "eric@elminarestaurant.com",
+     "name": "Eric Adjepong",
+     "title": "Chef",
+     "page": "https://www.elminarestaurant.com/about",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2345",
+   "name": "Bodkin Yacht Club Inc.",
+   "website": "https://www.bodkinyachtclub.com",
+   "city": "Pasadena",
+   "state": "MD",
+   "category": "yacht_club",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "bodkinycrearcommodore@gmail.com",
+     "page": "https://www.bodkinyachtclub.com/Officers-Board",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "bodkinycvicecommodore@gmail.com",
+     "page": "https://www.bodkinyachtclub.com/Officers-Board",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "bodkinyccommodore@gmail.com",
+     "page": "https://www.bodkinyachtclub.com/Officers-Board",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "bodkinycommodore@gmail.com",
+     "page": "https://www.bodkinyachtclub.com/Officers-Board",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "normal"
+    },
+    {
+     "kind": "email",
+     "value": "bodkinycsecretary@gmail.com",
+     "page": "https://www.bodkinyachtclub.com/Officers-Board",
      "also_on": [],
      "how": [
       "mailto"

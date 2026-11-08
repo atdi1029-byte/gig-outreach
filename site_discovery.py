@@ -753,6 +753,12 @@ FORM_PROVIDERS = {
     "123formbuilder.com": "123formbuilder", "formsite.com": "formsite",
     "honeybook.com": "honeybook", "dubsado.com": "dubsado", "zohopublic.com": "zoho_forms",
     "planningpod.com": "planningpod", "gatherhere.com": "gather", "caterzen.com": "caterzen",
+    "spotapps.co": "spothopper", "toasttab.com": "toast",
+}
+# Services that also host menus and ordering: only their inquiry-form paths count.
+_PROVIDER_PATH_ONLY = {
+    "spothopper": re.compile(r"^/(private-part|catering|event|inquir)[\w-]*/?$", re.I),
+    "toast": re.compile(r"^/invoice/lead", re.I),
 }
 _PROVIDER_URL_RE = re.compile(
     r"""(?:src|href|action)=["']((?:https?:)?//[^"'\s<>]*?(?:%s)[^"'\s<>]*)["']"""
@@ -778,8 +784,17 @@ def detect_contact_forms(html: str, page_url: str) -> List[Dict[str, str]]:
         if not kind and "docs.google.com/forms" in url:
             kind = "google_forms"
         if kind and url not in found:
+            is_js = bool(re.search(r"\.js(?:[?#]|$)", url))
+            pu = urlparse(url)
+            if kind in _PROVIDER_PATH_ONLY and (is_js or (pu.hostname or "").startswith("static.")
+                                                or not _PROVIDER_PATH_ONLY[kind].search(pu.path or "")):
+                continue
+            # A bare provider host (form.jotform.com, www.tripleseat.com) is a credit or
+            # marketing link, not a form.
+            if not is_js and not (pu.path or "").strip("/") and not pu.query:
+                continue
             # A provider's script include means the form is on this page.
-            target = page_url if re.search(r"\.js(?:[?#]|$)", url) else url
+            target = page_url if is_js else url
             found.setdefault(target, {"url": target, "page": page_url, "kind": kind})
     for attrs, body in _FORM_BLOCK_RE.findall(html or ""):
         if _NOT_CONTACT_FORM_RE.search(attrs):

@@ -572,6 +572,8 @@ verify_and_push() {
             local e_label="${edom%.*}" v_label="${VENUE_DOMAIN%.*}"
             e_label="${e_label##*.}"; v_label="${v_label##*.}"
             [ "${#v_label}" -ge 5 ] && [ "$e_label" = "$v_label" ] && [ "${edom##*.}" != "${VENUE_DOMAIN##*.}" ] && mail_dom="$edom"
+            # ... or the same name with/without hyphens (mykonosgrill.com for mykonos-grill.com).
+            [ "${#v_label}" -ge 5 ] && [ "$e_label" != "$v_label" ] && [ "${e_label//-/}" = "${v_label//-/}" ] && mail_dom="$edom"
         fi
     fi
 
@@ -1334,6 +1336,26 @@ safe('forms', function(){
         try { host = new URL(iframeSrcs[j]).hostname; } catch(e){}
         if((FORM_HOSTS.test(host) || /docs\.google\.com\/forms/i.test(iframeSrcs[j])) && !SURVEY.test(iframeSrcs[j])){ pageHasForm = true; formProviders.push(iframeSrcs[j]); }
     }
+    // Inquiry forms the page LINKS to on a booking service, whatever the button says
+    // ("Plan an event" -> fabiotrabocchi.tripleseat.com/party_request/3601, SpotHopper
+    // tmt.spotapps.co/private-parties, Toast /invoice/lead). A bare host is a credit link.
+    var linked = document.querySelectorAll('a[href]');
+    for(var a2=0;a2<linked.length && formProviders.length < 6;a2++){
+        var lu;
+        try { lu = new URL(attr(linked[a2], 'href'), location.href); } catch(e){ continue; }
+        if(!/^https?:$/.test(lu.protocol) || SURVEY.test(lu.href) || formProviders.indexOf(lu.href) > -1) continue;
+        var lh = lu.hostname.toLowerCase(), lp = lu.pathname.replace(/\/+$/, '');
+        // General form builders also host job applications: they need an event word.
+        var builder = /(^|\.)(jotform\.(com|us)|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle)$/.test(lh) || /docs\.google\.com\/forms\/./i.test(lu.href);
+        var eventy = /event|part(y|ies)|private|wedding|cater|banquet|inquir|enquir|book|rental|group/i.test(lu.href + ' ' + textOf(linked[a2], 80));
+        if(builder && !eventy) continue;
+        if((FORM_HOSTS.test(lh) && !/(^|\.)(hubspot\.com|hsforms\.(com|net))$/.test(lh) && (lp || lu.search) && !/^www\.|^(tripleseat|perfectvenue|honeybook|jotform|typeform|wufoo)\.com$/.test(lh))
+           || /docs\.google\.com\/forms\/./i.test(lu.href)
+           || (/(^|\.)spotapps\.co$/.test(lh) && !/^static\./.test(lh) && /^\/(private-part|catering|event|inquir)[\w-]*$/i.test(lp))
+           || (/(^|\.)toasttab\.com$/.test(lh) && /^\/invoice\/lead/i.test(lp))){
+            formProviders.push(lu.href);
+        }
+    }
 });
 var contactForm = '';
 safe('contact_form', function(){
@@ -1900,6 +1922,26 @@ try:
             sh = (urlparse(urljoin(page_url, sc.get("src"))).hostname or "").lower()
             if (FORM_HOSTS.search(sh) and not sh.endswith("hubspot.com")) or re.search(r"(^|\.)hsforms\.(net|com)$", sh):
                 page_has_form = message_form = True; providers.append(page_url.split("#")[0]); break
+        # Inquiry forms the page links to on a booking service, whatever the button says
+        # (Tripleseat party_request, SpotHopper private-parties, Toast invoice/lead). A bare
+        # host is a credit link. Same rule as the Chrome scrape.
+        for a in ([] if survey_page else soup.find_all("a", href=True)):
+            if len(providers) >= 6: break
+            try: lu = urlparse(urljoin(page_url, H.unescape(a.get("href") or "").strip()))
+            except Exception: continue
+            lh, lp, full = (lu.hostname or "").lower(), lu.path.rstrip("/"), lu.geturl()
+            if lu.scheme not in ("http", "https") or SURVEY.search(full) or full in providers: continue
+            # General form builders also host job applications: they need an event word.
+            if (re.search(r"(^|\.)(jotform\.(com|us)|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle)$", lh)
+                    or re.search(r"docs\.google\.com/forms/.", full, re.I)) and \
+                    not re.search(r"event|part(y|ies)|private|wedding|cater|banquet|inquir|enquir|book|rental|group", full + " " + a.get_text(" ")[:80], re.I):
+                continue
+            if ((FORM_HOSTS.search(lh) and not re.search(r"(^|\.)(hubspot\.com|hsforms\.(com|net))$", lh) and (lp or lu.query)
+                    and not re.search(r"^www\.|^(tripleseat|perfectvenue|honeybook|jotform|typeform|wufoo)\.com$", lh))
+                    or re.search(r"docs\.google\.com/forms/.", full, re.I)
+                    or (re.search(r"(^|\.)spotapps\.co$", lh) and not lh.startswith("static.") and re.fullmatch(r"/(private-part|catering|event|inquir)[\w-]*", lp, re.I))
+                    or (re.search(r"(^|\.)toasttab\.com$", lh) and re.match(r"/invoice/lead", lp, re.I))):
+                providers.append(full)
         ckw = re.compile(r"contact|get-in-touch|reach-us|inquir|enquir|request-info|request-a-quote|plan-your-event|book-your-event|book-an-event|event-request")
         for k in list(seen):
             p = k.lower().split("?")[0].split("#")[0]
@@ -2076,6 +2118,9 @@ host = host[4:] if host.startswith("www.") else host
 if u.scheme not in ("http", "https"):
     print("invalid"); sys.exit(0)
 if re.search(r"(^|\.)(tripleseat\.com|perfectvenue\.com|eventtemple\.com|jotform\.com|jotform\.us|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|hsforms\.com|hubspot\.com|honeybook\.com|dubsado\.com|17hats\.com|planningpod\.com|gatherhq\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle)$", host) or "docs.google.com/forms" in url:
+    print("provider"); sys.exit(0)
+if (re.search(r"(^|\.)spotapps\.co$", host) and not host.startswith("static.") and re.fullmatch(r"/(private-part|catering|event|inquir)[\w-]*/?", u.path, re.I)) or \
+        (re.search(r"(^|\.)toasttab\.com$", host) and re.match(r"/invoice/lead", u.path, re.I)):
     print("provider"); sys.exit(0)
 hh = (urlparse(home).hostname or "").lower().replace("www.", "", 1)
 hp = (host + unquote(u.path)).lower()
@@ -2302,12 +2347,21 @@ def hostpath(u):
 home_host = hostpath(home).split("/")[0]
 # Sites the stored website redirects to are the venue's own site too.
 alias_regs = {R.registrable_domain(home)} - {""}
+# A website that redirects into one property's path on a brand domain
+# (rivercreekclub.com -> invitedclubs.com/clubs/river-creek-club): only that path is the venue's.
+home_prefix = ""
+if shared != "true" and R.is_shared_domain(home) and R.registrable_domain(home) != reg:
+    alias_regs, home_host = set(), ""
+    _hp = hostpath(home).lower().rstrip("/")
+    if "/" in _hp: home_prefix = _hp
+brand_reg = R.registrable_domain(home) if home_prefix else ""
 def in_scope(u):
     hp = hostpath(u).lower()
     if shared == "true": return hp.startswith(prefix)
     h = hp.split("/")[0]
     return (h == home_host or h == reg or h.endswith("." + reg) or hp.startswith(prefix)
-            or any(h == a or h.endswith("." + a) for a in alias_regs))
+            or any(h == a or h.endswith("." + a) for a in alias_regs)
+            or bool(home_prefix and (hp.rstrip("/") == home_prefix or hp.startswith(home_prefix + "/"))))
 CDN = re.compile(r"(^|\.)(wixstatic\.com|filesusr\.com|squarespace-cdn\.com|squarespace\.com|wp\.com|weebly\.com|editmysite\.com|godaddysites\.com|img1\.wsimg\.com|wsimg\.com|shopify\.com|cloudfront\.net|amazonaws\.com|googleusercontent\.com)$", re.I)
 CONTACTISH = re.compile(r"contact|get-in-touch|reach|inquir|enquir|about|our-story|who-we-are|team|staff|people|leadership|directory|management|meet|event|private|wedding|banquet|cater|dining|group|meeting|part(y|ies)|celebrat|rental|book", re.I)
 STATE = re.compile(r"-(md|va|dc|pa|de|wv|ny|ca|fl|tx|nc|sc|ga|oh|il|ma|nj|ct|ri|nh|vt|me|mi|wi|mn|ia|mo|ks|ne|sd|nd|mt|wy|co|ut|nv|id|or|wa|ak|hi|al|ms|tn|ky|in|ar|la|ok|nm|az)$")
@@ -2354,6 +2408,8 @@ def form_rank(page_url, form_url=""):
     segs = [x for x in urlsplit(page_url).path.lower().split("/") if x]
     if NOTFORM.search(urlsplit(page_url).path) or SURVEY.search(urlsplit(page_url).path) or SURVEY.search(form_url or ""):
         return 9
+    if re.search(r"job|career|employment|hiring", urlsplit(page_url).path, re.I):
+        return 9                     # a job application form (supradc.com/-job-listings)
     if "questionnaire" in (urlsplit(page_url).path + " " + (form_url or "")).lower():
         return 4                     # can be a wedding inquiry, but never beats a contact page
     if len(segs) >= 2 and segs[0] in LISTING:
@@ -2413,7 +2469,10 @@ if os.path.exists(crawl_f):
         for f in cd.get("contact_forms", []) or []:
             fu, fp = str(f.get("url") or ""), str(f.get("page") or f.get("url") or "")
             if not fu or not (in_scope(fp) or f.get("kind") != "html_form"): continue
-            forms.append((form_rank(fp, fu), fu))
+            fr = form_rank(fp, fu)
+            # The page carries a booking service's form widget (Tripleseat's ts_script.js): an inquiry form.
+            if 0 < fr < 4 and f.get("kind") not in ("html_form", "form_widget"): fr = 0
+            forms.append((fr, fu))
         cov = cd.get("coverage") or {}
         kinds.update(cov.get("page_kinds_visited") or [])
         flags = [k for k in ("blocked", "throttled", "time_budget_exceeded") if cov.get(k)]
@@ -2547,10 +2606,13 @@ def other_loc_page(u):
 # ---- Pages that list other businesses (a "Trusted Partners" vendor list, a press page):
 # 2+ outside addresses on one page. A free-mail or off-domain address seen only on such
 # pages is theirs, not the venue's (Level A's wedding photographer, Sep 26).
+# A free-mail address carrying the venue's name is the venue's own (a club's officers page:
+# bodkinyccommodore@gmail.com, bodkinycsecretary@gmail.com ...), so it never makes a list.
 _page_ext = _dd(set)
 for _e, _r in emails.items():
     _dreg = R.registrable_domain(_e.split("@", 1)[1]) if "@" in _e else ""
-    if _dreg and _dreg not in (reg, mail_alias) and not any(_dreg == a for a in alias_regs):
+    if _dreg in R.FREEMAIL_DOMAINS and any(t in _e.split("@", 1)[0] for t in R.venue_name_tokens(venue) - R._GENERIC_VENUE_WORDS): continue
+    if _dreg and _dreg not in (reg, mail_alias, brand_reg) and not any(_dreg == a for a in alias_regs):
         for _u, _m, _k in _r["hits"]:
             _page_ext[_u].add(_e)
 LIST_PAGES = {u for u, ext in _page_ext.items() if len(ext) >= 2}
@@ -2597,7 +2659,7 @@ for e, r in sorted(emails.items()):
         print("DROP\x1f%s\x1fother_location_page\x1f%s" % (e, scoped[0][0]))
         continue
     _edreg = R.registrable_domain(e.split("@", 1)[1]) if "@" in e else ""
-    if _edreg not in (reg, mail_alias) and not any(_edreg == a for a in alias_regs):
+    if _edreg not in (reg, mail_alias, brand_reg) and not any(_edreg == a for a in alias_regs):
         # an outside address counts as the venue's only from pages that aren't lists
         scoped = [x for x in scoped if x[0] not in LIST_PAGES] or \
             [(u, m, k, "external") for u, m, k, _ in scoped]
@@ -2605,7 +2667,7 @@ for e, r in sorted(emails.items()):
     if any(ev2 == "venue_site" for _, _, _, ev2 in scoped): ev = "venue_site"
     if any(m and ev2 == "venue_site" and (is_home(u) or CONTACTISH.search(urlsplit(u).path)) for u, m, _, ev2 in scoped): ev = "venue_mailto"
     src = next((u for u, m, _, _ in scoped if m), scoped[0][0])
-    if not r["name"] and shared != "true" and (_edreg in (reg, mail_alias) or _edreg in alias_regs):
+    if not r["name"] and shared != "true" and (_edreg in (reg, mail_alias, brand_reg) or _edreg in alias_regs):
         runner = runner_of(e)
         if runner:
             r["name"], r["title"] = runner
@@ -3140,7 +3202,7 @@ PYEOF
     # unconfirmed contact_form; an inquiry form (rank 0: inquiry/RFP page or an inquiry
     # service such as Tripleseat) also beats a general contact form.
     local cf_inquiry="no"
-    printf '%s' "$contact_form" | grep -qiE 'inquir|enquir|rfp|tripleseat|perfectvenue|honeybook|eventtemple|jotform|typeform' && cf_inquiry="yes"
+    printf '%s' "$contact_form" | grep -qiE 'inquir|enquir|rfp|tripleseat|perfectvenue|honeybook|eventtemple|jotform|typeform|spotapps\.co/(private-part|catering)|toasttab\.com/invoice/lead' && cf_inquiry="yes"
     if [ -n "$form_found" ] && [ "$form_found" != "$contact_form" ] && \
        { [ -z "$contact_form" ] || { [ "$cf_confirmed" != "yes" ] && [ "$cf_inquiry" != "yes" ]; } || \
          { [ "$form_rank" = "0" ] && [ "$cf_inquiry" != "yes" ]; }; }; then
@@ -3166,11 +3228,18 @@ PYEOF
 
     # The stored website may redirect to another domain (ameliedc.com -> ameliewinebar.com):
     # that domain is the venue's own site, so its addresses are on-domain.
-    local final_reg=""
+    # A redirect into one property's path on a brand domain (rivercreekclub.com ->
+    # invitedclubs.com/clubs/river-creek-club) counts for the addresses on that path's
+    # pages only (the decide step scoped them), never for Apollo or LinkedIn finds.
+    local final_reg="" final_brand=""
     if [ -n "$home_final" ] && [ "$site_shared" != "true" ]; then
-        final_reg=$(pyrun web_final_reg python3 -c 'import sys; sys.path.insert(0, sys.argv[1]); import outreach_rules as R; d = R.registrable_domain(sys.argv[2]); print("" if (R.is_shared_domain(d) or R.is_non_venue_host(d)) else d)' "$SCRIPT_DIR" "$home_final")
-        [ "$final_reg" = "$site_reg" ] && final_reg=""
-        [ -n "$final_reg" ] && log "  [WEB] Website redirects to $final_reg — its addresses count as the venue's own domain"
+        IFS=' ' read -r final_reg final_brand <<< "$(pyrun web_final_reg python3 -c 'import sys; from urllib.parse import urlsplit; sys.path.insert(0, sys.argv[1]); import outreach_rules as R; d = R.registrable_domain(sys.argv[2]); prop = R.is_shared_domain(d) and urlsplit(sys.argv[2]).path.strip("/") != ""; print("" if (R.is_non_venue_host(d) or (R.is_shared_domain(d) and not prop)) else d + (" brand" if prop else ""))' "$SCRIPT_DIR" "$home_final")"
+        [ "$final_reg" = "$site_reg" ] && final_reg="" && final_brand=""
+        if [ -n "$final_brand" ]; then
+            log "  [WEB] Website redirects to its own page on $final_reg — addresses on that page count as the venue's own"
+        elif [ -n "$final_reg" ]; then
+            log "  [WEB] Website redirects to $final_reg — its addresses count as the venue's own domain"
+        fi
     fi
     if [ -z "$final_reg" ] && [ -n "$alias_reg" ] && [ "$site_shared" != "true" ]; then
         final_reg="$alias_reg"
@@ -3178,6 +3247,7 @@ PYEOF
     fi
     # Apollo, LinkedIn and social finds on that domain count too (verify_and_push).
     VENUE_MAIL_ALIAS="$final_reg"
+    [ -n "$final_brand" ] && VENUE_MAIL_ALIAS=""
     export VENUE_MAIL_ALIAS
 
     # Dedupe by email and verify+push each contact with name/title and evidence (C2).

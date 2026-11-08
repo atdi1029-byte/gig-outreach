@@ -1,0 +1,92 @@
+{
+  "created": "2026-11-07 18:11:00",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "club": 5,
+    "hotel": 1,
+    "wine": 5,
+    "wild": 13,
+    "fine_dining": 1
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-1810/batch_01.json",
+      "venue_ids": [
+        "DC-PRIV-115",
+        "DC-PRIV-114",
+        "DC-HOTE-2676",
+        "DC-WINE-2610",
+        "DC-WINE-2609",
+        "MD-WINE-2908",
+        "DC-MUSI-002",
+        "VA-WINE-2963"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-1810/batch_02.json",
+      "venue_ids": [
+        "VA-WINE-2965",
+        "MD-COUN-1334",
+        "DC-REST-2856",
+        "DC-HOTE-2678",
+        "MD-COUN-1333",
+        "DC-MUSI-001",
+        "MD-COUN-1332",
+        "MD-HOTE-3006"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-1810/batch_03.json",
+      "venue_ids": [
+        "DC-REST-2846",
+        "DC-REST-2867",
+        "DC-REST-2862",
+        "DC-REST-2870",
+        "DC-REST-2850",
+        "DC-REST-2872",
+        "DC-REST-2861",
+        "DC-REST-2851"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-1810/batch_04.json",
+      "venue_ids": [
+        "DC-REST-2857"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "DC-PRIV-115",
+    "DC-PRIV-114",
+    "DC-HOTE-2676",
+    "DC-WINE-2610",
+    "DC-WINE-2609",
+    "MD-WINE-2908",
+    "DC-MUSI-002",
+    "VA-WINE-2963",
+    "VA-WINE-2965",
+    "MD-COUN-1334",
+    "DC-REST-2856",
+    "DC-HOTE-2678",
+    "MD-COUN-1333",
+    "DC-MUSI-001",
+    "MD-COUN-1332",
+    "MD-HOTE-3006",
+    "DC-REST-2846",
+    "DC-REST-2867",
+    "DC-REST-2862",
+    "DC-REST-2870",
+    "DC-REST-2850",
+    "DC-REST-2872",
+    "DC-REST-2861",
+    "DC-REST-2851",
+    "DC-REST-2857"
+  ]
+}

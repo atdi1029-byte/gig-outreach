@@ -193,7 +193,10 @@
     "zero": 9,
     "new_contacts": 40,
     "unfinished": 0,
-    "ended": "08:45"
+    "ended": "08:45",
+    "rescued_contacts": 3,
+    "rescued_venues": 1,
+    "deep_dive": "done"
    }
   ],
   "note": "Five scraper fixes from the last four rounds, no benchmark losses: linked event-inquiry forms (Tripleseat, SpotHopper, Toast), sites that redirect to their own page on a brand domain (River Creek's 5 staff), club officer Gmail addresses, and hyphen-sibling mail domains; no new taste votes."
@@ -264,5 +267,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-08T08:45:35-05:00"
+ "updated_at": "2026-11-08T08:57:02-05:00"
 }

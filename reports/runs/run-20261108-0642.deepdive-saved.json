@@ -1,0 +1,521 @@
+{
+ "run_id": "run-20261108-0642",
+ "dry_run": false,
+ "at": "2026-11-08T08:57:02-05:00",
+ "totals": {
+  "saved": 3,
+  "venues_rescued": 1,
+  "socials": 0,
+  "rejected": 8,
+  "errors": 1,
+  "flagged": 7
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "MD-REST-3378",
+   "name": "Yasou Greek Bistro",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1466",
+   "name": "Dominion Valley Country Club",
+   "contacts": [
+    {
+     "email": "whitney.gerritzen@clubcorp.com",
+     "name": "Whitney Gerritzen",
+     "source_url": "https://www.invitedclubs.com/clubs/dominion-valley-country-club/contact-us",
+     "outcome": "rejected:off_domain:clubcorp.com!=invitedclubs.com"
+    },
+    {
+     "email": "john.cegielski@invitedclubs.com",
+     "name": "John Cegielski",
+     "source_url": "https://www.invitedclubs.com/clubs/dominion-valley-country-club/contact-us",
+     "outcome": "rejected:shared_brand_domain:invitedclubs.com"
+    },
+    {
+     "email": "dermot.mulvihill@invitedclubs.com",
+     "name": "Dermot Mulvihill",
+     "source_url": "https://www.invitedclubs.com/clubs/dominion-valley-country-club/host-an-event/meetings-events",
+     "outcome": "rejected:shared_brand_domain:invitedclubs.com"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-WINE-2943",
+   "name": "Rappahannock Cellars",
+   "contacts": [
+    {
+     "email": "",
+     "name": "John Hagarty",
+     "source_url": "apollo:557035127369645faf5a1200",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2832",
+   "name": "Eurostars St Gregory",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Pablo Jim\u00e9nez Rueda",
+     "source_url": "http://www.linkedin.com/in/pablo-jim%c3%a9nez-rueda-6620491a8",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Laia Ca\u00f1as",
+     "source_url": "https://www.tagvenue.com/us/venues/washington/69295/eurostars-st-gregory",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Hung Nguyen",
+     "source_url": "http://www.linkedin.com/in/hung-nguyen-0826843b",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-954",
+   "name": "Praline at Glen Echo",
+   "contacts": [
+    {
+     "email": "susan@praline-bakery.com",
+     "name": "Susan Limb",
+     "source_url": "https://www.dcoutlook.com/2016/04/praline-to-open-at-glen-echo-park.html",
+     "outcome": "rejected:off_domain:praline-bakery.com!=pralinecafe.com"
+    },
+    {
+     "email": "pralineglenecho@gmail.com",
+     "name": "David McConnell",
+     "source_url": "https://glenechopark.org/praline",
+     "outcome": "rejected:freemail_unlinked"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2331",
+   "name": "West River Yacht Harbour",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "sitkabarr@aol.com",
+     "reason": "James Barr is a private slip owner advertising slip AO-13 for rent on the Sales/Rentals page ('Call James Barr 541.420.1574 or Email sitkabarr@aol.com'), not harbour staff and not a venue decision-maker"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-343",
+   "name": "Hook & Vine Kitchen and Bar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Andrew Piatek",
+     "source_url": "apollo org 673703c70e6ecf0001741227",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-918",
+   "name": "Mamma Lena Trattoria",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Giovanni Varriale",
+     "source_url": "https://mammalenatrattoria.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/share/1BhRcVEmty/",
+     "outcome": "error:write_failed"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3167",
+   "name": "Lib's Grill",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Rebecca Jackson",
+     "source_url": "http://www.linkedin.com/in/rebecca-jackson-a88164223",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Olivia Edwards",
+     "source_url": "http://www.linkedin.com/in/olivialaurenedwards",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jessica Liberatore",
+     "source_url": "apollo org 55e7bcd0f3e5bb1e320000c2",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "bryansubock@libsgrill.com",
+     "reason": "Same company but not an events contact: libsgrill.com homepage shows it only in a Reisterstown (340 Main St) 'now hiring, email to apply' post; Bryan Subock has no title and is tied to the Reisterstown store, not Maple Lawn"
+    },
+    {
+     "email": "belair@libsgrill.com",
+     "reason": "Bel Air location's inbox (1204 Agora Dr), saved with the location name 'Bel Air' as the person name; not Maple Lawn and no real person"
+    },
+    {
+     "email": "perryhall@libsgrill.com",
+     "reason": "Perry Hall location's inbox, saved as name 'Perry Hall'; not Maple Lawn and no real person (Apollo maps co-owner Nicola Liberatore to it)"
+    },
+    {
+     "email": "towson@libsgrill.com",
+     "reason": "Towson location's inbox; not Maple Lawn, no person name"
+    },
+    {
+     "email": "reisterstown@libsgrill.com",
+     "reason": "Reisterstown location's inbox; not Maple Lawn, no person name"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2338",
+   "name": "Eastern Yacht Club",
+   "contacts": [
+    {
+     "email": "eycbookingagent@gmail.com",
+     "name": "Theresa Pleasant",
+     "source_url": "https://easternyachtclub.com/officials/",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "",
+     "name": "Todd Bates",
+     "source_url": "https://easternyachtclub.com/officials/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Nancee James",
+     "source_url": "https://easternyachtclub.com/officials/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-WINE-032",
+   "name": "Love Point Vineyards and Winery",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Karen Seppi",
+     "source_url": "https://lovepointvineyardsandwinery.squarespace.com/story",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tim Seppi",
+     "source_url": "https://lovepointvineyardsandwinery.squarespace.com/story",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3283",
+   "name": "Historic Pleasant Grove",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Michelle Arcari Rose",
+     "source_url": "https://www.connectionnewspapers.com/photos/2026/feb/18/157528",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3347",
+   "name": "Manal\u00fa Italian Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Marco Pontecorvo",
+     "source_url": "https://www.opentable.com/cuisine/best-italian-restaurants-frederick-md",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3373",
+   "name": "Il Basilico Trattoria",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Anna Di Pierno",
+     "source_url": "https://www.ilbasilicotrattoria.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Sal Di Pierno",
+     "source_url": "https://www.ilbasilicotrattoria.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2687",
+   "name": "Waverly Woods Golf Club",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2953",
+   "name": "DeJon Vineyard",
+   "contacts": [
+    {
+     "email": "",
+     "name": "John Wilkerson",
+     "source_url": "https://www.bmoremedia.com/devnews/dejon060810.aspx",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Denise McCloskey",
+     "source_url": "https://www.bmoremedia.com/devnews/dejon060810.aspx",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Noelle Chambers",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3362",
+   "name": "Pacci's Trattoria",
+   "contacts": [
+    {
+     "email": "sgioldasis@yahoo.com",
+     "name": "Spiro Gioldasis",
+     "source_url": "https://patch.com/maryland/silverspring/foodie-news-scion-in-silver-spring-paccis-backstory-m6d20971313",
+     "outcome": "rejected:freemail_unlinked"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3372",
+   "name": "Vito Ristorante",
+   "contacts": [
+    {
+     "email": "apetronelli@vitoristorante.com",
+     "name": "Tony Petronelli",
+     "source_url": "https://www.vitoristorante.com/philosophy/",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Vito Petronelli",
+     "source_url": "https://www.vitoristorante.com/philosophy/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Luca Pesci",
+     "source_url": "https://www.vitoristorante.com/philosophy/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-YACH-760",
+   "name": "Maryland Yacht Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "James Martinette",
+     "source_url": "https://www.mdyc.org/officers",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Carmen Barba",
+     "source_url": "https://www.mdyc.org/officers",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "mycinfo@mdyc.org",
+     "reason": "General info inbox (info@ variant) with no person; not a wrong business, but general inboxes are never saved under the save policy"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-2906",
+   "name": "Takoma Bev Co",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Seth Cook",
+     "source_url": "https://www.sourceofthespring.com/?p=334",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3376",
+   "name": "Sammy's Trattoria II",
+   "contacts": [
+    {
+     "email": "sam@sammystrattoria.com",
+     "name": "Sammy Curreri",
+     "source_url": "https://www.linkedin.com/in/sam-curreri-107228a",
+     "title": "Chef & Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "sam@sammysrestaurantgroup.com",
+     "name": "Sammy Curreri",
+     "source_url": "https://www.sammystrattoria.com/privateparties",
+     "title": "Chef & Owner (event inquiries)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-3279",
+   "name": "\"Consider It Done\" Boutique",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Timothy Albrecht",
+     "source_url": "https://consideritdoneboutique.com/about-us/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2314",
+   "name": "West River Yacht Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Dave Sire",
+     "source_url": "https://www.westriveryachtclub.com/Leadership.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Becky Yackley",
+     "source_url": "https://www.westriveryachtclub.com/Leadership.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "C.S. Kim",
+     "source_url": "https://www.westriveryachtclub.com/Leadership.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Kyle Kopec",
+     "source_url": "https://www.westriveryachtclub.com/Leadership.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1598",
+   "name": "The Urban Winery of Silver Spring",
+   "contacts": [
+    {
+     "email": "georgia@theurbanwinery.com",
+     "name": "Georgia Callis",
+     "source_url": "https://www.theurbanwinery.com/family-wine-heritage",
+     "title": "Co-founder / Owner, Winemaker",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3455",
+   "name": "Federico Ristorante Italiano",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Freddie Lutz",
+     "source_url": "https://www.federicoristoranteitaliano.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Bertilio Urrutia",
+     "source_url": "https://www.federicoristoranteitaliano.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Adolfo Urrutia",
+     "source_url": "https://www.federicoristoranteitaliano.com/about-us",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ]
+}

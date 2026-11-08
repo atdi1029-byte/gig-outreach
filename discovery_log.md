@@ -17,6 +17,10 @@ the sheet, and it skips venues already there.
 | 2026-11-07 | sweep_dream3_awards_2026-11-07.md | Wine Spectator awards, James Beard, OpenTable romantic/top 100, Relais & Châteaux, AAA Diamonds | 7 found (almost every award venue was already on the sheet) | closed: Métier, Kinship, Tail Up Goat, Gravitas, Cranes |
 | 2026-11-07 | sweep_dream3_stays_2026-11-07.md | Forbes, Condé Nast, T+L, Historic Hotels of America, Select Registry, wedding guides' estates | 10 found | Sagamore Pendry, Airlie (403) |
 | 2026-11-07 | sweep_dream3_clubs_2026-11-07.md | Platinum Clubs, Golf Digest/Golfweek private, historic city clubs, VA Governor's Cup, MD Comptroller's Cup, best wine bars | 3 found (sheet already had nearly all) | |
+| 2026-11-08 | sweep_dream4_weddings_2026-11-08.md | wedding/event award venues (Washingtonian Weddings, Baltimore and NoVa magazine picks, Knot/WeddingWire winners), Baltimore and Annapolis private clubs, embassy residences and cultural institutes, faculty clubs | running | |
+| 2026-11-08 | sweep_dream4_retry_2026-11-08.md | retry of blocked sites (Sagamore Pendry, Airlie, Hotel Washington, Peabody Library, Decatur House, Chateau O'Brien), then hotel bars, lounges, rooftop and private dining rooms in DC, Baltimore, Annapolis, Alexandria | running | |
+
+From dream4 on, every prompt also sets a hard 2-hour drive limit from Pasadena MD. The planner enforces it with the measured drive time.
 
 The dream-dining, hotels and clubs searches overlap, and all three put 52 new venues on the sheet. dream2 added 27, and dream3 18. By dream3 the best-of lists were close to used up: most names were already on the sheet.
 
@@ -43,5 +47,5 @@ recorded in the app's discovery tracker (discovery-tracker.html, `action=load_di
 
 ## Ideas not run yet
 
-- Best-of: Washingtonian Weddings and The Knot best venue awards (venues only, never the listing pages), Northern Neck and Shenandoah inns, Baltimore's private clubs, embassy residences that host concerts.
-- Retry the gaps above.
+- Shenandoah and Northern Neck inns: too far (over 2 hours), skip.
+- Done in dream4: wedding awards, Baltimore and Annapolis clubs, embassy venues, and the retry of blocked sites.

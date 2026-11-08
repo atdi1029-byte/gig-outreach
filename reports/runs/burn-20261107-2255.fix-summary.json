@@ -1,0 +1,50 @@
+{
+ "run_id": "run-20261107-1354 run-20261107-1607 run-20261107-1810 run-20261107-2022",
+ "venues_researched": 0,
+ "venues_with_finds": 0,
+ "contacts_found": 0,
+ "misses": 134,
+ "fixes": [
+  {
+   "commit": "4426815",
+   "what": "inquiry forms linked on booking services count whatever the button says (Tripleseat party_request on Fiola, SpotHopper private-parties on Middleton Tavern and Cypriana, Toast invoice/lead on Ama); bare credit links, static assets and ordering links don't"
+  },
+  {
+   "commit": "4426815",
+   "what": "form ranking: a page with a booking widget is an inquiry form, job-listing pages never count (Supra)"
+  },
+  {
+   "commit": "4426815",
+   "what": "a website that redirects into its own page on a brand domain (rivercreekclub.com -> invitedclubs.com/clubs/river-creek-club): the 5 named staff addresses on that path count as the venue's own"
+  },
+  {
+   "commit": "4426815",
+   "what": "free-mail addresses with the venue's distinctive name (bodkinyc...@gmail.com on Bodkin Yacht Club's officers page) no longer make the page a vendor list"
+  },
+  {
+   "commit": "4426815",
+   "what": "the same name with/without hyphens is the venue's own mail domain (mykonosgrill.com for mykonos-grill.com)"
+  }
+ ],
+ "reverted": [],
+ "taste_reviewed": 0,
+ "recall": {
+  "baseline": "night-before-286625b",
+  "after": "night-after-286625b-v2",
+  "chrome": "153 -> 170/172",
+  "curl": "147 -> 163/172",
+  "sd": "141 -> 157/172",
+  "lost": 0
+ },
+ "not_fixed": [
+  "usa.net missing from the free-mail list (Wilson House): needs apps_script.gs too, which this session may not touch",
+  "role inbox next to two staff on one page (Meridian EventRentals@: Joseph Richter and Despina Petradaki, and the static crawl gives both the same title): no safe tie-break; tried and reverted before commit",
+  "first-name inbox whose full name appears only in prose or as 'CHEF ADJEPONG' (Elmina eric@): needs prose name extraction",
+  "owners named only in prose or letter-spaced titles (Holler's Town Hill, 7556 Main Street, Bellissimo, OTTO, Teresa, Bombay Club, Mita): no email, so nothing to save",
+  "name/email inside a PNG flyer (Bush River Yacht Club hallrentals@): needs OCR",
+  "other-location inboxes with 3-letter city codes (Elcielo admonmed@, reservasbog@ saved for the DC venue): Alex should remove those two; no general rule yet",
+  "brand domains published by one property page (hotelgeorge.com -> kimptonhotels.com, ihg.com, the diplomatie.gouv.fr embassy address): stay excluded on purpose",
+  "Isla's /events page is not reached by the curl/static paths (throttled crawl), so its PerfectVenue form is found only in Chrome"
+ ],
+ "note": "Five scraper fixes from the last four rounds, no benchmark losses: linked event-inquiry forms (Tripleseat, SpotHopper, Toast), sites that redirect to their own page on a brand domain (River Creek's 5 staff), club officer Gmail addresses, and hyphen-sibling mail domains; no new taste votes."
+}

@@ -135,7 +135,7 @@
     "deep_dive": "done"
    }
   ],
-  "note": "Six scraper fixes went in from the last four rounds (no recall benchmark losses): staff on outside mail domains like Trump National's, inboxes paired with the one person who runs them, Apollo names added to nameless contacts, numeric Facebook links, parked /lander domains, and sayhello@/food@ inboxes."
+  "note": "Five scraper fixes from the last four rounds, no benchmark losses: linked event-inquiry forms (Tripleseat, SpotHopper, Toast), sites that redirect to their own page on a brand domain (River Creek's 5 staff), club officer Gmail addresses, and hyphen-sibling mail domains; no new taste votes."
  },
  "history": [
   {
@@ -203,5 +203,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-07T22:55:12-05:00"
+ "updated_at": "2026-11-07T23:59:52-05:00"
 }

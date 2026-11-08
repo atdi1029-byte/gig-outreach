@@ -49,5 +49,8 @@ recorded in the app's discovery tracker (discovery-tracker.html, `action=load_di
 
 ## Ideas not run yet
 
+- NEXT (Nov 8 2026, Alex: "really focus on finding places i can play classical guitar at"): venues that already book live music, such as jazz or classical brunches, piano bars and lounges, wine dinners with live music, and wedding and event venues that hire musicians. Search event calendars and "live music" pages within 2 hours of Pasadena.
+- Rerun dream5_local (local magazines): the second try was stopped on Nov 8 when Alex paused outreach.
+
 - Shenandoah and Northern Neck inns: too far (over 2 hours), skip.
 - Done in dream4: wedding awards, Baltimore and Annapolis clubs, embassy venues, and the retry of blocked sites.

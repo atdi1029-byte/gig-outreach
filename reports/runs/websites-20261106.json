@@ -1,63 +1,191 @@
-{"generated": "2026-11-07T13:40:34",
+{
+ "generated": "2026-11-08T00:09:54",
  "venues": [
-  {"venue_id": "DC-EVEN-2587", "urls": ["https://www.freshfarm.org/markets/cleveland-park"],
-   "note": "page of the operator FRESHFARM, no own domain found; page shows Cleveland Park market, 3400 Connecticut Ave NW, Washington, DC"},
-  {"venue_id": "VA-REST-3412", "urls": [],
-   "note": "no site found; only a Sept 2022 FFXnow pre-opening article (Lake Anne Plaza), no evidence it ever opened"},
-  {"venue_id": "VA-REST-3408", "urls": [],
-   "note": "no own site found; listed at 1850 Centennial Park Dr, Reston, but restonstation.com is only the building's directory"},
-  {"venue_id": "VA-REST-3036", "urls": ["https://houseofdhoom.com/"],
-   "note": "own site; dhoomtysons.com redirects here; address now 11776 Fair Oaks Mall, Fairfax, VA 22033, so it moved out of McLean (WhatNow, Aug 2026); city needs updating"},
-  {"venue_id": "DC-HOTE-2655", "urls": [],
-   "note": "old dupontatthecircle.com is parked for sale; same address (1604 19th St NW) is listed on booking sites as Sojourn DuPont at The Circle, no official site found; likely rebranded, closure not confirmed"},
-  {"venue_id": "MD-REST-3159", "urls": ["https://www.francosofcatonsville.com/"],
-   "note": "own site names Franco's Italian Bistro, 'in the Heart of Catonsville', phone 410-788-0075 matches listings; no street address on the page"},
-  {"venue_id": "MD-REST-3191", "urls": ["https://fukadocafe.peblla.com"],
-   "note": "Peblla platform subdomain, no own domain found; shows Fukado Japanese Cafe, 6600 Baltimore National Pike, Catonsville, the address the Daily Record gives for Fukado Kissaten"},
-  {"venue_id": "DC-CHUR-005", "urls": [],
-   "note": "no working site; gracereformedchurchdc.org does not resolve; Wikipedia says the original congregation no longer met at 1405 15th St NW as of late 2019, may no longer exist"},
-  {"venue_id": "VA-REST-3413", "urls": ["https://www.grazienonnaxoxo.com/"],
-   "note": "brand site, not Reston-specific: lists only 1100 15th St NW, DC, /reston is 404; news ties Reston (RTC Next, 2000 Opportunity Way) to the same owner, opening reported for this autumn, not confirmed open"},
-  {"venue_id": "VA-REST-3019", "urls": ["https://www.marriott.com/en-us/hotels/wasow-the-westin-reston-heights/dining/"],
-   "note": "city mismatch: Marriott lists Harvest + Vine at The Westin Reston Heights, 11750 Sunrise Valley Dr, Reston, not Vienna; no Vienna location or own domain found; sheet's city looks wrong"},
-  {"venue_id": "DC-HOTE-2657", "urls": ["https://www.eurostarshotels.com/eurostars-st-gregory-dupont-circle-georgetown.html"],
-   "note": "property page confirmed: Eurostars St Gregory Dupont Circle Georgetown, 2033 M Street NW, Washington DC; also calls it the St. Gregory Hotel (rebranded)"},
-  {"venue_id": "DC-CHUR-008", "urls": ["https://www.stthomasapostledc.org/"],
-   "note": "site walled WebFetch (403), unconfirmed on the page; church directories list this URL for the parish at 2665 Woodley Rd NW, Washington DC; stthomasdc.org is a different parish"},
-  {"venue_id": "MD-REST-3178", "urls": [],
-   "note": "permanently closed: Patch says it closed in 2023 (citing the Baltimore Sun), Lib's Grill replacing it; sykesvillestation.com now redirects to starvedrockentertainment.com"},
-  {"venue_id": "VA-REST-3395", "urls": [],
-   "note": "no official site found; only listings, news, delivery pages and Facebook/Instagram; address 1862 Explorer St per most listings"},
-  {"venue_id": "DC-REST-2801", "urls": ["http://www.thaiphoon.com"],
-   "note": "unconfirmed and may be closed: fetches failed (certificate error, timeout); URL from a 2014 Time Out listing for 2011 S St NW; MapQuest says permanently closed with no date, OpenTable and Dupont Circle BID show no closure notice"},
-  {"venue_id": "MD-REST-3184", "urls": ["https://www.savagemill.com/merchants/the-blind-pig-tavern/"],
-   "note": "no own domain found; Savage Mill's merchant page confirms the name and 8600 Foundry St, Savage MD; its link divebarandgrille.com is a Pittsburgh bar, wrong; MapQuest shows Closed with no date, unconfirmed"},
-  {"venue_id": "VA-HOTE-3032", "urls": ["https://www.marriott.com/en-us/hotels/rictx-the-publisher-fredericksburg-a-tribute-portfolio-hotel/overview"],
-   "note": "Marriott property page walled WebFetch (403); search results tie it to The Publisher, Tribute Portfolio, 711 William St, Fredericksburg VA"},
-  {"venue_id": "MD-EVEN-543", "urls": [],
-   "note": "no site found for this name; closest is River House at The Easton Club, 28449 Clubhouse Dr, directory listings only; theeastonclub.com has no River House mention, eastonclub.com is parked"},
-  {"venue_id": "VA-WINE-2947", "urls": [],
-   "note": "appears permanently closed: RestonNow (Feb 2019) says the 1816 Library St location closes March 24; Foursquare says Now Closed; thetastingroomwinebar.com now redirects to boxwoodwinery.com"},
-  {"venue_id": "DC-HOTE-2673", "urls": ["https://www.marriott.com/en-us/hotels/wastw-the-westin-georgetown-washington-dc/overview/"],
-   "note": "Marriott property page walled WebFetch (403); search results tie it to The Westin Georgetown, Washington D.C., 2350 M St NW"},
-  {"venue_id": "DC-HOTE-2652", "urls": ["https://www.carlylehoteldc.com/"],
-   "note": "WebFetch failed on the site, ihg.com property page 403; search snippets of the site show 1731 New Hampshire Ave NW, Washington DC; a Kimpton press release and Oyster give this domain"},
-  {"venue_id": "DC-REST-2797", "urls": ["https://www.kramers.com/", "https://kramers.com/contact-hours"],
-   "note": "WebFetch got little page text; search snippets of kramers.com show bookstore/restaurant/bar/events at 1517 Connecticut Ave NW, Washington DC, matching the washington.org listing"},
-  {"venue_id": "VA-EVEN-2993", "urls": ["https://lauralouiseeventsanddesign.com/meet"],
-   "note": "own site, footer names Laura Louise Events and Design, serving Virginia and DC; Fairfax is not on the page, it comes from Yelp and Carats & Cake"},
-  {"venue_id": "MD-REST-3161", "urls": [],
-   "note": "no official site found; only an Oct 2025 opening article spelling it Le Jardin Rose Bistro Cafe, 8006 Main St, Ellicott City; current status unconfirmed"},
-  {"venue_id": "MD-REST-2815", "urls": ["https://www.maggianos.com/locations/district-of-columbia/washington/5333-wisconsin-ave.-nw"],
-   "note": "probable match, city differs: no Bethesda page on maggianos.com; this is Maggiano's Chevy Chase, 5333 Wisconsin Ave NW, Washington DC; the Greater Bethesda Chamber lists this address"},
-  {"venue_id": "VA-REST-3403", "urls": ["https://mastiusa.com/"],
-   "note": "mastiusa.com walled WebFetch (403), unconfirmed on the page; Pearl directory gives it for Masti, 1825 Discovery St, Reston; news places Masti inside Hyatt Regency Reston"},
-  {"venue_id": "MD-ART -501", "urls": [],
-   "note": "only site found, ouvertgallery.com, no longer resolves; gallery moved from St. Michaels to Easton per Talbot Spy, possibly closed"},
-  {"venue_id": "MD-EVEN-962", "urls": [],
-   "note": "no own site found; only an Eventective listing and real estate results"},
-  {"venue_id": "DC-REST-2845", "urls": ["https://www.rakuasiandining.com/about-raku-cathedral", "https://www.rakuasiandining.com/"],
-   "note": "Raku Asian Dining site lists Cathedral Heights, based in Washington, D.C.; street address not on pages fetched, directories give 3312 Wisconsin Ave NW"},
-  {"venue_id": "MD-SENI-990", "urls": ["https://www.alfredhouse.com/communities/alfredhouse-rebecca/"],
-   "note": "now AlfredHouse Rebecca; operator's communities page lists 9910 River Road, Potomac, MD with this URL; property page itself not fetched"}
- ]}
+  {
+   "venue_id": "MD-HOTE-3005",
+   "urls": [
+    "https://www.fourseasons.com/baltimore/"
+   ],
+   "note": "Four Seasons property page, 200 International Dr, Baltimore (per search; fetch 403)."
+  },
+  {
+   "venue_id": "DC-HOTE-2677",
+   "urls": [
+    "https://www.ritzcarlton.com/en/hotels/wasrt-the-ritz-carlton-washington-d-c/overview/",
+    "https://www.marriott.com/en-us/hotels/wasrt-the-ritz-carlton-washington-dc/overview/"
+   ],
+   "note": "Ritz-Carlton property page (Marriott code WASRT, confirmed in search), 1150 22nd St NW, Washington DC 20037."
+  },
+  {
+   "venue_id": "MD-REST-3158",
+   "urls": [
+    "https://www.tinositalianbistro.com"
+   ],
+   "note": "Probable own domain (seen in a directory; fetch 403); 8775 Centre Park Dr, Columbia MD 21045."
+  },
+  {
+   "venue_id": "DC-EVEN-2581",
+   "urls": [
+    "http://www.thetoolboxdc.com/"
+   ],
+   "note": "Toolbox site linked from the Dupont Circle BID listing (1627 Connecticut Ave NW); page shows no address."
+  },
+  {
+   "venue_id": "DC-EVEN-2582",
+   "urls": [],
+   "note": "No business named UPTOWN Experiences found in DC; no site identified."
+  },
+  {
+   "venue_id": "VA-REST-3401",
+   "urls": [
+    "https://www.marriott.com/en-us/hotels/wasow-the-westin-reston-heights/dining/"
+   ],
+   "note": "Vinifera is now Harvest + Vine, restaurant/winery inside The Westin Reston Heights, 11750 Sunrise Valley Dr, Reston VA; Marriott dining page (WASOW code confirmed in search)."
+  },
+  {
+   "venue_id": "MD-WINE-2899",
+   "urls": [],
+   "note": "No Ward Eight wine bar found in Columbia MD; only DC Ward 8 results."
+  },
+  {
+   "venue_id": "MD-SENI-2966",
+   "urls": [],
+   "note": "Brightlife, 12764 Clarksville Pike: only directory listings, no own site."
+  },
+  {
+   "venue_id": "MD-SENI-1011",
+   "urls": [],
+   "note": "Small 8-bed home, 13529 Magruder Farm Ct, Potomac: only directory listings."
+  },
+  {
+   "venue_id": "MD-SENI-2965",
+   "urls": [],
+   "note": "8220 Snowden River Pkwy is now Charter Senior Living of Columbia (formerly Somerford); no community page located."
+  },
+  {
+   "venue_id": "MD-EVEN-804",
+   "urls": [
+    "https://www.historicinnsofannapolis.com/stay/governor-calvert-house"
+   ],
+   "note": "Fetched; Governor Calvert House, 58 State Circle, Annapolis MD 21401."
+  },
+  {
+   "venue_id": "MD-GOLF-796",
+   "urls": [
+    "https://usnagolf.com/",
+    "https://navysports.com/facilities/us-naval-academy-golf-club/5"
+   ],
+   "note": "usnagolf.com titled Naval Academy Golf Club; navysports page confirms 64 Greenbury Point Rd, Annapolis MD."
+  },
+  {
+   "venue_id": "MD-REST-2998",
+   "urls": [
+    "https://www.bahamamikes.com/"
+   ],
+   "note": "Bahama Mike's Seafood Grill & Catering own site, 8154 Ritchie Hwy, Pasadena MD; phone matches the Severna Park listing (city on page is Pasadena)."
+  },
+  {
+   "venue_id": "VA-REST-1652",
+   "urls": [
+    "https://barcaalx.com/"
+   ],
+   "note": "Fetched; Barca Pier & Wine Bar, 2 Pioneer Mill Way, Alexandria VA."
+  },
+  {
+   "venue_id": "MD-REST-2121",
+   "urls": [],
+   "note": "No own site; only directories, press and Instagram for 3631 Hickory Ave, Baltimore."
+  },
+  {
+   "venue_id": "MD-REST-2150",
+   "urls": [],
+   "note": "No restaurant named Modern World in Roland Park; only a gift shop at 1006 W 36th St, site unconfirmed."
+  },
+  {
+   "venue_id": "VA-HOTE-2938",
+   "urls": [
+    "https://www.phoenixparkhotel.com/"
+   ],
+   "note": "Fetched; Phoenix Park Hotel, 520 N Capitol St NW, Washington DC."
+  },
+  {
+   "venue_id": "MD-REST-2142",
+   "urls": [
+    "https://r.housebaltimore.com/"
+   ],
+   "note": "Fetched; R. House food hall, 301 W 29th St, Baltimore MD 21211."
+  },
+  {
+   "venue_id": "MD-REST-3135",
+   "urls": [],
+   "note": "No restaurant at 220 Talbot St, St. Michaels found; only 208 Talbot / Talbot St. Tavern (different). 220talbot.com does not resolve."
+  },
+  {
+   "venue_id": "MD-ART_-2783",
+   "urls": [],
+   "note": "AYE Gallery, 100 E 23rd St (Hooper House), Baltimore: no own site, only Instagram."
+  },
+  {
+   "venue_id": "VA-REST-2329",
+   "urls": [],
+   "note": "Bar Tomas, 309 Avon St, Charlottesville: no own site, only Instagram."
+  },
+  {
+   "venue_id": "MD-ART_-2773",
+   "urls": [],
+   "note": "Craig Flinner Gallery, 505 N Charles St: no current website found; status unknown."
+  },
+  {
+   "venue_id": "MD-EVEN-354",
+   "urls": [
+    "https://www.dawnonthechesapeake.com"
+   ],
+   "note": "Fetched; footer shows 48725 Spring Ridge Road, Lexington Park, MD 20653."
+  },
+  {
+   "venue_id": "XX-ART_-020",
+   "urls": [
+    "https://www.mica.edu/campus-life-and-resources/places-and-spaces/galleries/decker-gallery/"
+   ],
+   "note": "MICA page for the Decker Gallery, Fox Building, 1303 W Mount Royal Ave, Baltimore; fetched."
+  },
+  {
+   "venue_id": "DC-WINE-2599",
+   "urls": [],
+   "note": "ENO Wine Bar (2810 Pennsylvania Ave NW, Georgetown) appears permanently closed per Airbnb/BringFido listings; no official site found."
+  },
+  {
+   "venue_id": "MD-REST-3228",
+   "urls": [
+    "https://museums.jhu.edu/evergreen-museum"
+   ],
+   "note": "JHU Museums page for Evergreen Museum & Library, 4545 N Charles St, Baltimore (seen in search; fetch hit a certificate error)."
+  },
+  {
+   "venue_id": "XX-ART_-014",
+   "urls": [
+    "https://uuannapolis.org/gallery-333/"
+   ],
+   "note": "Gallery 333 inside UU Church of Annapolis, 333 Dubois Rd, Annapolis MD; fetched."
+  },
+  {
+   "venue_id": "VA-REST-3182",
+   "urls": [
+    "https://hillsboroughwine.com"
+   ],
+   "note": "Hillsborough Winery & Brewery own site; address 36716 Charles Town Pike, Purcellville VA (not Herndon)."
+  },
+  {
+   "venue_id": "MD-ART_-2775",
+   "urls": [],
+   "note": "How Great Thou Art (Loring Cornish, 1622 Thames St) has no official site; reported closed to the public."
+  },
+  {
+   "venue_id": "VA-REST-3427",
+   "urls": [
+    "https://julasotp.com"
+   ],
+   "note": "Own site; Jula's on the Potomac, 44 Canal Center Plaza Suite 401, Alexandria VA 22314; fetched."
+  }
+ ]
+}

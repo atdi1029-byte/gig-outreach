@@ -1,289 +1,59 @@
 {
- "generated": "2026-11-07T13:40:34",
+ "generated": "2026-11-08T00:03:09",
  "venues": [
   {
-   "venue_id": "DC-EVEN-2587",
-   "name": "Cleveland Park Farmers Market",
-   "city": "Washington",
-   "state": "DC",
-   "category": "farmers_market",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-REST-3412",
-   "name": "Common Ground Gastropub",
-   "city": "Reston",
-   "state": "VA",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-REST-3408",
-   "name": "Cosmos Cafe Reston",
-   "city": "Reston",
-   "state": "VA",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-REST-3036",
-   "name": "Dhoom",
-   "city": "McLean",
-   "state": "VA",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": "https://www.toasttab.com/local/order/dhoomtysons"
-  },
-  {
-   "venue_id": "DC-HOTE-2655",
-   "name": "Dupont at The Circle B&B",
-   "city": "Washington",
-   "state": "DC",
-   "category": "hotel",
-   "upscale_score": "3",
-   "status": "untouched",
-   "website": ""
-  },
-  {
-   "venue_id": "MD-REST-3159",
-   "name": "Franco's Italian Bistro",
-   "city": "Catonsville",
+   "venue_id": "MD-HOTE-3005",
+   "name": "Four Seasons Hotel Baltimore",
+   "city": "Baltimore",
    "state": "MD",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "MD-REST-3191",
-   "name": "Fukado Kissaten",
-   "city": "Catonsville",
-   "state": "MD",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "DC-CHUR-005",
-   "name": "Grace Reformed Church",
-   "city": "Washington",
-   "state": "DC",
-   "category": "church",
-   "upscale_score": "3",
-   "status": "untouched",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-REST-3413",
-   "name": "Grazie Nonna Reston",
-   "city": "Reston",
-   "state": "VA",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "untouched",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-REST-3019",
-   "name": "Harvest + Vine",
-   "city": "Vienna",
-   "state": "VA",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "untouched",
-   "website": "https://www.marriott.com"
-  },
-  {
-   "venue_id": "DC-HOTE-2652",
-   "name": "Kimpton Carlyle Hotel",
-   "city": "Washington",
-   "state": "DC",
-   "category": "hotel",
-   "upscale_score": "3",
-   "status": "untouched",
-   "website": ""
-  },
-  {
-   "venue_id": "DC-REST-2797",
-   "name": "Kramers",
-   "city": "Washington",
-   "state": "DC",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-EVEN-2993",
-   "name": "Laura Louise Events & Design",
-   "city": "Fairfax",
-   "state": "VA",
-   "category": "event_planner",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "MD-REST-3161",
-   "name": "Le Jardine Rose Bistro Cafe",
-   "city": "Ellicott City",
-   "state": "MD",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "MD-REST-2815",
-   "name": "Maggiano's Little Italy Bethesda",
-   "city": "Bethesda",
-   "state": "MD",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "untouched",
-   "website": "https://www.maggianos.com/"
-  },
-  {
-   "venue_id": "VA-REST-3403",
-   "name": "Masti at Hyatt Regency Reston",
-   "city": "Reston",
-   "state": "VA",
    "category": "hotel",
    "upscale_score": "3",
    "status": "needs_review",
    "website": ""
   },
   {
-   "venue_id": "MD-ART -501",
-   "name": "Ouvert Gallery",
-   "city": "St. Michaels",
-   "state": "MD",
-   "category": "art_gallery",
+   "venue_id": "DC-HOTE-2677",
+   "name": "The Ritz-Carlton, Washington, D.C.",
+   "city": "Washington",
+   "state": "DC",
+   "category": "hotel",
    "upscale_score": "3",
-   "status": "untouched",
-   "website": "https://nextdoor.com/pages/ouvert-gallery-saint-michaels-md/"
+   "status": "needs_review",
+   "website": ""
   },
   {
-   "venue_id": "MD-EVEN-962",
-   "name": "Potomac Manor Estate",
-   "city": "Potomac",
+   "venue_id": "MD-REST-3158",
+   "name": "Tino's Italian Bistro",
+   "city": "Columbia",
    "state": "MD",
+   "category": "restaurant",
+   "upscale_score": "3",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "DC-EVEN-2581",
+   "name": "Toolbox DC",
+   "city": "Washington",
+   "state": "DC",
    "category": "event_venue",
    "upscale_score": "3",
    "status": "needs_review",
    "website": ""
   },
   {
-   "venue_id": "DC-REST-2845",
-   "name": "Raku",
+   "venue_id": "DC-EVEN-2582",
+   "name": "UPTOWN Experiences",
    "city": "Washington",
    "state": "DC",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "MD-SENI-990",
-   "name": "Rebecca House Senior",
-   "city": "Potomac",
-   "state": "MD",
-   "category": "senior_living",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "DC-HOTE-2657",
-   "name": "St. Gregory Hotel",
-   "city": "Washington",
-   "state": "DC",
-   "category": "hotel",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "DC-CHUR-008",
-   "name": "St. Thomas Apostle Catholic Church",
-   "city": "Washington",
-   "state": "DC",
-   "category": "church",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "MD-REST-3178",
-   "name": "Sykesville Station Restaurant",
-   "city": "Sykesville",
-   "state": "MD",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-REST-3395",
-   "name": "Taste of Istanbul Reston",
-   "city": "Reston",
-   "state": "VA",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "DC-REST-2801",
-   "name": "Thaiphoon",
-   "city": "Washington",
-   "state": "DC",
-   "category": "restaurant",
+   "category": "event_planner",
    "upscale_score": "3",
    "status": "untouched",
    "website": ""
   },
   {
-   "venue_id": "MD-REST-3184",
-   "name": "The Blind Pig Tavern",
-   "city": "Savage",
-   "state": "MD",
-   "category": "restaurant",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-HOTE-3032",
-   "name": "The Publisher, Downtown Fredericksburg",
-   "city": "Fredericksburg",
-   "state": "VA",
-   "category": "hotel",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "MD-EVEN-543",
-   "name": "The Riverhouse at Easton",
-   "city": "Easton",
-   "state": "MD",
-   "category": "event",
-   "upscale_score": "3",
-   "status": "needs_review",
-   "website": ""
-  },
-  {
-   "venue_id": "VA-WINE-2947",
-   "name": "The Tasting Room Wine Bar & Shop",
+   "venue_id": "VA-REST-3401",
+   "name": "Vinifera Wine Bar & Bistro",
    "city": "Reston",
    "state": "VA",
    "category": "wine_bar",
@@ -292,12 +62,242 @@
    "website": ""
   },
   {
-   "venue_id": "DC-HOTE-2673",
-   "name": "The Westin Georgetown",
+   "venue_id": "MD-WINE-2899",
+   "name": "Ward Eight",
+   "city": "Columbia",
+   "state": "MD",
+   "category": "wine_bar",
+   "upscale_score": "3",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-SENI-2966",
+   "name": "Brightlife of Clarksville",
+   "city": "Clarksville",
+   "state": "MD",
+   "category": "senior_living",
+   "upscale_score": "2",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-SENI-1011",
+   "name": "Holy Family Assisted Living",
+   "city": "Potomac",
+   "state": "MD",
+   "category": "senior_living",
+   "upscale_score": "2",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-SENI-2965",
+   "name": "Somerford Place Columbia",
+   "city": "Columbia",
+   "state": "MD",
+   "category": "senior_living",
+   "upscale_score": "2",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-EVEN-804",
+   "name": "Historic Inns of Annapolis Governor Calvert House",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "event",
+   "upscale_score": "87",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-GOLF-796",
+   "name": "Naval Academy Golf Club",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "country_club",
+   "upscale_score": "80",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-REST-2998",
+   "name": "Bahama Mike's",
+   "city": "Severna Park",
+   "state": "MD",
+   "category": "restaurant",
+   "upscale_score": "5",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "VA-REST-1652",
+   "name": "BARCA Pier & Wine Bar",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "wine_bar",
+   "upscale_score": "5",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-REST-2121",
+   "name": "Melanie\u2019s at Griffith's Tavern",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "upscale_score": "5",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-REST-2150",
+   "name": "Modern World",
+   "city": "Roland Park Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "upscale_score": "5",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "VA-HOTE-2938",
+   "name": "Phoenix Park Hotel",
    "city": "Washington",
    "state": "DC",
    "category": "hotel",
-   "upscale_score": "3",
+   "upscale_score": "5",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-REST-2142",
+   "name": "R. House",
+   "city": "Roland Park Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "upscale_score": "5",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-REST-3135",
+   "name": "220",
+   "city": "St. Michaels",
+   "state": "MD",
+   "category": "restaurant",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-ART_-2783",
+   "name": "Aye Gallery & Altar Studio",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "art_gallery",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "VA-REST-2329",
+   "name": "Bar Tomas",
+   "city": "Charlottesville",
+   "state": "VA",
+   "category": "restaurant",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-ART_-2773",
+   "name": "Craig Flinner Gallery",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "art_gallery",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-EVEN-354",
+   "name": "Dawn on the Chesapeake",
+   "city": "Lexington Park",
+   "state": "MD",
+   "category": "event",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "XX-ART_-020",
+   "name": "Decker Gallery",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "art_gallery",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "DC-WINE-2599",
+   "name": "ENO Wine Bar",
+   "city": "Washington",
+   "state": "DC",
+   "category": "wine_bar",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-REST-3228",
+   "name": "Evergreen Museum & Library",
+   "city": "Roland Park Baltimore",
+   "state": "MD",
+   "category": "museum",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "XX-ART_-014",
+   "name": "Gallery 333",
+   "city": "Annapolis",
+   "state": "MD",
+   "category": "art_gallery",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "VA-REST-3182",
+   "name": "Hillsborough Vineyards & Brewery",
+   "city": "Herndon",
+   "state": "VA",
+   "category": "winery",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "MD-ART_-2775",
+   "name": "How Great Thou Art",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "art_gallery",
+   "upscale_score": "4",
+   "status": "needs_review",
+   "website": ""
+  },
+  {
+   "venue_id": "VA-REST-3427",
+   "name": "Jula's on the Potomac",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "upscale_score": "4",
    "status": "needs_review",
    "website": ""
   }

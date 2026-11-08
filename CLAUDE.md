@@ -178,8 +178,8 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
   `night-state.json` `audit_pending` and run first when it's back; fix_pending is kept too.
 - `export DREAM_FIRST=1` in `.env` (Alex, Nov 7 2026): build_batch drops the bucket mix and runs luxury hotels, then
   European/fine dining (casual names last), clubs, wine, the rest. Remove the line to get the mix back.
-- LinkedIn is off (`export SKIP_LINKEDIN=1` in `.env`, Nov 8 2026): over the burn's first 307 venues it saved 7
-  contacts, and its loose name searches opened wrong businesses (Altitude Trampoline Park, Arlington TX).
+- LinkedIn stays ON (Alex, Nov 8 2026: "dont turn it off!!!!") even though over the burn's first 307 venues it
+  saved 7 contacts. Fix its searches instead (state and venue type in every query; never open results outside DC/MD/VA).
 - Log: `reports/runs/burn-YYYYMMDD-HHMM.log`. Another burn later: `rm .burn_done`.
 
 ## 0. Preflight

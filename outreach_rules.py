@@ -401,6 +401,9 @@ def clean_person_name(name):
         return ""
     if any(w in NAME_BOILERPLATE for w in words if len(w) >= 2):
         return ""
+    # an address line read as a name ("Smith Ave" on the Dye House site, Nov 8 2026)
+    if words[-1] in {"ave", "avenue", "st", "rd", "road", "blvd", "boulevard", "pkwy", "parkway", "hwy", "highway"}:
+        return ""
     if n.isupper() or n.islower():
         n = " ".join(t.capitalize() for t in toks)
     return n
@@ -463,9 +466,30 @@ def venue_name_tokens(venue_name):
     return {w for w in _words(venue_name) if len(w) >= 4 and w not in _FREEMAIL_TOKEN_IGNORE}
 
 
+# A club writes from its initials (Nov 8 2026): eycbookingagent@gmail.com on Eastern
+# Yacht Club's officials page, eyc_treasurer@aol.com, cryc.org@gmail.com for Corsica
+# River Yacht Club. The initials (3+ letters, every word) count only as a whole token of
+# the local part or followed by a club job, so ervin@ never ties to Elk Run Vineyards.
+_INITIALS_JOB = re.compile(r"(?:booking\w*|events?|rentals?|hall\w*|social|treasurer|secretary|sec|"
+                           r"(?:vice|rear)?commodore|fleetcaptain|manager|mgr|gm|office|catering|weddings?)$")
+
+
+def venue_initials_in_local(local, venue_name):
+    words = [w for w in _words(venue_name) if w not in {"inc", "llc", "co"}]
+    ini = "".join(w[0] for w in words if w[0].isalpha())
+    if len(words) < 3 or len(ini) < 3:
+        return False
+    for tok in re.split(r"[^a-z]+", (local or "").lower()):
+        if tok == ini or (tok.startswith(ini) and _INITIALS_JOB.match(tok[len(ini):])):
+            return True
+    return False
+
+
 def freemail_linked_to_venue(local, venue_name):
     local = (local or "").lower()
     if any(t in local for t in venue_name_tokens(venue_name)):
+        return True
+    if venue_initials_in_local(local, venue_name):
         return True
     compact = "".join(_words(venue_name))
     return len(compact) >= 5 and compact[:5] in local

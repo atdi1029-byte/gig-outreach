@@ -4460,6 +4460,97 @@
      "priority": "normal"
     }
    ]
+  },
+  {
+   "venue_id": "MD-EVEN-3049",
+   "name": "Mt. Washington Mill Dye House",
+   "website": "https://www.dyehouseevents.com/",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "event_venue",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "events@mtwashingtonmill.com",
+     "page": "https://www.dyehouseevents.com/",
+     "also_on": [
+      "https://www.dyehouseevents.com/contact"
+     ],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 2,
+     "priority": "high",
+     "off_domain": true
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3376",
+   "name": "Sammy's Trattoria II",
+   "website": "https://www.sammystrattoria.com/",
+   "city": "Hunt Valley",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "sam@sammysrestaurantgroup.com",
+     "page": "https://www.sammystrattoria.com/privateparties",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "off_domain": true
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2338",
+   "name": "Eastern Yacht Club",
+   "website": "https://easternyachtclub.com",
+   "city": "Essex",
+   "state": "MD",
+   "category": "yacht_club",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "eycbookingagent@gmail.com",
+     "page": "https://easternyachtclub.com/officials/",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Theresa Pleasant",
+     "title": "Booking Agent",
+     "staff_pairing": true
+    }
+   ]
   }
  ]
 }

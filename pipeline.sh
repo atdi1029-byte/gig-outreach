@@ -2550,8 +2550,26 @@ if shared != "true" and reg and not any(a != reg for a in alias_regs):
             person_dom[dreg] = person_dom.get(dreg, 0) + 1
         if any(m and (is_home(u) or CONTACTISH.search(urlsplit(u).path)) for u, m in own_hits):
             mailto_dom[dreg] = mailto_dom.get(dreg, 0) + 1
+    # A domain named after the venue, linked as a mailto on its own pages, is its own even
+    # alone (Nov 8 2026): events@mtwashingtonmill.com for Mt. Washington Mill Dye House,
+    # sam@sammysrestaurantgroup.com on Sammy's Trattoria's private-parties page.
+    _vcomp = "".join(R._words(venue))
+    _vdist = [w for w in R._words(venue) if w not in R._GENERIC_VENUE_WORDS and len(w) >= 5]
+    GROUPISH = {"group", "restaurantgroup", "restaurants", "hospitality", "hospitalitygroup", "hg", "rg", "management"}
+    def venue_named(label):
+        lab = re.sub(r"[^a-z0-9]", "", label)
+        if len(lab) >= 8 and lab in _vcomp and len(lab) >= 0.5 * len(_vcomp):
+            return True
+        for w in _vdist:
+            rest = lab[len(w):] if lab.startswith(w) else None
+            if rest is not None and (rest in GROUPISH or (rest[:1] == "s" and rest[1:] in GROUPISH)):
+                return True
+        return False
     for dreg, n in sorted(per_dom.items(), key=lambda x: -x[1]):
         if dreg.rsplit(".", 1)[0] == site_label and len(site_label) >= 5:
+            mail_alias = dreg
+            break
+        if mailto_dom.get(dreg, 0) >= 1 and venue_named(dreg.rsplit(".", 1)[0]):
             mail_alias = dreg
             break
         if n >= 2 and n > on_site and (mailto_dom.get(dreg, 0) >= 1 or person_dom.get(dreg, 0) >= 3):
@@ -2608,10 +2626,15 @@ def other_loc_page(u):
 # pages is theirs, not the venue's (Level A's wedding photographer, Sep 26).
 # A free-mail address carrying the venue's name is the venue's own (a club's officers page:
 # bodkinyccommodore@gmail.com, bodkinycsecretary@gmail.com ...), so it never makes a list.
+# So does one carrying the club's initials (eycbookingagent@gmail.com, Eastern Yacht Club).
+def _venue_freemail(_e):
+    _l = _e.split("@", 1)[0]
+    return (R.registrable_domain(_e.split("@", 1)[1]) in R.FREEMAIL_DOMAINS and
+            (any(t in _l for t in R.venue_name_tokens(venue) - R._GENERIC_VENUE_WORDS) or R.venue_initials_in_local(_l, venue)))
 _page_ext = _dd(set)
 for _e, _r in emails.items():
     _dreg = R.registrable_domain(_e.split("@", 1)[1]) if "@" in _e else ""
-    if _dreg in R.FREEMAIL_DOMAINS and any(t in _e.split("@", 1)[0] for t in R.venue_name_tokens(venue) - R._GENERIC_VENUE_WORDS): continue
+    if _venue_freemail(_e): continue
     if _dreg and _dreg not in (reg, mail_alias, brand_reg) and not any(_dreg == a for a in alias_regs):
         for _u, _m, _k in _r["hits"]:
             _page_ext[_u].add(_e)
@@ -2640,6 +2663,8 @@ for e, r in sorted(emails.items()):
         print("DROP\x1f%s\x1fother_location_inbox\x1f%s" % (e, r["hits"][0][0]))
         continue
     hits = r["hits"]
+    if r["name"] and not R.clean_person_name(r["name"]):
+        r["name"], r["title"] = "", ""  # not a person ("Smith Ave" from the address line)
     if not r["name"]:
         # tmead@ on the contact page + "Traci Mead, Executive Director" on the staff page.
         pm = person_for(e)
@@ -2659,7 +2684,7 @@ for e, r in sorted(emails.items()):
         print("DROP\x1f%s\x1fother_location_page\x1f%s" % (e, scoped[0][0]))
         continue
     _edreg = R.registrable_domain(e.split("@", 1)[1]) if "@" in e else ""
-    if _edreg not in (reg, mail_alias, brand_reg) and not any(_edreg == a for a in alias_regs):
+    if _edreg not in (reg, mail_alias, brand_reg) and not any(_edreg == a for a in alias_regs) and not _venue_freemail(e):
         # an outside address counts as the venue's only from pages that aren't lists
         scoped = [x for x in scoped if x[0] not in LIST_PAGES] or \
             [(u, m, k, "external") for u, m, k, _ in scoped]

@@ -357,6 +357,19 @@ assert src.count(r"location\.href\s*=\s*\W?/lander") == 2
 print("PASS: numeric Facebook pages, sayhello@ and food@ inboxes, /lander parked check")
 PY
 
+# ---- Night fixes, Nov 8 2026 ----------------------------------------------------------
+/usr/bin/python3 - <<'PY' || exit 1
+import outreach_rules as R
+assert R.check_email("eycbookingagent@gmail.com", "easternyachtclub.com", "Eastern Yacht Club", True)["action"] == "verify"
+assert R.freemail_linked_to_venue("cryc.org", "Corsica River Yacht Club")
+assert not R.freemail_linked_to_venue("carolyncreamereyc", "Eastern Yacht Club")
+assert not R.freemail_linked_to_venue("ervin", "Elk Run Vineyards")
+assert R.clean_person_name("Smith Ave") == "" and R.clean_person_name("Diane Lane") == "Diane Lane"
+src = open("pipeline.sh").read()
+assert "venue_named(dreg.rsplit" in src and "_venue_freemail(e)" in src
+print("PASS: club-initials free-mail, address lines aren't names, venue-named mail domains")
+PY
+
 # Name backfill: the real functions, with the backend stubbed by a file.
 T=$(mktemp -d)
 KNOWN_NAMELESS_FILE="$T/nameless"; KNOWN_NAMES_FILE="$T/names"; KNOWN_NAMES=""

@@ -3015,6 +3015,11 @@ function venueHasPending(venueId) {
     if (venue.status === 'pipelined' || venue.status === 'sent') return true;
     // Has unsent verified emails?
     if (contacts.some(c => contactPending(c, idx))) return true;
+    // Untouched = the bot hasn't run it yet: nothing for Alex to do, so it stays out of the lists even when
+    // discovery saved its Instagram, Facebook or form (Nov 8 2026: "can you hide untouched then?"),
+    // unless Alex already started on it
+    if ((venue.status || 'untouched') === 'untouched' &&
+        !(contacts.some(c => c.email_sent) || venue.ig_dm_sent || venue.fb_msg_sent || venue.contact_form_sent)) return false;
     // Has Instagram / Facebook not yet messaged?
     if (socialPending(venue, 'ig', idx)) return true;
     if (socialPending(venue, 'fb', idx)) return true;

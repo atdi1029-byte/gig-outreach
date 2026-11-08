@@ -1,0 +1,42 @@
+{
+ "run_id": "run-20261108-0005 run-20261108-0233 run-20261108-0429 run-20261108-0642",
+ "venues_researched": 0,
+ "venues_with_finds": 0,
+ "contacts_found": 0,
+ "misses": 95,
+ "fixes": [
+  {
+   "commit": "e528f10",
+   "what": "a mail domain named after the venue, linked as a mailto on its own pages, counts as its own even alone (events@mtwashingtonmill.com on Dye House, sam@sammysrestaurantgroup.com on Sammy's Trattoria)"
+  },
+  {
+   "commit": "e528f10",
+   "what": "free-mail addresses with the club's initials are the club's own and don't make the page a vendor list (eycbookingagent@gmail.com = Theresa Pleasant, Booking Agent, Eastern Yacht Club; cryc.org@gmail.com)"
+  },
+  {
+   "commit": "e528f10",
+   "what": "address lines are not names ('Smith Ave'); a junk name is dropped before pairing so events@ pairs with the Director of Events (Michele Coziahr); also stops 'My Account', 'ONLINE ORDERS', 'Hogback Mountain Rd' being passed as names"
+  }
+ ],
+ "reverted": [],
+ "taste_reviewed": 0,
+ "recall": {
+  "baseline": "night-before-cd4ed1a",
+  "after": "night-after-cd4ed1a",
+  "chrome": "170 -> 173/175",
+  "curl": "163 -> 166/175",
+  "sd": "157 -> 160/175",
+  "lost": 0
+ },
+ "not_fixed": [
+  "operator/owner-group domains with no name link to the venue (Clifton Mansion nlee@civicworks.com, Salt & Vine greenridgehospitality.com in its venue guide PDF, Ada's emily@alexrestpart.com, Azumi/Loch Bar atlasrestaurantgroup.com on shared lochbar.com/azumirestaurant.com paths): no safe general rule; vendor and designer addresses look the same",
+  "facebook.com/share/<id> short links (Mamma Lena): need a redirect lookup, and the Facebook normalizer exists in four copies",
+  "yacht-club officer titles (Commodore, Fleet Captain) and officer/about pages named helm.html or /philosophy/ (Belvedere, Corsica River, Vito): names without email, which are never saved",
+  "email shown only as an image (Belvedere commodore@): needs OCR",
+  "'Dept- Name' split on Cattail Creek's employment page, Divi et_pb_blurb names (Liriodendron), prose-only staff bios (Preserve, Barrel Oak): names only",
+  "role inboxes social@/president@ next to board names (Country Club Hills): not reproduced tonight",
+  "Selby Bay Yacht Club's sheet website is South Carolina Yacht Club (scyachtclub.com): a data problem; its real site is selbybayyc.clubexpress.com",
+  "off-site misses (Apollo by name+domain, a second Apollo org, newsletters, Visit Alexandria): cause given in the misses files"
+ ],
+ "note": "One scraper fix from the last four rounds, no benchmark losses: mail domains named after the venue (Dye House's events@mtwashingtonmill.com, now paired with Michele Coziahr), club-initial Gmail addresses (Eastern Yacht Club's booking agent), and street names no longer taken as people; no new taste votes."
+}

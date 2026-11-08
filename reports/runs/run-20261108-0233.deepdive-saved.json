@@ -1,0 +1,577 @@
+{
+ "run_id": "run-20261108-0233",
+ "dry_run": false,
+ "at": "2026-11-08T04:45:21-05:00",
+ "totals": {
+  "saved": 12,
+  "venues_rescued": 4,
+  "socials": 1,
+  "rejected": 7,
+  "errors": 0,
+  "flagged": 4
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-WINE-2611",
+   "name": "La Jambe",
+   "contacts": [
+    {
+     "email": "anastasia@lajambedc.com",
+     "name": "Anastasia Mori",
+     "source_url": "https://www.lajambedc.com/about",
+     "title": "Founder & Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-HOTE-3008",
+   "name": "Sagamore Pendry Baltimore",
+   "contacts": [
+    {
+     "email": "parag.athavale@pendry.com",
+     "name": "Parag Athavale",
+     "source_url": "apollo:person/66f299151f403a000127563c (Apollo verified; headline 'General Manager Pendry Baltimore', Baltimore MD, GM since 2024-08; press (hotel-online) confirms GM Sep 2024)",
+     "outcome": "rejected:shared_brand_domain:pendry.com"
+    },
+    {
+     "email": "katherine.gregory@pendry.com",
+     "name": "Katherine Gregory",
+     "source_url": "apollo:person/66f75185b442e500011c899b (Apollo verified; Baltimore MD, since 2024-09; press names Kati Gregory DOSM at Sagamore Pendry Baltimore)",
+     "outcome": "rejected:shared_brand_domain:pendry.com"
+    },
+    {
+     "email": "clare.yost@pendry.com",
+     "name": "Clare Yost",
+     "source_url": "apollo:person/61287d4ab6b3130001e46d11 (Apollo verified; headline 'Director of Outlets - Sagamore Pendry Baltimore')",
+     "outcome": "rejected:shared_brand_domain:pendry.com"
+    },
+    {
+     "email": "brian.medrano@pendry.com",
+     "name": "Brian Medrano",
+     "source_url": "apollo:person/61382adbda298d000129f57a (Apollo verified; Baltimore MD, since 2025-07)",
+     "outcome": "rejected:shared_brand_domain:pendry.com"
+    },
+    {
+     "email": "chrystalyn.brown@pendry.com",
+     "name": "Chrystalyn Brown",
+     "source_url": "apollo:person/563e907da6da987088002a81 (Apollo verified; headline 'Curating personalized luxury event experiences in Historic Fells Point', Baltimore MD, since 2026-04)",
+     "outcome": "rejected:shared_brand_domain:pendry.com"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-HOTE-2679",
+   "name": "Hotel Washington",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Louis-Nicolas Le Ber",
+     "source_url": "http://www.linkedin.com/in/louis-nicolas-le-ber-61939a59",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Manaye Tesfaye",
+     "source_url": "http://www.linkedin.com/in/manaye-tesfaye-1a7ba154",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3051",
+   "name": "The Historic Clifton Mansion",
+   "contacts": [
+    {
+     "email": "nlee@civicworks.com",
+     "name": "Natrina Lee",
+     "source_url": "https://cliftonmansion.com/your-wedding-at-clifton",
+     "title": "Venue Events Manager, Clifton Mansion (Civic Works)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-3482",
+   "name": "Ada's on the River",
+   "contacts": [
+    {
+     "email": "emily@alexrestpart.com",
+     "name": "Emily Klassen",
+     "source_url": "https://adasontheriver.com/",
+     "title": "Event Sales & Catering Director (Alexandria Restaurant Partners, owner group of ",
+     "verified": "valid",
+     "outcome": "duplicate:VA-REST-3428"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3393",
+   "name": "Carrol's Creek Cafe",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3049",
+   "name": "Mt. Washington Mill Dye House",
+   "contacts": [
+    {
+     "email": "events@mtwashingtonmill.com",
+     "name": "Michele Coziahr",
+     "source_url": "https://www.dyehouseevents.com/about",
+     "title": "Director of Events",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-EVEN-2606",
+   "name": "Decatur House",
+   "contacts": [
+    {
+     "email": "dschmucker@whha.org",
+     "name": "Dan Schmucker",
+     "source_url": "http://www.linkedin.com/in/danschmucker",
+     "title": "Director of Events, White House Historical Association",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "vzimmerman@whha.org",
+     "name": "Victoria Zimmerman",
+     "source_url": "http://www.linkedin.com/in/victoria-a-zimmerman-9732ab1ba",
+     "title": "Special Events Coordinator, White House Historical Association",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3391",
+   "name": "Rye Street Tavern",
+   "contacts": [
+    {
+     "email": "abrawner@clydes.com",
+     "name": "Anthony Brawner",
+     "source_url": "https://www.ryestreettavern.com/about/",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "knwosu@clydes.com",
+     "name": "Kelvin Nwosu",
+     "source_url": "https://www.ryestreettavern.com/about/",
+     "title": "Area Director of Operations (Clyde's Restaurant Group)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "events@ryestreettavern.com",
+     "reason": "Not wrong-business, but the saved name 'Next Steps' is page text, not a person. events@ is the venue's own event inbox run by Marin Miller (Senior Event Manager per the Our Team list); re-attach to her or drop the 'Next Steps' row (Marin is already saved with mmiller@)."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3392",
+   "name": "Loch Bar Baltimore",
+   "contacts": [
+    {
+     "email": "barrett@atlasrestaurantgroup.com",
+     "name": "Barrett Johnson",
+     "source_url": "https://www.baltimoremagazine.com/section/artsentertainment/live-music-entertainment-at-baltimore-restaurants-provides-full-sensory-experiences-helps-boost-local-musicians",
+     "title": "Entertainment Director, Atlas Restaurant Group (books the live music)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "music@atlasrestaurantgroup.com",
+     "name": "Barrett Johnson",
+     "source_url": "https://lochbar.com/baltimore/live-music/",
+     "title": "Entertainment Director (Loch Bar live-music booking inbox)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "april@atlasrestaurantgroup.com",
+     "name": "April Lichtenberg",
+     "source_url": "https://lochbar.com/baltimore/group-dining/",
+     "title": "Private Dining Manager",
+     "verified": "valid",
+     "outcome": "duplicate:MD-REST-3382"
+    },
+    {
+     "email": "",
+     "name": "Nick Camp",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "baltimore@lochbar.com",
+     "reason": "Not wrong-business, but it's the venue's general location inbox (footer 'Visit Us' address block) with no person name: treat as a general inbox under the save policy. Better contacts above (Barrett Johnson for music, April Lichtenberg for private dining)."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-EVEN-3050",
+   "name": "Westminster Hall",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "donaldsonbrown@umaryland.edu",
+     "reason": "Wrong venue: it's the inbox for Donaldson Brown (UMB's riverfront mansion/conference center with 17 bedrooms, Port Deposit MD), listed on Westminster Hall's events page only as a sister UMB property ('For more information email donaldsonbrown@umaryland.edu'). It's also a nameless general inbox. Remove from Westminster Hall."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-HOTE-3038",
+   "name": "Airlie",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Kristy Rosenberger",
+     "source_url": "http://www.linkedin.com/in/kristy-rosenberger-a0a802146",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Gail Gilbert",
+     "source_url": "http://www.linkedin.com/in/gail-gilbert-61513b13",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jean Lachance",
+     "source_url": "http://www.linkedin.com/in/jean-lachance-2b47243b",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tim Jago",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-WINE-2961",
+   "name": "The Winery at La Grange",
+   "contacts": [
+    {
+     "email": "melissa@wineryatlagrange.com",
+     "name": "Melissa Stephan",
+     "source_url": "http://www.linkedin.com/in/melissa-stephan-4446719",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Adale Lagrange",
+     "source_url": "http://www.linkedin.com/in/adale-lagrange-40303628",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Michael Ching",
+     "source_url": "http://www.linkedin.com/in/michael-ching-64b535a",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-WINE-2964",
+   "name": "Chateau O'Brien at Northpoint",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Howard O'Brien",
+     "source_url": "https://chateauobrien.com/weddings-2/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "April O'Brien",
+     "source_url": "https://chateauobrien.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3180",
+   "name": "Konstantine's Greek Taverna",
+   "contacts": [
+    {
+     "email": "greg@konstantinestaverna.com",
+     "name": "Gregory Skenderis",
+     "source_url": "https://www.konstantinestaverna.com/info",
+     "title": "Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-3212",
+   "name": "Daingerfield Island Sailing Club",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3323",
+   "name": "Salt & Vine",
+   "contacts": [
+    {
+     "email": "megan@greenridgehospitality.com",
+     "name": "Megan Pattee",
+     "source_url": "https://saltandvine.com/wp-content/uploads/2026/07/SAV-Olney-Venue-Guide-2026.pdf",
+     "title": "Director of Hospitality Sales & Events (Green Ridge Hospitality, owner group of ",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "stacey@greenridgehospitality.com",
+     "name": "Stacey Peirce",
+     "source_url": "https://saltandvine.com/wp-content/uploads/2026/07/SAV-Olney-Venue-Guide-2026.pdf",
+     "title": "Events Coordinator, Salt & Vine Olney",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "andrew@greenridgehospitality.com",
+     "name": "Andrew Ricagno",
+     "source_url": "http://www.linkedin.com/in/andrew-ricagno-444a88b0",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Thomas Zippelli",
+     "source_url": "https://www.montgomerymag.com/salt-vine-handmade-history-in-olney/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Diana Moir",
+     "source_url": "https://saltandvine.com/wp-content/uploads/2026/07/SAV-Olney-Venue-Guide-2026.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Denise Zippelli",
+     "source_url": "https://saltandvine.com/wp-content/uploads/2026/07/SAV-Olney-Venue-Guide-2026.pdf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2950",
+   "name": "t at the General Store",
+   "contacts": [
+    {
+     "email": "",
+     "name": "James Gordon",
+     "source_url": "https://visitstmichaelsmd.blogspot.com/2015/01",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Paul Turczynski",
+     "source_url": "https://visitstmichaelsmd.blogspot.com/2015/01",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2293",
+   "name": "Belts Wharf Landing Yacht Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Shawn Smith",
+     "source_url": "https://beltswharf.com/board.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3178",
+   "name": "Blue Valley Vineyard and Winery",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Emma Drummonds",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Stergio Zissios",
+     "source_url": "https://bluevalleyvineyardandwinery.com/about-us/our-familys-story/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "John Zissios",
+     "source_url": "https://bluevalleyvineyardandwinery.com/about-us/our-familys-story/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Helen Zissios",
+     "source_url": "https://bluevalleyvineyardandwinery.com/about-us/our-familys-story/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "events@bluevalleyva.com",
+     "reason": "Right business, but the saved name 'Perfect Meeting Space' is page heading text, not a person (title 'Event Inquiries'). Function inbox saved without a real name; no source ties a named person to events@ (Apollo's Event & Venue Coordinator Emma Drummonds is the likely owner but unproven). Do not delete; fix or clear the name."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3444",
+   "name": "Italian Cafe",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Daniel Matechak",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-757",
+   "name": "Captain's Daughter",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Fred Malek",
+     "source_url": "https://myusna.com/news/1264002",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2341",
+   "name": "Crescent Yacht Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Joey Adamski",
+     "source_url": "https://crescentyachtclub.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ryan Peters",
+     "source_url": "https://crescentyachtclub.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Brian Mimnaugh",
+     "source_url": "https://crescentyachtclub.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1713",
+   "name": "Eagletree Farm Winery & Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Lori McKeever",
+     "source_url": "https://eagletreevineyards.com/about-us/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-713",
+   "name": "Preserve",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Monica Knight",
+     "source_url": "https://preserve-eats.com/our-story-1",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Michelle Hoffman",
+     "source_url": "http://www.linkedin.com/in/michelle-elliott-hoffman-40587693",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jeremy Hoffman",
+     "source_url": "http://www.linkedin.com/in/jeremy-hoffman-47609295",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://preserve-eats.com/feedback",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  }
+ ]
+}

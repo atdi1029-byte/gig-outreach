@@ -197,6 +197,11 @@
     "rescued_contacts": 3,
     "rescued_venues": 1,
     "deep_dive": "done"
+   },
+   {
+    "run_id": "run-20261108-0931",
+    "outcome": "running",
+    "started": "09:31"
    }
   ],
   "note": "One scraper fix from the last four rounds, no benchmark losses: mail domains named after the venue (Dye House's events@mtwashingtonmill.com, now paired with Michele Coziahr), club-initial Gmail addresses (Eastern Yacht Club's booking agent), and street names no longer taken as people; no new taste votes."
@@ -267,5 +272,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-08T09:28:30-05:00"
+ "updated_at": "2026-11-08T09:31:13-05:00"
 }

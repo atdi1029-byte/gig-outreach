@@ -1,0 +1,1614 @@
+{
+ "run_id": "run-20261107-2022",
+ "venues": [
+  {
+   "venue_id": "DC-REST-2871",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Nikina Lowry-Schiller",
+     "title": "Events Director",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.restaurantchloe.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Haidar Karoum",
+     "title": "Chef & Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.restaurantchloe.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=restaurantchloe.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords='Chloe restaurant' location Washington, DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Nikina Lowry-Schiller @ restaurantchloe.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Haidar Karoum @ restaurantchloe.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "Bryon Sue (GM, bryon@restaurantchloe.com) verified on the About page and Apollo org Chloe (restaurantchloe.com). Events Director Nikina Lowry-Schiller and owner Haidar Karoum are on the About page, but Apollo has no email for either (match_confidence none). The private-events page is a form with no email. The pipeline correctly rejected the joinchloe.com people (a different company called Chloe). No new email."
+  },
+  {
+   "venue_id": "DC-REST-2849",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michael Rafidi",
+     "title": "Chef/Owner",
+     "email": "michael@albidc.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/michael-rafidi-05966439",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Brent Kroll",
+     "title": "Partner (co-founder; Proprietor of Maxwell Park)",
+     "email": "",
+     "source": "apollo",
+     "source_url": "https://washingtonian.com/2020/02/19/chef-michael-rafidi-opens-mediterranean-restaurant-albi-in-navy-yard/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/albiwashdc/",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=albidc.com",
+     "search_type": "domain",
+     "result_count": 5
+    },
+    {
+     "query": "people q_keywords='Albi' location Washington, DC",
+     "search_type": "name",
+     "result_count": 7
+    },
+    {
+     "query": "people_match id Michael Rafidi (Chef/Owner, Albi)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match id Brent Kroll (Partner, Albi)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Apollo gives owner Michael Rafidi as michael@albidc.com (Apollo-verified, on the venue domain, LinkedIn headline 'Chef/Owner | Albi'). Co-founder Brent Kroll's Apollo email is brent@maxwelldcwine.com, which is off-domain, so it is listed without the email. Facebook facebook.com/albiwashdc comes from the World's 50 Best listing and matches the IG handle. No named private-events person was found: yalla@ is labelled 'General' on the homepage, and the FAQ uses it for large-group and Garden Table requests. Caveat: Apollo tags Rafidi and Kroll under the wrong org id (Albiware software), but both people's job histories say Albi DC."
+  },
+  {
+   "venue_id": "DC-REST-2855",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Leah Paquin",
+     "title": "Private Events Manager (Apollo; location now Warwick RI - possibly stale)",
+     "email": "",
+     "source": "apollo",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=rasikarestaurant.com,rasikawestend.com",
+     "search_type": "domain",
+     "result_count": 12
+    },
+    {
+     "query": "people q_organization_domains_list=kbrgdc.com,knightsbridgerestaurantgroup.com (owner group)",
+     "search_type": "domain",
+     "result_count": 16
+    },
+    {
+     "query": "companies name='Rasika' location=Washington, DC",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people org_ids=[KRG, Rasika Restaurants, Bombay Club] titles=events/catering/private dining/GM/director/owner",
+     "search_type": "domain",
+     "result_count": 5
+    },
+    {
+     "query": "people_match id Leah Paquin (Private Events Manager)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match id Atul Narain (Group GM, KRG)",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "Existing rasika@rasikarestaurant.com belongs to this venue (keep). No new saveable email: Apollo Private Events Manager Leah Paquin has no email (status unavailable); Group GM Atul Narain enriched to anarain@altamareagroup.com = different business (Altamarea Group, NY), rejected; group site only has office@kbrgdc.com (general). West End inbox rasika@rasikawestend.com is published on the venue's own site but has no person name."
+  },
+  {
+   "venue_id": "DC-REST-2860",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Beycan Atalay",
+     "title": "Operations / primary contact for private events",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.bombayclubdc.com/our-team-1",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Muhammad Nadeem",
+     "title": "Manager (day-to-day operations)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.bombayclubdc.com/our-team-1",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Nilesh Singhvi",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.bombayclubdc.com/our-team-1",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=bombayclubdc.com",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "companies name='Bombay Club' location=Washington, DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "companies name='Bombay Club' + domain bombayclubdc.com",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people q_keywords='Bombay Club' person_location=Washington, DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords='Beycan Atalay'",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people org_ids=[KRG, Rasika Restaurants, Bombay Club] titles=events/catering/private dining/GM/director/owner",
+     "search_type": "domain",
+     "result_count": 5
+    },
+    {
+     "query": "people_match Beycan Atalay @bombayclubdc.com",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Muhammad Nadeem @bombayclubdc.com",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No saveable email exists: site has no emails at all (phone/fax + Tripleseat form only); private-events contact Beycan Atalay named on /our-team-1 but no email anywhere (web, Apollo); group site only publishes office@kbrgdc.com (general inbox). Note: live piano Thu-Sat (/live-music-1)."
+  },
+  {
+   "venue_id": "DC-REST-2876",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.toasttab.com/invoice/lead?rx=3bd2efbd-3909-490a-8c81-e49a1062c04d&ot=80962bf1-207a-4943-a5ad-e0548a3c5890",
+   "flag_contacts": [
+    {
+     "email": "ciao@amarestaurant.bar",
+     "reason": "General inbox ('ciao' = hello). The site and the DC tourism listing use it as the restaurant's main contact, with no person attached. By the general-inbox rule it should not be a contact. The owners Johanna Hellrigl and Micah Wilder are already saved with personal emails."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=amarestaurant.bar",
+     "search_type": "domain",
+     "result_count": 4
+    },
+    {
+     "query": "people q_keywords='Ama Restaurant' location Washington, DC",
+     "search_type": "name",
+     "result_count": 3
+    }
+   ],
+   "summary": "Saved owners Johanna Hellrigl and Micah Wilder are confirmed (Apollo org Ama Restaurant, amarestaurant.bar, press page). Apollo's other staff are a sous chef and a beverage/training specialist, no events person. The site's 'Private Events & Catering' link goes to a Toast lead form, added as contact_form. ciao@ is a general inbox and is flagged."
+  },
+  {
+   "venue_id": "DC-REST-2858",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Owen Thomson",
+     "title": "General Manager (paired with the venue's events@ inbox)",
+     "email": "events@teresadc.com",
+     "source": "website",
+     "source_url": "https://www.teresadc.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rub\u00e9n Garc\u00eda",
+     "title": "Chef / Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.teresadc.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "teresadc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Casa Teresa (Washington, DC)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people domain teresadc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people keyword 'Casa Teresa' Washington DC",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people keyword 'Casa Teresa' + GM/events/owner titles",
+     "search_type": "name",
+     "result_count": 6
+    },
+    {
+     "query": "people_match Owen Thomson @teresadc.com",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Ruben Garcia @teresadc.com",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match id Kiana Robles (Casa Teresa)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "About page names GM Owen Thomson and Chef/Owner Ruben Garcia (pipeline extracted 0 people: letter-spaced titles); Owen paired with events@teresadc.com as verified=role (GM pairing, per the Flore Cafe rule; drop if you want only a named events manager). Apollo: Ruben -> info@dcthesquare.com (food hall general inbox, rejected); Kiana Robles krobles@casateresa.org = Casa Teresa nonprofit in Orange CA (wrong business, rejected); Head Chef Daniel Lorente has no email."
+  },
+  {
+   "venue_id": "DC-REST-2873",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Frederik De Pue",
+     "title": "Executive Chef / Owner",
+     "email": "frederik@thehenridc.com",
+     "source": "apollo",
+     "source_url": "https://www.thehenridc.com/about",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Kristin Grey",
+     "title": "Professional Event & Project Manager",
+     "email": "kristin.grey@thehenridc.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/kgrey25",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Eduardo Carrasco",
+     "title": "General Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.thehenridc.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=thehenridc.com",
+     "search_type": "domain",
+     "result_count": 4
+    },
+    {
+     "query": "companies q_organization_name='The Henri' loc=Washington, DC",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match id Frederik De Pue (thehenridc.com)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match id Kristin Grey (thehenridc.com)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Eduardo Carrasco + thehenridc.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "Existing Corinne Bresse + Laura Guevara are The Henri's own (name+domain gate pass). New via Apollo: owner Frederik De Pue frederik@ (verified) and events manager Kristin Grey kristin.grey@ (verified; Apollo lists her in NJ and as an independent consultant too, so may be part-time/remote). GM Eduardo Carrasco has no email in Apollo. events@ stays role-no-name (no person published for it)."
+  },
+  {
+   "venue_id": "DC-REST-2853",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Sebastian Zutant",
+     "title": "Co-Owner + Beverage Director",
+     "email": "j.sebastianz@primrosedc.com",
+     "source": "apollo",
+     "source_url": "https://www.primrosedc.com/about",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=primrosedc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "companies q_organization_domains_list=primrosedc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "companies name=Primrose loc=Washington, DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people keywords='Primrose wine bar' loc=Washington, DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Sebastian Zutant @primrosedc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Crystal Shackelford @primrosedc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Chloe Vital @primrosedc.com",
+     "search_type": "domain",
+     "result_count": 0
+    }
+   ],
+   "summary": "Apollo name+domain match gave co-owner Sebastian Zutant (named on /about) j.sebastianz@primrosedc.com (Apollo verified; domain is catch-all, match confidence low, so ZeroBounce must decide). /events says primrose@ is the Events Team inbox; events@ (parties of 11+) has no named owner. The pipeline's Apollo org was the wrong 'Primrose' (preschool franchise), so every one of its 16 enrichments was off-domain."
+  },
+  {
+   "venue_id": "DC-REST-2863",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Angel Guillen",
+     "title": "Sommelier & Dining Room Manager, Elcielo Washington D.C.",
+     "email": "angeldc@elcielogroup.com",
+     "source": "apollo",
+     "source_url": "https://elcielo.com.co/washington/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Juan Manuel Barrientos",
+     "title": "Executive Chef & Owner (Elcielo Hospitality Group)",
+     "email": "juanma@elcielococinacreativa.com",
+     "source": "apollo",
+     "source_url": "https://elcielo.com.co/washington/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Pedro Mendoza Chadid",
+     "title": "Corporate Communications Officer / PR Manager, Elcielo Hospitality Group (former Maitre D', Elcielo Washington DC 2019-2023)",
+     "email": "pedrochadid@elcielogroup.com",
+     "source": "apollo",
+     "source_url": "https://www.linkedin.com/in/pedro-mendoza-chadid-b7476b3",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "admonmed@elcielococinacreativa.com",
+     "reason": "Not the DC location: https://elcielo.com.co/contact/ lists it under Medellin (Colombia administration inbox). The DC location inbox is dc@elcielogroup.com. It is also a general admin inbox."
+    },
+    {
+     "email": "reservasbog@elcielococinacreativa.com",
+     "reason": "Not the DC location: https://elcielo.com.co/contact/ lists it under Bogota (reservations inbox, a general inbox). It was saved with the title 'Executive Chef' by mistake; Barrientos is not its owner."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "companies name=Elcielo",
+     "search_type": "name",
+     "result_count": 23
+    },
+    {
+     "query": "people q_organization_domains_list=elcielogroup.com",
+     "search_type": "domain",
+     "result_count": 23
+    },
+    {
+     "query": "people keywords=Elcielo loc=DC/MD/VA",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people domains=elcielogroup.com,elcielo.com.co,elcielococinacreativa.com loc=United States",
+     "search_type": "domain",
+     "result_count": 7
+    },
+    {
+     "query": "people organization_ids=66d689d8a52f0e0001bd209a (Elcielo Restaurant, elcielo.com.co, DC phone)",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "people_match Angel Guillen @elcielogroup.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Juan Manuel Barrientos @elcielogroup.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Sebastian Moreno Henao @elcielogroup.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people_match id Pedro Chadid",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "Both saved contacts are Colombian inboxes, not DC: admonmed@ is Medellin and reservasbog@ is Bogota, per the venue's own /contact page. Flag both. The best DC person is Angel Guillen, Sommelier & Dining Room Manager, angeldc@elcielogroup.com (Apollo verified, not catch-all, DC-located); the venue's own DC page publishes dc@elcielogroup.com, so off-domain is allowed. Also found: owner Barrientos (juanma@, Colombia-based, catch-all) and group PR officer Pedro Mendoza Chadid (Miami-based, ex-DC maitre d'). Neither web search nor Apollo names an events manager; DC events go through a HubSpot quote form on /washington/events/."
+  },
+  {
+   "venue_id": "DC-REST-2865",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Sanjay Mandhaiya",
+     "title": "Owner + Executive Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.karravaan.com/story-2",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Randall Matthews",
+     "title": "Culinary Director",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.karravaan.com/story-2",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Stefan Sokic",
+     "title": "Beverage Director",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.karravaan.com/story-2",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Neko Harris",
+     "title": "Assistant General Manager",
+     "email": "",
+     "source": "websearch",
+     "source_url": "linkedin (pipeline candidate)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=karravaan.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "companies name='Karravaan'",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords='Karravaan'",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords='Sanjay Mandhaiya'",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people q_keywords='Neko Harris'",
+     "search_type": "name",
+     "result_count": 4
+    },
+    {
+     "query": "people_match Sanjay Mandhaiya @karravaan.com",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "No saveable email: only info@karravaan.com (general inbox) on site; Apollo match for owner Sanjay Mandhaiya returned that same info@ (rejected). Owner/culinary director named on /story-2. No Facebook page found (record field empty)."
+  },
+  {
+   "venue_id": "DC-REST-2874",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michael O'Malley",
+     "title": "Director of Operations / Owner (Partner)",
+     "email": "mjo@theredhendc.com",
+     "source": "apollo",
+     "source_url": "https://theredhendc.com/about/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "theredhendc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Red Hen (Washington, DC)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people domain theredhendc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people keyword 'Red Hen' Washington DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Michael Hiatt @theredhendc.com",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Michael O'Malley @theredhendc.com",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Michael Friedman @theredhendc.com",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Apollo name-match on site-listed owner Michael O'Malley (Director of Operations/Owner, LinkedIn 'Partner at The Red Hen') revealed verified mjo@theredhendc.com; GM Michael Hiatt and Chef/Owner Mike Friedman have no Apollo email; site has only info@ (general) and an on-page private-events form."
+  },
+  {
+   "venue_id": "DC-REST-2864",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Christina Lombardi",
+     "title": "Manager / Private Events & Catering",
+     "email": "christina@sanlorenzodc.com",
+     "source": "apollo",
+     "source_url": "https://www.sanlorenzodc.com/private-events",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=sanlorenzodc.com",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "people keywords='San Lorenzo Christina' loc=DC/MD/VA",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match email=christina@sanlorenzodc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match id Massimo Fabbri (San Lorenzo Ristorante + Bar)",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "An Apollo reverse lookup of christina@sanlorenzodc.com names her Christina Lombardi, DC (match confidence LOW; no web source confirms the surname). The venue's /private-events page says 'Christina will be in touch with menus and availability', and an OpenTable review calls her 'Christina the manager'. Chef/owner Massimo Fabbri's Apollo email is massimo.fabbri@ again, which ZeroBounce already rejected as invalid, so it is not re-added."
+  },
+  {
+   "venue_id": "DC-REST-2852",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Miguel Guerra",
+     "title": "Chef / Owner",
+     "email": "miguel@mitadc.com",
+     "source": "apollo",
+     "source_url": "https://www.mitadc.com/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Tatiana Mora",
+     "title": "Chef / Owner (sommelier)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.mitadc.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Lou Bernard",
+     "title": "Beverage Director",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.mitadc.com/services-4",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "mitadc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "MITA (Washington, DC)",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people domain mitadc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Miguel Guerra @mitadc.com",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Tatiana Mora @mitadc.com",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Homepage names Chef/Owners Miguel Guerra and Tatiana Mora (pipeline extracted 0 people); Apollo people_match revealed miguel@mitadc.com (verified, but mitadc.com is catch-all so ZeroBounce may reject); Tatiana's Apollo email tatiana@mitaplantbased.com is off-domain (that domain is a dead Wix site not used by the venue) so withheld; Apollo orgs on the domain are wrong (Mindful Chef UK meal kits, MITA cannabis trade assoc AZ, MIT Alumni Angels) and Rebecca Sc***e 'Junior Buyer' is not MITA staff."
+  },
+  {
+   "venue_id": "DC-REST-2859",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Eric Adjepong",
+     "title": "Chef / Owner",
+     "email": "eric@elminarestaurant.com",
+     "source": "website",
+     "source_url": "https://www.elminarestaurant.com/private-dining",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Cameron Matthews",
+     "title": "General Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.elminarestaurant.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=elminarestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "companies q_organization_domains_list=elminarestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "companies name=Elmina loc=Washington DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people keywords=Elmina loc=Washington DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Cameron Matthews @elminarestaurant.com (GM, Apollo org 'ELMINA' 6726a7d1...) -> matched, email unavailable (1 credit)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "eric@elminarestaurant.com is Chef/owner Eric Adjepong (the only Eric on the site, 'Chef Eric Adjepong, the visionary behind Elmina'; eric@ is CC'd on the private-dining inquiry mailto). Jason (jason@, ZB invalid) not identifiable; GM Cameron Matthews has no email (Apollo unavailable). No Facebook page found."
+  },
+  {
+   "venue_id": "DC-REST-2875",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "I\u00f1igo Oyarzabal",
+     "title": "General Manager",
+     "email": "inigo@dauphinesdc.com",
+     "source": "apollo",
+     "source_url": "https://www.dauphinesdc.com/about/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Courtney Donovan",
+     "title": "Guest Relations & Event Manager",
+     "email": "courtney@dauphinesdc.com",
+     "source": "apollo",
+     "source_url": "https://www.dauphinesdc.com/about/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Tyler Nix",
+     "title": "Restaurant Manager",
+     "email": "tyler@dauphinesdc.com",
+     "source": "apollo",
+     "source_url": "https://www.dauphinesdc.com/about/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Tihon Nguyen",
+     "title": "Assistant General Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.dauphinesdc.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=dauphinesdc.com",
+     "search_type": "domain",
+     "result_count": 5
+    },
+    {
+     "query": "companies q_organization_name=\"Dauphine's\" loc=Washington, DC",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Inigo Oyarzabal + dauphinesdc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Courtney Donovan + dauphinesdc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Tyler Nix + dauphinesdc.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Tihon Nguyen + dauphinesdc.com",
+     "search_type": "domain",
+     "result_count": 0
+    }
+   ],
+   "summary": "Courtney Donovan on events@ confirmed on the About page. Apollo name+domain match (low confidence, but email_status verified, first@ pattern) gave GM I\u00f1igo Oyarzabal inigo@, Courtney courtney@ (her personal inbox) and RM Tyler Nix tyler@. Let ZeroBounce decide. Owners (Long Shot Hospitality: Kyle Bailey, Jeremy Carman, Gavin Coleman, Paul Holder; partner Neal Bodenheimer) are on an off-domain group not used by the venue's site, so not added. Existing contact_form value is the bare https://www.tripleseat.com (weak, but the field isn't empty, so left alone)."
+  },
+  {
+   "venue_id": "DC-REST-2866",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Lonie Murdock",
+     "title": "Executive Chef / partner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://washingtonian.com/2025/10/29/a-sleek-island-inspired-restaurant-and-cocktail-lounge-open-in-downtown-dc/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Darren Hinds",
+     "title": "Partner (Isla / Goodlove)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://washingtonian.com/2025/10/29/a-sleek-island-inspired-restaurant-and-cocktail-lounge-open-in-downtown-dc/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Hanif Harji",
+     "title": "Partner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://washingtonian.com/2025/10/29/a-sleek-island-inspired-restaurant-and-cocktail-lounge-open-in-downtown-dc/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://app.perfectvenue.com/venues/ISLA/hello",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=isladc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords=ISLA restaurant, person_locations=Washington DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "organizations_lookup fuzzy_name=ISLA, location Washington DC",
+     "search_type": "name",
+     "result_count": 10
+    },
+    {
+     "query": "people q_keywords=Nikki ISLA (Washington DC, Toronto)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords=Darren Hinds",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people q_keywords=Lonie Murdock",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Existing nikki@isladc.com belongs to this venue: the events deck PDF (/wp-content/uploads/2026/09/ISLA-Goodlove-Event-Deck-Aug-2026.pdf) lists it as 'ISLA Experience Manager' for all event inquiries; Nikki's surname not found anywhere (web, Apollo), so no named contact added. Apollo orgs for 'ISLA' are all other businesses (rejected). New: PerfectVenue event form on /events. Facebook page not found."
+  },
+  {
+   "venue_id": "DC-REST-2877",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Shamim Popal",
+     "title": "Executive Chef (family owner, Popal Group)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.lapisdc.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Omar Popal",
+     "title": "Popal Group (owner group)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://georgetowner.com/?p=263885",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=lapisdc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords=Lapis, person_locations=Washington DC",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "organizations_lookup fuzzy_name=Lapis, location Washington DC",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people organization_ids=[55920d6a73696421135d0000, 64ffff41dc05560001a262eb]",
+     "search_type": "name",
+     "result_count": 18
+    },
+    {
+     "query": "people_match Shamim Popal @lapisdc.com",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Site fully re-crawled (home, contact, about, catering, press, info, sitemap): only info@ (general) and the PR agency email (off-domain); events go to the Popal Group PerfectVenue form (already on record). Apollo has no lapisdc.com people; the 'LAPIS' orgs are unrelated (Turkish/other) apart from a dishwasher. No savable contact. Apollo match for chef Shamim Popal: no email."
+  },
+  {
+   "venue_id": "DC-REST-2854",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Melanie Boothe",
+     "title": "Director of Events, Fabio Trabocchi Restaurants",
+     "email": "melanie.boothe@fabiotrabocchi.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/melanieboothe",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Sarah Stockwell",
+     "title": "Private Events Manager, Fabio Trabocchi Restaurants (formerly Fiola Restaurant Manager)",
+     "email": "sarah.stockwell@fabiotrabocchi.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/sarahstockwell16",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Cristina Rodriguez",
+     "title": "Private Events Manager, Fabio Trabocchi Restaurants",
+     "email": "cristina.rodriguez@fabiotrabocchi.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/cristina-rodriguez0321",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Kinga Dienger",
+     "title": "General Manager - Fiola",
+     "email": "kinga.dienger@fabiotrabocchi.com",
+     "source": "apollo",
+     "source_url": "https://www.fioladc.com/the-team",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://fabiotrabocchi.tripleseat.com/party_request/3601",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=[fabiotrabocchi.com, fioladc.com]",
+     "search_type": "domain",
+     "result_count": 145
+    },
+    {
+     "query": "companies name=Fiola loc=Washington DC (org 'Fiola', fioladc.com, 0 people)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "bulk_match ids Melanie Boothe, Cristina Rodriguez, Sarah Stockwell + name Kinga Dienger @fabiotrabocchi.com -> 4 matched, all email_status verified (4 credits)",
+     "search_type": "domain",
+     "result_count": 4
+    }
+   ],
+   "summary": "Owner-group domain fabiotrabocchi.com is used by Fiola's own site for every contact (reservations@, info@, fiolaevents@), so allow_off_domain. Apollo on the group domain gave the Director of Events, two Private Events Managers and Fiola GM Kinga Dienger (GM listed on fioladc.com/the-team), all Apollo-verified. Who exactly reads fiolaevents@ isn't published, so it stays unnamed. The Tripleseat event form is the contact form."
+  },
+  {
+   "venue_id": "DC-REST-2848",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Karan Singh",
+     "title": "Owner (Punjab Grill DC / Rania team)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.popville.com/2022/05/rania-punjab-grill-indian-restaurant/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=raniadc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords=Rania, person_locations=Washington DC",
+     "search_type": "name",
+     "result_count": 11
+    },
+    {
+     "query": "organizations_lookup fuzzy_name=Rania, location Washington DC",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords=Rania Punjab Grill",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people q_keywords=Karan Singh Punjab Grill (DC/VA/MD)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "people_match Karan Singh @raniadc.com",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Site has 6 pages (sitemap): only info@raniadc.com (general) and a Tripleseat form on /private-events (already on record); About page names no one. Apollo name hits are all people named Rania at other employers (rejected). Owner Karan Singh found in press, no email. No savable contact. Apollo match for owner Karan Singh: no email."
+  },
+  {
+   "venue_id": "DC-REST-2847",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Danny Lled\u00f3",
+     "title": "Chef / Owner (Bacora Hospitality)",
+     "email": "danny@chefdannylledo.com",
+     "source": "website",
+     "source_url": "https://www.xiquetdl.com/private-dining",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Luis Garcia-Cruz",
+     "title": "Hospitality leader (manager), Xiquet",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/luis-garcia-cruz",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Aren Sahakyan",
+     "title": "Front of House Manager",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/aren-sahakyan-ab6309340",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "people q_organization_domains_list=[xiquetdl.com, chefdannylledo.com, bacoraventures.com]",
+     "search_type": "domain",
+     "result_count": 5
+    },
+    {
+     "query": "people q_organization_domains_list=bacorahospitality.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "companies name=Xiquet (accepted only 'Xiquet by Danny Lled\u00f3' xiquetdl.com; rejected Can Xiquet etc.)",
+     "search_type": "name",
+     "result_count": 9
+    },
+    {
+     "query": "bulk_match Luis Garcia-Cruz, Aren Sahakyan -> matched, email unavailable (2 credits)",
+     "search_type": "domain",
+     "result_count": 2
+    }
+   ],
+   "summary": "danny@chefdannylledo.com is Danny Lled\u00f3's: chefdannylledo.com redirects to Bacora Hospitality (his group, which runs Xiquet), and xiquetdl.com publishes the address itself (gift-card mailto, BCC on the info@ link), so allow_off_domain true. The saved title 'Private Dining' should be 'Chef / Owner'. No named events person; FOH Manager Aren Sahakyan and manager Luis Garcia-Cruz have no emails (Apollo unavailable)."
+  },
+  {
+   "venue_id": "DC-MUSE-004",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Toresha King",
+     "title": "Special Events Manager",
+     "email": "tking@hillwoodmuseum.org",
+     "source": "website",
+     "source_url": "https://hillwoodmuseum.org/node/1995",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Lynn Rossotti",
+     "title": "Director of External Affairs (oversees group sales / special events inquiries)",
+     "email": "lrossotti@hillwoodmuseum.org",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/lynn-rossotti-a82975176",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "hillwoodmuseum.org keywords=events",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "hillwoodmuseum.org titles=special events manager/group sales/tourism/events/external affairs",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "hillwoodmuseum.org keywords=Toresha King",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Special events inquiries go to grouptours@ (no name on site); found current Special Events Manager Toresha King (tking@, Cloudflare-obfuscated on the 2026 gala page) and Director of External Affairs Lynn Rossotti (Apollo, verified). No wrong-business contacts. Note: Hillwood does not allow weddings/private parties, only corporate and non-profit events."
+  },
+  {
+   "venue_id": "DC-EVEN-2602",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Despina Petradakis",
+     "title": "Events Manager",
+     "email": "dpetradakis@meridian.org",
+     "source": "apollo",
+     "source_url": "https://meridian.org/rental/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Joseph Richter",
+     "title": "Director of Events Sales & Services",
+     "email": "eventrentals@meridian.org",
+     "source": "website",
+     "source_url": "https://meridian.org/rental/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "meridian.org keywords=events",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "Meridian International Center titles=event sales/events manager/venue rental/special events",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people_match Joseph Richter @ meridian.org",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "The rental page names Joseph Richter (Director of Events Sales & Services) and Despina Petradaki(s) (Events Manager) with the EventRentals@ mailto. Apollo gives Despina a verified dpetradakis@meridian.org. Richter has no personal email (Apollo: unavailable), so he is paired with the eventrentals@ function inbox from the same page. No wrong-business contacts."
+  },
+  {
+   "venue_id": "DC-EVEN-2603",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Joseph Pompili",
+     "title": "General Manager, Andrew W. Mellon Auditorium (Ridgewells)",
+     "email": "jpompili@ridgewells.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/joseph-pompili-a7337341",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Diego Maldonado",
+     "title": "Venue Manager",
+     "email": "",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/diego-quiroga-maldonado-229797349",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "eventsatmellon.com",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "Andrew W. Mellon Auditorium",
+     "search_type": "name",
+     "result_count": 3
+    },
+    {
+     "query": "ridgewells.com keywords=Mellon",
+     "search_type": "domain",
+     "result_count": 1
+    }
+   ],
+   "summary": "The existing three Ridgewells contacts (Turbides, Kirsch, mellonevents@) are correct; the venue site publishes them. Added Joseph Pompili (Apollo: GM of the Mellon Auditorium at Ridgewells since Sep 2024, verified jpompili@ridgewells.com; the site's About page names Sara Kirsch as GM, so he may be her predecessor or co-GM). Venue Manager Diego Maldonado has no email (context only). No Facebook page found: the site links only to Instagram, and searches turned up nothing."
+  },
+  {
+   "venue_id": "DC-EVEN-2604",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Marie-H\u00e9l\u00e8ne Zavala",
+     "title": "Director of Events, La Maison Fran\u00e7aise",
+     "email": "mf.washington-amba@diplomatie.gouv.fr",
+     "source": "website",
+     "source_url": "https://media.franceintheus.org/lmf/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true,
+     "note": "The LMF page lists her as Director of Events, then names this address as La Maison Fran\u00e7aise's email. It is the LMF events-office inbox on the Embassy's own mail domain (French foreign ministry), published on the venue's own page. Save as verified=role. Apollo has her as Director of Social Events at Embassy of France in the US (no email)."
+    },
+    {
+     "name": "M\u00e9lanie De Vos",
+     "title": "Deputy Director of Events, La Maison Fran\u00e7aise",
+     "email": "",
+     "source": "website",
+     "source_url": "https://media.franceintheus.org/lmf/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "Context only. Second person on the same events inbox. Apollo lists a 'Melanie Ma***t (Maubert), Deputy Director of Events', probably the same person under another surname. Apollo has no email for her."
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "franceintheus.org, ambafrance-us.org",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Embassy of France (Washington, DC)",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "La Maison Francaise",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "people: org 5b836b85324d4426dc36c222 + 6a9f2c013feff800018d070f, keyword 'events'",
+     "search_type": "domain",
+     "result_count": 2
+    },
+    {
+     "query": "people: same orgs, keyword 'Zavala'",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "The LMF page names Marie-H\u00e9l\u00e8ne Zavala (Director of Events) and M\u00e9lanie De Vos (Deputy) and publishes the LMF events inbox mf.washington-amba@diplomatie.gouv.fr. The pipeline found both but rejected the inbox as off-domain (gouv.fr is not franceintheus.org), even though it is the Embassy's own mail domain shown on the venue's own page. Save Zavala with it as verified=role, allow_off_domain. The La Maison Francaise orgs Apollo found by name are Brazil/France businesses and were rejected. Apollo has no emails for Zavala or Maubert (the pipeline already enriched both)."
+  },
+  {
+   "venue_id": "MD-EVEN-3046",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Lindsay Luna",
+     "title": "President (formerly Director of Sales)",
+     "email": "lindsay@belvedereandco.com",
+     "source": "apollo",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "note": "The venue's Who We Are page lists Lindsay as President (also on The Knot and WeddingWire). belvedereandco.com 301-redirects to belvedereandcoevents.com, so it is the venue's own sibling domain (Google Workspace MX). Top pick."
+    },
+    {
+     "name": "Hannah Delgado",
+     "title": "Event Sales Coordinator",
+     "email": "hannah@belvedereandco.com",
+     "source": "apollo",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "note": "Listed as Hannah, Event Coordinator, on the Who We Are page. Sales role."
+    },
+    {
+     "name": "Aaron Luna",
+     "title": "Director of Operations",
+     "email": "aaron@belvedereandco.com",
+     "source": "apollo",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "note": "Listed as Aaron, Director of Operations, on the Who We Are page."
+    },
+    {
+     "name": "Julia Banashak",
+     "title": "Event Coordinator",
+     "email": "julia@belvedereandco.com",
+     "source": "apollo",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "note": "Listed as Julia, Event Coordinator, on the Who We Are page."
+    },
+    {
+     "name": "Sondra Goad",
+     "title": "Chief Executive Officer",
+     "email": "sondra@belvedereandco.com",
+     "source": "apollo",
+     "source_url": "https://www.belvedereandcoevents.com/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "note": "Root of Apollo's org chart; directories list her as CEO. Not on the Who We Are page."
+    },
+    {
+     "name": "Laura Bonvegna",
+     "title": "Chief Business Administrator",
+     "email": "laura@belvedereandco.com",
+     "source": "apollo",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "note": "Listed as Laura, Chief Business Administrator, on the Who We Are page. Lower priority."
+    },
+    {
+     "name": "Leah Dumaine",
+     "title": "Sales Manager",
+     "email": "leah@belvedereandcoevents.com",
+     "source": "apollo",
+     "source_url": "http://www.linkedin.com/in/leahdumaine",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "New: Apollo enrichment, 1 credit. Apollo marks the email extrapolated and the domain catch-all. ZeroBounce rated kathy@ and rocco@ on this domain invalid, so it may bounce; let ZeroBounce decide. Not on the Who We Are page; LinkedIn has her as Sales Manager since 2024-06."
+    },
+    {
+     "name": "Olivia Otto",
+     "title": "Lead Planner",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.theknot.com/marketplace/belvedere-and-co-events-baltimore-md-541334",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "Context only. Who We Are lists her as 'Olivia, Lead Planner'; The Knot gives the surname. No email."
+    },
+    {
+     "name": "Erin McKenna",
+     "title": "Event Operations Manager",
+     "email": "",
+     "source": "websearch",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "Context only (from the pipeline's LinkedIn step). No email."
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "belvedereandcoevents.com, belvedereandco.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Belvedere & Co (Baltimore, MD)",
+     "search_type": "name",
+     "result_count": 1
+    },
+    {
+     "query": "people: org 5da556c5ce21f10001e440ae (Belvedere & Co. Events)",
+     "search_type": "domain",
+     "result_count": 17
+    },
+    {
+     "query": "people_match id 6410c960d11318000146018a (Leah Dumaine)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Apollo found 6 staff emails on belvedereandco.com, and the pipeline rejected all of them as off-domain. That domain 301-redirects to belvedereandcoevents.com, so it is the venue's own sibling domain. Save them with allow_off_domain: Lindsay Luna (President) first, then Hannah Delgado, Aaron Luna, Julia Banashak, Sondra Goad and Laura Bonvegna. Apollo also returned Sales Manager Leah Dumaine (leah@belvedereandcoevents.com, extrapolated). The only email on the site is info@, a general inbox."
+  }
+ ]
+}

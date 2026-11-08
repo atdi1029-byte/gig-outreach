@@ -1,0 +1,684 @@
+{
+ "run_id": "run-20261107-2022",
+ "dry_run": false,
+ "at": "2026-11-07T22:55:12-05:00",
+ "totals": {
+  "saved": 24,
+  "venues_rescued": 5,
+  "socials": 4,
+  "rejected": 2,
+  "errors": 0,
+  "flagged": 3
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-REST-2871",
+   "name": "Chloe",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Nikina Lowry-Schiller",
+     "source_url": "https://www.restaurantchloe.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Haidar Karoum",
+     "source_url": "https://www.restaurantchloe.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2849",
+   "name": "Albi",
+   "contacts": [
+    {
+     "email": "michael@albidc.com",
+     "name": "Michael Rafidi",
+     "source_url": "http://www.linkedin.com/in/michael-rafidi-05966439",
+     "title": "Chef/Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Brent Kroll",
+     "source_url": "https://washingtonian.com/2020/02/19/chef-michael-rafidi-opens-mediterranean-restaurant-albi-in-navy-yard/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/albiwashdc/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2855",
+   "name": "Rasika",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Leah Paquin",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2860",
+   "name": "The Bombay Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Beycan Atalay",
+     "source_url": "https://www.bombayclubdc.com/our-team-1",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Muhammad Nadeem",
+     "source_url": "https://www.bombayclubdc.com/our-team-1",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Nilesh Singhvi",
+     "source_url": "https://www.bombayclubdc.com/our-team-1",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2876",
+   "name": "Ama",
+   "contacts": [],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.toasttab.com/invoice/lead?rx=3bd2efbd-3909-490a-8c81-e49a1062c04d&ot=80962bf1-207a-4943-a5ad-e0548a3c5890",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "ciao@amarestaurant.bar",
+     "reason": "General inbox ('ciao' = hello). The site and the DC tourism listing use it as the restaurant's main contact, with no person attached. By the general-inbox rule it should not be a contact. The owners Johanna Hellrigl and Micah Wilder are already saved with personal emails."
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2858",
+   "name": "Casa Teresa",
+   "contacts": [
+    {
+     "email": "events@teresadc.com",
+     "name": "Owen Thomson",
+     "source_url": "https://www.teresadc.com/about",
+     "title": "General Manager (paired with the venue's events@ inbox)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Rub\u00e9n Garc\u00eda",
+     "source_url": "https://www.teresadc.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2873",
+   "name": "The Henri",
+   "contacts": [
+    {
+     "email": "frederik@thehenridc.com",
+     "name": "Frederik De Pue",
+     "source_url": "https://www.thehenridc.com/about",
+     "title": "Executive Chef / Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "kristin.grey@thehenridc.com",
+     "name": "Kristin Grey",
+     "source_url": "http://www.linkedin.com/in/kgrey25",
+     "title": "Professional Event & Project Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Eduardo Carrasco",
+     "source_url": "https://www.thehenridc.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2853",
+   "name": "Primrose",
+   "contacts": [
+    {
+     "email": "j.sebastianz@primrosedc.com",
+     "name": "Sebastian Zutant",
+     "source_url": "https://www.primrosedc.com/about",
+     "outcome": "rejected:zerobounce_invalid"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2863",
+   "name": "Elcielo Washington D.C.",
+   "contacts": [
+    {
+     "email": "angeldc@elcielogroup.com",
+     "name": "Angel Guillen",
+     "source_url": "https://elcielo.com.co/washington/",
+     "title": "Sommelier & Dining Room Manager, Elcielo Washington D.C.",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "juanma@elcielococinacreativa.com",
+     "name": "Juan Manuel Barrientos",
+     "source_url": "https://elcielo.com.co/washington/",
+     "title": "Executive Chef & Owner (Elcielo Hospitality Group)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "pedrochadid@elcielogroup.com",
+     "name": "Pedro Mendoza Chadid",
+     "source_url": "https://www.linkedin.com/in/pedro-mendoza-chadid-b7476b3",
+     "title": "Corporate Communications Officer / PR Manager, Elcielo Hospitality Group (former",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "admonmed@elcielococinacreativa.com",
+     "reason": "Not the DC location: https://elcielo.com.co/contact/ lists it under Medellin (Colombia administration inbox). The DC location inbox is dc@elcielogroup.com. It is also a general admin inbox."
+    },
+    {
+     "email": "reservasbog@elcielococinacreativa.com",
+     "reason": "Not the DC location: https://elcielo.com.co/contact/ lists it under Bogota (reservations inbox, a general inbox). It was saved with the title 'Executive Chef' by mistake; Barrientos is not its owner."
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2865",
+   "name": "Karravaan",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Sanjay Mandhaiya",
+     "source_url": "https://www.karravaan.com/story-2",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Randall Matthews",
+     "source_url": "https://www.karravaan.com/story-2",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Stefan Sokic",
+     "source_url": "https://www.karravaan.com/story-2",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Neko Harris",
+     "source_url": "linkedin (pipeline candidate)",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2874",
+   "name": "The Red Hen",
+   "contacts": [
+    {
+     "email": "mjo@theredhendc.com",
+     "name": "Michael O'Malley",
+     "source_url": "https://theredhendc.com/about/",
+     "title": "Director of Operations / Owner (Partner)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2864",
+   "name": "San Lorenzo",
+   "contacts": [
+    {
+     "email": "christina@sanlorenzodc.com",
+     "name": "Christina Lombardi",
+     "source_url": "https://www.sanlorenzodc.com/private-events",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2852",
+   "name": "MITA",
+   "contacts": [
+    {
+     "email": "miguel@mitadc.com",
+     "name": "Miguel Guerra",
+     "source_url": "https://www.mitadc.com/",
+     "title": "Chef / Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Tatiana Mora",
+     "source_url": "https://www.mitadc.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Lou Bernard",
+     "source_url": "https://www.mitadc.com/services-4",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2859",
+   "name": "Elmina",
+   "contacts": [
+    {
+     "email": "eric@elminarestaurant.com",
+     "name": "Eric Adjepong",
+     "source_url": "https://www.elminarestaurant.com/private-dining",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Cameron Matthews",
+     "source_url": "https://www.elminarestaurant.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2875",
+   "name": "Dauphine's",
+   "contacts": [
+    {
+     "email": "inigo@dauphinesdc.com",
+     "name": "I\u00f1igo Oyarzabal",
+     "source_url": "https://www.dauphinesdc.com/about/",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "courtney@dauphinesdc.com",
+     "name": "Courtney Donovan",
+     "source_url": "https://www.dauphinesdc.com/about/",
+     "title": "Guest Relations & Event Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "tyler@dauphinesdc.com",
+     "name": "Tyler Nix",
+     "source_url": "https://www.dauphinesdc.com/about/",
+     "title": "Restaurant Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Tihon Nguyen",
+     "source_url": "https://www.dauphinesdc.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2866",
+   "name": "Isla Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Lonie Murdock",
+     "source_url": "https://washingtonian.com/2025/10/29/a-sleek-island-inspired-restaurant-and-cocktail-lounge-open-in-downtown-dc/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Darren Hinds",
+     "source_url": "https://washingtonian.com/2025/10/29/a-sleek-island-inspired-restaurant-and-cocktail-lounge-open-in-downtown-dc/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Hanif Harji",
+     "source_url": "https://washingtonian.com/2025/10/29/a-sleek-island-inspired-restaurant-and-cocktail-lounge-open-in-downtown-dc/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://app.perfectvenue.com/venues/ISLA/hello",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2877",
+   "name": "Lapis",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Shamim Popal",
+     "source_url": "https://www.lapisdc.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Omar Popal",
+     "source_url": "https://georgetowner.com/?p=263885",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2854",
+   "name": "Fiola",
+   "contacts": [
+    {
+     "email": "melanie.boothe@fabiotrabocchi.com",
+     "name": "Melanie Boothe",
+     "source_url": "http://www.linkedin.com/in/melanieboothe",
+     "title": "Director of Events, Fabio Trabocchi Restaurants",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-2297"
+    },
+    {
+     "email": "sarah.stockwell@fabiotrabocchi.com",
+     "name": "Sarah Stockwell",
+     "source_url": "http://www.linkedin.com/in/sarahstockwell16",
+     "title": "Private Events Manager, Fabio Trabocchi Restaurants (formerly Fiola Restaurant M",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-2706"
+    },
+    {
+     "email": "cristina.rodriguez@fabiotrabocchi.com",
+     "name": "Cristina Rodriguez",
+     "source_url": "http://www.linkedin.com/in/cristina-rodriguez0321",
+     "title": "Private Events Manager, Fabio Trabocchi Restaurants",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-2297"
+    },
+    {
+     "email": "kinga.dienger@fabiotrabocchi.com",
+     "name": "Kinga Dienger",
+     "source_url": "https://www.fioladc.com/the-team",
+     "title": "General Manager - Fiola",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://fabiotrabocchi.tripleseat.com/party_request/3601",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2848",
+   "name": "Rania",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Karan Singh",
+     "source_url": "https://www.popville.com/2022/05/rania-punjab-grill-indian-restaurant/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2847",
+   "name": "Xiquet by Danny Lled\u00f3",
+   "contacts": [
+    {
+     "email": "danny@chefdannylledo.com",
+     "name": "Danny Lled\u00f3",
+     "source_url": "https://www.xiquetdl.com/private-dining",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Luis Garcia-Cruz",
+     "source_url": "http://www.linkedin.com/in/luis-garcia-cruz",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Aren Sahakyan",
+     "source_url": "http://www.linkedin.com/in/aren-sahakyan-ab6309340",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-MUSE-004",
+   "name": "Hillwood Estate, Museum & Gardens",
+   "contacts": [
+    {
+     "email": "tking@hillwoodmuseum.org",
+     "name": "Toresha King",
+     "source_url": "https://hillwoodmuseum.org/node/1995",
+     "title": "Special Events Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "lrossotti@hillwoodmuseum.org",
+     "name": "Lynn Rossotti",
+     "source_url": "http://www.linkedin.com/in/lynn-rossotti-a82975176",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-EVEN-2602",
+   "name": "Meridian International Center (Meridian House & White-Meyer House)",
+   "contacts": [
+    {
+     "email": "dpetradakis@meridian.org",
+     "name": "Despina Petradakis",
+     "source_url": "https://meridian.org/rental/",
+     "title": "Events Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "eventrentals@meridian.org",
+     "name": "Joseph Richter",
+     "source_url": "https://meridian.org/rental/",
+     "title": "Director of Events Sales & Services",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-EVEN-2603",
+   "name": "Andrew W. Mellon Auditorium",
+   "contacts": [
+    {
+     "email": "jpompili@ridgewells.com",
+     "name": "Joseph Pompili",
+     "source_url": "http://www.linkedin.com/in/joseph-pompili-a7337341",
+     "title": "General Manager, Andrew W. Mellon Auditorium (Ridgewells)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Diego Maldonado",
+     "source_url": "http://www.linkedin.com/in/diego-quiroga-maldonado-229797349",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-EVEN-2604",
+   "name": "La Maison Fran\u00e7aise (Embassy of France)",
+   "contacts": [
+    {
+     "email": "mf.washington-amba@diplomatie.gouv.fr",
+     "name": "Marie-H\u00e9l\u00e8ne Zavala",
+     "source_url": "https://media.franceintheus.org/lmf/",
+     "title": "Director of Events, La Maison Fran\u00e7aise",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "M\u00e9lanie De Vos",
+     "source_url": "https://media.franceintheus.org/lmf/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-EVEN-3046",
+   "name": "The Belvedere (Belvedere & Co. Events)",
+   "contacts": [
+    {
+     "email": "lindsay@belvedereandco.com",
+     "name": "Lindsay Luna",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "title": "President (formerly Director of Sales)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "hannah@belvedereandco.com",
+     "name": "Hannah Delgado",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "title": "Event Sales Coordinator",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "aaron@belvedereandco.com",
+     "name": "Aaron Luna",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "title": "Director of Operations",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "julia@belvedereandco.com",
+     "name": "Julia Banashak",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "title": "Event Coordinator",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "sondra@belvedereandco.com",
+     "name": "Sondra Goad",
+     "source_url": "https://www.belvedereandcoevents.com/",
+     "title": "Chief Executive Officer",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "laura@belvedereandco.com",
+     "name": "Laura Bonvegna",
+     "source_url": "https://www.belvedereandcoevents.com/who-we-are",
+     "title": "Chief Business Administrator",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "leah@belvedereandcoevents.com",
+     "name": "Leah Dumaine",
+     "source_url": "http://www.linkedin.com/in/leahdumaine",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Olivia Otto",
+     "source_url": "https://www.theknot.com/marketplace/belvedere-and-co-events-baltimore-md-541334",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Erin McKenna",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  }
+ ]
+}

@@ -1,0 +1,5706 @@
+{
+ "run_id": "run-20261107-1810",
+ "venues": [
+  {
+   "venue_id": "DC-PRIV-115",
+   "name": "National Press Club",
+   "website": "https://www.press.org/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "private_club",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/PressClubDC",
+   "instagram": "https://www.instagram.com/pressclubdc",
+   "contact_form": "https://members.press.org/Public_Pages/Event_Request_Form",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Dan Griffin",
+     "title": "Communications Director of the National Press Club",
+     "email": "dgriffin@press.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Kirsten Fedewa",
+     "email": "kirstenfedewa@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Mesfin Mekonen",
+     "title": "Manager",
+     "email": "mmekonen@press.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Mark Schoeff",
+     "email": "mschoeff@press.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Tom Young",
+     "email": "tyoungmail@aol.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "wire@press.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Michelle Licht",
+     "title": "Director of Events",
+     "email": "mlicht@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Bekkie Barbosa",
+     "title": "Senior Banquet Manager",
+     "email": "bbarbosa@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Samantha Hibbert",
+     "title": "Event Manager",
+     "email": "shibbert@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "George Arfken",
+     "title": "Event Coordinator",
+     "email": "garfken@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Renee Arellano",
+     "title": "Assistant Director of Events",
+     "email": "rarellano@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Kate Helster",
+     "title": "Deputy Executive Director, Membership & Programs",
+     "email": "khelster@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Miguel Dominguez",
+     "title": "Director of Clubhouse Operations",
+     "email": "mdominguez@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Tiina Kreek",
+     "title": "Manager, Broadcast Operations Center",
+     "email": "tkreek@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Melanie Ierardi",
+     "title": "Assistant Manager, Broadcast Operations Center",
+     "email": "mierardi@press.org",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-PRIV-115 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=17 saved=6 role=0 unverified=0 deferred=0 rejected=5 candidates=6 known=0 errors=0 people=7 pending=0 fb=1 ig=1 blocked_pages=1 missing=none",
+    "[STEP] DC-PRIV-115 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-PRIV-115 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=3 org=National_Press_Club gate=name+domain people=50 relevant=32 skipped_titles=5 over_cap=0 enriched=32 saved=17 pending=0 deferred=0 credits=32",
+    "[STEP] DC-PRIV-115 linkedin empty pages=3 results=28 rejected=28 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-PRIV-115 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-PRIV-115 final ok status=pipelined valid_contacts=23 new=23 deferred=0",
+    "[STEP] DC-PRIV-115 postcheck skipped reason=has_contacts valid=23"
+   ],
+   "candidates": [
+    {
+     "email": "archives@press.org",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "archives@press.org",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "dgriffin@press.org",
+     "name": "Dan Griffin",
+     "title": "Communications Director of the National Press Club",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "dgriffin@press.org",
+     "name": "Dan Griffin",
+     "title": "Communications Director of the National Press Club",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "dleinwand@usatoday.com",
+     "name": "Sample Item",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "dleinwand@usatoday.com",
+     "name": "Sample Item",
+     "source": "website",
+     "disposition": "reject:off_domain:usatoday.com!=press.org"
+    },
+    {
+     "email": "events@press.org",
+     "title": "Event Hosting Guide",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "events@press.org",
+     "title": "Event Hosting Guide",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "info@basecampdc.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@basecampdc.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "institute@press.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "institute@press.org",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "join@press.org",
+     "name": "Annual Dues",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "join@press.org",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "kirstenfedewa@gmail.com",
+     "name": "Kirsten Fedewa",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "kirstenfedewa@gmail.com",
+     "name": "Kirsten Fedewa",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "lorna2@verizon.net",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "lorna2@verizon.net",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "media@press.org",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "media@press.org",
+     "source": "website",
+     "disposition": "reject:hard_reject:media"
+    },
+    {
+     "email": "members@press.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "members@press.org",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "mmekonen@press.org",
+     "name": "Mesfin Mekonen",
+     "title": "Manager",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "mmekonen@press.org",
+     "name": "Mesfin Mekonen",
+     "title": "Manager",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "mschoeff@press.org",
+     "name": "Mark Schoeff",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "mschoeff@press.org",
+     "name": "Mark Schoeff",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "tyoungmail@aol.com",
+     "name": "Tom Young",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "tyoungmail@aol.com",
+     "name": "Tom Young",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "tyoungmail@gmail.com",
+     "name": "Tom Young",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "tyoungmail@gmail.com",
+     "name": "Tom Young",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "williammiller512@aol.com",
+     "name": "Bill Miller",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "williammiller512@aol.com",
+     "name": "Bill Miller",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "wire@press.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "wire@press.org",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:mark schoeff jr.",
+     "name": "Mark Schoeff Jr.",
+     "title": "President",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:steve reilly",
+     "name": "Steve Reilly",
+     "title": "Vice President",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:herb jackson",
+     "name": "Herb Jackson",
+     "title": "Treasurer",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:zach cohen",
+     "name": "Zach Cohen",
+     "title": "Secretary",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:katie vogel",
+     "name": "Katie Vogel",
+     "title": "Membership Secretary",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:darren samuelsohn",
+     "name": "Darren Samuelsohn",
+     "title": "Board Chair",
+     "source": "website",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-PRIV-115.json",
+     "base": "https://www.press.org/",
+     "pages_fetched": 49,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://members.press.org/Public_Pages/Event_Request_Form",
+       "url": "https://members.press.org/Public_Pages/Event_Request_Form"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.press.org/contact",
+       "url": "https://www.press.org/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.press.org/studios",
+       "url": "https://www.press.org/studios"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.press.org/weddings",
+       "url": "https://www.press.org/weddings"
+      }
+     ],
+     "people": [
+      {
+       "name": "Steve Reilly",
+       "page": "https://www.press.org/leadership",
+       "title": "Vice President"
+      },
+      {
+       "name": "Past Presidents",
+       "page": "https://www.press.org/leadership",
+       "title": "President's Page"
+      },
+      {
+       "name": "Dan Griffin",
+       "page": "https://www.press.org/newsroom/national-press-club-statement-exclusion-journalists-g20-meeting",
+       "title": "Communications Director of the National Press Club"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-PRIV-114",
+   "name": "DACOR Bacon House",
+   "website": "https://www.dacorbacon.org/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "private_club",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/DACOR-and-DACOR-Bacon-House-Foundation-135980179779310",
+   "instagram": "https://www.instagram.com/dacorbacon",
+   "contact_form": "https://forms.gle/284gzQnAKg23ikgz7",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Christine Skodon",
+     "title": "Director of Communications and Programs",
+     "email": "clskodon@dacorbacon.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Comm Prog",
+     "email": "comm.prog@dacorbacon.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "dacor@dacorbacon.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Sylvia Whitaker",
+     "title": "Events Coordinator",
+     "email": "events@dacorbacon.org",
+     "verified": "role",
+     "source": "website"
+    },
+    {
+     "name": "Exec Dir",
+     "email": "exec.dir@dacorbacon.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "jbradshaw@dacorbacon.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Alyson Reed",
+     "title": "Executive Director",
+     "email": "areed@dacorbacon.org",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Alba Molina",
+     "title": "Manager",
+     "email": "amolina@dacorbacon.org",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-PRIV-114 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=6 emails=12 saved=5 role=1 unverified=0 deferred=0 rejected=2 candidates=4 known=0 errors=1 people=9 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] DC-PRIV-114 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=2 saved=0 deferred=0",
+    "[STEP] DC-PRIV-114 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=DACOR_and_DACOR_Bacon_House_Foundation gate=name+domain people=18 relevant=3 skipped_titles=3 over_cap=0 enriched=3 saved=2 pending=0 deferred=0 credits=3",
+    "[STEP] DC-PRIV-114 linkedin empty pages=3 results=30 rejected=30 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-PRIV-114 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-PRIV-114 final ok status=pipelined valid_contacts=8 new=7 deferred=0",
+    "[STEP] DC-PRIV-114 postcheck skipped reason=has_contacts valid=8"
+   ],
+   "candidates": [
+    {
+     "email": "adam.pluckhorn@mercer.com",
+     "name": "Adam Pluckhorn",
+     "title": "CIMA\u00aePrincipal",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "adam.pluckhorn@mercer.com",
+     "name": "Adam Pluckhorn",
+     "title": "CIMA\u00aePrincipal",
+     "source": "website",
+     "disposition": "reject:off_domain:mercer.com!=dacorbacon.org"
+    },
+    {
+     "email": "adminassist@dacorbacon.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "adminassist@dacorbacon.org",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "clskodon@dacorbacon.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "clskodon@dacorbacon.org",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "comm.prog@dacorbacon.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "comm.prog@dacorbacon.org",
+     "name": "Comm Prog",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "dacor@dacorbacon.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "dacor@dacorbacon.org",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "development@dacorbacon.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "development@dacorbacon.org",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "events@dacorbacon.org",
+     "name": "Sylvia Whitaker",
+     "title": "Events Coordinator",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "events@dacorbacon.org",
+     "name": "Sylvia Whitaker",
+     "title": "Events Coordinator",
+     "source": "website",
+     "disposition": "saved_role"
+    },
+    {
+     "email": "exec.dir@dacorbacon.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "exec.dir@dacorbacon.org",
+     "name": "Exec Dir",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "jbradshaw@dacorbacon.org",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "jbradshaw@dacorbacon.org",
+     "source": "website",
+     "disposition": "api_save_failed:no_json_response"
+    },
+    {
+     "email": "operations@dacorbacon.org",
+     "title": "Catering",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "operations@dacorbacon.org",
+     "title": "Catering",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "programs@dacorbacon.org",
+     "name": "DACOR Programs",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "programs@dacorbacon.org",
+     "name": "DACOR Programs",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "winship.ross@ml.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "winship.ross@ml.com",
+     "source": "website",
+     "disposition": "reject:off_domain:ml.com!=dacorbacon.org"
+    },
+    {
+     "email": "person:thomas a. shannon jr.",
+     "name": "Thomas A. Shannon Jr.",
+     "title": "President",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:harry baumgarten",
+     "name": "Harry Baumgarten",
+     "title": "Secretary",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:judy kauer",
+     "name": "Judy Kauer",
+     "title": "Financial Executive",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:shaz akram",
+     "name": "Shaz Akram",
+     "title": "President",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:paula jakub",
+     "name": "Paula Jakub",
+     "title": "AFSPA CEO & SLF Executive Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:education committee",
+     "name": "Education Committee",
+     "title": "Executive Committee",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:alyson reed",
+     "name": "Alyson Reed",
+     "title": "Executive Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:jocelyn vanegas",
+     "name": "Jocelyn Vanegas",
+     "title": "Events Assistant",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "dacor@dacorbacon.org",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "dacor@dacorbacon.org",
+     "source": "social",
+     "disposition": "already_known"
+    },
+    {
+     "email": "terrywalz@yahoo.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "terrywalz@yahoo.com",
+     "source": "social",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "clskodon@dacorbacon.org",
+     "name": "Christine Skodon",
+     "title": "Director of Communications and Programs",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "clskodon@dacorbacon.org",
+     "name": "Christine Skodon",
+     "title": "Director of Communications and Programs",
+     "source": "apollo",
+     "disposition": "already_known"
+    },
+    {
+     "email": "areed@dacorbacon.org",
+     "name": "Alyson Reed",
+     "title": "Executive Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "areed@dacorbacon.org",
+     "name": "Alyson Reed",
+     "title": "Executive Director",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-PRIV-114.json",
+     "base": "https://www.dacorbacon.org/",
+     "pages_fetched": 49,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://mms.dacorbacon.org/members/calendar/calendar_detail.php?org_id=DACR&eventid=68892",
+       "url": "https://mms.dacorbacon.org/members/calendar/calendar_detail.php?org_id=DACR&eventid=68892"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.dacorbacon.org/contact_us.php",
+       "url": "https://www.dacorbacon.org/contact_us.php"
+      },
+      {
+       "kind": "google_forms",
+       "page": "https://www.dacorbacon.org/volunteer_at_dacor.php",
+       "url": "https://forms.gle/284gzQnAKg23ikgz7"
+      },
+      {
+       "kind": "google_forms",
+       "page": "https://www.dacorbacon.org/",
+       "url": "https://forms.gle/GJzQmFbv3MARnbYP6"
+      }
+     ],
+     "people": [
+      {
+       "name": "Alyson Reed",
+       "page": "https://www.dacorbacon.org/staff2.php",
+       "title": "Executive Director"
+      },
+      {
+       "name": "Sylvia Whitaker",
+       "page": "https://www.dacorbacon.org/staff2.php",
+       "title": "Events Coordinator"
+      },
+      {
+       "name": "Darrel Drobnich",
+       "page": "https://www.dacorbacon.org/staff2.php",
+       "title": "Director of Development"
+      },
+      {
+       "name": "Christine Skodon",
+       "page": "https://www.dacorbacon.org/staff2.php",
+       "title": "Director of Communications and Programs"
+      },
+      {
+       "name": "Badiss Nouar",
+       "page": "https://www.dacorbacon.org/staff2.php",
+       "title": "Communications and Programs Coordinator"
+      },
+      {
+       "name": "Marcia Bernicat",
+       "page": "https://www.dacorbacon.org/leadership.php",
+       "title": "Vice President"
+      },
+      {
+       "name": "Shaz Akram",
+       "page": "https://www.dacorbacon.org/leadership.php",
+       "title": "President"
+      },
+      {
+       "name": "Paula Jakub",
+       "page": "https://www.dacorbacon.org/leadership.php",
+       "title": "AFSPA CEO & SLF Executive Director"
+      },
+      {
+       "name": "Education Committee",
+       "page": "https://www.dacorbacon.org/leadership.php",
+       "title": "Staff: Director of Development"
+      },
+      {
+       "name": "Music Committee",
+       "page": "https://www.dacorbacon.org/leadership.php",
+       "title": "Staff: Director of Operations"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-HOTE-2676",
+   "name": "Willard InterContinental Washington, D.C.",
+   "website": "https://washington.intercontinental.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/WillardHotel",
+   "instagram": "https://www.instagram.com/willard_intercontinentaldc",
+   "contact_form": "https://washington.intercontinental.com/contact-us",
+   "notes": "From the dream-hotels-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-HOTE-2676 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=6 emails=9 saved=0 role=0 unverified=0 deferred=0 rejected=9 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] DC-HOTE-2676 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-HOTE-2676 apollo empty reason=org_mismatch rejected_orgs=3 domain_search=ok domain_results=1 name_search=ok name_results=4",
+    "[STEP] DC-HOTE-2676 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] DC-HOTE-2676 google empty results=4 emails=0 site=other_domain ig=known",
+    "[STEP] DC-HOTE-2676 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-HOTE-2676 postcheck blocked web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=22 pages_cut=0 visited=home,contact,about,events emails=6 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=16 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=ok apollo_found=25 apollo_via=domain linkedin=blocked:no_results_unverified li_results=0 li_relevant=0 enrich=skipped:no_pending reason=linkedin_no_results_unverified"
+   ],
+   "candidates": [
+    {
+     "email": "michael.deltette@ihg.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "michael.deltette@ihg.com",
+     "source": "website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "email": "privacyoffice@ihg.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "privacyoffice@ihg.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:privacy"
+    },
+    {
+     "email": "thewillardspa@ihg.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "thewillardspa@ihg.com",
+     "source": "website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "email": "washabanquetsholiday@ihg.com",
+     "name": "Grand Ballroom",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "washabanquetsholiday@ihg.com",
+     "name": "Grand Ballroom",
+     "source": "website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "email": "washington@ihg.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "washington@ihg.com",
+     "source": "website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "email": "washingtonconcierge@ihg.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "washingtonconcierge@ihg.com",
+     "source": "website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "email": "willardmedia@ihg.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "willardmedia@ihg.com",
+     "source": "website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "email": "willardsales@ihg.com",
+     "title": "SALES & MARKETING",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "willardsales@ihg.com",
+     "title": "SALES & MARKETING",
+     "source": "website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "email": "willardtea@ihg.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "willardtea@ihg.com",
+     "source": "website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "email": "washington@ihg.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "washington@ihg.com",
+     "source": "social",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "kind": "email",
+     "email": "michael.deltette@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://washington.intercontinental.com/press/2021-press/the-dc-wedding-guru"
+    },
+    {
+     "kind": "email",
+     "email": "michael.deltette@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com",
+     "evidence_url": "https://washington.intercontinental.com/press/2021-press/the-dc-wedding-guru"
+    },
+    {
+     "kind": "email",
+     "email": "privacyoffice@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://washington.intercontinental.com/privacy-statement"
+    },
+    {
+     "kind": "email",
+     "email": "privacyoffice@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "reject:hard_reject:privacy",
+     "evidence_url": "https://washington.intercontinental.com/privacy-statement"
+    },
+    {
+     "kind": "email",
+     "email": "thewillardspa@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://washington.intercontinental.com/services/willard-spa"
+    },
+    {
+     "kind": "email",
+     "email": "thewillardspa@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com",
+     "evidence_url": "https://washington.intercontinental.com/services/willard-spa"
+    },
+    {
+     "kind": "email",
+     "email": "washington@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://washington.intercontinental.com/food-drink/amenities"
+    },
+    {
+     "kind": "email",
+     "email": "washington@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com",
+     "evidence_url": "https://washington.intercontinental.com/food-drink/amenities"
+    },
+    {
+     "kind": "email",
+     "email": "washingtonconcierge@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://washington.intercontinental.com/services/concierge"
+    },
+    {
+     "kind": "email",
+     "email": "washingtonconcierge@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com",
+     "evidence_url": "https://washington.intercontinental.com/services/concierge"
+    },
+    {
+     "kind": "email",
+     "email": "willardsales@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://washington.intercontinental.com/contact-us"
+    },
+    {
+     "kind": "email",
+     "email": "willardsales@ihg.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com",
+     "evidence_url": "https://washington.intercontinental.com/contact-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Oval Suites",
+     "title": "Presidential Suites",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://washington.intercontinental.com/contact-us"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:no_venue_evidence"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:no_venue_evidence"
+    },
+    {
+     "kind": "email",
+     "email": "victor.carranceja@ihg.com",
+     "name": "Victor Carranceja",
+     "title": "I.T. Coordinator",
+     "source": "postcheck_apollo",
+     "disposition": "discovered"
+    },
+    {
+     "kind": "email",
+     "email": "victor.carranceja@ihg.com",
+     "name": "Victor Carranceja",
+     "title": "I.T. Coordinator",
+     "source": "postcheck_apollo",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "kind": "email",
+     "email": "andres.farias@ihg.com",
+     "name": "Andres Farias",
+     "title": "Hotel Executive Chef",
+     "source": "postcheck_apollo",
+     "disposition": "discovered"
+    },
+    {
+     "kind": "email",
+     "email": "andres.farias@ihg.com",
+     "name": "Andres Farias",
+     "title": "Hotel Executive Chef",
+     "source": "postcheck_apollo",
+     "disposition": "reject:off_domain:ihg.com!=intercontinental.com"
+    },
+    {
+     "kind": "email",
+     "email": "silvana.garcia@ihg.com",
+     "name": "Silvana Garcia Schreck",
+     "title": "Director of Sales and Marketing",
+     "source": "postcheck_apollo",
+     "disposition": "discovered"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-HOTE-2676.json",
+     "base": "https://washington.intercontinental.com/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/contact-us",
+       "url": "https://washington.intercontinental.com/contact-us"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/contact-us/",
+       "url": "https://washington.intercontinental.com/contact-us/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/food-drink/cafe-du-parc/",
+       "url": "https://washington.intercontinental.com/food-drink/cafe-du-parc/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/meetings-events",
+       "url": "https://washington.intercontinental.com/meetings-events"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/meetings-events/meetings",
+       "url": "https://washington.intercontinental.com/meetings-events/meetings"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-HOTE-2676.json",
+     "base": "https://washington.intercontinental.com/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/contact-us",
+       "url": "https://washington.intercontinental.com/contact-us"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/contact-us/",
+       "url": "https://washington.intercontinental.com/contact-us/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/food-drink/cafe-du-parc/",
+       "url": "https://washington.intercontinental.com/food-drink/cafe-du-parc/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/meetings-events",
+       "url": "https://washington.intercontinental.com/meetings-events"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://washington.intercontinental.com/meetings-events/meetings",
+       "url": "https://washington.intercontinental.com/meetings-events/meetings"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-WINE-2610",
+   "name": "La' Shukran",
+   "website": "https://www.lashukran.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "wine_bar",
+   "status": "pipelined",
+   "facebook": "",
+   "instagram": "https://www.instagram.com/lashukrandc",
+   "contact_form": "",
+   "notes": "From the dream2-lists-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "title": "General Inquiries & Reservations",
+     "email": "kifak@lashukran.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-WINE-2610 web ok via=chrome pages=7 visited=home,about,events form=no chrome_pages=7 curl_pages=0 static_pages=7 pdfs=3 emails=3 saved=1 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=contact,team",
+    "[STEP] DC-WINE-2610 social ok fb=none ig=found fb_search=empty:rejected_7 ig_search=website fb_pages=0 ig_pages=1 snippets=0 emails=1 saved=0 deferred=0",
+    "[STEP] DC-WINE-2610 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=La'_Shukran gate=name+domain people=0",
+    "[STEP] DC-WINE-2610 linkedin empty pages=3 results=29 rejected=28 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-WINE-2610 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-WINE-2610 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] DC-WINE-2610 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "kifak@lashukran.com",
+     "title": "General Inquiries & Reservations",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "kifak@lashukran.com",
+     "title": "General Inquiries & Reservations",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "musiqa@lashukran.com",
+     "title": "Music",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "musiqa@lashukran.com",
+     "title": "Music",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "press@lashukran.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "press@lashukran.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:press"
+    },
+    {
+     "email": "kifak@lashukran.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "kifak@lashukran.com",
+     "source": "social",
+     "disposition": "already_known"
+    },
+    {
+     "email": "person:mike wajda",
+     "name": "Mike Wajda",
+     "title": "Director of Culinary |  albi DC + Yellow +",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-WINE-2610.json",
+     "base": "https://www.lashukran.com/",
+     "pages_fetched": 15,
+     "pages_ok": 7,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-WINE-2609",
+   "name": "Maxwell Park",
+   "website": "https://www.maxwellparkdc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "wine_bar",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/maxwellparkdc",
+   "instagram": "https://www.instagram.com/maxwellpark_shaw",
+   "contact_form": "",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-WINE-2609 web ok via=chrome pages=5 visited=home,about,events form=no chrome_pages=5 curl_pages=0 static_pages=5 pdfs=6 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=2 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,team",
+    "[STEP] DC-WINE-2609 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-WINE-2609 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=5 org=Maxwell_Park_DC gate=name+domain people=7 relevant=4 skipped_titles=1 over_cap=0 enriched=4 saved=0 pending=0 deferred=0 credits=4",
+    "[STEP] DC-WINE-2609 linkedin empty pages=3 results=27 rejected=27 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-WINE-2609 google empty results=3 emails=0 site=same ig=known",
+    "[STEP] DC-WINE-2609 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-WINE-2609 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=5 pages=5 pages_cut=0 visited=home,about,events emails=1 saved=0 enriched=0 pending=0 people=2 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=4 apollo_via=name linkedin=empty li_results=7 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "hello@maxwellparkdc.com",
+     "name": "St NW",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "hello@maxwellparkdc.com",
+     "name": "St NW",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:connor williams",
+     "name": "Connor Williams",
+     "title": "General Manager & Sommelier",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:brent kroll",
+     "name": "Brent Kroll",
+     "title": "Proprietor & Sommelier",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "hello@maxwellparkdc.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "hello@maxwellparkdc.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "mmaxwell@kennywood.com",
+     "name": "Michele Maxwell",
+     "title": "Accounts Payable Specialist",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "mmaxwell@kennywood.com",
+     "name": "Michele Maxwell",
+     "title": "Accounts Payable Specialist",
+     "source": "apollo",
+     "disposition": "reject:off_domain:kennywood.com!=maxwellparkdc.com"
+    },
+    {
+     "email": "jessica.maxwell@cbvanguardrentals.com",
+     "name": "Jessica Maxwell",
+     "title": "Community Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jessica.maxwell@cbvanguardrentals.com",
+     "name": "Jessica Maxwell",
+     "title": "Community Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:cbvanguardrentals.com!=maxwellparkdc.com"
+    },
+    {
+     "email": "jmaxwell@nps.gov",
+     "name": "John Maxwell",
+     "title": "Park Ranger (Protection)",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jmaxwell@nps.gov",
+     "name": "John Maxwell",
+     "title": "Park Ranger (Protection)",
+     "source": "apollo",
+     "disposition": "reject:off_domain:nps.gov!=maxwellparkdc.com"
+    },
+    {
+     "email": "m.manchester@manassasparkva.gov",
+     "name": "Maxwell Manchester",
+     "title": "Water Billing Clerk, Treasurer's Office",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "m.manchester@manassasparkva.gov",
+     "name": "Maxwell Manchester",
+     "title": "Water Billing Clerk, Treasurer's Office",
+     "source": "apollo",
+     "disposition": "reject:off_domain:manassasparkva.gov!=maxwellparkdc.com"
+    },
+    {
+     "kind": "email",
+     "email": "hello@maxwellparkdc.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.maxwellparkdc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "hello@maxwellparkdc.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.maxwellparkdc.com/"
+    },
+    {
+     "kind": "contact",
+     "name": "Connor Williams",
+     "title": "General Manager & Sommelier",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.maxwellparkdc.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Brent Kroll",
+     "title": "Proprietor & Sommelier",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.maxwellparkdc.com/about-us"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-WINE-2609.json",
+     "base": "https://www.maxwellparkdc.com/",
+     "pages_fetched": 13,
+     "pages_ok": 5,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": [
+      {
+       "name": "Connor Williams",
+       "page": "https://www.maxwellparkdc.com/about-us",
+       "title": "General Manager & Sommelier"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-WINE-2609.json",
+     "base": "https://www.maxwellparkdc.com/",
+     "pages_fetched": 13,
+     "pages_ok": 5,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": [
+      {
+       "name": "Connor Williams",
+       "page": "https://www.maxwellparkdc.com/about-us",
+       "title": "General Manager & Sommelier"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-2908",
+   "name": "V-NO Wine & Cocktail Bar",
+   "website": "https://v-no.com/",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "wine_bar",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/VinoWineBarMD",
+   "instagram": "https://www.instagram.com/vnofellspoint",
+   "contact_form": "https://docs.google.com/forms/d/e/1FAIpQLScNiM3NWJisyDnvTcq4tuT5XYNqfjxJIE7FraUSE5InmdpRoQ/viewform?fbzx=6393354875106571864",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | Website checked 2026-11-07 | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-WINE-2908 web ok via=chrome pages=26 visited=home,contact,events form=yes chrome_pages=26 curl_pages=0 static_pages=40 pdfs=3 emails=4 saved=0 role=0 unverified=0 deferred=0 rejected=3 candidates=1 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team",
+    "[STEP] MD-WINE-2908 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] MD-WINE-2908 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] MD-WINE-2908 linkedin empty pages=3 results=28 rejected=28 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-WINE-2908 google empty results=2 emails=0 site=none ig=known",
+    "[STEP] MD-WINE-2908 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-WINE-2908 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=39 pages_cut=17 visited=home,contact,events emails=4 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=3 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=1 apollo_via=domain linkedin=empty li_results=8 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "dave@lab6.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "dave@lab6.com",
+     "source": "website",
+     "disposition": "reject:off_domain:lab6.com!=v-no.com"
+    },
+    {
+     "email": "diana.cruz@v-no.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "diana.cruz@v-no.com",
+     "name": "Diana Cruz",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "info@indiantypefoundry.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@indiantypefoundry.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@v-no.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@v-no.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:vendor pop-ups",
+     "name": "Vendor Pop-Ups",
+     "title": "Local Business Partnerships",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "diana.cruz@v-no.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://v-no.com/event-request"
+    },
+    {
+     "kind": "email",
+     "email": "diana.cruz@v-no.com",
+     "name": "Diana Cruz",
+     "source": "postcheck_website",
+     "disposition": "verification:invalid",
+     "evidence_url": "https://v-no.com/event-request"
+    },
+    {
+     "kind": "email",
+     "email": "dave@lab6.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://v-no.com/"
+    },
+    {
+     "kind": "email",
+     "email": "dave@lab6.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:lab6.com!=v-no.com",
+     "evidence_url": "https://v-no.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@indiantypefoundry.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://v-no.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@indiantypefoundry.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://v-no.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@v-no.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://v-no.com/corporate-events"
+    },
+    {
+     "kind": "email",
+     "email": "info@v-no.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://v-no.com/corporate-events"
+    },
+    {
+     "kind": "contact",
+     "name": "Vijay Ku***r",
+     "title": "Graduate Student",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-WINE-2908.json",
+     "base": "https://v-no.com/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/",
+       "url": "https://v-no.com/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/?blog=y",
+       "url": "https://v-no.com/?blog=y"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/careers",
+       "url": "https://v-no.com/careers"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/contact",
+       "url": "https://v-no.com/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/directions-to-tenuta-en",
+       "url": "https://v-no.com/directions-to-tenuta-en"
+      }
+     ],
+     "people": [
+      {
+       "name": "Vendor Pop-Ups",
+       "page": "https://v-no.com/private-%26-collaborations",
+       "title": "Local Business Partnerships"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-WINE-2908.json",
+     "base": "https://v-no.com/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/",
+       "url": "https://v-no.com/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/?blog=y",
+       "url": "https://v-no.com/?blog=y"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/careers",
+       "url": "https://v-no.com/careers"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/contact",
+       "url": "https://v-no.com/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://v-no.com/directions-to-tenuta-en",
+       "url": "https://v-no.com/directions-to-tenuta-en"
+      }
+     ],
+     "people": [
+      {
+       "name": "Vendor Pop-Ups",
+       "page": "https://v-no.com/private-%26-collaborations",
+       "title": "Local Business Partnerships"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-MUSI-002",
+   "name": "Dumbarton Concerts",
+   "website": "https://www.dumbartonconcerts.org/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "music_venue",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/DumbartonConcertsDC",
+   "instagram": "https://www.instagram.com/dumbartonartsed",
+   "contact_form": "https://dumbartonconcerts.org/contact",
+   "notes": "From the dream2-estates-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-MUSI-002 web ok via=chrome pages=31 visited=home,contact,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=2 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=9 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,events",
+    "[STEP] DC-MUSI-002 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-MUSI-002 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] DC-MUSI-002 linkedin empty pages=3 results=27 rejected=27 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-MUSI-002 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] DC-MUSI-002 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-MUSI-002 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=41 pages_cut=19 visited=home,contact,team emails=2 saved=0 enriched=0 pending=0 people=6 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=5 apollo_via=domain linkedin=empty li_results=7 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "office@dumbartonconcerts.org",
+     "name": "Volunteer Opportunities",
+     "title": "Give The Gift of Music",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "office@dumbartonconcerts.org",
+     "name": "Volunteer Opportunities",
+     "title": "Give The Gift of Music",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "patricia@dumbartonartsed.org",
+     "name": "Patricia Ruane",
+     "title": "Director of Development",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "patricia@dumbartonartsed.org",
+     "name": "Patricia Ruane",
+     "title": "Director of Development",
+     "source": "website",
+     "disposition": "reject:off_domain:dumbartonartsed.org!=dumbartonconcerts.org"
+    },
+    {
+     "email": "person:ingrid zimmer",
+     "name": "Ingrid Zimmer",
+     "title": "Executive Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:shelley brown",
+     "name": "Shelley Brown",
+     "title": "Managing Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:carter sligh",
+     "name": "Carter Sligh",
+     "title": "Director of Concerts",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:shannon quinn",
+     "name": "Shannon Quinn",
+     "title": "Director of Education",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:luisa avil\u00e9s",
+     "name": "Luisa Avil\u00e9s",
+     "title": "Education Program Manager",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:kelvin coleman",
+     "name": "Kelvin Coleman",
+     "title": "Chair",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:anya grundmann",
+     "name": "Anya Grundmann",
+     "title": "Vice Chair",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:virginie carey",
+     "name": "Virginie Carey",
+     "title": "Treasurer",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "office@dumbartonconcerts.org",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "office@dumbartonconcerts.org",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "office@dumbartonconcerts.org",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://dumbartonconcerts.org/"
+    },
+    {
+     "kind": "email",
+     "email": "office@dumbartonconcerts.org",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://dumbartonconcerts.org/"
+    },
+    {
+     "kind": "email",
+     "email": "patricia@dumbartonartsed.org",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://dumbartonconcerts.org/s/Dumbarton-Concerts-Fry-Street-Quartet-January-25-2025.pdf"
+    },
+    {
+     "kind": "email",
+     "email": "patricia@dumbartonartsed.org",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:dumbartonartsed.org!=dumbartonconcerts.org",
+     "evidence_url": "https://dumbartonconcerts.org/s/Dumbarton-Concerts-Fry-Street-Quartet-January-25-2025.pdf"
+    },
+    {
+     "kind": "contact",
+     "name": "Ingrid Zimmer",
+     "title": "Executive Director",
+     "source": "postcheck_website_staff",
+     "disposition": "not_saved:no_email_policy"
+    },
+    {
+     "kind": "contact",
+     "name": "Shelley Brown",
+     "title": "Managing/Artistic Director",
+     "source": "postcheck_website_staff",
+     "disposition": "not_saved:no_email_policy"
+    },
+    {
+     "kind": "contact",
+     "name": "Carter Sligh",
+     "title": "Director of Concerts",
+     "source": "postcheck_website_staff",
+     "disposition": "not_saved:no_email_policy"
+    },
+    {
+     "kind": "contact",
+     "name": "Shannon Quinn",
+     "title": "Director of Education",
+     "source": "postcheck_website_staff",
+     "disposition": "not_saved:no_email_policy"
+    },
+    {
+     "kind": "contact",
+     "name": "Patricia Ruane",
+     "title": "Director of Development",
+     "source": "postcheck_website_staff",
+     "disposition": "not_saved:no_email_policy"
+    },
+    {
+     "kind": "contact",
+     "name": "Luisa Avil\u00e9s",
+     "title": "Education Program Manager",
+     "source": "postcheck_website_staff",
+     "disposition": "not_saved:no_email_policy"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-MUSI-002.json",
+     "base": "https://www.dumbartonconcerts.org/",
+     "pages_fetched": 50,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://dumbartonconcerts.org/contact-us",
+       "url": "https://dumbartonconcerts.org/contact-us"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://dumbartonconcerts.org/volunteer",
+       "url": "https://dumbartonconcerts.org/volunteer"
+      }
+     ],
+     "people": [
+      {
+       "name": "Ingrid Zimmer",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Executive Director"
+      },
+      {
+       "name": "Shelley Brown",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Managing Director"
+      },
+      {
+       "name": "Carter Sligh",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Director of Concerts"
+      },
+      {
+       "name": "Shannon Quinn",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Director of Education"
+      },
+      {
+       "name": "Patricia Ruane",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Director of Development"
+      },
+      {
+       "name": "Historic Dumbarton Church",
+       "page": "https://dumbartonconcerts.org/vacancies",
+       "title": "House Manager"
+      },
+      {
+       "name": "Matthew Robertson",
+       "page": "https://dumbartonconcerts.org/the-thirteen",
+       "title": "Artistic Director"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-MUSI-002.json",
+     "base": "https://www.dumbartonconcerts.org/",
+     "pages_fetched": 50,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://dumbartonconcerts.org/contact-us",
+       "url": "https://dumbartonconcerts.org/contact-us"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://dumbartonconcerts.org/volunteer",
+       "url": "https://dumbartonconcerts.org/volunteer"
+      }
+     ],
+     "people": [
+      {
+       "name": "Ingrid Zimmer",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Executive Director"
+      },
+      {
+       "name": "Shelley Brown",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Managing Director"
+      },
+      {
+       "name": "Carter Sligh",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Director of Concerts"
+      },
+      {
+       "name": "Shannon Quinn",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Director of Education"
+      },
+      {
+       "name": "Patricia Ruane",
+       "page": "https://dumbartonconcerts.org/staff-bod",
+       "title": "Director of Development"
+      },
+      {
+       "name": "Historic Dumbarton Church",
+       "page": "https://dumbartonconcerts.org/vacancies",
+       "title": "House Manager"
+      },
+      {
+       "name": "Matthew Robertson",
+       "page": "https://dumbartonconcerts.org/the-thirteen",
+       "title": "Artistic Director"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-WINE-2963",
+   "name": "Delaplane Cellars",
+   "website": "https://www.delaplanecellars.com/",
+   "city": "Delaplane",
+   "state": "VA",
+   "category": "winery",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/DelaplaneCellars",
+   "instagram": "https://www.instagram.com/delaplanecellars",
+   "contact_form": "https://www.delaplanecellars.com/contact",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Ross Forry",
+     "title": "Data Analyst",
+     "email": "ross@delaplanecellars.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Melanie Moeltner",
+     "title": "Manager",
+     "email": "melanie@delaplanecellars.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-WINE-2963 web ok via=chrome pages=19 visited=home,contact,events form=yes chrome_pages=19 curl_pages=0 static_pages=20 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team",
+    "[STEP] VA-WINE-2963 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-WINE-2963 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=Delaplane_Cellars gate=name+domain people=3 relevant=2 skipped_titles=0 over_cap=0 enriched=2 saved=2 pending=0 deferred=0 credits=2",
+    "[STEP] VA-WINE-2963 linkedin empty pages=3 results=21 rejected=21 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-WINE-2963 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] VA-WINE-2963 final ok status=pipelined valid_contacts=2 new=2 deferred=0",
+    "[STEP] VA-WINE-2963 postcheck skipped reason=has_contacts valid=2"
+   ],
+   "candidates": [
+    {
+     "email": "info@delaplanecellars.com",
+     "name": "Large Groups",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@delaplanecellars.com",
+     "name": "Large Groups",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@delaplanecellars.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@delaplanecellars.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "ross@delaplanecellars.com",
+     "name": "Ross Forry",
+     "title": "Data Analyst",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "ross@delaplanecellars.com",
+     "name": "Ross Forry",
+     "title": "Data Analyst",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "melanie@delaplanecellars.com",
+     "name": "Melanie Moeltner",
+     "title": "Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "melanie@delaplanecellars.com",
+     "name": "Melanie Moeltner",
+     "title": "Manager",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-WINE-2963.json",
+     "base": "https://www.delaplanecellars.com/",
+     "pages_fetched": 28,
+     "pages_ok": 20,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.delaplanecellars.com/contact",
+       "url": "https://www.delaplanecellars.com/contact"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-WINE-2965",
+   "name": "Arterra Wines",
+   "website": "https://www.arterrawines.com/",
+   "city": "Delaplane",
+   "state": "VA",
+   "category": "winery",
+   "status": "pipelined",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.arterrawines.com/1st-organic-harvest-season-a-transformation/",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "arterrawines@gmail.com",
+     "verified": "valid",
+     "source": "postcheck_website"
+    },
+    {
+     "email": "hawkmothartsinfo@gmail.com",
+     "verified": "valid",
+     "source": "postcheck_website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-WINE-2965 web ok via=chrome pages=26 visited=home,events form=yes chrome_pages=26 curl_pages=0 static_pages=30 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=contact,about,team",
+    "[STEP] VA-WINE-2965 social empty fb=none ig=none fb_search=empty:rejected_6 ig_search=empty:rejected_2 fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0",
+    "[STEP] VA-WINE-2965 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=0 name_search=ok name_results=1",
+    "[STEP] VA-WINE-2965 linkedin empty pages=3 results=28 rejected=27 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-WINE-2965 google empty results=2 emails=0 site=same ig=none",
+    "[STEP] VA-WINE-2965 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-WINE-2965 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=30 pages=31 pages_cut=8 visited=home,events emails=2 saved=2 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=2 apollo_via=name linkedin=empty li_results=8 li_relevant=1 enrich=skipped:no_pending",
+    "[STEP] VA-WINE-2965 final ok status=pipelined valid_contacts=2 new=2 deferred=0 via=postcheck"
+   ],
+   "candidates": [
+    {
+     "email": "arterrawines@gmail.com",
+     "title": "RESERVATIONS",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "arterrawines@gmail.com",
+     "title": "RESERVATIONS",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "hawkmothartsinfo@gmail.com",
+     "name": "CLAY CREATION EXPERIENCES",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "hawkmothartsinfo@gmail.com",
+     "name": "CLAY CREATION EXPERIENCES",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "email": "person:daniel fowler",
+     "name": "Daniel Fowler",
+     "title": "VP & GM - Ontario Operations",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "arterrawines@gmail.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.arterrawines.com/"
+    },
+    {
+     "kind": "email",
+     "email": "arterrawines@gmail.com",
+     "source": "postcheck_website",
+     "disposition": "saved_valid",
+     "evidence_url": "https://www.arterrawines.com/"
+    },
+    {
+     "kind": "email",
+     "email": "hawkmothartsinfo@gmail.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.arterrawines.com/"
+    },
+    {
+     "kind": "email",
+     "email": "hawkmothartsinfo@gmail.com",
+     "source": "postcheck_website",
+     "disposition": "saved_valid",
+     "evidence_url": "https://www.arterrawines.com/"
+    },
+    {
+     "kind": "contact",
+     "name": "Daniel Fowler",
+     "title": "VP & GM - Ontario Operations - Arterra Wines Canada",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:location_unverified"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-WINE-2965.json",
+     "base": "https://www.arterrawines.com/",
+     "pages_fetched": 38,
+     "pages_ok": 30,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/1st-organic-harvest-season-a-transformation/",
+       "url": "https://www.arterrawines.com/1st-organic-harvest-season-a-transformation/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/2026-fall-release/",
+       "url": "https://www.arterrawines.com/2026-fall-release/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/2026-harvest-summary/",
+       "url": "https://www.arterrawines.com/2026-harvest-summary/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/a-passion-for-tannat/",
+       "url": "https://www.arterrawines.com/a-passion-for-tannat/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/arterra-2026-spring-release/",
+       "url": "https://www.arterrawines.com/arterra-2026-spring-release/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-WINE-2965.json",
+     "base": "https://www.arterrawines.com/",
+     "pages_fetched": 38,
+     "pages_ok": 30,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/1st-organic-harvest-season-a-transformation/",
+       "url": "https://www.arterrawines.com/1st-organic-harvest-season-a-transformation/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/2026-fall-release/",
+       "url": "https://www.arterrawines.com/2026-fall-release/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/2026-harvest-summary/",
+       "url": "https://www.arterrawines.com/2026-harvest-summary/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/a-passion-for-tannat/",
+       "url": "https://www.arterrawines.com/a-passion-for-tannat/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.arterrawines.com/arterra-2026-spring-release/",
+       "url": "https://www.arterrawines.com/arterra-2026-spring-release/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-COUN-1334",
+   "name": "The Suburban Club of Baltimore",
+   "website": "https://www.suburbanclub.com/",
+   "city": "Pikesville",
+   "state": "MD",
+   "category": "country_club",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/thesuburbanclub",
+   "instagram": "https://www.instagram.com/suburbancountryclub",
+   "contact_form": "https://www.suburbanclub.com/Join/Memberships",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "blake@suburban.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Chad Stein",
+     "title": "EXECUTIVE CHEF",
+     "email": "chad@suburban.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Chris Carpenter",
+     "title": "HEAD GOLF PROFESSIONAL",
+     "email": "chris@suburban.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Kobe Pinsky",
+     "title": "ASSISTANT GOLF PROFESSIONAL",
+     "email": "kobe@suburban.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Lauren Wunderlich",
+     "email": "lauren.g.wunderlich@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Michael Zak",
+     "title": "CLUB MANAGER",
+     "email": "michael.zak@suburban.org",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Michael Zak",
+     "title": "CLUB MANAGER",
+     "email": "michael@suburban.org",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-COUN-1334 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=13 saved=7 role=0 unverified=0 deferred=0 rejected=1 candidates=5 known=0 errors=0 people=7 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] MD-COUN-1334 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-COUN-1334 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=0 org=Suburban_Club gate=name+domain people=1 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1",
+    "[STEP] MD-COUN-1334 linkedin empty pages=3 results=27 rejected=27 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-COUN-1334 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-COUN-1334 final ok status=pipelined valid_contacts=7 new=7 deferred=0",
+    "[STEP] MD-COUN-1334 postcheck skipped reason=has_contacts valid=7"
+   ],
+   "candidates": [
+    {
+     "email": "blake@suburban.org",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "blake@suburban.org",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "chad@suburban.org",
+     "name": "Chad Stein",
+     "title": "EXECUTIVE CHEF",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "chad@suburban.org",
+     "name": "Chad Stein",
+     "title": "EXECUTIVE CHEF",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "chris@suburban.org",
+     "name": "Chris Carpenter",
+     "title": "HEAD GOLF PROFESSIONAL",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "chris@suburban.org",
+     "name": "Chris Carpenter",
+     "title": "HEAD GOLF PROFESSIONAL",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "david@suburban.org",
+     "name": "David Corley",
+     "title": "ASSISTANT GOLF COURSE SUPERINTENDENT",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "david@suburban.org",
+     "name": "David Corley",
+     "title": "ASSISTANT GOLF COURSE SUPERINTENDENT",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "info@suburban.org",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@suburban.org",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "john@suburban.org",
+     "name": "John Francisco",
+     "title": "ASSISTANT GOLF PROFESSIONAL",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "john@suburban.org",
+     "name": "John Francisco",
+     "title": "ASSISTANT GOLF PROFESSIONAL",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "kobe@suburban.org",
+     "name": "Kobe Pinsky",
+     "title": "ASSISTANT GOLF PROFESSIONAL",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "kobe@suburban.org",
+     "name": "Kobe Pinsky",
+     "title": "ASSISTANT GOLF PROFESSIONAL",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "lauren.g.wunderlich@gmail.com",
+     "name": "Lauren Wunderlich",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "lauren.g.wunderlich@gmail.com",
+     "name": "Lauren Wunderlich",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "mevensonpga@verizon.net",
+     "name": "PGA Certified Teachers",
+     "title": "DIRECTOR OF INSTRUCTION",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "mevensonpga@verizon.net",
+     "name": "PGA Certified Teachers",
+     "title": "DIRECTOR OF INSTRUCTION",
+     "source": "website",
+     "disposition": "verification:unknown"
+    },
+    {
+     "email": "michael.zak@suburban.org",
+     "name": "KNEIPE GRILLE",
+     "title": "CLUB MANAGER",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "michael.zak@suburban.org",
+     "name": "Michael Zak",
+     "title": "CLUB MANAGER",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "michael@suburban.org",
+     "name": "Michael Zak",
+     "title": "CLUB MANAGER",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "michael@suburban.org",
+     "name": "Michael Zak",
+     "title": "CLUB MANAGER",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "tennis@suburban.org",
+     "name": "Jason Goldman-Petri",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "tennis@suburban.org",
+     "name": "Jason Goldman-Petri",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "tiphanie@suburban.org",
+     "name": "Tiphanie Redmon",
+     "title": "FOOD & BEVERAGE MANAGER",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "tiphanie@suburban.org",
+     "name": "Tiphanie Redmon",
+     "title": "FOOD & BEVERAGE MANAGER",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "person:ross coleman",
+     "name": "Ross Coleman",
+     "title": "HEAD OF JUNIOR DEVELOPMENT",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:jim laitta",
+     "name": "Jim Laitta",
+     "title": "HEAD OF ADULT DEVELOPMENT",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:justin carter",
+     "name": "Justin Carter",
+     "title": "ASSISTANT COACH",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:sophie chang",
+     "name": "Sophie Chang",
+     "title": "ASSISTANT COACH",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:megan etionne",
+     "name": "Megan Etionne",
+     "title": "ASSISTANT COACH",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:garrett young",
+     "name": "Garrett Young",
+     "title": "ASSISTANT GOLF COURSE SUPERINTENDENT",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:ben david",
+     "name": "BEN DAVID",
+     "title": "ASSISTANT COACH",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "michael@suburban.org",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "michael@suburban.org",
+     "source": "social",
+     "disposition": "already_known"
+    },
+    {
+     "email": "person:edna toomey",
+     "name": "Edna Toomey",
+     "title": "Event Coordinator",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-COUN-1334.json",
+     "base": "https://www.suburbanclub.com/",
+     "pages_fetched": 56,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.suburbanclub.com/Join/Memberships",
+       "url": "https://www.suburbanclub.com/Join/Memberships"
+      }
+     ],
+     "people": [
+      {
+       "name": "Michael Zak",
+       "page": "https://www.suburbanclub.com/Contact/Contact_Us",
+       "title": "Club Manager"
+      },
+      {
+       "name": "PGA Certified Teachers",
+       "page": "https://www.suburbanclub.com/Golf/Instruction",
+       "title": "DIRECTOR OF INSTRUCTION"
+      },
+      {
+       "name": "Racquet Instructors",
+       "page": "https://www.suburbanclub.com/Racquets/Instruction",
+       "title": "DIRECTOR OF RACQUETS"
+      },
+      {
+       "name": "Jason Goldman-Petri",
+       "page": "https://www.suburbanclub.com/Racquets/Instruction",
+       "title": "DIRECTOR OF RACQUETS"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2856",
+   "name": "Rose's Luxury",
+   "website": "https://www.rosesluxury.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/rosesluxury/",
+   "instagram": "https://www.instagram.com/rosesluxury",
+   "contact_form": "https://rosesrestaurantgroup.tripleseat.com/party_request/11002",
+   "notes": "From the dream-dining-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Rachael Haas",
+     "title": "Director of Hospitality",
+     "email": "rachael@rosesluxury.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2856 web ok via=chrome pages=13 visited=home,contact,events form=yes chrome_pages=13 curl_pages=0 static_pages=17 pdfs=0 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=3 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=about,team",
+    "[STEP] DC-REST-2856 social ok fb=found ig=found fb_search=ok:found_of_6 ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2856 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=2 org=Rose's_Restaurant_Group gate=name+domain people=23 relevant=12 skipped_titles=2 over_cap=0 enriched=12 saved=1 pending=0 deferred=0 credits=12",
+    "[STEP] DC-REST-2856 linkedin empty pages=3 results=28 rejected=28 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2856 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-REST-2856 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] DC-REST-2856 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "events@rosesrestaurantgroup.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "events@rosesrestaurantgroup.com",
+     "source": "website",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "info@rosesluxury.com",
+     "name": "A LA CARTE WEDNESDAYS",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@rosesluxury.com",
+     "name": "A LA CARTE WEDNESDAYS",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "recruiting@rosesrestaurantgroup.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "recruiting@rosesrestaurantgroup.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:recruiting"
+    },
+    {
+     "email": "info@rosesluxury.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@rosesluxury.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "tony@rosesrestaurantgroup.com",
+     "name": "Tony Cochones",
+     "title": "Events and Experience Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "tony@rosesrestaurantgroup.com",
+     "name": "Tony Cochones",
+     "title": "Events and Experience Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "aaron@rosesrestaurantgroup.com",
+     "name": "Aaron Silverman",
+     "title": "Founder/Chef",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "aaron@rosesrestaurantgroup.com",
+     "name": "Aaron Silverman",
+     "title": "Founder/Chef",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "rachael@rosesluxury.com",
+     "name": "Rachael Haas",
+     "title": "Director of Hospitality",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "rachael@rosesluxury.com",
+     "name": "Rachael Haas",
+     "title": "Director of Hospitality",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "mateo@rosesrestaurantgroup.com",
+     "name": "Mateo Enriquez-Paternini",
+     "title": "Assistant General Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "mateo@rosesrestaurantgroup.com",
+     "name": "Mateo Enriquez-Paternini",
+     "title": "Assistant General Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "jack@rosesrestaurantgroup.com",
+     "name": "Jack Pine",
+     "title": "Senior Hospitality Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jack@rosesrestaurantgroup.com",
+     "name": "Jack Pine",
+     "title": "Senior Hospitality Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "stephanie@rosesrestaurantgroup.com",
+     "name": "Stephanie Holliman",
+     "title": "Culinary Operations Coordinator",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "stephanie@rosesrestaurantgroup.com",
+     "name": "Stephanie Holliman",
+     "title": "Culinary Operations Coordinator",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "brad@rosesrestaurantgroup.com",
+     "name": "Brad Binder",
+     "title": "Director of Strategy & Growth",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "brad@rosesrestaurantgroup.com",
+     "name": "Brad Binder",
+     "title": "Director of Strategy & Growth",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "benjamin@rosesrestaurantgroup.com",
+     "name": "Benjamin Nola",
+     "title": "Senior Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "benjamin@rosesrestaurantgroup.com",
+     "name": "Benjamin Nola",
+     "title": "Senior Director",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "melissa@rosesluxury.com",
+     "name": "Melissa Ellis",
+     "title": "Junior Sous Chef",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "melissa@rosesluxury.com",
+     "name": "Melissa Ellis",
+     "title": "Junior Sous Chef",
+     "source": "apollo",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "ben@rosesluxury.com",
+     "name": "Ben Mihal",
+     "title": "Chef",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "ben@rosesluxury.com",
+     "name": "Ben Mihal",
+     "title": "Chef",
+     "source": "apollo",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "alec@rosesrestaurantgroup.com",
+     "name": "Alec Vaughn",
+     "title": "Senior Culinary Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "alec@rosesrestaurantgroup.com",
+     "name": "Alec Vaughn",
+     "title": "Senior Culinary Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    },
+    {
+     "email": "jeremy@rosesrestaurantgroup.com",
+     "name": "Jeremy Hoffman",
+     "title": "Culinary Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jeremy@rosesrestaurantgroup.com",
+     "name": "Jeremy Hoffman",
+     "title": "Culinary Director",
+     "source": "apollo",
+     "disposition": "reject:off_domain:rosesrestaurantgroup.com!=rosesluxury.com"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2856.json",
+     "base": "https://www.rosesluxury.com/",
+     "pages_fetched": 25,
+     "pages_ok": 17,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.rosesluxury.com/contact/",
+       "url": "https://www.rosesluxury.com/contact/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.rosesluxury.com/private-events-venue/barracks-room-8-20/",
+       "url": "https://www.rosesluxury.com/private-events-venue/barracks-room-8-20/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.rosesluxury.com/private-events-venue/full-buyout-up-to-80/",
+       "url": "https://www.rosesluxury.com/private-events-venue/full-buyout-up-to-80/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.rosesluxury.com/private-events-venue/little-pearl-6-12/",
+       "url": "https://www.rosesluxury.com/private-events-venue/little-pearl-6-12/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.rosesluxury.com/private-events-venue/pineapple-and-pearls-6-50/",
+       "url": "https://www.rosesluxury.com/private-events-venue/pineapple-and-pearls-6-50/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-HOTE-2678",
+   "name": "Hotel Lombardy",
+   "website": "https://www.hotellombardy.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "hotel",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/hotellombardydc",
+   "instagram": "https://www.instagram.com/hotellombardy",
+   "contact_form": "https://tigglobal.wufoo.com/embed/pjvdkxu0tvmg20?embedKey=pjvdkxu0tvmg20250718&entsource=&referrer=",
+   "notes": "From the dream3-stays-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Reshell Smith",
+     "title": "Director of Sales and Marketing",
+     "email": "rsmith@hotellombardy.com",
+     "verified": "valid",
+     "source": "social"
+    },
+    {
+     "name": "Wil Laura",
+     "title": "General Manager",
+     "email": "wlaura@hotellombardy.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-HOTE-2678 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=0 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none static_crawl=blocked",
+    "[STEP] DC-HOTE-2678 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=1 deferred=0",
+    "[STEP] DC-HOTE-2678 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=Hotel_Lombardy gate=name+domain people=5 relevant=2 skipped_titles=1 over_cap=0 enriched=2 saved=1 pending=0 deferred=0 credits=2",
+    "[STEP] DC-HOTE-2678 linkedin empty pages=3 results=30 rejected=30 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-HOTE-2678 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-HOTE-2678 final ok status=pipelined valid_contacts=2 new=2 deferred=0",
+    "[STEP] DC-HOTE-2678 postcheck skipped reason=has_contacts valid=2"
+   ],
+   "candidates": [
+    {
+     "email": "info@hotellombardy.com",
+     "title": "CONTACT DETAILS & RESERVATIONS",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@hotellombardy.com",
+     "title": "CONTACT DETAILS & RESERVATIONS",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "privacy@milestoneinternet.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "privacy@milestoneinternet.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:privacy"
+    },
+    {
+     "email": "rsmith@hotellombardy.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "rsmith@hotellombardy.com",
+     "source": "social",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "wlaura@hotellombardy.com",
+     "name": "Wil Laura",
+     "title": "General Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "wlaura@hotellombardy.com",
+     "name": "Wil Laura",
+     "title": "General Manager",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "rsmith@hotellombardy.com",
+     "name": "Reshell Smith",
+     "title": "Director of Sales and Marketing",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "rsmith@hotellombardy.com",
+     "name": "Reshell Smith",
+     "title": "Director of Sales and Marketing",
+     "source": "apollo",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-HOTE-2678.json",
+     "base": "https://www.hotellombardy.com/",
+     "pages_fetched": 4,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-COUN-1333",
+   "name": "Four Streams",
+   "website": "https://www.fourstreams.com/",
+   "city": "Beallsville",
+   "state": "MD",
+   "category": "country_club",
+   "status": "pipelined",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.fourstreams.com/contact",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Ted Pogorelc",
+     "title": "Head Golf Professional",
+     "email": "tedpogorelc@fourstreams.com",
+     "verified": "valid",
+     "source": "postcheck_apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-COUN-1333 web ok via=chrome pages=10 visited=home,contact,about form=no chrome_pages=10 curl_pages=0 static_pages=8 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=2 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=events,team",
+    "[STEP] MD-COUN-1333 social empty fb=none ig=none fb_search=empty:rejected_6 ig_search=empty:rejected_1 fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0",
+    "[STEP] MD-COUN-1333 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=5 org=Four_Streams,_LLC gate=name+domain people=4 relevant=0 skipped_titles=4 over_cap=0",
+    "[STEP] MD-COUN-1333 linkedin empty pages=3 results=28 rejected=27 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=1",
+    "[STEP] MD-COUN-1333 google empty results=5 emails=0 site=same ig=none",
+    "[STEP] MD-COUN-1333 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-COUN-1333 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=8 pages=5 pages_cut=0 visited=home,contact emails=2 saved=1 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=1 unsaved_valid=0 save_errors=0 form=saved socials=0 apollo=ok apollo_found=5 apollo_via=domain linkedin=empty li_results=8 li_relevant=1 enrich=skipped:no_pending",
+    "[STEP] MD-COUN-1333 final ok status=pipelined valid_contacts=1 new=1 deferred=0 via=postcheck"
+   ],
+   "candidates": [
+    {
+     "email": "embership@fourstreams.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "embership@fourstreams.com",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "membership@fourstreams.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "membership@fourstreams.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "buz@4streams.org",
+     "name": "Buz Mayo",
+     "title": "Spiritual Director",
+     "source": "linkedin+apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "buz@4streams.org",
+     "name": "Buz Mayo",
+     "title": "Spiritual Director",
+     "source": "linkedin+apollo",
+     "disposition": "reject:off_domain:4streams.org!=fourstreams.com"
+    },
+    {
+     "kind": "email",
+     "email": "embership@fourstreams.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.fourstreams.com/"
+    },
+    {
+     "kind": "email",
+     "email": "embership@fourstreams.com",
+     "source": "postcheck_website",
+     "disposition": "verification:invalid",
+     "evidence_url": "https://www.fourstreams.com/"
+    },
+    {
+     "kind": "email",
+     "email": "membership@fourstreams.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.fourstreams.com/"
+    },
+    {
+     "kind": "email",
+     "email": "membership@fourstreams.com",
+     "source": "postcheck_website",
+     "disposition": "role_no_name",
+     "evidence_url": "https://www.fourstreams.com/"
+    },
+    {
+     "kind": "email",
+     "email": "tedpogorelc@fourstreams.com",
+     "name": "Ted Pogorelc",
+     "title": "Head Golf Professional",
+     "source": "postcheck_apollo",
+     "disposition": "discovered"
+    },
+    {
+     "kind": "email",
+     "email": "tedpogorelc@fourstreams.com",
+     "name": "Ted Pogorelc",
+     "title": "Head Golf Professional",
+     "source": "postcheck_apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "kind": "email",
+     "email": "kenydicross@fourstreams.com",
+     "name": "Kenydi Cross",
+     "title": "Golf Attendant",
+     "source": "postcheck_apollo",
+     "disposition": "discovered"
+    },
+    {
+     "kind": "email",
+     "email": "kenydicross@fourstreams.com",
+     "name": "Kenydi Cross",
+     "title": "Golf Attendant",
+     "source": "postcheck_apollo",
+     "disposition": "verification:invalid"
+    },
+    {
+     "kind": "email",
+     "email": "buz@4streams.org",
+     "name": "Buz Mayo",
+     "title": "Spiritual Director at Four Streams Partners, Inc.",
+     "source": "postcheck_linkedin+apollo",
+     "disposition": "discovered"
+    },
+    {
+     "kind": "email",
+     "email": "buz@4streams.org",
+     "name": "Buz Mayo",
+     "title": "Spiritual Director at Four Streams Partners, Inc.",
+     "source": "postcheck_linkedin+apollo",
+     "disposition": "reject:off_domain:4streams.org!=fourstreams.com"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-COUN-1333.json",
+     "base": "https://www.fourstreams.com/",
+     "pages_fetched": 17,
+     "pages_ok": 8,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-COUN-1333.json",
+     "base": "https://www.fourstreams.com/",
+     "pages_fetched": 17,
+     "pages_ok": 8,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-MUSI-001",
+   "name": "Austrian Cultural Forum Washington",
+   "website": "https://www.acfdc.org/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "music_venue",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/acfdc",
+   "instagram": "https://www.instagram.com/acfwashington",
+   "contact_form": "https://www.acfdc.org/contact-us",
+   "notes": "From the dream2-estates-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-MUSI-001 web ok via=chrome pages=31 visited=home,contact,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=3 candidates=0 known=0 errors=0 people=2 pending=0 fb=1 ig=1 blocked_pages=0 missing=about",
+    "[STEP] DC-MUSI-001 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-MUSI-001 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=Austrian_Cultural_Forum_Washington_DC gate=name+domain people=1 relevant=0 skipped_titles=0 over_cap=0",
+    "[STEP] DC-MUSI-001 linkedin empty pages=3 results=27 rejected=27 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-MUSI-001 google empty results=4 emails=0 site=same ig=known",
+    "[STEP] DC-MUSI-001 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-MUSI-001 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=38 pages_cut=17 visited=home,contact,events,team emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=1 apollo_via=domain linkedin=empty li_results=7 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "abc@xyz.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "abc@xyz.com",
+     "source": "website",
+     "disposition": "reject:off_domain:xyz.com!=acfdc.org"
+    },
+    {
+     "email": "culture@austria.org",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "culture@austria.org",
+     "source": "website",
+     "disposition": "reject:off_domain:austria.org!=acfdc.org"
+    },
+    {
+     "email": "washington-kf@bmeia.gv.at",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "washington-kf@bmeia.gv.at",
+     "source": "website",
+     "disposition": "reject:off_domain:gv.at!=acfdc.org"
+    },
+    {
+     "email": "person:cordula everett",
+     "name": "Cordula Everett",
+     "title": "Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:peter payer",
+     "name": "PETER PAYER",
+     "title": "DIRECTOR",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "culture@austria.org",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "culture@austria.org",
+     "source": "social",
+     "disposition": "reject:off_domain:austria.org!=acfdc.org"
+    },
+    {
+     "kind": "email",
+     "email": "culture@austria.org",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.acfdc.org/"
+    },
+    {
+     "kind": "email",
+     "email": "culture@austria.org",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:austria.org!=acfdc.org",
+     "evidence_url": "https://www.acfdc.org/"
+    },
+    {
+     "kind": "email",
+     "email": "abc@xyz.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.acfdc.org/signup"
+    },
+    {
+     "kind": "email",
+     "email": "abc@xyz.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:xyz.com!=acfdc.org",
+     "evidence_url": "https://www.acfdc.org/signup"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-MUSI-001.json",
+     "base": "https://www.acfdc.org/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.acfdc.org/contact-us",
+       "url": "https://www.acfdc.org/contact-us"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.acfdc.org/signup",
+       "url": "https://www.acfdc.org/signup"
+      }
+     ],
+     "people": [
+      {
+       "name": "Cordula Everett",
+       "page": "https://www.acfdc.org/team",
+       "title": "Director"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-MUSI-001.json",
+     "base": "https://www.acfdc.org/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.acfdc.org/contact-us",
+       "url": "https://www.acfdc.org/contact-us"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.acfdc.org/signup",
+       "url": "https://www.acfdc.org/signup"
+      }
+     ],
+     "people": [
+      {
+       "name": "Cordula Everett",
+       "page": "https://www.acfdc.org/team",
+       "title": "Director"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-COUN-1332",
+   "name": "Caves Valley Golf Club",
+   "website": "https://www.cavesvalley.net/",
+   "city": "Owings Mills",
+   "state": "MD",
+   "category": "country_club",
+   "status": "pipelined",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://form.jotform.com/242543392340048",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Bernie Najar",
+     "email": "bnajar@cavesvalley.net",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Nick Shemkovitz",
+     "email": "nshemkovitz@cavesvalley.net",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Megan Shorb",
+     "title": "General Manager & CFO",
+     "email": "mshorb@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Nancy Palmer",
+     "title": "General Manager",
+     "email": "npalmer@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Trish Milby",
+     "title": "Assistant Clubhouse Manager, Food and Beverage Manager, Reservations Specialist",
+     "email": "trishmilby@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Jessica White",
+     "title": "Food & Beverage Manager- Assistant Pastry Chef",
+     "email": "jwhite@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Wilmer Diego",
+     "title": "Locker Room Manager",
+     "email": "wdiego@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Jonathan Bishow",
+     "title": "Residential Manager and Foundation Liaison",
+     "email": "jbishow@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Julia Armstrong",
+     "title": "Reservations Team Member",
+     "email": "jarmstrong@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Rebecca Larkins",
+     "title": "Reservations Specialist",
+     "email": "rlarkins@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Christy Gause",
+     "title": "Reservations",
+     "email": "cgause@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Rae Gibbons",
+     "title": "Office Administrator",
+     "email": "rgibbons@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Alan Maw",
+     "title": "Executive Chef",
+     "email": "amaw@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Linda Meck",
+     "title": "Reservations Manager",
+     "email": "lmeck@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Jason Bischoff",
+     "title": "Client Relationship Manager",
+     "email": "golfshop@cavesvalley.net",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-COUN-1332 web ok via=chrome pages=23 visited=home,contact,about form=yes chrome_pages=23 curl_pages=0 static_pages=40 pdfs=3 emails=5 saved=2 role=0 unverified=0 deferred=0 rejected=0 candidates=3 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=events,team",
+    "[STEP] MD-COUN-1332 social empty fb=none ig=none fb_search=empty:rejected_8 ig_search=empty:rejected_2 fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0",
+    "[STEP] MD-COUN-1332 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=4 org=Caves_Valley_Golf_Club gate=name+domain people=45 relevant=14 skipped_titles=11 over_cap=0 enriched=14 saved=13 pending=0 deferred=0 credits=14",
+    "[STEP] MD-COUN-1332 linkedin empty pages=3 results=28 rejected=27 employees=1 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-COUN-1332 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-COUN-1332 final ok status=pipelined valid_contacts=15 new=15 deferred=0",
+    "[STEP] MD-COUN-1332 postcheck skipped reason=has_contacts valid=15"
+   ],
+   "candidates": [
+    {
+     "email": "bnajar@cavesvalley.net",
+     "name": "Bernie Najar",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "bnajar@cavesvalley.net",
+     "name": "Bernie Najar",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "employment@cavesvalley.net",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "employment@cavesvalley.net",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "foundation@cavesvalley.net",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "foundation@cavesvalley.net",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "nshemkovitz@cavesvalley.net",
+     "name": "Nick Shemkovitz",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "nshemkovitz@cavesvalley.net",
+     "name": "Nick Shemkovitz",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "reservations@cavesvalley.net",
+     "title": "CLUBHOUSE",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "reservations@cavesvalley.net",
+     "title": "CLUBHOUSE",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "mshorb@cavesvalley.net",
+     "name": "Megan Shorb",
+     "title": "General Manager & CFO",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "mshorb@cavesvalley.net",
+     "name": "Megan Shorb",
+     "title": "General Manager & CFO",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "npalmer@cavesvalley.net",
+     "name": "Nancy Palmer",
+     "title": "General Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "npalmer@cavesvalley.net",
+     "name": "Nancy Palmer",
+     "title": "General Manager",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "trishmilby@cavesvalley.net",
+     "name": "Trish Milby",
+     "title": "Assistant Clubhouse Manager, Food and Beverage Manager, Reservations Specialist",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "trishmilby@cavesvalley.net",
+     "name": "Trish Milby",
+     "title": "Assistant Clubhouse Manager, Food and Beverage Manager, Reservations Specialist",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "jwhite@cavesvalley.net",
+     "name": "Jessica White",
+     "title": "Food & Beverage Manager- Assistant Pastry Chef",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jwhite@cavesvalley.net",
+     "name": "Jessica White",
+     "title": "Food & Beverage Manager- Assistant Pastry Chef",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "wdiego@cavesvalley.net",
+     "name": "Wilmer Diego",
+     "title": "Locker Room Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "wdiego@cavesvalley.net",
+     "name": "Wilmer Diego",
+     "title": "Locker Room Manager",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "jbishow@cavesvalley.net",
+     "name": "Jonathan Bishow",
+     "title": "Residential Manager and Foundation Liaison",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jbishow@cavesvalley.net",
+     "name": "Jonathan Bishow",
+     "title": "Residential Manager and Foundation Liaison",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "nshemkovitz@cavesvalley.net",
+     "name": "Nicholas Shemkovitz",
+     "title": "Teaching Professional",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "nshemkovitz@cavesvalley.net",
+     "name": "Nicholas Shemkovitz",
+     "title": "Teaching Professional",
+     "source": "apollo",
+     "disposition": "already_known"
+    },
+    {
+     "email": "jarmstrong@cavesvalley.net",
+     "name": "Julia Armstrong",
+     "title": "Reservations Team Member",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jarmstrong@cavesvalley.net",
+     "name": "Julia Armstrong",
+     "title": "Reservations Team Member",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "rlarkins@cavesvalley.net",
+     "name": "Rebecca Larkins",
+     "title": "Reservations Specialist",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "rlarkins@cavesvalley.net",
+     "name": "Rebecca Larkins",
+     "title": "Reservations Specialist",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "cgause@cavesvalley.net",
+     "name": "Christy Gause",
+     "title": "Reservations",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "cgause@cavesvalley.net",
+     "name": "Christy Gause",
+     "title": "Reservations",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "rgibbons@cavesvalley.net",
+     "name": "Rae Gibbons",
+     "title": "Office Administrator",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "rgibbons@cavesvalley.net",
+     "name": "Rae Gibbons",
+     "title": "Office Administrator",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "amaw@cavesvalley.net",
+     "name": "Alan Maw",
+     "title": "Executive Chef",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "amaw@cavesvalley.net",
+     "name": "Alan Maw",
+     "title": "Executive Chef",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "lmeck@cavesvalley.net",
+     "name": "Linda Meck",
+     "title": "Reservations Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "lmeck@cavesvalley.net",
+     "name": "Linda Meck",
+     "title": "Reservations Manager",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "golfshop@cavesvalley.net",
+     "name": "Jason Bischoff",
+     "title": "Client Relationship Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "golfshop@cavesvalley.net",
+     "name": "Jason Bischoff",
+     "title": "Client Relationship Manager",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-COUN-1332.json",
+     "base": "https://www.cavesvalley.net/",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "jotform",
+       "page": "https://www.cavesvalley.net/employment",
+       "url": "https://form.jotform.com/242543392340048"
+      },
+      {
+       "kind": "jotform",
+       "page": "https://www.cavesvalley.net/cvgc-foundation",
+       "url": "https://form.jotform.com/cvgcf/community-grant-application"
+      },
+      {
+       "kind": "jotform",
+       "page": "https://www.cavesvalley.net/cvgc-foundation",
+       "url": "https://form.jotform.com/cvgcf/community-grant-post-grant-report"
+      },
+      {
+       "kind": "jotform",
+       "page": "https://www.cavesvalley.net/cvgc-foundation",
+       "url": "https://form.jotform.com/cvgcf/scholarship-application"
+      },
+      {
+       "kind": "jotform",
+       "page": "https://www.cavesvalley.net/cvgc-foundation",
+       "url": "https://form.jotform.com/cvgcf/scholarship-renewal-application"
+      }
+     ],
+     "people": [
+      {
+       "name": "Bernie Najar Bernie Najar",
+       "page": "https://www.cavesvalley.net/performance-center/instructors",
+       "title": "Director of Instruction"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-3006",
+   "name": "Hotel Ulysses",
+   "website": "https://www.hotelulysses.com/",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "hotel",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/HotelUlyssesBaltimore/",
+   "instagram": "https://www.instagram.com/hotelulysses",
+   "contact_form": "",
+   "notes": "From the dream-hotels-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Marguerite Ben",
+     "title": "General Manager, Hotel Ulysses",
+     "email": "marguerite@hotelulysses.com",
+     "verified": "valid",
+     "source": "linkedin+apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-HOTE-3006 web ok via=chrome pages=1 visited=home form=no chrome_pages=1 curl_pages=0 static_pages=1 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=contact,about,events,team",
+    "[STEP] MD-HOTE-3006 social ok fb=found ig=found fb_search=ok:found_of_5 ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-HOTE-3006 apollo empty reason=org_mismatch rejected_orgs=2 domain_search=ok domain_results=1 name_search=ok name_results=1",
+    "[STEP] MD-HOTE-3006 linkedin ok pages=3 results=28 rejected=27 employees=1 relevant=1 saved=1 pending=0 deferred=0 credits=1",
+    "[STEP] MD-HOTE-3006 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-HOTE-3006 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] MD-HOTE-3006 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "events@hotelulysses.com",
+     "source": "website",
+     "disposition": "reject:off_site_page",
+     "evidence_url": "https://ash.world/hotels/ulysses/baltimore-hotel-deals"
+    },
+    {
+     "email": "work@hotelulysses.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "work@hotelulysses.com",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "info@hotelulysses.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@hotelulysses.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "marguerite@hotelulysses.com",
+     "name": "Marguerite Ben",
+     "title": "General Manager, Hotel Ulysses",
+     "source": "linkedin+apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "marguerite@hotelulysses.com",
+     "name": "Marguerite Ben",
+     "title": "General Manager, Hotel Ulysses",
+     "source": "linkedin+apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-HOTE-3006.json",
+     "base": "https://www.hotelulysses.com/",
+     "pages_fetched": 9,
+     "pages_ok": 1,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2846",
+   "name": "Masseria by Nicholas Stefanelli",
+   "website": "https://www.masseria-dc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/masseriadc",
+   "instagram": "https://www.instagram.com/masseriadc",
+   "contact_form": "https://docs.google.com/forms/d/e/1FAIpQLSepnYUWdgyLA-gLeQ_-WPMjwsmF6HHrvGnp1C-Vl60QFuIXtA/viewform?usp=header",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2846 web ok via=chrome pages=31 visited=home,contact,about,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] DC-REST-2846 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2846 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] DC-REST-2846 linkedin empty pages=3 results=27 rejected=27 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2846 google empty results=3 emails=0 site=same ig=known",
+    "[STEP] DC-REST-2846 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2846 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=39 pages_cut=13 visited=home,contact,about,events emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=7 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@masseria-dc.com",
+     "name": "Blue Bottle",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@masseria-dc.com",
+     "name": "Blue Bottle",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "romie@cfgconcepts.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "romie@cfgconcepts.com",
+     "source": "website",
+     "disposition": "reject:off_domain:cfgconcepts.com!=masseria-dc.com"
+    },
+    {
+     "email": "info@masseria-dc.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@masseria-dc.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "info@masseria-dc.com",
+     "name": "No Show",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.masseria-dc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@masseria-dc.com",
+     "name": "No Show",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.masseria-dc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "romie@cfgconcepts.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.masseria-dc.com/contact"
+    },
+    {
+     "kind": "email",
+     "email": "romie@cfgconcepts.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:cfgconcepts.com!=masseria-dc.com",
+     "evidence_url": "https://www.masseria-dc.com/contact"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2846.json",
+     "base": "https://www.masseria-dc.com/",
+     "pages_fetched": 49,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "google_forms",
+       "page": "https://www.masseria-dc.com/private-dining",
+       "url": "https://docs.google.com/forms/d/e/1FAIpQLSepnYUWdgyLA-gLeQ_-WPMjwsmF6HHrvGnp1C-Vl60QFuIXtA/viewform?usp=header"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2846.json",
+     "base": "https://www.masseria-dc.com/",
+     "pages_fetched": 49,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "google_forms",
+       "page": "https://www.masseria-dc.com/private-dining",
+       "url": "https://docs.google.com/forms/d/e/1FAIpQLSepnYUWdgyLA-gLeQ_-WPMjwsmF6HHrvGnp1C-Vl60QFuIXtA/viewform?usp=header"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2867",
+   "name": "Marcus DC",
+   "website": "https://www.marcusdc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/profile.php?id=61575164159004",
+   "instagram": "https://www.instagram.com/dinemarcusdc",
+   "contact_form": "https://themorrow.tripleseat.com/party_request/40994",
+   "notes": "From the dream2-lists-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2867 web ok via=chrome pages=12 visited=home,about form=yes chrome_pages=12 curl_pages=0 static_pages=12 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=5 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,events,team",
+    "[STEP] DC-REST-2867 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=1 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] DC-REST-2867 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] DC-REST-2867 linkedin empty pages=3 results=30 rejected=30 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2867 google empty results=5 emails=0 site=none ig=known",
+    "[STEP] DC-REST-2867 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2867 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=12 pages=5 pages_cut=0 visited=home,about emails=0 saved=0 enriched=0 pending=0 people=4 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=10 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "person:marcus samuelsson",
+     "name": "Marcus Samuelsson",
+     "title": "Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:anthony jones",
+     "name": "Anthony Jones",
+     "title": "Food & Beverage Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:sofia ahmed",
+     "name": "Sofia Ahmed",
+     "title": "Executive Pastry Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:rachel sherriffe",
+     "name": "Rachel Sherriffe",
+     "title": "Sous Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:asia shabazz",
+     "name": "Asia Shabazz",
+     "title": "Sous Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "contact",
+     "name": "Marcus Samuelsson",
+     "title": "Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://marcusdc.com/sly/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Anthony Jones",
+     "title": "Food & Beverage Director",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://marcusdc.com/sly/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Sofia Ahmed",
+     "title": "Executive Pastry Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://marcusdc.com/sly/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Rachel Sherriffe",
+     "title": "Sous Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://marcusdc.com/sly/about"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2867.json",
+     "base": "https://www.marcusdc.com/",
+     "pages_fetched": 20,
+     "pages_ok": 12,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://marcusdc.com/careers",
+       "url": "https://marcusdc.com/careers"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://marcusdc.com/marcus-dc",
+       "url": "https://marcusdc.com/marcus-dc"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://marcusdc.com/sly",
+       "url": "https://marcusdc.com/sly"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://marcusdc.com/",
+       "url": "https://themorrow.tripleseat.com/party_request/40994"
+      }
+     ],
+     "people": [
+      {
+       "name": "Marcus Samuelsson",
+       "page": "https://marcusdc.com/sly",
+       "title": "Chef"
+      },
+      {
+       "name": "Anthony Jones",
+       "page": "https://marcusdc.com/sly/about",
+       "title": "Executive Chef"
+      },
+      {
+       "name": "Sofia Ahmed",
+       "page": "https://marcusdc.com/sly/about",
+       "title": "Food & Beverage Director"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2867.json",
+     "base": "https://www.marcusdc.com/",
+     "pages_fetched": 20,
+     "pages_ok": 12,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://marcusdc.com/careers",
+       "url": "https://marcusdc.com/careers"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://marcusdc.com/marcus-dc",
+       "url": "https://marcusdc.com/marcus-dc"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://marcusdc.com/sly",
+       "url": "https://marcusdc.com/sly"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://marcusdc.com/",
+       "url": "https://themorrow.tripleseat.com/party_request/40994"
+      }
+     ],
+     "people": [
+      {
+       "name": "Marcus Samuelsson",
+       "page": "https://marcusdc.com/sly",
+       "title": "Chef"
+      },
+      {
+       "name": "Anthony Jones",
+       "page": "https://marcusdc.com/sly/about",
+       "title": "Executive Chef"
+      },
+      {
+       "name": "Sofia Ahmed",
+       "page": "https://marcusdc.com/sly/about",
+       "title": "Food & Beverage Director"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2862",
+   "name": "Cucina Morini",
+   "website": "https://www.cucinamorini.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/cucinamorini",
+   "instagram": "https://www.instagram.com/cucina.morini",
+   "contact_form": "https://www.sevenrooms.com/explore/cucinamorini/subscription",
+   "notes": "From the dream-dining-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2862 web ok via=chrome pages=16 visited=home,contact,about,events form=yes chrome_pages=16 curl_pages=0 static_pages=17 pdfs=0 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=3 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] DC-REST-2862 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2862 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Cucina_Morini gate=name+domain people=3 relevant=0 skipped_titles=0 over_cap=0",
+    "[STEP] DC-REST-2862 linkedin empty pages=3 results=29 rejected=28 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2862 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] DC-REST-2862 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2862 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=17 pages=18 pages_cut=0 visited=home,contact,about,events emails=3 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=3 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=4 apollo_via=domain linkedin=empty li_results=9 li_relevant=1 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@altamareagroup.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@altamareagroup.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@cucinamorini.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@cucinamorini.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "us@cucina.morini",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "us@cucina.morini",
+     "source": "website",
+     "disposition": "reject:off_domain:cucina.morini!=cucinamorini.com"
+    },
+    {
+     "email": "cucinamorini@altamareagroup.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "cucinamorini@altamareagroup.com",
+     "source": "social",
+     "disposition": "reject:off_domain:altamareagroup.com!=cucinamorini.com"
+    },
+    {
+     "email": "person:paul almeida",
+     "name": "Paul Almeida",
+     "title": "DC Region General Manager / Osteria Morini DC",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "info@cucinamorini.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.cucinamorini.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@cucinamorini.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.cucinamorini.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@altamareagroup.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.cucinamorini.com/legal-and-accessibility/"
+    },
+    {
+     "kind": "email",
+     "email": "info@altamareagroup.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.cucinamorini.com/legal-and-accessibility/"
+    },
+    {
+     "kind": "email",
+     "email": "us@cucina.morini",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.cucinamorini.com/"
+    },
+    {
+     "kind": "email",
+     "email": "us@cucina.morini",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:cucina.morini!=cucinamorini.com",
+     "evidence_url": "https://www.cucinamorini.com/"
+    },
+    {
+     "kind": "contact",
+     "name": "Welcome to Cucina MORINI.",
+     "title": "Chef / Partner",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.cucinamorini.com/about/"
+    },
+    {
+     "kind": "contact",
+     "name": "Paul Almeida",
+     "title": "DC Region General Manager / Osteria Morini DC | Cucina MORINI | Nicoletta Pizzeria",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:no_email_policy"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2862.json",
+     "base": "https://www.cucinamorini.com/",
+     "pages_fetched": 25,
+     "pages_ok": 17,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.cucinamorini.com/contact/",
+       "url": "https://www.cucinamorini.com/contact/"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.cucinamorini.com/catering-events/",
+       "url": "https://www.cucinamorini.com/catering-events/"
+      },
+      {
+       "kind": "sevenrooms",
+       "page": "https://www.cucinamorini.com/contact/",
+       "url": "https://www.sevenrooms.com/explore/cucinamorini/subscription"
+      },
+      {
+       "kind": "sevenrooms",
+       "page": "https://www.cucinamorini.com/reservations-seven-rooms/",
+       "url": "https://www.sevenrooms.com/reservations/cucinamorini?venues=cucinamorini,osteriamorinidc"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.cucinamorini.com/catering-events/",
+       "url": "https://www.tripleseat.com"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2862.json",
+     "base": "https://www.cucinamorini.com/",
+     "pages_fetched": 25,
+     "pages_ok": 17,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.cucinamorini.com/contact/",
+       "url": "https://www.cucinamorini.com/contact/"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.cucinamorini.com/catering-events/",
+       "url": "https://www.cucinamorini.com/catering-events/"
+      },
+      {
+       "kind": "sevenrooms",
+       "page": "https://www.cucinamorini.com/contact/",
+       "url": "https://www.sevenrooms.com/explore/cucinamorini/subscription"
+      },
+      {
+       "kind": "sevenrooms",
+       "page": "https://www.cucinamorini.com/reservations-seven-rooms/",
+       "url": "https://www.sevenrooms.com/reservations/cucinamorini?venues=cucinamorini,osteriamorinidc"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.cucinamorini.com/catering-events/",
+       "url": "https://www.tripleseat.com"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2870",
+   "name": "Pascual",
+   "website": "https://www.pascualdc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "",
+   "instagram": "https://www.instagram.com/pascual.dc",
+   "contact_form": "https://app.perfectvenue.com/venues/the-popal-group/hello",
+   "notes": "From the dream2-lists-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2870 web ok via=chrome pages=16 visited=home,contact,about,events form=yes chrome_pages=16 curl_pages=0 static_pages=24 pdfs=0 emails=4 saved=0 role=0 unverified=0 deferred=0 rejected=4 candidates=0 known=0 errors=0 people=5 pending=0 fb=0 ig=1 blocked_pages=0 missing=team",
+    "[STEP] DC-REST-2870 social ok fb=none ig=found fb_search=empty:rejected_7 ig_search=website fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] DC-REST-2870 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=5 org=Pascual gate=name+domain people=0",
+    "[STEP] DC-REST-2870 linkedin empty pages=3 results=28 rejected=28 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2870 google empty results=3 emails=0 site=same ig=known",
+    "[STEP] DC-REST-2870 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2870 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=24 pages=23 pages_cut=0 visited=home,contact,about,events emails=4 saved=0 enriched=0 pending=0 people=6 deferred=0 rejected=4 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=8 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@lutecedc.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@lutecedc.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@pascualdc.com",
+     "name": "United States",
+     "title": "RESERVATIONS",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@pascualdc.com",
+     "name": "United States",
+     "title": "RESERVATIONS",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "steffani@thepopalgroup.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "steffani@thepopalgroup.com",
+     "source": "website",
+     "disposition": "reject:off_domain:thepopalgroup.com!=pascualdc.com"
+    },
+    {
+     "email": "vicki@elevenelevenpr.co",
+     "name": "Buenas Noticias",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "vicki@elevenelevenpr.co",
+     "name": "Buenas Noticias",
+     "source": "website",
+     "disposition": "reject:off_domain:elevenelevenpr.co!=pascualdc.com"
+    },
+    {
+     "email": "person:isabel coss",
+     "name": "Isabel Coss",
+     "title": "Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:matt conroy",
+     "name": "Matt Conroy",
+     "title": "Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:maritza martinez",
+     "name": "Maritza Martinez",
+     "title": "Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:tracy eustaquio",
+     "name": "Tracy Eustaquio",
+     "title": "Bar Manager",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:emily delessio",
+     "name": "Emily DeLessio",
+     "title": "Bar Manager",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "info@lutecedc.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.pascualdc.com/faqs"
+    },
+    {
+     "kind": "email",
+     "email": "info@lutecedc.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.pascualdc.com/faqs"
+    },
+    {
+     "kind": "email",
+     "email": "info@pascualdc.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.pascualdc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@pascualdc.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.pascualdc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "vicki@elevenelevenpr.co",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.pascualdc.com/press"
+    },
+    {
+     "kind": "email",
+     "email": "vicki@elevenelevenpr.co",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:elevenelevenpr.co!=pascualdc.com",
+     "evidence_url": "https://www.pascualdc.com/press"
+    },
+    {
+     "kind": "email",
+     "email": "steffani@thepopalgroup.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.pascualdc.com/faqs"
+    },
+    {
+     "kind": "email",
+     "email": "steffani@thepopalgroup.com",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:thepopalgroup.com!=pascualdc.com",
+     "evidence_url": "https://www.pascualdc.com/faqs"
+    },
+    {
+     "kind": "contact",
+     "name": "Isabel Coss",
+     "title": "Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.pascualdc.com/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Matt Conroy",
+     "title": "Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.pascualdc.com/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Maritza Martinez",
+     "title": "Sous Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.pascualdc.com/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Tracy Eustaquio",
+     "title": "Bar Manager",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.pascualdc.com/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Emily DeLessio",
+     "title": "General Manager",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.pascualdc.com/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Camila Mu\u00f1oz Vel\u00e1zquez",
+     "title": "Floor Manager",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.pascualdc.com/about"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:instagram",
+     "disposition": "social_not_saved:no_venue_evidence"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:instagram",
+     "disposition": "social_not_saved:no_venue_evidence"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:instagram",
+     "disposition": "social_not_saved:no_venue_evidence"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2870.json",
+     "base": "https://www.pascualdc.com/",
+     "pages_fetched": 32,
+     "pages_ok": 24,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.pascualdc.com/contact",
+       "url": "https://www.pascualdc.com/contact"
+      },
+      {
+       "kind": "perfectvenue",
+       "page": "https://www.pascualdc.com/events",
+       "url": "https://app.perfectvenue.com/venues/the-popal-group/hello"
+      }
+     ],
+     "people": [
+      {
+       "name": "Isabel Coss",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Chef"
+      },
+      {
+       "name": "Matt Conroy",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Chef"
+      },
+      {
+       "name": "Maritza Martinez",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Chef"
+      },
+      {
+       "name": "Tracy Eustaquio",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Bar Manager"
+      },
+      {
+       "name": "Emily DeLessio",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Bar Manager"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2870.json",
+     "base": "https://www.pascualdc.com/",
+     "pages_fetched": 32,
+     "pages_ok": 24,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.pascualdc.com/contact",
+       "url": "https://www.pascualdc.com/contact"
+      },
+      {
+       "kind": "perfectvenue",
+       "page": "https://www.pascualdc.com/events",
+       "url": "https://app.perfectvenue.com/venues/the-popal-group/hello"
+      }
+     ],
+     "people": [
+      {
+       "name": "Isabel Coss",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Chef"
+      },
+      {
+       "name": "Matt Conroy",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Chef"
+      },
+      {
+       "name": "Maritza Martinez",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Chef"
+      },
+      {
+       "name": "Tracy Eustaquio",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Bar Manager"
+      },
+      {
+       "name": "Emily DeLessio",
+       "page": "https://www.pascualdc.com/about",
+       "title": "Bar Manager"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2850",
+   "name": "Causa",
+   "website": "https://www.causadc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/CausaDC/",
+   "instagram": "https://www.instagram.com/causadc_",
+   "contact_form": "https://app.perfectvenue.com/venues/causa-amazonia/hello",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "chris@causadc.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2850 web ok via=chrome pages=13 visited=home,contact,about,events,team form=yes chrome_pages=13 curl_pages=0 static_pages=17 pdfs=3 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=none",
+    "[STEP] DC-REST-2850 social ok fb=found ig=found fb_search=ok:found_of_3 ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2850 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=1 org=Causa gate=name+domain people=6 relevant=2 skipped_titles=0 over_cap=0 enriched=2 saved=0 pending=0 deferred=0 credits=2",
+    "[STEP] DC-REST-2850 linkedin empty pages=3 results=30 rejected=29 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2850 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-REST-2850 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] DC-REST-2850 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "chris@causadc.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "chris@causadc.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "info@causadc.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@causadc.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@causadc.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@causadc.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:avi arthur",
+     "name": "Avi Arthur",
+     "title": "Managing Partner",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "cs@cplc.org",
+     "title": "Adult and Child Clinician",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "cs@cplc.org",
+     "title": "Adult and Child Clinician",
+     "source": "apollo",
+     "disposition": "reject:off_domain:cplc.org!=causadc.com"
+    },
+    {
+     "email": "person:jack causa",
+     "name": "Jack Causa",
+     "title": "President/Founder",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2850.json",
+     "base": "https://www.causadc.com/",
+     "pages_fetched": 25,
+     "pages_ok": 17,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.causadc.com/contact",
+       "url": "https://www.causadc.com/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.causadc.com/employment",
+       "url": "https://www.causadc.com/employment"
+      },
+      {
+       "kind": "perfectvenue",
+       "page": "https://www.causadc.com/private-events",
+       "url": "https://app.perfectvenue.com/venues/causa-amazonia/hello"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.causadc.com/pisco-club",
+       "url": "https://www.causadc.com/pisco-club"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2872",
+   "name": "Estuary",
+   "website": "https://www.estuarydc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/estuaryconraddc",
+   "instagram": "https://www.instagram.com/estuaryconraddc",
+   "contact_form": "https://estuarydc.com/contact-us",
+   "notes": "From the dream3-awards-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2872 web ok via=chrome pages=9 visited=home,contact,events form=yes chrome_pages=9 curl_pages=0 static_pages=14 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team",
+    "[STEP] DC-REST-2872 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] DC-REST-2872 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=5 org=Estuary gate=name+domain people=30 relevant=18 skipped_titles=5 over_cap=0 enriched=18 saved=0 pending=0 deferred=0 credits=18",
+    "[STEP] DC-REST-2872 linkedin empty pages=3 results=29 rejected=28 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2872 google empty results=5 emails=0 site=same ig=known",
+    "[STEP] DC-REST-2872 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2872 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=14 pages=14 pages_cut=0 visited=home,contact,events emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=4 apollo_via=name linkedin=empty li_results=9 li_relevant=1 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "katharine.zike@conradhotels.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "katharine.zike@conradhotels.com",
+     "source": "website",
+     "disposition": "reject:off_domain:conradhotels.com!=estuarydc.com"
+    },
+    {
+     "email": "wasci.hotel@conradhotels.com",
+     "title": "PRIVATE DINING & EVENTS",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "wasci.hotel@conradhotels.com",
+     "title": "PRIVATE DINING & EVENTS",
+     "source": "website",
+     "disposition": "reject:off_domain:conradhotels.com!=estuarydc.com"
+    },
+    {
+     "email": "joey@estuary.org",
+     "name": "Joey Tomassoni",
+     "title": "Estuary | Founder and Lead Visionary",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "joey@estuary.org",
+     "name": "Joey Tomassoni",
+     "title": "Estuary | Founder and Lead Visionary",
+     "source": "apollo",
+     "disposition": "reject:off_domain:estuary.org!=estuarydc.com"
+    },
+    {
+     "email": "hburns@delawareestuary.org",
+     "name": "Haley Burns",
+     "title": "Delaware Estuary Program Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "hburns@delawareestuary.org",
+     "name": "Haley Burns",
+     "title": "Delaware Estuary Program Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "byerger@delawareestuary.org",
+     "name": "Brian Yerger",
+     "title": "Director of Business Operations",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "byerger@delawareestuary.org",
+     "name": "Brian Yerger",
+     "title": "Director of Business Operations",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "jdidomenico@delawareestuary.org",
+     "name": "Joe Didomenico",
+     "title": "Estuary Science Coordinator",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jdidomenico@delawareestuary.org",
+     "name": "Joe Didomenico",
+     "title": "Estuary Science Coordinator",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "fblom@delawareestuary.org",
+     "name": "Chesa Blom",
+     "title": "Estuary Engagement Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "fblom@delawareestuary.org",
+     "name": "Chesa Blom",
+     "title": "Estuary Engagement Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "kforst@delawareestuary.org",
+     "name": "Karen Forst",
+     "title": "Grants Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "kforst@delawareestuary.org",
+     "name": "Karen Forst",
+     "title": "Grants Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "ahartman@delawareestuary.org",
+     "name": "Allison Hartman",
+     "title": "Source Water Protection Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "ahartman@delawareestuary.org",
+     "name": "Allison Hartman",
+     "title": "Source Water Protection Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "klayton@delawareestuary.org",
+     "name": "Kate Layton",
+     "title": "Communications Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "klayton@delawareestuary.org",
+     "name": "Kate Layton",
+     "title": "Communications Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "bohara@delawareestuary.org",
+     "name": "Beatrice O'Hara",
+     "title": "Wetland Scientist",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "bohara@delawareestuary.org",
+     "name": "Beatrice O'Hara",
+     "title": "Wetland Scientist",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "mdigiorgio@delawareestuary.org",
+     "name": "Marguerite Digiorgio",
+     "title": "Engagement Coordinator",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "mdigiorgio@delawareestuary.org",
+     "name": "Marguerite Digiorgio",
+     "title": "Engagement Coordinator",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "ehorsey@delawareestuary.org",
+     "name": "Elizabeth Horsey",
+     "title": "Development Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "ehorsey@delawareestuary.org",
+     "name": "Elizabeth Horsey",
+     "title": "Development Director",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "erothermel@delawareestuary.org",
+     "name": "Ella Rothermel",
+     "title": "Urban Resilience Assistant Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "erothermel@delawareestuary.org",
+     "name": "Ella Rothermel",
+     "title": "Urban Resilience Assistant Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "lmorgan@delawareestuary.org",
+     "name": "Leah Morgan",
+     "title": "Assistant Manager of Estuary Science",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "lmorgan@delawareestuary.org",
+     "name": "Leah Morgan",
+     "title": "Assistant Manager of Estuary Science",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "jsavini@delawareestuary.org",
+     "name": "Jana Savini",
+     "title": "Coastal Collaboration Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jsavini@delawareestuary.org",
+     "name": "Jana Savini",
+     "title": "Coastal Collaboration Manager",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "kklein@delawareestuary.org",
+     "name": "Kathy Klein",
+     "title": "Executive Director at Partnership for the Delaware Estuary",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "kklein@delawareestuary.org",
+     "name": "Kathy Klein",
+     "title": "Executive Director at Partnership for the Delaware Estuary",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "koconnell@delawareestuary.org",
+     "name": "Kerry O'Connell",
+     "title": "Development Coordinator",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "koconnell@delawareestuary.org",
+     "name": "Kerry O'Connell",
+     "title": "Development Coordinator",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "msullivan@delawareestuary.org",
+     "name": "Michaela Sullivan",
+     "title": "Urban Resilience Fellow",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "msullivan@delawareestuary.org",
+     "name": "Michaela Sullivan",
+     "title": "Urban Resilience Fellow",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    },
+    {
+     "email": "jharrod@delawareestuary.org",
+     "name": "John Harrod",
+     "title": "Engagement Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jharrod@delawareestuary.org",
+     "name": "John Harrod",
+     "title": "Engagement Director",
+     "source": "apollo",
+     "disposition": "reject:off_domain:delawareestuary.org!=estuarydc.com"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2872.json",
+     "base": "https://www.estuarydc.com/",
+     "pages_fetched": 22,
+     "pages_ok": 14,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2872.json",
+     "base": "https://www.estuarydc.com/",
+     "pages_fetched": 22,
+     "pages_ok": 14,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2861",
+   "name": "Centrolina",
+   "website": "https://www.centrolinadc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/centrolinadc",
+   "instagram": "https://www.instagram.com/centrolinadc",
+   "contact_form": "https://centrolina.tripleseat.com/party_request/19083",
+   "notes": "From the dream-dining-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Caroline Millot",
+     "title": "Private Dining Sales Director",
+     "email": "caroline@centrolinadc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "ciao@centrolinadc.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "name": "Amy Brandwein",
+     "title": "Chef Owner",
+     "email": "amy@centrolinadc.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Liz Martinez",
+     "title": "General Manager/Sommelier",
+     "email": "liz@centrolinadc.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2861 web ok via=chrome pages=23 visited=home,contact,about,events,team form=yes chrome_pages=23 curl_pages=0 static_pages=24 pdfs=6 emails=4 saved=2 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=3 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] DC-REST-2861 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2861 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=Centrolina gate=name+domain people=11 relevant=5 skipped_titles=1 over_cap=0 enriched=5 saved=2 pending=0 deferred=0 credits=5",
+    "[STEP] DC-REST-2861 linkedin empty pages=3 results=30 rejected=30 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2861 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-REST-2861 final ok status=pipelined valid_contacts=4 new=4 deferred=0",
+    "[STEP] DC-REST-2861 postcheck skipped reason=has_contacts valid=4"
+   ],
+   "candidates": [
+    {
+     "email": "caroline@centrolinadc.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "caroline@centrolinadc.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "centrolina@baltzco.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "centrolina@baltzco.com",
+     "source": "website",
+     "disposition": "reject:off_domain:baltzco.com!=centrolinadc.com"
+    },
+    {
+     "email": "ciao@centrolinadc.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "ciao@centrolinadc.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "liz@centrolinac.com",
+     "name": "Liz Martinez",
+     "title": "General Manager & Certified Sommelier",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "liz@centrolinac.com",
+     "name": "Liz Martinez",
+     "title": "General Manager & Certified Sommelier",
+     "source": "website",
+     "disposition": "reject:off_domain:centrolinac.com!=centrolinadc.com"
+    },
+    {
+     "email": "person:amy brandwein",
+     "name": "Amy Brandwein",
+     "title": "Chef/Owner of Centrolina and Piccolina da Centrolina",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:pichet ong",
+     "name": "Pichet Ong",
+     "title": "Pastry Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:mary mendoza",
+     "name": "Mary Mendoza",
+     "title": "Executive Pastry Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "ciao@centrolinadc.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "ciao@centrolinadc.com",
+     "source": "social",
+     "disposition": "already_known"
+    },
+    {
+     "email": "caroline@centrolinadc.com",
+     "name": "Caroline Millot",
+     "title": "Private Dining Sales Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "caroline@centrolinadc.com",
+     "name": "Caroline Millot",
+     "title": "Private Dining Sales Director",
+     "source": "apollo",
+     "disposition": "already_known"
+    },
+    {
+     "email": "person:pratima bangera",
+     "name": "Pratima Bangera",
+     "title": "Private Events & Sales Manager",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "amy@centrolinadc.com",
+     "name": "Amy Brandwein",
+     "title": "Chef Owner",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "amy@centrolinadc.com",
+     "name": "Amy Brandwein",
+     "title": "Chef Owner",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "liz@centrolinadc.com",
+     "name": "Liz Martinez",
+     "title": "General Manager/Sommelier",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "liz@centrolinadc.com",
+     "name": "Liz Martinez",
+     "title": "General Manager/Sommelier",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:sherman outhuok",
+     "name": "Sherman Outhuok",
+     "title": "General Manager",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2861.json",
+     "base": "https://www.centrolinadc.com/",
+     "pages_fetched": 32,
+     "pages_ok": 24,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "tripleseat",
+       "page": "https://www.centrolinadc.com/contact",
+       "url": "https://centrolina.tripleseat.com/party_request/19083"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2851",
+   "name": "Bresca",
+   "website": "https://www.brescadc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/brescadc",
+   "instagram": "https://www.instagram.com/brescadc",
+   "contact_form": "https://www.brescadc.com/location/bresca/",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet).",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Sherette Williams",
+     "title": "Service Manager",
+     "email": "sherette@brescadc.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2851 web ok via=chrome pages=14 visited=home,contact,about,events,team form=yes chrome_pages=14 curl_pages=0 static_pages=17 pdfs=1 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=8 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] DC-REST-2851 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2851 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=Bresca gate=name+domain people=7 relevant=1 skipped_titles=1 over_cap=0 enriched=1 saved=1 pending=0 deferred=0 credits=1",
+    "[STEP] DC-REST-2851 linkedin empty pages=3 results=30 rejected=30 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2851 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-REST-2851 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] DC-REST-2851 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "info@brescadc.com",
+     "name": "Dine In",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@brescadc.com",
+     "name": "Dine In",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:ryan ratino",
+     "name": "RYAN RATINO",
+     "title": "Chef/Owner",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:jhonatan cano",
+     "name": "JHONATAN CANO",
+     "title": "Director of Operations",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:brandon dienger",
+     "name": "BRANDON DIENGER",
+     "title": "Culinary Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:yoonjung oh",
+     "name": "YOONJUNG OH",
+     "title": "Pastry Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:garett brower",
+     "name": "GARETT BROWER",
+     "title": "Chef de Cuisine",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:will patton",
+     "name": "WILL PATTON",
+     "title": "Beverage Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:andrew elder",
+     "name": "ANDREW ELDER",
+     "title": "Restaurant Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:sherette williams",
+     "name": "SHERETTE WILLIAMS",
+     "title": "Service Manager",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "info@brescadc.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@brescadc.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "sherette@brescadc.com",
+     "name": "Sherette Williams",
+     "title": "Service Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "sherette@brescadc.com",
+     "name": "Sherette Williams",
+     "title": "Service Manager",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2851.json",
+     "base": "https://www.brescadc.com/",
+     "pages_fetched": 27,
+     "pages_ok": 17,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": [
+      {
+       "name": "Jhonatan Cano",
+       "page": "https://www.brescadc.com/our-story/",
+       "title": "Director of Operations"
+      },
+      {
+       "name": "Brandon Dienger",
+       "page": "https://www.brescadc.com/our-story/",
+       "title": "Director of Operations"
+      },
+      {
+       "name": "Will Patton",
+       "page": "https://www.brescadc.com/our-story/",
+       "title": "Beverage Director"
+      },
+      {
+       "name": "Andrew Elder",
+       "page": "https://www.brescadc.com/our-story/",
+       "title": "Beverage Director"
+      },
+      {
+       "name": "Sherette Williams",
+       "page": "https://www.brescadc.com/our-story/",
+       "title": "Restaurant Director"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2857",
+   "name": "Moon Rabbit",
+   "website": "https://www.moonrabbitdc.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "",
+   "instagram": "https://www.instagram.com/MoonrabbitDC",
+   "contact_form": "https://moonrabbitdc.tripleseat.com/party_request/38590",
+   "notes": "From the dream-dining-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | PIPELINE: 0 contacts run-20261107-1810",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2857 web ok via=chrome pages=10 visited=home,about,events form=yes chrome_pages=10 curl_pages=0 static_pages=11 pdfs=0 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=1 known=0 errors=0 people=4 pending=0 fb=0 ig=1 blocked_pages=0 missing=contact,team",
+    "[STEP] DC-REST-2857 social ok fb=none ig=found fb_search=empty:rejected_7 ig_search=website fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] DC-REST-2857 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Moon_Rabbit_DC gate=name+domain people=3 relevant=0 skipped_titles=0 over_cap=0",
+    "[STEP] DC-REST-2857 linkedin empty pages=3 results=30 rejected=30 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2857 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] DC-REST-2857 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2857 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=11 pages=9 pages_cut=0 visited=home,about,events emails=3 saved=0 enriched=0 pending=0 people=4 deferred=0 rejected=2 role_candidates=1 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=3 apollo_via=domain linkedin=empty li_results=10 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "events@moonrabbitdc.com",
+     "title": "Event Inquiries",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "events@moonrabbitdc.com",
+     "title": "Event Inquiries",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "holly@elevenelevenpr.co",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "holly@elevenelevenpr.co",
+     "source": "website",
+     "disposition": "reject:off_domain:elevenelevenpr.co!=moonrabbitdc.com"
+    },
+    {
+     "email": "info@moonrabbitdc.com",
+     "name": "St NW",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@moonrabbitdc.com",
+     "name": "St NW",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:kevin tien",
+     "name": "Kevin Tien",
+     "title": "OWNER & CHEF",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:judy beltrano",
+     "name": "Judy Beltrano",
+     "title": "OWNER & CHEF",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:susan bae",
+     "name": "Susan Bae",
+     "title": "OWNER & PASTRY CHEF",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:thi nguyen",
+     "name": "Thi Nguyen",
+     "title": "BAR DIRECTOR",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "events@moonrabbitdc.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.moonrabbitdc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "events@moonrabbitdc.com",
+     "source": "postcheck_website",
+     "disposition": "role_no_name",
+     "evidence_url": "https://www.moonrabbitdc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "holly@elevenelevenpr.co",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.moonrabbitdc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "holly@elevenelevenpr.co",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:elevenelevenpr.co!=moonrabbitdc.com",
+     "evidence_url": "https://www.moonrabbitdc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@moonrabbitdc.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.moonrabbitdc.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@moonrabbitdc.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.moonrabbitdc.com/"
+    },
+    {
+     "kind": "contact",
+     "name": "Kevin Tien",
+     "title": "OWNER & CHEF",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.moonrabbitdc.com/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Judy Beltrano",
+     "title": "OWNER & CHEF",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.moonrabbitdc.com/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Susan Bae",
+     "title": "OWNER & PASTRY CHEF",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.moonrabbitdc.com/about"
+    },
+    {
+     "kind": "contact",
+     "name": "Thi Nguyen",
+     "title": "BAR DIRECTOR",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.moonrabbitdc.com/about"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2857.json",
+     "base": "https://www.moonrabbitdc.com/",
+     "pages_fetched": 20,
+     "pages_ok": 11,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "tripleseat",
+       "page": "https://www.moonrabbitdc.com/private-events",
+       "url": "https://moonrabbitdc.tripleseat.com/party_request/38590"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.moonrabbitdc.com/cake-form",
+       "url": "https://www.moonrabbitdc.com/cake-form"
+      }
+     ],
+     "people": [
+      {
+       "name": "Thi Nguyen",
+       "page": "https://www.moonrabbitdc.com/about",
+       "title": "BAR DIRECTOR"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2857.json",
+     "base": "https://www.moonrabbitdc.com/",
+     "pages_fetched": 20,
+     "pages_ok": 11,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "tripleseat",
+       "page": "https://www.moonrabbitdc.com/private-events",
+       "url": "https://moonrabbitdc.tripleseat.com/party_request/38590"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.moonrabbitdc.com/cake-form",
+       "url": "https://www.moonrabbitdc.com/cake-form"
+      }
+     ],
+     "people": [
+      {
+       "name": "Thi Nguyen",
+       "page": "https://www.moonrabbitdc.com/about",
+       "title": "BAR DIRECTOR"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

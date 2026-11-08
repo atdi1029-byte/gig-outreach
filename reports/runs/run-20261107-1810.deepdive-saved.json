@@ -1,0 +1,730 @@
+{
+ "run_id": "run-20261107-1810",
+ "dry_run": false,
+ "at": "2026-11-07T20:40:52-05:00",
+ "totals": {
+  "saved": 27,
+  "venues_rescued": 9,
+  "socials": 1,
+  "rejected": 6,
+  "errors": 0,
+  "flagged": 10
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-HOTE-2676",
+   "name": "Willard InterContinental Washington, D.C.",
+   "contacts": [
+    {
+     "email": "michael.deltette@ihg.com",
+     "name": "Michael Deltette",
+     "source_url": "https://washington.intercontinental.com/press/2021-press/the-dc-wedding-guru/",
+     "title": "Director of Social Events (Willard Wedding Guru)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "sheryllee.antaya@ihg.com",
+     "name": "Sherry Antaya",
+     "source_url": "apollo:person 55709b4d73696418672d0300 (org Willard InterContinental Washington, D.C.)",
+     "title": "Director of Sales",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "markus.platzer@ihg.com",
+     "name": "Markus Platzer",
+     "source_url": "apollo:person 6546426a3e412d0001a5e7b2",
+     "title": "General Manager & Regional Director of Operations",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-224"
+    },
+    {
+     "email": "silvana.garcia@ihg.com",
+     "name": "Silvana Garcia Schreck",
+     "source_url": "pipeline postcheck_apollo candidate",
+     "title": "Director of Sales and Marketing",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "noemi.herrera@willardwashington.com",
+     "name": "Noemi Herrera",
+     "source_url": "apollo:person 60db2c9cc1ab5900014f3a78 (org The Willard Washington D.C, willardwashington.com)",
+     "outcome": "rejected:zerobounce_catch-all"
+    },
+    {
+     "email": "",
+     "name": "Luca Marchis",
+     "source_url": "apollo:person 5c4d175a80f93eb478a4443a",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Sarah Curiale",
+     "source_url": "apollo:person 682389667c90f9000130a7a0",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-WINE-2609",
+   "name": "Maxwell Park",
+   "contacts": [
+    {
+     "email": "connor@maxwellparkdc.com",
+     "name": "Connor Williams",
+     "source_url": "https://www.maxwellparkdc.com/about-us",
+     "title": "General Manager & Sommelier",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "brent@maxwelldcwine.com",
+     "name": "Brent Kroll",
+     "source_url": "https://www.maxwellparkdc.com/about-us",
+     "title": "Proprietor & Sommelier",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "JT Garczynski",
+     "source_url": "https://www.maxwellparkdc.com/about-us",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-WINE-2908",
+   "name": "V-NO Wine & Cocktail Bar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Shaina Taylor",
+     "source_url": "https://centermaryland.org/2023/new-national-harbor-wine-bar-just-the-start-for-this-internationally-accredited-sommelier",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Mark Bachman",
+     "source_url": "https://bmoremedia.com/devnews/vno-wine-bar032012.aspx",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-MUSI-002",
+   "name": "Dumbarton Concerts",
+   "contacts": [
+    {
+     "email": "carter@dumbartonartsed.org",
+     "name": "Carter Sligh",
+     "source_url": "https://dumbartonconcerts.org/staff-bod",
+     "title": "Director of Concerts",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "ingrid@dumbartonartsed.org",
+     "name": "Ingrid Zimmer",
+     "source_url": "https://dumbartonconcerts.org/staff-bod",
+     "title": "Executive Director",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "brown@dumbartonartsed.org",
+     "name": "Shelley Brown",
+     "source_url": "https://dumbartonconcerts.org/staff-bod",
+     "title": "Managing/Artistic Director",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "patricia@dumbartonartsed.org",
+     "name": "Patricia Ruane",
+     "source_url": "https://dumbartonconcerts.org/s/Dumbarton-Concerts-2026-2027-Season-Brochure.pdf",
+     "title": "Director of Development",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-MUSI-001",
+   "name": "Austrian Cultural Forum Washington",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Diana Stelzer",
+     "source_url": "https://www.acfdc.org/team",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Cordula Everett",
+     "source_url": "https://www.acfdc.org/team",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Verena Daughton",
+     "source_url": "https://www.acfdc.org/team",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2846",
+   "name": "Masseria by Nicholas Stefanelli",
+   "contacts": [
+    {
+     "email": "nicholas@cfgconcepts.com",
+     "name": "Nicholas Stefanelli",
+     "source_url": "https://www.masseria-dc.com/contact",
+     "title": "Chef/Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Kenzie M",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Orsolya Udvardy",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2862",
+   "name": "Cucina Morini",
+   "contacts": [
+    {
+     "email": "palmeida@altamareagroup.com",
+     "name": "Paul Almeida",
+     "source_url": "https://www.linkedin.com/in/paul-anthony-almeida",
+     "title": "DC Region General Manager (Osteria Morini DC | Cucina Morini | Nicoletta), Altam",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Matthew Adler",
+     "source_url": "https://www.linkedin.com/in/matthew-adler-b0598a41",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2867",
+   "name": "Marcus DC",
+   "contacts": [
+    {
+     "email": "jale.hashimi@themorrowhotel.com",
+     "name": "Jale Hashimi",
+     "source_url": "https://www.linkedin.com/in/jale-hashimi-3a9079109",
+     "title": "General Manager, The Morrow Hotel (home of Marcus DC)",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-229"
+    },
+    {
+     "email": "delicia.locke@themorrowhotel.com",
+     "name": "Delicia Locke",
+     "source_url": "https://www.linkedin.com/in/delicia-locke-5b21b1202",
+     "title": "Outside Sales Manager, The Morrow Hotel",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2870",
+   "name": "Pascual",
+   "contacts": [
+    {
+     "email": "fatima@thepopalgroup.com",
+     "name": "Fatima Popal",
+     "source_url": "https://www.linkedin.com/in/fatima-popal-6540a98",
+     "title": "Co-Owner/Partner, The Popal Group (owner of Pascual)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Emily DeLessio",
+     "source_url": "https://www.pascualdc.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2872",
+   "name": "Estuary",
+   "contacts": [
+    {
+     "email": "kerry.dunne@conradhotels.com",
+     "name": "Kerry Dunne",
+     "source_url": "http://www.linkedin.com/in/kerry-dunne-b94ab339",
+     "title": "Director of Catering and Events, Conrad Washington, DC (Estuary's hotel)",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-217"
+    },
+    {
+     "email": "elmer.stunkel@conradhotels.com",
+     "name": "Elmer Stunkel",
+     "source_url": "http://www.linkedin.com/in/elmerstunkel",
+     "title": "Director of Food and Beverage, Conrad Washington, DC (oversees Estuary)",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-217"
+    },
+    {
+     "email": "jessica.merk@conradhotels.com",
+     "name": "Jessica Merk",
+     "source_url": "http://www.linkedin.com/in/jessica-merk-65280757",
+     "title": "Director of Catering, Conrad Washington, DC",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-217"
+    },
+    {
+     "email": "jeanette.rausch@conradhotels.com",
+     "name": "Jeanette Rausch",
+     "source_url": "http://www.linkedin.com/in/jeanette-rausch",
+     "title": "Senior Catering Sales Manager, Conrad Washington, DC",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "dale.macphee@conradhotels.com",
+     "name": "Dale Macphee",
+     "source_url": "http://www.linkedin.com/in/dale-macphee-679b074",
+     "title": "General Manager, Conrad Washington, DC",
+     "verified": "valid",
+     "outcome": "duplicate:DC-REST-217"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2857",
+   "name": "Moon Rabbit",
+   "contacts": [
+    {
+     "email": "kevin.tien@moonrabbitdc.com",
+     "name": "Kevin Tien",
+     "source_url": "https://www.moonrabbitdc.com/about",
+     "title": "Owner & Chef",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "susan.bae@moonrabbitdc.com",
+     "name": "Susan Bae",
+     "source_url": "https://www.moonrabbitdc.com/about",
+     "title": "Owner & Pastry Chef",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Judy Beltrano",
+     "source_url": "https://www.moonrabbitdc.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-WINE-2610",
+   "name": "La' Shukran",
+   "contacts": [
+    {
+     "email": "",
+     "name": "William Simons",
+     "source_url": "https://www.lashukran.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Michael Rafidi",
+     "source_url": "https://www.lashukran.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Radovan Jankovic",
+     "source_url": "https://www.lashukran.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "kifak@lashukran.com",
+     "reason": "General inbox (site labels it 'General Inquiries & Reservations'; private dining and dietary questions also go there), no person name: general inboxes are never contacts"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-PRIV-115",
+   "name": "National Press Club",
+   "contacts": [
+    {
+     "email": "dsaugy@press.org",
+     "name": "Didier Saugy",
+     "source_url": "https://www.press.org/newsroom/didier-saugy-discusses-member-centric-approach-new-npc-executive-director",
+     "title": "Executive Director (since June 2023; ex-F&B director/exec chef)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "wire@press.org",
+     "reason": "No person name; club newswire/press inbox, not a person: never a contact"
+    },
+    {
+     "email": "kirstenfedewa@gmail.com",
+     "reason": "Kirsten Fedewa runs an outside PR consultancy (fedewaconsulting.com), not club staff; personal gmail scraped from a press release: wrong business"
+    },
+    {
+     "email": "tyoungmail@aol.com",
+     "reason": "Personal AOL address of a member or press-release contact (no title, not on staff); not a club decision-maker: wrong business"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-PRIV-114",
+   "name": "DACOR Bacon House",
+   "contacts": [
+    {
+     "email": "msharley@dacorbacon.org",
+     "name": "Meg Sharley",
+     "source_url": "https://www.dacorbacon.org/staff2.php",
+     "title": "Hospitality Consultant / Operations Advisor (Director of Operations and Events s",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "swhitaker@dacorbacon.org",
+     "name": "Sylvia Whitaker",
+     "source_url": "https://www.dacorbacon.org/staff2.php",
+     "title": "Events Coordinator",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Mark Voss",
+     "source_url": "https://www.dacorbacon.org/staff2.php",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Darrylvon Smith",
+     "source_url": "https://www.dacorbacon.org/staff2.php",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "dacor@dacorbacon.org",
+     "reason": "General inquiries inbox (the club's main address), no person name: never a contact"
+    },
+    {
+     "email": "comm.prog@dacorbacon.org",
+     "reason": "Name 'Comm Prog' was made up from the email local part; it is a function inbox. Christine Skodon (Dir. of Communications and Programs) is already saved with clskodon@"
+    },
+    {
+     "email": "exec.dir@dacorbacon.org",
+     "reason": "Name 'Exec Dir' was made up from the email local part. ED Alyson Reed is already saved with areed@"
+    },
+    {
+     "email": "jbradshaw@dacorbacon.org",
+     "reason": "No name on the sheet; this is former ED John Bradshaw, who retired in 2025 (DACOR Bulletin March 2025), so it is a stale mailbox"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-WINE-2963",
+   "name": "Delaplane Cellars",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-WINE-2965",
+   "name": "Arterra Wines",
+   "contacts": [
+    {
+     "email": "arterrawines@gmail.com",
+     "name": "Jason Murray",
+     "source_url": "https://www.arterrawines.com/",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Sandy Gray-Murray",
+     "source_url": "https://www.arterrawines.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-COUN-1333",
+   "name": "Four Streams",
+   "contacts": [
+    {
+     "email": "kevintaylor@fourstreams.com",
+     "name": "Kevin Taylor",
+     "source_url": "https://linksmagazine.com/the_members_club_at_four_streams/",
+     "outcome": "rejected:zerobounce_invalid"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-COUN-1334",
+   "name": "The Suburban Club of Baltimore",
+   "contacts": [
+    {
+     "email": "blake@suburban.org",
+     "name": "Blake Murphy",
+     "source_url": "https://www.suburbanclub.com/About_Us/Staff",
+     "outcome": "known"
+    },
+    {
+     "email": "mark.helffrich@suburban.org",
+     "name": "Mark Helffrich",
+     "source_url": "http://www.linkedin.com/in/mark-helffrich-b1485124",
+     "outcome": "rejected:off_domain:suburban.org!=suburbanclub.com"
+    },
+    {
+     "email": "",
+     "name": "Edna Toomey",
+     "source_url": "http://www.linkedin.com/in/edna-toomey-907abb7",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dolores Vassallo",
+     "source_url": "http://www.linkedin.com/in/dolores-vassallo-675561141",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-COUN-1332",
+   "name": "Caves Valley Golf Club",
+   "contacts": [
+    {
+     "email": "mfuller@cavesvalley.net",
+     "name": "Matt Fuller",
+     "source_url": "http://www.linkedin.com/in/matt-fuller-81426513",
+     "title": "Director of Golf",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "ksteidel@cavesvalley.net",
+     "name": "Kyle Steidel",
+     "source_url": "http://www.linkedin.com/in/kyle-steidel-2355aa61",
+     "title": "Golf Course Superintendent and Property Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "golfshop@cavesvalley.net",
+     "reason": "Shared golf-shop department inbox that Apollo put under Jason Bischoff (Client Relationship Manager). It isn't his personal address, so review it or replace it with his own email"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2856",
+   "name": "Rose's Luxury",
+   "contacts": [
+    {
+     "email": "leah.stone@rosesrestaurantgroup.com",
+     "name": "Leah Stone",
+     "source_url": "http://www.linkedin.com/in/leah-stone-100",
+     "title": "Senior Event Sales & Experience Manager, Rose's Restaurant Group",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "tony@rosesrestaurantgroup.com",
+     "name": "Tony Cochones",
+     "source_url": "https://www.rosesluxury.com/faq/",
+     "title": "Events and Experience Manager, Rose's Restaurant Group",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "aaron@rosesrestaurantgroup.com",
+     "name": "Aaron Silverman",
+     "source_url": "https://www.rosesluxury.com/faq/",
+     "title": "Founder/Chef, Rose's Restaurant Group",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "jack@rosesrestaurantgroup.com",
+     "name": "Jack Pine",
+     "source_url": "https://www.rosesluxury.com/faq/",
+     "title": "Senior Hospitality Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-HOTE-2678",
+   "name": "Hotel Lombardy",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-3006",
+   "name": "Hotel Ulysses",
+   "contacts": [
+    {
+     "email": "monika@ash.world",
+     "name": "Monika Golyan",
+     "source_url": "http://www.linkedin.com/in/monika-golyan-aba17011",
+     "title": "Corporate Director of Sales, Ash Hotels (covers Hotel Ulysses)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://ash.world/hotels/ulysses/gather",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2850",
+   "name": "Causa",
+   "contacts": [
+    {
+     "email": "carlos@causadc.com",
+     "name": "Carlos Delgado",
+     "source_url": "apollo:person 6aefd04cfd3fec0018ab00d0 (org Causa, causadc.com)",
+     "title": "Chef/Partner",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2861",
+   "name": "Centrolina",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Pratima Bangera",
+     "source_url": "apollo:person 57dbde4aa6da98689b4288ec",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Sherman Outhuok",
+     "source_url": "apollo:person 5f48577d96801f0001ae652d",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "ciao@centrolinadc.com",
+     "reason": "general inbox ('ciao' = hello@ in Italian), saved without a person name; it is the site-wide footer address, not a person's inbox"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2851",
+   "name": "Bresca",
+   "contacts": [
+    {
+     "email": "jhonatan@hivehospitality.com",
+     "name": "Jhonatan Cano",
+     "source_url": "apollo:person 66fb42c18aba0a00013dd88e; name+title on https://www.brescadc.com/our-story/",
+     "outcome": "rejected:off_domain:hivehospitality.com!=brescadc.com"
+    },
+    {
+     "email": "ryan@jontdc.com",
+     "name": "Ryan Ratino",
+     "source_url": "apollo:person 54a3b2737468692abf81440b; name on https://www.brescadc.com/our-story/",
+     "outcome": "rejected:off_domain:jontdc.com!=brescadc.com"
+    },
+    {
+     "email": "will@hivehospitality.com",
+     "name": "William Patton",
+     "source_url": "apollo:person 6340500e17be980001ff93fb; name on https://www.brescadc.com/our-story/",
+     "outcome": "rejected:off_domain:hivehospitality.com!=brescadc.com"
+    },
+    {
+     "email": "",
+     "name": "Andrew Elder",
+     "source_url": "https://www.brescadc.com/our-story/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ]
+}

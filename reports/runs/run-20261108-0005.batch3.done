@@ -1,0 +1,52 @@
+{
+  "run_id": "run-20261108-0005",
+  "batch": 3,
+  "venue_ids": [
+    "VA-COUN-010",
+    "VA-EVEN-3024",
+    "VA-EVEN-3022",
+    "VA-REST-3480",
+    "VA-WINE-2962",
+    "MD-REST-3383",
+    "MD-REST-3387",
+    "VA-REST-3477"
+  ],
+  "final": {
+    "VA-COUN-010": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "VA-EVEN-3024": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "VA-EVEN-3022": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "VA-REST-3480": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "VA-WINE-2962": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "MD-REST-3383": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "MD-REST-3387": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "VA-REST-3477": {
+      "result": "failed",
+      "status": "untouched"
+    }
+  },
+  "finished_at": "2026-11-08 02:20:28",
+  "run_log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0005.log",
+  "report": "",
+  "batch_file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0005.batch3.json"
+}

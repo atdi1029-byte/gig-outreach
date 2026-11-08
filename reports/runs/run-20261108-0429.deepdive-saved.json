@@ -1,0 +1,711 @@
+{
+ "run_id": "run-20261108-0429",
+ "dry_run": false,
+ "at": "2026-11-08T06:59:39-05:00",
+ "totals": {
+  "saved": 13,
+  "venues_rescued": 4,
+  "socials": 1,
+  "rejected": 6,
+  "errors": 0,
+  "flagged": 24
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "MD-REST-3322",
+   "name": "Regina's Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Henry Alvarez",
+     "source_url": "https://reginasrestaurantmd.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Gabriel Campos",
+     "source_url": "https://reginasrestaurantmd.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2337",
+   "name": "Belvedere Yacht Club",
+   "contacts": [
+    {
+     "email": "commodore@belvedereyachtclub.org",
+     "name": "Sam Moynihan II",
+     "source_url": "https://www.belvedereyachtclub.org/about.html",
+     "title": "Commodore",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "XX-REST-631",
+   "name": "The Black Sheep Restaurant",
+   "contacts": [
+    {
+     "email": "a.linane@villagiogroup.com",
+     "name": "Allison Linane",
+     "source_url": "https://theblacksheeprestaurant.com/about",
+     "title": "Director of Private Events & Sales",
+     "verified": "valid",
+     "outcome": "duplicate:VA-REST-3479"
+    },
+    {
+     "email": "c.foley@villagiogroup.com",
+     "name": "Christopher Foley",
+     "source_url": "https://theblacksheeprestaurant.com/about",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-389",
+   "name": "Reluctant Navigator Restaurant",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-973",
+   "name": "La Speranza",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Neptali Mendoza",
+     "source_url": "https://maxforrockville.com/2024/05/24/spotlight-la-speranza-restaurant-a-new-italian-gem-in-twinbrook/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3177",
+   "name": "Lost Mountain Vineyards",
+   "contacts": [
+    {
+     "email": "joshua@lostmountainvineyards.com",
+     "name": "Joshua Grainer",
+     "source_url": "https://www.eventbrite.com/e/1980282125144",
+     "title": "Winemaker & Managing Director",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "rachel@rdvvineyards.com",
+     "name": "Rachel Hayden",
+     "source_url": "https://lostmountainvineyards.com/introducing-the-new-era-of-rdv-lost-mountain/",
+     "title": "Vice President of Communications",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-685",
+   "name": "Blackwall Hitch",
+   "contacts": [
+    {
+     "email": "htorggler@titanhospitality.com",
+     "name": "Hunter Torggler",
+     "source_url": "https://issuu.com/cymmedia/docs/bwh_ap_weddingbook_2022_highres",
+     "title": "Event Coordinator, Blackwall Hitch Annapolis (Titan Hospitality)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "slow@titanhospitality.com",
+     "name": "Shiopei Low",
+     "source_url": "http://www.linkedin.com/in/shiopei-low",
+     "title": "Event Sales, Titan Hospitality (operator of Blackwall Hitch Annapolis)",
+     "verified": "valid",
+     "outcome": "duplicate:MD-REST-772"
+    },
+    {
+     "email": "",
+     "name": "Erik C",
+     "source_url": "http://www.linkedin.com/in/erik-c-83366411b",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.blackwallhitchannapolis.com/private-dining-inquiry-form/",
+     "outcome": "kept_existing"
+    }
+   ],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-3150",
+   "name": "The Beaumont",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-HOTE-2677",
+   "name": "The Ritz-Carlton, Washington, D.C.",
+   "contacts": [
+    {
+     "email": "lexie.overholt@ritzcarlton.com",
+     "name": "Lexie Overholt",
+     "source_url": "http://www.linkedin.com/in/lexie-overholt-51bb0415b",
+     "outcome": "rejected:shared_brand_domain:ritzcarlton.com"
+    },
+    {
+     "email": "",
+     "name": "Nita Sharma",
+     "source_url": "http://www.linkedin.com/in/nitasharma123",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rishi Malhotra",
+     "source_url": "http://www.linkedin.com/in/rishi-malhotra-5214a06",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Chris Wilcox",
+     "source_url": "http://www.linkedin.com/in/chriswilcox2",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Phineus Falcor",
+     "source_url": "http://www.linkedin.com/in/phineus-falcor-09795b1ab",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.ritzcarlton.com/en/hotels-and-resorts/meetings-and-celebrations/meetings/rfp/?marshaCode=wasrt",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "rc-washingtondcleads@ritzcarlton.com",
+     "reason": "Name 'Rc Washingtondcleads' was made up from the email local part. This is a shared sales-leads inbox, not a person. Keep it as the venue inbox if wanted, but it is not a real contact name."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3186",
+   "name": "Vint Hill Craft Winery",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Holly Falk",
+     "source_url": "http://www.linkedin.com/in/holly-falk-6b047078",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Richard Talomie",
+     "source_url": "http://www.linkedin.com/in/richard-talomie-7aa07828",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Chris Pearmund",
+     "source_url": "https://vawinejourneys.blogspot.com/2025/11/pearmund-cellars.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2664",
+   "name": "Peacock Cafe",
+   "contacts": [
+    {
+     "email": "shahab@peacockcafe.com",
+     "name": "Shahab Farivar",
+     "source_url": "http://www.linkedin.com/in/shahab-farivar-440b285",
+     "title": "Owner (front of house)",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3431",
+   "name": "Cafe Colline",
+   "contacts": [
+    {
+     "email": "soiree@h2-collective.com",
+     "name": "Lilienne Conklin",
+     "source_url": "https://www.cafecollineva.com/private-events",
+     "title": "Private Event Director, H2 Collective (Cafe Colline's owner group)",
+     "verified": "valid",
+     "outcome": "duplicate:MD-REST-909"
+    },
+    {
+     "email": "",
+     "name": "Brendan L'Etoile",
+     "source_url": "https://arlingtonmagazine.com/restaurant-review-cafe-colline",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2340",
+   "name": "Selby Bay Yacht Club",
+   "contacts": [
+    {
+     "email": "robertoalonzoavila@gmail.com",
+     "name": "Roberto Alonzo",
+     "source_url": "https://selbybayyc.clubexpress.com/content.aspx?page_id=22&club_id=25056&module_id=754052",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "membership@selbybayyc.com",
+     "name": "Alan Neustadtl",
+     "source_url": "https://selbybayyc.clubexpress.com/content.aspx?page_id=0&club_id=25056",
+     "title": "Membership Director",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Bayard E Galey",
+     "source_url": "https://selbybayyc.clubexpress.com/content.aspx?page_id=4&club_id=25056",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tom Campbell",
+     "source_url": "https://selbybayyc.clubexpress.com/content.aspx?page_id=4&club_id=25056",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Matt Piermarini",
+     "source_url": "https://selbybayyc.clubexpress.com/content.aspx?page_id=4&club_id=25056",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/SelbyBayYachtClub",
+     "outcome": "kept_existing"
+    },
+    {
+     "field": "contact_form",
+     "value": "https://selbybayyc.clubexpress.com/content.aspx?page_id=4&club_id=25056",
+     "outcome": "kept_existing"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "bjenkins@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "chyde@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "gpalmerowen@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "hblackwell@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "jcousins@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "lhunt@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "mhanna@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "mhill@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "mnewman@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "msuckow@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "roneil@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "sportscenter@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    },
+    {
+     "email": "sshervegar@scyachtclub.com",
+     "reason": "Wrong business: scyachtclub.com is the South Carolina Yacht Club (10 Yacht Club Dr, Hilton Head Island, SC 29926), not Selby Bay Yacht Club (1116 Turkey Point Rd, Edgewater MD). Saved from the wrong website."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3080",
+   "name": "Ahso Cellars",
+   "contacts": [
+    {
+     "email": "jason@ahsoresto.com",
+     "name": "Jason Maddens",
+     "source_url": "http://www.linkedin.com/in/jason-maddens-a33b1013",
+     "title": "Chef/Owner (Ahso Restaurant Group; curates Ahso Cellars)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Patrick Ryan",
+     "source_url": "https://www.ahsocellars.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "needtoknow@ahsocellars.com",
+     "reason": "Not wrong-business: it is the venue's general inbox (acts as info@, no person attached). Under the general-inbox rule it may need removing; main session to decide"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-336",
+   "name": "Il Piccolo Morso",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Silvia Chance",
+     "source_url": "https://southernmarylandchronicle.com/2021/01/26/sip-and-bite-encounters-with-lynne-omeara-il-piccolo-morso",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Michael Chance",
+     "source_url": "https://www.visitstmarysmd.com/directory/il-piccolo-morso/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2686",
+   "name": "Cattail Creek Country Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Juliana Miller",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "chris.costantino@cattailcreekcc.com",
+     "reason": "Right club, garbled name: saved as name 'Operations- Chris Costantino' / title 'Golf'. Correct: Chris Costantino, Head Golf Professional (Golf Operations contact on /employment; Apollo). Fix name/title, keep contact."
+    },
+    {
+     "email": "erik.zmuidins@cattailcreekcc.com",
+     "reason": "Right club, garbled name: saved as name 'Beverage- Erik Zmuidins' / title 'Food and'. Correct: Erik Zmuidins, Clubhouse Manager (Food and Beverage contact on /employment; Apollo). Fix name/title, keep contact."
+    },
+    {
+     "email": "paige.t@cattailcreekcc.com",
+     "reason": "Right club, title garbled: 'our Director of Event'. Correct: Paige Taormina, Director of Events (cattailcreekcc.com/event/inquiry). Keep \u2014 best events contact."
+    },
+    {
+     "email": "cattailcreek@cattailcreekcc.com",
+     "reason": "General club inbox (contact page / membership request), no person name; title 'REQUEST MEMBERSHIP INFORMATION' is a button label. Policy: general inbox, not a contact."
+    },
+    {
+     "email": "cattailcreekcc@cattailcreekcc.com",
+     "reason": "General club inbox from social, no person name. Policy: general inbox, not a contact."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2420",
+   "name": "Fleetwood Farm Winery",
+   "contacts": [
+    {
+     "email": "jack@fleetwoodfarmwinery.com",
+     "name": "Jack Edgemond",
+     "source_url": "https://fleetwoodfarmwinery.com/our-story/",
+     "title": "Sales Manager (events/weddings; listed on Our Team; Reston Chamber lists him as ",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Jennifer Krebs",
+     "source_url": "https://fleetwoodfarmwinery.com/weddings/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Skip Edgemond",
+     "source_url": "https://fleetwoodfarmwinery.com/our-story/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jamie McClellan",
+     "source_url": "https://fleetwoodfarmwinery.com/our-story/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "cassi@fleetwoodfarmwinery.com",
+     "reason": "Right venue, but no surname: site FAQ only says 'contact Cassi@' for group reservations/gift cards; full name not found (Apollo/web). Name it 'Cassi' only if policy allows; otherwise keep as reservations inbox."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1203",
+   "name": "Il Cappero",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Antonio (Tony) Illiano",
+     "source_url": "https://northernvirginiamag.com/food-and-drink/reviews/2021/09/21/alices-latest-obsession-il-cappero/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2319",
+   "name": "Corsica River Yacht Club",
+   "contacts": [
+    {
+     "email": "cryc.org@gmail.com",
+     "name": "Roy Sherman",
+     "source_url": "https://mailchi.mp/3e9d3f057814/corsica-currents-10344873",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "woodduck3456@gmail.com",
+     "name": "John Foster",
+     "source_url": "https://mailchi.mp/3e9d3f057814/corsica-currents-10344873",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "saydave1@gmail.com",
+     "name": "Dave Boone",
+     "source_url": "https://mailchi.mp/3e9d3f057814/corsica-currents-10344873",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "",
+     "name": "Mike Hollis",
+     "source_url": "https://cryc.org/officers-and-bylaws/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Joe Della Barba",
+     "source_url": "https://cryc.org/officers-and-bylaws/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "mysticwhaler@sbcglobal.net",
+     "reason": "Saved with no person name and title 'Beach chair(s)' (looks like a classified-ad or item contact). It does not appear on officers, contact, events, calendar or merchandise pages, or in 5 checked 2026 newsletters, and it is tied to no club officer. Not a decision-maker; replace with the named officers above."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-393",
+   "name": "Solomons Island Winery",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "gochosbcn@gmail.com",
+     "reason": "WRONG BUSINESS: belongs to Gochos BCN, a restaurant at Gran Via de les Corts Catalanes 1099, Barcelona. solomonsislandwinery.com has lapsed and now 301-redirects to unrelated sites (gochosbcn.com, now olitrips.com); the scraper followed the redirect and saved the Barcelona restaurant's mailto. Delete it."
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-REST-050",
+   "name": "The Crossvines",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Payton Meader",
+     "source_url": "http://www.linkedin.com/in/payton-meader-2706886b",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Danette Pickens",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rhonda Hofberg-Kyle",
+     "source_url": "https://www.theknot.com/marketplace/the-crossvines-poolesville-md-2068207",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2702",
+   "name": "Hayfields Country Club",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3186",
+   "name": "Copper Canyon Grill",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Kathryn Ratti",
+     "source_url": "http://www.linkedin.com/in/kathryn-ratti-66718526",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Chrystal Rector",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Stephen Cunningham",
+     "source_url": "http://www.linkedin.com/in/stephen-cunningham-298b4811",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ernest Finniff",
+     "source_url": "http://www.linkedin.com/in/ernest-finniff-bbb653163",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "rewards@ccgrill.com",
+     "reason": "Loyalty-program inbox (Woodfire Club rewards) with no person attached: a general inbox, not a booking contact. It should not count as a contact under the save policy."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2254",
+   "name": "Country Club Hills Recreation Corporation",
+   "contacts": [
+    {
+     "email": "social@cchpool.com",
+     "name": "Sara Lanphere",
+     "source_url": "https://www.cchpool.com/contact",
+     "title": "Social Chair (Board)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "president@cchpool.com",
+     "name": "Justin Haight",
+     "source_url": "https://www.cchpool.com/contact",
+     "outcome": "rejected:zerobounce_do_not_mail"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3170",
+   "name": "Barrel Oak Winery and Brewery",
+   "contacts": [
+    {
+     "email": "kavelle@barreloak.com",
+     "name": "Kavelle Bajaj",
+     "source_url": "https://barreloak.com/about-us/",
+     "title": "Owner",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "adriana@barreloak.com",
+     "name": "Adriana Lucca",
+     "source_url": "https://barreloak.com/about-us/",
+     "title": "General Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "sarah@barreloak.com",
+     "name": "Sarah Puray",
+     "source_url": "https://barreloak.com/about-us/",
+     "title": "Tasting Room Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Christina Kazmierski",
+     "source_url": "http://www.linkedin.com/in/christinakaz",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jen Wanek",
+     "source_url": "https://barreloak.com/about-us/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ]
+}

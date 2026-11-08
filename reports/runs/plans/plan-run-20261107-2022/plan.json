@@ -1,0 +1,88 @@
+{
+  "created": "2026-11-07 20:22:51",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "wild": 25
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-2022/batch_01.json",
+      "venue_ids": [
+        "DC-REST-2871",
+        "DC-REST-2849",
+        "DC-REST-2855",
+        "DC-REST-2860",
+        "DC-REST-2876",
+        "DC-REST-2858",
+        "DC-REST-2873",
+        "DC-REST-2853"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-2022/batch_02.json",
+      "venue_ids": [
+        "DC-REST-2863",
+        "DC-REST-2865",
+        "DC-REST-2874",
+        "DC-REST-2864",
+        "DC-REST-2852",
+        "DC-REST-2859",
+        "DC-REST-2875",
+        "DC-REST-2866"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-2022/batch_03.json",
+      "venue_ids": [
+        "DC-REST-2877",
+        "DC-REST-2854",
+        "DC-REST-2848",
+        "DC-REST-2847",
+        "DC-MUSE-004",
+        "DC-EVEN-2602",
+        "DC-EVEN-2603",
+        "DC-EVEN-2604"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261107-2022/batch_04.json",
+      "venue_ids": [
+        "MD-EVEN-3046"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "DC-REST-2871",
+    "DC-REST-2849",
+    "DC-REST-2855",
+    "DC-REST-2860",
+    "DC-REST-2876",
+    "DC-REST-2858",
+    "DC-REST-2873",
+    "DC-REST-2853",
+    "DC-REST-2863",
+    "DC-REST-2865",
+    "DC-REST-2874",
+    "DC-REST-2864",
+    "DC-REST-2852",
+    "DC-REST-2859",
+    "DC-REST-2875",
+    "DC-REST-2866",
+    "DC-REST-2877",
+    "DC-REST-2854",
+    "DC-REST-2848",
+    "DC-REST-2847",
+    "DC-MUSE-004",
+    "DC-EVEN-2602",
+    "DC-EVEN-2603",
+    "DC-EVEN-2604",
+    "MD-EVEN-3046"
+  ]
+}

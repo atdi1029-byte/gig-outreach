@@ -120,8 +120,16 @@
    },
    {
     "run_id": "run-20261107-2022",
-    "outcome": "running",
-    "started": "20:22"
+    "outcome": "finished",
+    "started": "20:22",
+    "venues": 25,
+    "processed": 25,
+    "skipped": 0,
+    "with_contacts": 16,
+    "zero": 9,
+    "new_contacts": 118,
+    "unfinished": 0,
+    "ended": "22:34"
    }
   ],
   "note": "Six scraper fixes went in from the last four rounds (no recall benchmark losses): staff on outside mail domains like Trump National's, inboxes paired with the one person who runs them, Apollo names added to nameless contacts, numeric Facebook links, parked /lander domains, and sayhello@/food@ inboxes."
@@ -192,5 +200,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-07T20:40:52-05:00"
+ "updated_at": "2026-11-07T22:34:32-05:00"
 }

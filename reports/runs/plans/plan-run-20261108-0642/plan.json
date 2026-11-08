@@ -1,0 +1,90 @@
+{
+  "created": "2026-11-08 06:42:46",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "fine_dining": 13,
+    "club": 6,
+    "wine": 6
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261108-0642/batch_01.json",
+      "venue_ids": [
+        "MD-REST-3378",
+        "VA-REST-1466",
+        "VA-WINE-2943",
+        "DC-REST-2832",
+        "MD-REST-954",
+        "MD-REST-2331",
+        "MD-WINE-343",
+        "MD-REST-918"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261108-0642/batch_02.json",
+      "venue_ids": [
+        "MD-REST-3167",
+        "MD-REST-2338",
+        "XX-WINE-032",
+        "VA-REST-3283",
+        "MD-REST-3347",
+        "MD-REST-3373",
+        "MD-REST-2687",
+        "MD-REST-2953"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261108-0642/batch_03.json",
+      "venue_ids": [
+        "MD-REST-3362",
+        "MD-REST-3372",
+        "MD-YACH-760",
+        "MD-WINE-2906",
+        "MD-REST-3376",
+        "MD-REST-3279",
+        "MD-REST-2314",
+        "MD-REST-1598"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261108-0642/batch_04.json",
+      "venue_ids": [
+        "VA-REST-3455"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "MD-REST-3378",
+    "VA-REST-1466",
+    "VA-WINE-2943",
+    "DC-REST-2832",
+    "MD-REST-954",
+    "MD-REST-2331",
+    "MD-WINE-343",
+    "MD-REST-918",
+    "MD-REST-3167",
+    "MD-REST-2338",
+    "XX-WINE-032",
+    "VA-REST-3283",
+    "MD-REST-3347",
+    "MD-REST-3373",
+    "MD-REST-2687",
+    "MD-REST-2953",
+    "MD-REST-3362",
+    "MD-REST-3372",
+    "MD-YACH-760",
+    "MD-WINE-2906",
+    "MD-REST-3376",
+    "MD-REST-3279",
+    "MD-REST-2314",
+    "MD-REST-1598",
+    "VA-REST-3455"
+  ]
+}

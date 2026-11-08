@@ -71,6 +71,8 @@ SHARED_BRAND_DOMAINS = {
     "highgate.com", "davidsonhospitality.com", "sagehospitality.com",
     "loewshotels.com", "omnihotels.com", "fairmont.com", "sofitel.com",
     "brookdale.com", "sunriseseniorliving.com", "erickson.com",
+    # one domain, several venues (Nov 8 2026: Sagamore Pendry Baltimore was read as Pendry Wharf DC)
+    "pendry.com", "lochbar.com", "jhu.edu",
 }
 
 # Hosts that are never a venue's own website.

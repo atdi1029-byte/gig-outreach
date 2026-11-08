@@ -5126,6 +5126,19 @@ print("\x1f".join([dom, "true" if shared else "false", v.get("city") or "", v.ge
 PYEOF
     )
     IFS=$'\x1f' read -r DOMAIN li_shared li_city li_state <<< "$dinfo"
+    # The proven LinkedIn method (Apr 2 2026; Alex, Nov 8 2026: "make sure you can find the people on linked in"):
+    # the exact venue name in quotes, plus the town when the name is one common word, so the 3 pages are about
+    # this venue ("Altitude" alone filled them with Altitude Trampoline Park, Arlington TX)
+    ENCODED_VENUE=$(_rb_py "$venue_id linkedin" python3 -c '
+import re, sys, urllib.parse
+name, city = sys.argv[1].strip(), sys.argv[2].strip()
+core = re.sub(r"^the\s+", "", name, flags=re.I)
+words = re.findall(r"[A-Za-z0-9&]+", core)
+q = chr(34) + name + chr(34)
+if len(words) <= 1 and city:
+    q += " " + city
+print(urllib.parse.quote(q))' "$venue" "$li_city") || ENCODED_VENUE=$(_rb_py "$venue_id linkedin" python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$venue")
+    log "  LinkedIn search: $(_rb_py "$venue_id linkedin" python3 -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))" "$ENCODED_VENUE")"
     if [ "$li_shared" = "true" ]; then
         log "  [LINKEDIN] Website is on shared brand domain ${DOMAIN:-?} — people will be saved as pending, not enriched by domain"
         DOMAIN=""

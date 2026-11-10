@@ -740,7 +740,24 @@ for limit in (strong_n, {b: len(by_bucket.get(b, [])) for b in BUCKET_ORDER}):
 # the dream kinds run until they're gone: luxury hotels, then European/fine dining (casual names last), clubs and wine 2:1:1, the rest last
 if os.environ.get('DREAM_FIRST') == '1':
     casual = re.compile(r'pizz|bakery|pantry|gourmet|raw bar|deli\b|market', re.I)
-    by_bucket['fine_dining'] = sorted(by_bucket.get('fine_dining', []), key=lambda e: bool(casual.search(e['venue'].get('name') or '')))
+    # the sweep's own upscale rating (5 = dream gig) comes first, then the taste order (Nov 10 2026: Blue Duck
+    # Tavern, rated 5, waited behind guest houses because its taste score was 0)
+    # shops, florists, planners, churches, schools and chain hotels can be rated 5 by a sweep, but they're not
+    # where he plays: they go last
+    NOT_STAGE = {'shopping', 'luxury_retail', 'florist', 'event_planner', 'caterer', 'church', 'synagogue',
+                 'funeral_home', 'school', 'library', 'fraternal', 'community_center', 'farmers_market', 'concert_series'}
+    chain = re.compile(r'hilton|hyatt|marriott|sheraton|westin|canopy|hampton|courtyard|embassy suites|holiday inn|doubletree|residence inn', re.I)
+    def not_a_stage(e):
+        v = e['venue']
+        return str(v.get('category') or '').lower().replace(' ', '_') in NOT_STAGE or bool(chain.search(v.get('name') or ''))
+    def upscale(e):
+        try:
+            u = float(e['venue'].get('upscale_score') or 0)
+        except (TypeError, ValueError):
+            u = 0
+        return u if 0 < u <= 5 else 0
+    for b in by_bucket:
+        by_bucket[b] = sorted(by_bucket[b], key=lambda e: (not_a_stage(e), -upscale(e), bool(casual.search(e['venue'].get('name') or '')), rank_key(e)))
     n = {b: len(by_bucket.get(b, [])) for b in BUCKET_ORDER}
     take = {b: 0 for b in BUCKET_ORDER}
     take['hotel'] = min(COUNT, n['hotel'])

@@ -1,5 +1,11 @@
 {
- "alert": null,
+ "alert": {
+  "kind": "chrome",
+  "level": "stop",
+  "title": "Night run stopped: Chrome",
+  "detail": "pipeline.sh exited 1: Chrome has no open window; Chrome has no open window; Chrome has no open window. Leave Chrome open with View > Developer > Allow JavaScript from Apple Events on. Run run-20261108-0931 resumes next night.",
+  "since": "2026-11-10T00:54:11-05:00"
+ },
  "night": {
   "date": "2026-11-09",
   "started_at": "2026-11-09T23:44:59-05:00",
@@ -99,5 +105,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-10T00:54:05-05:00"
+ "updated_at": "2026-11-10T00:54:11-05:00"
 }

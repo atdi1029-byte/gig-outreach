@@ -1,0 +1,293 @@
+{
+ "run_id": "run-20261110-0729",
+ "dry_run": false,
+ "at": "2026-11-10T09:57:11-05:00",
+ "totals": {
+  "saved": 4,
+  "venues_rescued": 3,
+  "socials": 1,
+  "rejected": 5,
+  "errors": 0,
+  "flagged": 0
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "VA-REST-3037",
+   "name": "Bombay Tandoor",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Vijay Verma",
+     "source_url": "https://www.dnb.com/business-directory/company-profiles/bombay-tandoor-inc.eae76648947d03e14f619249465d6547",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rani Verma",
+     "source_url": "https://www.weddingwire.com/reviews/bombay-tandoor-vienna/2f561aca46b56a9a.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Iftikhar Khan",
+     "source_url": "https://www.weddingwire.com/biz/bombay-tandoor-vienna/2f561aca46b56a9a.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-723",
+   "name": "Yellowfin Steak and Fish House",
+   "contacts": [
+    {
+     "email": "manager@yellowfinedgewater.com",
+     "name": "James Kujawski",
+     "source_url": "https://yellowfinedgewater.com/contact",
+     "title": "Managing Member",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Paul Kerner",
+     "source_url": "https://www.mdcourts.gov/sites/default/files/unreported-opinions/1234s23.pdf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-1015",
+   "name": "Fin Thai Great Falls",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Willy Chaokrajang",
+     "source_url": "https://www.restonnow.com/2019/12/23/thai-eatery-in-reston-to-expand-to-great-falls/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Daonapha Sanchez",
+     "source_url": "https://finnthai.com/about-us",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://finnthai.com/great-falls",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-460",
+   "name": "Blu Miles Seafood & Grill",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-1343",
+   "name": "Porsche Studio Chevy Chase",
+   "contacts": [
+    {
+     "email": "nicholas.gittings@porschebethesda.com",
+     "name": "Nick Gittings",
+     "source_url": "https://www.porschestudiochevychase.com/dealership/staff.htm",
+     "outcome": "rejected:zerobounce_unknown"
+    },
+    {
+     "email": "damaris.alvarez@porschebethesda.com",
+     "name": "Damaris Alvarez",
+     "source_url": "https://www.porschestudiochevychase.com/dealership/staff.htm",
+     "outcome": "rejected:zerobounce_unknown"
+    },
+    {
+     "email": "quinn.burroughs@porschebethesda.com",
+     "name": "Quinn Burroughs",
+     "source_url": "https://www.porschestudiochevychase.com/dealership/staff.htm",
+     "outcome": "rejected:zerobounce_unknown"
+    },
+    {
+     "email": "",
+     "name": "Dexter Jay",
+     "source_url": "https://citylifestyle.com/articles/porsche-studio-opens-in-chevy-chase",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2658",
+   "name": "Das Ethiopian",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Sileshi Alifom",
+     "source_url": "https://dasethiopian.com/story",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Elizabeth Wossen",
+     "source_url": "https://dasethiopian.com/story",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-EVEN-2996",
+   "name": "Little City Concerts",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Stephen Gorbos",
+     "source_url": "https://littlecityconcerts.org/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-783",
+   "name": "Tsunami Annapolis",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Gavin Buckley",
+     "source_url": "https://www.thebanner.com/culture/food-drink/olearys-tsu-annapolis-dining-6YPGDMTXLVAZ7CE2Q7PS6IEEJM/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3013",
+   "name": "Howard County Concert Odyssey",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Donna Bareis Amico",
+     "source_url": "https://hococo.org/donna-bareis-amico-elected-board-president/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ann Corbett",
+     "source_url": "https://hococo.org/donna-bareis-amico-elected-board-president/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Nancy Carol Mason",
+     "source_url": "https://hococo.org/donna-bareis-amico-elected-board-president/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-925",
+   "name": "Hip Flask Rooftop Bar",
+   "contacts": [
+    {
+     "email": "dupree.braswell@marriott.com",
+     "name": "Dupree Braswell",
+     "source_url": "https://www.hipflaskrooftop.com/our-digits",
+     "title": "Executive Chef, Marriott Bethesda Downtown at Marriott HQ; the bar's published c",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "lillian.tucker@marriott.com",
+     "name": "Lillian Tucker",
+     "source_url": "https://www.hipflaskrooftop.com/",
+     "title": "Private events contact",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-SENI-542",
+   "name": "Londonderry on the Tred Avon",
+   "contacts": [
+    {
+     "email": "ehardeo@londonderrytredavon.com",
+     "name": "Erica Hardeo",
+     "source_url": "https://londonderrytredavon.com/wp-content/uploads/2024/11/classified-form.pdf",
+     "outcome": "rejected:zerobounce_catch-all"
+    },
+    {
+     "email": "charrington@londonderrytredavon.com",
+     "name": "Christine Harrington",
+     "source_url": "https://londonderrytredavon.com/about-us/meet-the-londonderry-team/",
+     "outcome": "rejected:zerobounce_catch-all"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-HOTE-203",
+   "name": "Melrose Georgetown Hotel",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-MUSE-1655",
+   "name": "Howard County Historical Society Museum",
+   "contacts": [
+    {
+     "email": "director@hchsmd.org",
+     "name": "Ann Bennett",
+     "source_url": "https://www.hchsmd.org/s/LEGACY_Special_Edition_2026_Final.pdf",
+     "title": "Executive Director",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Kaylie Mellott",
+     "source_url": "https://www.hchsmd.org/staff",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-HOTE-2662",
+   "name": "Hotel Rendale",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Reynaldo Marvez",
+     "source_url": "https://tagvenue.com/us/venues/washington/39043/pikio-taco-washington-dc",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ]
+}

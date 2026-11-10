@@ -1,0 +1,633 @@
+{
+ "run_id": "run-20261110-0729",
+ "venues": [
+  {
+   "venue_id": "VA-REST-3037",
+   "name": "Bombay Tandoor",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Vijay Verma",
+     "title": "President, Bombay Tandoor, Inc.",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.dnb.com/business-directory/company-profiles/bombay-tandoor-inc.eae76648947d03e14f619249465d6547",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "per the D&B company profile as quoted in a search result; the D&B page itself returned 403, so not read directly; no email published"
+    },
+    {
+     "name": "Rani Verma",
+     "title": "Owner / principal",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.weddingwire.com/reviews/bombay-tandoor-vienna/2f561aca46b56a9a.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "D&B 'Principal' and called 'the owner' in a WeddingWire review, both as quoted in search results; a Tripadvisor review says she was the earlier owner and senior managers are now partners; no email published"
+    },
+    {
+     "name": "Iftikhar Khan",
+     "title": "Manager",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.weddingwire.com/biz/bombay-tandoor-vienna/2f561aca46b56a9a.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "named in guest reviews only: 'Mr. Khan' in a 2013 WeddingWire review, 'Mr. Iftikhar Khan' in a review summary; role and whether current not confirmed; no email published"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "bombaytandoor.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Bombay Tandoor (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 3
+    }
+   ],
+   "summary": "No usable email exists publicly: every page of the site (all 12 sitemap pages) and the two catering PDFs read carry only info@bombaytandoor.com (general inbox) and name no person; bombaytandoor@msn.com is ZeroBounce-invalid. Website is the right venue (8603 Westwood Center Dr, Vienna; open, second location in Lansdowne). Owner-side names found off-site without emails: Vijay Verma (President) and Rani Verma (owner/principal), plus a manager Iftikhar Khan from reviews; first-name-only staff in reviews (Naveed, Rajesh, Varun, Sameer) not listed. Phone/text 202-288-6105 is the catering line."
+  },
+  {
+   "venue_id": "MD-REST-723",
+   "name": "Yellowfin Steak and Fish House",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "James Kujawski",
+     "title": "Managing Member",
+     "email": "manager@yellowfinedgewater.com",
+     "source": "website",
+     "source_url": "https://yellowfinedgewater.com/contact",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "pairing with manager@ is INFERRED, not stated: the venue's own contact page publishes manager@yellowfinedgewater.com (mailto) with no name; Kujawski is the one person named on the South County chamber listing for the restaurant (re-fetched by the main session: heading 'James Kujawski', no title, no email) and the managing member since 2018 per the Baltimore Sun, May 10 2023. Handed over as a named function inbox, like the runbook's Flore Cafe case (venue-published booking inbox + owner name from elsewhere)"
+    },
+    {
+     "name": "Paul Kerner",
+     "title": "Manager / assistant general manager",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.mdcourts.gov/sites/default/files/unreported-opinions/1234s23.pdf",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "as of the 2023 trial, per a search-result summary of Baltimore Sun coverage and a court opinion; I could not open a page that states it, and it may be out of date; no email published"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "yellowfinedgewater.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Yellowfin Steak and Fish House (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The only published address is manager@yellowfinedgewater.com (mailto on the home and contact pages); the site names no one. The person to attach is James (Jamie) Kujawski, managing member since 2018 and the named contact on the South County chamber listing; the pairing with manager@ is my inference, not stated anywhere. Harvey Blonder (BBB 'owner') was removed in 2018 and lost a $9.6M fraud verdict: do not use him. Sheet fixes: the venue is in Edgewater, MD 21037 (2840 Solomons Island Rd), not Annapolis, and the saved Facebook URL ends in a stray '&quot;' (correct: https://www.facebook.com/YellowfinSteakandFishHouse). Site is open (Owner.com site behind Cloudflare: curl gets 403, which is why the static crawl and postcheck failed). Main session re-fetched both pages: the chamber listing names James Kujawski (no title), the contact page shows manager@ as a mailto with no name."
+  },
+  {
+   "venue_id": "VA-REST-1015",
+   "name": "Fin Thai Great Falls",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Willy Chaokrajang",
+     "title": "Owner of Finn Thai",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.restonnow.com/2019/12/23/thai-eatery-in-reston-to-expand-to-great-falls/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "named in Reston Now, Dec 23 2019, on the Great Falls expansion; not re-confirmed since; no email published"
+    },
+    {
+     "name": "Daonapha Sanchez",
+     "title": "Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://finnthai.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "'Chef Ad Daonapha Sanchez' leads the kitchen for the Finn Thai group, per the site's About Us; not a booking contact; no email published"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://finnthai.com/great-falls",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "finnthai.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Fin Thai Great Falls (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No email is published anywhere: the whole site's page data (11 JSON scripts behind the JS-rendered Homestead site) holds no address, only phones (Great Falls 703-757-7052) and a footer contact form. People without email: owner Willy Chaokrajang (Reston Now, 2019) and Chef Ad Daonapha Sanchez (About Us). Venue is real and open at 752 Walker Rd, Great Falls (4-location chain; name is 'Finn Thai', two n's). The saved Facebook and Instagram (finnthai_ashburn / 'Finn Thai Ashburn') are the Ashburn location's accounts, the only ones the chain site links; I found no Great Falls-specific account."
+  },
+  {
+   "venue_id": "MD-REST-460",
+   "name": "Blu Miles Seafood & Grill",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "theblumilesrestaurant.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Blu Miles Seafood & Grill (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Looks permanently closed and the sheet website is dead: theblumilesrestaurant.com is a hijacked/expired domain that 301-redirects through unrelated sites to fjelstul.com (a funeral home in Decorah, Iowa), so every email and person the pipeline collected (funeral directors, florists) is wrong-business, and the contact_form now on the sheet (a Google Form found on artevo.org) is NOT this venue's and should be removed. Wanderlog (Google data) shows 'Permanently Closed', MapQuest shows 'Closed' with newest reviews about a year old, the restaurant's other domain blumilesrestaurant.com no longer resolves and the St. Michaels chamber member page is gone (404). The only venue address seen anywhere is blumilesrestaurant@gmail.com (BringFido listing, search snippet; the pipeline already had it from social) with no person attached; the owner is named only as 'Imad' (no surname found), so there is no contact to save. Recommend marking the venue closed / clearing website and contact_form rather than re-running it."
+  },
+  {
+   "venue_id": "MD-EVEN-1343",
+   "name": "Porsche Studio Chevy Chase",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Nick Gittings",
+     "title": "Porsche Pro (runs the studio's events)",
+     "email": "nicholas.gittings@porschebethesda.com",
+     "source": "website",
+     "source_url": "https://www.porschestudiochevychase.com/dealership/staff.htm",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "already_saved": false,
+     "note": "title from the studio's own staff page; City Lifestyle: 'Gittings and his colleague, Damaris Alvarez, have been experimenting with events like pilates and yoga classes'"
+    },
+    {
+     "name": "Damaris Alvarez",
+     "title": "Porsche Pro (works on the studio's events)",
+     "email": "damaris.alvarez@porschebethesda.com",
+     "source": "website",
+     "source_url": "https://www.porschestudiochevychase.com/dealership/staff.htm",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "already_saved": false,
+     "note": "title from the studio's own staff page; named with Nick Gittings in City Lifestyle as trying out events at the studio"
+    },
+    {
+     "name": "Quinn Burroughs",
+     "title": "General Manager",
+     "email": "quinn.burroughs@porschebethesda.com",
+     "source": "website",
+     "source_url": "https://www.porschestudiochevychase.com/dealership/staff.htm",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "already_saved": false,
+     "note": "bio on the studio's staff page: 13 years at Porsche Bethesda, the dealership that operates the studio"
+    },
+    {
+     "name": "Dexter Jay",
+     "title": "Porsche Brand Ambassador",
+     "email": "",
+     "source": "press",
+     "source_url": "https://citylifestyle.com/articles/porsche-studio-opens-in-chevy-chase",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "quoted about the studio's events in City Lifestyle; employer not stated, not on the studio's staff page"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "porschestudiochevychase.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Porsche Studio Chevy Chase (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The studio's own 'Meet The Staff' page lists exactly three people, each with a plain-text @porschebethesda.com address: Quinn Burroughs (General Manager), Nick Gittings (Porsche Pro) and Damaris Alvarez (Porsche Pro); the studio is Porsche Bethesda's space (Sonic Automotive), so this is the venue's own mail domain and allow_off_domain applies. There is no separate events or studio manager: City Lifestyle says 'Gittings and his colleague, Damaris Alvarez, have been experimenting with events like pilates and yoga classes', so those two are the people to pitch (Gittings first), with Burroughs as the GM. The pipeline found all three addresses and saved none only because ZeroBounce answered 'unknown'; I could not test deliverability. The sheet's facebook (facebook.com/porschechevychase) could not be verified; the studio's site links only its Instagram. All three are handed to night_save with allow_off_domain (the studio's own staff page publishes them), but expect 'rejected:zerobounce_unknown': the pipeline's ZeroBounce check of these three answered 'unknown' at about 08:00 today and the guard caches an unknown for 30 days, so they will only be saved once a later re-check (reverify / --retry-unknown) gets a 'valid'."
+  },
+  {
+   "venue_id": "DC-REST-2658",
+   "name": "Das Ethiopian",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Sileshi Alifom",
+     "title": "Founder / owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://dasethiopian.com/story",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false
+    },
+    {
+     "name": "Elizabeth Wossen",
+     "title": "Co-founder / co-owner (Sileshi Alifom's wife)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://dasethiopian.com/story",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "dasethiopian.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Das Ethiopian (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Right site and open (1201 28th St NW, Georgetown). The owners are named on the venue's own /story page, which the pipeline never opened: founder Sileshi Alifom (ex-Marriott hotel manager) and his wife and co-founder Elizabeth Wossen (also named as co-owners by the Smithsonian and the Georgetown BID), but no personal email is published anywhere: the only address on the site and in every listing is the general inbox contact@dasethiopian.com (a mailto, correctly not saved), plus the catering request form already on the sheet. Nothing to save; the two names are for the pitch via the form or phone (202) 333-4710."
+  },
+  {
+   "venue_id": "VA-EVEN-2996",
+   "name": "Little City Concerts",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Stephen Gorbos",
+     "title": "Founder and Board President",
+     "email": "",
+     "source": "website",
+     "source_url": "https://littlecityconcerts.org/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "composer; programs the series; also Executive & Artistic Director of Amadeus Concerts, Great Falls VA"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "littlecityconcerts.org (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Little City Concerts (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Right site, active (Season 4, 2026-27, all-volunteer nonprofit at The Falls Church). The person to pitch is founder and board president Stephen Gorbos, but no personal address is published anywhere: every page carries only the general inbox admin@littlecityconcerts.org (mailto in the footer), and the sitemap has no PDFs or staff page. A WebSearch result summary reported a Catholic University address for him (gorbos@cua.edu, where he chairs a music department); I did not open that page and it is off-domain, so it is not listed as a contact. Other board members on /about: Emily Green (Treasurer), Mary Catherine Chase (board member). The 'Sophia Dussek' the pipeline paired with admin@ is a historical composer mentioned on /special-events, not a person at the series."
+  },
+  {
+   "venue_id": "MD-REST-783",
+   "name": "Tsunami Annapolis",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Gavin Buckley",
+     "title": "Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.thebanner.com/culture/food-drink/olearys-tsu-annapolis-dining-6YPGDMTXLVAZ7CE2Q7PS6IEEJM/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "with unnamed business partners; former Annapolis mayor) per Baltimore Banner, July 22 2026"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "tsunamiannapolis.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Tsunami Annapolis (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No email found. The restaurant at 51 West St is now called Tsu (renamed from Tsunami); its website was down for the whole session (502, origin server not answering), and the last archived homepage (July 2026) is a one-page site with a phone (410-990-9868), a Resy link and no email. The building and the restaurant were listed for sale in July 2026 (Baltimore Banner: owner Gavin Buckley and partners; 'Tsu will remain open during the sale process'), so check it is still trading before pitching. The saved Instagram https://www.instagram.com/tsunami/ is wrong; the venue's own account is https://www.instagram.com/tsuannapolis/. The only address the site ever published was the general inbox info@tsunamiannapolis.com (2016 contact page, not a contact). Facebook not found. The homepage names 'Chef E. Serrano' (no first name, no email)."
+  },
+  {
+   "venue_id": "MD-EVEN-3013",
+   "name": "Howard County Concert Odyssey",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Donna Bareis Amico",
+     "title": "President, Board of Directors (elected July 2025)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://hococo.org/donna-bareis-amico-elected-board-president/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false
+    },
+    {
+     "name": "Ann Corbett",
+     "title": "Vice President and Grants Officer, Board of Directors",
+     "email": "",
+     "source": "website",
+     "source_url": "https://hococo.org/donna-bareis-amico-elected-board-president/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false
+    },
+    {
+     "name": "Nancy Carol Mason",
+     "title": "Director, former long-time Board President",
+     "email": "",
+     "source": "website",
+     "source_url": "https://hococo.org/donna-bareis-amico-elected-board-president/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "hococo.org (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Howard County Concert Odyssey (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Right site, active (2026-27 season at St. John's Episcopal, Ellicott City; pages edited Nov 9 2026). It is a volunteer board with no staff or artistic director named; the only address anywhere on the site, in all 118 posts and 9 pages, and on Facebook is the general inbox info@hococo.org (plus phone 888-921-7230 and the contact form already on the sheet). Board president Donna Bareis Amico is the person to address, with VP Ann Corbett and past president Nancy Carol Mason, but none has a published email. No Instagram account found. No PDFs in the sitemap. The Apollo org 'Howard County Concert Orchestra' on hococo.org appears to be the same organization's earlier name (my inference: 2014 posts on hococo.org name Ronald Mutchnik as that orchestra's music director, and the site footer links the YouTube channel HoCoConcertOrchestra), so the pipeline's acceptance looks fair."
+  },
+  {
+   "venue_id": "MD-REST-925",
+   "name": "Hip Flask Rooftop Bar",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Dupree Braswell",
+     "title": "Executive Chef, Marriott Bethesda Downtown at Marriott HQ; the bar's published contact address",
+     "email": "Dupree.Braswell@marriott.com",
+     "source": "website",
+     "source_url": "https://www.hipflaskrooftop.com/our-digits",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true,
+     "already_saved": false,
+     "note": "name from the first.last address, confirmed by 2021-2023 press as the chef overseeing Hip Flask and the hotel's other outlets; current title not re-confirmed for 2026"
+    },
+    {
+     "name": "Lillian Tucker",
+     "title": "Private events contact",
+     "email": "Lillian.Tucker@marriott.com",
+     "source": "website",
+     "source_url": "https://www.hipflaskrooftop.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true,
+     "already_saved": false,
+     "note": "title not stated on the site; name taken from the first.last address; the site says 'contact a member of our team directly via email' in its special events block"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "hipflaskrooftop.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Hip Flask Rooftop Bar (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Site is the right venue and open (7707 Woodmont Ave, Bethesda, penthouse of the Marriott Bethesda Downtown at Marriott HQ; Tue-Sat hours, (c) 2026). The only two addresses the site publishes are personal marriott.com addresses, which the pipeline rejected as off-domain; both are the venue's own published contacts (Braswell = the footer/contact mailto on every page, Tucker = the private events contact) and should be saved with allow_off_domain. Neither person's current title could be confirmed from 2025-2026 sources: Braswell was Executive Chef over the hotel's outlets in 2021-2023 press, and no outside source names Lillian Tucker. No PDFs on the site, no staff page."
+  },
+  {
+   "venue_id": "MD-SENI-542",
+   "name": "Londonderry on the Tred Avon",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Erica Hardeo",
+     "title": "Director of Community Engagement",
+     "email": "ehardeo@londonderrytredavon.com",
+     "source": "website",
+     "source_url": "https://londonderrytredavon.com/wp-content/uploads/2024/11/classified-form.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "plans all resident activities and events; quoted on the site as the voice of the Summer Concert Series; Apollo's 'Activities Director' is her older title"
+    },
+    {
+     "name": "Christine Harrington",
+     "title": "CEO",
+     "email": "charrington@londonderrytredavon.com",
+     "source": "website",
+     "source_url": "https://londonderrytredavon.com/about-us/meet-the-londonderry-team/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "the community's executive director role; name, title and address stated together on the team page"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "londonderrytredavon.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Londonderry on the Tred Avon (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Right venue, open (700 Port Street, Easton). The person to pitch is Erica Hardeo, Director of Community Engagement: she plans the activities and runs the outdoor Summer Concert Series (5th year in 2025), and her address ehardeo@londonderrytredavon.com is printed with her name and title in a PDF on the venue's own site. Candidate review: no rejection broke the written rules. Every @londonderrytredavon.com address (Harrington CEO, Smith sales, Hughes controller, Flisher wellness, Hardeo) was dropped only because ZeroBounce calls the domain catch-all, which the policy rejects; megan@meganmillercommunications.com is the outside PR writer and was rightly rejected. But the effect is that a venue with five named staff addresses published on its own site ends with nothing, so whether a venue-published named address should override a catch-all verdict is a decision for Alex, not something I changed. Other notes: askirma@londonderrytredavon.com is a resident Q&A column inbox, not a contact; Rachel Smith (rsmith@) sells residences and Jennifer Hughes is the Controller, neither books music. The sheet's contact_form value is a news post, not a form; the real form is https://londonderrytredavon.com/contact-us/ (field not empty, so left alone). No Instagram account is linked anywhere on the site and none turned up in search. The November 2026 newsletter PDF could not be text-searched (fonts not extractable with the tools available), so an address printed only there would have been missed."
+  },
+  {
+   "venue_id": "XX-HOTE-203",
+   "name": "Melrose Georgetown Hotel",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "melrosehoteldc.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Melrose Georgetown Hotel (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Nothing to save. Right venue and open (2430 Pennsylvania Ave NW, managed by Remington Hospitality), but the site names no staff anywhere: every page carries only info@melrosehoteldc.com (general inbox) and the press page lists the outside PR agency's inbox melrosegeorgetown@wearebreadandbutter.com, both rightly rejected. The 2026 banquet menu PDF has no name or address ('ask your Catering Manager'), the meetings pages only have an embedded RFP form, and no search turned up a personal @melrosehoteldc.com address. Current staff could not be confirmed: trade press names Jale Hashimi as GM (appointed 2014, moved to a Remington VP role in 2017), a recent Tripadvisor reply is signed 'Modi A, General Manager' (no surname), Clement Gomes was Assistant GM in 2018, and the Director of Sales & Marketing job was advertised as open in February 2026. Ella Savon is retired, so the pipeline was right not to keep her."
+  },
+  {
+   "venue_id": "MD-MUSE-1655",
+   "name": "Howard County Historical Society Museum",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Ann Bennett",
+     "title": "Executive Director",
+     "email": "director@hchsmd.org",
+     "source": "website",
+     "source_url": "https://www.hchsmd.org/s/LEGACY_Special_Edition_2026_Final.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "pairing stated: her signature line 'Ann Bennett, HCHS Executive Director' sits directly above director@hchsmd.org at the end of her letter, page 2 of the newsletter PDF"
+    },
+    {
+     "name": "Kaylie Mellott",
+     "title": "Assistant Director (no email published anywhere)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.hchsmd.org/staff",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "hchsmd.org (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Howard County Historical Society Museum (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Right venue and open (Museum of Howard County History, 8328 Court Ave, Ellicott City; concerts on the calendar for Nov 21 and Dec 4 2026, hall rents at $150/hour). The person to email is Ann Bennett, Executive Director, at director@hchsmd.org: the pairing is printed in the Special Edition 2026 newsletter PDF on the venue's own site, and the pipeline's role_no_name rejection of that address was wrong. Staff is five people with no events or rentals manager; every other address on the site and in the rental forms is info@hchsmd.org (general inbox, correctly rejected). Other rejections were right, but three 'people' are parser junk: 'Immediate Need / Infrastructure Specialist' is a heading on /governance, and 'Pue-Fulton Farm Museum / Events' and 'Education Materials / Membership' are nav menu items; the coverage file also shifts staff titles by one (Kaylie Mellott shown as Executive Director, Ava Stanski as Assistant Director). The saved contact_form is not a contact form: it is the RSVP form for the 'Desserts with the Director' listening sessions; rentals go by a PDF form sent to info@."
+  },
+  {
+   "venue_id": "DC-HOTE-2662",
+   "name": "Hotel Rendale",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Reynaldo Marvez",
+     "title": "Event Manager",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://tagvenue.com/us/venues/washington/39043/pikio-taco-washington-dc",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "already_saved": false,
+     "note": "unconfirmed for today's hotel: Tagvenue's listing for Pikio Taco, the restaurant inside the hotel, calls him 'Your Personal Event Manager from Generator Hotels', the hotel's former brand; no email shown"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "hotelrendaledc.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Hotel Rendale (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: no Apollo tools were connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Right venue and open: 1900 Connecticut Ave NW, Dupont Circle, the former Generator DC (earlier Courtyard Dupont Circle), rebranded in 2026 and managed by HHM Hotels. Nothing was missed: every page of the site carries one address, info@hotelrendaledc.com (Cloudflare-encoded, decoded by the pipeline and correctly rejected as a general inbox), no staff are named anywhere on it, and events go through the RFP form already saved. No GM, sales or events person is published: HHM advertised the General Manager, Sales Manager and Catering Sales Manager jobs for this hotel between March and May 2026, and no press or listing names who filled them. The pipeline's LinkedIn candidate Leonardo Cappelli could not be confirmed by any search (no title, no email)."
+  }
+ ]
+}

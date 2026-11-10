@@ -1,0 +1,72 @@
+{
+ "run_id": "run-20261108-0931 run-20261110-0254 run-20261110-0520 run-20261110-0729",
+ "venues_researched": 0,
+ "venues_with_finds": 0,
+ "contacts_found": 0,
+ "misses": 193,
+ "fixes": [
+  {
+   "commit": "50eadf7",
+   "what": "the person a sentence or a 'Label: Name' row names next to an address gets that address (Tom Ward, Ange Hensley and Bill Cox on Aquia Harbour Yacht Club, Heidi Dimas on Castiglia's, Troy Reynolds on Old Hickory, Becky Gill and Todd Steffes on Rock Hall Yacht Club)"
+  },
+  {
+   "commit": "50eadf7",
+   "what": "couples written with one surname are two people ('Owners Bobby and Julie Jones' on Ketch 22); a name beside an address that belongs to someone else no longer sticks, with its title (arlene@thecorkpub.com is Arlene Stecher, Owner, not the chef)"
+  },
+  {
+   "commit": "50eadf7",
+   "what": "club officer mailboxes (commodore@, vice.commodore@, fleet.captain@, treasurer@) are role mailboxes: no ZeroBounce credit, saved only with the officer's name; vicecommodore@ next to commodore@ and the Italian Cultural Institute's dir./pr. addresses are no longer thrown out as glued text"
+  },
+  {
+   "commit": "50eadf7",
+   "what": "headings and places are not people ('El Patio Rewards Program', 'Job Description', 'Corporate Meetings', 'New Orleans'); template.placeholder@ addresses are junk"
+  },
+  {
+   "commit": "50eadf7",
+   "what": "forms: embedded Dexter (Altitude) and Airtable (Folger space rental) forms count, a music-booking form on /music/ wins (County Cork), an award or job application on a form builder never beats the contact page (Gallery Ovissi)"
+  },
+  {
+   "commit": "50eadf7",
+   "what": "a mail domain made of the venue's name plus a generic word, printed on its contact page, is its own (manager@blacksaltdc.com, paired with BlackSalt's General Manager Josh Pauley)"
+  },
+  {
+   "commit": "4fd2c86",
+   "what": "a website whose bare address does not connect is read on www (stellinapizzeria.com: nothing was read before; now 23 pages, anastasia@stellinapizzeria.com and the Tripleseat event form)"
+  },
+  {
+   "commit": "4fd2c86",
+   "what": "director@ goes to the one Executive Director on the staff page (director@hchsmd.org = Ann Bennett, Howard County Historical Society); a mailbox that cuts the surname short keeps its name (mfitzg19@ = Michelle Fitzgerald)"
+  },
+  {
+   "commit": "b5eef68",
+   "what": "searches (Alex, Nov 8): Google queries for Facebook, Instagram and contact pages carry the venue type and the state; a Facebook/Instagram result placed in another state is dropped; LinkedIn people outside DC/MD/VA are dropped and a one-word venue name must be the whole company (Altitude, Arlington VA, got Altitude Trampoline Park, Arlington TX). Offline tests only, not yet seen in a live run"
+  },
+  {
+   "commit": "b5eef68",
+   "what": "a SevenRooms reservation link is not a contact form (Altitude); arlene.cork@gmail.com at County Cork is not 'Arlene Cork'; street names ('Crystal Drive') are not people"
+  }
+ ],
+ "reverted": [],
+ "taste_reviewed": 0,
+ "recall": {
+  "baseline": "night-before-e376a08 (same scraper code as c874a74)",
+  "after": "night-after2-50eadf7",
+  "chrome": "171/175 -> 194/196",
+  "curl": "165/175 -> 187/196",
+  "sd": "160/175 -> 180/196",
+  "names_on_staff_emails_chrome": "19/25 -> 34/40",
+  "lost": 0,
+  "benchmark_added": "13 venues, 21 items (Ketch 22, Altitude, Gallery Ovissi, County Cork, Italian Cultural Institute, Rock Hall YC, Old Hickory, Castiglia's, Aquia Harbour YC, Folger, BlackSalt, Stellina, Howard County Historical Society)"
+ },
+ "recovered": "The 00:54 and 09:57 fix sessions were stopped before they could commit and their changes were thrown away; this session rebuilt both from their session logs, re-tested them and added three fixes of its own (www retry, director@, cut-short surnames).",
+ "not_fixed": [
+  "owner-group or operator addresses that are the only contact a venue's own page prints (CUT -> rosewoodhotels.com, Lebanese Taverna -> cateringbylt.com, Bayly Estate -> noraleedc.com, Hip Flask -> marriott.com, Notaviva's cc= address): still rejected as off-domain; no safe general rule, a designer or PR address looks the same",
+  "names inside PDFs: letter-spaced capitals, subset fonts and image-only PDFs (Aquia Harbour's Harbour View, the private dining guides): the address is read, the name above it is not",
+  "owners and boards named only in running prose ('X and Y opened...'), image-grid captions (Clubspot) and two-column officer tables: names without an email, which are never saved",
+  "multi-location sites: another location's or the brand's Facebook/Instagram link and Tripleseat form are taken instead of the location's own (Chima Tysons, CUT DC); a Facebook URL printed as plain text (Springfield Manor); the tsuannapolis Instagram handle rejected for Tsunami Annapolis. The recall benchmark has no social items, so these were not attempted",
+  "pages the crawl never reaches: past-event pages (Herring Bay YC), an About page called /story, a staff directory at the site root for a venue under a sub-path (Evergreen on museums.jhu.edu), blog posts beyond the 40-page limit (Curio)",
+  "stale mailto targets and former officers' addresses (UMD golf course, Choptank River YC): the page's age is not checked",
+  "when a site does not load, Chrome can still show the previous venue's page (Stellina's web step read a Google results page; its addresses were rejected as off-site). The www retry removes that case; no general guard was added"
+ ],
+ "note": "Ten scraper fixes from the last four rounds are committed with no benchmark losses: people named in sentences beside an address, owner couples and club officers now get their names, a site whose bare address is dead is read on www (Stellina Pizzeria went from nothing to its event form), and Google/LinkedIn searches now carry the venue type and state and drop results outside DC/MD/VA (that last one is tested offline only until the next live run); no new taste votes."
+}

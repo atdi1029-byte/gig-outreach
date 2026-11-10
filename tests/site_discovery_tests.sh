@@ -455,3 +455,68 @@ for c in "manager@mykonosgrill.com mykonos-grill.com mykonosgrill.com" \
 done
 rm -rf "$T"; unset -f _py_check_email log record_candidate vap_outcome verify_and_push email_known
 echo 'PASS: sibling mail domains (hyphenless name, other TLD)'
+
+# ---- Night fixes, Nov 10 2026 ---------------------------------------------------------
+/usr/bin/python3 - <<'PY' 2>/dev/null || { echo "FAIL: Nov 10 night fixes (rules and crawler)"; exit 1; }
+import outreach_rules as R
+import site_discovery as S
+# the person a sentence tells the reader to write to
+pc = S.prose_contact
+assert pc("For the September 5th raft-up, please contact Ange Hensley at ") == ("Ange Hensley", "")
+assert pc("Any additional nominations should be sent to Bill Cox ( ") == ("Bill Cox", "")
+assert pc("Please reach out to Tom Ward if you would like to bartend - either via cell, 571-242-3857 or email, ") == ("Tom Ward", "")
+assert pc("Please contact Heidi Dimas at 540-373-6650 or ") == ("Heidi Dimas", "")
+assert pc("Email inquires may be sent to Troy Reynolds, PGA at ") == ("Troy Reynolds", "")
+assert pc("Contact our Service Manager, Xan Schlegel, to coordinate work at ") == ("Xan Schlegel", "Service Manager")
+assert pc("should contact Professor Michael Schmitz (") == ("Michael Schmitz", "")
+assert pc("Please Contact Hannah at 540-373-6650 or ") is None          # first name only
+assert pc("Contact Us Today at ") is None and pc("contact Human Resources at ") is None
+assert pc("Contact Ange Hensley for the raft-up. Our club is open to all members and their many guests who visit us at ") is None
+ctx = S.email_contexts("Please contact Heidi Dimas at 540-373-6650 or bar.castiglias@gmail.com", ["bar.castiglias@gmail.com"])
+assert ctx["bar.castiglias@gmail.com"]["name_hint"] == "Heidi Dimas" and ctx["bar.castiglias@gmail.com"]["title_hint"] == "Contact", ctx
+# couples sharing one surname, credentials after a name
+ppl = {p["name"]: p["title"] for p in S.extract_people(
+    "The Joneses\nOwners Bobby and Julie Jones are from Annapolis, MD\nStephen & Shannon Mackey are the co-founders of the farm\n"
+    "Steve Clark, PGA | Director of Operations")}
+assert ppl.get("Bobby Jones") == "Owner" and ppl.get("Julie Jones") == "Owner", ppl
+assert ppl.get("Shannon Mackey") == "Co-Founder" and ppl.get("Steve Clark") == "Director of Operations", ppl
+# headings, places and template addresses are not people
+for junk in ("El Patio Rewards Program", "Job Description", "Corporate Meetings", "New Orleans", "Lake Presidential"):
+    assert R.clean_person_name(junk) == "", junk
+assert R.clean_person_name("Tom Ward") == "Tom Ward" and R.clean_person_name("Mary North") == "Mary North"
+assert R.junk_reason("template.placeholder@gmail.com") == "placeholder"
+# club officers' mailboxes are role mailboxes: never a name from the local part
+for e in ("commodore@x.org", "vice.commodore@ahyc.org", "fleet.captain@ahyc.org", "treasurer@x.org"):
+    assert R.is_role_email(e) and R.name_from_email(e) == "", e
+assert not R.is_role_email("fleetwood@x.org") and not R.is_role_email("ipc@ahyc.org")
+# embedded Dexter and Airtable forms
+h = ('<iframe src="https://app.teamdexter.com/embed-applications/6a33b3d5"></iframe>'
+     '<iframe class="airtable-embed" src="https://airtable.com/embed/appeUx25/shr47JGE"></iframe>'
+     '<a href="https://airtable.com/appXYZ/tblABC">our data</a>')
+got = sorted(f["url"] for f in S.detect_contact_forms(h, "https://x.com/rent-our-spaces/"))
+assert got == ["https://airtable.com/embed/appeUx25/shr47JGE", "https://app.teamdexter.com/embed-applications/6a33b3d5"], got
+PY
+echo 'PASS: prose-named contacts, couples, junk names, officer mailboxes, Dexter and Airtable forms'
+
+# The save step: a role mailbox keeps the person a sentence names ("Contact" marks the
+# pairing and never becomes the title); a heading or the neighbour's title does not stick.
+T=$(mktemp -d)
+eval "$(awk '/^_py_check_email\(\) \{/,/^}/' pipeline.sh)"
+pyrun() { shift; "$@"; }
+python3() { /usr/bin/python3 "$@"; }
+chk() { _py_check_email "$SCRIPT_DIR" "$@" | tr '\037' '|'; }
+r=$(chk vice.commodore@ahyc.org "Tom Ward" "Contact" venue_site ahyc.org "Aquia Harbour Yacht Club" false "" "")
+[ "$r" = "vice.commodore@ahyc.org|role|ok|1|Tom Ward|||" ] || { echo "FAIL: prose-named role mailbox: $r"; exit 1; }
+r=$(chk service@hartgeyard.com "Xan Schlegel" "Contact Service Manager" venue_mailto hartgeyard.com "Hartge Yacht Yard" false "" "")
+[ "$r" = "service@hartgeyard.com|role|ok|1|Xan Schlegel|Service Manager||" ] || { echo "FAIL: prose job title: $r"; exit 1; }
+# a personal mailbox still needs a name that fits it (ipc@ is not "Bill Cox")
+r=$(chk ipc@ahyc.org "Bill Cox" "Contact" venue_site ahyc.org "Aquia Harbour Yacht Club" false "" "")
+[ "$r" = "ipc@ahyc.org|verify|ok|0||||" ] || { echo "FAIL: name that doesn't fit a personal mailbox: $r"; exit 1; }
+r=$(chk catering@lakepresidentialgolf.com "Corporate Meetings" "Special Events & Meetings" venue_mailto lakepresidentialgolf.com "Lake Presidential Golf Club" false "" "")
+case "$r" in "catering@lakepresidentialgolf.com|role|ok|1||"*) ;; *) echo "FAIL: heading saved as a name: $r"; exit 1 ;; esac
+r=$(chk arlene@thecorkpub.com "Gordon Carlson" "Executive Chef" venue_site thecorkpub.com "County Cork Wine Pub" false "" "")
+[ "$r" = "arlene@thecorkpub.com|verify|ok|0||||" ] || { echo "FAIL: neighbour's name or title kept: $r"; exit 1; }
+r=$(chk elpatiointernational@gmail.com "El Patio Rewards Program" "" venue_mailto elpatiointernational.com "El Patio" false "" "")
+case "$r" in "elpatiointernational@gmail.com|verify|ok|0||"*) ;; *) echo "FAIL: 2-letter first name matched inside the mailbox: $r"; exit 1 ;; esac
+rm -rf "$T"; unset -f _py_check_email pyrun python3 chk
+echo 'PASS: save step keeps prose-named people, drops headings and neighbours'

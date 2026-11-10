@@ -753,7 +753,7 @@ FORM_PROVIDERS = {
     "123formbuilder.com": "123formbuilder", "formsite.com": "formsite",
     "honeybook.com": "honeybook", "dubsado.com": "dubsado", "zohopublic.com": "zoho_forms",
     "planningpod.com": "planningpod", "gatherhere.com": "gather", "caterzen.com": "caterzen",
-    "spotapps.co": "spothopper", "toasttab.com": "toast",
+    "spotapps.co": "spothopper", "toasttab.com": "toast", "teamdexter.com": "dexter",
 }
 # Services that also host menus and ordering: only their inquiry-form paths count.
 _PROVIDER_PATH_ONLY = {
@@ -762,7 +762,7 @@ _PROVIDER_PATH_ONLY = {
 }
 _PROVIDER_URL_RE = re.compile(
     r"""(?:src|href|action)=["']((?:https?:)?//[^"'\s<>]*?(?:%s)[^"'\s<>]*)["']"""
-    % "|".join(re.escape(d) for d in list(FORM_PROVIDERS) + ["docs.google.com/forms"]), re.I)
+    % "|".join(re.escape(d) for d in list(FORM_PROVIDERS) + ["docs.google.com/forms", "airtable.com/embed/"]), re.I)
 _FORM_BLOCK_RE = re.compile(r"<form\b([^>]*)>(.*?)</form>", re.I | re.S)
 # Site-builder form widgets that render client-side (no <form> in the static HTML).
 _FORM_WIDGET_RE = re.compile(
@@ -783,6 +783,8 @@ def detect_contact_forms(html: str, page_url: str) -> List[Dict[str, str]]:
         kind = next((v for k, v in FORM_PROVIDERS.items() if host == k or host.endswith("." + k)), "")
         if not kind and "docs.google.com/forms" in url:
             kind = "google_forms"
+        if not kind and re.search(r"(^|\.)airtable\.com$", host) and "/embed/" in url:
+            kind = "airtable"   # an embedded Airtable form (the Folger's space-rental request)
         if kind and url not in found:
             is_js = bool(re.search(r"\.js(?:[?#]|$)", url))
             pu = urlparse(url)
@@ -911,6 +913,38 @@ def _name_before(before: str) -> str:
     return ""
 
 
+# The person a sentence tells the reader to write to: "please contact Ange Hensley at
+# fleet.captain@...", "sent to Bill Cox (ipc@...)", "Please contact Heidi Dimas at
+# 540-373-6650 or bar.castiglias@gmail.com". Same pattern as the Chrome scrape's proseContact.
+_PROSE_CONTACT_RE = re.compile(
+    r"(?:\b[Cc]ontact|\bCONTACT|\b[Rr]each(?:ing)? out to|\b[Ss]en[dt] to|\b[Rr]eply to|\b[Ee]-?mail(?:ing|ed)?(?: to)?|"
+    r"\b[Ww]rite to|\b[Aa]sk for|\bRSVP to|\b[Rr]svp to|\b[Cc]all(?:ing)?|\b[Ss]peak (?:with|to)|\b[Tt]alk to|"
+    r"\b[Gg]et in touch with)\s+(?:(?:our|the|your)\s+([A-Za-z&/ \-]{3,40}?)[,:]?\s+)?"
+    r"(?:(?:Mr|Mrs|Ms|Dr|Prof)\.?\s+|(?:Chef|Professor|Commodore|Captain|Coach)\s+)?"
+    r"([A-Z][a-z\u00c0-\u00ff'\u2019\-]+(?:\s[A-Z]\.)?(?:\s[A-Z][A-Za-z\u00c0-\u00ff'\u2019\-]+){1,2}?)"
+    r"(?:,\s*(?:PGA|LPGA|CCM|CMP|CSW|CPCE|Jr\.?|Sr\.?))?"
+    r"(?=\s*(?:,|\(|:|\bat\b|\bif\b|\bor\b|\bvia\b|\bby\b|\bfor\b|\bwith\b|\bto\b|-|\u2013|\u2014|$))")
+_PROSE_STOP_RE = re.compile(
+    r"\b(human|resources|services?|committee|customer|care|relations|management|accounting|billing|"
+    r"headquarters|corporate|team|staff|office|desk|us|me|your|our|the)\b", re.I)
+
+
+def prose_contact(before: str) -> Optional[Tuple[str, str]]:
+    """(name, job text or '') of the person the sentence before an address names, else None.
+    The caller still judges the name."""
+    s = re.sub(r"\s+", " ", before or "")
+    cut = max(s.rfind(". "), s.rfind("! "), s.rfind("? "))
+    if cut > -1:
+        s = s[cut + 2:]
+    s = s[-220:]
+    last = None
+    for m in _PROSE_CONTACT_RE.finditer(s):
+        last = m
+    if last is None or len(s) - last.end() > 90 or _PROSE_STOP_RE.search(last.group(2)):
+        return None
+    return last.group(2), (last.group(1) or "").strip()
+
+
 def _strict_name(text: str) -> str:
     """The whole segment is a person's name ('Eric Kole'), else ''."""
     t = re.sub(r"\s+", " ", text or "").strip(" \t,;:|-\u2013\u2014")
@@ -934,7 +968,28 @@ def _title_segment(text: str) -> str:
     return t if m and len(m.group(1)) >= 0.5 * len(t) else ""
 
 
+_CREDENTIAL_RE = re.compile(r"(?:PGA|LPGA|CCM|CCE|CMP|CSW|CPCE|CGCS|MBA|PhD|Ph\.D\.?|Jr\.?|Sr\.?|II|III)")
 _PEOPLE_SPLIT_RE = re.compile(r"\s*(?:,|\||:|\s[-\u2013\u2014]\s|\u2013|\u2014)\s*")
+
+
+# A couple sharing one surname: "Owners Bobby and Julie Jones", "Stephen & Shannon Mackey
+# are the co-founders", "Randy and Meagan Morgan / Owners" -> two people.
+_COUPLE_ROLE = r"([Oo]wners?|[Cc]o-[Oo]wners?|[Pp]roprietors?|[Ff]ounders?|[Cc]o-[Ff]ounders?)"
+_COUPLE_PAIR = r"([A-Z][a-z\u00e0-\u00ff]+) (?:and|&) ([A-Z][a-z\u00e0-\u00ff]+) ([A-Z][A-Za-z\u00e0-\u00ff'\u2019\-]+)"
+_COUPLE_A_RE = re.compile(r"\b" + _COUPLE_ROLE + r"[,:]?\s+" + _COUPLE_PAIR)
+_COUPLE_B_RE = re.compile(_COUPLE_PAIR + r",?\s+(?:(?:are|the|our|and|as|is)\s+){0,3}" + _COUPLE_ROLE + r"\b")
+
+
+def couples(text: str) -> List[Tuple[str, str]]:
+    """[(name, title)] for couples named with one shared surname. The caller judges the names."""
+    out: List[Tuple[str, str]] = []
+    for m in _COUPLE_A_RE.finditer(text or ""):
+        role, f1, f2, last = m.groups()
+        out += [(f1 + " " + last, role), (f2 + " " + last, role)]
+    for m in _COUPLE_B_RE.finditer(text or ""):
+        f1, f2, last, role = m.groups()
+        out += [(f1 + " " + last, role), (f2 + " " + last, role)]
+    return [(n, re.sub(r"s$", "", r).title()) for n, r in out]
 
 
 def extract_people(text: str) -> List[Dict[str, str]]:
@@ -951,7 +1006,8 @@ def extract_people(text: str) -> List[Dict[str, str]]:
     for i, line in enumerate(lines):
         line = EMAIL_RE.sub(" ", line).strip()  # "Devika Strother, Founder devika@..."
         if line and len(line) <= 160:
-            segs = [x for x in _PEOPLE_SPLIT_RE.split(line) if x]
+            # "Steve Clark, PGA  Director of Operations": the credential is not a segment
+            segs = [x for x in _PEOPLE_SPLIT_RE.split(line) if x and not _CREDENTIAL_RE.fullmatch(x.strip())]
             for a, b in zip(segs, segs[1:]):
                 n, t = _strict_name(a), _title_segment(b)
                 if n and t:
@@ -967,6 +1023,12 @@ def extract_people(text: str) -> List[Dict[str, str]]:
             t2, n2 = _title_segment(line), _strict_name(lines[i + 1])
             if n2 and t2:
                 keep(n2, t2)
+    cp = couples(text or "")
+    for (n1, t1), (n2, _t) in zip(cp[0::2], cp[1::2]):
+        a, b = _strict_name(n1), _strict_name(n2)
+        if a and b:
+            keep(a, t1)
+            keep(b, t1)
     return list(out.values())
 
 
@@ -1033,10 +1095,16 @@ def email_contexts(text: str, emails: Iterable[str]) -> Dict[str, Dict[str, str]
             if name and not _name_fits_email(name, email):
                 name = ""
             tm = _TITLE_RE.search(before[-100:]) or _TITLE_RE.search(after)
+            title = tm.group(1).strip() if tm else ""
+            pc = prose_contact(" ".join(before.split("\n")[-2:]))
+            pn = _strict_name(pc[0]) if pc else ""
+            if pn and _name_fits_email(pn, email):
+                # "Contact [job]": the pipeline's save step keeps only the job
+                name, title = pn, ("Contact " + _title_segment(pc[1])).strip()
             rec = {
                 "context": re.sub(r"\s+", " ", (before[-100:] + email + after[:60])).strip(),
                 "name_hint": name,
-                "title_hint": tm.group(1).strip() if tm else "",
+                "title_hint": title,
             }
             if email not in out or (name and not out[email]["name_hint"]):
                 out[email] = rec

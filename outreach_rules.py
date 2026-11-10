@@ -155,6 +155,10 @@ ROLE_TOKENS = {
     "partnerships", "hospitality", "accounts", "account", "billing", "owner",
     "owners", "management", "mgmt", "hq", "corporate", "weddingsales", "food",
     "foodandbeverage", "fandb", "fnb",
+    # club officers' mailboxes pass from one person to the next (commodore@, vice.commodore@,
+    # fleet.captain@ were sent to ZeroBounce and saved nameless or as "Fleet Captain", Nov 10 2026)
+    "commodore", "vicecommodore", "rearcommodore", "pastcommodore", "fleetcaptain",
+    "harbormaster", "dockmaster", "treasurer", "secretary",
 }
 
 # Words that mean a scraped "name" is page boilerplate, not a person.
@@ -182,6 +186,10 @@ NAME_BOILERPLATE = {
     # businesses that show up next to addresses (designer credits, agencies)
     "studio", "studios", "design", "designs", "designer", "media", "creative",
     "agency", "photography",
+    # headings read as names beside a mailto (Nov 10 2026: "El Patio Rewards Program",
+    # "Job Description", "Corporate Meetings")
+    "program", "programs", "rewards", "description", "meetings", "meeting", "corporate",
+    "job", "jobs", "responsibilities", "summary", "overview", "opportunities",
 }
 
 # Role words that page text puts in front of a name ("Chef-owner Pierre Laurent",
@@ -326,6 +334,9 @@ def junk_reason(email):
     if e in PLACEHOLDER_EMAILS:
         return "placeholder"
     local, dom = e.split("@", 1)
+    # site-template demo pages (template.placeholder@gmail.com on Squarespace's sample pages)
+    if "placeholder" in local:
+        return "placeholder"
     reg = registrable_domain(dom)
     if dom in JUNK_EMAIL_DOMAINS or reg in JUNK_EMAIL_DOMAINS:
         return "junk_domain:" + reg
@@ -400,6 +411,9 @@ def clean_person_name(name):
     if sum(1 for w in words if len(w) >= 2) < 2:
         return ""
     if any(w in NAME_BOILERPLATE for w in words if len(w) >= 2):
+        return ""
+    # a place read as a name ("New Orleans" on Orleans Bistro's pages, Nov 10 2026)
+    if words[0] in {"new", "north", "south", "east", "west", "fort", "mount", "port", "lake", "saint", "old"}:
         return ""
     # an address line read as a name ("Smith Ave" on the Dye House site, Nov 8 2026)
     if words[-1] in {"ave", "avenue", "st", "rd", "road", "blvd", "boulevard", "pkwy", "parkway", "hwy", "highway"}:

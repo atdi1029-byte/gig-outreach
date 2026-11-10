@@ -793,9 +793,9 @@
   },
   {
    "venue_id": "DC-REST-1039",
-   "name": "Am\u00e9lie DC Bistro & Wine Bar",
+   "name": "Amélie DC Bistro & Wine Bar",
    "website": "https://www.ameliedc.com",
-   "city": "Am\u00e9lie",
+   "city": "Amélie",
    "state": "DC",
    "category": "wine_bar",
    "why": [
@@ -1143,7 +1143,7 @@
   },
   {
    "venue_id": "DC-REST-1057",
-   "name": "Caf\u00e9 du Parc",
+   "name": "Café du Parc",
    "website": "https://cafeduparc.com/dupont-circle/",
    "city": "Dupont Circle",
    "state": "DC",
@@ -4549,6 +4549,458 @@
      "name": "Theresa Pleasant",
      "title": "Booking Agent",
      "staff_pairing": true
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-344",
+   "name": "Ketch 22",
+   "website": "https://ketch22.net/",
+   "city": "North Beach",
+   "state": "MD",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "bobby@ketch22.net",
+     "page": "https://ketch22.net/about-us/",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Bobby Jones",
+     "title": "Owner / Executive Chef & General Manager",
+     "staff_pairing": true
+    },
+    {
+     "kind": "email",
+     "value": "julie@ketch22.net",
+     "page": "https://ketch22.net/",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Julie Jones",
+     "title": "Owner",
+     "staff_pairing": true
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-WINE-2951",
+   "name": "Altitude",
+   "website": "https://altitude-va.com/visit",
+   "city": "Arlington",
+   "state": "VA",
+   "category": "wine_bar",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://www.altitude-va.com/inquiry-form",
+     "page": "https://www.altitude-va.com/inquiry-form",
+     "accept": [
+      "https://www.altitude-va.com/inquiry-form"
+     ],
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "high",
+     "providers": [
+      "dexter"
+     ],
+     "provider_host": "teamdexter.com"
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3326",
+   "name": "Ovissi Boutique",
+   "website": "https://www.galleryovissi.com",
+   "city": "Reston",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://www.galleryovissi.com/contact",
+     "page": "https://www.galleryovissi.com/contact",
+     "accept": [
+      "https://www.galleryovissi.com/contact"
+     ],
+     "how": [
+      "js_rendered"
+     ],
+     "priority": "normal"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-2901",
+   "name": "County Cork Wine Pub",
+   "website": "https://www.thecorkpub.com",
+   "city": "Eldersburg",
+   "state": "MD",
+   "category": "wine_bar",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://www.thecorkpub.com/music/",
+     "page": "https://www.thecorkpub.com/music/",
+     "accept": [
+      "https://www.thecorkpub.com/music/"
+     ],
+     "how": [
+      "native_form"
+     ],
+     "priority": "high"
+    },
+    {
+     "kind": "email",
+     "value": "arlene@thecorkpub.com",
+     "page": "https://www.thecorkpub.com/",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Arlene Stecher",
+     "title": "Owner",
+     "staff_pairing": true
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-EVEN-2605",
+   "name": "Italian Cultural Institute Washington",
+   "website": "https://iicwashington.esteri.it/en/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "event_venue",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "dir.iicwashington@esteri.it",
+     "page": "https://iicwashington.esteri.it/en/chi-siamo/il-personale/",
+     "also_on": [],
+     "how": [
+      "obfuscated_text"
+     ],
+     "all_hows": [
+      "obfuscated_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Elena Settimini",
+     "title": "Director",
+     "staff_pairing": true
+    },
+    {
+     "kind": "email",
+     "value": "pr.iicwashington@esteri.it",
+     "page": "https://iicwashington.esteri.it/en/chi-siamo/il-personale/",
+     "also_on": [],
+     "how": [
+      "obfuscated_text"
+     ],
+     "all_hows": [
+      "obfuscated_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Michele Giacalone",
+     "title": "Library, Public Relations and Press",
+     "staff_pairing": true
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2320",
+   "name": "Rock Hall Yacht Club",
+   "website": "https://www.rockhallyachtclub.org",
+   "city": "Rock Hall",
+   "state": "MD",
+   "category": "yacht_club",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "vicecommodore@rockhallyachtclub.org",
+     "page": "https://www.rockhallyachtclub.org/contact-us",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Becky Gill",
+     "title": "Vice Commodore",
+     "staff_pairing": true
+    },
+    {
+     "kind": "email",
+     "value": "social@rockhallyachtclub.org",
+     "page": "https://www.rockhallyachtclub.org/contact-us",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Becky Gill",
+     "title": "Social Events",
+     "staff_pairing": true
+    },
+    {
+     "kind": "email",
+     "value": "commodore@rockhallyachtclub.org",
+     "page": "https://www.rockhallyachtclub.org/contact-us",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Todd Steffes",
+     "title": "Commodore",
+     "staff_pairing": true
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2247",
+   "name": "Old Hickory Golf Club LLC",
+   "website": "https://www.golfoldhickory.com",
+   "city": "Woodbridge",
+   "state": "VA",
+   "category": "country_club",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "troyreynolds@golfoldhickory.com",
+     "page": "https://www.golfoldhickory.com/contact/employment",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Troy Reynolds",
+     "title": "General Manager/Head Professional",
+     "staff_pairing": true
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3475",
+   "name": "Castiglia's Italian Restaurant",
+   "website": "https://www.castigliasitalianrestaurant.com/",
+   "city": "Fredericksburg",
+   "state": "VA",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "bar.castiglias@gmail.com",
+     "page": "https://www.castigliasitalianrestaurant.com/to-go-catering",
+     "also_on": [],
+     "how": [
+      "mailto"
+     ],
+     "all_hows": [
+      "mailto"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Heidi Dimas",
+     "title": "Event Coordinator",
+     "staff_pairing": true
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2356",
+   "name": "Aquia Harbour Yacht Club",
+   "website": "https://www.ahyc.org",
+   "city": "Stafford",
+   "state": "VA",
+   "category": "yacht_club",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "vice.commodore@ahyc.org",
+     "page": "https://www.ahyc.org/announcements",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Tom Ward",
+     "title": "Vice Commodore",
+     "staff_pairing": true
+    },
+    {
+     "kind": "email",
+     "value": "fleet.captain@ahyc.org",
+     "page": "https://www.ahyc.org/announcements",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Ange Hensley",
+     "title": "Fleet Captain",
+     "staff_pairing": true
+    },
+    {
+     "kind": "email",
+     "value": "ipc@ahyc.org",
+     "page": "https://www.ahyc.org/announcements",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Bill Cox",
+     "title": "Immediate Past Commodore",
+     "staff_pairing": true
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-MUSE-005",
+   "name": "Folger Shakespeare Library",
+   "website": "https://www.folger.edu/visit/our-building-and-grounds/rent-our-spaces/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "museum",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "contact_form",
+     "value": "https://www.folger.edu/visit/our-building-and-grounds/rent-our-spaces/",
+     "page": "https://www.folger.edu/visit/our-building-and-grounds/rent-our-spaces/",
+     "accept": [
+      "https://www.folger.edu/visit/our-building-and-grounds/rent-our-spaces/"
+     ],
+     "how": [
+      "third_party_form"
+     ],
+     "priority": "high",
+     "providers": [
+      "airtable"
+     ],
+     "provider_host": "airtable.com"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2879",
+   "name": "BlackSalt",
+   "website": "https://www.blacksaltrestaurant.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "why": [
+    "night:misses"
+   ],
+   "items": [
+    {
+     "kind": "email",
+     "value": "manager@blacksaltdc.com",
+     "page": "https://www.blacksaltrestaurant.com/info-contact",
+     "also_on": [],
+     "how": [
+      "plain_text"
+     ],
+     "all_hows": [
+      "plain_text"
+     ],
+     "zones": [],
+     "n_pages": 1,
+     "priority": "high",
+     "name": "Josh Pauley",
+     "title": "General Manager",
+     "staff_pairing": true,
+     "off_domain": true
     }
    ]
   }

@@ -505,8 +505,12 @@ if clean and evidence in ("venue_site", "venue_mailto") and action == "verify":
     # probably a neighbouring line of page text or another person's card.
     parts = [re.sub(r"[^a-z]", "", p.lower()) for p in clean.split()]
     first, last = parts[0], parts[-1]
-    if not (first in compact or (len(last) >= 3 and last in compact) or compact.startswith(first[:1] + last) or compact == first[:1] + last):
+    # ("el" of "El Patio Rewards Program" is inside elpatiointernational@: a 2-letter first
+    # name has to start the mailbox)
+    if not ((first in compact if len(first) >= 3 else compact.startswith(first)) or (len(last) >= 3 and last in compact)
+            or compact.startswith(first[:1] + last) or compact == first[:1] + last):
         clean = ""
+        title = ""   # the title beside it was that other person's (arlene@ + "Executive Chef")
 if clean:
     # a "name" made only of the venue's own name words is the venue, not a person
     vwords = set(re.findall(r"[a-z]+", R._fold(vname).lower()))
@@ -880,10 +884,47 @@ function linesOf(el){
 function deob(t){
     return t.replace(/\s*[\[\(\{]\s*at\s*[\]\)\}]\s*/gi, '@').replace(/\s*[\[\(\{]\s*dot\s*[\]\)\}]\s*/gi, '.');
 }
+// The person a sentence tells the reader to write to: "please contact Ange Hensley at
+// fleet.captain@...", "sent to Bill Cox (ipc@...)", "Please contact Heidi Dimas at
+// 540-373-6650 or bar.castiglias@gmail.com". The title "Contact [job]" marks the pairing:
+// the save step keeps only the job, and a role mailbox keeps the name.
+var PROSE_CONTACT = /(?:\b[Cc]ontact|\bCONTACT|\b[Rr]each(?:ing)? out to|\b[Ss]en[dt] to|\b[Rr]eply to|\b[Ee]-?mail(?:ing|ed)?(?: to)?|\b[Ww]rite to|\b[Aa]sk for|\bRSVP to|\b[Rr]svp to|\b[Cc]all(?:ing)?|\b[Ss]peak (?:with|to)|\b[Tt]alk to|\b[Gg]et in touch with)\s+(?:(?:our|the|your)\s+([A-Za-z&\/ \-]{3,40}?)[,:]?\s+)?(?:(?:Mr|Mrs|Ms|Dr|Prof)\.?\s+|(?:Chef|Professor|Commodore|Captain|Coach)\s+)?([A-Z][a-z\u00c0-\u00ff'\u2019\-]+(?:\s[A-Z]\.)?(?:\s[A-Z][A-Za-z\u00c0-\u00ff'\u2019\-]+){1,2}?)(?:,\s*(?:PGA|LPGA|CCM|CMP|CSW|CPCE|Jr\.?|Sr\.?))?(?=\s*(?:,|\(|:|\bat\b|\bif\b|\bor\b|\bvia\b|\bby\b|\bfor\b|\bwith\b|\bto\b|-|\u2013|\u2014|$))/g;
+var PROSE_STOP = /\b(human|resources|services?|committee|customer|care|relations|management|accounting|billing|headquarters|corporate|team|staff|office|desk|us|me|your|our|the)\b/i;
+function proseContact(before){
+    var s = (before || '').replace(/\s+/g, ' ');
+    var cut = Math.max(s.lastIndexOf('. '), s.lastIndexOf('! '), s.lastIndexOf('? '));
+    if(cut > -1) s = s.substring(cut + 2);
+    if(s.length > 220) s = s.substring(s.length - 220);
+    var m, last = null;
+    PROSE_CONTACT.lastIndex = 0;
+    while((m = PROSE_CONTACT.exec(s))){ last = m; }
+    if(!last || s.length - (last.index + last[0].length) > 90) return null;
+    var n = looksLikeName(last[2]);
+    if(!n || PROSE_STOP.test(n)) return null;
+    var role = last[1] ? looksLikeTitle(last[1]) : '';
+    return {name:n, title:'Contact' + (role ? ' ' + role : ''), prose:true};
+}
+// A contact list row, "Boat Storage: Connie Ranney" / "Social Events: Becky Gill & Judi
+// Casey" beside or right above the address: the label is the job, the first person the name.
+var LABEL_NAME = /^\s*([A-Za-z][A-Za-z&\/' \-]{2,40}?)\s*:\s*([A-Z][A-Za-z\u00c0-\u00ff'\u2019.\-]+(?:\s[A-Z][A-Za-z\u00c0-\u00ff'\u2019.\-]+){1,2})(?:\s*(?:&|and)\s*[A-Z][A-Za-z\u00c0-\u00ff'\u2019.\-]+(?:\s[A-Z][A-Za-z\u00c0-\u00ff'\u2019.\-]+){1,2})?\s*[:\-\u2013\u2014]?\s*$/;
+function labelName(line){
+    var m = LABEL_NAME.exec((line || '').replace(/\s+/g, ' '));
+    if(!m) return null;
+    var n = looksLikeName(m[2]), lab = m[1].replace(/\s+$/, '');
+    if(!n || looksLikeName(lab) || /^(e-?mail|phone|tel|fax|cell|address|hours|location|website|web|note|notes)$/i.test(lab)) return null;
+    return {name:n, title:lab, prose:true};
+}
 function parseLines(lines, email, inCard){
     var idx = -1;
     for(var i=0;i<lines.length;i++){ if(deob(lines[i]).toLowerCase().indexOf(email) > -1){ idx = i; break; } }
     var name = '', title = '';
+    if(idx > -1){
+        var dl = deob(lines[idx]), pre = dl.substring(0, dl.toLowerCase().indexOf(email));
+        var prevLine = (idx > 0 && !HAS_EMAIL.test(lines[idx - 1])) ? lines[idx - 1] : '';
+        var pc = proseContact((prevLine ? prevLine + ' ' : '') + pre) ||
+                 labelName(pre.replace(/\b(e-?mail)\b\s*:?\s*$/i, '')) || (/[A-Za-z]{3}/.test(pre) ? null : labelName(prevLine));
+        if(pc) return pc;
+    }
     function take(line){
         if(!line) return false;
         var nt = splitNameTitle(line);
@@ -950,6 +991,7 @@ function contextFor(el, email){
                 if(tt && (!res.title || TITLE_STRONG.test(tt))) res.title = tt;
             }
             var p = parseLines(linesOf(card), email, true);
+            if(p.prose){ res.name = p.name; res.title = p.title; }
             if(!res.name) res.name = p.name;
             // A heading such as "Community Events" loses to a real role line ("Club President").
             if(!res.title || (p.title && TITLE_STRONG.test(p.title) && !TITLE_STRONG.test(res.title))) res.title = p.title || res.title;
@@ -1296,7 +1338,7 @@ safe('keyword_links', function(){
 
 // Real contact/inquiry forms: a textarea or message field, or several fields
 // including email. A lone email box is a newsletter signup, not a contact form.
-var FORM_HOSTS = /(^|\.)(tripleseat\.com|perfectvenue\.com|eventtemple\.com|jotform\.com|jotform\.us|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|hsforms\.com|hsforms\.net|hubspot\.com|honeybook\.com|dubsado\.com|17hats\.com|planningpod\.com|gatherhq\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle|form\.jotform\.com)$/i;
+var FORM_HOSTS = /(^|\.)(tripleseat\.com|perfectvenue\.com|eventtemple\.com|jotform\.com|jotform\.us|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|hsforms\.com|hsforms\.net|hubspot\.com|honeybook\.com|dubsado\.com|17hats\.com|planningpod\.com|gatherhq\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle|form\.jotform\.com|teamdexter\.com)$/i;
 var pageHasForm = false;
 var pageHasMessageForm = false;
 var formProviders = [];
@@ -1334,7 +1376,8 @@ safe('forms', function(){
     for(var j=0;j<iframeSrcs.length;j++){
         var host = '';
         try { host = new URL(iframeSrcs[j]).hostname; } catch(e){}
-        if((FORM_HOSTS.test(host) || /docs\.google\.com\/forms/i.test(iframeSrcs[j])) && !SURVEY.test(iframeSrcs[j])){ pageHasForm = true; formProviders.push(iframeSrcs[j]); }
+        // (an embedded Airtable form: the Folger's space-rental request, Nov 10 2026)
+        if((FORM_HOSTS.test(host) || /docs\.google\.com\/forms/i.test(iframeSrcs[j]) || (/(^|\.)airtable\.com$/i.test(host) && /\/embed\//.test(iframeSrcs[j]))) && !SURVEY.test(iframeSrcs[j])){ pageHasForm = true; formProviders.push(iframeSrcs[j]); }
     }
     // Inquiry forms the page LINKS to on a booking service, whatever the button says
     // ("Plan an event" -> fabiotrabocchi.tripleseat.com/party_request/3601, SpotHopper
@@ -1415,6 +1458,17 @@ safe('people', function(){
     var reA = new RegExp('\\b' + ROLE + ',? ' + NM, 'gi'), reB = new RegExp(NM + ', (?:(?:the|our|and) )*' + ROLE + '\\b', 'g'), m;
     while((m = reA.exec(text)) && people.length < 40){ var nA = looksLikeName(m[2]); if(nA && /^[A-Z]/.test(m[2])) addP(nA, m[1].replace(/\b\w/g, function(c){ return c.toUpperCase(); })); }
     while((m = reB.exec(text)) && people.length < 40){ var nB = looksLikeName(m[1]); if(nB) addP(nB, m[2].replace(/\b\w/g, function(c){ return c.toUpperCase(); })); }
+    // A couple sharing one surname: "Owners Bobby and Julie Jones", "Stephen & Shannon Mackey
+    // are the co-founders", "Randy and Meagan Morgan / Owners" -> two people.
+    var CROLE = '(owners?|co-owners?|proprietors?|founders?|co-founders?)', CPAIR = "([A-Z][a-z\u00e0-\u00ff]+) (?:and|&) ([A-Z][a-z\u00e0-\u00ff]+) ([A-Z][A-Za-z\u00e0-\u00ff'\u2019\-]+)";
+    function couple(f1, f2, last, role){
+        var t = role.toLowerCase().replace(/s$/, '').replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+        var a = looksLikeName(f1 + ' ' + last), b = looksLikeName(f2 + ' ' + last);
+        if(a && b){ addP(a, t); addP(b, t); }
+    }
+    var reC = new RegExp('\\b' + CROLE + '[,:]?\\s+' + CPAIR, 'g'), reD = new RegExp(CPAIR + ',?\\s+(?:(?:are|the|our|and|as|is)\\s+){0,3}' + CROLE + '\\b', 'g');
+    while((m = reC.exec(text)) && people.length < 40){ if(/^[Oo]wner|^[Cc]o-|^[Pp]ropr|^[Ff]ound/.test(m[1])) couple(m[2], m[3], m[4], m[1]); }
+    while((m = reD.exec(text)) && people.length < 40){ couple(m[1], m[2], m[3], m[4]); }
 });
 
 // An address with no name next to it, whose mailbox matches a named person on the
@@ -1634,10 +1688,38 @@ def split_name_title(line):
             if t: return (n, t)
     return None
 
+# Same rules as the Chrome scrape's proseContact / labelName ("please contact Ange Hensley
+# at fleet.captain@...", "Boat Storage: Connie Ranney" beside or right above the address).
+PROSE = [False]   # the last parse_lines() result came from a sentence or a "Label: Name" row
+LABEL_NAME = re.compile(r"^\s*([A-Za-z][A-Za-z&/' \-]{2,40}?)\s*:\s*([A-Z][A-Za-z\u00c0-\u00ff'\u2019.\-]+(?:\s[A-Z][A-Za-z\u00c0-\u00ff'\u2019.\-]+){1,2})(?:\s*(?:&|and)\s*[A-Z][A-Za-z\u00c0-\u00ff'\u2019.\-]+(?:\s[A-Z][A-Za-z\u00c0-\u00ff'\u2019.\-]+){1,2})?\s*[:\-\u2013\u2014]?\s*$")
+def prose_contact(before):
+    pc = SD.prose_contact(before) if SD is not None and hasattr(SD, "prose_contact") else None
+    if not pc: return None
+    n = looks_like_name(pc[0])
+    if not n: return None
+    role = looks_like_title(pc[1]) if pc[1] else ""
+    return (n, "Contact" + (" " + role if role else ""))
+def label_name(line):
+    m = LABEL_NAME.match(re.sub(r"\s+", " ", line or ""))
+    if not m: return None
+    n, lab = looks_like_name(m.group(2)), m.group(1).rstrip()
+    if not n or looks_like_name(lab) or re.fullmatch(r"(?i)e-?mail|phone|tel|fax|cell|address|hours|location|website|web|notes?", lab): return None
+    return (n, lab)
+
 def parse_lines(lines, email, in_card):
     idx = next((i for i, l in enumerate(lines) if email in deob(l).lower()), -1)
     name = title = ""
     order = []
+    PROSE[0] = False
+    if idx > -1:
+        dl = deob(lines[idx])
+        pre = dl[:dl.lower().index(email)]
+        prev_line = lines[idx - 1] if idx > 0 and not EMAIL_RE.search(lines[idx - 1]) else ""
+        pc = prose_contact((prev_line + " " if prev_line else "") + pre) or \
+            label_name(re.sub(r"(?i)\b(e-?mail)\b\s*:?\s*$", "", pre)) or (None if re.search(r"[A-Za-z]{3}", pre) else label_name(prev_line))
+        if pc:
+            PROSE[0] = True
+            return pc
     if idx > -1:
         same = re.sub(re.escape(email), " ", deob(lines[idx]), flags=re.I)
         order.append(re.sub(r"\b(e-?mail|email me|contact)\b\s*:?", " ", same, flags=re.I))
@@ -1716,6 +1798,7 @@ def context_for(el, email):
                 t = looks_like_title(h.get_text(" ")[:100])
                 if t and (not title or TITLE_STRONG.search(t)): title = t
             n2, t2 = parse_lines(lines_of(card), email, True)
+            if PROSE[0]: name, title = n2, t2
             name = name or n2
             # A heading such as "Community Events" loses to a real role line ("Club President").
             if not title or (t2 and TITLE_STRONG.search(t2) and not TITLE_STRONG.search(title)): title = t2 or title
@@ -1873,7 +1956,7 @@ def norm_internal(h):
     out = "%s://%s%s" % (u.scheme, u.netloc, u.path or "/") + ("?" + q if q else "") + ("#" + u.fragment if u.fragment else "")
     if not u.fragment and (u.path or "/") != "/": out = out.rstrip("/")
     return out
-FORM_HOSTS = re.compile(r"(^|\.)(tripleseat\.com|perfectvenue\.com|eventtemple\.com|jotform\.com|jotform\.us|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|hsforms\.com|hsforms\.net|hubspot\.com|honeybook\.com|dubsado\.com|17hats\.com|planningpod\.com|gatherhq\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle)$", re.I)
+FORM_HOSTS = re.compile(r"(^|\.)(tripleseat\.com|perfectvenue\.com|eventtemple\.com|jotform\.com|jotform\.us|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|hsforms\.com|hsforms\.net|hubspot\.com|honeybook\.com|dubsado\.com|17hats\.com|planningpod\.com|gatherhq\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle|teamdexter\.com)$", re.I)
 page_has_form, message_form, providers, iframes, contact_form = False, False, [], [], ""
 # Guest surveys, feedback, poll and review forms are not inquiry channels (same rule as the Chrome scrape).
 SURVEY = re.compile(r"survey|feedback|(^|[^a-z])(polls?|reviews?)([^a-z]|$)", re.I)
@@ -1903,7 +1986,7 @@ try:
             full = urljoin(page_url, src)
             iframes.append(full)
             host = (urlparse(full).hostname or "")
-            if (FORM_HOSTS.search(host) or "docs.google.com/forms" in full) and not survey_page and not SURVEY.search(full):
+            if (FORM_HOSTS.search(host) or "docs.google.com/forms" in full or (re.search(r"(^|\.)airtable\.com$", host, re.I) and "/embed/" in full)) and not survey_page and not SURVEY.search(full):
                 page_has_form = True; providers.append(full)
         for f in ([] if survey_page else soup.find_all("form")):
             if (f.get("role") or "") == "search" or f.find("input", attrs={"type": "search"}): continue
@@ -1986,6 +2069,12 @@ try:
             n = looks_like_name(raw_n)
             if n and n.lower() not in seenp and len(people) < 40:
                 seenp.add(n.lower()); people.append({"name": n, "title": role.title()})
+        # A couple sharing one surname ("Owners Bobby and Julie Jones"): same rule as the Chrome scrape.
+        if SD is not None and hasattr(SD, "couples"):
+            for raw_n, role in SD.couples(text):
+                n = looks_like_name(raw_n)
+                if n and n.lower() not in seenp and len(people) < 40:
+                    seenp.add(n.lower()); people.append({"name": n, "title": role})
         # tmead@ / traci.mead@ / traci@ -> Traci Mead, when exactly one person on the page fits.
         for c in contacts.values():
             if c["name"]: continue
@@ -2117,10 +2206,11 @@ host = (u.hostname or "").lower()
 host = host[4:] if host.startswith("www.") else host
 if u.scheme not in ("http", "https"):
     print("invalid"); sys.exit(0)
-if re.search(r"(^|\.)(tripleseat\.com|perfectvenue\.com|eventtemple\.com|jotform\.com|jotform\.us|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|hsforms\.com|hubspot\.com|honeybook\.com|dubsado\.com|17hats\.com|planningpod\.com|gatherhq\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle)$", host) or "docs.google.com/forms" in url:
+if re.search(r"(^|\.)(tripleseat\.com|perfectvenue\.com|eventtemple\.com|jotform\.com|jotform\.us|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|hsforms\.com|hubspot\.com|honeybook\.com|dubsado\.com|17hats\.com|planningpod\.com|gatherhq\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle|teamdexter\.com)$", host) or "docs.google.com/forms" in url:
     print("provider"); sys.exit(0)
 if (re.search(r"(^|\.)spotapps\.co$", host) and not host.startswith("static.") and re.fullmatch(r"/(private-part|catering|event|inquir)[\w-]*/?", u.path, re.I)) or \
-        (re.search(r"(^|\.)toasttab\.com$", host) and re.match(r"/invoice/lead", u.path, re.I)):
+        (re.search(r"(^|\.)toasttab\.com$", host) and re.match(r"/invoice/lead", u.path, re.I)) or \
+        (re.search(r"(^|\.)airtable\.com$", host) and "/embed/" in u.path):
     print("provider"); sys.exit(0)
 hh = (urlparse(home).hostname or "").lower().replace("www.", "", 1)
 hp = (host + unquote(u.path)).lower()
@@ -2396,12 +2486,17 @@ forms = []    # (rank, url)
 # An event/private-dining inquiry form (the channel that books events) ranks above a
 # general contact form, which ranks above a form on any other page.
 INQUIRY = re.compile(r"inquir|enquir|rfp|request|plan-your|book-(?:an|your)-event|event-request|lead", re.I)
-EVENTFORM = re.compile(r"private|wedding|rental|occasion|banquet|cater|special-events|group-(?:dining|events|sales)|celebrat|meetings?-events|host-(?:an|your)", re.I)
+EVENTFORM = re.compile(r"private|wedding|rental|rent-(?:our|the|this|a)-|occasion|banquet|cater|special-events|group-(?:dining|events|sales)|celebrat|meetings?-events|host-(?:an|your)", re.I)
 LISTING = {"event", "events", "mc-events", "calendar", "blog", "news", "post", "posts", "faq", "faq-items", "product", "products", "shop", "menu", "menus", "tag", "category"}
 NOTFORM = re.compile(r"/(cart|checkout|my-account|account|login|signin|register|shop|store|product|products|gift-?cards?|donate)(/|$)", re.I)
 # Guest surveys / feedback / polls / reviews (e.g. a Google Form on /guestsurvey2025) are not inquiry channels.
 SURVEY = re.compile(r"survey|feedback|(^|[^a-z])(polls?|reviews?)([^a-z]|$)", re.I)
-def form_rank(page_url, form_url=""):
+# General form builders also host award, job and artist applications (galleryovissi.com's
+# award application on /mfa-award beat its real /contact form, Nov 8 2026).
+BUILDER = re.compile(r"(^|\.)(jotform\.(com|us)|typeform\.com|wufoo\.com|cognitoforms\.com|123formbuilder\.com|formstack\.com|formsite\.com|zohopublic\.com|forms\.office\.com|forms\.gle|docs\.google\.com)$", re.I)
+# "Call For Musicians / Come Play at The Cork!" on /music/: the form that books performers.
+MUSICFORM = re.compile(r"(^|/)(live-?)?music(ians?)?(/|$)|musicians?|performers?|entertainment|book-(?:a-|the-)?band", re.I)
+def form_rank(page_url, form_url="", message=False):
     # A form hosted by an inquiry service (Tripleseat, HoneyBook, ...) linked or framed
     # from the page is a real inquiry channel; a site-wide widget script is not.
     provider = bool(form_url) and (urlsplit(form_url).hostname or "") != (urlsplit(page_url).hostname or "")
@@ -2415,7 +2510,11 @@ def form_rank(page_url, form_url=""):
     if len(segs) >= 2 and segs[0] in LISTING:
         return 4                     # a form on one event/blog post is not the venue's inquiry channel
     p = "/" + "/".join(segs)
-    if provider or INQUIRY.search(p):
+    if provider and BUILDER.search(urlsplit(form_url).hostname or "") and not (
+            INQUIRY.search(p) or EVENTFORM.search(p) or KINDS[0][1].search(p) or KINDS[2][1].search(p)
+            or MUSICFORM.search(p) or is_home(page_url)):
+        return 4                     # an application form somewhere on the site: never beats a contact page
+    if provider or INQUIRY.search(p) or (message and MUSICFORM.search(p)):
         return 0
     if EVENTFORM.search(p):
         return 1
@@ -2434,7 +2533,7 @@ for line in open(pages_f):
             n, t = str(p.get("name") or "").strip(), str(p.get("title") or "").strip()
             if n and t and n.lower() not in people: people[n.lower()] = (n, t, page)
     if in_scope(page) and res.get("page_has_message_form"):
-        forms.append((form_rank(page), page.split("#")[0]))
+        forms.append((form_rank(page, message=True), page.split("#")[0]))
     for fp in res.get("form_providers") or []:
         forms.append((form_rank(page, fp), fp))
     for c in res.get("contacts") or []:
@@ -2469,7 +2568,7 @@ if os.path.exists(crawl_f):
         for f in cd.get("contact_forms", []) or []:
             fu, fp = str(f.get("url") or ""), str(f.get("page") or f.get("url") or "")
             if not fu or not (in_scope(fp) or f.get("kind") != "html_form"): continue
-            fr = form_rank(fp, fu)
+            fr = form_rank(fp, fu, message=f.get("kind") == "html_form")
             # The page carries a booking service's form widget (Tripleseat's ts_script.js): an inquiry form.
             if 0 < fr < 4 and f.get("kind") not in ("html_form", "form_widget"): fr = 0
             forms.append((fr, fu))
@@ -2509,7 +2608,7 @@ def runner_of(email):
     staff = [(n, t) for n, t, _ in people.values() if R.clean_person_name(n) and not re.search(r"(?i)assistant|\bsous\b", t)
              and not all(w in vwords for w in re.findall(r"[a-z]+", R._fold(n).lower()))]
     boss = [x for x in staff if re.search(r"(?i)\b(owner|co-?owner|proprietor|founder|general manager|gm)\b", x[1])]
-    if local in ("gm", "generalmanager"):
+    if local in ("gm", "generalmanager", "manager"):
         hits = [x for x in staff if re.search(r"(?i)\b(general manager|gm)\b", x[1])]
     elif re.search(r"event|cater|wedding|banquet|privatedining|groupsales|^sales", local):
         job = re.compile(r"(?i)(event|cater|wedding|banquet|private dining|sales).*(manager|director|coordinator|planner|specialist|supervisor)|"
@@ -2531,7 +2630,7 @@ AGENCY_LABEL = re.compile(r"(pr|media|marketing|agency|communications|comms|crea
 mail_alias = ""
 if shared != "true" and reg and not any(a != reg for a in alias_regs):
     site_label = reg.rsplit(".", 1)[0]
-    on_site, per_dom, mailto_dom, person_dom = 0, {}, {}, {}
+    on_site, per_dom, mailto_dom, person_dom, contact_dom = 0, {}, {}, {}, {}
     for e, r in emails.items():
         dom = e.split("@", 1)[1] if "@" in e else ""
         dreg = R.registrable_domain(dom) if dom else ""
@@ -2550,6 +2649,8 @@ if shared != "true" and reg and not any(a != reg for a in alias_regs):
             person_dom[dreg] = person_dom.get(dreg, 0) + 1
         if any(m and (is_home(u) or CONTACTISH.search(urlsplit(u).path)) for u, m in own_hits):
             mailto_dom[dreg] = mailto_dom.get(dreg, 0) + 1
+        if any(is_home(u) or CONTACTISH.search(urlsplit(u).path) for u, m in own_hits):
+            contact_dom[dreg] = contact_dom.get(dreg, 0) + 1
     # A domain named after the venue, linked as a mailto on its own pages, is its own even
     # alone (Nov 8 2026): events@mtwashingtonmill.com for Mt. Washington Mill Dye House,
     # sam@sammysrestaurantgroup.com on Sammy's Trattoria's private-parties page.
@@ -2564,12 +2665,16 @@ if shared != "true" and reg and not any(a != reg for a in alias_regs):
             rest = lab[len(w):] if lab.startswith(w) else None
             if rest is not None and (rest in GROUPISH or (rest[:1] == "s" and rest[1:] in GROUPISH)):
                 return True
+            # blacksaltdc.com for BlackSalt (blacksaltrestaurant.com), Nov 10 2026
+            if rest and len(w) >= 7 and rest in R._GENERIC_VENUE_WORDS:
+                return True
         return False
     for dreg, n in sorted(per_dom.items(), key=lambda x: -x[1]):
         if dreg.rsplit(".", 1)[0] == site_label and len(site_label) >= 5:
             mail_alias = dreg
             break
-        if mailto_dom.get(dreg, 0) >= 1 and venue_named(dreg.rsplit(".", 1)[0]):
+        # (printed as text on the contact page is enough: manager@blacksaltdc.com)
+        if contact_dom.get(dreg, 0) >= 1 and venue_named(dreg.rsplit(".", 1)[0]):
             mail_alias = dreg
             break
         if n >= 2 and n > on_site and (mailto_dom.get(dreg, 0) >= 1 or person_dom.get(dreg, 0) >= 3):
@@ -2647,11 +2752,21 @@ for _e in emails:
     if "@" in _e:
         _l, _dm = _e.split("@", 1)
         _by_dom[_dm].add(_l)
+# Not glue: an address the page links as a mailto (vicecommodore@ next to commodore@, Rock
+# Hall Yacht Club), and a family of "dept.mailbox@" addresses (dir.iicwashington@,
+# pr.iicwashington@, rsvp.iicwashington@ beside iicwashington@esteri.it, Nov 10 2026).
 GLUED = set()
 for _dm, _locals in _by_dom.items():
     for _l in _locals:
-        if any(o != _l and len(o) >= 4 and _l.endswith(o) and len(_l) - len(o) >= 3 for o in _locals):
-            GLUED.add(_l + "@" + _dm)
+        _tails = [o for o in _locals if o != _l and len(o) >= 4 and _l.endswith(o) and len(_l) - len(o) >= 3]
+        if not _tails:
+            continue
+        if any(m for _, m, _k in emails[_l + "@" + _dm]["hits"]) or re.sub(r"[\d._\-+]", "", _l) in R.ROLE_TOKENS:
+            continue
+        if any(_l[:-len(o)][-1:] in "._-" and
+               sum(1 for x in _locals if x != o and x.endswith(o) and x[:-len(o)][-1:] in "._-") >= 2 for o in _tails):
+            continue
+        GLUED.add(_l + "@" + _dm)
 
 named = set()
 for e, r in sorted(emails.items()):
@@ -2669,6 +2784,15 @@ for e, r in sorted(emails.items()):
         # tmead@ on the contact page + "Traci Mead, Executive Director" on the staff page.
         pm = person_for(e)
         if pm: r["name"], r["title"] = pm[0], r["title"] or pm[1]
+    elif not R.is_role_email(e):
+        # The nearest name was the next line's ("Owner: Arlene Stecher / Executive Chef:
+        # Gordon Carlson ... Arlene@TheCorkPub.com" gave arlene@ the chef's name and title):
+        # when the mailbox names exactly one other person on the site, it is theirs.
+        _nl = re.sub(r"[^a-z]", "", e.split("@")[0])
+        _np = [x for x in re.sub(r"[^a-z ]", "", R._fold(r["name"]).lower()).split() if x]
+        if _np and not (_np[0] in _nl or (len(_np[-1]) >= 3 and _np[-1] in _nl) or _nl.startswith(_np[0][:1] + _np[-1])):
+            pm = person_for(e)
+            if pm and pm[0].lower() != r["name"].lower(): r["name"], r["title"] = pm
     scoped = []
     for url, mailto, kind in hits:
         h = (urlsplit(url).hostname or "").lower()

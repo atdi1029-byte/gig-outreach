@@ -1897,3 +1897,22 @@ PREFLIGHT OK: Apollo API key accepted (auth/health)
 PREFLIGHT FAIL: Chrome has no open window
 PREFLIGHT FAIL: 1 check(s) failed (Chrome has no open window); 13 ok, 0 warn
 [PREFLIGHT] FAIL (exit 1) — aborting. Fix the FAIL lines above, or set SKIP_PREFLIGHT=1 to bypass.
+[ZB SAFE] Guard enabled — run 12/300, today 3/5000, reserve 100 credits (ok); run id run-20261108-0931
+=== Pipeline started 2026-11-10 00:01:43 ===
+[RUN] run_id=run-20261108-0931 mode=resume log=/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.log
+PREFLIGHT OK: python3 works (/Library/Developer/CommandLineTools/usr/bin/python3 3.9.6)
+PREFLIGHT OK: .env has ZEROBOUNCE_KEY
+PREFLIGHT OK: .env has APOLLO_API_KEY
+PREFLIGHT OK: bash -n: 21 scripts parse
+PREFLIGHT OK: embedded python: checked 178 embedded python blocks in 21 scripts: 0 failed
+PREFLIGHT OK: 18 python files compile
+PREFLIGHT OK: outreach_rules self-test: 17 checks pass
+PREFLIGHT OK: venue_classifier self-test: 91 passed, 0 failed
+PREFLIGHT OK: js/*.js extractors parse (node --check)
+PREFLIGHT OK: Apps Script backend up (version 2026-10-26.1)
+PREFLIGHT OK: sheet readable (action=config)
+PREFLIGHT OK: ZeroBounce: enabled=True (.env), balance=1052, reserve=100 (.env), run 12/300 (.env), today 3/5000 (env), ~15 runs of headroom at 60/run
+PREFLIGHT OK: Apollo API key accepted (auth/health)
+PREFLIGHT FAIL: Chrome has no open window
+PREFLIGHT FAIL: 1 check(s) failed (Chrome has no open window); 13 ok, 0 warn
+[PREFLIGHT] FAIL (exit 1) — aborting. Fix the FAIL lines above, or set SKIP_PREFLIGHT=1 to bypass.

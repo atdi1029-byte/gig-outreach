@@ -1,35 +1,12 @@
 {
- "alert": {
-  "kind": "chrome",
-  "level": "stop",
-  "title": "Night run stopped: Chrome",
-  "detail": "pipeline.sh exited 1: Chrome has no open window; Chrome has no open window; Chrome has no open window. Leave Chrome open with View > Developer > Allow JavaScript from Apple Events on. Run run-20261108-0931 resumes next night.",
-  "since": "2026-11-10T00:54:11-05:00"
- },
+ "alert": null,
  "night": {
-  "date": "2026-11-09",
-  "started_at": "2026-11-09T23:44:59-05:00",
-  "finished_at": "2026-11-10T01:22:46-05:00",
-  "state": "stopped",
-  "runs": [
-   {
-    "run_id": "run-20261108-0931",
-    "outcome": "stopped: pipeline.sh exited 1: Chrome has no open window; Chrome has no open window; Chrome has no open window",
-    "started": "00:53",
-    "venues": 16,
-    "processed": 10,
-    "skipped": 0,
-    "with_contacts": 7,
-    "zero": 3,
-    "new_contacts": 9,
-    "unfinished": 6,
-    "ended": "00:54",
-    "rescued_contacts": 2,
-    "rescued_venues": 0,
-    "deep_dive": "done"
-   }
-  ],
-  "note": "1 run \u00b7 10 venues \u00b7 7 with contacts \u00b7 9 new contacts \u00b7 2 more from the deep dive"
+  "date": "2026-11-10",
+  "started_at": "2026-11-10T01:25:54-05:00",
+  "finished_at": null,
+  "state": "running",
+  "runs": [],
+  "note": "Outreach running 24/7 until the credits run out"
  },
  "history": [
   {
@@ -130,5 +107,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-10T01:22:46-05:00"
+ "updated_at": "2026-11-10T01:28:25-05:00"
 }

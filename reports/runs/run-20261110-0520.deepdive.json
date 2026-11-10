@@ -1,0 +1,1269 @@
+{
+ "run_id": "run-20261110-0520",
+ "venues": [
+  {
+   "venue_id": "XX-WINE-043",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Tim Lewis",
+     "title": "Winemaker (per winemaps.com; pairing with sales@ is INFERRED, not stated; email seen only on Barnivore's listing, checked July 2018, Cloudflare-encoded) [address sales@covepointwinery.com not handed to night_save: seen only on a 2018 third-party listing (Barnivore), nowhere on the venue's site, and the pairing with the winemaker is a guess from another directory; it would be saved unchecked as a role inbox]",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.barnivore.com/wine/6556/Cove-Point-Winery",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/cpwinery",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "covepointwinery.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Cove Point Winery (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "One-page GoDaddy Website Builder site: sitemap.website.xml lists only the home page, and /contact, /about, /events, /team etc. all return 404 (that is the '9 fetched, 1 ok'; there are no other pages). The home page has no email, no form (mailing-list box says 'Not Yet Available'), only phone 410-326-0949 and a Facebook link. eben@eyebytes.com is the font designer's address inside an embedded font-license CSS comment (Fjalla, Sorkin Type), not a venue email. Only email anywhere: sales@covepointwinery.com on Barnivore (2018). Winemaker Tim Lewis per winemaps.com; no source names an owner. Best route is the phone. [Audit review: one found address is listed without its email on purpose: seen only on a 2018 third-party listing (Barnivore), nowhere on the venue's site, and the pairing with the winemaker is a guess from another directory; it would be saved unchecked as a role inbox.]"
+  },
+  {
+   "venue_id": "VA-REST-3024",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jeremy Schottler",
+     "title": "Owner (correction of the saved contact: it has no name and the title 'Catering'; the About page says Jeremy Schottler bought The Italian Gourmet after college and runs it; pairing of jeremy@ with him is inferred from the first name + owner bio, not stated next to the email)",
+     "email": "jeremy@the-italian-gourmet.com",
+     "source": "website",
+     "source_url": "https://the-italian-gourmet.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Margaret Schottler",
+     "title": "Co-owner (wife of Jeremy; works full time at the shop per the About page; Tysons Reporter names both as owners)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://the-italian-gourmet.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "jeremy@the-italian-gourmet.com",
+     "reason": "Right contact, name and title missing: this is Jeremy Schottler, Owner (About page: he bought The Italian Gourmet after graduating from JMU; the catering page and the linked catering site give jeremy@ as the email for catering questions)"
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "the-italian-gourmet.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Italian Gourmet (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 7
+    }
+   ],
+   "summary": "Saved jeremy@ is right and is the only email anywhere (site, linked GoDaddy catering site, search): it belongs to owner Jeremy Schottler, whose name the sheet lacks. Family-owned deli/caterer at 505 Maple Ave W, Vienna; co-owner Margaret Schottler has no published email. Sheet's Facebook/Instagram/contact form already filled, not re-checked. The site's 7 pages carry no social links."
+  },
+  {
+   "venue_id": "MD-COUN-1330",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Reghan Lennox",
+     "title": "Director of Sales and Marketing (title correction: the staff page gives this title; the room/outing pages still call her Event Coordinator. She is the named contact for weddings, banquets, outings and every event room, ext. 150)",
+     "email": "reghanl@marylandnational.com",
+     "source": "website",
+     "source_url": "https://www.marylandnational.com/contact/staff/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Robin Semler",
+     "title": "Assistant General Manager (title was missing on the saved contact; staff page. Also the membership contact, ext. 125)",
+     "email": "robins@marylandnational.com",
+     "source": "website",
+     "source_url": "https://www.marylandnational.com/contact/staff/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Nick Schwab",
+     "title": "General Manager / Golf Course Superintendent",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.marylandnational.com/contact/staff/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Nikki Eshleman",
+     "title": "Food & Beverage Director (since January 2026; runs Schroyer's Tavern)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.marylandnational.com/contact/staff/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Savanah Brockhoeft",
+     "title": "Assistant Food & Beverage Director",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.marylandnational.com/contact/staff/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "alyssae@marylandnational.com",
+     "reason": "Right business, name missing, and probably no longer there: this is Alyssa Eshleman, formerly General Manager / Director of Sales & Marketing and the membership contact (ext. 102). Name seen only in search-engine snippets of older versions of the club's own membership pages ('Please contact Alyssa Eshleman at 301-371-0000 x102 or by email at AlyssaE@marylandnational.com') and on Prospeo's listing; the live site no longer names her anywhere: GM is now Nick Schwab, Sales & Marketing is Reghan Lennox, membership is Robin Semler. Not the same person as Nikki Eshleman (F&B Director, hired Jan 2026) as far as the site shows."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "marylandnational.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Maryland National Golf Club (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "All six saved emails are this club's own (8836 Hollow Rd, Middletown). Best contact is already saved: Reghan Lennox (events; staff page title is Director of Sales and Marketing). Robin Semler = Assistant GM. Dylan Bickford and Nick Humphries are the club-repair/regripping contacts on /club-services/ (golf shop; no title published; not booking contacts). alyssae@ = Alyssa Eshleman, a former GM, apparently gone. No email is published anywhere (42 site pages, 7 PDFs, search) for GM Nick Schwab, F&B Director Nikki Eshleman or Asst F&B Director Savanah Brockhoeft; the site's visible pattern is FirstnameL@ but I did not see their addresses, so none given. Kourtney Dominick (Asst F&B Director per the Jan 2026 newsletter; KourtneyD@ seen only in search snippets of older membership pages) has been replaced on the live site in both roles, so not listed. Apollo's Sherree Devor / Sherree Lance are not on the current staff page (stale). Sheet's contact_form is an odd event page; the real forms are /calendar/information-request/ and /contact/ (value not empty, so left alone). Wedding packet PDF text is font-encoded; only ReghanL@ was readable in it."
+  },
+  {
+   "venue_id": "MD-ART -498",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Ryan Hopkins",
+     "title": "Artist / Owner (name correction for the saved gallery inbox, which has no name. Pairing inferred: the address is the gallery's shared inbox, shown as plain text next to 'Hopkins Original Art' and the phone 410-610-5785, not next to a person; Ryan and his wife Susan Hopkins opened and run the gallery)",
+     "email": "hopkinsoriginalart@gmail.com",
+     "source": "website",
+     "source_url": "https://ryanhopkins.com/pages/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Susan Hopkins",
+     "title": "Co-owner (opened the gallery with Ryan in 2017; writes the site's 'Gallery Gal' blog)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://ryanhopkins.com/pages/news-recognition",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "hopkinsoriginalart@gmail.com",
+     "reason": "Right contact, name and title missing: this is the gallery's own shared inbox (plain text on its Contact page and footer); the people behind it are Ryan Hopkins, artist/owner, and Susan Hopkins, co-owner. Which of the two reads it is not stated."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "ryanhopkins.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Hopkins Original Art (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "ryanhopkins.com IS this gallery's own site (Shopify store titled 'Hopkins Original Art - Modern Art Gallery on Maryland's Eastern Shore', same gallery email and phone, links to facebook.com/hopkinsoriginalart and instagram.com/hopkinsoriginal; Apollo org 'Ryan Hopkins Original Art' is the same business). LOCATION CHANGED: the site's current description and footer say 'Located in Queenstown Premium Outlets', 412 Outlet Center Drive, Queenstown, MD 21658; only the old About Us page and a 2019 blog post still say St. Michaels, and 310 S Talbot St appears nowhere on the site. I found no outside confirmation of the move (outlet directory would not load; search shows only old St. Michaels listings), so the sheet's city should be checked/updated to Queenstown, MD. The only email anywhere is the saved gallery gmail; owners are Ryan Hopkins (artist) and Susan Hopkins. Facebook/Instagram/contact form already on the sheet and match the site's own links. Pipeline's last [STEP] says 'final failed reason=crash exit=0' after 'final ok': worth a look. [location_ok=false]"
+  },
+  {
+   "venue_id": "XX-REST-628",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Stephen Mackey",
+     "title": "Co-founder / CEO (also Creative Director of Mesh Omnimedia; the venue's own corporate-events mailto cc's this address; pairing of 'stephen@' with Stephen Mackey is inferred from the site naming him as Mesh Omnimedia's Creative Director)",
+     "email": "stephen@meshomnimedia.com",
+     "source": "website",
+     "source_url": "https://www.notaviva.com/corporate-rentals",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Shannon Mackey",
+     "title": "Co-founder",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.notaviva.com/nafdma-tour-june-2026",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "notaviva.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Notaviva Farm Brewery & Winery (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Owners are co-founders Stephen & Shannon Mackey (named on the home page, /nafdma-tour-june-2026, /corporate-rentals-1). The only personal address on the site is stephen@meshomnimedia.com, the cc in the venue's own events-inquiry mailto on /corporate-rentals (mailto:Info@NotavivaVineyards.com?cc=stephen%40meshomnimedia.com); /corporate-rentals-1 calls Stephen Mackey 'CEO of Notaviva Vineyards and the Creative Director for Mesh Omnimedia', so it is his address at his own agency, published by the venue for event inquiries. Every other page carries only info@notavivavineyards.com (general inbox; the venue's mail domain is notavivavineyards.com, not notaviva.com). No personal @notavivavineyards.com address found anywhere. Music is central (songwriter showcases, bluegrass jam; both founders are ex-audio engineers) but no booking contact is published. Street address is 13274 Sagle Rd, Purcellville mailing address, in the Hillsboro area (listed on hillsborova.gov)."
+  },
+  {
+   "venue_id": "DC-REST-2670",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Cagla Onal-Urel",
+     "title": "Chef and founder (press: \"the brainchild of chef Cagla Onal Urel\"; the name is from press, the site shows only the address) [address caglaonal@msn.com not handed to night_save: the shop is reported closed since Jan 2026 (PoPville, Jul 27 2026: still closed, messages unanswered)]",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.greenalmondpantry.com/contact",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "greenalmondpantry@gmail.com",
+     "reason": "Right business (plain text under GET IN TOUCH on https://www.greenalmondpantry.com/hours), but it is the shop's general inbox with no person named anywhere on the site. The person behind the business is chef Cagla Onal-Urel (inferred, not stated next to this address). Also: the venue is reported closed since January 2026 (PoPville, Jan 22 and Jul 27 2026: messages to the business unanswered), so this inbox may not be read."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "greenalmondpantry.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Green Almond Pantry (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "LIKELY CLOSED: PoPville reported a 'winter break' closure on Jan 22 2026 and on Jul 27 2026 said it was still closed with messages unanswered; no reopening found (the site itself still shows hours). Saved gmail is the shop's own general inbox (on /hours). Missed: caglaonal@msn.com, plain text on the Contact page and in the site's schema.org JSON, which is chef/founder Cagla Onal-Urel (name from The Georgetown Dish and WhatNow, not from the site). Site is the right one (3210 Grace St NW on /hours; the header still shows the old Shaw address 1314 9th St NW). [Audit review: one found address is listed without its email on purpose: the shop is reported closed since Jan 2026 (PoPville, Jul 27 2026: still closed, messages unanswered).]"
+  },
+  {
+   "venue_id": "MD-REST-2320",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Becky Gill",
+     "title": "Social Events co-chair (with Judi Casey); also Vice Commodore 2026 (listed as Rebecca Gill on the board page). Pairing stated on the page: 'Social Events: Becky Gill & Judi Casey'",
+     "email": "social@rockhallyachtclub.org",
+     "source": "website",
+     "source_url": "https://www.rockhallyachtclub.org/contact-us",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Becky Gill",
+     "title": "Vice Commodore 2026 / Regattas (pairing stated on the page: 'Regattas: Becky Gill'; same person as social@, lower priority) [address vicecommodore@rockhallyachtclub.org not handed to night_save: the regattas inbox of the same person as social@ (Becky Gill), which is the one proposed]",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.rockhallyachtclub.org/contact-us",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Todd Steffes",
+     "title": "Commodore 2026 (correction: name missing on the saved contact; stated on the page 'Commodore: Todd Steffes')",
+     "email": "commodore@rockhallyachtclub.org",
+     "source": "website",
+     "source_url": "https://www.rockhallyachtclub.org/contact-us",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Judi Casey",
+     "title": "Social Events co-chair, board member 2026 (shares social@ with Becky Gill; no address of her own shown)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.rockhallyachtclub.org/contact-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "commodore@rockhallyachtclub.org",
+     "reason": "Right contact, name missing: this is Todd Steffes, Commodore (contact-us page and the 2026 Board of Directors list)."
+    },
+    {
+     "email": "harbormaster@rockhallyachtclub.org",
+     "reason": "Right business, name and title missing: this is Connie Ranney, Boat Storage. Not a booking contact (boat storage), low value for outreach."
+    },
+    {
+     "email": "merchandise@rockhallyachtclub.org",
+     "reason": "Right business, name and title missing: this is Debbie Campion, Merchandise (the same person as membership@). Not a booking contact; duplicate person."
+    },
+    {
+     "email": "stocks@rockhallyachtclub.org",
+     "reason": "Right business, name and title missing: this is Rich Faulkner, Stock Records (member share records). Not a booking contact."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "rockhallyachtclub.org (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Rock Hall Yacht Club (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "All six saved contacts are this club's own (mailto links on its contact-us page; 22759 McKinleyville Rd, Rock Hall MD). Four were saved without names that the page states: commodore@ = Todd Steffes, harbormaster@ = Connie Ranney (boat storage), merchandise@ = Debbie Campion, stocks@ = Rich Faulkner (stock records); the last three are not booking contacts. Missed: social@ (Social Events: Becky Gill & Judi Casey), the right inbox for club entertainment, and vicecommodore@ (Becky Gill). Patti Williams (manager@, Manager + Club Rentals) stays the top contact. No sitemap (404); web search added nothing. [Audit review: one found address is listed without its email on purpose: the regattas inbox of the same person as social@ (Becky Gill), which is the one proposed.]"
+  },
+  {
+   "venue_id": "MD-REST-557",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "docssunsetgrille.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Doc's Sunset Grille (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "WEBSITE IS DEAD/HIJACKED: docssunsetgrille.com lapsed (real site last archived Dec 2023; a parked '/lander' page by Jan 2025; gambling spam since about Oct 2025) and now redirects through three other hijacked restaurant domains to thedaytimegrill.com, an Indonesian slot-gambling page. Everything the pipeline took from it is wrong-business data: vicky9955@hotmail.com, and the sheet's Facebook (facebook.com/daytimegrillburlington) and Instagram (instagram.com/daytimegrill), which belong to a 'Daytime Grill' in Burlington, not Doc's; both should be cleared. The restaurant itself still appears to operate at 104 W Pier St, Oxford MD (Talbot County tourism page updated May 2026 lists it with live bands; a search snippet cites an Aug 2025 Toast review; phone (410) 226-5550), so location is right. Real Facebook per the Sluurpy listing: facebook.com/docssunsetgrille (not opened, Facebook is walled). Only email found: docsgrille16@gmail.com, shown in WebSearch snippets of the BringFido listing (page itself 403 for me); no person's name attached, so it is not a contact. No owner, GM or booker named in any source I could load. [website_ok=false]"
+  },
+  {
+   "venue_id": "XX-WINE-059",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Sydney Saeidi",
+     "title": "Director of Experience + Internal Operations, Holly Chapple Flowers (owner company of Hope Flower Farm; couples' 2024 venue reviews name 'Sydney' as their main contact at the farm)",
+     "email": "sydneyc@hollychappleflowers.com",
+     "source": "website",
+     "source_url": "https://www.hollychappleflowers.com/the-team",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Holly Heider Chapple",
+     "title": "Owner (pairing with events@ is INFERRED: the site names no person for this inbox)",
+     "email": "events@hopeflowerfarm.com",
+     "source": "website",
+     "source_url": "https://hopeflowerfarm.com/pages/landing-page-mar-5-22-55-39",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Megan Hurley",
+     "title": "Chief Operating Officer, Hope Flower Farm and Winery (her only published email is megan@wechoosejoy.com, a third-party domain, so not listed as her email)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.hollychappleflowers.com/the-team",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "hopeflowerfarm.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Hope Flower Farm and Winery (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "hopeflowerfarm.com names no staff and shows only info@ and events@ (photo-session page, plain text). The owner's sister site hollychappleflowers.com/the-team (hopeflowerfarm.com footer: 'Owned by Holly Heider Chapple, Ltd.'; its Terms page has a mailto to info@hollychappleflowers.com) lists the team with mailto links: Megan Hurley, COO of Hope Flower Farm and Winery (megan@wechoosejoy.com, third-party domain), Sydney Saeidi (sydneyc@hollychappleflowers.com), Rachel Robillard, lead designer (blooms@hopeflowersfarm.com, a misspelled domain, not usable). Owner Holly Heider Chapple (husband Evan died; Farm Credit article Mar 2026). Apollo's 'Sydney Chapman, sydneys@hollychappleflowers.com' differs from the site's 'Sydney Saeidi, sydneyc@': the site's version is the one seen on a page. Team page may be dated (photos uploaded 2023); Megan Hurley as COO confirmed by Northern Virginia Magazine Sep 2023 only."
+  },
+  {
+   "venue_id": "VA-REST-3065",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Pamela Ramirez",
+     "title": "General Manager, Stellina Pizzeria Tysons Corner, 2024 to present (per her Culinary Agents profile, a self-maintained third-party listing; not on the venue site). No email found for her. The Tysons catering/private-events inbox cateringtysons@stellinapizzeria.com is published on Capital One Center's Stellina page, but no page pairs it with her, so it is not paired here.",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://culinaryagents.com/entities/681207-Stellina-Pizzeria---Tysons-Corner",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/stellinapizzeria/",
+   "instagram": "",
+   "contact_form": "https://stellinapizzeria.tripleseat.com/party_request/48380",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "stellinapizzeria.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Stellina Pizzeria Tysons (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Both saved contacts fit: Antonio Matarazzo (Co-Owner) and Matteo Venini (Chef/Co-Owner) are the 'Our Team' on the group's own About page and own all four locations including Tysons (1610 Capital One Dr); their two addresses were not seen on any page (Apollo only). The sheet's bare URL https://stellinapizzeria.com does not connect (timeout / refused on 34.200.3.11); only https://www.stellinapizzeria.com works, which is why the pipeline read nothing from the site. On the www site: Facebook (group page, linked from the Tysons location page), a Tripleseat event inquiry form that lists Tysons Corner as a location, and anastasia@stellinapizzeria.com (mailto under 'Media - Sales - Marketing - Inquiries' and 'General Inquiries') with no surname anywhere, so not listed as a contact. cateringtysons@stellinapizzeria.com (Tysons catering/private events) is on Capital One Center's page and Patch, with no person named. Tysons GM per Culinary Agents: Pamela Ramirez (the pipeline's Apollo step had Reesey McElvane as GM, no email; not confirmed either way). ciao@ is the general inbox; stellina@savor-pr.com is the PR firm."
+  },
+  {
+   "venue_id": "VA-COUN-008",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Ron Leporati",
+     "title": "CORRECTION of saved contact's title: PGA professional who books special events and golf outings (page text: \"To book a special event or golf outing, please contact Ron Leporati, PGA at rleporati@golfaugustine.com\"); a VSGA search snippet called him General Manager, but he is not on the site's current staff list",
+     "email": "rleporati@golfaugustine.com",
+     "source": "website",
+     "source_url": "https://www.golfaugustine.com/events/calendar",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Doug Walczak",
+     "title": "CORRECTION of saved contact's title: Operations Manager (site staff list) / Head Golf Professional (VSGA listing); \"Two player team events\" is not his title",
+     "email": "dwalczak@golfaugustine.com",
+     "source": "website",
+     "source_url": "https://www.golfaugustine.com/contact/directions",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Garrett Larson",
+     "title": "CORRECTION of saved contact's title (was empty): Golf Professional / RGA Instructor (golf lessons only, not an events decision-maker)",
+     "email": "glarson@golfaugustine.com",
+     "source": "website",
+     "source_url": "https://www.golfaugustine.com/instruction/private",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Steve Clark",
+     "title": "Director of Operations (PGA); top name on the site's staff list, no email published (per-person contact form only)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.golfaugustine.com/contact/directions",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "glarson@golfaugustine.com",
+     "reason": "Right business, but not a decision-maker: Garrett Larson is a golf instructor (Golf Professional / RGA Instructor) whose address is published only for lesson bookings. Low value for a music pitch."
+    },
+    {
+     "email": "dwalczak@golfaugustine.com",
+     "reason": "Right contact, wrong title: this is Doug Walczak, Operations Manager (site) / Head Golf Professional (VSGA). The saved title \"Two player team events\" is a league-page heading, not a job title."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "golfaugustine.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Augustine Golf Club (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "All 3 saved contacts are real Augustine staff on the club's own domain; no new email found. Ron Leporati (already saved) is the stated person for booking special events/outings and is the best of the three; Doug Walczak's saved title is wrong; Garrett Larson is only a golf instructor. Steve Clark, PGA, Director of Operations heads the staff list but has no published email. Weddings/banquets page gives only info@ (general inbox). pga.com profiles answered 403 and were not read. Note: the sheet's contact form is the lesson-inquiry form; the Special Event Inquiry form is at https://www.golfaugustine.com/events/banquets (not filled in because the record's value is not empty)."
+  },
+  {
+   "venue_id": "VA-REST-3176",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Theo Smith",
+     "title": "CORRECTION of saved contact (name and title were empty): Owner and Winemaker. Name/role verified on the venue's own site; the pairing of this address with him is inferred from the first-name local part (the address itself is not shown on any page I could load)",
+     "email": "theo@capstonevineyards.com",
+     "source": "website",
+     "source_url": "https://capstonevineyards.com/our-family",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Lucy McInerny",
+     "title": "Tasting Room Manager (per a May 2024 blog post only; not on the venue's site, may be out of date)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://vawinejourneys.blogspot.com/2024/05/capstone-vineyards.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Matthew Akers",
+     "title": "Co-owner (lawyer partner, with Douglas McCarthy; not involved in day-to-day per the blog). His only known email is on his law firm's domain, correctly rejected by the pipeline",
+     "email": "",
+     "source": "press",
+     "source_url": "https://vawinejourneys.blogspot.com/2024/05/capstone-vineyards.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "theo@capstonevineyards.com",
+     "reason": "Right contact, name and title missing: this is Theo Smith, Owner and Winemaker (bought Capstone in December 2022 with his wife and two friends, per https://capstonevineyards.com/our-family; \"owner and winemaker, Theo\" on /our-tasting-room)."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "capstonevineyards.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Capstone Vineyards (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "The one saved contact is right and is the best person: theo@ is Theo Smith, owner and winemaker (name was missing on the sheet). No other email exists on the site beyond info@ (general inbox). The winery books live music (its Field Notes blog announces a \"Sparkling Sunday\" with a live musician). Andrea Baer (Apollo) is a former owner; the invalid andrea@ address was rightly dropped. No better decision-maker with an email found."
+  },
+  {
+   "venue_id": "MD-EVEN-3006",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Ryan Simmons",
+     "title": "Concert Host (owner/booker of the house concert series; pairing stated on the page: the \"Concert Host\" block lists Ryan Simmons with this address). WARNING: his musician page says he no longer accepts ANY solicitations and only hosts musicians he already knows. The pipeline's ZeroBounce check returned catch-all for this address [address concert@bonniebranch.org not handed to night_save: the host's own musician page says regular shows have ended and he is 'no longer accepting ANY solicitations']",
+     "email": "",
+     "source": "website",
+     "source_url": "https://bonniebranch.org/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "miami@tourspain.es",
+     "reason": "Wrong business: this is the Tourist Office of Spain in Miami (Turespana, Coral Gables FL; https://www.tourspain.es/consejerias/miami/en/). It has nothing to do with Concerts on Bonnie Branch and does not appear on any bonniebranch.org page I fetched (home, whatis.html, musicianinfo.html, all 40 linked season pages). Should be removed."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "bonniebranch.org (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Concerts on Bonnie Branch (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The one saved contact (miami@tourspain.es) is a wrong business, Spain's tourist office in Miami, and should go. The real contact is the host, Ryan Simmons, at concert@bonniebranch.org (a script-written mailto under \"Concert Host\" on the home page; the pipeline saw the address but dropped it as catch-all and did not pair it with his name). Important: https://bonniebranch.org/musicianinfo.html says regular shows have ended, he accepts no solicitations and only hosts musicians he already knows, so this venue is a poor target. No Instagram exists that I could find; no contact form (only a Mailchimp list signup and an audience reservation pop-up, reserve.html, which is not a way to reach him about booking). The Apollo step's rejected org name is not in the step line, so I could not judge it; a private house series having no Apollo org is expected. [Audit review: one found address is listed without its email on purpose: the host's own musician page says regular shows have ended and he is 'no longer accepting ANY solicitations'.]"
+  },
+  {
+   "venue_id": "VA-REST-3201",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jeff Seese",
+     "title": "Owner (bought the winery in Sept 2017 with Travis Patton; no personal email published anywhere I could find)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://vawinejourneys.blogspot.com/2022/10/chester-gap-cellars.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Travis Patton",
+     "title": "Co-owner (per the Virginia Wine listing, seen only as a search snippet: the page returned 403 to me; a Tripadvisor review also names 'one of the owners, Travis')",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.virginiawine.org/wineries/chester-gap-cellars",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "chestergapcellars.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Chester Gap Cellars (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "No usable email exists in public: the whole 9-page Squarespace site (every sitemap URL read) names no person and shows only info@chestergapcellars.com (contact + location pages); Vinoshipper and Barnivore list the same info@. Owners are Jeff Seese and Travis Patton (bought Sept 2017 from founder Bernd Jung), named only off-site, with no email. Searches for any other @chestergapcellars.com address found none. Address 4615 Remount Road, Front Royal VA 22630 matches. The pipeline missed nothing with an email."
+  },
+  {
+   "venue_id": "MD-REST-3157",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Tricia Hudson",
+     "title": "Co-owner with Brad Hudson (Baltimore Sun 2017, seen as a search snippet; no email published)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.baltimoresun.com/2017/04/05/hudson-coastal",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "hudsoncoastal.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Hudson Coastal Raw Bar & Grille (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "COULD NOT READ THE VENUE SITE: hudsoncoastal.com (Popmenu) answers 403 to curl and WebFetch on every page; only sitemap.xml loaded. Nothing new with an email. LOCATION: every listing (Howard County Chamber, Visit Howard County, Visit Maryland) gives 11811 West Marketplace, Fulton, MD 20759 (Maple Lawn), phone (240) 280-8640, not Columbia; still in the target area. Owners Brad and Tricia Hudson (Baltimore Sun 2017; a 2021 menu also names Joel V. Young, Executive Chef, both seen as search snippets only). Only published email anywhere is info@hudsoncoastal.com (Visit Howard County). LEAD, NOT VERIFIED BY ME: the pipeline's rejected candidate 'ncatering@hudsoncoastal.com' (ZeroBounce invalid) looks like catering@hudsoncoastal.com with the 'n' of an escaped newline (\\n) glued on, the same artifact as 'ngiveaway@popmenu.com' beside 'giveaway@popmenu.com'; if so the real catering inbox was never verified and could pair with owner Brad Hudson. I did not see that address on any page or snippet, so it is not listed as a contact. The sitemap lists pages worth a Chrome visit: /pd (private dining, 900 sq ft room, 50 seated/75 reception), /offsite-catering-platters, /visit-us, /press, /employment. The sheet's contact_form is a menu-item URL ('hudson-coastal-does-not-use-3rd-party-delivery-services'), not a contact form; left untouched because the field is not empty. [location_ok=false]"
+  },
+  {
+   "venue_id": "VA-REST-2247",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Troy Reynolds",
+     "title": "General Manager/Head Professional (PGA) - correction: this email is already saved but without a name or title",
+     "email": "troyreynolds@golfoldhickory.com",
+     "source": "website",
+     "source_url": "https://www.golfoldhickory.com/contact/employment",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Michelle Wang",
+     "title": "Assistant General Manager/Director of Sales (books weddings, banquets, special occasions) - correction: saved contact has no title",
+     "email": "michellew@golfoldhickory.com",
+     "source": "website",
+     "source_url": "https://www.golfoldhickory.com/events/special-occasions",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Steve Clark",
+     "title": "Director of Operations (PGA)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.golfoldhickory.com/contact/directions",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "troyreynolds@golfoldhickory.com",
+     "reason": "Right contact, name and title missing: this is Troy Reynolds, PGA, General Manager/Head Professional (staff list on /contact/directions; 'Email inquires may be sent to Troy Reynolds, PGA at troyreynolds@golfoldhickory.com' on /contact/employment)."
+    },
+    {
+     "email": "moakes@golfoldhickory.com",
+     "reason": "Belongs to this club but low value for a music pitch: Matthew Oakes is the Assistant Golf Professional (runs the Winter Series Cup golf events), not events/F&B. Michelle Wang (Director of Sales) and Troy Reynolds (GM) are the people to write to."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "golfoldhickory.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Old Hickory Golf Club LLC (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 3
+    }
+   ],
+   "summary": "All 3 saved emails are this club's own (mailto links on golfoldhickory.com, 11921 Chanceford Dr, Woodbridge). The unnamed one is Troy Reynolds, PGA, General Manager/Head Professional; Michelle Wang is Assistant GM/Director of Sales and the stated contact for weddings/banquets/special occasions (best target); Matthew Oakes is only the Assistant Golf Professional. No further emails exist on the site or in search results (Steve Clark, Director of Operations, and Apollo's Matt Allis, F&B Director, have no published email; Allis is not on the site's staff list). Facebook, Instagram and contact form already filled."
+  },
+  {
+   "venue_id": "VA-WINE-2955",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michelle Duggins",
+     "title": "Chef, Curio Bistro (pairing with chef@ inferred: the post says the brunch is \"crafted by Chef Michelle\" and gives chef@curiowines.com; /bistro/ names her \"Chef Michelle Duggins\")",
+     "email": "chef@curiowines.com",
+     "source": "website",
+     "source_url": "https://curiowines.com/2026/04/28/mothersday26/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Johnny Puckett",
+     "title": "Owner and winemaker (Curio Wine Bar and Rogers Ford Farm Winery)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://curiowines.com/bistro/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/curiowines",
+   "instagram": "https://www.instagram.com/curiowines",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "curiowines.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Curio Wine Bar & Tasting Room (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Found chef@curiowines.com in plain text on the venue's Mother's Day 2026 post (Chef Michelle Duggins, pairing inferred); owner is Johnny Puckett (no personal email published; only contact@curiowines.com, a general inbox, is given for cellar rentals). Facebook/Instagram are facebook.com/curiowines and instagram.com/curiowines per the venue's own Linktree (bio: 209 and 205 William St, Downtown FXBG); the site's footer social icons have no href."
+  },
+  {
+   "venue_id": "MD-MUSE-1648",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jeannette Marxen",
+     "title": "Programs & Interpretation Manager, JHU Museums - the named contact on Music at Evergreen concert listings (correction: saved title 'Coordinator' is outdated)",
+     "email": "jmarxen1@jhu.edu",
+     "source": "website",
+     "source_url": "https://museums.jhu.edu/contact-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Lori Beth Finkelstein",
+     "title": "Philip Franklin Wagley Director & Curator, Evergreen Museum & Library; Director, Homewood Museum",
+     "email": "lfinkelstein@jhu.edu",
+     "source": "website",
+     "source_url": "https://museums.jhu.edu/contact-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rosina Saqib",
+     "title": "House Manager, Evergreen Museum & Library [address rsaqib1@jhu.edu not handed to night_save: house manager, not a booking or events decision-maker; the concert contact (Marxen) is already saved and the director is proposed]",
+     "email": "",
+     "source": "website",
+     "source_url": "https://museums.jhu.edu/contact-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Michelle Fitzgerald",
+     "title": "Curator of Collections, JHU Museums (correction: saved contact has no name)",
+     "email": "mfitzg19@jhu.edu",
+     "source": "website",
+     "source_url": "https://museums.jhu.edu/contact-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "akimball@jhu.edu",
+     "reason": "Unrelated university library staff: Amy Kimball is Head of Materials Management (Sheridan Libraries), named on the visitor-info FAQ only for research requests about volumes in the John Work Garrett Library. She is not on the JHU Museums staff list and has nothing to do with events, concerts or rentals."
+    },
+    {
+     "email": "mfitzg19@jhu.edu",
+     "reason": "Right museum, name missing: this is Michelle Fitzgerald, Curator of Collections, The Johns Hopkins University Museums. Collections/research role, not events or concerts: low value for a music pitch."
+    },
+    {
+     "email": "amulvihill@jhu.edu",
+     "reason": "Real JHU Museums-side staff (Associate Director of Communications & Marketing, Sheridan Libraries & University Museums) but a press/media contact, named on the photography-policy page for media shoots only; not a booker."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "museums.jhu.edu (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=skipped:shared_domain)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Evergreen Museum & Library (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "The JHU Museums staff list is on https://museums.jhu.edu/contact-us/ (outside the /evergreen-museum-library/ path the crawl stayed in). Jeannette Marxen (already saved) is the one to pitch: she is Programs & Interpretation Manager and is the named contact ('Programs Manager') on the Music at Evergreen concert listings on events.jhu.edu (Oct 2025 and Feb 2025). Missed: director Lori Beth Finkelstein (lfinkelstein@jhu.edu) and Evergreen house manager Rosina Saqib (rsaqib1@jhu.edu), both mailto on the staff list. Amy Kimball is unrelated library staff (flagged); Michelle Fitzgerald and Amy Mulvihill are real museum staff but not bookers. Rentals go through privateeventsoffice@jhu.edu / (443) 840-9585 with no named person published (the 'Director of Private Events' is unnamed; a 2019 org chart name is too old to use). The sheet's contact_form is the photography-policy page; the real rental inquiry form is https://evergreenevents.library.jhu.edu/contact-us/ (not filled in because the field is not empty). The private events office also has its own Facebook (EvergreenPrivateEvents) and Instagram (evergreenmuseumevents). [Audit review: one found address is listed without its email on purpose: house manager, not a booking or events decision-maker; the concert contact (Marxen) is already saved and the director is proposed.]"
+  },
+  {
+   "venue_id": "MD-WINE-2907",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Ralph Di Biasi",
+     "title": "Co-owner, wine director and general manager (titles from Wine Spectator; the venue's About page names the brothers as owners)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://tastecuvino.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Angelo Di Biasi",
+     "title": "Co-owner and chef (chef title from Wine Spectator)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://tastecuvino.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "tastecuvino.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "CuVino Trattoria Pizza Enoteca (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "No personal or function email exists anywhere public: every one of the site's 77 pages and its PDFs carries only contact@tastecuvino.com (general inbox, correctly rejected), and searches for @tastecuvino.com and the owners' names return no other address. Owners are brothers Ralph Di Biasi (wine director/GM per Wine Spectator) and Angelo Di Biasi (chef), named on the venue's About page; the pipeline recorded no people and attached the name \"Fine Wines\" to contact@. Reachable only by the contact form (already on the sheet) or phone 410-853-7484. Apollo org name matches the venue."
+  },
+  {
+   "venue_id": "VA-COUN-007",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jamie McGuire",
+     "title": "Events Manager (the club site's own wording: 'our experienced event planning team, led by our Events Manager, Jamie McGuire') - correction: saved title 'Director of Events' is Apollo's; this is the person to pitch",
+     "email": "jamie@fredclub.org",
+     "source": "website",
+     "source_url": "https://www.fredclub.org/events",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Shelby Sonnier",
+     "title": "Membership Director - correction: this email is already saved without a name (pairing inferred: the site names her, the address is shelby@ on the club's domain)",
+     "email": "shelby@fredclub.org",
+     "source": "website",
+     "source_url": "https://www.fredclub.org/membership",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Chrissy Griffiths",
+     "title": "Fitness Director - correction: this email is already saved without a name",
+     "email": "chrissy@fredclub.org",
+     "source": "website",
+     "source_url": "https://www.fredclub.org/fitness",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "chrissy@fredclub.org",
+     "reason": "Right club, name and title missing: this is Chrissy Griffiths, Fitness Director (mailto on /fitness, for personal training and golf fitness). Nothing to do with events, dining or music: not worth an email."
+    },
+    {
+     "email": "shelby@fredclub.org",
+     "reason": "Right contact, name and title missing: this is Shelby Sonnier, Membership Director ('Contact our Membership Director, Shelby Sonnier' on /membership). Membership sales, not events: low value for a music pitch."
+    },
+    {
+     "email": "jerrig@fredclub.org",
+     "reason": "Could not confirm as current staff: no public page or search result names Jerri Galyen at the club, and the site now names Shelby Sonnier as Membership Director, so Apollo's 'Member Relations Director' may be a former or overlapping role. The address is on the club's domain (not another Fredericksburg club). Low value for a music pitch either way."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "fredclub.org (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Fredericksburg Country Club (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Right club: fredclub.org is Fredericksburg Country Club, 11031 Tidewater Trail, and all 6 saved emails are on its domain (Apollo org matched by name and domain; none belongs to another Fredericksburg club). Confirmed current: Jamie McGuire (the site calls her Events Manager, the best target) and Brian Walker as General Manager (2026 VSGA club listing; he was the head golf pro before, Sam Thomas took that job in May 2026). Not confirmable on any public page: Felicity Caretti (F&B Director) and Jerri Galyen (Member Relations Director); the club's 'Meet The Team' page is members-only. The two unnamed emails are Shelby Sonnier, Membership Director, and Chrissy Griffiths, Fitness Director (both low value for music). No new emails exist publicly: the site shows only Chrissy's mailto, the 7 PDFs (menus, calendars) carry none. Former GM Carl Koons (carl@fredclub.org on a 2019 chamber listing) and Apollo's Becky Nash are not current per these sources and were left out. The club does book live music (Music on the Patio, May 9 2026, acoustic act). The sheet's contact_form is the dining page's F&B form; the events inquiry form addressed to Jamie McGuire is on https://www.fredclub.org/events (not changed, field not empty)."
+  },
+  {
+   "venue_id": "VA-REST-3203",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Amanda Gorgas",
+     "title": "Tasting Room Manager (pairing with events@ is INFERRED, not stated on the site; events@ is the address the site gives for musicians who want to play and for event inquiries)",
+     "email": "events@nakedmtnwinery.com",
+     "source": "website",
+     "source_url": "https://www.nakedmtnwinery.com/live-music-calendar",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Randy Morgan",
+     "title": "Owner & Executive Winemaker",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.nakedmtnwinery.com/staff-virginia-winery",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Meagan Morgan",
+     "title": "Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.nakedmtnwinery.com/staff-virginia-winery",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/nkdmtnwinery/",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "drinknaked@nakedmtnwinery.com",
+     "reason": "Right business (footer of every page and the contact page of nakedmtnwinery.com), but it is the winery's General Inquiries inbox with no person attached: the contact page labels it 'General Inquiries'. No name is stated for it; the owners are Randy and Meagan Morgan (staff page). The better address for a musician is events@nakedmtnwinery.com (see contacts)."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "nakedmtnwinery.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Naked Mountain Winery (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Saved drinknaked@ is the right winery but is its General Inquiries inbox with no person. The live-music page says musicians should write to events@nakedmtnwinery.com; no person is named for it, so the pairing with Amanda Gorgas (Tasting Room Manager, staff page) is inferred. Owners Randy and Meagan Morgan are on the staff page with no email (a third-party directory, nataliemaclean.com, lists 'Contact: Randy Morgan, nakedmountain@yahoo.com', not on the winery's own site, so not a contact). Apollo org 'Naked Mountain Vineyard' is the same business (older name, same address 2747 Leeds Manor Rd, ZoomInfo ties it to nakedmtnwinery.com); Apollo's GM Sandy Coleman is not on the staff page or in any search result, unconfirmed. Facebook facebook.com/nkdmtnwinery (page title 'Naked Mountain Winery'; linked for the Markham entry on corcoranmce.com). The sheet's Instagram (lucaslukelucas) does not appear anywhere in the site's HTML and looks like another account: the winery's is instagram.com/nakedmtnwinery (search result title 'Naked Mountain Winery (@nakedmtnwinery)'); left untouched because the field is not empty."
+  },
+  {
+   "venue_id": "VA-REST-3058",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Matt Carlin",
+     "title": "President and co-founder, Metropolitan Hospitality Group (owner group of El Bebe and of Open Road Outpost & Biergarten, which replaced it at The Boro); context only, the McLean El Bebe is closed",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.ffxnow.com/2026/09/08/new-restaurant-with-biergarten-from-open-road-launches-at-the-boro-in-tysons/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "el-bebe.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "El Bebe (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 5
+    }
+   ],
+   "summary": "CLOSED at this location: FFXnow (Sep 8 2026) reports El Bebe closed at The Boro on Aug 30 2026 and is \"back down to a single location\" at Navy Yard, DC; el-bebe.com now lists only 99 M St SE, Washington DC (its contact form dropdown still has a stale \"El Bebe at the Boro\" option), and the Tripleseat form on the sheet sits under \"Navy Yard\" on /private-events. The Boro space (8354 Broad St, McLean VA 22102) is now Open Road Outpost & Biergarten, same owner group (MHG), with a biergarten and live music: a different venue, worth its own sheet row. The only email on either site is info@eatmhg.com (general inbox, correctly rejected). el-bebe.com is the brand's own site, so website_ok is true, but the McLean venue no longer exists. Apollo org (EL BEBE Tacos + Tequila) is the right brand, 0 people. [location_ok=false]"
+  },
+  {
+   "venue_id": "MD-REST-3182",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Craig Rinkerman",
+     "title": "Owner / Proprietor",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.catonsvillegourmet.com/about_us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Cristina Rinkerman",
+     "title": "Owner / Proprietor (a Baltimore Magazine profile, seen only as a search snippet, calls her the day manager)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.catonsvillegourmet.com/about_us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rob Rehmert",
+     "title": "Executive Chef (catering page: special requests go to 'Chef Rob' for pricing)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.catonsvillegourmet.com/catering/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "catonsvillegourmetreservations@yahoo.com",
+     "reason": "Right contact, name and title missing: this is the restaurant's own parties/platters inbox (contact page: 'E-mail ... for questions about parties or to order platters', printed directly under the sign-off 'Many Thanks, Craig and Cristina Rinkerman'; also the Email line in the sidebar of every page). No person is stated for it; by inference it is Craig Rinkerman, Owner (with Cristina Rinkerman, Owner)."
+    },
+    {
+     "email": "catgourmet@yahoo.com",
+     "reason": "Right contact, name and title missing: this is the restaurant's general business inbox, printed on its own Terms / Privacy page under 'Contact and Refund Information: Catonsville Gourmet, 829 Frederick Rd.' (and on its Facebook per the pipeline). No person is stated for it; by inference it is Craig Rinkerman, Owner. Not a different business."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "catonsvillegourmet.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Catonsville Gourmet (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Both saved Yahoo addresses are this restaurant's own (829 Frederick Rd, both printed on catonsvillegourmet.com, Cloudflare-obfuscated); neither has a person stated, the owners are Craig and Cristina Rinkerman and the Executive Chef is Rob Rehmert (About Us page). No personal email for any of them was found on the site or in search. Apollo org 'Catonville Gourmet Market & Fine Foods' is the same business: it opened in 2008 as 'Catonsville Gourmet Market and Fine Foods' at this address and the site still runs the market ('Fresh Market', 'Catonsville Gourmet Market Party Platters Menu'); not to be confused with 818 Market across the street. reservations@catonsvillegourmet.com shows only in the sidebar of 2015-era blog posts (current pages use the Yahoo one), no name: correctly not saved. Facebook and Instagram on the sheet match the links on the site. The sheet's contact_form points at /catering/, which has no form; the real form is on /contact/ ('To Inquire About Large Catering Orders or Group Parties Please Use The Form Below'); left untouched because the field is not empty."
+  },
+  {
+   "venue_id": "VA-COUN-009",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "John Zorich",
+     "title": "General Manager (per the live VSGA course listing, fetched 2026-11-10; no email published)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://vsga.org/courselisting/12039",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Mike Stonehill",
+     "title": "Owner (named 'new owner' in a club Facebook post of 2026-06-24, seen only as a search snippet of a Facebook-mirror listing; not confirmed by news)",
+     "email": "",
+     "source": "facebook",
+     "source_url": "https://www.localgymsandfitness.com/US/Fredericksburg/185144779099/Gauntlet-Golf-Club",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Michael Byrd",
+     "title": "President / principal owner, New Direction Golf Management (the club's operator since March 2018); formerly listed as the club's General Manager",
+     "email": "",
+     "source": "press",
+     "source_url": "https://clubandresortbusiness.com/gauntlet-gc-requests-federal-funds-for-repairs/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Karman Miller",
+     "title": "Director of Membership Services, Marketing and Events (as of a July 2022 press release; not confirmed current)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.tourstaffordva.com/?p=59901",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "gauntlet_golf@newdirection.golf",
+     "reason": "Right business, but not a person: this is the club's own general inbox on its operator's domain (New Direction Golf Management has leased and run the Gauntlet since March 2018; the local part names this club, so it is not a sister course). No person's name is attached and I found none to pair with it. I could not see the address on a page myself: golfgauntlet.com answers 403 to a plain fetch."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "golfgauntlet.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Gauntlet Golf Club (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "golfgauntlet.com answered 403, so the club's own pages were not read; everything is from third-party listings and search snippets. The saved address is this club's own inbox on its operator's domain (New Direction Golf Management), not a sister course, but it is a nameless general inbox. No new email found. Current GM per the live VSGA listing is John Zorich; a June 2026 club post names Mike Stonehill as new owner (snippet only). Search summaries of an older VSGA listing showed mbyrd@newdirection.golf (Mike Byrd, GM) and jgray@newdirection.golf (Jessi Gray, Director of Golf), but the live VSGA page no longer lists either, and the pipeline's ZeroBounce check found mvalenzuela@ from the same old staff list invalid, so I did not list them as contacts. VSGA confirms the website and the address 18 Fairway Drive, Fredericksburg VA 22406 (Stafford County)."
+  },
+  {
+   "venue_id": "VA-WINE-2958",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Robert Pagan",
+     "title": "Co-founder / owner (with Denise Pagan, per Our Story; no email published)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.wildernessrunvineyards.com/our-story",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "wildernessrunvineyards.com (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Wilderness Run Vineyards (pipeline's own Apollo step on Nov 10, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "All 3 saved contacts belong to this vineyard. Denise Pagan (Event Coordinator, also co-founder with Robert Pagan) and her gmail are a mailto on the vineyard's own /events page; Harry Pagan and Brandon Pallen are both listed on /our-story as 'Winemaker / Co-Founder' (their @wildernessrunvineyards.com addresses are not published anywhere I could load, so the addresses themselves rest on Apollo + ZeroBounce). No better decision-maker with an email exists publicly. For live music: the sister brewery's FAQ (1781 Brewing, same farm and family) says musicians wanting to play at '1781 Brewing Co. and Wilderness Run Vineyards' should call 'our booking agent directly at 540-718-4738'; no name or email is given. Address on the site: 11109 Plank Rd, Spotsylvania VA 22553."
+  }
+ ]
+}

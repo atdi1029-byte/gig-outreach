@@ -1,0 +1,717 @@
+{
+ "run_id": "run-20261110-0254",
+ "dry_run": false,
+ "at": "2026-11-10T05:56:59-05:00",
+ "totals": {
+  "saved": 13,
+  "venues_rescued": 8,
+  "socials": 1,
+  "rejected": 4,
+  "errors": 0,
+  "flagged": 26
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-WINE-2612",
+   "name": "St Vincent Wine",
+   "contacts": [
+    {
+     "email": "events@stvincentwine.com",
+     "name": "Frederick Uku",
+     "source_url": "https://www.stvincentwine.com/about",
+     "title": "Co-owner (events inbox; pairing inferred, not stated on the site)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Peyton Sherwood",
+     "source_url": "https://www.stvincentwine.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Zach Cutler",
+     "source_url": "https://www.capitalbop.com/st-vincent-jazz-photo-essay/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Allison Desy",
+     "source_url": "https://www.capitalbop.com/st-vincent-jazz-photo-essay/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Joel Hatton",
+     "source_url": "https://www.stvincentwine.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-3395",
+   "name": "La Jet\u00e9e",
+   "contacts": [
+    {
+     "email": "aazam@woodberrykitchen.com",
+     "name": "Aazam Yaqoob",
+     "source_url": "https://www.lajeteebaltimore.com/careers",
+     "title": "Owner-group executive (COO/CFO per job posts); address from the careers page",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Virginia Allen",
+     "source_url": "https://baltimorefishbowl.com/stories/spike-gjerdes-new-restaurant-la-jetee-opens-at-harbor-point-on-sunday-replacing-cindy-lous-fish-house/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Spike Gjerde",
+     "source_url": "https://www.lajeteebaltimore.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Matt Audette",
+     "source_url": "https://baltimorefishbowl.com/stories/spike-gjerdes-new-restaurant-la-jetee-opens-at-harbor-point-on-sunday-replacing-cindy-lous-fish-house/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "canopy@eccoproject.com",
+     "reason": "Right contact, name and title missing: this is Teresa Davison, private events manager (the events packet PDF on the venue's site ends 'get in touch to plan your event: TERESA DAVISON, private events manager, canopy@eccoproject.com'). Best saved contact to pitch."
+    },
+    {
+     "email": "lajetee@eccoproject.com",
+     "reason": "No person name and the title is wrong: this is the restaurant's general contact inbox shown in every page footer (the site also sends parties of 8+ and private-event requests to it), not a 'Reservations' person. Under the general-inbox rule it should not stand as a contact unless a named person is attached; the site names none (the GM at opening was Virginia Allen, pairing not stated anywhere)."
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2881",
+   "name": "Oribu",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Ross Boykin",
+     "source_url": "https://www.popville.com/2026/05/first-look-grand-hyatt-washingtons-oribu-brings-japanese-mediterranean-dining-to-dc-this-june/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Joevel Magpantay",
+     "source_url": "https://www.popville.com/2026/05/first-look-grand-hyatt-washingtons-oribu-brings-japanese-mediterranean-dining-to-dc-this-june/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Gerard Spezio",
+     "source_url": "https://www.popville.com/2026/05/first-look-grand-hyatt-washingtons-oribu-brings-japanese-mediterranean-dining-to-dc-this-june/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2878",
+   "name": "Rosselli",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Ashok Bajaj",
+     "source_url": "https://www.rossellidc.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Carlos Cardona",
+     "source_url": "https://www.rossellidc.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "cpuchon@kbrgdc.com",
+     "reason": "Right business, name and title missing on the sheet. He is Christopher Puchon, Private Events Manager (INQUIRE page of the Private Dining Guide PDF linked from rossellidc.com/private-events). Best contact of the three for an events / live music pitch."
+    },
+    {
+     "email": "jstokes@kbrgdc.com",
+     "reason": "Right business, name and title missing on the sheet. He is James Stokes, Wine Director and Assistant General Manager (same PDF page). Fine as a second or third contact, not the first."
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2880",
+   "name": "Malabar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Ashok Bajaj",
+     "source_url": "https://www.dcoutlook.com/2025/12/restaurateur-ashok-bajaj-announces.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Vikram Sunderam",
+     "source_url": "https://www.malabar-dc.com/home",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2879",
+   "name": "BlackSalt",
+   "contacts": [
+    {
+     "email": "manager@blacksaltdc.com",
+     "name": "Josh Pauley",
+     "source_url": "https://www.blacksaltrestaurant.com/info-contact",
+     "title": "General Manager (manager@ inbox printed under his name; pairing inferred)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Jeff Black",
+     "source_url": "https://www.blacksaltrestaurant.com/info-contact",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-EVEN-2605",
+   "name": "Italian Cultural Institute Washington",
+   "contacts": [
+    {
+     "email": "dir.iicwashington@esteri.it",
+     "name": "Elena Settimini",
+     "source_url": "https://iicwashington.esteri.it/en/chi-siamo/il-personale/",
+     "title": "Director",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Michele Giacalone",
+     "source_url": "https://iicwashington.esteri.it/en/chi-siamo/il-personale/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "semplificazione@esteri.it",
+     "reason": "Wrong organisation: the Italian Foreign Ministry's inbox in Rome for suggestions on simplifying the ministry's work, printed in the footer of every esteri.it site. No person, nothing to do with the Institute's events."
+    },
+    {
+     "email": "iicwashington@esteri.it",
+     "reason": "The Institute's general inbox, saved with the title 'Director' and no name. The Director is Elena Settimini and her address is dir.iicwashington@esteri.it. A general inbox is against the save rules; note though that the Contacts page tells people to send event/project proposals to exactly this address, so it is the official route for a pitch."
+    },
+    {
+     "email": "michele.giacalone@esteri.it",
+     "reason": "Right person, kept; title differs from the site. The staff page lists him as 'Michele Giacalone' (English page) / 'Michael Giacalone' (Italian page), 'Library, Public Relations and Press', with pr.iicwashington@esteri.it. 'Deputy Director' (from LinkedIn/Apollo) is not on the site and I could not confirm it. I did not see this personal address on any page."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3394",
+   "name": "Josefina",
+   "contacts": [
+    {
+     "email": "events@josefinarestaurant.com",
+     "name": "David Zamudio",
+     "source_url": "https://josefinarestaurant.com/events/",
+     "title": "Chef-Owner (events inbox; pairing inferred, not stated on the site)",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-MUSE-005",
+   "name": "Folger Shakespeare Library",
+   "contacts": [
+    {
+     "email": "performance@folger.edu",
+     "name": "Karen Ann Daniels",
+     "source_url": "https://www.folger.edu/about-us/folger-leadership/",
+     "outcome": "rejected:zerobounce_do_not_mail"
+    },
+    {
+     "email": "",
+     "name": "Beth Emelson",
+     "source_url": "https://www.folger.edu/about-us/folger-leadership/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "David Mozur",
+     "source_url": "https://www.broadwayworld.com/washington-dc/article/Folger-Consorts-45th-Season-Begins-This-Month-20220912",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "operations@folger.edu",
+     "reason": "Title is wrong: David Whitney is the Director of Operations ('Operations' is the department label). Building operations, a shared inbox; not the booking contact (the events staff below are)."
+    },
+    {
+     "email": "nbryner@folger.edu",
+     "reason": "Not a booking contact, going by the title saved with it: Nicole Bryner, Associate Director of Exhibitions Operations (from Apollo; not checked on the web in this audit). Exhibitions, not events or music."
+    },
+    {
+     "email": "cradner@folger.edu",
+     "reason": "Not a booking contact, going by the title saved with it: Casey Radner, Associate Director of Development Operations (from Apollo; not checked on the web in this audit). Fundraising, not events or music."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-EVEN-3052",
+   "name": "George Peabody Library",
+   "contacts": [
+    {
+     "email": "privateeventsoffice@jhu.edu",
+     "name": "Skyla Steele-Fedner",
+     "source_url": "https://www.library.jhu.edu/staff/skyla-steele-fedner/",
+     "title": "Sr. Private Events Coordinator (her JHU staff profile lists this inbox)",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-REST-2201",
+   "name": "University of Maryland Golf Course",
+   "contacts": [
+    {
+     "email": "dmfletch@umd.edu",
+     "name": "David Fletcher",
+     "source_url": "https://www.golf.umd.edu/contact-information/",
+     "outcome": "rejected:zerobounce_catch-all"
+    },
+    {
+     "email": "jmaynor@umd.edu",
+     "name": "Jeff Maynor",
+     "source_url": "https://www.golf.umd.edu/contact-information/",
+     "outcome": "rejected:zerobounce_catch-all"
+    },
+    {
+     "email": "bdix@umd.edu",
+     "name": "Brian Dix",
+     "source_url": "https://www.golf.umd.edu/outing-information/",
+     "outcome": "rejected:zerobounce_catch-all"
+    },
+    {
+     "email": "",
+     "name": "Jason Gurganus",
+     "source_url": "https://dining.umd.edu/directory/jason-gurganus-0",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "mulligans@umd.edu",
+     "reason": "Right business but no person: this is the shared inbox of Mulligan's Grill & Pub, the restaurant and event rooms in the golf course clubhouse (published on dining.umd.edu/md-community/mulligans-grill-and-pub for reservations and events). It is the only one of the 15 saved contacts that reaches the venue. The person who runs Mulligan's is David Fletcher, General Manager (dmfletch@umd.edu); the site does not say he reads this inbox, so that pairing is an inference."
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2749",
+   "name": "Corcoran School of the Arts & Design at GW",
+   "contacts": [
+    {
+     "email": "nortona@gwu.edu",
+     "name": "Ann Norton",
+     "source_url": "https://corcoran.gwu.edu/ann-norton",
+     "title": "Performance Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "empetro@gwu.edu",
+     "name": "Em Petro",
+     "source_url": "https://corcoran.gwu.edu/em-petro",
+     "title": "Exhibitions & Programming Associate",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Alma Laprida",
+     "source_url": "https://corcoran.gwu.edu/alma-laprida",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "lschiavo@gwu.edu",
+     "name": "Laura Schiavo",
+     "source_url": "https://corcoran.gwu.edu/contact",
+     "title": "Director, Corcoran School of the Arts & Design",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Natasha Bailey",
+     "source_url": "https://corcoran.gwu.edu/natasha-bailey",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3054",
+   "name": "Bayly Estate",
+   "contacts": [
+    {
+     "email": "brandt@noraleedc.com",
+     "name": "Brandt Ricca",
+     "source_url": "https://baylyestate.com/contact/",
+     "title": "Bookings and media contact (venue's PR firm, Nora Lee; site's only contact)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Annie Kim",
+     "source_url": "https://nora-lee-by-brandt-ricca.prowly.com/414163-wedding-and-events-venue-debuts-outside-of-dc",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dale Wettlaufer",
+     "source_url": "https://nora-lee-by-brandt-ricca.prowly.com/414163-wedding-and-events-venue-debuts-outside-of-dc",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-EVEN-3053",
+   "name": "Willowood Washington",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Brandon Green",
+     "source_url": "https://willowoodwashington.com/meet-the-owners/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Christian Salinas",
+     "source_url": "https://willowoodwashington.com/meet-christian-salinas/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "events@willowoodwashington.com",
+     "reason": "Junk name and title: 'Job Description' / 'WEDDING & EVENT SALES MANAGER' is the heading of a help-wanted blog post (willowoodwashington.com/wedding-event-sales-manager/, Feb 9 2026: 'Submit your resume to events@...'), not a person. The address itself is right: it is the venue's only published inbox (footer mailto on every page, contact page, Visit Hagerstown listing) and the one to pitch. No page names who answers it or who was hired for the sales job. The only named people are the two owners, Brandon Green and Christian Salinas (meet-the-owners page). If a name is wanted on this row, the honest label is 'Christian Salinas or Brandon Green, Owner (events inbox; pairing not stated on the site)'."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2272",
+   "name": "Lake Presidential Golf Club",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "catering@lakepresidentialgolf.com",
+     "reason": "Junk name and title: 'Corporate Meetings' / 'Special Events & Meetings' are page headings from /special-events-meetings/, not a person. The address is right and is the one to pitch for events (the site: 'call (301) 627-8577, ext. 103, or email Catering@LakePresidentialGolf.com about planning your special event', on both the events and weddings pages). The site names no catering or events person and searches (Eventective, Cvent, The Knot, WeddingWire snippets) name none either. The only named manager is Adam Noel, General Manager/Director of Golf; putting his name on this inbox would be an inference ('General Manager (catering inbox; pairing not stated on the site)')."
+    },
+    {
+     "email": "golfpro@lakepresidentialgolf.com",
+     "reason": "Saved with no name, and it is the wrong department: this is the golf-lessons inbox in the 'Contact Information' block under Kenny Kwak, PGA Teaching Professional (/pga-instruction/, ext. 104). Right name/title: Kenny Kwak, PGA Teaching Professional. Nothing to do with booking music or events; do not pitch."
+    },
+    {
+     "email": "super@lakepresidentialgolf.com",
+     "reason": "Saved with no name, and it is the wrong department: Ken Doerfler, Superintendent (golf course grounds), per /contact/. Right name: Ken Doerfler. Nothing to do with booking music or events; do not pitch."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-337",
+   "name": "The Front Porch",
+   "contacts": [
+    {
+     "email": "manager@thefrontporchmd.com",
+     "name": "Gautam Patel",
+     "source_url": "https://www.thefrontporchmd.com/press-and-media",
+     "title": "Owner since Dec 2025 (catering/business inbox; pairing inferred)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Shailesh Patel",
+     "source_url": "https://www.stmaryscountymd.gov/docs/upload/minutes/AlcoholBeverageBoard_202511131300.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jeffrey Lewis",
+     "source_url": "https://thebaynet.com/front-porch-lux-sports-bar-and-ruccis-win-conditional-liquor-approvals/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-408",
+   "name": "Noli's Italian Cucina",
+   "contacts": [
+    {
+     "email": "gm.nolis.leonardtown@gmail.com",
+     "name": "Brenda Moschell Myers",
+     "source_url": "https://web.archive.org/web/20260310154644/https://nolis.toast.site/gallery",
+     "title": "Owner and General Manager since 2026 (GM inbox; pairing inferred)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Richard Myers",
+     "source_url": "https://www.stmaryscountymd.gov/docs/upload/minutes/AlcoholBeverageBoard_202602121300.pdf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-2356",
+   "name": "Aquia Harbour Yacht Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Angela Hensley",
+     "source_url": "https://www.ahyc.org/aquia-harbour-view-articles/feb-2026-change-of-watch-cow",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jack Campbell",
+     "source_url": "https://www.ahyc.org/aquia-harbour-view-articles/feb-2026-change-of-watch-cow",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Vicky Gilson",
+     "source_url": "https://www.ahyc.org/aquia-harbour-view-articles/feb-2026-change-of-watch-cow",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Lindie Mallette",
+     "source_url": "https://www.ahyc.org/announcements",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "vice.commodore@ahyc.org",
+     "reason": "Name is missing: 'Vice Commodore' is the office, not a person. The right name/title is Tom Ward, Vice Commodore (2026). The club's Announcements page says to reach Tom Ward at this address about the clubhouse bartending schedule, and he is on the slate for Commodore 2027. Right business; this is the best saved contact to pitch. The address goes with the office, so it will probably pass to the next Vice Commodore (slate: Lindie Mallette) at the December Change of Watch."
+    },
+    {
+     "email": "fleet.captain@ahyc.org",
+     "reason": "Name is missing: 'Fleet Captain' is the office, not a person. The right name/title is Angela (Ange) Hensley, Fleet Captain (2026, and on the 2027 slate). The Announcements page says to contact Ange Hensley at this address; she runs the boat trips and writes the club's monthly column. Right business; a fair second contact, though her job is cruises, not clubhouse socials."
+    },
+    {
+     "email": "ipc@ahyc.org",
+     "reason": "No name saved. The right name/title is Bill Cox, Immediate Past Commodore (2026); the Announcements page says nominations go 'to Bill Cox (ipc@ahyc.org)'. Right business but the weakest of the three for booking music (he chaired the nominating committee); the address goes with the office and is slated to pass to Jack Campbell for 2027."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-WINE-2905",
+   "name": "Springfield Manor Winery, Distillery & Brewery",
+   "contacts": [
+    {
+     "email": "",
+     "name": "John St. Angelo",
+     "source_url": "https://business.maryland.gov/?p=7762",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/springfieldmanor/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "brian@springfieldmanor.com",
+     "reason": "Saved with no name or title. Right business and a right person to pitch: this is Brian Childs, innkeeper and wedding/event coordinator at Springfield Manor (with his wife Loree; Celebrate Gettysburg, May/June 2019: https://digital.graphcompubs.com/article/Love+%28And+Lavender%29+Is+In+The+Air/3366548/583238/article.html; recent WeddingWire/Knot reviews, seen in search snippets only, still name Brian as running the events). The surname comes from the press article, not the venue site; the site only shows 'Brian@'. Suggested: name 'Brian Childs', title 'Innkeeper & Wedding/Event Coordinator'. His address is the site-wide contact email (header of home, contact, lavender pages)."
+    },
+    {
+     "email": "valerie@springfieldmanor.com",
+     "reason": "Right business, right person, but the name and title are wrong. Title 'Frozen Drinks - Sangria - Food Trucks' is junk: it is the line of home-page text printed just above 'Email Valerie@SpringfieldManor.com for pickup orders'. The name 'Valerie Angelo' (from Apollo) dropped the 'St.': she is Valerie St. Angelo, of the owning family (Steeples and Peoples podcast, May 24 2022, 'we talk with Valerie St. Angelo of Springfield Manor ... her family'). No page states her title; Apollo says Owner; the site makes her the winery-side contact (pickup orders, Lavender Festival vendor applications, photo shoots). Suggested: name 'Valerie St. Angelo', title 'Owner family / winery & Lavender Festival contact'. For live music in the tasting room (Sat & Sun 2-5pm) she is the better first pitch; the pairing of Valerie with music booking is my inference, not stated on a page."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3476",
+   "name": "Orleans Bistro",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "tisha.obgcatering@gmail.com",
+     "reason": "Right business and the right person to pitch, but the saved name 'Tisha Obgcatering' is invented from the email (obgcatering = Orleans Bistro & Grill catering). Right name/title: Tisha Johnson, Owner. The site's About page is titled 'About Tisha Johnson and Orleans Bistro' ('In October 2017, she opened Orleans Bistro & Grill') and this address is the mailto in the footer of every page. The first-name match is clear; the page does not print 'Tisha Johnson' next to the address."
+    },
+    {
+     "email": "orleansbistroandgrill@gmail.com",
+     "reason": "Right business, but the saved name 'New Orleans' is junk (taken from page text, not a person). This is the restaurant's general inbox ('Fill in the form below or email us at' on /contact, also on /terms); no person is named with it. If it is kept, the only person to attach is Tisha Johnson, Owner (pairing not stated on the site). Second choice after tisha.obgcatering@gmail.com."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2235",
+   "name": "Westfields Golf Club",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "jpaul@westfieldsgolf.com",
+     "reason": "Saved with no name or title. Right business: this is the General Manager's own inbox, which the club also prints as its contact email in every page footer and on /contact. Name: Jason Paul, General Manager (golftrips.com / golfvirginia.com interview 'with Jason Paul, General Manager', Nov 9 2023). The VSGA club page lists jpaul@westfieldsgolf.com with club staff 'Landon Paul, General Manager', so he may go by Landon; the 'j' of the address fits Jason. No page states that Jason and Landon are one person: that is my inference. Suggested: name 'Jason Paul', title 'General Manager'. Second choice to pitch, after Ashley Clarkin."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3464",
+   "name": "Ristorante Renato",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "elisa@rrenato.com",
+     "reason": "Right business and the right person to pitch, but saved with no name. Right name/title: Elisa Bonilla, Owner and Events Coordinator. The private dining menu PDFs on the venue's site say 'email at elisa@rrenato.com or send a text message to Elisa, Events Coordinator'; the Fredericksburg Free Press (Mar 23 2026, photo caption) says 'Elisa Bonilla is executive director of Spreading Smiles, and owner of Ristorante Renato'. The surname is my pairing of the two (same first name, same restaurant, and the restaurant's charity site uses elisa@spreadingsmilesfxbg.org); no page prints 'Elisa Bonilla' next to this address."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3175",
+   "name": "Domaine Fortier Vineyards",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jennifer Volk-Fortier",
+     "source_url": "https://domainefortier.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Greta Hawkins",
+     "source_url": "https://vawinejourneys.blogspot.com/2025/05/domaine-fortier-vineyards.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Chris Lang",
+     "source_url": "https://domainefortier.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3475",
+   "name": "Castiglia's Italian Restaurant",
+   "contacts": [
+    {
+     "email": "bar.castiglias@gmail.com",
+     "name": "Heidi Dimas",
+     "source_url": "https://www.castigliasitalianrestaurant.com/to-go-catering",
+     "title": "Event Coordinator",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Amanda Vetters",
+     "source_url": "https://www.castigliasitalianrestaurant.com/catering",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "castiglias.fredericksburg@gmail.com",
+     "reason": "Right business and right location (324 William St, Fredericksburg), but the saved name 'Castiglias Fredericksburg' is invented from the email. The site pairs this inbox with Hannah Knise: six catering menu PDFs say 'For Additional Information, Please Contact: Hannah Knise, Email: Castiglias.Fredericksburg@gmail.com' and the To-Go Catering page says 'Please Contact Hannah at 540-373-6650 or Castiglias.Fredericksburg@gmail.com'. No title is given for her (catering / private party contact). Caution: those PDFs were made in January 2017, and the current Catering Policies name the Event Coordinators as Heidi Dimas and Amanda Vetters, so Hannah Knise may no longer work there. Heidi Dimas at bar.castiglias@gmail.com is the better person to pitch; keep this one as the restaurant's catering inbox."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2328",
+   "name": "Cambridge Yacht Club Inc",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Lorna Greene",
+     "source_url": "https://cambridgeyachtclub.com/flag-&-board",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tom Hannan",
+     "source_url": "https://cambridgeyachtclub.com/flag-&-board",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Peter Barclay",
+     "source_url": "https://cambridgeyachtclub.com/flag-&-board",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Stokes Liles",
+     "source_url": "https://cambridgeyachtclub.com/flag-&-board",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "cyc@cambridgeyachtclub.com",
+     "reason": "No person name, and the title 'BAR & DINING HOURS' is a footer heading the scraper picked up, not a job title. This is the club's general office inbox (the only address on the site), which the save policy treats as a general inbox. It is the right business. If it is kept, the person behind it should read Lorna Greene, General Manager (named on the club's Flag & Board page); the site does not state that she reads this inbox, that pairing is my inference."
+    }
+   ]
+  }
+ ]
+}

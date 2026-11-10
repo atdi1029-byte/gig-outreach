@@ -414,6 +414,13 @@ JUNK_SITE_PARTS = ['fox5dc.com', 'fox.com', 'foxtv.com', 'nbcwashington.com', 'w
                    'blogspot.com', 'godaddy.com', 'weebly.com', 'tiktok.com', 'airbnb.',
                    'vrbo.com', 'booking.com', 'expedia.com', 'hotels.com']
 JUNK_TLDS = ('.edu', '.gov', '.mil')
+# A .edu/.gov venue checked by hand may run (the Folger), but never one on a big university's domain: the
+# crawl wanders the whole university (Nov 10 2026: 88 umd.edu staff were saved for the UMD golf course)
+BIG_UNIVERSITIES = {'umd.edu', 'gwu.edu', 'jhu.edu', 'georgetown.edu', 'american.edu', 'howard.edu', 'gmu.edu', 'virginia.edu', 'towson.edu', 'umbc.edu', 'loyola.edu', 'catholic.edu'}
+def edu_ok(v, website):
+    return ('website checked' in str(v.get('notes') or '').lower()
+            and R.registrable_domain(website) not in BIG_UNIVERSITIES)
+
 TOO_FAR_CITIES = {'charlottesville', 'richmond', 'williamsburg', 'norfolk', 'virginia beach',
                   'hampton', 'newport news', 'roanoke', 'lynchburg', 'blacksburg',
                   'ocean city', 'salisbury', 'cumberland', 'staunton', 'harrisonburg'}
@@ -487,8 +494,7 @@ for v in venues:
     host = R.host_of(website)
     if (not re.fullmatch(r'[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}', host or '')
             or R.is_non_venue_host(website) or any(j in host for j in JUNK_SITE_PARTS)
-            or (host.endswith(JUNK_TLDS) and 'website checked' not in str(v.get('notes') or '').lower())):
-        # a .edu/.gov venue checked by hand is real (Nov 8 2026: the Folger, the George Peabody Library)
+            or (host.endswith(JUNK_TLDS) and not edu_ok(v, website))):
         skip('junk website', v, host)
         continue
     key = site_key(website)

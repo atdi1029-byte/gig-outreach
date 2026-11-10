@@ -8,8 +8,8 @@
   "runs": [
    {
     "run_id": "run-20261108-0931",
-    "outcome": "stopped: pipeline.sh exited 1: Chrome has no open window; Chrome has no open window",
-    "started": "00:01",
+    "outcome": "running",
+    "started": "00:12",
     "venues": 16,
     "processed": 10,
     "skipped": 0,
@@ -99,5 +99,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-10T00:01:55-05:00"
+ "updated_at": "2026-11-10T00:12:07-05:00"
 }

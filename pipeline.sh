@@ -508,7 +508,9 @@ if clean and evidence in ("venue_site", "venue_mailto") and action == "verify":
     # ("el" of "El Patio Rewards Program" is inside elpatiointernational@: a 2-letter first
     # name has to start the mailbox)
     if not ((first in compact if len(first) >= 3 else compact.startswith(first)) or (len(last) >= 3 and last in compact)
-            or compact.startswith(first[:1] + last) or compact == first[:1] + last):
+            or compact.startswith(first[:1] + last) or compact == first[:1] + last
+            # a university ID cuts the surname short: mfitzg19@jhu.edu is Michelle Fitzgerald
+            or (len(compact) >= 5 and (first[:1] + last).startswith(compact))):
         clean = ""
         title = ""   # the title beside it was that other person's (arlene@ + "Executive Chef")
 if clean:
@@ -2614,6 +2616,10 @@ def runner_of(email):
         job = re.compile(r"(?i)(event|cater|wedding|banquet|private dining|sales).*(manager|director|coordinator|planner|specialist|supervisor)|"
                          r"(manager|director|coordinator|planner|specialist|supervisor).*(event|cater|wedding|banquet|private dining|sales)")
         hits = [x for x in staff if job.search(x[1])] or boss
+    elif local in ("director", "executivedirector", "execdirector"):
+        # the head of the organisation, not a department's director (director@hchsmd.org =
+        # "Ann Bennett, Executive Director" on the staff page, Nov 10 2026)
+        hits = [x for x in staff if re.search(r"(?i)\bexecutive director\b|^\s*director\s*$", x[1])]
     else:
         return None
     return hits[0] if len(hits) == 1 else None
@@ -2960,6 +2966,21 @@ step1_website() {
     local home_fetch home_code home_final
     home_fetch=$(web_fetch "$website" "$WEB_DIR/home.html" 15)
     home_code="${home_fetch%% *}"; home_final="${home_fetch#* }"
+
+    # The bare domain does not connect but www does (stellinapizzeria.com, Nov 10 2026: no
+    # page of the site was read and Chrome still showed the venue before it): read www.
+    if [ "$home_code" = "000" ]; then
+        local www_url www_fetch
+        www_url=$(printf '%s' "$website" | sed -E 's#^(https?://)([^/.:]+\.[^/.:]+)(/.*)?$#\1www.\2\3#')
+        if [ "$www_url" != "$website" ]; then
+            www_fetch=$(web_fetch "$www_url" "$WEB_DIR/home.html" 15)
+            if [ "${www_fetch%% *}" != "000" ]; then
+                log "  [WEB] $website does not connect — reading $www_url instead"
+                website="$www_url"
+                home_code="${www_fetch%% *}"; home_final="${www_fetch#* }"
+            fi
+        fi
+    fi
 
     log "  Opening in Chrome: $website"
     chrome_open "$website"

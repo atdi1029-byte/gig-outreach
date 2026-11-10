@@ -63,6 +63,9 @@ export function storeGet(kind, u, fallback = []) {
       if (!fs.existsSync(mp)) continue;
       try {
         const meta = JSON.parse(fs.readFileSync(mp, 'utf8'));
+        // An unreachable host says nothing about its www / bare sibling (mirror of store.py).
+        const dead = !(meta.status > 0) || String(meta.final_url || '').startsWith('chrome-error:');
+        if (i > 0 && dead && splitUrl(vs[i]).netloc !== splitUrl(vs[0]).netloc) continue;
         const body = meta.body ? zlib.gunzipSync(fs.readFileSync(path.join(STORE, meta.body))) : Buffer.alloc(0);
         return { meta, body, approx: i > 0 || j > 0 };
       } catch { /* try next */ }

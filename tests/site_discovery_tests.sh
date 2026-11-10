@@ -495,6 +495,12 @@ h = ('<iframe src="https://app.teamdexter.com/embed-applications/6a33b3d5"></ifr
      '<a href="https://airtable.com/appXYZ/tblABC">our data</a>')
 got = sorted(f["url"] for f in S.detect_contact_forms(h, "https://x.com/rent-our-spaces/"))
 assert got == ["https://airtable.com/embed/appeUx25/shr47JGE", "https://app.teamdexter.com/embed-applications/6a33b3d5"], got
+# a bare domain that does not connect is retried on www (two-label hosts only)
+assert S._www_variant("https://stellinapizzeria.com/") == "https://www.stellinapizzeria.com/"
+assert S._www_variant("http://venue.org/contact?x=1") == "http://www.venue.org/contact?x=1"
+for u in ("https://www.venue.com/", "https://events.venue.com/", "https://venue.co.uk/", "https://venue.com:8443/", "venue.com"):
+    assert S._www_variant(u) == "", u
+assert R.is_role_email("executivedirector@x.org") and R.is_role_email("director@hchsmd.org")
 PY
 echo 'PASS: prose-named contacts, couples, junk names, officer mailboxes, Dexter and Airtable forms'
 
@@ -518,5 +524,10 @@ r=$(chk arlene@thecorkpub.com "Gordon Carlson" "Executive Chef" venue_site theco
 [ "$r" = "arlene@thecorkpub.com|verify|ok|0||||" ] || { echo "FAIL: neighbour's name or title kept: $r"; exit 1; }
 r=$(chk elpatiointernational@gmail.com "El Patio Rewards Program" "" venue_mailto elpatiointernational.com "El Patio" false "" "")
 case "$r" in "elpatiointernational@gmail.com|verify|ok|0||"*) ;; *) echo "FAIL: 2-letter first name matched inside the mailbox: $r"; exit 1 ;; esac
+# a university ID cuts the surname short; a short mailbox that is only someone's initials does not fit
+r=$(chk mfitzg19@venue.org "Michelle Fitzgerald" "Curator of Collections" venue_site venue.org "Evergreen Museum" false "" "")
+[ "$r" = "mfitzg19@venue.org|verify|ok|0|Michelle Fitzgerald|Curator of Collections||" ] || { echo "FAIL: surname cut short in the mailbox: $r"; exit 1; }
+r=$(chk mfit@venue.org "Michelle Fitzgerald" "Curator" venue_site venue.org "Evergreen Museum" false "" "")
+[ "$r" = "mfit@venue.org|verify|ok|0||||" ] || { echo "FAIL: 4-letter mailbox taken as a cut-short surname: $r"; exit 1; }
 rm -rf "$T"; unset -f _py_check_email pyrun python3 chk
 echo 'PASS: save step keeps prose-named people, drops headings and neighbours'

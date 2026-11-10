@@ -159,6 +159,7 @@ ROLE_TOKENS = {
     # fleet.captain@ were sent to ZeroBounce and saved nameless or as "Fleet Captain", Nov 10 2026)
     "commodore", "vicecommodore", "rearcommodore", "pastcommodore", "fleetcaptain",
     "harbormaster", "dockmaster", "treasurer", "secretary",
+    "executivedirector", "execdirector",
 }
 
 # Words that mean a scraped "name" is page boilerplate, not a person.

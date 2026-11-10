@@ -47,6 +47,10 @@ def variants(url):
     return out
 
 
+def _dead(meta):
+    return int(meta.get("status") or 0) == 0 or str(meta.get("final_url") or "").startswith("chrome-error:")
+
+
 def key(kind, url):
     return hashlib.sha1((kind + "|" + norm_url(url)).encode("utf-8", "ignore")).hexdigest()
 
@@ -72,6 +76,10 @@ class Store:
                 if os.path.exists(mp):
                     try:
                         meta = json.load(open(mp))
+                        # An unreachable host says nothing about its www / bare sibling
+                        # (stellinapizzeria.com does not connect, www.stellinapizzeria.com does).
+                        if i and _dead(meta) and urlsplit(u).netloc != urlsplit(norm_url(url)).netloc:
+                            continue
                         body = b""
                         if meta.get("body"):
                             with gzip.open(os.path.join(self.root, meta["body"]), "rb") as f:

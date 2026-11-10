@@ -1387,6 +1387,15 @@ def property_path_prefix(url: str) -> str:
     return ("/" + "/".join(segs)) if segs else ""
 
 
+def _www_variant(url: str) -> str:
+    """https://venue.com/x -> https://www.venue.com/x for a bare two-label host, else ''."""
+    p = urlparse(url)
+    host = (p.hostname or "").lower()
+    if p.port or host.count(".") != 1 or p.scheme not in ("http", "https"):
+        return ""
+    return urlunparse(p._replace(netloc="www." + host))
+
+
 def static_crawl(base_url: str, max_pages: int = 25, max_depth: int = 2, timeout: int = 10,
                  path_prefix: str = "") -> Dict[str, object]:
     base = normalize_url(base_url, base_url, keep_fragment=True) or base_url
@@ -1412,10 +1421,20 @@ def static_crawl(base_url: str, max_pages: int = 25, max_depth: int = 2, timeout
 
     first = _fetch(session, base_key, timeout) if robots_ok(base_key) else None
     home_status = FETCH_STATUS.get(base_key, "not_fetched")
+    # The bare domain does not connect but www does (stellinapizzeria.com, Nov 10 2026: its
+    # A record times out, www answers): crawl the www host instead of reading nothing.
+    www_base = ""
+    if first is None and (home_status == "timeout" or home_status.startswith("error:")):
+        www_base = _www_variant(base_key)
+        first = _fetch(session, www_base, timeout) if www_base else None
+        if first is not None:
+            home_status = FETCH_STATUS[base_key] = FETCH_STATUS.get(www_base, "200")
+        else:
+            www_base = ""
     blocked = bot_wall(first, home_status)
     if first is not None and not blocked:
         prefetched[base_key] = first
-        if canonical_host(first.url) and canonical_host(first.url) != canonical_host(base):
+        if www_base or (canonical_host(first.url) and canonical_host(first.url) != canonical_host(base)):
             crawl_base = normalize_url(first.url, first.url, keep_fragment=False) or first.url
             redirected_to = crawl_base
     scope_hosts = {h for h in (canonical_host(base), canonical_host(crawl_base)) if h}

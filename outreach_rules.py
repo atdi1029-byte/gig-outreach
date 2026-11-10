@@ -12,6 +12,7 @@ Python code imports this module; bash calls the CLI:
     python3 outreach_rules.py org-matches "Apollo Org Name" "Venue Name"
     python3 outreach_rules.py domain URL_OR_HOST
     python3 outreach_rules.py target-states
+    python3 outreach_rules.py search-query google|linkedin --name N [--tail T] [--detail FILE]
 
 apps_script.gs can't import this. Its GENERIC_PREFIXES / hard-reject lists
 must be kept in sync by hand (search for "outreach_rules.py" there).
@@ -189,7 +190,8 @@ NAME_BOILERPLATE = {
     "agency", "photography",
     # headings read as names beside a mailto (Nov 10 2026: "El Patio Rewards Program",
     # "Job Description", "Corporate Meetings")
-    "program", "programs", "rewards", "description", "meetings", "meeting", "corporate",
+    "program", "programs", "rewards", "reward", "loyalty", "description", "meetings", "meeting", "corporate",
+    "placeholder", "template",
     "job", "jobs", "responsibilities", "summary", "overview", "opportunities",
 }
 
@@ -336,7 +338,7 @@ def junk_reason(email):
         return "placeholder"
     local, dom = e.split("@", 1)
     # site-template demo pages (template.placeholder@gmail.com on Squarespace's sample pages)
-    if "placeholder" in local:
+    if "placeholder" in local or set(_local_tokens(local)) & {"template", "example", "yourname", "youremail", "lorem"}:
         return "placeholder"
     reg = registrable_domain(dom)
     if dom in JUNK_EMAIL_DOMAINS or reg in JUNK_EMAIL_DOMAINS:
@@ -370,18 +372,26 @@ def hard_reject_reason(email):
     return ""
 
 
-def name_from_email(email):
-    """'jane.doe@x.com' -> 'Jane Doe'. Anything else -> '' (never invent names)."""
+def name_from_email(email, venue_name=""):
+    """'jane.doe@x.com' -> 'Jane Doe'. Anything else -> '' (never invent names).
+
+    A free-mail address whose second part is a word of the venue's name is the venue's
+    mailbox, not first.last: arlene.cork@gmail.com at County Cork Wine Pub is Arlene
+    Stecher, not "Arlene Cork" (Nov 8 2026)."""
     e = normalize_email(email)
     if not e or is_role_email(e):
         return ""
-    local = e.split("@", 1)[0]
+    local, dom = e.split("@", 1)
     m = re.fullmatch(r"([a-z]{2,20})[._-]([a-z]{2,25})", local)
     if not m:
         return ""
     first, last = m.group(1), m.group(2)
     if first in ROLE_TOKENS or last in ROLE_TOKENS:
         return ""
+    if venue_name and (dom in FREEMAIL_DOMAINS or registrable_domain(dom) in FREEMAIL_DOMAINS):
+        vwords = {w for w in _words(venue_name) if len(w) >= 3}
+        if first in vwords or last in vwords:
+            return ""
     return f"{first.capitalize()} {last.capitalize()}"
 
 
@@ -417,7 +427,9 @@ def clean_person_name(name):
     if words[0] in {"new", "north", "south", "east", "west", "fort", "mount", "port", "lake", "saint", "old"}:
         return ""
     # an address line read as a name ("Smith Ave" on the Dye House site, Nov 8 2026)
-    if words[-1] in {"ave", "avenue", "st", "rd", "road", "blvd", "boulevard", "pkwy", "parkway", "hwy", "highway"}:
+    # ("Crystal Drive" beside hello@altitude-va.com)
+    if words[-1] in {"ave", "avenue", "st", "rd", "road", "blvd", "boulevard", "pkwy", "parkway", "hwy", "highway",
+                     "drive", "terrace", "circle", "turnpike"}:
         return ""
     if n.isupper() or n.islower():
         n = " ".join(t.capitalize() for t in toks)
@@ -573,7 +585,7 @@ def check_email(email, venue_domain="", venue_name="", found_on_venue_site=False
         out["reason"] = f"shared_brand_domain:{vreg}"
         return out
     out["is_role"] = is_role_email(e)
-    out["name_hint"] = name_from_email(e)
+    out["name_hint"] = name_from_email(e, venue_name)
     if out["is_role"] and not shared_domain:
         out["person_role"] = person_role_title(e)
     out["action"] = "role" if out["is_role"] else "verify"
@@ -583,6 +595,97 @@ def check_email(email, venue_domain="", venue_name="", found_on_venue_site=False
 
 def in_target_area(state):
     return (state or "").strip().upper() in TARGET_STATES
+
+
+# ---------------------------------------------------------------------------
+# Search text for the Google and LinkedIn steps, and "is this result in DC/MD/VA".
+# Alex, Nov 8 2026: the wine bar "Altitude" (Arlington VA) was searched as
+# "Altitude" Arlington and the run opened Altitude Trampoline Park, Arlington, Texas.
+# The state and the venue type always go in a Google query; a LinkedIn person or a
+# search result that names a place outside DC/MD/VA is not this venue's.
+# ---------------------------------------------------------------------------
+_STATE_NAMES = {"DC": "DC", "MD": "Maryland", "VA": "Virginia", "PA": "Pennsylvania", "DE": "Delaware"}
+_OTHER_STATES = (
+    "Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|"
+    "Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Massachusetts|Michigan|"
+    "Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|"
+    "New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|"
+    "South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|West Virginia|Wisconsin|Wyoming")
+_OTHER_STATE_RX = re.compile(r"\b(%s)\b" % _OTHER_STATES, re.I)
+_OTHER_CODE_RX = re.compile(r",\s*(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MA|MI|MN|MS|MO|MT|NE|NV|"
+                            r"NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|WA|WV|WI|WY)\b(?!\.\w)")
+_AREA_RX = re.compile(r"District of Columbia|Washington,? D\.?C\b|\bD\.C\.|(?<!West )\bVirginia\b|\bMaryland\b|"
+                      r"\b(?-i:MD|VA|DC|DMV)\b|\bBaltimore\b|Greater Richmond|Hampton Roads", re.I)
+_NOT_A_PLACE_RX = re.compile(r"^(current|past|connect|message|follow|pending|view|\d+)\b|mutual connection|followers?$", re.I)
+
+
+def venue_type_words(category, name=""):
+    """'wine_bar' -> 'wine bar'; '' for no/unknown category or when the name already says it."""
+    cat = re.sub(r"[_\-]+", " ", str(category or "")).strip().lower()
+    if not cat or cat in ("other", "unknown", "none", "venue"):
+        return ""
+    have = set(_words(name))
+    return "" if all(w in have for w in cat.split()) else cat
+
+
+def search_place(city="", state=""):
+    """'Arlington', 'VA' -> 'Arlington VA'. The state is never left out when known."""
+    return " ".join(x for x in ((city or "").strip(), (state or "").strip().upper()) if x and x != "NONE")
+
+
+def google_query(name, tail="", city="", state="", category=""):
+    """"Altitude" wine bar Arlington VA contact"""
+    parts = ['"%s"' % (name or "").strip().replace('"', ""), venue_type_words(category, name),
+             search_place(city, state), (tail or "").strip()]
+    return " ".join(p for p in parts if p)
+
+
+def one_word_name(name):
+    """True when the venue's name is a single word ("Altitude", "The Ivy"): on its own it
+    matches many other businesses."""
+    core = re.sub(r"^the\s+", "", (name or "").strip(), flags=re.I)
+    return len(re.findall(r"[A-Za-z0-9&]+", core)) <= 1
+
+
+def linkedin_query(name, city="", state=""):
+    """The LinkedIn people-search keywords: the exact venue name in quotes (the method
+    that worked on Apr 2 2026), plus the town for a one-word name."""
+    q = '"%s"' % (name or "").strip().replace('"', "")
+    if one_word_name(name) and (city or "").strip():
+        q += " " + city.strip()
+    return q
+
+
+def _own_state_named(s, venue_state):
+    """A Pennsylvania/Delaware sweep find's own state counts as its area."""
+    st = (venue_state or "").strip().upper()
+    if not st or st in TARGET_STATES:
+        return False
+    full = _STATE_NAMES.get(st, "")
+    return bool(re.search(r"\b%s\b" % re.escape(st), s) or (full and re.search(r"\b%s\b" % re.escape(full), s, re.I)))
+
+
+def linkedin_location_in_area(loc, venue_state=""):
+    """True = the LinkedIn location is in DC/MD/VA (or the venue's own state); False =
+    somewhere else ("Arlington, Texas, United States", "Serbia"); None = no location."""
+    s = re.sub(r"\s+", " ", str(loc or "")).strip()
+    if not s or _NOT_A_PLACE_RX.search(s) or re.fullmatch(r"(the )?(united states|usa|u\.s\.a?\.?)", s, re.I):
+        return None
+    if _own_state_named(s, venue_state):
+        return True
+    if _OTHER_STATE_RX.search(s) or _OTHER_CODE_RX.search(s):
+        return False
+    return bool(_AREA_RX.search(s))
+
+
+def place_outside_area(text, venue_state=""):
+    """The other state a search result names ("Arlington, TX", "Texas") when it names no
+    DC/MD/VA place; '' otherwise. Used to drop results about a same-name business elsewhere."""
+    s = re.sub(r"\s+", " ", str(text or ""))
+    if not s or _AREA_RX.search(s) or _own_state_named(s, venue_state):
+        return ""
+    m = _OTHER_CODE_RX.search(s) or _OTHER_STATE_RX.search(s)
+    return m.group(1) if m else ""
 
 
 # Alex, Sep 29 2026: "everything on the sweep should be able to be used for you on the
@@ -637,6 +740,14 @@ def _main(argv):
     d = sub.add_parser("domain")
     d.add_argument("url")
     sub.add_parser("target-states")
+    sq = sub.add_parser("search-query")
+    sq.add_argument("kind", choices=("google", "linkedin"))
+    sq.add_argument("--name", required=True)
+    sq.add_argument("--tail", default="")
+    sq.add_argument("--city", default="")
+    sq.add_argument("--state", default="")
+    sq.add_argument("--category", default="")
+    sq.add_argument("--detail", default="", help="venue_detail JSON file: city/state/category come from it")
     a = ap.parse_args(argv)
     if a.cmd == "check-email":
         print(json.dumps(check_email(a.email, a.venue_domain, a.venue_name,
@@ -656,6 +767,18 @@ def _main(argv):
                           "site_builder": is_site_builder_host(a.url)}))
     elif a.cmd == "target-states":
         print(" ".join(TARGET_STATES))
+    elif a.cmd == "search-query":
+        city, state, cat = a.city, a.state, a.category
+        if a.detail:
+            try:
+                v = json.load(open(a.detail)).get("venue") or {}
+            except (OSError, ValueError, AttributeError):
+                v = {}
+            city, state, cat = city or str(v.get("city") or ""), state or str(v.get("state") or ""), cat or str(v.get("category") or "")
+        if a.kind == "linkedin":
+            print(linkedin_query(a.name, city, state))
+        else:
+            print(google_query(a.name, a.tail, city, state, cat))
     return 0
 
 

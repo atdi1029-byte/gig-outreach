@@ -531,3 +531,9 @@ r=$(chk mfit@venue.org "Michelle Fitzgerald" "Curator" venue_site venue.org "Eve
 [ "$r" = "mfit@venue.org|verify|ok|0||||" ] || { echo "FAIL: 4-letter mailbox taken as a cut-short surname: $r"; exit 1; }
 rm -rf "$T"; unset -f _py_check_email pyrun python3 chk
 echo 'PASS: save step keeps prose-named people, drops headings and neighbours'
+
+# The Google and LinkedIn search steps (Nov 8 2026, "Altitude" Arlington VA vs. Altitude
+# Trampoline Park, Arlington TX): search text, DC/MD/VA checks, the LinkedIn result filter
+# and the Facebook/Instagram picker, run from pipeline.sh's own heredocs.
+out=$(/usr/bin/python3 tests/search_rules_tests.py 2>&1) || { echo "FAIL: search rules — $(echo "$out" | grep -E '^(FAIL|ERROR)' | head -3 | tr '\n' ' ')"; exit 1; }
+echo 'PASS: search rules (state + venue type in Google queries, LinkedIn/Facebook results outside DC/MD/VA dropped)'

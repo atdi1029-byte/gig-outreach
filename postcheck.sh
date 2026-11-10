@@ -1506,8 +1506,16 @@ linkedin_pass() {
     if ! chrome_wait_alone "${CHROME_ALONE_NAV_WAIT_S:-300}"; then
         LI_ST="failed:chrome_not_alone"; log "  [LinkedIn] FAILED — $CHROME_ALONE_DETAIL"; return
     fi
-    log "  Searching LinkedIn for: $VENUE_NAME"
-    q=$(run_py li-quote python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$VENUE_NAME") || { LI_ST="failed:encode"; return; }
+    # The same keywords as the pipeline's LinkedIn step: the exact name in quotes, plus the
+    # town for a one-word name ("Altitude" alone is every company called Altitude).
+    q=$(run_py li-quote python3 - "$SCRIPT_DIR" "$VENUE_NAME" "$VENUE_CITY" "$VENUE_STATE" <<'PYEOF'
+import sys, urllib.parse
+sys.path.insert(0, sys.argv[1])
+import outreach_rules as R
+print(urllib.parse.quote(R.linkedin_query(sys.argv[2], sys.argv[3], sys.argv[4]), safe=""))
+PYEOF
+) || { LI_ST="failed:encode"; return; }
+    log "  Searching LinkedIn for: $(run_py li-quote python3 -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))' "$q")"
     url="https://www.linkedin.com/search/results/people/?keywords=${q}&origin=SWITCH_SEARCH_VERTICAL"
     if ! with_timeout 30 osascript -e 'on run argv' -e 'tell application "Google Chrome" to set URL of active tab of front window to (item 1 of argv)' -e 'end run' "$url" >/dev/null 2>>"$ERR_LOG"; then
         LI_ST="failed:chrome_navigate"; log "  [LinkedIn] FAILED — Chrome could not open the search (no window?)"; return
@@ -1527,9 +1535,10 @@ linkedin_pass() {
     fi
     printf '%s' "$js_out" > "$PC_TMP/li.json"
     : > "$PC_TMP/li_people"
-    res=$(run_py li-filter python3 - "$SCRIPT_DIR" "$PC_TMP/li.json" "$VENUE_NAME" "$PC_TMP/known_names" "$PC_TMP/li_people" <<'PYEOF'
+    res=$(run_py li-filter python3 - "$SCRIPT_DIR" "$PC_TMP/li.json" "$VENUE_NAME" "$PC_TMP/known_names" "$PC_TMP/li_people" "$VENUE_STATE" <<'PYEOF'
 import json, re, sys
 sd, jf, vn, known_f, out_f = sys.argv[1:6]
+vstate = sys.argv[6] if len(sys.argv) > 6 else ''
 sys.path.insert(0, sd)
 import outreach_rules as R
 US = '\x1f'
@@ -1555,9 +1564,7 @@ SKIP = re.compile(r'intern|student|volunteer|accountant|attorney|lawyer|develope
                   r'designer|\bit\b|data|analyst|junior|busser|server|\bhost\b|bartender|cook', re.I)
 vnorm = ''.join(re.findall(r'[a-z0-9]', vn.lower()))
 # LinkedIn search isn't location-filtered: "Sales Manager at The Capital Grille" can be any city.
-DMV = re.compile(r'\b(MD|VA|DC|D\.C\.)\b|Maryland|Virginia|District of Columbia|Washington,? D\.?C|'
-                 r'Washington DC-Baltimore|Baltimore|Annapolis|Arlington|Alexandria|Bethesda|Rockville|'
-                 r'Frederick|Leesburg|Fairfax|Richmond|Charlottesville|Middleburg', re.I)
+# The state decides, never the town alone: "Arlington, Texas" is not Arlington VA (Nov 8 2026).
 kept = []
 for p in d.get('people') or []:
     if not p.get('current', True):
@@ -1578,7 +1585,7 @@ for p in d.get('people') or []:
     if len(toks[-1].strip('.')) <= 2:
         continue
     loc = str(p.get('loc') or '').replace(US, ' ')
-    kept.append(US.join([name, toks[0], toks[-1], title[:160], loc[:80], '1' if DMV.search(loc) else '0']))
+    kept.append(US.join([name, toks[0], toks[-1], title[:160], loc[:80], '1' if R.linkedin_location_in_area(loc, vstate) else '0']))
 with open(out_f, 'w', encoding='utf-8') as f:
     f.write(''.join(k + '\n' for k in kept))
 print(US.join(['STATE', state, str(n), str(len(kept)), url]))

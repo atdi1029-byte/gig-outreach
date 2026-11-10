@@ -3573,10 +3573,8 @@ step1b_ig_search() {
     log ""
     log "========== STEP 1B: Instagram Google Search =========="
     log "  No Instagram found on website — Googling..."
-    local ig_city
-    ig_city=$(_rb_detail_get "$detail" city)
-    # City in the query keeps same-name businesses elsewhere off the first results.
-    _rb_social_search instagram "$venue" "$venue_id" "$detail" "\"$venue\" ${ig_city:+$ig_city }instagram" "${SCRIPT_DIR}/js/extract_ig.js"
+    # Venue type, city and state in the query keep same-name businesses elsewhere off the first results.
+    _rb_social_search instagram "$venue" "$venue_id" "$detail" "$(_rb_google_query "$venue" instagram "$detail")" "${SCRIPT_DIR}/js/extract_ig.js"
     _rb_write_check "$ig_check" instagram "$RB_PICKED" "$detail" "${RB_PICKED:+google}"
 }
 
@@ -3682,6 +3680,20 @@ _rb_google_search() {
     fi
     google_mark_ok
     return 0
+}
+
+# The Google search text for this venue: "<name>" <type> <city> <ST> <tail>. The state and
+# the venue type are always in it (Alex, Nov 8 2026: "Altitude" Arlington brought up
+# Altitude Trampoline Park in Arlington, Texas). City, state and category come from a
+# venue_detail file (outreach_rules.google_query, tests/search_rules_tests.py).
+_rb_google_query() {
+    local venue="$1" tail="$2" detail="$3" f q=""
+    for f in "$detail" /tmp/pipeline_rv_detail.json /tmp/pipeline_fb_detail.json /tmp/pipeline_ig_detail.json; do
+        if [ -n "$f" ] && [ -s "$f" ]; then detail="$f"; break; fi
+    done
+    q=$(_rb_py "google-query" python3 "${SCRIPT_DIR}/outreach_rules.py" search-query google --name "$venue" --tail "$tail" --detail "${detail:-/dev/null}")
+    [ -n "$q" ] || q="\"$venue\" $tail"
+    printf '%s' "$q"
 }
 
 # venue_detail into FILE; 0 only if it is JSON with status ok.
@@ -3822,12 +3834,18 @@ import outreach_rules as R
 
 kind, venue, detail_path, raw = sys.argv[1:5]
 US = "\x1f"
-city = state = ""
+city = state = category = ""
 try:
     v = json.load(open(detail_path)).get("venue") or {}
-    city, state = v.get("city") or "", v.get("state") or ""
+    city, state, category = v.get("city") or "", v.get("state") or "", v.get("category") or ""
 except (OSError, ValueError, AttributeError):
     pass
+# Title + snippet of each Google result (js/extract_result_text.js), '' when not read.
+try:
+    result_text = json.loads(os.environ.get("RB_RESULT_TEXT") or "{}")
+    if not isinstance(result_text, dict): result_text = {}
+except ValueError:
+    result_text = {}
 
 raw = (raw or "").strip()
 cands = []
@@ -3856,6 +3874,14 @@ def handle_of(url):
         parts = parts[1:]
     if not parts:
         return None, "no page handle"
+    # New-style pages have no handle: /p/Altitude-Wine-Bar-61587332106320/ and
+    # /people/Venue-Name/100012345/. The name part is judged like a handle (Nov 8 2026:
+    # the wine bar's own page was skipped as "not a venue page (p)").
+    if site == "facebook" and len(parts) >= 2 and parts[0].lower() == "p" and re.fullmatch(r"[A-Za-z0-9._%-]+-\d{6,}", parts[1]):
+        return "p/" + parts[1], ""
+    if site == "facebook" and len(parts) >= 3 and parts[0].lower() == "people" and re.fullmatch(r"\d{6,}", parts[2]) \
+            and re.fullmatch(r"[A-Za-z0-9._%-]+", parts[1]):
+        return "people/%s/%s" % (parts[1], parts[2]), ""
     h = parts[0]
     if h.lower() in NON_PAGE or h.lower().endswith(".php"):
         return None, "not a venue page (%s)" % h
@@ -3903,7 +3929,11 @@ def segment(h):
     cov, used = best[n]
     return used, n - cov
 
+TYPE_WORDS = set(R.venue_type_words(category).split())
+
 def judge(h):
+    if h.startswith(("p/", "people/")):
+        h = re.sub(r"-\d{6,}$", "", h.split("/")[1])   # the page's name
     hs = re.sub(r"[^a-z]", "", h.lower())
     if len(hs) < 3:
         return False, 0.0, "handle too short", False
@@ -3923,7 +3953,16 @@ def judge(h):
         if not need or not need <= set(used):
             return False, 0.0, "handle doesn't match venue name", partial
         score = 1.0
+    # "Altitude-Wine-Bar" says more about a wine bar than "altitudearlington" does
+    if TYPE_WORDS and TYPE_WORDS <= set(used):
+        score += 0.05
     return True, score - 0.1 * left, "ok", partial
+
+texts = {}
+for _u, _t in result_text.items():
+    _h, _ = handle_of(str(_u))
+    if _h:
+        texts[_h.lower()] = (texts.get(_h.lower(), "") + " " + str(_t))[:1500]
 
 def record(url, reason):
     path = os.environ.get("RB_CANDIDATE_LOG")
@@ -3947,6 +3986,12 @@ for url in cands:
         continue
     seen.add(canon.lower())
     ok, score, why, partial = judge(h)
+    if ok:
+        # The result itself says where the page is: a same-name business in another
+        # state (Altitude Trampoline Park, Arlington TX) is not this venue.
+        away = R.place_outside_area(texts.get(h.lower(), ""), state)
+        if away:
+            ok, why, partial = False, "the search result places it in %s, not DC/MD/VA" % away, True
     if not ok:
         print(US.join(["REJECT", canon, "handle '%s': %s" % (h.lower(), why)]))
         if partial:
@@ -3982,7 +4027,11 @@ _rb_social_search() {
         _rb_social_note "$kind" failed chrome_js
         return
     fi
-    if ! picked=$(_rb_pick_social "$kind" "$venue" "$detail" "$raw" "$venue_id"); then
+    # Title + snippet of each result, so a page the result places outside DC/MD/VA is dropped.
+    local rtext=""
+    rtext=$(_rb_chrome_js "${SCRIPT_DIR}/js/extract_result_text.js") || rtext=""
+    case "$rtext" in \{*) ;; *) rtext="" ;; esac
+    if ! picked=$(RB_RESULT_TEXT="$rtext" _rb_pick_social "$kind" "$venue" "$detail" "$raw" "$venue_id"); then
         log "  [$tag] Candidate check crashed (see python-errors.log) — $label not saved"
         _rb_social_note "$kind" failed pick_crash
         return
@@ -4089,9 +4138,7 @@ step1c_fb_search() {
     log ""
     log "========== STEP 1C: Facebook Google Search =========="
     log "  No Facebook found on website — Googling..."
-    local fb_city
-    fb_city=$(_rb_detail_get "$detail" city)
-    _rb_social_search facebook "$venue" "$venue_id" "$detail" "\"$venue\" ${fb_city:+$fb_city }facebook" "${SCRIPT_DIR}/js/extract_fb.js"
+    _rb_social_search facebook "$venue" "$venue_id" "$detail" "$(_rb_google_query "$venue" facebook "$detail")" "${SCRIPT_DIR}/js/extract_fb.js"
     _rb_write_check "$fb_check" facebook "$RB_PICKED" "$detail" "${RB_PICKED:+google}"
     # The old curl slug probe (facebook.com/<venue-slug>) is gone: it always hit the
     # login wall and the few "matches" were same-name businesses abroad (EVID-19/PB-9).
@@ -4211,7 +4258,7 @@ JSEOF
         if [ "$fb_found_email" = "0" ]; then
             # Facebook DOM may not render email — fall back to Google snippet
             log "  [FB] No email on page — trying Google snippet..."
-            _rb_snippet_search "FB SNIPPET" "\"$venue\" facebook"; rc=$?
+            _rb_snippet_search "FB SNIPPET" "$(_rb_google_query "$venue" facebook)"; rc=$?
             [ $rc -eq 0 ] && snippets=$((snippets + 1))
             case $rc in
                 0) SNIPPET_EMAILS="${SNIPPET_EMAILS}|${RB_SNIPPET_OUT}" ;;
@@ -4242,7 +4289,7 @@ JSEOF
             else
                 # Instagram DOM doesn't render bio emails — fall back to Google snippet
                 log "  [IG] No email on page — trying Google snippet..."
-                _rb_snippet_search "IG SNIPPET" "\"$venue\" instagram"; rc=$?
+                _rb_snippet_search "IG SNIPPET" "$(_rb_google_query "$venue" instagram)"; rc=$?
                 [ $rc -eq 0 ] && snippets=$((snippets + 1))
                 case $rc in
                     0) SNIPPET_EMAILS="${SNIPPET_EMAILS}|${RB_SNIPPET_OUT}" ;;
@@ -5274,15 +5321,12 @@ PYEOF
     # The proven LinkedIn method (Apr 2 2026; Alex, Nov 8 2026: "make sure you can find the people on linked in"):
     # the exact venue name in quotes, plus the town when the name is one common word, so the 3 pages are about
     # this venue ("Altitude" alone filled them with Altitude Trampoline Park, Arlington TX)
-    ENCODED_VENUE=$(_rb_py "$venue_id linkedin" python3 -c '
-import re, sys, urllib.parse
-name, city = sys.argv[1].strip(), sys.argv[2].strip()
-core = re.sub(r"^the\s+", "", name, flags=re.I)
-words = re.findall(r"[A-Za-z0-9&]+", core)
-q = chr(34) + name + chr(34)
-if len(words) <= 1 and city:
-    q += " " + city
-print(urllib.parse.quote(q))' "$venue" "$li_city") || ENCODED_VENUE=$(_rb_py "$venue_id linkedin" python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$venue")
+    # (outreach_rules.linkedin_query, tested in tests/search_rules_tests.py)
+    ENCODED_VENUE=$(SCRIPT_DIR="$SCRIPT_DIR" _rb_py "$venue_id linkedin" python3 -c '
+import os, sys, urllib.parse
+sys.path.insert(0, os.environ["SCRIPT_DIR"])
+import outreach_rules as R
+print(urllib.parse.quote(R.linkedin_query(sys.argv[1], sys.argv[2], sys.argv[3])))' "$venue" "$li_city" "$li_state") || ENCODED_VENUE=$(_rb_py "$venue_id linkedin" python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1]))" "$venue")
     log "  LinkedIn search: $(_rb_py "$venue_id linkedin" python3 -c "import urllib.parse, sys; print(urllib.parse.unquote(sys.argv[1]))" "$ENCODED_VENUE")"
     if [ "$li_shared" = "true" ]; then
         log "  [LINKEDIN] Website is on shared brand domain ${DOMAIN:-?} — people will be saved as pending, not enriched by domain"
@@ -5426,6 +5470,11 @@ vw_list = words(venue)
 if vw_list and vw_list[0] == "the":
     vw_list = vw_list[1:]
 VENUE_RE = re.compile(r"(?:\bthe\W+)?\b" + r"\W+".join(map(re.escape, vw_list)) + r"\b", re.I) if vw_list else None
+# A one-word name ("Altitude") is inside many other companies' names (Altitude Trampoline
+# Park, Altitude Film Entertainment): it has to be the whole company segment, not a phrase
+# found somewhere in the line (Nov 8 2026).
+ONE_WORD = len(vw_list) <= 1
+VSTATE = os.environ.get("RB_STATE", "")
 
 
 # The venue's own name before a location tail: "Gibson's Inn at Gate One" -> "Gibson's
@@ -5456,7 +5505,7 @@ def names_venue(text):
     if not text:
         return "", False
     t = re.sub(r"[\x27\u2019\x60]", "", text)
-    m = VENUE_RE.search(t) if VENUE_RE else None
+    m = VENUE_RE.search(t) if VENUE_RE and not ONE_WORD else None
     if m:
         return re.sub(r"(\s+(at|@|with)|[|@,\u00b7\u2022\u2013\u2014-])\s*$", "", t[:m.start()].strip()).strip(), True
     parts = re.split(r"\s+(?:at|@|with)\s+|\s*[|@\u00b7\u2022,\u2013\u2014]\s*|\s+-\s+", text)
@@ -5498,6 +5547,14 @@ for p in data.get("people") or []:
         why = "past employee" if names_venue(past)[1] else "headline doesn't name the venue"
     if not ok:
         print(US.join(["REJ", name, head, why]))
+        continue
+    # LinkedIn search has no location filter: the same company name exists elsewhere
+    # (Altitude, Arlington TX; an aviation firm in Serbia). Keep DC/MD/VA people only;
+    # a card with no location passes unless the venue's name is one common word.
+    loc = (p.get("location") or "").strip()
+    in_area = R.linkedin_location_in_area(loc, VSTATE)
+    if in_area is False or (in_area is None and ONE_WORD):
+        print(US.join(["REJ", name, head, "location %s is not DC/MD/VA" % (("\x27" + loc + "\x27") if in_area is False else "unknown")]))
         continue
     parts = name.split()
     print(US.join(["OK", json.dumps({"first": parts[0], "last": parts[-1], "full": name,
@@ -8211,8 +8268,10 @@ step5_google_fallback() {
     # --- 5A: Find real website via Google and scrape for email ---
     local g_status="empty" g_site="none" g_ig="none" g_reason="" g_results=0 rc before
     before=$(grep -c . /tmp/pipeline_contacts_count 2>/dev/null)
-    log "  Googling: \"$venue\" contact $city"
-    runner_google_candidates "\"$venue\" contact${city:+ $city}"
+    local g_query
+    g_query=$(_rb_google_query "$venue" contact)
+    log "  Googling: $g_query"
+    runner_google_candidates "$g_query"
     rc=$?
     if [ "$rc" = 2 ]; then
         g_status="blocked"; g_site="blocked"; g_reason="captcha"
@@ -8301,9 +8360,10 @@ runner_step5b() {
         return
     fi
 
-    log "  [FALLBACK] Re-trying Instagram: $venue $city site:instagram.com"
-    local rc ig_raw
-    runner_google_nav "$venue${city:+ $city} site:instagram.com"
+    local rc ig_raw ig_query
+    ig_query=$(_rb_google_query "$venue" "site:instagram.com" "$detail")
+    log "  [FALLBACK] Re-trying Instagram: $ig_query"
+    runner_google_nav "$ig_query"
     rc=$?
     if [ "$rc" = 2 ]; then RUNNER_5B_RESULT="blocked"; return; fi
     if [ "$rc" != 0 ]; then

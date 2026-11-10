@@ -760,6 +760,11 @@ _PROVIDER_PATH_ONLY = {
     "spothopper": re.compile(r"^/(private-part|catering|event|inquir)[\w-]*/?$", re.I),
     "toast": re.compile(r"^/invoice/lead", re.I),
 }
+# A table reservation link is not an inquiry form (altitude-va.com: SevenRooms
+# /explore/altitude/reservations/... was saved as the contact form, Nov 8 2026).
+_PROVIDER_PATH_SKIP = {
+    "sevenrooms": re.compile(r"/reservations?(/|$)", re.I),
+}
 _PROVIDER_URL_RE = re.compile(
     r"""(?:src|href|action)=["']((?:https?:)?//[^"'\s<>]*?(?:%s)[^"'\s<>]*)["']"""
     % "|".join(re.escape(d) for d in list(FORM_PROVIDERS) + ["docs.google.com/forms", "airtable.com/embed/"]), re.I)
@@ -790,6 +795,8 @@ def detect_contact_forms(html: str, page_url: str) -> List[Dict[str, str]]:
             pu = urlparse(url)
             if kind in _PROVIDER_PATH_ONLY and (is_js or (pu.hostname or "").startswith("static.")
                                                 or not _PROVIDER_PATH_ONLY[kind].search(pu.path or "")):
+                continue
+            if kind in _PROVIDER_PATH_SKIP and _PROVIDER_PATH_SKIP[kind].search(pu.path or ""):
                 continue
             # A bare provider host (form.jotform.com, www.tripleseat.com) is a credit or
             # marketing link, not a form.

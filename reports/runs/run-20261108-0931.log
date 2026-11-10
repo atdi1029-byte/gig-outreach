@@ -2011,3 +2011,2566 @@ PREFLIGHT OK: Apollo API key accepted (auth/health)
 PREFLIGHT FAIL: Chrome has no open window
 PREFLIGHT FAIL: 1 check(s) failed (Chrome has no open window); 13 ok, 0 warn
 [PREFLIGHT] FAIL (exit 1) — aborting. Fix the FAIL lines above, or set SKIP_PREFLIGHT=1 to bypass.
+[ZB SAFE] Guard enabled — run 12/300, today 3/5000, reserve 100 credits (ok); run id run-20261108-0931
+=== Pipeline started 2026-11-10 01:28:44 ===
+[RUN] run_id=run-20261108-0931 mode=resume log=/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.log
+PREFLIGHT OK: python3 works (/Library/Developer/CommandLineTools/usr/bin/python3 3.9.6)
+PREFLIGHT OK: .env has ZEROBOUNCE_KEY
+PREFLIGHT OK: .env has APOLLO_API_KEY
+PREFLIGHT OK: bash -n: 21 scripts parse
+PREFLIGHT OK: embedded python: checked 178 embedded python blocks in 21 scripts: 0 failed
+PREFLIGHT OK: 18 python files compile
+PREFLIGHT OK: outreach_rules self-test: 17 checks pass
+PREFLIGHT OK: venue_classifier self-test: 91 passed, 0 failed
+PREFLIGHT OK: js/*.js extractors parse (node --check)
+PREFLIGHT OK: Apps Script backend up (version 2026-10-26.1)
+PREFLIGHT OK: sheet readable (action=config)
+PREFLIGHT OK: ZeroBounce: enabled=True (.env), balance=1052, reserve=100 (.env), run 12/300 (.env), today 3/5000 (env), ~15 runs of headroom at 60/run
+PREFLIGHT OK: Apollo API key accepted (auth/health)
+PREFLIGHT OK: Chrome runs JavaScript from Apple Events
+PREFLIGHT OK: all checks passed (pipeline; 14 ok, 0 warn)
+[PREFLIGHT] OK
+[RESUME] Resuming run run-20261108-0931 (log /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.log)
+[RESUME] Batch 1 already finished (marker present, every venue has a result)
+[RESUME] Finishing batch 2
+
+BATCH MODE: 8 venues
+[RUN] run-20261108-0931 batch 2: VA-REST-3463,MD-REST-2970,VA-WINE-2953,VA-REST-3454,DC-REST-2821,MD-REST-683,MD-REST-2325,VA-WINE-2945 (7 to run; log /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.log)
+  [ZB SAFE] run 12/300, today 3/5000, balance 1052, reserve 100
+[RUN] Apollo credits left on the account: 788 (stop below 100)
+[CHROME] JavaScript from Apple Events: OK (website scrape probe on https://www.labettolava.com returned 1677 bytes of JSON)
+
+########## VENUE [2/8]: Hartge Yacht Yard ##########
+  [RESEARCH AGAIN] Existing contacts found, but web discovery will still run: hartgeyard@aol.com,template.placeholder@gmail.com
+  [DOMAIN] Venue domain: hartgeyard.com
+
+============================================================
+ PIPELINE: Hartge Yacht Yard (MD-REST-2970)
+ Website: http://www.hartgeyard.com
+ Started: 2026-11-10 01:29:04
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 12/300, today 3/5000, balance 1052, reserve 100
+  Known emails: 2
+  Known names: 1
+
+========== STEP 1: Website Scrape ==========
+  URL: http://www.hartgeyard.com
+  Opening in Chrome: http://www.hartgeyard.com
+  Found on homepage: hartgeyard@aol.com, office@hartgeyard.com
+  Emails: 2 | FB: https://www.facebook.com/hartgeyard | IG: https://www.instagram.com/hartgeyachtyard | Contact Form: none
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=48 pdfs=5 emails=3 sitemaps=2 fragments=0 unvisited=4
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-2970.json
+  [COVERAGE] Subpage queue: 38 in scope, rendering 30 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=0
+  Crawling subpage (1): https://www.hartgeyard.com/contact-us
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  [CONTACT FORM] Found on subpage: https://www.hartgeyard.com/contact-us
+  Crawling subpage (2): https://www.hartgeyard.com/contact-bedford
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com, template.placeholder@gmail.com
+  Crawling subpage (3): https://www.hartgeyard.com/servicemanagement
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (4): https://www.hartgeyard.com/about-us
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (5): https://www.hartgeyard.com/service
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (6): https://www.hartgeyard.com/carpentry-1
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (7): https://www.hartgeyard.com/fiberglass
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (8): https://www.hartgeyard.com/mechanical
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (9): https://www.hartgeyard.com/paint-varnish
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (10): https://www.hartgeyard.com/electronics-rigging
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (11): https://www.hartgeyard.com/yard-crew
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (12): https://www.hartgeyard.com/office
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (13): https://www.hartgeyard.com/new-page-1
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (14): https://www.hartgeyard.com/shipstore
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (15): https://www.hartgeyard.com/celebrating-160-years
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (16): https://www.hartgeyard.com/home
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (17): https://www.hartgeyard.com/hours
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (18): https://www.hartgeyard.com/home-1
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (19): https://www.hartgeyard.com/welcome
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (20): https://www.hartgeyard.com/gallery
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (21): https://www.hartgeyard.com/carpentry
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (22): https://www.hartgeyard.com/new-page-5
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (23): https://www.hartgeyard.com/who-we-are
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (24): https://www.hartgeyard.com/directions
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (25): https://www.hartgeyard.com/new-page-2
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (26): https://www.hartgeyard.com/new-page-92
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (27): https://www.hartgeyard.com/news-bedford
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (28): https://www.hartgeyard.com/banner-royce
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (29): https://www.hartgeyard.com/landing-bedford
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  Crawling subpage (30): https://www.hartgeyard.com/projects-bedford
+  Found on subpage: hartgeyard@aol.com, office@hartgeyard.com
+  [PDF] https://www.hartgeyard.com/s/Winter-Storage2026-27.pdf → no emails
+  [PDF] https://www.hartgeyard.com/s/GeneralYardPoliciesForHYYsCustomersContractors412024.pdf → no emails
+  [PDF] https://www.hartgeyard.com/s/HHY-Price_Sheet-2026-w2tf.pdf → hartgeyard@aol.com
+  [CONTACT FORM] Also found: https://www.hartgeyard.com/banner-royce
+  [CONTACT FORM] Also found: https://www.hartgeyard.com/service
+  [CONTACT FORM] Also found: https://www.hartgeyard.com/servicemanagement
+  ✓ Facebook from venue website matches the sheet: https://www.facebook.com/hartgeyard
+  ✓ Instagram from venue website matches the sheet: https://www.instagram.com/hartgeyachtyard
+  [SKIP] hartgeyard@aol.com — already in sheet
+  [REJECT] office@hartgeyard.com — general_inbox (source: website, evidence: venue_mailto)
+  [SKIP] template.placeholder@gmail.com — already in sheet
+  --- XAN SCHLEGEL (SERVICE MANAGER): no email — not added to the sheet (name kept in the run log)
+  --- ALEX SCHLEGEL (GENERAL MANAGER): no email — not added to the sheet (name kept in the run log)
+[STEP] MD-REST-2970 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=3 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=2 errors=0 people=2 pending=0 fb=1 ig=1 blocked_pages=0 missing=none
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/hartgeyard | IG: https://www.instagram.com/hartgeyachtyard
+  Opening FB: https://www.facebook.com/hartgeyard
+  FB emails found: hartgeyard@aol.com
+  Opening FB: https://www.facebook.com/hartgeyard/about
+  Opening FB: https://www.facebook.com/hartgeyard/directory_contact_info
+  FB emails found: hartgeyard@aol.com
+  Opening IG: https://www.instagram.com/hartgeyachtyard
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+  [SKIP] hartgeyard@aol.com — already in sheet
+[STEP] MD-REST-2970 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 0 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Hartge Yacht Yard
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (1 results)
+  Found: Hartge Yacht Yard (domain: hartgeyard.com, org_id: 556d8dbd736964124f063a01)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Hartge Yacht Yard (org_id: 556d8dbd736964124f063a01)...
+  Found 4 people total
+  [APOLLO] App title skip words loaded: racquets, tennis, golf, racquet, florist, busboy, server, farm, busser, 401k, caddie, fitness, squash, athletics, pickleball, proshop, controller
+  Skipped 3 people with no email (red ? on Apollo) and no decision-maker title
+  1 people to enrich (1 credit each)
+  [APOLLO] Credits used this run: 0 / 300
+  >>> Alaina Wine (Operations Manager): alaina@hartgeyard.com [verified]
+  [ZB SAFE] alaina@hartgeyard.com → valid (verified; charged=True; cache=False; venue 1/40; run 13/300)
+  ✓ Added and verified: (no name) <alaina@hartgeyard.com>
+  Apollo API done: 1 credits used this run
+[STEP] MD-REST-2970 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=Hartge_Yacht_Yard gate=name+domain people=4 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=1 pending=0 deferred=0 credits=1
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Hartge Yacht Yard"
+  Using domain: hartgeyard.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 7s...
+  Found 7 results
+  [LINKEDIN SKIP] LinkedIn Member (Information Systems Student at Anne Arundel Community College | Team Leader | College Athlete | Seeking Remote or Part-Time Opportunities) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Shipwright/ carpenters assistant at Hartge Yacht Yard) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Operations Manager / Cash Accountant at Hartge Yacht Yard) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Management of Critical Facilities, former Navy Nuke.) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (OEM PARTS MANAGER at Camping World and Good Sam) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Engineer / Mate for the Research Vessel Rachel Carson at University of Maryland Center for Environmental Science) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Real Estate Advisor | 15+ Years | Strategic, Client-First Representation) — masked name
+  [delay] Waiting 3s...
+  LinkedIn page 2...
+  [delay] Waiting 7s...
+  Found 4 results
+  [LINKEDIN SKIP] LinkedIn Member (Public Health Research Scientist) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Owner of BD Naturally) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (consultant at Hartge Yacht Yard) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (--) — masked name
+  [delay] Waiting 3s...
+  LinkedIn page 3...
+  [delay] Waiting 8s...
+  No results on page 3 — stopping.
+  No new people found on LinkedIn.
+[STEP] MD-REST-2970 linkedin empty pages=2 results=11 rejected=11 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+[STEP] MD-REST-2970 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (3 verified contacts on sheet, 1 new this run)
+[STEP] MD-REST-2970 final ok status=pipelined valid_contacts=3 new=1 deferred=0
+
+============================================================
+ DONE: Hartge Yacht Yard | 4 min | 01:33:40
+============================================================
+
+########## VENUE [3/8]: Arrowine & Cheese ##########
+  [DOMAIN] Venue domain: arrowine.com
+
+============================================================
+ PIPELINE: Arrowine & Cheese (VA-WINE-2953)
+ Website: https://www.arrowine.com/
+ Started: 2026-11-10 01:34:18
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 13/300, today 4/5000, balance 1051, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.arrowine.com/
+  Opening in Chrome: https://www.arrowine.com/
+  Validating contact form URL: https://arrowine.com/pages/contact-us
+  ✓ Real contact form confirmed
+  Emails: 0 | FB: none | IG: https://www.instagram.com/arrowineinc | Contact Form: https://arrowine.com/pages/contact-us
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=34 pdfs=0 emails=0 sitemaps=10 fragments=35 unvisited=224
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/VA-WINE-2953.json
+  [COVERAGE] Subpage queue: 132 in scope, rendering 30 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=1
+  Crawling subpage (1): https://arrowine.com/pages/about-us
+  Crawling subpage (2): https://arrowine.com/pages/about-arrowine
+  Crawling subpage (3): https://arrowine.com/pages/events
+  Crawling subpage (4): https://arrowine.com/customer_authentication/redirect?locale=en&region_country=US
+  Crawling subpage (5): https://arrowine.com/collections/wine
+  Crawling subpage (6): https://arrowine.com/collections/current-email-specials
+  Crawling subpage (7): https://arrowine.com/collections/red-wine
+  Crawling subpage (8): https://arrowine.com/collections/rose
+  Crawling subpage (9): https://arrowine.com/collections/white-wine
+  Crawling subpage (10): https://arrowine.com/collections/sparkling-wine
+  Crawling subpage (11): https://arrowine.com/collections/by-country
+  Crawling subpage (12): https://arrowine.com/collections/by-region
+  Crawling subpage (13): https://arrowine.com/collections/by-varietal
+  Crawling subpage (14): https://arrowine.com/collections/natural-wine
+  Crawling subpage (15): https://arrowine.com/collections/fortified
+  Crawling subpage (16): https://arrowine.com/collections/under-20-bottles
+  Crawling subpage (17): https://arrowine.com/collections/old-rare
+  Crawling subpage (18): https://arrowine.com/collections/sale
+  Crawling subpage (19): https://arrowine.com/products/wine-club
+  Crawling subpage (20): https://arrowine.com/collections/cheese-1
+  Crawling subpage (21): https://arrowine.com/collections/butter
+  Crawling subpage (22): https://arrowine.com/collections/perfect-with-cheese
+  Crawling subpage (23): https://arrowine.com/collections/buffalo-milk
+  Crawling subpage (24): https://arrowine.com/collections/cow-milk
+  Crawling subpage (25): https://arrowine.com/collections/goat-milk
+  Crawling subpage (26): https://arrowine.com/collections/mixed-milk
+  Crawling subpage (27): https://arrowine.com/collections/sheep-milk
+  Crawling subpage (28): https://arrowine.com/collections/artisan-cheeses
+  Crawling subpage (29): https://arrowine.com/collections/aged
+  Crawling subpage (30): https://arrowine.com/collections/bloomy-rind-1
+  [WARN] Static crawl incomplete: throttled (3 requests in a row failed (429) - the site started refusing us)
+  ✓ Instagram from venue website (trusted: header_footer): https://www.instagram.com/arrowineinc
+  ✓ Contact form URL saved
+  --- Doug Rosen (Owner): no email — not added to the sheet (name kept in the run log)
+[STEP] VA-WINE-2953 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=20 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=1 pending=0 fb=0 ig=1 blocked_pages=0 missing=none static_crawl=throttled
+
+========== STEP 1C: Facebook Google Search ==========
+  No Facebook found on website — Googling...
+  [FB SEARCH] Skipping https://www.facebook.com/p/Arrowine-Cheese-100083373461192/ — not a venue page (p)
+  [FB SEARCH] Skipping https://www.facebook.com/LouSagatovRealtor/ — handle 'lousagatovrealtor': handle has 10 chars that are not the venue name
+  [FB SEARCH] Skipping https://www.facebook.com/lou.sagatov/ — handle 'lou.sagatov': handle has 5 chars that are not the venue name
+  [FB SEARCH] Skipping https://www.facebook.com/doug.rosen/ — handle 'doug.rosen': handle has 9 chars that are not the venue name
+  [FB SEARCH] Skipping https://www.facebook.com/shopgoldenfox/ — handle 'shopgoldenfox': handle has 13 chars that are not the venue name
+  [FB SEARCH] Skipping https://www.facebook.com/emptybowlqueso/ — handle 'emptybowlqueso': handle has 14 chars that are not the venue name
+  [FB SEARCH] No handle matched venue name — rejecting all candidates (6)
+
+========== STEP 2: Social Media Scrape ==========
+  FB: none | IG: https://www.instagram.com/arrowineinc
+  Opening IG: https://www.instagram.com/arrowineinc
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] Found: wine@arrowine.com
+  [CANDIDATE] wine@arrowine.com — role mailbox with no person name attached; not saved
+[STEP] VA-WINE-2953 social ok fb=none ig=found fb_search=empty:rejected_6 ig_search=website fb_pages=0 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 1 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Arrowine & Cheese
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (0 results)
+  Found: ARROWINE, INC. (domain: arrowine.com, org_id: 67023b31d6d36300017c18f1)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at ARROWINE, INC. (org_id: 67023b31d6d36300017c18f1)...
+  Found 3 people total
+  [APOLLO] App title skip words loaded: racquets, tennis, golf, racquet, florist, busboy, server, farm, busser, 401k, caddie, fitness, squash, athletics, pickleball, proshop, controller
+  Skipped 3 people with no email (red ? on Apollo) and no decision-maker title
+  No new people to enrich.
+[STEP] VA-WINE-2953 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=ARROWINE,_INC. gate=name+domain people=3 relevant=0 skipped_titles=0 over_cap=0
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Arrowine & Cheese"
+  Using domain: arrowine.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 5s...
+  Found 8 results
+  [LINKEDIN SKIP] Todd Himes (Curating an ideal customer experience.) — headline doesn't name the venue
+  [LINKEDIN SKIP] LinkedIn Member (Designer ✽ Artist ✽ Storyteller | Creating for collective impact, joy & healing through thoughtful design) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Food & Beverage Manager, Event Manager at PB Dye Golf Club) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Creative Customer Experience & Specialty Retail Professional) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Aspiring Wine Professional and Art Enthusiast) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Retail Sales Specialist at Arrowine & Cheese) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Security+ | ITIL® v4 Foundation | Network+ | LPI Linux Essentials) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Comedian and Freelance Producer) — masked name
+  [delay] Waiting 5s...
+  LinkedIn page 2...
+  [delay] Waiting 8s...
+  Found 1 results
+  [LINKEDIN SKIP] LinkedIn Member (F&B and Retail Industry Professional with International Experience and a Fine Arts Background. Seeking to bring people together for thoughtfully considered expe) — masked name
+  [delay] Waiting 4s...
+  LinkedIn page 3...
+  [delay] Waiting 8s...
+  No results on page 3 — stopping.
+  No new people found on LinkedIn.
+[STEP] VA-WINE-2953 linkedin empty pages=2 results=9 rejected=9 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Arrowine & Cheese" contact Arlington
+  [FALLBACK] No new site found (or same domain as before)
+  [FALLBACK] Instagram already found this run (https://www.instagram.com/arrowineinc) — not re-searching
+[STEP] VA-WINE-2953 google empty results=2 emails=0 site=same ig=known
+  Setting status → needs_review (no verified contacts saved)
+[STEP] VA-WINE-2953 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Arrowine & Cheese | 4 min | 01:38:54
+============================================================
+
+########## VENUE [4/8]: Mazaro Italian Restaurant ##########
+  [DOMAIN] Venue domain: mazarova.com
+
+============================================================
+ PIPELINE: Mazaro Italian Restaurant (VA-REST-3454)
+ Website: https://www.mazarova.com
+ Started: 2026-11-10 01:39:32
+============================================================
+  Website check: HTTP 000 ✓ (curl exit 92: slow or blocking bots — treated as alive)
+  [ZB SAFE] run 13/300, today 4/5000, balance 1051, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.mazarova.com
+  Opening in Chrome: https://www.mazarova.com
+  Found on homepage: info@mazarova.com
+  Emails: 1 | FB: https://www.facebook.com/mazarova | IG: https://www.instagram.com/mazaro_italian_restaurant | Contact Form: none
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=34 pdfs=0 emails=3 sitemaps=9 fragments=96 unvisited=1
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/VA-REST-3454.json
+  [PROBE] Site stopped answering probes — skipping the rest
+  [COVERAGE] Subpage queue: 15 in scope, rendering 15 (cap 30); skipped off-scope=0 other-location=0 variants=4 non-page=8
+  Crawling subpage (1): https://www.mazarova.com/menu
+  Crawling subpage (2): https://www.mazarova.com/wine-menu
+  Crawling subpage (3): https://www.mazarova.com/cocktails-beer
+  Crawling subpage (4): https://www.mazarova.com/privacy-policy
+  Found on subpage: info@mazarova.com
+  Crawling subpage (5): https://www.mazarova.com/terms-conditions
+  Found on subpage: info@mazarova.com
+  Crawling subpage (6): https://www.mazarova.com/valentines-day-menu
+  Found on subpage: info@mazarova.com
+  Crawling subpage (7): https://www.mazarova.com/header_res
+  Crawling subpage (8): https://www.mazarova.com/main-header-_-new
+  Crawling subpage (9): https://www.mazarova.com/job-sample-2/
+  Crawling subpage (10): https://www.mazarova.com/job-posting-sample
+  Crawling subpage (11): https://www.mazarova.com/job-sample-3
+  Crawling subpage (12): https://www.mazarova.com/job-sample-for-a-big-job-with-a-big-title
+  Crawling subpage (13): https://www.mazarova.com/utilizing-mobile-technology-in-the-field
+  Found on subpage: aklidata.co@gmail.com
+  Crawling subpage (14): https://www.mazarova.com/what-are-the-best-ingredients-to-make-a-good-dessert
+  Found on subpage: aklidata.co@gmail.com
+  Crawling subpage (15): https://www.mazarova.com/success-story-businessman-in-harlem
+  Found on subpage: aklidata.co@gmail.com
+  [CONTACT FORM] Also found: https://www.mazarova.com/?liquid-footer=main-footer
+  [CONTACT FORM] Also found: https://www.mazarova.com/?liquid-header=main-header
+  [CONTACT FORM] Also found: https://www.mazarova.com/author/aklidata-cogmail-com/
+  ✓ Facebook from venue website (trusted: header_footer): https://www.facebook.com/mazarova
+  ✓ Instagram from venue website (trusted: name_match): https://www.instagram.com/mazaro_italian_restaurant
+  [CONTACT FORM] Found: https://www.mazarova.com/
+  ✓ Contact form URL saved
+  [REJECT] aklidata.co@gmail.com — freemail_unlinked (source: website, evidence: venue_site)
+  [REJECT] info@liquid.com — general_inbox (source: website, evidence: venue_site)
+  [REJECT] info@mazarova.com — general_inbox (source: website, evidence: venue_site)
+[STEP] VA-REST-3454 web ok via=chrome pages=16 visited=home,about form=yes chrome_pages=16 curl_pages=0 static_pages=25 pdfs=0 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=3 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,events,team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/mazarova | IG: https://www.instagram.com/mazaro_italian_restaurant
+  Opening FB: https://www.facebook.com/mazarova
+  Opening FB: https://www.facebook.com/mazarova/about
+  Opening FB: https://www.facebook.com/mazarova/directory_contact_info
+  [FB] No email on page — trying Google snippet...
+  [FB SNIPPET] No email in Google snippet
+  Opening IG: https://www.instagram.com/mazaro_italian_restaurant
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] Found: info@mazarova.com
+  [REJECT] info@mazarova.com — general_inbox (source: social, evidence: external)
+[STEP] VA-REST-3454 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 1 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Mazaro Italian Restaurant
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (1 results)
+  Found: Mazaro Italian Restaurant (domain: mazarova.com, org_id: 672c70d99708d000011ed692)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Mazaro Italian Restaurant (org_id: 672c70d99708d000011ed692)...
+  [APOLLO] No people in DC/MD/VA — used the no-location search (small local org)
+  Found 0 people total
+  No people in Apollo for this company.
+[STEP] VA-REST-3454 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Mazaro_Italian_Restaurant gate=name+domain people=0
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Mazaro Italian Restaurant"
+  Using domain: mazarova.com
+  [delay] Waiting 1s...
+  LinkedIn page 1...
+  [delay] Waiting 8s...
+  Found 1 results
+  [LINKEDIN SKIP] LinkedIn Member (Trainee Lawyer | MBA in Project Management) — masked name
+  [delay] Waiting 5s...
+  LinkedIn page 2...
+  [delay] Waiting 6s...
+  No results on page 2 — stopping.
+  No new people found on LinkedIn.
+[STEP] VA-REST-3454 linkedin empty pages=1 results=1 rejected=1 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Mazaro Italian Restaurant" contact Arlington
+  [FALLBACK] No new site found (or same domain as before)
+  [FALLBACK] Instagram already found this run (https://www.instagram.com/mazaro_italian_restaurant) — not re-searching
+[STEP] VA-REST-3454 google empty results=2 emails=0 site=same ig=known
+  Setting status → needs_review (no verified contacts saved)
+[STEP] VA-REST-3454 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Mazaro Italian Restaurant | 4 min | 01:43:32
+============================================================
+
+########## VENUE [5/8]: CUT D.C. by Wolfgang Puck ##########
+  [DOMAIN] Venue domain: wolfgangpuck.com
+
+============================================================
+ PIPELINE: CUT D.C. by Wolfgang Puck (DC-REST-2821)
+ Website: https://wolfgangpuck.com/dining/cut-dc
+ Started: 2026-11-10 01:44:11
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 13/300, today 4/5000, balance 1051, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://wolfgangpuck.com/dining/cut-dc
+  Opening in Chrome: https://wolfgangpuck.com/dining/cut-dc
+  Found on homepage: washingtondc.sales@rosewoodhotels.com
+  Validating contact form URL: https://wolfgangpuck.com/contact
+  ✓ Real contact form confirmed
+  Emails: 1 | FB: https://www.facebook.com/wolfgangpuck | IG: https://www.instagram.com/wolfgangpuck | Contact Form: https://wolfgangpuck.com/contact
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=64 pdfs=2 emails=12 sitemaps=6 fragments=51 unvisited=0
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/DC-REST-2821.json
+  [COVERAGE] Subpage queue: 42 in scope, rendering 30 (cap 30); skipped off-scope=0 other-location=0 variants=2 non-page=0
+  Crawling subpage (1): https://wolfgangpuck.com/about-us
+  Crawling subpage (2): https://wolfgangpuck.com/restaurants
+  Crawling subpage (3): https://wolfgangpuck.com/spago
+  Crawling subpage (4): https://wolfgangpuck.com/restaurants/spago-beverly-hills
+  Crawling subpage (5): https://wolfgangpuck.com/restaurants/spago-bodrum
+  Crawling subpage (6): https://wolfgangpuck.com/restaurants/spago-budapest
+  Crawling subpage (7): https://wolfgangpuck.com/restaurants/spago-istanbul
+  Crawling subpage (8): https://wolfgangpuck.com/restaurants/spago-las-vegas
+  Crawling subpage (9): https://wolfgangpuck.com/restaurants/spago-maui
+  Found on subpage: maui.events@wolfgangpuck.com
+  Crawling subpage (10): https://wolfgangpuck.com/restaurants/spago-shanghai
+  Found on subpage: spago.shanghai@stregis.com
+  Crawling subpage (11): https://wolfgangpuck.com/restaurants/spago-singapore
+  Found on subpage: spagoreservations@marinabaysands.com
+  Crawling subpage (12): https://wolfgangpuck.com/carama
+  Crawling subpage (13): https://wolfgangpuck.com/restaurants/carama
+  Crawling subpage (14): https://wolfgangpuck.com/cut
+  Crawling subpage (15): https://wolfgangpuck.com/restaurants/cut-bahrain
+  Crawling subpage (16): https://wolfgangpuck.com/restaurants/cut-beverly-hills
+  Found on subpage: cutevents.beverlywilshire@fourseasons.com
+  Crawling subpage (17): https://wolfgangpuck.com/restaurants/cut-las-vegas
+  Crawling subpage (18): https://wolfgangpuck.com/restaurants/cut-london
+  Found on subpage: groupandeventsales.45l@dorchestercollection.com
+  Crawling subpage (19): https://wolfgangpuck.com/restaurants/cut-new-york
+  Found on subpage: lvbanquets@wolfgangpuck.com
+  Crawling subpage (20): https://wolfgangpuck.com/restaurants/cut-singapore
+  Found on subpage: cut.events@marinabaysands.com
+  Crawling subpage (21): https://wolfgangpuck.com/wolfgang-puck-bar-grill
+  Crawling subpage (22): https://wolfgangpuck.com/restaurants/wolfgang-puck-bar-grill-las-vegas
+  Crawling subpage (23): https://wolfgangpuck.com/chinois-2
+  Crawling subpage (24): https://wolfgangpuck.com/restaurants/chinois-santa-monica
+  Crawling subpage (25): https://wolfgangpuck.com/re-asian-cuisine-2
+  Crawling subpage (26): https://wolfgangpuck.com/restaurants/re-asian-cuisine-bahrain
+  Crawling subpage (27): https://wolfgangpuck.com/restaurants/blue-moon-lounge
+  Found on subpage: josie.ribeiro@fourseasons.com
+  Crawling subpage (28): https://wolfgangpuck.com/experiences
+  Crawling subpage (29): https://wolfgangpuck.com/experiences/beyond-the-vine
+  Crawling subpage (30): https://wolfgangpuck.com/experiences/generational-tasting-tour
+  [CONTACT FORM] Also found: https://wolfgangpuck.com/restaurants/cut-las-vegas/
+  [CONTACT FORM] Also found: https://wolfgangpuck.com/restaurants/cut-london/
+  [CONTACT FORM] Also found: https://wolfgangpuck.com/restaurants/cut-new-york/
+  [REJECT] instagram link https://www.instagram.com/cutdc — no_evidence
+  [REJECT] facebook link https://www.facebook.com/SpagoBeverlyHills — no_evidence
+  [REJECT] instagram link https://www.instagram.com/spagobh — no_evidence
+  [REJECT] facebook link https://www.facebook.com/spagobodrum — no_evidence
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/wolfgangpuck
+  ✓ Instagram from venue website (trusted: name_match): https://www.instagram.com/wolfgangpuck
+  [CONTACT FORM] Also found: https://wolfgangpuck.com/contact
+  [CONTACT FORM] Found: https://wolfgangpuck.com/restaurants/
+  ✓ Contact form URL saved
+  [REJECT] cut.events@marinabaysands.com — off_domain:marinabaysands.com!=wolfgangpuck.com (source: website, evidence: venue_site)
+  [REJECT] cutevents.beverlywilshire@fourseasons.com — off_domain:fourseasons.com!=wolfgangpuck.com (source: website, evidence: venue_site)
+  [REJECT] groupandeventsales.45l@dorchestercollection.com — off_domain:dorchestercollection.com!=wolfgangpuck.com (source: website, evidence: venue_site)
+  [REJECT] josie.ribeiro@fourseasons.com — off_domain:fourseasons.com!=wolfgangpuck.com (source: website, evidence: venue_site)
+  [REJECT] legal@ex.com — hard_reject:legal (source: website, evidence: venue_site)
+  [ZB SAFE] lvbanquets@wolfgangpuck.com → valid (verified; charged=True; cache=False; venue 1/40; run 14/300)
+  ✓ Added and verified: (no name) <lvbanquets@wolfgangpuck.com>
+  [ZB SAFE] maui.events@wolfgangpuck.com → valid (verified; charged=True; cache=False; venue 2/40; run 15/300)
+  ✓ Added and verified: (no name) <maui.events@wolfgangpuck.com>
+  [REJECT] spago.shanghai@stregis.com — off_domain:stregis.com!=wolfgangpuck.com (source: website, evidence: venue_site)
+  [REJECT] spagoreservations@marinabaysands.com — off_domain:marinabaysands.com!=wolfgangpuck.com (source: website, evidence: venue_site)
+  [CANDIDATE] specialeventsla@wolfgangpuck.com — role mailbox with no person name attached; not saved
+  [ZB SAFE] tandc@wolfgangpuck.com → valid (verified; charged=True; cache=False; venue 3/40; run 16/300)
+  ✓ Added and verified: (no name) <tandc@wolfgangpuck.com>
+  [REJECT] washingtondc.sales@rosewoodhotels.com — off_domain:rosewoodhotels.com!=wolfgangpuck.com (source: website, evidence: venue_mailto)
+  --- Byron Lazaroff-Puck (President): no email — not added to the sheet (name kept in the run log)
+  --- Tom Kaplan (Executive Vice President, Development and Design): no email — not added to the sheet (name kept in the run log)
+  --- John LaGrone (Vice President, Culinary Operations): no email — not added to the sheet (name kept in the run log)
+  --- Michael Lubitz (Chief Financial Officer): no email — not added to the sheet (name kept in the run log)
+  --- Klaus Puck (Chief Financial Officer): no email — not added to the sheet (name kept in the run log)
+  --- Barbara Lazaroff (Co-Founder/Partner): no email — not added to the sheet (name kept in the run log)
+  --- Ari Rosenson (Co-Founder/Partner): no email — not added to the sheet (name kept in the run log)
+  --- Tetsu Yahagi (Director of Culinary Development and Operations): no email — not added to the sheet (name kept in the run log)
+[STEP] DC-REST-2821 web ok via=chrome pages=31 visited=home,contact,about form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=12 saved=3 role=0 unverified=0 deferred=0 rejected=8 candidates=1 known=0 errors=0 people=9 pending=0 fb=1 ig=1 blocked_pages=0 missing=events,team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/wolfgangpuck | IG: https://www.instagram.com/wolfgangpuck
+  Opening FB: https://www.facebook.com/wolfgangpuck
+  FB emails found: info@wolfgangpuck.com
+  Opening FB: https://www.facebook.com/wolfgangpuck/about
+  Opening FB: https://www.facebook.com/wolfgangpuck/directory_contact_info
+  FB emails found: info@wolfgangpuck.com
+  Opening IG: https://www.instagram.com/wolfgangpuck
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+  [REJECT] info@wolfgangpuck.com — general_inbox (source: social, evidence: external)
+[STEP] DC-REST-2821 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 1 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: CUT D.C. by Wolfgang Puck
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (0 results)
+  Found: Wolfgang Puck (domain: wolfgangpuck.com, org_id: 5b86a0aaf874f76b6aacc603)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Wolfgang Puck (org_id: 5b86a0aaf874f76b6aacc603)...
+  Found 7 people total
+  [APOLLO] App title skip words loaded: racquets, tennis, golf, racquet, florist, busboy, server, farm, busser, 401k, caddie, fitness, squash, athletics, pickleball, proshop, controller
+  Skipped 3 people by title (app skip words / non-booking staff): Line Cook
+  Skipped 1 people with no email (red ? on Apollo) and no decision-maker title
+  3 people to enrich (1 credit each)
+  [APOLLO] Credits used this run: 1 / 300
+  >>> Andrew Skala (Executive Chef): andrew.skala@wolfgangpuck.com [verified]
+  [ZB SAFE] andrew.skala@wolfgangpuck.com → valid (verified; charged=True; cache=False; venue 4/40; run 17/300)
+  ✓ Added and verified: Andrew Skala <andrew.skala@wolfgangpuck.com>
+  >>> Jeannette Rosenberg (Executive Chef): jeannette.rosenberg@wolfgangpuck.com [verified]
+  [ZB SAFE] jeannette.rosenberg@wolfgangpuck.com → valid (verified; charged=True; cache=False; venue 5/40; run 18/300)
+  ✓ Added and verified: Jeannette Rosenberg <jeannette.rosenberg@wolfgangpuck.com>
+  >>> Kasai Smith (Bartender): kasai.smith@wolfgangpuck.com [verified]
+  [ZB SAFE] kasai.smith@wolfgangpuck.com → invalid (verified; charged=True; cache=False; venue 6/40; run 19/300)
+  [CANDIDATE] kasai.smith@wolfgangpuck.com — ZeroBounce status is invalid; retained for review
+  Apollo API done: 4 credits used this run
+[STEP] DC-REST-2821 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=0 org=Wolfgang_Puck gate=name+domain people=7 relevant=3 skipped_titles=3 over_cap=0 enriched=3 saved=2 pending=0 deferred=0 credits=3
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "CUT D.C. by Wolfgang Puck"
+  Using domain: wolfgangpuck.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 8s...
+  Found 2 results
+  Found: Hannah Fleming
+  [LINKEDIN SKIP] LinkedIn Member (Student at Vanderbilt University | Majoring in Computer Science) — masked name
+  [delay] Waiting 4s...
+  LinkedIn page 2...
+  [delay] Waiting 6s...
+  No results on page 2 — stopping.
+
+  LinkedIn found 1 new people. Enriching via Apollo API...
+  [APOLLO] Credits used this run: 4 / 300
+  --- Hannah Fleming (Cluster Marketing & Communications Manager, Rosewood Washington D.C. | The Carlyle, A Rosewood Hotel): not in Apollo
+  --- Hannah Fleming (Cluster Marketing & Communications Manager, Rosewood Washington D.C. | The Carlyle, A Rosewood Hotel): no email — not added to the sheet (name kept in the run log)
+  LinkedIn + Apollo API done. Credits used: 4
+[STEP] DC-REST-2821 linkedin empty pages=1 results=2 rejected=1 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0
+[STEP] DC-REST-2821 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (5 verified contacts on sheet, 5 new this run)
+[STEP] DC-REST-2821 final ok status=pipelined valid_contacts=5 new=5 deferred=0
+
+============================================================
+ DONE: CUT D.C. by Wolfgang Puck | 7 min | 01:51:16
+============================================================
+
+########## VENUE [6/8]: Chart House Prime ##########
+  [DOMAIN] Venue domain: charthouseprime.com
+
+============================================================
+ PIPELINE: Chart House Prime (MD-REST-683)
+ Website: https://www.charthouseprime.com/
+ Started: 2026-11-10 01:51:52
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 19/300, today 10/5000, balance 1045, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.charthouseprime.com/
+  Opening in Chrome: https://www.charthouseprime.com/
+  Emails: 0 | FB: https://www.facebook.com/ChartHouseprime | IG: https://www.instagram.com/chprime_ | Contact Form: none
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=24 pdfs=0 emails=0 sitemaps=1 fragments=24 unvisited=14
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-683.json
+  [LOCATION] Checking for location-specific page (city: Annapolis)...
+  [LOCATION] No location-specific page found
+  [COVERAGE] Subpage queue: 16 in scope, rendering 16 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=0
+  Crawling subpage (1): https://www.charthouseprime.com/about
+  Crawling subpage (2): https://www.charthouseprime.com/private-events
+  [CONTACT FORM] Found on subpage: https://www.charthouseprime.com/private-events
+  Crawling subpage (3): https://www.charthouseprime.com/event/holiday-private-events/
+  Crawling subpage (4): https://www.charthouseprime.com/location/chart-house-prime
+  Crawling subpage (5): https://www.charthouseprime.com/wine-dinners
+  Crawling subpage (6): https://www.charthouseprime.com/menus
+  Crawling subpage (7): https://www.charthouseprime.com/specials
+  Crawling subpage (8): https://www.charthouseprime.com/faqs
+  Crawling subpage (9): https://www.charthouseprime.com/gift-cards
+  Crawling subpage (10): https://www.charthouseprime.com/accessibility
+  Crawling subpage (11): https://www.charthouseprime.com/event/veterans-day-2026
+  Crawling subpage (12): https://www.charthouseprime.com/event/thanksgiving-at-chart-house-prime
+  Crawling subpage (13): https://www.charthouseprime.com/event/thanksgiving-meals-to-go
+  Crawling subpage (14): https://www.charthouseprime.com/dress-code/
+  Crawling subpage (15): https://www.charthouseprime.com/specials/?p=2
+  Crawling subpage (16): https://www.charthouseprime.com/specials/?p=1
+  [PDF] https://images.getbento.com/accounts/4e2a0e855e784f9b8057fefe434fa6af/media/PZ0amPCmR0iBDT8NBsoM_3822464%20CHT%20Prime%20Special%20Events%20Menu%20No%20Prices%200426.pdf → no emails
+  [PDF] https://images.getbento.com/accounts/4e2a0e855e784f9b8057fefe434fa6af/media/MxC4oWYIT36KEoteabJP_5100119%20CHT%20Prime%20Holiday%20Menu%202026.pdf → no emails
+  [CONTACT FORM] Also found: https://www.charthouseprime.com/private-events/
+  [CONTACT FORM] Also found: https://www.charthouseprime.com/
+  [CONTACT FORM] Also found: https://www.charthouseprime.com/about/
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/ChartHouseprime
+  ✓ Instagram from venue website (trusted: header_footer): https://www.instagram.com/chprime_
+  [CONTACT FORM] Also found: https://www.charthouseprime.com/private-events
+  [CONTACT FORM] Found: https://www.cognitoforms.com/LandrysInc1/PRIVACYRIGHTSREQUEST
+  ✓ Contact form URL saved
+[STEP] MD-REST-683 web ok via=chrome pages=17 visited=home,contact,about,events form=yes chrome_pages=17 curl_pages=0 static_pages=16 pdfs=2 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/ChartHouseprime | IG: https://www.instagram.com/chprime_
+  Opening FB: https://www.facebook.com/ChartHouseprime
+  Opening FB: https://www.facebook.com/ChartHouseprime/about
+  Opening FB: https://www.facebook.com/ChartHouseprime/directory_contact_info
+  [FB] No email on page — trying Google snippet...
+  [FB SNIPPET] No email in Google snippet
+  Opening IG: https://www.instagram.com/chprime_
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+[STEP] MD-REST-683 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0
+  [APOLLO] Credits used this run: 4 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Chart House Prime
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (0 results)
+  [APOLLO MISMATCH] 'Chart House' (chart-house.com) is not this venue — different domain chart-house.com (venue charthouseprime.com)
+[STEP] MD-REST-683 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0
+  Using website domain for enrichment: charthouseprime.com
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Chart House Prime"
+  Using domain: charthouseprime.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 8s...
+  Found 9 results
+  [LINKEDIN SKIP] Kylie House (Elementary Educator at Anne Arundel County Public Schools) — headline doesn't name the venue
+  [LINKEDIN SKIP] Teresa Sipagan (Sales and Events Manager) — headline doesn't name the venue
+  [LINKEDIN SKIP] LinkedIn Member (REALTOR | Annapolis Fine Homes at Long & Foster Real Estate) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (server assistant at chart house prime) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Beverage Specialist) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Chemical Engineer | Nuclear Engineering) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Server at Chart House-Prime steakhouse) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (The most hospitable host around!) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (--) — masked name
+  [delay] Waiting 4s...
+  LinkedIn page 2...
+  [delay] Waiting 6s...
+  Found 3 results
+  [LINKEDIN SKIP] LinkedIn Member (.) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Hospitality & Catering Operations Leader | Beverage Manager | Wine, Spirits & Beer | Foodservice Sales | Le Cordon Bleu Chef) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Server and Sommelier at Chart House Prime) — masked name
+  [delay] Waiting 5s...
+  LinkedIn page 3...
+  [delay] Waiting 6s...
+  No results on page 3 — stopping.
+  No new people found on LinkedIn.
+[STEP] MD-REST-683 linkedin empty pages=2 results=12 rejected=12 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Chart House Prime" contact Annapolis
+  [FALLBACK] No new site found (or same domain as before)
+  [FALLBACK] Instagram already found this run (https://www.instagram.com/chprime_) — not re-searching
+[STEP] MD-REST-683 google empty results=2 emails=0 site=same ig=known
+  Setting status → needs_review (no verified contacts saved)
+[STEP] MD-REST-683 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Chart House Prime | 3 min | 01:55:32
+============================================================
+
+########## VENUE [7/8]: Otter Point Yacht Club ##########
+  [DOMAIN] Venue domain: otterpointyachtclub.org
+
+============================================================
+ PIPELINE: Otter Point Yacht Club (MD-REST-2325)
+ Website: https://www.otterpointyachtclub.org
+ Started: 2026-11-10 01:56:08
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 19/300, today 10/5000, balance 1045, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.otterpointyachtclub.org
+  Opening in Chrome: https://www.otterpointyachtclub.org
+  Validating contact form URL: https://www.otterpointyachtclub.org/contact
+  ✓ Real contact form confirmed
+  Emails: 0 | FB: none | IG: none | Contact Form: https://www.otterpointyachtclub.org/contact
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=25 pdfs=0 emails=0 sitemaps=1 fragments=15 unvisited=1
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-2325.json
+  [COVERAGE] Subpage queue: 13 in scope, rendering 13 (cap 30); skipped off-scope=0 other-location=0 variants=1 non-page=1
+  Crawling subpage (1): https://www.otterpointyachtclub.org/club-house-rental
+  Crawling subpage (2): https://www.otterpointyachtclub.org/events
+  Crawling subpage (3): https://www.otterpointyachtclub.org/bar-menu
+  Crawling subpage (4): https://www.otterpointyachtclub.org/become-a-member
+  Crawling subpage (5): https://www.otterpointyachtclub.org/memberships
+  Crawling subpage (6): https://www.otterpointyachtclub.org/home
+  Crawling subpage (7): https://www.otterpointyachtclub.org/podcast
+  Crawling subpage (8): https://www.otterpointyachtclub.org/welcome
+  Crawling subpage (9): https://www.otterpointyachtclub.org/about
+  Crawling subpage (10): https://www.otterpointyachtclub.org/the-basics-1
+  Crawling subpage (11): https://www.otterpointyachtclub.org/the-basics-1/puree-dktfk
+  Crawling subpage (12): https://www.otterpointyachtclub.org/the-basics-1/kneading-jhkp5
+  Crawling subpage (13): https://www.otterpointyachtclub.org/the-basics-1/seasoning-t34yd
+  Crawling subpage (14): https://www.otterpointyachtclub.org/the-basics-1/paring-knife-7yj2c
+  ✓ Contact form URL saved
+[STEP] MD-REST-2325 web ok via=chrome pages=15 visited=home,contact,about,events form=yes chrome_pages=15 curl_pages=0 static_pages=16 pdfs=0 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=team
+
+========== STEP 1B: Instagram Google Search ==========
+  No Instagram found on website — Googling...
+  [IG SEARCH] Skipping https://www.instagram.com/leight/ — handle 'leight': handle has 6 chars that are not the venue name
+  [IG SEARCH] Found: https://www.instagram.com/otter_point_yacht_club/
+  ✓ Instagram URL saved
+
+========== STEP 1C: Facebook Google Search ==========
+  No Facebook found on website — Googling...
+  [FB SEARCH] Skipping https://www.facebook.com/otto.pointe/ — handle 'otto.pointe': handle has 3 chars that are not the venue name
+  [FB SEARCH] Skipping https://www.facebook.com/posts/ — handle 'posts': handle has 5 chars that are not the venue name
+  [FB SEARCH] Skipping https://www.facebook.com/.../ — not a venue page (...)
+  [FB SEARCH] No handle matched venue name — rejecting all candidates (3)
+
+========== STEP 2: Social Media Scrape ==========
+  FB: none | IG: https://www.instagram.com/otter_point_yacht_club/
+  Opening IG: https://www.instagram.com/otter_point_yacht_club/
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+[STEP] MD-REST-2325 social ok fb=none ig=found fb_search=empty:rejected_3 ig_search=ok:found_of_2 fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0
+  [APOLLO] Credits used this run: 4 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Otter Point Yacht Club
+  [APOLLO] Domain lookup: ok (0 results) | name search: ok (0 results)
+  [WARN] No company found in Apollo for 'Otter Point Yacht Club' (tried name + domain)
+[STEP] MD-REST-2325 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0
+  Using website domain for enrichment: otterpointyachtclub.org
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Otter Point Yacht Club"
+  Using domain: otterpointyachtclub.org
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 7s...
+  Found 1 results
+  [LINKEDIN SKIP] LinkedIn Member (Personal NMLS 180395/ The MMM TEAM of Cross County Mortgage NMLS  3029) — masked name
+  [delay] Waiting 3s...
+  LinkedIn page 2...
+  [delay] Waiting 7s...
+  No results on page 2 — stopping.
+  No new people found on LinkedIn.
+[STEP] MD-REST-2325 linkedin empty pages=1 results=1 rejected=1 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Otter Point Yacht Club" contact Abingdon
+  [FALLBACK] No new site found (or same domain as before)
+  [FALLBACK] Instagram already found this run (https://www.instagram.com/otter_point_yacht_club/) — not re-searching
+[STEP] MD-REST-2325 google empty results=4 emails=0 site=same ig=known
+  Setting status → needs_review (no verified contacts saved)
+[STEP] MD-REST-2325 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Otter Point Yacht Club | 3 min | 01:59:35
+============================================================
+
+########## VENUE [8/8]: Grand Cata ##########
+  [URL FIX] Added https:// scheme: https://grandcata.com
+  [DOMAIN] Venue domain: grandcata.com
+
+============================================================
+ PIPELINE: Grand Cata (VA-WINE-2945)
+ Website: https://grandcata.com
+ Started: 2026-11-10 02:00:19
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 19/300, today 10/5000, balance 1045, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://grandcata.com
+  Opening in Chrome: https://grandcata.com
+  Found on homepage: info@grandcata.com
+  Emails: 1 | FB: https://www.facebook.com/Grandcata | IG: https://www.instagram.com/grandcata | Contact Form: none
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=48 pdfs=1 emails=6 sitemaps=2 fragments=15 unvisited=118
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/VA-WINE-2945.json
+  [COVERAGE] Subpage queue: 24 in scope, rendering 14 (cap 30); skipped off-scope=0 other-location=0 variants=9 non-page=6
+  Crawling subpage (1): https://www.grandcata.com/contact-us
+  Found on subpage: info@grandcata.com
+  Crawling subpage (2): https://www.grandcata.com/blog/learn-about-tannins
+  Found on subpage: info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (3): https://www.grandcata.com/blog/all-about-cinsault-chileno
+  Found on subpage: info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (4): https://www.grandcata.com/new-events-1
+  Found on subpage: info@grandcata.com
+  Crawling subpage (5): https://www.grandcata.com/events
+  Found on subpage: events@grandcata.com, info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (6): https://www.grandcata.com/new-events-1/daily-cata-staff-picks
+  Found on subpage: info@grandcata.com
+  Crawling subpage (7): https://www.grandcata.com/new-events-1/catenamasterclass
+  Found on subpage: info@grandcata.com
+  Crawling subpage (8): https://www.grandcata.com/new-events-1/daily-cata-staff-picks-1
+  Found on subpage: info@grandcata.com
+  Crawling subpage (9): https://www.grandcata.com/new-events-1/daily-cata-a-journey-through-malbec
+  Found on subpage: info@grandcata.com
+  Crawling subpage (10): https://www.grandcata.com/visit-us
+  Found on subpage: cosecha@grandcata.com, info@grandcata.com, info@grandcata.comjoin, julio@grandcata.com, mosaic@grandcata.com, pedro@grandcata.com
+  Crawling subpage (11): https://www.grandcata.com/home
+  Found on subpage: info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (12): https://www.grandcata.com/cultura
+  Found on subpage: events@grandcata.com, info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (13): https://www.grandcata.com/vino
+  Found on subpage: events@grandcata.com, info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (14): https://www.grandcata.com/newsletter
+  Found on subpage: info@grandcata.com
+  Crawling subpage (15): https://www.grandcata.com/mega-vino
+  Found on subpage: events@grandcata.com, info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (16): https://www.grandcata.com/cocina
+  Found on subpage: cosecha@grandcata.com, info@grandcata.com, info@grandcata.comjoin, mosaic@grandcata.com
+  Crawling subpage (17): https://www.grandcata.com/shop
+  Found on subpage: info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (18): https://www.grandcata.com/e-shop
+  Found on subpage: info@grandcata.com
+  Crawling subpage (19): https://www.grandcata.com/join-our-team
+  Found on subpage: info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (20): https://www.grandcata.com/glossary
+  Found on subpage: info@grandcata.com
+  Crawling subpage (21): https://www.grandcata.com/terms-and-conditions
+  Found on subpage: info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (22): https://www.grandcata.com/wine-club
+  Found on subpage: info@grandcata.com
+  Crawling subpage (23): https://www.grandcata.com/overflow-orange-skin-contact-oxidative
+  Found on subpage: info@grandcata.com
+  Crawling subpage (24): https://www.grandcata.com/blog/other-wines-from-piedmont
+  Found on subpage: info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (25): https://www.grandcata.com/blog/catadoras-experience-in-wine-industry-g8xas
+  Found on subpage: info@grandcata.com, info@grandcata.comjoin
+  Crawling subpage (26): https://www.grandcata.com/e-shop/wine-club-month-to-month
+  Found on subpage: info@grandcata.com
+  Crawling subpage (27): https://www.grandcata.com/e-shop/wine-club-three-month-membership-fzlxe
+  Found on subpage: info@grandcata.com
+  Crawling subpage (28): https://www.grandcata.com/e-shop/wine-club-6-month-membership-mkhtn
+  Found on subpage: info@grandcata.com
+  Crawling subpage (29): https://www.grandcata.com/e-shop/class-for-two-reservation
+  Found on subpage: info@grandcata.com
+  Crawling subpage (30): https://www.grandcata.com/overflow-orange-skin-contact-oxidative/charlie-villard-jcv-semillon
+  Found on subpage: info@grandcata.com
+  [PDF] https://www.grandcata.com/s/Grand-Cata-2024-Lookbook.pdf → no emails
+  [CONTACT FORM] Also found: https://www.grandcata.com/join-our-team
+  [REJECT] instagram link https://www.instagram.com/francismallmann — no_evidence
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/Grandcata
+  ✓ Instagram from venue website (trusted: name_match): https://www.instagram.com/grandcata
+  [CONTACT FORM] Found: https://www.grandcata.com/contact-us
+  ✓ Contact form URL saved
+  [WEB] The venue's own pages use @grandcata.comjoin for its staff — those addresses count as the venue's own domain
+  [ZB SAFE] cosecha@grandcata.com → valid (verified; charged=True; cache=False; venue 1/40; run 20/300)
+  ✓ Added and verified: (no name) <cosecha@grandcata.com>
+  [CANDIDATE] events@grandcata.com — role mailbox with no person name attached; not saved
+  [REJECT] info@grandcata.com — general_inbox (source: website, evidence: venue_mailto)
+  [REJECT] info@grandcata.comjoin — general_inbox (source: website, evidence: venue_site)
+  [ZB SAFE] julio@grandcata.com → valid (verified; charged=True; cache=False; venue 2/40; run 21/300)
+  ✓ Added and verified: Julio R. Robledo <julio@grandcata.com>
+  [ZB SAFE] mosaic@grandcata.com → valid (verified; charged=True; cache=False; venue 3/40; run 22/300)
+  ✓ Added and verified: (no name) <mosaic@grandcata.com>
+  [ZB SAFE] pedro@grandcata.com → valid (verified; charged=True; cache=False; venue 4/40; run 23/300)
+  ✓ Added and verified: Pedro J. Rodríguez <pedro@grandcata.com>
+[STEP] VA-WINE-2945 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=1 emails=7 saved=4 role=0 unverified=0 deferred=0 rejected=2 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/Grandcata | IG: https://www.instagram.com/grandcata
+  Opening FB: https://www.facebook.com/Grandcata
+  Opening FB: https://www.facebook.com/Grandcata/about
+  Opening FB: https://www.facebook.com/Grandcata/directory_contact_info
+  FB emails found: info@grandcata.com
+  Opening IG: https://www.instagram.com/grandcata
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+  [REJECT] info@grandcata.com — general_inbox (source: social, evidence: external)
+[STEP] VA-WINE-2945 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 4 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Grand Cata
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (1 results)
+  Found: Grand Cata (domain: grandcata.com, org_id: 55f9b47cf3e5bb41fa00253a)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Grand Cata (org_id: 55f9b47cf3e5bb41fa00253a)...
+  Found 4 people total
+  [APOLLO] App title skip words loaded: racquets, tennis, golf, racquet, florist, busboy, server, farm, busser, 401k, caddie, fitness, squash, athletics, pickleball, proshop, controller
+  Skipped 1 people by title (app skip words / non-booking staff): Wine Steward
+  Skipped 2 people already in the sheet (name match)
+  Skipped 1 people with no email (red ? on Apollo) and no decision-maker title
+  No new people to enrich.
+[STEP] VA-WINE-2945 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Grand_Cata gate=name+domain people=4 relevant=0 skipped_titles=1 over_cap=0
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Grand Cata"
+  Using domain: grandcata.com
+  [delay] Waiting 1s...
+  LinkedIn page 1...
+  [delay] Waiting 5s...
+  Found 7 results
+  [LINKEDIN SKIP] LinkedIn Member (Servant Leader, HR Professional, Human) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Co Founder and President at Grand Cata, A Latino Wine Co.) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Narrative Strategist for Culture-Driven Brands | Food Journalist & Producer | Founder, Tepui Creative Studio) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (School Social Worker-Columbia Heights Education Campus) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Co-Founder & CEO of Grand Cata) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Catador at Grand Cata) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Sales & Community Building) — masked name
+  [delay] Waiting 3s...
+  LinkedIn page 2...
+  [delay] Waiting 6s...
+  Found 10 results
+  [LINKEDIN SKIP] LinkedIn Member (Business Immigration Supervisor) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Senior Product Designer) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Senior Creative Strategist at Brighter Click) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Server at Maxwell Park) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Finance & Accounting Professional) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Business Educator | Formerly Research, Client Service, Food & Beverage) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (National Spirits Portfolio Manager @ De Maison Selections) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (International Development & Hospitality) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (MBA Wine Sustainability and Sales Candidate at Weincampus Neustadt | Sommelier) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (CMS Certified Sommelier, WSET 3, Certified Sherry Wine Specialist, Certified Sake Professional) — masked name
+  [delay] Waiting 3s...
+  LinkedIn page 3...
+  [delay] Waiting 6s...
+  Found 8 results
+  [LINKEDIN SKIP] LinkedIn Member (Archivist focused on collaborative problem solving and data management.) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Social Worker) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Passionate about landscape architecture, agriculture, conservation, photography, and everywhere beauty and sustainability intersect) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Business Development Manager at Vinos 1750) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Graduated California Polytechnic State University. Moved to Washington DC for a change of scenery. Currently working at a Lucy Mercer Bar as a Server, along wit) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Illustration & Design) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (MSc Business Consulting and Decision Intelligence at SKEMA, Paris | Business Strategy Consultant | EN - FR) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (MA in International Affairs. Consultant. Wine lover.) — masked name
+  No new people found on LinkedIn.
+[STEP] VA-WINE-2945 linkedin empty pages=3 results=25 rejected=25 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+[STEP] VA-WINE-2945 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (4 verified contacts on sheet, 4 new this run)
+[STEP] VA-WINE-2945 final ok status=pipelined valid_contacts=4 new=4 deferred=0
+
+============================================================
+ DONE: Grand Cata | 5 min | 02:05:17
+============================================================
+
+--- FLAGS raised in this batch ---
+  FLAG:Rejected email (freemail_unlinked): aklidata.co@gmail.com (venue domain mazarova.com, source: website)
+  FLAG:Website instagram link not saved (no_evidence): https://www.instagram.com/cutdc
+  FLAG:Website facebook link not saved (no_evidence): https://www.facebook.com/SpagoBeverlyHills
+  FLAG:Website instagram link not saved (no_evidence): https://www.instagram.com/spagobh
+  FLAG:Website facebook link not saved (no_evidence): https://www.facebook.com/spagobodrum
+  FLAG:Rejected email (off_domain:marinabaysands.com!=wolfgangpuck.com): cut.events@marinabaysands.com (venue domain wolfgangpuck.com, source: website)
+  FLAG:Rejected email (off_domain:fourseasons.com!=wolfgangpuck.com): cutevents.beverlywilshire@fourseasons.com (venue domain wolfgangpuck.com, source: website)
+  FLAG:Rejected email (off_domain:dorchestercollection.com!=wolfgangpuck.com): groupandeventsales.45l@dorchestercollection.com (venue domain wolfgangpuck.com, source: website)
+  FLAG:Rejected email (off_domain:fourseasons.com!=wolfgangpuck.com): josie.ribeiro@fourseasons.com (venue domain wolfgangpuck.com, source: website)
+  FLAG:Rejected email (off_domain:stregis.com!=wolfgangpuck.com): spago.shanghai@stregis.com (venue domain wolfgangpuck.com, source: website)
+  FLAG:Rejected email (off_domain:marinabaysands.com!=wolfgangpuck.com): spagoreservations@marinabaysands.com (venue domain wolfgangpuck.com, source: website)
+  FLAG:Rejected email (off_domain:rosewoodhotels.com!=wolfgangpuck.com): washingtondc.sales@rosewoodhotels.com (venue domain wolfgangpuck.com, source: website)
+  FLAG:Apollo returned only other businesses for this venue (e.g. Chart House (chart-house.com)) — people search skipped
+  FLAG:Website instagram link not saved (no_evidence): https://www.instagram.com/francismallmann
+=== BATCH COMPLETE ===
+
+=== AUTO-RUNNING POSTCHECK ON THIS BATCH (8 venues: VA-REST-3463,MD-REST-2970,VA-WINE-2953,VA-REST-3454,DC-REST-2821,MD-REST-683,MD-REST-2325,VA-WINE-2945) ===
+[02:05:19] === Post-Pipeline Check Started ===
+[02:05:19] Checking 8 venues (mode: venues, run run-20261108-0931) — venues with a valid/role/unverified contact are skipped
+[02:05:23] 
+[02:05:23] === La Bettola Italiano (VA-REST-3463) | Arlington, VA | Contacts: 0 ===
+[02:05:23]   Website: https://www.labettolava.com
+[02:05:42]   [DISCOVERY] pages=19 ok=11 pdfs=0 sitemaps=0 fragments=58 unvisited=0 emails=2
+[02:05:42]   Found emails on https://www.labettolava.com:
+[02:05:42]     info@labettolava.com
+[02:05:42]   Contact form found: https://www.labettolava.com/
+[02:05:43]   Found emails on https://labettolava.com/contact-us/:
+[02:05:43]     hello@labettolava.com
+[02:05:43]     info@labettolava.com
+[02:05:43]   Contact form found: https://labettolava.com/contact-us/
+[02:05:44]   Found emails on https://labettolava.com/catering/:
+[02:05:44]     hello@labettolava.com
+[02:05:44]   Found emails on https://labettolava.com/reservations/:
+[02:05:44]     hello@labettolava.com
+[02:05:45]   Found emails on https://labettolava.com/book-reservations/:
+[02:05:45]     hello@labettolava.com
+[02:05:45]   Contact form found: https://labettolava.com/book-reservations/
+[02:05:45]   Found emails on https://labettolava.com/wines/:
+[02:05:45]     hello@labettolava.com
+[02:05:46]   Found emails on https://labettolava.com/order/:
+[02:05:46]     hello@labettolava.com
+[02:05:47]   Found emails on https://labettolava.com/lunch/:
+[02:05:47]     hello@labettolava.com
+[02:05:48]   Found emails on https://labettolava.com/dinner/:
+[02:05:48]     hello@labettolava.com
+[02:05:50]   Found emails on https://www.labettolava.com/contact-us:
+[02:05:50]     hello@labettolava.com
+[02:05:50]     info@labettolava.com
+[02:05:50]   Contact form found: https://www.labettolava.com/contact-us/
+[02:05:55]   Found emails on https://www.labettolava.com/catering:
+[02:05:55]     hello@labettolava.com
+[02:05:55]   Contact form already on sheet (https://labettolava.com/contact-us) — not replaced with https://labettolava.com/contact-us/
+[02:05:55]   [REJECT] hello@labettolava.com — general_inbox
+[02:05:55]   [REJECT] info@labettolava.com — general_inbox
+[02:05:55]   [Apollo] Searching by domain: labettolava.com
+[02:05:56]   [Apollo] Found 0 people (by name)
+[02:05:57]   Searching LinkedIn for: La Bettola Italiano
+[02:06:02]   [LinkedIn] 9 results on page 1, 0 at this venue with a relevant title
+[02:06:02]   [LinkedIn] No relevant people found (none with venue in title)
+[02:06:02] [STEP] VA-REST-3463 postcheck empty web=ok via=crawl crawl=ok crawl_pages=11 pages=13 pages_cut=0 visited=home,contact,events emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=9 li_relevant=0 enrich=skipped:no_pending
+[02:06:06] 
+[02:06:06] === Hartge Yacht Yard (MD-REST-2970) | Galesville, MD | Contacts: 3 ===
+[02:06:06]   Has 3 valid/role/unverified contacts — second pass not needed
+[02:06:06] [STEP] MD-REST-2970 postcheck skipped reason=has_contacts valid=3
+[02:06:09] 
+[02:06:09] === Arrowine & Cheese (VA-WINE-2953) | Arlington, VA | Contacts: 0 ===
+[02:06:09]   Website: https://www.arrowine.com/
+[02:06:09]   [DISCOVERY] Reusing the pipeline's crawl of this site (/Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/VA-WINE-2953.json)
+[02:06:09]   [DISCOVERY] pages=34 ok=20 pdfs=0 sitemaps=10 fragments=35 unvisited=224 emails=0
+[02:06:12]   Contact form found: https://arrowine.com/pages/contact-us
+[02:06:24]   [WEB] Named on staff page: Doug Rosen — Owner & President (https://arrowine.com/pages/history-and-team)
+[02:06:24]   [PENDING] Doug Rosen (Owner & President): no email — not added to the sheet (name kept in the run log)
+[02:06:24]   [WEB] Named on staff page: Shem Hassen — Co-founder & Vice President (https://arrowine.com/pages/history-and-team)
+[02:06:24]   [PENDING] Shem Hassen (Co-founder & Vice President): no email — not added to the sheet (name kept in the run log)
+[02:06:25]   [Apollo] Searching by domain: arrowine.com
+[02:06:25]   [Apollo] Found 4 people (by domain)
+[02:06:25]   [Apollo] Matthew Tu***r (Manager) — no email in Apollo
+[02:06:25]   Searching LinkedIn for: Arrowine & Cheese
+[02:06:30]   [LinkedIn] 7 results on page 1, 0 at this venue with a relevant title
+[02:06:30]   [LinkedIn] No relevant people found (none with venue in title)
+[02:06:30] [STEP] VA-WINE-2953 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=20 pages=15 pages_cut=0 visited=home,contact,about,events,team emails=0 saved=0 enriched=0 pending=0 people=2 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=4 apollo_via=domain linkedin=empty li_results=7 li_relevant=0 enrich=skipped:no_pending
+[02:06:33] 
+[02:06:33] === Mazaro Italian Restaurant (VA-REST-3454) | Arlington, VA | Contacts: 0 ===
+[02:06:33]   Website: https://www.mazarova.com
+[02:06:33]   [DISCOVERY] Reusing the pipeline's crawl of this site (/Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/VA-REST-3454.json)
+[02:06:33]   [DISCOVERY] pages=34 ok=25 pdfs=0 sitemaps=9 fragments=96 unvisited=1 emails=3
+[02:06:34]   Found emails on https://www.mazarova.com:
+[02:06:34]     info@mazarova.com
+[02:06:34]   Found emails on https://www.mazarova.com/terms-conditions:
+[02:06:34]     info@mazarova.com
+[02:06:34]   Found emails on https://www.mazarova.com/valentines-day-menu/:
+[02:06:34]     info@mazarova.com
+[02:06:36]   Found emails on https://www.mazarova.com/?liquid-header=main-header:
+[02:06:36]     info@liquid.com
+[02:06:36]   Found emails on https://www.mazarova.com/success-story-businessman-in-harlem/:
+[02:06:36]     aklidata.co@gmail.com
+[02:06:37]   Found emails on https://www.mazarova.com/utilizing-mobile-technology-in-the-field/:
+[02:06:37]     aklidata.co@gmail.com
+[02:06:37]   Found emails on https://www.mazarova.com/what-are-the-best-ingredients-to-make-a-good-dessert/:
+[02:06:37]     aklidata.co@gmail.com
+[02:06:37]   Found emails on https://www.mazarova.com/tag/food/:
+[02:06:37]     aklidata.co@gmail.com
+[02:06:38]   Found emails on https://www.mazarova.com/category/food/:
+[02:06:38]     aklidata.co@gmail.com
+[02:06:38]   Found emails on https://www.mazarova.com/tag/restaurant/:
+[02:06:38]     aklidata.co@gmail.com
+[02:06:39]   Found emails on https://www.mazarova.com/tag/world-cuisine/:
+[02:06:39]     aklidata.co@gmail.com
+[02:06:39]   Found emails on https://www.mazarova.com/category/restaurant/:
+[02:06:39]     aklidata.co@gmail.com
+[02:06:39]   Found emails on https://www.mazarova.com/author/aklidata-cogmail-com/:
+[02:06:39]     aklidata.co@gmail.com
+[02:06:46]   [REJECT] aklidata.co@gmail.com — freemail_unlinked
+[02:06:46]   [REJECT] info@liquid.com — general_inbox
+[02:06:46]   [REJECT] info@mazarova.com — general_inbox
+[02:06:46]   [Apollo] Searching by domain: mazarova.com
+[02:06:47]   [Apollo] Found 0 people (by name)
+[02:06:47]   Searching LinkedIn for: Mazaro Italian Restaurant
+[02:07:04]   [LinkedIn] No results — LinkedIn did not say 'No results found' (login wall, search limit or page not rendered); not counted as empty
+[02:07:04] [STEP] VA-REST-3454 postcheck blocked web=ok via=pipeline_crawl crawl=ok crawl_pages=25 pages=13 pages_cut=0 visited=home emails=3 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=3 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=blocked:no_results_unverified li_results=0 li_relevant=0 enrich=skipped:no_pending reason=linkedin_no_results_unverified
+[02:07:08] 
+[02:07:08] === CUT D.C. by Wolfgang Puck (DC-REST-2821) | Washington, DC | Contacts: 5 ===
+[02:07:08]   Has 5 valid/role/unverified contacts — second pass not needed
+[02:07:08] [STEP] DC-REST-2821 postcheck skipped reason=has_contacts valid=5
+[02:07:12] 
+[02:07:12] === Chart House Prime (MD-REST-683) | Annapolis, MD | Contacts: 0 ===
+[02:07:12]   Website: https://www.charthouseprime.com/
+[02:07:12]   [DISCOVERY] Reusing the pipeline's crawl of this site (/Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-683.json)
+[02:07:12]   [DISCOVERY] pages=24 ok=16 pdfs=0 sitemaps=1 fragments=24 unvisited=14 emails=0
+[02:07:21]   [Apollo] Searching by domain: charthouseprime.com
+[02:07:22]   [Apollo] Found 25 people (by domain)
+[02:07:22]   [Apollo] Andrea Da***s (Sales and Events Coordinator) — no email in Apollo
+[02:07:22]   [Apollo] Victoria Br***e (Restaurant Manager) — no email in Apollo
+[02:07:22]   [Apollo] Sydney Va***e (Server) — low-value role
+[02:07:22]   [Apollo] Kerrie Sh***y (Assistant General Manager) — no email in Apollo
+[02:07:22]   [Apollo] Katie Gr***s (Catering Sales Manager) — no email in Apollo
+[02:07:22]   [Apollo] Sarah Do***e (Server) — low-value role
+[02:07:22]   [Apollo] Kevin Li***y (Executive Sous Chef) — no email in Apollo
+[02:07:22]   [Apollo] Stephen Di***n (Server) — low-value role
+[02:07:22]   [Apollo] Joy Ro***n (Server/ Trainer) — low-value role
+[02:07:22]   [Apollo] Enriching: Steven Re***d (General Manager)
+[02:07:22]   [Apollo] Enriching: Philip Th***s (Executive Sous Chef)
+[02:07:22]   [Apollo] Enriching: Joey Sh***i (Assistant General Manager)
+[02:07:22]   [Apollo] Enriching: Scott Ro***s (Executive Chef)
+[02:07:22]   [Apollo] Enriching: Erik Du***n (Managing Director)
+[02:07:22]   [Apollo] Enriching: Caroline Cl***k (Sales Manager and Event Planner)
+[02:07:22]   [Apollo] Enriching: Josh Ru***t (Owner)
+[02:07:22]   [Apollo] Enriching: Annie Gr***a (Chef)
+[02:07:22]   [Apollo] Enriching: Darius Co***n (Executive Sous Chef)
+[02:07:22]   [Apollo] Enriching: Joshua Mi***n (Executive Chef)
+[02:07:22]   [Apollo] Got email: steven.reed@chart-house.com (verified)
+[02:07:22]   [REJECT] steven.reed@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: philip.thomas@hilton.com (verified)
+[02:07:22]   [REJECT] philip.thomas@hilton.com — off_domain:hilton.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: joseph@chart-house.com (verified)
+[02:07:22]   [REJECT] joseph@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: scottross@chart-house.com (verified)
+[02:07:22]   [REJECT] scottross@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: erik.duncan@chart-house.com (verified)
+[02:07:22]   [REJECT] erik.duncan@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: caroline.clark@chart-house.com (verified)
+[02:07:22]   [REJECT] caroline.clark@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: josh.ruppert@chart-house.com (verified)
+[02:07:22]   [REJECT] josh.ruppert@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: annie.granata@chart-house.com (verified)
+[02:07:22]   [REJECT] annie.granata@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: dcohen@chart-house.com (verified)
+[02:07:22]   [REJECT] dcohen@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   [Apollo] Got email: joshuamissman@chart-house.com (verified)
+[02:07:22]   [REJECT] joshuamissman@chart-house.com — off_domain:chart-house.com!=charthouseprime.com
+[02:07:22]   Searching LinkedIn for: Chart House Prime
+[02:07:28]   [LinkedIn] 9 results on page 1, 0 at this venue with a relevant title
+[02:07:28]   [LinkedIn] No relevant people found (none with venue in title)
+[02:07:28]   Nothing found on website
+[02:07:28] [STEP] MD-REST-683 postcheck empty web=empty via=pipeline_crawl crawl=ok crawl_pages=16 pages=7 pages_cut=0 visited=home,about,events emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=10 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=ok apollo_found=25 apollo_via=domain linkedin=empty li_results=9 li_relevant=0 enrich=skipped:no_pending
+[02:07:30] 
+[02:07:30] === Otter Point Yacht Club (MD-REST-2325) | Abingdon, MD | Contacts: 0 ===
+[02:07:30]   Website: https://www.otterpointyachtclub.org
+[02:07:30]   [DISCOVERY] Reusing the pipeline's crawl of this site (/Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-2325.json)
+[02:07:30]   [DISCOVERY] pages=25 ok=16 pdfs=0 sitemaps=1 fragments=15 unvisited=1 emails=0
+[02:07:38]   CANDIDATE: Become A Member (Events) — named on https://www.otterpointyachtclub.org/contact with no email; not saved (not a staff page)
+[02:07:38]   [Apollo] Searching by domain: otterpointyachtclub.org
+[02:07:39]   [Apollo] Found 0 people (by name)
+[02:07:39]   Searching LinkedIn for: Otter Point Yacht Club
+[02:07:44]   [LinkedIn] 9 results on page 1, 0 at this venue with a relevant title
+[02:07:44]   [LinkedIn] No relevant people found (none with venue in title)
+[02:07:44] [STEP] MD-REST-2325 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=16 pages=4 pages_cut=0 visited=home,contact,events emails=0 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=9 li_relevant=0 enrich=skipped:no_pending
+[02:07:48] 
+[02:07:48] === Grand Cata (VA-WINE-2945) | Fairfax, VA | Contacts: 4 ===
+[02:07:48]   Has 4 valid/role/unverified contacts — second pass not needed
+[02:07:48] [STEP] VA-WINE-2945 postcheck skipped reason=has_contacts valid=4
+[02:07:48] 
+[02:07:48] === Final Audit ===
+[02:07:48] Venues: 8 | Checked: 5 | Skipped: 3 | Failed/degraded: 0 | Not reached (time budget): 0 | Contacts saved: 0 | Pending added: 0 | Deferred (saved unverified, needs ZB check): 0 | Rejected: 15 | Apollo credits: 10 | Minutes: 2
+[02:07:48] 
+[02:07:48] === Post-Pipeline Check Complete ===
+[RUN] Batch 2 done — marker /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.batch2.done (ready for the miss audit)
+[RUN] Plan /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261108-0931/plan.json: 4 batch(es)
+PREFLIGHT OK: python3 works (/Library/Developer/CommandLineTools/usr/bin/python3 3.9.6)
+PREFLIGHT OK: Apps Script backend up (version 2026-10-26.1)
+PREFLIGHT OK: sheet readable (action=config)
+PREFLIGHT OK: ZeroBounce: enabled=True (.env), balance=1041, reserve=100 (.env), run 23/300 (.env), today 14/5000 (env), ~15 runs of headroom at 60/run
+PREFLIGHT OK: Apollo API key accepted (auth/health)
+PREFLIGHT OK: Chrome runs JavaScript from Apple Events
+PREFLIGHT OK: all checks passed (pipeline, quick; 6 ok, 0 warn)
+[PREFLIGHT] OK
+
+[RUN] Plan batch 3/4 -> batch 3 of run run-20261108-0931
+  [mark_step] run run-20261108-0931: batch 3 registered 8 venues
+  [mark_step] ledger: /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.jsonl
+  [mark_step] run log should be: /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.log (append with >>, or use run-20261108-0931.b3.log)
+  export RUN_ID=run-20261108-0931
+
+BATCH MODE: 8 venues
+[RUN] run-20261108-0931 batch 3: VA-REST-3059,VA-REST-3045,MD-REST-2323,MD-REST-2359,MD-REST-407,MD-REST-339,MD-YACH-807,MD-REST-3012 (8 to run; log /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.log)
+  [ZB SAFE] run 23/300, today 14/5000, balance 1041, reserve 100
+[RUN] Apollo credits left on the account: 765 (stop below 100)
+[CHROME] JavaScript from Apple Events: OK (website scrape probe on https://lebanesetaverna.com returned 2673 bytes of JSON)
+
+########## VENUE [1/8]: Lebanese Taverna Tysons Galleria ##########
+  [URL FIX] Added https:// scheme: https://lebanesetaverna.com
+  [DOMAIN] Venue domain: lebanesetaverna.com
+
+============================================================
+ PIPELINE: Lebanese Taverna Tysons Galleria (VA-REST-3059)
+ Website: https://lebanesetaverna.com
+ Started: 2026-11-10 02:08:14
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 23/300, today 14/5000, balance 1041, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://lebanesetaverna.com
+  Opening in Chrome: https://lebanesetaverna.com
+  Validating contact form URL: https://www.lebanesetaverna.com/contact
+  ✓ Real contact form confirmed
+  Emails: 0 | FB: https://www.facebook.com/lebanesetaverna | IG: https://www.instagram.com/lebanesetaverna | Contact Form: https://www.lebanesetaverna.com/contact
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=49 pdfs=1 emails=2 sitemaps=2 fragments=40 unvisited=24
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/VA-REST-3059.json
+  [COVERAGE] Subpage queue: 39 in scope, rendering 30 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=1
+  Crawling subpage (1): https://www.lebanesetaverna.com/private-dining
+  Crawling subpage (2): https://www.lebanesetaverna.com/Events
+  Crawling subpage (3): https://www.lebanesetaverna.com/lt-catering
+  Crawling subpage (4): https://www.lebanesetaverna.com/catering-menu
+  Crawling subpage (5): https://www.lebanesetaverna.com/catering-menu-download
+  Crawling subpage (6): https://www.lebanesetaverna.com/lt-catering-1
+  Crawling subpage (7): https://www.lebanesetaverna.com/sample-catering-menu
+  Crawling subpage (8): https://www.lebanesetaverna.com/lt-catering-1-1
+  Crawling subpage (9): https://www.lebanesetaverna.com/catering-photo-gallery
+  Crawling subpage (10): https://www.lebanesetaverna.com/market
+  Crawling subpage (11): https://www.lebanesetaverna.com/lebanese-taverna
+  Crawling subpage (12): https://www.lebanesetaverna.com/leb-tav
+  Crawling subpage (13): https://www.lebanesetaverna.com/mezza-mondays
+  Crawling subpage (14): https://www.lebanesetaverna.com/brunch-menu
+  Crawling subpage (15): https://www.lebanesetaverna.com/cooking-classes
+  Found on subpage: lebanesetaverna@mac.com
+  Crawling subpage (16): https://www.lebanesetaverna.com/thanksgiving
+  Found on subpage: lebanesetaverna@mac.com
+  Crawling subpage (17): https://www.lebanesetaverna.com/happy-hour
+  Crawling subpage (18): https://www.lebanesetaverna.com/party-platters
+  Found on subpage: events@cateringbylt.com
+  Crawling subpage (19): https://www.lebanesetaverna.com/neighborhood-delivery
+  Found on subpage: events@cateringbylt.com
+  Crawling subpage (20): https://www.lebanesetaverna.com/blog-1-copy-1-1
+  Crawling subpage (21): https://www.lebanesetaverna.com/our-story
+  Crawling subpage (22): https://www.lebanesetaverna.com/fundraising
+  Found on subpage: lebanesetaverna@mac.com
+  Crawling subpage (23): https://www.lebanesetaverna.com/restaurants
+  Crawling subpage (24): https://www.lebanesetaverna.com/82460db1-ee53-4169-a0b6-7005effeddae
+  Crawling subpage (25): https://www.lebanesetaverna.com/info
+  Crawling subpage (26): https://www.lebanesetaverna.com/groups-menus
+  Crawling subpage (27): https://www.lebanesetaverna.com/catering-menu-special-items-over-75
+  Crawling subpage (28): https://www.lebanesetaverna.com/lebanese-taverna-platters-1
+  Crawling subpage (29): https://www.lebanesetaverna.com/lebanese-taverna-platters
+  Crawling subpage (30): https://www.lebanesetaverna.com/lebanese-taverna-lebtav-platters
+  [PDF] https://www.lebanesetaverna.com/s/Fundrasier-Sample.pdf → no emails
+  [CONTACT FORM] Also found: https://www.lebanesetaverna.com/lt-catering
+  [CONTACT FORM] Also found: https://www.lebanesetaverna.com/lt-catering-1
+  [CONTACT FORM] Also found: https://www.lebanesetaverna.com/lt-catering-1-1
+  ✓ Facebook from venue website (trusted: header_footer): https://www.facebook.com/lebanesetaverna
+  ✓ Instagram from venue website (trusted: header_footer): https://www.instagram.com/lebanesetaverna
+  [CONTACT FORM] Also found: https://www.lebanesetaverna.com/contact
+  [CONTACT FORM] Found: https://www.lebanesetaverna.com/private-dining
+  ✓ Contact form URL saved
+  [REJECT] events@cateringbylt.com — off_domain:cateringbylt.com!=lebanesetaverna.com (source: website, evidence: venue_mailto)
+  [ZB SAFE] lebanesetaverna@mac.com → valid (verified; charged=True; cache=False; venue 1/40; run 24/300)
+  ✓ Added and verified: Lebanese Taverna Market <lebanesetaverna@mac.com>
+[STEP] VA-REST-3059 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=39 pdfs=1 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/lebanesetaverna | IG: https://www.instagram.com/lebanesetaverna
+  Opening FB: https://www.facebook.com/lebanesetaverna
+  Opening FB: https://www.facebook.com/lebanesetaverna/about
+  Opening FB: https://www.facebook.com/lebanesetaverna/directory_contact_info
+  FB emails found: lebanesetaverna@mac.com
+  Opening IG: https://www.instagram.com/lebanesetaverna
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+  [SKIP] lebanesetaverna@mac.com — already in sheet
+[STEP] VA-REST-3059 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 0 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Lebanese Taverna Tysons Galleria
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (0 results)
+  [APOLLO MISMATCH] 'Lebanese Taverna Group' (no domain) is not this venue — no domain or city evidence
+[STEP] VA-REST-3059 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0
+  Using website domain for enrichment: lebanesetaverna.com
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Lebanese Taverna Tysons Galleria"
+  Using domain: lebanesetaverna.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 5s...
+  [LINKEDIN EMPTY] Page 1 returned 0 results — treating as unverified, venue stays pending
+[STEP] VA-REST-3059 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1
+  LinkedIn verdict 'empty' — kept linkedin_pending=true for retry
+[STEP] VA-REST-3059 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (1 verified contacts on sheet, 1 new this run)
+[STEP] VA-REST-3059 final ok status=pipelined valid_contacts=1 new=1 deferred=0
+
+============================================================
+ DONE: Lebanese Taverna Tysons Galleria | 4 min | 02:12:51
+============================================================
+
+########## VENUE [2/8]: Chima Steakhouse ##########
+  [URL FIX] Added https:// scheme: https://chimasteakhouse.com
+  [DOMAIN] Venue domain: chimasteakhouse.com
+
+============================================================
+ PIPELINE: Chima Steakhouse (VA-REST-3045)
+ Website: https://chimasteakhouse.com
+ Started: 2026-11-10 02:13:34
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 24/300, today 15/5000, balance 1040, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://chimasteakhouse.com
+  Opening in Chrome: https://chimasteakhouse.com
+  Validating contact form URL: https://chimasteakhouse.com/contact-us
+  ✓ Real contact form confirmed
+  Emails: 0 | FB: https://www.facebook.com/ChimaCharlotte | IG: https://www.instagram.com/chima_charlotte | Contact Form: https://chimasteakhouse.com/contact-us
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=50 pdfs=0 emails=4 sitemaps=7 fragments=80 unvisited=147
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/VA-REST-3045.json
+  [LOCATION] Checking for location-specific page (city: Tysons)...
+  [LOCATION] Found: https://chimasteakhouse.com/location-happenings/tysons-corner
+  [LOCATION] Re-scraping location page: https://chimasteakhouse.com/location-happenings/tysons-corner
+  [LOCATION] Re-scraped: Emails: 0
+  [PROBE] Found: https://chimasteakhouse.com/events-fll/
+  [COVERAGE] Subpage queue: 66 in scope, rendering 30 (cap 30); skipped off-scope=0 other-location=0 variants=3 non-page=4
+  Crawling subpage (1): https://chimasteakhouse.com/es/contact-us
+  Crawling subpage (2): https://chimasteakhouse.com/about-us
+  Crawling subpage (3): https://chimasteakhouse.com/es/about-us
+  Crawling subpage (4): https://chimasteakhouse.com/events-fll/
+  Crawling subpage (5): https://chimasteakhouse.com/es/events-fll
+  Crawling subpage (6): https://chimasteakhouse.com/happenings-all
+  Crawling subpage (7): https://chimasteakhouse.com/location-happenings/charlotte
+  Crawling subpage (8): https://chimasteakhouse.com/location-happenings/fort-lauderdale
+  Crawling subpage (9): https://chimasteakhouse.com/location-happenings/orlando
+  Crawling subpage (10): https://chimasteakhouse.com/bar-specials-charlotte
+  Crawling subpage (11): https://chimasteakhouse.com/bar-specials-fll
+  Crawling subpage (12): https://chimasteakhouse.com/bar-specials-orlando
+  Crawling subpage (13): https://chimasteakhouse.com/bar-specials-tyc
+  Crawling subpage (14): https://chimasteakhouse.com/become-a-preferred-diner
+  Crawling subpage (15): https://chimasteakhouse.com/giftcards
+  Crawling subpage (16): https://chimasteakhouse.com/online-ordering
+  Crawling subpage (17): https://chimasteakhouse.com/gallery
+  Crawling subpage (18): https://chimasteakhouse.com/meat-menu
+  Crawling subpage (19): https://chimasteakhouse.com/select-rodizio
+  Crawling subpage (20): https://chimasteakhouse.com/gourmet-salad-bar
+  Crawling subpage (21): https://chimasteakhouse.com/appetizers
+  Crawling subpage (22): https://chimasteakhouse.com/menu-desserts
+  Crawling subpage (23): https://chimasteakhouse.com/menu-featured-dish
+  Crawling subpage (24): https://chimasteakhouse.com/menu-allergies
+  Crawling subpage (25): https://chimasteakhouse.com/charlotte-steakhouse
+  Crawling subpage (26): https://chimasteakhouse.com/fort-lauderdale-steakhouse
+  Crawling subpage (27): https://chimasteakhouse.com/orlando-steakhouse
+  Crawling subpage (28): https://chimasteakhouse.com/tysons-steakhouse
+  Crawling subpage (29): https://chimasteakhouse.com/make-a-reservation/?location=2
+  Crawling subpage (30): https://chimasteakhouse.com/blog
+  [CONTACT FORM] Also found: https://chimabraziliansteakhouse.tripleseat.com/party_request/16919
+  [CONTACT FORM] Also found: https://chimabraziliansteakhouse.tripleseat.com/party_request/16921
+  [CONTACT FORM] Also found: https://chimabraziliansteakhouse.tripleseat.com/party_request/30555
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/ChimaCharlotte
+  ✓ Instagram from venue website (trusted: name_match): https://www.instagram.com/chima_charlotte
+  [CONTACT FORM] Also found: https://chimasteakhouse.com/contact-us
+  [CONTACT FORM] Found: https://chimabraziliansteakhouse.tripleseat.com/party_request/16918
+  ✓ Contact form URL saved
+  [ZB SAFE] aline.decker@chimasteakhouse.com → valid (verified; charged=True; cache=False; venue 1/40; run 25/300)
+  ✓ Added and verified: Aline Decker <aline.decker@chimasteakhouse.com>
+  [ZB SAFE] ashley.williams@chimasteakhouse.com → valid (verified; charged=True; cache=False; venue 2/40; run 26/300)
+  ✓ Added and verified: Ashley Williams <ashley.williams@chimasteakhouse.com>
+  [ZB SAFE] christina.mohr@chimasteakhouse.com → valid (verified; charged=True; cache=False; venue 3/40; run 27/300)
+  ✓ Added and verified: Christina Mohr <christina.mohr@chimasteakhouse.com>
+  [ZB SAFE] jackie.gorecki@chimasteakhouse.com → invalid (verified; charged=True; cache=False; venue 4/40; run 28/300)
+  [CANDIDATE] jackie.gorecki@chimasteakhouse.com — ZeroBounce status is invalid; retained for review
+[STEP] VA-REST-3045 web ok via=chrome pages=31 visited=home,contact,about,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=4 saved=3 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/ChimaCharlotte | IG: https://www.instagram.com/chima_charlotte
+  Opening FB: https://www.facebook.com/ChimaCharlotte
+  Opening FB: https://www.facebook.com/ChimaCharlotte/about
+  Opening FB: https://www.facebook.com/ChimaCharlotte/directory_contact_info
+  FB emails found: anne.dantas@chimasteakhouse.com
+  Opening IG: https://www.instagram.com/chima_charlotte
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+  [ZB SAFE] anne.dantas@chimasteakhouse.com → invalid (verified; charged=True; cache=False; venue 5/40; run 29/300)
+  [CANDIDATE] anne.dantas@chimasteakhouse.com — ZeroBounce status is invalid; retained for review
+[STEP] VA-REST-3045 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 0 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Chima Steakhouse
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (1 results)
+  Found: Chima Steakhouse, BBS USA (domain: chimasteakhouse.com, org_id: 5592061273696418d7272200)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Chima Steakhouse, BBS USA (org_id: 5592061273696418d7272200)...
+  Found 14 people total
+  [APOLLO] App title skip words loaded: racquets, tennis, golf, racquet, florist, busboy, server, farm, busser, 401k, caddie, fitness, squash, athletics, pickleball, proshop, controller
+  Skipped 3 people by title (app skip words / non-booking staff): Dining Room Server; Food Server; Server
+  Skipped 7 people with no email (red ? on Apollo) and no decision-maker title
+  4 people to enrich (1 credit each)
+  [APOLLO] Credits used this run: 0 / 300
+  --- Michelle Truong (General Manager): no email available
+  --- Michelle Truong (General Manager): no email — not added to the sheet (name kept in the run log)
+  --- Anthony (PHL Location // GM 1.31.17): no email available
+  --- Anthony (PHL Location // GM 1.31.17): no email — not added to the sheet (name kept in the run log)
+  >>> Michelle Quisbert (Sales Manager): michelle.quisbert@chimasteakhouse.com [verified]
+  [ZB SAFE] michelle.quisbert@chimasteakhouse.com → valid (verified; charged=True; cache=False; venue 6/40; run 30/300)
+  ✓ Added and verified: Michelle Quisbert <michelle.quisbert@chimasteakhouse.com>
+  >>> Tiffany Maisonet (Food Clerk): tiffany.maisonet@chimasteakhouse.com [verified]
+  [ZB SAFE] tiffany.maisonet@chimasteakhouse.com → invalid (verified; charged=True; cache=False; venue 7/40; run 31/300)
+  [CANDIDATE] tiffany.maisonet@chimasteakhouse.com — ZeroBounce status is invalid; retained for review
+  Apollo API done: 4 credits used this run
+[STEP] VA-REST-3045 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=Chima_Steakhouse,_BBS_USA gate=name+domain people=14 relevant=4 skipped_titles=3 over_cap=0 enriched=4 saved=1 pending=0 deferred=0 credits=4
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Chima Steakhouse"
+  Using domain: chimasteakhouse.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 8s...
+  Found 10 results
+  Found: Isadora Morini Stancatti
+  Found: Augusto Samora
+  [LINKEDIN SKIP] LinkedIn Member (Front of House Manager at Chima Steakhouse, BBS USA) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Chief Executive Officer | CHIMA Steakhouse USA  ·  Fine Dining  ·  Multi-Unit Operations  ·  Brand Expansion) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (General Manager at Chima Steakhouse) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Student at University of North Carolina at Charlotte majoring in Mechanical Engineering) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (General Manager at Chima Steakhouse, BBS USA) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Customer Service Representative at Chima Steakhouse, BBS USA) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Sales Account Manager at Chima Steakhouse) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Director of Operations at Chima Steakhouse) — masked name
+  [delay] Waiting 5s...
+  LinkedIn page 2...
+  [delay] Waiting 5s...
+  Found 10 results
+  [LINKEDIN SKIP] LinkedIn Member (Executive Chef at Chima Steakhouse) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Food Server @ Chima Steakhouse | Customer Service, Communication) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Copyright I Performing Rights I Music Business l Administrative) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Partner Manager at Terra Gaúcha Omaha) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (General manager) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Professional. Personal. Service-driven!) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (General manager Don Julio group) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (General Manager) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Sales Representative @ F Magnotta LLC) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Back of House Manager | Hospitality Leader | Passionate About Exceptional Guest Experiences) — masked name
+  [delay] Waiting 4s...
+  LinkedIn page 3...
+  [delay] Waiting 6s...
+  Found 10 results
+  [LINKEDIN SKIP] LinkedIn Member (General Manager at Chima Steakhouse, BBS USA) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (General Manager @ Alma Gaucha Brazilian Steakhouse | Food and Beverage Management) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Entrepreneur at Usa-middleeast llc) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Sales & Events Manager at Chima Steakhouse Ft. Lauderdale) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (CEO and IT Consulting at Monarch Information Technology) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (--) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Business Owner at Rising Stars Day School) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Server at True Grit Hospitality) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Developer at Shift Thread) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Web Developer & AI Automation | 3 Live Products | Python, TypeScript, React, Next.js | Operations & Client Services | English + Portuguese) — masked name
+  [LINKEDIN SKIP] Augusto Samora (Controller) - skipped by title (veto:skip_word:controller)
+
+  LinkedIn found 1 new people. Enriching via Apollo API...
+  [APOLLO] Credits used this run: 4 / 300
+  >>> Isadora Stancatti (Sales and Events Manager): sm.orl@chimasteakhouse.com [verified]
+  [ZB SAFE] sm.orl@chimasteakhouse.com → valid (verified; charged=True; cache=False; venue 8/40; run 32/300)
+  ✓ Added and verified: Isadora Stancatti <sm.orl@chimasteakhouse.com>
+  LinkedIn + Apollo API done. Credits used: 5
+[STEP] VA-REST-3045 linkedin ok pages=3 results=30 rejected=28 employees=2 relevant=1 saved=1 pending=0 deferred=0 credits=1
+[STEP] VA-REST-3045 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (5 verified contacts on sheet, 5 new this run)
+[STEP] VA-REST-3045 final ok status=pipelined valid_contacts=5 new=5 deferred=0
+
+============================================================
+ DONE: Chima Steakhouse | 7 min | 02:21:07
+============================================================
+
+########## VENUE [3/8]: Choptank River Yacht Club ##########
+  [DOMAIN] Venue domain: carolinecryc.com
+
+============================================================
+ PIPELINE: Choptank River Yacht Club (MD-REST-2323)
+ Website: https://carolinecryc.com
+ Started: 2026-11-10 02:21:43
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 32/300, today 23/5000, balance 1032, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://carolinecryc.com
+  Opening in Chrome: https://carolinecryc.com
+  Found on homepage: info@carolinecryc.com
+  Validating contact form URL: https://carolinecryc.com/contact
+  Found on contact page: info@carolinecryc.com
+  ⚠ No rendered form found — keeping URL (likely JS/Wix site)
+  Emails: 1 | FB: https://www.facebook.com/pages/Choptank-River-Yacht-Club/147841948567909 | IG: none | Contact Form: https://carolinecryc.com/contact
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=44 pdfs=2 emails=5 sitemaps=10 fragments=0 unvisited=6
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-2323.json
+  [COVERAGE] Subpage queue: 22 in scope, rendering 22 (cap 30); skipped off-scope=0 other-location=0 variants=1 non-page=8
+  Crawling subpage (1): https://carolinecryc.com/about
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (2): https://carolinecryc.com/crycabout
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (3): https://carolinecryc.com/events
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (4): https://carolinecryc.com/annual-events
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (5): https://carolinecryc.com/crycevents
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (6): https://carolinecryc.com/news
+  Found on subpage: dholt@stardem.com, info@carolinecryc.com
+  Crawling subpage (7): https://carolinecryc.com/events/list
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (8): https://carolinecryc.com/events/month
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (9): https://carolinecryc.com/events/today
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (10): https://carolinecryc.com/events/month/2026-10
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (11): https://carolinecryc.com/event/general-membership-meeting-91
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (12): https://carolinecryc.com/event/general-membership-meeting-92
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (13): https://carolinecryc.com/event/general-membership-meeting-90
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (14): https://carolinecryc.com/event/fuzzbox-piranha
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (15): https://carolinecryc.com/groups
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (16): https://carolinecryc.com/crycheels-hospice-2014
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (17): https://carolinecryc.com/menu/
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (18): https://carolinecryc.com/swag/
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (19): https://carolinecryc.com/members/
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (20): https://carolinecryc.com/activity/
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (21): https://carolinecryc.com/join-cryc/
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (22): https://carolinecryc.com/facility-use/
+  Found on subpage: dmcohee@gmail.com, info@carolinecryc.com
+  Crawling subpage (23): https://carolinecryc.com/photo-gallery/
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (24): https://carolinecryc.com/heels-hospice-2014/
+  Found on subpage: dholt@stardem.com, info@carolinecryc.com
+  Crawling subpage (25): https://carolinecryc.com/slide/home1/
+  Found on subpage: info@carolinecryc.com
+  Crawling subpage (26): https://carolinecryc.com/slide-page/home/
+  Found on subpage: info@carolinecryc.com
+  [REJECT] facebook link https://www.facebook.com/v2.5 — no_evidence
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/pages/Choptank-River-Yacht-Club/147841948567909
+  [CONTACT FORM] Also found: https://carolinecryc.com/contact
+  [CONTACT FORM] Found: https://carolinecryc.com/contact/
+  ✓ Contact form URL saved
+  [REJECT] dannidarling79@gmail.com — freemail_unlinked (source: website, evidence: venue_site)
+  [REJECT] dholt@stardem.com — off_domain:stardem.com!=carolinecryc.com (source: website, evidence: venue_site)
+  [REJECT] dmcohee@gmail.com — freemail_unlinked (source: website, evidence: venue_site)
+  [REJECT] info@carolinecryc.com — general_inbox (source: website, evidence: venue_mailto)
+  [REJECT] kelky82@hotmail.com — freemail_unlinked (source: website, evidence: venue_site)
+[STEP] MD-REST-2323 web ok via=chrome pages=27 visited=home,contact,about,events,team form=yes chrome_pages=27 curl_pages=0 static_pages=30 pdfs=0 emails=5 saved=0 role=0 unverified=0 deferred=0 rejected=5 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=0 blocked_pages=0 missing=none
+
+========== STEP 1B: Instagram Google Search ==========
+  No Instagram found on website — Googling...
+  [IG SEARCH] Skipping https://www.instagram.com/reagankent.vocalist/ — handle 'reagankent.vocalist': handle has 16 chars that are not the venue name
+  [IG SEARCH] Skipping https://www.instagram.com/.../ — not a venue page (...)
+  [IG SEARCH] Skipping https://www.instagram.com/big/ — handle 'big': handle has 3 chars that are not the venue name
+  [IG SEARCH] No handle matched venue name — rejecting all candidates (3)
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/pages/Choptank-River-Yacht-Club/147841948567909 | IG: none
+  Opening FB: https://www.facebook.com/pages/Choptank-River-Yacht-Club/147841948567909
+  FB emails found: info@carolinecryc.com
+  Opening FB: https://www.facebook.com/pages/Choptank-River-Yacht-Club/147841948567909/about
+  FB emails found: info@carolinecryc.com
+  Opening FB: https://www.facebook.com/pages/Choptank-River-Yacht-Club/147841948567909/directory_contact_info
+  [REJECT] info@carolinecryc.com — general_inbox (source: social, evidence: external)
+[STEP] MD-REST-2323 social ok fb=found ig=none fb_search=website ig_search=empty:rejected_3 fb_pages=3 ig_pages=0 snippets=0 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 5 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Choptank River Yacht Club
+  [APOLLO] Domain lookup: ok (0 results) | name search: ok (0 results)
+  [WARN] No company found in Apollo for 'Choptank River Yacht Club' (tried name + domain)
+[STEP] MD-REST-2323 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0
+  Using website domain for enrichment: carolinecryc.com
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Choptank River Yacht Club"
+  Using domain: carolinecryc.com
+  [delay] Waiting 1s...
+  LinkedIn page 1...
+  [delay] Waiting 8s...
+  [LINKEDIN EMPTY] Page 1 returned 0 results — treating as unverified, venue stays pending
+[STEP] MD-REST-2323 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1
+  LinkedIn verdict 'empty' — kept linkedin_pending=true for retry
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Choptank River Yacht Club" contact Denton
+  [FALLBACK] Search results did not contain a trustworthy venue website
+  [FALLBACK] Re-trying Instagram: Choptank River Yacht Club Denton site:instagram.com
+  [FALLBACK] Instagram handle doesn't match venue name 'Choptank River Yacht Club' — rejecting: https://www.instagram.com/.../ not a venue page (...); https://www.instagram.com/big/ handle 'big': handle has 3 chars that are not the venue name; https://www.instagram.com/Post/ handle 'post': handle has 4 chars that are not the venue name
+[STEP] MD-REST-2323 google empty results=3 emails=0 site=none ig=none
+  Setting status → needs_review (no verified contacts saved)
+[STEP] MD-REST-2323 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Choptank River Yacht Club | 4 min | 02:26:03
+============================================================
+
+########## VENUE [4/8]: Wheaton Winery ##########
+  [DOMAIN] Venue domain: wheatonmd.org
+
+============================================================
+ PIPELINE: Wheaton Winery (MD-REST-2359)
+ Website: https://www.wheatonmd.org
+ Started: 2026-11-10 02:26:41
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 32/300, today 23/5000, balance 1032, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.wheatonmd.org
+  Opening in Chrome: https://www.wheatonmd.org
+  Validating contact form URL: https://www.wheatonmd.org/contact-us
+  Found on contact page: carson.henry@montgomerycountymd.gov, catherine.rytkonen@montgomerycountymd.gov, crystal.ruiz@montgomerycountymd.gov, luisa.cardona@montgomerycountymd.gov, marta.martinez@montgomerycountymd.gov, naddia.clute@montgomerycountymd.gov, talia.beaulieuhains@montgomerycountymd.gov
+  ⚠ No rendered form found — keeping URL (likely JS/Wix site)
+  Emails: 0 | FB: https://www.facebook.com/WheatonMD | IG: https://www.instagram.com/wheaton_md | Contact Form: https://www.wheatonmd.org/contact-us
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=40 pdfs=1 emails=8 sitemaps=1 fragments=15 unvisited=128
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-2359.json
+  [LOCATION] Checking for location-specific page (city: Wheaton)...
+  [LOCATION] Found: https://www.wheatonmd.org/discover/walkabout-wheaton
+  [LOCATION] Re-scraping location page: https://www.wheatonmd.org/discover/walkabout-wheaton
+  [LOCATION] Re-scraped: Emails: 0
+  [COVERAGE] Subpage queue: 32 in scope, rendering 30 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=0
+  Crawling subpage (1): https://www.wheatonmd.org/events
+  Crawling subpage (2): https://www.wheatonmd.org/events/event-calendar
+  Crawling subpage (3): https://www.wheatonmd.org/events/submit-an-event
+  Crawling subpage (4): https://www.wheatonmd.org/book-a-venue/event-venues
+  Crawling subpage (5): https://www.wheatonmd.org/do/we-speak-weddings-workshop
+  Crawling subpage (6): https://www.wheatonmd.org/discover/dining/catering
+  Crawling subpage (7): https://www.wheatonmd.org/discover/dining/live-music
+  Crawling subpage (8): https://www.wheatonmd.org/discover
+  Crawling subpage (9): https://www.wheatonmd.org/discover/dining
+  Crawling subpage (10): https://www.wheatonmd.org/discover/shopping-services
+  Crawling subpage (11): https://www.wheatonmd.org/discover/shopping-services/entertainment-music-and-video
+  Crawling subpage (12): https://www.wheatonmd.org/go/chuck-levins-music-center
+  Crawling subpage (13): https://www.wheatonmd.org/go/la-musica-record
+  Crawling subpage (14): https://www.wheatonmd.org/go/tienda-sula-y-musica
+  Crawling subpage (15): https://www.wheatonmd.org/go/fye-for-your-entertainment
+  Crawling subpage (16): https://www.wheatonmd.org/discover/living
+  Crawling subpage (17): https://www.wheatonmd.org/discover/attractions
+  Crawling subpage (18): https://www.wheatonmd.org/discover/marian-fryer-town-plaza
+  Crawling subpage (19): https://www.wheatonmd.org/discover/wheaton-urban-district
+  Found on subpage: crystal.ruiz@montgomerycountymd.gov
+  Crawling subpage (20): https://www.wheatonmd.org/events/taste-of-wheaton
+  Crawling subpage (21): https://www.wheatonmd.org/events/wheaton-bbq-fest
+  Found on subpage: themocosmokeshow@gmail.com
+  Crawling subpage (22): https://www.wheatonmd.org/getting-here
+  Crawling subpage (23): https://www.wheatonmd.org/getting-here/parking
+  Crawling subpage (24): https://www.wheatonmd.org/book-a-venue
+  Found on subpage: reservewheaton@montgomerycountymd.gov
+  Crawling subpage (25): https://www.wheatonmd.org/news
+  Crawling subpage (26): https://www.wheatonmd.org/wheaton-urban-district
+  Found on subpage: crystal.ruiz@montgomerycountymd.gov
+  Crawling subpage (27): https://www.wheatonmd.org/aande-district
+  Crawling subpage (28): https://www.wheatonmd.org/contact-us/feedback
+  Crawling subpage (29): https://www.wheatonmd.org/wheaton-urban-district/clean-and-safe-team
+  Crawling subpage (30): https://www.wheatonmd.org/do/brookside-gardens-fall-wedding-vendor-showcase
+  [PDF] https://ctycms.com/md-wheaton/docs/discoverwheaton_brochure.pdf → no emails
+  [PDF] https://www.wheatonmd.org/_files/docs/wheaton_local_districts_map.pdf → no emails
+  [REJECT] facebook link https://www.facebook.com/greenplatecatering — no_evidence
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/WheatonMD
+  ✓ Instagram from venue website (trusted: name_match): https://www.instagram.com/wheaton_md
+  [CONTACT FORM] Also found: https://www.wheatonmd.org/contact-us
+  [CONTACT FORM] Found: https://www.wheatonmd.org/events/submit-an-event
+  ✓ Contact form URL saved
+  [WEB] The venue's own pages use @montgomerycountymd.gov for its staff — those addresses count as the venue's own domain
+  [ZB SAFE] carson.henry@montgomerycountymd.gov → valid (verified; charged=True; cache=False; venue 1/40; run 33/300)
+  ✓ Added and verified: Carson Henry <carson.henry@montgomerycountymd.gov>
+  [ZB SAFE] catherine.rytkonen@montgomerycountymd.gov → valid (verified; charged=True; cache=False; venue 2/40; run 34/300)
+  ✓ Added and verified: Catherine Rytkonen <catherine.rytkonen@montgomerycountymd.gov>
+  [ZB SAFE] crystal.ruiz@montgomerycountymd.gov → valid (verified; charged=True; cache=False; venue 3/40; run 35/300)
+  ✓ Added and verified: Crystal Ruiz <crystal.ruiz@montgomerycountymd.gov>
+  [ZB SAFE] luisa.cardona@montgomerycountymd.gov → valid (verified; charged=True; cache=False; venue 4/40; run 36/300)
+  ✓ Added and verified: Luisa Cardona <luisa.cardona@montgomerycountymd.gov>
+  [ZB SAFE] marta.martinez@montgomerycountymd.gov → valid (verified; charged=True; cache=False; venue 5/40; run 37/300)
+  ✓ Added and verified: Marta Martinez <marta.martinez@montgomerycountymd.gov>
+  [ZB SAFE] naddia.clute@montgomerycountymd.gov → valid (verified; charged=True; cache=False; venue 6/40; run 38/300)
+  ✓ Added and verified: Naddia Clute <naddia.clute@montgomerycountymd.gov>
+  [CANDIDATE] reservewheaton@montgomerycountymd.gov — role mailbox with no person name attached; not saved
+  [ZB SAFE] talia.beaulieuhains@montgomerycountymd.gov → valid (verified; charged=True; cache=False; venue 7/40; run 39/300)
+  ✓ Added and verified: Talia Beaulieu-Hains <talia.beaulieuhains@montgomerycountymd.gov>
+  [REJECT] themocosmokeshow@gmail.com — off_site_page (found only on https://wheatonbbqfest.com/)
+  --- Chris Lentscher (Marketing Specialist): no email — not added to the sheet (name kept in the run log)
+  --- Luis Ortiz (Safe Team Supervisor): no email — not added to the sheet (name kept in the run log)
+  --- Marc Elrich (Montgomery County Executive): no email — not added to the sheet (name kept in the run log)
+[STEP] MD-REST-2359 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=2 emails=9 saved=7 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=3 pending=0 fb=1 ig=1 blocked_pages=0 missing=none
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/WheatonMD | IG: https://www.instagram.com/wheaton_md
+  Opening FB: https://www.facebook.com/WheatonMD
+  Opening FB: https://www.facebook.com/WheatonMD/about
+  Opening FB: https://www.facebook.com/WheatonMD/directory_contact_info
+  [FB] No email on page — trying Google snippet...
+  [FB SNIPPET] No email in Google snippet
+  Opening IG: https://www.instagram.com/wheaton_md
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+[STEP] MD-REST-2359 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0
+  [APOLLO] Credits used this run: 5 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Wheaton Winery
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (0 results)
+  [APOLLO MISMATCH] 'Law Offices of Jose Blanco' (wheatonmd.org) is not this venue — name doesn't match venue
+[STEP] MD-REST-2359 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0
+  Using website domain for enrichment: wheatonmd.org
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Wheaton Winery"
+  Using domain: wheatonmd.org
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 6s...
+  [LINKEDIN EMPTY] Page 1 returned 0 results — treating as unverified, venue stays pending
+[STEP] MD-REST-2359 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1
+  LinkedIn verdict 'empty' — kept linkedin_pending=true for retry
+[STEP] MD-REST-2359 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (7 verified contacts on sheet, 7 new this run)
+[STEP] MD-REST-2359 final ok status=pipelined valid_contacts=7 new=7 deferred=0
+
+============================================================
+ DONE: Wheaton Winery | 5 min | 02:31:46
+============================================================
+
+########## VENUE [5/8]: Rucci's Italian Kitchen & Grille ##########
+  [DOMAIN] Venue domain: ruccisitaliankitchen.com
+
+============================================================
+ PIPELINE: Rucci's Italian Kitchen & Grille (MD-REST-407)
+ Website: https://www.ruccisitaliankitchen.com/
+ Started: 2026-11-10 02:32:23
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 39/300, today 30/5000, balance 1025, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.ruccisitaliankitchen.com/
+  Opening in Chrome: https://www.ruccisitaliankitchen.com/
+  Validating contact form URL: https://www.ruccisitaliankitchen.com/contact-us
+  Found on contact page: leonardtown@ruccisitaliankitchen.com, ruccisitaliankitchen@outlook.com
+  ⚠ No rendered form found — keeping URL (likely JS/Wix site)
+  Emails: 0 | FB: https://www.facebook.com/profile.php?id=100095168833818 | IG: https://www.instagram.com/ruccis_italian_kitchen | Contact Form: https://www.ruccisitaliankitchen.com/contact-us
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=15 pdfs=0 emails=2 sitemaps=2 fragments=0 unvisited=0
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-407.json
+  [COVERAGE] Subpage queue: 5 in scope, rendering 5 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=0
+  Crawling subpage (1): https://www.ruccisitaliankitchen.com/ruccis-catering
+  Crawling subpage (2): https://www.ruccisitaliankitchen.com/order-online
+  Crawling subpage (3): https://www.ruccisitaliankitchen.com/our-sauces
+  Crawling subpage (4): https://www.ruccisitaliankitchen.com/happy-hour-specials
+  Crawling subpage (5): https://www.ruccisitaliankitchen.com/copy-of-home
+  ✓ Facebook from venue website (trusted: header_footer): https://www.facebook.com/profile.php?id=100095168833818
+  ✓ Instagram from venue website (trusted: name_match): https://www.instagram.com/ruccis_italian_kitchen
+  ✓ Contact form URL saved
+  [ZB SAFE] leonardtown@ruccisitaliankitchen.com → valid (verified; charged=True; cache=False; venue 1/40; run 40/300)
+  ✓ Added and verified: (no name) <leonardtown@ruccisitaliankitchen.com>
+  [ZB SAFE] ruccisitaliankitchen@outlook.com → valid (verified; charged=True; cache=False; venue 2/40; run 41/300)
+  ✓ Added and verified: (no name) <ruccisitaliankitchen@outlook.com>
+[STEP] MD-REST-407 web ok via=chrome pages=6 visited=home,contact,events form=yes chrome_pages=6 curl_pages=0 static_pages=7 pdfs=0 emails=2 saved=2 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/profile.php?id=100095168833818 | IG: https://www.instagram.com/ruccis_italian_kitchen
+  Opening FB: https://www.facebook.com/profile.php?id=100095168833818
+  [FB] No email on page — trying Google snippet...
+  [FB SNIPPET] No email in Google snippet
+  Opening IG: https://www.instagram.com/ruccis_italian_kitchen
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+[STEP] MD-REST-407 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=1 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0
+  [APOLLO] Credits used this run: 5 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Rucci's Italian Kitchen & Grille
+  [APOLLO] Domain lookup: ok (0 results) | name search: ok (0 results)
+  [WARN] No company found in Apollo for 'Rucci's Italian Kitchen & Grille' (tried name + domain)
+[STEP] MD-REST-407 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0
+  Using website domain for enrichment: ruccisitaliankitchen.com
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Rucci's Italian Kitchen & Grille"
+  Using domain: ruccisitaliankitchen.com
+  [delay] Waiting 1s...
+  LinkedIn page 1...
+  [delay] Waiting 7s...
+  Found 1 results
+  [LINKEDIN SKIP] Stephan Bowles (Salaried Manager at The Greene Turtle Sports Bar & Grille) — headline doesn't name the venue
+  [delay] Waiting 5s...
+  LinkedIn page 2...
+  [delay] Waiting 6s...
+  No results on page 2 — stopping.
+  No new people found on LinkedIn.
+[STEP] MD-REST-407 linkedin empty pages=1 results=1 rejected=1 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+[STEP] MD-REST-407 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (2 verified contacts on sheet, 2 new this run)
+[STEP] MD-REST-407 final ok status=pipelined valid_contacts=2 new=2 deferred=0
+
+============================================================
+ DONE: Rucci's Italian Kitchen & Grille | 2 min | 02:34:50
+============================================================
+
+########## VENUE [6/8]: Bugeye Grill ##########
+  [DOMAIN] Venue domain: bugeyegrill.com
+
+============================================================
+ PIPELINE: Bugeye Grill (MD-REST-339)
+ Website: https://www.bugeyegrill.com/
+ Started: 2026-11-10 02:35:28
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 41/300, today 32/5000, balance 1023, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.bugeyegrill.com/
+  Opening in Chrome: https://www.bugeyegrill.com/
+  Found on homepage: bugeyegrill@gmail.com
+  Validating contact form URL: https://www.bugeyegrill.com/contact
+  ✓ Real contact form confirmed
+  Emails: 1 | FB: none | IG: none | Contact Form: https://www.bugeyegrill.com/contact
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=30 pdfs=0 emails=2 sitemaps=1 fragments=0 unvisited=0
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-339.json
+  [COVERAGE] Subpage queue: 20 in scope, rendering 20 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=0
+  Crawling subpage (1): https://www.bugeyegrill.com/about
+  Found on subpage: bugeyegrill@gmail.com
+  [SOCIAL] Facebook link on subpage: https://www.bugeyegrill.com/about -> https://www.facebook.com/Bugeye-Grill-2359339757688586
+  Crawling subpage (2): https://www.bugeyegrill.com/special-events
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (3): https://www.bugeyegrill.com/catering
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (4): https://www.bugeyegrill.com/reservations
+  Crawling subpage (5): https://www.bugeyegrill.com/virtual-menu
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (6): https://www.bugeyegrill.com/blog
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (7): https://www.bugeyegrill.com/faqs
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (8): https://www.bugeyegrill.com/purchase-e-gift-cards
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (9): https://www.bugeyegrill.com/employment-opportunities
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (10): https://www.bugeyegrill.com/back-yard-beach-bar
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (11): https://www.bugeyegrill.com/coffee
+  Found on subpage: bugeyecoffeeroasters@gmail.com, bugeyegrill@gmail.com
+  Crawling subpage (12): https://www.bugeyegrill.com/10-things-you-didnt-know-about-your-favorite-steak-cut
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (13): https://www.bugeyegrill.com/3-must-try-seafood-dishes-for-your-next-dinner-out
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (14): https://www.bugeyegrill.com/video-splash-pop
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (15): https://www.bugeyegrill.com/how-to-order-a-dish-you-ll-love-at-a-seafood-restaurant
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (16): https://www.bugeyegrill.com/what-makes-a-seafood-restaurant-stand-out-from-the-rest
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (17): https://www.bugeyegrill.com/why-seafood-restaurants-are-a-better-choice-for-your-health
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (18): https://www.bugeyegrill.com/home/Shoes-c157094829
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (19): https://www.bugeyegrill.com/home/Our-Coffees-c196761590
+  Found on subpage: bugeyegrill@gmail.com
+  Crawling subpage (20): https://www.bugeyegrill.com/home/Private-Stock-8oz-Ground-p592272035
+  Found on subpage: bugeyegrill@gmail.com
+  [REJECT] facebook link https://www.facebook.com/613038668722444 — no_evidence
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/Bugeye-Grill-2359339757688586
+  ✓ Contact form URL saved
+  [ZB SAFE] bugeyecoffeeroasters@gmail.com → valid (verified; charged=True; cache=False; venue 1/40; run 42/300)
+  ✓ Added and verified: (no name) <bugeyecoffeeroasters@gmail.com>
+  [ZB SAFE] bugeyegrill@gmail.com → valid (verified; charged=True; cache=False; venue 2/40; run 43/300)
+  ✓ Added and verified: (no name) <bugeyegrill@gmail.com>
+[STEP] MD-REST-339 web ok via=chrome pages=21 visited=home,contact,about,events form=yes chrome_pages=21 curl_pages=0 static_pages=22 pdfs=0 emails=2 saved=2 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=0 blocked_pages=0 missing=team
+
+========== STEP 1B: Instagram Google Search ==========
+  No Instagram found on website — Googling...
+  [IG SEARCH] Skipping https://www.instagram.com/bbackyard.bar/ — handle 'bbackyard.bar': handle has 9 chars that are not the venue name
+  [IG SEARCH] Found: https://www.instagram.com/bugeyegrill/
+  ✓ Instagram URL saved
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/Bugeye-Grill-2359339757688586 | IG: https://www.instagram.com/bugeyegrill/
+  Opening FB: https://www.facebook.com/Bugeye-Grill-2359339757688586
+  Opening FB: https://www.facebook.com/Bugeye-Grill-2359339757688586/about
+  Opening FB: https://www.facebook.com/Bugeye-Grill-2359339757688586/directory_contact_info
+  FB emails found: bugeyegrill@gmail.com
+  Opening IG: https://www.instagram.com/bugeyegrill/
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+  [SKIP] bugeyegrill@gmail.com — already in sheet
+[STEP] MD-REST-339 social ok fb=found ig=found fb_search=website ig_search=ok:found_of_2 fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 5 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Bugeye Grill
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (1 results)
+  Found: Bugeye Grill (domain: bugeyegrill.com, org_id: 66e8fa2a042e790001bf077a)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Bugeye Grill (org_id: 66e8fa2a042e790001bf077a)...
+  [APOLLO] No people in DC/MD/VA — used the no-location search (small local org)
+  Found 1 people total
+  [APOLLO] App title skip words loaded: racquets, tennis, golf, racquet, florist, busboy, server, farm, busser, 401k, caddie, fitness, squash, athletics, pickleball, proshop, controller
+  Skipped 1 people with no email (red ? on Apollo) and no decision-maker title
+  No new people to enrich.
+[STEP] MD-REST-339 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Bugeye_Grill gate=name+domain people=1 relevant=0 skipped_titles=0 over_cap=0
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Bugeye Grill"
+  Using domain: bugeyegrill.com
+  [delay] Waiting 1s...
+  LinkedIn page 1...
+  [delay] Waiting 5s...
+  Found 9 results
+  [LINKEDIN SKIP] Christopher Morton (Self employed Chef/Farmer) — headline doesn't name the venue
+  [LINKEDIN SKIP] LinkedIn Member (Cashier at Giant) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (--) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Mechanical Engineering Student @ UMBC | Lead Office Assistant | ENPOWR College Ambassador | Biomedical Research | Intellectual Property & Patent Law) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (.) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Account Manager at Premier Private Jets  Charter•MRO•FBO) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Sous chef) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (General Manager at Bugeye Grill) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (911 Call Taker at Wicomico County) — masked name
+  [delay] Waiting 5s...
+  LinkedIn page 2...
+  [delay] Waiting 8s...
+  Found 4 results
+  [LINKEDIN SKIP] LinkedIn Member (Dishwasher at Bugeye Grill) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Server/bartender  at Bugeye Grill) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (--) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Entrepreneur at Bugeye Grill) — masked name
+  [delay] Waiting 3s...
+  LinkedIn page 3...
+  [delay] Waiting 6s...
+  No results on page 3 — stopping.
+  No new people found on LinkedIn.
+[STEP] MD-REST-339 linkedin empty pages=2 results=13 rejected=13 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+[STEP] MD-REST-339 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (2 verified contacts on sheet, 2 new this run)
+[STEP] MD-REST-339 final ok status=pipelined valid_contacts=2 new=2 deferred=0
+
+============================================================
+ DONE: Bugeye Grill | 4 min | 02:39:30
+============================================================
+
+########## VENUE [7/8]: Herring Bay Yacht Club ##########
+  [DOMAIN] Venue domain: hbyc.org
+
+============================================================
+ PIPELINE: Herring Bay Yacht Club (MD-YACH-807)
+ Website: https://hbyc.org
+ Started: 2026-11-10 02:40:08
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 43/300, today 34/5000, balance 1021, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://hbyc.org
+  Opening in Chrome: https://hbyc.org
+  Found on homepage: info@hbyc.org
+  Validating contact form URL: https://hbyc.org/contact-us
+  Found on contact page: info@hbyc.org
+  ⚠ No rendered form found — keeping URL (likely JS/Wix site)
+  Emails: 1 | FB: https://www.facebook.com/HerringBayYC | IG: none | Contact Form: https://hbyc.org/contact-us
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=48 pdfs=8 emails=4 sitemaps=10 fragments=46 unvisited=64
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-YACH-807.json
+  [COVERAGE] Subpage queue: 49 in scope, rendering 30 (cap 30); skipped off-scope=0 other-location=0 variants=1 non-page=1
+  Crawling subpage (1): https://hbyc.org/contact/
+  Found on subpage: hello@dream-theme.com, info@hbyc.org
+  Crawling subpage (2): https://hbyc.org/online-directory
+  Found on subpage: info@hbyc.org
+  Crawling subpage (3): https://hbyc.org/about-hbyc/
+  Found on subpage: info@hbyc.org
+  Crawling subpage (4): https://hbyc.org/photo-gallery-by-event
+  Found on subpage: info@hbyc.org
+  Crawling subpage (5): http://hbyc.org/events
+  Found on subpage: info@hbyc.org
+  Crawling subpage (6): https://hbyc.org/calendar-of-events/
+  Found on subpage: info@hbyc.org
+  Crawling subpage (7): https://hbyc.org/thank-free-event/
+  Found on subpage: info@hbyc.org
+  Crawling subpage (8): https://hbyc.org/2023-big-event-tickets/
+  Found on subpage: info@hbyc.org
+  Crawling subpage (9): https://hbyc.org/sponsorship
+  Found on subpage: commodore@hbyc.org, info@hbyc.org
+  Crawling subpage (10): https://hbyc.org/membership-options
+  Found on subpage: info@hbyc.org
+  Crawling subpage (11): https://hbyc.org/membership-renewal
+  Found on subpage: info@hbyc.org
+  Crawling subpage (12): https://hbyc.org/faqs
+  Found on subpage: info@hbyc.org
+  Crawling subpage (13): https://hbyc.org/hbyc-history
+  Found on subpage: info@hbyc.org
+  Crawling subpage (14): https://hbyc.org/hbyc-activity-types
+  Found on subpage: info@hbyc.org
+  Crawling subpage (15): https://hbyc.org/hbyc-officers-3
+  Found on subpage: info@hbyc.org
+  Crawling subpage (16): https://hbyc.org/visiting-yacht-clubs
+  Found on subpage: commodore@hbyc.org, info@hbyc.org
+  Crawling subpage (17): https://hbyc.org/sponsor
+  Found on subpage: bpugh@jeanannconsulting.com, dale@integrityyachtsales.com, detailcarwash@gmail.com, info@happyharbordeale.com, info@hbyc.org, info@swhmarina.com
+  Crawling subpage (18): https://hbyc.org/hbyc-commitees
+  Found on subpage: info@hbyc.org
+  Crawling subpage (19): https://hbyc.org/member-documents
+  Found on subpage: info@hbyc.org
+  Crawling subpage (20): https://hbyc.org/photo-gallery-archive
+  Found on subpage: info@hbyc.org
+  Crawling subpage (21): https://hbyc.org/local-hbyc-merchandise
+  Found on subpage: info@hbyc.org
+  Crawling subpage (22): https://hbyc.org/events/list
+  Found on subpage: info@hbyc.org
+  Crawling subpage (23): https://hbyc.org/events/month
+  Found on subpage: fleetcaptain@hbyc.org, info@hbyc.org
+  Crawling subpage (24): https://hbyc.org/event/turkey-fry-7
+  Found on subpage: info@hbyc.org
+  Crawling subpage (25): https://hbyc.org/event/general-membership-meeting
+  Found on subpage: commodore@hbyc.org, info@hbyc.org
+  Crawling subpage (26): https://hbyc.org/event/2027-change-of-watch
+  Found on subpage: commodore@hbyc.org, info@hbyc.org
+  Crawling subpage (27): http://hbyc.org/events/month/2026-10
+  Found on subpage: fleetcaptain@hbyc.org, info@hbyc.org
+  Crawling subpage (28): http://hbyc.org/events/month/2026-12
+  Found on subpage: info@hbyc.org
+  Crawling subpage (29): http://hbyc.org/event/fall-raft-up
+  Found on subpage: fleetcaptain@hbyc.org, info@hbyc.org
+  Crawling subpage (30): https://hbyc.org/2024-cruise-planning-meeting/
+  Found on subpage: info@hbyc.org
+  [CONTACT FORM] Also found: https://hbyc.org/q-a/
+  [CONTACT FORM] Also found: https://hbyc.org/q3-general-membership-meeting-sign-up/
+  [CONTACT FORM] Also found: https://hbyc.org/q4-general-membership-meeting-sign-up/
+  [REJECT] facebook link https://www.facebook.com/JeanAnn-Consulting-LLC-1092381597460492 — no_evidence
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/HerringBayYC
+  [CONTACT FORM] Also found: https://hbyc.org/contact-us
+  [CONTACT FORM] Found: https://hbyc.org/contact/
+  ✓ Contact form URL saved
+  [REJECT] bpugh@jeanannconsulting.com — off_domain:jeanannconsulting.com!=hbyc.org (source: website, evidence: external)
+  [ZB SAFE] commodore@hbyc.org → valid (verified; charged=True; cache=False; venue 1/40; run 44/300)
+  ✓ Added and verified: Commodore Deb Fass <commodore@hbyc.org>
+  [REJECT] dale@integrityyachtsales.com — off_domain:integrityyachtsales.com!=hbyc.org (source: website, evidence: external)
+  [REJECT] detailcarwash@gmail.com — freemail_unlinked (source: website, evidence: external)
+  [ZB SAFE] fleetcaptain@hbyc.org → valid (verified; charged=True; cache=False; venue 2/40; run 45/300)
+  ✓ Added and verified: (no name) <fleetcaptain@hbyc.org>
+  [REJECT] hello@dream-theme.com — general_inbox (source: website, evidence: venue_site)
+  [REJECT] info@happyharbordeale.com — general_inbox (source: website, evidence: external)
+  [REJECT] info@hbyc.org — general_inbox (source: website, evidence: venue_site)
+  [REJECT] info@swhmarina.com — general_inbox (source: website, evidence: external)
+  [CANDIDATE] memberatlarge@hbyc.org — role mailbox with no person name attached; not saved
+  --- Local HBYC Merchandise (Online Directory): no email — not added to the sheet (name kept in the run log)
+[STEP] MD-YACH-807 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=10 saved=2 role=0 unverified=0 deferred=0 rejected=7 candidates=1 known=0 errors=0 people=1 pending=0 fb=1 ig=0 blocked_pages=0 missing=none
+
+========== STEP 1B: Instagram Google Search ==========
+  No Instagram found on website — Googling...
+  [IG SEARCH] No Instagram found via Google
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/HerringBayYC | IG: none
+  Opening FB: https://www.facebook.com/HerringBayYC
+  Opening FB: https://www.facebook.com/HerringBayYC/about
+  Opening FB: https://www.facebook.com/HerringBayYC/directory_contact_info
+  FB emails found: info@hbyc.org
+  [REJECT] info@hbyc.org — general_inbox (source: social, evidence: external)
+[STEP] MD-YACH-807 social ok fb=found ig=none fb_search=website ig_search=empty:none fb_pages=3 ig_pages=0 snippets=0 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 5 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Herring Bay Yacht Club
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (2 results)
+  Found: Herring Bay Yacht Club (domain: hbyc.org, org_id: 6ac6fb11bef8460001fb2650)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Herring Bay Yacht Club (org_id: 6ac6fb11bef8460001fb2650)...
+  [APOLLO] No people in DC/MD/VA — used the no-location search (small local org)
+  Found 0 people total
+  No people in Apollo for this company.
+[STEP] MD-YACH-807 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=Herring_Bay_Yacht_Club gate=name+domain people=0
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Herring Bay Yacht Club"
+  Using domain: hbyc.org
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 8s...
+  Found 2 results
+  [LINKEDIN SKIP] Betsy J. Pugh (Trusted Business Advisor, CFO, Acctg System Guru-GOVCON & Non-Profit) — headline doesn't name the venue
+  [LINKEDIN SKIP] LinkedIn Member (Senior Partner at Blank Rome LLP) — masked name
+  [delay] Waiting 5s...
+  LinkedIn page 2...
+  [delay] Waiting 8s...
+  No results on page 2 — stopping.
+  No new people found on LinkedIn.
+[STEP] MD-YACH-807 linkedin empty pages=1 results=2 rejected=2 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+[STEP] MD-YACH-807 google skipped reason=has_contacts results=0 emails=0
+  Setting status → pipelined (2 verified contacts on sheet, 2 new this run)
+[STEP] MD-YACH-807 final ok status=pipelined valid_contacts=2 new=2 deferred=0
+
+============================================================
+ DONE: Herring Bay Yacht Club | 5 min | 02:45:33
+============================================================
+
+########## VENUE [8/8]: Mazzaroth Vineyard ##########
+  [DOMAIN] Venue domain: mazzarothvineyard.com
+
+============================================================
+ PIPELINE: Mazzaroth Vineyard (MD-REST-3012)
+ Website: https://mazzarothvineyard.com
+ Started: 2026-11-10 02:46:11
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 45/300, today 36/5000, balance 1019, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://mazzarothvineyard.com
+  Opening in Chrome: https://mazzarothvineyard.com
+  Found on homepage: info@mazzarothvineyard.com
+  Emails: 1 | FB: https://www.facebook.com/mazzarothvineyard | IG: https://www.instagram.com/mazzarothvineyard | Contact Form: none
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=16 pdfs=0 emails=1 sitemaps=1 fragments=8 unvisited=115
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-3012.json
+  [COVERAGE] Subpage queue: 6 in scope, rendering 6 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=1
+  Crawling subpage (1): https://mazzaroth.squarespace.com/about-us
+  Found on subpage: info@mazzarothvineyard.com
+  Crawling subpage (2): https://mazzaroth.squarespace.com/events
+  Found on subpage: info@mazzarothvineyard.com
+  Crawling subpage (3): https://mazzaroth.squarespace.com/events/j99nfa95ejswlph-z5hfn-n6cmk-43myz-jajy3-xxcg3-h425m
+  Found on subpage: info@mazzarothvineyard.com
+  Crawling subpage (4): https://mazzaroth.squarespace.com/events/j99nfa95ejswlph-z5hfn-n6cmk-43myz-jajy3-xxcg3-h425m-c9mah
+  Found on subpage: info@mazzarothvineyard.com
+  Crawling subpage (5): https://mazzaroth.squarespace.com/events/fsr4fn8c6zhz6ph-ydanp-5nryx-ppxaj-yesca-fbahj-zdmc4-x749l-4grdn-fkjw8-z67c3-zfgbm-lyz4w-ld3td-yfewm-59zwp-g28kj-zlf9r-9ad4y-yd8lp
+  Found on subpage: info@mazzarothvineyard.com
+  Crawling subpage (6): https://mazzaroth.squarespace.com/events/j99nfa95ejswlph-z5hfn-n6cmk-43myz-jajy3-xxcg3
+  Found on subpage: info@mazzarothvineyard.com
+  Crawling subpage (7): https://mazzaroth.squarespace.com/mazzarothvineyard
+  Found on subpage: info@mazzarothvineyard.com
+  [CONTACT FORM] Also found: https://mazzaroth.squarespace.com/mazzarothvineyard
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/mazzarothvineyard
+  ✓ Instagram from venue website (trusted: name_match): https://www.instagram.com/mazzarothvineyard
+  [CONTACT FORM] Found: https://mazzaroth.squarespace.com/
+  ✓ Contact form URL saved
+  [WEB] Website redirects to squarespace.com — its addresses count as the venue's own domain
+  [REJECT] info@mazzarothvineyard.com — general_inbox (source: website, evidence: venue_mailto)
+[STEP] MD-REST-3012 web ok via=chrome pages=8 visited=home,about,events form=yes chrome_pages=8 curl_pages=0 static_pages=8 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/mazzarothvineyard | IG: https://www.instagram.com/mazzarothvineyard
+  Opening FB: https://www.facebook.com/mazzarothvineyard
+  Opening FB: https://www.facebook.com/mazzarothvineyard/about
+  Opening FB: https://www.facebook.com/mazzarothvineyard/directory_contact_info
+  FB emails found: mazzarothvineyard@gmail.com
+  Opening IG: https://www.instagram.com/mazzarothvineyard
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+  [REJECT] mazzarothvineyard@gmail.com — freemail_unlinked (source: social, evidence: external)
+[STEP] MD-REST-3012 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0
+  [APOLLO] Credits used this run: 5 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Mazzaroth Vineyard
+  [APOLLO] Domain lookup: ok (1 results) | name search: ok (0 results)
+  Found: Mazzaroth Vineyard (domain: mazzarothvineyard.com, org_id: 6af2cc308d3f69001cb136c5)
+  [APOLLO GATE] Accepted on name+domain
+  Searching for people at Mazzaroth Vineyard (org_id: 6af2cc308d3f69001cb136c5)...
+  [APOLLO] No people in DC/MD/VA — used the no-location search (small local org)
+  Found 0 people total
+  No people in Apollo for this company.
+[STEP] MD-REST-3012 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=Mazzaroth_Vineyard gate=name+domain people=0
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Mazzaroth Vineyard"
+  Using domain: mazzarothvineyard.com
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 5s...
+  Found 1 results
+  [LINKEDIN SKIP] Peter Emery (Dedicated and driven professional.) — headline doesn't name the venue
+  [delay] Waiting 3s...
+  LinkedIn page 2...
+  [delay] Waiting 7s...
+  No results on page 2 — stopping.
+  No new people found on LinkedIn.
+[STEP] MD-REST-3012 linkedin empty pages=1 results=1 rejected=1 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Mazzaroth Vineyard" contact Middletown
+  [FALLBACK] Found site https://mazzaroth.squarespace.com but venue already has domain mazzarothvineyard.com — skipping (won't overwrite)
+  [FALLBACK] Instagram already found this run (https://www.instagram.com/mazzarothvineyard) — not re-searching
+[STEP] MD-REST-3012 google empty results=5 emails=0 site=other_domain ig=known
+  Setting status → needs_review (no verified contacts saved)
+[STEP] MD-REST-3012 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Mazzaroth Vineyard | 2 min | 02:48:53
+============================================================
+
+--- FLAGS raised in this batch ---
+  FLAG:Rejected email (off_domain:cateringbylt.com!=lebanesetaverna.com): events@cateringbylt.com (venue domain lebanesetaverna.com, source: website)
+  FLAG:Apollo returned only other businesses for this venue (e.g. Lebanese Taverna Group (no domain)) — people search skipped
+  FLAG:LinkedIn did not return results (empty) — venue kept linkedin_pending
+  FLAG:Website facebook link not saved (no_evidence): https://www.facebook.com/v2.5
+  FLAG:Rejected email (freemail_unlinked): dannidarling79@gmail.com (venue domain carolinecryc.com, source: website)
+  FLAG:Rejected email (off_domain:stardem.com!=carolinecryc.com): dholt@stardem.com (venue domain carolinecryc.com, source: website)
+  FLAG:Rejected email (freemail_unlinked): dmcohee@gmail.com (venue domain carolinecryc.com, source: website)
+  FLAG:Rejected email (freemail_unlinked): kelky82@hotmail.com (venue domain carolinecryc.com, source: website)
+  FLAG:LinkedIn did not return results (empty) — venue kept linkedin_pending
+  FLAG:Website facebook link not saved (no_evidence): https://www.facebook.com/greenplatecatering
+  FLAG:Apollo returned only other businesses for this venue (e.g. Law Offices of Jose Blanco (wheatonmd.org)) — people search skipped
+  FLAG:LinkedIn did not return results (empty) — venue kept linkedin_pending
+  FLAG:Website facebook link not saved (no_evidence): https://www.facebook.com/613038668722444
+  FLAG:Website facebook link not saved (no_evidence): https://www.facebook.com/JeanAnn-Consulting-LLC-1092381597460492
+  FLAG:Rejected email (off_domain:jeanannconsulting.com!=hbyc.org): bpugh@jeanannconsulting.com (venue domain hbyc.org, source: website)
+  FLAG:Rejected email (off_domain:integrityyachtsales.com!=hbyc.org): dale@integrityyachtsales.com (venue domain hbyc.org, source: website)
+  FLAG:Rejected email (freemail_unlinked): detailcarwash@gmail.com (venue domain hbyc.org, source: website)
+  FLAG:Rejected email (freemail_unlinked): mazzarothvineyard@gmail.com (venue domain mazzarothvineyard.com, source: social)
+=== BATCH COMPLETE ===
+
+=== AUTO-RUNNING POSTCHECK ON THIS BATCH (8 venues: VA-REST-3059,VA-REST-3045,MD-REST-2323,MD-REST-2359,MD-REST-407,MD-REST-339,MD-YACH-807,MD-REST-3012) ===
+[02:48:56] === Post-Pipeline Check Started ===
+[02:48:56] Checking 8 venues (mode: venues, run run-20261108-0931) — venues with a valid/role/unverified contact are skipped
+[02:48:59] 
+[02:48:59] === Lebanese Taverna Tysons Galleria (VA-REST-3059) | McLean, VA | Contacts: 1 ===
+[02:48:59]   Has 1 valid/role/unverified contacts — second pass not needed
+[02:48:59] [STEP] VA-REST-3059 postcheck skipped reason=has_contacts valid=1
+[02:49:02] 
+[02:49:02] === Chima Steakhouse (VA-REST-3045) | Tysons, VA | Contacts: 5 ===
+[02:49:02]   Has 5 valid/role/unverified contacts — second pass not needed
+[02:49:02] [STEP] VA-REST-3045 postcheck skipped reason=has_contacts valid=5
+[02:49:05] 
+[02:49:05] === Choptank River Yacht Club (MD-REST-2323) | Denton, MD | Contacts: 0 ===
+[02:49:05]   Website: https://carolinecryc.com
+[02:49:05]   [DISCOVERY] Reusing the pipeline's crawl of this site (/Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-2323.json)
+[02:49:05]   [DISCOVERY] pages=44 ok=30 pdfs=2 sitemaps=10 fragments=0 unvisited=6 emails=5
+[02:49:05]   Found emails on https://carolinecryc.com:
+[02:49:05]     info@carolinecryc.com
+[02:49:06]   Found emails on https://carolinecryc.com/contact/:
+[02:49:06]     info@carolinecryc.com
+[02:49:06]   Contact form found: https://carolinecryc.com/contact/
+[02:49:07]   Found emails on https://carolinecryc.com/about/:
+[02:49:07]     info@carolinecryc.com
+[02:49:08]   Found emails on https://carolinecryc.com/events/:
+[02:49:08]     info@carolinecryc.com
+[02:49:08]   Found emails on https://carolinecryc.com/groups/:
+[02:49:08]     info@carolinecryc.com
+[02:49:09]   Found emails on https://carolinecryc.com/annual-events/:
+[02:49:09]     info@carolinecryc.com
+[02:49:10]   Found emails on https://carolinecryc.com/menu/:
+[02:49:10]     info@carolinecryc.com
+[02:49:10]   Found emails on https://carolinecryc.com/swag/:
+[02:49:10]     info@carolinecryc.com
+[02:49:11]   Found emails on https://carolinecryc.com/news/:
+[02:49:11]     dholt@stardem.com (Dustin Holt)
+[02:49:11]     info@carolinecryc.com
+[02:49:11]   Found emails on https://carolinecryc.com/members/:
+[02:49:11]     info@carolinecryc.com
+[02:49:12]   Found emails on https://carolinecryc.com/activity/:
+[02:49:12]     info@carolinecryc.com
+[02:49:13]   Found emails on https://carolinecryc.com/join-cryc/:
+[02:49:13]     info@carolinecryc.com
+[02:49:13]   Found emails on https://carolinecryc.com/slide/home1/:
+[02:49:13]     info@carolinecryc.com
+[02:49:14]   Found emails on https://carolinecryc.com/facility-use/:
+[02:49:14]     dmcohee@gmail.com
+[02:49:14]     info@carolinecryc.com
+[02:49:15]   Found emails on https://carolinecryc.com/photo-gallery/:
+[02:49:15]     info@carolinecryc.com
+[02:49:16]   Found emails on https://carolinecryc.com/slide-page/home/:
+[02:49:16]     info@carolinecryc.com
+[02:49:16]   Found emails on https://carolinecryc.com/heels-hospice-2014/:
+[02:49:16]     dholt@stardem.com (Dustin Holt)
+[02:49:16]     info@carolinecryc.com
+[02:49:17]   Found emails on https://carolinecryc.com/events/list/:
+[02:49:17]     info@carolinecryc.com
+[02:49:18]   Found emails on https://carolinecryc.com/events/month/:
+[02:49:18]     info@carolinecryc.com
+[02:49:19]   Found emails on https://carolinecryc.com/events/today/:
+[02:49:19]     info@carolinecryc.com
+[02:49:19]   Found emails on https://carolinecryc.com/author/secretary/:
+[02:49:19]     info@carolinecryc.com
+[02:49:19]     kelky82@hotmail.com
+[02:49:20]   Found emails on https://carolinecryc.com/category/news-public/:
+[02:49:20]     info@carolinecryc.com
+[02:49:21]   Found emails on https://carolinecryc.com/event/general-membership-meeting-92/:
+[02:49:21]     info@carolinecryc.com
+[02:49:21]   Found emails on https://carolinecryc.com/author/choptank-river-yacht-club-administrator/:
+[02:49:21]     dannidarling79@gmail.com
+[02:49:21]     info@carolinecryc.com
+[02:49:22]   Found emails on https://carolinecryc.com/event/general-membership-meeting-91/:
+[02:49:22]     info@carolinecryc.com
+[02:49:23]   Found emails on https://carolinecryc.com/event/general-membership-meeting-90/:
+[02:49:23]     info@carolinecryc.com
+[02:49:25]   Found emails on http://carolinecryc.com/events:
+[02:49:25]     info@carolinecryc.com
+[02:49:30]   [WEB] Page budget reached (40 pages / 180s) — 4 lower-priority pages not fetched
+[02:49:31]   [REJECT] dholt@stardem.com — off_domain:stardem.com!=carolinecryc.com
+[02:49:31]   [ZB SAFE] dannidarling79@gmail.com → valid (verified; charged=True; cache=False; venue 1/40; run 46/300)
+[02:49:38]   ✓ Added and verified: (no name) <dannidarling79@gmail.com> (valid)
+[02:49:39]   [ZB SAFE] dmcohee@gmail.com → valid (verified; charged=True; cache=False; venue 2/40; run 47/300)
+[02:49:46]   ✓ Added and verified: (no name) <dmcohee@gmail.com> (valid)
+[02:49:46]   [REJECT] info@carolinecryc.com — general_inbox
+[02:49:47]   [ZB SAFE] kelky82@hotmail.com → valid (verified; charged=True; cache=False; venue 3/40; run 48/300)
+[02:49:55]   ✓ Added and verified: (no name) <kelky82@hotmail.com> (valid)
+[02:49:55]   [Apollo] Searching by domain: carolinecryc.com
+[02:49:56]   [Apollo] Found 0 people (by name)
+[02:49:56]   Searching LinkedIn for: Choptank River Yacht Club
+[02:50:01]   [LinkedIn] 8 results on page 1, 0 at this venue with a relevant title
+[02:50:01]   [LinkedIn] No relevant people found (none with venue in title)
+[02:50:01] [STEP] MD-REST-2323 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=30 pages=28 pages_cut=4 visited=home,contact,about,events emails=5 saved=3 enriched=0 pending=0 people=0 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=8 li_relevant=0 enrich=skipped:no_pending
+[02:50:07] 
+[02:50:07] === Wheaton Winery (MD-REST-2359) | Wheaton, MD | Contacts: 7 ===
+[02:50:07]   Has 7 valid/role/unverified contacts — second pass not needed
+[02:50:07] [STEP] MD-REST-2359 postcheck skipped reason=has_contacts valid=7
+[02:50:11] 
+[02:50:11] === Rucci's Italian Kitchen & Grille (MD-REST-407) | Leonardtown, MD | Contacts: 2 ===
+[02:50:11]   Has 2 valid/role/unverified contacts — second pass not needed
+[02:50:11] [STEP] MD-REST-407 postcheck skipped reason=has_contacts valid=2
+[02:50:13] 
+[02:50:13] === Bugeye Grill (MD-REST-339) | Solomons, MD | Contacts: 2 ===
+[02:50:13]   Has 2 valid/role/unverified contacts — second pass not needed
+[02:50:13] [STEP] MD-REST-339 postcheck skipped reason=has_contacts valid=2
+[02:50:17] 
+[02:50:17] === Herring Bay Yacht Club (MD-YACH-807) | Tracys Landing, MD | Contacts: 2 ===
+[02:50:17]   Has 2 valid/role/unverified contacts — second pass not needed
+[02:50:17] [STEP] MD-YACH-807 postcheck skipped reason=has_contacts valid=2
+[02:50:20] 
+[02:50:20] === Mazzaroth Vineyard (MD-REST-3012) | Middletown, MD | Contacts: 0 ===
+[02:50:20]   Website: https://mazzarothvineyard.com
+[02:50:20]   [DISCOVERY] Reusing the pipeline's crawl of this site (/Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-3012.json)
+[02:50:20]   [DISCOVERY] pages=16 ok=8 pdfs=0 sitemaps=1 fragments=8 unvisited=115 emails=1
+[02:50:21]   Found emails on https://mazzarothvineyard.com:
+[02:50:21]     info@mazzarothvineyard.com
+[02:50:26]   [REJECT] info@mazzarothvineyard.com — general_inbox
+[02:50:26]   [Apollo] Searching by domain: mazzarothvineyard.com
+[02:50:26]   [Apollo] Found 0 people (by name)
+[02:50:26]   Searching LinkedIn for: Mazzaroth Vineyard
+[02:50:32]   [LinkedIn] 1 results on page 1, 0 at this venue with a relevant title
+[02:50:32]   [LinkedIn] No relevant people found (none with venue in title)
+[02:50:32] [STEP] MD-REST-3012 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=8 pages=1 pages_cut=0 visited=home,about,events emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=1 li_relevant=0 enrich=skipped:no_pending
+[02:50:32] 
+[02:50:32] === Final Audit ===
+[02:50:32] Venues: 8 | Checked: 2 | Skipped: 6 | Failed/degraded: 0 | Not reached (time budget): 0 | Contacts saved: 3 | Pending added: 0 | Deferred (saved unverified, needs ZB check): 0 | Rejected: 3 | Apollo credits: 0 | Minutes: 1
+[02:50:32] 
+[02:50:32] === Post-Pipeline Check Complete ===
+  [MD-REST-2323] Setting status → pipelined (3 verified contacts on sheet, found by postcheck)
+[STEP] MD-REST-2323 final ok status=pipelined valid_contacts=3 new=3 deferred=0 via=postcheck
+[RUN] Batch 3 done — marker /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.batch3.done (ready for the miss audit)
+PREFLIGHT OK: python3 works (/Library/Developer/CommandLineTools/usr/bin/python3 3.9.6)
+PREFLIGHT OK: Apps Script backend up (version 2026-10-26.1)
+PREFLIGHT OK: sheet readable (action=config)
+PREFLIGHT OK: ZeroBounce: enabled=True (.env), balance=1016, reserve=100 (.env), run 48/300 (.env), today 39/5000 (env), ~15 runs of headroom at 60/run
+PREFLIGHT OK: Apollo API key accepted (auth/health)
+PREFLIGHT OK: Chrome runs JavaScript from Apple Events
+PREFLIGHT OK: all checks passed (pipeline, quick; 6 ok, 0 warn)
+[PREFLIGHT] OK
+
+[RUN] Plan batch 4/4 -> batch 4 of run run-20261108-0931
+  [mark_step] run run-20261108-0931: batch 4 registered 1 venues
+  [mark_step] ledger: /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.jsonl
+  [mark_step] run log should be: /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.log (append with >>, or use run-20261108-0931.b4.log)
+  export RUN_ID=run-20261108-0931
+
+BATCH MODE: 1 venues
+[RUN] run-20261108-0931 batch 4: MD-REST-409 (1 to run; log /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.log)
+  [ZB SAFE] run 48/300, today 39/5000, balance 1016, reserve 100
+[RUN] Apollo credits left on the account: 750 (stop below 100)
+[CHROME] JavaScript from Apple Events: OK (website scrape probe on https://www.macstapandtable.com/ returned 1439 bytes of JSON)
+
+########## VENUE [1/1]: Mac's Tap & Table ##########
+  [DOMAIN] Venue domain: macstapandtable.com
+
+============================================================
+ PIPELINE: Mac's Tap & Table (MD-REST-409)
+ Website: https://www.macstapandtable.com/
+ Started: 2026-11-10 02:50:58
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 48/300, today 39/5000, balance 1016, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.macstapandtable.com/
+  Opening in Chrome: https://www.macstapandtable.com/
+  Found on homepage: info@macstapandtable.com
+  Emails: 1 | FB: https://www.facebook.com/profile.php?id=61550914975203 | IG: https://www.instagram.com/macstapandtable | Contact Form: none
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=18 pdfs=4 emails=1 sitemaps=1 fragments=10 unvisited=0
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-409.json
+  [COVERAGE] Subpage queue: 8 in scope, rendering 8 (cap 30); skipped off-scope=0 other-location=0 variants=0 non-page=1
+  Crawling subpage (1): https://www.macstapandtable.com/private-events
+  Found on subpage: info@macstapandtable.com
+  Crawling subpage (2): https://www.macstapandtable.com/menus
+  Found on subpage: info@macstapandtable.com
+  Crawling subpage (3): https://www.macstapandtable.com/draft-menu
+  Found on subpage: info@macstapandtable.com
+  Crawling subpage (4): https://www.macstapandtable.com/bourbon-whiskey
+  Found on subpage: info@macstapandtable.com
+  Crawling subpage (5): https://www.macstapandtable.com/party-room
+  Found on subpage: info@macstapandtable.com
+  Crawling subpage (6): https://www.macstapandtable.com/inquire-today
+  Found on subpage: info@macstapandtable.com
+  [CONTACT FORM] Found on subpage: https://www.macstapandtable.com/inquire-today
+  Crawling subpage (7): https://www.macstapandtable.com/gallery
+  Found on subpage: info@macstapandtable.com
+  Crawling subpage (8): https://www.macstapandtable.com/new-page-1
+  Found on subpage: info@macstapandtable.com
+  [PDF] https://www.macstapandtable.com/s/Lunch-Menu-Fall.pdf → no emails
+  [PDF] https://www.macstapandtable.com/s/Macs-Main-Menu-Fall-2026_20261016_174633_0000.pdf → no emails
+  [PDF] https://www.macstapandtable.com/s/Fall-Drink-Menu.pdf → no emails
+  [PDF] https://www.macstapandtable.com/s/Macs-Milkshake-Menu-Updated_20260906_215647_0000.pdf → no emails
+  [CONTACT FORM] Also found: https://www.macstapandtable.com/party-room
+  ✓ Facebook from venue website (trusted: header_footer): https://www.facebook.com/profile.php?id=61550914975203
+  ✓ Instagram from venue website (trusted: header_footer): https://www.instagram.com/macstapandtable
+  ✓ Contact form URL saved
+  [REJECT] info@macstapandtable.com — general_inbox (source: website, evidence: venue_mailto)
+[STEP] MD-REST-409 web ok via=chrome pages=9 visited=home,contact,events form=yes chrome_pages=9 curl_pages=0 static_pages=10 pdfs=4 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/profile.php?id=61550914975203 | IG: https://www.instagram.com/macstapandtable
+  Opening FB: https://www.facebook.com/profile.php?id=61550914975203
+  [FB] No email on page — trying Google snippet...
+  [FB SNIPPET] No email in Google snippet
+  Opening IG: https://www.instagram.com/macstapandtable
+  [IG] No email on page — trying Google snippet...
+  [IG SNIPPET] No email in Google snippet
+[STEP] MD-REST-409 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=1 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0
+  [APOLLO] Credits used this run: 0 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Mac's Tap & Table
+  [APOLLO] Domain lookup: ok (0 results) | name search: ok (0 results)
+  [WARN] No company found in Apollo for 'Mac's Tap & Table' (tried name + domain)
+[STEP] MD-REST-409 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0
+  Using website domain for enrichment: macstapandtable.com
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Mac's Tap & Table"
+  Using domain: macstapandtable.com
+  [delay] Waiting 1s...
+  LinkedIn page 1...
+  [delay] Waiting 5s...
+  Found 9 results
+  [LINKEDIN SKIP] LinkedIn Member (Psychology Major at St. Mary's College of Maryland) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Communications Student at University of Connecticut) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Pre-Business Student at Clemson University) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Student at University of Maryland) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Shift Manager at Noodles & Company) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Student at College of Southern Maryland) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Honors Marketing Student at Coastal Carolina University | Commercial Real Estate & Digital Marketing | Social Media Content Creation | Phi Sigma Sigma Academic) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (I am a student at University of Tennessee, Knoxville studying business management and entrepreneurship with a collateral in marketing.) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (B.A. in Communication; Concentrations in PR and Social Media) — masked name
+  [delay] Waiting 4s...
+  LinkedIn page 2...
+  [delay] Waiting 6s...
+  Found 8 results
+  [LINKEDIN SKIP] LinkedIn Member (Private Chef/ Personal Chef) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Program Analyst at Don Selvy Enterprises, Inc.) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (University of Maryland Alumni l 2025 Teach For America Corp Member) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Undergraduate student at Arizona State University studying Social Work) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Student at College of Southern Maryland) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Student at College of Southern Marylnad) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Line Cook at Mac’s Tap and Table) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Hostess at Mac’s Tap and Table) — masked name
+  [delay] Waiting 5s...
+  LinkedIn page 3...
+  [delay] Waiting 5s...
+  No results on page 3 — stopping.
+  No new people found on LinkedIn.
+[STEP] MD-REST-409 linkedin empty pages=2 results=17 rejected=17 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Mac's Tap & Table" contact Leonardtown
+  [FALLBACK] No new site found (or same domain as before)
+  [FALLBACK] Instagram already found this run (https://www.instagram.com/macstapandtable) — not re-searching
+[STEP] MD-REST-409 google empty results=4 emails=0 site=same ig=known
+  Setting status → needs_review (no verified contacts saved)
+[STEP] MD-REST-409 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Mac's Tap & Table | 3 min | 02:53:57
+============================================================
+=== BATCH COMPLETE ===
+
+=== AUTO-RUNNING POSTCHECK ON THIS BATCH (1 venues: MD-REST-409) ===
+[02:53:58] === Post-Pipeline Check Started ===
+[02:53:58] Checking 1 venues (mode: venues, run run-20261108-0931) — venues with a valid/role/unverified contact are skipped
+[02:54:01] 
+[02:54:01] === Mac's Tap & Table (MD-REST-409) | Leonardtown, MD | Contacts: 0 ===
+[02:54:01]   Website: https://www.macstapandtable.com/
+[02:54:01]   [DISCOVERY] Reusing the pipeline's crawl of this site (/Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-REST-409.json)
+[02:54:01]   [DISCOVERY] pages=18 ok=10 pdfs=4 sitemaps=1 fragments=10 unvisited=0 emails=1
+[02:54:09]   Found emails on https://www.macstapandtable.com/:
+[02:54:09]     info@macstapandtable.com
+[02:54:11]   Found emails on https://www.macstapandtable.com/private-events:
+[02:54:11]     info@macstapandtable.com
+[02:54:11]   Found emails on https://www.macstapandtable.com/inquire-today:
+[02:54:11]     info@macstapandtable.com
+[02:54:11]   Found emails on https://www.macstapandtable.com/party-room:
+[02:54:11]     info@macstapandtable.com
+[02:54:13]   Found emails on https://www.macstapandtable.com/cart:
+[02:54:13]     info@macstapandtable.com
+[02:54:13]   Found emails on https://www.macstapandtable.com/menus:
+[02:54:13]     info@macstapandtable.com
+[02:54:14]   Found emails on https://www.macstapandtable.com/gallery:
+[02:54:14]     info@macstapandtable.com
+[02:54:19]   Found emails on https://www.macstapandtable.com/new-page-1:
+[02:54:19]     info@macstapandtable.com
+[02:54:19]   Found emails on https://www.macstapandtable.com/draft-menu:
+[02:54:19]     info@macstapandtable.com
+[02:54:19]   Found emails on https://www.macstapandtable.com/bourbon-whiskey:
+[02:54:19]     info@macstapandtable.com
+[02:54:23]   [REJECT] info@macstapandtable.com — general_inbox
+[02:54:23]   [Apollo] Searching by domain: macstapandtable.com
+[02:54:23]   [Apollo] Found 0 people (by name)
+[02:54:23]   Searching LinkedIn for: Mac's Tap & Table
+[02:54:29]   [LinkedIn] 9 results on page 1, 0 at this venue with a relevant title
+[02:54:29]   [LinkedIn] No relevant people found (none with venue in title)
+[02:54:29] [STEP] MD-REST-409 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=10 pages=10 pages_cut=0 visited=home,contact,events emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=9 li_relevant=0 enrich=skipped:no_pending
+[02:54:29] 
+[02:54:29] === Final Audit ===
+[02:54:29] Venues: 1 | Checked: 1 | Skipped: 0 | Failed/degraded: 0 | Not reached (time budget): 0 | Contacts saved: 0 | Pending added: 0 | Deferred (saved unverified, needs ZB check): 0 | Rejected: 1 | Apollo credits: 0 | Minutes: 0
+[02:54:29] 
+[02:54:29] === Post-Pipeline Check Complete ===
+[RUN] Batch 4 done — marker /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261108-0931.batch4.done (ready for the miss audit)
+[RUN] Plan finished: 25 venues in run run-20261108-0931

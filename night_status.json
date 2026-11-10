@@ -40,8 +40,16 @@
    },
    {
     "run_id": "run-20261110-0520",
-    "outcome": "running",
-    "started": "05:20"
+    "outcome": "finished",
+    "started": "05:20",
+    "venues": 25,
+    "processed": 25,
+    "skipped": 0,
+    "with_contacts": 16,
+    "zero": 9,
+    "new_contacts": 41,
+    "unfinished": 0,
+    "ended": "07:28"
    }
   ],
   "note": "Outreach running 24/7 until the credits run out"
@@ -145,5 +153,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-10T05:56:59-05:00"
+ "updated_at": "2026-11-10T07:28:56-05:00"
 }

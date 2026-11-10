@@ -1,0 +1,91 @@
+{
+  "created": "2026-11-10 05:20:46",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "wine": 8,
+    "fine_dining": 6,
+    "club": 6,
+    "wild": 5
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261110-0520/batch_01.json",
+      "venue_ids": [
+        "XX-WINE-043",
+        "VA-REST-3024",
+        "MD-COUN-1330",
+        "MD-ART -498",
+        "XX-REST-628",
+        "DC-REST-2670",
+        "MD-REST-2320",
+        "MD-REST-557"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261110-0520/batch_02.json",
+      "venue_ids": [
+        "XX-WINE-059",
+        "VA-REST-3065",
+        "VA-COUN-008",
+        "VA-REST-3176",
+        "MD-EVEN-3006",
+        "VA-REST-3201",
+        "MD-REST-3157",
+        "VA-REST-2247"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261110-0520/batch_03.json",
+      "venue_ids": [
+        "VA-WINE-2955",
+        "MD-MUSE-1648",
+        "MD-WINE-2907",
+        "VA-COUN-007",
+        "VA-REST-3203",
+        "VA-REST-3058",
+        "MD-REST-3182",
+        "VA-COUN-009"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261110-0520/batch_04.json",
+      "venue_ids": [
+        "VA-WINE-2958"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "XX-WINE-043",
+    "VA-REST-3024",
+    "MD-COUN-1330",
+    "MD-ART -498",
+    "XX-REST-628",
+    "DC-REST-2670",
+    "MD-REST-2320",
+    "MD-REST-557",
+    "XX-WINE-059",
+    "VA-REST-3065",
+    "VA-COUN-008",
+    "VA-REST-3176",
+    "MD-EVEN-3006",
+    "VA-REST-3201",
+    "MD-REST-3157",
+    "VA-REST-2247",
+    "VA-WINE-2955",
+    "MD-MUSE-1648",
+    "MD-WINE-2907",
+    "VA-COUN-007",
+    "VA-REST-3203",
+    "VA-REST-3058",
+    "MD-REST-3182",
+    "VA-COUN-009",
+    "VA-WINE-2958"
+  ]
+}

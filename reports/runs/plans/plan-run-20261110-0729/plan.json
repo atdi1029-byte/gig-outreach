@@ -1,0 +1,88 @@
+{
+  "created": "2026-11-10 07:29:28",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "wild": 25
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261110-0729/batch_01.json",
+      "venue_ids": [
+        "VA-REST-3037",
+        "MD-REST-723",
+        "VA-REST-1015",
+        "VA-LUXU-2863",
+        "MD-REST-460",
+        "MD-EVEN-1343",
+        "DC-REST-2658",
+        "VA-EVEN-2996"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261110-0729/batch_02.json",
+      "venue_ids": [
+        "MD-REST-783",
+        "MD-EVEN-3013",
+        "MD-REST-925",
+        "VA-HOTE-2927",
+        "MD-MUSE-551",
+        "MD-EVEN-1357",
+        "MD-SENI-542",
+        "VA-REST-3048"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261110-0729/batch_03.json",
+      "venue_ids": [
+        "MD-REST-461",
+        "XX-HOTE-203",
+        "MD-REST-545",
+        "VA-REST-3039",
+        "MD-MUSE-1655",
+        "MD-EVEN-3014",
+        "DC-HOTE-2654",
+        "DC-HOTE-2662"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261110-0729/batch_04.json",
+      "venue_ids": [
+        "DC-HOTE-2659"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "VA-REST-3037",
+    "MD-REST-723",
+    "VA-REST-1015",
+    "VA-LUXU-2863",
+    "MD-REST-460",
+    "MD-EVEN-1343",
+    "DC-REST-2658",
+    "VA-EVEN-2996",
+    "MD-REST-783",
+    "MD-EVEN-3013",
+    "MD-REST-925",
+    "VA-HOTE-2927",
+    "MD-MUSE-551",
+    "MD-EVEN-1357",
+    "MD-SENI-542",
+    "VA-REST-3048",
+    "MD-REST-461",
+    "XX-HOTE-203",
+    "MD-REST-545",
+    "VA-REST-3039",
+    "MD-MUSE-1655",
+    "MD-EVEN-3014",
+    "DC-HOTE-2654",
+    "DC-HOTE-2662",
+    "DC-HOTE-2659"
+  ]
+}

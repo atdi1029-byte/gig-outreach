@@ -8,8 +8,16 @@
   "runs": [
    {
     "run_id": "run-20261108-0931",
-    "outcome": "running",
-    "started": "23:47"
+    "outcome": "stopped: pipeline.sh exited 1: Chrome has no open window",
+    "started": "23:47",
+    "venues": 16,
+    "processed": 10,
+    "skipped": 0,
+    "with_contacts": 7,
+    "zero": 3,
+    "new_contacts": 9,
+    "unfinished": 6,
+    "ended": "23:48"
    }
   ],
   "note": "Outreach running 24/7 until the credits run out"
@@ -88,5 +96,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-09T23:47:57-05:00"
+ "updated_at": "2026-11-09T23:48:06-05:00"
 }

@@ -545,6 +545,938 @@
    ],
    "apollo_searches": [],
    "summary": "A boatyard, not a yacht club. template.placeholder@gmail.com is website-template junk (only on an orphan demo page) and should be removed; hartgeyard@aol.com is the address the site gives for Service Manager Xan Schlegel. No email is published for Owner/GM Alex Schlegel or Operations Manager Alaina Wine. hyyalex@aol.com turned up only in a search snippet of a job posting that now returns 404: unverified, off the venue's site, not proposed. The pipeline run for this venue was cut off after the website step, so it never got an Apollo search, and the audit could not run one either."
+  },
+  {
+   "venue_id": "VA-WINE-2953",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Doug Rosen",
+     "title": "Owner & President (inbox of his ARLnow column; pairing inferred, not stated)",
+     "email": "thenose@arrowine.com",
+     "source": "press",
+     "source_url": "https://www.arlnow.com/2023/03/17/the-nose-that-knows-can-we-talk-arr1/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Shem Hassen",
+     "title": "Co-founder & Vice President (full name Shemsedin Hassen; site's team page)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://arrowine.com/pages/history-and-team",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Ayet Boudjellal",
+     "title": "Arrowine team member, role not stated (co-signed the Mar 17 2023 ARLnow column with Rosen and Hassen)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.arlnow.com/2023/03/17/the-nose-that-knows-can-we-talk-arr1/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "arrowine.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Arrowine & Cheese (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No named person's email is published anywhere on arrowine.com: the site shows only a contact form (with a 'Wine tastings and events' topic), the phone, orders@ (policies) and info@ (privacy policy). The one address that reaches the owner's side is thenose@arrowine.com, the question inbox of the store's own ARLnow column, which I pair with owner Doug Rosen by inference only; nobody is named as running tastings/events (tastings are run under the store's name, RSVP to wine@). A Facebook page turned up in search (facebook.com/p/Arrowine-Cheese-100083373461192/, about 2 followers) but I could not confirm it is the store's, so facebook is left empty.",
+   "emails_no_name": [
+    {
+     "email": "wine@arrowine.com",
+     "source_url": "https://www.arlnow.com/author/arrowine",
+     "note": "Store's tasting RSVP inbox ('Please email us at wine @ arrowine.com and let us know if you plan to attend'); seen only in a search snippet of ARLnow/old event pages, no person named. Already a pipeline candidate."
+    },
+    {
+     "email": "orders@arrowine.com",
+     "source_url": "https://arrowine.com/policies/refund-policy",
+     "note": "Online-orders inbox, mailto on the refund policy and in the terms of service / contact-information policy. Not an events contact."
+    },
+    {
+     "email": "info@arrowine.com",
+     "source_url": "https://arrowine.com/pages/privacy-policy",
+     "note": "General inbox in the privacy policy (last updated 3/22/21). Never a contact."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3454",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Aziza Naji",
+     "title": "Partner in Mazaro at its Sept 2020 opening (ARLnow); the restaurant has since CLOSED, so this is history only, do not pitch",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.arlnow.com/2020/09/18/new-italian-restaurant-in-clarendon-nears-opening/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "mazarova.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Mazaro Italian Restaurant (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Mazaro is permanently closed: per ARLnow, Il Radicchio took over its space at 2909 Wilson Blvd and reopened there on Sep 4 2026, so there is nobody to pitch and the venue should be parked as closed rather than worked again. Its leftover site publishes only info@mazarova.com and names no owner, chef or manager; the WordPress author pages and the aklidata gmail belong to the web developer, and the theme's info@liquid.com is template filler. Il Radicchio at the same address is a separate business that would need its own row.",
+   "emails_no_name": [
+    {
+     "email": "info@mazarova.com",
+     "source_url": "https://www.mazarova.com/",
+     "note": "General inbox, the only address on the site (home 'Contact Us', valentines menu, terms, privacy). Never a contact; already a rejected pipeline candidate."
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2821",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "James Bonner",
+     "title": "Director of Food & Beverage (private-dining inbox on CUT DC's page; inferred)",
+     "email": "washingtondc.sales@rosewoodhotels.com",
+     "source": "website",
+     "source_url": "https://wolfgangpuck.com/restaurants/cut-washington-d-c/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Andrew Ho",
+     "title": "Executive Chef, CUT Washington D.C. (current; named on the CUT DC page and on the Rosewood CUT page)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://wolfgangpuck.com/restaurants/cut-washington-d-c/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Tony Mosca",
+     "title": "Managing Director, Rosewood Washington, D.C. (the hotel CUT is in; from press, date not checked)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.hotel-online.com/news/rosewood-washington-d-c-taps-tony-mosca-as-managing-director",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Timothy Edgecombe",
+     "title": "Director of Sales, Rosewood Washington, D.C. (press announcement, undated in the search snippet, page itself returned 403; may no longer be current)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.hotelexecutive.com/newswire/63236/timothy-edgecombe-appointed-director-of-sales-at-rosewood-washington-dc",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/people/CUT-DC/100048891288289/",
+   "instagram": "https://www.instagram.com/cutdc/",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "lvbanquets@wolfgangpuck.com",
+     "reason": "Different location. This is the Las Vegas banquets inbox; on wolfgangpuck.com it appears only on the CUT New York page (https://wolfgangpuck.com/restaurants/cut-new-york/), not on the CUT DC page. No name."
+    },
+    {
+     "email": "maui.events@wolfgangpuck.com",
+     "reason": "Different location. Spago Maui events inbox; appears only on https://wolfgangpuck.com/restaurants/spago-maui/. No name."
+    },
+    {
+     "email": "tandc@wolfgangpuck.com",
+     "reason": "Not a venue contact. Legal address from the brand's Terms & Conditions page (https://wolfgangpuck.com/terms-conditions/). No name."
+    },
+    {
+     "email": "andrew.skala@wolfgangpuck.com",
+     "reason": "Right restaurant but probably out of date. Andrew Skala was CUT DC's opening Executive Chef (2019; Georgetowner Dec 2021). The CUT DC page and the Rosewood site now name Andrew Ho as Executive Chef (Georgetowner reported the change in Feb 2025). I found no source saying where Skala is now. A chef is also a weak contact for booking music."
+    },
+    {
+     "email": "jeannette.rosenberg@wolfgangpuck.com",
+     "reason": "Cannot be tied to CUT DC. No public source connects a Jeannette Rosenberg to the DC restaurant; the only Rosenberg on wolfgangpuck.com is Drew Rosenberg, Executive Chef of CUT Beverly Hills. Apollo matched the brand-wide Wolfgang Puck org, so this is most likely another location's staff."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "wolfgangpuck.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "CUT D.C. by Wolfgang Puck (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The only address the DC restaurant itself publishes is the Rosewood hotel's sales inbox washingtondc.sales@rosewoodhotels.com (private dining), and its page names James Bonner (Director of Food & Beverage) and Andrew Ho (Executive Chef); no personal email for either is published. Three of the five saved contacts belong to other locations or the legal page, Andrew Skala is the former chef and Jeannette Rosenberg cannot be tied to DC; the sheet's Facebook/Instagram are the brand's, CUT DC has its own (given here), and the sheet's contact_form (wolfgangpuck.com/restaurants/) is the brand's restaurant list, not a form for this restaurant.",
+   "emails_no_name": [
+    {
+     "email": "washingtondc@rosewoodhotels.com",
+     "source_url": "https://www.rosewoodhotels.com/en/washington-dc/dining/cut",
+     "note": "Hotel general inbox shown as the CUT contact on the Rosewood site. General inbox, not a contact."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-683",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Teresa Sipagan",
+     "title": "Sales & Events Coordinator, private party contact (410) 267-3010. Seen ONLY in a search snippet of the OpenTable listing (the page itself timed out); OpenTable snapshots disagree on who holds the role now, so confirm by phone",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.opentable.sg/r/chart-house-prime-annapolis",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Amy M. Paulin",
+     "title": "Catering & Sales Coordinator, private party contact (410) 268-7166. Seen ONLY in search snippets of other OpenTable pages for the same restaurant; may be the earlier or the later holder of the role",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.opentable.com/r/chart-house-prime-annapolis?lang=it",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jhonatan Orjuela",
+     "title": "Executive Chef (OpenTable listing, search snippet only)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.opentable.sg/r/chart-house-prime-annapolis",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://mb.landrysinc.com/?locationid=50036031",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "charthouseprime.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Chart House Prime (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No email is published for the Annapolis location anywhere: the site has no mailto and names no staff, and the events menu PDF carries no contact (its only address is the photographer's, in image metadata). The real private-events route is the 'Inquire Now' button on /private-events/, Landry's MeetingBroker form for 'Chart House Prime - Annapolis' (mb.landrysinc.com/?locationid=50036031), which should replace the privacy-request form on the sheet; OpenTable names two event coordinators (Teresa Sipagan, Amy M. Paulin) without emails and I could not tell which is current."
+  },
+  {
+   "venue_id": "MD-REST-2325",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Leonard Martin",
+     "title": "Commodore as of May 26 2021 (Harford County liquor board minutes; may be out of date, no current officer list is published anywhere)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.hclcb.org/sites/default/files/2021.05.26%20minutes%20approved.pdf",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Derek Tillery",
+     "title": "Vice Commodore as of May 26 2021 (Harford County liquor board minutes; may be out of date)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.hclcb.org/sites/default/files/2021.05.26%20minutes%20approved.pdf",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Ann Pongracz",
+     "title": "Treasurer as of May 26 2021, Commodore in March 2020 (Harford County liquor board minutes; may be out of date)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.hclcb.org/sites/default/files/2021.05.26%20minutes%20approved.pdf",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "otterpointyachtclub.org (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Otter Point Yacht Club (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Nothing published: the club's site has no email, no officer list and no Facebook link anywhere (8 pages plus sitemap checked in raw HTML); the only way in is the phone (410-382-8961) or the contact form on /contact. The only officer names found are from 2021 liquor board minutes (Leonard Martin commodore, Derek Tillery vice commodore, Ann Pongracz treasurer), with no emails and possibly out of date; the 2020 minutes say the club has no paid employees. No Facebook page could be found or confirmed."
+  },
+  {
+   "venue_id": "VA-WINE-2945",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Pedro J. Rodríguez",
+     "title": "Co-Founder, Managing Partner (site: 'CO-FOUNDER, Managing Partner'; local press calls him co-founder and CEO). Already saved; right business, real person. Company-wide, not Mosaic-specific.",
+     "email": "pedro@grandcata.com",
+     "source": "website",
+     "source_url": "https://www.grandcata.com/visit-us",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Julio R. Robledo",
+     "title": "Co-Founder, Managing Partner (site: 'CO-FOUNDER, Managing Partner'; local press calls him president). Already saved; right business, real person. Company-wide, not Mosaic-specific.",
+     "email": "julio@grandcata.com",
+     "source": "website",
+     "source_url": "https://www.grandcata.com/visit-us",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "cosecha@grandcata.com",
+     "reason": "Different location. This is the inbox of the La Cosecha shop (1280 4th St NE, Washington DC, Union Market), not the Mosaic / Fairfax shop this record is for. No name."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "grandcata.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Grand Cata (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Nothing better than what is saved is published: the site names only the two co-founders (their saved emails are right) and no manager or events person for the Mosaic shop, so mosaic@ stays without a name; cosecha@ belongs to the La Cosecha shop in DC, not this Fairfax location. The private-events inbox events@grandcata.com covers Mosaic too but has no named person; the events lookbook PDF could not be read (image-only).",
+   "emails_no_name": [
+    {
+     "email": "mosaic@grandcata.com",
+     "source_url": "https://www.grandcata.com/visit-us",
+     "note": "Already saved. Right location (Grand Cata at Mosaic, 8298 Glass Alley Ste 100, Fairfax VA 22031, tel (571) 378-0684) but it is the shop's inbox; no person is named with it anywhere on the site or in press. The only Mosaic staff member the site mentions is 'our esteemed catadora Michele' (first name only, leads wine classes at Mosaic), so no contact name can be attached."
+    },
+    {
+     "email": "events@grandcata.com",
+     "source_url": "https://www.grandcata.com/events",
+     "note": "Private-events inbox for all three venues, Mosaic included ('Planning a party, birthday celebration, a wedding, or other special event? Email us. Three venues are available for your event: flagship in Shaw, La Cosecha and Mosaic District'); also on /mega-visit-us. mailto link. No person is named as running it; the pipeline saw it and held it as role_no_name. The site names only the two co-founders."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3059",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Grace Abi-Najm Shea",
+     "title": "Co-owner (one of the five Abi-Najm siblings who manage the group, per the venue's own blog); called Vice President in an ARLnow article seen only in a search snippet. No email published.",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.lebanesetaverna.com/blog-1-copy-1-1/blog-post-title-two-t5my5-k4xmd-67jzh-bppds",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Dany Abi-Najm",
+     "title": "Co-owner (one of the five Abi-Najm siblings who run the group; led its expansion with partner Henrik Suhr). No email published.",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.lebanesetaverna.com/blog-1-copy-1-1/blog-post-title-two-t5my5-k4xmd-67jzh-bppds",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Charles Holt",
+     "title": "Director of Catering, Catering by LT (the group's off-premise catering arm), per undated WeddingWire / The Knot customer reviews; not confirmed by the company, no email published for him",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.weddingwire.com/reviews/catering-by-lt-arlington/d2ec73a94b105d3f.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "lebanesetaverna@mac.com",
+     "reason": "Junk name and title: 'Lebanese Taverna Market' is the group's Arlington market and 'Set Up An Event' is a page label, not a person. The address is the group's shared general mailbox (cooking classes at the Arlington Market, fundraisers, Thanksgiving orders), not a person and not specific to Tysons Galleria."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "lebanesetaverna.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Lebanese Taverna Tysons Galleria (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The site names no manager for Tysons Galleria and no events person; private dining goes through a Tripleseat form (already on the sheet). The one saved contact is the group's shared mac.com mailbox under a page label, not a person. The only named events person found is Charles Holt, Director of Catering at Catering by LT, known only from undated customer reviews; the site publishes that arm's inbox events@cateringbylt.com but names nobody with it, so it is listed here and not proposed as a contact (the pairing would be a guess, and it is the off-premise catering arm, not this restaurant). The owners are the five Abi-Najm siblings (Dory, Dany, David, Gladys, Grace Abi-Najm Shea), none with a published email.",
+   "emails_no_name": [
+    {
+     "email": "groups@lebanesetaverna.com",
+     "source_url": "https://www.opentable.co.uk/lebanese-taverna-pentagon-row",
+     "note": "Group-sales inbox ('sales manager'). Seen ONLY in a search-result snippet of OpenTable's listing for the Pentagon Row location; OpenTable itself timed out, and the address is not on lebanesetaverna.com. Not verified, no name, and the listing is for another location."
+    },
+    {
+     "email": "lebanesetaverna@mac.com",
+     "source_url": "https://www.lebanesetaverna.com/cooking-classes",
+     "note": "Already saved. The group's shared mailbox: published for private cooking classes at the Arlington Market, fundraisers (/fundraising) and Thanksgiving orders (/thanksgiving). Nobody is named with it."
+    },
+    {
+     "email": "events@cateringbylt.com",
+     "source_url": "https://www.lebanesetaverna.com/party-platters",
+     "note": "Catering by LT's booking inbox, a mailto on the venue's own site (cateringbylt.com redirects to lebanesetaverna.com). Not handed over for saving: the only name for it, Charles Holt, comes from undated customer reviews and the pairing would be a guess; it is the off-premise catering arm, not the Tysons restaurant."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3045",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michelle Quisbert",
+     "title": "Sales Manager, Chima Tysons Corner",
+     "email": "michelle.quisbert@chimasteakhouse.com",
+     "source": "website",
+     "source_url": "https://chimasteakhouse.com/happenings/happy-hour-at-chima-tysons/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/ChimaTysonsCorner",
+   "instagram": "https://www.instagram.com/chimatysonscorner/",
+   "contact_form": "https://chimabraziliansteakhouse.tripleseat.com/party_request/16921",
+   "flag_contacts": [
+    {
+     "email": "aline.decker@chimasteakhouse.com",
+     "reason": "Different location of the chain: the site names Aline Decker as the Sales and Events manager for Chima Charlotte NC (980-225-5008), on https://chimasteakhouse.com/happenings/reserve-your-holiday-event-at-chima-charlotte/ and in the 2019-2021 blog posts."
+    },
+    {
+     "email": "ashley.williams@chimasteakhouse.com",
+     "reason": "Different location of the chain: the site names Ashley Williams as the Sales and Events manager for Chima Fort Lauderdale FL (954-809-5280), on https://chimasteakhouse.com/happenings/reserve-your-holiday-event-at-chima-fort-lauderdale/."
+    },
+    {
+     "email": "sm.orl@chimasteakhouse.com",
+     "reason": "Different location of the chain: Isadora Stancatti is the Sales and Events manager for Chima Orlando FL (321-404-6005; sm.orl = sales manager Orlando), per https://chimasteakhouse.com/happenings/reserve-your-holiday-event-at-chima-orlando/ (which publishes isadora.stancatti@chimasteakhouse.com for her)."
+    },
+    {
+     "email": "christina.mohr@chimasteakhouse.com",
+     "reason": "Right location but probably out of date: Christina Mohr is named as the Tysons Corner events contact only in blog posts from 2019-2021 (desk phone 703-639-3088). Since 2024 the site names Michelle Quisbert as the Tysons Sales Manager on that same phone number. Likely a former sales manager (not confirmed that she left); email Michelle Quisbert instead."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "chimasteakhouse.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Chima Steakhouse (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "The right person is already saved: Michelle Quisbert, Sales Manager for Chima Tysons Corner (named on the Tysons pages of the site with a mailto, 703-639-3088; the website step did not pick her up there, only Apollo did). The other four saved people are not the Tysons contact: Aline Decker = Charlotte, Ashley Williams = Fort Lauderdale, Isadora Stancatti (sm.orl@) = Orlando, Christina Mohr = Tysons events contact in 2019-2021 posts, since replaced by Quisbert. The sheet's Facebook/Instagram are Charlotte's and the saved Tripleseat form (16918) is Fort Lauderdale's; the Tysons ones are facebook.com/ChimaTysonsCorner, instagram.com/chimatysonscorner and Tripleseat 16921. No Tysons general manager is named anywhere I could reach. The site only advertises live music for Fort Lauderdale and Orlando, not Tysons."
+  },
+  {
+   "venue_id": "MD-REST-2323",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Megan Gray",
+     "title": "Name on the site's 'secretary' author page; likely a past Secretary",
+     "email": "kelky82@hotmail.com",
+     "source": "website",
+     "source_url": "https://carolinecryc.com/author/secretary/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Mike Brenton",
+     "title": "Vice Commodore (the site's Facility Use page says rentals go through the Vice Commodore; no email published for him)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://carolinecryc.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Kelly Darling",
+     "title": "Commodore (no email published)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://carolinecryc.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Mike Pasta",
+     "title": "Rear Commodore (no email published)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://carolinecryc.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jen Taylor",
+     "title": "Secretary (no email published)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://carolinecryc.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "carolinecryc.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Choptank River Yacht Club (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The three saved addresses are all from the club's own site but none is a named current officer: kelky82@hotmail.com is the author account 'secretary' = Megan Gray (the current Secretary is Jen Taylor), dmcohee@gmail.com is the 'Vice Commodore' link on a 2015 hall-rental page (the Vice Commodore is now Mike Brenton), and dannidarling79@gmail.com is the website administrator login with no name. The right people for rental/entertainment are Vice Commodore Mike Brenton and Commodore Kelly Darling, but the site publishes no email for any current officer (only info@ and a contact form), and the club does book bands (2026 calendar: Haywire, Fuzzbox Piranha, Reagan Kent, Justin Singleton). No Instagram exists as far as I could find.",
+   "emails_no_name": [
+    {
+     "email": "dmcohee@gmail.com",
+     "source_url": "https://carolinecryc.com/facility-use/",
+     "note": "mailto behind the words 'Vice Commodore' on the hall-rental page ('For prices and availability, please contact our Vice Commodore'). The page dates from January 2015; the About page (updated March 2026) lists Mike Brenton as Vice Commodore, so this is most likely a former Vice Commodore's personal address. No name is given; a Loren Cohee is a current board member at large, but nothing ties this address to that person."
+    },
+    {
+     "email": "dannidarling79@gmail.com",
+     "source_url": "https://carolinecryc.com/author/choptank-river-yacht-club-administrator/",
+     "note": "Profile email of the website login 'Choptank River Yacht Club Administrator' (author page email icon). No person's name on the site. The surname matches Commodore Kelly Darling, but that is not confirmed and the local part is a different first name."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2359",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "carson.henry@montgomerycountymd.gov",
+     "reason": "Different organization: Carson Henry is Chief of Operations of the Wheaton Urban District (Montgomery County government), listed on https://www.wheatonmd.org/contact-us. Not staff of the shop called Wheaton Winery."
+    },
+    {
+     "email": "catherine.rytkonen@montgomerycountymd.gov",
+     "reason": "Different organization: Marketing Manager of the Wheaton Urban District (Montgomery County government), from https://www.wheatonmd.org/contact-us. Not the shop."
+    },
+    {
+     "email": "crystal.ruiz@montgomerycountymd.gov",
+     "reason": "Different organization: Wheaton Urban District Manager (Montgomery County government), from https://www.wheatonmd.org/contact-us. Not the shop."
+    },
+    {
+     "email": "luisa.cardona@montgomerycountymd.gov",
+     "reason": "Different organization: Montgomery County Mid-County Regional Services Center staff address from https://www.wheatonmd.org/contact-us (the page now names Naddia Clute as the Director, so the saved name/title pairing is also doubtful). Not the shop."
+    },
+    {
+     "email": "marta.martinez@montgomerycountymd.gov",
+     "reason": "Different organization: Marketing Specialist of the Wheaton Urban District (Montgomery County government), from https://www.wheatonmd.org/contact-us. Not the shop."
+    },
+    {
+     "email": "naddia.clute@montgomerycountymd.gov",
+     "reason": "Different organization: Director of the Montgomery County Mid-County Regional Center, from https://www.wheatonmd.org/contact-us. Not the shop."
+    },
+    {
+     "email": "talia.beaulieuhains@montgomerycountymd.gov",
+     "reason": "Different organization: Mid-County Community Projects Manager, Montgomery County government, from https://www.wheatonmd.org/contact-us. Not the shop."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "wheatonmd.org (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Wheaton Winery (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "This record is not a winery: 'Wheaton Winery' is a beer/wine/lottery shop at 2211B W University Blvd, Wheaton MD 20902, (301) 946-4800, with no website, socials or named owner that I could find. The sheet's website is the Montgomery County Wheaton Urban District's downtown guide, which merely lists the shop, so all seven saved contacts are county staff and the saved Facebook (WheatonMD), Instagram (wheaton_md) and contact form (the district's 'submit an event' page) belong to the Urban District, not the shop. All seven contacts are flagged; the venue should lose that website/socials/form and is not a music venue to pitch (wrong category from the Google Maps 'winery' query).",
+   "website_ok": false,
+   "website_note": "https://www.wheatonmd.org is 'The Official Guide to Downtown Wheaton, Maryland', run by the Wheaton Urban District / Mid-County Regional Services Center (Montgomery County government, 2425 Reedie Drive). It only lists the business in its directory: https://www.wheatonmd.org/go/wheaton-winery = 'Wheaton Winery, Category: Grocery, Specialty Market, Beverage, 2211B W University Blvd, Wheaton MD 20902, (301) 946-4800', with no website link. The business is real but is a small beer/wine/lottery shop in a strip mall (Yelp reviewers: 'the name is misleading', 'run of the mill beer/wine/lotto shop'), not a winery or a venue. It has no website of its own that I could find."
+  },
+  {
+   "venue_id": "MD-REST-407",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Bobby Rucci",
+     "title": "Owner, with Diana Rucci (2019 press on the White Plains original; site meta keywords still list 'Bobby Rucci'; bar is 'Bobby's Bourbon Bar'). No email published for him.",
+     "email": "",
+     "source": "press",
+     "source_url": "https://southernmarylandchronicle.com/2019/07/08/somd-taste-and-sip-encounters-with-lynne-omeara",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Diana Rucci",
+     "title": "Owner, with Bobby Rucci (2019 press on the White Plains original; 'Diana' is in the site meta keywords). No email published for her.",
+     "email": "",
+     "source": "press",
+     "source_url": "https://southernmarylandchronicle.com/2019/07/08/somd-taste-and-sip-encounters-with-lynne-omeara",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "ruccisitaliankitchen@outlook.com",
+     "reason": "Right business, other location: the contact page lists it under White Plains, not Leonardtown. Same family business (two locations, one site), so it is still usable as the brand's main inbox; leonardtown@ruccisitaliankitchen.com is the one for this venue. Not a wrong-business contact; do not delete."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "ruccisitaliankitchen.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Rucci's Italian Kitchen & Grille (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Both saved emails are real mailto links on the venue's own contact page; leonardtown@ is this location's inbox and the outlook address is listed under White Plains. No owner, GM or catering person is named on the site or in the 2025 opening coverage ('members of the Rucci family'); the only named owners are Bobby and Diana Rucci (2019 press on the White Plains original, plus the site's meta keywords), and nothing published says which inbox they read, so I did not pair a name with either email. The sheet's Facebook (id=100095168833818) looks like the older White Plains page; the opening announcement gives id=61581207382632 as the Leonardtown page (neither page opened; Facebook is walled).",
+   "emails_no_name": [
+    {
+     "email": "leonardtown@ruccisitaliankitchen.com",
+     "source_url": "https://www.ruccisitaliankitchen.com/contact-us",
+     "note": "mailto under the Leonardtown heading on the contact page; this is the inbox for THIS location. No person is named for it anywhere I could reach."
+    },
+    {
+     "email": "ruccisitaliankitchen@outlook.com",
+     "source_url": "https://www.ruccisitaliankitchen.com/contact-us",
+     "note": "mailto under the White Plains heading (the original location, 10579 Theodore Green Blvd); the brand's main inbox. No person named on the site."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-339",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "James Zirakian",
+     "title": "Owner, known locally as 'Jimmy Z' (Calvert Recorder, Oct 2 2019, liquor licence for the new Bugeye Grill; a 2021 Solomons Victorian Inn blog says 'Owned by the incomparable Jimmy Z, and sister restaurant to the Charles Street Brasserie'). No email published for him.",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.somdnews.com/recorder/news/local/board-approves-solomons-license/article_769106b3-1c98-595d-9bab-11d1d4773255.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jerry Clark",
+     "title": "Resident agent / manager named on the 2019 liquor licence ('of Lusby'; said he planned to run the restaurant). Seven years old, may no longer be there. No email published.",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.somdnews.com/recorder/news/local/board-approves-solomons-license/article_769106b3-1c98-595d-9bab-11d1d4773255.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "bugeyegrill.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Bugeye Grill (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Both saved gmail addresses are published on the venue's own site and belong to this business: Bugeye Coffee Roasters is the Grill's own coffee line at the same address, but that inbox is for coffee sales, so bugeyegrill@gmail.com is the one to pitch. The owner is James 'Jimmy Z' Zirakian (2019 Calvert Recorder, 2021 local blog; also Charles Street Brasserie); no GM, events or catering person is named anywhere and no source says who reads the inbox, so no name is paired with an email. The venue already books live music (November 2026 poster: Ben Connelly, downstairs bar).",
+   "emails_no_name": [
+    {
+     "email": "bugeyegrill@gmail.com",
+     "source_url": "https://www.bugeyegrill.com/employment-opportunities",
+     "note": "Plain text on the venue's own site ('We are online at: bugeyegrill@gmail.com'); also on directory listings. The restaurant's one general inbox; no person named for it."
+    },
+    {
+     "email": "bugeyecoffeeroasters@gmail.com",
+     "source_url": "https://www.bugeyegrill.com/coffee",
+     "note": "Same business: Bugeye Coffee Roasters is a page of the Grill's own site with the same address (14470 Solomons Island Rd). The page gives this address 'for wholesale sales, online orders and all questions' about the coffee, so it is the coffee-sales inbox, a weak place for a music pitch."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-YACH-807",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jennifer Greiner",
+     "title": "Rear Commodore, Land Events Committee (runs the club's social events)",
+     "email": "rearcommodore@hbyc.org",
+     "source": "website",
+     "source_url": "https://hbyc.org/event/fall-feast-2/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Deb Fass",
+     "title": "Commodore",
+     "email": "commodore@hbyc.org",
+     "source": "website",
+     "source_url": "https://hbyc.org/event/1st-quarter-general-membership-meeting-3/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "P.J. Warwick",
+     "title": "Vice Commodore",
+     "email": "vicecommodore@hbyc.org",
+     "source": "website",
+     "source_url": "https://hbyc.org/event/boating-safety-seminar/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Andy Schneider",
+     "title": "Fleet Captain (cruises)",
+     "email": "fleetcaptain@hbyc.org",
+     "source": "website",
+     "source_url": "https://hbyc.org/event/fall-raft-up-2/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "fleetcaptain@hbyc.org",
+     "reason": "Right club, but the saved title '1 event' is a page label (the calendar's organizer page count), not a person. The inbox belongs to Fleet Captain Andy Schneider (stated on the club's own event pages). Keep the email; replace the title with name 'Andy Schneider', title 'Fleet Captain'."
+    },
+    {
+     "email": "commodore@hbyc.org",
+     "reason": "Right club and right person, and she is the current Commodore; only the name field is off: 'Commodore Deb Fass' has the title glued into the name. Should be name 'Deb Fass', title 'Commodore'. Keep."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "hbyc.org (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Herring Bay Yacht Club (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Deb Fass is the current Commodore (board page updated Sep 27 2026) and commodore@hbyc.org is hers; the nameless fleetcaptain@hbyc.org is Fleet Captain Andy Schneider's. The best person for a music pitch is Rear Commodore Jennifer Greiner (rearcommodore@hbyc.org), who runs the land/social events and has live bands at them; Vice Commodore P.J. Warwick is at vicecommodore@hbyc.org. The rear and vice commodore pairings are from 2025 event pages, with both still in office per the 2026 board page; a new board is celebrated at the Feb 20 2027 Change of Watch, so officers may change then. No Instagram found (the site links only Facebook and X/Twitter)."
+  },
+  {
+   "venue_id": "MD-REST-3012",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Garry Cohen",
+     "title": "Co-owner / winemaker (the site's About page names 'a couple, Micki and Garry Cohen' as the founders; Edible DC calls them co-owners). No personal email published.",
+     "email": "",
+     "source": "website",
+     "source_url": "https://mazzaroth.squarespace.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Micki Cohen",
+     "title": "Co-owner (named with Garry Cohen on the site's About page; a state license record lists her as Michelle Cohen, seen in a search snippet only). No personal email published.",
+     "email": "",
+     "source": "website",
+     "source_url": "https://mazzaroth.squarespace.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Garry Cohen",
+     "title": "Co-owner / winemaker (winery's own gmail on its Facebook page; pairing inferred)",
+     "email": "mazzarothvineyard@gmail.com",
+     "source": "facebook",
+     "source_url": "https://www.facebook.com/mazzarothvineyard",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "mazzarothvineyard.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Mazzaroth Vineyard (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Family winery run by co-owners Garry and Micki Cohen (named on the site's About page). The site publishes only info@mazzarothvineyard.com; the winery's own gmail, mazzarothvineyard@gmail.com, is on its Facebook page (the pipeline read it there and rejected it as freemail_unlinked). It is proposed here paired with Garry Cohen by inference (no page says who reads it), but the save rule rejects it today because it does not see the venue's name in an unseparated local part: a rule bug for the fix session. The sheet's contact_form (https://mazzaroth.squarespace.com/) is the right business (the .com redirects there) but the form on it is a wine order form with a 'questions' box; the site has no contact page or form, so the real routes are the info@ mailto, the phone 301-639-0303 and the Square 'Schedule a Visit' link.",
+   "emails_no_name": [
+    {
+     "email": "mazzarothvineyard@gmail.com",
+     "source_url": "https://unoosh.com/place_companies/mazzaroth-vineyard-llc/",
+     "note": "Seen only in a search snippet for this directory page (the page itself would not load) and by the scraper on a social page; NOT on the venue's own site. The local part is the venue's own name and the winery is run by the two owners, so it most likely reaches Garry and Micki Cohen, but no page states that pairing."
+    },
+    {
+     "email": "info@mazzarothvineyard.com",
+     "source_url": "https://mazzaroth.squarespace.com/",
+     "note": "The only address the site publishes (mailto in the footer of every page). General inbox, already seen and rejected by the scraper."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-409",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Benjamin MacDonald",
+     "title": "Owner / liquor licensee (Team Mac, LLC). No email published. Seen in a search-result summary of the St. Mary's County Alcohol Beverage Board minutes of Oct 12 2023 (license application by Team Mac, LLC); the PDF downloaded but its text could not be decoded here, so the names are not read first-hand. Business View Magazine (search snippet) separately says two sons of John MacDonald opened the restaurant.",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.stmaryscountymd.gov/docs/upload/minutes/AlcoholBeverageBoard_202310121300.pdf",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "John MacDonald III",
+     "title": "Owner / liquor licensee (Team Mac, LLC). No email published. Seen in a search-result summary of the St. Mary's County Alcohol Beverage Board minutes of Oct 12 2023 (license application by Team Mac, LLC); the PDF downloaded but its text could not be decoded here, so the names are not read first-hand. Business View Magazine (search snippet) separately says two sons of John MacDonald opened the restaurant.",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.stmaryscountymd.gov/docs/upload/minutes/AlcoholBeverageBoard_202310121300.pdf",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "macstapandtable.com (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Mac's Tap & Table (pipeline's own Apollo step, from its [STEP] line; not re-run in the audit: the Apollo tools were not connected in this session; search ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Nothing usable is published: the only email anywhere is the general inbox info@macstapandtable.com, and the site names no owner, manager or chef; the private-events route is the form at /inquire-today (already on the sheet) or the phone. The owners appear to be brothers Benjamin MacDonald and John MacDonald III (Team Mac, LLC) per a search summary of the county's 2023 liquor board minutes, which I could not read first-hand; no email for either.",
+   "emails_no_name": [
+    {
+     "email": "info@macstapandtable.com",
+     "source_url": "https://www.macstapandtable.com/party-room",
+     "note": "The only address published anywhere (mailto in the site footer, plain text on the party-room page, and the county tourism listing). General inbox, already seen and rejected by the scraper."
+    }
+   ]
   }
  ]
 }

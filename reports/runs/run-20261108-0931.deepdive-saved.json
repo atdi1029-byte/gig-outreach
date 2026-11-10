@@ -1,14 +1,14 @@
 {
  "run_id": "run-20261108-0931",
  "dry_run": false,
- "at": "2026-11-10T00:01:03-05:00",
+ "at": "2026-11-10T03:14:17-05:00",
  "totals": {
-  "saved": 2,
-  "venues_rescued": 0,
+  "saved": 4,
+  "venues_rescued": 1,
   "socials": 0,
-  "rejected": 0,
+  "rejected": 1,
   "errors": 0,
-  "flagged": 8
+  "flagged": 29
  },
  "zerobounce_out": "",
  "venues": [
@@ -20,9 +20,7 @@
      "email": "catering@elpatiointernational.com",
      "name": "Guillermo Ribulotta",
      "source_url": "https://www.elpatiointernational.com/contactus",
-     "title": "Owner (catering inbox; owner named in press, pairing not stated on the site)",
-     "verified": "role",
-     "outcome": "saved"
+     "outcome": "known"
     },
     {
      "email": "",
@@ -114,9 +112,7 @@
      "email": "galleryovissi@gmail.com",
      "name": "Maryam Ovissi",
      "source_url": "https://www.galleryovissi.com/contact",
-     "title": "Director, Ovissi Boutique (gallery's contact inbox; pairing not stated on the si",
-     "verified": "role",
-     "outcome": "saved"
+     "outcome": "known"
     },
     {
      "email": "",
@@ -311,6 +307,486 @@
      "reason": "Not a wrong-business contact: it is saved with no name. On /landing-bedford it is the mailto for 'Contact our Service Manager, Xan Schlegel' (an older page outside the navigation; current pages use only office@hartgeyard.com). Set name Xan Schlegel, title Service Manager, if it is kept."
     }
    ]
+  },
+  {
+   "venue_id": "VA-WINE-2953",
+   "name": "Arrowine & Cheese",
+   "contacts": [
+    {
+     "email": "thenose@arrowine.com",
+     "name": "Doug Rosen",
+     "source_url": "https://www.arlnow.com/2023/03/17/the-nose-that-knows-can-we-talk-arr1/",
+     "title": "Owner & President (inbox of his ARLnow column; pairing inferred, not stated)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Shem Hassen",
+     "source_url": "https://arrowine.com/pages/history-and-team",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ayet Boudjellal",
+     "source_url": "https://www.arlnow.com/2023/03/17/the-nose-that-knows-can-we-talk-arr1/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-3454",
+   "name": "Mazaro Italian Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Aziza Naji",
+     "source_url": "https://www.arlnow.com/2020/09/18/new-italian-restaurant-in-clarendon-nears-opening/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2821",
+   "name": "CUT D.C. by Wolfgang Puck",
+   "contacts": [
+    {
+     "email": "washingtondc.sales@rosewoodhotels.com",
+     "name": "James Bonner",
+     "source_url": "https://wolfgangpuck.com/restaurants/cut-washington-d-c/",
+     "title": "Director of Food & Beverage (private-dining inbox on CUT DC's page; inferred)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Andrew Ho",
+     "source_url": "https://wolfgangpuck.com/restaurants/cut-washington-d-c/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tony Mosca",
+     "source_url": "https://www.hotel-online.com/news/rosewood-washington-d-c-taps-tony-mosca-as-managing-director",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Timothy Edgecombe",
+     "source_url": "https://www.hotelexecutive.com/newswire/63236/timothy-edgecombe-appointed-director-of-sales-at-rosewood-washington-dc",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/people/CUT-DC/100048891288289/",
+     "outcome": "kept_existing"
+    },
+    {
+     "field": "instagram",
+     "value": "https://www.instagram.com/cutdc/",
+     "outcome": "kept_existing"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "lvbanquets@wolfgangpuck.com",
+     "reason": "Different location. This is the Las Vegas banquets inbox; on wolfgangpuck.com it appears only on the CUT New York page (https://wolfgangpuck.com/restaurants/cut-new-york/), not on the CUT DC page. No name."
+    },
+    {
+     "email": "maui.events@wolfgangpuck.com",
+     "reason": "Different location. Spago Maui events inbox; appears only on https://wolfgangpuck.com/restaurants/spago-maui/. No name."
+    },
+    {
+     "email": "tandc@wolfgangpuck.com",
+     "reason": "Not a venue contact. Legal address from the brand's Terms & Conditions page (https://wolfgangpuck.com/terms-conditions/). No name."
+    },
+    {
+     "email": "andrew.skala@wolfgangpuck.com",
+     "reason": "Right restaurant but probably out of date. Andrew Skala was CUT DC's opening Executive Chef (2019; Georgetowner Dec 2021). The CUT DC page and the Rosewood site now name Andrew Ho as Executive Chef (Georgetowner reported the change in Feb 2025). I found no source saying where Skala is now. A chef is also a weak contact for booking music."
+    },
+    {
+     "email": "jeannette.rosenberg@wolfgangpuck.com",
+     "reason": "Cannot be tied to CUT DC. No public source connects a Jeannette Rosenberg to the DC restaurant; the only Rosenberg on wolfgangpuck.com is Drew Rosenberg, Executive Chef of CUT Beverly Hills. Apollo matched the brand-wide Wolfgang Puck org, so this is most likely another location's staff."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-683",
+   "name": "Chart House Prime",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Teresa Sipagan",
+     "source_url": "https://www.opentable.sg/r/chart-house-prime-annapolis",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Amy M. Paulin",
+     "source_url": "https://www.opentable.com/r/chart-house-prime-annapolis?lang=it",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jhonatan Orjuela",
+     "source_url": "https://www.opentable.sg/r/chart-house-prime-annapolis",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://mb.landrysinc.com/?locationid=50036031",
+     "outcome": "kept_existing"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2325",
+   "name": "Otter Point Yacht Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Leonard Martin",
+     "source_url": "https://www.hclcb.org/sites/default/files/2021.05.26%20minutes%20approved.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Derek Tillery",
+     "source_url": "https://www.hclcb.org/sites/default/files/2021.05.26%20minutes%20approved.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ann Pongracz",
+     "source_url": "https://www.hclcb.org/sites/default/files/2021.05.26%20minutes%20approved.pdf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-WINE-2945",
+   "name": "Grand Cata",
+   "contacts": [
+    {
+     "email": "pedro@grandcata.com",
+     "name": "Pedro J. Rodr\u00edguez",
+     "source_url": "https://www.grandcata.com/visit-us",
+     "outcome": "known"
+    },
+    {
+     "email": "julio@grandcata.com",
+     "name": "Julio R. Robledo",
+     "source_url": "https://www.grandcata.com/visit-us",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "cosecha@grandcata.com",
+     "reason": "Different location. This is the inbox of the La Cosecha shop (1280 4th St NE, Washington DC, Union Market), not the Mosaic / Fairfax shop this record is for. No name."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3059",
+   "name": "Lebanese Taverna Tysons Galleria",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Grace Abi-Najm Shea",
+     "source_url": "https://www.lebanesetaverna.com/blog-1-copy-1-1/blog-post-title-two-t5my5-k4xmd-67jzh-bppds",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Dany Abi-Najm",
+     "source_url": "https://www.lebanesetaverna.com/blog-1-copy-1-1/blog-post-title-two-t5my5-k4xmd-67jzh-bppds",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Charles Holt",
+     "source_url": "https://www.weddingwire.com/reviews/catering-by-lt-arlington/d2ec73a94b105d3f.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "lebanesetaverna@mac.com",
+     "reason": "Junk name and title: 'Lebanese Taverna Market' is the group's Arlington market and 'Set Up An Event' is a page label, not a person. The address is the group's shared general mailbox (cooking classes at the Arlington Market, fundraisers, Thanksgiving orders), not a person and not specific to Tysons Galleria."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3045",
+   "name": "Chima Steakhouse",
+   "contacts": [
+    {
+     "email": "michelle.quisbert@chimasteakhouse.com",
+     "name": "Michelle Quisbert",
+     "source_url": "https://chimasteakhouse.com/happenings/happy-hour-at-chima-tysons/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/ChimaTysonsCorner",
+     "outcome": "kept_existing"
+    },
+    {
+     "field": "instagram",
+     "value": "https://www.instagram.com/chimatysonscorner/",
+     "outcome": "kept_existing"
+    },
+    {
+     "field": "contact_form",
+     "value": "https://chimabraziliansteakhouse.tripleseat.com/party_request/16921",
+     "outcome": "kept_existing"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "aline.decker@chimasteakhouse.com",
+     "reason": "Different location of the chain: the site names Aline Decker as the Sales and Events manager for Chima Charlotte NC (980-225-5008), on https://chimasteakhouse.com/happenings/reserve-your-holiday-event-at-chima-charlotte/ and in the 2019-2021 blog posts."
+    },
+    {
+     "email": "ashley.williams@chimasteakhouse.com",
+     "reason": "Different location of the chain: the site names Ashley Williams as the Sales and Events manager for Chima Fort Lauderdale FL (954-809-5280), on https://chimasteakhouse.com/happenings/reserve-your-holiday-event-at-chima-fort-lauderdale/."
+    },
+    {
+     "email": "sm.orl@chimasteakhouse.com",
+     "reason": "Different location of the chain: Isadora Stancatti is the Sales and Events manager for Chima Orlando FL (321-404-6005; sm.orl = sales manager Orlando), per https://chimasteakhouse.com/happenings/reserve-your-holiday-event-at-chima-orlando/ (which publishes isadora.stancatti@chimasteakhouse.com for her)."
+    },
+    {
+     "email": "christina.mohr@chimasteakhouse.com",
+     "reason": "Right location but probably out of date: Christina Mohr is named as the Tysons Corner events contact only in blog posts from 2019-2021 (desk phone 703-639-3088). Since 2024 the site names Michelle Quisbert as the Tysons Sales Manager on that same phone number. Likely a former sales manager (not confirmed that she left); email Michelle Quisbert instead."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2323",
+   "name": "Choptank River Yacht Club",
+   "contacts": [
+    {
+     "email": "kelky82@hotmail.com",
+     "name": "Megan Gray",
+     "source_url": "https://carolinecryc.com/author/secretary/",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Mike Brenton",
+     "source_url": "https://carolinecryc.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Kelly Darling",
+     "source_url": "https://carolinecryc.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Mike Pasta",
+     "source_url": "https://carolinecryc.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jen Taylor",
+     "source_url": "https://carolinecryc.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2359",
+   "name": "Wheaton Winery",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "carson.henry@montgomerycountymd.gov",
+     "reason": "Different organization: Carson Henry is Chief of Operations of the Wheaton Urban District (Montgomery County government), listed on https://www.wheatonmd.org/contact-us. Not staff of the shop called Wheaton Winery."
+    },
+    {
+     "email": "catherine.rytkonen@montgomerycountymd.gov",
+     "reason": "Different organization: Marketing Manager of the Wheaton Urban District (Montgomery County government), from https://www.wheatonmd.org/contact-us. Not the shop."
+    },
+    {
+     "email": "crystal.ruiz@montgomerycountymd.gov",
+     "reason": "Different organization: Wheaton Urban District Manager (Montgomery County government), from https://www.wheatonmd.org/contact-us. Not the shop."
+    },
+    {
+     "email": "luisa.cardona@montgomerycountymd.gov",
+     "reason": "Different organization: Montgomery County Mid-County Regional Services Center staff address from https://www.wheatonmd.org/contact-us (the page now names Naddia Clute as the Director, so the saved name/title pairing is also doubtful). Not the shop."
+    },
+    {
+     "email": "marta.martinez@montgomerycountymd.gov",
+     "reason": "Different organization: Marketing Specialist of the Wheaton Urban District (Montgomery County government), from https://www.wheatonmd.org/contact-us. Not the shop."
+    },
+    {
+     "email": "naddia.clute@montgomerycountymd.gov",
+     "reason": "Different organization: Director of the Montgomery County Mid-County Regional Center, from https://www.wheatonmd.org/contact-us. Not the shop."
+    },
+    {
+     "email": "talia.beaulieuhains@montgomerycountymd.gov",
+     "reason": "Different organization: Mid-County Community Projects Manager, Montgomery County government, from https://www.wheatonmd.org/contact-us. Not the shop."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-407",
+   "name": "Rucci's Italian Kitchen & Grille",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Bobby Rucci",
+     "source_url": "https://southernmarylandchronicle.com/2019/07/08/somd-taste-and-sip-encounters-with-lynne-omeara",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Diana Rucci",
+     "source_url": "https://southernmarylandchronicle.com/2019/07/08/somd-taste-and-sip-encounters-with-lynne-omeara",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "ruccisitaliankitchen@outlook.com",
+     "reason": "Right business, other location: the contact page lists it under White Plains, not Leonardtown. Same family business (two locations, one site), so it is still usable as the brand's main inbox; leonardtown@ruccisitaliankitchen.com is the one for this venue. Not a wrong-business contact; do not delete."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-339",
+   "name": "Bugeye Grill",
+   "contacts": [
+    {
+     "email": "",
+     "name": "James Zirakian",
+     "source_url": "https://www.somdnews.com/recorder/news/local/board-approves-solomons-license/article_769106b3-1c98-595d-9bab-11d1d4773255.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jerry Clark",
+     "source_url": "https://www.somdnews.com/recorder/news/local/board-approves-solomons-license/article_769106b3-1c98-595d-9bab-11d1d4773255.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-YACH-807",
+   "name": "Herring Bay Yacht Club",
+   "contacts": [
+    {
+     "email": "rearcommodore@hbyc.org",
+     "name": "Jennifer Greiner",
+     "source_url": "https://hbyc.org/event/fall-feast-2/",
+     "title": "Rear Commodore, Land Events Committee (runs the club's social events)",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "commodore@hbyc.org",
+     "name": "Deb Fass",
+     "source_url": "https://hbyc.org/event/1st-quarter-general-membership-meeting-3/",
+     "outcome": "known"
+    },
+    {
+     "email": "vicecommodore@hbyc.org",
+     "name": "P.J. Warwick",
+     "source_url": "https://hbyc.org/event/boating-safety-seminar/",
+     "title": "Vice Commodore",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "fleetcaptain@hbyc.org",
+     "name": "Andy Schneider",
+     "source_url": "https://hbyc.org/event/fall-raft-up-2/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "fleetcaptain@hbyc.org",
+     "reason": "Right club, but the saved title '1 event' is a page label (the calendar's organizer page count), not a person. The inbox belongs to Fleet Captain Andy Schneider (stated on the club's own event pages). Keep the email; replace the title with name 'Andy Schneider', title 'Fleet Captain'."
+    },
+    {
+     "email": "commodore@hbyc.org",
+     "reason": "Right club and right person, and she is the current Commodore; only the name field is off: 'Commodore Deb Fass' has the title glued into the name. Should be name 'Deb Fass', title 'Commodore'. Keep."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3012",
+   "name": "Mazzaroth Vineyard",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Garry Cohen",
+     "source_url": "https://mazzaroth.squarespace.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Micki Cohen",
+     "source_url": "https://mazzaroth.squarespace.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "mazzarothvineyard@gmail.com",
+     "name": "Garry Cohen",
+     "source_url": "https://www.facebook.com/mazzarothvineyard",
+     "outcome": "rejected:freemail_unlinked"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-409",
+   "name": "Mac's Tap & Table",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Benjamin MacDonald",
+     "source_url": "https://www.stmaryscountymd.gov/docs/upload/minutes/AlcoholBeverageBoard_202310121300.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "John MacDonald III",
+     "source_url": "https://www.stmaryscountymd.gov/docs/upload/minutes/AlcoholBeverageBoard_202310121300.pdf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
   }
  ]
 }

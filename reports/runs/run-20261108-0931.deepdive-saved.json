@@ -1,0 +1,316 @@
+{
+ "run_id": "run-20261108-0931",
+ "dry_run": false,
+ "at": "2026-11-10T00:01:03-05:00",
+ "totals": {
+  "saved": 2,
+  "venues_rescued": 0,
+  "socials": 0,
+  "rejected": 0,
+  "errors": 0,
+  "flagged": 8
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "MD-REST-969",
+   "name": "El Patio Argentine",
+   "contacts": [
+    {
+     "email": "catering@elpatiointernational.com",
+     "name": "Guillermo Ribulotta",
+     "source_url": "https://www.elpatiointernational.com/contactus",
+     "title": "Owner (catering inbox; owner named in press, pairing not stated on the site)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Angela Delrio",
+     "source_url": "https://www.mackenziecommercial.com/blog/2025/06/12/el-patio-argentine-restaurant-relocating-to-4840-square-foot-space-at-traville-village-center-in-montgomery-county/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "elpatiointernational@gmail.com",
+     "reason": "Not a wrong-business contact: the address is the restaurant's own, but the name 'El Patio Rewards Program' is a page label, not a person. The owners are Guillermo Ribulotta and Angela Delrio (press); nothing published says which of them reads this inbox."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2964",
+   "name": "Sue Haven Yacht Club Inc",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Pete Beyrodt",
+     "source_url": "https://suehavenshyc.wixsite.com/website/resources-and-tips",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Bob Poist",
+     "source_url": "https://suehavenshyc.wixsite.com/website/resources-and-tips",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Cyndi Myers",
+     "source_url": "https://suehavenshyc.wixsite.com/website",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Greg Myers",
+     "source_url": "https://suehavenshyc.wixsite.com/website/resources-and-tips",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Julie Beyrodt",
+     "source_url": "https://suehavenshyc.wixsite.com/website/resources-and-tips",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-WINE-2901",
+   "name": "County Cork Wine Pub",
+   "contacts": [
+    {
+     "email": "arlene@thecorkpub.com",
+     "name": "Arlene Stecher",
+     "source_url": "https://www.thecorkpub.com/",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Gordon Carlson",
+     "source_url": "https://www.thecorkpub.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "arlene.cork@gmail.com",
+     "reason": "Not a wrong-business contact: the name 'Arlene Cork' is invented from the email. On the home page the visible text 'Arlene@TheCorkPub.com' links to this gmail, so it is owner Arlene Stecher's second inbox and duplicates the person already saved. Right name: Arlene Stecher, Owner."
+    },
+    {
+     "email": "arlene@thecorkpub.com",
+     "reason": "Not a wrong-business contact: wrong title. The site lists Arlene Stecher as Owner and Gordon Carlson as Executive Chef; the chef's title was attached to her email. Right title: Owner."
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3326",
+   "name": "Ovissi Boutique",
+   "contacts": [
+    {
+     "email": "galleryovissi@gmail.com",
+     "name": "Maryam Ovissi",
+     "source_url": "https://www.galleryovissi.com/contact",
+     "title": "Director, Ovissi Boutique (gallery's contact inbox; pairing not stated on the si",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Nasser Ovissi",
+     "source_url": "https://www.galleryovissi.com/awards",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "callforartsiran@gmail.com",
+     "reason": "Not the gallery's contact inbox: it is the artist-submissions address for one project, the 'Faces of Iran' exhibition call (deadline Oct 1 2026), on /call-for-arts. Same organisation, but a music pitch there would be misdirected. The gallery's own address is galleryovissi@gmail.com (/contact), and the boutique's director is Maryam Ovissi."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-344",
+   "name": "Ketch 22",
+   "contacts": [
+    {
+     "email": "julie@ketch22.net",
+     "name": "Julie Jones",
+     "source_url": "https://ketch22.net/private-events/",
+     "outcome": "known"
+    },
+    {
+     "email": "bobby@ketch22.net",
+     "name": "Bobby Jones",
+     "source_url": "https://ketch22.net/about-us/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "bobby@ketch22.net",
+     "reason": "Not a wrong-business contact: it is saved with no name. He is Bobby Jones, co-owner; the About page lists 'Bobby, Executive Chef', its bio says he runs the restaurant as Chef and General Manager, and the home page is signed 'Bobby and Julie Jones, Owners of Ketch 22 and The Point'. Set name Bobby Jones, title Owner / Executive Chef & General Manager."
+    },
+    {
+     "email": "julie@ketch22.net",
+     "reason": "Not a wrong-business contact: it is saved with no title. Julie Jones is co-owner (About: 'Julie, Front of House Operations') and the named contact on the Private Events and Contact pages. She is the best person to pitch."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2316",
+   "name": "Pleasant Yacht Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Derrick Jones",
+     "source_url": "https://mypyc.org/executive-board",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "James Troy",
+     "source_url": "https://mypyc.org/executive-board",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Herbert Barnes",
+     "source_url": "https://mypyc.org/executive-board",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-WINE-2951",
+   "name": "Altitude",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Raul Torrento",
+     "source_url": "https://www.altitude-va.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Sarah Gaines",
+     "source_url": "https://www.altitude-va.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Mariela Pacheco",
+     "source_url": "https://www.altitude-va.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ryan Gaudin",
+     "source_url": "https://www.altitude-va.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Daniel Grajewski",
+     "source_url": "https://www.arlnow.com/2026/06/18/altitude-wine-bar-opens-in-crystal-city-with-air-travel-inspired-decor/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "David Morton",
+     "source_url": "https://www.arlnow.com/2026/06/18/altitude-wine-bar-opens-in-crystal-city-with-air-travel-inspired-decor/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.altitude-va.com/inquiry-form",
+     "outcome": "kept_existing"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3361",
+   "name": "La Malinche",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jaime Sorto",
+     "source_url": "https://patch.com/maryland/silverspring/bites-nearby-big-flavors-small-plates-at-la-malinche-bdf9fb8c90",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Hugo Bonilla",
+     "source_url": "https://patch.com/maryland/silverspring/bites-nearby-big-flavors-small-plates-at-la-malinche-bdf9fb8c90",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jose Bonilla",
+     "source_url": "https://patch.com/maryland/silverspring/bites-nearby-big-flavors-small-plates-at-la-malinche-bdf9fb8c90",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jose Zelaya",
+     "source_url": "https://patch.com/maryland/silverspring/bites-nearby-big-flavors-small-plates-at-la-malinche-bdf9fb8c90",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3463",
+   "name": "La Bettola Italiano",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2970",
+   "name": "Hartge Yacht Yard",
+   "contacts": [
+    {
+     "email": "hartgeyard@aol.com",
+     "name": "Xan Schlegel",
+     "source_url": "https://www.hartgeyard.com/landing-bedford",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Alex Schlegel",
+     "source_url": "https://www.hartgeyard.com/office",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Alaina Wine",
+     "source_url": "https://www.hartgeyard.com/office",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "template.placeholder@gmail.com",
+     "reason": "Squarespace template junk, not a person and not this business: it appears only on the leftover demo page https://www.hartgeyard.com/contact-bedford (in the sitemap, not in the navigation), next to the fictional phone (212) 555-0123. Remove it."
+    },
+    {
+     "email": "hartgeyard@aol.com",
+     "reason": "Not a wrong-business contact: it is saved with no name. On /landing-bedford it is the mailto for 'Contact our Service Manager, Xan Schlegel' (an older page outside the navigation; current pages use only office@hartgeyard.com). Set name Xan Schlegel, title Service Manager, if it is kept."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,846 @@
+{
+ "run_id": "run-20261111-1336",
+ "venues": [
+  {
+   "venue_id": "DC-REST-644",
+   "name": "BOURBON STEAK",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Andres Sweek",
+     "title": "General Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.bourbonsteakdc.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "bourbonsteakdc.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "BOURBON STEAK (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=BOURBON_STEAK, people=3, relevant=0)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Nothing new to save. The private dining page publishes pdr.washingtondc@fourseasons.com for an unnamed 'Private Dining and Catering Manager', and the Mina Group page has bourbonsteak.was@fourseasons.com (Cloudflare-protected, an unnamed host inbox). No search named the manager behind either inbox. GM Andres Sweek (site + Four Seasons press page) has no email. Socials and form were already on the sheet."
+  },
+  {
+   "venue_id": "DC-REST-2314",
+   "name": "1789 Restaurant",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "1789restaurant.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "1789 Restaurant (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=1789_Restaurant)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Nothing new. About page confirms Erin Claire as GM (saved with 1789events@). The Jan 2026 private-event packet (PDF on the site) lists only 1789Events@ and the phone; the Jan 2025 packet's Senior Events Manager Allison Parker is gone from it, so she's likely no longer there. Other staff (Moone, Kreiser, Cordell) have no email. Existing contacts are on-domain, socials and form already set."
+  },
+  {
+   "venue_id": "VA-REST-2990",
+   "name": "Pazzo Pomodoro",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jimmy Audia",
+     "title": "Owner / co-founder",
+     "email": "",
+     "source": "website",
+     "source_url": "https://pazzopomodoro.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Bill Hicks",
+     "title": "Co-founder",
+     "email": "",
+     "source": "website",
+     "source_url": "https://pazzopomodoro.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "pazzopomodoro.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Pazzo Pomodoro (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=Pazzo_Pomodoro)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Nothing new to save. The site's only email is benny@ (catering mailto, already saved; Apollo names him Benny Genuardi, Director of Operations). The home page names owners Jimmy Audia and Bill Hicks but gives no emails, and the private dining, events and contact pages show only a form and phone. The existing mark@ contact has no name and I couldn't identify a Mark. Note: the sheet's facebook is the Ashburn page (PazzoPomodoroAshburn), but the site links facebook.com/PazzoPomodoroVienna for this Vienna venue. Not overwritten because the field is set."
+  },
+  {
+   "venue_id": "MD-HOTE-496",
+   "name": "Great Oak Manor",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kellye Walker",
+     "title": "Co-owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://greatoakmanor.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "greatoakmanor.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Great Oak Manor (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=Great_Oak_Manor)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Nothing new. The /about page (the unvisited high-priority page) confirms Cameron Karger as GM and Werten Bellamy as co-owner, both already saved with on-domain emails. It also names co-owner Kellye Walker, with no email. The site only publishes welcome@ (a general inbox), and the celebrations form is already on the sheet. No wrong-business contacts."
+  },
+  {
+   "venue_id": "MD-EVEN-2962",
+   "name": "Crimson & Clover Floral Design",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Amy McManus",
+     "title": "Owner / Founder (amy@crimsonandcloverdesigns.com: ZeroBounce abuse in the pipeline; not resubmitted)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://bmoremedia.com/devnews/floralshoprolandpark060110.aspx",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "crimsonandcloverdesigns.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Crimson & Clover Floral Design (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=CRIMSON_&_CLOVER_FLORAL_DESIGN)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Owner Amy McManus (amy@, confirmed by Apollo and a 2010 press release) was already found by the pipeline; ZeroBounce rated it 'abuse', so it was not saved and probably won't pass. The site returns 403 to WebFetch, no other staff turned up, hello@ is a general inbox, and the socials and contact form are already on the sheet. Nothing new."
+  },
+  {
+   "venue_id": "MD-REST-2924",
+   "name": "Q by Peter Chang Bethesda",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Lydia Chang",
+     "title": "Business Development (CEO/Partner, Peter Chang restaurants)",
+     "email": "lydia@qbypeterchang.com",
+     "source": "website",
+     "source_url": "https://www.qbypeterchang.com/private-dining",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "qbypeterchang.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Q by Peter Chang (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=Q_by_Peter_Chang, 2 people, 0 relevant)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "No new email. lydia@ (already saved, no name) is Lydia Chang, Business Development (CEO/Partner of the Peter Chang group), which the name can be added to. Sammi@ has no surname anywhere; private events go to info@ (general inbox, excluded). Socials and the Typeform private-dining form are already on the sheet."
+  },
+  {
+   "venue_id": "MD-REST-2757",
+   "name": "The Salt Line Bethesda",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "ballston@thesaltline.com",
+     "reason": "Location inbox for The Salt Line Ballston (Arlington VA), a different location of the same brand, per thesaltline.com/contact. It is not the Bethesda venue's, and no person is attached. Bethesda's own inbox, bethesda@, is already saved. Remove it or move it to the Ballston venue."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "thesaltline.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok, org=The_Salt_Line, 18 people, 5 relevant)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Salt Line Bethesda (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Nothing new. The site lists no staff names; events@ is unnamed, and bethesda@ (already saved) is the published private-events inbox. Owner group Long Shot Hospitality is confirmed (Paul Holder is a partner, so his saved contact is valid). Which location GM Matthew Labelle runs couldn't be confirmed. ballston@ is flagged as the Ballston location's inbox."
+  },
+  {
+   "venue_id": "MD-REST-2788",
+   "name": "Woodmont Grill",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "woodmontgrill.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok, org_mismatch)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Woodmont Grill (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, rejected_orgs=2)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "VENUE PERMANENTLY CLOSED: Woodmont Grill (Hillstone) closed abruptly in Oct 2025 (Washingtonian 2025-10-29, Axios, Fox5). The property sold for $7M and is becoming a Ted's Bulletin (Washingtonian 2026-08-27). woodmontgrill.com now 301-redirects to hillstone.com. Park or remove it from the pool; no contacts."
+  },
+  {
+   "venue_id": "VA-REST-3061",
+   "name": "Ometeo",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kelly Sanville",
+     "title": "Director of Restaurants, Long Shot Hospitality (oversees the events team at Ometeo); paired with the events inbox Ometeo's own site publishes for private events",
+     "email": "events@ometeotexmex.com",
+     "source": "website",
+     "source_url": "https://www.longshothospitality.com/who-we-are-1",
+     "found_on_venue_site": false,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "ometeotexmex.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok, org=Ometeo, people=0)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Ometeo (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 5
+    }
+   ],
+   "summary": "events@ometeotexmex.com (on Ometeo's private-events page) can now carry a name: the owner group Long Shot Hospitality's team page says Kelly Sanville (Director of Restaurants) oversees the events teams at Ometeo, Salt Line, Dauphine's and the Dubliner. Save as verified=role. Their Private Events Manager, Yuka Arbelaez, covers Salt Line and the Dubliner, not Ometeo. No Ometeo Facebook page was found (neither site links one)."
+  },
+  {
+   "venue_id": "VA-THEA-003",
+   "name": "Amadeus Concerts",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Stephen Gorbos",
+     "title": "Artistic and Executive Director",
+     "email": "director@amadeusconcerts.com",
+     "source": "website",
+     "source_url": "https://www.amadeusconcerts.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Maury Brown",
+     "title": "President (board)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.amadeusconcerts.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "A. Scott Wood",
+     "title": "Conductor, Amadeus Orchestra (former Artistic Director)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.amadeusconcerts.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "amadeusconcerts.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Amadeus Concerts (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=Amadeus_Concerts)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "director@amadeusconcerts.com (the site's only contact inbox, a mailto on the home, contact and about pages) matched with Stephen Gorbos, Artistic and Executive Director since June 2025 (also confirmed by a Fairfax County Library listing); the site doesn't name him with the inbox directly, so this is an inferred match. administrator@ is a general inbox. The socials and contact form are already on the sheet."
+  },
+  {
+   "venue_id": "VA-THEA-004",
+   "name": "St. Francis Episcopal Church",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Larry Vote",
+     "title": "Music Director",
+     "email": "levote@smcm.edu",
+     "source": "website",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "E. Weston Mathews",
+     "title": "Rector",
+     "email": "rector@stfrancisgreatfalls.org",
+     "source": "website",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Nancy Searby",
+     "title": "Deacon",
+     "email": "deacon@stfrancisgreatfalls.org",
+     "source": "website",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Joy Warburton",
+     "title": "Associate for Family Ministry",
+     "email": "familyministry@stfrancisgreatfalls.org",
+     "source": "website",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Cristi Leslie",
+     "title": "Creche Preschool Director",
+     "email": "creche@stfrancisgreatfalls.org",
+     "source": "website",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "stfrancisgreatfalls.org (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok; org_mismatch, 5 orgs rejected)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "St. Francis Episcopal Church (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 10
+    }
+   ],
+   "summary": "The Music Director, Larry Vote, is on the church's staff page with levote@smcm.edu. It's off-domain (his college address), so it needs allow_off_domain. Saving it is the main call; the church hosts the Amadeus Concerts classical series. Real names were found for 4 saved role inboxes (rector, deacon, family ministry, creche). admin@ (Lynn Fallon, Parish Administrator) is a general inbox and left out. Amadeus Concerts is its own organization (director Stephen Gorbos, no email found), so it is not a church contact."
+  },
+  {
+   "venue_id": "VA-REST-1151",
+   "name": "Neutral Ground Bar + Kitchen",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "David Guas",
+     "title": "Owner / Chef",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.arlingtonmagazine.com/chef-david-guas-neutral-ground-mclean/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Katie Beans",
+     "title": "Bar Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.neutralgroundbarandkitchen.com/team",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rodney Narvaez",
+     "title": "Chef de Cuisine",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.neutralgroundbarandkitchen.com/team",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "neutralgroundbarandkitchen.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Neutral Ground Bar + Kitchen (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Owner and chef David Guas (also behind Bayou Bakery) has no published email. The only emails are info@neutralgroundva.com (a general inbox) and simone@simoneink.com (outside PR, media inquiries only). No events manager is named, and the Private Gatherings page (/general-8) has only an inquiry form. The socials and contact form are already on the sheet. Nothing saveable."
+  },
+  {
+   "venue_id": "DC-REST-1345",
+   "name": "Wheelhouse",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Bo Blair",
+     "title": "Owner (Georgetown Events Hospitality Group)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://washingtonian.com/2026/06/12/wheelhouse-brings-a-raw-bar-and-yacht-rock-inspired-cocktails-to-chevy-chase/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "David Scribner",
+     "title": "Chef / co-creator",
+     "email": "",
+     "source": "press",
+     "source_url": "https://washingtonian.com/2026/06/12/wheelhouse-brings-a-raw-bar-and-yacht-rock-inspired-cocktails-to-chevy-chase/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "wheelhousedc.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Wheelhouse (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org_mismatch rejected_orgs=1; postcheck megan.beidleman@wheelhousegroup.com is a different business, correctly rejected)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Site is 5 pages (home, menus, location, contact, about); only info@ (general inbox) published. Owner Bo Blair (Georgetown Events Hospitality Group) and chef David Scribner named in press, no emails; the site does not publish any group-domain contact, so nothing saveable. Socials and contact form already on record."
+  },
+  {
+   "venue_id": "MD-SENI-902",
+   "name": "Brookdale Potomac",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "brookdale.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=skipped:shared_domain)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Brookdale Potomac (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Chain community page (11215 Seven Locks Rd, 301-765-9198) lists no staff or emails; web/LinkedIn searches found no named executive director or resident engagement director, and no community Instagram. Facebook and contact form already on record; nothing new."
+  },
+  {
+   "venue_id": "MD-REST-3121",
+   "name": "Ambassador Dining Room",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "ambassadordining.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok, org=Ambassador_Dining_Room, people=0)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Ambassador Dining Room (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, people=0)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Site returns HTTP 403 to WebFetch too; web search finds only contact@ (general inbox, rejected) and no named current owner/GM (Singh family sold it years ago; buyer unnamed). Socials already on sheet. Nothing new."
+  },
+  {
+   "venue_id": "MD-SENI-903",
+   "name": "Cogir of Potomac",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Rachel Grant",
+     "title": "Executive Director (per Assisted Living Magazine listing; may be former, Mike Wilson now appears as the Potomac event contact)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://assistedlivingmagazine.com/assisted-living/cogir-of-potomac/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "jballard@cogirusa.com",
+     "reason": "Apollo title says Senior Sales Director - The Virginian (a different Cogir community, Fairfax VA), not Cogir of Potomac"
+    },
+    {
+     "email": "dionne.fowlkes@cogirusa.com",
+     "reason": "Apollo title says Community Relations Director (Atrium Village), a different Cogir community (Owings Mills MD), not Cogir of Potomac"
+    },
+    {
+     "email": "olney@cogirusa.com",
+     "reason": "'Cadence Olney' is not a real person: olney@ is the inbox of Cogir of Olney (another community); the name was made from the local part and the title 'Senior Living Community'"
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "cogirusa.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Cogir of Potomac (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=Cogir_Senior_Living)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Site 403s to WebFetch; Mike Wilson (ED, already saved) is the RSVP contact on Cogir of Potomac's own event page, so the main contact is covered. Nothing new with an email. 3 saved Apollo contacts belong to other Cogir communities (The Virginian, Atrium Village, Olney inbox). The saved contact_form (Cogir Foundation page) isn't a Potomac contact form; the community contact page is https://cogirusa.com/communities/cogir-of-potomac/contact/ (left alone because the field is already set)."
+  },
+  {
+   "venue_id": "MD-ART_-716",
+   "name": "Mitchell Gallery",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Peter Nesbett",
+     "title": "Director, Elizabeth Myers Mitchell Art Museum",
+     "email": "peter.nesbett@sjc.edu",
+     "source": "website",
+     "source_url": "https://www.sjc.edu/mitchell/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jenny Cawood",
+     "title": "Manager of Artistic Inquiry, Mitchell Art Museum",
+     "email": "jenny.cawood@sjc.edu",
+     "source": "website",
+     "source_url": "https://www.sjc.edu/mitchell/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "https://www.instagram.com/sjcmitchell",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "annapolis.academy@sjc.edu",
+     "reason": "'Summer Academy' is not a person; college admissions department inbox, not the gallery"
+    },
+    {
+     "email": "annapolis.admissions@sjc.edu",
+     "reason": "'Annapolis Admissions' is not a person; college department inbox, not the gallery"
+    },
+    {
+     "email": "annapolis.bookstore@sjc.edu",
+     "reason": "'Annapolis Bookstore' is not a person; college bookstore inbox, not the gallery"
+    },
+    {
+     "email": "annapolis.careerservices@sjc.edu",
+     "reason": "'Annapolis Careerservices' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.deansoffice@sjc.edu",
+     "reason": "'Annapolis Deansoffice' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.financialaid@sjc.edu",
+     "reason": "'Financial Aid' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.gradadmissions@sjc.edu",
+     "reason": "'Graduate Admissions' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.healthcenter@sjc.edu",
+     "reason": "'Annapolis Healthcenter' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.president@sjc.edu",
+     "reason": "'Annapolis President' is not a person; President's Office inbox"
+    },
+    {
+     "email": "annapolis.printshop@sjc.edu",
+     "reason": "'Annapolis Printshop' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.publicsafety@sjc.edu",
+     "reason": "'Public Safety' is not a person; college department inbox"
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "sjc.edu (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok, rejected org_mismatch)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Mitchell Gallery (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, 5 orgs rejected org_mismatch)",
+     "search_type": "name",
+     "result_count": 5
+    }
+   ],
+   "summary": "Found the museum's own staff on /mitchell/about-us: Director Peter Nesbett and Manager Jenny Cawood (emails written with (at)), plus Instagram @sjcmitchell. The sheet's Facebook is the college's (the museum's own is facebook.com/sjcmitchell, not set because the field is filled). The 92 saved contacts are college-wide; 11 are department inboxes with made-up names (flagged), and the rest are college staff unrelated to the gallery."
+  },
+  {
+   "venue_id": "MD-REST-924",
+   "name": "MUI Supper Club",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Andrew Huang",
+     "title": "Chef-Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.muisupperclub.com/journal/topic-809f41ee-3cdd-4506-8cd2-a9b95d41c8d6-7",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "muisupperclub.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok, reason=no_org)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "MUI Supper Club (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Only email is party@muisupperclub.com (private-event enquiry mailto on /events.html; ZeroBounce do_not_mail, and no named person is shown running it). Chef-owner Andrew Huang named on site (no email, context only); owned by IVEA Concepts (Edward Wong founder; only info@ivea.co, general). No Facebook page found; the site links Instagram/TikTok/X only. Pipeline's people parsing produced junk names (Pork Belly, Behind MUI, Uchiko Houston, 'Automatic Replies'): the parser should get the real name Andrew Huang from the chef section."
+  },
+  {
+   "venue_id": "MD-HOTE-2985",
+   "name": "Hotel at Arundel Preserve",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "thehotelarundel.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Hotel at Arundel Preserve (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=The_Hotel_at_Arundel_Preserve, gate=name+domain)",
+     "search_type": "name",
+     "result_count": 4
+    }
+   ],
+   "summary": "Nothing new: the site (guest directory, contact, events, weddings, RFP) shows only GM Roberto Perez and an obfuscated sales/catering inbox, both already saved; WebSearch for @thehotelarundel.com, GM, catering and sales staff found only job postings. The 7 saved contacts (Director of Banquets, Director of Sales & Marketing, etc.) are on the hotel's own domain and pass the name-match gate. FB, IG and the RFP form are already set."
+  },
+  {
+   "venue_id": "MD-REST-729",
+   "name": "Cypress Restaurant",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "eatatcypress.com (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Cypress Restaurant (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org_mismatch rejected_orgs=5)",
+     "search_type": "name",
+     "result_count": 5
+    }
+   ],
+   "summary": "Site has no emails or staff names (only a general contact form, already on sheet); press (Annapolis Moms) and listings name no owner/GM (only 'Chef Tamar', first name only). FB/IG/contact form already on sheet. Nothing new."
+  },
+  {
+   "venue_id": "MD-EVEN-2989",
+   "name": "Guilford Association",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kelly Maher",
+     "title": "Social Committee Chair",
+     "email": "",
+     "source": "website",
+     "source_url": "https://guilfordassociation.org/association/boardcontacts/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Elizabeth Nguyen",
+     "title": "Financial Lead / Assistant Manager",
+     "email": "beth@guilfordassociation.org",
+     "source": "website",
+     "source_url": "https://guilfordassociation.org/association/boardcontacts/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "elizabeth.embry@house.state.md.us",
+     "reason": "Maryland state delegate on the association's 'Other Useful Links' page (/links/). An elected official, not association staff."
+    },
+    {
+     "email": "malcolm.ruff@house.state.md.us",
+     "reason": "Maryland state delegate on the /links/ page. An elected official, not association staff."
+    },
+    {
+     "email": "mary.washington@senate.state.md.us",
+     "reason": "Maryland state senator on the /links/ page. An elected official, not association staff."
+    },
+    {
+     "email": "regina.boyce@house.state.md.us",
+     "reason": "Maryland state delegate on the /links/ page. An elected official, not association staff."
+    },
+    {
+     "email": "samuel.rosenberg@house.state.md.us",
+     "reason": "Maryland state delegate on the /links/ page. An elected official, not association staff."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "guilfordassociation.org (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Guilford Association (pipeline's own Apollo step, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org=The_Guilford_Association,_Inc., gate=name+domain, relevant=0)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Nothing new to save. All 47 sitemap pages crawled: the only association emails are officemanager@ (Patrick Nolan, Association Manager) and beth@ (Elizabeth 'Beth' Nguyen, Financial Lead / Assistant Manager), both already saved. beth@ is saved without a name; it could be given Elizabeth Nguyen's name and title. Kelly Maher chairs the Social Committee but has no email (kept for context only). The 2022 holiday party was hosted by Jacob Puhl and Matt Brems, no emails given. bramhall.guilford@outlook.com is saved with no name (probably board member Brian Bramhall, but no page confirms it). Five state legislators' emails taken from the /links/ page are flagged. No Facebook or Instagram found."
+  }
+ ]
+}

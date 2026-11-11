@@ -1,0 +1,429 @@
+{
+ "run_id": "run-20261111-1336",
+ "dry_run": false,
+ "at": "2026-11-11T15:45:54-05:00",
+ "totals": {
+  "saved": 2,
+  "venues_rescued": 2,
+  "socials": 1,
+  "rejected": 1,
+  "errors": 0,
+  "flagged": 20
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-REST-644",
+   "name": "BOURBON STEAK",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Andres Sweek",
+     "source_url": "https://www.bourbonsteakdc.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2314",
+   "name": "1789 Restaurant",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2990",
+   "name": "Pazzo Pomodoro",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jimmy Audia",
+     "source_url": "https://pazzopomodoro.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Bill Hicks",
+     "source_url": "https://pazzopomodoro.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-496",
+   "name": "Great Oak Manor",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Kellye Walker",
+     "source_url": "https://greatoakmanor.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-2962",
+   "name": "Crimson & Clover Floral Design",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Amy McManus",
+     "source_url": "https://bmoremedia.com/devnews/floralshoprolandpark060110.aspx",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2924",
+   "name": "Q by Peter Chang Bethesda",
+   "contacts": [
+    {
+     "email": "lydia@qbypeterchang.com",
+     "name": "Lydia Chang",
+     "source_url": "https://www.qbypeterchang.com/private-dining",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2757",
+   "name": "The Salt Line Bethesda",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "ballston@thesaltline.com",
+     "reason": "Location inbox for The Salt Line Ballston (Arlington VA), a different location of the same brand, per thesaltline.com/contact. It is not the Bethesda venue's, and no person is attached. Bethesda's own inbox, bethesda@, is already saved. Remove it or move it to the Ballston venue."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2788",
+   "name": "Woodmont Grill",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3061",
+   "name": "Ometeo",
+   "contacts": [
+    {
+     "email": "events@ometeotexmex.com",
+     "name": "Kelly Sanville",
+     "source_url": "https://www.longshothospitality.com/who-we-are-1",
+     "title": "Director of Restaurants, Long Shot Hospitality (oversees the events team at Omet",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-THEA-003",
+   "name": "Amadeus Concerts",
+   "contacts": [
+    {
+     "email": "director@amadeusconcerts.com",
+     "name": "Stephen Gorbos",
+     "source_url": "https://www.amadeusconcerts.com/about-us/",
+     "title": "Artistic and Executive Director",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Maury Brown",
+     "source_url": "https://www.amadeusconcerts.com/about-us/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "A. Scott Wood",
+     "source_url": "https://www.amadeusconcerts.com/about-us/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-THEA-004",
+   "name": "St. Francis Episcopal Church",
+   "contacts": [
+    {
+     "email": "levote@smcm.edu",
+     "name": "Larry Vote",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "outcome": "rejected:zerobounce_abuse"
+    },
+    {
+     "email": "rector@stfrancisgreatfalls.org",
+     "name": "E. Weston Mathews",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "outcome": "known"
+    },
+    {
+     "email": "deacon@stfrancisgreatfalls.org",
+     "name": "Nancy Searby",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "outcome": "known"
+    },
+    {
+     "email": "familyministry@stfrancisgreatfalls.org",
+     "name": "Joy Warburton",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "outcome": "known"
+    },
+    {
+     "email": "creche@stfrancisgreatfalls.org",
+     "name": "Cristi Leslie",
+     "source_url": "https://www.stfrancisgreatfalls.org/clergy-staff-vestry",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1151",
+   "name": "Neutral Ground Bar + Kitchen",
+   "contacts": [
+    {
+     "email": "",
+     "name": "David Guas",
+     "source_url": "https://www.arlingtonmagazine.com/chef-david-guas-neutral-ground-mclean/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Katie Beans",
+     "source_url": "https://www.neutralgroundbarandkitchen.com/team",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rodney Narvaez",
+     "source_url": "https://www.neutralgroundbarandkitchen.com/team",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-1345",
+   "name": "Wheelhouse",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Bo Blair",
+     "source_url": "https://washingtonian.com/2026/06/12/wheelhouse-brings-a-raw-bar-and-yacht-rock-inspired-cocktails-to-chevy-chase/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "David Scribner",
+     "source_url": "https://washingtonian.com/2026/06/12/wheelhouse-brings-a-raw-bar-and-yacht-rock-inspired-cocktails-to-chevy-chase/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-SENI-902",
+   "name": "Brookdale Potomac",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3121",
+   "name": "Ambassador Dining Room",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-SENI-903",
+   "name": "Cogir of Potomac",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Rachel Grant",
+     "source_url": "https://assistedlivingmagazine.com/assisted-living/cogir-of-potomac/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "jballard@cogirusa.com",
+     "reason": "Apollo title says Senior Sales Director - The Virginian (a different Cogir community, Fairfax VA), not Cogir of Potomac"
+    },
+    {
+     "email": "dionne.fowlkes@cogirusa.com",
+     "reason": "Apollo title says Community Relations Director (Atrium Village), a different Cogir community (Owings Mills MD), not Cogir of Potomac"
+    },
+    {
+     "email": "olney@cogirusa.com",
+     "reason": "'Cadence Olney' is not a real person: olney@ is the inbox of Cogir of Olney (another community); the name was made from the local part and the title 'Senior Living Community'"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-ART_-716",
+   "name": "Mitchell Gallery",
+   "contacts": [
+    {
+     "email": "peter.nesbett@sjc.edu",
+     "name": "Peter Nesbett",
+     "source_url": "https://www.sjc.edu/mitchell/about-us",
+     "outcome": "known"
+    },
+    {
+     "email": "jenny.cawood@sjc.edu",
+     "name": "Jenny Cawood",
+     "source_url": "https://www.sjc.edu/mitchell/about-us",
+     "outcome": "known"
+    }
+   ],
+   "socials": [
+    {
+     "field": "instagram",
+     "value": "https://www.instagram.com/sjcmitchell",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [
+    {
+     "email": "annapolis.academy@sjc.edu",
+     "reason": "'Summer Academy' is not a person; college admissions department inbox, not the gallery"
+    },
+    {
+     "email": "annapolis.admissions@sjc.edu",
+     "reason": "'Annapolis Admissions' is not a person; college department inbox, not the gallery"
+    },
+    {
+     "email": "annapolis.bookstore@sjc.edu",
+     "reason": "'Annapolis Bookstore' is not a person; college bookstore inbox, not the gallery"
+    },
+    {
+     "email": "annapolis.careerservices@sjc.edu",
+     "reason": "'Annapolis Careerservices' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.deansoffice@sjc.edu",
+     "reason": "'Annapolis Deansoffice' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.financialaid@sjc.edu",
+     "reason": "'Financial Aid' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.gradadmissions@sjc.edu",
+     "reason": "'Graduate Admissions' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.healthcenter@sjc.edu",
+     "reason": "'Annapolis Healthcenter' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.president@sjc.edu",
+     "reason": "'Annapolis President' is not a person; President's Office inbox"
+    },
+    {
+     "email": "annapolis.printshop@sjc.edu",
+     "reason": "'Annapolis Printshop' is not a person; college department inbox"
+    },
+    {
+     "email": "annapolis.publicsafety@sjc.edu",
+     "reason": "'Public Safety' is not a person; college department inbox"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-924",
+   "name": "MUI Supper Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Andrew Huang",
+     "source_url": "https://www.muisupperclub.com/journal/topic-809f41ee-3cdd-4506-8cd2-a9b95d41c8d6-7",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-2985",
+   "name": "Hotel at Arundel Preserve",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-729",
+   "name": "Cypress Restaurant",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-2989",
+   "name": "Guilford Association",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Kelly Maher",
+     "source_url": "https://guilfordassociation.org/association/boardcontacts/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "beth@guilfordassociation.org",
+     "name": "Elizabeth Nguyen",
+     "source_url": "https://guilfordassociation.org/association/boardcontacts/",
+     "outcome": "known"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "elizabeth.embry@house.state.md.us",
+     "reason": "Maryland state delegate on the association's 'Other Useful Links' page (/links/). An elected official, not association staff."
+    },
+    {
+     "email": "malcolm.ruff@house.state.md.us",
+     "reason": "Maryland state delegate on the /links/ page. An elected official, not association staff."
+    },
+    {
+     "email": "mary.washington@senate.state.md.us",
+     "reason": "Maryland state senator on the /links/ page. An elected official, not association staff."
+    },
+    {
+     "email": "regina.boyce@house.state.md.us",
+     "reason": "Maryland state delegate on the /links/ page. An elected official, not association staff."
+    },
+    {
+     "email": "samuel.rosenberg@house.state.md.us",
+     "reason": "Maryland state delegate on the /links/ page. An elected official, not association staff."
+    }
+   ]
+  }
+ ]
+}

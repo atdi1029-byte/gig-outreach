@@ -1,0 +1,90 @@
+{
+  "created": "2026-11-11 11:09:09",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "fine_dining": 2,
+    "wild": 21,
+    "hotel": 2
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-1108/batch_01.json",
+      "venue_ids": [
+        "MD-REST-3400",
+        "MD-REST-3397",
+        "MD-REST-3401",
+        "MD-REST-3399",
+        "MD-REST-3396",
+        "MD-REST-3402",
+        "MD-REST-3404",
+        "MD-REST-3403"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-1108/batch_02.json",
+      "venue_ids": [
+        "MD-EVEN-3055",
+        "MD-REST-3398",
+        "MD-HOTE-3009",
+        "MD-HOTE-3011",
+        "VA-REST-3483",
+        "VA-ART_-160",
+        "DC-REST-641",
+        "MD-EVEN-3004"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-1108/batch_03.json",
+      "venue_ids": [
+        "MD-EVEN-2993",
+        "VA-THEA-005",
+        "MD-EVEN-3001",
+        "VA-REST-2436",
+        "VA-REST-3268",
+        "MD-SENI-2954",
+        "MD-EVEN-739",
+        "MD-REST-3124"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-1108/batch_04.json",
+      "venue_ids": [
+        "MD-EVEN-3015"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "MD-REST-3400",
+    "MD-REST-3397",
+    "MD-REST-3401",
+    "MD-REST-3399",
+    "MD-REST-3396",
+    "MD-REST-3402",
+    "MD-REST-3404",
+    "MD-REST-3403",
+    "MD-EVEN-3055",
+    "MD-REST-3398",
+    "MD-HOTE-3009",
+    "MD-HOTE-3011",
+    "VA-REST-3483",
+    "VA-ART_-160",
+    "DC-REST-641",
+    "MD-EVEN-3004",
+    "MD-EVEN-2993",
+    "VA-THEA-005",
+    "MD-EVEN-3001",
+    "VA-REST-2436",
+    "VA-REST-3268",
+    "MD-SENI-2954",
+    "MD-EVEN-739",
+    "MD-REST-3124",
+    "MD-EVEN-3015"
+  ]
+}

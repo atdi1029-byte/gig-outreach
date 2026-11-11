@@ -1,0 +1,834 @@
+{
+ "run_id": "run-20261111-1108",
+ "dry_run": false,
+ "at": "2026-11-11T14:16:15-05:00",
+ "totals": {
+  "saved": 4,
+  "venues_rescued": 4,
+  "socials": 2,
+  "rejected": 2,
+  "errors": 0,
+  "flagged": 96
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "MD-REST-3400",
+   "name": "La Scala Ristorante Italiano",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3397",
+   "name": "La Cuchara",
+   "contacts": [
+    {
+     "email": "events@lacucharabaltimore.com",
+     "name": "Jake Lefenfeld",
+     "source_url": "https://www.lacucharabaltimore.com/us",
+     "title": "Co-owner (described in press as General Manager of La Cuchara and Minnow)",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Ben Lefenfeld",
+     "source_url": "https://www.lacucharabaltimore.com/us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Amy Lefenfeld",
+     "source_url": "https://www.lacucharabaltimore.com/us",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-3401",
+   "name": "Thames Street Oyster House",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Candace Beattie",
+     "source_url": "https://www.baltimorebrew.com/2011/09/08/the-raw-and-the-cooked-thames-street-oyster-house",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3399",
+   "name": "Rusty Scupper",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Ed Prutzer",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3396",
+   "name": "The Prime Rib",
+   "contacts": [
+    {
+     "email": "rebecca@theprimeribs.com",
+     "name": "Rebecca Dolan",
+     "source_url": "https://centermaryland.org/2023/prime-rib-signs-15-year-lease-to-remain-in-mt-vernon-and-expand",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "John Klaus",
+     "source_url": "https://theprimeribs.com/reserve/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "james@theprimeribs.com",
+     "reason": "Not a Baltimore contact: /reserve/ names 'General Manager, James MacLeod' as the contact for the Washington D.C. location (the only James on the site), so this is very likely the DC Prime Rib's GM (another location, reported closed). Saved with no name. Review; keep only if Alex wants the group's DC GM."
+    },
+    {
+     "email": "liz@theprimeribs.com",
+     "reason": "Elizabeth Pretzinger, 'Senior Paralegal' (Apollo): on the domain but not a venue decision-maker and nothing ties her to the restaurant on the web; likely back-office/legal. Review; low value for a music pitch."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3402",
+   "name": "Dutch's Daughter",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3404",
+   "name": "The Narrows Restaurant",
+   "contacts": [
+    {
+     "email": "thenarrowsevents@gmail.com",
+     "name": "Kelly Phipps",
+     "source_url": "https://washcoll.edu/alumni/business/the-narrows-restaurant",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Jerry Dammeyer",
+     "source_url": "https://thenarrowsrestaurant.com/our-history/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Matt Cohey",
+     "source_url": "https://thenarrowsrestaurant.com/our-history/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "narrowsrest@gmail.com",
+     "reason": "Same business, but the title is wrong. The pipeline saved it as 'General Manager', but it is the job-application inbox from the venue's /generalmanager/ and /news-and-updates/ posts ('seeking to hire a passionate General Manager! To apply send resume to narrowsrest@gmail.com'). It is not the GM's address. Remove the General Manager title (or drop the contact as a hiring inbox)."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3403",
+   "name": "Harvest Thyme Tavern",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3055",
+   "name": "Walker's Overlook",
+   "contacts": [
+    {
+     "email": "markhlynch@gmail.com",
+     "name": "Mark Lynch",
+     "source_url": "https://www.walkersoverlook.com/contact-us",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Kimberly Csajko",
+     "source_url": "https://www.weddingwire.com/reviews/walkers-overlook-walkersville-walkersville/095c88ddd57b1f03.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3398",
+   "name": "Sushiko",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Piter Tjan",
+     "source_url": "https://www.sushikorestaurants.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Daisuke Utagawa",
+     "source_url": "https://www.bizbash.com/bizbash-lists/article/13228620/bon-appetit-names-sushiko-a-top-us-sushi-bar",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-3009",
+   "name": "Inn BoonsBoro",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Kayla Aufdem-Brinke",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-3011",
+   "name": "Antietam Overlook Farm",
+   "contacts": [
+    {
+     "email": "reservations@antietamoverlook.com",
+     "name": "Mark Svrcek",
+     "source_url": "https://antietamoverlook.com/",
+     "title": "Owner",
+     "verified": "role",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-3483",
+   "name": "Claire's at the Depot",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Anna Crossman",
+     "source_url": "https://www.clairesatthedepot.com/our-team",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-ART_-160",
+   "name": "Workhouse Arts Center",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Bryan Lane",
+     "source_url": "https://www.workhousearts.org/staff",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Carla Welborn",
+     "source_url": "https://www.workhousearts.org/staff",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "amehaworkineh@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Ameha Workineh, Accountant (staff page))"
+    },
+    {
+     "email": "bwelekayamikani@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Bweleka Yamikani-Masuka, Senior Accountant (staff page))"
+    },
+    {
+     "email": "ksimons@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Kimberley Simons, Chief Financial Officer)"
+    },
+    {
+     "email": "ellensmith@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Ellen Smith, Director of Human Resources & Artist Liaison)"
+    },
+    {
+     "email": "ceramics@workhousearts.org",
+     "reason": "not a venue/events contact at this org (ceramics studio / kiln-rental inbox, no person)"
+    },
+    {
+     "email": "glass@workhousearts.org",
+     "reason": "not a venue/events contact at this org (glass studio / kiln-rental inbox, no person)"
+    },
+    {
+     "email": "minigolf@workhousearts.org",
+     "reason": "not a venue/events contact at this org (mini-golf inbox, no person)"
+    },
+    {
+     "email": "gdillon@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Griffon Dillon, Glass Studio Manager)"
+    },
+    {
+     "email": "kulberg@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Kessler Ulberg, Ceramics Studio Manager)"
+    },
+    {
+     "email": "ianschmidt@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Ian Schmidt, Director of Glass and Ceramics (studio program))"
+    },
+    {
+     "email": "jayloy@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Jay Loy, Coordinator, Lorton Prison Museum)"
+    },
+    {
+     "email": "karenakers@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Karen Akers, Director of Education)"
+    },
+    {
+     "email": "ranjitsidhu@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Ranjit Sidhu, Director of Camps & Group Programs)"
+    },
+    {
+     "email": "violettanagy@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Violetta Nagy, Education Programs Assistant)"
+    },
+    {
+     "email": "paytoncrain@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Payton Crain, Arts & Education Coordinator (staff page) / Visitor Associate)"
+    },
+    {
+     "email": "wendyanderson@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Wendy Anderson, Military in the Arts Program Coordinator)"
+    },
+    {
+     "email": "kaitlinhoesch@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Kaitlin Hoesch, Director of Development (fundraising))"
+    },
+    {
+     "email": "khoesch@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Kaitlin Hoesch (duplicate address), Director of Development (fundraising))"
+    },
+    {
+     "email": "marynkristof@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Maryn Kristof, Development Associate (fundraising))"
+    },
+    {
+     "email": "faithriegal@workhousearts.org",
+     "reason": "not a venue/events contact at this org (no name or role on the sheet; not on the current staff page; no events link found)"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-641",
+   "name": "Blue Duck Tavern",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jean-Claude Plihon",
+     "source_url": "https://www.blueducktavern.com/story/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Andrew Cleverdon",
+     "source_url": "https://www.blueducktavern.com/story/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-3004",
+   "name": "Historic Waverly Mansion",
+   "contacts": [
+    {
+     "email": "lcoster@howardcountymd.gov",
+     "name": "Lisa Coster",
+     "source_url": "https://www.howardcountymd.gov/recreation-parks/staff-directory-inclement-weather-and-program-status-lines",
+     "outcome": "rejected:zerobounce_catch-all"
+    },
+    {
+     "email": "",
+     "name": "Lynn Bingham",
+     "source_url": "https://www.historicwaverlymansionmd.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "chantillyde@gmail.com",
+     "reason": "Belongs to Chantilly Design & Events, an outside pre-approved event coordinator listed on /pre-approved-coordinators (the page separates these from Waverly's venue staff); not the venue, not a venue person."
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-EVEN-2993",
+   "name": "Belmont Manor",
+   "contacts": [
+    {
+     "email": "lcoster@howardcountymd.gov",
+     "name": "Lisa Coster",
+     "source_url": "https://www.howardcountymd.gov/recreation-parks/staff-directory-inclement-weather-and-program-status-lines",
+     "outcome": "rejected:zerobounce_catch-all"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-THEA-005",
+   "name": "Saint Luke Church - Music in McLean",
+   "contacts": [
+    {
+     "email": "mcedrone@saintlukemclean.org",
+     "name": "Michael Cedrone",
+     "source_url": "https://saintlukemclean.org/liturgy-prayer/liturgical-ministries/music-choirs/",
+     "title": "Music Director, Saint Luke Catholic Church (contact for Music in McLean concert ",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/SaintLukeMcLean",
+     "outcome": "saved"
+    },
+    {
+     "field": "contact_form",
+     "value": "https://saintlukemclean.org/welcome/contact-us/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-EVEN-3001",
+   "name": "Overhills Mansion",
+   "contacts": [
+    {
+     "email": "julia@overhillsmansion.com",
+     "name": "Julia Hahn",
+     "source_url": "https://overhillsmansion.com/about/",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Paula Brostrom",
+     "source_url": "https://overhillsmansion.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2436",
+   "name": "Evelyn Rose",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Sam Schnoebelen",
+     "source_url": "https://www.tysonsreporter.com/2024/05/14/vienna-restauranteurs-hope-to-create-new-neighborhood-favorite-in-bazins-place/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Nick Palermo",
+     "source_url": "https://washingtonian.com/2024/06/10/evelyn-rose-puts-an-elegant-spin-on-nostalgia-in-vienna/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3268",
+   "name": "The Lake House",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Maurice Guerra",
+     "source_url": "https://web.restonchamber.org/list/member/reston-association-reston-157",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "abaker@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "angela@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "apalmer@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "becca@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "ccornell@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "clindquist@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "csanders@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "denise@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "dylane@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "hnickerson@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "jennifer@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "jmiller@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "jrogers@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "katelyn@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "ledd@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "lisa@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "maggie@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "mary@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "maryclaire@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "mmasa@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "ncote@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "njohnson@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "pcole@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "rriester@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "shannon@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "smoran@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "spring@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "srobinson@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "twellman@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "vlanier@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "wwerling@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-SENI-2954",
+   "name": "Sanctuary at Cross Keys",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Zach Gorn",
+     "source_url": "https://baltimorefishbowl.com/stories/questar-properties-and-caves-valley-partners-break-ground-for-130-million-sanctuary-at-cross-keys/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Steve Gorn",
+     "source_url": "https://baltimorefishbowl.com/stories/questar-properties-and-caves-valley-partners-break-ground-for-130-million-sanctuary-at-cross-keys/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-EVEN-739",
+   "name": "Chesapeake Bay Foundation Philip Merrill Center",
+   "contacts": [],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "egathagan@cbf.org",
+     "reason": "not a venue/events contact at this org (Elizabeth Gathagan is the rental contact for CBF's Brock Environmental Center in Virginia Beach VA (cbf.org/rent-our-venues and brock-event-information.pdf), a different venue, not the Merrill Center; outside the 2-hour radius)"
+    },
+    {
+     "email": "chesapeakeclassrooms@cbf.org",
+     "reason": "not a venue/events contact at this org (education-program inbox, no person)"
+    },
+    {
+     "email": "clagettfarm@cbf.org",
+     "reason": "not a venue/events contact at this org (Clagett Farm (Upper Marlboro) program inbox, no person)"
+    },
+    {
+     "email": "fieldtrips@cbf.org",
+     "reason": "not a venue/events contact at this org (education field-trip inbox, no person)"
+    },
+    {
+     "email": "rreynolds@cbf.org",
+     "reason": "not a venue/events contact at this org (Robert Reynolds, Program Manager, Port Isobel (VA) education center)"
+    },
+    {
+     "email": "emarshall@cbf.org",
+     "reason": "not a venue/events contact at this org (Everett Marshall, VP for People (HR))"
+    },
+    {
+     "email": "sthaivalappil@cbf.org",
+     "reason": "not a venue/events contact at this org (Soorya Thaivalappil, Environmental Educator)"
+    },
+    {
+     "email": "hcampbell@cbf.org",
+     "reason": "not a venue/events contact at this org (HL Campbell, Pennsylvania Science Policy and Advocacy Director)"
+    },
+    {
+     "email": "kposton@cbf.org",
+     "reason": "not a venue/events contact at this org (Katharene Poston, Chief Philanthropy Officer (fundraising))"
+    },
+    {
+     "email": "lbarnett@cbf.org",
+     "reason": "not a venue/events contact at this org (Loren Barnett, Creative Director / Editor (publications))"
+    },
+    {
+     "email": "byoung@cbf.org",
+     "reason": "not a venue/events contact at this org (Brian Young, Graphic Designer)"
+    },
+    {
+     "email": "dtucker@cbf.org",
+     "reason": "not a venue/events contact at this org (David Tucker, Director of Regional Major Giving (fundraising))"
+    },
+    {
+     "email": "tsanni@cbf.org",
+     "reason": "not a venue/events contact at this org (Tola Sanni, Chief Financial Officer)"
+    },
+    {
+     "email": "enicklin@cbf.org",
+     "reason": "not a venue/events contact at this org (Emmy Nicklin, Director of Digital Marketing and Communications (org-wide comms, not venue))"
+    },
+    {
+     "email": "cmoore@cbf.org",
+     "reason": "not a venue/events contact at this org (Chris Moore, Virginia Executive Director (other state, advocacy))"
+    },
+    {
+     "email": "vmoses@cbf.org",
+     "reason": "not a venue/events contact at this org (Vanessa Moses, 'Specialist' (appears in a Bay report-card science meeting))"
+    },
+    {
+     "email": "mfritz@cbf.org",
+     "reason": "not a venue/events contact at this org (Maggie Fritz, Director of Major Giving, Maryland (fundraising))"
+    },
+    {
+     "email": "jwood@cbf.org",
+     "reason": "not a venue/events contact at this org (Joe Wood, Virginia Senior Scientist)"
+    },
+    {
+     "email": "tcrabtree@cbf.org",
+     "reason": "not a venue/events contact at this org (Thomas Crabtree, Federal Policy Fellow)"
+    },
+    {
+     "email": "ajurczyk@cbf.org",
+     "reason": "not a venue/events contact at this org (Ann Jurczyk, Urban Restoration Manager)"
+    },
+    {
+     "email": "aharvey@cbf.org",
+     "reason": "not a venue/events contact at this org (Annabelle Harvey, Federal Policy Coordinator)"
+    },
+    {
+     "email": "jkrall@cbf.org",
+     "reason": "not a venue/events contact at this org (Julia Krall, Pennsylvania Executive Director (other state, advocacy))"
+    },
+    {
+     "email": "kfiala@cbf.org",
+     "reason": "not a venue/events contact at this org (Kellie Fiala, Maryland Oyster Restoration Coordinator)"
+    },
+    {
+     "email": "eholtzapple@cbf.org",
+     "reason": "not a venue/events contact at this org (Erin Holtzapple, Pennsylvania Budget and Office Manager)"
+    },
+    {
+     "email": "vdimarzio@cbf.org",
+     "reason": "not a venue/events contact at this org (Valerie Dimarzio, Maryland Media Relations Manager)"
+    },
+    {
+     "email": "smccabe@cbf.org",
+     "reason": "not a venue/events contact at this org (Samantha McCabe, Director of Major Giving, Central Virginia (fundraising))"
+    },
+    {
+     "email": "gtroutman@cbf.org",
+     "reason": "not a venue/events contact at this org (Gabby Troutman, Virginia Outreach and Advocacy Manager)"
+    },
+    {
+     "email": "kethridge@cbf.org",
+     "reason": "not a venue/events contact at this org (Kim Ethridge, Web Manager)"
+    },
+    {
+     "email": "mstegman@cbf.org",
+     "reason": "not a venue/events contact at this org (Matthew Stegman, Maryland Staff Attorney)"
+    },
+    {
+     "email": "khower@cbf.org",
+     "reason": "not a venue/events contact at this org (Kirsten Hower, Digital Advocacy and Outreach Manager)"
+    },
+    {
+     "email": "tlilley@cbf.org",
+     "reason": "not a venue/events contact at this org (Taylor Lilley, Environmental Justice Staff Attorney)"
+    },
+    {
+     "email": "ljennings@cbf.org",
+     "reason": "not a venue/events contact at this org (Lisa Jennings, Hampton Roads (VA) Outreach and Advocacy Manager)"
+    },
+    {
+     "email": "tsalvia@cbf.org",
+     "reason": "not a venue/events contact at this org (Trisha Salvia, PA Staff Attorney)"
+    },
+    {
+     "email": "kmullin@cbf.org",
+     "reason": "not a venue/events contact at this org (Karen Mullin, Director of Professional Learning (education))"
+    },
+    {
+     "email": "kmiranda@cbf.org",
+     "reason": "not a venue/events contact at this org (Kiana Miranda, Pennsylvania Engagement Coordinator)"
+    },
+    {
+     "email": "jluecke@cbf.org",
+     "reason": "not a venue/events contact at this org (Julie Luecke, Maryland Coastal Resource Scientist)"
+    },
+    {
+     "email": "agirard@cbf.org",
+     "reason": "not a venue/events contact at this org (Alan Girard, Senior Land Use Policy Manager)"
+    },
+    {
+     "email": "jschueler@cbf.org",
+     "reason": "not a venue/events contact at this org (Jenna Schueler, Science and Agricultural Policy Advisor)"
+    },
+    {
+     "email": "sdonaldson@cbf.org",
+     "reason": "not a venue/events contact at this org (Sue Donaldson, Front-End Web Developer)"
+    },
+    {
+     "email": "mlynch@cbf.org",
+     "reason": "not a venue/events contact at this org (Megan Lynch, Director of Planned Giving (fundraising))"
+    },
+    {
+     "email": "rlong@cbf.org",
+     "reason": "not a venue/events contact at this org (Rebecca Long, 'Marketing Manager' per Apollo; CBF's own contributor page lists her as former Digital Engagement & Social Media Manager / Senior Naturalist, no longer at CBF)"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3124",
+   "name": "Dear Charles",
+   "contacts": [
+    {
+     "email": "dearcharles@studyhotels.com",
+     "name": "Kathleen Dombrowski",
+     "source_url": "https://www.dearcharles.com/group-dining/",
+     "title": "General Manager, The Study at Johns Hopkins (the Study Hotels property that runs",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Michael Reynolds",
+     "source_url": "https://thelocalpalate.com/articles/first-look-dear-charles/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Paul McGowan",
+     "source_url": "https://www.studyhotels.com/baltimore",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-EVEN-3015",
+   "name": "The Gathering Place",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  }
+ ]
+}

@@ -1,0 +1,1342 @@
+{
+ "run_id": "run-20261111-1108",
+ "venues": [
+  {
+   "venue_id": "MD-REST-3400",
+   "name": "La Scala Ristorante Italiano",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "lascaladining.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "La Scala Ristorante Italiano (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Both saved contacts pass the name-match gate (on-domain lascaladining.com, Apollo org La Scala Ristorante Italiano; /about/ confirms Nino Germano as Chef/Owner). /private-dining/ publishes privatedining@lascaladining.com for an unnamed 'Private Dining Director'; no name found on site, WebSearch, LinkedIn snippets or listing sites (Knot, WeddingWire, Cvent), so nothing new to save. GM Chesley Patterson + owner already cover it."
+  },
+  {
+   "venue_id": "MD-REST-3397",
+   "name": "La Cuchara",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jake Lefenfeld",
+     "title": "Co-owner (described in press as General Manager of La Cuchara and Minnow)",
+     "email": "events@lacucharabaltimore.com",
+     "source": "website",
+     "source_url": "https://www.lacucharabaltimore.com/us",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Ben Lefenfeld",
+     "title": "Chef and Co-owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.lacucharabaltimore.com/us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Amy Lefenfeld",
+     "title": "Co-owner, CFO and Chief Administrative Officer",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.lacucharabaltimore.com/us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "lacucharabaltimore.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "La Cuchara (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 3
+    }
+   ],
+   "summary": "No staff page and no personal emails. The only usable inbox is events@ (the site's Private Dining Inquiries mailto); it's paired with co-owner Jake Lefenfeld, long described in press as GM, following the Flore precedent, but no source shows he runs events@. Important: La Cuchara closed after a hood fire on Jan 4 2026 (Baltimore Banner, Jan 5 2026). Coverage says it was rebuilding, and no reopening is confirmed as of Nov 2026, so check whether it's open before pitching. The owners also run Seppia in Hampden."
+  },
+  {
+   "venue_id": "MD-REST-3401",
+   "name": "Thames Street Oyster House",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Candace Beattie",
+     "title": "Owner / Proprietor",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.baltimorebrew.com/2011/09/08/the-raw-and-the-cooked-thames-street-oyster-house",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "thamesstreetoysterhouse.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Thames Street Oyster House (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 10
+    }
+   ],
+   "summary": "Saved contact Jamaii Crutchfield (Hospitality Manager, jamaii@thamesstreetoysterhouse.com) is on the venue's own domain via Apollo name+domain gate: passes. Site (home, about2.htm, employment.htm) only has info@ and Chef Eric Houseknecht; no events/private dining page or contact form. Owner Candace Beattie found in press (2011 Baltimore Brew, Baltimore Magazine) but no email anywhere; context only."
+  },
+  {
+   "venue_id": "MD-REST-3399",
+   "name": "Rusty Scupper",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Ed Prutzer",
+     "title": "General Manager (Apollo; likely former, the venue's contact page names Julian Demiri as GM)",
+     "email": "",
+     "source": "apollo",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "rusty-scupper.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Rusty Scupper (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Name-match gate passed for all 8 saved contacts: every email is on rusty-scupper.com, the venue's own domain (402 Key Hwy, Inner Harbor, Baltimore). Demiri (GM), Harris (Exec Chef), Bowers (groupdining@, signs the Plan an Event page as Catering & Sales Manager, 443-759-8651) and rscuppercatering@ are all on /contact/. Jurney, West and Ugaz are Apollo people on the same domain, and SignalHire also lists Jurney and West at Rusty Scupper. Select Restaurants (Cleveland) is the parent; it appears only in the site footer, and no contact on a Select Restaurants or sister-restaurant domain is saved. No better person found: Gabby Bowers is already the events decision-maker. For review, not wrong-business: rustyscupper@ and rscuppercatering@ have no person name (rustyscupper@ works like a general inbox), and Hostess/Sous Chef are low-value titles."
+  },
+  {
+   "venue_id": "MD-REST-3396",
+   "name": "The Prime Rib",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Rebecca Dolan",
+     "title": "Owner",
+     "email": "rebecca@theprimeribs.com",
+     "source": "press",
+     "source_url": "https://centermaryland.org/2023/prime-rib-signs-15-year-lease-to-remain-in-mt-vernon-and-expand",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false,
+     "note": "Correction to the existing nameless contact rebecca@theprimeribs.com: the venue's home page uses this mailto as the 'Please Inquire' button for private and business events (https://theprimeribs.com/); 2023 Center Maryland / lease press names the owner 'Rebecca Dolan'. Only Rebecca tied to the restaurant."
+    },
+    {
+     "name": "John Klaus",
+     "title": "General Manager (Baltimore events contact)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://theprimeribs.com/reserve/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "james@theprimeribs.com",
+     "reason": "Not a Baltimore contact: /reserve/ names 'General Manager, James MacLeod' as the contact for the Washington D.C. location (the only James on the site), so this is very likely the DC Prime Rib's GM (another location, reported closed). Saved with no name. Review; keep only if Alex wants the group's DC GM."
+    },
+    {
+     "email": "liz@theprimeribs.com",
+     "reason": "Elizabeth Pretzinger, 'Senior Paralegal' (Apollo): on the domain but not a venue decision-maker and nothing ties her to the restaurant on the web; likely back-office/legal. Review; low value for a music pitch."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "theprimeribs.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Prime Rib (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "theprimeribs.com is the Prime Rib group site (Baltimore original, DC, Live! Hanover, Philadelphia); Baltimore city matches. Mark Linzey (GM Baltimore on /about/, mark@ is the Baltimore 'Inquire' mailto) passes. rebecca@ = owner Rebecca Dolan (name correction; it is the site's private-events inquiry mailto). Flagged james@ (likely James MacLeod, DC GM) and liz@ (Senior Paralegal). Baltimore events GM John Klaus named on /reserve/ with no email. Sheet IG primeribwash is the DC handle (not overwritten)."
+  },
+  {
+   "venue_id": "MD-REST-3402",
+   "name": "Dutch's Daughter",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "dutchsdaughter.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Dutch's Daughter (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 4
+    }
+   ],
+   "summary": "Existing contacts confirmed. The venue's own homepage says 'Owner Eileen Gideon named the restaurant Dutch's Daughter in honor of her father Fred \"Dutch\" Onderdonk', so Eileen Gideon on events@dutchsdaughter.com (role) is a valid owner-plus-function-inbox pairing. events@ is also the address in the 2026-2027 Private Event Brochure PDF (no staff names in it). togo@ is the venue's own address but has no name. No events manager, GM or coordinator is named on the site (/about-us/ is template placeholder text), in the brochure, on LinkedIn or in press. Sister location Dutch's at SilverTree (Oakland MD) is the same owner; no contacts from it."
+  },
+  {
+   "venue_id": "MD-REST-3404",
+   "name": "The Narrows Restaurant",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kelly Phipps",
+     "title": "Owner/Manager",
+     "email": "thenarrowsevents@gmail.com",
+     "source": "press",
+     "source_url": "https://washcoll.edu/alumni/business/the-narrows-restaurant",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "Correction to the existing nameless thenarrowsevents@gmail.com contact. The address is printed in plain text on the venue's /private-dining-guide/ and /group-parties/ pages. Kelly Hardesty Phipps (daughter of founders Bo and Brenda Hardesty; /our-history/ says the daughters carry on the restaurant) is listed as Owner/Manager by the Washington College alumni business directory, and is the Author in the metadata of the venue's Narrows-Private-Dining-Guide.pdf, the guide that publishes this events inbox. Moderate confidence that she runs the inbox: attach the name for review rather than as certain."
+    },
+    {
+     "name": "Jerry Dammeyer",
+     "title": "General Manager (founding GM since 1983; may be retired, since the site is advertising a GM opening)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://thenarrowsrestaurant.com/our-history/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Matt Cohey",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://thenarrowsrestaurant.com/our-history/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "narrowsrest@gmail.com",
+     "reason": "Same business, but the title is wrong. The pipeline saved it as 'General Manager', but it is the job-application inbox from the venue's /generalmanager/ and /news-and-updates/ posts ('seeking to hire a passionate General Manager! To apply send resume to narrowsrest@gmail.com'). It is not the GM's address. Remove the General Manager title (or drop the contact as a hiring inbox)."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "thenarrowsrestaurant.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Narrows Restaurant (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "All 3 saved gmail addresses are published as plain text on the venue's own site, so the name-match gate passes. narrowsrest@gmail.com is wrongly titled 'General Manager': it is the address for applying to the GM job (flagged). Proposed name for the nameless events inbox thenarrowsevents@gmail.com: owner/manager Kelly Hardesty Phipps (Washington College alumni directory; Author of the venue's Private Dining Guide PDF; moderate confidence). Apollo's Caroline Phipps (Assistant Manager, likely family) has only an off-domain sweet.io email, correctly rejected. No other events, banquet or GM person with an email was found."
+  },
+  {
+   "venue_id": "MD-REST-3403",
+   "name": "Harvest Thyme Tavern",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "harvestthymetavern.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Harvest Thyme Tavern (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Name-match gate passes: both saved Gmail addresses (harvestthymetavern@gmail.com, httcatering@gmail.com) are mailto links on the venue's own /contact page, at 1251 W Central Ave, Davidsonville MD. Staff on /about (owners Rik and Pam Squillari, Ops Mgr Anthony Squillari, FOH Mgrs Andre Mynhardt and Jeff Carter) have no published emails, and no events or catering manager is named anywhere (site, press, LinkedIn snippets). The /catering page's events@harvestthymeteavern.com is a typo for the real domain harvestthymetavern.com (which has DreamHost MX); the corrected events@ address is unconfirmed and has no named person running it, so it was not returned."
+  },
+  {
+   "venue_id": "MD-EVEN-3055",
+   "name": "Walker's Overlook",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Mark Lynch",
+     "title": "Owner",
+     "email": "markhlynch@gmail.com",
+     "source": "website",
+     "source_url": "https://www.walkersoverlook.com/contact-us",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Kimberly Csajko",
+     "title": "Wedding Coordinator (named in reviews)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.weddingwire.com/reviews/walkers-overlook-walkersville-walkersville/095c88ddd57b1f03.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "walkersoverlook.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok; org=Walker's Overlook, people=0)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Walker's Overlook (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Existing markhlynch@gmail.com passes the gate (free-mail published as mailto on the venue's own contact page) and belongs to owner Mark Lynch (Walkersville Planning Commission 2018 minutes; Partyspace lists him as manager): name correction above. Coordinators named in reviews (Kimberly Csajko, Holly, Shannon, Tammy) have no emails. Venue at 8939 Woodsboro Pike, Walkersville MD; sister venue Dulany's Overlook, Frederick."
+  },
+  {
+   "venue_id": "MD-REST-3398",
+   "name": "Sushiko",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Piter Tjan",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.sushikorestaurants.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Daisuke Utagawa",
+     "title": "Owner / Creative Director (per 2009 BizBash and later listings; current role unconfirmed)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.bizbash.com/bizbash-lists/article/13228620/bon-appetit-names-sushiko-a-top-us-sushi-bar",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "sushikorestaurants.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Sushiko (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "The site (home, contact, about, sitemap pages) has no email addresses, only forms (the contact form is already on the sheet). WebSearch for @sushikorestaurants.com found nothing. The pipeline's ggeerman@ came back invalid from ZeroBounce, and no Geerman linked to Sushiko could be found. Named people with no email: Exec Chef Piter Tjan and owner/creative director Daisuke Utagawa. Nothing to save."
+  },
+  {
+   "venue_id": "MD-HOTE-3009",
+   "name": "Inn BoonsBoro",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kayla Aufdem-Brinke",
+     "title": "Business Manager (Inn BoonsBoro, Turn the Page Bookstore, Gifts Inn Boonsboro, ERW LLC)",
+     "email": "",
+     "source": "linkedin",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "innboonsboro.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Inn BoonsBoro (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "Nothing usable. Site (home, contact, hostevent, about) publishes only info@innboonsboro.com (general inbox) plus an unnamed 'Events Coordinator'; the About page's Regan McCook / Eric Teagan / Timothy Barrett are WordPress template placeholders (bios read 'Include a short bio...'), not real staff, so they should not be used. Owners are Nora Roberts and Bruce Wilder (press); LinkedIn business manager Kayla Aufdem-Brinke has no email. No @innboonsboro.com personal address found anywhere."
+  },
+  {
+   "venue_id": "MD-HOTE-3011",
+   "name": "Antietam Overlook Farm",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Mark Svrcek",
+     "title": "Owner",
+     "email": "reservations@antietamoverlook.com",
+     "source": "website",
+     "source_url": "https://antietamoverlook.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "antietamoverlook.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Antietam Overlook Farm (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok; org rejected as mismatch)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Owner Mark Svrcek is named on the home page of this 6-room B&B; its only published inbox is reservations@antietamoverlook.com (booking function inbox, mailto on the site), paired with him as verified=role if night_save accepts reservations@ as a function inbox. Staff on /about are first names only (Tina innkeeper, Felicity, Rich asst. manager who runs reservations). No Instagram found."
+  },
+  {
+   "venue_id": "VA-REST-3483",
+   "name": "Claire's at the Depot",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Anna Crossman",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.clairesatthedepot.com/our-team",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "clairesatthedepot.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Claire's at the Depot (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Name-match gate passes: claires@clairesrestaurant.com is the venue's own mail domain (published as a mailto on every page of clairesatthedepot.com; clairesrestaurant.com has Outlook MX) at 65 S 3rd St, Warrenton VA. /our-team names owner Claire Lamborne and Executive Chef Anna Crossman, neither with an email. Private events go through a form handled by unnamed 'event coordinators'. No events, catering or GM person with an email was found on the site, in WebSearch or in LinkedIn snippets (the only lead is a 2011 WeddingWire review naming a catering manager called Donna). reservations@ has no name attached."
+  },
+  {
+   "venue_id": "VA-ART_-160",
+   "name": "Workhouse Arts Center",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Bryan Lane",
+     "title": "Director of Events, Rentals, and Facilities",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.workhousearts.org/staff",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Carla Welborn",
+     "title": "Director, Marketing & Communication",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.workhousearts.org/staff",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "amehaworkineh@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Ameha Workineh, Accountant (staff page))"
+    },
+    {
+     "email": "bwelekayamikani@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Bweleka Yamikani-Masuka, Senior Accountant (staff page))"
+    },
+    {
+     "email": "ksimons@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Kimberley Simons, Chief Financial Officer)"
+    },
+    {
+     "email": "ellensmith@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Ellen Smith, Director of Human Resources & Artist Liaison)"
+    },
+    {
+     "email": "ceramics@workhousearts.org",
+     "reason": "not a venue/events contact at this org (ceramics studio / kiln-rental inbox, no person)"
+    },
+    {
+     "email": "glass@workhousearts.org",
+     "reason": "not a venue/events contact at this org (glass studio / kiln-rental inbox, no person)"
+    },
+    {
+     "email": "minigolf@workhousearts.org",
+     "reason": "not a venue/events contact at this org (mini-golf inbox, no person)"
+    },
+    {
+     "email": "gdillon@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Griffon Dillon, Glass Studio Manager)"
+    },
+    {
+     "email": "kulberg@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Kessler Ulberg, Ceramics Studio Manager)"
+    },
+    {
+     "email": "ianschmidt@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Ian Schmidt, Director of Glass and Ceramics (studio program))"
+    },
+    {
+     "email": "jayloy@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Jay Loy, Coordinator, Lorton Prison Museum)"
+    },
+    {
+     "email": "karenakers@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Karen Akers, Director of Education)"
+    },
+    {
+     "email": "ranjitsidhu@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Ranjit Sidhu, Director of Camps & Group Programs)"
+    },
+    {
+     "email": "violettanagy@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Violetta Nagy, Education Programs Assistant)"
+    },
+    {
+     "email": "paytoncrain@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Payton Crain, Arts & Education Coordinator (staff page) / Visitor Associate)"
+    },
+    {
+     "email": "wendyanderson@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Wendy Anderson, Military in the Arts Program Coordinator)"
+    },
+    {
+     "email": "kaitlinhoesch@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Kaitlin Hoesch, Director of Development (fundraising))"
+    },
+    {
+     "email": "khoesch@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Kaitlin Hoesch (duplicate address), Director of Development (fundraising))"
+    },
+    {
+     "email": "marynkristof@workhousearts.org",
+     "reason": "not a venue/events contact at this org (Maryn Kristof, Development Associate (fundraising))"
+    },
+    {
+     "email": "faithriegal@workhousearts.org",
+     "reason": "not a venue/events contact at this org (no name or role on the sheet; not on the current staff page; no events link found)"
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "workhousearts.org (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Workhouse Arts Center (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Site is the real Lorton VA venue. The key events people are already saved: Skylar Shane (Senior Manager of Campus Events, skylarshane@), Joseph Wallen (Director, Performing Arts), Liz Colandene (Manager, Performing Arts), Merissa Martignoni (PA Ops), Alena Norman (Marketing & Events), Karen Burnett (Events Manager, Apollo; not on the current staff page), Gary Gilham (Facility Manager), Sharon Arndt (Ops), CEO Keith Gordon. Bryan Lane (Director of Events, Rentals & Facilities, per a search snippet of the staff page) has no published email; the rentals page offers only rentals@ with no named owner. No new contacts with email. 20 of 34 saved contacts flagged as not venue/events (finance, HR, glass/ceramics studios, education/camps, development, museum, unnamed studio inboxes). Nancy Hessler-Spruill (Director of Marketing, Apollo) kept, but she is not on the current staff page (Carla Welborn holds that role now)."
+  },
+  {
+   "venue_id": "DC-REST-641",
+   "name": "Blue Duck Tavern",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jean-Claude Plihon",
+     "title": "Director of Culinary and Food & Beverage Operations, Park Hyatt Washington",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.blueducktavern.com/story/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Andrew Cleverdon",
+     "title": "Chef de Cuisine",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.blueducktavern.com/story/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "blueducktavern.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Blue Duck Tavern (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "No saveable named email. The venue's own site (home, contact, story, special-event-spaces, lounge, menus, sitemap, 9 menu PDFs) publishes only saleswasph@hyatt.com (the hotel sales inbox) and names only chefs (Plihon, Cleverdon, pastry chef Abrham Castillo) without emails. The current Park Hyatt Director of Sales/Events and the BDT GM could not be confirmed (latest press: Ilemona Salifu, Sep 2022; ex-GM Joseph Cerione named 'former' in Dec 2025), so the sales inbox can't be paired with the person who runs it. OpenTable listings show anna.jones@hyatt.com (reservations, +1 202 419 6755) and frank.henry@hyatt.com (+1 202 419 6620), role unknown and not on the venue's own site, so off-domain under the policy and not returned as contacts."
+  },
+  {
+   "venue_id": "MD-EVEN-3004",
+   "name": "Historic Waverly Mansion",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Lisa Coster",
+     "title": "General Manager (Waverly Mansion & Belmont Manor, Howard County Recreation & Parks)",
+     "email": "lcoster@howardcountymd.gov",
+     "source": "website",
+     "source_url": "https://www.howardcountymd.gov/recreation-parks/staff-directory-inclement-weather-and-program-status-lines",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Lynn Bingham",
+     "title": "Assistant Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.historicwaverlymansionmd.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "chantillyde@gmail.com",
+     "reason": "Belongs to Chantilly Design & Events, an outside pre-approved event coordinator listed on /pre-approved-coordinators (the page separates these from Waverly's venue staff); not the venue, not a venue person."
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "historicwaverlymansionmd.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok, 1 org rejected as org_mismatch)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Historic Waverly Mansion (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "County-owned venue (HoCo Rec & Parks). Flagged existing chantillyde@gmail.com (outside pre-approved coordinator, wrong business). Found the venue's GM Lisa Coster: named on the venue's /about page, email lcoster@howardcountymd.gov on the county Rec & Parks staff directory under 'Waverly Mansion' (checked with curl). Venue site publishes howardcountymd.gov addresses, so allow_off_domain. No Instagram for the venue (county uses @hocorec1)."
+  },
+  {
+   "venue_id": "MD-EVEN-2993",
+   "name": "Belmont Manor",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Lisa Coster",
+     "title": "Belmont Manor & Historic Park / Waverly Mansion site contact, Howard County Recreation & Parks",
+     "email": "lcoster@howardcountymd.gov",
+     "source": "website",
+     "source_url": "https://www.howardcountymd.gov/recreation-parks/staff-directory-inclement-weather-and-program-status-lines",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "belmontmanormd.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Belmont Manor (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok; org Belmont Manor & Historic Park, 1 person, 0 relevant)",
+     "search_type": "name",
+     "result_count": 3
+    }
+   ],
+   "summary": "Venue site names no staff; it says 'Run by Howard County Recreation & Parks' and publishes belmontmanormd@howardcountymd.gov (catch-all, unnamed). The county R&P staff directory lists Lisa Coster as the contact for both Belmont Manor & Historic Park and Waverly Mansion, lcoster@howardcountymd.gov (county domain = venue's own mail domain, allow_off_domain true; exact job title not published). Section manager for historic sites is listed as Keenan Holmes (kholmes@) in one directory version, Tiffany Fisk in another; not added."
+  },
+  {
+   "venue_id": "VA-THEA-005",
+   "name": "Saint Luke Church - Music in McLean",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michael Cedrone",
+     "title": "Music Director, Saint Luke Catholic Church (contact for Music in McLean concert series)",
+     "email": "mcedrone@saintlukemclean.org",
+     "source": "website",
+     "source_url": "https://saintlukemclean.org/liturgy-prayer/liturgical-ministries/music-choirs/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "https://www.facebook.com/SaintLukeMcLean",
+   "instagram": "",
+   "contact_form": "https://saintlukemclean.org/welcome/contact-us/",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "musicinmclean.org (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Saint Luke Church - Music in McLean (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, org rejected as mismatch)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Found the music director Michael Cedrone, mcedrone@saintlukemclean.org (a mailto on the parish's own Music & Choirs page; the staff listing confirms him as Music Director, 703-356-0670; old series pages named him as the Music in McLean contact). musicinmclean.org is a dead, hijacked domain, so the sheet website should become https://saintlukemclean.org (allow_off_domain set because the email's domain differs from the dead sheet domain). The series may be dormant: no 2025/26 concerts found. Also on the site: Children's Choir Director Andrea Knepper (aknepper@saintlukemclean.org), not the right person for a pitch, so not returned."
+  },
+  {
+   "venue_id": "MD-EVEN-3001",
+   "name": "Overhills Mansion",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Julia Hahn",
+     "title": "Part-owner (manages the Whitehouse Caterers team at Overhills Mansion)",
+     "email": "julia@overhillsmansion.com",
+     "source": "website",
+     "source_url": "https://overhillsmansion.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Paula Brostrom",
+     "title": "President / part-owner, Whitehouse Caterers at Overhills Mansion",
+     "email": "",
+     "source": "website",
+     "source_url": "https://overhillsmansion.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "overhillsmansion.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok; org_mismatch)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Overhills Mansion (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Existing julia@overhillsmansion.com passes the name-match gate (venue's own domain) and is Julia Hahn, part-owner who manages the team: name correction above. Paula Brostrom (President/part-owner) has no email. Event Planning Director 'Lynda' and Event Sales Director 'Karen' are on the About page with first names only, so events@overhillsmansion.com can't be paired with a full name. Venue confirmed at 916 S. Rolling Rd, Catonsville MD; run by Whitehouse Caterers (IG whitehousecaterers is the operator's, fine)."
+  },
+  {
+   "venue_id": "VA-REST-2436",
+   "name": "Evelyn Rose",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Sam Schnoebelen",
+     "title": "Co-owner / General Manager",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.tysonsreporter.com/2024/05/14/vienna-restauranteurs-hope-to-create-new-neighborhood-favorite-in-bazins-place/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Nick Palermo",
+     "title": "Co-owner / Chef",
+     "email": "",
+     "source": "press",
+     "source_url": "https://washingtonian.com/2024/06/10/evelyn-rose-puts-an-elegant-spin-on-nostalgia-in-vienna/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "evelynrosevienna.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Evelyn Rose (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 4
+    }
+   ],
+   "summary": "No saveable named email. The site (Squarespace; sitemap holds only home, reservations, private-events, test) publishes only info@evelynrosevienna.com, a general inbox. The owners are Sam Schnoebelen (GM) and chef Nick Palermo, and Caitlyn Conti is Maitre D' and Event Coordinator (Apollo), but no email for any of them was found on the site, in press or in searches. Apollo's Evelyn Halka @therosegroup.com is a different business, correctly rejected."
+  },
+  {
+   "venue_id": "VA-REST-3268",
+   "name": "The Lake House",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Maurice Guerra",
+     "title": "Member Services Supervisor, Reston Association (Member Services handles Lake House reservations)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://web.restonchamber.org/list/member/reston-association-reston-157",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "abaker@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "angela@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "apalmer@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "becca@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "ccornell@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "clindquist@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "csanders@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "denise@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "dylane@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "hnickerson@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "jennifer@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "jmiller@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "jrogers@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "katelyn@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "ledd@herecomestheguide.com",
+     "reason": "listing site staff, not the venue (Here Comes The Guide)"
+    },
+    {
+     "email": "lisa@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "maggie@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "mary@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "maryclaire@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "mmasa@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "ncote@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "njohnson@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "pcole@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "rriester@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "shannon@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "smoran@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "spring@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "srobinson@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "twellman@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "vlanier@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    },
+    {
+     "email": "wwerling@herecomestheguide.com",
+     "reason": "listing site staff (Here Comes The Guide), not the venue"
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "herecomestheguide.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok; searched the LISTING site's domain, org_mismatch)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Lake House (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok; 5 orgs rejected org_mismatch)",
+     "search_type": "name",
+     "result_count": 7
+    }
+   ],
+   "summary": "WRONG BUSINESS DATA: all saved contacts are Here Comes The Guide staff (pipeline [STEP] says 31 saved; 15 listed here are flagged; flag any other @herecomestheguide.com contact on this venue too). Sheet facebook/instagram (HereComesTheGuide) and contact_form (a HCTG real-wedding page) are also the listing site's and should be cleared. REAL WEBSITE: https://www.reston.org/Facilities/Facility/Details/The-Lake-House-18 (Reston Association-owned rental hall, 11450 Baron Cameron Ave, Reston VA 20190, 'The Lake House, Sponsored by Comstock'; reston.org returns 403 to plain HTTP). Rentals go through RA Member Services: reservations@reston.org / member_services@reston.org (general/function inboxes, no named owner) and 703-435-6530. Only named person found: Maurice Guerra, Member Services Supervisor (no email). No savable contact; venue should go back to needs_review."
+  },
+  {
+   "venue_id": "MD-SENI-2954",
+   "name": "Sanctuary at Cross Keys",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Zach Gorn",
+     "title": "Vice President & Principal, Questar Properties (owner/manager of the building)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://baltimorefishbowl.com/stories/questar-properties-and-caves-valley-partners-break-ground-for-130-million-sanctuary-at-cross-keys/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Steve Gorn",
+     "title": "Chairman & CEO, Questar Properties",
+     "email": "",
+     "source": "press",
+     "source_url": "https://baltimorefishbowl.com/stories/questar-properties-and-caves-valley-partners-break-ground-for-130-million-sanctuary-at-cross-keys/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "sanctuaryatcrosskeys.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Sanctuary at Cross Keys (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Luxury rental apartment building (Questar Properties, owner/manager). Site (contact, press, amenities) names no staff; only email is info@livecrosskeys.com (general inbox, Cloudflare-encoded). No property/community/lifestyle manager found in web, press or LinkedIn snippets; only Questar execs Zach and Steve Gorn (no email, off-domain). Nothing saveable."
+  },
+  {
+   "venue_id": "MD-EVEN-739",
+   "name": "Chesapeake Bay Foundation Philip Merrill Center",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "egathagan@cbf.org",
+     "reason": "not a venue/events contact at this org (Elizabeth Gathagan is the rental contact for CBF's Brock Environmental Center in Virginia Beach VA (cbf.org/rent-our-venues and brock-event-information.pdf), a different venue, not the Merrill Center; outside the 2-hour radius)"
+    },
+    {
+     "email": "chesapeakeclassrooms@cbf.org",
+     "reason": "not a venue/events contact at this org (education-program inbox, no person)"
+    },
+    {
+     "email": "clagettfarm@cbf.org",
+     "reason": "not a venue/events contact at this org (Clagett Farm (Upper Marlboro) program inbox, no person)"
+    },
+    {
+     "email": "fieldtrips@cbf.org",
+     "reason": "not a venue/events contact at this org (education field-trip inbox, no person)"
+    },
+    {
+     "email": "rreynolds@cbf.org",
+     "reason": "not a venue/events contact at this org (Robert Reynolds, Program Manager, Port Isobel (VA) education center)"
+    },
+    {
+     "email": "emarshall@cbf.org",
+     "reason": "not a venue/events contact at this org (Everett Marshall, VP for People (HR))"
+    },
+    {
+     "email": "sthaivalappil@cbf.org",
+     "reason": "not a venue/events contact at this org (Soorya Thaivalappil, Environmental Educator)"
+    },
+    {
+     "email": "hcampbell@cbf.org",
+     "reason": "not a venue/events contact at this org (HL Campbell, Pennsylvania Science Policy and Advocacy Director)"
+    },
+    {
+     "email": "kposton@cbf.org",
+     "reason": "not a venue/events contact at this org (Katharene Poston, Chief Philanthropy Officer (fundraising))"
+    },
+    {
+     "email": "lbarnett@cbf.org",
+     "reason": "not a venue/events contact at this org (Loren Barnett, Creative Director / Editor (publications))"
+    },
+    {
+     "email": "byoung@cbf.org",
+     "reason": "not a venue/events contact at this org (Brian Young, Graphic Designer)"
+    },
+    {
+     "email": "dtucker@cbf.org",
+     "reason": "not a venue/events contact at this org (David Tucker, Director of Regional Major Giving (fundraising))"
+    },
+    {
+     "email": "tsanni@cbf.org",
+     "reason": "not a venue/events contact at this org (Tola Sanni, Chief Financial Officer)"
+    },
+    {
+     "email": "enicklin@cbf.org",
+     "reason": "not a venue/events contact at this org (Emmy Nicklin, Director of Digital Marketing and Communications (org-wide comms, not venue))"
+    },
+    {
+     "email": "cmoore@cbf.org",
+     "reason": "not a venue/events contact at this org (Chris Moore, Virginia Executive Director (other state, advocacy))"
+    },
+    {
+     "email": "vmoses@cbf.org",
+     "reason": "not a venue/events contact at this org (Vanessa Moses, 'Specialist' (appears in a Bay report-card science meeting))"
+    },
+    {
+     "email": "mfritz@cbf.org",
+     "reason": "not a venue/events contact at this org (Maggie Fritz, Director of Major Giving, Maryland (fundraising))"
+    },
+    {
+     "email": "jwood@cbf.org",
+     "reason": "not a venue/events contact at this org (Joe Wood, Virginia Senior Scientist)"
+    },
+    {
+     "email": "tcrabtree@cbf.org",
+     "reason": "not a venue/events contact at this org (Thomas Crabtree, Federal Policy Fellow)"
+    },
+    {
+     "email": "ajurczyk@cbf.org",
+     "reason": "not a venue/events contact at this org (Ann Jurczyk, Urban Restoration Manager)"
+    },
+    {
+     "email": "aharvey@cbf.org",
+     "reason": "not a venue/events contact at this org (Annabelle Harvey, Federal Policy Coordinator)"
+    },
+    {
+     "email": "jkrall@cbf.org",
+     "reason": "not a venue/events contact at this org (Julia Krall, Pennsylvania Executive Director (other state, advocacy))"
+    },
+    {
+     "email": "kfiala@cbf.org",
+     "reason": "not a venue/events contact at this org (Kellie Fiala, Maryland Oyster Restoration Coordinator)"
+    },
+    {
+     "email": "eholtzapple@cbf.org",
+     "reason": "not a venue/events contact at this org (Erin Holtzapple, Pennsylvania Budget and Office Manager)"
+    },
+    {
+     "email": "vdimarzio@cbf.org",
+     "reason": "not a venue/events contact at this org (Valerie Dimarzio, Maryland Media Relations Manager)"
+    },
+    {
+     "email": "smccabe@cbf.org",
+     "reason": "not a venue/events contact at this org (Samantha McCabe, Director of Major Giving, Central Virginia (fundraising))"
+    },
+    {
+     "email": "gtroutman@cbf.org",
+     "reason": "not a venue/events contact at this org (Gabby Troutman, Virginia Outreach and Advocacy Manager)"
+    },
+    {
+     "email": "kethridge@cbf.org",
+     "reason": "not a venue/events contact at this org (Kim Ethridge, Web Manager)"
+    },
+    {
+     "email": "mstegman@cbf.org",
+     "reason": "not a venue/events contact at this org (Matthew Stegman, Maryland Staff Attorney)"
+    },
+    {
+     "email": "khower@cbf.org",
+     "reason": "not a venue/events contact at this org (Kirsten Hower, Digital Advocacy and Outreach Manager)"
+    },
+    {
+     "email": "tlilley@cbf.org",
+     "reason": "not a venue/events contact at this org (Taylor Lilley, Environmental Justice Staff Attorney)"
+    },
+    {
+     "email": "ljennings@cbf.org",
+     "reason": "not a venue/events contact at this org (Lisa Jennings, Hampton Roads (VA) Outreach and Advocacy Manager)"
+    },
+    {
+     "email": "tsalvia@cbf.org",
+     "reason": "not a venue/events contact at this org (Trisha Salvia, PA Staff Attorney)"
+    },
+    {
+     "email": "kmullin@cbf.org",
+     "reason": "not a venue/events contact at this org (Karen Mullin, Director of Professional Learning (education))"
+    },
+    {
+     "email": "kmiranda@cbf.org",
+     "reason": "not a venue/events contact at this org (Kiana Miranda, Pennsylvania Engagement Coordinator)"
+    },
+    {
+     "email": "jluecke@cbf.org",
+     "reason": "not a venue/events contact at this org (Julie Luecke, Maryland Coastal Resource Scientist)"
+    },
+    {
+     "email": "agirard@cbf.org",
+     "reason": "not a venue/events contact at this org (Alan Girard, Senior Land Use Policy Manager)"
+    },
+    {
+     "email": "jschueler@cbf.org",
+     "reason": "not a venue/events contact at this org (Jenna Schueler, Science and Agricultural Policy Advisor)"
+    },
+    {
+     "email": "sdonaldson@cbf.org",
+     "reason": "not a venue/events contact at this org (Sue Donaldson, Front-End Web Developer)"
+    },
+    {
+     "email": "mlynch@cbf.org",
+     "reason": "not a venue/events contact at this org (Megan Lynch, Director of Planned Giving (fundraising))"
+    },
+    {
+     "email": "rlong@cbf.org",
+     "reason": "not a venue/events contact at this org (Rebecca Long, 'Marketing Manager' per Apollo; CBF's own contributor page lists her as former Digital Engagement & Social Media Manager / Senior Naturalist, no longer at CBF)"
+    }
+   ],
+   "apollo_searches": [
+    {
+     "query": "cbf.org (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "Chesapeake Bay Foundation Philip Merrill Center (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "venue.cbf.org (6 Herndon Ave, Annapolis) names only Shannon Wright, Wedding & Events Manager, and publishes only events@cbf.org / 443.482.2001; no personal email for her anywhere (already saved as events@ role contact). Kept: Shannon Wright (events@), Taryn Dwan (Director of Stewardship & Events), Jessica Kluh (Events & Promotions Manager, jrubino@), Hilary Falk (CEO), Rob Beach (VP Communications, exec), Allison Colden (Maryland Executive Director, exec). 41 of 47 flagged: CBF-wide scientists, policy, attorneys, fundraisers, educators, PA/VA staff, web/design, plus egathagan@ (the Brock Environmental Center rental contact in Virginia Beach, a different CBF venue) and rlong@ (left CBF). No new contacts."
+  },
+  {
+   "venue_id": "MD-REST-3124",
+   "name": "Dear Charles",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kathleen Dombrowski",
+     "title": "General Manager, The Study at Johns Hopkins (the Study Hotels property that runs Dear Charles; named GM at the Feb 2024 opening)",
+     "email": "dearcharles@studyhotels.com",
+     "source": "press",
+     "source_url": "https://www.dearcharles.com/group-dining/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Michael Reynolds",
+     "title": "Chef (named at opening; current role unconfirmed)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://thelocalpalate.com/articles/first-look-dear-charles/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Paul McGowan",
+     "title": "President & Founder, Hospitality 3 and Study Hotels (operator)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.studyhotels.com/baltimore",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "dearcharles.com (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Dear Charles (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Dear Charles is the restaurant of The Study at Johns Hopkins hotel (Study Hotels), at 3215 N Charles St, Baltimore. It's open, with hours on its location page. Its own group-dining page publishes dearcharles@studyhotels.com, a restaurant booking inbox on the operator's domain (allow_off_domain). The inbox is paired with hotel GM Kathleen Dombrowski, but that is low confidence: she was named GM in a JHU Hub search snippet from Feb 2024 (the page itself returned 403) and is listed as a Study Hotels GM on theorg.com, so check that she's current before saving. No personal email was found anywhere. Study Hotels' email pattern is reportedly FLast@, but it was not used because emails are never guessed."
+  },
+  {
+   "venue_id": "MD-EVEN-3015",
+   "name": "The Gathering Place",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "thegatheringplacemd.net (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run in the audit: no Apollo tools were connected; domain_search=ok)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "The Gathering Place (pipeline's own Apollo step on Nov 11, from its [STEP] line; not re-run: no Apollo tools connected; name_search=ok, 5 orgs rejected as org_mismatch)",
+     "search_type": "name",
+     "result_count": 10
+    }
+   ],
+   "summary": "Site (home, about, details, contact, interfaith-center, blog) names no staff; only sales@thegatheringplacemd.net (function inbox, no person). Directories (Knot 403, WeddingWire, Eventective, Zola) name no owner/manager; one WeddingWire review mentions a manager called only 'Wander' (no last name, unverified). Blog author Karen Buck's role unknown. Nothing saveable."
+  }
+ ]
+}

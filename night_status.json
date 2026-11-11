@@ -1,77 +1,12 @@
 {
  "alert": null,
  "night": {
-  "date": "2026-11-10",
-  "started_at": "2026-11-10T01:25:54-05:00",
+  "date": "2026-11-11",
+  "started_at": "2026-11-11T11:04:53-05:00",
   "finished_at": null,
   "state": "running",
-  "runs": [
-   {
-    "run_id": "run-20261108-0931",
-    "outcome": "finished",
-    "started": "01:28",
-    "venues": 25,
-    "processed": 25,
-    "skipped": 0,
-    "with_contacts": 16,
-    "zero": 9,
-    "new_contacts": 41,
-    "unfinished": 0,
-    "ended": "02:54",
-    "rescued_contacts": 4,
-    "rescued_venues": 1,
-    "deep_dive": "done"
-   },
-   {
-    "run_id": "run-20261110-0254",
-    "outcome": "finished",
-    "started": "02:54",
-    "venues": 25,
-    "processed": 25,
-    "skipped": 0,
-    "with_contacts": 16,
-    "zero": 9,
-    "new_contacts": 167,
-    "unfinished": 0,
-    "ended": "05:20",
-    "rescued_contacts": 13,
-    "rescued_venues": 8,
-    "deep_dive": "done"
-   },
-   {
-    "run_id": "run-20261110-0520",
-    "outcome": "finished",
-    "started": "05:20",
-    "venues": 25,
-    "processed": 25,
-    "skipped": 0,
-    "with_contacts": 16,
-    "zero": 9,
-    "new_contacts": 41,
-    "unfinished": 0,
-    "ended": "07:28",
-    "rescued_contacts": 7,
-    "rescued_venues": 3,
-    "deep_dive": "done"
-   },
-   {
-    "run_id": "run-20261110-0729",
-    "outcome": "finished",
-    "started": "07:29",
-    "venues": 25,
-    "processed": 25,
-    "skipped": 0,
-    "with_contacts": 11,
-    "zero": 14,
-    "new_contacts": 16,
-    "unfinished": 0,
-    "ended": "09:43",
-    "rescued_contacts": 4,
-    "rescued_venues": 3,
-    "deep_dive": "done"
-   }
-  ],
-  "note": "Night runs are paused (.night_off)."
+  "runs": [],
+  "note": "Outreach running 24/7 until the credits run out"
  },
  "history": [
   {
@@ -172,5 +107,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-11T01:00:05-05:00"
+ "updated_at": "2026-11-11T11:08:29-05:00"
 }

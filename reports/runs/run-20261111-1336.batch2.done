@@ -1,0 +1,52 @@
+{
+  "run_id": "run-20261111-1336",
+  "batch": 2,
+  "venue_ids": [
+    "VA-REST-3061",
+    "VA-THEA-003",
+    "VA-THEA-004",
+    "VA-REST-1151",
+    "DC-REST-1345",
+    "MD-SENI-902",
+    "MD-REST-3121",
+    "MD-SENI-903"
+  ],
+  "final": {
+    "VA-REST-3061": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "VA-THEA-003": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "VA-THEA-004": {
+      "result": "ok",
+      "status": "pipelined"
+    },
+    "VA-REST-1151": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "DC-REST-1345": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "MD-SENI-902": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "MD-REST-3121": {
+      "result": "empty",
+      "status": "needs_review"
+    },
+    "MD-SENI-903": {
+      "result": "ok",
+      "status": "pipelined"
+    }
+  },
+  "finished_at": "2026-11-11 14:58:55",
+  "run_log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261111-1336.log",
+  "report": "",
+  "batch_file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261111-1336.batch2.json"
+}

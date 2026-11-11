@@ -1,0 +1,88 @@
+{
+  "created": "2026-11-11 13:36:15",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "wild": 25
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-1336/batch_01.json",
+      "venue_ids": [
+        "DC-REST-644",
+        "DC-REST-2314",
+        "VA-REST-2990",
+        "MD-HOTE-496",
+        "MD-EVEN-2962",
+        "MD-REST-2924",
+        "MD-REST-2757",
+        "MD-REST-2788"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-1336/batch_02.json",
+      "venue_ids": [
+        "VA-REST-3061",
+        "VA-THEA-003",
+        "VA-THEA-004",
+        "VA-REST-1151",
+        "DC-REST-1345",
+        "MD-SENI-902",
+        "MD-REST-3121",
+        "MD-SENI-903"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-1336/batch_03.json",
+      "venue_ids": [
+        "MD-ART_-716",
+        "MD-REST-924",
+        "MD-HOTE-2985",
+        "MD-REST-729",
+        "MD-EVEN-2989",
+        "MD-REST-3156",
+        "MD-LUXU-2774",
+        "MD-REST-3128"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-1336/batch_04.json",
+      "venue_ids": [
+        "MD-EVEN-3012"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "DC-REST-644",
+    "DC-REST-2314",
+    "VA-REST-2990",
+    "MD-HOTE-496",
+    "MD-EVEN-2962",
+    "MD-REST-2924",
+    "MD-REST-2757",
+    "MD-REST-2788",
+    "VA-REST-3061",
+    "VA-THEA-003",
+    "VA-THEA-004",
+    "VA-REST-1151",
+    "DC-REST-1345",
+    "MD-SENI-902",
+    "MD-REST-3121",
+    "MD-SENI-903",
+    "MD-ART_-716",
+    "MD-REST-924",
+    "MD-HOTE-2985",
+    "MD-REST-729",
+    "MD-EVEN-2989",
+    "MD-REST-3156",
+    "MD-LUXU-2774",
+    "MD-REST-3128",
+    "MD-EVEN-3012"
+  ]
+}

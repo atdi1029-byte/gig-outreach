@@ -24,8 +24,16 @@
    },
    {
     "run_id": "run-20261111-1336",
-    "outcome": "running",
-    "started": "13:36"
+    "outcome": "stopped: Chrome stopped answering JavaScript before venue The Turn House (MD-REST-3156)",
+    "started": "13:36",
+    "venues": 24,
+    "processed": 21,
+    "skipped": 0,
+    "with_contacts": 10,
+    "zero": 11,
+    "new_contacts": 148,
+    "unfinished": 3,
+    "ended": "15:36"
    }
   ],
   "note": "Outreach running 24/7 until the credits run out"
@@ -129,5 +137,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-11T14:16:16-05:00"
+ "updated_at": "2026-11-11T15:36:41-05:00"
 }

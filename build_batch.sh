@@ -581,6 +581,14 @@ for v in venues:
         continue
     ts, reasons = ts_score(v, c)
     b = ts_bucket(c, v)
+    # Nov 11 2026: the taste rules only knew European cuisine, so Old Ebbitt Grill, The Dabney, Kingbird at the
+    # Watergate and The Lounge at BOURBON STEAK never ran. Claude rated those rows by hand ("Upscale checked
+    # <date>: N" in the notes); 4 or 5 lets them through like a sweep find, in their own kind's bucket.
+    um = re.search(r'(?i)upscale checked \d{4}-\d{2}-\d{2}: ([1-5])', str(v.get('notes') or ''))
+    checked = bool(um and int(um.group(1)) >= 4)
+    if not b and checked:
+        b = {'hotel': 'hotel', 'country_club': 'club', 'private_club': 'club', 'yacht_club': 'club', 'golf_club': 'club',
+             'winery': 'wine', 'vineyard': 'wine', 'wine_bar': 'wine'}.get(str(v.get('category') or '').lower().replace(' ', '_'), 'fine_dining')
     if not b:
         if not sweep:
             skip('no prime evidence (generic restaurant, chain or non-European cuisine)', v, cat)
@@ -589,7 +597,7 @@ for v in venues:
         sweep_in['prime evidence'] += 1
     floor = max(MIN_TASTE_SCORE, BUCKET_MIN_SCORE.get(b, MIN_TASTE_SCORE))
     if ts < floor:
-        if not sweep:
+        if not sweep and not checked:
             skips[f'below taste floor'].append(vid)
             continue
         sweep_in['taste floor'] += 1

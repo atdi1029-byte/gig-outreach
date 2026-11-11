@@ -221,6 +221,15 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
   `night-state.json` `audit_pending` and run first when it's back; fix_pending is kept too.
 - `export DREAM_FIRST=1` in `.env` (Alex, Nov 7 2026): build_batch drops the bucket mix and runs luxury hotels, then
   European/fine dining (casual names last), clubs, wine, the rest. Remove the line to get the mix back.
+  Nov 11 2026 (Alex: "your foucing on are galleries and shit"): restaurants, hotels, clubs, wineries and event
+  venues always run before galleries, museums, churches, senior living and apartments; only real-stage dream finds
+  jump the queue. Restaurants the taste rules miss (not European) run when Claude rated them 4-5 by hand
+  (notes "Upscale checked <date>: N").
+- Pool repair (Nov 11 2026): ~700 good DC/MD/VA rows were stuck behind bad data from the old Google Maps
+  discovery (Mar-Sep): query words as the city, chain homepages as websites, geocodes in other states (Reston
+  at 43 hours), never verified. Research agents re-checked each one; fixes written with backups in
+  `reports/repair/cleanup-20261111-*`. When the pool looks thin, check the planner's skip counts for real
+  venues stuck behind data problems before running more discovery.
 - LinkedIn stays ON (Alex, Nov 8 2026: "dont turn it off!!!!") even though over the burn's first 307 venues it
   saved 7 contacts. Fix its searches instead (state and venue type in every query; never open results outside DC/MD/VA).
 - Log: `reports/runs/burn-YYYYMMDD-HHMM.log`. Another burn later: `rm .burn_done`.

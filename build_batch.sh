@@ -750,6 +750,15 @@ if os.environ.get('DREAM_FIRST') == '1':
     def not_a_stage(e):
         v = e['venue']
         return str(v.get('category') or '').lower().replace(' ', '_') in NOT_STAGE or bool(chain.search(v.get('name') or ''))
+    # Nov 11 2026 (Alex: "why werent you running on restauraunts hotels country clubs? your foucing on are galleries"):
+    # the pool is almost all sweep finds in the wild bucket, where a gallery or senior home rated 4 beat a
+    # restaurant rated 3. The places he plays run first; galleries, museums, senior living and the rest after them.
+    REAL_STAGE = {'restaurant', 'fine_dining', 'bistro', 'hotel', 'luxury_hotel', 'inn', 'country_club', 'private_club',
+                  'club', 'golf_club', 'yacht_club', 'winery', 'vineyard', 'wine_bar', 'event_venue', 'event', 'estate'}
+    def stage_tier(e):
+        if not_a_stage(e):
+            return 2
+        return 0 if str(e['venue'].get('category') or '').lower().replace(' ', '_') in REAL_STAGE else 1
     def upscale(e):
         try:
             u = float(e['venue'].get('upscale_score') or 0)
@@ -757,7 +766,7 @@ if os.environ.get('DREAM_FIRST') == '1':
             u = 0
         return u if 0 < u <= 5 else 0
     for b in by_bucket:
-        by_bucket[b] = sorted(by_bucket[b], key=lambda e: (not_a_stage(e), -upscale(e), bool(casual.search(e['venue'].get('name') or '')), rank_key(e)))
+        by_bucket[b] = sorted(by_bucket[b], key=lambda e: (stage_tier(e), -upscale(e), bool(casual.search(e['venue'].get('name') or '')), rank_key(e)))
     n = {b: len(by_bucket.get(b, [])) for b in BUCKET_ORDER}
     take = {b: 0 for b in BUCKET_ORDER}
     take['hotel'] = min(COUNT, n['hotel'])
@@ -787,7 +796,9 @@ while len(seq) < sum(take.values()):
 # DREAM_FIRST: venues from the region-wide dream sweeps (sweep_dream_*.md, source or notes "dream-...", Nov 7 2026: The Inn at
 # Little Washington, the Willard...) go first, whatever their bucket or score
 if os.environ.get('DREAM_FIRST') == '1':
-    dream = sorted((e for b in by_bucket for e in by_bucket[b] if re.search(r'dream[0-9]?-[a-z-]+-2026', str(e['venue'].get('source') or '') + ' ' + str(e['venue'].get('notes') or ''))), key=rank_key)
+    # only dream finds that are real stages jump the queue (Workhouse Arts Center and the Chesapeake Bay Foundation
+    # came in on dream sweeps and ran ahead of restaurants, Nov 11 2026)
+    dream = sorted((e for b in by_bucket for e in by_bucket[b] if stage_tier(e) == 0 and re.search(r'dream[0-9]?-[a-z-]+-2026', str(e['venue'].get('source') or '') + ' ' + str(e['venue'].get('notes') or ''))), key=lambda e: (-upscale(e), rank_key(e)))
     seq = (dream + [e for e in seq if e not in dream])[:COUNT]
 
 if len(seq) < COUNT and pool_last:

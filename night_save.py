@@ -12,6 +12,13 @@ one that writes, under the runbook's save policy (outreach_rules.py):
   - every saved contact needs a real person name (first.last emails are the only
     exception); function inboxes (events@, catering@ ...) with a name -> verified=role,
     no ZeroBounce credit; personal inboxes -> ZeroBounce, saved only when valid
+  - every contact passes outreach_rules.contact_gate (Nov 11 2026): back-office mailboxes
+    and titles (accounting, legal, HR, IT, admissions, science, fundraising, caregivers)
+    are never saved, and at most MAX_NEW_CONTACTS_PER_VENUE (10) are added per venue
+  - contacts the full audit flagged (flag_contacts: wrong business / not a venue person)
+    are DELETED from the sheet: a backup JSON of every row is written first
+    (reports/repair/night-flagged-RUN_ID-STAMP.json), rows that were already emailed or
+    messaged are never touched, and each delete is read back. NIGHT_DELETE_FLAGGED=0 only lists them.
   - Facebook / Instagram / contact form are written only where the sheet is empty
   - a venue that now has a sendable contact goes to pipelined (never demoted) and loses
     its "PIPELINE: 0 contacts RUN_ID" park note
@@ -88,6 +95,79 @@ def zb_verify(email, run_id):
         return {"status": "deferred", "reason": f"guard_error:{exc}"}
 
 
+def is_touched(c):
+    """Emailed or messaged rows are history: never deleted (same rule as repair_data.py)."""
+    sent = c.get("email_sent")
+    return (sent not in (False, None, "", "false", "False")) or c.get("ig_dm_sent") in (True, "true") \
+        or c.get("fb_msg_sent") in (True, "true")
+
+
+class FlagDeleter:
+    """Deletes the full audit's flagged contacts: backup first, then delete, then read back."""
+
+    def __init__(self, run_id, dry):
+        self.dry = dry or os.environ.get("NIGHT_DELETE_FLAGGED", "1") == "0"
+        stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+        self.backup_path = os.path.join(HERE, "reports", "repair", f"night-flagged-{run_id}-{stamp}.json")
+        self.rows = []
+
+    def _write_backup(self):
+        os.makedirs(os.path.dirname(self.backup_path), exist_ok=True)
+        tmp = self.backup_path + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump({"taken_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+                       "why": "night_save.py: contacts flagged by the full audit (flag_contacts)",
+                       "contacts": self.rows}, f, indent=1, default=str)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, self.backup_path)
+
+    def run(self, vid, d, flagged, keep_emails):
+        """Returns one outcome dict per flagged entry; d = the venue_detail just read."""
+        out = []
+        rows = d.get("contacts") or []
+        for fl in flagged:
+            email = R.normalize_email((fl or {}).get("email") if isinstance(fl, dict) else fl)
+            rec = {"email": email or str(fl)[:120], "reason": (fl.get("reason") if isinstance(fl, dict) else "") or ""}
+            out.append(rec)
+            if not email:
+                rec["outcome"] = "skipped:no_email"
+                continue
+            if email in keep_emails:
+                rec["outcome"] = "skipped:also_found_as_a_contact"
+                continue
+            hits = [c for c in rows if R.normalize_email(c.get("email")) == email]
+            if not hits:
+                rec["outcome"] = "not_on_sheet"
+                continue
+            if len(hits) > 1 or not str(hits[0].get("contact_id") or "").strip():
+                rec["outcome"] = "skipped:ambiguous_row"
+                continue
+            row = hits[0]
+            if is_touched(row):
+                rec["outcome"] = "skipped:already_contacted"
+                continue
+            if self.dry:
+                rec["outcome"] = "would_delete"
+                continue
+            self.rows.append(dict(row, venue_id=row.get("venue_id") or vid, flag_reason=rec["reason"]))
+            self._write_backup()          # the backup holds this row before it is deleted
+            resp = api({"action": "delete_contact", "contact_id": row.get("contact_id"),
+                        "venue_id": vid, "email": email})
+            if resp.get("status") != "ok":
+                rec["outcome"] = "error:" + str(resp.get("message") or resp.get("reason") or "api_error")[:120]
+                continue
+            rb = detail(vid)
+            if rb is None:
+                rec["outcome"] = "error:readback_failed"
+            elif any(R.normalize_email(c.get("email")) == email for c in rb.get("contacts") or []):
+                rec["outcome"] = "error:still_on_sheet"
+            else:
+                rec["outcome"] = "deleted"
+                rows = rb.get("contacts") or []
+        return out
+
+
 def social_ok(url, host):
     u = (url or "").strip()
     return bool(re.match(r"^https?://([a-z0-9-]+\.)*" + re.escape(host) + r"/[^\s]+$", u, re.I))
@@ -106,8 +186,11 @@ def main(argv):
         print("saved=0 venues_rescued=0 socials=0 rejected=0 errors=1")
         return 1
     results, done = [], []
-    totals = {"saved": 0, "venues_rescued": 0, "socials": 0, "rejected": 0, "errors": 0}
+    totals = {"saved": 0, "venues_rescued": 0, "socials": 0, "rejected": 0, "errors": 0,
+              "flagged": 0, "deleted": 0}
     zb_out = ""
+    deleter = FlagDeleter(run_id, dry)
+    cap = int(os.environ.get("MAX_NEW_CONTACTS_PER_VENUE") or 10)
     for fv in findings.get("venues") or []:
         vid = str(fv.get("venue_id") or "").strip()
         if not vid:
@@ -118,12 +201,20 @@ def main(argv):
             totals["errors"] += 1
             continue
         v = d.get("venue") or {}
+        # Contacts the full audit flagged (wrong business, not a venue person) are deleted
+        # (Nov 11 2026), backup first, emailed rows never; see FlagDeleter.
+        flagged = fv.get("flag_contacts") or []
+        keep = {R.normalize_email(c.get("email") or "") for c in fv.get("contacts") or []} - {""}
+        vr = {"venue_id": vid, "name": v.get("name"), "contacts": [], "socials": [],
+              "flagged": deleter.run(vid, d, flagged, keep) if flagged else []}
+        totals["flagged"] += len(vr["flagged"])
+        n_del = sum(1 for x in vr["flagged"] if x.get("outcome") == "deleted")
+        totals["deleted"] += n_del
+        totals["errors"] += sum(1 for x in vr["flagged"] if str(x.get("outcome", "")).startswith("error"))
+        if n_del:
+            d = detail(vid) or d
         before = sendable_count(d)
         have = {R.normalize_email(c.get("email")) for c in d.get("contacts") or [] if c.get("email")}
-        # Wrong-business contacts the full audit flagged are listed for Alex, never deleted here
-        vr = {"venue_id": vid, "name": v.get("name"), "contacts": [], "socials": [],
-              "flagged": fv.get("flag_contacts") or []}
-        totals["flagged"] = totals.get("flagged", 0) + len(vr["flagged"])
         saved_here = 0
         for c in fv.get("contacts") or []:
             email = R.normalize_email(c.get("email") or "")
@@ -158,6 +249,15 @@ def main(argv):
                 totals["rejected"] += 1
                 continue
             title = re.sub(r"\s+", " ", str(c.get("title") or "")).strip()[:80]
+            gate = R.contact_gate(email, name, title, chk["action"], venue_name=v.get("name") or "",
+                                  venue_city=v.get("city") or "")
+            if not gate["ok"]:
+                out["outcome"] = "rejected:" + gate["reason"]
+                totals["rejected"] += 1
+                continue
+            if saved_here >= cap:
+                out["outcome"] = "not_saved:venue_contact_cap"
+                continue
             if chk["action"] == "role":
                 verified = "role"
             else:
@@ -221,6 +321,10 @@ def main(argv):
             else:
                 rec["outcome"] = "error:write_failed"
                 totals["errors"] += 1
+        if n_del and not dry:
+            d3 = detail(vid)
+            if d3 is not None and sendable_count(d3) == 0:
+                vr["now_zero"] = True   # status is never demoted; the next deep dive re-researches it
         if saved_here and not dry:
             d2 = detail(vid) or d
             v2 = d2.get("venue") or v
@@ -239,7 +343,8 @@ def main(argv):
         if fv.get("researched", True):
             done.append(vid)
     doc = {"run_id": run_id, "dry_run": dry, "at": datetime.now().astimezone().isoformat(timespec="seconds"),
-           "totals": totals, "zerobounce_out": zb_out, "venues": results}
+           "totals": totals, "zerobounce_out": zb_out, "venues": results,
+           "flagged_backup": deleter.backup_path if deleter.rows else ""}
     if not dry:
         with open(os.path.join(RUNS, f"{run_id}.deepdive-saved.json"), "w") as f:
             json.dump(doc, f, indent=1)

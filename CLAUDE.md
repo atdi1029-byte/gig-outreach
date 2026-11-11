@@ -72,6 +72,47 @@ has to fix (ZeroBounce or Apollo out of credits, Chrome) plus one line about the
     `SAVE_PENDING_PEOPLE=1` restores the old behaviour for a test.
   - Existing Facebook/Instagram/contact-form values on the sheet are never
     overwritten. Venue status is never demoted.
+  - Who gets saved (Nov 11 2026; the two runs that day saved ~300 contacts, ~80% junk: a
+    college's whole directory for the gallery inside it, a foundation's attorneys and
+    scientists, a chain's head office, a wedding-listing company's staff, state legislators
+    from a links page, nameless calendar@/gala@/glass@/minigolf@). One gate for the pipeline,
+    postcheck and night_save (`outreach_rules.contact_gate`, `title_relevance`):
+    - Only people who could book Alex: owner, GM, events / private dining / catering / F&B,
+      music or performing-arts programming, resident lifestyle / activities directors, sales
+      (score >= 3 = "booking"). Back-office titles and mailboxes (accounting, finance, legal,
+      HR, IT/web, admissions/registrar/deans, science/policy/advocacy, fundraising/development/
+      giving, caregivers/nursing/memory care, maintenance) are never saved, name or not.
+    - No name, no contact: an address with no real person's name is not saved, function inbox
+      or personal-looking (james@ with nothing printed beside it). Exception: a one-person
+      mailbox on the venue's own site (owner@, chef@, gm@). Program inboxes (calendar@, creche@,
+      gala@, glass@, fieldtrips@, admissions@ ...) count as function inboxes, and one saves only
+      with a person whose title books events. `SAVE_NAMELESS=1` restores nameless saves for a test.
+    - At most 10 new contacts per venue (`MAX_NEW_CONTACTS_PER_VENUE`), at most 4 of them
+      without a booking title (`MAX_NEUTRAL_PER_VENUE`); the website step offers its
+      addresses booking titles first. Checked before any ZeroBounce credit.
+    - A staff directory (more than 12 addresses on the venue's own domain, `CONTACT_STRICT_AT`)
+      puts the venue in strict mode: only booking titles, from every step.
+    - A website inside a larger organisation's domain (`outreach_rules.host_org_kind`: a
+      .edu/.gov page such as sjc.edu/mitchell, a property page such as
+      cogirusa.com/communities/<x>, an organisation's subdomain such as venue.cbf.org) is
+      handled like a brand property: only its own section is read, and the organisation's
+      people (Apollo, LinkedIn) are searched in the venue's city with booking titles only.
+      The same city search runs for brand properties (marriott.com ...): such a person, at the
+      property's own Apollo org, in its city, with a booking title, is saved even on the brand
+      domain (evidence `apollo_local`); the brand's other staff stay out.
+    - Listing / marketplace / directory sites (herecomestheguide.com, partyslate, eventbrite,
+      visit* tourism sites ...: `NON_VENUE_HOSTS`) are never the venue's website and their
+      staff's addresses are rejected (`listing_domain`). Government and university domains
+      never become a venue's "own mail domain", and a page listing addresses on 3+ outside
+      domains (a links page) never counts toward one.
+    - Apollo enriches booking titles only (score >= 2; `APOLLO_DECISION_MAKERS_ONLY=0` = the old
+      "everyone but the veto list"), at most 12 per venue (`MAX_APOLLO_PER_VENUE`). When the
+      domain search finds no org, only floor staff, or the parent group (woodmontgrill.com ->
+      Hillstone), it searches the venue's name in its city and keeps people whose Apollo
+      employer is the venue (`APOLLO_LOCAL_SEARCH=0` turns this off). A booking inbox the
+      venue's own contact page publishes on its parent's domain (pdr.washingtondc@fourseasons.com)
+      is paired with the GM/events person the site names and saved as `role`.
+    - Tests: `/usr/bin/python3 tests/contact_rules_tests.py`.
 - Target area: DC, MD, VA; max ~2 hour drive from Pasadena, MD. Exception (Alex, Sep 29
   2026, on the 207 Pennsylvania/Delaware sweep finds: "fix these last"): sweep finds in
   PA/DE run too, whatever the distance, but only after every DC/MD/VA venue (build_batch
@@ -163,8 +204,10 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
   zerobounce_guard.py's parser reads it into the value and falls back to a cap of 10.
 - After each round a Claude session audits EVERY venue of it (`night_zero.py --all`,
   NIGHT_DEEPDIVE.md "Burn: full audit") while the next round runs; `night_save.py` saves.
-  Wrong-business contacts it finds are listed in `<RUN_ID>.deepdive-saved.json`
-  (`flagged`), never deleted automatically.
+  Wrong-business / unrelated contacts it flags (`flag_contacts`) are deleted by `night_save.py`
+  since Nov 11 2026: backup JSON first (`reports/repair/night-flagged-<RUN_ID>-<stamp>.json`),
+  rows already emailed or messaged are never touched, every delete is read back, the outcome
+  per row is in `<RUN_ID>.deepdive-saved.json` (`flagged`). `NIGHT_DELETE_FLAGGED=0` = list only.
 - Every 4 rounds (`BURN_FIX_EVERY`): the fix session turns the misses into scraper fixes
   (recall benchmark, health check, revert if broken), then the pool prep runs again.
 - Pause: `touch .burn_pause` — the pipeline stops before its next batch (≤ ~45 min) and the

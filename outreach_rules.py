@@ -86,6 +86,19 @@ NON_VENUE_HOSTS = {
     "timeout.com", "yellowpages.com", "mapquest.com", "foursquare.com",
     "doordash.com", "ubereats.com", "grubhub.com", "toasttab.com",
     "menupages.com", "seamless.com", "singleplatform.com", "allmenus.com",
+    # Wedding / venue marketplaces and listing directories (Nov 11 2026: The Lake House's
+    # sheet website was its herecomestheguide.com listing and the run saved 31 of the
+    # listing company's own staff). Their staff are never a venue's contacts.
+    "herecomestheguide.com", "partyslate.com", "weddingspot.com", "wedding-spot.com",
+    "venuereport.com", "uniquevenues.com", "splacer.co", "giggster.com", "eventup.com",
+    "cvent.com", "bizbash.com", "breezit.com", "bridebook.com", "junebugweddings.com",
+    "stylemepretty.com", "brides.com", "withjoy.com", "weddingrule.com",
+    "eventbrite.com", "meetup.com", "allevents.in", "patch.com", "nextdoor.com",
+    "groupon.com", "zomato.com", "bbb.org", "chamberofcommerce.com", "manta.com",
+    "booking.com", "expedia.com", "hotels.com", "travelocity.com", "kayak.com",
+    "priceline.com", "airbnb.com", "vrbo.com", "visitmaryland.org", "visitvirginia.com",
+    "virginia.org", "visitannapolis.org", "baltimore.org", "washington.org",
+    "dcpreservation.org", "alltrails.com", "tiktok.com",
 }
 
 PLACEHOLDER_EMAILS = {
@@ -161,6 +174,49 @@ ROLE_TOKENS = {
     "commodore", "vicecommodore", "rearcommodore", "pastcommodore", "fleetcaptain",
     "harbormaster", "dockmaster", "treasurer", "secretary",
     "executivedirector", "execdirector",
+    # private-party inboxes (party@muisupperclub.com went to ZeroBounce, Nov 11 2026)
+    "party", "parties", "privateparties", "pdr", "privatedining",
+}
+
+# Department / program / institution words (Nov 11 2026). A mailbox made of one of these is
+# a shared inbox, never a person: calendar@, creche@, gala@, rector@, fieldtrips@, glass@,
+# ceramics@, minigolf@ were sent to ZeroBounce, came back valid and were saved with no name,
+# and annapolis.admissions@ became "Annapolis Admissions" (first.last). Matched as a whole
+# token anywhere in the local part, never as a prefix ("glassman@" is a person).
+FUNCTION_TOKENS = {
+    "calendar", "creche", "gala", "galas", "rectory", "ministry", "familyministry", "worship",
+    "fieldtrip", "fieldtrips", "classroom", "classrooms", "chesapeakeclassrooms",
+    "academy", "camps", "classes", "lessons", "learning", "workshops",
+    "admissions", "gradadmissions", "admission", "bookstore", "registrar", "alumni", "deansoffice",
+    "deans", "financialaid", "aid", "studentaccounts", "student", "students",
+    "careerservices", "healthcenter", "health", "wellness", "counseling", "publicsafety",
+    "safety", "police", "patrol", "helpdesk", "it", "usersupport", "support",
+    "printshop", "archives", "exhibitions", "collections",
+    "ceramics", "pottery", "minigolf", "studio", "studios", "development", "giving", "advancement",
+    "philanthropy", "grants", "facilities", "facility", "maintenance", "housekeeping", "accounting",
+    "finance", "payables", "receivables", "humanresources", "communications", "comms",
+    "socialmedia", "newsletter", "webteam", "international",
+    "classics", "visitsjc", "anvisit", "president", "provost", "chancellor",
+    "clagettfarm", "nursery", "kennel",
+}
+# Function words that are also surnames or first names (John Rector, Dean Smith, Summer
+# Lee): they make a shared inbox only as the whole local part (rector@, glass@, camp@).
+FUNCTION_FIRST_TOKENS = {
+    "rector", "deacon", "pastor", "parish", "church", "chapel", "choir", "school", "library",
+    "glass", "camp", "dean", "summer", "garden", "gardens", "farm", "lab", "print", "news",
+    "design", "editor", "tech", "help", "user", "web", "class", "career",
+}
+
+# Mailboxes and titles nobody books a musician from (Nov 11 2026: the two burn runs saved
+# accountants, attorneys, HR, IT, admissions, scientists, fundraisers and caregivers).
+# A mailbox local part with one of these tokens is rejected outright, name or not.
+BACK_OFFICE_LOCAL_TOKENS = {
+    "accounting", "accountant", "accounts", "ap", "ar", "finance", "payables", "receivables",
+    "treasurer", "controller", "cfo", "legal", "counsel", "hr", "humanresources", "people",
+    "it", "helpdesk", "techsupport", "usersupport", "admissions", "gradadmissions", "admission",
+    "registrar", "financialaid", "studentaccounts", "bookstore", "development", "giving",
+    "advancement", "philanthropy", "donor", "grants", "publicsafety", "police", "patrol",
+    "healthcenter", "counseling", "maintenance", "facilities", "housekeeping",
 }
 
 # Words that mean a scraped "name" is page boilerplate, not a person.
@@ -202,6 +258,24 @@ NAME_ROLE_PREFIXES = {
     "executive", "sous", "pastry", "head", "general", "president", "founder",
     "cofounder", "partner", "managing", "contact", "email", "call", "meet", "by",
     "mr", "mrs", "ms", "dr", "sommelier", "innkeeper", "host", "hosts",
+    # clergy and office holders ("Deacon Nancy" was saved as a person, Nov 11 2026)
+    "deacon", "rector", "pastor", "reverend", "rev", "father", "fr", "msgr", "monsignor",
+    "delegate", "senator", "councilman", "councilwoman", "councilmember", "rep", "hon",
+    "honorable", "mayor", "judge",
+}
+
+# Words that make a scraped "name" an office, program or institution ("Annapolis Bookstore",
+# "Financial Aid", "Human Resources", "Summer Academy", "Public Safety", "Academic
+# Leadership", "Faculty Committee" were saved or offered as people, Nov 11 2026).
+NON_PERSON_NAME_WORDS = {
+    "admissions", "bookstore", "registrar", "academy", "financial", "aid", "resources", "safety",
+    "health", "healthcenter", "wellness", "counseling", "helpdesk", "support", "alumni",
+    "development", "deansoffice", "deans", "careerservices", "printshop", "graduate",
+    "undergraduate", "student", "students", "international", "classics", "calendar", "creche",
+    "gala", "ministry", "parish", "foundation", "association", "society", "college", "university",
+    "school", "library", "museum", "gallery", "institute", "department", "committee", "council",
+    "faculty", "leadership", "academic", "president", "fieldtrips", "classrooms", "ceramics",
+    "minigolf", "accounts", "business", "operations", "administration", "secretariat",
 }
 
 _EMAIL_RE = re.compile(r"^[a-z0-9][a-z0-9._%+'-]*@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,24}$")
@@ -252,7 +326,22 @@ def registrable_domain(url_or_host):
         return ".".join(parts[-3:])
     if len(parts) >= 3 and ".".join(parts[-2:]) in _MULTI_SUFFIXES:
         return ".".join(parts[-3:])
+    # US locality domains: "md.us" is a public suffix, not one organisation. house.state.md.us
+    # was read as "md.us", so five legislators on a neighbourhood association's links page
+    # made "@md.us" the venue's own mail domain (Guilford Association, Nov 11 2026).
+    if len(parts) >= 3 and parts[-1] == "us" and len(parts[-2]) == 2:
+        return ".".join(parts[-3:])
     return ".".join(parts[-2:])
+
+
+def is_institution_domain(url_or_host):
+    """A university, school or government domain (.edu, .gov, .mil, *.xx.us). Such a domain
+    hosts a whole institution's staff: a venue inside it never gets the institution's directory."""
+    reg = registrable_domain(url_or_host)
+    if not reg:
+        return False
+    return reg.endswith((".edu", ".gov", ".mil")) or bool(re.search(r"\.[a-z]{2}\.us$", reg)) \
+        or reg.endswith((".gov.uk", ".ac.uk"))
 
 
 def is_shared_domain(url_or_host):
@@ -324,6 +413,10 @@ def is_role_email(email):
     if not toks:
         return True
     if toks[0] in ROLE_TOKENS:
+        return True
+    if stripped in FUNCTION_TOKENS or any(t in FUNCTION_TOKENS for t in toks):
+        return True
+    if stripped in FUNCTION_FIRST_TOKENS:
         return True
     # e.g. "privateevents", "eventsdc", "weddingsales": starts with a role word of 5+ letters
     return any(stripped.startswith(w) and len(w) >= 5 for w in ROLE_TOKENS)
@@ -421,7 +514,7 @@ def clean_person_name(name):
     words = [re.sub(r"[^a-zà-ÿ]", "", t.lower()) for t in toks]
     if sum(1 for w in words if len(w) >= 2) < 2:
         return ""
-    if any(w in NAME_BOILERPLATE for w in words if len(w) >= 2):
+    if any(w in NAME_BOILERPLATE or w in NON_PERSON_NAME_WORDS for w in words if len(w) >= 2):
         return ""
     # a place read as a name ("New Orleans" on Orleans Bistro's pages, Nov 10 2026)
     if words[0] in {"new", "north", "south", "east", "west", "fort", "mount", "port", "lake", "saint", "old"}:
@@ -523,13 +616,16 @@ def freemail_linked_to_venue(local, venue_name):
 
 
 def check_email(email, venue_domain="", venue_name="", found_on_venue_site=False,
-                shared_domain=None, venue_mailto=False):
+                shared_domain=None, venue_mailto=False, local_verified=False):
     """Decide what to do with a scraped/enriched address before paying for it.
 
     Returns dict: {email, action, reason, is_role, name_hint}
     found_on_venue_site: the address was seen on the venue's own website pages
     venue_mailto: it was an explicit mailto: link on the venue's own contact/about/
                   events page (strongest evidence; lets a free-mail address through)
+    local_verified: an Apollo person at the property's own org, located in the venue's
+                  city, with a booking title: counts like on-site evidence on a shared
+                  brand / host-organisation domain (Nov 11 2026)
 
       action: 'verify'  -> send to ZeroBounce, save if valid
               'role'    -> role mailbox: don't pay; save only with a real person name
@@ -549,7 +645,15 @@ def check_email(email, venue_domain="", venue_name="", found_on_venue_site=False
         out["reason"] = "general_inbox"
         out["is_role"] = True
         return out
+    bo = back_office_mailbox(e)
+    if bo:
+        out["reason"] = "back_office_mailbox:" + bo
+        return out
     dom = e.split("@", 1)[1]
+    if registrable_domain(dom) in NON_VENUE_HOSTS:
+        # a listing site's / marketplace's own staff (herecomestheguide.com), never the venue's
+        out["reason"] = "listing_domain:" + registrable_domain(dom)
+        return out
     vreg = registrable_domain(venue_domain) if venue_domain else ""
     site_builder = bool(vreg and is_site_builder_host(vreg))
     if site_builder:
@@ -581,7 +685,7 @@ def check_email(email, venue_domain="", venue_name="", found_on_venue_site=False
             if not (venue_mailto or any(t in label for t in toks)):
                 out["reason"] = f"site_builder_foreign:{ereg}"
                 return out
-    if vreg and shared_domain and not found_on_venue_site:
+    if vreg and shared_domain and not (found_on_venue_site or local_verified):
         out["reason"] = f"shared_brand_domain:{vreg}"
         return out
     out["is_role"] = is_role_email(e)
@@ -591,6 +695,284 @@ def check_email(email, venue_domain="", venue_name="", found_on_venue_site=False
     out["action"] = "role" if out["is_role"] else "verify"
     out["reason"] = "ok"
     return out
+
+
+def back_office_mailbox(email):
+    """The back-office token of a mailbox (accounting@, admissions@, hr@ ...), else ''."""
+    e = normalize_email(email)
+    if not e:
+        return ""
+    local = e.split("@", 1)[0]
+    stripped = re.sub(r"[\d._\-+]", "", local)
+    if stripped in BACK_OFFICE_LOCAL_TOKENS:
+        return stripped
+    for t in _local_tokens(local):
+        if t in BACK_OFFICE_LOCAL_TOKENS:
+            return t
+    return ""
+
+
+# ---------------------------------------------------------------------------
+# Who can book a classical guitarist (Nov 11 2026). Alex wants contacts only for people
+# who could book him: owner, GM, events / private dining / catering / F&B, music or
+# performing-arts programming, resident lifestyle / activities directors. The two burn runs
+# of Nov 11 saved ~300 contacts, ~80% of them junk (accountants, attorneys, HR, IT,
+# admissions, scientists, fundraisers, caregivers, a college's whole directory). One scorer
+# for every step: pipeline.sh (web, Apollo, LinkedIn), postcheck.sh and night_save.py.
+# ---------------------------------------------------------------------------
+_TITLE_VETO = re.compile(
+    r"\b(intern|interns|internship|student|students|volunteer|housekeeping|housekeeper|laundry|security|"
+    r"public safety|loss prevention|accountant|accounting|finance|financial|payroll|budget|steward|engineer|"
+    r"engineering|maintenance|it|information technology|technology|helpdesk|help desk|systems|network|"
+    r"web|webmaster|developer|software|data|database|purchasing|procurement|human resources?|hr|"
+    r"for people|people (and|&) culture|people operations|recruiter|recruiting|recruitment|talent acquisition|"
+    r"spa|esthetician|massage|server|servers|dishwasher|line cook|prep cook|busser|barback|valet|caddie|"
+    r"caddies|legal|attorney|lawyer|counsel|paralegal|compliance|controller|comptroller|cfo|"
+    r"chief financial|bookkeeper|bookkeeping|treasurer|accounts payable|accounts receivable|billing|"
+    r"admissions?|registrar|financial aid|dean|deans|provost|faculty|professor|lecturer|tutor|academic|"
+    r"scientist|science|research|researcher|policy|advocacy|restoration|conservation|fundraising|"
+    r"fundraiser|(?<!business )development (officer|director|associate|manager|coordinator|assistant|operations)|"
+    r"director of development|vp of development|philanthropy|philanthropic|major gifts?|major giving|"
+    r"planned giving|annual giving|giving|donor|grants?|advancement|caregiver|caregivers|cna|nurse|"
+    r"nursing|memory care|medical|clinical|physician|health services|counselor|counseling|therapist|"
+    r"dietary|dietitian|pharmacist|graphic designer|graphic design|library|librarian|archivist)\b")
+_TITLE_NON_BOOKING = re.compile(
+    r"\b(teacher|coach|athletics?|superintendent|groundskeeper|grounds|landscape|golf professional|"
+    r"golf pro|assistant golf|tennis|racquets?|pickleball|squash|fitness|personal trainer|lifeguard|"
+    r"aquatics|salon|bartender|cook|bellman|bell attendant|doorman|driver|retired|former|"
+    r"guest service agent|front desk agent|night auditor|reservations agent|architect|architecture|"
+    r"construction|education|educator|educational|learning|camps?|field trips?|curriculum|"
+    r"communications|media relations|public relations|social media|digital|content|writer|"
+    r"editor|designer|creative director|photographer|videographer|curator|exhibitions?|collections|"
+    r"studio|glass|ceramics|pottery|facility manager|facilities|office manager|receptionist|"
+    r"administrative|admin|clerk|analyst|wellness|chaplain|outreach|engagement|membership|"
+    r"community relations|board member|trustee|docent)\b")
+# Booking words strong enough to keep a title that also names a back-office word
+# ("Events Manager, Business Office Associate", "Director of Stewardship & Events").
+_TITLE_BOOKING_STRONG = re.compile(
+    r"\b(events?|special events|private events|private dining|banquets?|catering|weddings?|"
+    r"music|musical|entertainment|booking|bookings|talent buyer|programming|public programs|performing arts|"
+    r"concerts?|lifestyle|life enrichment|resident engagement|resident life|activities director|activity director|"
+    r"food (and|&) beverage|f ?& ?b|general manager|owner|co owner|coowner|proprietor|innkeeper)\b")
+_TITLE_SENIOR = (r"(manager|director|coordinator|head|lead|chief|vp|vice president|executive|specialist|"
+                 r"planner|supervisor|producer|administrator|officer|consultant)")
+_TITLE_RULES = [
+    (5, r"\b(events?|special events|private events|private dining|banquets?|catering|weddings?|meetings)\b", True),
+    (5, r"\b(entertainment|music|musical|booking|bookings|talent buyer|programming|performing arts|concerts?)\b", False),
+    (4, r"\b(owner|co owner|coowner|founder|co founder|cofounder|proprietor|general manager|gm|"
+        r"managing director|managing partner|innkeeper)\b", False),
+    (4, r"\b(food (and|&) beverage|f ?& ?b|fnb|beverage director|director of beverage|restaurant manager|"
+        r"dining room manager|outlet manager|maitre d)\b", False),
+    (4, r"\b(lifestyle|life enrichment|resident engagement|resident life|activities|activity|recreation)\b", True),
+    (3, r"\b(sales|business development)\b", True),
+    (3, r"\b(club manager|clubhouse manager|venue manager|house manager|tasting room|winery manager|"
+        r"estate manager|artistic director|music director|public programs|association manager|"
+        r"executive director)\b", False),
+    (3, r"\b(rentals?|hospitality|guest experience)\b", True),
+    (2, r"\bprograms?\b", True),
+    (2, r"\b(president|ceo|chief executive|coo|chief operating|partner)\b", False),
+    (2, r"\boperations\b", True),
+]
+BOOKING_SCORE = 3   # a title scoring at least this is "booking-relevant"
+
+
+def _norm_title(title):
+    return " " + re.sub(r"\s+", " ", re.sub(r"[^a-z0-9& ]+", " ", str(title or "").lower())) + " "
+
+
+def title_relevance(title, skip_words=()):
+    """(score, why) for a job title. why: 'veto:<word>' (back office or floor staff: never
+    saved), 'non_booking:<word>' (score 0), 'rule' (booking-relevant), 'not_relevant',
+    'no_title'. skip_words = the app's own title skip words (whole words)."""
+    t = _norm_title(title)
+    if not t.strip():
+        return 0, "no_title"
+    for w in skip_words or ():
+        w = str(w or "").strip().lower()
+        if w and re.search(r"(^|[^a-z0-9])" + re.escape(w) + r"($|[^a-z0-9])", t):
+            return 0, "veto:skip_word:" + w
+    strong = _TITLE_BOOKING_STRONG.search(t)
+    m = _TITLE_VETO.search(t)
+    if m and not (strong and m.group(1) not in ("intern", "interns", "internship", "student", "students",
+                                                "volunteer", "server", "servers", "library", "librarian")):
+        return 0, "veto:" + m.group(1)
+    m = _TITLE_NON_BOOKING.search(t)
+    if m and not strong:
+        return 0, "non_booking:" + m.group(1)
+    senior = re.search(r"\b" + _TITLE_SENIOR + r"\b", t) is not None
+    best = 0
+    for pts, pat, need_senior in _TITLE_RULES:
+        if re.search(pat, t) and (senior or not need_senior):
+            best = max(best, pts)
+    if not best:
+        return 0, "not_relevant"
+    if re.search(r"\bassistant\b", t):
+        best -= 1
+    elif re.search(r"\b(director|head|vp|vice president|chief)\b", t):
+        best += 1
+    return max(best, 1), "rule"
+
+
+# At a multi-site operator or a host organisation (a chain's head office, a foundation with
+# offices in three states, a college), these titles belong to the organisation, not the venue.
+_ORG_LEVEL_TITLE = re.compile(r"\b(regional|region|area|district|divisional|division|corporate|national|"
+                              r"vice president|vp|svp|evp|chief|president|ceo|cfo|coo|founder|board|trustee|"
+                              r"federal|statewide)\b")
+_US_STATE_WORDS = re.compile(r"\b(alabama|alaska|arizona|arkansas|california|colorado|connecticut|delaware|"
+                             r"florida|georgia|hawaii|idaho|illinois|indiana|iowa|kansas|kentucky|louisiana|"
+                             r"maine|maryland|massachusetts|michigan|minnesota|mississippi|missouri|montana|"
+                             r"nebraska|nevada|new hampshire|new jersey|new mexico|new york|north carolina|"
+                             r"north dakota|ohio|oklahoma|oregon|pennsylvania|rhode island|south carolina|"
+                             r"south dakota|tennessee|texas|utah|vermont|virginia|washington|west virginia|"
+                             r"wisconsin|wyoming|hampton roads|central virginia|pa|va|md)\b")
+
+
+_JOB_VOCAB = re.compile(
+    r"^(manager|director|coordinator|head|lead|chief|vp|vice|president|executive|specialist|planner|"
+    r"supervisor|producer|administrator|officer|consultant|assistant|associate|senior|junior|sr|jr|"
+    r"sales|marketing|operations|relations|community|services|service|guest|guests|culinary|beverage|"
+    r"food|dining|room|business|buisness|office|resident|residents|programs?|special|private|groups?|"
+    r"conference|meetings?|partnerships?|events?|catering|banquets?|weddings?|music|entertainment|"
+    r"hospitality|engagement|lifestyle|activities|membership|development|finance|accounting|human|"
+    r"resources|education|learning|communications|media|digital|social|interim|acting|deputy|general|"
+    r"staff|team|department|campus|national|regional|area|district|corporate|global|international)$")
+
+
+def _other_place_in_title(title, venue_name, venue_city):
+    """The place a title names that is not this venue ('Senior Sales Director - The Virginian',
+    'Community Relations Director (Atrium Village)', 'Virginia Executive Director'), else ''."""
+    raw = str(title or "")
+    own = set(_words(venue_name)) | set(_words(venue_city))
+    parts = re.findall(r"\(([^)]{3,60})\)", raw) + re.split(r"\s[-\u2013\u2014|]\s|,\s*|\s(?:at|@)\s", re.sub(r"\([^)]*\)", " ", raw))[1:]
+    for seg in parts:
+        words = [w for w in _words(seg) if len(w) >= 3]
+        if not words or not re.search(r"\b[A-Z][a-z]{3,}", seg):
+            continue
+        if any(_JOB_VOCAB.match(w) for w in words):
+            continue   # "Director, Events", "Sales Marketing": a job, not a place
+        if not (set(words) & own):
+            return seg.strip()
+    m = _US_STATE_WORDS.search(_norm_title(raw))
+    if m and not (set(_words(m.group(1))) & own):
+        return m.group(1)
+    return ""
+
+
+def _function_inbox_word(email):
+    e = normalize_email(email)
+    if not e:
+        return ""
+    local = e.split("@", 1)[0]
+    stripped = re.sub(r"[\d._\-+]", "", local)
+    if stripped in FUNCTION_TOKENS or stripped in FUNCTION_FIRST_TOKENS:
+        return stripped
+    return next((t for t in _local_tokens(local) if t in FUNCTION_TOKENS), "")
+
+
+def contact_gate(email, name="", title="", action="verify", person_role="", strict=False,
+                 multi_site=False, venue_name="", venue_city="", skip_words=()):
+    """Second gate after check_email: is this a person who could book Alex?
+
+    Returns {"ok", "reason", "score", "tier"}; tier = 'booking' | 'neutral'.
+      - back-office mailbox or title (accounting, legal, HR, IT, admissions, science,
+        fundraising, caregivers ...) -> never saved, whatever else is true
+      - no real person name -> not saved (function inboxes AND personal-looking mailboxes:
+        calendar@, gala@, james@ with nothing printed beside it); the one exception is a
+        one-person mailbox on the venue's own site (chef@, owner@, gm@: person_role)
+      - strict (a big staff directory, a host organisation, an Apollo org-wide list) ->
+        only booking-relevant titles (score >= BOOKING_SCORE)
+      - multi_site (a chain / host organisation) -> org-level titles (regional VP, CEO,
+        "Virginia Executive Director") and titles naming another property are rejected
+    SAVE_NAMELESS=1 in the environment restores saving nameless personal mailboxes."""
+    import os as _os
+    out = {"ok": False, "reason": "", "score": 0, "tier": "neutral"}
+    bo = back_office_mailbox(email)
+    if bo:
+        out["reason"] = "back_office_mailbox:" + bo
+        return out
+    score, why = title_relevance(title, skip_words)
+    if why.startswith("veto"):
+        out["reason"] = "back_office_title:" + why.split(":", 1)[1]
+        return out
+    if not str(name or "").strip() and not person_role:
+        if action == "role" or _os.environ.get("SAVE_NAMELESS") != "1":
+            out["reason"] = "no_person_name"
+            return out
+    if multi_site:
+        t = _norm_title(title)
+        if _ORG_LEVEL_TITLE.search(t) and not re.search(r"\b(general manager|owner)\b", t):
+            out["reason"] = "org_level_title:" + _ORG_LEVEL_TITLE.search(t).group(1)
+            return out
+        place = _other_place_in_title(title, venue_name, venue_city)
+        if place:
+            out["reason"] = "other_property_title:" + place[:40]
+            return out
+    if person_role and not str(title or "").strip():
+        score, why = title_relevance(person_role)
+    out["score"] = score
+    out["tier"] = "booking" if score >= BOOKING_SCORE else "neutral"
+    if action == "role" and out["tier"] != "booking" and _function_inbox_word(email):
+        # creche@ with the preschool director's name, glass@ with the studio manager's: a
+        # program's inbox, not a booking channel, unless the person attached books events.
+        out["reason"] = "program_inbox:" + _function_inbox_word(email)
+        return out
+    if strict and out["tier"] != "booking":
+        out["reason"] = "not_a_booking_title:" + (why if why != "rule" else "low_score")
+        return out
+    out["ok"] = True
+    out["reason"] = "ok"
+    return out
+
+
+# Collection segments a multi-property operator puts its properties under
+# (cogirusa.com/communities/cogir-of-potomac/).
+_COLLECTION_SEGS = {
+    "communities", "community", "locations", "location", "properties", "property", "venues",
+    "hotels", "resorts", "clubs", "residences", "campus", "campuses", "centers", "centres",
+    "galleries", "museums", "sites", "parks", "our-communities", "senior-living",
+    "find-a-community", "destinations", "restaurants", "estates", "branches", "facilities",
+}
+_GENERIC_PAGE_SEGS = {"overview", "home", "index", "default", "main", "about", "about-us", "contact",
+                      "contact-us", "en", "en-us", "us", "welcome"}
+
+
+def host_org_kind(url, venue_name=""):
+    """How the venue's website sits inside a larger organisation's domain (Nov 11 2026):
+      'institution' - a .edu/.gov/.mil (or *.xx.us) domain that is not the venue's own name
+                      (Mitchell Gallery at sjc.edu/mitchell: the run saved 92 St. John's
+                      College addresses: admissions, bookstore, helpdesk, every dean)
+      'property'    - one property's section of an operator's site
+                      (cogirusa.com/communities/cogir-of-potomac: 18 head-office and other-
+                      community staff came in through Apollo's domain search)
+      'subsite'     - a subdomain of an organisation whose domain is not the venue's name
+                      (venue.cbf.org for the Philip Merrill Center: 47 Chesapeake Bay
+                      Foundation attorneys, scientists and fundraisers)
+      ''            - the venue's own site (or a shared brand domain / listing, handled elsewhere).
+    For all three the pipeline reads only the venue's own section (host / path prefix) and
+    saves only booking-relevant people from the organisation's lists."""
+    host, reg = host_of(url), registrable_domain(url)
+    if not host or not reg or reg in SHARED_BRAND_DOMAINS or is_non_venue_host(url) or is_site_builder_host(url):
+        return ""
+    label = re.sub(r"[^a-z0-9]", "", reg.split(".")[0])
+    vw = [w for w in _words(venue_name) if len(w) >= 4 and w not in _GENERIC_VENUE_WORDS]
+    owns = bool(vw) and any(w in label for w in vw)
+    try:
+        path = urllib.parse.unquote(urllib.parse.urlparse(url if "://" in url else "http://" + url).path or "")
+    except ValueError:
+        path = ""
+    segs = [s for s in path.lower().split("/") if s and s not in _GENERIC_PAGE_SEGS]
+    if len(segs) >= 2 and segs[0] in _COLLECTION_SEGS:
+        return "property"
+    if owns:
+        return ""
+    if is_institution_domain(reg):
+        return "institution"
+    sub = host[:-len(reg)].rstrip(".") if host != reg else ""
+    if re.fullmatch(r"(www\d*|m)", sub or ""):
+        sub = ""
+    if sub and vw:
+        return "subsite"
+    return ""
 
 
 def in_target_area(state):

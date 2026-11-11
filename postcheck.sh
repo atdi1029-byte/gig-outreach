@@ -309,17 +309,20 @@ with open(os.path.join(tmp, 'pending_list'), 'w', encoding='utf-8') as fh:
 with open(os.path.join(tmp, 'handled_people'), 'w', encoding='utf-8') as fh:
     fh.write(''.join(x + '\n' for x in sorted(handled)))
 
-vd, shared, non_venue, prefix, base = '', False, False, '', ''
+vd, shared, non_venue, prefix, base, host_org = '', False, False, '', '', ''
 if website:
     host = R.host_of(website)
     non_venue = R.is_non_venue_host(website)
-    shared = R.is_shared_domain(website)
+    # A page inside a larger organisation's domain (sjc.edu/mitchell, venue.cbf.org, a
+    # property page on an operator's site) is handled like a brand property (Nov 11 2026).
+    host_org = '' if non_venue else R.host_org_kind(website, f('name'))
+    shared = R.is_shared_domain(website) or bool(host_org)
     vd = '' if non_venue else R.registrable_domain(website)
     u = urlparse(website)
     if shared:
         # On a brand domain only the property's own path counts as "the venue's site".
         path = (u.path or '').rstrip('/').lower()
-        prefix = (host + path) if path else ''
+        prefix = (host + path) if path else (host if host_org == 'subsite' else '')
         base = website.split('#')[0].split('?')[0].rstrip('/')
     else:
         prefix = host
@@ -327,12 +330,12 @@ if website:
         base = '%s://%s' % (u.scheme or 'https', u.netloc)
 print(US.join(['OK', f('name'), website, f('city'), f('state'), f('status'), f('facebook'),
                f('instagram'), f('contact_form'), str(len(contacts)), str(valid), vd,
-               'true' if shared else 'false', prefix, 'true' if non_venue else 'false', base]))
+               'true' if shared else 'false', prefix, 'true' if non_venue else 'false', base, host_org]))
 PYEOF
 )
     IFS="$US" read -r tag VENUE_NAME VENUE_WEBSITE VENUE_CITY VENUE_STATE VENUE_STATUS VENUE_FB VENUE_IG \
         VENUE_FORM N_CONTACTS N_VALID VENUE_DOMAIN VENUE_SHARED_DOMAIN VENUE_SITE_PREFIX VENUE_NON_VENUE_HOST \
-        VENUE_BASE <<< "$row"
+        VENUE_BASE VENUE_HOST_ORG <<< "$row"
     if [ "$tag" != "OK" ]; then
         LOAD_ERROR="${VENUE_NAME:-venue_parse_crash}"
         return 1
@@ -399,6 +402,9 @@ pc_write_contact() {
     elif [ "$is_new" = 1 ]; then
         log "  ✓ Added and verified: ${name:-(no name)} <$email> ($verified)"
         V_SAVED=$((V_SAVED + 1))
+        # per-venue ceiling counters (g_tier comes from the calling pc_save_email)
+        echo $(( $(cat "$PC_TMP/saved_count" 2>/dev/null || echo 0) + 1 )) > "$PC_TMP/saved_count"
+        [ "${g_tier:-neutral}" = "booking" ] || echo $(( $(cat "$PC_TMP/neutral_count" 2>/dev/null || echo 0) + 1 )) > "$PC_TMP/neutral_count"
     else
         log "  [SKIP] $email — already on the sheet (duplicate)"
     fi
@@ -414,22 +420,33 @@ pc_save_email() {
     local raw="$1" name="$2" title="$3" source="$4" evidence="${5:-external}" update_name="${6:-}" evidence_url="${7:-}"
     [ -z "$raw" ] && return
     local res email action reason clean_name
-    res=$(run_py check-email python3 - "$SCRIPT_DIR" "$raw" "$name" "$evidence" "$VENUE_DOMAIN" "$VENUE_NAME" "$VENUE_SHARED_DOMAIN" <<'PYEOF'
-import sys
+    res=$(VENUE_HOST_ORG="${VENUE_HOST_ORG:-}" run_py check-email python3 - "$SCRIPT_DIR" "$raw" "$name" "$evidence" "$VENUE_DOMAIN" "$VENUE_NAME" "$VENUE_SHARED_DOMAIN" "$title" "$VENUE_CITY" <<'PYEOF'
+import os, sys
 sys.path.insert(0, sys.argv[1])
 import outreach_rules as R
-raw, name, evidence, vd, vn, shared = sys.argv[2:8]
+raw, name, evidence, vd, vn, shared, title, city = sys.argv[2:10]
 r = R.check_email(raw, vd, vn,
                   found_on_venue_site=evidence in ('venue_site', 'venue_mailto'),
                   shared_domain=True if shared == 'true' else None,
                   venue_mailto=evidence == 'venue_mailto')
 clean = R.clean_person_name(name) or R.name_from_email(r['email'])
 prole = (r.get('person_role') or '') if evidence in ('venue_site', 'venue_mailto') else ''
-print('\x1f'.join([r['email'], r['action'], r['reason'], clean, prole]))
+action, reason, tier = r['action'], r['reason'], 'neutral'
+if action != 'reject':
+    # Same contact gate as pipeline.sh (Nov 11 2026): back office never, no name never (one-
+    # person chef@/owner@ excepted), only booking titles from an organisation's lists.
+    multi = bool(os.environ.get('VENUE_HOST_ORG')) or shared == 'true'
+    own = evidence in ('venue_site', 'venue_mailto')
+    g = R.contact_gate(r['email'], clean, title, action, prole, strict=multi and not own,
+                       multi_site=multi and not own, venue_name=vn, venue_city=city)
+    tier = g['tier']
+    if not g['ok'] and not (g['reason'] == 'no_person_name' and action == 'role'):
+        action, reason = 'reject', g['reason']
+print('\x1f'.join([r['email'], action, reason, clean, prole, tier]))
 PYEOF
 )
-    local person_role
-    IFS="$US" read -r email action reason clean_name person_role <<< "$res"
+    local person_role g_tier
+    IFS="$US" read -r email action reason clean_name person_role g_tier <<< "$res"
     if [ -z "$action" ]; then
         log "  [ERROR] email check crashed for $raw — not saved"
         record_candidate "$(echo "$raw" | tr '[:upper:]' '[:lower:]')" "$VENUE_ID" "$name" "$title" "$source" "check_failed" "$evidence_url"
@@ -452,11 +469,24 @@ PYEOF
 
     case "$action" in
         reject)
-            log "  [REJECT] $email — $reason"
+            log "  [REJECT] $email — $reason${title:+ [$title]}"
             record_candidate "$email" "$VENUE_ID" "$name" "$title" "$source" "reject:$reason" "$evidence_url"
             V_REJECTED=$((V_REJECTED + 1))
             return
             ;;
+    esac
+    # Per-venue ceiling (same numbers as pipeline.sh): at most MAX_NEW_CONTACTS_PER_VENUE new
+    # contacts, at most MAX_NEUTRAL_PER_VENUE of them without a booking title.
+    local n_new n_neu
+    n_new=$(cat "$PC_TMP/saved_count" 2>/dev/null); [[ "$n_new" =~ ^[0-9]+$ ]] || n_new=0
+    n_neu=$(cat "$PC_TMP/neutral_count" 2>/dev/null); [[ "$n_neu" =~ ^[0-9]+$ ]] || n_neu=0
+    if [ "$n_new" -ge "${MAX_NEW_CONTACTS_PER_VENUE:-10}" ] || \
+       { [ "${g_tier:-neutral}" != "booking" ] && [ "$n_neu" -ge "${MAX_NEUTRAL_PER_VENUE:-4}" ]; }; then
+        log "  [CAP] $email — per-venue contact ceiling reached ($n_new new, $n_neu without a booking title); not saved"
+        record_candidate "$email" "$VENUE_ID" "$name" "$title" "$source" "venue_contact_cap" "$evidence_url"
+        return
+    fi
+    case "$action" in
         role)
             if [ -z "$clean_name" ] && [ -n "$person_role" ]; then
                 # chef@/owner@ at a small venue is that one person
@@ -1756,6 +1786,7 @@ check_venue() {
     WEB_ST="skipped"; CRAWL_ST="ok"; APOLLO_ST="skipped"; LI_ST="skipped"; ENRICH_ST="skipped"
     APOLLO_FOUND="-"; APOLLO_VIA="-"; LI_RESULTS="-"; LI_RELEVANT="-"; VENUE_BASE=""
     echo 0 > "$PC_TMP/zb_venue_count"
+    echo 0 > "$PC_TMP/saved_count"; echo 0 > "$PC_TMP/neutral_count"
 
     if ! load_venue "$VID"; then
         log ""

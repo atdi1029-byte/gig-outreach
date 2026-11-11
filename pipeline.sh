@@ -485,7 +485,8 @@ if any(email == o or email.endswith(o) for o in {x.strip().lower() for x in own.
 res = R.check_email(email, vdom, vname,
                     found_on_venue_site=evidence in ("venue_site", "venue_mailto"),
                     shared_domain=(True if shared == "true" else None),
-                    venue_mailto=(evidence == "venue_mailto"))
+                    venue_mailto=(evidence == "venue_mailto"),
+                    local_verified=(evidence == "apollo_local"))
 action, reason = res["action"], res["reason"]
 local = email.split("@", 1)[0]
 compact = re.sub(r"[^a-z]", "", local)
@@ -549,8 +550,34 @@ if t.lower() == "none" or "@" in t or len(t) > 90 or not re.search(r"[A-Za-z]{2}
 prole = res.get("person_role") or "" if (action == "role" and evidence in ("venue_site", "venue_mailto")) else ""
 if prole and not t:
     t = prole
-out(email, action, reason, "1" if res.get("is_role") else "0", clean, t, res.get("name_hint") or "", prole)
+# Contact gate (Nov 11 2026): only people who could book Alex. Back-office mailboxes and
+# titles are rejected, nameless addresses are not saved (one-person chef@/owner@ excepted),
+# and in strict mode (a big staff directory, an organisation's list, an Apollo find at a host
+# organisation or brand) only booking-relevant titles pass.
+import os
+host_org = os.environ.get("VENUE_HOST_ORG", "").strip()
+multi = bool(host_org) or shared == "true"
+own_page = evidence in ("venue_site", "venue_mailto")
+strict = (os.environ.get("CONTACT_STRICT") == "1" or evidence == "apollo_local"
+          or (multi and not own_page)
+          or (host_org == "institution" and not os.environ.get("VENUE_SITE_PREFIX", "").count("/")))
+score, tier = 0, "neutral"
+if action != "reject":
+    g = R.contact_gate(email, clean, t, action, prole, strict=strict, multi_site=multi and not own_page,
+                       venue_name=vname, venue_city=os.environ.get("VENUE_CITY_GATE", ""))
+    score, tier = g["score"], g["tier"]
+    if not g["ok"] and not (g["reason"] == "no_person_name" and action == "role"):
+        # (a role mailbox with no name keeps its own "role mailbox, no person" line below)
+        action, reason = "reject", g["reason"]
+out(email, action, reason, "1" if res.get("is_role") else "0", clean, t, res.get("name_hint") or "", prole, score, tier)
 PYEOF
+}
+
+# Line count of a per-venue counter file (0 when missing).
+_vap_count() {
+    local n=0
+    [ -s "$1" ] && n=$(wc -l < "$1" | tr -d ' ')
+    echo "${n:-0}"
 }
 
 # verify_and_push EMAIL VENUE_ID NAME TITLE SOURCE [EVIDENCE]   (contract C2)
@@ -582,12 +609,21 @@ verify_and_push() {
             [ "${#v_label}" -ge 5 ] && [ "$e_label" != "$v_label" ] && [ "${e_label//-/}" = "${v_label//-/}" ] && mail_dom="$edom"
         fi
     fi
+    # An Apollo person verified as local staff of this venue (org name + city + booking title)
+    # may write from the parent's domain when the venue's own site uses that domain for its
+    # booking inbox (pdr.washingtondc@fourseasons.com on Bourbon Steak's contact page).
+    if [ "$evidence" = "apollo_local" ] && [ -z "$mail_dom" ] && [ -n "${VENUE_PARENT_MAIL:-}" ]; then
+        local pm
+        for pm in $VENUE_PARENT_MAIL; do
+            if [ "$edom" = "$pm" ] || [ "${edom%.$pm}" != "$edom" ]; then mail_dom="$pm"; break; fi
+        done
+    fi
 
     local checked
     checked=$(_py_check_email "$SCRIPT_DIR" "$email" "$name" "$title" "$evidence" \
         "${mail_dom:-$VENUE_DOMAIN}" "$VENUE_NAME" "$VENUE_SHARED_DOMAIN" "$OWN_EMAILS" "$OTHER_CITY_TOKENS")
-    local email_lower action reason is_role clean_name clean_title name_hint person_role
-    IFS=$'\x1f' read -r email_lower action reason is_role clean_name clean_title name_hint person_role <<< "$checked"
+    local email_lower action reason is_role clean_name clean_title name_hint person_role g_score g_tier
+    IFS=$'\x1f' read -r email_lower action reason is_role clean_name clean_title name_hint person_role g_score g_tier <<< "$checked"
     if [ -z "$action" ]; then
         email_lower=$(printf '%s' "$email" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
         log "  [ERROR] Email check crashed for $email_lower — not saved (see $ERR_LOG)"
@@ -610,13 +646,33 @@ verify_and_push() {
     fi
 
     if [ "$action" = "reject" ]; then
-        log "  [REJECT] $email_lower — $reason (source: $source, evidence: $evidence)"
+        log "  [REJECT] $email_lower — $reason (source: $source, evidence: $evidence)${clean_title:+ [$clean_title]}"
         case "$reason" in
             off_domain*|freemail_unlinked|shared_brand_domain*|other_location*)
                 echo "FLAG:Rejected email ($reason): $email_lower (venue domain ${VENUE_DOMAIN:-none}, source: $source)" >> /tmp/pipeline_flags.txt ;;
         esac
         record_candidate "$email_lower" "$venue_id" "$name" "$title" "$source" "reject:$reason"
         vap_outcome reject
+        return
+    fi
+
+    # Per-venue ceiling (Nov 11 2026: one gallery got 92 contacts, a foundation 47). At most
+    # MAX_NEW_CONTACTS_PER_VENUE new contacts per venue, and at most MAX_NEUTRAL_PER_VENUE of
+    # them without a booking-relevant title, so an events director Apollo finds after the
+    # website step still has room. Checked before any ZeroBounce credit is spent.
+    local n_new n_neutral cap_all="${MAX_NEW_CONTACTS_PER_VENUE:-10}" cap_neutral="${MAX_NEUTRAL_PER_VENUE:-4}"
+    n_new=$(_vap_count /tmp/pipeline_contacts_count)
+    n_neutral=$(_vap_count /tmp/pipeline_contacts_neutral)
+    if [ "$n_new" -ge "$cap_all" ] 2>/dev/null; then
+        log "  [CAP] $email_lower — venue already has $n_new new contacts (MAX_NEW_CONTACTS_PER_VENUE=$cap_all); not saved${clean_title:+ [$clean_title]}"
+        record_candidate "$email_lower" "$venue_id" "$clean_name" "$clean_title" "$source" "venue_contact_cap"
+        vap_outcome candidate
+        return
+    fi
+    if [ "${g_tier:-neutral}" != "booking" ] && [ "$n_neutral" -ge "$cap_neutral" ] 2>/dev/null; then
+        log "  [CAP] $email_lower — ${clean_title:-no title} is not a booking title and $n_neutral such contacts are already saved (MAX_NEUTRAL_PER_VENUE=$cap_neutral)"
+        record_candidate "$email_lower" "$venue_id" "$clean_name" "$clean_title" "$source" "venue_neutral_cap"
+        vap_outcome candidate
         return
     fi
 
@@ -729,6 +785,7 @@ verify_and_push() {
             fi
             record_candidate "$email_lower" "$venue_id" "$clean_name" "$clean_title" "$source" "saved_$verified"
             echo "1" >> /tmp/pipeline_contacts_count
+            [ "${g_tier:-neutral}" = "booking" ] || echo "1" >> /tmp/pipeline_contacts_neutral
             remember_email "$email_lower"
             if [ -n "$clean_name" ]; then
                 KNOWN_NAMES="${KNOWN_NAMES:+${KNOWN_NAMES}|||}$(printf '%s' "$clean_name" | tr '[:upper:]' '[:lower:]')"
@@ -2612,7 +2669,7 @@ def runner_of(email):
     boss = [x for x in staff if re.search(r"(?i)\b(owner|co-?owner|proprietor|founder|general manager|gm)\b", x[1])]
     if local in ("gm", "generalmanager", "manager"):
         hits = [x for x in staff if re.search(r"(?i)\b(general manager|gm)\b", x[1])]
-    elif re.search(r"event|cater|wedding|banquet|privatedining|groupsales|^sales", local):
+    elif re.search(r"event|cater|wedding|banquet|privatedining|groupsales|^sales|^pdr|^part(y|ies)|privateparties", local):
         job = re.compile(r"(?i)(event|cater|wedding|banquet|private dining|sales).*(manager|director|coordinator|planner|specialist|supervisor)|"
                          r"(manager|director|coordinator|planner|specialist|supervisor).*(event|cater|wedding|banquet|private dining|sales)")
         hits = [x for x in staff if job.search(x[1])] or boss
@@ -2634,19 +2691,34 @@ def runner_of(email):
 # more personal addresses on the domain count without one.
 AGENCY_LABEL = re.compile(r"(pr|media|marketing|agency|communications|comms|creative|design|digital|studios?|photo\w*|events?|coordinators|productions?)$")
 mail_alias = ""
+# A page listing addresses on 3+ outside domains is a directory (the Guilford Association's
+# /links page: state delegates, city council, police, the patrol company). Its addresses
+# never make a mail alias (Nov 11 2026: five @house.state.md.us delegates made "md.us" the
+# association's "own" mail domain and were saved).
+from collections import defaultdict as _dd0
+_dir_doms = _dd0(set)
+for _e0, _r0 in emails.items():
+    _d0 = R.registrable_domain(_e0.split("@", 1)[1]) if "@" in _e0 else ""
+    if _d0 and _d0 != reg and _d0 not in R.FREEMAIL_DOMAINS:
+        for _u0, _m0, _k0 in _r0["hits"]:
+            _dir_doms[_u0].add(_d0)
+DIRECTORY_PAGES = {u for u, ds in _dir_doms.items() if len(ds) >= 3}
 if shared != "true" and reg and not any(a != reg for a in alias_regs):
     site_label = reg.rsplit(".", 1)[0]
     on_site, per_dom, mailto_dom, person_dom, contact_dom = 0, {}, {}, {}, {}
     for e, r in emails.items():
         dom = e.split("@", 1)[1] if "@" in e else ""
         dreg = R.registrable_domain(dom) if dom else ""
-        own_hits = [(u, m) for u, m, k in r["hits"] if in_scope(u)]
+        own_hits = [(u, m) for u, m, k in r["hits"] if in_scope(u) and u not in DIRECTORY_PAGES]
         if not dreg or not own_hits:
             continue
         if dreg == reg:
             on_site += 1
             continue
         if dreg in R.FREEMAIL_DOMAINS or R.is_shared_domain(dreg) or R.is_non_venue_host(dreg):
+            continue
+        # a university's or a government's domain is never a venue's own mail domain
+        if R.is_institution_domain(dreg) and not R.is_institution_domain(reg):
             continue
         if AGENCY_LABEL.search(dreg.rsplit(".", 1)[0]):
             continue
@@ -2775,6 +2847,7 @@ for _dm, _locals in _by_dom.items():
         GLUED.add(_l + "@" + _dm)
 
 named = set()
+contact_rows, parent_domains = [], set()
 for e, r in sorted(emails.items()):
     if e in GLUED:
         print("DROP\x1f%s\x1fpage_text_glued_to_address\x1f%s" % (e, r["hits"][0][0]))
@@ -2826,8 +2899,28 @@ for e, r in sorted(emails.items()):
         runner = runner_of(e)
         if runner:
             r["name"], r["title"] = runner
-    print("\x1f".join(["CONTACT", e, r["name"].replace("\x1f", " "), r["title"].replace("\x1f", " "), ev, src]))
+    elif (ev == "venue_mailto" and _edreg and _edreg not in (reg, mail_alias, brand_reg) and _edreg not in alias_regs
+          and _edreg not in R.FREEMAIL_DOMAINS and not R.is_non_venue_host(_edreg) and not R.is_institution_domain(_edreg)
+          and R.is_role_email(e) and not R.is_general_inbox(e)):
+        # A booking inbox the venue's own contact/events page publishes on its parent's domain
+        # (pdr.washingtondc@fourseasons.com on Bourbon Steak's contact page, saleswasph@hyatt.com
+        # on Blue Duck Tavern's): the runbook's "owner group's domain" rule. The parent domain is
+        # remembered for Apollo's local-staff search; the inbox is saved when the site names the
+        # one person who runs that function (Alex, Sep 27 2026, Flore Cafe: "seems perfect").
+        parent_domains.add(_edreg)
+        runner = None if r["name"] else runner_of(e)
+        if runner:
+            r["name"], r["title"] = runner
+        if r["name"]:
+            ev = "owner_inbox"
+    contact_rows.append((-R.title_relevance(r["title"])[0], 0 if r["name"] else 1, e,
+                         "\x1f".join(["CONTACT", e, r["name"].replace("\x1f", " "), r["title"].replace("\x1f", " "), ev, src])))
     if r["name"]: named.add(r["name"].lower())
+# Booking-relevant people first: the per-venue ceiling keeps the best of a long staff page.
+for _row in sorted(contact_rows):
+    print(_row[3])
+for _pd in sorted(parent_domains):
+    print("\x1f".join(["PARENT", _pd]))
 # Named decision-makers with no email on the site -> pending-contact candidates (P3 filters them).
 for key, (n, t, page) in people.items():
     if key not in named:
@@ -3420,15 +3513,40 @@ PYEOF
     [ -n "$final_brand" ] && VENUE_MAIL_ALIAS=""
     export VENUE_MAIL_ALIAS
 
+    # Parent domains the venue's own contact pages use for a booking inbox (hyatt.com on Blue
+    # Duck Tavern's): Apollo's local-staff search may save this venue's people on them.
+    VENUE_PARENT_MAIL=$(printf '%s\n' "$decisions" | awk -F$'\x1f' '$1=="PARENT"{print $2}' | tr '\n' ' ' | sed 's/ *$//')
+    export VENUE_PARENT_MAIL
+    [ -n "$VENUE_PARENT_MAIL" ] && log "  [WEB] The venue's own pages publish booking inboxes on its parent's domain: $VENUE_PARENT_MAIL"
+    # A long staff directory (Workhouse Arts Center: 30 addresses, accountants to the mini-golf
+    # inbox) = strict mode for this venue: only booking-relevant titles are saved, from every step.
+    local own_n
+    own_n=$(printf '%s\n' "$decisions" | awk -F$'\x1f' -v r="$site_reg" -v a="$final_reg" '
+        $1=="CONTACT" { d=$2; sub(/^[^@]*@/, "", d); if (d==r || (a!="" && d==a) || (r!="" && d ~ ("\\." r "$"))) n++ } END { print n+0 }')
+    if [ "${own_n:-0}" -gt "${CONTACT_STRICT_AT:-12}" ] 2>/dev/null; then
+        CONTACT_STRICT=1; export CONTACT_STRICT
+        log "  [STRICT] $own_n addresses on the venue's own domain (a staff directory) — only booking-relevant titles are saved for this venue (CONTACT_STRICT_AT=${CONTACT_STRICT_AT:-12})"
+    fi
+
     # Dedupe by email and verify+push each contact with name/title and evidence (C2).
-    local drop_n=0 cand_n=0 d_email d_name d_title d_ev d_src saved_domain
+    local drop_n=0 cand_n=0 d_email d_name d_title d_ev d_src saved_domain saved_shared
     VAP_OUTCOMES_FILE="$WEB_DIR/outcomes.txt"
     : > "$VAP_OUTCOMES_FILE"
     while IFS=$'\x1f' read -r kind d_email d_name d_title d_ev d_src <&3; do
         case "$kind" in
             CONTACT)
                 cand_n=$((cand_n + 1))
-                if [ -n "$final_reg" ] && [ "${d_email##*@}" = "$final_reg" -o "${d_email##*.$final_reg}" != "$d_email" ]; then
+                if [ "$d_ev" = "owner_inbox" ]; then
+                    # booking inbox on the parent's domain, published on the venue's own page,
+                    # with the person who runs it named on the site: saved as verified=role
+                    log "  [OWNER INBOX] $d_email is published on the venue's own page; paired with $d_name${d_title:+ ($d_title)}"
+                    saved_domain="$VENUE_DOMAIN"; saved_shared="$VENUE_SHARED_DOMAIN"
+                    VENUE_DOMAIN="$(printf '%s' "${d_email##*@}" | tr '[:upper:]' '[:lower:]')"; VENUE_SHARED_DOMAIN="false"
+                    PUSH_ALLOW_OFF_DOMAIN=true; export PUSH_ALLOW_OFF_DOMAIN
+                    verify_and_push "$d_email" "$venue_id" "$d_name" "$d_title" "website" "venue_mailto"
+                    unset PUSH_ALLOW_OFF_DOMAIN
+                    VENUE_DOMAIN="$saved_domain"; VENUE_SHARED_DOMAIN="$saved_shared"
+                elif [ -n "$final_reg" ] && [ "${d_email##*@}" = "$final_reg" -o "${d_email##*.$final_reg}" != "$d_email" ]; then
                     saved_domain="$VENUE_DOMAIN"; VENUE_DOMAIN="$final_reg"
                     PUSH_ALLOW_OFF_DOMAIN=true
                     export PUSH_ALLOW_OFF_DOMAIN
@@ -4406,6 +4524,10 @@ vreg = ""
 if website and website != "None" and not R.is_non_venue_host(website):
     vreg = R.registrable_domain(website)
 shared = bool(vreg) and (vreg in R.SHARED_BRAND_DOMAINS or os.environ.get("RB_SHARED") == "true")
+# The website is a section of a larger organisation's domain (sjc.edu/mitchell, a property
+# page on cogirusa.com, venue.cbf.org): its domain org is the parent, looked up like any
+# domain, but its people are then searched in the venue's city with booking titles only.
+host_org = os.environ.get("VENUE_HOST_ORG", "").strip() if vreg and vreg not in R.SHARED_BRAND_DOMAINS else ""
 # The venue's own mail domain when it differs from the website's (found by the web step).
 mail_alias = os.environ.get("VENUE_MAIL_ALIAS", "").strip().lower()
 if not vreg or shared or mail_alias == vreg:
@@ -4522,6 +4644,8 @@ def gate(org):
             or R.org_name_matches(fold(name), fold(venue_name))
     if not named:
         return False, "name doesn't match venue"
+    if host_org and odom == vreg:
+        return True, "name+domain(parent org)"
     if shared:
         # The brand domain proves nothing about the property; only its city does.
         return (True, "name+location") if loc_match(org) else (False, "shared brand domain, city doesn't match")
@@ -4553,6 +4677,12 @@ def consider(hits, via):
             n_ok += 1
         else:
             rejected.append({"name": org.get("name") or "", "domain": org_domain(org), "reason": why, "via": via})
+            # The venue's own domain is filed under its parent group (woodmontgrill.com ->
+            # Hillstone Restaurant Group, hillstone.com): its staff may write from that domain.
+            global parent_domain
+            od = org_domain(org)
+            if via == "domain" and od and od != vreg and not parent_domain and not R.is_non_venue_host(od):
+                parent_domain = od
     return n_ok
 
 
@@ -4570,8 +4700,10 @@ def search_by_name(q):
     return hits
 
 
-# Domain lookup (never on a shared brand domain: it returns the brand, not the property)
-if vreg and not shared:
+# Domain lookup (never on a shared brand domain: it returns the brand, not the property;
+# a host organisation's domain returns the parent org, which the people step then filters)
+parent_domain = ""
+if vreg and (not shared or host_org):
     try:
         org = call("GET", "/organizations/enrich", missing_ok=(404, 422), params={"domain": vreg}).get("organization")
         hits = [org] if org else []
@@ -4627,6 +4759,7 @@ out = {
     "rejected": rejected[:5],
     # A failed lookup with no accepted org is an outage, not "no company".
     "error": errors[0][6:] if errors and not best else "",
+    "parent_domain": parent_domain, "host_org": host_org, "venue_city": venue_city, "venue_state": venue_state,
 }
 if best:
     org, via, why = best
@@ -4651,7 +4784,8 @@ def f(k):
     return "" if v is None else str(v).replace("\x1f", " ").replace("\n", " ")
 print("\x1f".join(f(k) for k in ("found", "org_id", "domain", "name", "gate", "error", "venue_domain",
                                  "shared", "single_site", "domain_search", "domain_results",
-                                 "name_search", "name_results")))
+                                 "name_search", "name_results", "parent_domain", "host_org",
+                                 "venue_city", "venue_state")))
 for r in d.get("rejected") or []:
     print("REJECT\x1f" + "\x1f".join(str(r.get(k, "")).replace("\x1f", " ") for k in ("name", "domain", "reason", "via")))
 PYEOF
@@ -4664,8 +4798,12 @@ PYEOF
         return
     fi
 
-    local FOUND ORG_ID DOMAIN ORG_NAME GATE AERR VREG SHARED SINGLE DSEARCH DRES NSEARCH NRES
-    IFS=$'\x1f' read -r FOUND ORG_ID DOMAIN ORG_NAME GATE AERR VREG SHARED SINGLE DSEARCH DRES NSEARCH NRES <<< "$(printf '%s\n' "$info" | head -1)"
+    local FOUND ORG_ID DOMAIN ORG_NAME GATE AERR VREG SHARED SINGLE DSEARCH DRES NSEARCH NRES PARENT_DOM HOST_ORG A_CITY A_STATE
+    IFS=$'\x1f' read -r FOUND ORG_ID DOMAIN ORG_NAME GATE AERR VREG SHARED SINGLE DSEARCH DRES NSEARCH NRES PARENT_DOM HOST_ORG A_CITY A_STATE <<< "$(printf '%s\n' "$info" | head -1)"
+    # The parent group's domain counts for this venue's own staff found by the local search below.
+    if [ -n "$PARENT_DOM" ]; then
+        case " ${VENUE_PARENT_MAIL:-} " in *" $PARENT_DOM "*) ;; *) VENUE_PARENT_MAIL="${VENUE_PARENT_MAIL:+$VENUE_PARENT_MAIL }$PARENT_DOM"; export VENUE_PARENT_MAIL ;; esac
+    fi
     log "  [APOLLO] Domain lookup: ${DSEARCH} (${DRES} results) | name search: ${NSEARCH} (${NRES} results)"
     local rj_name rj_dom rj_why rj_via n_rej=0 first_rej=""
     while IFS=$'\x1f' read -r _ rj_name rj_dom rj_why rj_via; do
@@ -4688,9 +4826,18 @@ PYEOF
     fi
 
     if [ "$FOUND" != "True" ]; then
-        # Uncertain = save nothing. Step 4 may still match LinkedIn names on the
+        # Uncertain = save nothing from an org. Step 4 may still match LinkedIn names on the
         # venue's own domain, never on a shared brand domain.
         [ "$SHARED" = "True" ] || APOLLO_DOMAIN="$VREG"
+        # Nov 11 2026 (Woodmont Grill: the domain is filed under Hillstone Restaurant Group;
+        # Dear Charles, MUI Supper Club: no Apollo org at all): search people by the venue's
+        # name in its city, keep only those whose Apollo employer IS this venue, booking titles only.
+        _rb_apollo_local_search "$venue_id" "$venue" "" "$A_CITY" "$A_STATE" 3
+        if [ "${RB_LOCAL_SAVED:-0}" -gt 0 ] 2>/dev/null; then
+            echo "ok:local_search" > /tmp/pipeline_apollo_verdict
+            _rb_emit_step "$venue_id" apollo ok reason local_search_no_org local_people "$RB_LOCAL_PEOPLE" saved "$RB_LOCAL_SAVED" credits "$RB_LOCAL_CREDITS" "${skv[@]}"
+            return 0
+        fi
         if [ "$SHARED" = "True" ]; then
             log "  [APOLLO SKIP] Website is on shared brand domain $VREG and no org for this property matched — no domain-wide people search"
             echo "FLAG:Apollo skipped — website on shared brand domain $VREG; no property-specific org found" >> /tmp/pipeline_flags.txt
@@ -4731,6 +4878,20 @@ PYEOF
         APOLLO_DOMAIN="${VREG:-$DOMAIN}"
     fi
     echo "ok:${APOLLO_DOMAIN}" > /tmp/pipeline_apollo_verdict
+
+    # A multi-site org (a brand property, a chain's head office, a foundation, a college):
+    # never its whole roster. Only its people located in the venue's city with a booking title,
+    # saved as local staff (Nov 11 2026: Cogir of Potomac got 18 head-office and other-
+    # community staff, the Merrill Center 47 Chesapeake Bay Foundation staff).
+    if [ "$SHARED" = "True" ] || [ -n "$HOST_ORG" ]; then
+        log "  [APOLLO] Multi-site org (${HOST_ORG:-shared brand domain}) — people search limited to ${A_CITY:-?} ${A_STATE} with booking titles"
+        _rb_apollo_local_search "$venue_id" "$venue" "$ORG_ID" "$A_CITY" "$A_STATE" 3
+        local lstatus="empty"
+        [ "${RB_LOCAL_SAVED:-0}" -gt 0 ] 2>/dev/null && lstatus="ok"
+        [ -n "$RB_LOCAL_ERR" ] && lstatus="failed"
+        _rb_emit_step "$venue_id" apollo "$lstatus" reason multi_site_local people "$RB_LOCAL_PEOPLE" relevant "$RB_LOCAL_PICKED" saved "$RB_LOCAL_SAVED" credits "$RB_LOCAL_CREDITS" "${skv[@]}"
+        return 0
+    fi
 
     # B. Search for people at this company (free search; no domain-wide search)
     log "  Searching for people at $ORG_NAME (org_id: $ORG_ID)..."
@@ -4835,7 +4996,12 @@ PYEOF
     skv+=(people "$PEOPLE_COUNT")
     if [ "$PEOPLE_COUNT" = "0" ]; then
         log "  No people in Apollo for this company."
-        _rb_emit_step "$venue_id" apollo empty reason no_people "${skv[@]}"
+        _rb_apollo_local_search "$venue_id" "$venue" "" "$A_CITY" "$A_STATE" 3
+        if [ "${RB_LOCAL_SAVED:-0}" -gt 0 ] 2>/dev/null; then
+            _rb_emit_step "$venue_id" apollo ok reason local_search_no_people saved "$RB_LOCAL_SAVED" credits "$RB_LOCAL_CREDITS" "${skv[@]}"
+        else
+            _rb_emit_step "$venue_id" apollo empty reason no_people "${skv[@]}"
+        fi
         return
     fi
 
@@ -4868,7 +5034,7 @@ PYEOF
     fi
 
     local SELECTION
-    SELECTION=$(KNAMES="$KNOWN_NAMES" RB_CAP="${MAX_APOLLO_PER_VENUE:-60}" RB_DM_ONLY="${APOLLO_DECISION_MAKERS_ONLY:-0}" \
+    SELECTION=$(KNAMES="$KNOWN_NAMES" RB_CAP="${MAX_APOLLO_PER_VENUE:-12}" RB_DM_ONLY="${APOLLO_DECISION_MAKERS_ONLY:-1}" \
         _rb_py "$venue_id apollo-select" python3 - "$scored" <<'PYEOF'
 import json, os, sys
 
@@ -4901,9 +5067,10 @@ for p in people:
     if not first or not p.get("id"):
         continue
     sc, why = p.get("score", 0), p.get("why", "")
-    # Alex's rule: enrich everyone at the venue's own org except skip words and the
-    # hard veto; decision-makers only is opt-in.
-    if why.startswith("veto") or (dm_only and sc <= 0):
+    # Nov 11 2026: only people who could book Alex are enriched (score >= 2: owner, GM,
+    # events, private dining, catering, F&B, music/performing arts, lifestyle, sales,
+    # president). APOLLO_DECISION_MAKERS_ONLY=0 restores "everyone except the veto list".
+    if why.startswith("veto") or (dm_only and sc < 2):
         skipped_title.append(p.get("title") or "(no title)")
         continue
     if is_known(first, p.get("last_name_hint")):
@@ -4935,12 +5102,12 @@ PYEOF
     local n_skip_title n_known n_noemail n_over
     IFS=$'\x1f' read -r _ n_skip_title n_known n_noemail n_over <<< "$(printf '%s\n' "$SELECTION" | grep '^COUNTS')"
     if [ "${n_skip_title:-0}" -gt 0 ] 2>/dev/null; then
-        log "  Skipped $n_skip_title people by title (app skip words / non-booking staff$([ "${APOLLO_DECISION_MAKERS_ONLY:-0}" = "1" ] && echo " / not decision-makers")): $(printf '%s\n' "$SELECTION" | awk -F$'\x1f' '$1=="SKIPT"{print $2}')"
+        log "  Skipped $n_skip_title people by title (back office / not a booking role$([ "${APOLLO_DECISION_MAKERS_ONLY:-1}" = "1" ] && echo " / not decision-makers")): $(printf '%s\n' "$SELECTION" | awk -F$'\x1f' '$1=="SKIPT"{print $2}')"
     fi
     [ "${n_known:-0}" -gt 0 ] 2>/dev/null && log "  Skipped $n_known people already in the sheet (name match)"
     [ "${n_noemail:-0}" -gt 0 ] 2>/dev/null && log "  Skipped $n_noemail people with no email (red ? on Apollo) and no decision-maker title"
     if [ "${n_over:-0}" -gt 0 ] 2>/dev/null; then
-        log "  [CAP] $n_over more people not enriched (MAX_APOLLO_PER_VENUE=${MAX_APOLLO_PER_VENUE:-60}; most relevant were enriched first): $(printf '%s\n' "$SELECTION" | awk -F$'\x1f' '$1=="OVER"{print $2}')"
+        log "  [CAP] $n_over more people not enriched (MAX_APOLLO_PER_VENUE=${MAX_APOLLO_PER_VENUE:-12}; most relevant were enriched first): $(printf '%s\n' "$SELECTION" | awk -F$'\x1f' '$1=="OVER"{print $2}')"
     fi
 
     local ENRICH_COUNT
@@ -4948,7 +5115,14 @@ PYEOF
     skv+=(relevant "$ENRICH_COUNT" skipped_titles "${n_skip_title:-0}" over_cap "${n_over:-0}")
     if [ "$ENRICH_COUNT" -eq 0 ]; then
         log "  No new people to enrich."
-        _rb_emit_step "$venue_id" apollo empty reason no_relevant_people "${skv[@]}"
+        # The matched org holds only floor staff (Blue Duck Tavern: bartenders and cooks):
+        # look for this venue's booking people by name in its city before giving up.
+        _rb_apollo_local_search "$venue_id" "$venue" "" "$A_CITY" "$A_STATE" 3
+        if [ "${RB_LOCAL_SAVED:-0}" -gt 0 ] 2>/dev/null; then
+            _rb_emit_step "$venue_id" apollo ok reason local_search_no_relevant saved "$RB_LOCAL_SAVED" credits "$RB_LOCAL_CREDITS" "${skv[@]}"
+        else
+            _rb_emit_step "$venue_id" apollo empty reason no_relevant_people "${skv[@]}"
+        fi
         return
     fi
     log "  $ENRICH_COUNT people to enrich (1 credit each)"
@@ -4993,11 +5167,130 @@ PYEOF
     _rb_emit_step "$venue_id" apollo "$status" "${skv[@]}"
 }
 
+# _rb_apollo_local_search VENUE_ID VENUE ORG_ID CITY STATE MIN_SCORE (Nov 11 2026)
+# This venue's own booking people in Apollo, found by location instead of by domain:
+#   ORG_ID given -> people at that org located in the venue's city (a brand property, a
+#                   chain's community, a foundation's center, a college's gallery)
+#   ORG_ID empty -> people anywhere in the venue's city whose Apollo employer name IS the
+#                   venue (the domain was filed under a parent group, or no org was found)
+# Only titles scoring >= MIN_SCORE (booking roles) are enriched; they are saved with
+# evidence apollo_local, which lets an address on the brand / parent domain through
+# (verify_and_push: shared brand domain, VENUE_PARENT_MAIL). The search is free.
+# Sets RB_LOCAL_PEOPLE, RB_LOCAL_PICKED, RB_LOCAL_SAVED, RB_LOCAL_CREDITS, RB_LOCAL_ERR.
+_rb_apollo_local_search() {
+    local venue_id="$1" venue="$2" org_id="$3" city="$4" state="$5" min_score="${6:-3}"
+    RB_LOCAL_PEOPLE=0; RB_LOCAL_PICKED=0; RB_LOCAL_SAVED=0; RB_LOCAL_CREDITS=0; RB_LOCAL_ERR=""
+    if [ -z "$city" ] || [ "$city" = "None" ]; then
+        log "  [APOLLO LOCAL] No city on the sheet — local people search skipped"
+        return 0
+    fi
+    [ "${APOLLO_LOCAL_SEARCH:-1}" = "1" ] || return 0
+    _rb_load_skip_words
+    local before credits_before sel
+    before=$(_rb_count_lines /tmp/pipeline_contacts_count)
+    credits_before="$APOLLO_CREDITS_USED"
+    sel=$(RB_ORG_ID="$org_id" RB_VENUE_NAME="$venue" RB_CITY="$city" RB_STATE="$state" RB_MIN="$min_score" \
+        KNAMES="$KNOWN_NAMES" RB_SKIP_WORDS="${RB_SKIP_WORDS:-[]}" SCRIPT_DIR="$SCRIPT_DIR" \
+        APOLLO_API_KEY="$APOLLO_API_KEY" APOLLO_API_BASE="$APOLLO_API_BASE" \
+        _rb_py "$venue_id apollo-local" python3 - <<'PYEOF'
+import json, os, re, sys
+import requests
+sys.path.insert(0, os.environ["SCRIPT_DIR"])
+import outreach_rules as R
+US = "\x1f"
+venue, city, state = os.environ["RB_VENUE_NAME"], os.environ["RB_CITY"].strip(), os.environ.get("RB_STATE", "").strip().upper()
+org_id, min_score = os.environ.get("RB_ORG_ID", "").strip(), int(os.environ.get("RB_MIN") or 3)
+FULL = {"DC": "District of Columbia", "MD": "Maryland", "VA": "Virginia", "PA": "Pennsylvania", "DE": "Delaware"}
+locs = [city + (", " + FULL[state] if state in FULL else ""), city + (", " + state if state else "")]
+if state == "DC":
+    locs += ["Washington, District of Columbia", "Washington, DC"]
+params = {"per_page": 25, "page": 1, "person_locations": list(dict.fromkeys(locs))}
+if org_id:
+    params["organization_ids"] = [org_id]
+else:
+    params["q_keywords"] = venue
+try:
+    r = requests.post(os.environ["APOLLO_API_BASE"] + "/mixed_people/api_search",
+                      headers={"Content-Type": "application/json", "x-api-key": os.environ["APOLLO_API_KEY"]},
+                      json=params, timeout=30)
+    if r.status_code != 200:
+        print("people search HTTP %s: %s" % (r.status_code, r.text[:300]), file=sys.stderr)
+        print("ERROR" + US + "http_%s" % r.status_code); sys.exit(0)
+    people = r.json().get("people") or []
+except Exception as e:  # network / bad JSON: reported, never fatal
+    print("ERROR" + US + type(e).__name__); sys.exit(0)
+try:
+    skip = [w for w in json.loads(os.environ.get("RB_SKIP_WORDS") or "[]") if w]
+except ValueError:
+    skip = []
+known = [n.strip().lower() for n in os.environ.get("KNAMES", "").split("|||") if n.strip()]
+vd = [w for w in R._words(venue) if len(w) >= 4 and w not in R._GENERIC_VENUE_WORDS]
+picked, n_org, n_title = [], 0, 0
+for p in people:
+    first, title = (p.get("first_name") or "").strip(), p.get("title") or ""
+    org = ((p.get("organization") or {}).get("name") or "").strip()
+    if not first or not p.get("id"):
+        continue
+    if not org_id:
+        tw = set(R._words(title))
+        same = org and (R.org_name_matches(org, venue) or R.org_name_matches(venue, org))
+        if not same and not (vd and all(w in tw for w in vd)):
+            n_org += 1
+            continue
+    sc, why = R.title_relevance(title, skip)
+    if sc < min_score:
+        n_title += 1
+        continue
+    if org_id and not R.contact_gate("", "Some Person", title, strict=True, multi_site=True,
+                                     venue_name=venue, venue_city=city)["ok"]:
+        n_title += 1   # the org's regional / head-office staff, or another property's: no credit
+        continue
+    if any(k.split()[0] == first.lower() and len(k.split()) >= 2 for k in known):
+        continue
+    if not p.get("has_email") and sc < 4:
+        continue
+    picked.append((sc, p["id"], first, title, org))
+picked.sort(key=lambda x: -x[0])
+print(US.join(["COUNTS", str(len(people)), str(n_org), str(n_title), str(len(picked[:8]))]))
+for sc, pid, first, title, org in picked[:8]:
+    print(US.join(["E", pid, first, title.replace(US, " "), org.replace(US, " "), str(sc)]))
+PYEOF
+    )
+    local err
+    err=$(printf '%s\n' "$sel" | awk -F$'\x1f' '$1=="ERROR"{print $2; exit}')
+    if [ -n "$err" ] || [ -z "$sel" ]; then
+        RB_LOCAL_ERR="${err:-crash}"
+        log "  [APOLLO LOCAL] People search failed (${RB_LOCAL_ERR}) — nothing enriched"
+        return 0
+    fi
+    local n_people n_org n_title n_pick
+    IFS=$'\x1f' read -r _ n_people n_org n_title n_pick <<< "$(printf '%s\n' "$sel" | grep '^COUNTS')"
+    RB_LOCAL_PEOPLE="${n_people:-0}"; RB_LOCAL_PICKED="${n_pick:-0}"
+    log "  [APOLLO LOCAL] ${org_id:+org $org_id, }${city} ${state}: ${n_people:-0} people, ${n_org:-0} at another employer, ${n_title:-0} without a booking title, ${n_pick:-0} to enrich"
+    [ "${n_pick:-0}" -gt 0 ] 2>/dev/null || return 0
+    local ids="" tag pid pfirst ptitle porg psc
+    while IFS=$'\x1f' read -r tag pid pfirst ptitle porg psc; do
+        [ "$tag" = "E" ] || continue
+        log "  [APOLLO LOCAL] $pfirst ($ptitle${porg:+, $porg})"
+        ids="${ids:+$ids,}$pid"
+    done <<< "$sel"
+    if [ -n "$ids" ]; then
+        if check_apollo_credits; then
+            _enrich_batch "$ids" "$venue_id" "apollo" "apollo_local" || RB_LOCAL_ERR="bulk_match"
+        else
+            RB_LOCAL_ERR="credit_cap"
+        fi
+    fi
+    RB_LOCAL_SAVED=$(( $(_rb_count_lines /tmp/pipeline_contacts_count) - before ))
+    RB_LOCAL_CREDITS=$(( APOLLO_CREDITS_USED - credits_before ))
+    return 0
+}
+
 # Helper: enrich a batch of Apollo person IDs (people/bulk_match).
 # Returns 1 when the API call failed. Runs in the caller's shell, so KNOWN_NAMES,
 # credits and verify_and_push's counters persist (PB-6).
 _enrich_batch() {
-    local ids_csv="$1" venue_id="$2" src="${3:-apollo}"
+    local ids_csv="$1" venue_id="$2" src="${3:-apollo}" ev="${4:-external}"
     local RESULT rc
     RESULT=$(RB_IDS="$ids_csv" APOLLO_API_KEY="$APOLLO_API_KEY" APOLLO_API_BASE="$APOLLO_API_BASE" \
         _rb_py "$venue_id apollo-enrich" python3 - <<'PYEOF'
@@ -5059,7 +5352,7 @@ PYEOF
         if [ -n "$eemail" ] && [ "$estatus" != "unavailable" ]; then
             log "  >>> $ename ($etitle): $eemail [$estatus]"
             cname=$(_rb_py "$venue_id apollo" python3 "$SCRIPT_DIR/outreach_rules.py" clean-name "$ename")
-            verify_and_push "$eemail" "$venue_id" "$cname" "$etitle" "$src" "external"
+            verify_and_push "$eemail" "$venue_id" "$cname" "$etitle" "$src" "$ev"
             # Mark name as known (after saving, so Step 4 doesn't pay for them again)
             KNOWN_NAMES="${KNOWN_NAMES}|||$(printf '%s' "$ename" | tr '[:upper:]' '[:lower:]')"
         else
@@ -5160,38 +5453,13 @@ print(json.dumps([str(x).strip().lower() for x in w if str(x).strip()]))')
 #   _rb_score_titles IN.json OUT.json   (list of objects with "title"; adds score/why)
 #   _rb_score_titles --title "Title"    (prints the score)
 _rb_score_titles() {
-    RB_SKIP_WORDS="${RB_SKIP_WORDS:-[]}" _rb_py "title-score" python3 - "$@" <<'PYEOF'
-import json, os, re, sys
-
-# Always skipped (with the app's skip words): the old bad_titles list plus floor
-# staff that never book music. Everything else at an accepted org is enriched.
-HARD_VETO = re.compile(
-    r"\b(intern|interns|internship|student|volunteer|housekeeping|housekeeper|laundry|security|"
-    r"loss prevention|accountant|accounting|finance|payroll|steward|engineer|engineering|maintenance|"
-    r"it|information technology|purchasing|procurement|human resources?|hr|recruiter|recruiting|"
-    r"recruitment|talent acquisition|spa|esthetician|massage|server|servers|dishwasher|line cook|"
-    r"prep cook|busser|barback|valet|caddie|caddies)\b")
-# Not booking roles: score 0, so they are left out only in decision-maker mode
-# (APOLLO_DECISION_MAKERS_ONLY=1) and never become email-less pending contacts (P3).
-NON_BOOKING = re.compile(
-    r"\b(teacher|faculty|professor|coach|athletics?|accounts payable|accounts receivable|bookkeeper|"
-    r"controller|comptroller|financial|superintendent|groundskeeper|grounds|landscape|golf professional|"
-    r"golf pro|assistant golf|tennis|racquets?|pickleball|squash|fitness|personal trainer|lifeguard|"
-    r"aquatics|therapist|salon|bartender|cook|bellman|bell attendant|doorman|driver|software|developer|"
-    r"data analyst|data scientist|retired|former|guest service agent|front desk agent|night auditor|"
-    r"reservations agent|attorney|lawyer|counsel|architect|architecture|construction|nurse|physician)\b")
-SENIOR = r"(manager|director|coordinator|head|lead|chief|vp|vice president|executive|specialist|planner|supervisor|producer|administrator|officer|consultant)"
-RULES = [
-    (5, r"\b(events?|special events|private events|private dining|banquets?|catering|weddings?|meetings)\b", True),
-    (5, r"\b(entertainment|music|booking|bookings|talent buyer|programming)\b", False),
-    (4, r"\b(owner|co owner|coowner|founder|co founder|cofounder|proprietor|general manager|gm|managing director|managing partner)\b", False),
-    (4, r"\b(food (and|&) beverage|f ?& ?b|fnb|beverage director|director of beverage|restaurant manager|dining room manager|outlet manager)\b", False),
-    (3, r"\bsales\b", True),
-    (3, r"\b(club manager|clubhouse manager|venue manager|house manager|tasting room|winery manager|estate manager|artistic director|music director|curator|public programs)\b", False),
-    (3, r"\b(hospitality|guest experience|programs?)\b", True),
-    (2, r"\b(president|ceo|chief executive|coo|chief operating|partner)\b", False),
-    (2, r"\boperations\b", True),
-]
+    RB_SKIP_WORDS="${RB_SKIP_WORDS:-[]}" SCRIPT_DIR="$SCRIPT_DIR" _rb_py "title-score" python3 - "$@" <<'PYEOF'
+import json, os, sys
+# One scorer for every step (outreach_rules.title_relevance, Nov 11 2026): back office and
+# floor staff are vetoed, booking roles (events, private dining, catering, F&B, music and
+# performing-arts programming, resident lifestyle, owner/GM) score 3+.
+sys.path.insert(0, os.environ.get("SCRIPT_DIR", "."))
+import outreach_rules as R
 try:
     user_skip = [w for w in json.loads(os.environ.get("RB_SKIP_WORDS") or "[]") if w]
 except ValueError:
@@ -5199,31 +5467,7 @@ except ValueError:
 
 
 def score(title):
-    t = " " + re.sub(r"\s+", " ", re.sub(r"[^a-z0-9& ]+", " ", (title or "").lower())) + " "
-    if not t.strip():
-        return 0, "no_title"
-    for w in user_skip:
-        # Whole-word, like the app's filter (UI-9)
-        if re.search(r"(^|[^a-z0-9])" + re.escape(w) + r"($|[^a-z0-9])", t):
-            return 0, "veto:skip_word:" + w
-    m = HARD_VETO.search(t)
-    if m:
-        return 0, "veto:" + m.group(1)
-    m = NON_BOOKING.search(t)
-    if m:
-        return 0, "non_booking:" + m.group(1)
-    senior = re.search(r"\b" + SENIOR + r"\b", t) is not None
-    best = 0
-    for pts, pat, need_senior in RULES:
-        if re.search(pat, t) and (senior or not need_senior):
-            best = max(best, pts)
-    if not best:
-        return 0, "not_relevant"
-    if re.search(r"\bassistant\b", t):
-        best -= 1
-    elif re.search(r"\b(director|head|vp|vice president|chief)\b", t):
-        best += 1
-    return max(best, 1), "rule"
+    return R.title_relevance(title, user_skip)
 
 
 if len(sys.argv) >= 3 and sys.argv[1] == "--title":
@@ -8585,7 +8829,11 @@ out[1], out[2] = host, reg
 if R.is_non_venue_host(host):
     out[0] = 'non_venue'
     print('\x1f'.join(out)); sys.exit(0)
-shared = reg in R.SHARED_BRAND_DOMAINS
+# A page inside a larger organisation's domain (Nov 11 2026: sjc.edu/mitchell, a property
+# page on cogirusa.com, venue.cbf.org) is handled like a property on a brand domain: only
+# its own section is the venue's site (R.host_org_kind).
+host_org = R.host_org_kind(url, venue)
+shared = reg in R.SHARED_BRAND_DOMAINS or bool(host_org)
 out[3] = 'true' if shared else 'false'
 if not shared:
     out[0], out[4] = 'ok', host
@@ -8606,7 +8854,11 @@ PROP_STOP = {'hotel', 'hotels', 'suites', 'resort', 'club', 'country', 'golf', '
 words = [w for w in re.sub(r'[^a-z0-9\s]', ' ', venue.lower()).split()
          if len(w) >= 4 and w not in PROP_STOP and w not in label]
 hay = re.sub(r'[^a-z0-9]', '', sub + ' ' + ' '.join(segs))
-if (sub or segs) and (not words or any(w in hay for w in words)):
+if host_org and (sub or segs):
+    # The organisation's own subdomain or section for the venue: no name check needed.
+    out[0] = 'ok'
+    out[4] = host + ('/' + '/'.join(segs) if segs else '')
+elif (sub or segs) and (not words or any(w in hay for w in words)):
     out[0] = 'ok'
     out[4] = host + ('/' + '/'.join(segs) if segs else '')
 else:
@@ -8620,6 +8872,10 @@ runner_set_venue_globals() {
     VENUE_NAME="$1"; VENUE_ID="$2"; VENUE_WEBSITE=""
     VENUE_DOMAIN=""; VENUE_SHARED_DOMAIN="false"; VENUE_SITE_PREFIX=""
     VENUE_MAIL_ALIAS=""; export VENUE_MAIL_ALIAS
+    # Per-venue contact-gate state (Nov 11 2026): host organisation kind, strict mode for a
+    # big staff directory, parent mail domains the venue's own site uses for booking inboxes.
+    VENUE_HOST_ORG=""; CONTACT_STRICT=""; VENUE_PARENT_MAIL=""; VENUE_CITY_GATE=""
+    export VENUE_HOST_ORG CONTACT_STRICT VENUE_PARENT_MAIL VENUE_CITY_GATE
     RUNNER_SITE_VERDICT="none"
     if [ -n "$3" ]; then
         local v h r s p u
@@ -8631,6 +8887,10 @@ runner_set_venue_globals() {
             # the brand's, so brand addresses and brand-wide people searches stay rejected.
             brand_page) VENUE_DOMAIN="$r"; VENUE_SHARED_DOMAIN="true" ;;
         esac
+        if [ "$RUNNER_SITE_VERDICT" = "ok" ] || [ "$RUNNER_SITE_VERDICT" = "brand_page" ]; then
+            VENUE_HOST_ORG=$(runner_py host_org python3 -c 'import sys; sys.path.insert(0, sys.argv[1]); import outreach_rules as R; print(R.host_org_kind(sys.argv[2], sys.argv[3]))' "$SCRIPT_DIR" "$3" "$1")
+            export VENUE_HOST_ORG
+        fi
     fi
     export VENUE_NAME VENUE_ID VENUE_WEBSITE VENUE_DOMAIN VENUE_SHARED_DOMAIN VENUE_SITE_PREFIX
 }
@@ -9056,6 +9316,10 @@ run_venue() {
             log "  [DOMAIN] Shared brand domain with no property page — brand-wide addresses and people are not this venue's"
         fi
     fi
+    if [ -n "${VENUE_HOST_ORG:-}" ]; then
+        log "  [DOMAIN] Website is inside a larger organisation's domain ($VENUE_HOST_ORG: $VENUE_DOMAIN) — the organisation's staff directory is not harvested; only booking-relevant people are saved from its lists"
+    fi
+    VENUE_CITY_GATE="$city"; export VENUE_CITY_GATE
 
     # Re-check category by venue name — ONLY if current category is generic 'restaurant'
     # Never overwrite intentional categories (art_gallery, museum, etc.)

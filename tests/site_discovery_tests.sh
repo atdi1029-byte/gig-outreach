@@ -510,7 +510,9 @@ T=$(mktemp -d)
 eval "$(awk '/^_py_check_email\(\) \{/,/^}/' pipeline.sh)"
 pyrun() { shift; "$@"; }
 python3() { /usr/bin/python3 "$@"; }
-chk() { _py_check_email "$SCRIPT_DIR" "$@" | tr '\037' '|'; }
+# Name/title extraction only: SAVE_NAMELESS=1 keeps the Nov 11 2026 contact gate from turning a
+# nameless personal mailbox into a reject, and the gate's two extra fields are cut off.
+chk() { SAVE_NAMELESS=1 _py_check_email "$SCRIPT_DIR" "$@" | cut -d$'\037' -f1-8 | tr '\037' '|'; }
 r=$(chk vice.commodore@ahyc.org "Tom Ward" "Contact" venue_site ahyc.org "Aquia Harbour Yacht Club" false "" "")
 [ "$r" = "vice.commodore@ahyc.org|role|ok|1|Tom Ward|||" ] || { echo "FAIL: prose-named role mailbox: $r"; exit 1; }
 r=$(chk service@hartgeyard.com "Xan Schlegel" "Contact Service Manager" venue_mailto hartgeyard.com "Hartge Yacht Yard" false "" "")
@@ -529,8 +531,13 @@ r=$(chk mfitzg19@venue.org "Michelle Fitzgerald" "Curator of Collections" venue_
 [ "$r" = "mfitzg19@venue.org|verify|ok|0|Michelle Fitzgerald|Curator of Collections||" ] || { echo "FAIL: surname cut short in the mailbox: $r"; exit 1; }
 r=$(chk mfit@venue.org "Michelle Fitzgerald" "Curator" venue_site venue.org "Evergreen Museum" false "" "")
 [ "$r" = "mfit@venue.org|verify|ok|0||||" ] || { echo "FAIL: 4-letter mailbox taken as a cut-short surname: $r"; exit 1; }
+# the contact gate (Nov 11 2026): nameless personal mailboxes and back-office titles are not saved
+r=$(_py_check_email "$SCRIPT_DIR" ipc@ahyc.org "Bill Cox" "Contact" venue_site ahyc.org "Aquia Harbour Yacht Club" false "" "" | tr '\037' '|')
+case "$r" in "ipc@ahyc.org|reject|no_person_name|"*) ;; *) echo "FAIL: nameless personal mailbox saved: $r"; exit 1 ;; esac
+r=$(_py_check_email "$SCRIPT_DIR" kim@venue.org "Kim Simons" "Chief Financial Officer" venue_site venue.org "Venue Arts Center" false "" "" | tr '\037' '|')
+case "$r" in "kim@venue.org|reject|back_office_title:"*) ;; *) echo "FAIL: back-office title saved: $r"; exit 1 ;; esac
 rm -rf "$T"; unset -f _py_check_email pyrun python3 chk
-echo 'PASS: save step keeps prose-named people, drops headings and neighbours'
+echo 'PASS: save step keeps prose-named people, drops headings and neighbours, gates nameless and back office'
 
 # The Google and LinkedIn search steps (Nov 8 2026, "Altitude" Arlington VA vs. Altitude
 # Trampoline Park, Arlington TX): search text, DC/MD/VA checks, the LinkedIn result filter

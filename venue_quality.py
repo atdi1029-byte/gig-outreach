@@ -13,9 +13,9 @@ import unicodedata
 from urllib.parse import urlparse
 
 try:
-    from outreach_rules import SHARED_BRAND_DOMAINS
+    from outreach_rules import SHARED_BRAND_DOMAINS, NON_VENUE_HOSTS
 except ImportError:
-    SHARED_BRAND_DOMAINS = set()
+    SHARED_BRAND_DOMAINS, NON_VENUE_HOSTS = set(), set()
 
 BLOCKED_DOMAINS = {
     'facebook.com','instagram.com','x.com','twitter.com','linkedin.com','youtube.com','tiktok.com',
@@ -28,6 +28,8 @@ BLOCKED_DOMAINS = {
     'airbnb.com','vrbo.com','google.com','wikipedia.org','patch.com',
     'visitmaryland.org','dcpreservation.org','washington.org',
 }
+# listing / marketplace hosts (herecomestheguide.com ...) are never a venue's own site (Nov 11 2026)
+BLOCKED_DOMAINS |= set(NON_VENUE_HOSTS)
 
 OFFICIAL_PARENT_DOMAINS = {
     'marriott.com','hilton.com','hyatt.com','ihg.com','fourseasons.com','rosewoodhotels.com',

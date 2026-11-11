@@ -92,8 +92,11 @@ When the prompt says FULL AUDIT (`night_run.sh --burn`, the 24/7 rounds of 25), 
 carries `existing_contacts` (what the sheet already has). Research all of them as in
 section 1, and also, for venues that already have contacts:
 - Name-match gate on what's saved: a contact from an Apollo org or site of a different
-  business goes in `"flag_contacts": [{"email": ..., "reason": ...}]` on that venue's
-  entry. Nothing deletes it automatically; Alex sees the list.
+  business, or a person who could never book Alex (accounting, legal, HR, IT, admissions,
+  science, fundraising, caregivers, another property's staff), goes in
+  `"flag_contacts": [{"email": ..., "reason": ...}]` on that venue's entry. Since Nov 11 2026
+  `night_save.py` DELETES these rows (backup JSON first in `reports/repair/night-flagged-*.json`,
+  emailed/messaged rows never, each delete read back), so flag only what is really wrong.
 - Look for a better person: an Apollo or staff-page decision-maker (events/catering/F&B
   director, private dining, GM, owner) outranks a generic owner the pipeline found. Add
   them as contacts like any other find.

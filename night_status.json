@@ -8,8 +8,8 @@
   "runs": [
    {
     "run_id": "run-20261111-2142",
-    "outcome": "stopped: pipeline.sh exited 143: ",
-    "started": "21:42",
+    "outcome": "running",
+    "started": "22:04",
     "venues": 8,
     "processed": 2,
     "skipped": 0,
@@ -124,5 +124,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-11T21:57:18-05:00"
+ "updated_at": "2026-11-11T22:04:34-05:00"
 }

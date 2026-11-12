@@ -66,6 +66,7 @@ SHARED_BRAND_DOMAINS = {
     "marriott.com", "hilton.com", "hiltonhotels.com", "conradhotels.com",
     "ihg.com", "kimptonhotels.com", "hyatt.com", "sonesta.com", "sonder.com",
     "wyndhamhotels.com", "choicehotels.com", "bestwestern.com", "accor.com",
+    "thened.com",   # Ned's Club: DC, NoMad NYC, London, Doha (Nov 11 2026: the DC crawl read the NYC pages)
     "radissonhotels.com", "fourseasons.com", "ritzcarlton.com", "aubergeresorts.com",
     "invitedclubs.com", "clubcorp.com", "maggianos.com", "aramark.com",
     "sodexo.com", "compass-usa.com", "hhmhospitality.com", "aimbridge.com",
@@ -936,6 +937,11 @@ _COLLECTION_SEGS = {
     "galleries", "museums", "sites", "parks", "our-communities", "senior-living",
     "find-a-community", "destinations", "restaurants", "estates", "branches", "facilities",
 }
+_LOCATION_SEGS = {"dc", "nyc", "ny", "la", "sf", "ldn", "phl", "phila", "bmore", "nova", "dmv", "va", "md", "atl", "chi",
+                  "bos", "mia", "washington", "washington-dc", "washingtondc", "dc-area", "baltimore", "bethesda", "arlington",
+                  "alexandria", "annapolis", "georgetown", "reston", "tysons", "mclean", "chevy-chase", "silver-spring",
+                  "rockville", "frederick", "columbia", "towson", "fairfax", "leesburg", "middleburg", "richmond",
+                  "philadelphia", "new-york", "newyork", "nomad", "london", "doha", "miami", "chicago", "boston"}
 _GENERIC_PAGE_SEGS = {"overview", "home", "index", "default", "main", "about", "about-us", "contact",
                       "contact-us", "en", "en-us", "us", "welcome"}
 
@@ -969,6 +975,10 @@ def host_org_kind(url, venue_name=""):
         return "property"
     if owns:
         return ""
+    # A location section of a multi-city brand not named for the venue (thened.com/dc, brand.com/washington-dc): only that
+    # section is the venue (Nov 11 2026: Ned's Club DC was crawled through its NoMad NYC pages).
+    if segs and segs[0] in _LOCATION_SEGS:
+        return "property"
     if is_institution_domain(reg):
         return "institution"
     sub = host[:-len(reg)].rstrip(".") if host != reg else ""

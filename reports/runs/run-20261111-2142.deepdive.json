@@ -1,0 +1,121 @@
+{
+ "run_id": "run-20261111-2142",
+ "venues": [
+  {
+   "venue_id": "MD-HOTE-3005",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Betiana Darin",
+     "title": "Director of Public Relations",
+     "email": "betiana.darin@fourseasons.com",
+     "source": "website",
+     "source_url": "https://press.fourseasons.com/baltimore/hotel-press-contacts/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Bahram Sepahi",
+     "title": "Regional Vice President and General Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://press.fourseasons.com/baltimore/hotel-team/bahram-sepahi.html",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Lindsay Meckler",
+     "title": "Director of Catering",
+     "email": "",
+     "source": "press",
+     "source_url": "https://press.fourseasons.com/baltimore/hotel-news/2023/new-culinary-team-leadership/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rachel Mitnick",
+     "title": "Wedding Catering Sales Manager",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.theknot.com/marketplace/four-seasons-hotel-baltimore-baltimore-md-877415",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Ryan Mills",
+     "title": "Director of Sales",
+     "email": "",
+     "source": "websearch",
+     "source_url": "linkedin (pipeline candidate)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Mackenson Horebe",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "press",
+     "source_url": "https://press.fourseasons.com/baltimore/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "https://www.instagram.com/fsbaltimore/",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "fourseasons.com (pipeline's own Apollo step; not re-run: no Apollo tools connected; domain_search=skipped:shared_domain)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Four Seasons Hotel Baltimore (pipeline's own Apollo step; not re-run: no Apollo tools connected; name_search=ok, 1 org 'Four Seasons Baltimore' rejected: no domain, city mismatch)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "www.fourseasons.com blocks fetches (403); the hotel's own press site (press.fourseasons.com/baltimore) has one personal mailto: PR director Betiana Darin (betiana.darin@fourseasons.com, PR title on the brand domain, so night_save may keep it out). It also links Instagram @fsbaltimore, which the pipeline rejected on the handle-name check. Booking people with no email found: GM Bahram Sepahi, Director of Catering Lindsay Meckler, Wedding Catering Sales Manager Rachel Mitnick, Director of Sales Ryan Mills."
+  },
+  {
+   "venue_id": "DC-PRIV-116",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Mitchell Platt",
+     "title": "General Manager",
+     "email": "",
+     "source": "press",
+     "source_url": "https://washingtonian.com/2025/02/18/whats-the-deal-with-neds-club-and-other-new-private-spots/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "apollo_searches": [
+    {
+     "query": "thened.com (not run: the pipeline was aborted (TERM) before its Apollo step and no Apollo tools are connected in this session)",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Ned's Club Washington DC (not run: same reason)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The pipeline was aborted on this venue (TERM) before its steps ran, so it will be resumed. The /dc/contact page has only membership@nedsclub.com (a nameless function inbox, not saved) and a phone number. The site renders client-side, /dc/events and /dc/private-events are 404, and there's no sitemap. GM Mitchell Platt (Washingtonian, Feb 2025) has no email. No DC Instagram or Facebook account was confirmed."
+  }
+ ]
+}

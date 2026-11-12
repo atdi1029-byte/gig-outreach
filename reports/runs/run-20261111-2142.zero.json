@@ -1,0 +1,104 @@
+{
+ "run_id": "run-20261111-2142",
+ "venues": [
+  {
+   "venue_id": "MD-HOTE-3005",
+   "name": "Four Seasons Hotel Baltimore",
+   "website": "https://www.fourseasons.com/baltimore/",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "hotel",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/FourSeasonsHotelBaltimore/",
+   "instagram": "",
+   "contact_form": "https://www.fourseasons.com/baltimore/meetings-and-events/request-proposal/",
+   "notes": "From the dream-clubs-wine-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261111-2142",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-HOTE-3005 web ok via=chrome pages=31 visited=home,contact,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=0 pdfs=2 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=0 blocked_pages=0 missing=about static_crawl=blocked",
+    "[STEP] MD-HOTE-3005 social ok fb=found ig=none fb_search=ok:found_of_2 ig_search=empty:rejected_2 fb_pages=3 ig_pages=0 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] MD-HOTE-3005 apollo skipped reason=shared_domain domain_search=skipped:shared_domain domain_results=0 name_search=ok name_results=1",
+    "[STEP] MD-HOTE-3005 linkedin empty pages=3 results=30 rejected=27 employees=3 relevant=3 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-HOTE-3005 google empty results=4 emails=0 site=none ig=none",
+    "[STEP] MD-HOTE-3005 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+   ],
+   "candidates": [
+    {
+     "email": "marketing.blt.dst@fourseasons.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "marketing.blt.dst@fourseasons.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:marketing"
+    },
+    {
+     "email": "person:ryan mills",
+     "name": "Ryan Mills",
+     "title": "Director of Sales",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:diana marowski",
+     "name": "Diana Marowski",
+     "title": "Senior Sales Manager",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:christina criss",
+     "name": "Christina Criss",
+     "title": "Director of Public Relations and Marketing",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-HOTE-3005.json",
+     "base": "https://www.fourseasons.com/baltimore",
+     "pages_fetched": 1,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-PRIV-116",
+   "name": "Ned's Club Washington DC",
+   "website": "https://www.thened.com/dc",
+   "city": "Washington",
+   "state": "DC",
+   "category": "private_club",
+   "status": "untouched",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "notes": "From the dream5-new-2026-11-08 sweep write-up (added 2026-11-08: it never reached the sheet). | Website checked 2026-11-11 | Repair checked 2026-11-11",
+   "pipeline_result": "failed",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-PRIV-116 final failed reason=aborted signal=TERM"
+   ],
+   "candidates": [],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-PRIV-116.json",
+     "base": "https://www.thened.com/dc",
+     "pages_fetched": 12,
+     "pages_ok": 4,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  }
+ ]
+}

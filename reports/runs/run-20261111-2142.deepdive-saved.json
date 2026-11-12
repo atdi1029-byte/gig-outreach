@@ -1,0 +1,85 @@
+{
+ "run_id": "run-20261111-2142",
+ "dry_run": false,
+ "at": "2026-11-11T21:57:18-05:00",
+ "totals": {
+  "saved": 1,
+  "venues_rescued": 1,
+  "socials": 1,
+  "rejected": 0,
+  "errors": 0,
+  "flagged": 0,
+  "deleted": 0
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "MD-HOTE-3005",
+   "name": "Four Seasons Hotel Baltimore",
+   "contacts": [
+    {
+     "email": "betiana.darin@fourseasons.com",
+     "name": "Betiana Darin",
+     "source_url": "https://press.fourseasons.com/baltimore/hotel-press-contacts/",
+     "title": "Director of Public Relations",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Bahram Sepahi",
+     "source_url": "https://press.fourseasons.com/baltimore/hotel-team/bahram-sepahi.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Lindsay Meckler",
+     "source_url": "https://press.fourseasons.com/baltimore/hotel-news/2023/new-culinary-team-leadership/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rachel Mitnick",
+     "source_url": "https://www.theknot.com/marketplace/four-seasons-hotel-baltimore-baltimore-md-877415",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ryan Mills",
+     "source_url": "linkedin (pipeline candidate)",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Mackenson Horebe",
+     "source_url": "https://press.fourseasons.com/baltimore/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "instagram",
+     "value": "https://www.instagram.com/fsbaltimore/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "DC-PRIV-116",
+   "name": "Ned's Club Washington DC",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Mitchell Platt",
+     "source_url": "https://washingtonian.com/2025/02/18/whats-the-deal-with-neds-club-and-other-new-private-spots/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ],
+ "flagged_backup": ""
+}

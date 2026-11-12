@@ -1,0 +1,360 @@
+[ZB SAFE] Guard enabled — run 0/300, today 1/5000, reserve 100 credits (ok); run id run-20261111-2142
+[RUN] Building the run plan: ./build_batch.sh --total 25 --out-dir /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-2142
+Building a run of 25 venues (batches of <= 8)...
+Fetching venues + past gigs...
+/Users/alexbarnett/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Total venues: 5391
+Past gigs: 70 (by id 1, gig-venue domains 56)
+Venues with existing contacts: 1014
+Already worked (old reports + run ledgers): 921   excluded by --exclude/current run: 24
+Target states: DC MD VA   scorer: taste_score 2026-09-26b
+
+Eligible pool: 827  (sweep finds: 721)
+  Sweep finds let past a taste/location gate: taste floor 635, prime evidence 472, category 214, skip word 47, junk gate 36, location 9
+  Skipped (status (not untouched)): 2964
+  Skipped (already in a report): 29
+  Skipped (no website): 5
+  Skipped (out of area (not DC/MD/VA)): 488
+  Skipped (bare brand homepage as website): 3
+  Skipped (below taste floor): 93
+  Skipped (blank/malformed city): 5
+  Skipped (duplicate site (kept the best row)): 4
+  Skipped (has contacts): 1
+  Skipped (junk gate): 130
+  Skipped (junk website): 45
+  Skipped (location not trustworthy): 5
+  Skipped (no prime evidence (generic restaurant, chain or non-European cuisine)): 313
+  Skipped (not a target category): 67
+  Skipped (past gig): 4
+  Skipped (same name as a venue already worked): 10
+  Skipped (site already pipelined/contacted): 93
+  Skipped (skip word): 45
+  Skipped (too far): 189
+  Skipped (website not verified as the venue's own): 71
+  PA/DE sweep finds held for last: 179
+  Site check: 83 likely picks checked, 11 dead/closed dropped
+      dropped Valletta Port [VA-REST-816] — site says "Permanently Closed"
+      dropped Michele’s [DC-REST-2831] — home page HTTP 404
+      dropped Filicori Zecchini Potomac [MD-REST-999] — website DNS failure
+      dropped Fraiche [MD-REST-1765] — website DNS failure
+      dropped Wildwood Italian Geppetto [MD-REST-1005] — website DNS failure
+      dropped Kimpton Hotel Palomar DC [DC-HOTE-825] — website DNS failure
+      dropped Concord Lodge 307 [VA-EVEN-2984] — website DNS failure
+      dropped Harbor Club [MD-CLUB-488] — website DNS failure
+      dropped Georgetown Yacht Club [DC-REST-2632] — website DNS failure
+      dropped North Point Yacht Club [MD-REST-2315] — home page HTTP 404
+      dropped Endhardt Vineyards [VA-REST-3190] — site redirects to endhardtvineyards.toast.site (HTTP 403); domain lapsed?
+  By bucket: fine_dining 96, club 7, hotel 4, wine 5, wild 525
+  Quality-first mix: fine_dining took 3, hotel gave 1, wine took 1, wild gave 3
+
+Selected 25 of 25 requested: fine_dining 10/8, club 5/5, hotel 4/5, wine 4/4, wild 2/3
+NOTE: bucket(s) hotel, wild ran short; filled from the other buckets.
+
+=== BATCH 1/4: 8 venues (taste floor 25, bucket floors {'fine_dining': 30, 'club': 30, 'hotel': 30, 'wine': 30, 'wild': 40}) ===
+1. [MD-HOTE-3005] Four Seasons Hotel Baltimore | hotel / hotel | Baltimore MD (18 mi) | taste=55
+2. [DC-PRIV-116] Ned's Club Washington DC | club / private_club | Washington DC (34 mi) | taste=52
+3. [DC-EVEN-2607] International Student House (I-House DC) | wild / event_venue | Washington DC (34 mi) | taste=32
+4. [MD-HOTE-3010] The Royal Sonesta Harbor Court Baltimore | wild / hotel | Baltimore MD (17 mi) | taste=0
+5. [VA-REST-3418] TRIO Grill | fine_dining / restaurant | Falls Church VA (55 mi) | taste=55
+6. [MD-REST-2339] Kent Island Yacht Club | club / yacht_club | Chester MD (23 mi) | taste=34
+7. [VA-REST-3090] Verre Wine Bar | wine / wine_bar | Arlington VA (38 mi) | taste=44
+8. [XX-HOTE-274] HighRoad Hotel | hotel / hotel | Washington DC (35 mi) | taste=59
+
+=== BATCH 2/4: 8 venues ===
+1. [XX-REST-270] Puerto 511 Cocina Peruana | fine_dining / restaurant | Baltimore MD (17 mi) | taste=47
+2. [DC-REST-639] Imperfecto | fine_dining / restaurant | Washington DC (34 mi) | taste=39
+3. [VA-REST-3198] Pearmund Cellars | wine / winery | Broad Run VA (84 mi) | taste=44
+4. [DC-REST-650] The Dabney | fine_dining / restaurant | Washington DC (33 mi) | taste=38
+5. [MD-HOTE-2992] 1840s Carrollton Inn | hotel / hotel | Baltimore MD (18 mi) | taste=53
+6. [DC-REST-653] Jônt | fine_dining / restaurant | Washington DC (34 mi) | taste=35
+7. [DC-REST-1557] The Lounge at BOURBON STEAK | fine_dining / restaurant | Washington DC (36 mi) | taste=33
+8. [MD-REST-2266] Bowie Golf Club | club / country_club | Bowie MD (18 mi) | taste=34
+
+=== BATCH 3/4: 8 venues ===
+1. [VA-REST-3197] Three Creeks Winery | wine / winery | Hamilton VA (82 mi) | taste=37
+2. [DC-REST-643] Bazaar Meat by José Andrés | fine_dining / restaurant | Washington DC (35 mi) | taste=29
+3. [VA-HOTE-2932] The Potomac Hotel | hotel / hotel | Washington DC (36 mi) | taste=61
+4. [DC-REST-646] Kingbird | fine_dining / restaurant | Washington DC (35 mi) | taste=28
+5. [DC-REST-2215] Fort Belvoir Golf Club | club / country_club | Fort Belvoir VA (59 mi) | taste=34
+6. [VA-REST-3200] Terra Nebulo Vineyards | wine / winery | Waterford VA (81 mi) | taste=37
+7. [MD-REST-638] Rec Pier Chop House | fine_dining / restaurant | Baltimore MD (18 mi) | taste=23
+8. [VA-REST-3222] Elyse | fine_dining / restaurant | Fairfax VA (59 mi) | taste=18
+
+=== BATCH 4/4: 1 venues ===
+1. [VA-REST-2250] Sterling Park Golf Club | club / country_club | Sterling VA (63 mi) | taste=34
+
+Saved 4 batch files + plan.json to /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-2142
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-2142/batch_01.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-2142/batch_02.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-2142/batch_03.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-2142/batch_04.json  (1 venues)
+  (path also in /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/LATEST)
+=== Pipeline started 2026-11-11 21:43:14 ===
+[RUN] run_id=run-20261111-2142 mode=run log=/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261111-2142.log
+PREFLIGHT OK: python3 works (/Library/Developer/CommandLineTools/usr/bin/python3 3.9.6)
+PREFLIGHT OK: .env has ZEROBOUNCE_KEY
+PREFLIGHT OK: .env has APOLLO_API_KEY
+PREFLIGHT OK: bash -n: 21 scripts parse
+PREFLIGHT OK: embedded python: checked 182 embedded python blocks in 21 scripts: 0 failed
+PREFLIGHT OK: 19 python files compile
+PREFLIGHT OK: outreach_rules self-test: 17 checks pass
+PREFLIGHT OK: venue_classifier self-test: 91 passed, 0 failed
+PREFLIGHT OK: js/*.js extractors parse (node --check)
+PREFLIGHT OK: Apps Script backend up (version 2026-10-26.1)
+PREFLIGHT OK: sheet readable (action=config)
+PREFLIGHT OK: ZeroBounce: enabled=True (.env), balance=572, reserve=100 (.env), run 0/300 (.env), today 1/5000 (env), ~7 runs of headroom at 60/run
+PREFLIGHT OK: Apollo API key accepted (auth/health)
+PREFLIGHT OK: Chrome runs JavaScript from Apple Events
+PREFLIGHT OK: all checks passed (pipeline; 14 ok, 0 warn)
+[PREFLIGHT] OK
+[RUN] Unattended run of plan /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-2142/plan.json in batches of <= 8
+[RUN] Plan /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261111-2142/plan.json: 4 batch(es)
+
+[RUN] Plan batch 1/4 -> batch 1 of run run-20261111-2142
+  [mark_step] run run-20261111-2142: batch 1 registered 8 venues
+  [mark_step] ledger: /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261111-2142.jsonl
+  [mark_step] run log should be: /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261111-2142.log
+  export RUN_ID=run-20261111-2142
+
+BATCH MODE: 8 venues
+[RUN] run-20261111-2142 batch 1: MD-HOTE-3005,DC-PRIV-116,DC-EVEN-2607,MD-HOTE-3010,VA-REST-3418,MD-REST-2339,VA-REST-3090,XX-HOTE-274 (8 to run; log /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261111-2142.log)
+  [ZB SAFE] run 0/300, today 1/5000, balance 572, reserve 100
+[RUN] Apollo credits left on the account: 295 (stop below 1)
+[CHROME] JavaScript from Apple Events: OK (website scrape probe on https://www.fourseasons.com/baltimore/ returned 7994 bytes of JSON)
+
+########## VENUE [1/8]: Four Seasons Hotel Baltimore ##########
+  [DOMAIN] Venue domain: fourseasons.com
+  [DOMAIN] Shared brand domain — only pages under fourseasons.com/baltimore count as this property's own site
+
+============================================================
+ PIPELINE: Four Seasons Hotel Baltimore (MD-HOTE-3005)
+ Website: https://www.fourseasons.com/baltimore/
+ Started: 2026-11-11 21:43:33
+============================================================
+  Website check: HTTP 403 ✓
+  [ZB SAFE] run 0/300, today 1/5000, balance 572, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  [WEB] Shared brand domain (fourseasons.com) — only pages under fourseasons.com/baltimore count for this property
+  URL: https://www.fourseasons.com/baltimore/
+  Opening in Chrome: https://www.fourseasons.com/baltimore/
+  Validating contact form URL: https://www.fourseasons.com/baltimore/contact-us
+  ✓ Real contact form confirmed
+  Emails: 0 | FB: https://www.facebook.com/FourSeasons | IG: https://www.instagram.com/fourseasons | Contact Form: https://www.fourseasons.com/baltimore/contact-us
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=1 pdfs=0 emails=0 sitemaps=0 fragments=0 unvisited=0
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/MD-HOTE-3005.json
+  [LOCATION] Checking for location-specific page (city: Baltimore)...
+  [LOCATION] Found: https://www.fourseasons.com/zh/baltimore
+  [LOCATION] Re-scraping location page: https://www.fourseasons.com/zh/baltimore
+  [LOCATION] Re-scraped: Emails: 0
+  [COVERAGE] Subpage queue: 38 in scope, rendering 30 (cap 30); skipped off-scope=25 other-location=0 variants=0 non-page=0
+  Crawling subpage (1): https://www.fourseasons.com/baltimore/weddings/contact-us
+  Crawling subpage (2): https://www.fourseasons.com/baltimore/meetings-and-events
+  Crawling subpage (3): https://www.fourseasons.com/baltimore/meetings-and-events/events
+  Crawling subpage (4): https://www.fourseasons.com/baltimore/weddings
+  Crawling subpage (5): https://www.fourseasons.com/baltimore/accommodations
+  Crawling subpage (6): https://www.fourseasons.com/baltimore/offers
+  Crawling subpage (7): https://www.fourseasons.com/baltimore/experiences
+  Crawling subpage (8): https://www.fourseasons.com/baltimore/dining
+  Crawling subpage (9): https://www.fourseasons.com/baltimore/photos-and-videos
+  Crawling subpage (10): https://www.fourseasons.com/baltimore/getting-here
+  Crawling subpage (11): https://www.fourseasons.com/baltimore/spa
+  Crawling subpage (12): https://www.fourseasons.com/baltimore/golf
+  Crawling subpage (13): https://www.fourseasons.com/baltimore/services-and-amenities
+  Crawling subpage (14): https://www.fourseasons.com/baltimore/seasonal
+  Crawling subpage (15): https://www.fourseasons.com/baltimore/weddings/venues
+  Crawling subpage (16): https://www.fourseasons.com/baltimore/weddings/packages
+  Crawling subpage (17): https://www.fourseasons.com/baltimore/weddings/planning
+  Crawling subpage (18): https://www.fourseasons.com/baltimore/weddings/honeymoon
+  Crawling subpage (19): https://www.fourseasons.com/baltimore/meetings-and-events/meetings
+  Crawling subpage (20): https://www.fourseasons.com/baltimore/meetings-and-events/hybrid-meetings
+  Found on subpage: marketing.blt.dst@fourseasons.com
+  Crawling subpage (21): https://www.fourseasons.com/baltimore/meetings-and-events/incentive-travel
+  Crawling subpage (22): https://www.fourseasons.com/baltimore/meetings-and-events/food-and-beverage
+  Crawling subpage (23): https://www.fourseasons.com/baltimore/meetings-and-events/request-proposal
+  Crawling subpage (24): https://www.fourseasons.com/baltimore/services-and-amenities/sustainability
+  Crawling subpage (25): https://www.fourseasons.com/baltimore/services-and-amenities/pools
+  Crawling subpage (26): https://www.fourseasons.com/baltimore/services-and-amenities/couples
+  Crawling subpage (27): https://www.fourseasons.com/baltimore/services-and-amenities/family
+  Crawling subpage (28): https://www.fourseasons.com/baltimore/services-and-amenities/fitness
+  Crawling subpage (29): https://www.fourseasons.com/baltimore/seasonal/christmas
+  Crawling subpage (30): https://www.fourseasons.com/baltimore/seasonal/new-year
+  [PDF] https://www.fourseasons.com/content/dam/fourseasons/images/web/BLT/PDF/blt-wedding-brochure.pdf → no emails
+  [PDF] https://www.fourseasons.com/content/dam/fourseasons/images/web/FSH/PDFs/Four-Seasons-2026-Modern-Slavery-Statement.pdf → no emails
+  [WARN] Static crawl incomplete: blocked (http_403)
+  [CONTACT FORM] Also found: https://www.fourseasons.com/baltimore/weddings/
+  [CONTACT FORM] Also found: https://www.fourseasons.com/baltimore/weddings/contact-us/
+  [CONTACT FORM] Also found: https://www.fourseasons.com/baltimore/weddings/honeymoon/
+  [REJECT] instagram link https://www.instagram.com/fourseasons — brand_handle
+  [REJECT] instagram link https://www.instagram.com/fsbaltimore — shared_domain_no_name_match
+  ✓ Facebook from venue website (trusted: name_match): https://www.facebook.com/FourSeasons
+  [API ERROR] Facebook was found on website but did not persist: https://www.facebook.com/FourSeasons | err:social_invalid
+  [CONTACT FORM] Also found: https://www.fourseasons.com/baltimore/contact-us
+  [CONTACT FORM] Found: https://www.fourseasons.com/baltimore/meetings-and-events/request-proposal/
+  ✓ Contact form URL saved
+  [REJECT] marketing.blt.dst@fourseasons.com — hard_reject:marketing (source: website, evidence: venue_site)
+[STEP] MD-HOTE-3005 web ok via=chrome pages=31 visited=home,contact,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=0 pdfs=2 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=0 blocked_pages=0 missing=about static_crawl=blocked
+
+========== STEP 1B: Instagram Google Search ==========
+  No Instagram found on website — Googling...
+  [IG SEARCH] Skipping https://www.instagram.com/fsbaltimore/ — handle 'fsbaltimore': handle has 2 chars that are not the venue name
+  [IG SEARCH] Skipping https://www.instagram.com/fsbaltmore/ — handle 'fsbaltmore': handle has 10 chars that are not the venue name
+  [IG SEARCH] No handle matched venue name — rejecting all candidates (2)
+
+========== STEP 1C: Facebook Google Search ==========
+  No Facebook found on website — Googling...
+  [FB SEARCH] Skipping https://www.facebook.com/fb-answers/ — handle 'fb-answers': handle has 7 chars that are not the venue name
+  [FB SEARCH] Found: https://www.facebook.com/FourSeasonsHotelBaltimore/
+  ✓ Facebook URL saved
+
+========== STEP 2: Social Media Scrape ==========
+  FB: https://www.facebook.com/FourSeasonsHotelBaltimore/ | IG: none
+  Opening FB: https://www.facebook.com/FourSeasonsHotelBaltimore
+  Opening FB: https://www.facebook.com/FourSeasonsHotelBaltimore/about
+  Opening FB: https://www.facebook.com/FourSeasonsHotelBaltimore/directory_contact_info
+  [FB] No email on page — trying Google snippet...
+  [FB SNIPPET] No email in Google snippet
+[STEP] MD-HOTE-3005 social ok fb=found ig=none fb_search=ok:found_of_2 ig_search=empty:rejected_2 fb_pages=3 ig_pages=0 snippets=1 emails=0 saved=0 deferred=0
+  [APOLLO] Credits used this run: 0 / 300
+
+========== STEP 3: Apollo API ==========
+  Searching Apollo for company: Four Seasons Hotel Baltimore
+  [APOLLO] Domain lookup: skipped:shared_domain (0 results) | name search: ok (1 results)
+  [APOLLO MISMATCH] 'Four Seasons Baltimore' (no domain) is not this venue — shared brand domain, city doesn't match
+  [APOLLO] App title skip words loaded: racquets, tennis, golf, racquet, florist, busboy, server, farm, busser, 401k, caddie, fitness, squash, athletics, pickleball, proshop, controller
+  [APOLLO LOCAL] Baltimore MD: 0 people, 0 at another employer, 0 without a booking title, 0 to enrich
+  [APOLLO SKIP] Website is on shared brand domain fourseasons.com and no org for this property matched — no domain-wide people search
+[STEP] MD-HOTE-3005 apollo skipped reason=shared_domain domain_search=skipped:shared_domain domain_results=0 name_search=ok name_results=1
+
+========== STEP 4: LinkedIn + Apollo API ==========
+  LinkedIn search: "Four Seasons Hotel Baltimore"
+  [LINKEDIN] Website is on shared brand domain fourseasons.com — people will be saved as pending, not enriched by domain
+  [delay] Waiting 2s...
+  LinkedIn page 1...
+  [delay] Waiting 8s...
+  Found 10 results
+  Found: Ryan Mills
+  Found: Diana Marowski
+  Found: Christina Criss
+  [LINKEDIN SKIP] LinkedIn Member (Founder / President of  Atlas Restaurant Group) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Group Sales Manager at Four Seasons Hotel New York Downtown) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Founder/CEO at Make Good Company) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Pastry Cook 2 at Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Ambassador of Harbor & City Charm | Crafting Memorable Group Experiences at Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Partner Atlas Restaurant Group) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (General Manager at Four Seasons Hotel Tianjin China) — masked name
+  [delay] Waiting 4s...
+  LinkedIn page 2...
+  [delay] Waiting 8s...
+  Found 10 results
+  [LINKEDIN SKIP] LinkedIn Member (Regional Director of Finance at Four Seasons Hotels and Resorts) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Director of International and Diplomatic Sales at The Newbury Boston Hotel) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Communications Strategist | Helping Companies Find the Story Behind the Strategy | PR, Brand & Executive Visibility Consultant) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Group Rooms Coordinator at the Four Seasons Hotel Baltimore, Hybrid Remote) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Senior Director, Operations Finance - Procurement @ Four Seasons | Tech Advisor @ Scopio | Driving Digital Transformation Across Hospitality & SaaS  | CX & Ops) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Director of People & Culture at Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Senior Event Operations & Guest Experience Leader | Four Seasons | Former Hilton Leadership | Large-Scale Live Events • Stadium & Team Operations • Culture-Driv) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Digital Marketing Manager at Four Seasons) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Server at Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Architect, Senior Associate, Sculptor) — masked name
+  [delay] Waiting 3s...
+  LinkedIn page 3...
+  [delay] Waiting 5s...
+  Found 10 results
+  [LINKEDIN SKIP] LinkedIn Member (Head of Commericalization & Strategy at Gold Greene) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Regional Vice President & General Manager at Four Seasons Hotels and Resorts) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Director of Residences at Four Seasons) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Director of Rooms at Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Director of Front Office & Guest Experience @ Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Delphi Operator at Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Four Seasons Hotel Baltimore) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (BOYS & GIRLS CLUBS OF METRO BALTIMORE) — masked name
+  [LINKEDIN SKIP] LinkedIn Member (Catering & Special Events Manager | Event Management and Menu Conceptualization) — masked name
+
+  LinkedIn found 3 new people. Enriching via Apollo API...
+  [SKIP] No domain — adding contacts without emails
+  --- Ryan Mills (Director of Sales): no email — not added to the sheet (name kept in the run log)
+  --- Diana Marowski (Senior Sales Manager): no email — not added to the sheet (name kept in the run log)
+  --- Christina Criss (Director of Public Relations and Marketing): no email — not added to the sheet (name kept in the run log)
+[STEP] MD-HOTE-3005 linkedin empty pages=3 results=30 rejected=27 employees=3 relevant=3 saved=0 pending=0 deferred=0 credits=0
+
+========== STEP 5: Google Fallback (no email found yet) ==========
+  Googling: "Four Seasons Hotel Baltimore" Baltimore MD contact
+  [FALLBACK] Search results did not contain a trustworthy venue website
+  [FALLBACK] Re-trying Instagram: "Four Seasons Hotel Baltimore" Baltimore MD site:instagram.com
+  [FALLBACK] Instagram handle doesn't match venue name 'Four Seasons Hotel Baltimore' — rejecting: https://www.instagram.com/fsbaltimore/ handle 'fsbaltimore': handle has 2 chars that are not the venue name; https://www.instagram.com/.../ not a venue page (...)
+[STEP] MD-HOTE-3005 google empty results=4 emails=0 site=none ig=none
+  Setting status → needs_review (no verified contacts saved)
+[STEP] MD-HOTE-3005 final empty status=needs_review valid_contacts=0 new=0 deferred=0
+
+============================================================
+ DONE: Four Seasons Hotel Baltimore | 7 min | 21:51:13
+============================================================
+
+########## VENUE [2/8]: Ned's Club Washington DC ##########
+  [DOMAIN] Venue domain: thened.com
+
+============================================================
+ PIPELINE: Ned's Club Washington DC (DC-PRIV-116)
+ Website: https://www.thened.com/dc
+ Started: 2026-11-11 21:51:55
+============================================================
+  Website check: HTTP 200 ✓
+  [ZB SAFE] run 0/300, today 1/5000, balance 572, reserve 100
+  Known emails: 0
+  Known names: 0
+
+========== STEP 1: Website Scrape ==========
+  URL: https://www.thened.com/dc
+  Opening in Chrome: https://www.thened.com/dc
+  Found on homepage: membership@nedsclub.com
+  Validating contact form URL: https://www.thened.com/dc/contact
+  Found on contact page: membership@nedsclub.com
+  ✓ Real contact form confirmed
+  Emails: 1 | FB: none | IG: none | Contact Form: https://www.thened.com/dc/contact
+  [DISCOVERY] Recursive crawl + sitemap/PDF audit (max 40 pages, depth 3)...
+  [COVERAGE] pages=12 pdfs=0 emails=2 sitemaps=1 fragments=0 unvisited=0
+  [COVERAGE] Saved: /Users/alexbarnett/Documents/Code/Claude/Email/reports/web-coverage/DC-PRIV-116.json
+  [PROBE] Found: https://www.thened.com/london/contact
+  [CONTACT] Probing https://www.thened.com/london/contact
+  [PROBE] Found: https://www.thened.com/about
+  [COVERAGE] Subpage queue: 16 in scope, rendering 16 (cap 30); skipped off-scope=0 other-location=0 variants=1 non-page=0
+  Crawling subpage (1): https://www.thened.com/london/contact
+  Found on subpage: enquiries@thened.com
+  [SOCIAL] Facebook link on subpage: https://www.thened.com/london/contact -> https://www.facebook.com/thenedlondon
+  [SOCIAL] Instagram link on subpage: https://www.thened.com/london/contact -> https://www.instagram.com/thenedlondon
+  Crawling subpage (2): https://www.thened.com/about
+  Crawling subpage (3): https://www.thened.com/london/about
+  Found on subpage: enquiries@thened.com
+  Crawling subpage (4): https://www.thened.com/nomad/about
+  Found on subpage: enquiries.nomad@thened.com
+  Crawling subpage (5): https://www.thened.com/nomad/contact
+  Found on subpage: enquiries.nomad@thened.com, thened@wearerhc.com, thenednomad@thebrandguild.com
+  Crawling subpage (6): https://www.thened.com/doha/about
+  Found on subpage: enquiries.doha@thened.com
+  Crawling subpage (7): https://www.thened.com/doha/contact
+  Found on subpage: enquiries.doha@thened.com
+  Crawling subpage (8): https://www.thened.com/dc/meetings-and-events
+  Found on subpage: membership@nedsclub.com
+  Crawling subpage (9): https://www.thened.com/london/meetings-and-events
+  Found on subpage: enquiries@thened.com
+  Crawling subpage (10): https://www.thened.com/nomad/meetings-and-events
+  Found on subpage: enquiries.nomad@thened.com
+  Crawling subpage (11): https://www.thened.com/doha/meetings-and-events
+  Found on subpage: enquiries.doha@thened.com
+  Crawling subpage (12): https://www.thened.com/london/weddings
+  Crawling subpage (13): https://www.thened.com/doha/Home/Meetings%20and%20Events
+  Found on subpage: enquiries.doha@thened.com
+  Crawling subpage (14): https://www.thened.com/london
+  Found on subpage: enquiries@thened.com
+  Crawling subpage (15): https://www.thened.com/nomad
+  Found on subpage: enquiries.nomad@thened.com
+  Crawling subpage (16): https://www.thened.com/doha
+
+[RUN] ABORTED (signal TERM) during venue Ned's Club Washington DC (DC-PRIV-116). Resume with: ./pipeline.sh --resume run-20261111-2142
+[STEP] DC-PRIV-116 final failed reason=aborted signal=TERM

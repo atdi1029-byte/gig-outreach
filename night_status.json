@@ -2,43 +2,10 @@
  "alert": null,
  "night": {
   "date": "2026-11-11",
-  "started_at": "2026-11-11T11:04:53-05:00",
+  "started_at": "2026-11-11T21:35:56-05:00",
   "finished_at": null,
   "state": "running",
-  "runs": [
-   {
-    "run_id": "run-20261111-1108",
-    "outcome": "finished",
-    "started": "11:08",
-    "venues": 25,
-    "processed": 25,
-    "skipped": 0,
-    "with_contacts": 14,
-    "zero": 11,
-    "new_contacts": 138,
-    "unfinished": 0,
-    "ended": "13:35",
-    "rescued_contacts": 4,
-    "rescued_venues": 4,
-    "deep_dive": "done"
-   },
-   {
-    "run_id": "run-20261111-1336",
-    "outcome": "stopped: Chrome stopped answering JavaScript before venue The Turn House (MD-REST-3156)",
-    "started": "13:36",
-    "venues": 24,
-    "processed": 21,
-    "skipped": 0,
-    "with_contacts": 10,
-    "zero": 11,
-    "new_contacts": 148,
-    "unfinished": 3,
-    "ended": "15:36",
-    "rescued_contacts": 2,
-    "rescued_venues": 2,
-    "deep_dive": "done"
-   }
-  ],
+  "runs": [],
   "note": "Outreach running 24/7 until the credits run out"
  },
  "history": [
@@ -140,5 +107,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-11T15:45:54-05:00"
+ "updated_at": "2026-11-11T21:41:22-05:00"
 }

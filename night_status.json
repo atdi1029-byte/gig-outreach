@@ -56,8 +56,9 @@
    },
    {
     "run_id": "run-20261112-1157",
-    "outcome": "running",
-    "started": "11:57"
+    "outcome": "could not start: paused by Alex (.burn_pause) before plan batch 1/4",
+    "started": "11:57",
+    "ended": "11:57"
    }
   ],
   "note": "Outreach running again"
@@ -161,5 +162,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-12T11:57:08-05:00"
+ "updated_at": "2026-11-12T11:57:37-05:00"
 }

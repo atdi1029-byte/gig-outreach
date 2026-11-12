@@ -1,0 +1,88 @@
+{
+  "created": "2026-11-12 11:57:30",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "fine_dining": 25
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/batch_01.json",
+      "venue_ids": [
+        "VA-REST-2879",
+        "DC-REST-2709",
+        "VA-REST-2942",
+        "DC-REST-651",
+        "VA-REST-2958",
+        "MD-REST-363",
+        "VA-REST-2931",
+        "MD-REST-3367"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/batch_02.json",
+      "venue_ids": [
+        "VA-REST-1669",
+        "VA-REST-058",
+        "VA-REST-2923",
+        "MD-REST-3345",
+        "VA-REST-2885",
+        "MD-REST-3330",
+        "VA-REST-2886",
+        "VA-REST-3036"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/batch_03.json",
+      "venue_ids": [
+        "VA-REST-3233",
+        "VA-REST-2493",
+        "MD-REST-747",
+        "MD-REST-3344",
+        "DC-REST-1254",
+        "MD-REST-3176",
+        "MD-REST-2815",
+        "MD-REST-360"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/batch_04.json",
+      "venue_ids": [
+        "MD-REST-1728"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "VA-REST-2879",
+    "DC-REST-2709",
+    "VA-REST-2942",
+    "DC-REST-651",
+    "VA-REST-2958",
+    "MD-REST-363",
+    "VA-REST-2931",
+    "MD-REST-3367",
+    "VA-REST-1669",
+    "VA-REST-058",
+    "VA-REST-2923",
+    "MD-REST-3345",
+    "VA-REST-2885",
+    "MD-REST-3330",
+    "VA-REST-2886",
+    "VA-REST-3036",
+    "VA-REST-3233",
+    "VA-REST-2493",
+    "MD-REST-747",
+    "MD-REST-3344",
+    "DC-REST-1254",
+    "MD-REST-3176",
+    "MD-REST-2815",
+    "MD-REST-360",
+    "MD-REST-1728"
+  ]
+}

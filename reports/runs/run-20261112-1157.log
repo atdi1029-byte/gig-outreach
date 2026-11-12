@@ -1,0 +1,115 @@
+[ZB SAFE] Guard enabled — run 0/300, today 125/5000, reserve 100 credits (ok); run id run-20261112-1157
+[RUN] Building the run plan: ./build_batch.sh --total 25 --out-dir /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157
+Building a run of 25 venues (batches of <= 8)...
+Fetching venues + past gigs...
+/Users/alexbarnett/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+Total venues: 5391
+Past gigs: 70 (by id 1, gig-venue domains 56)
+Venues with existing contacts: 1063
+Already worked (old reports + run ledgers): 996   excluded by --exclude/current run: 25
+Target states: DC MD VA   scorer: taste_score 2026-09-26b
+
+Eligible pool: 752  (sweep finds: 712)
+  Sweep finds let past a taste/location gate: taste floor 621, prime evidence 470, category 214, skip word 47, junk gate 35, location 9
+  Skipped (status (not untouched)): 3039
+  Skipped (already in a report): 29
+  Skipped (no website): 5
+  Skipped (out of area (not DC/MD/VA)): 488
+  Skipped (bare brand homepage as website): 3
+  Skipped (below taste floor): 92
+  Skipped (blank/malformed city): 5
+  Skipped (duplicate site (kept the best row)): 3
+  Skipped (has contacts): 1
+  Skipped (junk gate): 130
+  Skipped (junk website): 45
+  Skipped (location not trustworthy): 5
+  Skipped (no prime evidence (generic restaurant, chain or non-European cuisine)): 313
+  Skipped (not a target category): 67
+  Skipped (past gig): 4
+  Skipped (same name as a venue already worked): 10
+  Skipped (site already pipelined/contacted): 95
+  Skipped (skip word): 45
+  Skipped (too far): 189
+  Skipped (website not verified as the venue's own): 71
+  PA/DE sweep finds held for last: 179
+  Site check: 67 likely picks checked, 11 dead/closed dropped
+      dropped Valletta Port [VA-REST-816] — site says "Permanently Closed"
+      dropped Michele’s [DC-REST-2831] — home page HTTP 404
+      dropped Filicori Zecchini Potomac [MD-REST-999] — website DNS failure
+      dropped Fraiche [MD-REST-1765] — website DNS failure
+      dropped Wildwood Italian Geppetto [MD-REST-1005] — website DNS failure
+      dropped Concord Lodge 307 [VA-EVEN-2984] — website DNS failure
+      dropped Harbor Club [MD-CLUB-488] — website DNS failure
+      dropped Georgetown Yacht Club [DC-REST-2632] — website DNS failure
+      dropped North Point Yacht Club [MD-REST-2315] — home page HTTP 404
+      dropped Kimpton Hotel Palomar DC [DC-HOTE-825] — website DNS failure
+      dropped Endhardt Vineyards [VA-REST-3190] — site redirects to endhardtvineyards.toast.site (HTTP 403); domain lapsed?
+  By bucket: fine_dining 39, club 0, hotel 0, wine 0, wild 523
+  Quality-first mix: fine_dining took 17, club gave 5, hotel gave 5, wine gave 4, wild gave 3
+
+Selected 25 of 25 requested: fine_dining 25/8, club 0/5, hotel 0/5, wine 0/4, wild 0/3
+NOTE: bucket(s) club, hotel, wine, wild ran short; filled from the other buckets.
+
+=== BATCH 1/4: 8 venues (taste floor 25, bucket floors {'fine_dining': 30, 'club': 30, 'hotel': 30, 'wine': 30, 'wild': 40}) ===
+1. [VA-REST-2879] Taverna Cretekou | fine_dining / restaurant | Alexandria VA (46 mi) | taste=52
+2. [DC-REST-2709] La Plaza | fine_dining / restaurant | Washington DC (34 mi) | taste=51
+3. [VA-REST-2942] The Wharf Alexandria | fine_dining / restaurant | Alexandria VA (46 mi) | taste=51
+4. [DC-REST-651] L'Annexe | fine_dining / restaurant | Washington DC (35 mi) | taste=50
+5. [VA-REST-2958] Copperwood Tavern Shirlington | fine_dining / restaurant | Alexandria VA (46 mi) | taste=50
+6. [MD-REST-363] Sunset Creek at Vera's | fine_dining / restaurant | Lusby MD (62 mi) | taste=50
+7. [VA-REST-2931] Havana 151 The Loft | fine_dining / restaurant | Alexandria VA (46 mi) | taste=49
+8. [MD-REST-3367] Bread & Circuses Bistro | fine_dining / restaurant | Towson MD (31 mi) | taste=47
+
+=== BATCH 2/4: 8 venues ===
+1. [VA-REST-1669] King's Ransom | fine_dining / restaurant | Alexandria VA (46 mi) | taste=47
+2. [VA-REST-058] Milk and Honey | fine_dining / restaurant | Alexandria VA (46 mi) | taste=46
+3. [VA-REST-2923] Lady Camellia Pastry and Tearoom | fine_dining / restaurant | Alexandria VA (46 mi) | taste=45
+4. [MD-REST-3345] Isabella's Taverna & Tapas Bar | fine_dining / restaurant | Frederick MD (57 mi) | taste=45
+5. [VA-REST-2885] Cooper Mill | fine_dining / restaurant | Alexandria VA (46 mi) | taste=43
+6. [MD-REST-3330] Fork & Kitchen | fine_dining / restaurant | Rockville MD (42 mi) | taste=41
+7. [VA-REST-2886] Rus Uz | fine_dining / restaurant | Alexandria VA (46 mi) | taste=40
+8. [VA-REST-3036] Dhoom | fine_dining / restaurant | Fairfax VA (61 mi) | taste=43
+
+=== BATCH 3/4: 8 venues ===
+1. [VA-REST-3233] Piedmont's | fine_dining / restaurant | Leesburg VA (78 mi) | taste=41
+2. [VA-REST-2493] Le Bistro VA | fine_dining / restaurant | Le Bistro VA (53 mi) | taste=39
+3. [MD-REST-747] Aqua Terra | fine_dining / restaurant | Annapolis MD (14 mi) | taste=38
+4. [MD-REST-3344] Il Porto Italian Restaurant | fine_dining / restaurant | Frederick MD (57 mi) | taste=37
+5. [DC-REST-1254] The Gathering Spot DC | fine_dining / restaurant | The Gathering Spot DC (42 mi) | taste=30
+6. [MD-REST-3176] George Martin's Grillfire | fine_dining / restaurant | Hanover MD (12 mi) | taste=25
+7. [MD-REST-2815] Maggiano's Little Italy Bethesda | fine_dining / restaurant | Washington DC (42 mi) | taste=0
+8. [MD-REST-360] The Lighthouse Restaurant | fine_dining / restaurant | Solomons MD (65 mi) | taste=36
+
+=== BATCH 4/4: 1 venues ===
+1. [MD-REST-1728] Foxy's Harbor Grille | fine_dining / restaurant | St. Michaels MD (57 mi) | taste=56
+
+Saved 4 batch files + plan.json to /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/batch_01.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/batch_02.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/batch_03.json  (8 venues)
+  /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/batch_04.json  (1 venues)
+  (path also in /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/LATEST)
+=== Pipeline started 2026-11-12 11:57:30 ===
+[RUN] run_id=run-20261112-1157 mode=run log=/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261112-1157.log
+PREFLIGHT OK: python3 works (/Library/Developer/CommandLineTools/usr/bin/python3 3.9.6)
+PREFLIGHT OK: .env has ZEROBOUNCE_KEY
+PREFLIGHT OK: .env has APOLLO_API_KEY
+PREFLIGHT OK: bash -n: 21 scripts parse
+PREFLIGHT OK: embedded python: checked 182 embedded python blocks in 21 scripts: 0 failed
+PREFLIGHT OK: 19 python files compile
+PREFLIGHT OK: outreach_rules self-test: 17 checks pass
+PREFLIGHT OK: venue_classifier self-test: 91 passed, 0 failed
+PREFLIGHT OK: js/*.js extractors parse (node --check)
+PREFLIGHT OK: Apps Script backend up (version 2026-10-26.1)
+PREFLIGHT OK: sheet readable (action=config)
+PREFLIGHT OK: ZeroBounce: enabled=True (.env), balance=449, reserve=100 (.env), run 0/300 (.env), today 125/5000 (env), ~5 runs of headroom at 60/run
+PREFLIGHT OK: Apollo API key accepted (auth/health)
+PREFLIGHT OK: Chrome runs JavaScript from Apple Events
+PREFLIGHT OK: all checks passed (pipeline; 14 ok, 0 warn)
+[PREFLIGHT] OK
+[RUN] Unattended run of plan /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/plan.json in batches of <= 8
+[RUN] Plan /Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-1157/plan.json: 4 batch(es)
+
+[RUN] STOPPED: paused by Alex (.burn_pause) before plan batch 1/4
+[RUN] Unfinished venues have no DONE: line. Fix the cause, then resume with: ./pipeline.sh --resume run-20261112-1157

@@ -1,0 +1,88 @@
+{
+  "created": "2026-11-12 02:20:43",
+  "requested": 25,
+  "selected": 25,
+  "batch_size": 8,
+  "score_version": "2026-09-26b",
+  "mix": {
+    "fine_dining": 25
+  },
+  "batches": [
+    {
+      "index": 1,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-0220/batch_01.json",
+      "venue_ids": [
+        "VA-REST-1175",
+        "XX-REST-192",
+        "MD-REST-3094",
+        "DC-REST-2331",
+        "VA-REST-3290",
+        "XX-REST-037",
+        "MD-REST-1103",
+        "MD-REST-1592"
+      ]
+    },
+    {
+      "index": 2,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-0220/batch_02.json",
+      "venue_ids": [
+        "VA-REST-3244",
+        "VA-REST-3214",
+        "DC-REST-2825",
+        "DC-REST-2714",
+        "MD-REST-2134",
+        "VA-REST-3221",
+        "MD-REST-2730",
+        "MD-REST-2143"
+      ]
+    },
+    {
+      "index": 3,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-0220/batch_03.json",
+      "venue_ids": [
+        "MD-REST-2148",
+        "VA-REST-1455",
+        "VA-REST-1457",
+        "VA-REST-1188",
+        "VA-REST-677",
+        "VA-REST-1465",
+        "XX-REST-633",
+        "VA-REST-2929"
+      ]
+    },
+    {
+      "index": 4,
+      "file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/plans/plan-run-20261112-0220/batch_04.json",
+      "venue_ids": [
+        "VA-REST-2941"
+      ]
+    }
+  ],
+  "venue_ids": [
+    "VA-REST-1175",
+    "XX-REST-192",
+    "MD-REST-3094",
+    "DC-REST-2331",
+    "VA-REST-3290",
+    "XX-REST-037",
+    "MD-REST-1103",
+    "MD-REST-1592",
+    "VA-REST-3244",
+    "VA-REST-3214",
+    "DC-REST-2825",
+    "DC-REST-2714",
+    "MD-REST-2134",
+    "VA-REST-3221",
+    "MD-REST-2730",
+    "MD-REST-2143",
+    "MD-REST-2148",
+    "VA-REST-1455",
+    "VA-REST-1457",
+    "VA-REST-1188",
+    "VA-REST-677",
+    "VA-REST-1465",
+    "XX-REST-633",
+    "VA-REST-2929",
+    "VA-REST-2941"
+  ]
+}

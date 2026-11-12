@@ -1,0 +1,17 @@
+{
+  "run_id": "run-20261112-0220",
+  "batch": 4,
+  "venue_ids": [
+    "VA-REST-2941"
+  ],
+  "final": {
+    "VA-REST-2941": {
+      "result": "ok",
+      "status": "pipelined"
+    }
+  },
+  "finished_at": "2026-11-12 04:37:55",
+  "run_log": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261112-0220.log",
+  "report": "",
+  "batch_file": "/Users/alexbarnett/Documents/Code/Claude/Email/reports/runs/run-20261112-0220.batch4.json"
+}

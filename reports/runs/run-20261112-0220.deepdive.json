@@ -1,0 +1,583 @@
+{
+ "run_id": "run-20261112-0220",
+ "venues": [
+  {
+   "venue_id": "VA-REST-1175",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Carey Tang",
+     "title": "Managing Director / co-owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.elliebirdva.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Chris Pham",
+     "title": "Director of Operations",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.elliebirdva.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Areh Tu",
+     "title": "Service Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.elliebirdva.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "David Mackie",
+     "title": "Assistant Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.elliebirdva.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "elliebirdva.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Ellie Bird (people in VA/DC/MD)",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "No named person with an email exists on any page I could read. I fetched every page in elliebirdva.com/sitemap.xml that could carry a contact (home, contact, about-us, faq, careers, trivia, reservations, gift-cards): the only addresses are info@elliebirdva.com (general inbox, rightly rejected) and press@roosterowl.com beside 'PRESS INQUIRIES Katherine Cotsonas' on /contact (press address on the sister restaurant's domain, rightly rejected). The about-us 'Meet the flock' list has names and titles only (Carey Tang Managing Director, Chris Pham Director of Operations, Areh Tu Service Manager, David Mackie Assistant Manager, plus kitchen staff); the pipeline already had all of them, none has an email. New: the site's 'Private Dining' nav link goes to a separate site, https://www.the-nest-va.com/ (The Nest, Ellie Bird's private dining room next door at 123 Founder's Ave, opened June 2025); I read its home, reserve, faq, menus-1, events and embed pages: no email address and no named person anywhere, its only contact route is a Toast inquiry form (https://www.toasttab.com/invoice/lead?rx=cca23793-e337-44d9-a08e-96001376ced8&ot=a58f4900-6d12-4dbd-9174-5759b9bdb540). contact_form left empty because the sheet already has one. roosterowl.com (the-team, events, contact) shows only info@ and press@roosterowl.com. Apollo: domain search 0 people; name search returned 1 person literally named Ellie at an unrelated company (rejected). Search snippets mention an Event Manager job posting for Ellie Bird (Tallo, expired 6/21/2026; both job pages now return 404/410), so an events manager role exists but I found no name. Not checked: Facebook/Instagram About pages (walled), LinkedIn. One WebSearch for staff email addresses was refused by the search tool."
+  },
+  {
+   "venue_id": "XX-REST-192",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jerry Trice",
+     "title": "Executive Chef / co-owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://eatatgunther.com/about-gco",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "eatatgunther.com, guntherandco.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Gunther & Co (person location Baltimore, Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Saved contact Nancy Hart Trice (Director Of Operations) is confirmed on the venue's own About page (https://eatatgunther.com/about-gco) next to Jerry Trice, Executive Chef; she is the right person and nothing is flagged. The contact page (https://eatatgunther.com/contact) prints manager@guntherandco.com ('Looking to Reach Gunther Management?') and event@guntherandco.com ('Need to Book an Event?'); events@guntherandco.com is also in the page source. No person is named beside any of the three function inboxes anywhere on the site, on partyspace.com (it lists only 'Private Events Manager', phone 443-869-6874, no name) or in web search, so none is reported as a contact. Both Apollo people searches (domains, and name in Baltimore) returned 0. No events manager or GM name found; nothing better than the saved contact."
+  },
+  {
+   "venue_id": "MD-REST-3094",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "William Escalante",
+     "title": "General Manager (unconfirmed: from search summaries of OpenTable review replies, ~2025)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.opentable.com/r/ammoora-ritz-carlton-residences-baltimore",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jay Salkini",
+     "title": "Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.thebanner.com/culture/food-drink/ammoora-baltimore-syrian-fine-dining-HBDVK2QUEZHGBHFMHOFAI55T2A/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Markie Britton",
+     "title": "Co-founder and manager",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.thebanner.com/culture/food-drink/ammoora-baltimore-syrian-fine-dining-HBDVK2QUEZHGBHFMHOFAI55T2A/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Alberto Sissi",
+     "title": "Principal Chef",
+     "email": "",
+     "source": "apollo",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "ammoora.com",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "Ammoora (people in Maryland)",
+     "search_type": "name",
+     "result_count": 2
+    },
+    {
+     "query": "William Escalante Ammoora",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The venue's own site names no staff at all: I read the whole page sitemap's contact-bearing pages (home, contact, private-dining and its sub-pages, plan-your-event, group-dining, press, careers, faq, whats-on, special-requests, wine-menu) and decoded every Cloudflare-protected address. Addresses seen myself: events@ammoora.com (Cloudflare-encoded mailto in the 'Who to Reach' directory on /contact/), manager@ammoora.com (Cloudflare-encoded mailto 'Inquire About a Purchase' on /wine-menu/, subject 'Wine Purchase Inquiry'), rsvp@ammoora.com (reservations; ZeroBounce do_not_mail). No PDFs, no team page (about/our-story/team are 404). The only named decision-maker comes from outside the site: two WebSearch summaries quote OpenTable review replies signed 'William Escalante, Ammoora, General Manager, The Ritz Carlton Residences-Inner Harbor' (replies around 2025). I could NOT open OpenTable myself (WebFetch timed out twice, a curl attempt was blocked by the permission system), so the name is second-hand from search snippets, and pairing him with manager@ammoora.com is my inference (a GM plausibly reads the manager@ box), not something a page states. events@ammoora.com is the real booking inbox ('our events team') but I found no named events person; under the runbook's owner/GM pairing precedent the coordinator may want Escalante on events@ instead of or as well as manager@. The careers page lists an open 'Events Coordinator' role. Press (Baltimore Banner, 27 Dec 2023, read via WebFetch): Jay Salkini bought the venue in 2021 (owner), Markie Britton 'a co-founder and manager of Ammoora' (may be out of date; a 2023 blog calls her chief marketing officer). Apollo: org 'Ammoora Baltimore' matches; domain search 3 people (Alberto Si***i Principal Chef, whose asissi@ address the pipeline already found invalid; Aiman Ka***r Service Captain, name masked, no email; one 'Student'), name search the same first two; nothing for Escalante. No enrichment was run. Facebook/Instagram on the sheet not re-checked (already filled). Coordinator check: a second search found no source confirming William Escalante as GM, so he is listed without an email and manager@ammoora.com is not paired with him."
+  },
+  {
+   "venue_id": "DC-REST-2331",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Alex Zink",
+     "title": "Owner & Director of Operations (The Dabney, parent restaurant of The Cellar)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://thedabney.com/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jeremiah Langhorne",
+     "title": "Owner & Chef (The Dabney, parent restaurant of The Cellar)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://thedabney.com/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Daniel Todd",
+     "title": "Bar Director (The Dabney; The Cellar is its cocktail bar)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://thedabney.com/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "thedabneycellar.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "The Dabney Cellar (keywords; person location DC/MD/VA)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "thedabney.com",
+     "search_type": "domain",
+     "result_count": 11
+    }
+   ],
+   "summary": "No named person with an email could be confirmed, so there is no saveable contact under the first+last-name rule. The Cellar's own site (thedabneycellar.com: home, /contact/, /menus/, /location/the-dabney/, sitemap.xml = the whole site, all read with curl) publishes only info@thedabney.com, as a mailto beside 'Please contact info@thedabney.com for all private event inquiries'; that is a general inbox and the pipeline rejected it correctly. The real find is on the parent restaurant's site: https://thedabney.com/ (a one-page WordPress site, same owners, same phone 202-240-2660, links to The Cellar) has a 'Private Events' link that is mailto:allie@thedabney.com, in the nav and in the Contact block. It is a personal mailbox on thedabney.com, the same mail domain The Cellar's own site uses, but it is NOT published on The Cellar's own site and I could not find Allie's surname anywhere (WebSearch for the address and for Dabney events staff returned nothing; no LinkedIn result). It is therefore listed as a miss, not as a contact: the coordinator must decide whether a first-name-only private-events mailbox is saved under CONTACT_SAVE_ALL (if so it needs allow_off_domain, since the Cellar's site does not print it). The same page's 'Our Team' names Jeremiah Langhorne (Owner & Chef), Alex Zink (Owner & Director of Operations) and Daniel Todd (Bar Director), with no emails; they are included with empty emails. Press goes to fiona@elevenelevenpr.co (outside PR firm, not a contact). Apollo: 0 people for thedabneycellar.com and 0 for the name; the extra thedabney.com search returned 11 people at org 'The Dabney', none with a booking title (station chef, chefs, sous chef, host, server, front of house, gardener, an attorney, and 'Alexandra Ma***y, Executive Administrator', who might be the 'Allie' of the mailbox but that is a guess, not verified, and Apollo enrichment was off). Unverified: a search summary said an OpenTable private-dining listing gives maryclaire@thedabney.com; OpenTable timed out in WebFetch and refused curl, so I never saw that address myself and it may be old. Facebook, Instagram and contact form were already on the sheet and were left alone."
+  },
+  {
+   "venue_id": "VA-REST-3290",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kelly Grant",
+     "title": "Partner & COO (founding partner)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://alxcommunity.com/the-alx-community-team/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Kylie Zahringer",
+     "title": "Sales Lead",
+     "email": "",
+     "source": "website",
+     "source_url": "https://alxcommunity.com/the-alx-community-team/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Lyza Pyvovarova",
+     "title": "Assistant Events Director (part-time)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://alxcommunity.com/the-alx-community-team/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Brandon DeChirico",
+     "title": "Hospitality Leader",
+     "email": "",
+     "source": "apollo",
+     "source_url": "https://alxcommunity.com/event-space-alexandria/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "alxcommunity.com",
+     "search_type": "domain",
+     "result_count": 21
+    },
+    {
+     "query": "ALX Community (person location VA/DC/MD)",
+     "search_type": "name",
+     "result_count": 10
+    }
+   ],
+   "summary": "Above is not a separate business: it is the rooftop penthouse event space of ALX Community, a small Old Town Alexandria coworking company (press gives the Atrium building as 277 S. Washington St.), and the company's own site sells it on /event-space-alexandria/ and /wedding-venue-alexandria/. So ALX Community staff are this venue's staff, and none of the 4 saved contacts is flagged. Luis Robles (Event Specialist): Apollo still lists him at ALX Community, and the event-space page's events tour button links to meetings.hubspot.com/luis732/events-meetings-tour- (the slug is my only on-site evidence; his name is not printed on the site); he is the best saved contact. Luke Powell: on the site's team page as 'Director, Community Operations'. Amanda Galbraith (Partner): not on the team page, but ALXnow (2024-06-21) says the company is owned by Kelly Grant, Amanda Kate Galbraith and Scott Shaw; keep. Kaitlin Stokes (Community Specialist): NOT on the current team page (6 people listed: Grant, Powell, Zahringer, Hart, Gabler, Pyvovarova), Apollo still lists her (refreshed 2026-10-01); she may have left and a community specialist is a front-desk coworking role, so this is the weakest row, but I have no proof she is gone, so not flagged. People without a published email worth knowing: Kelly Grant (Partner & COO, quoted in press about the rooftop), Kylie Zahringer (Sales Lead; Apollo shows a Sales Lead 'Kylie Yo***g' with an email on file, probably the same person under another surname, inferred), Lyza Pyvovarova (Assistant Events Director), Brandon DeChirico (Apollo 'Brandon De***o, Hospitality Leader'; surname taken from the site's tour link meetings.hubspot.com/brandon-dechirico/alx-community-tour, inferred match). Apollo also shows 'Sarah Ka***i, Director, Member Experience' (masked, not reported). The only address printed anywhere on the site is info@alxcommunity.com (general inbox). Apollo's domain search also returned ~8 unrelated people (software engineers, an agricultural economist, likely the African ALX training programme mis-attached to this org); none were saved. The two HubSpot meeting pages returned no readable name via curl (JS-rendered)."
+  },
+  {
+   "venue_id": "XX-REST-037",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Sugunya Lunz",
+     "title": "Executive Chef (per a 2018 Baltimore Sun review; not confirmed as current)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.pressreader.com/usa/baltimore-sun-sunday/20180520/282540133994557",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "thekingscontrivance.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Kings Contrivance Restaurant (keywords; person location Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Nothing saveable: the venue publishes no person's name and no address other than info@thekingscontrivance.com, which the pipeline rejected correctly as a general inbox. I read with curl the home page, /findus, /events, /dining, /holiday, /dinnerbanquet, /50anniversary, /copy-of-receptions, /copy-of-find-us, /copy-of-find-us-1 and the 29-URL pages sitemap of thekingscontrivance.com, plus the venue's second site https://www.thekingscontrivanceweddings.com (home, /contactus, /vendors, /ceremonies, /facilitycharges, /packages; linked from the main site's WEDDINGS button). Both sites carry only info@ in the footer, the phones 410-995-0500 / 301-596-3455, 'Private Events: Inquire Online or Call', no staff or about page and no PDFs; the home page says only 'the current ownership group has operated the restaurant since 1975'. The one other address, cantornanc@gmail.com on the weddings /vendors page, is an outside wedding officiant, not venue staff. Apollo people search returned 0 for the domain and 0 for the name in Maryland. WebSearch found no owner, GM or events person; MapQuest's listing says the restaurant is part of 'The Country Fare Group' (no person named, not confirmed elsewhere), and a search summary of a May 2018 Baltimore Sun review names executive chef Sugunya Lunz, which I could not read myself (pressreader returned no text) and which is 8 years old. Blocked: the Maryland Chamber member page (403 / Cloudflare) and the Facebook About page. Useful for the pitch rather than for contacts: the weddings /vendors page lists recommended musicians (a harpist, a flute and strings trio, a quartet, a vocalist-guitarist) and the house has a 'Music Parlor' room, so the venue does refer live music; the practical route here is the phone or the site's form."
+  },
+  {
+   "venue_id": "MD-REST-1103",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Carolina Fernandes",
+     "title": "Owner and Executive Chef",
+     "email": "carolina@tavirarestaurant.com",
+     "source": "website",
+     "source_url": "https://tavirarestaurant.com/static/js/main.4ad52655.js",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "tavirarestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Tavira Restaurant (person location MD/DC/VA)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The site is a JavaScript app (each page is ~3 KB of HTML; the text lives in /static/js/main.4ad52655.js). Its About page (https://tavirarestaurant.com/aboutus) says 'Owner and Executive Chef Carolina Fernandes leads the kitchen today' (seen via WebFetch and in the bundle); the pipeline recorded no people. The same bundle contains carolina@tavirarestaurant.com five times. CAVEAT: that address is not shown to visitors as a link; it sits in the restaurant's own reservation/events admin code shipped in the public bundle (a default address next to 'reservation@tavirarestaurant.com, tavirarestaurant31@gmail.com' in the email-compose screens, with lead assignees 'CAROLINA' and 'NAZIB'). It is on the venue's own domain and the first name matches the owner named on the site, so I report it as her address, but the pairing of that mailbox with Carolina Fernandes is my inference from the first name, and it has not been through ZeroBounce. The saved contact tavirarestaurant31@gmail.com is correct: the bundle's footer has mailto:tavirarestaurant31@gmail.com labelled 'Private Events & Catering'; it has no name, and Carolina Fernandes is the natural name for it (not repeated as a contact). Not flagged. reservation@, hola@ and info@tavirarestaurant.com are also in the bundle (general inboxes, not contacts). Older listings (OpenTable, MapQuest) name Duarte Rebolo as founder/chef; MapQuest says 'new ownership since January 2024', and the venue's own site names only Fernandes, so Rebolo is not reported. 'Nazib' appears only as a first name in the admin code (no surname, not reported). Both Apollo people searches returned 0. The site has a Friday live-music night page (/offers/friday-music-night), no performer or booker named."
+  },
+  {
+   "venue_id": "VA-REST-3244",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Bailey Kormick",
+     "title": "Marketing Manager (listed as Media Contact)",
+     "email": "bailey.kormick@thealexandrian.com",
+     "source": "website",
+     "source_url": "https://www.thealexandrian.com/contact-us",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Cecelia Lee",
+     "title": "Media Contact (may be Bailey Kormick's predecessor)",
+     "email": "cecelia.lee@thealexandrian.com",
+     "source": "website",
+     "source_url": "https://www.thealexandrian.com/faqs",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Tobias Arff",
+     "title": "General Manager, The Alexandrian and Morrison House (appointed Nov 2023)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.hotelexecutive.com/newswire/71417/the-alexandrian-old-town-alexandria-and-morrison-house-appoint-tobias-arff-as-general-manager",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Sam Shaheen",
+     "title": "Assistant General Manager, The Alexandrian (signature on a Dec 2025 TripAdvisor management reply)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.tripadvisor.com/Hotel_Review-d83912",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "https://www.facebook.com/TheAlexandrianHotel/",
+   "instagram": "https://www.instagram.com/thealexandrianhotel/",
+   "contact_form": "https://www.thealexandrian.com/contact-us",
+   "apollo_searches": [
+    {
+     "query": "thealexandrian.com",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "The Alexandrian (people located in Alexandria, Virginia)",
+     "search_type": "name",
+     "result_count": 2
+    }
+   ],
+   "summary": "The hotel has its own website and mail domain, thealexandrian.com, which the pipeline never read because the sheet website is the marriott.com property page; the Marriott events page itself links to thealexandrian.com/events/venues, and the site gives 480 King Street. Its emails are Cloudflare-protected (decoded from the data-cfemail / email-protection values). Seen on https://www.thealexandrian.com/contact-us: Media Contact bailey.kormick@thealexandrian.com (the visible text and the second link; the first one-letter link still points to Cecelia.Lee@TheAlexandrian.com, which suggests Bailey replaced Cecelia) and Sales Contact sales@thealexandrian.com. Seen on https://www.thealexandrian.com/faqs: Media Contact Cecelia.Lee@thealexandrian.com, The Alexandrian Sales Team sales@thealexandrian.com, and Donations Contact written as 'Joe. Stern@thealexandrian.com' (malformed, with a space; an aggregator profile says a Joe Stern left Sage Hospitality in Nov 2022, so not reported as a contact). Apollo (search only) shows 3 people at the org 'The Alexandrian' on thealexandrian.com: Bailey Ko***k, Manager Marketing (matches Bailey Kormick); Alice Le***n, Area Director Sales & Marketing (last name masked, id 6acea0aba4b75a00015c6b4d: she is the person to pair with sales@thealexandrian.com once her surname is known, I could not find it in press or LinkedIn snippets); Wendy Da***g, front desk. The marriott.com brand domain was not searched. No person with a sales, catering or events title was found with a full name and an address: sales@ stays unpaired and is not a contact. Cecelia Lee's name comes from the first.last address only and she may no longer be there. Tobias Arff (GM) and Sam Shaheen (Assistant GM) come from search-result snippets only (the press pages returned 403), and Arff's 2023 appointment was not confirmed as current. The pipeline's rejected sam.shaheen@morrisonhouse.com is on the sister hotel's domain (same Sage Hospitality team and GM); I could not find any page that prints it (not on thealexandrian.com's 48 sitemap pages, not on morrisonhouse.com contact/faqs, not on the Marriott events/dining pages), so it is reported without email. Facebook and Instagram are the links in the footer of the Marriott property pages and of thealexandrian.com. Not checked: the Marriott overview page (403 to curl and WebFetch), the catering menu microsite thealexandrian.cendynemenus.com (no response), kingandrye.com has no emails."
+  },
+  {
+   "venue_id": "MD-REST-2143",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Michael Farace",
+     "title": "General Manager and sommelier",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.thebanner.com/culture/food-drink/seppia-hampden-D2WBHRQBSRCITI3QYHMDTYSNMY/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Ben Lefenfeld",
+     "title": "Chef and co-owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.thebanner.com/culture/food-drink/seppia-hampden-D2WBHRQBSRCITI3QYHMDTYSNMY/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Amy Lefenfeld",
+     "title": "Co-owner (opened Seppia with Ben Lefenfeld)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://baltimorefishbowl.com/stories/la-cuchara-teams-new-restaurant-seppia-offers-menu-inspired-by-italian-travels/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jake Lefenfeld",
+     "title": "Co-owner, cocktail program (opened Seppia with Ben Lefenfeld)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://baltimorefishbowl.com/stories/la-cuchara-teams-new-restaurant-seppia-offers-menu-inspired-by-italian-travels/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "seppiabaltimore.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Seppia (people located in Baltimore, Maryland)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No named person with an email exists anywhere I could reach. All 6 pages of the Wix site (home, reservations-1, menus, info, about-1 = Events, copy-of-home = Contact, from pages-sitemap.xml) carry only the general inbox info@seppiabaltimore.com (mailto), which the pipeline rightly rejected; the Events page says to email for private dining and private events and gives no other address, and the 4 PDFs are menus. The people come from press: The Baltimore Banner (Apr 1 2026) names Michael Farace as general manager and Ben Lefenfeld as chef and co-owner; Baltimore Fishbowl (Mar 30 2026) calls him 'GM and sommelier Mike \"Red\" Farace' and says Ben opened Seppia with his wife Amy and brother Jake, and that there are two private dining rooms. 'Co-owner' for Amy and Jake is my reading of those articles, not a printed title. Apollo has nobody on the domain or under the name in Baltimore. The sister restaurant's site lacucharabaltimore.com shows events@lacucharabaltimore.com, but that is another restaurant's domain and Seppia's own site does not publish it, so it is not a contact. Facebook, Instagram and the contact form on the sheet match the links on the site. Not checked: the Facebook and Instagram pages themselves (walled)."
+  },
+  {
+   "venue_id": "VA-REST-1455",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Zackary Coleman",
+     "title": "USPA club delegate, Banbury Cross Polo Club",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.uspolo.org/clubs/banbury-cross-polo-club",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "banburycrosspoloclub.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Banbury Cross Polo Club",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Zackary Coleman polo (Virginia)",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "The website on the sheet, banburycrosspoloclub.com, is no longer the club's: it is a spam blog (title 'Sports training, health and beauty', water-polo/hair/casino posts, a made-up 'Dave Reyna, physiotherapist' with a McAllen TX address). The two addresses the pipeline found (dave@ and info@banburycrosspoloclub.com) are Cloudflare-protected text on that spam page, so they belong to whoever holds the domain now, not the club; ZeroBounce 'invalid' on dave@ was the right outcome and neither should ever be saved. The Wayback Machine shows the club's real Wix site on this domain through late 2019. The club itself is real and active: its USPA page (join date July 13, 2026, Eastern circuit, 1 field + 1 outdoor arena, phone (540) 680-0610) names Zackary Coleman as delegate, with no email and no website, and a Culpeper tourism listing puts Aug 14 2026 tournament semi-finals at Banbury Cross. No email for anyone at the club was found anywhere; no Facebook or Instagram page could be verified. Apollo: 0 people by domain and 0 by name. Suggested sheet fixes for the main session: clear the website and the contact_form (both point at the spam site) and keep the venue needs_review until a real site or email turns up. Not the same club: USPA's 'Middleburg Polo Club' in Upperville (delegate Jim McGowan, an address at thomasandtalbot.com) is a separate listing and was not used. Could not read: uspolo.org news article (404), visitculpeperva.com and northernvirginiamag pages (403), middleburglife Piper Cup article (404)."
+  },
+  {
+   "venue_id": "VA-REST-1188",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Shane O'Connor",
+     "title": "Chef & Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://biakitchen.com/contact/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Sharon O'Connor",
+     "title": "Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://biakitchen.com/chef-shane-oconnor/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Maeve O'Connor-King",
+     "title": "Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://biakitchen.com/chef-shane-oconnor/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "biakitchen.com, bia.kitchen",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "BIA Kitchen (Virginia)",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "Bia Kitchen Purcellville",
+     "search_type": "name",
+     "result_count": 0
+    },
+    {
+     "query": "BIA Kitchen",
+     "search_type": "name",
+     "result_count": 16
+    }
+   ],
+   "summary": "The only email anywhere on biakitchen.com is info@bia.kitchen (a mailto in the footer of every page, and on the contact page under 'Chef & Owner Shane O'Connor'); it is a general inbox, so the pipeline's reject was right and nothing saveable exists. I read 10 of the 21 pages in the sitemap by plain GET (home, contact, private-events, envira/private-events, chef-shane-oconnor, in-the-community, our-location, gift-cards, privacy-policy, european-inspired; the menu, gallery and reservation pages were not read): no other address, no PDF, no Cloudflare-protected email. The 'Meet the O'Connors' page (/chef-shane-oconnor/) names two managers the pipeline did not have: Sharon O'Connor and Maeve O'Connor-King (Shane's sisters, 'manages Bia Kitchen'), plus Margaret O'Connor (mother, food expediter, not a booking contact) and wife Elizabeth (no role stated). None has a published email. Private events (upstairs room, up to 50) go through the contact form at /contact, which the sheet already has. Note the mail domain is bia.kitchen while the site is biakitchen.com; bia.kitchen itself is a 'Launching Soon' placeholder, so any future @bia.kitchen address is the venue's own. Apollo: the domain search shows 3 people at org 'BIA Kitchen', all floor staff with masked surnames (two Servers, one Food Service Worker), no decision-maker; the unfiltered name search returned 16, the same 3 plus 13 at unrelated organisations (Restaurante Bia, Bia Bistro, etc.), all rejected by the name gate. WebSearch for '@bia.kitchen', the managers' names and chamber/tourism listings found no email. Could not read northernvirginiamag.com (403); Facebook/Instagram were not opened (already on the sheet, walled)."
+  }
+ ]
+}

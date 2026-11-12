@@ -1,0 +1,304 @@
+{
+ "run_id": "run-20261112-0220",
+ "dry_run": false,
+ "at": "2026-11-12T11:57:06-05:00",
+ "totals": {
+  "saved": 1,
+  "venues_rescued": 0,
+  "socials": 3,
+  "rejected": 2,
+  "errors": 0,
+  "flagged": 0,
+  "deleted": 0
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "VA-REST-1175",
+   "name": "Ellie Bird",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Carey Tang",
+     "source_url": "https://www.elliebirdva.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Chris Pham",
+     "source_url": "https://www.elliebirdva.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Areh Tu",
+     "source_url": "https://www.elliebirdva.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "David Mackie",
+     "source_url": "https://www.elliebirdva.com/about-us",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-REST-192",
+   "name": "Gunther & Co.",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jerry Trice",
+     "source_url": "https://eatatgunther.com/about-gco",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3094",
+   "name": "Ammoora",
+   "contacts": [
+    {
+     "email": "",
+     "name": "William Escalante",
+     "source_url": "https://www.opentable.com/r/ammoora-ritz-carlton-residences-baltimore",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jay Salkini",
+     "source_url": "https://www.thebanner.com/culture/food-drink/ammoora-baltimore-syrian-fine-dining-HBDVK2QUEZHGBHFMHOFAI55T2A/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Markie Britton",
+     "source_url": "https://www.thebanner.com/culture/food-drink/ammoora-baltimore-syrian-fine-dining-HBDVK2QUEZHGBHFMHOFAI55T2A/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Alberto Sissi",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2331",
+   "name": "The Dabney Cellar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Alex Zink",
+     "source_url": "https://thedabney.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jeremiah Langhorne",
+     "source_url": "https://thedabney.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Daniel Todd",
+     "source_url": "https://thedabney.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3290",
+   "name": "Above ALX Community",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Kelly Grant",
+     "source_url": "https://alxcommunity.com/the-alx-community-team/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Kylie Zahringer",
+     "source_url": "https://alxcommunity.com/the-alx-community-team/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Lyza Pyvovarova",
+     "source_url": "https://alxcommunity.com/the-alx-community-team/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Brandon DeChirico",
+     "source_url": "https://alxcommunity.com/event-space-alexandria/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-REST-037",
+   "name": "The Kings Contrivance",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Sugunya Lunz",
+     "source_url": "https://www.pressreader.com/usa/baltimore-sun-sunday/20180520/282540133994557",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1103",
+   "name": "Tavira Restaurant",
+   "contacts": [
+    {
+     "email": "carolina@tavirarestaurant.com",
+     "name": "Carolina Fernandes",
+     "source_url": "https://tavirarestaurant.com/static/js/main.4ad52655.js",
+     "title": "Owner and Executive Chef",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3244",
+   "name": "The Alexandrian Old Town Alexandria, Autograph Collection",
+   "contacts": [
+    {
+     "email": "bailey.kormick@thealexandrian.com",
+     "name": "Bailey Kormick",
+     "source_url": "https://www.thealexandrian.com/contact-us",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "cecelia.lee@thealexandrian.com",
+     "name": "Cecelia Lee",
+     "source_url": "https://www.thealexandrian.com/faqs",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Tobias Arff",
+     "source_url": "https://www.hotelexecutive.com/newswire/71417/the-alexandrian-old-town-alexandria-and-morrison-house-appoint-tobias-arff-as-general-manager",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Sam Shaheen",
+     "source_url": "https://www.tripadvisor.com/Hotel_Review-d83912",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/TheAlexandrianHotel/",
+     "outcome": "saved"
+    },
+    {
+     "field": "instagram",
+     "value": "https://www.instagram.com/thealexandrianhotel/",
+     "outcome": "saved"
+    },
+    {
+     "field": "contact_form",
+     "value": "https://www.thealexandrian.com/contact-us",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-2143",
+   "name": "Seppia",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Michael Farace",
+     "source_url": "https://www.thebanner.com/culture/food-drink/seppia-hampden-D2WBHRQBSRCITI3QYHMDTYSNMY/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ben Lefenfeld",
+     "source_url": "https://www.thebanner.com/culture/food-drink/seppia-hampden-D2WBHRQBSRCITI3QYHMDTYSNMY/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Amy Lefenfeld",
+     "source_url": "https://baltimorefishbowl.com/stories/la-cuchara-teams-new-restaurant-seppia-offers-menu-inspired-by-italian-travels/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jake Lefenfeld",
+     "source_url": "https://baltimorefishbowl.com/stories/la-cuchara-teams-new-restaurant-seppia-offers-menu-inspired-by-italian-travels/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1455",
+   "name": "Banbury Cross Polo Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Zackary Coleman",
+     "source_url": "https://www.uspolo.org/clubs/banbury-cross-polo-club",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1188",
+   "name": "BIA Kitchen",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Shane O'Connor",
+     "source_url": "https://biakitchen.com/contact/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Sharon O'Connor",
+     "source_url": "https://biakitchen.com/chef-shane-oconnor/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Maeve O'Connor-King",
+     "source_url": "https://biakitchen.com/chef-shane-oconnor/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ],
+ "flagged_backup": ""
+}

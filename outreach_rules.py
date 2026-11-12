@@ -883,19 +883,23 @@ def contact_gate(email, name="", title="", action="verify", person_role="", stri
         only booking-relevant titles (score >= BOOKING_SCORE)
       - multi_site (a chain / host organisation) -> org-level titles (regional VP, CEO,
         "Virginia Executive Director") and titles naming another property are rejected
-    SAVE_NAMELESS=1 in the environment restores saving nameless personal mailboxes."""
+    SAVE_NAMELESS=1 in the environment restores saving nameless personal mailboxes.
+    CONTACT_SAVE_ALL=1 (.env, Alex Nov 11 2026: "just add everyone and ill parse it"; the junk came from
+    running colleges, not from saving too many people): everyone at the venue is saved, whatever the
+    title; only the guards against other organisations / other properties stay."""
     import os as _os
     out = {"ok": False, "reason": "", "score": 0, "tier": "neutral"}
+    save_all = _os.environ.get("CONTACT_SAVE_ALL") == "1"
     bo = back_office_mailbox(email)
-    if bo:
+    if bo and not save_all:
         out["reason"] = "back_office_mailbox:" + bo
         return out
     score, why = title_relevance(title, skip_words)
-    if why.startswith("veto"):
+    if why.startswith("veto") and not save_all:
         out["reason"] = "back_office_title:" + why.split(":", 1)[1]
         return out
     if not str(name or "").strip() and not person_role:
-        if action == "role" or _os.environ.get("SAVE_NAMELESS") != "1":
+        if action == "role" or (_os.environ.get("SAVE_NAMELESS") != "1" and not save_all):
             out["reason"] = "no_person_name"
             return out
     if multi_site:
@@ -911,12 +915,12 @@ def contact_gate(email, name="", title="", action="verify", person_role="", stri
         score, why = title_relevance(person_role)
     out["score"] = score
     out["tier"] = "booking" if score >= BOOKING_SCORE else "neutral"
-    if action == "role" and out["tier"] != "booking" and _function_inbox_word(email):
+    if action == "role" and out["tier"] != "booking" and _function_inbox_word(email) and not save_all:
         # creche@ with the preschool director's name, glass@ with the studio manager's: a
         # program's inbox, not a booking channel, unless the person attached books events.
         out["reason"] = "program_inbox:" + _function_inbox_word(email)
         return out
-    if strict and out["tier"] != "booking":
+    if strict and out["tier"] != "booking" and not save_all:
         out["reason"] = "not_a_booking_title:" + (why if why != "rule" else "low_score")
         return out
     out["ok"] = True

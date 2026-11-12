@@ -5061,6 +5061,12 @@ def is_known(first, hint):
     return False
 
 
+# Nov 11 2026 (Alex: "obviously not these" -- servers, sous chefs, assistants -- "but if youre not sure save
+# them"): with APOLLO_DECISION_MAKERS_ONLY=0 everyone is enriched except the veto list and floor/line staff.
+import re
+LINE_STAFF = re.compile(r"[^a-z](host|hostess|food runner|runner|sous chef|chef de partie|station chef|chef de tournant|"
+                        r"commis|line|cook|prep|captain|bartender|barista|busser|server|waiter|waitress|receptionist|"
+                        r"front desk|front house|front of house|gardener|farmer|assistant|board member|dishwasher)[^a-z]")
 picked, skipped_title, n_known, n_noemail = [], [], 0, 0
 for p in people:
     first = (p.get("first_name") or "").strip()
@@ -5070,7 +5076,7 @@ for p in people:
     # Nov 11 2026: only people who could book Alex are enriched (score >= 2: owner, GM,
     # events, private dining, catering, F&B, music/performing arts, lifestyle, sales,
     # president). APOLLO_DECISION_MAKERS_ONLY=0 restores "everyone except the veto list".
-    if why.startswith("veto") or (dm_only and sc < 2):
+    if why.startswith("veto") or (dm_only and sc < 2) or (not dm_only and LINE_STAFF.search(" " + (p.get("title") or "").lower() + " ")):
         skipped_title.append(p.get("title") or "(no title)")
         continue
     if is_known(first, p.get("last_name_hint")):

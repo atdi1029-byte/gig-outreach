@@ -8,16 +8,16 @@
   "runs": [
    {
     "run_id": "run-20261111-2142",
-    "outcome": "running",
+    "outcome": "finished",
     "started": "22:04",
-    "venues": 8,
-    "processed": 2,
+    "venues": 25,
+    "processed": 25,
     "skipped": 0,
-    "with_contacts": 0,
-    "zero": 2,
-    "new_contacts": 0,
-    "unfinished": 6,
-    "ended": "21:54",
+    "with_contacts": 15,
+    "zero": 10,
+    "new_contacts": 27,
+    "unfinished": 0,
+    "ended": "00:07",
     "rescued_contacts": 1,
     "rescued_venues": 1,
     "deep_dive": "done"
@@ -124,5 +124,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-11T22:04:34-05:00"
+ "updated_at": "2026-11-12T00:07:33-05:00"
 }

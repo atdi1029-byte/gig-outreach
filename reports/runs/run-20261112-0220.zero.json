@@ -1,0 +1,3575 @@
+{
+ "run_id": "run-20261112-0220",
+ "venues": [
+  {
+   "venue_id": "VA-REST-1175",
+   "name": "Ellie Bird",
+   "website": "https://www.elliebirdva.com",
+   "city": "Falls Church",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/EllieBirdVA/",
+   "instagram": "https://www.instagram.com/elliebirdva",
+   "contact_form": "https://www.elliebirdva.com/contact",
+   "notes": "Google Maps ''. 4.5* (455 reviews). Pre-score: 55. Taste query: European bistro McLean VA | Upscale checked 2026-11-11: 4 (Chef-driven modern American, critically praised) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261112-0220",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-1175 web ok via=chrome pages=13 visited=home,contact,about form=yes chrome_pages=13 curl_pages=0 static_pages=15 pdfs=6 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=9 pending=0 fb=0 ig=1 blocked_pages=0 missing=events,team",
+    "[STEP] VA-REST-1175 social ok fb=found ig=found fb_search=ok:found_of_5 ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-1175 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=Ellie_Bird gate=name+domain people=0",
+    "[STEP] VA-REST-1175 linkedin empty pages=3 results=29 rejected=29 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-REST-1175 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] VA-REST-1175 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-1175 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=15 pages=15 pages_cut=0 visited=home,contact,about emails=2 saved=0 enriched=0 pending=0 people=10 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=9 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "press@roosterowl.com",
+     "name": "Katherine Cotsonas",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "press@roosterowl.com",
+     "name": "Katherine Cotsonas",
+     "source": "website",
+     "disposition": "reject:hard_reject:press"
+    },
+    {
+     "email": "info@elliebirdva.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@elliebirdva.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:yuan tang",
+     "name": "Yuan Tang",
+     "title": "Culinary Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:carey tang",
+     "name": "Carey Tang",
+     "title": "Managing Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:chris pham",
+     "name": "Chris Pham",
+     "title": "Director of Operations",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:tori pajak",
+     "name": "Tori Pajak",
+     "title": "Corporate Chef De Cuisine",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:jw jung",
+     "name": "JW Jung",
+     "title": "Chef de Cuisine",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:nicholas branthoover",
+     "name": "Nicholas Branthoover",
+     "title": "Sous Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:corey jamison",
+     "name": "Corey Jamison",
+     "title": "Executive Pastry Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:brittney boyden",
+     "name": "Brittney Boyden",
+     "title": "Pastry Sous Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "info@elliebirdva.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.elliebirdva.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@elliebirdva.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.elliebirdva.com/"
+    },
+    {
+     "kind": "email",
+     "email": "press@roosterowl.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.elliebirdva.com/contact"
+    },
+    {
+     "kind": "email",
+     "email": "press@roosterowl.com",
+     "source": "postcheck_website",
+     "disposition": "reject:hard_reject:press",
+     "evidence_url": "https://www.elliebirdva.com/contact"
+    },
+    {
+     "kind": "contact",
+     "name": "Yuan Tang",
+     "title": "Culinary Director",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Carey Tang",
+     "title": "Managing Director",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Chris Pham",
+     "title": "Director of Operations",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Tori Pajak",
+     "title": "Corporate Chef De Cuisine",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "JW Jung",
+     "title": "Chef de Cuisine",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Nicholas Branthoover",
+     "title": "Sous Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Corey Jamison",
+     "title": "Executive Pastry Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Brittney Boyden",
+     "title": "Pastry Sous Chef",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "Areh Tu",
+     "title": "Service Manager",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    },
+    {
+     "kind": "contact",
+     "name": "David Mackie",
+     "title": "Assistant Manager",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.elliebirdva.com/about-us"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-1175.json",
+     "base": "https://www.elliebirdva.com/",
+     "pages_fetched": 23,
+     "pages_ok": 15,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.elliebirdva.com/contact",
+       "url": "https://www.elliebirdva.com/contact"
+      }
+     ],
+     "people": [
+      {
+       "name": "Carey Tang",
+       "page": "https://www.elliebirdva.com/about-us",
+       "title": "Managing Director"
+      },
+      {
+       "name": "Chris Pham",
+       "page": "https://www.elliebirdva.com/about-us",
+       "title": "Director of Operations"
+      },
+      {
+       "name": "Tori Pajak",
+       "page": "https://www.elliebirdva.com/about-us",
+       "title": "Director of Operations"
+      },
+      {
+       "name": "David Mackie",
+       "page": "https://www.elliebirdva.com/about-us",
+       "title": "Assistant Manager"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-1175.json",
+     "base": "https://www.elliebirdva.com/",
+     "pages_fetched": 23,
+     "pages_ok": 15,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.elliebirdva.com/contact",
+       "url": "https://www.elliebirdva.com/contact"
+      }
+     ],
+     "people": [
+      {
+       "name": "Carey Tang",
+       "page": "https://www.elliebirdva.com/about-us",
+       "title": "Managing Director"
+      },
+      {
+       "name": "Chris Pham",
+       "page": "https://www.elliebirdva.com/about-us",
+       "title": "Director of Operations"
+      },
+      {
+       "name": "Tori Pajak",
+       "page": "https://www.elliebirdva.com/about-us",
+       "title": "Director of Operations"
+      },
+      {
+       "name": "David Mackie",
+       "page": "https://www.elliebirdva.com/about-us",
+       "title": "Assistant Manager"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-REST-192",
+   "name": "Gunther & Co.",
+   "website": "https://eatatgunther.com",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/EatAtGunther/",
+   "instagram": "https://www.instagram.com/eatatgunther/",
+   "contact_form": "https://eatatgunther.com/event-spaces",
+   "notes": "Google Maps 'New American'. 4.6\u2605 (1313 reviews). Discovered from: Woodberry Kitchen | Nov 6 2026 cleanup: city checked | Website checked 2026-11-11 | Upscale checked 2026-11-11: 4 (Upscale American in the restored Gunther brewery building, Brewers Hill) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Nancy Hart Trice",
+     "title": "Director Of Operations",
+     "email": "nancy@guntherandco.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] XX-REST-192 web ok via=chrome pages=25 visited=home,contact,about,events,team form=yes chrome_pages=25 curl_pages=0 static_pages=25 pdfs=6 emails=4 saved=1 role=0 unverified=0 deferred=0 rejected=0 candidates=3 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] XX-REST-192 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] XX-REST-192 apollo empty reason=org_mismatch rejected_orgs=5 domain_search=ok domain_results=0 name_search=ok name_results=8",
+    "[STEP] XX-REST-192 linkedin empty pages=3 results=28 rejected=28 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] XX-REST-192 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] XX-REST-192 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] XX-REST-192 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "nancy@guntherandco.com",
+     "name": "Nancy Hart Trice",
+     "title": "Director Of Operations",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "nancy@guntherandco.com",
+     "name": "Nancy Hart Trice",
+     "title": "Director Of Operations",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "manager@guntherandco.com",
+     "name": "Gunther Management",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "manager@guntherandco.com",
+     "name": "Gunther Management",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "event@guntherandco.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "event@guntherandco.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "events@guntherandco.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "events@guntherandco.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "person:jerry trice",
+     "name": "Jerry Trice",
+     "title": "Executive Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "eatatgunther@gmail.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "eatatgunther@gmail.com",
+     "source": "social",
+     "disposition": "reject:freemail_unlinked"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/XX-REST-192.json",
+     "base": "https://eatatgunther.com/",
+     "pages_fetched": 33,
+     "pages_ok": 25,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "tripleseat",
+       "page": "https://eatatgunther.com/event-spaces",
+       "url": "https://eatatgunther.com/event-spaces"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://eatatgunther.com/events",
+       "url": "https://eatatgunther.com/events"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://eatatgunther.com/events-1",
+       "url": "https://eatatgunther.com/events-1"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://eatatgunther.com/locations",
+       "url": "https://eatatgunther.com/locations"
+      }
+     ],
+     "people": [
+      {
+       "name": "Jerry Trice",
+       "page": "https://eatatgunther.com/about-gco",
+       "title": "Executive Chef"
+      },
+      {
+       "name": "Nancy Hart Trice",
+       "page": "https://eatatgunther.com/about-gco",
+       "title": "Director Of Operations"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3094",
+   "name": "Ammoora",
+   "website": "https://ammoora.com",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/people/Ammoora/100076806319706",
+   "instagram": "https://www.instagram.com/ammoorabaltimore",
+   "contact_form": "https://ammoora.com/private-dining/plan-your-event/",
+   "notes": "Google Maps ''. 4.6* (1130 reviews). Pre-score: 60. Taste query: upscale restaurant Roland Park Baltimore MD | Upscale checked 2026-11-11: 4 (Upscale Lebanese restaurant at Harbor Point) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261112-0220",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-3094 web ok via=chrome pages=31 visited=home,contact,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=4 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=4 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team",
+    "[STEP] MD-REST-3094 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] MD-REST-3094 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=1 org=Ammoora_Baltimore gate=name+domain people=2 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1",
+    "[STEP] MD-REST-3094 linkedin empty pages=3 results=21 rejected=21 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-3094 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] MD-REST-3094 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-3094 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=40 pages=35 pages_cut=10 visited=home,contact,events emails=4 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=3 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=3 apollo_via=domain linkedin=empty li_results=10 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "events@ammoora.com",
+     "title": "PRIVATE EVENTS",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "events@ammoora.com",
+     "title": "PRIVATE EVENTS",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "manager@ammoora.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "manager@ammoora.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "rsvp@ammoora.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "rsvp@ammoora.com",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "shop@ammoora.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "shop@ammoora.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "asissi@ammoora.com",
+     "name": "Alberto Sissi",
+     "title": "Principal Chef Ammoora Restaurant",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "asissi@ammoora.com",
+     "name": "Alberto Sissi",
+     "title": "Principal Chef Ammoora Restaurant",
+     "source": "apollo",
+     "disposition": "verification:invalid"
+    },
+    {
+     "kind": "email",
+     "email": "events@ammoora.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://ammoora.com/contact/"
+    },
+    {
+     "kind": "email",
+     "email": "events@ammoora.com",
+     "source": "postcheck_website",
+     "disposition": "role_no_name",
+     "evidence_url": "https://ammoora.com/contact/"
+    },
+    {
+     "kind": "email",
+     "email": "manager@ammoora.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://ammoora.com/wine-menu/"
+    },
+    {
+     "kind": "email",
+     "email": "manager@ammoora.com",
+     "source": "postcheck_website",
+     "disposition": "role_no_name",
+     "evidence_url": "https://ammoora.com/wine-menu/"
+    },
+    {
+     "kind": "email",
+     "email": "rsvp@ammoora.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://ammoora.com/"
+    },
+    {
+     "kind": "email",
+     "email": "rsvp@ammoora.com",
+     "source": "postcheck_website",
+     "disposition": "verification:do_not_mail",
+     "evidence_url": "https://ammoora.com/"
+    },
+    {
+     "kind": "email",
+     "email": "shop@ammoora.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://ammoora.com/cart-2/"
+    },
+    {
+     "kind": "email",
+     "email": "shop@ammoora.com",
+     "source": "postcheck_website",
+     "disposition": "role_no_name",
+     "evidence_url": "https://ammoora.com/cart-2/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-3094.json",
+     "base": "https://ammoora.com/",
+     "pages_fetched": 50,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/contact/",
+       "url": "https://ammoora.com/contact/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/guestbook/",
+       "url": "https://ammoora.com/guestbook/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/private-dining/",
+       "url": "https://ammoora.com/private-dining/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/private-dining/company-dinners/",
+       "url": "https://ammoora.com/private-dining/company-dinners/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/private-dining/program-dinners/",
+       "url": "https://ammoora.com/private-dining/program-dinners/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-3094.json",
+     "base": "https://ammoora.com/",
+     "pages_fetched": 50,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/contact/",
+       "url": "https://ammoora.com/contact/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/guestbook/",
+       "url": "https://ammoora.com/guestbook/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/private-dining/",
+       "url": "https://ammoora.com/private-dining/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/private-dining/company-dinners/",
+       "url": "https://ammoora.com/private-dining/company-dinners/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://ammoora.com/private-dining/program-dinners/",
+       "url": "https://ammoora.com/private-dining/program-dinners/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2331",
+   "name": "The Dabney Cellar",
+   "website": "https://www.thedabneycellar.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/TheDabneyCellar/",
+   "instagram": "https://www.instagram.com/thedabneycellar",
+   "contact_form": "https://www.thedabneycellar.com/contact",
+   "notes": "Google Maps ''. 4.6* (100 reviews). Pre-score: 55. Taste query: winery Dupont Circle DC | Upscale checked 2026-11-11: 4 (Intimate cellar wine bar beneath the Michelin-starred Dabney (reopened 2024)) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261112-0220",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2331 web ok via=chrome pages=3 visited=home,contact form=yes chrome_pages=3 curl_pages=0 static_pages=4 pdfs=2 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=about,events,team",
+    "[STEP] DC-REST-2331 social ok fb=found ig=found fb_search=ok:found_of_5 ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2331 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] DC-REST-2331 linkedin empty pages=1 results=2 rejected=2 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2331 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] DC-REST-2331 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2331 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=4 pages=3 pages_cut=0 visited=home,contact emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=2 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@thedabney.com",
+     "title": "Private Events",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@thedabney.com",
+     "title": "Private Events",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@thedabney.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@thedabney.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "info@thedabney.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.thedabneycellar.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@thedabney.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.thedabneycellar.com/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2331.json",
+     "base": "https://www.thedabneycellar.com/",
+     "pages_fetched": 12,
+     "pages_ok": 4,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.thedabneycellar.com/contact/",
+       "url": "https://www.thedabneycellar.com/contact/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2331.json",
+     "base": "https://www.thedabneycellar.com/",
+     "pages_fetched": 12,
+     "pages_ok": 4,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.thedabneycellar.com/contact/",
+       "url": "https://www.thedabneycellar.com/contact/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3290",
+   "name": "Above ALX Community",
+   "website": "https://alxcommunity.com/event-space-alexandria",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/alxcommunity",
+   "instagram": "https://www.instagram.com/alx_community",
+   "contact_form": "https://alxcommunity.com/event-space-alexandria/",
+   "notes": "Google Maps ''. 4.9* (42 reviews). Pre-score: 60. Taste query: museum event space Alexandria VA | Upscale checked 2026-11-11: 4 (Rooftop penthouse event venue with terrace and lounge, $3.5k+ rentals) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Luis Robles",
+     "title": "Event Specialist",
+     "email": "luis@alxcommunity.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Luke Powell",
+     "title": "Director of Operations",
+     "email": "luke@alxcommunity.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Amanda Galbraith",
+     "title": "Partner",
+     "email": "amandakate@alxcommunity.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Kaitlin Stokes",
+     "title": "Community Specialist",
+     "email": "kaitlin@alxcommunity.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-3290 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=4 saved=0 role=0 unverified=0 deferred=0 rejected=4 candidates=0 known=0 errors=0 people=6 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] VA-REST-3290 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-3290 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=0 org=ALX_Community gate=name+domain people=10 relevant=4 skipped_titles=0 over_cap=0 enriched=4 saved=4 pending=0 deferred=0 credits=4",
+    "[STEP] VA-REST-3290 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] VA-REST-3290 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] VA-REST-3290 final ok status=pipelined valid_contacts=4 new=4 deferred=0",
+    "[STEP] VA-REST-3290 postcheck skipped reason=has_contacts valid=4"
+   ],
+   "candidates": [
+    {
+     "email": "info@alexandrialivingmagazine.com",
+     "name": "TING Internet",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@alexandrialivingmagazine.com",
+     "name": "TING Internet",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "support@alxcommunity.com",
+     "name": "Conduct Restrictions",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "support@alxcommunity.com",
+     "name": "Conduct Restrictions",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@alxcommunity.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@alxcommunity.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "wedding@alexandriaweddingshowcase.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "wedding@alexandriaweddingshowcase.com",
+     "source": "website",
+     "disposition": "reject:off_domain:alexandriaweddingshowcase.com!=alxcommunity.com"
+    },
+    {
+     "email": "person:danielle r.",
+     "name": "Danielle R.",
+     "title": "Birthday Host",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:emily k.",
+     "name": "Emily K.",
+     "title": "Birthday Host",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:kelly grant",
+     "name": "Kelly Grant",
+     "title": "Partner/COO",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:brigid hart",
+     "name": "Brigid Hart",
+     "title": "Community Specialist",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:nicole gabler",
+     "name": "Nicole Gabler",
+     "title": "Community Specialist",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:lyza pyvovarova",
+     "name": "Lyza Pyvovarova",
+     "title": "Assistant Events Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "info@alxcommunity.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@alxcommunity.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "luis@alxcommunity.com",
+     "name": "Luis Robles",
+     "title": "Event Specialist",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "luis@alxcommunity.com",
+     "name": "Luis Robles",
+     "title": "Event Specialist",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "luke@alxcommunity.com",
+     "name": "Luke Powell",
+     "title": "Director of Operations",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "luke@alxcommunity.com",
+     "name": "Luke Powell",
+     "title": "Director of Operations",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "amandakate@alxcommunity.com",
+     "name": "Amanda Galbraith",
+     "title": "Partner",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "amandakate@alxcommunity.com",
+     "name": "Amanda Galbraith",
+     "title": "Partner",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "kaitlin@alxcommunity.com",
+     "name": "Kaitlin Stokes",
+     "title": "Community Specialist",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "kaitlin@alxcommunity.com",
+     "name": "Kaitlin Stokes",
+     "title": "Community Specialist",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-3290.json",
+     "base": "https://alxcommunity.com/event-space-alexandria",
+     "pages_fetched": 48,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://alxcommunity.com/contact-us/",
+       "url": "https://alxcommunity.com/contact-us/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://alxcommunity.com/medium-rooms-2/",
+       "url": "https://alxcommunity.com/medium-rooms-2/"
+      },
+      {
+       "kind": "hubspot",
+       "page": "https://alxcommunity.com/event-space-alexandria/",
+       "url": "https://alxcommunity.com/event-space-alexandria/"
+      },
+      {
+       "kind": "hubspot",
+       "page": "https://alxcommunity.com/event-space-alexandria/celebrations/",
+       "url": "https://alxcommunity.com/event-space-alexandria/celebrations/"
+      },
+      {
+       "kind": "hubspot",
+       "page": "https://alxcommunity.com/event-space-alexandria/celebrations/book-launch/",
+       "url": "https://alxcommunity.com/event-space-alexandria/celebrations/book-launch/"
+      }
+     ],
+     "people": [
+      {
+       "name": "Kelly Grant",
+       "page": "https://alxcommunity.com/about-us/",
+       "title": "Partner/COO"
+      },
+      {
+       "name": "Brigid Hart",
+       "page": "https://alxcommunity.com/the-alx-community-team/",
+       "title": "Community Specialist"
+      },
+      {
+       "name": "Nicole Gabler",
+       "page": "https://alxcommunity.com/the-alx-community-team/",
+       "title": "Community Specialist"
+      },
+      {
+       "name": "Lyza Pyvovarova",
+       "page": "https://alxcommunity.com/the-alx-community-team/",
+       "title": "Assistant Events Director"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-REST-037",
+   "name": "The Kings Contrivance",
+   "website": "https://www.thekingscontrivance.com",
+   "city": "Columbia",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/TheKingsContrivanceRestaurant",
+   "instagram": "https://www.instagram.com/kingscontrivance",
+   "contact_form": "https://www.thekingscontrivance.com/findus",
+   "notes": "Google Maps 'American'. 4.5\u2605 (608 reviews). Discovered from: Elkridge Furnace Inn | Upscale checked 2026-11-11: 4 (Historic Federalist mansion, white-tablecloth American dining with private rooms) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261112-0220",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] XX-REST-037 web ok via=chrome pages=28 visited=home,contact,events form=yes chrome_pages=28 curl_pages=0 static_pages=29 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team",
+    "[STEP] XX-REST-037 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] XX-REST-037 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=3 org=Kings_Contrivance_Restaurant gate=name+domain people=0",
+    "[STEP] XX-REST-037 linkedin empty pages=3 results=29 rejected=29 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] XX-REST-037 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] XX-REST-037 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] XX-REST-037 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=29 pages=29 pages_cut=6 visited=home,events emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=9 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@thekingscontrivance.com",
+     "name": "Shaker Drive Columbia",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@thekingscontrivance.com",
+     "name": "Shaker Drive Columbia",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@thekingscontrivance.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@thekingscontrivance.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "info@thekingscontrivance.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.thekingscontrivance.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@thekingscontrivance.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.thekingscontrivance.com/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/XX-REST-037.json",
+     "base": "https://www.thekingscontrivance.com/",
+     "pages_fetched": 37,
+     "pages_ok": 29,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/",
+       "url": "https://www.thekingscontrivance.com/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/3courseprixfixe",
+       "url": "https://www.thekingscontrivance.com/3courseprixfixe"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/50anniversary",
+       "url": "https://www.thekingscontrivance.com/50anniversary"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/barandwine",
+       "url": "https://www.thekingscontrivance.com/barandwine"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/buffet",
+       "url": "https://www.thekingscontrivance.com/buffet"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/XX-REST-037.json",
+     "base": "https://www.thekingscontrivance.com/",
+     "pages_fetched": 37,
+     "pages_ok": 29,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/",
+       "url": "https://www.thekingscontrivance.com/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/3courseprixfixe",
+       "url": "https://www.thekingscontrivance.com/3courseprixfixe"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/50anniversary",
+       "url": "https://www.thekingscontrivance.com/50anniversary"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/barandwine",
+       "url": "https://www.thekingscontrivance.com/barandwine"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.thekingscontrivance.com/buffet",
+       "url": "https://www.thekingscontrivance.com/buffet"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1103",
+   "name": "Tavira Restaurant",
+   "website": "https://www.tavirarestaurant.com",
+   "city": "Chevy Chase",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/mytavira",
+   "instagram": "https://www.instagram.com/tavirarestaurant",
+   "contact_form": "https://www.tavirarestaurant.com/catering",
+   "notes": "Google Maps ''. 4.4* (330 reviews). Pre-score: 55. Taste query: European bistro Bethesda MD | Upscale checked 2026-11-11: 4 (Upscale Portuguese fine dining) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "title": "Private Events",
+     "email": "tavirarestaurant31@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-REST-1103 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] MD-REST-1103 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-1103 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Tavira_Restaurant gate=name+domain people=0",
+    "[STEP] MD-REST-1103 linkedin empty pages=1 results=3 rejected=3 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-1103 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-REST-1103 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] MD-REST-1103 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "reservation@tavirarestaurant.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "reservation@tavirarestaurant.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "tavirarestaurant31@gmail.com",
+     "title": "Private Events",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "tavirarestaurant31@gmail.com",
+     "title": "Private Events",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "hola@tavirarestaurant.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "hola@tavirarestaurant.com",
+     "source": "social",
+     "disposition": "verification:do_not_mail"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-1103.json",
+     "base": "https://www.tavirarestaurant.com/",
+     "pages_fetched": 40,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-1592",
+   "name": "Black's Bar & Kitchen",
+   "website": "https://www.blacksbarandkitchen.com/",
+   "city": "Bethesda",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/blacksbarandkitchen/",
+   "instagram": "",
+   "contact_form": "https://brgevents.wufoo.com/forms/blacks-bar-kitchen/",
+   "notes": "Google Maps ''. 4.4* (909 reviews). Pre-score: 58. Taste query: wine bar Bethesda MD | Upscale checked 2026-11-11: 4 (Upscale seafood restaurant (Black Restaurant Group)) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Doug Doyle",
+     "title": "General Manager",
+     "email": "ddoyle@blacksbarandkitchen.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "blacksbarandkitchenbethesda@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-REST-1592 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=0 emails=5 saved=2 role=0 unverified=0 deferred=0 rejected=3 candidates=0 known=0 errors=0 people=3 pending=0 fb=0 ig=0 blocked_pages=0 missing=none",
+    "[STEP] MD-REST-1592 social ok fb=found ig=none fb_search=ok:found_of_4 ig_search=empty:rejected_3 fb_pages=3 ig_pages=0 snippets=0 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-1592 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Black\u2019s_Bar_&_Kitchen gate=name+domain people=0",
+    "[STEP] MD-REST-1592 linkedin empty pages=3 results=27 rejected=27 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-1592 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-REST-1592 final ok status=pipelined valid_contacts=2 new=2 deferred=0",
+    "[STEP] MD-REST-1592 postcheck skipped reason=has_contacts valid=2"
+   ],
+   "candidates": [
+    {
+     "email": "ddoyle@blacksbarandkitchen.com",
+     "name": "Doug Doyle",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "ddoyle@blacksbarandkitchen.com",
+     "name": "Doug Doyle",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "blacksbarandkitchenbethesda@gmail.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "blacksbarandkitchenbethesda@gmail.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "info@blackrestaurantgroup.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@blackrestaurantgroup.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@blacksbarandkitchen.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@blacksbarandkitchen.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "media@blackrestaurantgroup.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "media@blackrestaurantgroup.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:media"
+    },
+    {
+     "email": "person:nelson menjivar",
+     "name": "Nelson Menjivar",
+     "title": "Executive Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:jeff black",
+     "name": "Jeff Black",
+     "title": "Owner",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:barbara black",
+     "name": "Barbara Black",
+     "title": "Owner",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "blacksbarandkitchenbethesda@gmail.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "blacksbarandkitchenbethesda@gmail.com",
+     "source": "social",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-1592.json",
+     "base": "https://www.blacksbarandkitchen.com/",
+     "pages_fetched": 40,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "wufoo",
+       "page": "https://www.blacksbarandkitchen.com/info-contact",
+       "url": "https://brgevents.wufoo.com/forms/blacks-bar-kitchen/"
+      }
+     ],
+     "people": [
+      {
+       "name": "Doug Doyle",
+       "page": "https://www.blacksbarandkitchen.com/info-contact",
+       "title": "General Manager"
+      },
+      {
+       "name": "Nelson Menjivar",
+       "page": "https://www.blacksbarandkitchen.com/info-contact",
+       "title": "Executive Chef"
+      },
+      {
+       "name": "Jeff Black",
+       "page": "https://www.blacksbarandkitchen.com/info-contact",
+       "title": "Owner"
+      },
+      {
+       "name": "Barbara Black",
+       "page": "https://www.blacksbarandkitchen.com/info-contact",
+       "title": "Owner"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3244",
+   "name": "The Alexandrian Old Town Alexandria, Autograph Collection",
+   "website": "https://www.marriott.com/en-us/hotels/wasmo-the-alexandrian-old-town-alexandria-autograph-collection/overview",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "notes": "Google Maps ''. 4.2* (1689 reviews). Pre-score: 55. Taste query: boutique hotel Alexandria VA | Upscale checked 2026-11-11: 4 (Marriott Autograph Collection hotel in Old Town) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261112-0220",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-3244 web ok via=chrome pages=6 visited=home,events form=no chrome_pages=6 curl_pages=0 static_pages=0 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=contact,about,team static_crawl=blocked",
+    "[STEP] VA-REST-3244 social empty fb=none ig=none fb_search=empty:rejected_3 ig_search=empty:rejected_5 fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-3244 apollo skipped reason=shared_domain domain_search=skipped:shared_domain domain_results=0 name_search=ok name_results=0",
+    "[STEP] VA-REST-3244 linkedin empty pages=1 results=1 rejected=1 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-REST-3244 google empty results=4 emails=0 site=same ig=none",
+    "[STEP] VA-REST-3244 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-3244 postcheck failed web=failed via=crawl crawl=failed:no_pages crawl_pages=0 pages=0 pages_cut=0 visited=none emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=skipped:shared_domain apollo_found=- apollo_via=- linkedin=blocked:no_results_unverified li_results=0 li_relevant=0 enrich=skipped:no_pending reason=web_failed"
+   ],
+   "candidates": [
+    {
+     "email": "sam.shaheen@morrisonhouse.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "sam.shaheen@morrisonhouse.com",
+     "source": "website",
+     "disposition": "reject:off_domain:morrisonhouse.com!=marriott.com"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-3244.json",
+     "base": "https://www.marriott.com/en-us/hotels/wasmo-the-alexandrian-old-town-alexandria-autograph-collection/overview",
+     "pages_fetched": 1,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-3244.json",
+     "base": "https://www.marriott.com/en-us/hotels/wasmo-the-alexandrian-old-town-alexandria-autograph-collection/overview",
+     "pages_fetched": 1,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3214",
+   "name": "The Cellar on Seneca",
+   "website": "https://cellaronseneca.com",
+   "city": "Great Falls",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "",
+   "instagram": "https://www.instagram.com/cellaronseneca/",
+   "contact_form": "https://cellaronseneca.com/contact",
+   "notes": "Google Maps ''. 5.0* (1 reviews). Pre-score: 60. Taste query: upscale restaurant Great Falls VA | Upscale checked 2026-11-11: 4 (New wine bistro with a James Beard-nominated chef, wine dinners and events) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "andrew@cellaronseneca.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-3214 web ok via=chrome pages=10 visited=home,contact,about,events form=yes chrome_pages=10 curl_pages=0 static_pages=10 pdfs=0 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=team",
+    "[STEP] VA-REST-3214 social ok fb=none ig=found fb_search=empty:rejected_6 ig_search=ok:found_of_2 fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-3214 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] VA-REST-3214 linkedin empty pages=1 results=2 rejected=2 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-REST-3214 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] VA-REST-3214 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] VA-REST-3214 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "andrew@cellaronseneca.com",
+     "name": "Garden Seating",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "andrew@cellaronseneca.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "hello@cellaronseneca.com",
+     "name": "Great Falls",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "hello@cellaronseneca.com",
+     "name": "Great Falls",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-3214.json",
+     "base": "https://cellaronseneca.com/",
+     "pages_fetched": 18,
+     "pages_ok": 10,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://cellaronseneca.com/contact",
+       "url": "https://cellaronseneca.com/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://cellaronseneca.com/reservations",
+       "url": "https://cellaronseneca.com/reservations"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2825",
+   "name": "The Golden Age",
+   "website": "https://www.thegoldenagedc.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/thegoldenagedc/",
+   "instagram": "http://instagram.com/thegoldenagedc",
+   "contact_form": "https://www.thegoldenagedc.com/contact-us",
+   "notes": "Google Maps 'Restaurant'. Price: $$$. 4.5* (190 reviews). Pre-score: 65. Taste query: wine list historic fine dining restaurant Dupont Circle DC. Maps coords: 38.9134781,-77.0459896. | Website checked 2026-11-11 | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Fine Food",
+     "email": "manager@thegoldenagedc.com",
+     "verified": "role",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2825 web ok via=chrome pages=12 visited=home,contact form=yes chrome_pages=12 curl_pages=0 static_pages=12 pdfs=0 emails=3 saved=1 role=1 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=about,events,team",
+    "[STEP] DC-REST-2825 social ok fb=found ig=found fb_search=ok:found_of_2 ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-2825 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=3 org=The_Golden_Age_DC gate=name+domain people=3 relevant=0 skipped_titles=0 over_cap=0",
+    "[STEP] DC-REST-2825 linkedin empty pages=3 results=28 rejected=27 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2825 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-REST-2825 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] DC-REST-2825 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "manager@thegoldenagedc.com",
+     "name": "Golden Age",
+     "title": "FINE FOOD",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "manager@thegoldenagedc.com",
+     "name": "Fine Food",
+     "source": "website",
+     "disposition": "saved_role"
+    },
+    {
+     "email": "admin@drinkswithyou.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "admin@drinkswithyou.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "events@drinkswithyou.com",
+     "title": "FOOD",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "events@drinkswithyou.com",
+     "title": "FOOD",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "info@thegoldenagedc.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@thegoldenagedc.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:adriana cabieses",
+     "name": "Adriana Cabieses",
+     "title": "Founder and COO",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:linda mcmahon",
+     "name": "Linda McMahon",
+     "title": "13th Secretary of Education under the Leadership of President Trump | Fostering Educational Excellence and Ensuring Equal Access",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2825.json",
+     "base": "https://www.thegoldenagedc.com/",
+     "pages_fetched": 21,
+     "pages_ok": 12,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2714",
+   "name": "The Whittemore House",
+   "website": "http://thewhittemorehouse.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/thewhittemorehouse",
+   "instagram": "https://www.instagram.com/whittemorehousedc",
+   "contact_form": "https://thewhittemorehouse.com/contact-us",
+   "notes": "Google Maps ''. 4.5* (48 reviews). Pre-score: 55. Taste query: museum event space Georgetown DC | Upscale checked 2026-11-11: 4 (Historic Dupont mansion of the Woman's National Democratic Club; events) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "claire@thewhittemorehouse.com",
+     "verified": "valid",
+     "source": "social"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2714 web ok via=chrome pages=28 visited=home,contact,about,events form=yes chrome_pages=28 curl_pages=0 static_pages=31 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] DC-REST-2714 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=1 deferred=0",
+    "[STEP] DC-REST-2714 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=The_Whittemore_House gate=name+domain people=0",
+    "[STEP] DC-REST-2714 linkedin empty pages=3 results=29 rejected=29 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2714 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] DC-REST-2714 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] DC-REST-2714 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "events@thewhittemorehouse.com",
+     "name": "Hampshire Ave NW",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "events@thewhittemorehouse.com",
+     "name": "Hampshire Ave NW",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "claire@thewhittemorehouse.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "claire@thewhittemorehouse.com",
+     "source": "social",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2714.json",
+     "base": "http://thewhittemorehouse.com/",
+     "pages_fetched": 41,
+     "pages_ok": 31,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://thewhittemorehouse.com/",
+       "url": "https://thewhittemorehouse.com/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://thewhittemorehouse.com/about-historic-house-washington-dc/",
+       "url": "https://thewhittemorehouse.com/about-historic-house-washington-dc/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://thewhittemorehouse.com/author/admin/",
+       "url": "https://thewhittemorehouse.com/author/admin/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://thewhittemorehouse.com/author/jaredjohnsonjonesgroup-com/",
+       "url": "https://thewhittemorehouse.com/author/jaredjohnsonjonesgroup-com/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://thewhittemorehouse.com/blog/",
+       "url": "https://thewhittemorehouse.com/blog/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2134",
+   "name": "True Chesapeake",
+   "website": "https://truechesapeake.com",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/truechesapeake",
+   "instagram": "https://www.instagram.com/truechesapeake",
+   "contact_form": "https://docs.google.com/forms/d/e/1FAIpQLSdB87wWkmrVP7NxpnmQoNchgq0BX4n7CLWaLKmr_H1sFLwedw/viewform?embedded=true",
+   "notes": "Google Maps ''. 4.5* (496 reviews). Pre-score: 55. Taste query: wine bar Roland Park Baltimore MD | Upscale checked 2026-11-11: 4 (Oyster-farm restaurant in Whitehall Mill, acclaimed) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Meghan Harvey",
+     "title": "Event Coordinator",
+     "email": "meghan@truechesapeake.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Patrick Hudson",
+     "title": "Managing Partner",
+     "email": "patrick@truechesapeake.com",
+     "verified": "valid",
+     "source": "apollo"
+    },
+    {
+     "name": "Zachary Mills",
+     "title": "Executive Chef & Partner",
+     "email": "zack@truechesapeake.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-REST-2134 web ok via=chrome pages=31 visited=home,contact,about,events form=yes chrome_pages=31 curl_pages=0 static_pages=34 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] MD-REST-2134 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-2134 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=True_Chesapeake gate=name+domain people=5 relevant=3 skipped_titles=1 over_cap=0 enriched=3 saved=3 pending=0 deferred=0 credits=3",
+    "[STEP] MD-REST-2134 linkedin empty pages=3 results=28 rejected=28 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-2134 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-REST-2134 final ok status=pipelined valid_contacts=3 new=3 deferred=0",
+    "[STEP] MD-REST-2134 postcheck skipped reason=has_contacts valid=3"
+   ],
+   "candidates": [
+    {
+     "email": "info@truechesapeake.com",
+     "name": "True Chesapeake",
+     "title": "True Chesapeake Closed for Private Event",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@truechesapeake.com",
+     "name": "True Chesapeake",
+     "title": "True Chesapeake Closed for Private Event",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:zack mills",
+     "name": "Zack Mills",
+     "title": "OUR CHEF",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "info@truechesapeake.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@truechesapeake.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "meghan@truechesapeake.com",
+     "name": "Meghan Harvey",
+     "title": "Event Coordinator",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "meghan@truechesapeake.com",
+     "name": "Meghan Harvey",
+     "title": "Event Coordinator",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "patrick@truechesapeake.com",
+     "name": "Patrick Hudson",
+     "title": "Managing Partner",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "patrick@truechesapeake.com",
+     "name": "Patrick Hudson",
+     "title": "Managing Partner",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "zack@truechesapeake.com",
+     "name": "Zachary Mills",
+     "title": "Executive Chef & Partner",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "zack@truechesapeake.com",
+     "name": "Zachary Mills",
+     "title": "Executive Chef & Partner",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-2134.json",
+     "base": "https://truechesapeake.com/",
+     "pages_fetched": 43,
+     "pages_ok": 34,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://truechesapeake.com/",
+       "url": "https://truechesapeake.com/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://truechesapeake.com/author/patrick52253b4893/",
+       "url": "https://truechesapeake.com/author/patrick52253b4893/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://truechesapeake.com/author/valerie6744d6bad0/",
+       "url": "https://truechesapeake.com/author/valerie6744d6bad0/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://truechesapeake.com/careers/",
+       "url": "https://truechesapeake.com/careers/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://truechesapeake.com/events/calendar/my-calendar/",
+       "url": "https://truechesapeake.com/events/calendar/my-calendar/"
+      }
+     ],
+     "people": [
+      {
+       "name": "Zack Mills",
+       "page": "https://truechesapeake.com/about-us/",
+       "title": "OUR CHEF"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3221",
+   "name": "Wren Tysons",
+   "website": "http://www.wrentysons.com",
+   "city": "Tysons",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/WrenTysons",
+   "instagram": "https://www.instagram.com/wrentysons",
+   "contact_form": "https://www.wrentysons.com/reservations",
+   "notes": "Google Maps ''. 4.3* (454 reviews). Pre-score: 50. Taste query: upscale restaurant McLean VA | Upscale checked 2026-11-11: 4 (Izakaya on the 11th floor of the Watermark Hotel with a fire-pit terrace) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Capital One Center",
+     "email": "eat@wrentysons.com",
+     "verified": "role",
+     "source": "postcheck_website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-3221 web ok via=chrome pages=7 visited=home,about,events form=yes chrome_pages=7 curl_pages=0 static_pages=7 pdfs=1 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=1 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,team",
+    "[STEP] VA-REST-3221 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-3221 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] VA-REST-3221 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] VA-REST-3221 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] VA-REST-3221 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-3221 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=7 pages=9 pages_cut=0 visited=home,events emails=2 saved=1 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=blocked:no_results_unverified li_results=0 li_relevant=0 enrich=skipped:no_pending",
+    "[STEP] VA-REST-3221 final ok status=pipelined valid_contacts=1 new=1 deferred=0 via=postcheck"
+   ],
+   "candidates": [
+    {
+     "email": "eat@wrentysons.com",
+     "name": "Capital One Dr",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "eat@wrentysons.com",
+     "name": "Capital One Dr",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "brittany@vrlta.org",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "brittany@vrlta.org",
+     "source": "website",
+     "disposition": "reject:off_domain:vrlta.org!=wrentysons.com"
+    },
+    {
+     "email": "privacy@thewatermarkhotel.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "privacy@thewatermarkhotel.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:privacy"
+    },
+    {
+     "email": "person:yo matsuzaki",
+     "name": "Yo Matsuzaki",
+     "title": "Executive Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "eat@wrentysons.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "eat@wrentysons.com",
+     "source": "social",
+     "disposition": "role_no_name"
+    },
+    {
+     "kind": "email",
+     "email": "eat@wrentysons.com",
+     "name": "Capital One Center",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.wrentysons.com/"
+    },
+    {
+     "kind": "email",
+     "email": "eat@wrentysons.com",
+     "name": "Capital One Center",
+     "source": "postcheck_website",
+     "disposition": "saved_role",
+     "evidence_url": "https://www.wrentysons.com/"
+    },
+    {
+     "kind": "email",
+     "email": "privacy@thewatermarkhotel.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.wrentysons.com/privacy-policy"
+    },
+    {
+     "kind": "email",
+     "email": "privacy@thewatermarkhotel.com",
+     "source": "postcheck_website",
+     "disposition": "reject:hard_reject:privacy",
+     "evidence_url": "https://www.wrentysons.com/privacy-policy"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-3221.json",
+     "base": "http://www.wrentysons.com/",
+     "pages_fetched": 15,
+     "pages_ok": 7,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": [
+      {
+       "name": "Yo Matsuzaki",
+       "page": "https://www.wrentysons.com/story",
+       "title": "Executive Chef"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-3221.json",
+     "base": "http://www.wrentysons.com/",
+     "pages_fetched": 15,
+     "pages_ok": 7,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": [
+      {
+       "name": "Yo Matsuzaki",
+       "page": "https://www.wrentysons.com/story",
+       "title": "Executive Chef"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2730",
+   "name": "Ranazul",
+   "website": "http://www.ranazul.us",
+   "city": "Columbia",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/RANAZUL",
+   "instagram": "https://www.instagram.com/ranazul",
+   "contact_form": "http://www.ranazul.us/contact",
+   "notes": "Google Maps ''. 4.4* (600 reviews). Pre-score: 48. Taste query: wine bar Ellicott City MD | Upscale checked 2026-11-11: 4 (Spanish tapas and wine bistro, $40+ entr\u00e9es, now in Hickory Ridge) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "ranazulwine@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "studiokindred8@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-REST-2730 web ok via=chrome pages=8 visited=home,contact,about form=yes chrome_pages=8 curl_pages=0 static_pages=10 pdfs=0 emails=3 saved=2 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=3 pending=0 fb=1 ig=1 blocked_pages=0 missing=events,team",
+    "[STEP] MD-REST-2730 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] MD-REST-2730 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=1 org=Ranazul gate=name+domain people=1 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1",
+    "[STEP] MD-REST-2730 linkedin empty pages=2 results=13 rejected=13 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-2730 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-REST-2730 final ok status=pipelined valid_contacts=2 new=2 deferred=0",
+    "[STEP] MD-REST-2730 postcheck skipped reason=has_contacts valid=2"
+   ],
+   "candidates": [
+    {
+     "email": "statesranazulwine@gmail.com",
+     "source": "website",
+     "disposition": "reject:page_text_glued_to_address",
+     "evidence_url": "https://www.ranazul.us/"
+    },
+    {
+     "email": "ranazulwine@gmail.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "ranazulwine@gmail.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "studiokindred8@gmail.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "studiokindred8@gmail.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:jaime noel ayala",
+     "name": "Jaime Noel Ayala",
+     "title": "Executive Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:jeremy reed",
+     "name": "Jeremy Reed",
+     "title": "Bar Manager",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:jaime noel",
+     "name": "Jaime Noel",
+     "title": "Executive Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "jreed@ranazul.us",
+     "name": "Jeremy Reed",
+     "title": "Bar Manager",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jreed@ranazul.us",
+     "name": "Jeremy Reed",
+     "title": "Bar Manager",
+     "source": "apollo",
+     "disposition": "verification:catch-all"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-2730.json",
+     "base": "http://www.ranazul.us/",
+     "pages_fetched": 18,
+     "pages_ok": 10,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "http://www.ranazul.us/",
+       "url": "http://www.ranazul.us/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "http://www.ranazul.us/contact",
+       "url": "http://www.ranazul.us/contact"
+      },
+      {
+       "kind": "form_widget",
+       "page": "http://www.ranazul.us/welcome-1",
+       "url": "http://www.ranazul.us/welcome-1"
+      }
+     ],
+     "people": [
+      {
+       "name": "Jaime Noel Ayala",
+       "page": "http://www.ranazul.us/",
+       "title": "Executive Chef"
+      },
+      {
+       "name": "Jeremy Reed",
+       "page": "http://www.ranazul.us/",
+       "title": "Bar Manager"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2143",
+   "name": "Seppia",
+   "website": "https://www.seppiabaltimore.com",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/p/SeppiaBaltimore-61586804833345/",
+   "instagram": "https://www.instagram.com/seppiabaltimore/",
+   "contact_form": "https://www.seppiabaltimore.com/copy-of-home",
+   "notes": "Google Maps ''. 4.6* (71 reviews). Pre-score: 55. Taste query: wine bar Roland Park Baltimore MD | Website checked 2026-11-11 | Upscale checked 2026-11-11: 4 (Coastal Italian seafood and pasta from the La Cuchara team) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261112-0220",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-2143 web ok via=chrome pages=5 visited=home,about form=yes chrome_pages=5 curl_pages=0 static_pages=6 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,events,team",
+    "[STEP] MD-REST-2143 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-2143 apollo empty reason=org_mismatch rejected_orgs=5 domain_search=ok domain_results=0 name_search=ok name_results=5",
+    "[STEP] MD-REST-2143 linkedin empty pages=3 results=9 rejected=9 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-2143 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] MD-REST-2143 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-2143 postcheck blocked web=ok via=pipeline_crawl crawl=ok crawl_pages=6 pages=6 pages_cut=0 visited=home,about emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=1 apollo_via=name linkedin=blocked:no_results_unverified li_results=0 li_relevant=0 enrich=skipped:no_pending reason=linkedin_no_results_unverified"
+   ],
+   "candidates": [
+    {
+     "email": "info@seppiabaltimore.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@seppiabaltimore.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@seppiabaltimore.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@seppiabaltimore.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "info@seppiabaltimore.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.seppiabaltimore.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@seppiabaltimore.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.seppiabaltimore.com/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-2143.json",
+     "base": "https://www.seppiabaltimore.com/",
+     "pages_fetched": 14,
+     "pages_ok": 6,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.seppiabaltimore.com/copy-of-home",
+       "url": "https://www.seppiabaltimore.com/copy-of-home"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-2143.json",
+     "base": "https://www.seppiabaltimore.com/",
+     "pages_fetched": 14,
+     "pages_ok": 6,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.seppiabaltimore.com/copy-of-home",
+       "url": "https://www.seppiabaltimore.com/copy-of-home"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2148",
+   "name": "Cosima",
+   "website": "https://www.cosimamill1.com/",
+   "city": "Baltimore",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/Cosima-835182396536649/",
+   "instagram": "https://www.instagram.com/cosimabaltimore/",
+   "contact_form": "https://www.cosimamill1.com/event-contact-form",
+   "notes": "Google Maps ''. 4.4* (800 reviews). Pre-score: 58. Taste query: wine bar Roland Park Baltimore MD | Website checked 2026-11-11 | Upscale checked 2026-11-11: 4 (Upscale Sicilian restaurant in Mill No. 1) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "title": "PRIVATE EVENTS",
+     "email": "cosimamill1@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "mangia@cosimamill1.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-REST-2148 web ok via=chrome pages=30 visited=home,contact,about,events form=yes chrome_pages=30 curl_pages=0 static_pages=32 pdfs=2 emails=2 saved=2 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=5 pending=0 fb=1 ig=0 blocked_pages=0 missing=team",
+    "[STEP] MD-REST-2148 social ok fb=found ig=found fb_search=website ig_search=ok:found_of_1 fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-2148 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=Cosima_At_Mill_No gate=name+domain people=5 relevant=0 skipped_titles=1 over_cap=0",
+    "[STEP] MD-REST-2148 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] MD-REST-2148 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-REST-2148 final ok status=pipelined valid_contacts=2 new=2 deferred=0",
+    "[STEP] MD-REST-2148 postcheck skipped reason=has_contacts valid=2"
+   ],
+   "candidates": [
+    {
+     "email": "cosimamill1@gmail.com",
+     "title": "PRIVATE EVENTS",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "cosimamill1@gmail.com",
+     "title": "PRIVATE EVENTS",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "mangia@cosimamill1.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "mangia@cosimamill1.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:judith golding",
+     "name": "Judith Golding",
+     "title": "Owner",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:donna crivello",
+     "name": "Donna Crivello",
+     "title": "Concept Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:joshua cunningham",
+     "name": "Joshua Cunningham",
+     "title": "Executive Chef",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:luke malone",
+     "name": "Luke Malone",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:aaron simons",
+     "name": "Aaron Simons",
+     "title": "Beverage Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "mangia@cosimamill1.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "mangia@cosimamill1.com",
+     "source": "social",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-2148.json",
+     "base": "https://www.cosimamill1.com/",
+     "pages_fetched": 42,
+     "pages_ok": 32,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.cosimamill1.com/contact",
+       "url": "https://www.cosimamill1.com/contact"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.cosimamill1.com/event-contact-form",
+       "url": "https://www.cosimamill1.com/event-contact-form"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.cosimamill1.com/waitlist",
+       "url": "https://www.cosimamill1.com/waitlist"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.cosimamill1.com/wedding-contact-form",
+       "url": "https://www.cosimamill1.com/wedding-contact-form"
+      }
+     ],
+     "people": [
+      {
+       "name": "Judith Golding",
+       "page": "https://www.cosimamill1.com/about-cosima",
+       "title": "Owner"
+      },
+      {
+       "name": "Donna Crivello",
+       "page": "https://www.cosimamill1.com/about-cosima",
+       "title": "Concept Director"
+      },
+      {
+       "name": "Joshua Cunningham",
+       "page": "https://www.cosimamill1.com/about-cosima",
+       "title": "Executive Chef"
+      },
+      {
+       "name": "Luke Malone",
+       "page": "https://www.cosimamill1.com/about-cosima",
+       "title": "General Manager"
+      },
+      {
+       "name": "Aaron Simons",
+       "page": "https://www.cosimamill1.com/about-cosima",
+       "title": "Beverage Director"
+      },
+      {
+       "name": "Aaron Isle",
+       "page": "https://www.cosimamill1.com/story-tremont",
+       "title": "Executive Chef"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1455",
+   "name": "Banbury Cross Polo Club",
+   "website": "https://www.banburycrosspoloclub.com",
+   "city": "Middleburg",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.banburycrosspoloclub.com/",
+   "notes": "Google Maps ''. 4.6* (15 reviews). Pre-score: 55. Taste query: private club Middleburg VA | Upscale checked 2026-11-11: 4 (Hunt-country polo club with matches, wine, dancing; rents grounds for weddings) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261112-0220",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-1455 web ok via=chrome pages=27 visited=home,about form=yes chrome_pages=27 curl_pages=0 static_pages=27 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=contact,events,team",
+    "[STEP] VA-REST-1455 social empty fb=none ig=none fb_search=empty:rejected_2 ig_search=empty:rejected_3 fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-1455 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=Banbury_Cross_Polo_Club gate=name+domain people=0",
+    "[STEP] VA-REST-1455 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] VA-REST-1455 google empty results=5 emails=0 site=same ig=none",
+    "[STEP] VA-REST-1455 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-1455 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=27 pages=26 pages_cut=3 visited=home,about emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=2 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "dave@banburycrosspoloclub.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "dave@banburycrosspoloclub.com",
+     "source": "website",
+     "disposition": "verification:invalid"
+    },
+    {
+     "email": "info@banburycrosspoloclub.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@banburycrosspoloclub.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "dave@banburycrosspoloclub.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.banburycrosspoloclub.com/"
+    },
+    {
+     "kind": "email",
+     "email": "dave@banburycrosspoloclub.com",
+     "source": "postcheck_website",
+     "disposition": "verification:invalid",
+     "evidence_url": "https://www.banburycrosspoloclub.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@banburycrosspoloclub.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.banburycrosspoloclub.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@banburycrosspoloclub.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.banburycrosspoloclub.com/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-1455.json",
+     "base": "https://www.banburycrosspoloclub.com/",
+     "pages_fetched": 36,
+     "pages_ok": 27,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/",
+       "url": "https://www.banburycrosspoloclub.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/about/",
+       "url": "https://www.banburycrosspoloclub.com/about/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/articles/swimming/",
+       "url": "https://www.banburycrosspoloclub.com/articles/swimming/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/articles/water-polo/",
+       "url": "https://www.banburycrosspoloclub.com/articles/water-polo/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/articles/workout/",
+       "url": "https://www.banburycrosspoloclub.com/articles/workout/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-1455.json",
+     "base": "https://www.banburycrosspoloclub.com/",
+     "pages_fetched": 36,
+     "pages_ok": 27,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/",
+       "url": "https://www.banburycrosspoloclub.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/about/",
+       "url": "https://www.banburycrosspoloclub.com/about/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/articles/swimming/",
+       "url": "https://www.banburycrosspoloclub.com/articles/swimming/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/articles/water-polo/",
+       "url": "https://www.banburycrosspoloclub.com/articles/water-polo/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.banburycrosspoloclub.com/articles/workout/",
+       "url": "https://www.banburycrosspoloclub.com/articles/workout/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1457",
+   "name": "Middleburg Hospitality",
+   "website": "https://middleburghospitality.com",
+   "city": "Middleburg",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "",
+   "instagram": "https://www.instagram.com/middleburghospitality",
+   "contact_form": "https://middleburghospitality.com/contact",
+   "notes": "Google Maps ''. * ( reviews). Pre-score: 40. Taste query: private club Middleburg VA | Upscale checked 2026-11-11: 4 (Group behind the historic Red Fox Inn & Tavern in Middleburg) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Matilda Engle",
+     "title": "Executive Director",
+     "email": "matilda@middleburghospitality.com",
+     "verified": "valid",
+     "source": "apollo"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-1457 web ok via=chrome pages=9 visited=home,contact,events form=yes chrome_pages=9 curl_pages=0 static_pages=0 pdfs=1 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=1 blocked_pages=0 missing=about,team static_crawl=blocked",
+    "[STEP] VA-REST-1457 social ok fb=none ig=found fb_search=empty:rejected_2 ig_search=website fb_pages=0 ig_pages=1 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-1457 apollo ok domain_search=ok domain_results=1 name_search=ok name_results=1 org=Middleburg_Hospitality gate=name+domain people=1 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=1 pending=0 deferred=0 credits=1",
+    "[STEP] VA-REST-1457 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] VA-REST-1457 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] VA-REST-1457 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] VA-REST-1457 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "hello@middleburghospitality.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "hello@middleburghospitality.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "matilda@middleburghospitality.com",
+     "name": "Matilda Engle",
+     "title": "Executive Director",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "matilda@middleburghospitality.com",
+     "name": "Matilda Engle",
+     "title": "Executive Director",
+     "source": "apollo",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-1457.json",
+     "base": "https://middleburghospitality.com/",
+     "pages_fetched": 4,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1188",
+   "name": "BIA Kitchen",
+   "website": "https://biakitchen.com",
+   "city": "Purcellville",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/BiaKitchenOn21st",
+   "instagram": "https://www.instagram.com/biakitchenon21st",
+   "contact_form": "https://biakitchen.com/contact",
+   "notes": "Google Maps ''. 4.6* (319 reviews). Pre-score: 55. Taste query: European bistro Middleburg VA | Upscale checked 2026-11-11: 4 (Upscale contemporary European restaurant in Old Town Purcellville) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261112-0220",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-1188 web ok via=chrome pages=12 visited=home,contact,events form=yes chrome_pages=12 curl_pages=0 static_pages=2 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=1 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team static_crawl=throttled",
+    "[STEP] VA-REST-1188 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-1188 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=1 org=BIA_Kitchen gate=name+domain people=2 relevant=0 skipped_titles=2 over_cap=0",
+    "[STEP] VA-REST-1188 linkedin blocked reason=login_wall_earlier_in_run",
+    "[STEP] VA-REST-1188 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] VA-REST-1188 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-1188 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=2 pages=3 pages_cut=0 visited=home,contact,events emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=3 apollo_via=domain linkedin=empty li_results=8 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@bia.kitchen",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@bia.kitchen",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:shane o'connor",
+     "name": "Shane O'Connor",
+     "title": "Owner",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "info@bia.kitchen",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@bia.kitchen",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "info@bia.kitchen",
+     "name": "Shane O'Connor",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://biakitchen.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@bia.kitchen",
+     "name": "Shane O'Connor",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://biakitchen.com/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-1188.json",
+     "base": "https://biakitchen.com/",
+     "pages_fetched": 9,
+     "pages_ok": 2,
+     "blocked": false,
+     "high_priority_unvisited": [
+      "https://biakitchen.com/private-events",
+      "https://biakitchen.com/envira/private-events"
+     ],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://biakitchen.com/contact/",
+       "url": "https://biakitchen.com/contact/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-1188.json",
+     "base": "https://biakitchen.com/",
+     "pages_fetched": 9,
+     "pages_ok": 2,
+     "blocked": false,
+     "high_priority_unvisited": [
+      "https://biakitchen.com/private-events",
+      "https://biakitchen.com/envira/private-events"
+     ],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://biakitchen.com/contact/",
+       "url": "https://biakitchen.com/contact/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-677",
+   "name": "Trummer's Restaurant",
+   "website": "https://www.trummersrestaurant.com",
+   "city": "Clifton",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/trummersrestaurant/",
+   "instagram": "https://www.instagram.com/trummersva/",
+   "contact_form": "https://www.trummersrestaurant.com/donation-requests/",
+   "notes": "Google Maps ''. 4.5* (1097 reviews). Pre-score: 50. Taste query: historic fine dining restaurant Great Falls VA | Nov 6 2026 cleanup: city checked | Website checked 2026-11-11 | Upscale checked 2026-11-11: 4 (Upscale restaurant and cocktail bar in historic Clifton) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Victoria Trummer",
+     "title": "CO-OWNER",
+     "email": "victoria@trummersrestaurant.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-677 web ok via=chrome pages=31 visited=home,contact,about,events,team form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=1 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=5 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] VA-REST-677 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-677 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=2 org=TRUMMER'S_RESTAURANT gate=name+domain people=9 relevant=1 skipped_titles=2 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1",
+    "[STEP] VA-REST-677 linkedin blocked reason=login_wall_earlier_in_run",
+    "[STEP] VA-REST-677 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] VA-REST-677 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] VA-REST-677 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "victoria@trummersrestaurant.com",
+     "name": "VICTORIA TRUMMER",
+     "title": "CO-OWNER",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "victoria@trummersrestaurant.com",
+     "name": "Victoria Trummer",
+     "title": "CO-OWNER",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "management@trummersrestaurant.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "management@trummersrestaurant.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "person:stefan trummer",
+     "name": "STEFAN TRUMMER",
+     "title": "CO-OWNER",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:zack ridenhour",
+     "name": "ZACK RIDENHOUR",
+     "title": "EXECUTIVE CHEF",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:mike marino",
+     "name": "MIKE MARINO",
+     "title": "ASSISTANT GENERAL MANAGER",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:amanda siever",
+     "name": "AMANDA SIEVER",
+     "title": "EXECUTIVE PASTRY CHEF",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:zach ridenhour",
+     "name": "ZACH RIDENHOUR",
+     "title": "EXECUTIVE CHEF",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "management@trummersrestaurant.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "management@trummersrestaurant.com",
+     "source": "social",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "jfeenstra@mcpsva.org",
+     "name": "James Feenstra",
+     "title": "Bartender",
+     "source": "apollo",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "jfeenstra@mcpsva.org",
+     "name": "James Feenstra",
+     "title": "Bartender",
+     "source": "apollo",
+     "disposition": "reject:off_domain:mcpsva.org!=trummersrestaurant.com"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-677.json",
+     "base": "https://www.trummersrestaurant.com/",
+     "pages_fetched": 51,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.trummersrestaurant.com/contact/",
+       "url": "https://www.trummersrestaurant.com/contact/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.trummersrestaurant.com/employment/",
+       "url": "https://www.trummersrestaurant.com/employment/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.trummersrestaurant.com/private-bookings/",
+       "url": "https://www.trummersrestaurant.com/private-bookings/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.trummersrestaurant.com/",
+       "url": "https://www.trummersrestaurant.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.trummersrestaurant.com/about-2/",
+       "url": "https://www.trummersrestaurant.com/about-2/"
+      }
+     ],
+     "people": [
+      {
+       "name": "Victoria Trummer",
+       "page": "https://www.trummersrestaurant.com/about-2/",
+       "title": "Co-Owner"
+      },
+      {
+       "name": "Stefan Trummer",
+       "page": "https://www.trummersrestaurant.com/about-2/",
+       "title": "Co-Owner"
+      },
+      {
+       "name": "Zack Ridenhour",
+       "page": "https://www.trummersrestaurant.com/about-2/",
+       "title": "Executive Chef"
+      },
+      {
+       "name": "Mike Marino",
+       "page": "https://www.trummersrestaurant.com/about-2/",
+       "title": "Assistant General Manager"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1465",
+   "name": "Piedmont Club - Haymarket",
+   "website": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket",
+   "city": "Haymarket",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/PiedmontGolfClub",
+   "instagram": "https://www.instagram.com/piedmontclubva/",
+   "contact_form": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started/host-an-event-form-golf",
+   "notes": "Google Maps ''. 4.5* (282 reviews). Pre-score: 55. Taste query: private club Middleburg VA | Website checked 2026-11-11 | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "piedmont@invitedclubs.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-1465 web ok via=chrome pages=4 visited=home,contact,events form=yes chrome_pages=4 curl_pages=0 static_pages=21 pdfs=0 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=4 pending=0 fb=1 ig=0 blocked_pages=0 missing=about,team",
+    "[STEP] VA-REST-1465 social ok fb=found ig=found fb_search=website ig_search=sheet fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-1465 apollo skipped reason=shared_domain domain_search=skipped:shared_domain domain_results=0 name_search=ok name_results=0",
+    "[STEP] VA-REST-1465 linkedin blocked reason=login_wall_earlier_in_run",
+    "[STEP] VA-REST-1465 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] VA-REST-1465 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] VA-REST-1465 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "atdi1029@gmail.com",
+     "source": "website",
+     "disposition": "reject:shared_offprefix",
+     "evidence_url": "https://www.google.com/search?q=%22Trummer%27s%20Restaurant%22%20Clifton%20VA%20instagram"
+    },
+    {
+     "email": "piedmont@invitedclubs.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "piedmont@invitedclubs.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "person:robert brock",
+     "name": "Robert Brock",
+     "title": "General Manager",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:emily jache",
+     "name": "Emily Jache",
+     "title": "Event Sales Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:cooper melton",
+     "name": "Cooper Melton",
+     "title": "Membership Director",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "person:signature enhancements",
+     "name": "Signature Enhancements",
+     "title": "Executive Chef Custom Menus",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "piedmont@invitedclubs.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "piedmont@invitedclubs.com",
+     "source": "social",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-1465.json",
+     "base": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket",
+     "pages_fetched": 21,
+     "pages_ok": 21,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started",
+       "url": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started/host-an-event-form-golf",
+       "url": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started/host-an-event-form-golf"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started/host-an-event-form-private-events",
+       "url": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started/host-an-event-form-private-events"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started/host-an-event-form-weddings",
+       "url": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/get-started/host-an-event-form-weddings"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/membership",
+       "url": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/membership"
+      }
+     ],
+     "people": [
+      {
+       "name": "Robert Brock",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/contact-us",
+       "title": "General Manager"
+      },
+      {
+       "name": "Emily Jache",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/contact-us",
+       "title": "General Manager"
+      },
+      {
+       "name": "Cooper Melton",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/contact-us",
+       "title": "Event Sales Director"
+      },
+      {
+       "name": "Signature Enhancements",
+       "page": "https://www.invitedclubs.com/clubs/piedmont-club-haymarket/host-an-event/corporate-meetings",
+       "title": "Executive Chef Custom Menus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-REST-633",
+   "name": "Vaso's Mediterranean Bistro",
+   "website": "https://vasosonking.com",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/profile.php?id=61559389277506",
+   "instagram": "https://www.instagram.com/vasosmediterraneanbistro/",
+   "contact_form": "https://www.vasosonking.com/contact",
+   "notes": "Google Maps 'Greek'. Price: $$. 4.4* (746 reviews). Pre-score: 58. Taste query: wine list historic fine dining restaurant Alexandria VA. Maps coords: 38.8056455,-77.0521738. Street from Maps: 1118 King St. | Nov 6 2026 cleanup: website; city checked | Website checked 2026-11-11 | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "vasosonking@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] XX-REST-633 web ok via=chrome pages=12 visited=home,contact,about,events form=yes chrome_pages=12 curl_pages=0 static_pages=12 pdfs=2 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] XX-REST-633 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=1 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] XX-REST-633 apollo empty reason=no_people domain_search=ok domain_results=1 name_search=ok name_results=2 org=Vaso's_Mediterranean_Bistro gate=name+domain people=0",
+    "[STEP] XX-REST-633 linkedin blocked reason=login_wall_earlier_in_run",
+    "[STEP] XX-REST-633 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] XX-REST-633 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] XX-REST-633 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "jvolts808@gmail.com",
+     "source": "website",
+     "disposition": "reject:off_site_page",
+     "evidence_url": "https://vasosmediterraneanbistro0621.s4shops.com/"
+    },
+    {
+     "email": "vasosonking@gmail.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "vasosonking@gmail.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "vasosonking@gmail.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "vasosonking@gmail.com",
+     "source": "social",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/XX-REST-633.json",
+     "base": "https://vasosonking.com/",
+     "pages_fetched": 20,
+     "pages_ok": 12,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.vasosonking.com/catering-and-events/",
+       "url": "https://www.vasosonking.com/catering-and-events/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.vasosonking.com/contact/",
+       "url": "https://www.vasosonking.com/contact/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.vasosonking.com/jobs/",
+       "url": "https://www.vasosonking.com/jobs/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.vasosonking.com/private-dining/",
+       "url": "https://www.vasosonking.com/private-dining/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2929",
+   "name": "Cheesetique Del Ray",
+   "website": "https://www.cheesetique.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/CheesetiqueDelRay",
+   "instagram": "https://www.instagram.com/cheesetique",
+   "contact_form": "https://www.cheesetique.com/contact",
+   "notes": "Upscale checked 2026-11-11: 3 (Cheese shop and wine bar, casual sit-down) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "delray@cheesetique.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-2929 web ok via=chrome pages=28 visited=home,contact,about,events,team form=yes chrome_pages=28 curl_pages=0 static_pages=40 pdfs=6 emails=2 saved=1 role=0 unverified=0 deferred=0 rejected=0 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=none",
+    "[STEP] VA-REST-2929 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-2929 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] VA-REST-2929 linkedin blocked reason=login_wall_earlier_in_run",
+    "[STEP] VA-REST-2929 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] VA-REST-2929 final ok status=pipelined valid_contacts=1 new=1 deferred=0",
+    "[STEP] VA-REST-2929 postcheck skipped reason=has_contacts valid=1"
+   ],
+   "candidates": [
+    {
+     "email": "customerservice@cheesetique.com",
+     "title": "Events",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "customerservice@cheesetique.com",
+     "title": "Events",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "delray@cheesetique.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "delray@cheesetique.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-2929.json",
+     "base": "https://www.cheesetique.com/",
+     "pages_fetched": 50,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.cheesetique.com/contact/",
+       "url": "https://www.cheesetique.com/contact/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.cheesetique.com/jobs/",
+       "url": "https://www.cheesetique.com/jobs/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.cheesetique.com/private-events/",
+       "url": "https://www.cheesetique.com/private-events/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2941",
+   "name": "Elaines Restaurant",
+   "website": "https://www.elaines-restaurant.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/profile.php?id=100090955821217",
+   "instagram": "https://www.instagram.com/elaines_restaurant",
+   "contact_form": "https://www.elaines-restaurant.com/contact",
+   "notes": "Upscale checked 2026-11-11: 3 (Egyptian-Mediterranean restaurant in an 1880 building, hosts literary events) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "email": "thecairollc@gmail.com",
+     "verified": "valid",
+     "source": "postcheck_website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-2941 web ok via=chrome pages=8 visited=home,contact,about,events form=yes chrome_pages=8 curl_pages=0 static_pages=9 pdfs=6 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] VA-REST-2941 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=1 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-2941 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] VA-REST-2941 linkedin blocked reason=login_wall_earlier_in_run",
+    "[STEP] VA-REST-2941 google empty results=3 emails=0 site=same ig=known",
+    "[STEP] VA-REST-2941 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-2941 postcheck ok web=ok via=pipeline_crawl crawl=ok crawl_pages=9 pages=7 pages_cut=0 visited=home,contact,about,events emails=2 saved=1 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=24 apollo_via=domain linkedin=empty li_results=7 li_relevant=0 enrich=skipped:no_pending",
+    "[STEP] VA-REST-2941 final ok status=pipelined valid_contacts=1 new=1 deferred=0 via=postcheck"
+   ],
+   "candidates": [
+    {
+     "email": "hope@hopegibbs.com",
+     "source": "website",
+     "disposition": "reject:off_site_page",
+     "evidence_url": "https://elainesliterarysalon.com/"
+    },
+    {
+     "email": "thecairollc@gmail.com",
+     "name": "Cynthia Higgins",
+     "title": "Contact",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "thecairollc@gmail.com",
+     "name": "Cynthia Higgins",
+     "title": "Contact",
+     "source": "website",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "kind": "email",
+     "email": "hope@hopegibbs.com",
+     "name": "Hope Katz Gibbs",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://elainesliterarysalon.com/"
+    },
+    {
+     "kind": "email",
+     "email": "hope@hopegibbs.com",
+     "name": "Hope Katz Gibbs",
+     "source": "postcheck_website",
+     "disposition": "reject:off_domain:hopegibbs.com!=elaines-restaurant.com",
+     "evidence_url": "https://elainesliterarysalon.com/"
+    },
+    {
+     "kind": "email",
+     "email": "thecairollc@gmail.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.elaines-restaurant.com/reservations/"
+    },
+    {
+     "kind": "email",
+     "email": "thecairollc@gmail.com",
+     "source": "postcheck_website",
+     "disposition": "saved_valid",
+     "evidence_url": "https://www.elaines-restaurant.com/reservations/"
+    },
+    {
+     "kind": "contact",
+     "name": "Jared Ho***s",
+     "title": "Food Runner",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Ian La***n",
+     "title": "General Manager",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Peyton Co***o",
+     "title": "Hostess",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Ch***o",
+     "title": "Ret'd. Sr. Eng. Litton Indus.,Now Advise in the op. of Cage Free Dog Inn @ 67 Acre SantaCruz Mt.Hm.",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Jo***n",
+     "title": "Owner",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Rosemarie Bo***a",
+     "title": "Bartender / Server",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Rylie Wa***r",
+     "title": "Recent Public Relations and Advertising Graduate | Robert Morris University Class",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Alex Gr***g",
+     "title": "Bartender",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Russ Lo***e",
+     "title": "Bartender",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Na***e",
+     "title": "Owner",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Al***x",
+     "title": "Owner",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Shantel Ha***n",
+     "title": "Banquet Server",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Mi***r",
+     "title": "Hairstylist",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Bu***i",
+     "title": "Owner\\",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Melanie Ma***n",
+     "title": "Elaine\u2019s (Independent Fashion Brand) Founder & Designer",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Wa***n",
+     "title": "Self Employed",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Liam Iv***n",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Joanna Me***k",
+     "title": "Food Perparer",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Diane La***a",
+     "title": "Waitress",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Ho***s",
+     "title": "Small Business Owner",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Berenice Ma***z",
+     "title": "Kennel Assistant",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Juan C",
+     "title": "Cook",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Kendall Mc***e",
+     "title": "Hostess",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    },
+    {
+     "kind": "contact",
+     "name": "Elaine Ch***n",
+     "title": "Cookie Baker",
+     "source": "postcheck_apollo",
+     "disposition": "not_saved:apollo_org_mismatch"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-2941.json",
+     "base": "https://www.elaines-restaurant.com/",
+     "pages_fetched": 17,
+     "pages_ok": 9,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.elaines-restaurant.com/contact/",
+       "url": "https://www.elaines-restaurant.com/contact/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.elaines-restaurant.com/jobs/",
+       "url": "https://www.elaines-restaurant.com/jobs/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.elaines-restaurant.com/private-events/",
+       "url": "https://www.elaines-restaurant.com/private-events/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://elainesliterarysalon.com/",
+       "url": "https://elainesliterarysalon.com/"
+      }
+     ],
+     "people": [
+      {
+       "name": "Hope Katz Gibbs",
+       "page": "https://elainesliterarysalon.com/",
+       "title": "PR director"
+      }
+     ]
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-2941.json",
+     "base": "https://www.elaines-restaurant.com/",
+     "pages_fetched": 17,
+     "pages_ok": 9,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.elaines-restaurant.com/contact/",
+       "url": "https://www.elaines-restaurant.com/contact/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.elaines-restaurant.com/jobs/",
+       "url": "https://www.elaines-restaurant.com/jobs/"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.elaines-restaurant.com/private-events/",
+       "url": "https://www.elaines-restaurant.com/private-events/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://elainesliterarysalon.com/",
+       "url": "https://elainesliterarysalon.com/"
+      }
+     ],
+     "people": [
+      {
+       "name": "Hope Katz Gibbs",
+       "page": "https://elainesliterarysalon.com/",
+       "title": "PR director"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

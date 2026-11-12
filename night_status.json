@@ -5,7 +5,13 @@
   "started_at": "2026-11-11T21:35:56-05:00",
   "finished_at": null,
   "state": "running",
-  "runs": [],
+  "runs": [
+   {
+    "run_id": "run-20261111-2142",
+    "outcome": "running",
+    "started": "21:42"
+   }
+  ],
   "note": "Outreach running 24/7 until the credits run out"
  },
  "history": [
@@ -107,5 +113,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-11T21:41:22-05:00"
+ "updated_at": "2026-11-11T21:42:56-05:00"
 }

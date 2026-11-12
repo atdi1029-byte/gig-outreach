@@ -4,7 +4,8 @@ This file is the one source of truth for how a run works. The home CLAUDE.md and
 memory notes point here; if they disagree with this file, this file wins.
 
 A run = up to ~50 venues, split into batches of at most 8, under one RUN_ID.
-Since Sep 29 2026 runs happen by themselves every night (see "Night runs" below):
+The automatic 1:00 night run was cancelled for good on Nov 11 2026 (launchd job unloaded, plist in
+~/Library/LaunchAgents.disabled/; never reload it unless Alex asks). From Sep 29 2026 runs had:
 no reports, no review gate. Contacts show in the app as soon as they're saved,
 and the app's home screen shows an alert when a night stops for something Alex
 has to fix (ZeroBounce or Apollo out of credits, Chrome) plus one line about the night.
@@ -119,7 +120,7 @@ has to fix (ZeroBounce or Apollo out of credits, Chrome) plus one line about the
   fills a run with them only when the DC/MD/VA queue can't; `outreach_rules.LAST_STATES`).
   Other PA/DE discovery stays out.
 
-## Night runs (automatic, since Sep 29 2026)
+## Night runs (CANCELLED Nov 11 2026: Alex, "can we cancle the 1am bot for good?"; night_run.sh still powers the burn)
 Alex: "run by yourself at night, runs of 50, push everything after each run, go
 deeper on 0-contact venues and fix the code, and if Apollo or ZeroBounce run out,
 stop and alert me in the app." Window: 1:00 to 8:00 (Alex picked "1am, stop by 8am").

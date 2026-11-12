@@ -5061,12 +5061,15 @@ def is_known(first, hint):
     return False
 
 
-# Nov 11 2026 (Alex: "obviously not these" -- servers, sous chefs, assistants -- "but if youre not sure save
-# them"): with APOLLO_DECISION_MAKERS_ONLY=0 everyone is enriched except the veto list and floor/line staff.
+# Alex, Nov 12 2026 ("go back to this"): with APOLLO_DECISION_MAKERS_ONLY=0, everyone at the venue is
+# enriched except the app's skip words and the same short back-office / floor-staff list as before Nov 11.
 import re
-LINE_STAFF = re.compile(r"[^a-z](host|hostess|food runner|runner|sous chef|chef de partie|station chef|chef de tournant|"
-                        r"commis|line|cook|prep|captain|bartender|barista|busser|server|waiter|waitress|receptionist|"
-                        r"front desk|front house|front of house|gardener|farmer|assistant|board member|dishwasher)[^a-z]")
+OLD_HARD_VETO = re.compile(
+    r"\b(intern|interns|internship|student|volunteer|housekeeping|housekeeper|laundry|security|"
+    r"loss prevention|accountant|accounting|finance|payroll|steward|engineer|engineering|maintenance|"
+    r"it|information technology|purchasing|procurement|human resources?|hr|recruiter|recruiting|"
+    r"recruitment|talent acquisition|spa|esthetician|massage|server|servers|dishwasher|line cook|"
+    r"prep cook|busser|barback|valet|caddie|caddies)\b")
 picked, skipped_title, n_known, n_noemail = [], [], 0, 0
 for p in people:
     first = (p.get("first_name") or "").strip()
@@ -5076,7 +5079,9 @@ for p in people:
     # Nov 11 2026: only people who could book Alex are enriched (score >= 2: owner, GM,
     # events, private dining, catering, F&B, music/performing arts, lifestyle, sales,
     # president). APOLLO_DECISION_MAKERS_ONLY=0 restores "everyone except the veto list".
-    if why.startswith("veto") or (dm_only and sc < 2) or (not dm_only and LINE_STAFF.search(" " + (p.get("title") or "").lower() + " ")):
+    t_norm = " " + re.sub(r"\s+", " ", re.sub(r"[^a-z0-9& ]+", " ", (p.get("title") or "").lower())) + " "
+    vetoed = why.startswith("veto:skip_word") or bool(OLD_HARD_VETO.search(t_norm)) if not dm_only else why.startswith("veto")
+    if vetoed or (dm_only and sc < 2):
         skipped_title.append(p.get("title") or "(no title)")
         continue
     if is_known(first, p.get("last_name_hint")):
@@ -5866,12 +5871,20 @@ PYEOF
             while IFS= read -r rl; do
                 [ -n "$rl" ] && log "  [LINKEDIN SKIP] $rl"
             done < <(RB_DM_ONLY="${APOLLO_DECISION_MAKERS_ONLY:-0}" _rb_py "$venue_id linkedin" python3 - "$relevant_json" /tmp/pipeline_li_selected.json <<'PYEOF'
-import json, os, sys
+import json, os, re, sys
 dm_only = os.environ.get("RB_DM_ONLY") == "1"
+# Alex, Nov 12 2026 ("go back to this"): the same short list as before Nov 11, not the wider one
+OLD_HARD_VETO = re.compile(
+    r"\b(intern|interns|internship|student|volunteer|housekeeping|housekeeper|laundry|security|"
+    r"loss prevention|accountant|accounting|finance|payroll|steward|engineer|engineering|maintenance|"
+    r"it|information technology|purchasing|procurement|human resources?|hr|recruiter|recruiting|"
+    r"recruitment|talent acquisition|spa|esthetician|massage|server|servers|dishwasher|line cook|"
+    r"prep cook|busser|barback|valet|caddie|caddies)\b")
 keep = []
 for p in json.load(open(sys.argv[1])):
     why = p.get("why", "")
-    if why.startswith("veto"):
+    t_norm = " " + re.sub(r"\s+", " ", re.sub(r"[^a-z0-9& ]+", " ", (p.get("title") or "").lower())) + " "
+    if (why.startswith("veto:skip_word") or OLD_HARD_VETO.search(t_norm)) if not dm_only else why.startswith("veto"):
         print("%s (%s) - skipped by title (%s)" % (p["full"], p.get("title", ""), why))
     elif dm_only and p.get("score", 0) <= 0:
         print("%s (%s) - not a booking decision-maker title" % (p["full"], p.get("title", "")))

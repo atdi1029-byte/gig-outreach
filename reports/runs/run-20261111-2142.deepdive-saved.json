@@ -1,65 +1,289 @@
 {
  "run_id": "run-20261111-2142",
  "dry_run": false,
- "at": "2026-11-11T21:57:18-05:00",
+ "at": "2026-11-12T00:19:18-05:00",
  "totals": {
-  "saved": 1,
-  "venues_rescued": 1,
-  "socials": 1,
-  "rejected": 0,
-  "errors": 0,
-  "flagged": 0,
+  "saved": 5,
+  "venues_rescued": 4,
+  "socials": 3,
+  "rejected": 6,
+  "errors": 1,
+  "flagged": 3,
   "deleted": 0
  },
  "zerobounce_out": "",
  "venues": [
   {
-   "venue_id": "MD-HOTE-3005",
-   "name": "Four Seasons Hotel Baltimore",
+   "venue_id": "DC-EVEN-2607",
+   "name": "International Student House (I-House DC)",
    "contacts": [
     {
-     "email": "betiana.darin@fourseasons.com",
-     "name": "Betiana Darin",
-     "source_url": "https://press.fourseasons.com/baltimore/hotel-press-contacts/",
-     "title": "Director of Public Relations",
+     "email": "",
+     "name": "Daniel Bremer-Wirtig",
+     "source_url": "https://ihousedc.org/a-note-of-thanks-and-a-look-at-what-comes-next/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Oshin Bista",
+     "source_url": "https://ihousedc.org/meet-the-staff/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "scholarshipinfo@ishdc.org",
+     "reason": "Nameless scholarship-program mailbox (residents' scholarships). Nobody there books music or events. The venue's rental contacts are jabarillas@ and lcarnett@.",
+     "outcome": "would_delete"
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-3010",
+   "name": "The Royal Sonesta Harbor Court Baltimore",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Richard Bryant",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "rbryant@sonesta.com",
+     "name": "Richard Bryant",
+     "source_url": "apollo:person/59dea6b1a6da98a55c89bc3d (verified; Baltimore MD)",
+     "outcome": "rejected:shared_brand_domain:sonesta.com"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3418",
+   "name": "TRIO Grill",
+   "contacts": [
+    {
+     "email": "rfreiberg@eatmhg.com",
+     "name": "Rees Freiberg",
+     "source_url": "https://www.triomerrifield.com/private-dining/",
+     "title": "Senior General Manager (events contact)",
      "verified": "valid",
      "outcome": "saved"
     },
     {
      "email": "",
-     "name": "Bahram Sepahi",
-     "source_url": "https://press.fourseasons.com/baltimore/hotel-team/bahram-sepahi.html",
+     "name": "Michael Huff",
+     "source_url": "https://www.triomerrifield.com/about/",
      "outcome": "not_saved:no_email"
     },
     {
      "email": "",
-     "name": "Lindsay Meckler",
-     "source_url": "https://press.fourseasons.com/baltimore/hotel-news/2023/new-culinary-team-leadership/",
+     "name": "Edward Marine",
+     "source_url": "https://www.triomerrifield.com/about/",
      "outcome": "not_saved:no_email"
-    },
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-2339",
+   "name": "Kent Island Yacht Club",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3090",
+   "name": "Verre Wine Bar",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-HOTE-274",
+   "name": "HighRoad Hotel",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-REST-270",
+   "name": "Puerto 511 Cocina Peruana",
+   "contacts": [
     {
      "email": "",
-     "name": "Rachel Mitnick",
-     "source_url": "https://www.theknot.com/marketplace/four-seasons-hotel-baltimore-baltimore-md-877415",
-     "outcome": "not_saved:no_email"
-    },
-    {
-     "email": "",
-     "name": "Ryan Mills",
-     "source_url": "linkedin (pipeline candidate)",
-     "outcome": "not_saved:no_email"
-    },
-    {
-     "email": "",
-     "name": "Mackenson Horebe",
-     "source_url": "https://press.fourseasons.com/baltimore/",
+     "name": "Jose Victorio Alarcon",
+     "source_url": "https://www.wmar2news.com/localeats/owner-of-puerto-511-in-mount-vernon-to-open-second-restaurant-in-fells-point",
      "outcome": "not_saved:no_email"
     }
    ],
    "socials": [
     {
-     "field": "instagram",
-     "value": "https://www.instagram.com/fsbaltimore/",
+     "field": "facebook",
+     "value": "https://www.facebook.com/puerto511/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-639",
+   "name": "Imperfecto",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Rene Gonzalez",
+     "source_url": "https://web.archive.org/web/20260128202841/https://www.sevenreasonsgroup.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rafael Dolande",
+     "source_url": "https://web.archive.org/web/20260128202841/https://www.sevenreasonsgroup.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "George Karmires",
+     "source_url": "https://web.archive.org/web/20260128202841/https://www.sevenreasonsgroup.com/about-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "rene@imperfectodc.com",
+     "name": "Rene Gonzalez",
+     "source_url": "apollo:person/5c68078580f93e51af353dc8 (verified; imperfectodc.com = Imperfecto's own mail domain, info@imperfectodc.com was on the group site)",
+     "title": "Executive Chef & Restaurant Director (Partner/General Director), Imperfecto",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-3198",
+   "name": "Pearmund Cellars",
+   "contacts": [
+    {
+     "email": "juanita@pearmundcellars.com",
+     "name": "Juanita Olson",
+     "source_url": "https://www.exploretock.com/pearmundcellars/event/534723",
+     "outcome": "rejected:zerobounce_invalid"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-650",
+   "name": "The Dabney",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jeremiah Langhorne",
+     "source_url": "https://thedabney.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Alex Zink",
+     "source_url": "https://thedabney.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Timothy Buell",
+     "source_url": "https://thedabney.com/faqs",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-HOTE-2992",
+   "name": "1840s Carrollton Inn",
+   "contacts": [
+    {
+     "email": "kelsey@1840scarrolltoninn.com",
+     "name": "Kelsey Spriggs",
+     "source_url": "https://www.1840splaza.com/faq_cat/meet-our-team/",
+     "outcome": "rejected:zerobounce_invalid"
+    },
+    {
+     "email": "",
+     "name": "Lauren Spivey",
+     "source_url": "https://www.1840splaza.com/faq_cat/meet-our-team/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Demi Askew",
+     "source_url": "apollo:person/6ab2a387add79900010d5d60 (no email)",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-653",
+   "name": "J\u00f4nt",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-1557",
+   "name": "The Lounge at BOURBON STEAK",
+   "contacts": [
+    {
+     "email": "pdr.washingtondc@fourseasons.com",
+     "name": "Andres Sweek",
+     "source_url": "https://www.bourbonsteakdc.com/private-dining/",
+     "title": "General Manager, Bourbon Steak DC",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Quentin Welch",
+     "source_url": "https://press.fourseasons.com/washington/hotel-team/quentin-welch.html",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Marc Bromley",
+     "source_url": "https://press.fourseasons.com/washington/hotel-news/2026/bourbon_lounge",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "danae.angulo@fourseasons.com",
+     "name": "Danae Angulo",
+     "source_url": "apollo:person/61307b14357afe000186dcfd (verified; Washington DC)",
+     "outcome": "rejected:shared_brand_domain:fourseasons.com"
+    },
+    {
+     "email": "maeron.isknder@fourseasons.com",
+     "name": "Maeron Isknder",
+     "source_url": "apollo:person/60d3dfe78b9ae000017737fe (verified; Washington DC)",
+     "outcome": "rejected:shared_brand_domain:fourseasons.com"
+    },
+    {
+     "email": "david.segall@fourseasons.com",
+     "name": "David Segall",
+     "source_url": "apollo:person/5f0d84c7aafebf000176cc4d (extrapolated; Washington DC)",
+     "outcome": "rejected:shared_brand_domain:fourseasons.com"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/BourbonSteakWashingtonDC/",
      "outcome": "saved"
     }
    ],
@@ -67,13 +291,196 @@
    "status": "pipelined"
   },
   {
-   "venue_id": "DC-PRIV-116",
-   "name": "Ned's Club Washington DC",
+   "venue_id": "MD-REST-2266",
+   "name": "Bowie Golf Club",
    "contacts": [
     {
      "email": "",
-     "name": "Mitchell Platt",
-     "source_url": "https://washingtonian.com/2025/02/18/whats-the-deal-with-neds-club-and-other-new-private-spots/",
+     "name": "Thomas \"TJ\" Basil",
+     "source_url": "https://www.golfbowie.com/contact-us/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3197",
+   "name": "Three Creeks Winery",
+   "contacts": [
+    {
+     "email": "",
+     "name": "P-J Lawrence",
+     "source_url": "https://www.3creekswinery.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "John Lawrence",
+     "source_url": "https://www.3creekswinery.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-643",
+   "name": "Bazaar Meat by Jos\u00e9 Andr\u00e9s",
+   "contacts": [
+    {
+     "email": "javier.perez@thebazaar.com",
+     "name": "Jose Javier Perez",
+     "source_url": "apollo:person/57d839cba6da980a06859e07 (verified; Arlington VA; Apollo org = Bazaar Meat by Jos\u00e9 Andr\u00e9s)",
+     "title": "General Manager, Bazaar Meat by Jos\u00e9 Andr\u00e9s",
+     "verified": "valid",
+     "outcome": "saved"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-HOTE-2932",
+   "name": "The Potomac Hotel",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Bertrand Mangeot",
+     "source_url": "https://www.hotel-online.com/news/former-salamander-washington-dc-reopens-as-the-potomac-hotel-autograph-collection",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Christian Franco",
+     "source_url": "apollo:person/57d3aa5ea6da98536ed40ce3 (extrapolated; Apollo org = The Potomac Hotel, Autograph Collection) \u2014 email dropped: extrapolated marriott.com address, person in Baltimore, not confirmed at this property",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jennifer Cruz",
+     "source_url": "apollo:person/6953adbbf9b7b40001e09413 (no email)",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-646",
+   "name": "Kingbird",
+   "contacts": [
+    {
+     "email": "nharing@thewatergatehotel.com",
+     "name": "Nella Haring",
+     "source_url": "apollo:person/54a70bf87468696b7f3d3810 (verified; Washington DC)",
+     "title": "Director of Social Events, The Watergate Hotel",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Carmen Ishak",
+     "source_url": "apollo:person/63318dd3c0979500012efb0a (no email)",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Heather Knight-Hylton",
+     "source_url": "apollo:person/5d4b247ea3ae614d34db0d9f (no email)",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "catering@thewatergatehotel.com",
+     "reason": "Wrong person attached. 'Natalie Ngounou, Owner' is the owner of Space of Gratitude, an outside sound-bath practitioner promoted on the hotel's special-events page. She is not the hotel's owner or catering staff. The inbox itself is fine, but the name/title on the row is wrong.",
+     "outcome": "would_delete"
+    },
+    {
+     "email": "sales@thewatergatehotel.com",
+     "reason": "Same as above: Natalie Ngounou (owner of Space of Gratitude, an outside wellness vendor) is not Watergate Hotel staff.",
+     "outcome": "would_delete"
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2215",
+   "name": "Fort Belvoir Golf Club",
+   "contacts": [],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.armymwr.com/location-contact?location_form_location=63971",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3200",
+   "name": "Terra Nebulo Vineyards",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Cheryl Morrison",
+     "source_url": "http://www.terranebulo.com/visit-us",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Mike Morrison",
+     "source_url": "https://vawinejourneys.blogspot.com/2025/11/terra-nebulo-vineyards.html",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-638",
+   "name": "Rec Pier Chop House",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Maxwell Armstrong",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-3222",
+   "name": "Elyse",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Antonia Le",
+     "source_url": "https://www.axios.com/local/washington-dc/2024/10/07/new-restaurant-elyse-fairfax-jonathan-krinn",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/people/Elyse-Virginia/61567069665472/",
+     "outcome": "error:write_failed"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2250",
+   "name": "Sterling Park Golf Club",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Scott Davis",
+     "source_url": "https://playsterlinggolf.com/",
      "outcome": "not_saved:no_email"
     }
    ],

@@ -2,98 +2,84 @@
  "run_id": "run-20261111-2142",
  "venues": [
   {
-   "venue_id": "MD-HOTE-3005",
+   "venue_id": "DC-EVEN-2607",
    "researched": true,
    "contacts": [
     {
-     "name": "Betiana Darin",
-     "title": "Director of Public Relations",
-     "email": "betiana.darin@fourseasons.com",
-     "source": "website",
-     "source_url": "https://press.fourseasons.com/baltimore/hotel-press-contacts/",
-     "found_on_venue_site": true,
-     "venue_mailto": true,
-     "allow_off_domain": false
-    },
-    {
-     "name": "Bahram Sepahi",
-     "title": "Regional Vice President and General Manager",
+     "name": "Daniel Bremer-Wirtig",
+     "title": "Executive Director (term ended April 2026; no successor named yet)",
      "email": "",
      "source": "website",
-     "source_url": "https://press.fourseasons.com/baltimore/hotel-team/bahram-sepahi.html",
+     "source_url": "https://ihousedc.org/a-note-of-thanks-and-a-look-at-what-comes-next/",
      "found_on_venue_site": true,
      "venue_mailto": false,
      "allow_off_domain": false
     },
     {
-     "name": "Lindsay Meckler",
-     "title": "Director of Catering",
+     "name": "Oshin Bista",
+     "title": "Resident Experience Manager",
      "email": "",
-     "source": "press",
-     "source_url": "https://press.fourseasons.com/baltimore/hotel-news/2023/new-culinary-team-leadership/",
-     "found_on_venue_site": false,
-     "venue_mailto": false,
-     "allow_off_domain": false
-    },
-    {
-     "name": "Rachel Mitnick",
-     "title": "Wedding Catering Sales Manager",
-     "email": "",
-     "source": "websearch",
-     "source_url": "https://www.theknot.com/marketplace/four-seasons-hotel-baltimore-baltimore-md-877415",
-     "found_on_venue_site": false,
-     "venue_mailto": false,
-     "allow_off_domain": false
-    },
-    {
-     "name": "Ryan Mills",
-     "title": "Director of Sales",
-     "email": "",
-     "source": "websearch",
-     "source_url": "linkedin (pipeline candidate)",
-     "found_on_venue_site": false,
-     "venue_mailto": false,
-     "allow_off_domain": false
-    },
-    {
-     "name": "Mackenson Horebe",
-     "title": "Executive Chef",
-     "email": "",
-     "source": "press",
-     "source_url": "https://press.fourseasons.com/baltimore/",
+     "source": "website",
+     "source_url": "https://ihousedc.org/meet-the-staff/",
      "found_on_venue_site": true,
      "venue_mailto": false,
      "allow_off_domain": false
     }
    ],
    "facebook": "",
-   "instagram": "https://www.instagram.com/fsbaltimore/",
+   "instagram": "",
    "contact_form": "",
-   "flag_contacts": [],
-   "apollo_searches": [
+   "flag_contacts": [
     {
-     "query": "fourseasons.com (pipeline's own Apollo step; not re-run: no Apollo tools connected; domain_search=skipped:shared_domain)",
-     "search_type": "domain",
-     "result_count": 0
-    },
-    {
-     "query": "Four Seasons Hotel Baltimore (pipeline's own Apollo step; not re-run: no Apollo tools connected; name_search=ok, 1 org 'Four Seasons Baltimore' rejected: no domain, city mismatch)",
-     "search_type": "name",
-     "result_count": 1
+     "email": "scholarshipinfo@ishdc.org",
+     "reason": "Nameless scholarship-program mailbox (residents' scholarships). Nobody there books music or events. The venue's rental contacts are jabarillas@ and lcarnett@."
     }
    ],
-   "summary": "www.fourseasons.com blocks fetches (403); the hotel's own press site (press.fourseasons.com/baltimore) has one personal mailto: PR director Betiana Darin (betiana.darin@fourseasons.com, PR title on the brand domain, so night_save may keep it out). It also links Instagram @fsbaltimore, which the pipeline rejected on the handle-name check. Booking people with no email found: GM Bahram Sepahi, Director of Catering Lindsay Meckler, Wedding Catering Sales Manager Rachel Mitnick, Director of Sales Ryan Mills."
+   "summary": "Existing contacts check out against the Meet the Staff page: Adrienne Wild (Manager, Communications and Events), Linda-Claire Arnett (lcarnett@, leads external events), Jose Barillas (jabarillas@, the venue-rental and quote contact). msoel@ could not be traced to anyone, so it is not flagged. scholarshipinfo@ is flagged. The ED stepped down in April 2026 and no successor is named. venues@ and rentals@ are nameless inboxes.",
+   "apollo_searches": [
+    {
+     "query": "ihousedc.org",
+     "search_type": "domain",
+     "result_count": 9,
+     "orgs": 1,
+     "people": 8
+    },
+    {
+     "query": "International Student House (I-House DC)",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "International Student House",
+     "search_type": "name",
+     "result_count": 15,
+     "orgs": 2,
+     "people": 13
+    }
+   ]
   },
   {
-   "venue_id": "DC-PRIV-116",
+   "venue_id": "MD-HOTE-3010",
    "researched": true,
    "contacts": [
     {
-     "name": "Mitchell Platt",
-     "title": "General Manager",
+     "name": "Richard Bryant",
+     "title": "General Manager (Apollo: Sonesta, GM; LinkedIn ties him to Royal Sonesta Harbor Court Baltimore)",
      "email": "",
-     "source": "press",
-     "source_url": "https://washingtonian.com/2025/02/18/whats-the-deal-with-neds-club-and-other-new-private-spots/",
+     "source": "apollo",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Richard Bryant",
+     "title": "General Manager",
+     "email": "rbryant@sonesta.com",
+     "source": "apollo",
+     "source_url": "apollo:person/59dea6b1a6da98a55c89bc3d (verified; Baltimore MD)",
      "found_on_venue_site": false,
      "venue_mailto": false,
      "allow_off_domain": false
@@ -103,19 +89,1045 @@
    "instagram": "",
    "contact_form": "",
    "flag_contacts": [],
+   "summary": "Site only gives sales-rsbal@sonesta.com (no name) and reservations@; sonesta.com pages/web search show no named events staff with email (press names are 2012-2018: GM Kohlasch, catering dir Jay Day, sales Jim Coffey, all stale). Best route: Apollo enrich of the GM / Ops Director / sales manager at this property's org.",
    "apollo_searches": [
     {
-     "query": "thened.com (not run: the pipeline was aborted (TERM) before its Apollo step and no Apollo tools are connected in this session)",
+     "query": "sonesta.com",
      "search_type": "domain",
-     "result_count": 0
+     "result_count": 36,
+     "orgs": 1,
+     "people": 35
     },
     {
-     "query": "Ned's Club Washington DC (not run: same reason)",
+     "query": "The Royal Sonesta Harbor Court Baltimore",
      "search_type": "name",
-     "result_count": 0
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Royal Sonesta Harbor Court",
+     "search_type": "name",
+     "result_count": 7,
+     "orgs": 1,
+     "people": 6
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3418",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Rees Freiberg",
+     "title": "Senior General Manager (events contact)",
+     "email": "rfreiberg@eatmhg.com",
+     "source": "website",
+     "source_url": "https://www.triomerrifield.com/private-dining/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Michael Huff",
+     "title": "Culinary Director",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.triomerrifield.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Edward Marine",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.triomerrifield.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
     }
    ],
-   "summary": "The pipeline was aborted on this venue (TERM) before its steps ran, so it will be resumed. The /dc/contact page has only membership@nedsclub.com (a nameless function inbox, not saved) and a phone number. The site renders client-side, /dc/events and /dc/private-events are 404, and there's no sitemap. GM Mitchell Platt (Washingtonian, Feb 2025) has no email. No DC Instagram or Facebook account was confirmed."
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Senior GM Rees Freiberg's email rfreiberg@eatmhg.com is published as the events contact on TRIO's private-dining page; the pipeline rejected it as off-domain but it is the operator group's (MHG) domain, so save with allow_off_domain. Apollo has only floor staff and an assistant manager.",
+   "apollo_searches": [
+    {
+     "query": "triomerrifield.com",
+     "search_type": "domain",
+     "result_count": 7,
+     "orgs": 1,
+     "people": 6
+    },
+    {
+     "query": "TRIO Grill",
+     "search_type": "name",
+     "result_count": 7,
+     "orgs": 1,
+     "people": 6
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2339",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Wix site (pages-sitemap: eventplanning, event-inquiry, kitchen, memberevents, cbmf...) names no club manager, catering or events person; events@kiyc.org has no name beside it; only 'Chef Courtney' (no surname). Web, LinkedIn and Apollo (0 orgs) searches turned up nobody named. Existing kiyc@/marina@/kidscomm@ are the club's own addresses, so nothing is flagged. Best route is the event-inquiry form (kiyc.org/eventplanning).",
+   "apollo_searches": [
+    {
+     "query": "kiyc.org",
+     "search_type": "domain",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Kent Island Yacht Club",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Kent Island Yacht Club",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3090",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "No named booker found. The site (home, about, contact, private-corporate-events, verre-events, sitemap) gives only the general inbox service@verrewinebar.com and the phone; the pipeline's jerry@icewingcc.com is a JS polyfill author credit (url-search-params-polyfill), not a contact, and 703.253.3878service@ is a phone+email concatenation. Web search names no owner/GM. Apollo has a Bar Manager, Assistant Manager and Assistant Floor Manager but no owner/GM/events title, so no enrich ids.",
+   "apollo_searches": [
+    {
+     "query": "verrewinebar.com",
+     "search_type": "domain",
+     "result_count": 8,
+     "orgs": 1,
+     "people": 7
+    },
+    {
+     "query": "Verre Wine Bar",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Verre Wine Bar",
+     "search_type": "name",
+     "result_count": 8,
+     "orgs": 1,
+     "people": 7
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-HOTE-274",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "HighRoad is a hostel/hotel in Adams Morgan (Sunlite Hospitality). The site has only info@ addresses and no team page. The two saved contacts (Andrew Nimmer, Executive GM, and Jessica Donato, GM) are its only booking people. Apollo has nobody else and web search found nothing new.",
+   "apollo_searches": [
+    {
+     "query": "highroadhotel.com",
+     "search_type": "domain",
+     "result_count": 3,
+     "orgs": 1,
+     "people": 2
+    },
+    {
+     "query": "HighRoad Hotel",
+     "search_type": "name",
+     "result_count": 3,
+     "orgs": 1,
+     "people": 2
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-REST-270",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jose Victorio Alarcon",
+     "title": "Chef / Owner (likely the person behind the existing chefpuerto511@gmail.com)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.wmar2news.com/localeats/owner-of-puerto-511-in-mount-vernon-to-open-second-restaurant-in-fells-point",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/puerto511/",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Existing chefpuerto511@gmail.com is fine (chef-owner Jose Victorio Alarcon). Found the Facebook page facebook.com/puerto511 (verified); no Instagram confirmed. Some directories ask whether it has closed, but nothing confirms a closure.",
+   "apollo_searches": [
+    {
+     "query": "puerto511.com",
+     "search_type": "domain",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    },
+    {
+     "query": "Puerto 511 Cocina Peruana",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Puerto 511",
+     "search_type": "name",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-639",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Rene Gonzalez",
+     "title": "Partner, General Director & Executive Chef, Imperfecto",
+     "email": "",
+     "source": "website",
+     "source_url": "https://web.archive.org/web/20260128202841/https://www.sevenreasonsgroup.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rafael Dolande",
+     "title": "General Manager, Imperfecto",
+     "email": "",
+     "source": "website",
+     "source_url": "https://web.archive.org/web/20260128202841/https://www.sevenreasonsgroup.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "George Karmires",
+     "title": "Director of Events, Seven Reasons Group",
+     "email": "",
+     "source": "website",
+     "source_url": "https://web.archive.org/web/20260128202841/https://www.sevenreasonsgroup.com/about-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Rene Gonzalez",
+     "title": "Executive Chef & Restaurant Director (Partner/General Director), Imperfecto",
+     "email": "rene@imperfectodc.com",
+     "source": "apollo",
+     "source_url": "apollo:person/5c68078580f93e51af353dc8 (verified; imperfectodc.com = Imperfecto's own mail domain, info@imperfectodc.com was on the group site)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": true
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "No new emails: live group site publishes no addresses beyond a no-name 7@/hector@ (consulting) and the Tripleseat form; archived leadership page names GM Rafael Dolande, Partner/GD Rene Gonzalez and Events Director George Karmires (no emails). Recommend Apollo enrich of Rene Gonzalez (has email). Old venue mail domain is imperfectodc.com (info@ only).",
+   "apollo_searches": [
+    {
+     "query": "sevenreasonsgroup.com",
+     "search_type": "domain",
+     "result_count": 2,
+     "orgs": 0,
+     "people": 2
+    },
+    {
+     "query": "Imperfecto",
+     "search_type": "name",
+     "result_count": 40,
+     "orgs": 2,
+     "people": 38
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3198",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Juanita Olson",
+     "title": "Director, Events",
+     "email": "juanita@pearmundcellars.com",
+     "source": "websearch",
+     "source_url": "https://www.exploretock.com/pearmundcellars/event/534723",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Site fully covered by pipeline (Jennifer Villatoro = events contact on /private-events, John = trade/press, Beryl = shipping). New: Juanita Olson, Director of Events, juanita@pearmundcellars.com (seen via search on Tock event pages + Datanyze; not directly fetched, needs ZeroBounce). 4 Apollo booking-title people to enrich.",
+   "apollo_searches": [
+    {
+     "query": "pearmundcellars.com",
+     "search_type": "domain",
+     "result_count": 13,
+     "orgs": 1,
+     "people": 12
+    },
+    {
+     "query": "Pearmund Cellars",
+     "search_type": "name",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-650",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jeremiah Langhorne",
+     "title": "Owner & Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://thedabney.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Alex Zink",
+     "title": "Owner & Director of Operations",
+     "email": "",
+     "source": "website",
+     "source_url": "https://thedabney.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Timothy Buell",
+     "title": "Chef de Cuisine",
+     "email": "",
+     "source": "website",
+     "source_url": "https://thedabney.com/faqs",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "The saved allie@thedabney.com is the site's 'Private Events' mailto (title 'Reservations' is wrong; it should be Private Events). Allie's last name was not found. The owners (Langhorne, Zink) have no public email. The site has no contact form. The events line is (202) 450-1015 (OpenTable 'Director of Events'). Apollo has no booking titles.",
+   "apollo_searches": [
+    {
+     "query": "thedabney.com",
+     "search_type": "domain",
+     "result_count": 12,
+     "orgs": 1,
+     "people": 11
+    },
+    {
+     "query": "The Dabney",
+     "search_type": "name",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-HOTE-2992",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kelsey Spriggs",
+     "title": "Events Manager",
+     "email": "kelsey@1840scarrolltoninn.com",
+     "source": "website",
+     "source_url": "https://www.1840splaza.com/faq_cat/meet-our-team/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Lauren Spivey",
+     "title": "Director of Marketing",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.1840splaza.com/faq_cat/meet-our-team/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Demi Askew",
+     "title": "Director of Operations, 1840s Plaza",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo:person/6ab2a387add79900010d5d60 (no email)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Existing Kelsey Spriggs (events@) and Stasia Cruz (GM) are right. Miss: Kelsey's personal mailto kelsey@1840scarrolltoninn.com (the inn's own sibling domain) was wrongly rejected as off-domain, so allow_off_domain applies. Apollo Director of Operations Demi As***w is worth enriching. The site returns 503 to fetches, so the pipeline's crawl evidence was used.",
+   "apollo_searches": [
+    {
+     "query": "1840splaza.com",
+     "search_type": "domain",
+     "result_count": 5,
+     "orgs": 1,
+     "people": 4
+    },
+    {
+     "query": "1840s Carrollton Inn",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "1840s Carrollton Inn",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-653",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Existing 3 contacts (owner Ryan Ratino, GM Neev Behal, Event Sales Director Jessica Cifuentes) are correct; site's private-events inquiry is only info@jontdc.com and no other addresses are published anywhere. Optional: enrich Andrew Elder (operations director).",
+   "apollo_searches": [
+    {
+     "query": "jontdc.com",
+     "search_type": "domain",
+     "result_count": 17,
+     "orgs": 1,
+     "people": 16
+    },
+    {
+     "query": "J\u00f4nt",
+     "search_type": "name",
+     "result_count": 17,
+     "orgs": 1,
+     "people": 16
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-1557",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Andres Sweek",
+     "title": "General Manager, Bourbon Steak DC",
+     "email": "pdr.washingtondc@fourseasons.com",
+     "source": "website",
+     "source_url": "https://www.bourbonsteakdc.com/private-dining/",
+     "found_on_venue_site": true,
+     "venue_mailto": true,
+     "allow_off_domain": true
+    },
+    {
+     "name": "Quentin Welch",
+     "title": "Executive Chef, Bourbon Steak DC",
+     "email": "",
+     "source": "press",
+     "source_url": "https://press.fourseasons.com/washington/hotel-team/quentin-welch.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Marc Bromley",
+     "title": "Regional Vice President and General Manager, Four Seasons Hotel Washington DC",
+     "email": "",
+     "source": "press",
+     "source_url": "https://press.fourseasons.com/washington/hotel-news/2026/bourbon_lounge",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Danae Angulo",
+     "title": "Director of Catering & Conference Services, Four Seasons Hotel Washington DC",
+     "email": "danae.angulo@fourseasons.com",
+     "source": "apollo",
+     "source_url": "apollo:person/61307b14357afe000186dcfd (verified; Washington DC)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Maeron Isknder",
+     "title": "Private Dining Coordinator, Four Seasons Hotel Washington DC",
+     "email": "maeron.isknder@fourseasons.com",
+     "source": "apollo",
+     "source_url": "apollo:person/60d3dfe78b9ae000017737fe (verified; Washington DC)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "David Segall",
+     "title": "Assistant General Manager, Bourbon Steak",
+     "email": "david.segall@fourseasons.com",
+     "source": "apollo",
+     "source_url": "apollo:person/5f0d84c7aafebf000176cc4d (extrapolated; Washington DC)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/BourbonSteakWashingtonDC/",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "The Lounge is part of Bourbon Steak DC. bourbonsteakdc.com/private-dining publishes pdr.washingtondc@fourseasons.com under the heading 'Private Dining and Catering Manager' with no name. It is paired with GM Andres Sweek (from the Four Seasons press site) as a role contact, following the runbook's pdr.washingtondc precedent. FB found. 5 Apollo F&B/catering ids from fourseasons.com in DC. Four Seasons emails are first.last@fourseasons.com.",
+   "apollo_searches": [
+    {
+     "query": "fourseasons.com",
+     "search_type": "domain",
+     "result_count": 51,
+     "orgs": 1,
+     "people": 50
+    },
+    {
+     "query": "The Lounge at BOURBON STEAK",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Bourbon Steak",
+     "search_type": "name",
+     "result_count": 63,
+     "orgs": 6,
+     "people": 57
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-2266",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Thomas \"TJ\" Basil",
+     "title": "General Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.golfbowie.com/contact-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Managed by Indigo Golf Partners (Troon); contact page names GM Thomas 'TJ' Basil with no email; only info@golfbowie.com (general) and outing form/phone 301-262-8141. Existing salrochagolf@gmail.com (Salvador Rocha, Director of Instruction, mailto on site) kept, not flagged.",
+   "apollo_searches": [
+    {
+     "query": "golfbowie.com",
+     "search_type": "domain",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Bowie Golf Club",
+     "search_type": "name",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3197",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "P-J Lawrence",
+     "title": "Winery Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.3creekswinery.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "John Lawrence",
+     "title": "Winery Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.3creekswinery.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Only email anywhere is 3creekswinery@gmail.com (already saved, nameless); About page names owners P-J and John Lawrence, so the main session could put an owner name on that existing row. No new emails; Apollo has only an Assistant Winery Manager.",
+   "apollo_searches": [
+    {
+     "query": "3creekswinery.com",
+     "search_type": "domain",
+     "result_count": 2,
+     "orgs": 1,
+     "people": 1
+    },
+    {
+     "query": "Three Creeks Winery",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Three Creeks Winery",
+     "search_type": "name",
+     "result_count": 2,
+     "orgs": 1,
+     "people": 1
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-643",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jose Javier Perez",
+     "title": "General Manager, Bazaar Meat by Jos\u00e9 Andr\u00e9s",
+     "email": "javier.perez@thebazaar.com",
+     "source": "apollo",
+     "source_url": "apollo:person/57d839cba6da980a06859e07 (verified; Arlington VA; Apollo org = Bazaar Meat by Jos\u00e9 Andr\u00e9s)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "No named booking person with an email found: the DC events team publishes only events.dc@thebazaar.com (event-guide PDF, no name); press on the Mar 2026 opening names no GM. OpenTable lists Coleen Bendig as private-party contact (old Bazaar listing, no email, unconfirmed). Apollo GMs Jose Pe***z / Jim Tu***a are the best enrich candidates.",
+   "apollo_searches": [
+    {
+     "query": "thebazaar.com",
+     "search_type": "domain",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    },
+    {
+     "query": "Bazaar Meat by Jos\u00e9 Andr\u00e9s",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Bazaar Meat",
+     "search_type": "name",
+     "result_count": 31,
+     "orgs": 2,
+     "people": 29
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-HOTE-2932",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Bertrand Mangeot",
+     "title": "Managing Director, The Potomac Hotel",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.hotel-online.com/news/former-salamander-washington-dc-reopens-as-the-potomac-hotel-autograph-collection",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Christian Franco",
+     "title": "Banquet Manager, The Potomac Hotel",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo:person/57d3aa5ea6da98536ed40ce3 (extrapolated; Apollo org = The Potomac Hotel, Autograph Collection) \u2014 email dropped: extrapolated marriott.com address, person in Baltimore, not confirmed at this property",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jennifer Cruz",
+     "title": "Convention Services Manager, The Potomac Hotel",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo:person/6953adbbf9b7b40001e09413 (no email)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Formerly Salamander Washington DC (1330 Maryland Ave SW), rebranded in 2025 and run by Pyramid Global. It has no site of its own: thepotomachotel.com is a GoDaddy parking page, and salamanderdc.com now redirects to salamanderhotels.com. The hotel's staff still use @salamanderdc.com addresses (Apollo jedwards@, washington.org lists sales@salamanderdc.com), so that domain is the hotel's own mail domain. The marriott.com events page names no one. MD Bertrand Mangeot has no email. Michael Estrin's marriott.com address already failed ZeroBounce; he may be on @salamanderdc.com instead.",
+   "apollo_searches": [
+    {
+     "query": "marriott.com",
+     "search_type": "domain",
+     "result_count": 54,
+     "orgs": 4,
+     "people": 50
+    },
+    {
+     "query": "The Potomac Hotel",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "The Potomac Hotel",
+     "search_type": "name",
+     "result_count": 16,
+     "orgs": 1,
+     "people": 15
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-646",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Nella Haring",
+     "title": "Director of Social Events, The Watergate Hotel",
+     "email": "nharing@thewatergatehotel.com",
+     "source": "apollo",
+     "source_url": "apollo:person/54a70bf87468696b7f3d3810 (verified; Washington DC)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Carmen Ishak",
+     "title": "Private Dining & Events Programming Manager, The Watergate Hotel",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo:person/63318dd3c0979500012efb0a (no email)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Heather Knight-Hylton",
+     "title": "Restaurant Events Manager, The Watergate Hotel",
+     "email": "",
+     "source": "apollo",
+     "source_url": "apollo:person/5d4b247ea3ae614d34db0d9f (no email)",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [
+    {
+     "email": "catering@thewatergatehotel.com",
+     "reason": "Wrong person attached. 'Natalie Ngounou, Owner' is the owner of Space of Gratitude, an outside sound-bath practitioner promoted on the hotel's special-events page. She is not the hotel's owner or catering staff. The inbox itself is fine, but the name/title on the row is wrong."
+    },
+    {
+     "email": "sales@thewatergatehotel.com",
+     "reason": "Same as above: Natalie Ngounou (owner of Space of Gratitude, an outside wellness vendor) is not Watergate Hotel staff."
+    }
+   ],
+   "summary": "Site re-crawled, Cloudflare emails decoded: only dining@, marketing@, billinginquiries@, sales@ and reservations@, none with a named person. No events staff are named on the site or in press. Both existing rows carry a wrong name: Natalie Ngounou is an outside sound-bath vendor, flagged. The best route is Apollo: Carmen Is***k, the private dining & events programming manager who books Kingbird, plus 4 other events/outlet people.",
+   "apollo_searches": [
+    {
+     "query": "thewatergatehotel.com",
+     "search_type": "domain",
+     "result_count": 40,
+     "orgs": 1,
+     "people": 39
+    },
+    {
+     "query": "Kingbird",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Kingbird",
+     "search_type": "name",
+     "result_count": 24,
+     "orgs": 10,
+     "people": 14
+    },
+    {
+     "query": "Watergate Hotel",
+     "search_type": "name",
+     "result_count": 53,
+     "orgs": 3,
+     "people": 50
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2215",
+   "researched": true,
+   "contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.armymwr.com/location-contact?location_form_location=63971",
+   "flag_contacts": [],
+   "summary": "No named staff or emails on the MWR golf club, Niblick's grill, or directory pages (catering PDF is image-only); only phones 703-806-5878 / catering 703-806-5886 and an armymwr.com Email Us form. jon.c.lee8.naf@army.mil (already a pipeline candidate) appears only inside a safelink tracking string with no name/title, not a contact.",
+   "apollo_searches": [
+    {
+     "query": "belvoir.armymwr.com",
+     "search_type": "domain",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    },
+    {
+     "query": "Fort Belvoir Golf Club",
+     "search_type": "name",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3200",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Cheryl Morrison",
+     "title": "Owner (reservations/appointments contact)",
+     "email": "",
+     "source": "website",
+     "source_url": "http://www.terranebulo.com/visit-us",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Mike Morrison",
+     "title": "Owner / Winemaker",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://vawinejourneys.blogspot.com/2025/11/terra-nebulo-vineyards.html",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Existing cheryl@terranebulo.com is co-owner Cheryl Morrison (visit-us page + Squarespace site owner id + wine blog); co-owner Mike Morrison has no email found (mari@ was ZeroBounce invalid). No new emails; Apollo has no org.",
+   "apollo_searches": [
+    {
+     "query": "terranebulo.com",
+     "search_type": "domain",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Terra Nebulo Vineyards",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Terra Nebulo",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-638",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Maxwell Armstrong",
+     "title": "General Manager, Rec Pier Chop House (LinkedIn)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Private-events page sends events to pbmfbreservations@pendry.com ('our Events Team', 443-552-1278) with no person named, so it can't be saved under policy; pendry.com Baltimore pages show no emails; Apollo has only a sommelier and a server. Only lead is GM Maxwell Armstrong (LinkedIn, no email), already in the pipeline's candidates.",
+   "apollo_searches": [
+    {
+     "query": "recpierchophouse.com",
+     "search_type": "domain",
+     "result_count": 3,
+     "orgs": 1,
+     "people": 2
+    },
+    {
+     "query": "Rec Pier Chop House",
+     "search_type": "name",
+     "result_count": 3,
+     "orgs": 1,
+     "people": 2
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-3222",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Antonia Le",
+     "title": "Co-owner (wife of Chef Jon Krinn; LILA retreats)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.axios.com/local/washington-dc/2024/10/07/new-restaurant-elyse-fairfax-jonathan-krinn",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "https://www.facebook.com/people/Elyse-Virginia/61567069665472/",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "The existing contact Jon Krinn (Chef Owner, jon@lila.llc) is correct; no other emails exist (only inquiries@elysevibes.com, a general inbox). New: a verified Facebook page linked from the venue site through a share link. Co-owner Antonia Le is named in the press but has no email.",
+   "apollo_searches": [
+    {
+     "query": "elyse.lila.llc",
+     "search_type": "domain",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Elyse",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    },
+    {
+     "query": "Elyse Fairfax",
+     "search_type": "name",
+     "result_count": 0,
+     "orgs": 0,
+     "people": 0
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2250",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Scott Davis",
+     "title": "General Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://playsterlinggolf.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "flag_contacts": [],
+   "summary": "Member-owned club: GM Scott Davis (existing scottgolfa@hotmail.com is very likely his, keep), board Greg Crawford/Ken Desmond/Geoff Cox/Mike Kelly, no other emails; phone 703-430-1400. NOTE: sheet Instagram carsonvalleygolf is a theme leftover linked from the site's footer (Carson Valley Golf, not this club); no real Sterling Park IG found - Alex may want it cleared.",
+   "apollo_searches": [
+    {
+     "query": "playsterlinggolf.com",
+     "search_type": "domain",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    },
+    {
+     "query": "Sterling Park Golf Club",
+     "search_type": "name",
+     "result_count": 1,
+     "orgs": 1,
+     "people": 0
+    }
+   ]
   }
  ]
 }

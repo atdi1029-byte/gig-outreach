@@ -8858,7 +8858,8 @@ if host_org and (sub or segs):
     # The organisation's own subdomain or section for the venue: no name check needed.
     out[0] = 'ok'
     out[4] = host + ('/' + '/'.join(segs) if segs else '')
-elif (sub or segs) and (not words or any(w in hay for w in words)):
+elif (sub or segs) and (not words or any(w in hay for w in words) or (segs and segs[0] in R._LOCATION_SEGS)):
+    # thened.com/dc: a city section of a brand site is the property's page (Nov 11 2026)
     out[0] = 'ok'
     out[4] = host + ('/' + '/'.join(segs) if segs else '')
 else:

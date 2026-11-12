@@ -35,6 +35,7 @@ has to fix (ZeroBounce or Apollo out of credits, Chrome) plus one line about the
   program started.
 - Do not send anything. Sending is manual, always, from the app.
 - Save policy (enforced by the code and the backend):
+  - **Save everyone at the venue (Alex, Nov 11 2026: "just add everyone and ill parse it"; "the problem was you looking up colleges").** `.env` sets `CONTACT_SAVE_ALL=1` (no title gate, nameless personal mailboxes kept), caps at 1000 and `NIGHT_DELETE_FLAGGED=0` (the audit lists, never deletes). The title and cap rules below are off while it is set; the guards against other organisations, listing sites and other properties stay. Junk is fixed in venue choice, not by filtering people.
   - An email is saved only if it's on the venue's own domain, or a free-mail/ISP
     address linked to the venue (mailto on its site, or venue words in it).
     Off-domain = rejected and kept in the candidate log, never saved.

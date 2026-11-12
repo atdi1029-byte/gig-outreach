@@ -462,6 +462,7 @@ start_dive() {   # start_dive RUN_ID — background; one Claude session at a tim
     local rid="$1" line
     wait_dive
     apply_websites wait
+    apply_repair wait
     local all=""
     [ "$MODE" = "burn" ] && all="--all"
     line=$(/usr/bin/python3 "$SCRIPT_DIR/night_zero.py" "$rid" $all 2>&1 | tail -1)
@@ -613,6 +614,56 @@ apply_websites() {   # apply_websites [wait] — save the research's websites on
     guarded 1800 ./backfill_websites.sh --candidates "$WEB_FOUND" --apply >> "$NIGHT_LOG" 2>&1 ||
         log "backfill_websites.sh --candidates exited $? — going on"
     git_sync "Night websites: missing websites looked up in the terminal" "$WEB_LIST" "$WEB_FOUND"
+}
+
+# ---------------------------------------------------------------- pool repair
+# Nov 11 2026 (Alex: "did you fix this so next time we do sweeps it will show up?"): good venues the
+# planner skips for bad data (query words as the city, chain homepages, geocodes in other states, never
+# verified, or upscale but not European) get researched by Claude (NIGHT_REPAIR.md, WebSearch, no Chrome)
+# and fixed by repair_pool.py, so they reach the queue instead of sitting there for months.
+REPAIR_PID=""
+REPAIR_DONE=1
+REPAIR_LIMIT="${REPAIR_LIMIT:-60}"
+REPAIR_MAX_MIN="${REPAIR_MAX_MIN:-60}"
+start_repair() {
+    local n stamp
+    stamp=$(date +%Y%m%d-%H%M)
+    REPAIR_LIST="$RUNS_DIR/repair-$stamp.list.json"
+    REPAIR_FOUND="$RUNS_DIR/repair-$stamp.json"
+    log "Pool repair: listing up to $REPAIR_LIMIT good venues stuck behind bad data"
+    if ! guarded 1200 /usr/bin/python3 repair_pool.py list --out "$REPAIR_LIST" --limit "$REPAIR_LIMIT" >> "$NIGHT_LOG" 2>&1; then
+        log "repair_pool.py list failed — no pool repair this time"
+        return 0
+    fi
+    n=$(/usr/bin/python3 -c 'import json,sys; print(len(json.load(open(sys.argv[1])).get("venues") or []))' "$REPAIR_LIST" 2>/dev/null)
+    if [ "${n:-0}" -eq 0 ]; then
+        log "Pool repair: nothing stuck"
+        return 0
+    fi
+    log "Pool repair: Claude researches $n venues in the terminal (WebSearch, no Chrome)"
+    claude_session "$REPAIR_MAX_MIN" "$RUNS_DIR/repair-$stamp.session.json" \
+        "Pool repair research. Follow $SCRIPT_DIR/NIGHT_REPAIR.md with LIST=\"$REPAIR_LIST\" and OUT=\"$REPAIR_FOUND\". Working directory: $SCRIPT_DIR. Now: $(date '+%Y-%m-%d %H:%M')." \
+        --disallowedTools "mcp__claude-in-chrome" "Bash(osascript:*)" "Bash(open:*)" "Agent" "Task" &
+    REPAIR_PID=$!
+    REPAIR_DONE=0
+}
+
+apply_repair() {   # apply_repair [wait] — write the research's fixes once it's done (never during a run)
+    [ "$REPAIR_DONE" = 1 ] && return 0
+    if kill -0 "$REPAIR_PID" 2>/dev/null; then
+        [ "${1:-}" = "wait" ] || return 0
+        log "Waiting for the pool repair research to finish"
+    fi
+    wait "$REPAIR_PID" 2>/dev/null
+    REPAIR_DONE=1
+    if ! /usr/bin/python3 -m json.tool "$REPAIR_FOUND" >/dev/null 2>&1; then
+        log "Pool repair left no readable findings ($REPAIR_FOUND) — nothing to save"
+        return 0
+    fi
+    log "repair_pool.py apply (websites, cities, drive times, upscale ratings, non-venues dismissed)"
+    guarded 3600 /usr/bin/python3 repair_pool.py apply "$REPAIR_FOUND" --list "$REPAIR_LIST" --apply >> "$NIGHT_LOG" 2>&1 ||
+        log "repair_pool.py apply exited $? — going on"
+    git_sync "Burn: pool repair (stuck venues researched and fixed)" "$REPAIR_LIST" "$REPAIR_FOUND"
 }
 
 # ---------------------------------------------------------------- one run
@@ -817,6 +868,7 @@ guarded 1200 /usr/bin/python3 import_sweep_files.py --apply >> "$NIGHT_LOG" 2>&1
 # should be able to be used") get one from Claude's WebSearch, in the background, never
 # Chrome (see start_websites)
 start_websites
+[ "$MODE" = "burn" ] && start_repair
 # Good sweep / discovery finds become runnable (plain HTTP, never Chrome)
 log "verify_pool.py --apply (promote verified needs_review venues)"
 guarded 1200 /usr/bin/python3 verify_pool.py --apply --limit 400 >> "$NIGHT_LOG" 2>&1 || log "verify_pool.py exited $? — going on"
@@ -856,6 +908,7 @@ burn_loop() {
             for p in $(state_get audit_pending); do start_dive "$p"; wait_dive; done
         fi
         apply_websites
+        apply_repair
         do_run
         rc=$?
         [ "$LAST_STARTED" = 1 ] && rounds=$((rounds + 1))
@@ -876,6 +929,7 @@ burn_loop() {
                 wait_dive
                 fix_session
                 apply_websites wait
+                apply_repair wait
                 prep_pool
             fi
             continue

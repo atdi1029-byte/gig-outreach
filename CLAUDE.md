@@ -231,6 +231,10 @@ outreach stuff for a couple months", "which ever runs out first ill probably sto
   at 43 hours), never verified. Research agents re-checked each one; fixes written with backups in
   `reports/repair/cleanup-20261111-*`. When the pool looks thin, check the planner's skip counts for real
   venues stuck behind data problems before running more discovery.
+  Now automatic: every burn prep (start, then every 4 rounds) runs `repair_pool.py list` (up to 60 stuck
+  real venues, from build_batch's own skips via `BB_DUMP`), a Claude session per `NIGHT_REPAIR.md`
+  (WebSearch, no Chrome) and `repair_pool.py apply`. Researched rows get "Repair checked <date>" and wait 30
+  days before being listed again. By hand: `repair_pool.py list --out L.json`, research, `apply OUT --list L.json [--apply]`.
 - LinkedIn stays ON (Alex, Nov 8 2026: "dont turn it off!!!!") even though over the burn's first 307 venues it
   saved 7 contacts. Fix its searches instead (state and venue type in every query; never open results outside DC/MD/VA).
 - Log: `reports/runs/burn-YYYYMMDD-HHMM.log`. Another burn later: `rm .burn_done`.

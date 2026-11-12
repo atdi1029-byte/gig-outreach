@@ -631,6 +631,10 @@ print(f"\nEligible pool: {len(pool)}  (sweep finds: {sum(1 for e in pool if R.is
 if sweep_in:
     print("  Sweep finds let past a taste/location gate: " +
           ', '.join(f"{k} {n}" for k, n in sweep_in.most_common()))
+# BB_DUMP=<file> (repair_pool.py list): every skip with its reason, and the eligible venue ids
+if os.environ.get('BB_DUMP'):
+    json.dump({'skips': dict(skips), 'eligible': [str(e['venue'].get('venue_id')) for e in candidates]},
+              open(os.environ['BB_DUMP'], 'w'))
 order = ['status (not untouched)', 'already in a report', 'no website', 'out of area (not DC/MD/VA)']
 for reason in order + sorted(r for r in skips if r not in order):
     items = skips.get(reason, [])

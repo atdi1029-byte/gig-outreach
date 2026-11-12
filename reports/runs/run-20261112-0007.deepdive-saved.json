@@ -1,0 +1,486 @@
+{
+ "run_id": "run-20261112-0007",
+ "dry_run": false,
+ "at": "2026-11-12T02:30:30-05:00",
+ "totals": {
+  "saved": 1,
+  "venues_rescued": 0,
+  "socials": 2,
+  "rejected": 1,
+  "errors": 0,
+  "flagged": 1,
+  "deleted": 0
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "DC-REST-632",
+   "name": "Kappo DC",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Minoru Ogawa",
+     "source_url": "https://kappodc.com/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ari Wilder",
+     "source_url": "https://districtfray.com/articles/kappo-opening-palisades-dc",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Adrian Williams",
+     "source_url": "https://www.thelistareyouonit.com/japanese-restaurant-concept-by-chef-minoru-ogawa-ari-wilder-and-adrian-williams--name-tbd",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-853",
+   "name": "Tremolo Bar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jarad Slipp",
+     "source_url": "https://www.tremolobar.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2220",
+   "name": "Penderbrook Golf Club",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2880",
+   "name": "Nasime",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-669",
+   "name": "The Monocle Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "John Valanos",
+     "source_url": "https://themonocle.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Vasiliki Valanos",
+     "source_url": "https://www.einpresswire.com/article/925236295",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Nick Selimos",
+     "source_url": "https://themonocle.com/about/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-648",
+   "name": "Ris",
+   "contacts": [
+    {
+     "email": "dot@risdc.com",
+     "name": "Dot Johnson",
+     "source_url": "https://www.ramw.org/articles/blog/ris-ris-lacoste-offer-2009-anniversary-lunch-menu-honoring-original-2009-opening-and",
+     "outcome": "rejected:zerobounce_invalid"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3170",
+   "name": "Old Mill Cafe",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Felicia Salazar",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Erica Bridle",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-935",
+   "name": "Vine Alley Bistro",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2926",
+   "name": "The Wise Fool at The Satire",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Stephane Vogel",
+     "source_url": "https://www.lindarothpr.com/the-newsroom/introducing-the-satire-marriotts-newest-autograph-collection-hotel-in-northern-virginia",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "contact_form",
+     "value": "https://www.marriott.com/meetings-events/rfp/event-profile.mi?marshaCode=waska",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1744",
+   "name": "Oak & Ember",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Christian Puccio",
+     "source_url": "https://www.oakandemberr.com/visit",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Tarek Kipriy",
+     "source_url": "https://www.oakandemberr.com/visit",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Chris Barette",
+     "source_url": "https://www.oakandemberr.com/visit",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3337",
+   "name": "Zinnia",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Chris Brown",
+     "source_url": "https://dcist.com/story/21/10/13/silver-spring-first-look-md-mrs-k-toll-house-zinnia-beer-garden-cafe",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Aidan Rinehart",
+     "source_url": "https://www.mymcmedia.org/silver-spring-is-home-to-the-rammy-awardss-employee-of-the-year/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1087",
+   "name": "Persimmon",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Zaki Azeddine",
+     "source_url": "https://moco360.media/2023/05/09/bethesdas-persimmon-owners-sell-business-to-employees/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Elmy Cecillo",
+     "source_url": "https://moco360.media/2023/05/09/bethesdas-persimmon-owners-sell-business-to-employees/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Said Moslin",
+     "source_url": "https://moco360.media/2023/05/09/bethesdas-persimmon-owners-sell-business-to-employees/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-833",
+   "name": "Josephine",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Stewart Shoemaker",
+     "source_url": "https://opentable.com/r/josephine-old-town-alexandria",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1697",
+   "name": "Vermilion Restaurant & Bar",
+   "contacts": [
+    {
+     "email": "",
+     "name": "David Jones",
+     "source_url": "https://www.opentable.ie/vermilion-alexandria",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Anthony Chittum",
+     "source_url": "https://www.vermilionrestaurant.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "XX-REST-163",
+   "name": "The Tasting Room",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jarrett Walsh",
+     "source_url": "https://baltimoremagazine.com/section/fooddrink/review-the-tasting-room-frederick",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3192",
+   "name": "Barrington Tap & Table",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Chad Wells",
+     "source_url": "https://eatatbarrington.com/about/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Anthony DiGangi",
+     "source_url": "https://cc.howardcountymd.gov/sites/default/files/2025-11/D%26O%20Barrington%20Tap%20%26%20Table%20-%2011.17.2025%20%28transfer%29.pdf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "facebook",
+     "value": "https://www.facebook.com/EatAtBarrington/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1187",
+   "name": "Grayson's at Goodstone",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Ahmed Ibrahim",
+     "source_url": "https://northernvirginiamag.com/food-and-drink/food-news/2026/06/12/goodstone-inn-opens-graysons-a-new-farm-to-table-restaurant/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2876",
+   "name": "1799 Prime Steak & Seafood",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Mehrez Ayari",
+     "source_url": "https://1799prime.com/about-us/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Kirk Wilson Jr.",
+     "source_url": "https://1799prime.com/about-us/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-1751",
+   "name": "Forge Restaurant",
+   "contacts": [],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-COUN-1329",
+   "name": "Richland Golf Club (The Vistas)",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jennifer Freeze",
+     "source_url": "https://www.theknot.com/marketplace/the-vistas-at-richland-golf-club-middletown-md-963079",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-342",
+   "name": "Brick Wood Fired Bistro",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jason Nagers",
+     "source_url": "https://brickwfb.com/about-us/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jordan Nagers",
+     "source_url": "https://thebaynet.com/?p=1181472",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2826",
+   "name": "SURA Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Billy Thammasathiti",
+     "source_url": "https://www.suradcrestaurant.com/about",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Andy Thammasathiti",
+     "source_url": "https://www.suradcrestaurant.com/about",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2277",
+   "name": "District Winery",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Ian Brickey",
+     "source_url": "https://prospeo.io/c/district-winery-revenue",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Samantha Mounsey",
+     "source_url": "https://prospeo.io/c/district-winery-revenue",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-640",
+   "name": "Old Ebbitt Grill",
+   "contacts": [
+    {
+     "email": "oegevents@ebbitt.com",
+     "name": "Kelsey Willis",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "title": "Senior Events Manager",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Benjamin Bogardus",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Cheveale McConner",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Maira Solano",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Natalia Lukyanyuk",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [
+    {
+     "email": "bookkeeper@ebbitt.com",
+     "reason": "Accounting/bookkeeping inbox, no person; could never book Alex",
+     "outcome": "would_delete"
+    }
+   ]
+  },
+  {
+   "venue_id": "XX-REST-065",
+   "name": "Fratelli Italian Restaurant",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Nicholas Sakellis",
+     "source_url": "https://carrollmagazine.com/?p=19521",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Roula Sakellis",
+     "source_url": "https://carrollmagazine.com/?p=19521",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ],
+ "flagged_backup": ""
+}

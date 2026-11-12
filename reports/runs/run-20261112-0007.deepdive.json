@@ -1,0 +1,1002 @@
+{
+ "run_id": "run-20261112-0007",
+ "venues": [
+  {
+   "venue_id": "DC-REST-632",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Minoru Ogawa",
+     "title": "Chef / Partner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://kappodc.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Ari Wilder",
+     "title": "Partner (sake and wine program)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://districtfray.com/articles/kappo-opening-palisades-dc",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Adrian Williams",
+     "title": "Partner (co-owner, also Zeppelin)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.thelistareyouonit.com/japanese-restaurant-concept-by-chef-minoru-ogawa-ari-wilder-and-adrian-williams--name-tbd",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "kappodc.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Kappo DC",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Only info@kappodc.com (a general inbox) is published. The site has 4 pages (home, events, press, reservations). The owners are chef Minoru Ogawa and partners Ari Wilder and Adrian Williams, none with an email. Private events go through a request form on Tock (exploretock.com/kappodc), which returned 403 and could not be checked. No Facebook page found. The Apollo MCP tools were not available in this session, so no Apollo searches were run."
+  },
+  {
+   "venue_id": "VA-REST-853",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jarad Slipp",
+     "title": "Owner / Chef / Master Sommelier (also owns Knead Wine)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.tremolobar.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "tremolobar.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Tremolo Bar",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Only hello@tremolobar.com (a general inbox) is published. The site is a single page plus a menu PDF with no emails in it. The owner is Jarad Slipp (chef, Master Sommelier, also owns Knead Wine), with no email found. No staff, events page or contact form. The Apollo MCP tools were not available in this session; the pipeline had already found the Apollo org with 0 people."
+  },
+  {
+   "venue_id": "DC-REST-2220",
+   "researched": true,
+   "contacts": [],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "penderbrookgolfclub.com",
+     "search_type": "domain",
+     "result_count": 6
+    },
+    {
+     "query": "Penderbrook Golf Club",
+     "search_type": "name",
+     "result_count": 6
+    }
+   ],
+   "summary": "Decoded every Cloudflare-protected email on the site (banquets, tournaments, contact, home pages); only babrams@ and dmcateringllc@gmail.com (Erin Monaghan, banquets/parties), both already saved. The sheet's Instagram (instagram.com/lightspeedhq) is WRONG: it's the website vendor Lightspeed's link from the site header, not the club's, and no club Instagram was found, so clear it by hand. VSGA lists Marshall Hibbs as General Manager (his saved title is Superintendent), so keep him. info@ seen in review replies is a general inbox and was skipped."
+  },
+  {
+   "venue_id": "VA-REST-2880",
+   "researched": true,
+   "contacts": [],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "nasimerestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Nasime",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "One-man omakase: chef-owner Yuh Shimomura is the only person there. The saved chefyuh@nasimerestaurant.com is his mailbox, so the name Yuh Shimomura (Chef/Owner) can be attached to that existing row. The site (home, contact, menu, gallery, sitemap) has no other emails, and press shows no other staff."
+  },
+  {
+   "venue_id": "DC-REST-669",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "John Valanos",
+     "title": "Owner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://themonocle.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Vasiliki Valanos",
+     "title": "Co-Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.einpresswire.com/article/925236295",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Nick Selimos",
+     "title": "Maitre d'",
+     "email": "",
+     "source": "website",
+     "source_url": "https://themonocle.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "themonocle.com",
+     "search_type": "domain",
+     "result_count": 1
+    },
+    {
+     "query": "The Monocle Restaurant",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "Every page (private-events, dinner events, party agreement, about, contact) publishes only monocleinfo@aol.com, which private events also uses, so keep it. Owners are John and Vasiliki 'Kiki' Valanos and the maitre d' is Nick Selimos, but none has a published email. No @themonocle.com addresses found online besides the saved jenny@ (Apollo). The 2025 press release's media contact is an outside PR firm (dan@danrene.com) and was not added."
+  },
+  {
+   "venue_id": "DC-REST-648",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Dot Johnson",
+     "title": "Media & Partnerships contact (marketing)",
+     "email": "dot@risdc.com",
+     "source": "press",
+     "source_url": "https://www.ramw.org/articles/blog/ris-ris-lacoste-offer-2009-anniversary-lunch-menu-honoring-original-2009-opening-and",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false,
+     "note": "RAMW press release for RIS: 'For all media or partnership opportunities contact dot@risdc.com'. Full name from the author field of RIS's own bio PDF on its Bento CDN (media-cdn.getbento.com/.../RIS LACOSTE_Bio_2024.pdf, author 'Dot Johnson')."
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "risdc.com",
+     "search_type": "domain",
+     "result_count": 25
+    },
+    {
+     "query": "Ris",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "Owner, private-dining inbox, host and marketing assistant already saved. New: Dot Johnson, dot@risdc.com (media/partnerships, from a RAMW press release). No events manager or GM named anywhere (Ris Lacoste is both chef and GM). Nothing flagged: all 4 saved emails are on risdc.com, passed ZeroBounce, and Host/Marketing Assistant are restaurant roles, not the Italian RIS org's cooks, waiters or asbestos staff."
+  },
+  {
+   "venue_id": "MD-REST-3170",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Felicia Salazar",
+     "title": "Owner",
+     "email": "",
+     "source": "apollo",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Erica Bridle",
+     "title": "General Manager",
+     "email": "",
+     "source": "apollo",
+     "source_url": "",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "oldmill-cafe.com",
+     "search_type": "domain",
+     "result_count": 5
+    },
+    {
+     "query": "Old Mill Cafe",
+     "search_type": "name",
+     "result_count": 8
+    }
+   ],
+   "summary": "No email anywhere: the site (home, private-events, contact-us) has only forms and phone 410-465-2253; WebSearch for @oldmill-cafe.com/owner found nothing; only info@ (general inbox) exists. Owner Felicia Salazar and GM Erica Bridle (pipeline Apollo, no email) are the people to reach via the private-party form. Apollo MCP tools were not available in this session, so no Apollo searches were made."
+  },
+  {
+   "venue_id": "MD-REST-935",
+   "researched": true,
+   "contacts": [],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "vinealleykentlands.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Vine Alley Bistro",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No email or named person: the site (contact, vine-events) has only a form and phone (240) 477-4442; press (MoCo Show, Daily Record) says it is run by the Brews & Barrels owners (first names 'Sean and Sam' only, no surnames); the chamber listing and Daily Record returned 403; no Instagram found. The mec-...@ address is a calendar-plugin artifact, not a contact. Apollo MCP tools were not available in this session."
+  },
+  {
+   "venue_id": "VA-REST-2926",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Stephane Vogel",
+     "title": "Managing Director, The Satire (Autograph Collection)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.lindarothpr.com/the-newsroom/introducing-the-satire-marriotts-newest-autograph-collection-hotel-in-northern-virginia",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.marriott.com/meetings-events/rfp/event-profile.mi?marshaCode=waska",
+   "apollo_searches": [
+    {
+     "query": "thesatirehotel.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "The Wise Fool at The Satire",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "No emails found. The Wise Fool has no website of its own; marriott.com dining/events pages list only the hotel phone (+1 703-650-0200) and Marriott's event RFP form. The hotel is managed by Concord Hospitality and owned by Electra America; the 2026 press release names Managing Director Stephane Vogel (no email). The Director of Sales and F&B Director roles are unnamed (open job postings). Apollo MCP tools were not available in this session, so no Apollo searches were run."
+  },
+  {
+   "venue_id": "VA-REST-1744",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Christian Puccio",
+     "title": "Owner & Founder (level one sommelier; founder of Puccio's New York Deli)",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.oakandemberr.com/visit",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Tarek Kipriy",
+     "title": "Head Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.oakandemberr.com/visit",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Chris Barette",
+     "title": "Executive Sous Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.oakandemberr.com/visit",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "oakandemberr.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Oak & Ember",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "The only email on the site is info@oakandemberr.com (a general inbox, rejected correctly). The /visit page names Owner and Founder Christian Puccio plus the chefs, but no emails. Private events are booked by phone, (703) 574-9405, two months ahead. Web searches found no personal email. The pipeline's LinkedIn find 'Brett Taylor, The Oak & Ember Project LLC' is not this venue's owner. Apollo MCP tools were not available in this session."
+  },
+  {
+   "venue_id": "MD-REST-3337",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Chris Brown",
+     "title": "Owner (also Takoma Beverage Co.)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://dcist.com/story/21/10/13/silver-spring-first-look-md-mrs-k-toll-house-zinnia-beer-garden-cafe",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Aidan Rinehart",
+     "title": "General Manager (press, date unclear)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://www.mymcmedia.org/silver-spring-is-home-to-the-rammy-awardss-employee-of-the-year/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "eatzinnia.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Zinnia",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "No email anywhere: site (about, contact, private-events) has only forms (Tripleseat event inquiry https://zinnia.tripleseat.com/party_request/29761, Google Form for performers); press names owner Chris Brown and GM Aidan Rinehart, no emails. Apollo MCP tools were not available in this session, so no Apollo searches were run (pipeline Apollo had already rejected zinnia.com insurance-company people correctly)."
+  },
+  {
+   "venue_id": "MD-REST-1087",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Zaki Azeddine",
+     "title": "Co-owner (since May 2023)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://moco360.media/2023/05/09/bethesdas-persimmon-owners-sell-business-to-employees/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Elmy Cecillo",
+     "title": "Chef / Co-owner (since May 2023)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://moco360.media/2023/05/09/bethesdas-persimmon-owners-sell-business-to-employees/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Said Moslin",
+     "title": "Co-owner (since May 2023)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://moco360.media/2023/05/09/bethesdas-persimmon-owners-sell-business-to-employees/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "persimmonrestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Persimmon",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "Only info@ (general inbox) on the site. Apollo's damian@persimmonrestaurant.com (catch-all) is the former owner: Damian and Stephanie Salvatore sold to three employees (Zaki Azeddine, chef Elmy Cecillo, Said Moslin) in May 2023; no emails found for them. Apollo MCP tools were not available in this session, so no Apollo searches were run."
+  },
+  {
+   "venue_id": "VA-REST-833",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Stewart Shoemaker",
+     "title": "General Manager",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://opentable.com/r/josephine-old-town-alexandria",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "josephineoldtown.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Josephine",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "Site only lists hello@ (general) and sspiwak@neighborhoodrestaurantgroup.com, which is the media inbox with no name or title; the private-events Canva page is JS-only; GM Stewart Shoemaker (signs OpenTable replies) has no email; no Facebook found; Apollo MCP tools not available in this session, so no Apollo searches"
+  },
+  {
+   "venue_id": "VA-REST-1697",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "David Jones",
+     "title": "General Manager",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.opentable.ie/vermilion-alexandria",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Anthony Chittum",
+     "title": "Chef & Partner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.vermilionrestaurant.com/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "vermilionrestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Vermilion Restaurant & Bar",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "Site has info@ (general), jsultan@ (careers, ZB invalid) and grege@churchkeydc.com (media, another NRG venue's domain); OpenTable lists events@vermilionrestaurant.com for the private dining team but names nobody, so it is not saveable; GM David Jones (OpenTable replies, Oct 2026) and chef-partner Anthony Chittum have no emails; Apollo MCP tools not available in this session"
+  },
+  {
+   "venue_id": "XX-REST-163",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jarrett Walsh",
+     "title": "Owner (former General Manager)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://baltimoremagazine.com/section/fooddrink/review-the-tasting-room-frederick",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "trrestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "The Tasting Room",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "The site lists only info@ and events@trrestaurant.com, with no person named on it. Baltimore Magazine names Jarrett Walsh as owner, but no email for him was found, so events@ can't be paired with a name. The Apollo GMs on thetastingroom.co.za belong to a South African business and were rightly rejected."
+  },
+  {
+   "venue_id": "MD-REST-3192",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Chad Wells",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "website",
+     "source_url": "https://eatatbarrington.com/about/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Anthony DiGangi",
+     "title": "Co-owner (Walker's Restaurant Group)",
+     "email": "",
+     "source": "press",
+     "source_url": "https://cc.howardcountymd.gov/sites/default/files/2025-11/D%26O%20Barrington%20Tap%20%26%20Table%20-%2011.17.2025%20%28transfer%29.pdf",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "https://www.facebook.com/EatAtBarrington/",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "eatatbarrington.com",
+     "search_type": "domain",
+     "result_count": 6
+    },
+    {
+     "query": "Barrington Tap & Table",
+     "search_type": "name",
+     "result_count": 6
+    }
+   ],
+   "summary": "No usable email: the site has only info@ and a contact form with an event-booking option (already on the sheet). Found people without email: Exec Chef Chad Wells (About page) and co-owner Anthony DiGangi of Walker's Restaurant Group (county liquor board record). The Facebook page is linked from the venue's own Events page. The @EatAtBarrington Instagram handle is unconfirmed."
+  },
+  {
+   "venue_id": "VA-REST-1187",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Ahmed Ibrahim",
+     "title": "Executive Chef",
+     "email": "",
+     "source": "press",
+     "source_url": "https://northernvirginiamag.com/food-and-drink/food-news/2026/06/12/goodstone-inn-opens-graysons-a-new-farm-to-table-restaurant/",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "graysonsatgoodstone.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Grayson's at Goodstone",
+     "search_type": "name",
+     "result_count": 0
+    }
+   ],
+   "summary": "14 goodstone.com contacts already saved, all at this property; none flagged. OpenTable names Benjamin Hall (already saved) as the private events contact and NoVa Mag names Michael Smith (already saved) as GM. Exec chef Ahmed Ibrahim has no email. Weddings go through Occasions Caterers (a separate company, off-domain, nothing saved)."
+  },
+  {
+   "venue_id": "VA-REST-2876",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Mehrez Ayari",
+     "title": "General Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://1799prime.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Kirk Wilson Jr.",
+     "title": "Beverage Maestro & Maitre d'",
+     "email": "",
+     "source": "website",
+     "source_url": "https://1799prime.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "1799prime.com",
+     "search_type": "domain",
+     "result_count": 3
+    },
+    {
+     "query": "1799 Prime Steak & Seafood",
+     "search_type": "name",
+     "result_count": 3
+    }
+   ],
+   "summary": "No new emails. The site gives only info@ (general inbox), and its private-events PDF is an image only (couldn't OCR it here). Private events go through an unnamed Sales Manager at 571-867-9592. The owner's jq@quanders1799.com is not published on 1799prime.com, so it stays off-domain. GM Mehrez Ayari has no email. Tricia Quander (admin assistant, same family/owner) kept."
+  },
+  {
+   "venue_id": "MD-REST-1751",
+   "researched": true,
+   "contacts": [],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "forgesoutherncomfort.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Forge Restaurant",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "No new contacts. The /about page names only 'Chef Tom' (GM) and 'Chef Raheem' (Exec Chef), first names only; no surnames anywhere on the web. mark.forgerestaurantgroup@gmail.com is on /events for preorders. NOTE: the 2 saved contact names ('Cheftom Forgerestaurantgroup', 'Mark Forgerestaurantgroup') were made up from email local parts. The venue-owned emails are fine, but the names should be cleaned (e.g. 'Chef Tom', GM)."
+  },
+  {
+   "venue_id": "MD-COUN-1329",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jennifer Freeze",
+     "title": "Sales and Event Coordinator",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://www.theknot.com/marketplace/the-vistas-at-richland-golf-club-middletown-md-963079",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "richlandgolfclub.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Richland Golf Club",
+     "search_type": "name",
+     "result_count": 11
+    }
+   ],
+   "summary": "Nothing new: site lists Chaz Connell (F&B dir, also event coordinator on weddings page, same chaz@ email), Patrick Blinn, Patrick Brooks (patrick@ was ZB invalid). Events coordinator Jennifer Freeze ('Miss Jenny' in Knot reviews) has no email found. Existing contacts all OK."
+  },
+  {
+   "venue_id": "MD-REST-342",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Jason Nagers",
+     "title": "Owner / GM",
+     "email": "",
+     "source": "website",
+     "source_url": "https://brickwfb.com/about-us/",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Jordan Nagers",
+     "title": "Co-owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://thebaynet.com/?p=1181472",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "brickwfb.com",
+     "search_type": "domain",
+     "result_count": 9
+    },
+    {
+     "query": "Brick Wood Fired Bistro",
+     "search_type": "name",
+     "result_count": 9
+    }
+   ],
+   "summary": "No new emails. Existing nameless jordan@brickwfb.com very likely belongs to co-owner Jordan Nagers (BayNet 2025 names Jordan and Jason Nagers as owners), so the main session could put that name on it. Owner Jason Nagers has no email of his own on the site; Kate Harrison (events) already saved."
+  },
+  {
+   "venue_id": "DC-REST-2826",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Billy Thammasathiti",
+     "title": "Chef / Co-Partner",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.suradcrestaurant.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Andy Thammasathiti",
+     "title": "Co-Partner / Bar Keeper",
+     "email": "",
+     "source": "website",
+     "source_url": "https://www.suradcrestaurant.com/about",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "suradcrestaurant.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "SURA Restaurant",
+     "search_type": "name",
+     "result_count": 14
+    }
+   ],
+   "summary": "Only email is suradcrestaurant@gmail.com (already saved). Co-partners Billy and Andy Thammasathiti have no email. No Facebook page found. Private dining requests go through a Tock form (https://www.exploretock.com/sura/private-dining), but the sheet already has a contact form. The pipeline's Apollo org 'Sura' is sura.org (Southeastern Universities Research Association), a different organisation; the off-domain rule rejected its people, and its 'Restaurant General Manager' Evgeniya Arkan should not be trusted."
+  },
+  {
+   "venue_id": "DC-REST-2277",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Ian Brickey",
+     "title": "Director of Sales (unverified, third-party data site)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://prospeo.io/c/district-winery-revenue",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Samantha Mounsey",
+     "title": "Director of Event Operations (unverified, third-party data site)",
+     "email": "",
+     "source": "websearch",
+     "source_url": "https://prospeo.io/c/district-winery-revenue",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "districtwinery.com",
+     "search_type": "domain",
+     "result_count": 18
+    },
+    {
+     "query": "District Winery",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "Site returns 403 to WebFetch (as in pipeline coverage); no new emails. 5 existing Apollo event-team contacts all look right (Camilla Battoni was on Old Ebbitt's 2025 events team, now at District Winery per Apollo). Two unverified leadership names with no email added as context: Ian Brickey (Director of Sales), Samantha Mounsey (Director of Event Operations); worth an Apollo lookup."
+  },
+  {
+   "venue_id": "DC-REST-640",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Kelsey Willis",
+     "title": "Senior Events Manager",
+     "email": "oegevents@ebbitt.com",
+     "source": "website",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Benjamin Bogardus",
+     "title": "Senior Events Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Cheveale McConner",
+     "title": "Private Events Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Maira Solano",
+     "title": "Events Manager",
+     "email": "",
+     "source": "website",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Natalia Lukyanyuk",
+     "title": "Events Coordinator",
+     "email": "",
+     "source": "website",
+     "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf",
+     "found_on_venue_site": true,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [
+    {
+     "email": "bookkeeper@ebbitt.com",
+     "reason": "Accounting/bookkeeping inbox, no person; could never book Alex"
+    }
+   ],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "ebbitt.com",
+     "search_type": "domain",
+     "result_count": 25
+    },
+    {
+     "query": "Old Ebbitt Grill",
+     "search_type": "name",
+     "result_count": 25
+    }
+   ],
+   "summary": "Events inbox oegevents@ebbitt.com is in the Jan 2026 private event packet (pipeline rejected it as page_text_glued_to_address); the 2025 packet on the venue's own CDN names the events team (Senior Events Managers Kelsey Willis & Benjamin Bogardus; Events Managers Cheveale McConner, Maira Solano; Coordinator Natalia Lukyanyuk). Paired oegevents@ with Kelsey Willis as role. The packet says the Event Manager handles entertainment referrals. Flagged bookkeeper@ (accounting). riottickets@ (Oyster Riot ticket inbox) left alone."
+  },
+  {
+   "venue_id": "XX-REST-065",
+   "researched": true,
+   "contacts": [
+    {
+     "name": "Nicholas Sakellis",
+     "title": "Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://carrollmagazine.com/?p=19521",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    },
+    {
+     "name": "Roula Sakellis",
+     "title": "Owner",
+     "email": "",
+     "source": "press",
+     "source_url": "https://carrollmagazine.com/?p=19521",
+     "found_on_venue_site": false,
+     "venue_mailto": false,
+     "allow_off_domain": false
+    }
+   ],
+   "flag_contacts": [],
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "",
+   "apollo_searches": [
+    {
+     "query": "fratellispasta.com",
+     "search_type": "domain",
+     "result_count": 0
+    },
+    {
+     "query": "Fratelli Italian Restaurant",
+     "search_type": "name",
+     "result_count": 1
+    }
+   ],
+   "summary": "No personal emails on the site (BentoBox site shared with the Middletown location; only location inboxes, already saved). Carroll Magazine names owners Roula and Nicholas Sakellis (a son runs operations, unnamed); no email found. Instagram on the site is @fratellismiddletown (the other location), so it was not set. Note: middletown@ is the sister location's inbox (same site/brand), left in place."
+  }
+ ]
+}

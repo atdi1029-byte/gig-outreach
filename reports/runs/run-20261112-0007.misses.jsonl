@@ -1,0 +1,27 @@
+{"venue_id": "DC-REST-632", "kind": "audited"}
+{"venue_id": "VA-REST-853", "kind": "audited"}
+{"kind": "social", "value": "sheet instagram instagram.com/lightspeedhq is the website vendor (Lightspeed), not the club; field should be cleared", "source_url": "https://www.penderbrookgolfclub.com", "pipeline_had": true, "cause_guess": "social picker took a vendor/platform Instagram from the site header; vendor handles (lightspeedhq etc.) need a blocklist", "on_venue_site": true, "how": "other", "venue_id": "DC-REST-2220"}
+{"venue_id": "VA-REST-2880", "kind": "audited"}
+{"venue_id": "DC-REST-669", "kind": "audited"}
+{"kind": "email", "value": "dot@risdc.com", "source_url": "https://www.ramw.org/articles/blog/ris-ris-lacoste-offer-2009-anniversary-lunch-menu-honoring-original-2009-opening-and", "pipeline_had": false, "cause_guess": "Only in an off-site press release (RAMW). The name is only in the metadata of the venue's PDF. The pipeline skipped Google because the venue already had contacts.", "on_venue_site": false, "how": "press", "venue_id": "DC-REST-648"}
+{"venue_id": "MD-REST-3170", "kind": "audited"}
+{"venue_id": "MD-REST-935", "kind": "audited"}
+{"kind": "contact_form", "value": "https://www.marriott.com/meetings-events/rfp/event-profile.mi?marshaCode=waska", "source_url": "https://www.marriott.com/en-us/hotels/waska-the-satire-autograph-collection/events/", "pipeline_had": false, "cause_guess": "crawl visited only the dining page and its events link; the property events page with the RFP form was not read", "on_venue_site": true, "how": "third_party_form", "venue_id": "VA-REST-2926"}
+{"kind": "contact", "value": "Christian Puccio, Owner & Founder (no email)", "source_url": "https://www.oakandemberr.com/visit", "pipeline_had": false, "cause_guess": "crawl visited only home; /visit (listed in sitemap.xml) holds the team bios and private-events info", "on_venue_site": true, "how": "plain_text", "venue_id": "VA-REST-1744"}
+{"venue_id": "MD-REST-3337", "kind": "audited"}
+{"venue_id": "MD-REST-1087", "kind": "audited"}
+{"venue_id": "VA-REST-833", "kind": "audited"}
+{"venue_id": "VA-REST-1697", "kind": "audited"}
+{"venue_id": "XX-REST-163", "kind": "audited"}
+{"kind": "social", "value": "https://www.facebook.com/EatAtBarrington/", "source_url": "https://eatatbarrington.com/events/", "pipeline_had": true, "cause_guess": "postcheck found the venue-site Facebook link but rejected it as social_not_saved:no_venue_evidence even though it is linked from the venue's own Events page", "on_venue_site": true, "how": "plain_text", "venue_id": "MD-REST-3192"}
+{"kind": "contact", "value": "Chad Wells, Executive Chef", "source_url": "https://eatatbarrington.com/about/", "pipeline_had": false, "cause_guess": "name+title on About page not extracted as a person (people=0)", "on_venue_site": true, "how": "plain_text", "venue_id": "MD-REST-3192"}
+{"venue_id": "VA-REST-1187", "kind": "audited"}
+{"venue_id": "VA-REST-2876", "kind": "audited"}
+{"kind": "contact", "value": "names 'Cheftom Forgerestaurantgroup' / 'Mark Forgerestaurantgroup' invented from gmail local parts (cheftom.forgerestaurantgroup@ / mark.forgerestaurantgroup@)", "source_url": "https://forgesoutherncomfort.com/events", "pipeline_had": true, "cause_guess": "name builder treats any dotted local part as first.last; should require the parts to look like a person's name and not contain the venue/brand word", "on_venue_site": true, "how": "other", "venue_id": "MD-REST-1751"}
+{"venue_id": "MD-COUN-1329", "kind": "audited"}
+{"venue_id": "MD-REST-342", "kind": "audited"}
+{"venue_id": "DC-REST-2826", "kind": "audited"}
+{"venue_id": "DC-REST-2277", "kind": "audited"}
+{"kind": "email", "value": "oegevents@ebbitt.com", "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/OTWxBNXBQxUotAGCrwRn_OEG%20Private%20Event%20Packet.January%202026.pdf", "pipeline_had": true, "cause_guess": "PDF text extraction glued the email to the next token ('oegevents@ebbitt.com4 | Old Ebbitt Grill'), so it was rejected as page_text_glued_to_address instead of trimming at the TLD", "on_venue_site": true, "how": "pdf", "venue_id": "DC-REST-640"}
+{"kind": "contact", "value": "Kelsey Willis, Senior Events Manager (+ events team names)", "source_url": "https://images.getbento.com/accounts/4f721459e8523c21e688af1b8799a62f/media/g2ymvW4zRtKXHm30Fvsp_OEG%20Private%20Event%20Packet.2025.pdf", "pipeline_had": false, "cause_guess": "Older 2025 event packet PDF on the venue's BentoBox CDN not crawled; names listed as 'Kelsey Willis & Benjamin Bogardus / Senior Events Manager' (two names joined with &, shared title on the next line) are not parsed by the people extractor", "on_venue_site": true, "how": "pdf", "venue_id": "DC-REST-640"}
+{"venue_id": "XX-REST-065", "kind": "audited"}

@@ -59,9 +59,14 @@
     "outcome": "could not start: paused by Alex (.burn_pause) before plan batch 1/4",
     "started": "11:57",
     "ended": "11:57"
+   },
+   {
+    "run_id": "run-20261113-1039",
+    "outcome": "running",
+    "started": "10:39"
    }
   ],
-  "note": "Outreach paused by Alex (.burn_pause); it picks up where it stopped."
+  "note": "Outreach running again"
  },
  "history": [
   {
@@ -162,5 +167,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-12T11:57:38-05:00"
+ "updated_at": "2026-11-13T10:39:00-05:00"
 }

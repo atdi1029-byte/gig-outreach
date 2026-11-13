@@ -1,10 +1,10 @@
 {
  "alert": {
-  "kind": "apollo",
-  "level": "stop",
-  "title": "Outreach finished: apollo ran out",
-  "detail": "Apollo has 0 credits left (the floor is 1). The 24/7 runs have stopped for good and night runs stay off (.night_off). Every contact found is in the app.",
-  "since": "2026-11-13T11:27:19-05:00"
+  "kind": "error",
+  "level": "warn",
+  "title": "A night code fix was undone",
+  "detail": "The scraper change from last night broke a check, so it was reverted. Nothing else changed.",
+  "since": "2026-11-13T12:46:17-05:00"
  },
  "night": {
   "date": "2026-11-11",
@@ -184,5 +184,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-13T11:42:28-05:00"
+ "updated_at": "2026-11-13T12:46:17-05:00"
 }

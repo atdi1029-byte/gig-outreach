@@ -1,0 +1,67 @@
+{
+ "run_id": "run-20261111-1108 run-20261111-1336 run-20261111-2142 run-20261112-0007 run-20261112-0220 run-20261113-1039",
+ "venues_researched": 0,
+ "venues_with_finds": 0,
+ "contacts_found": 0,
+ "misses": 99,
+ "fixes": [
+  {
+   "commit": "b878540",
+   "what": "owners named in a sentence are read as people: 'Owner – Mark Svrcek' (Antietam Overlook Farm), 'Owned and operated by Ben, Jake and Amy Lefenfeld' (La Cuchara), 'Winery Owners P-J and John Lawrence' (Three Creeks), plus 'Sales Lead' and 'Director, Community Operations' on staff cards (Above ALX); an About page called /us, /story or /visit counts"
+  },
+  {
+   "commit": "b878540",
+   "what": "staff card lists (name, then job): each job now stays with the name above it. Before, everyone after the first person got the previous person's job (Old Ebbitt's chef came out as General Manager, River Creek's clubhouse manager as General Manager), which also hid who the real GM or director is"
+  },
+  {
+   "commit": "b878540",
+   "what": "a function inbox with no name beside it goes to the owner who is also General Manager, or to the first-named of a family that owns the place together (events@lacucharabaltimore.com = Ben Lefenfeld); reservations@ of a small owner-run inn goes to its owner (reservations@antietamoverlook.com = Mark Svrcek); the venue's own free-mail box takes the owner's name (3creekswinery@gmail.com = P-J Lawrence). Two unrelated owners still get no guess"
+  },
+  {
+   "commit": "b878540",
+   "what": "a mailto link that shows an envelope icon or the word Email is read with the name on its line or the staff card above it; a short first name fits its mailbox, so beth@guilfordassociation.org keeps Elizabeth Nguyen at the save step (it was saved with no name)"
+  },
+  {
+   "commit": "b878540",
+   "what": "oegevents@ebbitt.com (the venue's initials before the job) is no longer thrown away as page text glued to events@; event PDFs on BentoBox's file server count as the venue's own; events@ebbitt.com is paired with the General Manager instead of 'Force Majeure' from the contract PDF"
+  },
+  {
+   "commit": "b878540",
+   "what": "junk names: 'Horizon Ln', 'Force Majeure' and department names ('Byzantine Studies') are not people; mark.forgerestaurantgroup@gmail.com is no longer saved as 'Mark Forgerestaurantgroup' (Forge)"
+  },
+  {
+   "commit": "b878540",
+   "what": "a website builder's or booking system's own Instagram/Facebook account in a site's header is never the venue's (instagram.com/lightspeedhq on Penderbrook Golf Club)"
+  },
+  {
+   "commit": "2b8f8b2",
+   "what": "taste: 'yacht yard' joins the boating-business words, so Hartge Yacht Yard no longer scores as a yacht club"
+  }
+ ],
+ "reverted": [],
+ "taste_reviewed": 3,
+ "recall": {
+  "baseline": "night-before-b0af936 (committed code, 87 venues) + night-new7-before (the 7 new venues on committed code)",
+  "after": "night-after-b0af936 (94 venues); night-final-check re-ran 9 venues on the committed tree with the same results",
+  "chrome": "194/196 -> 206/208",
+  "curl": "187/196 -> 199/208",
+  "sd": "180/196 -> 190/208",
+  "names_on_staff_emails_chrome": "34/40 -> 39/45",
+  "names_on_staff_emails_curl": "30/40 -> 35/45",
+  "lost": 0,
+  "benchmark_added": "7 venues, 12 items (Antietam Overlook Farm, Barrington Tap & Table, La Cuchara, Three Creeks Winery, Above ALX Community, Guilford Association, Old Ebbitt Grill)",
+  "other_checks": "site_discovery_tests.sh, contact_rules_tests.py (31) and check_heredocs pass with the burn's CONTACT_SAVE_ALL / NIGHT_DELETE_FLAGGED unset; with them set, 7 older gate tests fail on the committed code too. Old and new people extraction were compared over all 5,606 stored pages: 2 people lost (both had a wrong job before), no new junk names",
+  "not_run_live": "replay and unit tests only; the burn has ended (Apollo out), so no live run has used these rules yet. The save-step changes (short first names, the venue's free-mail box) are covered by unit tests only: the benchmark stubs the save step"
+ },
+ "not_fixed": [
+  "the sheet has the wrong or a dead website, so the right site was never read: Saint Luke (musicinmclean.org is dead, the parish site is saintlukemclean.org), Vera's (reopened as verascrabhouse.com), Bourbon Steak (own site bourbonsteakdc.com behind the fourseasons.com page), The Alexandrian (thealexandrian.com behind the marriott.com page), Four Seasons Baltimore's press subdomain. Data to correct, not scraper bugs",
+  "operator or sibling-domain addresses the venue's own page prints are still rejected as off-domain: dearcharles@studyhotels.com (Dear Charles), rfreiberg@eatmhg.com (TRIO), kelsey@1840scarrolltoninn.com on 1840splaza.com, the music director's college address at St. Francis. No safe general rule yet",
+  "names with no job beside them: Oak & Ember's Christian Puccio, Bia Kitchen's O'Connors, 'Christos and Denise Papaloizou Welcome You!', Overhills' Julia (surname only in an image label), Terra Nebulo's Cheryl (surname only in page data), Waverly Mansion's staff (first and last names on separate lines), Bowie golf's GM (not in the page's static HTML)",
+  "Tavira (a single-page app): the address is only inside its script bundle and the owner's name only appears after rendering; the new sentence rule is in the static crawl, the Chrome scrape's own people reader was not changed",
+  "St. Francis clergy cards (a tenure line sits between the name and the Email link, names carry 'The Rev.'), Amadeus director@ (two people titled Artistic and Executive Director on the page), Q by Peter Chang (lydia@ is split across link fragments): not attempted",
+  "a second address inside a mailto's ?cc= (rentals@ishdc.org), two names sharing one job line in a PDF ('Kelsey Willis & Benjamin Bogardus / Senior Events Manager'), the Bazaar event-guide PDF that was never fetched",
+  "socials and forms: the fsbaltimore handle, facebook.com/share links, the property's own footer links on Marriott pages, postcheck rejecting a Facebook link from the venue's own Events page (Barrington), the armymwr.com and Marriott RFP forms. The benchmark still has no social items",
+  "jobs@bandcbistro.com is where B&C Bistro tells performers to write, but jobs@ is hard-rejected: a policy call for Alex, not changed"
+ ],
+ "note": "Seven scraper fixes from the last six rounds are committed with no benchmark losses (replay only, nothing has run live since the burn ended): owners named in sentences are now read and paired with the events or reservations inbox, staff lists no longer shift everyone's job down by one person, and icon-only email links keep their names; one judgment call to check is that an events@ inbox at a family-owned place now takes the first-named owner (La Cuchara got Ben Lefenfeld, while the audit says Jake is the GM); 3 taste votes reviewed."
+}

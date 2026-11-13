@@ -1,0 +1,318 @@
+{
+ "run_id": "run-20261113-1039",
+ "dry_run": false,
+ "at": "2026-11-13T11:42:28-05:00",
+ "totals": {
+  "saved": 2,
+  "venues_rescued": 2,
+  "socials": 1,
+  "rejected": 2,
+  "errors": 0,
+  "flagged": 0,
+  "deleted": 0
+ },
+ "zerobounce_out": "",
+ "venues": [
+  {
+   "venue_id": "VA-REST-2879",
+   "name": "Taverna Cretekou",
+   "contacts": [
+    {
+     "email": "taverna.cretekou@gmail.com",
+     "name": "Christos Papaloizou",
+     "source_url": "https://visitalexandria.com/listings/taverna-cretekou-2/",
+     "outcome": "rejected:freemail_unlinked"
+    },
+    {
+     "email": "",
+     "name": "Denise Papaloizou",
+     "source_url": "https://tavernacretekou.com/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-2709",
+   "name": "La Plaza",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Hector Flora",
+     "source_url": "https://washingtonian.com/2024/08/30/standout-dc-mexican-restaurant-chicatana-is-expanding-in-columbia-heights/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Marcelino Zamudio",
+     "source_url": "https://washingtonian.com/2024/08/30/standout-dc-mexican-restaurant-chicatana-is-expanding-in-columbia-heights/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jos\u00e9 Luis Coronel",
+     "source_url": "https://washingtonian.com/2024/08/30/standout-dc-mexican-restaurant-chicatana-is-expanding-in-columbia-heights/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jose Abrego",
+     "source_url": "https://washingtonian.com/2024/08/30/standout-dc-mexican-restaurant-chicatana-is-expanding-in-columbia-heights/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Antonio Mendez",
+     "source_url": "https://washingtonian.com/2024/08/30/standout-dc-mexican-restaurant-chicatana-is-expanding-in-columbia-heights/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [
+    {
+     "field": "instagram",
+     "value": "https://www.instagram.com/la_plaza.official/",
+     "outcome": "saved"
+    }
+   ],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2942",
+   "name": "The Wharf Alexandria",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Cyrus Coleman",
+     "source_url": "https://visitalexandria.com/stories/the-wharf-fine-seafood/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Pedro Rivas",
+     "source_url": "https://opentable.fr/the-wharf",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "DC-REST-651",
+   "name": "L'Annexe",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Fady Saba",
+     "source_url": "https://georgetowner.com/articles/2019/10/10/lannexe-new-neighborhood-hot-spot/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Isabelle Noblanc",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2958",
+   "name": "Copperwood Tavern Shirlington",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Viswanath Vasireddy",
+     "source_url": "https://www.arlnow.com/2024/01/12/new-owner-takes-over-copperwood-tavern-in-shirlington/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Sydney Bell",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-363",
+   "name": "Sunset Creek at Vera's",
+   "contacts": [
+    {
+     "email": "veraswsbeachclub@gmail.com",
+     "name": "Lisa DelRicco",
+     "source_url": "https://www.verascrabhouse.com/contact-8",
+     "title": "Owner / General Manager, Vera's Crab House (this venue's 2026 name; the address ",
+     "verified": "valid",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Stephen Stanley",
+     "source_url": "https://thebaynet.com/veras-crab-house-reopening-lusby/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "VA-REST-2931",
+   "name": "Havana 151 The Loft",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Jason Yates",
+     "source_url": "https://lenaswoodfire.com/story",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "MD-REST-3367",
+   "name": "Bread & Circuses Bistro",
+   "contacts": [
+    {
+     "email": "jobs@bandcbistro.com",
+     "name": "Steve Fox",
+     "source_url": "https://bandcbistro.com/contact/",
+     "outcome": "rejected:hard_reject:jobs"
+    },
+    {
+     "email": "",
+     "name": "Hadley Heron",
+     "source_url": "",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-1669",
+   "name": "King's Ransom",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Teddy Kim",
+     "source_url": "https://washingtonian.com/2020/02/18/a-sushi-hand-roll-bar-and-japanese-cocktail-spot-open-in-alexandria/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ian McGrath",
+     "source_url": "https://washingtonian.com/2020/02/18/a-sushi-hand-roll-bar-and-japanese-cocktail-spot-open-in-alexandria/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Rob Csonka",
+     "source_url": "https://www.washingtonian.com/2024/12/17/cocktail-bar-ugly-duckling-opens-in-shaw",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Jon Schott",
+     "source_url": "https://districtfray.com/articles/kings-ransom-the-handover-first-anniversary/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Alex Taylor",
+     "source_url": "https://districtfray.com/articles/kings-ransom-the-handover-first-anniversary/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Cameron Cummings",
+     "source_url": "https://www.washingtonian.com/2024/12/17/cocktail-bar-ugly-duckling-opens-in-shaw",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-058",
+   "name": "Milk and Honey",
+   "contacts": [
+    {
+     "email": "",
+     "name": "Alex Berentzen",
+     "source_url": "https://www.alxnow.com/2025/07/17/milk-honey-opens-in-old-town/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Zandrique Harrold",
+     "source_url": "https://www.fsrmagazine.com/industry-news/thompson-hospitality-opens-milk-honey-cafe-colonial-heights/",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Ginger Dockery",
+     "source_url": "https://prospeo.io/c/thompson-hospitality",
+     "outcome": "not_saved:no_email"
+    },
+    {
+     "email": "",
+     "name": "Warren Thompson",
+     "source_url": "https://www.thompsonhospitality.com/our-story-senior-leadership/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  },
+  {
+   "venue_id": "VA-REST-2923",
+   "name": "Lady Camellia Pastry and Tearoom",
+   "contacts": [
+    {
+     "email": "event@ladycamellia.com",
+     "name": "Deborah Kim",
+     "source_url": "https://www.ladycamellia.com/private-event",
+     "title": "Owner (named by ALXnow, May 2022; event@ is the private-event form's inbox, her ",
+     "verified": "role",
+     "outcome": "saved"
+    },
+    {
+     "email": "",
+     "name": "Han Kim",
+     "source_url": "https://wtop.com/news/2014/03/lady-camellia-offers-comfort-and-ease-with-afternoon-tea",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": [],
+   "status": "pipelined"
+  },
+  {
+   "venue_id": "MD-REST-3345",
+   "name": "Isabella's Taverna & Tapas Bar",
+   "contacts": [
+    {
+     "email": "yasemin@kiosmgmt.com",
+     "name": "Yasemin Pistar",
+     "source_url": "https://isabellas-tavern.com/private-events/",
+     "outcome": "known"
+    },
+    {
+     "email": "",
+     "name": "Nezih Pistar",
+     "source_url": "https://www.storereporter.com/ayse-meze-lounge-tapas-restaurant-bar-opens-king-farm-rockville/",
+     "outcome": "not_saved:no_email"
+    }
+   ],
+   "socials": [],
+   "flagged": []
+  }
+ ],
+ "flagged_backup": ""
+}

@@ -1,0 +1,1142 @@
+{
+ "run_id": "run-20261113-1039",
+ "venues": [
+  {
+   "venue_id": "VA-REST-2879",
+   "name": "Taverna Cretekou",
+   "website": "https://tavernacretekou.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/pages/Taverna-Cretekou/111764195527359",
+   "instagram": "https://www.instagram.com/tavernacretekou/",
+   "contact_form": "",
+   "notes": "Upscale checked 2026-11-11: 3 (Long-running sit-down Greek restaurant with garden patio) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-2879 web ok via=chrome pages=3 visited=home form=no chrome_pages=3 curl_pages=0 static_pages=1 pdfs=2 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=0 blocked_pages=0 missing=contact,about,events,team static_crawl=throttled",
+    "[STEP] VA-REST-2879 social ok fb=found ig=found fb_search=website ig_search=ok:found_of_2 fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-2879 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=0 org=Taverna,_INC gate=name+domain people=1 relevant=0 skipped_titles=0 over_cap=0",
+    "[STEP] VA-REST-2879 linkedin empty pages=2 results=16 rejected=16 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-REST-2879 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] VA-REST-2879 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-2879 postcheck empty web=empty via=pipeline_crawl crawl=ok crawl_pages=1 pages=1 pages_cut=0 visited=home emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=1 apollo_via=domain linkedin=empty li_results=10 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "taverna.cretekou@gmail.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "taverna.cretekou@gmail.com",
+     "source": "social",
+     "disposition": "reject:freemail_unlinked"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:sheet_has_other"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-2879.json",
+     "base": "https://tavernacretekou.com/",
+     "pages_fetched": 9,
+     "pages_ok": 1,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-2879.json",
+     "base": "https://tavernacretekou.com/",
+     "pages_fetched": 9,
+     "pages_ok": 1,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-2709",
+   "name": "La Plaza",
+   "website": "https://www.laplaza14st.com/",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "",
+   "instagram": "",
+   "contact_form": "https://www.laplaza14st.com/contact",
+   "notes": "Spanish restaurant on 14th Street DC | Website checked 2026-11-11 | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-2709 web ok via=chrome pages=14 visited=home,contact,about,events,team form=yes chrome_pages=14 curl_pages=0 static_pages=20 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=none",
+    "[STEP] DC-REST-2709 social empty fb=none ig=none fb_search=empty:rejected_3 ig_search=empty:rejected_2 fb_pages=0 ig_pages=0 snippets=0 emails=0 saved=0 deferred=0",
+    "[STEP] DC-REST-2709 apollo empty reason=no_relevant_people domain_search=ok domain_results=1 name_search=ok name_results=5 org=BAR_LA_PLAZA_SL gate=name+domain people=4 relevant=0 skipped_titles=0 over_cap=0",
+    "[STEP] DC-REST-2709 linkedin empty pages=3 results=30 rejected=29 employees=1 relevant=1 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-2709 google empty results=5 emails=0 site=other_domain ig=none",
+    "[STEP] DC-REST-2709 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-2709 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=20 pages=19 pages_cut=0 visited=home,contact,about,events emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=1 apollo_via=domain linkedin=empty li_results=10 li_relevant=1 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "contact@laplaza14st.com",
+     "name": "Site Links",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "contact@laplaza14st.com",
+     "name": "Site Links",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:tracy melissa serrano",
+     "name": "Tracy Melissa Serrano",
+     "title": "Interim Chief Executive Officer",
+     "source": "linkedin",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "contact@laplaza14st.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.laplaza14st.com/"
+    },
+    {
+     "kind": "email",
+     "email": "contact@laplaza14st.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.laplaza14st.com/"
+    },
+    {
+     "kind": "contact",
+     "name": "Tracy Melissa Serrano",
+     "title": "Interim Chief Executive Officer, LA Plaza de Cultura y Artes",
+     "source": "postcheck_linkedin",
+     "disposition": "not_saved:location_unverified"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-2709.json",
+     "base": "https://www.laplaza14st.com/",
+     "pages_fetched": 30,
+     "pages_ok": 20,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.laplaza14st.com/contact/",
+       "url": "https://www.laplaza14st.com/contact/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.laplaza14st.com",
+       "url": "https://www.laplaza14st.com"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.laplaza14st.com/",
+       "url": "https://www.laplaza14st.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.laplaza14st.com/author/laplazas/",
+       "url": "https://www.laplaza14st.com/author/laplazas/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.laplaza14st.com/category/dish-degustation/",
+       "url": "https://www.laplaza14st.com/category/dish-degustation/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-2709.json",
+     "base": "https://www.laplaza14st.com/",
+     "pages_fetched": 30,
+     "pages_ok": 20,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.laplaza14st.com/contact/",
+       "url": "https://www.laplaza14st.com/contact/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.laplaza14st.com",
+       "url": "https://www.laplaza14st.com"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.laplaza14st.com/",
+       "url": "https://www.laplaza14st.com/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.laplaza14st.com/author/laplazas/",
+       "url": "https://www.laplaza14st.com/author/laplazas/"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.laplaza14st.com/category/dish-degustation/",
+       "url": "https://www.laplaza14st.com/category/dish-degustation/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2942",
+   "name": "The Wharf Alexandria",
+   "website": "https://www.wharfrestaurant.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/TheWharfOldTown",
+   "instagram": "https://www.instagram.com/thewharfoldtown",
+   "contact_form": "https://www.wharfrestaurant.com/contact",
+   "notes": "Upscale checked 2026-11-11: 3 (Classic Old Town seafood restaurant (since 1971) in an 18th-century building) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-2942 web ok via=chrome pages=17 visited=home,contact,about,events form=yes chrome_pages=17 curl_pages=0 static_pages=27 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] VA-REST-2942 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-2942 apollo empty reason=org_mismatch rejected_orgs=1 domain_search=ok domain_results=1 name_search=ok name_results=0",
+    "[STEP] VA-REST-2942 linkedin empty pages=1 results=1 rejected=1 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-REST-2942 google empty results=4 emails=0 site=same ig=known",
+    "[STEP] VA-REST-2942 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-2942 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=27 pages=27 pages_cut=2 visited=home,contact,about,events emails=2 saved=0 enriched=0 pending=0 people=1 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=1 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@dolcevitaitaliankitchenandwinebar.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "info@dolcevitaitaliankitchenandwinebar.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@wharfrestaurant.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@wharfrestaurant.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@wharfrestaurant.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@wharfrestaurant.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "info@dolcevitaitaliankitchenandwinebar.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.wharfrestaurant.com/giftcardpromo"
+    },
+    {
+     "kind": "email",
+     "email": "info@dolcevitaitaliankitchenandwinebar.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.wharfrestaurant.com/giftcardpromo"
+    },
+    {
+     "kind": "email",
+     "email": "info@wharfrestaurant.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://www.wharfrestaurant.com/"
+    },
+    {
+     "kind": "email",
+     "email": "info@wharfrestaurant.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://www.wharfrestaurant.com/"
+    },
+    {
+     "kind": "contact",
+     "name": "Weekly Specials",
+     "title": "EVENTS",
+     "source": "postcheck_website",
+     "disposition": "website_person_no_email",
+     "evidence_url": "https://www.wharfrestaurant.com/contact"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:facebook",
+     "disposition": "social_not_saved:no_venue_evidence"
+    },
+    {
+     "kind": "social",
+     "source": "postcheck_website:instagram",
+     "disposition": "social_not_saved:no_venue_evidence"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-2942.json",
+     "base": "https://www.wharfrestaurant.com/",
+     "pages_fetched": 35,
+     "pages_ok": 27,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.wharfrestaurant.com/contact",
+       "url": "https://www.wharfrestaurant.com/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.wharfrestaurant.com/events",
+       "url": "https://www.wharfrestaurant.com/events"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.wharfrestaurant.com/feedback",
+       "url": "https://www.wharfrestaurant.com/feedback"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-2942.json",
+     "base": "https://www.wharfrestaurant.com/",
+     "pages_fetched": 35,
+     "pages_ok": 27,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://www.wharfrestaurant.com/contact",
+       "url": "https://www.wharfrestaurant.com/contact"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.wharfrestaurant.com/events",
+       "url": "https://www.wharfrestaurant.com/events"
+      },
+      {
+       "kind": "html_form",
+       "page": "https://www.wharfrestaurant.com/feedback",
+       "url": "https://www.wharfrestaurant.com/feedback"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "DC-REST-651",
+   "name": "L'Annexe",
+   "website": "https://www.lannexe-bar.com",
+   "city": "Washington",
+   "state": "DC",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/lannexedc/",
+   "instagram": "https://www.instagram.com/lannexedcbar/",
+   "contact_form": "https://www.lannexe-bar.com/contact",
+   "notes": "Google Maps ''. 4.3* (289 reviews). Pre-score: 40. Taste query: historic fine dining restaurant Georgetown DC | Website checked 2026-11-11 | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] DC-REST-651 web ok via=chrome pages=6 visited=home,contact,about form=yes chrome_pages=6 curl_pages=0 static_pages=7 pdfs=2 emails=0 saved=0 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=events,team",
+    "[STEP] DC-REST-651 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] DC-REST-651 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=5 org=L'Annexe gate=name+domain people=1 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1",
+    "[STEP] DC-REST-651 linkedin empty pages=3 results=29 rejected=29 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] DC-REST-651 google empty results=4 emails=0 site=same ig=known",
+    "[STEP] DC-REST-651 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] DC-REST-651 postcheck empty web=empty via=pipeline_crawl crawl=ok crawl_pages=7 pages=3 pages_cut=0 visited=home,contact,about emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=9 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@lannexe-bar.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@lannexe-bar.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:isabelle noblanc",
+     "name": "Isabelle Noblanc",
+     "title": "Co-founder & Owner",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/DC-REST-651.json",
+     "base": "https://www.lannexe-bar.com/",
+     "pages_fetched": 15,
+     "pages_ok": 7,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.lannexe-bar.com/contact",
+       "url": "https://www.lannexe-bar.com/contact"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/DC-REST-651.json",
+     "base": "https://www.lannexe-bar.com/",
+     "pages_fetched": 15,
+     "pages_ok": 7,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "form_widget",
+       "page": "https://www.lannexe-bar.com/contact",
+       "url": "https://www.lannexe-bar.com/contact"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2958",
+   "name": "Copperwood Tavern Shirlington",
+   "website": "https://copperwoodtavern.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/CopperwoodTavern",
+   "instagram": "https://www.instagram.com/copperwoodtavern",
+   "contact_form": "https://copperwoodtavern.com/page/contact",
+   "notes": "Upscale checked 2026-11-11: 3 (Farm-to-table American tavern, mid-range) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-2958 web ok via=chrome pages=26 visited=home,contact,events form=yes chrome_pages=26 curl_pages=0 static_pages=0 pdfs=1 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team static_crawl=blocked",
+    "[STEP] VA-REST-2958 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-2958 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=0 org=Copperwood_Tavern gate=name+domain people=6 relevant=1 skipped_titles=1 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1",
+    "[STEP] VA-REST-2958 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] VA-REST-2958 google empty results=4 emails=0 site=same ig=known",
+    "[STEP] VA-REST-2958 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-2958 postcheck failed web=failed via=crawl crawl=failed:no_pages crawl_pages=0 pages=0 pages_cut=0 visited=none emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=8 apollo_via=domain linkedin=blocked:no_results_unverified li_results=0 li_relevant=0 enrich=skipped:no_pending reason=web_failed"
+   ],
+   "candidates": [
+    {
+     "email": "connect@copperwoodtavern.com",
+     "name": "Copperwood Tavern",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "connect@copperwoodtavern.com",
+     "source": "website",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "support@owner.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "support@owner.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "connect@copperwoodtavern.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "connect@copperwoodtavern.com",
+     "source": "social",
+     "disposition": "verification:do_not_mail"
+    },
+    {
+     "email": "person:sydney bell",
+     "name": "Sydney Bell",
+     "title": "Restaurant Manager",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-2958.json",
+     "base": "https://copperwoodtavern.com/",
+     "pages_fetched": 4,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-2958.json",
+     "base": "https://copperwoodtavern.com/",
+     "pages_fetched": 4,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-363",
+   "name": "Sunset Creek at Vera's",
+   "website": "https://sunsetcreekatveras.com/",
+   "city": "Lusby",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/p/Sunset-Creek-at-Veras-61558736211693/",
+   "instagram": "",
+   "contact_form": "https://sunsetcreekatveras.com/",
+   "notes": "Waterfront beach bar/restaurant on Chesapeake Bay. Event venue for weddings, corporate events. Live music. White sand beach setting. | Upscale checked 2026-11-11: 3 (Waterfront seafood/steak restaurant at old Vera's White Sands; some listings say) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-363 web ok via=chrome pages=1 visited=home form=yes chrome_pages=1 curl_pages=0 static_pages=1 pdfs=0 emails=1 saved=0 role=0 unverified=0 deferred=0 rejected=1 candidates=0 known=0 errors=0 people=0 pending=0 fb=0 ig=0 blocked_pages=0 missing=contact,about,events,team",
+    "[STEP] MD-REST-363 social ok fb=found ig=none fb_search=ok:found_of_2 ig_search=empty:none fb_pages=3 ig_pages=0 snippets=1 emails=0 saved=0 deferred=0",
+    "[STEP] MD-REST-363 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] MD-REST-363 linkedin empty pages=1 results=1 rejected=1 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-363 google empty results=5 emails=0 site=same ig=none",
+    "[STEP] MD-REST-363 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-363 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=1 pages=1 pages_cut=0 visited=home emails=1 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=1 role_candidates=0 unsaved_valid=0 save_errors=0 form=kept socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=empty li_results=1 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "hi@typemade.mx",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "hi@typemade.mx",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "kind": "email",
+     "email": "hi@typemade.mx",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://sunsetcreekatveras.com/"
+    },
+    {
+     "kind": "email",
+     "email": "hi@typemade.mx",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://sunsetcreekatveras.com/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-363.json",
+     "base": "https://sunsetcreekatveras.com/",
+     "pages_fetched": 9,
+     "pages_ok": 1,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://sunsetcreekatveras.com/",
+       "url": "https://sunsetcreekatveras.com/"
+      }
+     ],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-363.json",
+     "base": "https://sunsetcreekatveras.com/",
+     "pages_fetched": 9,
+     "pages_ok": 1,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "html_form",
+       "page": "https://sunsetcreekatveras.com/",
+       "url": "https://sunsetcreekatveras.com/"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2931",
+   "name": "Havana 151 The Loft",
+   "website": "https://theloftatlenas.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/lenaswoodfire",
+   "instagram": "https://www.instagram.com/lenaswoodfire",
+   "contact_form": "https://bornhospitality.tripleseat.com/party_request/14787",
+   "notes": "Website checked 2026-11-11 | Upscale checked 2026-11-11: 3 (Themed Cuban supper-club loft above Lena's with live music; rotating concept) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-2931 web ok via=chrome pages=21 visited=home,contact,events form=yes chrome_pages=21 curl_pages=0 static_pages=0 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team static_crawl=blocked",
+    "[STEP] VA-REST-2931 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-2931 apollo empty reason=no_org domain_search=ok domain_results=0 name_search=ok name_results=0",
+    "[STEP] VA-REST-2931 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] VA-REST-2931 google empty results=3 emails=0 site=none ig=known",
+    "[STEP] VA-REST-2931 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] VA-REST-2931 postcheck failed web=failed via=crawl crawl=failed:no_pages crawl_pages=0 pages=0 pages_cut=0 visited=none emails=0 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=0 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=0 apollo_via=name linkedin=blocked:no_results_unverified li_results=0 li_relevant=0 enrich=skipped:no_pending reason=web_failed"
+   ],
+   "candidates": [
+    {
+     "email": "info@lenaswoodfire.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@lenaswoodfire.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "support@owner.com",
+     "source": "website",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "support@owner.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "info@lenaswoodfire.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@lenaswoodfire.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-2931.json",
+     "base": "https://theloftatlenas.com/",
+     "pages_fetched": 4,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/VA-REST-2931.json",
+     "base": "https://theloftatlenas.com/",
+     "pages_fetched": 4,
+     "pages_ok": 0,
+     "blocked": "http_403",
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3367",
+   "name": "Bread & Circuses Bistro",
+   "website": "https://bandcbistro.com/",
+   "city": "Towson",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/Bread-and-Circuses-Bistro-and-Bar-46247181055/",
+   "instagram": "https://www.instagram.com/breadandcircuses_towson/",
+   "contact_form": "https://bandcbistro.com/contact",
+   "notes": "From the towson-2026-11-07 sweep write-up (added 2026-11-07: it never reached the sheet). | Website checked 2026-11-07 (page names the venue) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] MD-REST-3367 web ok via=chrome pages=4 visited=home,contact,events form=yes chrome_pages=4 curl_pages=0 static_pages=6 pdfs=0 emails=2 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=0 known=0 errors=0 people=1 pending=0 fb=1 ig=0 blocked_pages=0 missing=about,team",
+    "[STEP] MD-REST-3367 social ok fb=found ig=found fb_search=website ig_search=ok:found_of_4 fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-3367 apollo empty domain_search=ok domain_results=1 name_search=ok name_results=2 org=Bread_and_Circuses_Bistro_and_Bar gate=name+domain people=3 relevant=1 skipped_titles=0 over_cap=0 enriched=1 saved=0 pending=0 deferred=0 credits=1",
+    "[STEP] MD-REST-3367 linkedin empty pages=3 results=30 rejected=30 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-3367 google empty results=4 emails=0 site=other_domain ig=known",
+    "[STEP] MD-REST-3367 final empty status=needs_review valid_contacts=0 new=0 deferred=0",
+    "[STEP] MD-REST-3367 postcheck empty web=ok via=pipeline_crawl crawl=ok crawl_pages=6 pages=3 pages_cut=0 visited=home,contact,events emails=2 saved=0 enriched=0 pending=0 people=0 deferred=0 rejected=2 role_candidates=0 unsaved_valid=0 save_errors=0 form=none socials=0 apollo=empty apollo_found=3 apollo_via=domain linkedin=empty li_results=10 li_relevant=0 enrich=skipped:no_pending"
+   ],
+   "candidates": [
+    {
+     "email": "info@bandcbistro.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@bandcbistro.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "jobs@bandcbistro.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "jobs@bandcbistro.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:jobs"
+    },
+    {
+     "email": "person:steve fox",
+     "name": "Steve Fox",
+     "title": "Owner",
+     "source": "website",
+     "disposition": "person_no_email"
+    },
+    {
+     "email": "info@bandcbistro.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "info@bandcbistro.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "person:hadley heron",
+     "name": "Hadley Heron",
+     "title": "Bar Manager/General Manager",
+     "source": "apollo",
+     "disposition": "person_no_email"
+    },
+    {
+     "kind": "email",
+     "email": "info@bandcbistro.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://bandcbistro.com/contact/"
+    },
+    {
+     "kind": "email",
+     "email": "info@bandcbistro.com",
+     "source": "postcheck_website",
+     "disposition": "reject:general_inbox",
+     "evidence_url": "https://bandcbistro.com/contact/"
+    },
+    {
+     "kind": "email",
+     "email": "jobs@bandcbistro.com",
+     "source": "postcheck_website",
+     "disposition": "discovered",
+     "evidence_url": "https://bandcbistro.com/contact/"
+    },
+    {
+     "kind": "email",
+     "email": "jobs@bandcbistro.com",
+     "source": "postcheck_website",
+     "disposition": "reject:hard_reject:jobs",
+     "evidence_url": "https://bandcbistro.com/contact/"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-3367.json",
+     "base": "https://bandcbistro.com/",
+     "pages_fetched": 14,
+     "pages_ok": 6,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    },
+    {
+     "file": "reports/postcheck-web-coverage/MD-REST-3367.json",
+     "base": "https://bandcbistro.com/",
+     "pages_fetched": 14,
+     "pages_ok": 6,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-1669",
+   "name": "King's Ransom",
+   "website": "https://www.kingsransomalx.com",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/Kings-Ransom-103115071271586",
+   "instagram": "https://www.instagram.com/kingsransom.alx",
+   "contact_form": "",
+   "notes": "Google Maps ''. 4.4* (205 reviews). Pre-score: 55. Taste query: ne bar Alexandria VA | repair 2026-09-25: website 'https://4.2K+' cleared (not a real host) | Nov 6 2026 cleanup: city checked | Upscale checked 2026-11-11: 3 (Old Town cocktail bar) | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "name": "Kingsransom Alx",
+     "email": "kingsransom.alx@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "kingsransom728@gmail.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] VA-REST-1669 web ok via=chrome pages=2 visited=home,about form=no chrome_pages=2 curl_pages=0 static_pages=2 pdfs=0 emails=2 saved=2 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=contact,events,team",
+    "[STEP] VA-REST-1669 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-1669 apollo empty reason=org_mismatch rejected_orgs=5 domain_search=ok domain_results=0 name_search=ok name_results=10",
+    "[STEP] VA-REST-1669 linkedin empty pages=3 results=29 rejected=29 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-REST-1669 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] VA-REST-1669 final ok status=pipelined valid_contacts=2 new=2 deferred=0"
+   ],
+   "candidates": [
+    {
+     "email": "kingsransom.alx@gmail.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "kingsransom.alx@gmail.com",
+     "name": "Kingsransom Alx",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "kingsransom728@gmail.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "kingsransom728@gmail.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "kingsransom.alx@gmail.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "kingsransom.alx@gmail.com",
+     "source": "social",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-1669.json",
+     "base": "https://www.kingsransomalx.com/",
+     "pages_fetched": 10,
+     "pages_ok": 2,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-058",
+   "name": "Milk and Honey",
+   "website": "https://www.themilkandhoney.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/milkandhoneycafedmv",
+   "instagram": "https://www.instagram.com/milkandhoney_dmv",
+   "contact_form": "https://themilkandhoney.tripleseat.com/dynamic_party_request/2214",
+   "notes": "Upscale checked 2026-11-11: 3 (Southern brunch-and-cocktails restaurant (small local chain), sit-down mid-range) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-058 web ok via=chrome pages=31 visited=home,contact,about,events form=yes chrome_pages=31 curl_pages=0 static_pages=40 pdfs=3 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=3 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] VA-REST-058 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] VA-REST-058 apollo empty reason=org_mismatch rejected_orgs=5 domain_search=ok domain_results=1 name_search=ok name_results=10",
+    "[STEP] VA-REST-058 linkedin empty pages=3 results=29 rejected=29 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] VA-REST-058 google empty results=3 emails=0 site=same ig=known",
+    "[STEP] VA-REST-058 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+   ],
+   "candidates": [
+    {
+     "email": "giftcards@thompsonrestaurants.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "giftcards@thompsonrestaurants.com",
+     "source": "website",
+     "disposition": "reject:hard_reject:giftcard"
+    },
+    {
+     "email": "hello@themilkandhoney.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "hello@themilkandhoney.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "hello@thompsonhospitality.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "hello@thompsonhospitality.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "hello@themilkandhoney.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "hello@themilkandhoney.com",
+     "source": "social",
+     "disposition": "reject:general_inbox"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-058.json",
+     "base": "https://www.themilkandhoney.com/",
+     "pages_fetched": 49,
+     "pages_ok": 40,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [
+      {
+       "kind": "tripleseat",
+       "page": "https://www.themilkandhoney.com/catering-events",
+       "url": "https://themilkandhoney.tripleseat.com/dynamic_party_request/2214"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.themilkandhoney.com/waldorf",
+       "url": "https://themilkandhoney.tripleseat.com/party_request/43796"
+      },
+      {
+       "kind": "tripleseat",
+       "page": "https://www.themilkandhoney.com/camp-springs",
+       "url": "https://themilkandhoney.tripleseat.com/party_request/44311"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.themilkandhoney.com/contact",
+       "url": "https://www.themilkandhoney.com/contact"
+      },
+      {
+       "kind": "form_widget",
+       "page": "https://www.themilkandhoney.com/events-form",
+       "url": "https://www.themilkandhoney.com/events-form"
+      }
+     ],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "VA-REST-2923",
+   "name": "Lady Camellia Pastry and Tearoom",
+   "website": "https://www.ladycamellia.com/",
+   "city": "Alexandria",
+   "state": "VA",
+   "category": "restaurant",
+   "status": "needs_review",
+   "facebook": "https://www.facebook.com/LadyCamelliaTearoom",
+   "instagram": "https://www.instagram.com/LadyCamelliaTearoom",
+   "contact_form": "https://www.ladycamellia.com/contact-us",
+   "notes": "Upscale checked 2026-11-11: 3 (Elegant little pastry shop and afternoon tearoom in Old Town) | Repair checked 2026-11-11 | PIPELINE: 0 contacts run-20261113-1039",
+   "pipeline_result": "empty",
+   "existing_contacts": [],
+   "pipeline_steps": [
+    "[STEP] VA-REST-2923 web ok via=chrome pages=6 visited=home,contact,about,events form=yes chrome_pages=6 curl_pages=0 static_pages=7 pdfs=0 emails=3 saved=0 role=0 unverified=0 deferred=0 rejected=2 candidates=1 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=team",
+    "[STEP] VA-REST-2923 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=2 emails=0 saved=0 deferred=0",
+    "[STEP] VA-REST-2923 apollo failed reason=http_422 domain_search=error:http_422 domain_results=0 name_search=error:http_422 name_results=0",
+    "[STEP] VA-REST-2923 linkedin failed pages=0 results=0 rejected=0 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0 reason=empty_page1",
+    "[STEP] VA-REST-2923 google empty results=2 emails=0 site=same ig=known",
+    "[STEP] VA-REST-2923 final empty status=needs_review valid_contacts=0 new=0 deferred=0"
+   ],
+   "candidates": [
+    {
+     "email": "info@ladycamellia.com",
+     "name": "Lady Camellia",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "info@ladycamellia.com",
+     "name": "Lady Camellia",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    },
+    {
+     "email": "event@ladycamellia.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "event@ladycamellia.com",
+     "source": "website",
+     "disposition": "role_no_name"
+    },
+    {
+     "email": "hi@mystore.com",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "hi@mystore.com",
+     "source": "website",
+     "disposition": "reject:general_inbox"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/VA-REST-2923.json",
+     "base": "https://www.ladycamellia.com/",
+     "pages_fetched": 15,
+     "pages_ok": 7,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  },
+  {
+   "venue_id": "MD-REST-3345",
+   "name": "Isabella's Taverna & Tapas Bar",
+   "website": "https://www.isabellas-tavern.com",
+   "city": "Frederick",
+   "state": "MD",
+   "category": "restaurant",
+   "status": "pipelined",
+   "facebook": "https://www.facebook.com/IsabellasFrederick",
+   "instagram": "https://www.instagram.com/isabellasfrederick",
+   "contact_form": "https://isabellas-tavern.com/contact",
+   "notes": "From the frederick-2026-11-06 sweep write-up (added 2026-11-06: it never reached the sheet). | Website checked 2026-11-11 | Repair checked 2026-11-11",
+   "pipeline_result": "ok",
+   "existing_contacts": [
+    {
+     "title": "For event inquiries and booking information, contact",
+     "email": "yasemin@kiosmgmt.com",
+     "verified": "valid",
+     "source": "website"
+    },
+    {
+     "email": "isabellas@kiosmgmt.com",
+     "verified": "valid",
+     "source": "website"
+    }
+   ],
+   "pipeline_steps": [
+    "[STEP] MD-REST-3345 web ok via=chrome pages=5 visited=home,contact,events form=yes chrome_pages=5 curl_pages=0 static_pages=4 pdfs=0 emails=2 saved=2 role=0 unverified=0 deferred=0 rejected=0 candidates=0 known=0 errors=0 people=0 pending=0 fb=1 ig=1 blocked_pages=0 missing=about,team",
+    "[STEP] MD-REST-3345 social ok fb=found ig=found fb_search=website ig_search=website fb_pages=3 ig_pages=1 snippets=1 emails=1 saved=0 deferred=0",
+    "[STEP] MD-REST-3345 apollo failed reason=http_422 domain_search=error:http_422 domain_results=0 name_search=error:http_422 name_results=0",
+    "[STEP] MD-REST-3345 linkedin empty pages=2 results=14 rejected=14 employees=0 relevant=0 saved=0 pending=0 deferred=0 credits=0",
+    "[STEP] MD-REST-3345 google skipped reason=has_contacts results=0 emails=0",
+    "[STEP] MD-REST-3345 final ok status=pipelined valid_contacts=2 new=2 deferred=0"
+   ],
+   "candidates": [
+    {
+     "email": "yasemin@kiosmgmt.com",
+     "title": "For event inquiries and booking information, contact",
+     "source": "website",
+     "disposition": "discovered:venue_site"
+    },
+    {
+     "email": "yasemin@kiosmgmt.com",
+     "title": "For event inquiries and booking information, contact",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "isabellas@kiosmgmt.com",
+     "source": "website",
+     "disposition": "discovered:venue_mailto"
+    },
+    {
+     "email": "isabellas@kiosmgmt.com",
+     "source": "website",
+     "disposition": "saved_valid"
+    },
+    {
+     "email": "isabellas@kiosmgmt.com",
+     "source": "social",
+     "disposition": "discovered:external"
+    },
+    {
+     "email": "isabellas@kiosmgmt.com",
+     "source": "social",
+     "disposition": "already_known"
+    }
+   ],
+   "coverage": [
+    {
+     "file": "reports/web-coverage/MD-REST-3345.json",
+     "base": "https://www.isabellas-tavern.com/",
+     "pages_fetched": 12,
+     "pages_ok": 4,
+     "blocked": false,
+     "high_priority_unvisited": [],
+     "contact_forms": [],
+     "people": []
+    }
+   ]
+  }
+ ]
+}

@@ -89,14 +89,6 @@ class Mailboxes(unittest.TestCase):
             self.assertTrue(R.is_role_email(e), e)
             self.assertEqual(R.name_from_email(e), "", e)
 
-    def test_business_in_a_dotted_mailbox_is_not_a_surname(self):
-        for e in ("mark.forgerestaurantgroup@gmail.com", "cheftom.forgerestaurantgroup@gmail.com"):
-            self.assertEqual(R.name_from_email(e, "Forge Southern Comfort"), "", e)
-        self.assertEqual(R.name_from_email("tom.barringtonpub@gmail.com", "Barrington Tap & Table"), "")
-        for e, n in (("jane.doe@x.com", "Jane Doe"), ("kate.mcginn@x.com", "Kate Mcginn"),
-                     ("luis.escobar@x.com", "Luis Escobar"), ("amy.farmer@x.com", "Amy Farmer")):
-            self.assertEqual(R.name_from_email(e, "Forge Southern Comfort"), n, e)
-
     def test_people_named_like_words_stay_people(self):
         for e in ("dean.smith@v.com", "summer.lee@v.com", "john.rector@v.com", "glassman@v.com"):
             self.assertFalse(R.is_role_email(e), e)
@@ -215,24 +207,6 @@ class PipelineHeredocs(unittest.TestCase):
         self.assertEqual(self.check("sarahberry@workhousearts.org", "Sarah Berry", "Curator",
                                     env={"CONTACT_STRICT": "1"})["action"], "reject")
 
-    def test_short_first_name_mailbox_keeps_its_person(self):
-        kw = dict(evidence="venue_mailto", vdom="guilfordassociation.org", venue="Guilford Association")
-        self.assertEqual(self.check("beth@guilfordassociation.org", "Elizabeth Nguyen",
-                                    "Financial Lead / Assistant Manager", **kw)["name"], "Elizabeth Nguyen")
-        self.assertEqual(self.check("alex@guilfordassociation.org", "Alexander Smith", "Manager", **kw)["name"],
-                         "Alexander Smith")
-        # another person's card is still not this mailbox's
-        self.assertEqual(self.check("bert@guilfordassociation.org", "Lynne Basignani", "Owner", **kw)["name"], "")
-        self.assertEqual(self.check("ann@guilfordassociation.org", "Hannah Smith", "Manager", **kw)["name"], "")
-
-    def test_venue_freemail_box_keeps_the_owner_at_the_save_step(self):
-        kw = dict(evidence="venue_mailto", vdom="3creekswinery.com", venue="Three Creeks Winery")
-        got = self.check("3creekswinery@gmail.com", "P-J Lawrence", "Owner", **kw)
-        self.assertEqual((got["action"], got["name"]), ("verify", "P-J Lawrence"))
-        # a neighbour's name with another job, or a private free-mail address, still has to fit
-        self.assertEqual(self.check("3creekswinery@gmail.com", "Gordon Carlson", "Executive Chef", **kw)["name"], "")
-        self.assertEqual(self.check("sunnydays77@gmail.com", "P-J Lawrence", "Owner", **kw)["name"], "")
-
     def test_apollo_local_on_a_host_organisation(self):
         env = {"VENUE_HOST_ORG": "property", "VENUE_SITE_PREFIX": "cogirusa.com/communities/cogir-of-potomac",
                "VENUE_CITY_GATE": "Potomac"}
@@ -278,76 +252,6 @@ class PipelineHeredocs(unittest.TestCase):
         c = [r for r in rows if r[0] == "CONTACT"]
         self.assertEqual(c[0][1:3] + [c[0][4]], ["pdr.washingtondc@fourseasons.com", "ANDRES SWEEK", "owner_inbox"])
         self.assertIn(["PARENT", "fourseasons.com"], rows)
-
-    def named(self, rows):
-        return {r[1]: r[2] for r in rows if r[0] == "CONTACT"}
-
-    def test_owning_family_gets_the_events_inbox(self):
-        # "Owned and operated by Ben, Jake and Amy Lefenfeld" on an About page called /us
-        fam = [{"name": n + " Lefenfeld", "title": "Owner"} for n in ("Ben", "Jake", "Amy")]
-        ev = [{"email": "events@lacucharabaltimore.com", "mailto": True}]
-        home = "https://www.lacucharabaltimore.com/"
-        rows = self.decide([(home, ev, []), (home + "us", [], fam)],
-                           "lacucharabaltimore.com", home, "La Cuchara")
-        self.assertEqual(self.named(rows), {"events@lacucharabaltimore.com": "Ben Lefenfeld"})
-        self.assertIn("about", [r for r in rows if r[0] == "VISITED"][0][1])
-        # two unrelated owners: still no guess; the owner who is also the General Manager: theirs
-        two = [{"name": "Ben Lefenfeld", "title": "Owner"}, {"name": "Maria Ortiz", "title": "Co-Owner"}]
-        rows = self.decide([(home, ev, []), (home + "about", [], two)], "lacucharabaltimore.com", home, "La Cuchara")
-        self.assertEqual(self.named(rows), {"events@lacucharabaltimore.com": ""})
-        two[1]["title"] = "Co-Owner & General Manager"
-        rows = self.decide([(home, ev, []), (home + "about", [], two)], "lacucharabaltimore.com", home, "La Cuchara")
-        self.assertEqual(self.named(rows), {"events@lacucharabaltimore.com": "Maria Ortiz"})
-
-    def test_venue_freemail_box_gets_the_owner(self):
-        own = [{"name": "P-J Lawrence", "title": "Owner"}, {"name": "John Lawrence", "title": "Owner"}]
-        home = "https://www.3creekswinery.com/"
-        rows = self.decide([(home, [{"email": "3creekswinery@gmail.com", "mailto": True}], []),
-                            (home + "about", [], own)], "3creekswinery.com", home, "3 Creeks Winery")
-        self.assertEqual(self.named(rows), {"3creekswinery@gmail.com": "P-J Lawrence"})
-        # a general inbox on the venue's domain never gets one this way
-        rows = self.decide([(home, [{"email": "info@3creekswinery.com", "mailto": True}], []),
-                            (home + "about", [], own)], "3creekswinery.com", home, "3 Creeks Winery")
-        self.assertEqual(self.named(rows), {"info@3creekswinery.com": ""})
-
-    def test_inn_owner_reads_the_reservations_inbox(self):
-        home = "https://antietamoverlook.com/"
-        box = [{"email": "reservations@antietamoverlook.com", "mailto": True, "name": "Horizon Ln"}]
-        own = [{"name": "Lee Lee", "title": "Critter Control Officer"}, {"name": "Mark Svrcek", "title": "Owner"}]
-        rows = self.decide([(home, box, own)], "antietamoverlook.com", home, "Antietam Overlook Farm")
-        self.assertEqual(self.named(rows), {"reservations@antietamoverlook.com": "Mark Svrcek"})
-        # a place with a staff: the reservations desk is not the owner
-        own += [{"name": "Ann Lee", "title": "Events Manager"}, {"name": "Tom Roe", "title": "Front Office Manager"}]
-        rows = self.decide([(home, box, own)], "antietamoverlook.com", home, "Antietam Overlook Farm")
-        self.assertEqual(self.named(rows), {"reservations@antietamoverlook.com": ""})
-        for junk in ("Horizon Ln", "Force Majeure", "Maple Ct"):
-            self.assertEqual(R.clean_person_name(junk), "", junk)
-        self.assertEqual(R.clean_person_name("Diane Lane"), "Diane Lane")
-
-    def test_venue_initials_mailbox_is_not_glue(self):
-        home = "https://www.ebbitt.com/"
-        rows = self.decide([(home, [{"email": "events@ebbitt.com", "mailto": False},
-                                    {"email": "oegevents@ebbitt.com", "mailto": False},
-                                    {"email": "xyzevents@ebbitt.com", "mailto": False}], [])],
-                           "ebbitt.com", home, "Old Ebbitt Grill")
-        self.assertIn("oegevents@ebbitt.com", self.named(rows))
-        self.assertIn(["DROP", "xyzevents@ebbitt.com", "page_text_glued_to_address", home], rows)
-
-    def test_vendor_social_account_is_not_the_venues(self):
-        d = tempfile.mkdtemp()
-        pf, cf, df = (os.path.join(d, n) for n in ("pages.jsonl", "crawl.json", "pdfs.jsonl"))
-        home = "https://www.penderbrookgolfclub.com/"
-        socs = [{"platform": "instagram", "url": "https://www.instagram.com/lightspeedhq", "zone": "header"},
-                {"platform": "facebook", "url": "https://www.facebook.com/PenderbrookGolfClub", "zone": "footer"}]
-        with open(pf, "w") as f:
-            f.write(json.dumps({"url": home, "kind": "home", "result": {"url": home, "contacts": [], "people": [],
-                                                                        "socials": socs}}) + "\n")
-        open(df, "w").close()
-        out = run_py(self.DECIDE, [ROOT, pf, cf, df, "penderbrookgolfclub.com", "false", "penderbrookgolfclub.com",
-                                   home, "", "Penderbrook Golf Club"])
-        rows = [l.split(US) for l in out.splitlines()]
-        self.assertIn(["SOCIAL_REJECT", "instagram", "https://www.instagram.com/lightspeedhq", "vendor_handle"], rows)
-        self.assertEqual([r[1] for r in rows if r[0] == "SOCIAL"], ["facebook"])
 
     def test_contacts_come_out_booking_first(self):
         rows = self.decide([

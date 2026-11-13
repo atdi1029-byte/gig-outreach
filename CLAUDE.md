@@ -196,6 +196,20 @@ missing websites in the terminal, not Chrome (Alex, Oct 1 2026: "you run discove
 ## The burn: 24/7 until the credits run out (Nov 6 2026)
 Alex: "do the whole outreach flow on repeat until my credits run out and then not do the
 outreach stuff for a couple months", "which ever runs out first ill probably stop".
+- **THE NOV 2026 BURN IS OVER (Nov 13 2026, 11:27: Apollo at 0; `.burn_done`).** Outreach is shelved; Alex: "we save and wrap
+  up for outreach and I'll look at it again in January". Don't run or suggest outreach until he asks. 23 rounds, 532 venues,
+  1,081 contacts kept (1,449 saved, 368 junk deleted), ZeroBounce 443 left. The report with every change, venue and number:
+  `reports/burn_report_nov2026.pdf` (rebuild: `reports/burn_report_data.py`, then `burn_report_pdf.py OUT.html` and
+  `node reports/burn_report_pdf.js OUT.html reports/burn_report_nov2026.pdf`). `.env` is back to `ZB_MAX_PER_DAY=400`.
+  Before the next burn:
+  - Apollo is at 0: top up. First find where its credits go: the account fell about twice as fast as the pipeline's own
+    count of person lookups (probably the searches cost credits; untested). The same person is looked up twice, by the main
+    step and again by postcheck, a credit each time even after "no email".
+  - The last fix session's commits were reverted by the health check (`site_discovery_tests` failed, Nov 13 12:46): the
+    scraper fixes are in commit `b878540` and a taste note in `2b8f8b2`. Fix the test, then put them back.
+  - LinkedIn gave 9 contacts from 532 venues and the Google fallback none; rows with the venue's name as the city (Le
+    Bistro VA, The Gathering Spot DC) and a chain's all-locations page as the website (Maggiano's Bethesda) are still in the pool.
+  - Raise `ZB_MAX_PER_DAY` again for the burn, `rm .burn_done`, and read round 1's picks and saves before letting it go on.
 - Start: `open burn_run.command` (Terminal, for Chrome's permission) = `./night_run.sh --burn`.
   Chrome is the burn's alone around the clock while it runs. The 1:00 launchd night exits
   while the burn holds the lock.

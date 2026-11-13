@@ -756,3 +756,21 @@
 ### Changes made (Nov 7)
 - `taste_venues.txt`: +7 (Cece's Roland Park, Osteria Mozza, The Ritz-Carlton Tysons Corner, The Ritz-Carlton Pentagon City, Park Hyatt Washington DC, Swann House, Congressional Country Club).
 - `taste_score.py`: none. The three scorer disagreements are one-offs, not a repeated pattern.
+
+---
+
+## Nov 13, 2026 — Taste Review (3 new votes, burn FIX session)
+
+### Positives
+- **Baltimore Yacht Club** (yacht_club, Baltimore MD) — thumbs up, no note. Scorer agrees (42). A real club with a clubhouse and 179 reviews; yacht clubs stay a yes.
+
+### Negatives
+- **Hartge Yacht Yard** (yacht_club, Galesville MD) — "Literally for just boats" → a boatyard filed as a yacht club. Scorer DISAGREED (34, floor 30).
+- **Choptank River Yacht Club** (yacht_club, Denton MD) — "Generic boat dock" → a small rural club (41 reviews) that is a dock, not a clubhouse with dining. Scorer DISAGREES (34, floor 30). Nothing in its record tells it from a real club; one vote, no change.
+
+### Pattern
+- **A place for boats is not a yacht club** — third vote of this kind (Dragon Boat Club, Oasis Boat Club, now Hartge Yacht Yard). Yacht clubs with a clubhouse and dining stay strong (Annapolis, Baltimore, Chester River); yards, docks and recreation boat clubs are a no.
+
+### Changes made (Nov 13)
+- `venue_classifier.py`: "yacht yard" joins boatyard / boat yard in the boating-business junk words (Hartge Yacht Yard now scores 0).
+- `taste_venues.txt`: none (Baltimore Yacht Club has no note; clubs are already a pattern).

@@ -390,7 +390,7 @@ _JUNK = [
     ('boating business', _rx(['yacht management', 'boat rental*', 'yacht rental*',
                               'yacht charter*', 'boat charter*', 'charters', 'yacht sales',
                               'yacht brokerage', 'boat sales', 'cruises', 'boat tours',
-                              'marine services', 'boatyard', 'boat yard'])),
+                              'marine services', 'boatyard', 'boat yard', 'yacht yard'])),
     ('residential/HOA', _rx(['hoa', 'homeowners', 'homeowner association',
                              'community association', 'civic association',
                              'condominium*', 'apartments', 'apartment homes',

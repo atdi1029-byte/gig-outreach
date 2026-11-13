@@ -9,8 +9,8 @@
  "night": {
   "date": "2026-11-11",
   "started_at": "2026-11-11T21:35:56-05:00",
-  "finished_at": null,
-  "state": "running",
+  "finished_at": "2026-11-13T12:46:18-05:00",
+  "state": "stopped",
   "runs": [
    {
     "run_id": "run-20261111-2142",
@@ -83,9 +83,88 @@
     "deep_dive": "done"
    }
   ],
-  "note": "Outreach running again"
+  "note": "4 runs \u00b7 87 venues \u00b7 47 with contacts \u00b7 102 new contacts \u00b7 9 more from the deep dive"
  },
  "history": [
+  {
+   "date": "2026-11-11",
+   "started_at": "2026-11-11T21:35:56-05:00",
+   "finished_at": "2026-11-13T12:46:18-05:00",
+   "state": "stopped",
+   "runs": [
+    {
+     "run_id": "run-20261111-2142",
+     "outcome": "finished",
+     "started": "22:04",
+     "venues": 25,
+     "processed": 25,
+     "skipped": 0,
+     "with_contacts": 15,
+     "zero": 10,
+     "new_contacts": 27,
+     "unfinished": 0,
+     "ended": "00:07",
+     "rescued_contacts": 5,
+     "rescued_venues": 4,
+     "deep_dive": "done"
+    },
+    {
+     "run_id": "run-20261112-0007",
+     "outcome": "finished",
+     "started": "00:07",
+     "venues": 25,
+     "processed": 25,
+     "skipped": 0,
+     "with_contacts": 13,
+     "zero": 12,
+     "new_contacts": 46,
+     "unfinished": 0,
+     "ended": "02:20",
+     "rescued_contacts": 1,
+     "rescued_venues": 0,
+     "deep_dive": "done"
+    },
+    {
+     "run_id": "run-20261112-0220",
+     "outcome": "finished",
+     "started": "02:20",
+     "venues": 25,
+     "processed": 25,
+     "skipped": 0,
+     "with_contacts": 17,
+     "zero": 8,
+     "new_contacts": 25,
+     "unfinished": 0,
+     "ended": "04:38",
+     "deep_dive": "done",
+     "rescued_contacts": 1,
+     "rescued_venues": 0
+    },
+    {
+     "run_id": "run-20261112-1157",
+     "outcome": "could not start: paused by Alex (.burn_pause) before plan batch 1/4",
+     "started": "11:57",
+     "ended": "11:57"
+    },
+    {
+     "run_id": "run-20261113-1039",
+     "outcome": "stopped: Apollo step failed on 2 venues in a row (API key, credits or outage?)",
+     "started": "10:39",
+     "venues": 16,
+     "processed": 12,
+     "skipped": 0,
+     "with_contacts": 2,
+     "zero": 10,
+     "new_contacts": 4,
+     "unfinished": 4,
+     "ended": "11:27",
+     "rescued_contacts": 2,
+     "rescued_venues": 2,
+     "deep_dive": "done"
+    }
+   ],
+   "note": "4 runs \u00b7 87 venues \u00b7 47 with contacts \u00b7 102 new contacts \u00b7 9 more from the deep dive"
+  },
   {
    "date": "2026-11-09",
    "started_at": "2026-11-09T23:44:59-05:00",
@@ -184,5 +263,5 @@
    "note": "No venues ran tonight"
   }
  ],
- "updated_at": "2026-11-13T12:46:17-05:00"
+ "updated_at": "2026-11-13T12:46:18-05:00"
 }

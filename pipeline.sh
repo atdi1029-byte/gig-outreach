@@ -501,7 +501,12 @@ if clean and evidence in ("venue_site", "venue_mailto") and action == "role" and
     # A role mailbox is saved only with a person attached; from page text that
     # needs a name AND a title beside it ("Liz McQuay, Events Manager").
     clean = ""
-if clean and evidence in ("venue_site", "venue_mailto") and action == "verify":
+# The venue's own free-mail box (3creekswinery@gmail.com) carries the owner the site names:
+# the website step pairs it with the one owner or owning family, and no owner's name is in it.
+venue_box = (R.registrable_domain(email.split("@", 1)[1]) in R.FREEMAIL_DOMAINS
+             and R.freemail_linked_to_venue(local, vname)
+             and bool(re.search(r"(?i)\b(owner|proprietor|founder)\b", title or "")))
+if clean and evidence in ("venue_site", "venue_mailto") and action == "verify" and not venue_box:
     # A scraped name must match the mailbox (jsmith@ -> John Smith); otherwise it is
     # probably a neighbouring line of page text or another person's card.
     parts = [re.sub(r"[^a-z]", "", p.lower()) for p in clean.split()]
@@ -511,7 +516,10 @@ if clean and evidence in ("venue_site", "venue_mailto") and action == "verify":
     if not ((first in compact if len(first) >= 3 else compact.startswith(first)) or (len(last) >= 3 and last in compact)
             or compact.startswith(first[:1] + last) or compact == first[:1] + last
             # a university ID cuts the surname short: mfitzg19@jhu.edu is Michelle Fitzgerald
-            or (len(compact) >= 5 and (first[:1] + last).startswith(compact))):
+            or (len(compact) >= 5 and (first[:1] + last).startswith(compact))
+            # a short form of the first name: beth@ is Elizabeth Nguyen, alex@ is Alexander
+            or (len(compact) >= 4 and compact in first)
+            or (len(compact) >= 3 and (first.startswith(compact) or first.endswith(compact)))):
         clean = ""
         title = ""   # the title beside it was that other person's (arlene@ + "Executive Chef")
 if clean:
@@ -2511,7 +2519,7 @@ def in_scope(u):
     return (h == home_host or h == reg or h.endswith("." + reg) or hp.startswith(prefix)
             or any(h == a or h.endswith("." + a) for a in alias_regs)
             or bool(home_prefix and (hp.rstrip("/") == home_prefix or hp.startswith(home_prefix + "/"))))
-CDN = re.compile(r"(^|\.)(wixstatic\.com|filesusr\.com|squarespace-cdn\.com|squarespace\.com|wp\.com|weebly\.com|editmysite\.com|godaddysites\.com|img1\.wsimg\.com|wsimg\.com|shopify\.com|cloudfront\.net|amazonaws\.com|googleusercontent\.com)$", re.I)
+CDN = re.compile(r"(^|\.)(wixstatic\.com|filesusr\.com|squarespace-cdn\.com|squarespace\.com|wp\.com|weebly\.com|editmysite\.com|godaddysites\.com|img1\.wsimg\.com|wsimg\.com|shopify\.com|cloudfront\.net|amazonaws\.com|googleusercontent\.com|getbento\.com)$", re.I)
 CONTACTISH = re.compile(r"contact|get-in-touch|reach|inquir|enquir|about|our-story|who-we-are|team|staff|people|leadership|directory|management|meet|event|private|wedding|banquet|cater|dining|group|meeting|part(y|ies)|celebrat|rental|book", re.I)
 STATE = re.compile(r"-(md|va|dc|pa|de|wv|ny|ca|fl|tx|nc|sc|ga|oh|il|ma|nj|ct|ri|nh|vt|me|mi|wi|mn|ia|mo|ks|ne|sd|nd|mt|wy|co|ut|nv|id|or|wa|ak|hi|al|ms|tn|ky|in|ar|la|ok|nm|az)$")
 def other_location(u):
@@ -2535,10 +2543,11 @@ def hit(e, url, mailto, kind, name="", title=""):
         r["title"] = title
 social = []   # (platform, url, zone, page_url)
 people = {}   # lower name -> (name, title, page)
-PEOPLEISH = re.compile(r"team|staff|people|leadership|about|our-story|who-we-are|management|directory|board|governance|meet|contact|private|event|wedding|owner|founder|chef|history", re.I)
+# (an About page can be called /us, /story or /visit: lacucharabaltimore.com/us, Nov 11 2026)
+PEOPLEISH = re.compile(r"team|staff|people|leadership|about|story|who-we-are|management|directory|board|governance|meet|contact|private|event|wedding|owner|founder|chef|history|famil|visit|/us/?$", re.I)
 kinds = set()
 KINDS = (("contact", re.compile(r"contact|get-in-touch|reach|inquir|enquir", re.I)),
-         ("about", re.compile(r"about|our-story|who-we-are|history", re.I)),
+         ("about", re.compile(r"about|story|who-we-are|history|/us/?$", re.I)),
          ("events", re.compile(r"event|private|wedding|banquet|cater|dining|group|meeting|part(y|ies)|celebrat|rental|book", re.I)),
          ("team", re.compile(r"team|staff|people|leadership|directory|management|board|meet", re.I)))
 forms = []    # (rank, url)
@@ -2660,19 +2669,33 @@ def person_for(email):
 # 2026, Flore Cafe: pair the inbox with the owner/GM found elsewhere, "seems perfect").
 # Only when the site names exactly one such person: events@ -> the events/catering/sales
 # person, else the one owner or GM; gm@ -> the General Manager. Two owners = no guess.
-def runner_of(email):
+def runner_of(email, venue_box=False):
     local = re.sub(r"[^a-z]", "", email.split("@")[0])
-    if R.is_general_inbox(email) or not R.is_role_email(email): return None
+    if not venue_box and (R.is_general_inbox(email) or not R.is_role_email(email)): return None
     vwords = set(re.findall(r"[a-z]+", R._fold(venue).lower()))
     staff = [(n, t) for n, t, _ in people.values() if R.clean_person_name(n) and not re.search(r"(?i)assistant|\bsous\b", t)
              and not all(w in vwords for w in re.findall(r"[a-z]+", R._fold(n).lower()))]
     boss = [x for x in staff if re.search(r"(?i)\b(owner|co-?owner|proprietor|founder|general manager|gm)\b", x[1])]
+    if len(boss) > 1:
+        # Several owners: the one who is also the General Manager runs the inbox; a family that
+        # owns the place together ("Owned and operated by Ben, Jake and Amy Lefenfeld", "Winery
+        # Owners P-J and John Lawrence") answers it together, so the first one named gets it.
+        _gm = [x for x in boss if re.search(r"(?i)\b(general manager|gm)\b", x[1])]
+        _sur = {R._fold(x[0]).lower().split()[-1] for x in boss}
+        if len(_gm) == 1: boss = _gm
+        elif len(_sur) == 1 and len(boss) <= 4: boss = boss[:1]
+    if venue_box:
+        return boss[0] if len(boss) == 1 else None
     if local in ("gm", "generalmanager", "manager"):
         hits = [x for x in staff if re.search(r"(?i)\b(general manager|gm)\b", x[1])]
     elif re.search(r"event|cater|wedding|banquet|privatedining|groupsales|^sales|^pdr|^part(y|ies)|privateparties", local):
         job = re.compile(r"(?i)(event|cater|wedding|banquet|private dining|sales).*(manager|director|coordinator|planner|specialist|supervisor)|"
                          r"(manager|director|coordinator|planner|specialist|supervisor).*(event|cater|wedding|banquet|private dining|sales)")
         hits = [x for x in staff if job.search(x[1])] or boss
+    elif local in ("reservations", "reservation", "bookings", "booking", "innkeeper", "innkeepers") and len(staff) <= 2:
+        # an inn or a small place run by the one owner its site names: the owner reads the
+        # bookings (reservations@antietamoverlook.com, "Owner - Mark Svrcek", Nov 11 2026)
+        hits = boss
     elif local in ("director", "executivedirector", "execdirector"):
         # the head of the organisation, not a department's director (director@hchsmd.org =
         # "Ann Bennett, Executive Director" on the staff page, Nov 10 2026)
@@ -2841,6 +2864,9 @@ for _dm, _locals in _by_dom.items():
             continue
         if any(m for _, m, _k in emails[_l + "@" + _dm]["hits"]) or re.sub(r"[\d._\-+]", "", _l) in R.ROLE_TOKENS:
             continue
+        # the venue's initials before the job (oegevents@ebbitt.com beside events@, Old Ebbitt Grill)
+        if R.venue_initials_in_local(_l, venue):
+            continue
         if any(_l[:-len(o)][-1:] in "._-" and
                sum(1 for x in _locals if x != o and x.endswith(o) and x[:-len(o)][-1:] in "._-") >= 2 for o in _tails):
             continue
@@ -2899,6 +2925,12 @@ for e, r in sorted(emails.items()):
         runner = runner_of(e)
         if runner:
             r["name"], r["title"] = runner
+    elif not r["name"] and shared != "true" and ev != "external" and _venue_freemail(e):
+        # the venue's own free-mail box with no name beside it (3creekswinery@gmail.com) is read
+        # by its owner, when the site names one owner or one owning family
+        runner = runner_of(e, venue_box=True)
+        if runner:
+            r["name"], r["title"] = runner
     elif (ev == "venue_mailto" and _edreg and _edreg not in (reg, mail_alias, brand_reg) and _edreg not in alias_regs
           and _edreg not in R.FREEMAIL_DOMAINS and not R.is_non_venue_host(_edreg) and not R.is_institution_domain(_edreg)
           and R.is_role_email(e) and not R.is_general_inbox(e)):
@@ -2944,6 +2976,11 @@ def words(h):
     h = re.sub(r"([a-z])([A-Z])", r"\1 \2", h)
     return re.sub(r"[._\-]+", " ", h).strip()
 brand = (reg.split(".")[0] if reg else "").lower()
+VENDOR_HANDLES = {"lightspeedhq", "lightspeedgolf", "chronogolf", "golfnow", "foreupgolf", "foreup", "clubessential",
+                  "getbento", "bentobox", "toasttab", "opentable", "resy", "tripleseat", "popmenu", "spotonhq", "spoton",
+                  "squareup", "square", "sevenrooms", "tock", "exploretock", "wix", "squarespace", "godaddy", "wordpress",
+                  "shopify", "weebly", "webflow", "mailchimp", "constantcontact", "yelp", "tripadvisor", "theknot",
+                  "weddingwire", "doordash", "ubereats", "grubhub", "eventbrite", "cvent", "marriottbonvoy", "hiltonhonors"}
 best = {}
 cands = {}
 for platform, url, zone, page in social:
@@ -2964,6 +3001,11 @@ for (platform, _), c in cands.items():
     hw = words(h)
     name_ok = bool(h) and (R.org_name_matches(hw, venue) or R.org_name_matches(h, venue))
     site_ok = shared != "true"
+    if h.lower() in VENDOR_HANDLES and not name_ok:
+        # the site builder's or booking system's own account in the header (instagram.com/lightspeedhq
+        # on penderbrookgolfclub.com, Nov 12 2026)
+        print("SOCIAL_REJECT\x1f%s\x1f%s\x1f%s" % (platform, c["url"], "vendor_handle"))
+        continue
     template = c["crawl"] >= 2 or len(c["pages"]) >= 2
     reason = ""
     if re.search(r"\.(com|net|org|biz|us)$", h.lower()) and not name_ok:

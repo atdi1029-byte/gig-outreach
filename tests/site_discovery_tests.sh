@@ -501,8 +501,55 @@ assert S._www_variant("http://venue.org/contact?x=1") == "http://www.venue.org/c
 for u in ("https://www.venue.com/", "https://events.venue.com/", "https://venue.co.uk/", "https://venue.com:8443/", "venue.com"):
     assert S._www_variant(u) == "", u
 assert R.is_role_email("executivedirector@x.org") and R.is_role_email("director@hchsmd.org")
+# people a sentence names with their job, owning families, "Sales Lead", "Director, Department"
+ppl = {p["name"]: p["title"] for p in S.extract_people(
+    "Since May 2003, Owner \u2013 Mark Svrcek, has offered craft lodging to over 40,000 guests at Antietam Overlook Farm in "
+    "Keedysville. Many of the guests return to the farm year after year, and some of them have stayed with us many times.\n"
+    "Join Supra Owner Jonathan Nelms and Super-Guide Tamara for a 12-day journey\n"
+    "Owner and Executive Chef Carolina Fernandes leads the kitchen today\n"
+    "Owned and operated by Ben, Jake and Amy Lefenfeld, the restaurant is housed in the historic Meadow Mill\n"
+    "Winery Owners\nP-J and John Lawrence\n"
+    "Kylie Zahringer\nSales Lead\nLuke Powell\nDirector, Community Operations\n"
+    "Before La Cuchara, Ben spent 15 years cooking under Executive Chef Gerard Pangaud and with Chef Michel Richard\n"
+    "Events Manager Position Available\nPrivate Events Coordinator Job Description\nGeneral Manager Opening Soon\n"
+    "The inn is owned by Great American Restaurants and managed by Director of Food Services Mary Ann Smith\n"
+    "The house was probably occupied as early as 1740, when it was owned by Elizabeth Bennett. In 1750, she sold it\n"
+    "Sherwood Gardens is owned by Stratford Green, Inc., a non-profit\n"
+    "He trained with award-winning Executive Chef Todd Gray, and President John F. Kennedy dined here\n"
+    "A panel with the Managing Director, Oxford Analytica and former General Manager Tom Old")}
+want = {"Mark Svrcek": "Owner", "Jonathan Nelms": "Owner", "Carolina Fernandes": "Owner and Executive Chef",
+        "Ben Lefenfeld": "Owner", "Jake Lefenfeld": "Owner", "Amy Lefenfeld": "Owner", "P-J Lawrence": "Owner",
+        "John Lawrence": "Owner", "Kylie Zahringer": "Sales Lead", "Luke Powell": "Director, Community Operations"}
+assert ppl == want, ppl
+# a list of name / job cards: each job stays with the name above it, also a job the title rules don't know
+ppl = {p["name"]: p["title"] for p in S.extract_people(
+    "Our Staff\nPeter Miller\nGeneral Manager\nJustin Shramm\nClubhouse Manager\nAlissa McGuire\nCOO\n"
+    "Elizabeth Ryan\nTreasurer\nTara Wagoner\nMembership Sales Director\nSchedule A Tour\n"
+    "Contact\nEvent Sales Director\nKristen Williams\nMembership Director\nRussell Danyluk")}
+assert ppl == {"Peter Miller": "General Manager", "Justin Shramm": "Clubhouse Manager", "Alissa McGuire": "COO",
+               "Elizabeth Ryan": "Treasurer", "Tara Wagoner": "Membership Sales Director",
+               "Kristen Williams": "Event Sales Director", "Russell Danyluk": "Membership Director"}, ppl
+# a mailto link that shows an icon: the name beside it goes with the address; beth@ is Elizabeth
+h = ('<p><strong>Association Manager:</strong> Patrick Nolan <a href="mailto:officemanager@guilfordassociation.org">'
+     '<i class="fa fa-envelope-o"></i></a></p>\n<p><strong>Financial Lead / Assistant Manager:</strong> Elizabeth Nguyen '
+     '<a href="mailto:beth@guilfordassociation.org"><i class="fa fa-envelope-o"></i></a></p>'
+     '<p>Write to <a href="mailto:rentals@x.org">rentals@x.org</a></p>')
+t = S.page_text(h)
+assert t.count("rentals@x.org") == 1, t
+ctx = S.email_contexts(t, ["beth@guilfordassociation.org", "officemanager@guilfordassociation.org"])
+assert ctx["beth@guilfordassociation.org"]["name_hint"] == "Elizabeth Nguyen", ctx
+assert ctx["officemanager@guilfordassociation.org"]["name_hint"] == "Patrick Nolan", ctx
+assert not S._name_fits_email("Lynne Basignani", "bert@x.com")
+# an "Email" link under a staff card takes the card's name; under a menu or a heading it takes none
+h = ('<h3>Lynn Fallon</h3><p>Parish Administrator<br><a href="mailto:admin.office@x.org">&#128231; Email</a></p>'
+     '<h3>Whoopie Pies</h3><p>Seasonal Recipes<br><a href="mailto:feedback@x.org">Email us</a></p>')
+t = S.page_text(h)
+ctx = S.email_contexts(t, ["admin.office@x.org", "feedback@x.org"])
+assert (ctx["admin.office@x.org"]["name_hint"], ctx["admin.office@x.org"]["title_hint"]) == ("Lynn Fallon", "Parish Administrator"), ctx
+assert ctx["feedback@x.org"]["name_hint"] == "" and "\u2063" not in ctx["feedback@x.org"]["context"], ctx
+assert [p["name"] for p in S.extract_people(t)] == ["Lynn Fallon"]
 PY
-echo 'PASS: prose-named contacts, couples, junk names, officer mailboxes, Dexter and Airtable forms'
+echo 'PASS: prose-named contacts, couples, junk names, officer mailboxes, Dexter and Airtable forms, people in sentences, icon mailtos'
 
 # The save step: a role mailbox keeps the person a sentence names ("Contact" marks the
 # pairing and never becomes the title); a heading or the neighbour's title does not stick.

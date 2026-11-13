@@ -823,7 +823,7 @@ PAGE_KIND_RULES = (
     ("contact", re.compile(r"contact|get-?in-?touch|inquir|enquir|reach-?us|connect|find-?us|location", re.I)),
     ("team", re.compile(r"team|staff|people|leadership|directory|management|who-?we-?are|meet-|board|our-?story", re.I)),
     ("events", re.compile(r"event|private|wedding|banquet|cater|group|part(?:y|ies)|celebrat|meeting|rental|venue|book", re.I)),
-    ("about", re.compile(r"about|history|story", re.I)),
+    ("about", re.compile(r"about|history|story|/us/?$", re.I)),
 )
 
 
@@ -886,16 +886,21 @@ _NOT_NAME_WORDS = {
     "tasting", "wine", "club", "room", "tours", "tour", "gift", "shop", "order",
 }
 _NAME_SEQ_RE = re.compile(r"[A-Z][a-zA-Z'\u2019\-]+(?:[ \t]+(?:[A-Z]\.|[A-Z][a-zA-Z'\u2019\-]+)){1,3}")
-_TITLE_RE = re.compile(
-    r"\b((?:(?:Senior|Sr\.?|Assistant|Asst\.?|Associate|Executive|General|Private|Special|Group|"
+_TITLE_QUAL = (
+    r"(?:Senior|Sr\.?|Assistant|Asst\.?|Associate|Executive|General|Private|Special|Group|"
     r"Wedding|Weddings|Catering|Banquet|Banquets|Event|Events|Sales|Marketing|Membership|"
     r"Food (?:&|and) Beverage|F&B|Beverage|Hospitality|Operations|Club|Front Office|Guest Services|"
     r"Managing|Gallery|Music|Program|Programs|Programming|Creative|Artistic|Venue|Restaurant|Wine|"
     r"Tasting Room|Business|Development|Community|Social|Clubhouse|Floor|Dining Room|Bar|"
-    r"Director of|Manager of)[ \t]+){0,3}"
+    r"Director of|Manager of)")
+_TITLE_ROLE = (
     r"(?:Director|Manager|Coordinator|Planner|Specialist|Co-Owner|Owner|Proprietor|Co-Founder|"
-    r"Founder|President|Partner|Chef|Sommelier|Curator|Administrator|Supervisor|Concierge|GM)"
-    r"(?:[ \t]+(?:of|for)[ \t]+(?:[A-Z][A-Za-z&]+[ \t]?){1,4})?)")
+    r"Founder|President|Partner|Chef|Sommelier|Curator|Administrator|Supervisor|Concierge|GM)")
+# "Sales Lead", "Events Lead": a lead needs its department ("Lead" alone is not a job).
+_TITLE_CORE = (r"(?:(?:" + _TITLE_QUAL + r"[ \t]+){0,3}" + _TITLE_ROLE +
+               r"|(?:" + _TITLE_QUAL + r"[ \t]+){1,3}Lead\b)")
+_TITLE_RE = re.compile(
+    r"\b(" + _TITLE_CORE + r"(?:[ \t]+(?:of|for)[ \t]+(?:[A-Z][A-Za-z&]+[ \t]?){1,4})?)")
 
 
 def _generic_venue_word(w: str) -> bool:
@@ -964,6 +969,9 @@ def _strict_name(text: str) -> str:
 
 
 _TITLE_SEG_RE = re.compile(_TITLE_RE.pattern, re.I)
+_TITLE_DEPT_RE = re.compile(
+    r"(?:(?:Managing|Executive|Senior|Associate|Assistant)[ \t]+)?(?:Director|Manager|Vice President|VP|Head)"
+    r"[ \t]*,[ \t]*[A-Z][A-Za-z&]+(?:[ \t]+(?:[A-Z][A-Za-z&]+|and|of|&)){0,3}")
 
 
 def _title_segment(text: str) -> str:
@@ -972,7 +980,10 @@ def _title_segment(text: str) -> str:
     if not t or len(t) > 60:
         return ""
     m = _TITLE_SEG_RE.search(t)
-    return t if m and len(m.group(1)) >= 0.5 * len(t) else ""
+    if m and len(m.group(1)) >= 0.5 * len(t):
+        return t
+    # "Director, Community Operations": the job, then its department
+    return t if _TITLE_DEPT_RE.fullmatch(t) else ""
 
 
 _CREDENTIAL_RE = re.compile(r"(?:PGA|LPGA|CCM|CCE|CMP|CSW|CPCE|CGCS|MBA|PhD|Ph\.D\.?|Jr\.?|Sr\.?|II|III)")
@@ -982,7 +993,9 @@ _PEOPLE_SPLIT_RE = re.compile(r"\s*(?:,|\||:|\s[-\u2013\u2014]\s|\u2013|\u2014)\
 # A couple sharing one surname: "Owners Bobby and Julie Jones", "Stephen & Shannon Mackey
 # are the co-founders", "Randy and Meagan Morgan / Owners" -> two people.
 _COUPLE_ROLE = r"([Oo]wners?|[Cc]o-[Oo]wners?|[Pp]roprietors?|[Ff]ounders?|[Cc]o-[Ff]ounders?)"
-_COUPLE_PAIR = r"([A-Z][a-z\u00e0-\u00ff]+) (?:and|&) ([A-Z][a-z\u00e0-\u00ff]+) ([A-Z][A-Za-z\u00e0-\u00ff'\u2019\-]+)"
+_COUPLE_FIRST = r"[A-Z](?:[a-z\u00e0-\u00ff]+|-?[A-Z]\b)"   # "Julie", "P-J", "PJ"
+_COUPLE_PAIR = (r"(" + _COUPLE_FIRST + r") (?:and|&) (" + _COUPLE_FIRST + r") "
+                r"([A-Z][A-Za-z\u00e0-\u00ff'\u2019\-]+)")
 _COUPLE_A_RE = re.compile(r"\b" + _COUPLE_ROLE + r"[,:]?\s+" + _COUPLE_PAIR)
 _COUPLE_B_RE = re.compile(_COUPLE_PAIR + r",?\s+(?:(?:are|the|our|and|as|is)\s+){0,3}" + _COUPLE_ROLE + r"\b")
 
@@ -999,19 +1012,98 @@ def couples(text: str) -> List[Tuple[str, str]]:
     return [(n, re.sub(r"s$", "", r).title()) for n, r in out]
 
 
+# People named in running text, whatever the line's length: "Since May 2003, Owner \u2013 Mark
+# Svrcek, has offered ...", "Owner and Executive Chef Carolina Fernandes leads the kitchen
+# today", "Join Supra Owner Jonathan Nelms". Only the people who run the place or its events
+# (owner, founder, general manager, events/catering/sales): a page's sentences also name
+# presidents, guest chefs and curators from elsewhere. The job comes first and the name
+# follows it directly or after a dash or colon ("Managing Director, Oxford Analytica" is an
+# employer); one more capitalised word after the name is a heading in title case, not a name.
+_PROSE_NAME = (r"([A-Z][a-z\u00c0-\u00ff'\u2019\-]+(?:[ \t]+[A-Z]\.)?"
+               r"(?:[ \t]+[A-Z][A-Za-z\u00c0-\u00ff'\u2019\-]+){1,2})(?![A-Za-z'\u2019\-]|[ \t]+[A-Z])")
+_TITLE_NAME_RE = re.compile(
+    r"\b((?:" + _TITLE_CORE + r"[ \t]*(?:,|/|&|and)[ \t]*)?" + _TITLE_CORE + r")"
+    r"[ \t]*(?:[-\u2013\u2014:][ \t]*)?" + _PROSE_NAME)
+_PROSE_JOB_RE = re.compile(
+    r"\b(?:Co-)?(?:Owner|Founder)\b|\bProprietor\b|\bGeneral Manager\b|\bGM\b|"
+    r"\b(?:Events?|Catering|Sales|Banquets?|Weddings?|Private Dining)\b.*\b(?:Manager|Director|Coordinator|Planner)\b|"
+    r"\b(?:Manager|Director) of (?:Events|Catering|Sales|Private Dining)\b")
+_PROSE_NOT_NAME = {
+    "position", "positions", "opening", "openings", "search", "wanted", "needed", "job", "jobs",
+    "description", "inspired", "driven", "curated", "special", "specials", "financing", "operated",
+    "selection", "selections", "table", "tables", "menu", "menus", "dinner", "dinners", "series",
+    "pick", "picks", "choice", "notes", "message", "letter", "corner", "bio", "spotlight", "profile",
+    "update", "report", "interview", "news", "blog", "team", "staff", "application", "apply",
+    "training", "program", "meeting", "meetings", "award", "awards", "dashboard", "login", "portal",
+}
+# someone the sentence says a person worked under or for, or a job someone used to hold
+_PROSE_ELSEWHERE_RE = re.compile(
+    r"\b(?:under|alongside|for|former|formerly|longtime|late|then|ex)[ \t-]+(?:the[ \t]+)?$", re.I)
+_PROSE_PAST_RE = re.compile(r"\b1[5-9]\d\d\b")   # "In 1902 ... owned by Maud Marrow"
+# A family that owns the place: "Owned and operated by Ben, Jake and Amy Lefenfeld", "owned by
+# John and Jane Smith". One full name needs "and operated" ("owned by Stratford Green, Inc." and
+# "was owned by Elizabeth Bennett" in 1740 are not the people to write to).
+_OWNED_FIRST = r"[A-Z][a-z\u00e0-\u00ff]+"
+_OWNED_LAST = r"[A-Z][A-Za-z\u00e0-\u00ff'\u2019\-]+"
+_OWNED_INTRO = (r"(?:(?:the|husband and wife(?: team)?|husband-and-wife(?: team)?|brothers|sisters|siblings|"
+                r"chefs?|locals?)[ \t]+)*")
+_OWNED_END = r"(?![A-Za-z'\u2019\-]|[ \t]+[A-Z]|,? (?:Inc|LLC|Ltd|Corp))"
+_OWNED_BY_RE = re.compile(
+    r"\b[Oo]wned (?:(?:and|&) [Oo]perated )?by " + _OWNED_INTRO +
+    r"((?:" + _OWNED_FIRST + r", ){0,3}" + _OWNED_FIRST + r",? (?:and|&) " + _OWNED_FIRST + r" " + _OWNED_LAST + r")" + _OWNED_END +
+    r"|\b[Oo]wned (?:and|&) [Oo]perated by " + _OWNED_INTRO +
+    r"(" + _OWNED_FIRST + r" " + _OWNED_LAST + r"(?: (?:and|&) " + _OWNED_FIRST + r" " + _OWNED_LAST + r")?)" + _OWNED_END)
+
+
+def prose_people(text: str) -> List[Tuple[str, str]]:
+    """[(name, title)] for the owners and managers a sentence names. The caller judges the names."""
+    out: List[Tuple[str, str]] = []
+    text = text or ""
+    for m in _TITLE_NAME_RE.finditer(text):
+        name, title = m.group(2), re.sub(r"\s+", " ", m.group(1)).strip()
+        before = text[max(0, m.start() - 100):m.start()]
+        if (not _PROSE_JOB_RE.search(title) or _PROSE_ELSEWHERE_RE.search(before[-24:]) or _PROSE_PAST_RE.search(before)
+                or any(w.lower().strip(".,") in _PROSE_NOT_NAME for w in name.split())):
+            continue
+        out.append((name, title))
+    for m in _OWNED_BY_RE.finditer(text):
+        if _PROSE_PAST_RE.search(text[max(0, m.start() - 100):m.start()]):
+            continue
+        parts = [x for x in re.split(r",? (?:and|&) |, ", m.group(1) or m.group(2)) if x]
+        last = parts[-1].split()[-1]
+        for part in parts:
+            out.append((part if " " in part else part + " " + last, "Owner"))
+    return out
+
+
+def _card_title(line: str) -> bool:
+    """A short line that can be a job in a list of staff cards: no sentence, number, address or name."""
+    t = (line or "").strip()
+    words = t.split()
+    if not t or len(t) > 70 or len(words) > 8 or not t[0].isupper() or t.endswith((".", "!", "?", ":")):
+        return False
+    if re.search(r"[\d@]|https?:|www\.", t) or _strict_name(t):
+        return False
+    return not any(w.lower().strip(".,") in _NOT_NAME_WORDS or w.lower().strip(".,") in _PROSE_NOT_NAME for w in words)
+
+
 def extract_people(text: str) -> List[Dict[str, str]]:
     """Named people with a job title on a page ('Eric Kole, General Manager & Partner',
     'Tony Hardy - Gallery Director', or a name line followed by a title line), whether
     or not an email is next to them. Candidates for the caller's P3 checks."""
     out: Dict[str, Dict[str, str]] = {}
-    lines = [ln.strip() for ln in (text or "").split("\n") if ln.strip()]
+    # ("Devika Strother, Founder devika@...": the address is not part of the name or the job)
+    text = (text or "").replace(_INLINED, "")
+    lines = [ln for ln in (EMAIL_RE.sub(" ", x).strip() for x in text.split("\n")) if ln]
 
-    def keep(name: str, title: str) -> None:
+    def keep(name: str, title: str) -> bool:
         if name and title and name.lower() not in out and len(out) < 60:
             out[name.lower()] = {"name": name, "title": title}
+            return True
+        return False
 
+    taken: Set[int] = set()
     for i, line in enumerate(lines):
-        line = EMAIL_RE.sub(" ", line).strip()  # "Devika Strother, Founder devika@..."
         if line and len(line) <= 160:
             # "Steve Clark, PGA  Director of Operations": the credential is not a segment
             segs = [x for x in _PEOPLE_SPLIT_RE.split(line) if x and not _CREDENTIAL_RE.fullmatch(x.strip())]
@@ -1025,10 +1117,16 @@ def extract_people(text: str) -> List[Dict[str, str]]:
                     keep(n, t)
         if line and i + 1 < len(lines):
             n, t = _strict_name(line), _title_segment(lines[i + 1])
-            if n and t:
-                keep(n, t)
+            if n and not t and (i - 1) in taken and _card_title(lines[i + 1]):
+                # inside a list of name / job cards the line under a name is its job, whatever
+                # the job is called ("Alissa McGuire / COO", "Elizabeth Ryan / Treasurer")
+                t = lines[i + 1]
+            if n and t and keep(n, t):
+                taken.add(i + 1)
+            # a title line that already went to the name above it ("Kylie Zahringer / Sales Lead /
+            # Luke Powell / Director, Community Operations") is not the next person's
             t2, n2 = _title_segment(line), _strict_name(lines[i + 1])
-            if n2 and t2:
+            if n2 and t2 and i not in taken:
                 keep(n2, t2)
     cp = couples(text or "")
     for (n1, t1), (n2, _t) in zip(cp[0::2], cp[1::2]):
@@ -1036,6 +1134,9 @@ def extract_people(text: str) -> List[Dict[str, str]]:
         if a and b:
             keep(a, t1)
             keep(b, t1)
+    for line in lines:
+        for raw, title in prose_people(line):
+            keep(_strict_name(raw), title)
     return list(out.values())
 
 
@@ -1056,9 +1157,29 @@ def decode_cf_html(html: str) -> str:
     return _CF_ELEMENT_RE.sub(repl, html or "")
 
 
+# Marks an address inline_mailtos() wrote into the text: only its own line can name its person
+# (the lines above a footer's "Email us" link are menu items and headings, not a name).
+_INLINED = "\u2063"
+_MAILTO_ANCHOR_RE = re.compile(
+    r"<a\b[^>]*?href=[\"']mailto:\s*([^\"'<>\s?&]+)[^>]*>(.{0,300}?)</a\s*>", re.I | re.S)
+
+
+def inline_mailtos(html: str) -> str:
+    """A mailto link that shows an icon or a word ("Email", an envelope) instead of the address
+    gets the address put after it, so the name printed beside the link can be read with it
+    ("Financial Lead / Assistant Manager: Elizabeth Nguyen [envelope]")."""
+    def repl(m: "re.Match[str]") -> str:
+        inner = m.group(2) or ""
+        email = clean_email(_decode_for_emails(m.group(1)).split(",")[0])
+        if not email or "@" in _decode_for_emails(inner) or "data-cfemail" in inner:
+            return m.group(0)
+        return m.group(0) + " " + _INLINED + email + " "
+    return _MAILTO_ANCHOR_RE.sub(repl, html or "")
+
+
 def page_text(html: str) -> str:
     """Visible text with Cloudflare and [at]/(dot) obfuscation undone."""
-    return deobfuscate_text(visible_text(decode_cf_html(html)))
+    return deobfuscate_text(visible_text(inline_mailtos(decode_cf_html(html))))
 
 
 def _name_fits_email(name: str, email: str) -> bool:
@@ -1072,7 +1193,10 @@ def _name_fits_email(name: str, email: str) -> bool:
         return False
     first, last = toks[0], toks[-1]
     return (first in local or last in local or local in (first[0] + last, first + last[0])
-            or local.startswith(first[0] + last[:3]))
+            or local.startswith(first[0] + last[:3])
+            # a short form of the first name: beth@ beside "Elizabeth Nguyen"
+            or (len(local) >= 4 and local in first)
+            or (len(local) >= 3 and (first.startswith(local) or first.endswith(local))))
 
 
 def email_contexts(text: str, emails: Iterable[str]) -> Dict[str, Dict[str, str]]:
@@ -1097,19 +1221,28 @@ def email_contexts(text: str, emails: Iterable[str]) -> Dict[str, Dict[str, str]
             # A name/title sits on the same line or the two lines above ("Liz McQuay /
             # Events Manager / events@..."), or after the address on the same line.
             before = "\n".join(text[start:i].split("\n")[-3:])
+            card = None
+            if text[i - 1:i] == _INLINED:
+                above = [x.replace(_INLINED, "").strip() for x in before.split("\n")]
+                before = above[-1]
+                # a staff card: name / job / "Email" link ("Lynn Fallon / Parish Administrator / Email")
+                if len(above) == 3 and len(before) <= 30 and _strict_name(above[0]) and _title_segment(above[1]):
+                    card = (_strict_name(above[0]), above[1])
             after = text[i + len(email): i + len(email) + 80].split("\n")[0].split("@")[0]
             name = _name_before(before)
             if name and not _name_fits_email(name, email):
                 name = ""
             tm = _TITLE_RE.search(before[-100:]) or _TITLE_RE.search(after)
             title = tm.group(1).strip() if tm else ""
+            if not name and card and _name_fits_email(card[0], email):
+                name, title = card
             pc = prose_contact(" ".join(before.split("\n")[-2:]))
             pn = _strict_name(pc[0]) if pc else ""
             if pn and _name_fits_email(pn, email):
                 # "Contact [job]": the pipeline's save step keeps only the job
                 name, title = pn, ("Contact " + _title_segment(pc[1])).strip()
             rec = {
-                "context": re.sub(r"\s+", " ", (before[-100:] + email + after[:60])).strip(),
+                "context": re.sub(r"\s+", " ", (before[-100:] + email + after[:60]).replace(_INLINED, "")).strip(),
                 "name_hint": name,
                 "title_hint": title,
             }

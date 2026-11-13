@@ -277,6 +277,8 @@ NON_PERSON_NAME_WORDS = {
     "school", "library", "museum", "gallery", "institute", "department", "committee", "council",
     "faculty", "leadership", "academic", "president", "fieldtrips", "classrooms", "ceramics",
     "minigolf", "accounts", "business", "operations", "administration", "secretariat",
+    "majeure",   # "Force Majeure" in an event contract PDF (Old Ebbitt Grill, Nov 12 2026)
+    "studies", "services", "programs",   # departments ("Byzantine Studies" beside byzantine@doaks.org)
 }
 
 _EMAIL_RE = re.compile(r"^[a-z0-9][a-z0-9._%+'-]*@[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,24}$")
@@ -466,6 +468,11 @@ def hard_reject_reason(email):
     return ""
 
 
+_BUSINESS_LOCAL_RE = re.compile(
+    r".{3,}(?:restaurantgroup|restaurants?|hospitality|group|catering|events|llc|bistro|tavern|"
+    r"cafe|winery|vineyards?|brewery|brewing|farms?|club|hotel|kitchen)$")
+
+
 def name_from_email(email, venue_name=""):
     """'jane.doe@x.com' -> 'Jane Doe'. Anything else -> '' (never invent names).
 
@@ -482,6 +489,14 @@ def name_from_email(email, venue_name=""):
     first, last = m.group(1), m.group(2)
     if first in ROLE_TOKENS or last in ROLE_TOKENS:
         return ""
+    # the second part is a business, not a surname: mark.forgerestaurantgroup@gmail.com is not
+    # "Mark Forgerestaurantgroup" (Forge Southern Comfort, Nov 12 2026)
+    if _BUSINESS_LOCAL_RE.search(last) or _BUSINESS_LOCAL_RE.search(first):
+        return ""
+    if venue_name:
+        vdist = [w for w in _words(venue_name) if len(w) >= 5 and w not in _GENERIC_VENUE_WORDS]
+        if any(len(last) > len(w) and last.startswith(w) for w in vdist):
+            return ""
     if venue_name and (dom in FREEMAIL_DOMAINS or registrable_domain(dom) in FREEMAIL_DOMAINS):
         vwords = {w for w in _words(venue_name) if len(w) >= 3}
         if first in vwords or last in vwords:
@@ -523,7 +538,7 @@ def clean_person_name(name):
     # an address line read as a name ("Smith Ave" on the Dye House site, Nov 8 2026)
     # ("Crystal Drive" beside hello@altitude-va.com)
     if words[-1] in {"ave", "avenue", "st", "rd", "road", "blvd", "boulevard", "pkwy", "parkway", "hwy", "highway",
-                     "drive", "terrace", "circle", "turnpike"}:
+                     "drive", "terrace", "circle", "turnpike", "ln", "ct", "pl", "trl", "cir", "sq"}:
         return ""
     if n.isupper() or n.islower():
         n = " ".join(t.capitalize() for t in toks)
